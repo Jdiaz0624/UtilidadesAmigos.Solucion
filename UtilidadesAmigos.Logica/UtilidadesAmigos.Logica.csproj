@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9F87E78D-B96F-465B-A8D7-4D49A6687536}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UtilidadesAmigos.Logica</RootNamespace>
+    <AssemblyName>UtilidadesAmigos.Logica</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\Downloads\itextsharp\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Comunes\Conversiones.cs" />
+    <Compile Include="Comunes\ExportarDataExel.cs" />
+    <Compile Include="Comunes\SeguridadEncriptacion.cs" />
+    <Compile Include="Comunes\UtilidadDrop.cs" />
+    <Compile Include="Comunes\ValidarControles.cs" />
+    <Compile Include="Comunes\VariablesGlobales.cs" />
+    <Compile Include="Comunes\VariablesPowerBi.cs" />
+    <Compile Include="Comunes\VozVeronica.cs" />
+    <Compile Include="Entidades\Cotizador\EAnoVehiculo.cs" />
+    <Compile Include="Entidades\Cotizador\EComprensivoIncendioRobo.cs" />
+    <Compile Include="Entidades\Cotizador\EServiciosFijos.cs" />
+    <Compile Include="Entidades\Cotizador\ETipoCotizador.cs" />
+    <Compile Include="Entidades\Cotizador\EValorVehiculo.cs" />
+    <Compile Include="Entidades\Cotizador\EVerificarServicios.cs" />
+    <Compile Include="Entidades\Cotizador\EVerificarTipoServicioCotiador.cs" />
+    <Compile Include="Entidades\EAccion.cs" />
+    <Compile Include="Entidades\EBuscaDetalleFacturacion.cs" />
+    <Compile Include="Entidades\EBuscaDetalleReclamaciones.cs" />
+    <Compile Include="Entidades\EBuscaDetallesCobros.cs" />
+    <Compile Include="Entidades\EBuscarEmpleados.cs" />
+    <Compile Include="Entidades\ECargarDataproduccionPowerBi.cs" />
+    <Compile Include="Entidades\ECargarDataReclamacionPowerBi.cs" />
+    <Compile Include="Entidades\ECargarDatosTablaProduccionPowerBi.cs" />
+    <Compile Include="Entidades\ECargarDatosTablaReclamacionpowerBi.cs" />
+    <Compile Include="Entidades\ECargarPerfiles.cs" />
+    <Compile Include="Entidades\ECargarTablaProduccionPowerBi.cs" />
+    <Compile Include="Entidades\ECargarTablaReclamacionPowerBi.cs" />
+    <Compile Include="Entidades\ECarteraSupervisor.cs" />
+    <Compile Include="Entidades\EClaveSeguridad.cs" />
+    <Compile Include="Entidades\EDependientesDetalle.cs" />
+    <Compile Include="Entidades\EDetalleCobrado.cs" />
+    <Compile Include="Entidades\EDetalleInformacionEncabezado.cs" />
+    <Compile Include="Entidades\EEstatusTarjeta.cs" />
+    <Compile Include="Entidades\EListaDepartamentos.cs" />
+    <Compile Include="Entidades\EListadoCoberturas.cs" />
+    <Compile Include="Entidades\EListaRamos.cs" />
+    <Compile Include="Entidades\EListas.cs" />
+    <Compile Include="Entidades\EMantenimientoProduccionTodosLosRamos.cs" />
+    <Compile Include="Entidades\EMantenimientoUsuarios.cs" />
+    <Compile Include="Entidades\EOficinas.cs" />
+    <Compile Include="Entidades\EOperacionesSospechosas.cs" />
+    <Compile Include="Entidades\EPlanCoberturas.cs" />
+    <Compile Include="Entidades\EProduccionDiariaConsulta.cs" />
+    <Compile Include="Entidades\EProduccionDiariaDetalle.cs" />
+    <Compile Include="Entidades\EProduccionTodosLosRamos.cs" />
+    <Compile Include="Entidades\ESacarCobrado.cs" />
+    <Compile Include="Entidades\ESacarDataCobertura.cs" />
+    <Compile Include="Entidades\ESacarDatosVehiculoDetalle.cs" />
+    <Compile Include="Entidades\ESacarItemPoliza.cs" />
+    <Compile Include="Entidades\ESacarRamoPoliza.cs" />
+    <Compile Include="Entidades\ESacarSubramoDetalle.cs" />
+    <Compile Include="Entidades\ETarjetaAcceso.cs" />
+    <Compile Include="Entidades\ETarjetaAccesoMantenimiento.cs" />
+    <Compile Include="Entidades\ETransaccionesEfectivo.cs" />
+    <Compile Include="Entidades\EUsuarios.cs" />
+    <Compile Include="Entidades\EValidarPolizasCanceladasCoberturas.cs" />
+    <Compile Include="Entidades\Mantenimientos\EDepartamentos.cs" />
+    <Compile Include="Entidades\Mantenimientos\EEmpleado.cs" />
+    <Compile Include="Entidades\Mantenimientos\EOficinas.cs" />
+    <Compile Include="Entidades\ProduccionPorUsuario.cs" />
+    <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
+    <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
+    <Compile Include="Logica\LogicaSistema.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\UtilidadesAmigos.Data\UtilidadesAmigos.Data.csproj">
+      <Project>{1725a99d-a314-4849-ac8b-b618f4d91537}</Project>
+      <Name>UtilidadesAmigos.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

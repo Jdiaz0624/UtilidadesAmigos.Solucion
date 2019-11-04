@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDCotizadorDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JUANMARCELINOMD;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString4" Provider="System.Data.SqlClient" />
+  <Function Name="Utililades.SP_VERIFICAR_PERMISO_SERVICIOS" Method="SP_VERIFICAR_PERMISO_SERVICIOS">
+    <Parameter Name="IdTipoCotizador" Parameter="idTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdServicio" Parameter="idServicio" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_VERIFICAR_PERMISO_SERVICIOSResult">
+      <Column Name="IdTipoCotizador" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoCotizador" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EstatusTipoCotizador" Type="System.String" DbType="VarChar(22)" CanBeNull="true" />
+      <Column Name="IdServicio" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Servicio" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estatus00" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EstatusServicios" Type="System.String" DbType="VarChar(17)" CanBeNull="true" />
+      <Column Name="TieneAcceso0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TieneAcceso" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_COTIZADOR_TIPO_COTIZADOR" Method="SP_COTIZADOR_TIPO_COTIZADOR">
+    <Parameter Name="IdTipoCotizador" Parameter="idTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_COTIZADOR_TIPO_COTIZADORResult">
+      <Column Name="IdTipoCotizador" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoCotizador" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_COTIZADOR_MANTENIMIENTO_TIPO_COTIZADOR" Method="SP_COTIZADOR_MANTENIMIENTO_TIPO_COTIZADOR">
+    <Parameter Name="IdTipoCotizador" Parameter="idTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_COTIZADOR_MANTENIMIENTO_TIPO_COTIZADORResult">
+      <Column Name="IdTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_COTIZADOR_VALOR_VEHICULO" Method="SP_BUSCA_COTIZADOR_VALOR_VEHICULO">
+    <Parameter Name="IdTipoCotizador" Parameter="idTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdValorVehiculo" Parameter="idValorVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_BUSCA_COTIZADOR_VALOR_VEHICULOResult">
+      <Column Name="IdTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoCotizador" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdValorVehiculo" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="ValorVehiculo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_COTIZADOR_MANTENIMIENTO_VALOR_VEHICULO" Method="SP_COTIZADOR_MANTENIMIENTO_VALOR_VEHICULO">
+    <Parameter Name="IdTipoCotizador" Parameter="idTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdValorVehiculo" Parameter="idValorVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="ValorVehiculo" Parameter="valorVehiculo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(25)" />
+    <ElementType Name="SP_COTIZADOR_MANTENIMIENTO_VALOR_VEHICULOResult">
+      <Column Name="IdTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdValorVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="ValorVehiculo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_COTIZADOR_BUSCA_ANO_VEHICULO" Method="SP_COTIZADOR_BUSCA_ANO_VEHICULO">
+    <Parameter Name="IdTipoCotizador" Parameter="idTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdValorVehiculo" Parameter="idValorVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdAnoVehiculo" Parameter="idAnoVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="AnoVehiculo" Parameter="anoVehiculo" Type="System.String" DbType="VarChar(4)" />
+    <ElementType Name="SP_COTIZADOR_BUSCA_ANO_VEHICULOResult">
+      <Column Name="IdTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="TipoCotizador" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdValorVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="ValorVehiculo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IdAnoVehiculo" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="AnoVehiculo" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_COTIZADOR_MANTENIMIENTO_ANO_VEHICULO" Method="SP_COTIZADOR_MANTENIMIENTO_ANO_VEHICULO">
+    <Parameter Name="IdTipoCotizador" Parameter="idTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdValorVehiculo" Parameter="idValorVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdAnoVehiculo" Parameter="idAnoVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="AnoVehiculo" Parameter="anoVehiculo" Type="System.String" DbType="VarChar(4)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_COTIZADOR_MANTENIMIENTO_ANO_VEHICULOResult">
+      <Column Name="IdTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdValorVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdAnoVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="AnoVehiculo" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_COTIZADOR_BUSCA_COMPRENSIVO_INCENDIO_ROBO" Method="SP_COTIZADOR_BUSCA_COMPRENSIVO_INCENDIO_ROBO">
+    <Parameter Name="IdTipoCotizador" Parameter="idTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdValorVehiculo" Parameter="idValorVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdAnoVehiculo" Parameter="idAnoVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdComprensivoIncendioRobo" Parameter="idComprensivoIncendioRobo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="ComprensivoIncendioRobo" Parameter="comprensivoIncendioRobo" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="SP_COTIZADOR_BUSCA_COMPRENSIVO_INCENDIO_ROBOResult">
+      <Column Name="IdTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoCotizador" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdValorVehiculo" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="ValorVehiculo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IdAnoVehiculo" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="AnoVehiculo" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="IdComprensivoIncendioRobo" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="ComprensivoIncendioRobo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_COTIZADOR_MANTENIMIENTO_COMPRENSIVO_INCENDIO_ROBO" Method="SP_COTIZADOR_MANTENIMIENTO_COMPRENSIVO_INCENDIO_ROBO">
+    <Parameter Name="IdTipoCotizador" Parameter="idTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdValorVehiculo" Parameter="idValorVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdAnoVehiculo" Parameter="idAnoVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdComprensivoIncendioRobo" Parameter="idComprensivoIncendioRobo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="ComprensivoIncendioRobo" Parameter="comprensivoIncendioRobo" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="SP_COTIZADOR_MANTENIMIENTO_COMPRENSIVO_INCENDIO_ROBOResult">
+      <Column Name="IdTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdValorVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdAnoVehiculo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdComprensivoIncendioRobo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="ComprensivoIncendioRobo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_COTIZADOR_BUSCA_SERVICIOS_FIJOS" Method="SP_COTIZADOR_BUSCA_SERVICIOS_FIJOS">
+    <Parameter Name="IdServicioFijo" Parameter="idServicioFijo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_COTIZADOR_BUSCA_SERVICIOS_FIJOSResult">
+      <Column Name="IdServiciosFijos" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Impuesto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ImpuestoFijo0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ImpuestoFijo" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="CasaConductor" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="CasaConductorFijo0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CasaConductorFijo" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="ServicioGrua" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ServicioGruaFijo0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ServicioGruaFijo" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="VehiculoRentado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="VehiculoRentadoFijo0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="VehiculoRentadoFijo" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="FuturoExequial" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="FuturoExequialFijo0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FuturoExequialFijo" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="AeroAmbulancia" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="AeroAmbulanciaFijo0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AeroAmbulanciaFijo" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_COTIZADOR_MANTENIMIENTO_SERVICIOS_FIJOS" Method="SP_COTIZADOR_MANTENIMIENTO_SERVICIOS_FIJOS">
+    <Parameter Name="IdServiciosFijos" Parameter="idServiciosFijos" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Impuesto" Parameter="impuesto" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="ImpuestoFijo" Parameter="impuestoFijo" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="CasaConductor" Parameter="casaConductor" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="CasaConductorFijo" Parameter="casaConductorFijo" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="ServicioGrua" Parameter="servicioGrua" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="ServicioGruaFijo" Parameter="servicioGruaFijo" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="VehiculoRentado" Parameter="vehiculoRentado" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="VehiculoRentadoFijo" Parameter="vehiculoRentadoFijo" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="FuturoExequial" Parameter="futuroExequial" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="FuturoExequialFijo" Parameter="futuroExequialFijo" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="AeroAmbulancia" Parameter="aeroAmbulancia" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="AeroAmbulanciaFijo" Parameter="aeroAmbulanciaFijo" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="SP_COTIZADOR_MANTENIMIENTO_SERVICIOS_FIJOSResult">
+      <Column Name="IdServiciosFijos" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Impuesto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ImpuestoFijo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CasaConductor" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="CasaConductorFijo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ServicioGrua" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ServicioGruaFijo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="VehiculoRentado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="VehiculoRentadoFijo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FuturoExequial" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="FuturoExequialFijo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AeroAmbulancia" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="AeroAmbulanciaFijo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_COTIZADOR_VERIFICAR_TIENE_SERICIO_TIPO_COTIZADOR" Method="SP_COTIZADOR_VERIFICAR_TIENE_SERICIO_TIPO_COTIZADOR">
+    <Parameter Name="IdTipoCotizador" Parameter="idTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_COTIZADOR_VERIFICAR_TIENE_SERICIO_TIPO_COTIZADORResult">
+      <Column Name="IdTipoCotizador" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoCotizador" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdServicio" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Servicio" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TieneServicio0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TieneServicio" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

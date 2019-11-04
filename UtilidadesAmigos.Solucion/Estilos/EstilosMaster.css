@@ -1,0 +1,119 @@
+﻿*{
+margin:0;
+padding:0;
+
+}
+
+body{
+    background:#FFFFFF;
+}
+
+header{
+    background:#FFFFFF;
+    width:98%;  
+    margin:20PX auto;
+}
+
+header nav{
+    background-color:#0092f5;
+    overflow:hidden;
+    height:30%;
+}
+
+header nav .MenuOrizontal{
+    list-style:none;
+}
+
+header nav .MenuOrizontal > li{
+    float:left;
+}
+header nav .MenuOrizontal > li > a{
+    padding:10px 20px;
+    display:block;
+    color:white;
+    text-decoration:none;
+
+}
+
+header nav .MenuOrizontal > li > a:hover{
+    background-color:azure;
+        color:black;
+        cursor:pointer;
+}
+
+header nav .MenuOrizontal > li > .ul-Segundario{
+    position:absolute;
+    background-color:#0092f5;
+    list-style:none;
+    display:none;
+}
+header nav .MenuOrizontal > li:hover > .ul-Segundario{
+    display:block;
+}
+
+header nav .MenuOrizontal > li > .ul-Segundario > li{
+    padding:10px 20px;
+}
+
+
+header nav .MenuOrizontal > li > .ul-Segundario > li > a{
+   padding:10px 20px;
+   display:block;
+   text-decoration:none;
+   color:white;
+}
+
+header nav .MenuOrizontal > li > .ul-Segundario > li > a:hover{
+    background-color:azure;
+    color:black;
+    cursor:pointer;
+}
+
+
+
+
+
+
+
+.Boton-Cerrar-Sesion{
+    /* Color del texo */
+color: #0099CC;
+/* Eliminar color de fondo */
+background: transparent;
+/* Grosor del borde, estilo de línea y color */
+border: 1px solid #0099CC;
+/* Añadir esquinas curvadas */
+border-radius: 6px;
+/* Poner texto en mayúsculas */
+border: none;
+color: white;
+padding: 1px 1px;
+text-align: center;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+-webkit-transition-duration: 0.4s; /* Safari */
+transition-duration: 0.4s;
+cursor: pointer;
+text-decoration: none;
+text-transform: uppercase;
+}
+
+.Boton-Cerrar-Sesion{
+    background-color: white; 
+color: black; 
+border: 2px solid #008CBA;
+}
+
+
+.Boton-Cerrar-Sesion:hover{
+    background-color: #008CBA;
+color: white;
+}
+
+
+
+
+
+
+
