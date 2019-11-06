@@ -16,7 +16,7 @@
 
     <script type="text/javascript">
         function MensajeConsulta(){
-            alert("Error al Mostrar la consulta, favor de verificar que los parametros esten bien correctamente")
+            alert("Error al Mostrar la consulta, favor de verificar que los parametros esten bien  correctamente")
         }
         function MensajeExportar() {
             alert("Error al Exportar la Información, favor de verificar que los parametros esten bien cor1rectamente")
