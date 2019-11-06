@@ -11,7 +11,6 @@
             font-weight:bold;
             font-family:'Gill Sans';
             padding:25px;
-          /*Pero ya se lo he Metido 3 Veces*/
         }
     </style>
 
