@@ -20,13 +20,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataLogica = new Lazy<Logica.Logica.LogicaSistema>();
         public UtilidadesAmigos.Logica.Comunes.VariablesGlobales VariablesGlobales = new Logica.Comunes.VariablesGlobales();
 
+        #region CARGAR LOS RAMOS
+        private void CargarRamos()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamo, ObjDataLogica.Value.BuscaListas("RAMO", null, null), true);
+        }
+        #endregion
+
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-
+                CargarRamos();
+                lbSeleccionarRamo.Visible = false;
+                ddlSeleccionarRamo.Visible = false;
             }
           
 
@@ -39,7 +48,19 @@ namespace UtilidadesAmigos.Solucion.Paginas
             //CargarData();
         }
 
-
+        protected void cbEspesificarRamo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbEspesificarRamo.Checked)
+            {
+                lbSeleccionarRamo.Visible = true;
+                ddlSeleccionarRamo.Visible = true;
+            }
+            else
+            {
+                lbSeleccionarRamo.Visible = false;
+                ddlSeleccionarRamo.Visible = false;
+            }
+        }
     }
 }
  

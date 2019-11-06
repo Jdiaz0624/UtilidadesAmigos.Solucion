@@ -4,12 +4,23 @@
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
- <header>
-     <div align="center">
-         <h1> <small>Producción Diaria</small></h1>
-     </div>
- </header>
-    <hr class="new1" />
+
+    <style type="text/css">
+         .jumbotron{
+            color:#000000; 
+            background:#7BC5FF;
+            font-size:30px;
+            font-weight:bold;
+            font-family:'Gill Sans';
+            text-align:center;
+            padding:25px;
+        }
+    </style>
+<div class="container-fluid">
+    <div class="jumbotron">
+        <asp:Label ID="lbEncabezado" runat="server" Text="Producción diaria"></asp:Label>
+    </div>
+</div>
 <div class="container-fluid">
     <div class="form-row">
         <div class="col-2">
@@ -24,7 +35,7 @@
 
     <div class="form-group">
     <div class="form-check">
-        <asp:CheckBox ID="cbEspesificarRamo" AutoPostBack="true"  runat="server" Text="Espesificar Ramo" CssClass="form-check-input" ToolTip="Espesificar el ramo para filtrar la consulta" />
+        <asp:CheckBox ID="cbEspesificarRamo" AutoPostBack="true"  runat="server" Text="Espesificar Ramo" CssClass="form-check-input" ToolTip="Espesificar el ramo para filtrar la consulta" OnCheckedChanged="cbEspesificarRamo_CheckedChanged" />
     </div>
 </div>
     <br />
