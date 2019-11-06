@@ -14,18 +14,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataLogica = new Lazy<Logica.Logica.LogicaSistema>();
         public UtilidadesAmigos.Logica.Comunes.VariablesGlobales VariablesGlobales = new Logica.Comunes.VariablesGlobales();
-        //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('El Usuario esta deshabilitado actualmente, favor de comunicarse con un administrador para desbloquear esta cuenta');", true);
         #region INGRESAR AL SISTEMA
         private void IngresarSistema(string Usuario, string Clave)
         {
             //VERIFICAMOS SI LOS CAMPOS ESTAN VACIOS
             if (string.IsNullOrEmpty(txtUsuario.Text.Trim()) || string.IsNullOrEmpty(txtClave.Text.Trim()))
             {
-                //
-                // Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<Script>alert('No puedes dejar campos vacios para ingresar al sistema');</Script>");
+
                 try {
-                    Thread tarea = new Thread(new ParameterizedThreadStart(UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar));
-                    tarea.Start("No puedes dejar campos vacíos para ingresar al sistema");
+
+                    ClientScript.RegisterStartupScript(GetType(), "MostrarMensaje", "CamposVaciosLogin();", true);
                 }
                 catch {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('No puedes dejar campos vacios para ingresar al sistema');", true);
@@ -49,9 +47,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     1, 1);
                 if (ValidarUsuario.Count() < 1)
                 {
-                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('El usuario o la clave ingresada no es correcta favor de verificar');", true);
-                    Thread tarea = new Thread(new ParameterizedThreadStart(UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar));
-                    tarea.Start("El usuario o la clave ingresada no es correcta favor de verificar e intentarlo nuevamente, si no recuerda su usuario comuniquese con Tecnologia");
+                    ClientScript.RegisterStartupScript(GetType(), "Mostrarmensaje", "UsuarioNoValido();", true);
                     txtUsuario.Text = string.Empty;
                     txtClave.Text = string.Empty;
                 }
@@ -80,17 +76,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         {
                             Session["IdUsuario"] = Convert.ToDecimal(VariablesGlobales.IdUsuario);
                             FormsAuthentication.RedirectFromLoginPage(_Usuario, false);
-                           
-                          //  Response.Redirect("MenuPrincipal.aspx");
-                            
-
                         }
                     }
                     else
                     {
-                        // ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Este usuario se encuentra bloqueado, favor comunicarse con un administrador para desbloquear la cuenta');", true);
-                        Thread tarea = new Thread(new ParameterizedThreadStart(UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar));
-                        tarea.Start("Este usuario se encuentra bloqueado, favor comunicarse con un administrador para desbloquear la cuenta");
+                        ClientScript.RegisterStartupScript(GetType(), "MostrarMensaje", "UsuarioBloqueado", true);
                     }
                 }
             }
@@ -108,12 +98,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
-        //private void Hablar(object texto)
-        //{
-        //    SpeechSynthesizer veronica = new SpeechSynthesizer();
-        //    veronica.SetOutputToDefaultAudioDevice();
-        //    veronica.Speak(texto.ToString());
-        //}
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -121,7 +105,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtNuevaClave.Visible = false;
                 txtConfirmarClave.Visible = false;
                 btnCambiarClave.Visible = false;
-               // Response.Write("Current Culture is " + CultureInfo.CurrentCulture.EnglishName);
             }
         }
 
@@ -140,9 +123,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             if (string.IsNullOrEmpty(txtNuevaClave.Text.Trim()) || string.IsNullOrEmpty(txtConfirmarClave.Text.Trim()))
             {
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('No puedes dejar campos vacios para cambiar la clave');", true);
-                Thread tarea = new Thread(new ParameterizedThreadStart(UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar));
-                tarea.Start("No puedes dejar campos vacios para cambiar la clave");
+
+                ClientScript.RegisterStartupScript(GetType(), "MostrarMensaje", "CamposVaciosClave();", true);
             }
             else
             {
@@ -159,9 +141,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
                 else
                 {
-                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Las claves ingresada no concuerdan favor de verificar');", true);
-                    Thread tarea = new Thread(new ParameterizedThreadStart(UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar));
-                    tarea.Start("Las claves ingresada no concuerdan favor de verificar");
+                    ClientScript.RegisterStartupScript(GetType(), "MostrarMensaje", "ClavesInvalidas();", true);
                     txtNuevaClave.Text = string.Empty;
                     txtConfirmarClave.Text = string.Empty;
                    

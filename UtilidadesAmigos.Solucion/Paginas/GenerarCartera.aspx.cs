@@ -70,7 +70,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gbListadoCarteraSupervisor_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gbListadoCarteraSupervisor.PageIndex = e.NewPageIndex;
+            MostrarCartera();
         }
 
         protected void gbListadoCarteraSupervisor_SelectedIndexChanged(object sender, EventArgs e)
@@ -80,7 +81,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "< script >$('#mymodal').modal('show');</ script > ", false);
+            //var Exportar = (from n in ObjData.Value.SacarCarteraSupervisor(
+            //    Convert.ToDecimal(txtCodigoSupervisor.Text))
+            //                select new
+            //                {
+            //                    Supervisor = n.Supervisor,
+            //                    Intermediario =n.Intermediario,
+            //                    Telefono=n.Telefono,
+            //                    Direccion=n.Direccion,
+            //                    Estatus=n.Estatus,
+            //                    Oficina=n.OficinaSupervisor
+            //                }).ToList();
+            //UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cartera de Supervisor " + lbNombreSupervisor.Text, Exportar);
+            ClientScript.RegisterStartupScript(GetType(), "MostrarMensaje", "Mensaje();", true);
+               
         }
     }
 }

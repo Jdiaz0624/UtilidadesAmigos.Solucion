@@ -163,6 +163,23 @@ a{color:inherit;text-decoration:none}
 	text-align:center;
 }
     </style>
+    <script>
+        function CamposVaciosLogin() {
+            alert("No puedes dejar campos Vacios para Ingresar al Sistema")
+        }
+        function UsuarioNoValido() {
+            alert("El usuario o la clave ingresada no son validos, favor de verificar")
+        }
+        function CamposVaciosClave() {
+            alert("No puedes dejar campos vacios para cambiar la clave")
+        }
+        function ClavesInvalidas() {
+            alert("Las claves ingresadas no concuerdan favor de verificar")
+        }
+        function UsuarioBloqueado() {
+            alert("Este usuario se encuentra bloqueado, favor comunicarse con un administrador para desbloquear la cuenta")
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">

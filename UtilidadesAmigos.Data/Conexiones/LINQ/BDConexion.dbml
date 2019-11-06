@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JUANMARCELINOMD;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString4" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_LISTA_CARGAR_RAMOS" Method="SP_LISTA_CARGAR_RAMOS">
     <Parameter Name="IdRamo" Parameter="idRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
@@ -908,6 +908,35 @@
       <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
       <Column Name="OficinaSupervisor" Type="System.String" DbType="VarChar(21) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_RECLAMACIONES" Method="SP_SACAR_RECLAMACIONES">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Departamento" Parameter="departamento" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="usuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_SACAR_RECLAMACIONESResult">
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(21) NOT NULL" CanBeNull="false" />
+      <Column Name="Departamento" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_DETALLE_COBRADO_USUARIO" Method="SP_SACAR_DETALLE_COBRADO_USUARIO">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_SACAR_DETALLE_COBRADO_USUARIOResult">
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Recibo" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TotalPagado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

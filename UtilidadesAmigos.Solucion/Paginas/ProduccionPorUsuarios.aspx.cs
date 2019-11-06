@@ -16,6 +16,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
         UtilidadesAmigos.Logica.Comunes.VariablesGlobales VariablesGlobales = new Logica.Comunes.VariablesGlobales();
 
+        string NombreUsuario = "";
 
         #region EXPORTAR LOS DATOS DE LA CONSULTA A EXEL CON EL FORMATO DEL GRID
         //public override void VerifyRenderingInServerForm(Control control)
@@ -74,12 +75,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         //}
         #endregion
 
-       
-
-     
-
-      
-
         #region MOSTRAR LA PRODUCCION POR USUARIOS
         private void MostrarProduccion()
         {
@@ -128,7 +123,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     }
 
                 }
-                catch (Exception) { }
+                catch (Exception) {
+                    MensajeErrorConsulta(1);
+                }
             }
             else if (TipoOperacion == 2)
             {
@@ -146,7 +143,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         gbListadoUsuarios.DataBind();
                         gbListadoUsuarios.Visible = true;
                     }
-                    catch (Exception) { }
+                    catch (Exception) { MensajeErrorConsulta(1); }
                 }
                 else if (cbAgregarDepartamentos.Checked)
                 {
@@ -161,7 +158,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         gbListadoUsuarios.DataBind();
                         gbListadoUsuarios.Visible = true;
                     }
-                    catch (Exception) { }
+                    catch (Exception) { MensajeErrorConsulta(1); }
                 }
                 else
                 {
@@ -175,12 +172,58 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         gbListadoUsuarios.DataBind();
                         gbListadoUsuarios.Visible = true;
                     }
-                    catch (Exception) { }
+                    catch (Exception) { MensajeErrorConsulta(1); }
                 }
             }
             else if (TipoOperacion == 3)
             {
                 //RECLAMACIONES
+                if (cbAgregarDepartamentos.Checked && cbAgregarUsuarios.Checked)
+                {
+                    try
+                    {
+                        var COnsultarReclamos = ObjData.Value.SacarReclamacionesHeader(
+                            Convert.ToDateTime(txtFechaDesde.Text),
+                            Convert.ToDateTime(txtFechaHasta.Text),
+                            Convert.ToInt32(ddlSeleccionarOficina.SelectedValue),
+                            Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue),
+                            Convert.ToDecimal(ddlSeleccionarUsuario.SelectedValue));
+                        gbListadoUsuarios.DataSource = COnsultarReclamos;
+                        gbListadoUsuarios.DataBind();
+                        gbListadoUsuarios.Visible = true;
+
+                    }
+                    catch (Exception) { MensajeErrorConsulta(1); }
+                }
+                else if (cbAgregarDepartamentos.Checked)
+                {
+                    try
+                    {
+                        var COnsultarReclamos = ObjData.Value.SacarReclamacionesHeader(
+                           Convert.ToDateTime(txtFechaDesde.Text),
+                           Convert.ToDateTime(txtFechaHasta.Text),
+                           Convert.ToInt32(ddlSeleccionarOficina.SelectedValue),
+                           Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue));
+                        gbListadoUsuarios.DataSource = COnsultarReclamos;
+                        gbListadoUsuarios.DataBind();
+                        gbListadoUsuarios.Visible = true;
+                    }
+                    catch (Exception) { MensajeErrorConsulta(1); }
+                }
+                else
+                {
+                    try {
+                        var COnsultarReclamos = ObjData.Value.SacarReclamacionesHeader(
+                           Convert.ToDateTime(txtFechaDesde.Text),
+                           Convert.ToDateTime(txtFechaHasta.Text),
+                           Convert.ToInt32(ddlSeleccionarOficina.SelectedValue));
+                        gbListadoUsuarios.DataSource = COnsultarReclamos;
+                        gbListadoUsuarios.DataBind();
+                        gbListadoUsuarios.Visible = true;
+                    }
+                    catch (Exception) { MensajeErrorConsulta(1); }
+                }
+
             }
         }
         #endregion
@@ -205,11 +248,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else if (TipoOperacion == 2)
             {
-
+                gbListadoUsuarios.Visible = false;
+                gbDetalle.Visible = true;
+                var SacarDetalleCobrado = ObjData.Value.SacarDetalleCobradoUsuario(
+                    Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHasta.Text),
+                    gb.Cells[2].Text);
+                gbDetalle.DataSource = SacarDetalleCobrado;
+                gbDetalle.DataBind();
+                NombreUsuario = gb.Cells[2].Text;
             }
             else if (TipoOperacion == 3)
             {
-
+                gbListadoUsuarios.Visible = false;
+                gbDetalle.Visible = true;
             }
 
        
@@ -428,6 +480,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnBuscarRegistros.Enabled = false;
             btnGenerarReporte.Enabled = false;
             btnAtras.Visible = true;
+            btnExportarExelDetalle.Visible = true;
         }
         private void HabilitarControlesBusqueda()
         {
@@ -445,6 +498,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             OcultarCOntrolesHeader();
             gbDetalle.Visible = false;
             gbListadoUsuarios.Visible = true;
+            btnExportarExelDetalle.Visible = false;
+            
         }
         #endregion
 
@@ -501,6 +556,19 @@ namespace UtilidadesAmigos.Solucion.Paginas
             //voz
             Thread tarea = new Thread(new ParameterizedThreadStart(UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar));
             tarea.Start("Produccion Por usuario exportada corrextamente");
+        }
+        #endregion
+
+        #region MOSTRAR UN MENSAJE DE ERROR DE CONSULTA
+        private void MensajeErrorConsulta(int Opcion)
+        {
+            if (Opcion == 1)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "MostrarMensaje", "MensajeConsulta()", true);
+            }
+            else if (Opcion == 2) {
+                ClientScript.RegisterStartupScript(GetType(), "MostrarMensaje", "MensajeExportar();", true);
+            }
         }
 #endregion
 
@@ -650,7 +718,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                                  Cantidad = n.Cantidad
                                              }).ToList();
                         UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de lo Cobrado Por Oficina", ExportaCobros);
-                        Voz();
+                        //Voz();
                     }
                     catch (Exception) { }
                 }
@@ -679,6 +747,70 @@ namespace UtilidadesAmigos.Solucion.Paginas
             else if (TipoOperacion == 3)
             {
                 //EXPORTAMOS A EXEL LA PARTE DE LAS RECLAMACIONES
+                if (cbAgregarDepartamentos.Checked && cbAgregarUsuarios.Checked)
+                {
+                    try
+                    {
+                        var Exportar = (from n in ObjData.Value.SacarReclamacionesHeader(
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHasta.Text),
+                        Convert.ToInt32(ddlSeleccionarOficina.SelectedValue),
+                        Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue),
+                        Convert.ToDecimal(ddlSeleccionarOficina.SelectedValue))
+                                        select new
+                                        {
+                                            Oficina = n.Oficina,
+                                            Departamento = n.Departamento,
+                                            Usuario = n.Usuario,
+                                            Concepto = n.Concepto,
+                                            Cantidad = n.Cantidad
+                                        }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reclamaciones " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
+                    }
+                    catch (Exception) { MensajeErrorConsulta(2); }
+                }
+                else if (cbAgregarDepartamentos.Checked)
+                {
+                    try
+                    {
+                        var Exportar = (from n in ObjData.Value.SacarReclamacionesHeader(
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHasta.Text),
+                        Convert.ToInt32(ddlSeleccionarOficina.SelectedValue),
+                        Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue))
+                                        select new
+                                        {
+                                            Oficina = n.Oficina,
+                                            Departamento = n.Departamento,
+                                            Usuario = n.Usuario,
+                                            Concepto = n.Concepto,
+                                            Cantidad = n.Cantidad
+                                        }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reclamaciones " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
+                    }
+                    catch (Exception) { MensajeErrorConsulta(2); }
+                }
+                else
+                {
+                    try
+                    {
+                        var Exportar = (from n in ObjData.Value.SacarReclamacionesHeader(
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHasta.Text),
+                        Convert.ToInt32(ddlSeleccionarOficina.SelectedValue))
+                                        select new
+                                        {
+                                            Oficina = n.Oficina,
+                                            Departamento = n.Departamento,
+                                            Usuario = n.Usuario,
+                                            Concepto = n.Concepto,
+                                            Cantidad = n.Cantidad
+                                        }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reclamaciones " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
+                    }
+                    catch (Exception) { MensajeErrorConsulta(2); }
+                }
+
             }
             }
 
@@ -731,7 +863,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gbListadoUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             MostrarDetalle();
             DeshabilitarControlesBusqueda();
         }
@@ -837,6 +969,42 @@ namespace UtilidadesAmigos.Solucion.Paginas
             else
             {
                 ddlSeleccionarUsuario.Visible = false;
+            }
+        }
+
+        protected void btnExportarExelDetalle_Click(object sender, EventArgs e)
+        {
+            GridViewRow gb = gbDetalle.SelectedRow;
+            int TipoReporte = Convert.ToInt32(ddlTipoReporte.SelectedValue);
+            if (TipoReporte == 1)
+            {
+
+            }
+            else if (TipoReporte == 2)
+            {
+                try {
+                    var ExportarDetalleCobrado = (from n in ObjData.Value.SacarDetalleCobradoUsuario(
+                    Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHasta.Text),
+                    NombreUsuario)
+                                                  select new
+                                                  {
+                                                      Usuario =n.Usuario,
+                                                      Recibo =n.Recibo,
+                                                      Valor =n.Valor,
+                                                      Poliza =n.Poliza,
+                                                      Fecha=n.Fecha,
+                                                      Facturado=n.Facturado,
+                                                      Cobrado=n.TotalPagado,
+                                                      Balance=n.Balance
+                                                  }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Detalle Cobrado " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, ExportarDetalleCobrado);
+                }
+                catch (Exception) { MensajeErrorConsulta(2); }
+            }
+            else if (TipoReporte == 3)
+            {
+
             }
         }
     }

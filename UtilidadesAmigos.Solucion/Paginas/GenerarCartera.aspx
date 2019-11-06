@@ -22,6 +22,15 @@
         }
     </style>
 
+    <script type="text/javascript">
+        function Mensaje()
+        {
+            alert("Hola Mundo desde Java Script Con ASP.NET y C#")
+        }
+    </script>
+
+
+
 
 
     <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -40,39 +49,44 @@
     </div>
 </div>
 
+    <div class="jumbotron  text-center">
+        <h1>Generar Cartera Supervisor</h1>
+        <h2><asp:Label ID="lbNombreSupervisor" runat="server" Visible="false"></asp:Label></h2>
+    </div>
 
 
 
-        <div class="page-header">
-  <h1 align="center" > <small>Generar Cartera Supervisor</small></h1>
-            <h2 align ="center"> <small><asp:Label ID="lbNombreSupervisor" runat="server" Visible="false"></asp:Label></small></h2>
-</div>
     <hr class="h-divider" />
     <main>
      
-
+        <div class="container-fluid">
         <div class="form-row">
-           <div class="container-fluid">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-2">
                 <asp:Label ID="lbCodigoSupervisor" runat="server" Text="Codigo de Supervisor"></asp:Label>
-                <asp:TextBox ID="txtCodigoSupervisor" runat="server" PlaceHolder="Ingrese Codigo" Width="300px" CssClass="form-control" MaxLength="6" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtCodigoSupervisor" runat="server" PlaceHolder="Ingrese Codigo"  CssClass="form-control" MaxLength="6" TextMode="Number"></asp:TextBox>
            
            </div>
-        
-                    <div class="form-check">
+                   </div>
+              <div class="form-group form-check">
+                        <div class="form-check">
                         <asp:CheckBox ID="cbComicion" runat="server" AutoPostBack="true" OnCheckedChanged="cbComicion_CheckedChanged" Text="Generar Comicion" CssClass="form-check-input" />
-                    </div>
+
+          </div>
+          </div>
+          </div>
+
+                      
                <br />
                <br />
                
-           </div>
+         
             <div class="container-fluid">
                 <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
                     <asp:Label ID="lbFechaDesde" runat="server" Text="Fecha Desde" Visible="false"></asp:Label>
                     <asp:TextBox ID="txtFechaDesde" runat="server" Width="200px" TextMode="Date" CssClass="form-control" Visible="false"></asp:TextBox>
                 </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-3">
                       <asp:Label ID="lbFechaHasta" runat="server" Text="Fecha Hasta" Visible="false"></asp:Label>
                       <asp:TextBox ID="txtFechaHasta" runat="server" Width="200px" TextMode="Date" CssClass="form-control" Visible="false"></asp:TextBox>
                 </div>
@@ -87,11 +101,11 @@
             <br />
             <br />
 
-          </div>
+      
     </main>
    <%-- Agregamos el Grid para mostrar la data de las coberturas--%>
-     <div align="center">
-            <asp:GridView id="gbListadoCarteraSupervisor" runat="server" AllowPaging="True" OnPageIndexChanging="gbListadoCarteraSupervisor_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="98%" OnSelectedIndexChanged="gbListadoCarteraSupervisor_SelectedIndexChanged">
+     <div class="container-fluid">
+            <asp:GridView id="gbListadoCarteraSupervisor" runat="server" AllowPaging="True" OnPageIndexChanging="gbListadoCarteraSupervisor_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbListadoCarteraSupervisor_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
                     <asp:BoundField DataField="Intermediario" HeaderText="Intermediario" ControlStyle-Width="16%" />

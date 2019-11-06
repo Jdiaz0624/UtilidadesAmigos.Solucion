@@ -28,6 +28,7 @@ namespace UtilidadesAmigos.Logica.Logica
             return Buscar;
         }
         #endregion
+
         #region MANTENIMIENTO DE USUARIOS
         //LISTADO DE USUARIOS
         public List<UtilidadesAmigos.Logica.Entidades.EUsuarios> BuscaUsuarios(decimal? IdUsuario = null, decimal? IdDepartamento = null, decimal? IdPerfil = null, string UsuarioConsulta = null, string Usuario = null, string Clave = null, bool? Estatus = null, int? NumeroPagina = null, int? NumeroRegistros = null)
@@ -871,6 +872,7 @@ namespace UtilidadesAmigos.Logica.Logica
             return Buscar;
         }
         #endregion
+
         #region SACAR EL DETALLE DE LO COBRADO
         //SACAR EL DETALLE DE LOS COBRADOS
         public List<Entidades.EDetalleCobrado> SacarDetalleCobrado(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Usuario = null)
@@ -1152,6 +1154,46 @@ namespace UtilidadesAmigos.Logica.Logica
                                OficinaSupervisor=n.OficinaSupervisor
                            }).ToList();
             return Listado;
+        }
+        #endregion
+
+        #region SACAR EL LISTADO DE LAS RECLAMACIONES
+        public List<Entidades.ESacarreclamaciones> SacarReclamacionesHeader(DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Oficina = null,decimal? Departamento = null, decimal? Usuario = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_SACAR_RECLAMACIONES(FechaDesde, FechaHasta, Oficina,Departamento, Usuario)
+                           select new Entidades.ESacarreclamaciones
+                           {
+                               Oficina=n.Oficina,
+                               Departamento=n.Departamento,
+                               Usuario=n.Usuario,
+                               Concepto=n.Concepto,
+                               Cantidad=n.Cantidad
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
+
+        #region SACAR EL DETALLE DE LO COBRADO POR USUARIO
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarDetalleCobradoUsuario> SacarDetalleCobradoUsuario(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Usuario = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Detalle = (from n in Objdata.SP_SACAR_DETALLE_COBRADO_USUARIO(FechaDesde, FechaHasta, Usuario)
+                           select new UtilidadesAmigos.Logica.Entidades.ESacarDetalleCobradoUsuario
+                           {
+                               Usuario=n.Usuario,
+                               Recibo=n.Recibo,
+                               Valor=n.Valor,
+                               Poliza=n.Poliza,
+                               Fecha=n.Fecha,
+                               Facturado=n.Facturado,
+                               TotalPagado=n.TotalPagado,
+                               Balance=n.Balance
+
+                           }).ToList();
+            return Detalle;
         }
 #endregion
     }

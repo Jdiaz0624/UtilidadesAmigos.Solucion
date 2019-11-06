@@ -2,36 +2,45 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%--    <link href="../Estilos/EstilosPaginas.css" rel="stylesheet" type="text/css" />--%>
-        <style>
-     .h-divider{
- margin-top:5px;
- margin-bottom:5px;
- height:1px;
- width:100%;
- border-top:1px solid gray;
-}
-
-     .Contenedor{
-    background:#ffffff;
-    padding:10px;
-    overflow:hidden;
-    width:500px;
-}
+   
+  <style type="text/css">
+        .jumbotron{
+            color:#000000; 
+            background:#7BC5FF;
+            font-size:30px;
+            font-weight:bold;
+            font-family:'Gill Sans';
+            padding:25px;
+        }
     </style>
-    <div class="page-header">
-  <h1 align="center" > <small>Produccion Por Usuario</small></h1>
-</div>
 
-    <hr class="h-divider" />
-    <main>
-        <div>
-            <div class="col-xs-3">
-                <asp:DropDownList ID="ddlTipoReporte" AutoPostBack="true" runat="server" Width="250px" CssClass="form-control" OnSelectedIndexChanged="ddlTipoReporte_SelectedIndexChanged">
+    <script type="text/javascript">
+        function MensajeConsulta(){
+            alert("Error al Mostrar la consulta, favor de verificar que los parametros esten bien correctamente")
+        }
+        function MensajeExportar() {
+            alert("Error al Exportar la Información, favor de verificar que los parametros esten bien cor1rectamente")
+        }
+    </script>
+
+    <div class="container-fluid">
+        <div id="Color-Jumboton" class="jumbotron text-center">
+        <asp:Label ID="lbEncabezado" runat="server" Text="Producción por Usuarios"></asp:Label>
+  
+</div>
+    </div>
+
+   
+         <div class="container-fluid">
+             <div class="form-row">
+             <div class="form-group col-md-3">
+                    <asp:DropDownList ID="ddlTipoReporte" AutoPostBack="true" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlTipoReporte_SelectedIndexChanged">
             </asp:DropDownList>
-            </div>
-        </div>
-        <div class="Contenedor">
+             </div>
+         </div>
+             </div>
+
+        <div class="form-group form-check">
             <div class="form-check-inline">
                 <asp:CheckBox ID="cbAgregarDepartamentos" runat="server" class="form-check-input" Text="Agregar Oficina" AutoPostBack="true" OnCheckedChanged="cbAgregarDepartamentos_CheckedChanged" />
                    
@@ -40,46 +49,61 @@
               <div class="form-check-inline">
                    <asp:CheckBox ID="cbAgregarUsuarios" runat="server" class="form-check-input" Text="Agregar Usuario" AutoPostBack="true" Enabled="false" OnCheckedChanged="cbAgregarUsuarios_CheckedChanged1" />
             </div>
-        </div>
-        <div>
-
-
-
-            <div class="form-row">
-		<div class="form-group col-md-6">
-		   <asp:Label ID="lbFechaDesde" class="Label" runat="server" Text="Fecha Desde"></asp:Label>
+    </div>
+    <div class="container-fluid">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                  <asp:Label ID="lbFechaDesde" class="Label" runat="server" Text="Fecha Desde"></asp:Label>
                 <asp:TextBox ID="txtFechaDesde" class="form-control" Width="200px" runat="server" TextMode="Date"></asp:TextBox>
-		</div>
-		<div   class="form-group col-md-6">
-		  <asp:Label ID="lbFechaHasta" class="Label" runat="server" Text="Fecha Hasta" ></asp:Label>
+            </div>
+            </div>
+
+         <div class="form-row">
+            <div class="form-group col-md-6">
+                <asp:Label ID="lbFechaHasta" class="Label" runat="server" Text="Fecha Hasta" ></asp:Label>
                 <asp:TextBox ID="txtFechaHasta" class="form-control" Width="200px" runat="server" TextMode="Date"></asp:TextBox>
-		</div>
-	  </div>
-        </div>
+            </div>
+            </div>
+
+    </div>
+
      <br />
-        <div>
-            <%--<asp:Label ID="lbSeleccionarDepartamento" class="Label" runat="server" Text="Seleccionar Departamento"></asp:Label>--%>
+        <div class="container-fluid">
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <asp:DropDownList ID="ddlSeleccionarOficina" AutoPostBack="true" Width="500px" CssClass="form-control" runat="server" Visible="true" OnSelectedIndexChanged="ddlSeleccionarOficina_SelectedIndexChanged1"></asp:DropDownList>
+            </div>
+        </div>
+
             <div class="form-row">
-		    
-		  <asp:DropDownList ID="ddlSeleccionarOficina" AutoPostBack="true" Width="500px" CssClass="form-control" runat="server" Visible="true" OnSelectedIndexChanged="ddlSeleccionarOficina_SelectedIndexChanged1"></asp:DropDownList>
-		</div>
-		<div class="form-group col-md-6">
-		  <asp:DropDownList ID="ddlSeleccionarDepartamento" AutoPostBack="true" Width="500px" CssClass="form-control" Visible="false" runat="server" OnSelectedIndexChanged="ddlSeleccionarDepartamento_SelectedIndexChanged1"></asp:DropDownList>
-		</div>
-        <div class="form-group col-md-6">
-		  <asp:DropDownList ID="ddlSeleccionarUsuario" AutoPostBack="true" Width="500px" CssClass="form-control" runat="server" Visible="false"></asp:DropDownList>
-		</div>
+            <div class="form-group col-md-6">
+                	  <asp:DropDownList ID="ddlSeleccionarDepartamento" AutoPostBack="true" Width="500px" CssClass="form-control" Visible="false" runat="server" OnSelectedIndexChanged="ddlSeleccionarDepartamento_SelectedIndexChanged1"></asp:DropDownList>
+            </div>
+        </div>
+
+            <div class="form-row">
+            <div class="form-group col-md-6">
+                <asp:DropDownList ID="ddlSeleccionarUsuario" AutoPostBack="true" Width="500px" CssClass="form-control" runat="server" Visible="false"></asp:DropDownList>
+            </div>
+        </div>
+            <%--<asp:Label ID="lbSeleccionarDepartamento" class="Label" runat="server" Text="Seleccionar Departamento"></asp:Label>--%>
+
 	  </div>
 
-        </div>
-        <div>
+       
+        <div class="container-fluid">
             <asp:Button ID="btnBuscarRegistros" class="btn btn-outline-primary" runat="server" ToolTip="Buscar Registros" Text="Buscar Registros" OnClick="btnBuscarRegistros_Click" />
             <asp:Button ID="btnGenerarReporte" class="btn btn-outline-success" ToolTip="Generar el reporte de los parametros ingresados" runat="server" Text="Exportar a Excel" OnClick="btnGenerarReporte_Click" />
             <asp:Button ID="btnAtras" CssClass="btn btn-outline-dark" ToolTip="Volver Atras" runat="server" Text="Atras" OnClick="btnAtras_Click" Visible="false" />
         </div>
+ 
+
+    
+           
         <br />
-        <div align="center">
-            <asp:GridView id="gbListadoUsuarios" runat="server" AllowPaging="True" OnPageIndexChanging="gbListado_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="98%" OnSelectedIndexChanged="gbListadoUsuarios_SelectedIndexChanged">
+        <div class="container-fluid">
+            <asp:GridView id="gbListadoUsuarios" runat="server" AllowPaging="True" OnPageIndexChanging="gbListado_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbListadoUsuarios_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
                     <asp:BoundField DataField="Oficina" HeaderText="Oficina" />
@@ -102,8 +126,8 @@
 
 
         </div>
-        <div>
-            <asp:GridView id="gbDetalle" runat="server" AllowPaging="True" OnPageIndexChanging="gbDetalle_PageIndexChanging" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="98%" OnSelectedIndexChanged="gbDetalle_SelectedIndexChanged">
+        <div class="container-fluid" >
+            <asp:GridView id="gbDetalle" runat="server" AllowPaging="True" OnPageIndexChanging="gbDetalle_PageIndexChanging" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbDetalle_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
                     <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn btn-primary" HeaderText="Detalle" SelectText="Entrar" ShowSelectButton="True" />
@@ -119,9 +143,16 @@
                 <SortedDescendingHeaderStyle BackColor="#000065" />
             </asp:GridView>
         </div>
+    <br />
+    <div class="container">
+        <asp:Button ID="btnExportarExelDetalle" runat="server" Text="Exportar Detalle a Exel" ToolTip="Exportar el Detalle a Exel" class="btn btn-outline-success" Visible="false" OnClick="btnExportarExelDetalle_Click" />
+    </div>
+
+
         <%--Esta parte es para sacar los datos al momento de seleccionar un registro del grid--%>
         <br />
-        <div class="form-row">
+        <div class="container-fluid">
+            <div class="form-row">
             <div class="form-group col-md-6">
                 <asp:Label ID="lbFechaInicioVigencia" runat="server" Text="Inicio Vigencia"></asp:Label>
              <asp:TextBox ID="txtFechaInicioVigenciaDetalle" CssClass="form-control" runat="server" ToolTip="Inicio de Vigencia" Enabled="false"></asp:TextBox>
@@ -272,6 +303,7 @@
                   <asp:TextBox ID="txtPlacaDetalle" CssClass="form-control" runat="server" ToolTip="Placa de Vehiculo" Enabled="false"></asp:TextBox>
              </div>
         </div>
+        </div>
         <div>
     
                 
@@ -299,5 +331,5 @@
                 <SortedDescendingHeaderStyle BackColor="#000065" />
             </asp:GridView>
             </div>
-    </main>
+
 </asp:Content>

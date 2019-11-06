@@ -13,40 +13,13 @@ namespace UtilidadesAmigos.Solucion.Paginas {
     public partial class ProduccionDiaria {
         
         /// <summary>
-        /// llbENcabezado control.
+        /// lbFechaDesde control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label llbENcabezado;
-        
-        /// <summary>
-        /// lbNombreArchivo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNombreArchivo;
-        
-        /// <summary>
-        /// txtNombreArchivo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreArchivo;
-        
-        /// <summary>
-        /// llbFechaDesde control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label llbFechaDesde;
+        protected global::System.Web.UI.WebControls.Label lbFechaDesde;
         
         /// <summary>
         /// txtFechaDesde control.
@@ -58,13 +31,13 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtFechaDesde;
         
         /// <summary>
-        /// llbFechaHasta control.
+        /// lbFechaHasta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label llbFechaHasta;
+        protected global::System.Web.UI.WebControls.Label lbFechaHasta;
         
         /// <summary>
         /// txtFechaHasta control.
@@ -76,138 +49,30 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtFechaHasta;
         
         /// <summary>
-        /// rbConRamo control.
+        /// cbEspesificarRamo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbConRamo;
+        protected global::System.Web.UI.WebControls.CheckBox cbEspesificarRamo;
         
         /// <summary>
-        /// rbSinRamo control.
+        /// lbSeleccionarRamo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbSinRamo;
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarRamo;
         
         /// <summary>
-        /// llbConcepto control.
+        /// ddlSeleccionarRamo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label llbConcepto;
-        
-        /// <summary>
-        /// llbRamo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label llbRamo;
-        
-        /// <summary>
-        /// llbSeleccionar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label llbSeleccionar;
-        
-        /// <summary>
-        /// ddlRamo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRamo;
-        
-        /// <summary>
-        /// lbConcepto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbConcepto;
-        
-        /// <summary>
-        /// lbRamo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbRamo;
-        
-        /// <summary>
-        /// btnBuscar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
-        
-        /// <summary>
-        /// btnExportarExel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportarExel;
-        
-        /// <summary>
-        /// btnAtras control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAtras;
-        
-        /// <summary>
-        /// gbListado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gbListado;
-        
-        /// <summary>
-        /// gbProduccionDiariaDetalle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gbProduccionDiariaDetalle;
-        
-        /// <summary>
-        /// btnprueba control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnprueba;
-        
-        /// <summary>
-        /// lbNombreArchivoDetalle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNombreArchivoDetalle;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarRamo;
     }
 }

@@ -75,28 +75,28 @@ header nav .MenuOrizontal > li > .ul-Segundario > li > a:hover{
 
 
 
-.Boton-Cerrar-Sesion{
+.Boton-Cerrar-Sesion {
     /* Color del texo */
-color: #0099CC;
-/* Eliminar color de fondo */
-background: transparent;
-/* Grosor del borde, estilo de línea y color */
-border: 1px solid #0099CC;
-/* Añadir esquinas curvadas */
-border-radius: 6px;
-/* Poner texto en mayúsculas */
-border: none;
-color: white;
-padding: 1px 1px;
-text-align: center;
-display: inline-block;
-font-size: 16px;
-margin: 4px 2px;
--webkit-transition-duration: 0.4s; /* Safari */
-transition-duration: 0.4s;
-cursor: pointer;
-text-decoration: none;
-text-transform: uppercase;
+    color: #0099CC;
+    /* Eliminar color de fondo */
+    background: transparent;
+    /* Grosor del borde, estilo de línea y color */
+    border: 1px solid #0099CC;
+    /* Añadir esquinas curvadas */
+    border-radius: 6px;
+    /* Poner texto en mayúsculas */
+    border: none;
+    color: white;
+    padding: 1px 1px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 .Boton-Cerrar-Sesion{
@@ -113,7 +113,13 @@ color: white;
 
 
 
-
+.h-divider {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 1px;
+    width: 100%;
+    border-top: 1px solid gray;
+}
 
 
 
