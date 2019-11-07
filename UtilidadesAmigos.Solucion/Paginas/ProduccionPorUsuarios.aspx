@@ -16,10 +16,10 @@
 
     <script type="text/javascript">
         function MensajeConsulta(){
-            alert("Error al Mostrar la consulta, favor de verificar que los parametros esten bien correctamente")
+            alert("Error al Mostrar la consulta, favor de verificar que los parametros esten bien.")
         }
         function MensajeExportar() {
-            alert("Error al Exportar la Información, favor de verificar que los parametros esten bien cor1rectamente")
+            alert("Error al Exportar la Información, favor de verificar que los parametros esten bien cor1rectamente.")
         }
     </script>
 
@@ -52,18 +52,18 @@
     </div>
     <div class="container-fluid">
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-3">
                   <asp:Label ID="lbFechaDesde" class="Label" runat="server" Text="Fecha Desde"></asp:Label>
                 <asp:TextBox ID="txtFechaDesde" class="form-control" Width="200px" runat="server" TextMode="Date"></asp:TextBox>
             </div>
-            </div>
 
-         <div class="form-row">
-            <div class="form-group col-md-6">
+              <div class="form-group col-md-3">
                 <asp:Label ID="lbFechaHasta" class="Label" runat="server" Text="Fecha Hasta" ></asp:Label>
                 <asp:TextBox ID="txtFechaHasta" class="form-control" Width="200px" runat="server" TextMode="Date"></asp:TextBox>
             </div>
             </div>
+
+
 
     </div>
 

@@ -8,22 +8,18 @@ namespace UtilidadesAmigos.Logica.Entidades
 {
     public class EProduccionDiariaConsulta
     {
+        public System.Nullable<int> CodRamo { get; set; }
+
         public string Ramo { get; set; }
 
         public string Concepto { get; set; }
 
-        public System.Nullable<int> Total { get; set; }
+        public System.Nullable<int> Cantidad { get; set; }
 
-        public System.Nullable<decimal> FacturadoPesos { get; set; }
+        public string Moneda { get; set; }
 
-        public System.Nullable<decimal> FacturadoDollar { get; set; }
+        public System.Nullable<decimal> Facturado { get; set; }
 
-        public System.Nullable<decimal> facturadoTotal { get; set; }
-
-        public System.Nullable<decimal> FacturadoNeto { get; set; }
-
-        public string ValidadoDesde { get; set; }
-
-        public string ValidadoHasta { get; set; }
+        public System.Nullable<decimal> PesosDominicanos { get; set; }
     }
 }

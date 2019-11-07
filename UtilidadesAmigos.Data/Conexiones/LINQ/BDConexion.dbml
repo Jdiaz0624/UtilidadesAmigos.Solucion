@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_LISTA_CARGAR_RAMOS" Method="SP_LISTA_CARGAR_RAMOS">
     <Parameter Name="IdRamo" Parameter="idRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
@@ -288,22 +288,6 @@
       <Column Name="FacturadoNeto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
       <Column Name="ValidadoDesde" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="ValidadoHasta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_SACAR_PRODUCCION_DIARIA" Method="SP_SACAR_PRODUCCION_DIARIA">
-    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_SACAR_PRODUCCION_DIARIAResult">
-      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Concepto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FacturadoPesos" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="FacturadoDollar" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="facturadoTotal" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="FacturadoNeto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
-      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="Utililades.SP_PRODUCCION_DIARIA_DETALLE" Method="SP_PRODUCCION_DIARIA_DETALLE">
@@ -937,6 +921,21 @@
       <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="TotalPagado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_PRODUCCION_DIARIA" Method="SP_SACAR_PRODUCCION_DIARIA">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreRamo" Parameter="nombreRamo" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_SACAR_PRODUCCION_DIARIAResult">
+      <Column Name="CodRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="PesosDominicanos" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

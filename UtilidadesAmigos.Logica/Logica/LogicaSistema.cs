@@ -284,27 +284,22 @@ namespace UtilidadesAmigos.Logica.Logica
 
         #region PRODUCCION DIARIA
         //LISTADO DE PRODUCCION DIARIA
-        public List<Entidades.EProduccionDiariaConsulta> BuscaProduccionDiaria(DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Ramo = null)
+        public List<UtilidadesAmigos.Logica.Entidades.EProduccionDiariaConsulta> ProduccionDiaria(DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Ramo = null, string NombreRamo = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var Buscar = (from n in Objdata.SP_SACAR_PRODUCCION_DIARIA(FechaDesde, FechaHasta, Ramo)
+            var Buscar = (from n in Objdata.SP_SACAR_PRODUCCION_DIARIA(FechaDesde, FechaHasta, Ramo, NombreRamo)
                           select new Entidades.EProduccionDiariaConsulta
                           {
+                              CodRamo=n.CodRamo,
                               Ramo=n.Ramo,
                               Concepto=n.Concepto,
-                              Total=n.Total,
-                              FacturadoPesos=n.FacturadoPesos,
-                              FacturadoDollar=n.FacturadoDollar,
-                              facturadoTotal=n.facturadoTotal,
-                              FacturadoNeto=n.FacturadoNeto,
-                              ValidadoDesde=n.ValidadoDesde,
-                              ValidadoHasta=n.ValidadoHasta
+                              Cantidad=n.Cantidad,
+                              Moneda=n.Moneda,
+                              Facturado=n.Facturado,
+                              PesosDominicanos=n.PesosDominicanos
                           }).ToList();
             return Buscar;
-
-            
-
         }
         //PRODUCCION DIARIA DETALLE
         public List<Entidades.EProduccionDiariaDetalle> MostrarProduccionDiariaDetalle(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Concepto = null, string Ramo = null)
