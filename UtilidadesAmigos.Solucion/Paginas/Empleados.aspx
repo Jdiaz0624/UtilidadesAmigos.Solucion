@@ -3,6 +3,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="ResponsiveDesing">
+
+        <div class="container-fluid">
+
+        </div>
         <header>
             <h1><asp:Label ID="lbEncabezado" runat="server" Text="Mantenimiento de Empleados" CssClass="Label-Encabezado"></asp:Label></h1>
         </header>
