@@ -67,11 +67,17 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
             cbModificar.Checked = false;
             cbDeshabilitar.Checked = false;
             BuscaOficinas();
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
         }
 #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                btnModificar.Enabled = false;
+                btnEliminar.Enabled = false;
+            }
         }
 
         protected void gvOficinas_PageIndexChanging(object sender, GridViewPageEventArgs e)
