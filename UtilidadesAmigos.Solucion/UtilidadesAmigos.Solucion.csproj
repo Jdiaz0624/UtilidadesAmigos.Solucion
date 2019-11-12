@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -110,6 +111,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Estilos\EstilosPaginas.css" />
     <Content Include="Imagenes\155805d262d9564.jpg" />
+    <Content Include="Imagenes\Iniciales.ico" />
     <Content Include="Imagenes\login.jpg" />
     <Content Include="Imagenes\tDYC1tp.jpg" />
     <Content Include="packages.config" />

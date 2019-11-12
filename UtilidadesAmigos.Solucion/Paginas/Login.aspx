@@ -6,6 +6,7 @@
 <head runat="server">
     <title>Utilidades Amigos</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="shortcut icon" href="../Imagenes/Iniciales.ico" />
     <style>
 body{
 	margin:0;

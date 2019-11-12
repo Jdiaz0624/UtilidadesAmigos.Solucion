@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../scripts/jquery-3.0.0.slim.min.js"></script>
     <script type="text/javascript" src="../scripts/popper-utils.min.js"></script>
     <script type="text/javascript" src="../scripts/MensajesPagina.js"></script>
+    <link rel="shortcut icon" href="../Imagenes/Iniciales.ico" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
