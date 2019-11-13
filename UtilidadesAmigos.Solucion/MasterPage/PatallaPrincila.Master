@@ -12,93 +12,93 @@
     <script type="text/javascript" src="../scripts/popper-utils.min.js"></script>
     <script type="text/javascript" src="../scripts/MensajesPagina.js"></script>
     <link rel="shortcut icon" href="../Imagenes/Iniciales.ico" />
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
 
+    <asp:ContentPlaceHolder ID="head" runat="server">
+          
+    </asp:ContentPlaceHolder>
+ 
 </head>
 <body>
       <form id="form1" runat="server">   
+          <br />
           <div class="container-fluid">
-               <img src="../Imagenes/Logo.jpg" height="50px" width="150px" />   
-          </div>
-  <div class="container">
-        <%--LOGO--%>
-      
-            <ul class="nav nav-tabs">
-<%--                 <li class="nav-item">
-     
-  </li>--%>
-    <%--INICIO--%>
-  <li class="nav-item">
-      <asp:LinkButton ID="LinkInicio" runat="server" Text="Inicio" class="nav-link active" OnClick="LinkInicio_Click"></asp:LinkButton>
-  </li>
+                <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                        <!-- Brand -->
+                        
+                      
+                        <!-- Links -->
+                        <ul class="navbar-nav">
+                          <li class="nav-item">
+                            <asp:LinkButton ID="LinkInicio" runat="server"  class="nav-link active" OnClick="LinkInicio_Click">   <img width="90px" src="../Imagenes/Logo.jpg" /></asp:LinkButton>
+                          </li>
+                          <li class="nav-item">
+                            <asp:LinkButton ID="linkTicket" runat="server" Text="Ticket" OnClick="linkTicket_Click" class="nav-link active"></asp:LinkButton>
+                          </li>
+                      
+                          <!-- Dropdown -->
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                              Consultas
+                            </a>
+                            <div class="dropdown-menu">
+                               <asp:LinkButton ID="linkProduccionPorUsuarios" runat="server" ToolTip="Muestra la Producción por usuarios con movimientos en Cobros, Producción y Reclamaciones" Text="Produccion Por Usuario" OnClick="linkProduccionPorUsuarios_Click" class="dropdown-item"></asp:LinkButton>
+                               <asp:LinkButton ID="linkProduccionDiaria" runat="server" Text="Produccion Diaria" OnClick="linkProduccionDiaria_Click" class="dropdown-item"></asp:LinkButton>
+                               <asp:LinkButton ID="linkGenerarCartera" runat="server" Text="Generar Cartera Supervisores" OnClick="linkGenerarCartera_Click" class="dropdown-item"></asp:LinkButton>
+                               <asp:LinkButton ID="linkCarteraIntermediarios" runat="server" Text="Generar Cartera Intermediario" OnClick="linkCarteraIntermediarios_Click" class="dropdown-item"></asp:LinkButton>
+                               <asp:LinkButton ID="linkValidarCoberturas" runat="server" Text="Validar Coberturas" OnClick="linkValidarCoberturas_Click" class="dropdown-item"></asp:LinkButton>
+                               <asp:LinkButton ID="linkGenerarReporteUAF" runat="server" Text="Generar Reporte para la UAF" OnClick="linkGenerarReporteUAF_Click" class="dropdown-item"></asp:LinkButton>
+                               <asp:LinkButton ID="linkGenerarReporteCoberturas" runat="server" Text="Generar Reporte Coberturas" OnClick="linkGenerarReporteCoberturas_Click" class="dropdown-item"></asp:LinkButton>
+                            </div>
+                          </li>
 
-    <%--TICKET--%>
-   <li class="nav-item">
-       <asp:LinkButton ID="linkTicket" runat="server" Text="Ticket" OnClick="linkTicket_Click" class="nav-link active"></asp:LinkButton>
-  </li>
-
-   <%--CONSULTAS--%>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Consultas</a>
-    <div class="dropdown-menu">
-        <asp:LinkButton ID="linkProduccionPorUsuarios" runat="server" Text="Produccion Por Usuario" OnClick="linkProduccionPorUsuarios_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkProduccionDiaria" runat="server" Text="Produccion Diaria" OnClick="linkProduccionDiaria_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkGenerarCartera" runat="server" Text="Generar Cartera Supervisores" OnClick="linkGenerarCartera_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkCarteraIntermediarios" runat="server" Text="Generar Cartera Intermediario" OnClick="linkCarteraIntermediarios_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkValidarCoberturas" runat="server" Text="Validar Coberturas" OnClick="linkValidarCoberturas_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkGenerarReporteUAF" runat="server" Text="Generar Reporte para la UAF" OnClick="linkGenerarReporteUAF_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkGenerarReporteCoberturas" runat="server" Text="Generar Reporte Coberturas" OnClick="linkGenerarReporteCoberturas_Click" class="dropdown-item"></asp:LinkButton>
-    </div>
-  </li>
-     
-     <%--PROCESOS--%>
-     <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Procesos</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Procesar Data Gruas</a>
-    </div>
-  </li>
-
-    <%--MANTENIMIENTOS--%>
-    <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mantenimientos</a>
-    <div class="dropdown-menu">
-        <asp:LinkButton ID="linkOficinas" runat="server" Text="Oficinas" OnClick="linkOficinas_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkDeprtamentos" runat="server" Text="Departamentos" OnClick="linkDeprtamentos_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkEmpleados" runat="server" Text="Empleados" OnClick="linkEmpleados_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkInventario" runat="server" Text="Inventario" OnClick="linkInventario_Click" class="dropdown-item"></asp:LinkButton>
-    </div>
-  </li>
-
-     <%--COTIZADOR--%>
-     <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cotizador</a>
-    <div class="dropdown-menu">
-        <asp:LinkButton ID="linkCotizadorFuturoSeguros" runat="server" Text="Futuro Seguros" OnClick="linkCotizadorFuturoSeguros_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkFuturoARS" runat="server" Text="Futuro ARS" OnClick="linkFuturoARS_Click" class="dropdown-item"></asp:LinkButton>
-    </div>
-  </li>
-
- <%--SEGURIDAD--%>
-     <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Seguridad</a>
-    <div class="dropdown-menu">
-        <asp:LinkButton ID="linkUsuarios" runat="server" Text="Usuarios" OnClick="linkUsuarios_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkPerfilesUsuarios" runat="server" Text="Perfiles de Usuarios" OnClick="linkPerfilesUsuarios_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkClaveSeguridad" runat="server" Text="Clave de Seguridad" OnClick="linkClaveSeguridad_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkPermisoUsuarios" runat="server" Text="Permisos Usuarios" OnClick="linkPermisoUsuarios_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkMovimientoUsuarios" runat="server" Text="Movimiento Usuario" OnClick="linkMovimientoUsuarios_Click" class="dropdown-item"></asp:LinkButton>
-        <asp:LinkButton ID="linkTarjetasAccesos" runat="server" Text="Tarjetas de Accesos" OnClick="linkTarjetasAccesos_Click" class="dropdown-item"></asp:LinkButton>
-    </div>
-  </li>
-
-     <%--CERRAR SESION--%>
-    <li class="nav-item">
-     <asp:LinkButton ID="linkCerrarCesion" runat="server" Text="Cerrar Sesión" OnClick="linkCerrarCesion_Click"  class="nav-link active"></asp:LinkButton>
-  </li>
-</ul>
-  </div>
+                          <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                  Procesos
+                                </a>
+                                <div class="dropdown-menu">
+                                  <a class="dropdown-item" href="#">Procesar Data Gruas</a>
+                                </div>
+                              </li>
+                              <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                      Mantenimientos
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <asp:LinkButton ID="linkOficinas" runat="server" Text="Oficinas" OnClick="linkOficinas_Click" class="dropdown-item"></asp:LinkButton>
+                                        <asp:LinkButton ID="linkDeprtamentos" runat="server" Text="Departamentos" OnClick="linkDeprtamentos_Click" class="dropdown-item"></asp:LinkButton>
+                                        <asp:LinkButton ID="linkEmpleados" runat="server" Text="Empleados" OnClick="linkEmpleados_Click" class="dropdown-item"></asp:LinkButton>
+                                        <asp:LinkButton ID="linkInventario" runat="server" Text="Inventario" OnClick="linkInventario_Click" class="dropdown-item"></asp:LinkButton>
+                                    </div>
+                                  </li>
+                                  <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                          Cotizador
+                                        </a>
+                                        <div class="dropdown-menu">
+                                           <asp:LinkButton ID="linkCotizadorFuturoSeguros" runat="server" Text="Futuro Seguros" OnClick="linkCotizadorFuturoSeguros_Click" class="dropdown-item"></asp:LinkButton>
+                                           <asp:LinkButton ID="linkFuturoARS" runat="server" Text="Futuro ARS" OnClick="linkFuturoARS_Click" class="dropdown-item"></asp:LinkButton>
+                                        </div>
+                                      </li>
+                                      <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                              Seguridad
+                                            </a>
+                                            <div class="dropdown-menu">
+                                              <asp:LinkButton ID="linkUsuarios" runat="server" Text="Usuarios" OnClick="linkUsuarios_Click" class="dropdown-item"></asp:LinkButton>
+                                              <asp:LinkButton ID="linkPerfilesUsuarios" runat="server" Text="Perfiles de Usuarios" OnClick="linkPerfilesUsuarios_Click" class="dropdown-item"></asp:LinkButton>
+                                              <asp:LinkButton ID="linkClaveSeguridad" runat="server" Text="Clave de Seguridad" OnClick="linkClaveSeguridad_Click" class="dropdown-item"></asp:LinkButton>
+                                              <asp:LinkButton ID="linkPermisoUsuarios" runat="server" Text="Permisos Usuarios" OnClick="linkPermisoUsuarios_Click" class="dropdown-item"></asp:LinkButton>
+                                              <asp:LinkButton ID="linkMovimientoUsuarios" runat="server" Text="Movimiento Usuario" OnClick="linkMovimientoUsuarios_Click" class="dropdown-item"></asp:LinkButton>
+                                              <asp:LinkButton ID="linkTarjetasAccesos" runat="server" Text="Tarjetas de Accesos" OnClick="linkTarjetasAccesos_Click" class="dropdown-item"></asp:LinkButton>
+                                            </div>
+                                          </li>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="linkCerrarCesion" runat="server" ToolTip="Cerrar Sesión" Text="Cerrar Sesión" OnClick="linkCerrarCesion_Click"  class="nav-link active"></asp:LinkButton>
+                            </li>
+                        </ul>
+            
+                      </nav>
+        </div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
