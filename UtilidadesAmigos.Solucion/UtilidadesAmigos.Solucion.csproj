@@ -113,6 +113,7 @@
     <Content Include="Imagenes\155805d262d9564.jpg" />
     <Content Include="Imagenes\Iniciales.ico" />
     <Content Include="Imagenes\login.jpg" />
+    <Content Include="Imagenes\Logo.ico" />
     <Content Include="Imagenes\tDYC1tp.jpg" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
