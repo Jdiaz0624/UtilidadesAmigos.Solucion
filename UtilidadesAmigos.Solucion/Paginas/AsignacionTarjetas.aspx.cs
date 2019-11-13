@@ -144,7 +144,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtFechaEntregaMantenimiento.Visible = true;
             btnGuardarMantenimiento.Visible = true;
             btnAtrasMantenimiento.Visible = true;
-            lbMantenimientoTarjetasAcceso.Visible = true;
+            //lbMantenimientoTarjetasAcceso.Visible = true;
             CargarListasPadreMantenimiento();
         }
         private void MostrarControles()
@@ -185,7 +185,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtFechaEntregaMantenimiento.Visible = false;
             btnGuardarMantenimiento.Visible = false;
             btnAtrasMantenimiento.Visible = false;
-            lbMantenimientoTarjetasAcceso.Visible = false;
+            //lbMantenimientoTarjetasAcceso.Visible = false;
             txtNumerotarjetaMantenimiento.Text = string.Empty;
             cbEstatusMantenimiento.Checked = false;
             lbFechaEntregaMantenimiento.Visible = false;

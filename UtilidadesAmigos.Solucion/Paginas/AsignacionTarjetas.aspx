@@ -114,6 +114,16 @@
 
         </div>
     <!--AQUI TERMINA EL GRID-->
+    <!--AQUI PONEMOS LOS CONTROLES PARA REALIZAR EL MANTENIMIENTO-->
+    <div class="container-fluid">
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <asp:Label ID="lbOficinaMantenimiento" Visible="false" runat="server" Text="Seleccionar Oficina"></asp:Label>
+                    <asp:DropDownList ID="ddlOficinaMantenimiento" AutoPostBack="true" Visible="false" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged1"></asp:DropDownList>
+        </div>
+    </div>
+    </div>
+    <!--AQUI FINALIZAN LOS CONTROLES PARA REALIZAR EL MANTENIMIENTO-->
     <div class="ResponsiveDesing">
        
 
@@ -126,9 +136,7 @@
               
                 <%-- CONTROLES PARA EL MANTENIMIENTO --%>
                 <div>
-                    <h3 align="Center"><asp:Label ID="lbMantenimientoTarjetasAcceso" Visible="false" runat="server" Text="Mantenimiento de tarjetas" CssClass="Label-Encabezado"></asp:Label></h3>
-                    <asp:Label ID="lbOficinaMantenimiento" Visible="false" runat="server" Text="<%$Resources:Traducciones,Oficina %>" CssClass="LabelFormularios"></asp:Label>
-                    <asp:DropDownList ID="ddlOficinaMantenimiento" AutoPostBack="true" Visible="false" runat="server" ToolTip="<%$Resources:Traducciones,Oficina %>" CssClass="combobox" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged1"></asp:DropDownList><br />
+                    
                     <asp:Label ID="lbDepartamentoMantenimiento" Visible="false" runat="server" Text="<%$Resources:Traducciones,Departamento %>" CssClass="LabelFormularios"></asp:Label>
                     <asp:DropDownList ID="ddlDepartamentoMantenimiento" Visible="false" AutoPostBack="true" runat="server" CssClass="combobox" ToolTip="<%$Resources:Traducciones,Departamento %>" OnSelectedIndexChanged="ddlDepartamentoMantenimiento_SelectedIndexChanged1"></asp:DropDownList><br />
                     <asp:Label ID="lbEmpleadoMantenimiento" Visible="false" runat="server" CssClass="LabelFormularios" Text="<%$Resources:Traducciones,Empleado %>"></asp:Label>
