@@ -13,6 +13,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected void Page_Load(object sender, EventArgs e)
         {
 
+           
         }
 
      

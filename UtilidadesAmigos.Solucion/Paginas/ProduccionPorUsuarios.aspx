@@ -23,14 +23,16 @@
         }
     </script>
 
+    <!--INICIO DEL ENCABEZADO DE LA PANTALLA-->
     <div class="container-fluid">
         <div id="Color-Jumboton" class="jumbotron text-center">
         <asp:Label ID="lbEncabezado" runat="server" Text="Producción por Usuarios"></asp:Label>
   
 </div>
     </div>
+    <!--FIN DEL ENCABEZADO DE LA PANTALLA-->
 
-   
+   <!--INICIOO DEL DROP PARA SELECCIONAR EL TIPO DE PROCESO-->
          <div class="container-fluid">
              <div class="form-row">
              <div class="form-group col-md-3">
@@ -39,10 +41,12 @@
              </div>
          </div>
              </div>
+<!--FIN DEL DROP PARA SELECCINAR EL TIPO DE PROCESO-->
 
+<!--INICIO DE LOS CHEK-->
         <div class="form-group form-check">
             <div class="form-check-inline">
-                <asp:CheckBox ID="cbAgregarDepartamentos" runat="server" class="form-check-input" Text="Agregar Oficina" AutoPostBack="true" OnCheckedChanged="cbAgregarDepartamentos_CheckedChanged" />
+                <asp:CheckBox ID="cbAgregarDepartamentos" runat="server" class="form-check-input" Text="Agregar Departamentos" AutoPostBack="true" OnCheckedChanged="cbAgregarDepartamentos_CheckedChanged" />
                    
             </div>
           
@@ -50,6 +54,9 @@
                    <asp:CheckBox ID="cbAgregarUsuarios" runat="server" class="form-check-input" Text="Agregar Usuario" AutoPostBack="true" Enabled="false" OnCheckedChanged="cbAgregarUsuarios_CheckedChanged1" />
             </div>
     </div>
+<!--FIN DE LOS CHECK-->
+
+    <!--INICIO DE LOS CONTROLES DE BUSQUEDA-->
     <div class="container-fluid">
         <div class="form-row">
             <div class="form-group col-md-3">
@@ -66,26 +73,32 @@
 
 
     </div>
+    <!--FIN DE LOS CONTROLES DE BUSQUEDA-->
 
      <br />
         <div class="container-fluid">
 
         <div class="form-row">
             <div class="form-group col-md-6">
+                <asp:Label ID="lbSeleccionarOficina"  runat="server" Text="Seleccionar oficina"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarOficina" AutoPostBack="true" Width="500px" CssClass="form-control" runat="server" Visible="true" OnSelectedIndexChanged="ddlSeleccionarOficina_SelectedIndexChanged1"></asp:DropDownList>
             </div>
-        </div>
-
-            <div class="form-row">
-            <div class="form-group col-md-6">
+             <div class="form-group col-md-6">
+                 <asp:Label ID="lbSeleccionarDepartamento" Visible="false" runat="server" Text="Seleccionar Departamento"></asp:Label>
                 	  <asp:DropDownList ID="ddlSeleccionarDepartamento" AutoPostBack="true" Width="500px" CssClass="form-control" Visible="false" runat="server" OnSelectedIndexChanged="ddlSeleccionarDepartamento_SelectedIndexChanged1"></asp:DropDownList>
             </div>
+              <div class="form-group col-md-6">
+                  <asp:Label ID="lbSeleccionarUsuario" Visible="false" runat="server" Text="Seleccionar Usuario"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarUsuario" AutoPostBack="true" Width="500px" CssClass="form-control" runat="server" Visible="false"></asp:DropDownList>
+            </div>
         </div>
 
             <div class="form-row">
-            <div class="form-group col-md-6">
-                <asp:DropDownList ID="ddlSeleccionarUsuario" AutoPostBack="true" Width="500px" CssClass="form-control" runat="server" Visible="false"></asp:DropDownList>
-            </div>
+           
+        </div>
+
+            <div class="form-row">
+          
         </div>
             <%--<asp:Label ID="lbSeleccionarDepartamento" class="Label" runat="server" Text="Seleccionar Departamento"></asp:Label>--%>
 
@@ -93,9 +106,9 @@
 
        
         <div class="container-fluid">
-            <asp:Button ID="btnBuscarRegistros" class="btn btn-outline-primary" runat="server" ToolTip="Buscar Registros" Text="Buscar Registros" OnClick="btnBuscarRegistros_Click" />
-            <asp:Button ID="btnGenerarReporte" class="btn btn-outline-success" ToolTip="Generar el reporte de los parametros ingresados" runat="server" Text="Exportar a Excel" OnClick="btnGenerarReporte_Click" />
-            <asp:Button ID="btnAtras" CssClass="btn btn-outline-dark" ToolTip="Volver Atras" runat="server" Text="Atras" OnClick="btnAtras_Click" Visible="false" />
+            <asp:Button ID="btnBuscarRegistros" class="btn btn-outline-primary btn-sm" runat="server" ToolTip="Buscar Registros" Text="Buscar Registros" OnClick="btnBuscarRegistros_Click" />
+            <asp:Button ID="btnGenerarReporte" class="btn btn-outline-success btn-sm" ToolTip="Generar el reporte de los parametros ingresados" runat="server" Text="Exportar a Excel" OnClick="btnGenerarReporte_Click" />
+            <asp:Button ID="btnAtras" CssClass="btn btn-outline-dark btn-sm" ToolTip="Volver Atras" runat="server" Text="Atras" OnClick="btnAtras_Click" Visible="false" />
         </div>
  
 
@@ -111,12 +124,12 @@
                     <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
                     <asp:BoundField DataField="Concepto" HeaderText="Concepto" />
                     <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
-                    <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Ver" ControlStyle-CssClass="btn btn-primary" ShowSelectButton="True" />
+                    <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Ver" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
                 </Columns>
                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
                 <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
                 <SortedAscendingCellStyle BackColor="#F1F1F1" />
                 <SortedAscendingHeaderStyle BackColor="#0000A9" />
@@ -130,12 +143,12 @@
             <asp:GridView id="gbDetalle" runat="server" AllowPaging="True" OnPageIndexChanging="gbDetalle_PageIndexChanging" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbDetalle_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
-                    <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn btn-primary" HeaderText="Detalle" SelectText="Entrar" ShowSelectButton="True" />
+                    <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn btn-outline-primary btn-sm" HeaderText="Detalle" SelectText="Entrar" ShowSelectButton="True" />
                 </Columns>
-                <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+              <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
                 <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
                 <SortedAscendingCellStyle BackColor="#F1F1F1" />
                 <SortedAscendingHeaderStyle BackColor="#0000A9" />
@@ -318,18 +331,20 @@
               
                 
                 
-                 <asp:GridView id="gbListadoOtrosRamos" runat="server" AllowPaging="True" OnPageIndexChanging="gbListadoOtrosRamos_PageIndexChanging" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="98%" OnSelectedIndexChanged="gbListadoOtrosRamos_SelectedIndexChanged" Visible="False">
+               <div class="container-fluid">
+                     <asp:GridView id="gbListadoOtrosRamos" runat="server" AllowPaging="True" OnPageIndexChanging="gbListadoOtrosRamos_PageIndexChanging" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbListadoOtrosRamos_SelectedIndexChanged" Visible="False">
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF"  ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
                 <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
                 <SortedAscendingCellStyle BackColor="#F1F1F1" />
                 <SortedAscendingHeaderStyle BackColor="#0000A9" />
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#000065" />
             </asp:GridView>
+               </div>
             </div>
 
 </asp:Content>

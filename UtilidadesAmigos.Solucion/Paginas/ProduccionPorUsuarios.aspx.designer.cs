@@ -85,6 +85,15 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtFechaHasta;
         
         /// <summary>
+        /// Control lbSeleccionarOficina.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarOficina;
+        
+        /// <summary>
         /// Control ddlSeleccionarOficina.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarOficina;
         
         /// <summary>
+        /// Control lbSeleccionarDepartamento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarDepartamento;
+        
+        /// <summary>
         /// Control ddlSeleccionarDepartamento.
         /// </summary>
         /// <remarks>
@@ -101,6 +119,15 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarDepartamento;
+        
+        /// <summary>
+        /// Control lbSeleccionarUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarUsuario;
         
         /// <summary>
         /// Control ddlSeleccionarUsuario.

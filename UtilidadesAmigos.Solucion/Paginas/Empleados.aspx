@@ -116,53 +116,17 @@
             <asp:TextBox ID="txtNombreMantenimiento" runat="server" AutoCompleteType="Disabled" CssClass="form-control" Visible="false" PlaceHolder="Nombre" MaxLength="100"></asp:TextBox>
             </div>
         </div>
-        <div class="form-check-inline">
-            <div class="form-check">
-                <asp:CheckBox ID="cbEstatusMantenimiento" runat="server" Text="Estatus" CssClass="form-control" Visible="false" ToolTip="Estatus" />
-            </div>
-        </div>
-    </div>
-    <!--AQUI TERMINAN LOS CONTROLES PARA REALIZAR LOS MANTENIMIENTOS CORRESPONDIENTES-->
-    <div class="ResponsiveDesing">
-
-        <div class="container-fluid">
-
-        </div>
-        <div class="Bloque-Centro">
-            <div class="Bloque-Izquierda">
-                <%-- AQUI VAN LOS CONTROLES DE BUSQUEDA --%>
-          
-            
-                
-
-
-                <div>
-            <%-- AQUI VAN LOS CONTROLES PARA EL MANTENIMIENTO --%>
-           
-            
-           
-            
-           
-            
-                    <div align="Center">
-                        <asp:Button ID="btnGuardarMantenimiento" runat="server" CssClass="Botones" Visible="false" Text="<%$Resources:Traducciones,Guardar %>" ToolTip="<%$Resources:Traducciones,Guardar %>" OnClick="btnGuardarMantenimiento_Click"/>
-                        <asp:Button ID="btnAtrasMantenimiento" runat="server" CssClass="Botones" Visible="false" Text="<%$Resources:Traducciones,Atras %>" ToolTip="<%$Resources:Traducciones,Atras %>" OnClick="btnAtrasMantenimiento_Click" />
+      <div class="form-group form-check">
+          <div class="form-check-inline">
+                   <asp:CheckBox ID="cbEstatusMantenimiento" runat="server" Text="Estatus" CssClass="form-check-input" Visible="false" ToolTip="Estatus" />
+          </div>
+      </div>
+        <div align="Center">
+                        <asp:Button ID="btnGuardarMantenimiento" runat="server" CssClass="btn btn-outline-primary btn-sm" Visible="false" Text="Guardar" ToolTip="Guardar Operación" OnClick="btnGuardarMantenimiento_Click"/>
+                        <asp:Button ID="btnAtrasMantenimiento" runat="server" CssClass="btn btn-outline-primary btn-sm" Visible="false" Text="Atras" ToolTip="Volver Atras" OnClick="btnAtrasMantenimiento_Click" />
                         <asp:Label ID="lbIdMantenimiento" runat="server" Text="IdMantenimiento" Visible="false"></asp:Label>
                         <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
                     </div>
-        </div>
-            </div>
-            <div class="Bloque-Derecha">
-                <%-- AQUI VAN LOS BOTONES PARA EL MANTENIMIENTO --%>
-           
-              
-            </div>
-        </div>
-        <div>
-            <%-- AQUI VA EL GRID --%>
-        
-            
-        </div>
-        
     </div>
+    <!--AQUI TERMINAN LOS CONTROLES PARA REALIZAR LOS MANTENIMIENTOS CORRESPONDIENTES-->
 </asp:Content>

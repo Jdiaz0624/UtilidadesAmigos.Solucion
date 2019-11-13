@@ -105,12 +105,25 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtNuevaClave.Visible = false;
                 txtConfirmarClave.Visible = false;
                 btnCambiarClave.Visible = false;
+                rbcolaborador.Checked = true;
             }
         }
 
         protected void btnIngresarSistema_Click(object sender, EventArgs e)
         {
-            IngresarSistema(txtUsuario.Text, txtClave.Text);
+            if (rbcolaborador.Checked)
+            {
+                IngresarSistema(txtUsuario.Text, txtClave.Text);
+            }
+            else if (rbSupervisor.Checked)
+            {
+
+            }
+            else if (rbIntermediario.Checked)
+            {
+
+            }
+
         }
 
         protected void llbRegistrarse_Click(object sender, EventArgs e)
@@ -152,6 +165,40 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
 
-       
+        protected void rbcolaborador_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbcolaborador.Checked)
+            {
+                lbIngresarUsuarioClave.Text = "Ingresar Nombre de Usuario y Clave";
+            }
+            else
+            {
+                lbIngresarUsuarioClave.Text = "";
+            }
+        }
+
+        protected void rbSupervisor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbSupervisor.Checked)
+            {
+                lbIngresarUsuarioClave.Text = "Ingresar Codigo de Supervisor y Clave";
+            }
+            else
+            {
+                lbIngresarUsuarioClave.Text = "";
+            }
+        }
+
+        protected void rbIntermediario_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbIntermediario.Checked)
+            {
+                lbIngresarUsuarioClave.Text = "Ingresar Codigo de Intermediario y clave";
+            }
+            else
+            {
+                lbIngresarUsuarioClave.Text = "";
+            }
+        }
     }
 }

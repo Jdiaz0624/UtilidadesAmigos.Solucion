@@ -187,27 +187,33 @@ a{color:inherit;text-decoration:none}
         
            <div class="login-wrap">
         <div class="login-html">
+            <div class="hr"></div>
+               <div class="form-group form-check">
+                      <div class="form-check-inline">
+                           <asp:RadioButton ID="rbcolaborador" GroupName="Login" runat="server" AutoPostBack="true" CssClass="form-check-input" Text="Colaborador" OnCheckedChanged="rbcolaborador_CheckedChanged" />
+                          <asp:RadioButton ID="rbSupervisor" GroupName="Login" runat="server" AutoPostBack="true" CssClass="form-check-input" Text="Supervisor" OnCheckedChanged="rbSupervisor_CheckedChanged" />
+                          <asp:RadioButton ID="rbIntermediario" GroupName="Login" runat="server" AutoPostBack="true" CssClass="form-check-input" Text="Intermediario" OnCheckedChanged="rbIntermediario_CheckedChanged" />
+                      </div>
+                  </div>
           <div class="login-form">
               <div class="group">
-                <asp:Label ID="lbIngresarUsuarioClave" runat="server" class="label" Text="<%$Resources:Traducciones,IngresarUsuarioClave %>"></asp:Label>
-                  <asp:TextBox ID="txtUsuario"  Class="input" runat="server" MaxLength="20" Placeholder="<%$Resources:Traducciones,IngresarUsuario %>" AutoCompleteType="Disabled"></asp:TextBox>
+                <asp:Label ID="lbIngresarUsuarioClave" runat="server" class="label" Text="Ingrese Nombre de Usuario y Clave"></asp:Label>
+                  <asp:TextBox ID="txtUsuario"  Class="input" runat="server" MaxLength="20" Placeholder="Usuario" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
                 <div class="group">
-                    <asp:TextBox ID="txtClave" Class="input" runat="server" placeholder="<%$Resources:Traducciones,IngresarClave %>" MaxLength="20" TextMode="Password" AutoCompleteType="Disabled"></asp:TextBox>
+                    <asp:TextBox ID="txtClave" Class="input" runat="server" placeholder="Clave" MaxLength="20" TextMode="Password" AutoCompleteType="Disabled"></asp:TextBox>
 
                 </div>
                 <div class="group">
-                    <asp:Button ID="btnIngresarSistema" class="button" ToolTip="<%$Resources:Traducciones,IngresarSistema %>" runat="server" Text="<%$Resources:Traducciones,Entrar %>" OnClick="btnIngresarSistema_Click" />
+                    <asp:Button ID="btnIngresarSistema" class="button" ToolTip="Ingresar al Sistema" runat="server" Text="<%$Resources:Traducciones,Entrar %>" OnClick="btnIngresarSistema_Click" />
                   </div>
   
                 <div class="hr"></div>
-              <div class="container-fluid">
-            <div class="form-check-input">
-                <asp:RadioButton ID="rbcolaborador" runat="server" CssClass="form-check" Text="Colaborador" />
-                 <asp:RadioButton ID="rbSupervisor" runat="server" CssClass="form-check" Text="Supervisor" />
-                 <asp:RadioButton ID="rbIntermediario"  runat="server" CssClass="form-check" Text="Intermediario" />
-            </div>
-        </div>
+           
+               
+
+        
+        
               <div id="CambiaClave">
                     <div class="group">
                         <asp:TextBox ID="txtNuevaClave" runat="server" placeholder="<%$Resources:Traducciones,NuevaClave %>" TextMode="Password" CssClass="input" AutoCompleteType="Disabled"></asp:TextBox>

@@ -949,13 +949,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (cbAgregarDepartamentos.Checked)
             {
                 cbAgregarUsuarios.Enabled = true;
+                lbSeleccionarDepartamento.Visible = true;
                 ddlSeleccionarDepartamento.Visible = true;
             }
             else
             {
                 cbAgregarUsuarios.Enabled = false;
                 cbAgregarUsuarios.Checked = false;
+                lbSeleccionarUsuario.Visible = false;
                 ddlSeleccionarUsuario.Visible = false;
+                lbSeleccionarDepartamento.Visible = false;
                 ddlSeleccionarDepartamento.Visible = false;
             }
         }
@@ -964,10 +967,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (cbAgregarUsuarios.Checked)
             {
+                lbSeleccionarUsuario.Visible = true;
                 ddlSeleccionarUsuario.Visible = true;
             }
             else
             {
+                lbSeleccionarUsuario.Visible = false;
                 ddlSeleccionarUsuario.Visible = false;
             }
         }
