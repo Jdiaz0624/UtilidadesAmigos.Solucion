@@ -184,6 +184,7 @@ a{color:inherit;text-decoration:none}
 </head>
 <body>
     <form id="form1" runat="server">
+        
            <div class="login-wrap">
         <div class="login-html">
           <div class="login-form">
@@ -200,6 +201,13 @@ a{color:inherit;text-decoration:none}
                   </div>
   
                 <div class="hr"></div>
+              <div class="container-fluid">
+            <div class="form-check-input">
+                <asp:RadioButton ID="rbcolaborador" runat="server" CssClass="form-check" Text="Colaborador" />
+                 <asp:RadioButton ID="rbSupervisor" runat="server" CssClass="form-check" Text="Supervisor" />
+                 <asp:RadioButton ID="rbIntermediario"  runat="server" CssClass="form-check" Text="Intermediario" />
+            </div>
+        </div>
               <div id="CambiaClave">
                     <div class="group">
                         <asp:TextBox ID="txtNuevaClave" runat="server" placeholder="<%$Resources:Traducciones,NuevaClave %>" TextMode="Password" CssClass="input" AutoCompleteType="Disabled"></asp:TextBox>

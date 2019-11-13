@@ -20,6 +20,11 @@
             width: 100px;
         }
     </style>
+    <script type="text/javascript">
+        function ErrorDeshabilitar() {
+            alert("Error al tratar de deshabilitar este registro")
+        }
+    </script>
 
 <div class="container-fluid">
     <div align="Center" class="jumbotron">

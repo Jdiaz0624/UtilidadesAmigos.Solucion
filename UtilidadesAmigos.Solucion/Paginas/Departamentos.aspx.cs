@@ -313,22 +313,29 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaMantenimiento, ObjdataGeneral.Value.BuscaListas("OFICINA", null, null));
-            //DESHABILITAMOS EL REGISTRO
-            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EDepartamentos Mantenimiento = new Logica.Entidades.Mantenimientos.EDepartamentos();
+            try
+            {
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaMantenimiento, ObjdataGeneral.Value.BuscaListas("OFICINA", null, null));
+                //DESHABILITAMOS EL REGISTRO
+                UtilidadesAmigos.Logica.Entidades.Mantenimientos.EDepartamentos Mantenimiento = new Logica.Entidades.Mantenimientos.EDepartamentos();
 
-            Mantenimiento.IdOficina = Convert.ToDecimal(ddlOficinaMantenimiento.SelectedValue);
-            Mantenimiento.IdDepartamento = Convert.ToDecimal(lbIdMantenimiento.Text);
-            Mantenimiento.Departamento = txtDescripcionDepartamentoMAN.Text;
-            Mantenimiento.Estatus0 = cbEstatus.Checked;
-            Mantenimiento.UsuarioAdiciona = Convert.ToDecimal(Session["IdUsuario"].ToString());
-            Mantenimiento.FechaAdiciona = DateTime.Now;
-            Mantenimiento.UsuarioAdiciona = Convert.ToDecimal(Session["IdUsuario"].ToString());
-            Mantenimiento.FechaModifica = DateTime.Now;
+                Mantenimiento.IdOficina = Convert.ToDecimal(ddlOficinaMantenimiento.SelectedValue);
+                Mantenimiento.IdDepartamento = Convert.ToDecimal(lbIdMantenimiento.Text);
+                Mantenimiento.Departamento = txtDescripcionDepartamentoMAN.Text;
+                Mantenimiento.Estatus0 = cbEstatus.Checked;
+                Mantenimiento.UsuarioAdiciona = Convert.ToDecimal(Session["IdUsuario"].ToString());
+                Mantenimiento.FechaAdiciona = DateTime.Now;
+                Mantenimiento.UsuarioAdiciona = Convert.ToDecimal(Session["IdUsuario"].ToString());
+                Mantenimiento.FechaModifica = DateTime.Now;
 
-            var MAN = Objdata.Value.MantenimientoDepartamentos(Mantenimiento, "DISABLE");
-            VolverAtras();
-            MostrarListadoDepartamentos();
+                var MAN = Objdata.Value.MantenimientoDepartamentos(Mantenimiento, "DISABLE");
+                VolverAtras();
+                MostrarListadoDepartamentos();
+            }
+            catch (Exception) {
+                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorDeshabilitar()", true);
+            }
+
         }
     }
 }

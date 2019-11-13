@@ -97,6 +97,32 @@
             </asp:GridView>
     </div>
     <!--FIN DEL GRID-->
+
+    <!--AQUI COMIENZAN LOS CONTROLES PARA REALIZAR LOS MANTENIMIENTOS CORRESPONDIENTES-->
+    <div  class="container-fluid">
+        <div " class="form-row">
+            <div class="form-group col-md-6">
+                 <asp:Label ID="lbOficinaMantenimiento" runat="server" Visible="false" Text="Oficina"></asp:Label>
+                <asp:DropDownList ID="ddlOficinaMantenimiento" runat="server" CssClass="form-control" Visible="false" AutoPostBack="True"  ToolTip="Seleccionar Oficina" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList><br />
+            </div>
+
+               <div class="form-group col-md-6">
+                    <asp:Label ID="lbDepartamentoMantenimiento"  runat="server"  Visible="false" Text="Departamento"></asp:Label>
+                   <asp:DropDownList ID="ddlDepartamenoMantenimiento" runat="server" CssClass="form-control" Visible="false" ToolTip="Seleccionar Departamento"></asp:DropDownList>
+            </div>
+
+               <div class="form-group col-md-6">
+                    <asp:Label ID="lbNombreMantenimiento" runat="server" Visible="false" Text="Nombre"></asp:Label>
+            <asp:TextBox ID="txtNombreMantenimiento" runat="server" AutoCompleteType="Disabled" CssClass="form-control" Visible="false" PlaceHolder="Nombre" MaxLength="100"></asp:TextBox>
+            </div>
+        </div>
+        <div class="form-check-inline">
+            <div class="form-check">
+                <asp:CheckBox ID="cbEstatusMantenimiento" runat="server" Text="Estatus" CssClass="form-control" Visible="false" ToolTip="Estatus" />
+            </div>
+        </div>
+    </div>
+    <!--AQUI TERMINAN LOS CONTROLES PARA REALIZAR LOS MANTENIMIENTOS CORRESPONDIENTES-->
     <div class="ResponsiveDesing">
 
         <div class="container-fluid">
@@ -112,13 +138,12 @@
 
                 <div>
             <%-- AQUI VAN LOS CONTROLES PARA EL MANTENIMIENTO --%>
-            <asp:Label ID="lbOficinaMantenimiento" runat="server" CssClass="LabelFormularios" Visible="false" Text="<%$Resources:Traducciones,Oficina %>"></asp:Label>
-            <asp:DropDownList ID="ddlOficinaMantenimiento" runat="server" CssClass="combobox" Visible="false" AutoPostBack="True"  ToolTip="<%$Resources:Traducciones,Oficina %>" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList><br />
-            <asp:Label ID="lbDepartamentoMantenimiento" runat="server" CssClass="LabelFormularios" Visible="false" Text="<%$Resources:Traducciones,Departamento %>"></asp:Label>
-            <asp:DropDownList ID="ddlDepartamenoMantenimiento" runat="server" CssClass="combobox" Visible="false" ToolTip="<%$Resources:Traducciones,Departamento %>"></asp:DropDownList><br />
-            <asp:Label ID="lbNombreMantenimiento" runat="server" CssClass="LabelFormularios" Visible="false" Text="<%$Resources:Traducciones,Nombre %>"></asp:Label>
-            <asp:TextBox ID="txtNombreMantenimiento" runat="server" CssClass="Caja-Texto-Login" Visible="false" PlaceHolder="<%$Resources:Traducciones,Nombre %>" MaxLength="100"></asp:TextBox><br />
-            <asp:CheckBox ID="cbEstatusMantenimiento" runat="server" Text="<%$Resources:Traducciones,Estatus %>" CssClass="CheckBox-Formularios" Visible="false" ToolTip="<%$Resources:Traducciones,Estatus %>" />
+           
+            
+           
+            
+           
+            
                     <div align="Center">
                         <asp:Button ID="btnGuardarMantenimiento" runat="server" CssClass="Botones" Visible="false" Text="<%$Resources:Traducciones,Guardar %>" ToolTip="<%$Resources:Traducciones,Guardar %>" OnClick="btnGuardarMantenimiento_Click"/>
                         <asp:Button ID="btnAtrasMantenimiento" runat="server" CssClass="Botones" Visible="false" Text="<%$Resources:Traducciones,Atras %>" ToolTip="<%$Resources:Traducciones,Atras %>" OnClick="btnAtrasMantenimiento_Click" />
