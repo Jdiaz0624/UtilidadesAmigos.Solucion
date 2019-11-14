@@ -192,6 +192,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
             {
                 CargarOficinas();
                 MostrarListadoDepartamentos();
+                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "Mensaje();", true);
             }
         }
 

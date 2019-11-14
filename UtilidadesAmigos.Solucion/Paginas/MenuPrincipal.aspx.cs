@@ -35,15 +35,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            SacarDatosUsuario(Convert.ToDecimal(Session["IdUsuario"]));
             if (!IsPostBack)
             {
+                if (Session["IdUsuario"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+                else
+                {
+                    SacarDatosUsuario(Convert.ToDecimal(Session["IdUsuario"]));
+                    decimal idiusuario = Convert.ToDecimal(Session["IdUsuario"]);
+                    if (idiusuario == 1)
+                    {
+                        // this.Master.FindControl("lbTiket").Visible = false;
+                    }
+
+                }
             }
-            decimal idiusuario = Convert.ToDecimal(Session["IdUsuario"]);
-            if (idiusuario == 1)
-            {
-                // this.Master.FindControl("lbTiket").Visible = false;
-            }
+          
         }
     }
 }

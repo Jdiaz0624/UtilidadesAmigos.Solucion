@@ -17,6 +17,11 @@
         }
     </style>
 
+    <script type="text/javascript">
+        function Mensajes() {
+            alert("Hola Mundo")
+        }
+    </script>
     <!--AQUI INICIA LA PARTE DEL ENCABEZADO-->
     <div class="container-fluid">
         <div class="jumbotron" align="center">
@@ -119,47 +124,36 @@
         <div class="form-row">
         <div class="form-group col-md-6">
             <asp:Label ID="lbOficinaMantenimiento" Visible="false" runat="server" Text="Seleccionar Oficina"></asp:Label>
-                    <asp:DropDownList ID="ddlOficinaMantenimiento" AutoPostBack="true" Visible="false" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged1"></asp:DropDownList>
+            <asp:DropDownList ID="ddlOficinaMantenimiento" AutoPostBack="true" Visible="false" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged1"></asp:DropDownList>
+        </div>
+            <div class="form-group col-md-6">
+                 <asp:Label ID="lbDepartamentoMantenimiento" Visible="false" runat="server" Text="Seleccionar Departamentos" CssClass="LabelFormularios"></asp:Label>
+            <asp:DropDownList ID="ddlDepartamentoMantenimiento" Visible="false" AutoPostBack="true" runat="server" CssClass="form-control" ToolTip="Seleccionar Departamentos" OnSelectedIndexChanged="ddlDepartamentoMantenimiento_SelectedIndexChanged1"></asp:DropDownList>
+            </div>
+            <div class="form-group col-md-6">
+                    <asp:Label ID="lbEmpleadoMantenimiento" Visible="false" runat="server" Text="Seleccionar Colaborador"></asp:Label>
+                      <asp:DropDownList ID="ddlEmpleadoMantenimiento" Visible="false" AutoPostBack="true" runat="server" CssClass="form-control" ToolTip="Seleccionar Empleado"></asp:DropDownList>
+            </div>
+            <div class="form-group col-md-6">
+                    <asp:Label ID="lbNumeroTarjetraMantenimiento" Visible="false" runat="server" Text="Numero de tarjeta"></asp:Label>
+                    <asp:TextBox ID="txtNumerotarjetaMantenimiento" Visible="false" runat="server" CssClass="form-control" PlaceHolder="Ingrese Numero de Tarjeta de Acceso" TextMode="Number" MaxLength="100"></asp:TextBox>
+            </div>
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbFechaEntregaMantenimiento" Visible="false" runat="server" Text="Fecha de Entrega"></asp:Label>
+                    <asp:TextBox ID="txtFechaEntregaMantenimiento" Visible="false" runat="server" CssClass="form-control" TextMode="Date" PlaceHolder="Fecha de Entrega"></asp:TextBox>
+            </div>
+    </div>
+        <div class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:CheckBox ID="cbEstatusMantenimiento" Visible="false" runat="server" CssClass="form-control" Text="Estatus" ToolTip="Estatus de Tarjeta" />
+            </div>
         </div>
     </div>
-    </div>
-    <!--AQUI FINALIZAN LOS CONTROLES PARA REALIZAR EL MANTENIMIENTO-->
-    <div class="ResponsiveDesing">
-       
-
-                <%-- CONTROLES PARA LA CONSULTA --%>
-          
-                
-       
-               
-             
-              
-                <%-- CONTROLES PARA EL MANTENIMIENTO --%>
-                <div>
-                    
-                    <asp:Label ID="lbDepartamentoMantenimiento" Visible="false" runat="server" Text="<%$Resources:Traducciones,Departamento %>" CssClass="LabelFormularios"></asp:Label>
-                    <asp:DropDownList ID="ddlDepartamentoMantenimiento" Visible="false" AutoPostBack="true" runat="server" CssClass="combobox" ToolTip="<%$Resources:Traducciones,Departamento %>" OnSelectedIndexChanged="ddlDepartamentoMantenimiento_SelectedIndexChanged1"></asp:DropDownList><br />
-                    <asp:Label ID="lbEmpleadoMantenimiento" Visible="false" runat="server" CssClass="LabelFormularios" Text="<%$Resources:Traducciones,Empleado %>"></asp:Label>
-                    <asp:DropDownList ID="ddlEmpleadoMantenimiento" Visible="false" AutoPostBack="true" runat="server" CssClass="combobox" ToolTip="<%$Resources:Traducciones,Empleado %>"></asp:DropDownList><br />
-                    <asp:Label ID="lbNumeroTarjetraMantenimiento" Visible="false" runat="server" CssClass="LabelFormularios" Text="<%$Resources:Traducciones,NumeroTarjeta %>"></asp:Label>
-                    <asp:TextBox ID="txtNumerotarjetaMantenimiento" Visible="false" runat="server" CssClass="Caja-Texto-Login" PlaceHolder="<%$Resources:Traducciones,NumeroTarjeta %>" TextMode="Number" MaxLength="100"></asp:TextBox><br />
-                    <asp:Label ID="lbFechaEntregaMantenimiento" Visible="false" runat="server" CssClass="LabelFormularios" Text="<%$Resources:Traducciones,Fecha %>"></asp:Label>
-                    <asp:TextBox ID="txtFechaEntregaMantenimiento" Visible="false" runat="server" CssClass="Texbox-Fecha" TextMode="Date" PlaceHolder="<%$Resources:Traducciones,Fecha %>"></asp:TextBox><br />
-                    <asp:CheckBox ID="cbEstatusMantenimiento" Visible="false" runat="server" CssClass="CheckBox-Formularios" Text="<%$Resources:Traducciones,Estatus %>" ToolTip="<%$Resources:Traducciones,Estatus %>" />
-                     
-                    <div align="Center">
-                        <asp:Button ID="btnGuardarMantenimiento" Visible="false" runat="server" CssClass="Botones" Text="<%$Resources:Traducciones,Guardar %>" ToolTip="<%$Resources:Traducciones,Guardar %>" OnClick="btnGuardarMantenimiento_Click" />
-                        <asp:Button ID="btnAtrasMantenimiento" Visible="false" runat="server" CssClass="Botones" Text="<%$Resources:Traducciones,Atras %>" ToolTip="<%$Resources:Traducciones,Atras %>" OnClick="btnAtrasMantenimiento_Click" /><br />
+       <div align="Center">
+                        <asp:Button ID="btnGuardarMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Guardar" ToolTip="Guardar Operación" OnClick="btnGuardarMantenimiento_Click" />
+                        <asp:Button ID="btnAtrasMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Atras" ToolTip="Volver Atras" OnClick="btnAtrasMantenimiento_Click" /><br />
                         <asp:Label ID="lbIdMantenimiento" runat="server" Text="IdMantenimiento" Visible="false"></asp:Label>
                         <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
                     </div>
-                </div>
-
-
-                <%-- BOTONES SUPERIORES --%>
-                
-            
-
-       
-    </div>
+    <!--AQUI FINALIZAN LOS CONTROLES PARA REALIZAR EL MANTENIMIENTO-->
 </asp:Content>
