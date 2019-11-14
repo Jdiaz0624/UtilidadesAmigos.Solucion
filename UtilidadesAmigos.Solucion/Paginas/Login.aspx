@@ -11,8 +11,8 @@
 body{
 	margin:0;
 	color:#6a6f8c;
-	background:url('https://c.wallhere.com/photos/3a/ef/Noble_M600_car_Super_Car_black_dark_vehicle-262768.jpg!d');
-    background-position-x:center;
+	background:url('https://i.pinimg.com/originals/49/4c/6b/494c6b914a7842e7c0e18cb68d41255e.png');
+    background-size:100%;
    width=100%;
 	font:600 16px/18px 'Open Sans',sans-serif;
 }

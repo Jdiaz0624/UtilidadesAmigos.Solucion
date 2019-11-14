@@ -26,12 +26,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 null,
                 null,
                 null,
-                Convert.ToInt32(txtNumeroPaginas.Text),
-                Convert.ToInt32(txtNumeroRegistros.Text));
+              1, 999999999);
             gbListadoUsuarios.DataSource = Buscar;
             gbListadoUsuarios.DataBind();
-            txtNumeroPaginas.Visible = true;
-            txtNumeroRegistros.Visible = true;
             
          //   gbListadoUsuarios.Columns[1].Visible = false;
 
@@ -60,8 +57,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             cbCambiaClaveMantenimiento.Visible = false;
             txtClaveSeguridadMantenimeinto.Visible = false;
             btnProcesarMantenimento.Visible = false;
-            txtNumeroPaginas.Visible = false;
-            txtNumeroRegistros.Visible = false;
         }
 
         private void MostrarControles()
@@ -86,8 +81,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             cbCambiaClaveMantenimiento.Visible = true;
             txtClaveSeguridadMantenimeinto.Visible = true;
             btnProcesarMantenimento.Visible = true;
-            txtNumeroPaginas.Visible = true;
-            txtNumeroRegistros.Visible = true;
         }
         #endregion
         #region CARGAR LOS DROP
@@ -161,8 +154,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnAtras.Enabled = false;
             btnDeshabilitar.Enabled = false;
             btnEliminar.Enabled = false;
-            txtNumeroPaginas.Enabled = true;
-            txtNumeroRegistros.Enabled = true;
             MostrarUsuarios();
             HabilitarControles();
         }
@@ -202,8 +193,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (!IsPostBack)
             {
                 OcultarControles();
-                txtNumeroPaginas.Visible = false;
-                txtNumeroRegistros.Visible = false;
                 btnConsultar.Enabled = true;
                 btnNuevo.Enabled = true;
                 btnModificar.Enabled = false;
@@ -289,8 +278,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             gbListadoUsuarios.Visible = false;
-            txtNumeroPaginas.Visible = false;
-            txtNumeroRegistros.Visible = false;
             MostrarControles();
             CargarDepartamentos();
             CargarPerfiles();
@@ -606,40 +593,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             
         }
 
-        protected void txtNumeroPaginas_TextChanged(object sender, EventArgs e)
-        {
-            try {
-                if (Convert.ToInt32(txtNumeroPaginas.Text) < 1)
-                {
-                    txtNumeroPaginas.Text = string.Empty;
-                    txtNumeroPaginas.Text = "1";
-                    MostrarUsuarios();
-                }
-                else
-                {
-                    MostrarUsuarios();
-                }
-            }
-            catch (Exception) { }
-        }
 
-        protected void txtNumeroRegistros_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Convert.ToInt32(txtNumeroRegistros.Text) < 1)
-                {
-                    txtNumeroRegistros.Text = string.Empty;
-                    txtNumeroRegistros.Text = "10";
-                    MostrarUsuarios();
-                }
-                else
-                {
-                    MostrarUsuarios();
-                }
-            }
-            catch (Exception) { }
-        }
+
+ 
 
         protected void gbListadoUsuarios_SelectedIndexChanged1(object sender, EventArgs e)
         {
@@ -651,8 +607,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnAtras.Enabled = true;
             btnDeshabilitar.Enabled = true;
             btnEliminar.Enabled = true;
-            txtNumeroPaginas.Enabled = false;
-            txtNumeroRegistros.Enabled = false;
 
             var Buscar = ObjData.Value.BuscaUsuarios(
                 Convert.ToDecimal(lbIdUsuarioSeleccionado.Text),
@@ -697,6 +651,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
 
-      
+        protected void gbListadoUsuarios_SelectedIndexChanged2(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gbListadoUsuarios_PageIndexChanging1(object sender, GridViewPageEventArgs e)
+        {
+            gbListadoUsuarios.PageIndex = e.NewPageIndex;
+            MostrarUsuarios();
+        }
     }
 }

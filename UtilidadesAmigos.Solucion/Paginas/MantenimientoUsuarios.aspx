@@ -3,50 +3,96 @@
   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+      <style type="text/css">
+        .jumbotron{
+            color:#000000; 
+            background:#7BC5FF;
+            font-size:30px;
+            font-weight:bold;
+            font-family:'Gill Sans';
+            padding:25px;
+        }
 
-    <header>
-       <h1><asp:Label ID="lbEncabezado" runat="server" Text="Mantenimiento de Usuarios" CssClass="Label-Encabezado"></asp:Label></h1>
-   </header>
-    <hr />
-    <div class="Contenedor">
-        <div class="Bloque-Izquierda" >
-            <asp:Label ID="lbUsuarioConsulta" runat="server" Text="Usuario" CssClass="Label"></asp:Label>
-            <asp:TextBox ID="txtUsuarioFiltro" runat="server" placeholder="Ingrese Nombre de Usuario" MaxLength="20" CssClass="Texto"></asp:TextBox><br /><br />
-            <asp:Label ID="lbIdUsuarioSeleccionado" runat="server" Text="0" CssClass="Label" Visible="False"></asp:Label>
-<%--            <asp:Label ID="lbPersonaFiltros" runat="server" Text="Persona" CssClass="Label"></asp:Label>
-            <asp:TextBox ID="txtPersonaFiltros" runat="server" placeholder="Persona de la Persona" CssClass="Texto" MaxLength="40"></asp:TextBox>--%>
-        </div>
-        <div class="Bloque-Derecha">
-            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" OnClick="btnConsultar_Click" ToolTip="Consultar Registros" CssClass="Botones" />
-            <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" ToolTip="Crear Nuevo Usuario" CssClass="Botones" OnClick="btnNuevo_Click" />
-            <asp:Button ID="btnModificar" runat="server" Text="Modificar" ToolTip="Modificar Usuario Seleccionado" CssClass="Botones" OnClick="btnModificar_Click" /><br />
-            <asp:Button ID="btnAtras" runat="server" Text="Atras" ToolTip="Volver Atras" Enabled="false" CssClass="Botones" OnClick="btnAtras_Click" />
-            <asp:Button ID="btnDeshabilitar" runat="server" Text="Deshabilitar" ToolTip="Deshabilitar Usuario Seleccionado" Enabled="false" CssClass="Botones" OnClick="btnDeshabilitar_Click" OnClientClick="return confirm('¿Quieres Deshabilitar Este Registro?');" />
-            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" ToolTip="Eliminar Usuario Seleccionado" CssClass="Botones" OnClick="btnEliminar_Click" OnClientClick="return confirm('¿Quieres Eliminar Este Registro?');" />
+        .btn-sm{
+            width:90px;
+        }
+    </style>
+
+    <!--INICIO DEL ENCABEZADO DE LA PANTALLA-->
+    <div class="container-fluid">
+        <div align="center" class="jumbotron">
+            <asp:Label ID="lbmantenimientoEmpleados" Text="Mantenimiento de Usuarios" runat="server"></asp:Label>
         </div>
     </div>
-    <div>
-        <asp:GridView ID="gbListadoUsuarios" horizontalalign="Right" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="gbListadoUsuarios_RowDataBound" OnSelectedIndexChanged="gbListadoUsuarios_SelectedIndexChanged1" Width="100%">
-            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-            <Columns>
-                <asp:CommandField ButtonType="Button" HeaderText="Detalle" ShowSelectButton="True" />
-            </Columns>
-            <EditRowStyle BackColor="#999999" />
-            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-            <SortedAscendingCellStyle BackColor="#E9E7E2" />
-            <SortedAscendingHeaderStyle BackColor="#506C8C" />
-            <SortedDescendingCellStyle BackColor="#FFFDF8" />
-            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-        </asp:GridView>
+    <!--FIN DEL ENCABEZADO DE LA PANTALLA-->
 
-
-        <asp:TextBox ID="txtNumeroPaginas" AutoPostBack="true" runat="server" CssClass="Caja-Texto-Paginacion" TextMode="Number" Text="1" OnTextChanged="txtNumeroPaginas_TextChanged"></asp:TextBox>
-        <asp:TextBox ID="txtNumeroRegistros" runat="server" AutoPostBack="true" CssClass="Caja-Texto-Paginacion" TextMode="Number" Text="10" OnTextChanged="txtNumeroRegistros_TextChanged"></asp:TextBox>
+    <!--AQUI INICIAN LOS CONTROLES DE BUSQUEDA-->
+    <div class="container-fluid">
+        <div class="form-row">
+        <div class="form-group col-md-3">
+                 <asp:Label ID="lbUsuarioConsulta" runat="server" Text="Usuario"></asp:Label>
+            <asp:TextBox ID="txtUsuarioFiltro" runat="server" placeholder="Ingrese Nombre de Usuario" MaxLength="20" CssClass="form-control"></asp:TextBox>
+            <asp:Label ID="lbIdUsuarioSeleccionado" runat="server" Text="0" Visible="False"></asp:Label>
+        </div>
     </div>
+    </div>
+    <!--AQUI TERMINAN LOS CONTROLES DE BUSQUEDA-->
+    <!--AQUI COMIENZAN LOS BOTONES PARA REALIZAR EL MANTENIMIENTO-->
+    <div class="container-fluid">
+        <div>
+             <asp:Button ID="btnConsultar" runat="server" Text="Consultar" OnClick="btnConsultar_Click" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm" />
+            <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" ToolTip="Crear Nuevo Usuario" CssClass="btn btn-outline-primary btn-sm" OnClick="btnNuevo_Click" />
+            <asp:Button ID="btnModificar" runat="server" Text="Modificar" ToolTip="Modificar Usuario Seleccionado" CssClass="btn btn-outline-primary btn-sm" OnClick="btnModificar_Click" /><br />
+        </div>
+        <br />
+        <div>
+             <asp:Button ID="btnAtras" runat="server" Text="Atras" ToolTip="Volver Atras" Enabled="false" CssClass="btn btn-outline-primary btn-sm" OnClick="btnAtras_Click" />
+            <asp:Button ID="btnDeshabilitar" runat="server" Text="Deshabilitar" ToolTip="Deshabilitar Usuario Seleccionado" Enabled="false" CssClass="btn btn-outline-primary btn-sm" OnClick="btnDeshabilitar_Click" OnClientClick="return confirm('¿Quieres Deshabilitar Este Registro?');" />
+            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" ToolTip="Eliminar Usuario Seleccionado" CssClass="btn btn-outline-primary btn-sm" OnClick="btnEliminar_Click" OnClientClick="return confirm('¿Quieres Eliminar Este Registro?');" />
+        </div>
+    </div>
+    <!--AQUI TERMINAN LOS BOTONES PARA REALIZAR EL MANENIMIENTO-->
+    <br />
+    <!--AQUI INICIA EL GRID-->
+     <div class="container-fluid">
+            <asp:GridView id="gbListadoUsuarios" runat="server" AllowPaging="True" OnPageIndexChanging="gbListadoUsuarios_PageIndexChanging1" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbListadoUsuarios_SelectedIndexChanged">
+                <AlternatingRowStyle BackColor="#DCDCDC" />
+                <Columns>
+                     <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Ver" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
+                    <asp:BoundField DataField="Departamento" HeaderText="Departamento" />
+                    <asp:BoundField DataField="Perfil" HeaderText="Perfil" />
+                    <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
+                    <asp:BoundField DataField="Persona" HeaderText="Persona" />
+                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
+                    <asp:BoundField DataField="CambiaClave" HeaderText="Cambia Clave" />
+                </Columns>
+                <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+
+
+        </div>
+    <!--AQUI TERMINA EL GRID-->
+
+
+
+
+
+
+           
+           
+
+
+
+
+
     <div>
         <h3><asp:Label ID="lbSubEncabezadoMantenimiento" runat="server" Text="Mantenimiento de Usuarios" CssClass="Label"></asp:Label></h3>
         
