@@ -101,6 +101,7 @@
     <Compile Include="Entidades\ESacarDatosVehiculoDetalle.cs" />
     <Compile Include="Entidades\ESacarDetalleCobradoUsuario.cs" />
     <Compile Include="Entidades\ESacarItemPoliza.cs" />
+    <Compile Include="Entidades\ESacarProduccionDiariaDetalle.cs" />
     <Compile Include="Entidades\ESacarRamoPoliza.cs" />
     <Compile Include="Entidades\ESacarreclamaciones.cs" />
     <Compile Include="Entidades\ESacarSubramoDetalle.cs" />

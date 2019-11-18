@@ -92,14 +92,6 @@
                 <asp:DropDownList ID="ddlSeleccionarUsuario" AutoPostBack="true" Width="500px" CssClass="form-control" runat="server" Visible="false"></asp:DropDownList>
             </div>
         </div>
-
-            <div class="form-row">
-           
-        </div>
-
-            <div class="form-row">
-          
-        </div>
             <%--<asp:Label ID="lbSeleccionarDepartamento" class="Label" runat="server" Text="Seleccionar Departamento"></asp:Label>--%>
 
 	  </div>

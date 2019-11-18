@@ -58,7 +58,7 @@
     <br />
 <div class="container-fluid">
             <asp:Button ID="btnBuscarRegistros" class="btn btn-outline-primary" runat="server" ToolTip="Buscar Registros" Text="Buscar Registros" OnClick="btnBuscarRegistros_Click" />
-            <asp:Button ID="btnGenerarReporte" class="btn btn-outline-success" ToolTip="Generar el reporte de los parametros ingresados" runat="server" Text="Exportar a Excel" OnClick="btnGenerarReporte_Click" />
+            <asp:Button ID="btnGenerarReporte" class="btn btn-outline-primary btn-sm" ToolTip="Generar el reporte de los parametros ingresados" runat="server" Text="Exportar a Excel" OnClick="btnGenerarReporte_Click" />
             <asp:Button ID="btnAtras" CssClass="btn btn-outline-dark" ToolTip="Volver Atras" runat="server" Text="Atras" OnClick="btnAtras_Click" Visible="false" />
         </div>
  
@@ -74,12 +74,12 @@
                     <asp:BoundField DataField="Moneda" HeaderText="Moneda" />
                     <asp:BoundField DataField="Facturado" HeaderText="Facturado" />
                     <asp:BoundField DataField="PesosDominicanos" HeaderText="Pesos Dominicanos" />
-                    <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Ver" ControlStyle-CssClass="btn btn-primary" ShowSelectButton="True" />
+                    <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Ver" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
                 </Columns>
-                <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+               <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
                 <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
                 <SortedAscendingCellStyle BackColor="#F1F1F1" />
                 <SortedAscendingHeaderStyle BackColor="#0000A9" />
@@ -89,6 +89,46 @@
 
 
         </div>
+    <!--INICIO DE LOS RADIOS-->
+    <div class="container-fluid">
+        <div class="form-group form-check">
+            <div class="form-check-inline">
+                <asp:RadioButton ID="rbExportarNormal" runat="server" GroupName="Radios" Visible="false" AutoPostBack="true" Text="Exportar Registros" CssClass="form-check-input" />
+
+            </div>
+            <div class="form-check-inline">
+                <asp:RadioButton ID="rbExportarDependientes" runat="server" GroupName="Radios" Visible="false" AutoPostBack="true" Text="Exportar Dependientes" CssClass="form-check-input" />
+            </div>
+        </div>
+    </div>
+    <!--FIN DE LOS RADIOS-->
+
+    <!--SACAMOS EL DETALLE DE LA PRODUCCION DIARIA-->
+    <div class="jumbotron-fluid">
+        <asp:GridView id="gbProduccionDiariaDetalle" runat="server" AllowPaging="True" OnPageIndexChanging="gbProduccionDiariaDetalle_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbProduccionDiariaDetalle_SelectedIndexChanged">
+                <AlternatingRowStyle BackColor="#DCDCDC" />
+                <Columns>
+                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
+                    <asp:BoundField DataField="Valor" HeaderText="Valor" />
+                    <asp:BoundField DataField="FechaFacturacion" HeaderText="Fecha" />
+                    <asp:BoundField DataField="Concepto" HeaderText="Concepto" />
+                    <asp:BoundField DataField="Ramo" HeaderText="Ramo" />
+                    <asp:BoundField DataField="Subramo" HeaderText="SubRamo" />
+                    <asp:BoundField DataField="NombreCliente" HeaderText="Cliente" />
+                    <asp:BoundField DataField="Oficina" HeaderText="Oficina" />
+                    <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Exportar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
+                </Columns>
+                <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
 </div>
 <br />
 

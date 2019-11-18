@@ -302,24 +302,38 @@ namespace UtilidadesAmigos.Logica.Logica
             return Buscar;
         }
         //PRODUCCION DIARIA DETALLE
-        //public List<Entidades.EProduccionDiariaDetalle> MostrarProduccionDiariaDetalle(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Concepto = null, string Ramo = null)
-        //{
-        //    Objdata.CommandTimeout = 999999999;
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarProduccionDiariaDetalle> ProduccionDiariaDetalle(int? Ramo = null, string Concepto = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null)
+        {
+            Objdata.CommandTimeout = 999999999;
 
-        //    var Buscar = (from n in Objdata.SP_PRODUCCION_DIARIA_DETALLE(FechaDesde, FechaHasta, Concepto, Ramo)
-        //                  select new Entidades.EProduccionDiariaDetalle
-        //                  {
-        //                      Ramo=n.Ramo,
-        //                      Subramo=n.Subramo,
-        //                      Concepto=n.Concepto,
-        //                      Cantidad=n.Cantidad,
-        //                      FacturadoPesos=n.FacturadoPesos,
-        //                      FacturadoDollar=n.FacturadoDollar,
-        //                      FacturadoTotal=n.FacturadoTotal,
-        //                      FacturadoNeto=n.FacturadoNeto
-        //                  }).ToList();
-        //    return Buscar;
-        //}
+            var Listado = (from n in Objdata.SP_SACAR_DETALLE_PRODUCCION_DIARIA(Ramo, Concepto, FechaDesde, FechaHasta)
+                           select new UtilidadesAmigos.Logica.Entidades.ESacarProduccionDiariaDetalle
+                           {
+                               Numero=n.Numero,
+                               Poliza=n.Poliza,
+                               Valor=n.Valor,
+                               FechaFacturacion=n.FechaFacturacion,
+                               Fecha=n.Fecha,
+                               Concepto=n.Concepto,
+                               CodRamo=n.CodRamo,
+                               Ramo=n.Ramo,
+                               CodSubramo=n.CodSubramo,
+                               Subramo=n.Subramo,
+                               NombreCliente=n.NombreCliente,
+                               Telefonos=n.Telefonos,
+                               Direccion=n.Direccion,
+                               CodSupervisor=n.CodSupervisor,
+                               Supervisor=n.Supervisor,
+                               CodIntermediario=n.CodIntermediario,
+                               Vendedor=n.Vendedor,
+                               Facturado=n.Facturado,
+                               Cobrado=n.Cobrado,
+                               Balance=n.Balance,
+                               CodOficina=n.CodOficina,
+                               Oficina=n.Oficina
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
         #region PRODUCCION POR USUARIOS

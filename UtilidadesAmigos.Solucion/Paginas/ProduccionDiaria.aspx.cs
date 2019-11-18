@@ -84,6 +84,33 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
+        #region MOSTRAR EL DETALLE DE LA PRODUCCION DIARIA
+        private void MostrarDetalleProduccionDiaria()
+        {
+            //SELECCIONAMOS LOS CAMPOS NECESARIOS PAA SACAR LOS DATOS
+            try
+            {
+                GridViewRow gb = gbProduccionDiaria.SelectedRow;
+
+                var SacarDetalle = ObjDataLogica.Value.ProduccionDiariaDetalle(
+                    Convert.ToInt32(gb.Cells[0].Text),
+                    gb.Cells[2].Text,
+                    Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHasta.Text));
+                gbProduccionDiaria.Visible = false;
+                gbProduccionDiariaDetalle.Visible = true;
+                rbExportarDependientes.Visible = true;
+                rbExportarNormal.Visible = true;
+                rbExportarNormal.Checked = true;
+                btnAtras.Visible = true;
+                btnBuscarRegistros.Enabled = false;
+                btnGenerarReporte.Enabled = false;
+                gbProduccionDiariaDetalle.DataSource = SacarDetalle;
+                gbProduccionDiariaDetalle.DataBind();
+            }
+            catch (Exception) { }
+        }
+        #endregion
 
 
 
@@ -128,7 +155,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gbProduccionDiaria_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            MostrarDetalleProduccionDiaria();
         }
 
         protected void btnBuscarRegistros_Click(object sender, EventArgs e)
@@ -153,7 +180,37 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnAtras_Click(object sender, EventArgs e)
         {
+            //REGRESAMOS TODO A ATRAS NUEVAMENTE
+            btnAtras.Visible = false;
+            btnBuscarRegistros.Enabled = true;
+            btnGenerarReporte.Enabled = true;
+            gbProduccionDiariaDetalle.Visible = false;
+            rbExportarNormal.Visible = false;
+            rbExportarDependientes.Visible = false;
+            rbExportarNormal.Checked = true;
+            gbProduccionDiaria.Visible = true;
+        }
 
+        protected void gbProduccionDiariaDetalle_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gbProduccionDiariaDetalle.PageIndex = e.NewPageIndex;
+            MostrarDetalleProduccionDiaria();
+        }
+
+        protected void gbProduccionDiariaDetalle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //EXPORTAMOS LOS DATOS A EXEL
+            //EXPORTAMOS LOS CAMPOS MOSTRADOS EN EL GRID MAS LOS REGISTROS FALTANTES
+            if (rbExportarNormal.Checked)
+            {
+                GridViewRow gb = gbProduccionDiariaDetalle.SelectedRow;
+
+                //var Exportar
+            }
+            else if (rbExportarDependientes.Checked)
+            {
+                //AQUI EXPORTAMOS LOS DATOS DE LOS DEPENDIENTE SIEMPRE Y CUANDO LAS POLIZAS SELECCIONADAS NO SEAN DE VEHICULO NI DE FIANZAS
+            }
         }
     }
 }
