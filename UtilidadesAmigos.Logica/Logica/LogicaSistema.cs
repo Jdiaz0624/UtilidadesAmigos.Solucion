@@ -302,24 +302,24 @@ namespace UtilidadesAmigos.Logica.Logica
             return Buscar;
         }
         //PRODUCCION DIARIA DETALLE
-        public List<Entidades.EProduccionDiariaDetalle> MostrarProduccionDiariaDetalle(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Concepto = null, string Ramo = null)
-        {
-            Objdata.CommandTimeout = 999999999;
+        //public List<Entidades.EProduccionDiariaDetalle> MostrarProduccionDiariaDetalle(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Concepto = null, string Ramo = null)
+        //{
+        //    Objdata.CommandTimeout = 999999999;
 
-            var Buscar = (from n in Objdata.SP_PRODUCCION_DIARIA_DETALLE(FechaDesde, FechaHasta, Concepto, Ramo)
-                          select new Entidades.EProduccionDiariaDetalle
-                          {
-                              Ramo=n.Ramo,
-                              Subramo=n.Subramo,
-                              Concepto=n.Concepto,
-                              Cantidad=n.Cantidad,
-                              FacturadoPesos=n.FacturadoPesos,
-                              FacturadoDollar=n.FacturadoDollar,
-                              FacturadoTotal=n.FacturadoTotal,
-                              FacturadoNeto=n.FacturadoNeto
-                          }).ToList();
-            return Buscar;
-        }
+        //    var Buscar = (from n in Objdata.SP_PRODUCCION_DIARIA_DETALLE(FechaDesde, FechaHasta, Concepto, Ramo)
+        //                  select new Entidades.EProduccionDiariaDetalle
+        //                  {
+        //                      Ramo=n.Ramo,
+        //                      Subramo=n.Subramo,
+        //                      Concepto=n.Concepto,
+        //                      Cantidad=n.Cantidad,
+        //                      FacturadoPesos=n.FacturadoPesos,
+        //                      FacturadoDollar=n.FacturadoDollar,
+        //                      FacturadoTotal=n.FacturadoTotal,
+        //                      FacturadoNeto=n.FacturadoNeto
+        //                  }).ToList();
+        //    return Buscar;
+        //}
         #endregion
 
         #region PRODUCCION POR USUARIOS
