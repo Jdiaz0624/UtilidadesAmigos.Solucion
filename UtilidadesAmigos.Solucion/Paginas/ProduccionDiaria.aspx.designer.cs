@@ -139,6 +139,15 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.RadioButton rbExportarDependientes;
         
         /// <summary>
+        /// cbExportarTodo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbExportarTodo;
+        
+        /// <summary>
         /// gbProduccionDiariaDetalle control.
         /// </summary>
         /// <remarks>

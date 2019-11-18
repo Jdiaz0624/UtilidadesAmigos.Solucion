@@ -102,7 +102,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 rbExportarDependientes.Visible = true;
                 rbExportarNormal.Visible = true;
                 rbExportarNormal.Checked = true;
+                txtFechaDesde.Enabled = false;
+                txtFechaHasta.Enabled = false;
                 btnAtras.Visible = true;
+                cbExportarTodo.Visible = true;
                 btnBuscarRegistros.Enabled = false;
                 btnGenerarReporte.Enabled = false;
                 gbProduccionDiariaDetalle.DataSource = SacarDetalle;
@@ -189,6 +192,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             rbExportarDependientes.Visible = false;
             rbExportarNormal.Checked = true;
             gbProduccionDiaria.Visible = true;
+            txtFechaDesde.Enabled = true;
+            txtFechaHasta.Enabled = true;
+            cbExportarTodo.Visible = false;
         }
 
         protected void gbProduccionDiariaDetalle_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -199,18 +205,131 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gbProduccionDiariaDetalle_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //EXPORTAMOS LOS DATOS A EXEL
-            //EXPORTAMOS LOS CAMPOS MOSTRADOS EN EL GRID MAS LOS REGISTROS FALTANTES
-            if (rbExportarNormal.Checked)
+            if (cbExportarTodo.Checked)
             {
-                GridViewRow gb = gbProduccionDiariaDetalle.SelectedRow;
+                if (rbExportarNormal.Checked)
+                {
+                    try
+                    {
+                        GridViewRow gb = gbProduccionDiariaDetalle.SelectedRow;
 
-                //var Exportar
+                        //SACAMOS EL CODIGO DEL RAMO
+                        int Ramo = 0;
+
+                        var ExportarData = ObjDataLogica.Value.ProduccionDiariaDetalle(
+                            null, null, null, null, gb.Cells[0].Text);
+                        foreach (var n in ExportarData)
+                        {
+                            Ramo = Convert.ToInt32(n.CodRamo);
+                        }
+                        //HACEMOS EL FILTRO PARA EXPORTAR
+                        var Exel = (from n in ObjDataLogica.Value.ProduccionDiariaDetalle(
+                            Ramo,
+                            gb.Cells[3].Text,
+                            Convert.ToDateTime(txtFechaDesde.Text),
+                            Convert.ToDateTime(txtFechaHasta.Text))
+                                    select new
+                                    {
+                                        Factura = n.Numero,
+                                        Poliza = n.Poliza,
+                                        FechaFacturacion = n.FechaFacturacion,
+                                        Concepto = n.Concepto,
+                                        CodRamo = n.CodRamo,
+                                        Ramo = n.Ramo,
+                                        CodSubramo = n.CodSubramo,
+                                        Subramo = n.Subramo,
+                                        NombreCliente = n.NombreCliente,
+                                        Telefonos = n.Telefonos,
+                                        Direccion = n.Direccion,
+                                        CodSupervisor = n.CodSupervisor,
+                                        Supervisor = n.Supervisor,
+                                        CodVendedor = n.CodIntermediario,
+                                        Vendedor = n.Vendedor,
+                                        TotalFacturado = n.Facturado,
+                                        TotalCobrado = n.Cobrado,
+                                        BalancePendiente = n.Balance,
+                                        Oficina = n.Oficina
+                                    }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Producción Diaria Normal", Exel);
+                    }
+                    catch (Exception) { }
+                }
+                else if (rbExportarDependientes.Checked)
+                {
+
+                }
             }
-            else if (rbExportarDependientes.Checked)
+            else
             {
-                //AQUI EXPORTAMOS LOS DATOS DE LOS DEPENDIENTE SIEMPRE Y CUANDO LAS POLIZAS SELECCIONADAS NO SEAN DE VEHICULO NI DE FIANZAS
+                //EXPORTAMOS LOS DATOS A EXEL
+                //EXPORTAMOS LOS CAMPOS MOSTRADOS EN EL GRID MAS LOS REGISTROS FALTANTES
+                if (rbExportarNormal.Checked)
+                {
+                    try
+                    {
+                        GridViewRow gb = gbProduccionDiariaDetalle.SelectedRow;
+
+                        //SACAMOS EL CODIGO DEL RAMO
+                        int Ramo = 0;
+
+                        var ExportarData = ObjDataLogica.Value.ProduccionDiariaDetalle(
+                            null, null, null, null, gb.Cells[0].Text);
+                        foreach (var n in ExportarData)
+                        {
+                            Ramo = Convert.ToInt32(n.CodRamo);
+                        }
+                        //HACEMOS EL FILTRO PARA EXPORTAR
+                        var Exel = (from n in ObjDataLogica.Value.ProduccionDiariaDetalle(
+                            Ramo,
+                            gb.Cells[3].Text,
+                            Convert.ToDateTime(txtFechaDesde.Text),
+                            Convert.ToDateTime(txtFechaHasta.Text),
+                            gb.Cells[0].Text)
+                                    select new
+                                    {
+                                        Factura = n.Numero,
+                                        Poliza = n.Poliza,
+                                        FechaFacturacion = n.FechaFacturacion,
+                                        Concepto = n.Concepto,
+                                        CodRamo = n.CodRamo,
+                                        Ramo = n.Ramo,
+                                        CodSubramo = n.CodSubramo,
+                                        Subramo = n.Subramo,
+                                        NombreCliente = n.NombreCliente,
+                                        Telefonos = n.Telefonos,
+                                        Direccion = n.Direccion,
+                                        CodSupervisor = n.CodSupervisor,
+                                        Supervisor = n.Supervisor,
+                                        CodVendedor = n.CodIntermediario,
+                                        Vendedor = n.Vendedor,
+                                        TotalFacturado = n.Facturado,
+                                        TotalCobrado = n.Cobrado,
+                                        BalancePendiente = n.Balance,
+                                        Oficina = n.Oficina
+                                    }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Producción Diaria Normal Detalle", Exel);
+                    }
+                    catch (Exception) { }
+
+
+
+
+                }
+                else if (rbExportarDependientes.Checked)
+                {
+                    //AQUI EXPORTAMOS LOS DATOS DE LOS DEPENDIENTE SIEMPRE Y CUANDO LAS POLIZAS SELECCIONADAS NO SEAN DE VEHICULO NI DE FIANZAS
+                }
             }
+        }
+
+        protected void btnExportarTodo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cbExportarTodo_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

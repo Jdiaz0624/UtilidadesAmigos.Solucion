@@ -302,11 +302,11 @@ namespace UtilidadesAmigos.Logica.Logica
             return Buscar;
         }
         //PRODUCCION DIARIA DETALLE
-        public List<UtilidadesAmigos.Logica.Entidades.ESacarProduccionDiariaDetalle> ProduccionDiariaDetalle(int? Ramo = null, string Concepto = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null)
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarProduccionDiariaDetalle> ProduccionDiariaDetalle(int? Ramo = null, string Concepto = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_SACAR_DETALLE_PRODUCCION_DIARIA(Ramo, Concepto, FechaDesde, FechaHasta)
+            var Listado = (from n in Objdata.SP_SACAR_DETALLE_PRODUCCION_DIARIA(Ramo, Concepto, FechaDesde, FechaHasta, Poliza)
                            select new UtilidadesAmigos.Logica.Entidades.ESacarProduccionDiariaDetalle
                            {
                                Numero=n.Numero,

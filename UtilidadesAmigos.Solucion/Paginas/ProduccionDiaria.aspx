@@ -57,9 +57,9 @@
     </div>
     <br />
 <div class="container-fluid">
-            <asp:Button ID="btnBuscarRegistros" class="btn btn-outline-primary" runat="server" ToolTip="Buscar Registros" Text="Buscar Registros" OnClick="btnBuscarRegistros_Click" />
+            <asp:Button ID="btnBuscarRegistros" class="btn btn-outline-primary btn-sm" runat="server" ToolTip="Buscar Registros" Text="Buscar Registros" OnClick="btnBuscarRegistros_Click" />
             <asp:Button ID="btnGenerarReporte" class="btn btn-outline-primary btn-sm" ToolTip="Generar el reporte de los parametros ingresados" runat="server" Text="Exportar a Excel" OnClick="btnGenerarReporte_Click" />
-            <asp:Button ID="btnAtras" CssClass="btn btn-outline-dark" ToolTip="Volver Atras" runat="server" Text="Atras" OnClick="btnAtras_Click" Visible="false" />
+            <asp:Button ID="btnAtras" CssClass="btn btn-outline-primary btn-sm" ToolTip="Volver Atras" runat="server" Text="Atras" OnClick="btnAtras_Click" Visible="false" />
         </div>
  
     <br />
@@ -98,6 +98,9 @@
             </div>
             <div class="form-check-inline">
                 <asp:RadioButton ID="rbExportarDependientes" runat="server" GroupName="Radios" Visible="false" AutoPostBack="true" Text="Exportar Dependientes" CssClass="form-check-input" />
+            </div>
+            <div class="form-check-inline">
+                <asp:CheckBox ID="cbExportarTodo" runat="server" Visible="false" AutoPostBack="true" Text="Exportar Todo" ToolTip="Exportar toda la data Mostrada en pantalla" CssClass="form-check-input" OnCheckedChanged="cbExportarTodo_CheckedChanged" />
             </div>
         </div>
     </div>

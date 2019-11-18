@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString7, mappingSource)
 		{
 			OnCreated();
 		}
@@ -396,9 +396,9 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_DETALLE_PRODUCCION_DIARIA")]
-		public ISingleResult<SP_SACAR_DETALLE_PRODUCCION_DIARIAResult> SP_SACAR_DETALLE_PRODUCCION_DIARIA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Concepto", DbType="VarChar(150)")] string concepto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta)
+		public ISingleResult<SP_SACAR_DETALLE_PRODUCCION_DIARIAResult> SP_SACAR_DETALLE_PRODUCCION_DIARIA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Concepto", DbType="VarChar(150)")] string concepto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ramo, concepto, fechaDesde, fechaHasta);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ramo, concepto, fechaDesde, fechaHasta, poliza);
 			return ((ISingleResult<SP_SACAR_DETALLE_PRODUCCION_DIARIAResult>)(result.ReturnValue));
 		}
 	}
