@@ -112,15 +112,6 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.GridView gbListadoUsuarios;
         
         /// <summary>
-        /// lbSubEncabezadoMantenimiento control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSubEncabezadoMantenimiento;
-        
-        /// <summary>
         /// lbDepartamentoMantenimiento control.
         /// </summary>
         /// <remarks>
@@ -175,6 +166,24 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtUsuarioMantenimiento;
         
         /// <summary>
+        /// lbPersonaMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPersonaMantenimiento;
+        
+        /// <summary>
+        /// txtPersonaMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPersonaMantenimiento;
+        
+        /// <summary>
         /// lbClaveMantenimiento control.
         /// </summary>
         /// <remarks>
@@ -211,22 +220,40 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtConfirmarClaveMantenimiento;
         
         /// <summary>
-        /// lbPersonaMantenimiento control.
+        /// lbEmailMantenimiento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPersonaMantenimiento;
+        protected global::System.Web.UI.WebControls.Label lbEmailMantenimiento;
         
         /// <summary>
-        /// txtPersonaMantenimiento control.
+        /// txtEmailMantenimiento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPersonaMantenimiento;
+        protected global::System.Web.UI.WebControls.TextBox txtEmailMantenimiento;
+        
+        /// <summary>
+        /// lbClaveSeguridad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbClaveSeguridad;
+        
+        /// <summary>
+        /// txtClaveSeguridadMantenimeinto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtClaveSeguridadMantenimeinto;
         
         /// <summary>
         /// cbEstatusMantenimiento control.
@@ -247,24 +274,6 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.CheckBox cbLlevaEmailMantenimiento;
         
         /// <summary>
-        /// lbEmailMantenimiento control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbEmailMantenimiento;
-        
-        /// <summary>
-        /// txtEmailMantenimiento control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmailMantenimiento;
-        
-        /// <summary>
         /// cbCambiaClaveMantenimiento control.
         /// </summary>
         /// <remarks>
@@ -272,15 +281,6 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbCambiaClaveMantenimiento;
-        
-        /// <summary>
-        /// txtClaveSeguridadMantenimeinto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtClaveSeguridadMantenimeinto;
         
         /// <summary>
         /// btnProcesarMantenimento control.
