@@ -236,11 +236,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (lbEstatusMantenimiento.Text == "INSERT")
             {
-
+                //VERIFICAMOS LOS CAMPOS VACIOS
+                if (string.IsNullOrEmpty(txtUsuarioMantenimiento.Text.Trim()) || string.IsNullOrEmpty(txtPersonaMantenimiento.Text.Trim()) || string.IsNullOrEmpty(txtclave.Text.Trim()) || string.IsNullOrEmpty(txtConfirmarClave.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ValidarCamposAgregar()", true);
+                }
             }
             else if (lbEstatusMantenimiento.Text == "UPDATE")
             {
+                if (string.IsNullOrEmpty(txtUsuarioMantenimiento.Text.Trim()) || string.IsNullOrEmpty(txtPersonaMantenimiento.Text.Trim()))
+                {
 
+                }
             }
             else if (lbEstatusMantenimiento.Text == "DISABLE")
             {
@@ -278,7 +285,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnVolverAtras_Click(object sender, EventArgs e)
         {
-            OcultarControles();
+            ClientScript.RegisterStartupScript(GetType(), "mensaje", "fnRandom()", true);
+           // OcultarControles();
         }
     }
 }

@@ -45,7 +45,7 @@
 
     <div class="form-group">
     <div class="form-check">
-        <asp:CheckBox ID="cbEspesificarRamo" AutoPostBack="true"  runat="server" Text="Espesificar Ramo" CssClass="form-check-input" ToolTip="Espesificar el ramo para filtrar la consulta" OnCheckedChanged="cbEspesificarRamo_CheckedChanged" />
+        <asp:CheckBox ID="cbEspesificarRamo" AutoPostBack="true"  runat="server" Text="Espesificar Ramo" CssClass="form-check-input" ToolTip="Especificar el ramo para filtrar la consulta" OnCheckedChanged="cbEspesificarRamo_CheckedChanged" />
     </div>
 </div>
     <br />

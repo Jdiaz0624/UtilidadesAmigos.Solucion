@@ -3,6 +3,7 @@
   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
       <style type="text/css">
         .jumbotron{
             color:#000000; 
@@ -18,7 +19,13 @@
         }
     </style>
 
+
+
+
     <script type="text/javascript">
+
+   
+        
         function ErrorMantenimiento() {
             alert("Error al realizar el mantenimiento")
         }
@@ -154,10 +161,12 @@
 
     <div align="Center">
             <asp:Button ID="btnProcesarMantenimento" Text="Procesar" runat="server" Visible="false" CssClass="btn btn-outline-primary btn-sm"  ToolTip="Completar Operacion" OnClick="btnProcesarMantenimento_Click" />
-        <asp:Button ID="btnVolverAtras" Text="Volver" runat="server" Visible="false" CssClass="btn btn-outline-primary btn-sm" ToolTip="Volver Atras" OnClick="btnVolverAtras_Click" /><br />
+        <asp:Button ID="btnVolverAtras" Text="Volver" runat="server" Visible="false" OnClientClick="return fnmodalpopup()" CssClass="btn btn-outline-primary btn-sm" ToolTip="Volver Atras" OnClick="btnVolverAtras_Click" /><br />
         <hr class="hr" />
     </div>
 
     <!--AQUI TERMINAN LOS CONTROLES PARA REALIZAR EL MANTENIMIENTO DE USUARIOS-->
+
+
 
 </asp:Content>

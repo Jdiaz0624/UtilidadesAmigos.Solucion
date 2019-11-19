@@ -74,6 +74,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             txtConfirmarClave.Visible = true;
                             btnCambiarClave.Visible = true;
                             Session["IdUsuario"] = Convert.ToDecimal(VariablesGlobales.IdUsuario);
+
                         }
                         else
                         {
@@ -88,12 +89,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region BAJAR O SUBIR EL CONTADOR
         private void MantenimientoUsuarios(string AccionTomar)
         {
-            UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios Mantenimiento = new Logica.Entidades.EMantenimientoUsuarios();
+            UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios CambiaClave = new Logica.Entidades.EMantenimientoUsuarios();
 
-            Mantenimiento.IdUsuario = Convert.ToDecimal(Session["IdUsuario"]);
-            Mantenimiento.Clave = VariablesGlobales.ClaveEncriptada;
+            CambiaClave.IdUsuario = Convert.ToDecimal(Session["IdUsuario"]);
+            CambiaClave.Clave = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(txtNuevaClave.Text);
 
-            var MAN = ObjDataLogica.Value.MantenimientoUsuarios(Mantenimiento, AccionTomar);
+            var MAN = ObjDataLogica.Value.MantenimientoUsuarios(CambiaClave, AccionTomar);
+
         }
         #endregion
 
@@ -145,6 +147,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 if (_ClaveNueva == _ConfirmarClave)
                 {
+                    //PROCEDEMOS A CAMBIAR LA CLAVE
                     VariablesGlobales.ClaveEncriptada = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(_ClaveNueva);
 
                     //CAMBIAMOS LA CLAVE
