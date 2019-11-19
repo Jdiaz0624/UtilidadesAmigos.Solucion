@@ -23,8 +23,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 null,
                 null,
                 null,
-                null,
-                1, 1);
+                null);
             foreach (var n in SacarDatos)
             {
                 lbUsuarioConectado.Text = n.Persona;

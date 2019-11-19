@@ -43,8 +43,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     null,
                     _Usuario,
                     VariablesGlobales.ClaveEncriptada,
-                    null,
-                    1, 1);
+                    null);
                 if (ValidarUsuario.Count() < 1)
                 {
                     ClientScript.RegisterStartupScript(GetType(), "Mostrarmensaje", "UsuarioNoValido();", true);

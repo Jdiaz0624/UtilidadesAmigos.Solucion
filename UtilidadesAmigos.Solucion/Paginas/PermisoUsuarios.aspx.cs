@@ -46,9 +46,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 new Nullable<decimal>(),
                 null, null,
                 _Usuario,
-                null, null, null,
-                Convert.ToInt32(txtNumeroPagina.Text),
-                Convert.ToInt32(txtNumeroRegistros.Text));
+                null, null, null);
             gbListadoUsuarios.DataSource = Buscar;
             gbListadoUsuarios.DataBind();
         }

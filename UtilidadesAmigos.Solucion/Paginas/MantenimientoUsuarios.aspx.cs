@@ -13,16 +13,33 @@ namespace UtilidadesAmigos.Solucion.Paginas
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
         UtilidadesAmigos.Logica.Comunes.VariablesGlobales VariablesGlobales = new Logica.Comunes.VariablesGlobales();
 
+        #region MOSTRAR EL LISTADO DE USUARIOS
+        private void MostrarListadoUsuario()
+        {
+            string _Usuario = string.IsNullOrEmpty(txtUsuarioFiltro.Text.Trim()) ? null : txtUsuarioFiltro.Text.Trim();
+
+            var BuscarUsuario = ObjData.Value.BuscaUsuarios(
+                new Nullable<decimal>(),
+                null, null,
+                _Usuario, null, null, null);
+            gbListadoUsuarios.DataSource = BuscarUsuario;
+            gbListadoUsuarios.DataBind();
+        }
+        #endregion
+
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack)
+            {
+                MostrarListadoUsuario();
+            }
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-
+            MostrarListadoUsuario();
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -71,6 +88,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
 
         protected void cbLlevaEmailMantenimiento_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnVolverAtras_Click(object sender, EventArgs e)
         {
 
         }

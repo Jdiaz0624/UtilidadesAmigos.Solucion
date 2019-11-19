@@ -58,7 +58,7 @@
             <asp:GridView id="gbListadoUsuarios" runat="server" AllowPaging="True" OnPageIndexChanging="gbListadoUsuarios_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbListadoUsuarios_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
-                     <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Ver" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
+                     <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
                     <asp:BoundField DataField="Departamento" HeaderText="Departamento" />
                     <asp:BoundField DataField="Perfil" HeaderText="Perfil" />
                     <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
@@ -85,59 +85,60 @@
     <div class="container-fluid">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <asp:Label ID="lbDepartamentoMantenimiento" runat="server" Text="Seleccionar Departamento"></asp:Label>
-               <asp:DropDownList ID="ddlDepartamentoMantenimiento" runat="server" CssClass="form-control"></asp:DropDownList>
+                <asp:Label ID="lbDepartamentoMantenimiento" runat="server" Visible="false" Text="Seleccionar Departamento"></asp:Label>
+               <asp:DropDownList ID="ddlDepartamentoMantenimiento" runat="server" Visible="false" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="form-group col-md-6">
-                <asp:Label ID="lbPerfilMantenimiento" runat="server" Text="Selccionar Perfil"></asp:Label>
-                <asp:DropDownList ID="ddlPerfilMantenimiento" runat="server" CssClass="form-control"></asp:DropDownList>
+                <asp:Label ID="lbPerfilMantenimiento" runat="server" Visible="false" Text="Selccionar Perfil"></asp:Label>
+                <asp:DropDownList ID="ddlPerfilMantenimiento" runat="server" Visible="false" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="form-group col-md-6">
-                        <asp:Label ID="lbUsuarioMantenimiento" runat="server" Text="Ingresar Nombre de Usuario"></asp:Label>
-                       <asp:TextBox ID="txtUsuarioMantenimiento" runat="server" Placeholder="Ingrese Usuario" CssClass="form-control"></asp:TextBox>
+                        <asp:Label ID="lbUsuarioMantenimiento" runat="server" Visible="false" Text="Ingresar Nombre de Usuario"></asp:Label>
+                       <asp:TextBox ID="txtUsuarioMantenimiento" runat="server" Visible="false" Placeholder="Ingrese Usuario" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="form-group col-md-6">
-                 <asp:Label ID="lbPersonaMantenimiento" runat="server" Text="Ingrese Nombre del Usuario"></asp:Label>
-                 <asp:TextBox ID="txtPersonaMantenimiento" runat="server" Placeholder="Nombre de Usuario" MaxLength="40" CssClass="form-control"></asp:TextBox>
+                 <asp:Label ID="lbPersonaMantenimiento" runat="server" Visible="false" Text="Ingrese Nombre del Usuario"></asp:Label>
+                 <asp:TextBox ID="txtPersonaMantenimiento" runat="server" Visible="false" Placeholder="Nombre de Usuario" MaxLength="40" CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="form-group col-md-6">
-                    <asp:Label ID="lbClaveMantenimiento" runat="server" Text="Ingresar Clave"></asp:Label>
-                    <asp:TextBox ID="txtClaveMantenimiento" runat="server" Placeholder="Ingrese Clave" CssClass="form-control" TextMode="Password" MaxLength="20"></asp:TextBox>
+                    <asp:Label ID="lbClaveMantenimiento" runat="server" Visible="false" Text="Ingresar Clave"></asp:Label>
+                    <asp:TextBox ID="txtClaveMantenimiento" runat="server" Visible="false" Placeholder="Ingrese Clave" CssClass="form-control" TextMode="Password" MaxLength="20"></asp:TextBox>
             </div>
 
              <div class="form-group col-md-6">
-                  <asp:Label ID="lbConfirmarClaveMantenimiento" runat="server" Text="Confirmar Clave"></asp:Label>
-                  <asp:TextBox ID="txtConfirmarClaveMantenimiento" runat="server" Placeholder="Confirmar Clave" CssClass="form-control" TextMode="Password" MaxLength="20"></asp:TextBox>
+                  <asp:Label ID="lbConfirmarClaveMantenimiento" runat="server" Visible="false" Text="Confirmar Clave"></asp:Label>
+                  <asp:TextBox ID="txtConfirmarClaveMantenimiento" runat="server" Visible="false" Placeholder="Confirmar Clave" CssClass="form-control" TextMode="Password" MaxLength="20"></asp:TextBox>
             </div>
 
             <div class="form-group col-md-6">
-                        <asp:Label ID="lbEmailMantenimiento" runat="server" Text="Email"></asp:Label>
-                        <asp:TextBox ID="txtEmailMantenimiento" runat="server" Placeholder ="Ingrese Enail" CssClass="form-control"></asp:TextBox>
+                        <asp:Label ID="lbEmailMantenimiento" runat="server" Visible="false" Text="Email"></asp:Label>
+                        <asp:TextBox ID="txtEmailMantenimiento" runat="server" Visible="false" Placeholder ="Ingrese Enail" CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="form-group col-md-6">
-                <asp:Label ID="lbClaveSeguridad" runat="server" Text="Ingrese Clave de Seguridad"></asp:Label>
-                <asp:TextBox ID="txtClaveSeguridadMantenimeinto" runat="server" CssClass="form-control" PlaceHolder="Clave de Seguridad" TextMode="Password"></asp:TextBox>
+                <asp:Label ID="lbClaveSeguridad" runat="server" Visible="false" Text="Ingrese Clave de Seguridad"></asp:Label>
+                <asp:TextBox ID="txtClaveSeguridadMantenimeinto" runat="server" Visible="false" CssClass="form-control" PlaceHolder="Clave de Seguridad" TextMode="Password"></asp:TextBox>
             </div>
 
         </div>
 
         <div class="form-check-inline">
             <div class="form-group form-check">
-                <asp:CheckBox ID="cbEstatusMantenimiento" AutoPostBack="true" runat="server" CssClass="form-check-input" Text="Estatus" OnCheckedChanged="cbEstatusMantenimiento_CheckedChanged" />
+                <asp:CheckBox ID="cbEstatusMantenimiento" AutoPostBack="true" runat="server" Visible="false" CssClass="form-check-input" Text="Estatus" OnCheckedChanged="cbEstatusMantenimiento_CheckedChanged" />
             </div>
             <div class="form-group form-check">
-                <asp:CheckBox ID="cbLlevaEmailMantenimiento" AutoPostBack="true" runat="server" CssClass="form-check-input" Text="¿Lleva Email?" OnCheckedChanged="cbLlevaEmailMantenimiento_CheckedChanged" />
+                <asp:CheckBox ID="cbLlevaEmailMantenimiento" AutoPostBack="true" runat="server" Visible="false" CssClass="form-check-input" Text="¿Lleva Email?" OnCheckedChanged="cbLlevaEmailMantenimiento_CheckedChanged" />
             </div>
             <div class="form-group form-check">
-                 <asp:CheckBox ID="cbCambiaClaveMantenimiento" runat="server" Text="Cambia Clave" CssClass="form-check-input" />
+                 <asp:CheckBox ID="cbCambiaClaveMantenimiento" runat="server" Visible="false" Text="Cambia Clave" CssClass="form-check-input" />
             </div>
         </div>
     </div>
 
     <div align="Center">
-            <asp:Button ID="btnProcesarMantenimento" Text="Procesar" runat="server" CssClass="btn btn-outline-primary btn-sm"  ToolTip="Completar Operacion" OnClick="btnProcesarMantenimento_Click" />
+            <asp:Button ID="btnProcesarMantenimento" Text="Procesar" runat="server" Visible="false" CssClass="btn btn-outline-primary btn-sm"  ToolTip="Completar Operacion" OnClick="btnProcesarMantenimento_Click" />
+        <asp:Button ID="btnVolverAtras" Text="Volver" runat="server" Visible="false" CssClass="btn btn-outline-primary btn-sm" ToolTip="Volver Atras" OnClick="btnVolverAtras_Click" />
     </div>
 
     <!--AQUI TERMINAN LOS CONTROLES PARA REALIZAR EL MANTENIMIENTO DE USUARIOS-->

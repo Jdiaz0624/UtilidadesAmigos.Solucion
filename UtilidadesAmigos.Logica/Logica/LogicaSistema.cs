@@ -31,11 +31,11 @@ namespace UtilidadesAmigos.Logica.Logica
 
         #region MANTENIMIENTO DE USUARIOS
         //LISTADO DE USUARIOS
-        public List<UtilidadesAmigos.Logica.Entidades.EUsuarios> BuscaUsuarios(decimal? IdUsuario = null, decimal? IdDepartamento = null, decimal? IdPerfil = null, string UsuarioConsulta = null, string Usuario = null, string Clave = null, bool? Estatus = null, int? NumeroPagina = null, int? NumeroRegistros = null)
+        public List<UtilidadesAmigos.Logica.Entidades.EUsuarios> BuscaUsuarios(decimal? IdUsuario = null, decimal? IdDepartamento = null, decimal? IdPerfil = null, string UsuarioConsulta = null, string Usuario = null, string Clave = null, bool? Estatus = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var Buscar = (from n in Objdata.SP_BUSCA_USUARIO(IdUsuario, IdDepartamento, IdPerfil, UsuarioConsulta, Usuario, Clave, Estatus, NumeroPagina,NumeroRegistros)
+            var Buscar = (from n in Objdata.SP_BUSCA_USUARIO(IdUsuario, IdDepartamento, IdPerfil, UsuarioConsulta, Usuario, Clave, Estatus)
                           select new Entidades.EUsuarios
                           {
                               IdUsuario = n.IdUsuario,
