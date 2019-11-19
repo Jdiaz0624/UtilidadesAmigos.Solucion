@@ -8,7 +8,7 @@ namespace UtilidadesAmigos.Logica.Entidades
 {
     public class EMantenimientoUsuarios
     {
-        public decimal? IdUsuario { get; set; }
+        public System.Nullable<decimal> IdUsuario { get; set; }
 
         public System.Nullable<decimal> IdDepartamento { get; set; }
 

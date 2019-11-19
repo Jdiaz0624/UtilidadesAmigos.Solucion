@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString8, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
 		{
 			OnCreated();
 		}
@@ -172,13 +172,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idAccion);
 			return ((ISingleResult<SP_BUSCA_ACCIONResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MANTENIMIENTO_USUARIOS")]
-		public ISingleResult<SP_MANTENIMIENTO_USUARIOSResult> SP_MANTENIMIENTO_USUARIOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(18,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdDepartamento", DbType="Decimal(18,0)")] System.Nullable<decimal> idDepartamento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdPerfil", DbType="Decimal(18,0)")] System.Nullable<decimal> idPerfil, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(20)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Clave", DbType="VarChar(8000)")] string clave, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Persona", DbType="VarChar(150)")] string persona, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="Bit")] System.Nullable<bool> estatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LlevaEmail", DbType="Bit")] System.Nullable<bool> llevaEmail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="VarChar(100)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Contador", DbType="Int")] System.Nullable<int> contador, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CambiaClave", DbType="Bit")] System.Nullable<bool> cambiaClave, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RazonBloqueo", DbType="VarChar(1000)")] string razonBloqueo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, idDepartamento, idPerfil, usuario, clave, persona, estatus, llevaEmail, email, contador, cambiaClave, razonBloqueo, accion);
-			return ((ISingleResult<SP_MANTENIMIENTO_USUARIOSResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_PRODUCCION_DIARIA_TODOS_LOS_RAMOS")]
@@ -400,6 +393,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, idDepartamento, idPerfil, usuarioConsulta, usuario, clave, estatus);
 			return ((ISingleResult<SP_BUSCA_USUARIOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MANTENIMIENTO_USUARIOS")]
+		public ISingleResult<SP_MANTENIMIENTO_USUARIOSResult> SP_MANTENIMIENTO_USUARIOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(4,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdDepartamento", DbType="Decimal(4,0)")] System.Nullable<decimal> idDepartamento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdPerfil", DbType="Decimal(4,0)")] System.Nullable<decimal> idPerfil, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(20)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Clave", DbType="VarChar(8000)")] string clave, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Persona", DbType="VarChar(150)")] string persona, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="Bit")] System.Nullable<bool> estatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LlevaEmail", DbType="Bit")] System.Nullable<bool> llevaEmail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="VarChar(100)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Contador", DbType="Int")] System.Nullable<int> contador, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CambiaClave", DbType="Bit")] System.Nullable<bool> cambiaClave, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RazonBloqueo", DbType="VarChar(1000)")] string razonBloqueo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, idDepartamento, idPerfil, usuario, clave, persona, estatus, llevaEmail, email, contador, cambiaClave, razonBloqueo, accion);
+			return ((ISingleResult<SP_MANTENIMIENTO_USUARIOSResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1966,230 +1966,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Accion != value))
 				{
 					this._Accion = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_MANTENIMIENTO_USUARIOSResult
-	{
-		
-		private decimal _IdUsuario;
-		
-		private System.Nullable<decimal> _IdDepartamento;
-		
-		private System.Nullable<decimal> _IdPerfil;
-		
-		private string _Usuario;
-		
-		private string _Clave;
-		
-		private string _Persona;
-		
-		private System.Nullable<bool> _Estatus;
-		
-		private System.Nullable<bool> _LlevaEmail;
-		
-		private string _Email;
-		
-		private System.Nullable<int> _Contador;
-		
-		private System.Nullable<bool> _CambiaClave;
-		
-		private string _RazonBloqueo;
-		
-		public SP_MANTENIMIENTO_USUARIOSResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(4,0) NOT NULL")]
-		public decimal IdUsuario
-		{
-			get
-			{
-				return this._IdUsuario;
-			}
-			set
-			{
-				if ((this._IdUsuario != value))
-				{
-					this._IdUsuario = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdDepartamento", DbType="Decimal(4,0)")]
-		public System.Nullable<decimal> IdDepartamento
-		{
-			get
-			{
-				return this._IdDepartamento;
-			}
-			set
-			{
-				if ((this._IdDepartamento != value))
-				{
-					this._IdDepartamento = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdPerfil", DbType="Decimal(4,0)")]
-		public System.Nullable<decimal> IdPerfil
-		{
-			get
-			{
-				return this._IdPerfil;
-			}
-			set
-			{
-				if ((this._IdPerfil != value))
-				{
-					this._IdPerfil = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(20)")]
-		public string Usuario
-		{
-			get
-			{
-				return this._Usuario;
-			}
-			set
-			{
-				if ((this._Usuario != value))
-				{
-					this._Usuario = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clave", DbType="VarChar(8000)")]
-		public string Clave
-		{
-			get
-			{
-				return this._Clave;
-			}
-			set
-			{
-				if ((this._Clave != value))
-				{
-					this._Clave = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Persona", DbType="VarChar(150)")]
-		public string Persona
-		{
-			get
-			{
-				return this._Persona;
-			}
-			set
-			{
-				if ((this._Persona != value))
-				{
-					this._Persona = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Bit")]
-		public System.Nullable<bool> Estatus
-		{
-			get
-			{
-				return this._Estatus;
-			}
-			set
-			{
-				if ((this._Estatus != value))
-				{
-					this._Estatus = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LlevaEmail", DbType="Bit")]
-		public System.Nullable<bool> LlevaEmail
-		{
-			get
-			{
-				return this._LlevaEmail;
-			}
-			set
-			{
-				if ((this._LlevaEmail != value))
-				{
-					this._LlevaEmail = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this._Email = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Contador", DbType="Int")]
-		public System.Nullable<int> Contador
-		{
-			get
-			{
-				return this._Contador;
-			}
-			set
-			{
-				if ((this._Contador != value))
-				{
-					this._Contador = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CambiaClave", DbType="Bit")]
-		public System.Nullable<bool> CambiaClave
-		{
-			get
-			{
-				return this._CambiaClave;
-			}
-			set
-			{
-				if ((this._CambiaClave != value))
-				{
-					this._CambiaClave = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RazonBloqueo", DbType="VarChar(1000)")]
-		public string RazonBloqueo
-		{
-			get
-			{
-				return this._RazonBloqueo;
-			}
-			set
-			{
-				if ((this._RazonBloqueo != value))
-				{
-					this._RazonBloqueo = value;
 				}
 			}
 		}
@@ -11010,6 +10786,230 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CambiaClave0 != value))
 				{
 					this._CambiaClave0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RazonBloqueo", DbType="VarChar(1000)")]
+		public string RazonBloqueo
+		{
+			get
+			{
+				return this._RazonBloqueo;
+			}
+			set
+			{
+				if ((this._RazonBloqueo != value))
+				{
+					this._RazonBloqueo = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MANTENIMIENTO_USUARIOSResult
+	{
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private System.Nullable<decimal> _IdDepartamento;
+		
+		private System.Nullable<decimal> _IdPerfil;
+		
+		private string _Usuario;
+		
+		private string _Clave;
+		
+		private string _Persona;
+		
+		private System.Nullable<bool> _Estatus;
+		
+		private System.Nullable<bool> _LlevaEmail;
+		
+		private string _Email;
+		
+		private System.Nullable<int> _Contador;
+		
+		private System.Nullable<bool> _CambiaClave;
+		
+		private string _RazonBloqueo;
+		
+		public SP_MANTENIMIENTO_USUARIOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(4,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdDepartamento", DbType="Decimal(4,0)")]
+		public System.Nullable<decimal> IdDepartamento
+		{
+			get
+			{
+				return this._IdDepartamento;
+			}
+			set
+			{
+				if ((this._IdDepartamento != value))
+				{
+					this._IdDepartamento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdPerfil", DbType="Decimal(4,0)")]
+		public System.Nullable<decimal> IdPerfil
+		{
+			get
+			{
+				return this._IdPerfil;
+			}
+			set
+			{
+				if ((this._IdPerfil != value))
+				{
+					this._IdPerfil = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(20)")]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this._Usuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clave", DbType="VarChar(8000)")]
+		public string Clave
+		{
+			get
+			{
+				return this._Clave;
+			}
+			set
+			{
+				if ((this._Clave != value))
+				{
+					this._Clave = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Persona", DbType="VarChar(150)")]
+		public string Persona
+		{
+			get
+			{
+				return this._Persona;
+			}
+			set
+			{
+				if ((this._Persona != value))
+				{
+					this._Persona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Bit")]
+		public System.Nullable<bool> Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LlevaEmail", DbType="Bit")]
+		public System.Nullable<bool> LlevaEmail
+		{
+			get
+			{
+				return this._LlevaEmail;
+			}
+			set
+			{
+				if ((this._LlevaEmail != value))
+				{
+					this._LlevaEmail = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Contador", DbType="Int")]
+		public System.Nullable<int> Contador
+		{
+			get
+			{
+				return this._Contador;
+			}
+			set
+			{
+				if ((this._Contador != value))
+				{
+					this._Contador = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CambiaClave", DbType="Bit")]
+		public System.Nullable<bool> CambiaClave
+		{
+			get
+			{
+				return this._CambiaClave;
+			}
+			set
+			{
+				if ((this._CambiaClave != value))
+				{
+					this._CambiaClave = value;
 				}
 			}
 		}

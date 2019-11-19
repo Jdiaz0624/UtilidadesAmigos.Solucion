@@ -18,6 +18,16 @@
         }
     </style>
 
+    <script type="text/javascript">
+        function ErrorMantenimiento() {
+            alert("Error al realizar el mantenimiento")
+        }
+
+        function ErrorProceso() {
+            alert("Error al procesar el tipo de operación, favor de contactar con un administrador para solucionar este problema")
+        }
+    </script>
+
     <!--INICIO DEL ENCABEZADO DE LA PANTALLA-->
     <div class="container-fluid">
         <div align="center" class="jumbotron">
@@ -104,6 +114,16 @@
             </div>
 
             <div class="form-group col-md-6">
+                <asp:Label ID="lbClave" runat="server" Text="Ingresar Clave" Visible="false"></asp:Label>
+                <asp:TextBox ID="txtclave" runat="server" PlaceHolder="Ingresar Clave" Visible="false" TextMode="Password" MaxLength="20" CssClass="form-control"></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-6">
+                <asp:Label ID="lbConfirmarClave" runat="server" Text="Confirmar Clave" Visible="false"></asp:Label>
+                <asp:TextBox ID="txtConfirmarClave" runat="server" Placeholder="Confirmar Clave" MaxLength="20" TextMode="Password" CssClass="form-control" Visible="false"></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-6">
                         <asp:Label ID="lbEmailMantenimiento" runat="server" Visible="false" Text="Email"></asp:Label>
                         <asp:TextBox ID="txtEmailMantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" Placeholder ="Ingrese Enail" CssClass="form-control"></asp:TextBox>
             </div>
@@ -111,6 +131,10 @@
             <div class="form-group col-md-6">
                 <asp:Label ID="lbClaveSeguridad" runat="server" Visible="false" Text="Ingrese Clave de Seguridad"></asp:Label>
                 <asp:TextBox ID="txtClaveSeguridadMantenimeinto" runat="server" Visible="false" CssClass="form-control" MaxLength="20" PlaceHolder="Clave de Seguridad" TextMode="Password"></asp:TextBox>
+            </div>
+            <div class="form-group col-md-12">
+                <asp:Label ID="lbRazonBloqueo" runat="server" Text="Razón de Bloqueo" Visible="false"></asp:Label>
+                <asp:TextBox ID="txtRazonBloqueo" runat="server" Placeholder="Razón de bloqueo" MaxLength="1000" CssClass="form-control" Visible="false"></asp:TextBox> 
             </div>
 
         </div>

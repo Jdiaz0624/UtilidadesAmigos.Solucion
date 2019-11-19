@@ -126,11 +126,36 @@ namespace UtilidadesAmigos.Solucion.Paginas
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamentoMantenimiento, ObjData.Value.BuscaListas("DEPARTAMENTOS", null, null));
         }
         #endregion
-
         #region CARGAR LOS PERFILES DE USUARIO
         private void CargarPerfiles()
         {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlPerfilMantenimiento, ObjData.Value.BuscaListas("PERFILES", null, null));
+        }
+        #endregion
+        #region MANTENIMIENTO DE USUARIOS
+        private void MANUsuarios(string Accion)
+        {
+            try {
+                UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios Mantenimiento = new Logica.Entidades.EMantenimientoUsuarios();
+
+                Mantenimiento.IdUsuario = Convert.ToDecimal(lbIdUsuarioSeleccionado.Text);
+                Mantenimiento.IdDepartamento = Convert.ToDecimal(ddlDepartamentoMantenimiento.SelectedValue);
+                Mantenimiento.IdPerfil = Convert.ToDecimal(ddlPerfilMantenimiento.SelectedValue);
+                Mantenimiento.Usuario = txtUsuarioMantenimiento.Text;
+                Mantenimiento.Clave = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(txtclave.Text);
+                Mantenimiento.Persona = txtPersonaMantenimiento.Text;
+                Mantenimiento.Estatus = cbEstatusMantenimiento.Checked;
+                Mantenimiento.LlevaEmail = cbLlevaEmailMantenimiento.Checked;
+                Mantenimiento.Email = txtEmailMantenimiento.Text;
+                Mantenimiento.Contador = 0;
+                Mantenimiento.CambiaClave = cbCambiaClaveMantenimiento.Checked;
+                Mantenimiento.RazonBloqueo = txtRazonBloqueo.Text;
+
+                var MAN = ObjData.Value.MantenimientoUsuarios(Mantenimiento, Accion);
+            }
+            catch (Exception) {
+                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMantenimiento()", true);
+            }
         }
         #endregion
 
@@ -209,7 +234,26 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnProcesarMantenimento_Click(object sender, EventArgs e)
         {
+            if (lbEstatusMantenimiento.Text == "INSERT")
+            {
 
+            }
+            else if (lbEstatusMantenimiento.Text == "UPDATE")
+            {
+
+            }
+            else if (lbEstatusMantenimiento.Text == "DISABLE")
+            {
+
+            }
+            else if (lbEstatusMantenimiento.Text == "DELETE")
+            {
+
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorProceso()", true);
+            }
         }
 
         protected void cbEstatusMantenimiento_CheckedChanged(object sender, EventArgs e)

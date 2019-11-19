@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=jdiaz0624;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString8" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_LISTA_CARGAR_RAMOS" Method="SP_LISTA_CARGAR_RAMOS">
     <Parameter Name="IdRamo" Parameter="idRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
@@ -178,35 +178,6 @@
     <ElementType Name="SP_BUSCA_ACCIONResult">
       <Column Name="IdAccion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Accion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_MANTENIMIENTO_USUARIOS" Method="SP_MANTENIMIENTO_USUARIOS">
-    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="IdPerfil" Parameter="idPerfil" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(20)" />
-    <Parameter Name="Clave" Parameter="clave" Type="System.String" DbType="VarChar(8000)" />
-    <Parameter Name="Persona" Parameter="persona" Type="System.String" DbType="VarChar(150)" />
-    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="LlevaEmail" Parameter="llevaEmail" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Contador" Parameter="contador" Type="System.Int32" DbType="Int" />
-    <Parameter Name="CambiaClave" Parameter="cambiaClave" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="RazonBloqueo" Parameter="razonBloqueo" Type="System.String" DbType="VarChar(1000)" />
-    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
-    <ElementType Name="SP_MANTENIMIENTO_USUARIOSResult">
-      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" CanBeNull="false" />
-      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
-      <Column Name="IdPerfil" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
-      <Column Name="Usuario" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-      <Column Name="Persona" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="LlevaEmail" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Contador" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CambiaClave" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="RazonBloqueo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="Utililades.SP_BUSCA_PRODUCCION_DIARIA_TODOS_LOS_RAMOS" Method="SP_BUSCA_PRODUCCION_DIARIA_TODOS_LOS_RAMOS">
@@ -948,6 +919,35 @@
       <Column Name="Contador" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CambiaClave" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
       <Column Name="CambiaClave0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="RazonBloqueo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MANTENIMIENTO_USUARIOS" Method="SP_MANTENIMIENTO_USUARIOS">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(4,0)" />
+    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(4,0)" />
+    <Parameter Name="IdPerfil" Parameter="idPerfil" Type="System.Decimal" DbType="Decimal(4,0)" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Clave" Parameter="clave" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="Persona" Parameter="persona" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="LlevaEmail" Parameter="llevaEmail" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Contador" Parameter="contador" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CambiaClave" Parameter="cambiaClave" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="RazonBloqueo" Parameter="razonBloqueo" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MANTENIMIENTO_USUARIOSResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Column Name="IdPerfil" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="Persona" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LlevaEmail" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Contador" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CambiaClave" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="RazonBloqueo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
     </ElementType>
   </Function>

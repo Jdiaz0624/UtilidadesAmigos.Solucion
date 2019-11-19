@@ -61,30 +61,30 @@ namespace UtilidadesAmigos.Logica.Logica
         }
 
         //MANTENIMIENTO DE USUARIOS
-        public Entidades.EMantenimientoUsuarios MantenimientoUsuarios(Entidades.EMantenimientoUsuarios item, string Accion)
+        public UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios MantenimientoUsuarios(UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios Item, string Accion)
         {
             Objdata.CommandTimeout = 999999999;
 
-            Entidades.EMantenimientoUsuarios Mantenimiento = null;
+            UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios Mantenimiento = null;
 
             var Usuario = Objdata.SP_MANTENIMIENTO_USUARIOS(
-                item.IdUsuario,
-                item.IdDepartamento,
-                item.IdPerfil,
-                item.Usuario,
-                item.Clave,
-                item.Persona,
-                item.Estatus,
-                item.LlevaEmail,
-                item.Email,
-                item.Contador,
-                item.CambiaClave,
-                item.RazonBloqueo,
+                Item.IdUsuario,
+                Item.IdDepartamento,
+                Item.IdPerfil,
+                Item.Usuario,
+                Item.Clave,
+                Item.Persona,
+                Item.Estatus,
+                Item.LlevaEmail,
+                Item.Email,
+                Item.Contador,
+                Item.CambiaClave,
+                Item.RazonBloqueo,
                 Accion);
             if (Usuario != null)
             {
                 Mantenimiento = (from n in Usuario
-                                 select new Entidades.EMantenimientoUsuarios
+                                 select new UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios
                                  {
                                      IdUsuario=n.IdUsuario,
                                      IdDepartamento=n.IdDepartamento,
@@ -99,9 +99,11 @@ namespace UtilidadesAmigos.Logica.Logica
                                      CambiaClave=n.CambiaClave,
                                      RazonBloqueo=n.RazonBloqueo
                                  }).FirstOrDefault();
+
             }
             return Mantenimiento;
         }
+
         #endregion
 
         #region CARGAR LISTAS
