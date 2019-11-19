@@ -60,6 +60,7 @@
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
                      <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
+                    <asp:BoundField DataField="IdUsuario" HeaderText="ID" />
                     <asp:BoundField DataField="Departamento" HeaderText="Departamento" />
                     <asp:BoundField DataField="Perfil" HeaderText="Perfil" />
                     <asp:BoundField DataField="Usuario" HeaderText="Usuario" />

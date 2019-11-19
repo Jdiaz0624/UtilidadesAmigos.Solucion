@@ -58,9 +58,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         VariablesGlobales.EstatusUsuario = Convert.ToBoolean(n.Estatus0);
                         VariablesGlobales.CambiaClave = Convert.ToBoolean(n.CambiaClave0);
                     }
-                    if (VariablesGlobales.EstatusUsuario == true)
+                    if (VariablesGlobales.EstatusUsuario == false)
                     {
-                        //VERIFICAMOS SI SE LE VA A CAMBIAR LA CLAVE
+                        ClientScript.RegisterStartupScript(GetType(), "MostrarMensaje", "UsuarioBloqueado()", true);
+                    }
+                    else
+                    {
+                        //VERIFICAMOS SI EL USUARIO VA A CAMBIAR LA CLAVE
                         if (VariablesGlobales.CambiaClave == true)
                         {
                             txtUsuario.Enabled = false;
@@ -76,10 +80,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             Session["IdUsuario"] = Convert.ToDecimal(VariablesGlobales.IdUsuario);
                             FormsAuthentication.RedirectFromLoginPage(_Usuario, false);
                         }
-                    }
-                    else
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "MostrarMensaje", "UsuarioBloqueado", true);
                     }
                 }
             }

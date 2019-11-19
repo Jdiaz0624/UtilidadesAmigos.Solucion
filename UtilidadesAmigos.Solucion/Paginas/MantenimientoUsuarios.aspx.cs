@@ -80,7 +80,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     cbCambiaClaveMantenimiento.Checked = (n.CambiaClave0.HasValue ? n.CambiaClave0.Value : false);
 
                 }
-               
+                if (cbLlevaEmailMantenimiento.Checked == false)
+                {
+                    txtEmailMantenimiento.Visible = false;
+                }
             }
           
 
@@ -159,7 +162,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-
+            lbEstatusMantenimiento.Text = "UPDATE";
+            MostrarControles();
         }
 
         protected void btnAtras_Click(object sender, EventArgs e)
@@ -185,7 +189,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gbListadoUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GridViewRow gb = gbListadoUsuarios.SelectedRow;
 
+            var BuscarUsuario = ObjData.Value.BuscaUsuarios(
+                Convert.ToDecimal(gb.Cells[1].Text));
+            foreach (var n in BuscarUsuario)
+            {
+                lbIdUsuarioSeleccionado.Text = gb.Cells[1].Text;
+            }
+            gbListadoUsuarios.DataSource = BuscarUsuario;
+            gbListadoUsuarios.DataBind();
+            btnNuevo.Enabled = false;
+            btnConsultar.Enabled = false;
+            btnModificar.Enabled = true;
+            btnDeshabilitar.Enabled = true;
+            btnEliminar.Enabled = true;
+            btnAtras.Enabled = true;
         }
 
         protected void btnProcesarMantenimento_Click(object sender, EventArgs e)
