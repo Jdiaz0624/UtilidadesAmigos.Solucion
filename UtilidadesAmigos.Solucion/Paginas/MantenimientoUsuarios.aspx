@@ -33,6 +33,7 @@
                  <asp:Label ID="lbUsuarioConsulta" runat="server" Text="Usuario"></asp:Label>
             <asp:TextBox ID="txtUsuarioFiltro" runat="server" placeholder="Ingrese Nombre de Usuario" MaxLength="20" CssClass="form-control"></asp:TextBox>
             <asp:Label ID="lbIdUsuarioSeleccionado" runat="server" Text="0" Visible="False"></asp:Label>
+            <asp:Label ID="lbEstatusMantenimiento" runat="server" Text="Estatus" Visible="false"></asp:Label>
         </div>
     </div>
     </div>
@@ -93,32 +94,22 @@
                 <asp:DropDownList ID="ddlPerfilMantenimiento" runat="server" Visible="false" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="form-group col-md-6">
-                        <asp:Label ID="lbUsuarioMantenimiento" runat="server" Visible="false" Text="Ingresar Nombre de Usuario"></asp:Label>
-                       <asp:TextBox ID="txtUsuarioMantenimiento" runat="server" Visible="false" Placeholder="Ingrese Usuario" CssClass="form-control"></asp:TextBox>
+                        <asp:Label ID="lbUsuarioMantenimiento" runat="server" Visible="false" Text="Ingresar Usuario"></asp:Label>
+                       <asp:TextBox ID="txtUsuarioMantenimiento" runat="server" Visible="false" AutoCompleteType="Disabled" Placeholder="Ingrese Usuario" CssClass="form-control" Enabled="False"></asp:TextBox>
             </div>
             <div class="form-group col-md-6">
                  <asp:Label ID="lbPersonaMantenimiento" runat="server" Visible="false" Text="Ingrese Nombre del Usuario"></asp:Label>
-                 <asp:TextBox ID="txtPersonaMantenimiento" runat="server" Visible="false" Placeholder="Nombre de Usuario" MaxLength="40" CssClass="form-control"></asp:TextBox>
-            </div>
-
-            <div class="form-group col-md-6">
-                    <asp:Label ID="lbClaveMantenimiento" runat="server" Visible="false" Text="Ingresar Clave"></asp:Label>
-                    <asp:TextBox ID="txtClaveMantenimiento" runat="server" Visible="false" Placeholder="Ingrese Clave" CssClass="form-control" TextMode="Password" MaxLength="20"></asp:TextBox>
-            </div>
-
-             <div class="form-group col-md-6">
-                  <asp:Label ID="lbConfirmarClaveMantenimiento" runat="server" Visible="false" Text="Confirmar Clave"></asp:Label>
-                  <asp:TextBox ID="txtConfirmarClaveMantenimiento" runat="server" Visible="false" Placeholder="Confirmar Clave" CssClass="form-control" TextMode="Password" MaxLength="20"></asp:TextBox>
+                 <asp:TextBox ID="txtPersonaMantenimiento" runat="server" Visible="false" AutoCompleteType="Disabled" Placeholder="Nombre de Usuario" MaxLength="40" CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="form-group col-md-6">
                         <asp:Label ID="lbEmailMantenimiento" runat="server" Visible="false" Text="Email"></asp:Label>
-                        <asp:TextBox ID="txtEmailMantenimiento" runat="server" Visible="false" Placeholder ="Ingrese Enail" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtEmailMantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" Placeholder ="Ingrese Enail" CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="form-group col-md-6">
                 <asp:Label ID="lbClaveSeguridad" runat="server" Visible="false" Text="Ingrese Clave de Seguridad"></asp:Label>
-                <asp:TextBox ID="txtClaveSeguridadMantenimeinto" runat="server" Visible="false" CssClass="form-control" PlaceHolder="Clave de Seguridad" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="txtClaveSeguridadMantenimeinto" runat="server" Visible="false" CssClass="form-control" MaxLength="20" PlaceHolder="Clave de Seguridad" TextMode="Password"></asp:TextBox>
             </div>
 
         </div>
@@ -138,7 +129,8 @@
 
     <div align="Center">
             <asp:Button ID="btnProcesarMantenimento" Text="Procesar" runat="server" Visible="false" CssClass="btn btn-outline-primary btn-sm"  ToolTip="Completar Operacion" OnClick="btnProcesarMantenimento_Click" />
-        <asp:Button ID="btnVolverAtras" Text="Volver" runat="server" Visible="false" CssClass="btn btn-outline-primary btn-sm" ToolTip="Volver Atras" OnClick="btnVolverAtras_Click" />
+        <asp:Button ID="btnVolverAtras" Text="Volver" runat="server" Visible="false" CssClass="btn btn-outline-primary btn-sm" ToolTip="Volver Atras" OnClick="btnVolverAtras_Click" /><br />
+        <hr class="hr" />
     </div>
 
     <!--AQUI TERMINAN LOS CONTROLES PARA REALIZAR EL MANTENIMIENTO DE USUARIOS-->
