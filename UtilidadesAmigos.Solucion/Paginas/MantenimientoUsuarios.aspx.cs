@@ -119,6 +119,61 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnDeshabilitar.Visible = true;
             btnEliminar.Visible = true;
             gbListadoUsuarios.Visible = true;
+
+            btnNuevo.Enabled = true;
+            btnConsultar.Enabled = true;
+            btnModificar.Enabled = false;
+            btnDeshabilitar.Enabled = false;
+            btnEliminar.Enabled = false;
+            txtUsuarioFiltro.Text = string.Empty;
+            MostrarListadoUsuario();
+
+            txtclave.Visible = false;
+            txtConfirmarClave.Visible = false;
+
+            HabilitarControles();
+        }
+        #endregion
+        #region HABILITAR Y DESHABILITAR CONTROLES
+        private void HabilitarControles()
+        {
+            lbDepartamentoMantenimiento.Enabled = true;
+            ddlDepartamentoMantenimiento.Enabled = true;
+            lbPerfilMantenimiento.Enabled = true;
+            ddlPerfilMantenimiento.Enabled = true;
+            lbUsuarioMantenimiento.Enabled = true;
+            txtUsuarioMantenimiento.Enabled = true;
+            lbPersonaMantenimiento.Enabled = true;
+            txtPersonaMantenimiento.Enabled = true;
+            lbEmailMantenimiento.Enabled = true;
+            txtEmailMantenimiento.Enabled = true;
+           // lbClaveSeguridad.Enabled = true;
+           // txtClaveSeguridadMantenimeinto.Enabled = true;
+            cbEstatusMantenimiento.Enabled = true;
+            cbLlevaEmailMantenimiento.Enabled = true;
+            cbCambiaClaveMantenimiento.Enabled = true;
+           // btnProcesarMantenimento.Enabled = true;
+          //  btnVolverAtras.Enabled = true;
+        }
+        private void DeshabilitarControles()
+        {
+            lbDepartamentoMantenimiento.Enabled = false;
+            ddlDepartamentoMantenimiento.Enabled = false;
+            lbPerfilMantenimiento.Enabled = false;
+            ddlPerfilMantenimiento.Enabled = false;
+            lbUsuarioMantenimiento.Enabled = false;
+            txtUsuarioMantenimiento.Enabled = false;
+            lbPersonaMantenimiento.Enabled = false;
+            txtPersonaMantenimiento.Enabled = false;
+            lbEmailMantenimiento.Enabled = false;
+            txtEmailMantenimiento.Enabled = false;
+           // lbClaveSeguridad.Enabled = false;
+          //  txtClaveSeguridadMantenimeinto.Enabled = false;
+            cbEstatusMantenimiento.Enabled = false;
+            cbLlevaEmailMantenimiento.Enabled = false;
+            cbCambiaClaveMantenimiento.Enabled = false;
+         //   btnProcesarMantenimento.Enabled = false;
+          //  btnVolverAtras.Enabled = false;
         }
         #endregion
         #region CARGAR EL DROP DE DEPARTAMENTOS
@@ -159,6 +214,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
+        #region CAMBIAR CLAVE
+        private void CambiaClave()
+        {
+            UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios Mantenimiento = new Logica.Entidades.EMantenimientoUsuarios();
+
+            Mantenimiento.IdUsuario = Convert.ToDecimal(lbIdUsuarioSeleccionado.Text);
+            Mantenimiento.Clave = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar("FuturoSeguros123");
+
+            var MAN = ObjData.Value.MantenimientoUsuarios(Mantenimiento, "STARTCHANGEPASSWORD");
+        }
+        #endregion
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -183,27 +249,37 @@ namespace UtilidadesAmigos.Solucion.Paginas
             cbLlevaEmailMantenimiento.Checked = true;
             cbCambiaClaveMantenimiento.Checked = true;
             txtUsuarioMantenimiento.Enabled = true;
+            txtclave.Visible = true;
+            txtConfirmarClave.Visible = true;
+            btnProcesarMantenimento.Text = "Guardar";
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             lbEstatusMantenimiento.Text = "UPDATE";
             MostrarControles();
+            btnProcesarMantenimento.Text = "Modificar";
         }
 
         protected void btnAtras_Click(object sender, EventArgs e)
         {
-
+            OcultarControles();
         }
 
         protected void btnDeshabilitar_Click(object sender, EventArgs e)
         {
-
+            lbEstatusMantenimiento.Text = "DISABLE";
+            MostrarControles();
+            btnProcesarMantenimento.Text = "Deshabilitar";
+            DeshabilitarControles();
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-
+            lbEstatusMantenimiento.Text = "DELETE";
+            MostrarControles();
+            btnProcesarMantenimento.Text = "Eliminar";
+            DeshabilitarControles();
         }
 
         protected void gbListadoUsuarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -239,23 +315,143 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 //VERIFICAMOS LOS CAMPOS VACIOS
                 if (string.IsNullOrEmpty(txtUsuarioMantenimiento.Text.Trim()) || string.IsNullOrEmpty(txtPersonaMantenimiento.Text.Trim()) || string.IsNullOrEmpty(txtclave.Text.Trim()) || string.IsNullOrEmpty(txtConfirmarClave.Text.Trim()))
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "Validar()", true);
+                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "CamposVacios()", true);
+                }
+                else
+                {
+                    //VERIFICAMOS QUE LAS CLAVES INGRESADAS SON IGUALES
+                    string clave = txtclave.Text;
+                    string ConfirmarClafe = txtConfirmarClave.Text;
+
+                    if (clave != ConfirmarClafe)
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ClaveNoConcuerdan()", true);
+                        txtclave.Text = string.Empty;
+                        txtConfirmarClave.Text = string.Empty;
+                        txtclave.Focus();
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(txtClaveSeguridadMantenimeinto.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ClaveSeguridadVacio()", true);
+                        }
+                        else
+                        {
+                            //VALIDAMOS LA CLAVE DE SEGURIDAD
+                            var ValidarClaveSeguridad = ObjData.Value.BuscaClaveSeguridad(
+                                new Nullable<decimal>(),
+                                UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(txtClaveSeguridadMantenimeinto.Text));
+                            if (ValidarClaveSeguridad.Count() < 1)
+                            {
+                                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ClaveSeguridadNoValida()", true);
+                                txtClaveSeguridadMantenimeinto.Text = string.Empty;
+                                txtClaveSeguridadMantenimeinto.Focus();
+                            }
+                            else
+                            {
+                                //VERIFICAMOS SI EL NOMBRE DE USUARIO INGRESADO YA ESTA CREADO
+                                var ValidarUsuario = ObjData.Value.BuscaUsuarios(
+                                    new Nullable<decimal>(),
+                                    null, null, null, txtUsuarioMantenimiento.Text);
+                                if (ValidarUsuario.Count() < 1)
+                                {
+                                    //REALIZAMOS EL MANTENIMIENTO CORRESPONIENTE
+                                    MANUsuarios(lbEstatusMantenimiento.Text);
+                                    //VERIFICAMOS SI SE VA A CAMBIAR LA CLAVE
+                                    if (cbCambiaClaveMantenimiento.Checked)
+                                    {
+                                        CambiaClave();
+                                    }
+                                    OcultarControles();
+                                }
+                                else
+                                {
+                                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "UsuarioNoValido()", true);
+                                }
+                            }
+                        }
+                    }
+
                 }
             }
             else if (lbEstatusMantenimiento.Text == "UPDATE")
             {
                 if (string.IsNullOrEmpty(txtUsuarioMantenimiento.Text.Trim()) || string.IsNullOrEmpty(txtPersonaMantenimiento.Text.Trim()))
                 {
-
+                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "CamposVacios()", true);
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(txtClaveSeguridadMantenimeinto.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ClaveSeguridadNoValida()", true);
+                        txtClaveSeguridadMantenimeinto.Text = string.Empty;
+                        txtClaveSeguridadMantenimeinto.Focus();
+                    }
+                    else
+                    {
+                        //VALIDAMOS LA CLAVE DE SEGURIDAD
+                        var ValidarClaveSeguridad = ObjData.Value.BuscaClaveSeguridad(
+                            new Nullable<decimal>(),
+                            UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(txtClaveSeguridadMantenimeinto.Text));
+                        if (ValidarClaveSeguridad.Count() < 1)
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ClaveSeguridadNoValida()", true);
+                            txtClaveSeguridadMantenimeinto.Text = string.Empty;
+                            txtClaveSeguridadMantenimeinto.Focus();
+                        }
+                        else
+                        {
+                            //REALIZAMOS EL MANTENIMIENTO CORRESPONIENTE
+                            MANUsuarios(lbEstatusMantenimiento.Text);
+                            //VERIFICAMOS SI SE VA A CAMBIAR LA CLAVE
+                            if (cbCambiaClaveMantenimiento.Checked)
+                            {
+                                CambiaClave();
+                            }
+                            OcultarControles();
+                        }
+                    }
                 }
             }
             else if (lbEstatusMantenimiento.Text == "DISABLE")
             {
-
+                //VALIDAMOS LA CLAVE DE SEGURIDAD
+                var ValidarClaveSeguridad = ObjData.Value.BuscaClaveSeguridad(
+                    new Nullable<decimal>(),
+                    UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(txtClaveSeguridadMantenimeinto.Text));
+                if (ValidarClaveSeguridad.Count() < 1)
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ClaveSeguridadNoValida()", true);
+                    txtClaveSeguridadMantenimeinto.Text = string.Empty;
+                    txtClaveSeguridadMantenimeinto.Focus();
+                }
+                else
+                {
+                    //REALIZAMOS EL MANTENIMIENTO CORRESPONIENTE
+                    MANUsuarios(lbEstatusMantenimiento.Text);
+                    OcultarControles();
+                }
             }
             else if (lbEstatusMantenimiento.Text == "DELETE")
             {
-
+                //VALIDAMOS LA CLAVE DE SEGURIDAD
+                var ValidarClaveSeguridad = ObjData.Value.BuscaClaveSeguridad(
+                    new Nullable<decimal>(),
+                    UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(txtClaveSeguridadMantenimeinto.Text));
+                if (ValidarClaveSeguridad.Count() < 1)
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ClaveSeguridadNoValida()", true);
+                    txtClaveSeguridadMantenimeinto.Text = string.Empty;
+                    txtClaveSeguridadMantenimeinto.Focus();
+                }
+                else
+                {
+                    //REALIZAMOS EL MANTENIMIENTO CORRESPONIENTE
+                    MANUsuarios(lbEstatusMantenimiento.Text);
+                    OcultarControles();
+                }
             }
             else
             {
