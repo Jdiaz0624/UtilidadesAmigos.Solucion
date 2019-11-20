@@ -22,3 +22,8 @@ function ClaveNoConcuerdan()
 {
     alert("Las claves ingresadas no concuerdan, favor de verificar")
 }
+
+function IntentosFallidos()
+{
+    alert("Este usuario ha sido bloqueado por exeso de intento fallidos al sistema, favor de comunicarse con el departamento de TI para desbloquear esta cuenta.")
+}

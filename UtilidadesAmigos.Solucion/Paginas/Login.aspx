@@ -7,6 +7,7 @@
     <title>Utilidades Amigos</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" type="text/css" />
     <link rel="shortcut icon" href="../Imagenes/Iniciales.ico" />
+    <script type="text/javascript" src="../JS/Utililades.js"></script>
     <style>
 body{
 	margin:0;
@@ -222,7 +223,8 @@ a{color:inherit;text-decoration:none}
                         <asp:TextBox ID="txtConfirmarClave" runat="server" placeholder="<%$Resources:Traducciones,ConfirmarClave %>" TextMode="Password" CssClass="input" AutoCompleteType="Disabled"></asp:TextBox>
                     </div>
                     <div class="group">
-                        <asp:Button ID="btnCambiarClave" runat="server" Text="<%$Resources:Traducciones,CambiarClave %>" ToolTip="<%$Resources:Traducciones,CambiarClave %>" CssClass="button" OnClick="btnCambiarClave_Click" />
+                        <asp:Button ID="btnCambiarClave" runat="server" Text="Cambiar Clave" ToolTip="Cambiar Clave" CssClass="button" OnClick="btnCambiarClave_Click" />
+                        <asp:Label ID="lbContadorBloqueo" runat="server" Text="Contador" Visible="false"></asp:Label>
                     </div>
                 </div>
           </div>

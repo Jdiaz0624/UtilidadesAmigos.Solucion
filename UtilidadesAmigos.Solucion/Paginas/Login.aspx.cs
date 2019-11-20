@@ -46,9 +46,40 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     null);
                 if (ValidarUsuario.Count() < 1)
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "Mostrarmensaje", "UsuarioNoValido();", true);
-                    txtUsuario.Text = string.Empty;
-                    txtClave.Text = string.Empty;
+                    int ContadorBloqueo;
+                    ContadorBloqueo = Convert.ToInt32(lbContadorBloqueo.Text);
+
+                    if (ContadorBloqueo == 3)
+                    {
+                        //BLOQUEAMOS EL USUARIO
+                        var BuscarUsuario = ObjDataLogica.Value.BuscaUsuarios(
+                            new Nullable<decimal>(),
+                            null, null, null, txtUsuario.Text);
+                        foreach (var n in BuscarUsuario)
+                        {
+                            UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios Bloquear = new Logica.Entidades.EMantenimientoUsuarios();
+
+                            Bloquear.IdUsuario = Convert.ToDecimal(n.IdUsuario);
+
+                            var MAn = ObjDataLogica.Value.MantenimientoUsuarios(Bloquear, "DISABLE");
+                        }
+
+                        
+
+                        ClientScript.RegisterStartupScript(GetType(), "Mostrarmensaje", "IntentosFallidos();", true);
+                        lbContadorBloqueo.Text = "0";
+                    }
+                    else
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "Mostrarmensaje", "UsuarioNoValido();", true);
+                        txtUsuario.Text = string.Empty;
+                        txtClave.Text = string.Empty;
+
+                        int ValorInicial = Convert.ToInt32(lbContadorBloqueo.Text);
+                        const int Contador = 1;
+                        int Operacion = ValorInicial + Contador;
+                        lbContadorBloqueo.Text = Operacion.ToString();
+                    }
                 }
                 else
                 {
@@ -99,6 +130,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -107,6 +139,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtConfirmarClave.Visible = false;
                 btnCambiarClave.Visible = false;
                 rbcolaborador.Checked = true;
+                lbContadorBloqueo.Text = "0";
             }
         }
 
