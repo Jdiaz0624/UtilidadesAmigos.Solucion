@@ -76,7 +76,56 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gbListadoCarteraSupervisor_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try {
+                GridViewRow gb = gbListadoCarteraSupervisor.SelectedRow;
 
+                var SacarCliente = (from n in ObjData.Value.ListadoClientesintermediarios(Convert.ToDecimal(gb.Cells[0].Text))
+                                    select new
+                                    {
+                                        Poliza=n.Poliza,
+                                        Ramo=n.Ramo,
+                                        Subramo=n.Subramo,
+                                        Estatus=n.Estatus,
+                                        Oficina=n.Oficina,
+                                        InicioVigencia=n.InicioVigencia,
+                                        FinVigencia=n.FinVigencia,
+                                        Neto=n.Neto,
+                                        Supervisor=n.Supervisor,
+                                        Vendedor=n.Vendedor,
+                                        TelefonosVendedor=n.TelefonosVendedor,
+                                        DireccionVendedor=n.DireccionVendedor,
+                                        Cliente=n.Cliente,
+                                        Direccion=n.Direccion,
+                                        TipoIdentificacion=n.TipoIdentificacion,
+                                        NumeroIdentificacion=n.NumeroIdentificacion,
+                                        TelefonosClientes=n.TelefonosClientes,
+                                        TipoVehiculo=n.TipoVehiculo,
+                                        Marca=n.Marca,
+                                        Modelo=n.Modelo,
+                                        Capacidad=n.Capacidad,
+                                        Ano=n.Ano,
+                                        Color=n.Color,
+                                        Chasis=n.Chasis,
+                                        Placa=n.Placa,
+                                        Uso=n.Uso,
+                                        ValorVehiculo=n.ValorVehiculo,
+                                        CantidadPuerta=n.CantidadPuerta,
+                                        Fianza=n.Fianza,
+                                        Observacion=n.Onservacion,
+                                        Deducible=n.Deducible,
+                                        Coaseguro=n.Coaseguro,
+                                        TotalFacturado=n.TotalFacturado,
+                                        TotalCobrado=n.TotalCobrado,
+                                        Balance=n.Balance,
+                                        _1_30=n.__1_30,
+                                        _31_60=n.__31_60,
+                                        _61_90=n.__61_90,
+                                        _91_120=n.__91_120,
+                                        _121_O_MAS=n.__121_O_MAS
+                                    }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(gb.Cells[1].Text, SacarCliente);
+            }
+            catch (Exception) { }
         }
 
         protected void btnExportar_Click(object sender, EventArgs e)
@@ -95,6 +144,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
             UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cartera de Supervisor " + lbNombreSupervisor.Text, Exportar);
 
 
+        }
+
+        protected void gbListadoCarteraSupervisor_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            try {
+                e.Row.Cells[0].Visible = false;
+            }
+            catch (Exception) { }
         }
     }
 }

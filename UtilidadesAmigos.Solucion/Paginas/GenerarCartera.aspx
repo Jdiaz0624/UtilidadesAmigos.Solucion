@@ -20,44 +20,34 @@
             padding: 0;
             font-size: 15px;
         }
+
+          .jumbotron{
+            color:#000000; 
+            background:#7BC5FF;
+            font-size:30px;
+            font-weight:bold;
+            font-family:'Gill Sans';
+            padding:25px;
+        }
+
+
+        .Custom{
+            width: 78px;
+        }
     </style>
 
-    <script type="text/javascript">
-        function Mensaje()
-        {
-            alert("Hola Mundo desde Java Script Con ASP.NET y C#")
-        }
-    </script>
-
-
-
-
-
-    <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Validation Errors List for HP7 Citation</h4>
-            </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
+    <!--INICIO DEL ENCABEZADO-->
+    <div class="container-fluid">
+        <div class="jumbotron" align="center">
+            <asp:Label ID="lbEncabezado" runat="server" Text="Cartera de Supervisores"></asp:Label><br />
+            <asp:Label ID="lbNombreSupervisor" runat="server" Visible="false"></asp:Label>
         </div>
     </div>
-</div>
-
-    <div class="jumbotron  text-center">
-        <h1>Generar Cartera Supervisor</h1>
-        <h2><asp:Label ID="lbNombreSupervisor" runat="server" Visible="false"></asp:Label></h2>
-    </div>
+    <!--FIN DEL ENCABEZADO-->
 
 
+    <!--INICIO DE LOS CONTROLES DE BUSQUEDA-->
 
-    <hr class="h-divider" />
-    <main>
      
         <div class="container-fluid">
         <div class="form-row">
@@ -68,20 +58,13 @@
            </div>
                    </div>
               <div class="form-group form-check">
-                        <div class="form-check">
+                        <div class="form-check-inline">
                         <asp:CheckBox ID="cbComicion" runat="server" AutoPostBack="true" OnCheckedChanged="cbComicion_CheckedChanged" Text="Generar Comicion" CssClass="form-check-input" />
 
           </div>
           </div>
-          </div>
 
-                      
-               <br />
-               <br />
-               
-         
-            <div class="container-fluid">
-                <div class="form-row">
+               <div class="form-row">
                 <div class="form-group col-md-3">
                     <asp:Label ID="lbFechaDesde" runat="server" Text="Fecha Desde" Visible="false"></asp:Label>
                     <asp:TextBox ID="txtFechaDesde" runat="server" Width="200px" TextMode="Date" CssClass="form-control" Visible="false"></asp:TextBox>
@@ -91,34 +74,34 @@
                       <asp:TextBox ID="txtFechaHasta" runat="server" Width="200px" TextMode="Date" CssClass="form-control" Visible="false"></asp:TextBox>
                 </div>
             </div>
-            </div>
-            <br />
-            <br />
-               <div class="container">
-            <asp:Button ID="btnConsultar"  runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary" OnClick="btnConsultar_Click" />
-                   <asp:Button ID="btnExportar"  runat="server" Text="Exportar" ToolTip="Exportar Registros a Exel" CssClass="btn btn-success" OnClick="btnExportar_Click" />
-        </div>
-            <br />
-            <br />
+          </div>
 
-      
-    </main>
+               <div class="container-fluid">
+            <asp:Button ID="btnConsultar"  runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultar_Click" />
+                   <asp:Button ID="btnExportar"  runat="server" Text="Exportar" ToolTip="Exportar Registros a Exel" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportar_Click" />
+        </div>
+    <br />
+<!--FIN DE LOS CONTROLES DE BUSQUEDA-->
+
+ <!--INICIO DEL GRID-->
+
    <%-- Agregamos el Grid para mostrar la data de las coberturas--%>
      <div class="container-fluid">
-            <asp:GridView id="gbListadoCarteraSupervisor" runat="server" AllowPaging="True" OnPageIndexChanging="gbListadoCarteraSupervisor_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbListadoCarteraSupervisor_SelectedIndexChanged">
+            <asp:GridView id="gbListadoCarteraSupervisor" runat="server" AllowPaging="True" OnPageIndexChanging="gbListadoCarteraSupervisor_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbListadoCarteraSupervisor_SelectedIndexChanged" OnRowDataBound="gbListadoCarteraSupervisor_RowDataBound">
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
-                    <asp:BoundField DataField="Intermediario" HeaderText="Intermediario" ControlStyle-Width="16%" />
-                    <asp:BoundField DataField="Telefono" HeaderText="Telefono" ControlStyle-Width="16%" />
-                    <asp:BoundField DataField="Direccion" HeaderText="Dirección" ControlStyle-Width="20%" />
-                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" ControlStyle-Width="16%" />
-                    <asp:BoundField DataField="OficinaSupervisor" HeaderText="Oficina" ControlStyle-Width="16%" />
-                    <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Ver" ControlStyle-CssClass="btn btn-primary" ShowSelectButton="True" />
+                    <asp:BoundField DataField="CodIntermediario" HeaderText="IdIntermediario" />
+                    <asp:BoundField DataField="Intermediario" HeaderText="Intermediario" />
+                    <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
+                    <asp:BoundField DataField="Direccion" HeaderText="Dirección"/>
+                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
+                    <asp:BoundField DataField="OficinaSupervisor" HeaderText="Oficina" />
+                    <asp:CommandField ButtonType="Button" HeaderText="Cliente" SelectText="Ver" ControlStyle-CssClass="btn btn-outline-primary btn-sm Custom" ShowSelectButton="True" />
                 </Columns>
-                <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+              <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
                 <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
                 <SortedAscendingCellStyle BackColor="#F1F1F1" />
                 <SortedAscendingHeaderStyle BackColor="#0000A9" />
@@ -128,5 +111,5 @@
 
 
         </div>
-
+     <!--FIN DEL GRID-->
 </asp:Content>

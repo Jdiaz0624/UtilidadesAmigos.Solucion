@@ -1149,6 +1149,7 @@ namespace UtilidadesAmigos.Logica.Logica
         #endregion
 
         #region SACAR LA CARTERA DE LOS SUPERVISORES
+        //SACAR EL LISTADO DE LA CARTERA DE LOS SUPERVISORES
         public List<UtilidadesAmigos.Logica.Entidades.ECarteraSupervisor> SacarCarteraSupervisor(decimal? CodigoSupervisor = null, decimal? CodigoIntermediario = null)
         {
             Objdata.CommandTimeout = 999999999;
@@ -1163,6 +1164,61 @@ namespace UtilidadesAmigos.Logica.Logica
                                Direccion=n.Direccion,
                                Estatus=n.Estatus,
                                OficinaSupervisor=n.OficinaSupervisor
+                           }).ToList();
+            return Listado;
+        }
+
+        //MOSTRAR EL LISTADO DE LOS CLIENTES DE LOS INTERMEDIARIOS
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscaClienteIntermediario> ListadoClientesintermediarios(decimal? IdIntermediario = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCAR_CLIENTES_INTERMEDIARIO(IdIntermediario)
+                           select new UtilidadesAmigos.Logica.Entidades.EBuscaClienteIntermediario
+                           {
+                               Poliza=n.Poliza,
+                               CodRamo=n.CodRamo,
+                               Ramo=n.Ramo,
+                               CodSubramo=n.CodSubramo,
+                               Subramo=n.Subramo,
+                               Estatus=n.Estatus,
+                               CodOficina=n.CodOficina,
+                               Oficina=n.Oficina,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               Neto=n.Neto,
+                               Supervisor=n.Supervisor,
+                               Vendedor=n.Vendedor,
+                               TelefonosVendedor=n.TelefonosVendedor,
+                               DireccionVendedor=n.DireccionVendedor,
+                               Cliente=n.Cliente,
+                               Direccion=n.Direccion,
+                               TipoIdentificacion=n.TipoIdentificacion,
+                               NumeroIdentificacion=n.NumeroIdentificacion,
+                               TelefonosClientes=n.TelefonosClientes,
+                               TipoVehiculo=n.TipoVehiculo,
+                               Marca=n.Marca,
+                               Modelo=n.Modelo,
+                               Capacidad=n.Capacidad,
+                               Ano=n.Ano,
+                               Color=n.Color,
+                               Chasis=n.Chasis,
+                               Placa=n.Placa,
+                               Uso=n.Uso,
+                               ValorVehiculo=n.ValorVehiculo,
+                               CantidadPuerta=n.CantidadPuerta,
+                               Fianza=n.Fianza,
+                               Onservacion=n.Onservacion,
+                               Deducible=n.Deducible,
+                               Coaseguro=n.Coaseguro,
+                               TotalFacturado=n.TotalFacturado,
+                               TotalCobrado=n.TotalCobrado,
+                               Balance=n.Balance,
+                               __1_30=n._1_30,
+                               __31_60=n._31_60,
+                               __61_90=n._61_90,
+                               __91_120=n._91_120,
+                               __121_O_MAS=n._121_O_MAS
                            }).ToList();
             return Listado;
         }
@@ -1207,5 +1263,7 @@ namespace UtilidadesAmigos.Logica.Logica
             return Detalle;
         }
 #endregion
+
+
     }
 }
