@@ -19,10 +19,30 @@
         }
     </style>
 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css"
+    rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $("[#btnVolverAtras]").live("click", function () {
+        $("#dialog").dialog({
+            title: "jQuery Dialog Popup",
+            buttons: {
+                Close: function () {
+                    $(this).dialog('close');
+                }
+            }
+        });
+        return false;
+    });
+</script>
+    <div id="dialog" style="display: none">
+    This is a simple popup
+</div>
 
 
 
-    <script type="text/javascript">
+   <%-- <script type="text/javascript">
 
    
         
@@ -33,7 +53,7 @@
         function ErrorProceso() {
             alert("Error al procesar el tipo de operación, favor de contactar con un administrador para solucionar este problema")
         }
-    </script>
+    </script>--%>
 
     <!--INICIO DEL ENCABEZADO DE LA PANTALLA-->
     <div class="container-fluid">
@@ -73,9 +93,15 @@
     <br />
     <!--AQUI INICIA EL GRID-->
      <div class="container-fluid">
-            <asp:GridView id="gbListadoUsuarios" runat="server" AllowPaging="True" OnPageIndexChanging="gbListadoUsuarios_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbListadoUsuarios_SelectedIndexChanged">
+            <asp:GridView id="gbListadoUsuarios" runat="server" AllowPaging="True" OnPageIndexChanging="gbListadoUsuarios_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbListadoUsuarios_SelectedIndexChanged" OnRowDataBound="gbListadoUsuarios_RowDataBound">
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
+<%--                   <asp:TemplateField>
+                        <ItemTemplate>
+                           <asp:HiddenField ID="hfIdUsuario" runat="server" Value='<%# Eval("IdUsuario") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>--%>
+                   <%-- <asp:HiddenField ID="HFIdUsuario" runat="server" Value='<%# Eval("IdUsuario") %>' />--%>
                      <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
                     <asp:BoundField DataField="IdUsuario" HeaderText="ID" />
                     <asp:BoundField DataField="Departamento" HeaderText="Departamento" />
@@ -84,6 +110,7 @@
                     <asp:BoundField DataField="Persona" HeaderText="Persona" />
                     <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
                     <asp:BoundField DataField="CambiaClave" HeaderText="Cambia Clave" />
+                    
                 </Columns>
                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />

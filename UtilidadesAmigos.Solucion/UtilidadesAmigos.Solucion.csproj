@@ -115,6 +115,7 @@
     <Content Include="Imagenes\login.jpg" />
     <Content Include="Imagenes\Logo.ico" />
     <Content Include="Imagenes\tDYC1tp.jpg" />
+    <Content Include="JS\Utililades.js" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

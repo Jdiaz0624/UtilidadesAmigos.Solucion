@@ -35,7 +35,7 @@
     <div class="form-row">
         <div class="form-group col-md-3">
             <asp:Label ID="lbFechaDesde" runat="server" Text="Fecha Desde"></asp:Label>
-            <asp:TextBox ID="txtFechaDesde" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtFechaDesde" runat="server"  CssClass="form-control"></asp:TextBox>
         </div>
         <div class="form-group col-md-3">
             <asp:Label ID="lbFechaHasta" runat="server" Text="Fecha Hasta"></asp:Label>

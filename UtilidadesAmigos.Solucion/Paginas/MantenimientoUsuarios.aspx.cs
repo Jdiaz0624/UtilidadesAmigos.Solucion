@@ -24,6 +24,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 _Usuario, null, null, null);
             gbListadoUsuarios.DataSource = BuscarUsuario;
             gbListadoUsuarios.DataBind();
+            
         }
         #endregion
         #region MOSTRAR Y OCULTAR CONTROLES
@@ -160,7 +161,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #endregion
 
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -239,7 +239,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 //VERIFICAMOS LOS CAMPOS VACIOS
                 if (string.IsNullOrEmpty(txtUsuarioMantenimiento.Text.Trim()) || string.IsNullOrEmpty(txtPersonaMantenimiento.Text.Trim()) || string.IsNullOrEmpty(txtclave.Text.Trim()) || string.IsNullOrEmpty(txtConfirmarClave.Text.Trim()))
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ValidarCamposAgregar()", true);
+                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "Validar()", true);
                 }
             }
             else if (lbEstatusMantenimiento.Text == "UPDATE")
@@ -285,8 +285,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnVolverAtras_Click(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(GetType(), "mensaje", "fnRandom()", true);
-           // OcultarControles();
+            OcultarControles();
+        }
+
+        protected void gbListadoUsuarios_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            try {
+                e.Row.Cells[1].Visible = false;
+            }
+            catch (Exception) { }
         }
     }
 }
