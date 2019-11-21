@@ -66,7 +66,7 @@ namespace UtilidadesAmigos.Logica.Entidades
 
         public string Uso { get; set; }
 
-        public System.Nullable<int> ValorVehiculo { get; set; }
+        public string ValorVehiculo { get; set; }
 
         public string CantidadPuerta { get; set; }
 

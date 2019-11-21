@@ -1150,11 +1150,11 @@ namespace UtilidadesAmigos.Logica.Logica
 
         #region SACAR LA CARTERA DE LOS SUPERVISORES
         //SACAR EL LISTADO DE LA CARTERA DE LOS SUPERVISORES
-        public List<UtilidadesAmigos.Logica.Entidades.ECarteraSupervisor> SacarCarteraSupervisor(decimal? CodigoSupervisor = null, decimal? CodigoIntermediario = null)
+        public List<UtilidadesAmigos.Logica.Entidades.ECarteraSupervisor> SacarCarteraSupervisor(decimal? CodigoSupervisor = null, decimal? CodigoIntermediario = null,string NombreIntermediario = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_SACAR_CARTERA_SUPERVISORES(CodigoSupervisor, CodigoIntermediario)
+            var Listado = (from n in Objdata.SP_SACAR_CARTERA_SUPERVISORES(CodigoSupervisor, CodigoIntermediario,NombreIntermediario)
                            select new UtilidadesAmigos.Logica.Entidades.ECarteraSupervisor
                            {
                                Supervisor=n.Supervisor,

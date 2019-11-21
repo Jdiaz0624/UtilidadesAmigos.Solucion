@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString10, mappingSource)
 		{
 			OnCreated();
 		}
@@ -353,13 +353,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_SACAR_DATA_CASA_COBERTURASResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_CARTERA_SUPERVISORES")]
-		public ISingleResult<SP_SACAR_CARTERA_SUPERVISORESResult> SP_SACAR_CARTERA_SUPERVISORES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Decimal(20,2)")] System.Nullable<decimal> codigoIntermediario)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoSupervisor, codigoIntermediario);
-			return ((ISingleResult<SP_SACAR_CARTERA_SUPERVISORESResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_RECLAMACIONES")]
 		public ISingleResult<SP_SACAR_RECLAMACIONESResult> SP_SACAR_RECLAMACIONES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Departamento", DbType="Decimal(20,0)")] System.Nullable<decimal> departamento, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Decimal(20,0)")] System.Nullable<decimal> usuario)
 		{
@@ -402,6 +395,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_MANTENIMIENTO_USUARIOSResult>)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_COMISIONES_SUPERVISORES")]
+		public ISingleResult<SP_SACAR_COMISIONES_SUPERVISORESResult> SP_SACAR_COMISIONES_SUPERVISORES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, codigoSupervisor, oficina);
+			return ((ISingleResult<SP_SACAR_COMISIONES_SUPERVISORESResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_CLIENTES_INTERMEDIARIO")]
 		public ISingleResult<SP_BUSCAR_CLIENTES_INTERMEDIARIOResult> SP_BUSCAR_CLIENTES_INTERMEDIARIO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdIntermediario", DbType="Decimal(20,0)")] System.Nullable<decimal> idIntermediario)
 		{
@@ -409,11 +409,11 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_BUSCAR_CLIENTES_INTERMEDIARIOResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_COMISIONES_SUPERVISORES")]
-		public ISingleResult<SP_SACAR_COMISIONES_SUPERVISORESResult> SP_SACAR_COMISIONES_SUPERVISORES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_CARTERA_SUPERVISORES")]
+		public ISingleResult<SP_SACAR_CARTERA_SUPERVISORESResult> SP_SACAR_CARTERA_SUPERVISORES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Decimal(20,2)")] System.Nullable<decimal> codigoIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreIntermediario", DbType="VarChar(150)")] string nombreIntermediario)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, codigoSupervisor, oficina);
-			return ((ISingleResult<SP_SACAR_COMISIONES_SUPERVISORESResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoSupervisor, codigoIntermediario, nombreIntermediario);
+			return ((ISingleResult<SP_SACAR_CARTERA_SUPERVISORESResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -9585,140 +9585,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_SACAR_CARTERA_SUPERVISORESResult
-	{
-		
-		private string _Supervisor;
-		
-		private string _Intermediario;
-		
-		private int _CodIntermediario;
-		
-		private string _Telefono;
-		
-		private string _Direccion;
-		
-		private string _Estatus;
-		
-		private string _OficinaSupervisor;
-		
-		public SP_SACAR_CARTERA_SUPERVISORESResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Supervisor", DbType="VarChar(233) NOT NULL", CanBeNull=false)]
-		public string Supervisor
-		{
-			get
-			{
-				return this._Supervisor;
-			}
-			set
-			{
-				if ((this._Supervisor != value))
-				{
-					this._Supervisor = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Intermediario", DbType="VarChar(233) NOT NULL", CanBeNull=false)]
-		public string Intermediario
-		{
-			get
-			{
-				return this._Intermediario;
-			}
-			set
-			{
-				if ((this._Intermediario != value))
-				{
-					this._Intermediario = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodIntermediario", DbType="Int NOT NULL")]
-		public int CodIntermediario
-		{
-			get
-			{
-				return this._CodIntermediario;
-			}
-			set
-			{
-				if ((this._CodIntermediario != value))
-				{
-					this._CodIntermediario = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(30)")]
-		public string Telefono
-		{
-			get
-			{
-				return this._Telefono;
-			}
-			set
-			{
-				if ((this._Telefono != value))
-				{
-					this._Telefono = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="VarChar(255)")]
-		public string Direccion
-		{
-			get
-			{
-				return this._Direccion;
-			}
-			set
-			{
-				if ((this._Direccion != value))
-				{
-					this._Direccion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
-		public string Estatus
-		{
-			get
-			{
-				return this._Estatus;
-			}
-			set
-			{
-				if ((this._Estatus != value))
-				{
-					this._Estatus = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OficinaSupervisor", DbType="VarChar(21) NOT NULL", CanBeNull=false)]
-		public string OficinaSupervisor
-		{
-			get
-			{
-				return this._OficinaSupervisor;
-			}
-			set
-			{
-				if ((this._OficinaSupervisor != value))
-				{
-					this._OficinaSupervisor = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_SACAR_RECLAMACIONESResult
 	{
 		
@@ -11045,6 +10911,212 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
+	public partial class SP_SACAR_COMISIONES_SUPERVISORESResult
+	{
+		
+		private string _Supervisor;
+		
+		private string _Intermediario;
+		
+		private decimal _Numero;
+		
+		private System.Nullable<decimal> _Valor;
+		
+		private string _Oficina;
+		
+		private string _Fecha;
+		
+		private string _Concepto;
+		
+		private System.Nullable<decimal> @__Comision;
+		
+		private System.Nullable<decimal> _ComisionPagar;
+		
+		private string _ValidadoDesde;
+		
+		private string _ValidadoHasta;
+		
+		public SP_SACAR_COMISIONES_SUPERVISORESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Supervisor", DbType="VarChar(233) NOT NULL", CanBeNull=false)]
+		public string Supervisor
+		{
+			get
+			{
+				return this._Supervisor;
+			}
+			set
+			{
+				if ((this._Supervisor != value))
+				{
+					this._Supervisor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Intermediario", DbType="VarChar(233) NOT NULL", CanBeNull=false)]
+		public string Intermediario
+		{
+			get
+			{
+				return this._Intermediario;
+			}
+			set
+			{
+				if ((this._Intermediario != value))
+				{
+					this._Intermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Numero", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Numero
+		{
+			get
+			{
+				return this._Numero;
+			}
+			set
+			{
+				if ((this._Numero != value))
+				{
+					this._Numero = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Valor", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Valor
+		{
+			get
+			{
+				return this._Valor;
+			}
+			set
+			{
+				if ((this._Valor != value))
+				{
+					this._Valor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="VarChar(21) NOT NULL", CanBeNull=false)]
+		public string Oficina
+		{
+			get
+			{
+				return this._Oficina;
+			}
+			set
+			{
+				if ((this._Oficina != value))
+				{
+					this._Oficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="NVarChar(30)")]
+		public string Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this._Fecha = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Concepto", DbType="VarChar(200)")]
+		public string Concepto
+		{
+			get
+			{
+				return this._Concepto;
+			}
+			set
+			{
+				if ((this._Concepto != value))
+				{
+					this._Concepto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[%Comision]", Storage="__Comision", DbType="Decimal(2,1)")]
+		public System.Nullable<decimal> _Comision
+		{
+			get
+			{
+				return this.@__Comision;
+			}
+			set
+			{
+				if ((this.@__Comision != value))
+				{
+					this.@__Comision = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComisionPagar", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ComisionPagar
+		{
+			get
+			{
+				return this._ComisionPagar;
+			}
+			set
+			{
+				if ((this._ComisionPagar != value))
+				{
+					this._ComisionPagar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidadoDesde", DbType="NVarChar(30)")]
+		public string ValidadoDesde
+		{
+			get
+			{
+				return this._ValidadoDesde;
+			}
+			set
+			{
+				if ((this._ValidadoDesde != value))
+				{
+					this._ValidadoDesde = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidadoHasta", DbType="NVarChar(30)")]
+		public string ValidadoHasta
+		{
+			get
+			{
+				return this._ValidadoHasta;
+			}
+			set
+			{
+				if ((this._ValidadoHasta != value))
+				{
+					this._ValidadoHasta = value;
+				}
+			}
+		}
+	}
+	
 	public partial class SP_BUSCAR_CLIENTES_INTERMEDIARIOResult
 	{
 		
@@ -11068,7 +11140,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private string _FinVigencia;
 		
-		private System.Nullable<decimal> _Neto;
+		private int _Neto;
 		
 		private string _Supervisor;
 		
@@ -11106,7 +11178,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private string _Uso;
 		
-		private System.Nullable<int> _ValorVehiculo;
+		private string _ValorVehiculo;
 		
 		private string _CantidadPuerta;
 		
@@ -11298,8 +11370,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Neto", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> Neto
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Neto", DbType="Int NOT NULL")]
+		public int Neto
 		{
 			get
 			{
@@ -11602,8 +11674,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorVehiculo", DbType="Int")]
-		public System.Nullable<int> ValorVehiculo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorVehiculo", DbType="VarChar(30)")]
+		public string ValorVehiculo
 		{
 			get
 			{
@@ -11827,32 +11899,24 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_SACAR_COMISIONES_SUPERVISORESResult
+	public partial class SP_SACAR_CARTERA_SUPERVISORESResult
 	{
 		
 		private string _Supervisor;
 		
 		private string _Intermediario;
 		
-		private decimal _Numero;
+		private int _CodIntermediario;
 		
-		private System.Nullable<decimal> _Valor;
+		private string _Telefono;
 		
-		private string _Oficina;
+		private string _Direccion;
 		
-		private string _Fecha;
+		private string _Estatus;
 		
-		private string _Concepto;
+		private string _OficinaSupervisor;
 		
-		private System.Nullable<decimal> @__Comision;
-		
-		private System.Nullable<decimal> _ComisionPagar;
-		
-		private string _ValidadoDesde;
-		
-		private string _ValidadoHasta;
-		
-		public SP_SACAR_COMISIONES_SUPERVISORESResult()
+		public SP_SACAR_CARTERA_SUPERVISORESResult()
 		{
 		}
 		
@@ -11888,146 +11952,82 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Numero", DbType="Decimal(18,0) NOT NULL")]
-		public decimal Numero
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodIntermediario", DbType="Int NOT NULL")]
+		public int CodIntermediario
 		{
 			get
 			{
-				return this._Numero;
+				return this._CodIntermediario;
 			}
 			set
 			{
-				if ((this._Numero != value))
+				if ((this._CodIntermediario != value))
 				{
-					this._Numero = value;
+					this._CodIntermediario = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Valor", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> Valor
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(30)")]
+		public string Telefono
 		{
 			get
 			{
-				return this._Valor;
+				return this._Telefono;
 			}
 			set
 			{
-				if ((this._Valor != value))
+				if ((this._Telefono != value))
 				{
-					this._Valor = value;
+					this._Telefono = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="VarChar(21) NOT NULL", CanBeNull=false)]
-		public string Oficina
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Direccion", DbType="VarChar(255)")]
+		public string Direccion
 		{
 			get
 			{
-				return this._Oficina;
+				return this._Direccion;
 			}
 			set
 			{
-				if ((this._Oficina != value))
+				if ((this._Direccion != value))
 				{
-					this._Oficina = value;
+					this._Direccion = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="NVarChar(30)")]
-		public string Fecha
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		public string Estatus
 		{
 			get
 			{
-				return this._Fecha;
+				return this._Estatus;
 			}
 			set
 			{
-				if ((this._Fecha != value))
+				if ((this._Estatus != value))
 				{
-					this._Fecha = value;
+					this._Estatus = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Concepto", DbType="VarChar(200)")]
-		public string Concepto
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OficinaSupervisor", DbType="VarChar(21) NOT NULL", CanBeNull=false)]
+		public string OficinaSupervisor
 		{
 			get
 			{
-				return this._Concepto;
+				return this._OficinaSupervisor;
 			}
 			set
 			{
-				if ((this._Concepto != value))
+				if ((this._OficinaSupervisor != value))
 				{
-					this._Concepto = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[%Comision]", Storage="__Comision", DbType="Decimal(2,1)")]
-		public System.Nullable<decimal> _Comision
-		{
-			get
-			{
-				return this.@__Comision;
-			}
-			set
-			{
-				if ((this.@__Comision != value))
-				{
-					this.@__Comision = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComisionPagar", DbType="Decimal(20,2)")]
-		public System.Nullable<decimal> ComisionPagar
-		{
-			get
-			{
-				return this._ComisionPagar;
-			}
-			set
-			{
-				if ((this._ComisionPagar != value))
-				{
-					this._ComisionPagar = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidadoDesde", DbType="NVarChar(30)")]
-		public string ValidadoDesde
-		{
-			get
-			{
-				return this._ValidadoDesde;
-			}
-			set
-			{
-				if ((this._ValidadoDesde != value))
-				{
-					this._ValidadoDesde = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidadoHasta", DbType="NVarChar(30)")]
-		public string ValidadoHasta
-		{
-			get
-			{
-				return this._ValidadoHasta;
-			}
-			set
-			{
-				if ((this._ValidadoHasta != value))
-				{
-					this._ValidadoHasta = value;
+					this._OficinaSupervisor = value;
 				}
 			}
 		}

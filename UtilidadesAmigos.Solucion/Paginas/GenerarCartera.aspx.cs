@@ -98,6 +98,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 cbAgregarOficina.Checked = false;
                 gbListadoCarteraSupervisor.Visible = false;
                 gbListadoComisiones.Visible = true;
+                lbComisionPagar.Visible = true;
+                lbMontoComisionPagar.Visible = true;
+                lbCodigoIntermediario.Visible = false;
+                txtCodigoIntermediario.Visible = false;
+                lbNombreIntermediario.Visible = false;
+                txtNombreIntermediario.Visible = false;
+                lbMontoComisionPagar.Text = "000000";
             }
             else
             {
@@ -111,7 +118,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 ddlSeleccionaroficina.Visible = false;
                 gbListadoCarteraSupervisor.Visible = true;
                 gbListadoComisiones.Visible = false;
-                
+                lbComisionPagar.Visible = false;
+                lbMontoComisionPagar.Visible = false;
+                lbCodigoIntermediario.Visible = true;
+                txtCodigoIntermediario.Visible = true;
+                lbNombreIntermediario.Visible = true;
+                txtNombreIntermediario.Visible = true;
             }
         }
 
@@ -349,6 +361,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
                 catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
             }
+        }
+
+        protected void gbListadoCarteraSupervisor_RowDataBound1(object sender, GridViewRowEventArgs e)
+        {
+            try { e.Row.Cells[0].Visible = false; }
+            catch (Exception) { }
         }
     }
 }

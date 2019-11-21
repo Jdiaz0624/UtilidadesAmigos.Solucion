@@ -31,6 +31,24 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Label lbNombreSupervisor;
         
         /// <summary>
+        /// lbComisionPagar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbComisionPagar;
+        
+        /// <summary>
+        /// lbMontoComisionPagar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbMontoComisionPagar;
+        
+        /// <summary>
         /// lbCodigoSupervisor control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,42 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCodigoSupervisor;
+        
+        /// <summary>
+        /// lbCodigoIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoIntermediario;
+        
+        /// <summary>
+        /// txtCodigoIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoIntermediario;
+        
+        /// <summary>
+        /// lbNombreIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNombreIntermediario;
+        
+        /// <summary>
+        /// txtNombreIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombreIntermediario;
         
         /// <summary>
         /// cbComicion control.

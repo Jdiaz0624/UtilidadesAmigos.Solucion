@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=Jdiaz0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString10" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_LISTA_CARGAR_RAMOS" Method="SP_LISTA_CARGAR_RAMOS">
     <Parameter Name="IdRamo" Parameter="idRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
@@ -806,19 +806,6 @@
       <Column Name="Cobertura" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_SACAR_CARTERA_SUPERVISORES" Method="SP_SACAR_CARTERA_SUPERVISORES">
-    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Decimal" DbType="Decimal(20,2)" />
-    <ElementType Name="SP_SACAR_CARTERA_SUPERVISORESResult">
-      <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
-      <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
-      <Column Name="CodIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Telefono" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
-      <Column Name="OficinaSupervisor" Type="System.String" DbType="VarChar(21) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_SACAR_RECLAMACIONES" Method="SP_SACAR_RECLAMACIONES">
     <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
     <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
@@ -951,6 +938,25 @@
       <Column Name="RazonBloqueo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_SACAR_COMISIONES_SUPERVISORES" Method="SP_SACAR_COMISIONES_SUPERVISORES">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SACAR_COMISIONES_SUPERVISORESResult">
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="Numero" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(21) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="[%Comision]" Member="_Comision" Type="System.Decimal" DbType="Decimal(2,1)" CanBeNull="true" />
+      <Column Name="ComisionPagar" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="Utililades.SP_BUSCAR_CLIENTES_INTERMEDIARIO" Method="SP_BUSCAR_CLIENTES_INTERMEDIARIO">
     <Parameter Name="IdIntermediario" Parameter="idIntermediario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <ElementType Name="SP_BUSCAR_CLIENTES_INTERMEDIARIOResult">
@@ -964,7 +970,7 @@
       <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="Neto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Neto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
       <Column Name="Vendedor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
       <Column Name="TelefonosVendedor" Type="System.String" DbType="VarChar(96)" CanBeNull="true" />
@@ -983,7 +989,7 @@
       <Column Name="Chasis" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="Placa" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="Uso" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ValorVehiculo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValorVehiculo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Column Name="CantidadPuerta" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="Fianza" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="Onservacion" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
@@ -999,23 +1005,18 @@
       <Column Name="[121 O MAS]" Member="_121_O_MAS" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_SACAR_COMISIONES_SUPERVISORES" Method="SP_SACAR_COMISIONES_SUPERVISORES">
-    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+  <Function Name="Utililades.SP_SACAR_CARTERA_SUPERVISORES" Method="SP_SACAR_CARTERA_SUPERVISORES">
     <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_SACAR_COMISIONES_SUPERVISORESResult">
+    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="NombreIntermediario" Parameter="nombreIntermediario" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_SACAR_CARTERA_SUPERVISORESResult">
       <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
       <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
-      <Column Name="Numero" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Oficina" Type="System.String" DbType="VarChar(21) NOT NULL" CanBeNull="false" />
-      <Column Name="Fecha" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="[%Comision]" Member="_Comision" Type="System.Decimal" DbType="Decimal(2,1)" CanBeNull="true" />
-      <Column Name="ComisionPagar" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
-      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="CodIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="OficinaSupervisor" Type="System.String" DbType="VarChar(21) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

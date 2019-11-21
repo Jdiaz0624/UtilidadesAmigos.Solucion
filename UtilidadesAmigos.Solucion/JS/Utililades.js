@@ -1,4 +1,8 @@
-﻿function CamposVacios()
+﻿
+
+
+
+function CamposVacios()
 {
     alert("Has dejado campos vacios que son necesarios para realiza este proceso")
 }

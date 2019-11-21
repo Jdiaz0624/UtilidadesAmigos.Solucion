@@ -34,13 +34,25 @@
         .Custom{
             width: 100px;
         }
+
+        .Comision{
+            font-size:20px;
+            font-weight:bold;
+        }
     </style>
+
+
 
     <!--INICIO DEL ENCABEZADO-->
     <div class="container-fluid">
         <div class="jumbotron" align="center">
             <asp:Label ID="lbEncabezado" runat="server" Text="Cartera de Supervisores"></asp:Label><br />
-            <asp:Label ID="lbNombreSupervisor" runat="server" Visible="false"></asp:Label>
+            <asp:Label ID="lbNombreSupervisor" runat="server" Visible="false"></asp:Label><br />
+            
+        </div>
+        <div align="Center">
+            <asp:Label ID="lbComisionPagar" Text="Comision a Pagar: " CssClass="Comision" runat="server" Visible="false"></asp:Label>
+            <asp:Label ID="lbMontoComisionPagar" Text="000000" CssClass="Comision" runat="server" Visible="false"></asp:Label>
         </div>
     </div>
     <!--FIN DEL ENCABEZADO-->
@@ -57,6 +69,16 @@
            
            </div>
                    </div>
+            <div class="form-row">
+                <div class="form-group-col-md-3">
+                    <asp:Label ID="lbCodigoIntermediario" runat="server" Text="Codigo de Intermediario"></asp:Label>
+                    <asp:TextBox ID="txtCodigoIntermediario" runat="server" PlaceHolder="Codigo de Intermediario" CssClass="form-control" MaxLength="4" TextMode="Number" pattern="[0-9]{2}" ></asp:TextBox>
+                </div>
+                <div class="form-group-col-md-3">
+                    <asp:Label ID="lbNombreIntermediario" runat="server" Text="Nombre de Intermediario"></asp:Label>
+                    <asp:TextBox ID="txtNombreIntermediario" runat="server" PlaceHolder="Nombre de Intermediario" CssClass="form-control" MaxLength="150"></asp:TextBox>
+                </div>
+            </div>
               <div class="form-group form-check">
                         <div class="form-check-inline">
                         <asp:CheckBox ID="cbComicion" runat="server" AutoPostBack="true" OnCheckedChanged="cbComicion_CheckedChanged" Text="Generar Comicion" CssClass="form-check-input" />
@@ -87,7 +109,7 @@
           </div>
 
                <div class="container-fluid">
-                   <asp:Button ID="btnConsultar"  runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultar_Click" />
+                   <asp:Button ID="btnConsultar"  runat="server"  Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultar_Click" />
                    <asp:Button ID="btnExportar"  runat="server" Text="Exportar" ToolTip="Exportar Registros a Exel" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportar_Click" />
                    <asp:Button ID="btnExportarListadoCompleto" runat="server" Text="Exportar Todo" ToolTip="Exportar todo el listado de comisiones" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportarListadoCompleto_Click" />
         </div>
@@ -100,9 +122,10 @@
      <div class="container-fluid">
            
 
+
            <asp:GridView id="gbListadoCarteraSupervisor" runat="server" AllowPaging="True" OnPageIndexChanging="gbListadoCarteraSupervisor_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbListadoCarteraSupervisor_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="#DCDCDC" />
-                <Columns>
+                 <Columns>
                     <asp:BoundField DataField="CodIntermediario" HeaderText="IdIntermediario" />
                     <asp:BoundField DataField="Intermediario" HeaderText="Intermediario" />
                     <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
@@ -110,6 +133,7 @@
                     <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
                     <asp:BoundField DataField="OficinaSupervisor" HeaderText="Oficina" />
                     <asp:CommandField ButtonType="Button" HeaderText="Cliente" SelectText="Ver" ControlStyle-CssClass="btn btn-outline-primary btn-sm Custom" ShowSelectButton="True" />
+                     
                 </Columns>
                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
@@ -120,8 +144,8 @@
                 <SortedAscendingHeaderStyle BackColor="#0000A9" />
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#000065" />
+              
             </asp:GridView>
-
         </div>
      <!--FIN DEL GRID-->
 
