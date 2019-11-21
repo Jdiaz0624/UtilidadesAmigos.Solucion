@@ -2,17 +2,48 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <header class="Encabezado">
-        <div align="center">
-            <h1><asp:Label ID="lbEncabezado" runat="server" CssClass="Label-Encabezado" Text="Validar Coberturas"></asp:Label></h1>
+
+    <style type="text/css">
+         .jumbotron{
+            color:#000000; 
+            background:#7BC5FF;
+            font-size:30px;
+            font-weight:bold;
+            font-family:'Gill Sans';
+            padding:25px;
+        }
+
+
+        .Custom{
+            width: 100px;
+        }
+    </style>
+    <!--INICIO DEL ENCABEZADO-->
+    <div class="container-fluid">
+        <div class="jumbotron" align="Center">
+            <asp:Label ID="lbEncabezado" runat="server" Text="Validar Coberturas"></asp:Label>
         </div>
-      
-        
-    </header>
-      <hr />
+    </div>
+    <!--FIN DEL ENCABEZADO-->
+    <div class="container-fluid">
+        <div class="form-check-inline" align ="center">
+            <div class="form-group form-check">
+                 <asp:RadioButton ID="rbValidacionManual" runat="server" CssClass="form-check-input" Text="Validar Manual" ToolTip="Validar la cobertura Manualmente 1 a 1" GroupName="RadioB" AutoPostBack="true"/>
+                
+            </div>
+            <div class="form-group form-check">
+                <asp:RadioButton ID="rbValidarAutomatico" runat="server" CssClass="form-check-input" Text="Validar Automatico" ToolTip="Validar la cobertura Automaticamentnte" GroupName="RadioB" AutoPostBack="true" />
+            </div>
+        </div>
+        <div class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:CheckBox ID="cbAgregarRangoFecha" runat="server" Text="Agregar Rango de Fecha" ToolTip="Agregar Rango de Fecha a la consulta" AutoPostBack="true" />
+            </div>
+        </div>
+    </div>
     <div align="Center">
-            <asp:RadioButton ID="rbValidacionManual" runat="server" CssClass="Radio" Text="Validar Manual" ToolTip="Validar la cobertura Manualmente 1 a 1" GroupName="RadioB" AutoPostBack="true"/>
-            <asp:RadioButton ID="rbValidarAutomatico" runat="server" CssClass="Radio" Text="Validar Automatico" ToolTip="Validar la cobertura Automaticamentnte" GroupName="RadioB" AutoPostBack="true" />
+           
+            
         </div>
     <div align="Center">
         <h2><asp:Label ID="lbCantidadLetrero" runat="server" Text="Cantidad :" CssClass="Label"></asp:Label> 

@@ -96,9 +96,11 @@
 
  <!--INICIO DEL GRID-->
 
-   <%-- Agregamos el Grid para mostrar la data de las coberturas--%>
+   <%-- Agregamos el Grid para mostrar la data  gbListadoCarteraSupervisor de las coberturas--%>
      <div class="container-fluid">
-            <asp:GridView id="gbListadoCarteraSupervisor" runat="server"  AllowPaging="True" OnPageIndexChanging="gbListadoCarteraSupervisor_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbListadoCarteraSupervisor_SelectedIndexChanged" OnRowDataBound="gbListadoCarteraSupervisor_RowDataBound">
+           
+
+           <asp:GridView id="gbListadoCarteraSupervisor" runat="server" AllowPaging="True" OnPageIndexChanging="gbListadoCarteraSupervisor_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbListadoCarteraSupervisor_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
                     <asp:BoundField DataField="CodIntermediario" HeaderText="IdIntermediario" />
@@ -109,7 +111,7 @@
                     <asp:BoundField DataField="OficinaSupervisor" HeaderText="Oficina" />
                     <asp:CommandField ButtonType="Button" HeaderText="Cliente" SelectText="Ver" ControlStyle-CssClass="btn btn-outline-primary btn-sm Custom" ShowSelectButton="True" />
                 </Columns>
-              <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
                 <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
                 <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
@@ -119,7 +121,6 @@
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#000065" />
             </asp:GridView>
-
 
         </div>
      <!--FIN DEL GRID-->
