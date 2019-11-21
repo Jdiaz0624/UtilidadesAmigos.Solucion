@@ -27,3 +27,8 @@ function IntentosFallidos()
 {
     alert("Este usuario ha sido bloqueado por exeso de intento fallidos al sistema, favor de comunicarse con el departamento de TI para desbloquear esta cuenta.")
 }
+
+function ErrorMostrarConsulta()
+{
+    alert("Error al Mostrar la consulta, favor e verificar que los parametros esten correctos")
+}

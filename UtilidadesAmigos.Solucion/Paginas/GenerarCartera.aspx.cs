@@ -51,13 +51,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 if (cbAgregarOficina.Checked)
                 {
-                    var BuscarComisiones = ObjData.Value.ComisionesSupervisores(
+                    try {
+                        var BuscarComisiones = ObjData.Value.ComisionesSupervisores(
                           Convert.ToDateTime(txtFechaDesde.Text),
                           Convert.ToDateTime(txtFechaHasta.Text),
                           Convert.ToDecimal(txtCodigoSupervisor.Text),
                           Convert.ToInt32(ddlSeleccionaroficina.SelectedValue));
-                    gbListadoComisiones.DataSource = BuscarComisiones;
-                    gbListadoComisiones.DataBind();
+                        gbListadoComisiones.DataSource = BuscarComisiones;
+                        gbListadoComisiones.DataBind();
+                    }
+                    catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
                 }
                 else
                 {
@@ -71,7 +74,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         gbListadoComisiones.DataSource = BuscarComisiones;
                         gbListadoComisiones.DataBind();
                     }
-                    catch (Exception) { }
+                    catch (Exception) {
+                        ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true);
+                    }
                 }
 
             }
@@ -225,23 +230,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                         }).ToList();
                         UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comision Supervisor", Exportar);
                     }
-                    catch (Exception) { }
+                    catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
                 }
             }
             else
             {
-                var Exportar = (from n in ObjData.Value.SacarCarteraSupervisor(
-              Convert.ToDecimal(txtCodigoSupervisor.Text))
-                                select new
-                                {
-                                    Supervisor = n.Supervisor,
-                                    Intermediario = n.Intermediario,
-                                    Telefono = n.Telefono,
-                                    Direccion = n.Direccion,
-                                    Estatus = n.Estatus,
-                                    Oficina = n.OficinaSupervisor
-                                }).ToList();
-                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cartera de Supervisor " + lbNombreSupervisor.Text, Exportar);
+                try {
+
+                    var Exportar = (from n in ObjData.Value.SacarCarteraSupervisor(
+                  Convert.ToDecimal(txtCodigoSupervisor.Text))
+                                    select new
+                                    {
+                                        Supervisor = n.Supervisor,
+                                        Intermediario = n.Intermediario,
+                                        Telefono = n.Telefono,
+                                        Direccion = n.Direccion,
+                                        Estatus = n.Estatus,
+                                        Oficina = n.OficinaSupervisor
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cartera de Supervisor " + lbNombreSupervisor.Text, Exportar);
+                }
+                catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
             }
 
 
@@ -313,7 +322,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                     }).ToList();
                     UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comision Supervisor Completo", Exportar);
                 }
-                catch (Exception) { }
+                catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
             }
             else
             {
@@ -338,7 +347,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                     }).ToList();
                     UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comision Supervisor Completo", Exportar);
                 }
-                catch (Exception) { }
+                catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
             }
         }
     }
