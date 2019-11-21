@@ -59,6 +59,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                           Convert.ToDateTime(txtFechaHasta.Text),
                           Convert.ToDecimal(txtCodigoSupervisor.Text),
                           Convert.ToInt32(ddlSeleccionaroficina.SelectedValue));
+                        foreach (var n in BuscarComisiones)
+                        {
+                            lbNombreSupervisor.Visible = true;
+                            lbNombreSupervisor.Text = n.Supervisor;
+                        }
                         gbListadoComisiones.DataSource = BuscarComisiones;
                         gbListadoComisiones.DataBind();
 
@@ -70,6 +75,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                           Convert.ToInt32(ddlSeleccionaroficina.SelectedValue));
                         foreach (var n in SacarMonto)
                         {
+                            lbNombreSupervisor.Visible = true;
                             lbMontoComisionPagar.Text = n.ComisionPagar.ToString();
                         }
                     }
@@ -84,6 +90,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             Convert.ToDateTime(txtFechaHasta.Text),
                             Convert.ToDecimal(txtCodigoSupervisor.Text),
                             null);
+                        foreach (var n in BuscarComisiones)
+                        {
+                            lbNombreSupervisor.Visible = true;
+                            lbNombreSupervisor.Text = n.Supervisor;
+                        }
                         gbListadoComisiones.DataSource = BuscarComisiones;
                         gbListadoComisiones.DataBind();
 
@@ -129,6 +140,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbNombreIntermediario.Visible = false;
                 txtNombreIntermediario.Visible = false;
                 lbMontoComisionPagar.Text = "000000";
+                lbEncabezado.Text = "Generar Comisiones";
             }
             else
             {
@@ -148,6 +160,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 //txtCodigoIntermediario.Visible = true;
                 lbNombreIntermediario.Visible = true;
                 txtNombreIntermediario.Visible = true;
+                lbEncabezado.Text = "Cartera de Supervisores";
             }
         }
 
