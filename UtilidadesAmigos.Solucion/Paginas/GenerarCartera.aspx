@@ -63,21 +63,22 @@
      
         <div class="container-fluid">
         <div class="form-row">
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                 <asp:Label ID="lbCodigoSupervisor" runat="server" Text="Codigo de Supervisor"></asp:Label>
                 <asp:TextBox ID="txtCodigoSupervisor" runat="server" PlaceHolder="Ingrese Codigo"  CssClass="form-control" MaxLength="6" TextMode="Number"></asp:TextBox>
-           
+              
            </div>
-                   </div>
-            <div class="form-row">
-                <div class="form-group-col-md-3">
-                    <asp:Label ID="lbCodigoIntermediario" runat="server" Text="Codigo de Intermediario"></asp:Label>
-                    <asp:TextBox ID="txtCodigoIntermediario" runat="server" PlaceHolder="Codigo de Intermediario" CssClass="form-control" MaxLength="4" TextMode="Number" pattern="[0-9]{2}" ></asp:TextBox>
-                </div>
-                <div class="form-group-col-md-3">
+            <div class="form-group col-md-3">
                     <asp:Label ID="lbNombreIntermediario" runat="server" Text="Nombre de Intermediario"></asp:Label>
                     <asp:TextBox ID="txtNombreIntermediario" runat="server" PlaceHolder="Nombre de Intermediario" CssClass="form-control" MaxLength="150"></asp:TextBox>
                 </div>
+                   </div>
+            <div class="form-row">
+              <%--  <div class="form-group-col-md-3">
+                    <asp:Label ID="lbCodigoIntermediario" runat="server" Text="Codigo de Intermediario"></asp:Label>
+                    <asp:TextBox ID="txtCodigoIntermediario" runat="server" PlaceHolder="Codigo de Intermediario" CssClass="form-control" MaxLength="4" TextMode="Number" pattern="[0-9]{2}" ></asp:TextBox>
+                </div>--%>
+             
             </div>
               <div class="form-group form-check">
                         <div class="form-check-inline">

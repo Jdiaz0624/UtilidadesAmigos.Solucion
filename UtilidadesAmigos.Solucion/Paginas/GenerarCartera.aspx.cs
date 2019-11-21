@@ -21,9 +21,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
                 else
                 {
+                   // var _CodIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
                     var Listado = ObjData.Value.SacarCarteraSupervisor(
                    Convert.ToDecimal(txtCodigoSupervisor.Text),
-                   null);
+                   null,
+                   txtNombreIntermediario.Text);
                     gbListadoCarteraSupervisor.DataSource = Listado;
                     gbListadoCarteraSupervisor.DataBind();
                     lbNombreSupervisor.Visible = true;
@@ -59,6 +61,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
                           Convert.ToInt32(ddlSeleccionaroficina.SelectedValue));
                         gbListadoComisiones.DataSource = BuscarComisiones;
                         gbListadoComisiones.DataBind();
+
+                        //SACAMOS EL MONTO
+                        var SacarMonto = ObjData.Value.SacarmontoComisiones(
+                          Convert.ToDateTime(txtFechaDesde.Text),
+                          Convert.ToDateTime(txtFechaHasta.Text),
+                          Convert.ToDecimal(txtCodigoSupervisor.Text),
+                          Convert.ToInt32(ddlSeleccionaroficina.SelectedValue));
+                        foreach (var n in SacarMonto)
+                        {
+                            lbMontoComisionPagar.Text = n.ComisionPagar.ToString();
+                        }
                     }
                     catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
                 }
@@ -73,6 +86,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             null);
                         gbListadoComisiones.DataSource = BuscarComisiones;
                         gbListadoComisiones.DataBind();
+
+                        //SACAR MONTO
+                        var SacarMonto = ObjData.Value.SacarmontoComisiones(
+                          Convert.ToDateTime(txtFechaDesde.Text),
+                          Convert.ToDateTime(txtFechaHasta.Text),
+                          Convert.ToDecimal(txtCodigoSupervisor.Text),
+                          null);
+                        foreach (var n in SacarMonto)
+                        {
+                            lbMontoComisionPagar.Text = n.ComisionPagar.ToString();
+                        }
                     }
                     catch (Exception) {
                         ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true);
@@ -100,8 +124,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 gbListadoComisiones.Visible = true;
                 lbComisionPagar.Visible = true;
                 lbMontoComisionPagar.Visible = true;
-                lbCodigoIntermediario.Visible = false;
-                txtCodigoIntermediario.Visible = false;
+                //lbCodigoIntermediario.Visible = false;
+                //txtCodigoIntermediario.Visible = false;
                 lbNombreIntermediario.Visible = false;
                 txtNombreIntermediario.Visible = false;
                 lbMontoComisionPagar.Text = "000000";
@@ -120,8 +144,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 gbListadoComisiones.Visible = false;
                 lbComisionPagar.Visible = false;
                 lbMontoComisionPagar.Visible = false;
-                lbCodigoIntermediario.Visible = true;
-                txtCodigoIntermediario.Visible = true;
+                //lbCodigoIntermediario.Visible = true;
+                //txtCodigoIntermediario.Visible = true;
                 lbNombreIntermediario.Visible = true;
                 txtNombreIntermediario.Visible = true;
             }

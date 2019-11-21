@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString10, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -414,6 +414,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoSupervisor, codigoIntermediario, nombreIntermediario);
 			return ((ISingleResult<SP_SACAR_CARTERA_SUPERVISORESResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_MONTO_COMISIONES_SUPERVISORES")]
+		public ISingleResult<SP_SACAR_MONTO_COMISIONES_SUPERVISORESResult> SP_SACAR_MONTO_COMISIONES_SUPERVISORES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, codigoSupervisor, oficina);
+			return ((ISingleResult<SP_SACAR_MONTO_COMISIONES_SUPERVISORESResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -12028,6 +12035,32 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._OficinaSupervisor != value))
 				{
 					this._OficinaSupervisor = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_MONTO_COMISIONES_SUPERVISORESResult
+	{
+		
+		private System.Nullable<decimal> _ComisionPagar;
+		
+		public SP_SACAR_MONTO_COMISIONES_SUPERVISORESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComisionPagar", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> ComisionPagar
+		{
+			get
+			{
+				return this._ComisionPagar;
+			}
+			set
+			{
+				if ((this._ComisionPagar != value))
+				{
+					this._ComisionPagar = value;
 				}
 			}
 		}

@@ -1245,6 +1245,19 @@ namespace UtilidadesAmigos.Logica.Logica
                            }).ToList();
             return Listado;
         }
+
+        //SACAR LOS MONTOS DE LAS COMISIONES DE LOS SUPERVISORES
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarMontoComisionesSupervisores> SacarmontoComisiones(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? CodigoSupervisor = null, int? Oficina = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Monto = (from n in Objdata.SP_SACAR_MONTO_COMISIONES_SUPERVISORES(FechaDesde, FechaHasta, CodigoSupervisor, Oficina)
+                         select new UtilidadesAmigos.Logica.Entidades.ESacarMontoComisionesSupervisores
+                         {
+                             ComisionPagar = n.ComisionPagar
+                         }).ToList();
+            return Monto;
+        }
         #endregion
 
         #region SACAR EL LISTADO DE LAS RECLAMACIONES

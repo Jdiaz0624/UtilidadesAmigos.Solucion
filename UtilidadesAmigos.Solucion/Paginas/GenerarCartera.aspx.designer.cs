@@ -67,24 +67,6 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtCodigoSupervisor;
         
         /// <summary>
-        /// lbCodigoIntermediario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCodigoIntermediario;
-        
-        /// <summary>
-        /// txtCodigoIntermediario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigoIntermediario;
-        
-        /// <summary>
         /// lbNombreIntermediario control.
         /// </summary>
         /// <remarks>
