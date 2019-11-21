@@ -80,6 +80,7 @@
     <Compile Include="Entidades\ECargarTablaReclamacionPowerBi.cs" />
     <Compile Include="Entidades\ECarteraSupervisor.cs" />
     <Compile Include="Entidades\EClaveSeguridad.cs" />
+    <Compile Include="Entidades\EComisionesSupervisores.cs" />
     <Compile Include="Entidades\EDependientesDetalle.cs" />
     <Compile Include="Entidades\EDetalleCobrado.cs" />
     <Compile Include="Entidades\EDetalleInformacionEncabezado.cs" />

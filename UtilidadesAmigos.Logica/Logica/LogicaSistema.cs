@@ -1222,6 +1222,29 @@ namespace UtilidadesAmigos.Logica.Logica
                            }).ToList();
             return Listado;
         }
+
+        //SACAR LAS COMISIONES DE LOS SUPERVISORES
+        public List<UtilidadesAmigos.Logica.Entidades.EComisionesSupervisores> ComisionesSupervisores(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? CodigoSupervisor = null, int? Oficina = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_SACAR_COMISIONES_SUPERVISORES(FechaDesde, FechaHasta, CodigoSupervisor, Oficina)
+                           select new UtilidadesAmigos.Logica.Entidades.EComisionesSupervisores
+                           {
+                               Supervisor=n.Supervisor,
+                               Intermediario=n.Intermediario,
+                               Numero=n.Numero,
+                               Valor=n.Valor,
+                               Oficina=n.Oficina,
+                               Fecha=n.Fecha,
+                               Concepto=n.Concepto,
+                               __Comision=n._Comision,
+                               ComisionPagar=n.ComisionPagar,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
         #region SACAR EL LISTADO DE LAS RECLAMACIONES

@@ -58,6 +58,15 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.CheckBox cbComicion;
         
         /// <summary>
+        /// cbAgregarOficina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAgregarOficina;
+        
+        /// <summary>
         /// lbFechaDesde control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,24 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtFechaHasta;
         
         /// <summary>
+        /// lbSeleccionaroficina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionaroficina;
+        
+        /// <summary>
+        /// ddlSeleccionaroficina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionaroficina;
+        
+        /// <summary>
         /// btnConsultar control.
         /// </summary>
         /// <remarks>
@@ -112,6 +139,15 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Button btnExportar;
         
         /// <summary>
+        /// btnExportarListadoCompleto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExportarListadoCompleto;
+        
+        /// <summary>
         /// gbListadoCarteraSupervisor control.
         /// </summary>
         /// <remarks>
@@ -119,5 +155,14 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gbListadoCarteraSupervisor;
+        
+        /// <summary>
+        /// gbListadoComisiones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gbListadoComisiones;
     }
 }
