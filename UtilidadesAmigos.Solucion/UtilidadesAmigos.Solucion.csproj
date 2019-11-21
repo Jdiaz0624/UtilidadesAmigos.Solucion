@@ -144,13 +144,11 @@
     <Content Include="scripts\bootstrap.js.map" />
     <Content Include="scripts\bootstrap.bundle.min.js.map" />
     <Content Include="scripts\bootstrap.bundle.js.map" />
-    <None Include="scripts\jquery-3.0.0-vsdoc.js" />
-    <Content Include="scripts\jquery-3.0.0.js" />
-    <Content Include="scripts\jquery-3.0.0.min.js" />
-    <Content Include="scripts\jquery-3.0.0.slim.js" />
-    <Content Include="scripts\jquery-3.0.0.slim.min.js" />
-    <Content Include="scripts\jquery-3.0.0.slim.min.map" />
-    <Content Include="scripts\jquery-3.0.0.min.map" />
+    <None Include="scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="scripts\jquery-3.4.1.js" />
+    <Content Include="scripts\jquery-3.4.1.min.js" />
+    <Content Include="scripts\jquery-3.4.1.slim.js" />
+    <Content Include="scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="scripts\MensajesPagina.js" />
     <Content Include="scripts\popper-utils.js" />
     <Content Include="scripts\popper-utils.min.js" />
@@ -169,6 +167,8 @@
     <Content Include="scripts\popper.js.map" />
     <Content Include="scripts\popper-utils.min.js.map" />
     <Content Include="scripts\popper-utils.js.map" />
+    <Content Include="scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="scripts\jquery-3.4.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
