@@ -7,7 +7,7 @@
             color:#000000; 
             background:#7BC5FF;
             font-size:30px;
-            font-weight:bold;
+            font-weight:bold; 
             font-family:'Gill Sans';
             padding:25px;
         }
