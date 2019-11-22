@@ -91,15 +91,15 @@
                                               Seguridad
                                             </a>
                                             <div class="dropdown-menu">
-                                              <asp:LinkButton ID="linkUsuarios" runat="server" Text="Usuarios" OnClick="linkUsuarios_Click" class="dropdown-item"></asp:LinkButton>
-                                              <asp:LinkButton ID="linkPerfilesUsuarios" runat="server" Text="Perfiles de Usuarios" OnClick="linkPerfilesUsuarios_Click" class="dropdown-item"></asp:LinkButton>
-                                              <asp:LinkButton ID="linkClaveSeguridad" runat="server" Text="Clave de Seguridad" OnClick="linkClaveSeguridad_Click" class="dropdown-item"></asp:LinkButton>
-                                              <asp:LinkButton ID="linkPermisoUsuarios" runat="server" Text="Permisos Usuarios" OnClick="linkPermisoUsuarios_Click" class="dropdown-item"></asp:LinkButton>
-                                              <asp:LinkButton ID="linkMovimientoUsuarios" runat="server" Text="Movimiento Usuario" OnClick="linkMovimientoUsuarios_Click" class="dropdown-item"></asp:LinkButton>
-                                              <asp:LinkButton ID="linkTarjetasAccesos" runat="server" Text="Tarjetas de Accesos" OnClick="linkTarjetasAccesos_Click" class="dropdown-item"></asp:LinkButton>
-                                                <asp:LinkButton ID="linkOpcionMenu" runat="server" Text="Opcion Menu" OnClick="linkOpcionMenu_Click" class="dropdown-item"></asp:LinkButton>
-                                                <asp:LinkButton ID="linkOpcion" runat="server" Text="Opciones" OnClick="linkOpcion_Click" class="dropdown-item"></asp:LinkButton>
-                                                v<asp:LinkButton ID="linkBotones" runat="server" Text="Botones" OnClick="linkBotones_Click" class="dropdown-item"></asp:LinkButton>
+                                              <asp:LinkButton ID="linkUsuarios" runat="server" ToolTip="Mantenimiento de Usuarios" Text="Usuarios" OnClick="linkUsuarios_Click" class="dropdown-item"></asp:LinkButton>
+                                              <asp:LinkButton ID="linkPerfilesUsuarios" runat="server" Text="Perfiles de Usuarios" ToolTip="Mantenimiento de Perfiles de Usuarios" OnClick="linkPerfilesUsuarios_Click" class="dropdown-item"></asp:LinkButton>
+                                              <asp:LinkButton ID="linkClaveSeguridad" runat="server" Text="Clave de Seguridad" OnClick="linkClaveSeguridad_Click" ToolTip="Mantenimiento de clave de seguridad" class="dropdown-item"></asp:LinkButton>
+                                              <asp:LinkButton ID="linkMovimientoUsuarios" runat="server" Text="Movimiento Usuario" OnClick="linkMovimientoUsuarios_Click" ToolTip="Movimiento de Usuarios" class="dropdown-item"></asp:LinkButton>
+                                              <asp:LinkButton ID="linkTarjetasAccesos" runat="server" Text="Tarjetas de Accesos" OnClick="linkTarjetasAccesos_Click" ToolTip="Mantenimiento de tarjetas de Acceso" class="dropdown-item"></asp:LinkButton>
+                                              <asp:LinkButton ID="linkOpcionMenu" runat="server" Text="Opcion Menu" OnClick="linkOpcionMenu_Click" ToolTip="Mantenimiento de Opciones de Menu" class="dropdown-item"></asp:LinkButton>
+                                              <asp:LinkButton ID="linkOpcion" runat="server" Text="Opciones" OnClick="linkOpcion_Click" ToolTip="Mantenimiento de Opciones" class="dropdown-item"></asp:LinkButton>
+                                              <asp:LinkButton ID="linkBotones" runat="server" Text="Botones" OnClick="linkBotones_Click" ToolTip="Mantenimiento de Botones" class="dropdown-item"></asp:LinkButton>
+                                                <asp:LinkButton ID="linkPermisoUsuarios" runat="server" Text="Permisos Usuarios" OnClick="linkPermisoUsuarios_Click" ToolTip="Mantenimiento de Permiso de usuarios" class="dropdown-item"></asp:LinkButton>
                                             </div>
                                           </li>
                             <li class="nav-item">

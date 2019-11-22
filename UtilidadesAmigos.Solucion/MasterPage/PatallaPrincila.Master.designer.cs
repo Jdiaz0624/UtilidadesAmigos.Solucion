@@ -247,15 +247,6 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         protected global::System.Web.UI.WebControls.LinkButton linkClaveSeguridad;
         
         /// <summary>
-        /// Control linkPermisoUsuarios.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkPermisoUsuarios;
-        
-        /// <summary>
         /// Control linkMovimientoUsuarios.
         /// </summary>
         /// <remarks>
@@ -299,6 +290,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkBotones;
+        
+        /// <summary>
+        /// Control linkPermisoUsuarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkPermisoUsuarios;
         
         /// <summary>
         /// Control linkCerrarCesion.
