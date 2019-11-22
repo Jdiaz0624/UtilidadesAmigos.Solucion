@@ -108,6 +108,7 @@
                     <asp:BoundField DataField="Perfil" HeaderText="Perfil" />
                     <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
                     <asp:BoundField DataField="Persona" HeaderText="Persona" />
+                    <asp:BoundField DataField="TipoPersona" HeaderText="Tipo Persona" />
                     <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
                     <asp:BoundField DataField="CambiaClave" HeaderText="Cambia Clave" />
                     
@@ -165,6 +166,10 @@
             <div class="form-group col-md-6">
                 <asp:Label ID="lbClaveSeguridad" runat="server" Visible="false" Text="Ingrese Clave de Seguridad"></asp:Label>
                 <asp:TextBox ID="txtClaveSeguridadMantenimeinto" runat="server" Visible="false" CssClass="form-control" MaxLength="20" PlaceHolder="Clave de Seguridad" TextMode="Password"></asp:TextBox>
+            </div>
+            <div class="form-group col-md-6">
+                <asp:Label ID="lbTipoPersona" runat="server" Visible="false" Text="Seleccionar Tipo de Persona"></asp:Label>
+                <asp:DropDownList ID="ddlTipoPersona" runat="server" Visible="false" ToolTip="SeleccionarTipopersona" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="form-group col-md-12">
                 <asp:Label ID="lbRazonBloqueo" runat="server" Text="Razón de Bloqueo" Visible="false"></asp:Label>

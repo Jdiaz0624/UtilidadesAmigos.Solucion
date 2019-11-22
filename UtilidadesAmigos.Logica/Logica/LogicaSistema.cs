@@ -55,6 +55,8 @@ namespace UtilidadesAmigos.Logica.Logica
                               CambiaClave=n.CambiaClave,
                               CambiaClave0=n.CambiaClave0,
                               RazonBloqueo=n.RazonBloqueo,
+                              IdTipoPersona=n.IdTipoPersona,
+                              TipoPersona=n.TipoPersona
 
                           }).ToList();
             return Buscar;
@@ -80,6 +82,7 @@ namespace UtilidadesAmigos.Logica.Logica
                 Item.Contador,
                 Item.CambiaClave,
                 Item.RazonBloqueo,
+                Item.IdTipoPersona,
                 Accion);
             if (Usuario != null)
             {

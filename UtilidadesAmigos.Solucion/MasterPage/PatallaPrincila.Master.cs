@@ -174,5 +174,40 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
 
         }
+
+        protected void linkComisionesCobrador_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void linkProcesarDataGruas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkEmisionPolizas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkEnvioCorreo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkCorreoElectronicos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkDependientes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void linkClientes_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -47,9 +47,9 @@
                                <asp:LinkButton ID="linkProduccionDiaria" runat="server" Text="Produccion Diaria" OnClick="linkProduccionDiaria_Click" class="dropdown-item"></asp:LinkButton>
                                <asp:LinkButton ID="linkGenerarCartera" runat="server" Text="Generar Cartera Supervisores" OnClick="linkGenerarCartera_Click" class="dropdown-item"></asp:LinkButton>
                                <asp:LinkButton ID="linkCarteraIntermediarios" runat="server" Text="Generar Cartera Intermediario" OnClick="linkCarteraIntermediarios_Click" class="dropdown-item"></asp:LinkButton>
+                                <asp:LinkButton ID="linkComisionesCobrador" runat="server" Text="Generar Comisiones Cobrador" OnClick="linkComisionesCobrador_Click" CssClass="dropdown-item"></asp:LinkButton>
                                <asp:LinkButton ID="linkValidarCoberturas" runat="server" Text="Validar Coberturas" OnClick="linkValidarCoberturas_Click" class="dropdown-item"></asp:LinkButton>
                                <asp:LinkButton ID="linkGenerarReporteUAF" runat="server" Text="Generar Reporte para la UAF" OnClick="linkGenerarReporteUAF_Click" class="dropdown-item"></asp:LinkButton>
-                               <asp:LinkButton ID="linkGenerarReporteCoberturas" runat="server" Text="Generar Reporte Coberturas" OnClick="linkGenerarReporteCoberturas_Click" class="dropdown-item"></asp:LinkButton>
                             </div>
                           </li>
 
@@ -58,7 +58,9 @@
                                   Procesos
                                 </a>
                                 <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">Procesar Data Gruas</a>
+                                  <asp:LinkButton ID="linkProcesarDataGruas" runat="server" Text="Procesar Data Gruas" OnClick="linkProcesarDataGruas_Click" CssClass="dropdown-item"></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkEmisionPolizas" runat="server" Text="Emisión de Poliza" OnClick="LinkEmisionPolizas_Click" CssClass="dropdown-item"></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkEnvioCorreo" runat="server" Text="Envio de Correo" OnClick="LinkEnvioCorreo_Click" CssClass="dropdown-item"></asp:LinkButton>
                                 </div>
                               </li>
                               <li class="nav-item dropdown">
@@ -70,6 +72,9 @@
                                         <asp:LinkButton ID="linkDeprtamentos" runat="server" Text="Departamentos" OnClick="linkDeprtamentos_Click" class="dropdown-item"></asp:LinkButton>
                                         <asp:LinkButton ID="linkEmpleados" runat="server" Text="Empleados" OnClick="linkEmpleados_Click" class="dropdown-item"></asp:LinkButton>
                                         <asp:LinkButton ID="linkInventario" runat="server" Text="Inventario" OnClick="linkInventario_Click" class="dropdown-item"></asp:LinkButton>
+                                        <asp:LinkButton ID="linkClientes" runat="server" Text="Clientes" OnClick="linkClientes_Click" class="dropdown-item"></asp:LinkButton>
+                                        <asp:LinkButton ID="LinkDependientes" runat="server" Text="Dependientes" OnClick="LinkDependientes_Click" class="dropdown-item"></asp:LinkButton>
+                                        <asp:LinkButton ID="LinkCorreoElectronicos" runat="server" Text="Correo Electronico" OnClick="LinkCorreoElectronicos_Click" class="dropdown-item"></asp:LinkButton>
                                     </div>
                                   </li>
                                   <li class="nav-item dropdown">

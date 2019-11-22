@@ -47,6 +47,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             cbCambiaClaveMantenimiento.Visible = true;
             btnProcesarMantenimento.Visible = true;
             btnVolverAtras.Visible = true;
+            lbTipoPersona.Visible = true;
+            ddlTipoPersona.Visible = true;
 
             //CONTROLES DE CONSULTA
             lbUsuarioConsulta.Visible = false;
@@ -62,6 +64,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             //CARGAMOS LOS DROP
             CargarDepartamentos();
             CargarPerfiles();
+            SeleccionarTipoPersona();
 
             //SACAMOS LOS DATOS DEL USUARIO EN CASO DE QUE NO SEA UN NUEVO REGISTRO
             if (lbEstatusMantenimiento.Text != "INSERT")
@@ -73,6 +76,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 {
                     UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlDepartamentoMantenimiento, n.IdDepartamento.ToString());
                     UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlPerfilMantenimiento, n.IdPerfil.ToString());
+                    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlTipoPersona, n.IdTipoPersona.ToString());
                     txtUsuarioMantenimiento.Text = n.Usuario;
                     txtPersonaMantenimiento.Text = n.Persona;
                     txtEmailMantenimiento.Text = n.Email;
@@ -108,6 +112,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             cbCambiaClaveMantenimiento.Visible = false;
             btnProcesarMantenimento.Visible = false;
             btnVolverAtras.Visible = false;
+            lbTipoPersona.Visible = false;
+            ddlTipoPersona.Visible = false;
 
             //CONTROLES DE CONSULTA
             lbUsuarioConsulta.Visible = true;
@@ -147,6 +153,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtPersonaMantenimiento.Enabled = true;
             lbEmailMantenimiento.Enabled = true;
             txtEmailMantenimiento.Enabled = true;
+            lbTipoPersona.Enabled = true;
+            ddlTipoPersona.Enabled = true;
            // lbClaveSeguridad.Enabled = true;
            // txtClaveSeguridadMantenimeinto.Enabled = true;
             cbEstatusMantenimiento.Enabled = true;
@@ -167,8 +175,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtPersonaMantenimiento.Enabled = false;
             lbEmailMantenimiento.Enabled = false;
             txtEmailMantenimiento.Enabled = false;
-           // lbClaveSeguridad.Enabled = false;
-          //  txtClaveSeguridadMantenimeinto.Enabled = false;
+            lbTipoPersona.Enabled = false;
+            ddlTipoPersona.Enabled = false;
+            // lbClaveSeguridad.Enabled = false;
+            //  txtClaveSeguridadMantenimeinto.Enabled = false;
             cbEstatusMantenimiento.Enabled = false;
             cbLlevaEmailMantenimiento.Enabled = false;
             cbCambiaClaveMantenimiento.Enabled = false;
@@ -188,29 +198,45 @@ namespace UtilidadesAmigos.Solucion.Paginas
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlPerfilMantenimiento, ObjData.Value.BuscaListas("PERFILES", null, null));
         }
         #endregion
+        #region CARGAR EL TIPO DE PERSONA
+        private void SeleccionarTipoPersona()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlTipoPersona, ObjData.Value.BuscaListas("TIPOPERSONA", null, null));
+        }
+        #endregion
         #region MANTENIMIENTO DE USUARIOS
         private void MANUsuarios(string Accion)
         {
-            try {
-                UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios Mantenimiento = new Logica.Entidades.EMantenimientoUsuarios();
-
-                Mantenimiento.IdUsuario = Convert.ToDecimal(lbIdUsuarioSeleccionado.Text);
-                Mantenimiento.IdDepartamento = Convert.ToDecimal(ddlDepartamentoMantenimiento.SelectedValue);
-                Mantenimiento.IdPerfil = Convert.ToDecimal(ddlPerfilMantenimiento.SelectedValue);
-                Mantenimiento.Usuario = txtUsuarioMantenimiento.Text;
-                Mantenimiento.Clave = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(txtclave.Text);
-                Mantenimiento.Persona = txtPersonaMantenimiento.Text;
-                Mantenimiento.Estatus = cbEstatusMantenimiento.Checked;
-                Mantenimiento.LlevaEmail = cbLlevaEmailMantenimiento.Checked;
-                Mantenimiento.Email = txtEmailMantenimiento.Text;
-                Mantenimiento.Contador = 0;
-                Mantenimiento.CambiaClave = cbCambiaClaveMantenimiento.Checked;
-                Mantenimiento.RazonBloqueo = txtRazonBloqueo.Text;
-
-                var MAN = ObjData.Value.MantenimientoUsuarios(Mantenimiento, Accion);
+            if (Session["IdUsuario"] == null)
+            {
+                Response.Redirect("Login.aspx");
             }
-            catch (Exception) {
-                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMantenimiento()", true);
+            else
+            {
+                try
+                {
+                    UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios Mantenimiento = new Logica.Entidades.EMantenimientoUsuarios();
+
+                    Mantenimiento.IdUsuario = Convert.ToDecimal(lbIdUsuarioSeleccionado.Text);
+                    Mantenimiento.IdDepartamento = Convert.ToDecimal(ddlDepartamentoMantenimiento.SelectedValue);
+                    Mantenimiento.IdPerfil = Convert.ToDecimal(ddlPerfilMantenimiento.SelectedValue);
+                    Mantenimiento.Usuario = txtUsuarioMantenimiento.Text;
+                    Mantenimiento.Clave = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(txtclave.Text);
+                    Mantenimiento.Persona = txtPersonaMantenimiento.Text;
+                    Mantenimiento.Estatus = cbEstatusMantenimiento.Checked;
+                    Mantenimiento.LlevaEmail = cbLlevaEmailMantenimiento.Checked;
+                    Mantenimiento.Email = txtEmailMantenimiento.Text;
+                    Mantenimiento.Contador = 0;
+                    Mantenimiento.CambiaClave = cbCambiaClaveMantenimiento.Checked;
+                    Mantenimiento.RazonBloqueo = txtRazonBloqueo.Text;
+                    Mantenimiento.IdTipoPersona = Convert.ToDecimal(ddlTipoPersona.SelectedValue);
+
+                    var MAN = ObjData.Value.MantenimientoUsuarios(Mantenimiento, Accion);
+                }
+                catch (Exception)
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMantenimiento()", true);
+                }
             }
         }
         #endregion
