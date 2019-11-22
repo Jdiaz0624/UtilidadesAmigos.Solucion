@@ -169,7 +169,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkPerfilesUsuarios_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            Response.Redirect("MantenimeintoPerfiles.aspx");
         }
 
         protected void linkUsuarios_Click(object sender, EventArgs e)

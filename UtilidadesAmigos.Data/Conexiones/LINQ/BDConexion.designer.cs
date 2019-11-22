@@ -422,6 +422,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, idDepartamento, idPerfil, usuario, clave, persona, estatus, llevaEmail, email, contador, cambiaClave, razonBloqueo, idTipoPersona, accion);
 			return ((ISingleResult<SP_MANTENIMIENTO_USUARIOSResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_PERFILES")]
+		public ISingleResult<SP_BUSCA_PERFILESResult> SP_BUSCA_PERFILES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdPerfil", DbType="Decimal(20,0)")] System.Nullable<decimal> idPerfil, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Perfil", DbType="VarChar(50)")] string perfil)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idPerfil, perfil);
+			return ((ISingleResult<SP_BUSCA_PERFILESResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MANTENIMIENTO_PERFILES")]
+		public ISingleResult<SP_MANTENIMIENTO_PERFILESResult> SP_MANTENIMIENTO_PERFILES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdPerfil", DbType="Decimal(20,0)")] System.Nullable<decimal> idPerfil, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Perfil", DbType="VarChar(50)")] string perfil, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="Bit")] System.Nullable<bool> estatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idPerfil, perfil, estatus, accion);
+			return ((ISingleResult<SP_MANTENIMIENTO_PERFILESResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_LISTA_CARGAR_RAMOSResult
@@ -12115,6 +12129,148 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._IdTipoPersona != value))
 				{
 					this._IdTipoPersona = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_PERFILESResult
+	{
+		
+		private decimal _IdPerfil;
+		
+		private string _perfil;
+		
+		private System.Nullable<bool> _Estatus0;
+		
+		private string _Estatus;
+		
+		public SP_BUSCA_PERFILESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdPerfil", DbType="Decimal(4,0) NOT NULL")]
+		public decimal IdPerfil
+		{
+			get
+			{
+				return this._IdPerfil;
+			}
+			set
+			{
+				if ((this._IdPerfil != value))
+				{
+					this._IdPerfil = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_perfil", DbType="VarChar(50)")]
+		public string perfil
+		{
+			get
+			{
+				return this._perfil;
+			}
+			set
+			{
+				if ((this._perfil != value))
+				{
+					this._perfil = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus0", DbType="Bit")]
+		public System.Nullable<bool> Estatus0
+		{
+			get
+			{
+				return this._Estatus0;
+			}
+			set
+			{
+				if ((this._Estatus0 != value))
+				{
+					this._Estatus0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(8)")]
+		public string Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MANTENIMIENTO_PERFILESResult
+	{
+		
+		private System.Nullable<decimal> _IdPerfil;
+		
+		private string _Perfil;
+		
+		private System.Nullable<bool> _Estatus;
+		
+		public SP_MANTENIMIENTO_PERFILESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdPerfil", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdPerfil
+		{
+			get
+			{
+				return this._IdPerfil;
+			}
+			set
+			{
+				if ((this._IdPerfil != value))
+				{
+					this._IdPerfil = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Perfil", DbType="VarChar(100)")]
+		public string Perfil
+		{
+			get
+			{
+				return this._Perfil;
+			}
+			set
+			{
+				if ((this._Perfil != value))
+				{
+					this._Perfil = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Bit")]
+		public System.Nullable<bool> Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
 				}
 			}
 		}
