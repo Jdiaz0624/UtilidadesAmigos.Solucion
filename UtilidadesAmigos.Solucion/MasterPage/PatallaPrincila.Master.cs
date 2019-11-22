@@ -107,62 +107,69 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkGenerarReporteCoberturas_Click(object sender, EventArgs e)
         {
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void linkOficinas_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Oficinas.aspx");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            //Response.Redirect("Oficinas.aspx");
         }
 
         protected void linkDeprtamentos_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Departamentos.aspx");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            //Response.Redirect("Departamentos.aspx");
         }
 
         protected void linkEmpleados_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Empleados.aspx");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            //Response.Redirect("Empleados.aspx");
         }
 
         protected void linkInventario_Click(object sender, EventArgs e)
         {
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void linkCotizadorFuturoSeguros_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CotizadorAmigos.aspx");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            //Response.Redirect("CotizadorAmigos.aspx");
         }
 
         protected void linkFuturoARS_Click(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
 
         }
 
         protected void linkTarjetasAccesos_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AsignacionTarjetas.aspx");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            //Response.Redirect("AsignacionTarjetas.aspx");
         }
 
         protected void linkMovimientoUsuarios_Click(object sender, EventArgs e)
         {
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void linkPermisoUsuarios_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PermisoUsuarios.aspx");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            //Response.Redirect("PermisoUsuarios.aspx");
         }
 
         protected void linkClaveSeguridad_Click(object sender, EventArgs e)
         {
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void linkPerfilesUsuarios_Click(object sender, EventArgs e)
         {
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void linkUsuarios_Click(object sender, EventArgs e)
@@ -172,42 +179,42 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkCarteraIntermediarios_Click(object sender, EventArgs e)
         {
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void linkComisionesCobrador_Click(object sender, EventArgs e)
         {
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void linkProcesarDataGruas_Click(object sender, EventArgs e)
         {
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void LinkEmisionPolizas_Click(object sender, EventArgs e)
         {
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void LinkEnvioCorreo_Click(object sender, EventArgs e)
         {
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void LinkCorreoElectronicos_Click(object sender, EventArgs e)
         {
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void LinkDependientes_Click(object sender, EventArgs e)
         {
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void linkClientes_Click(object sender, EventArgs e)
         {
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
     }
 }

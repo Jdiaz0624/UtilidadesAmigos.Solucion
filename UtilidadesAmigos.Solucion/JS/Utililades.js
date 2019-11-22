@@ -36,3 +36,8 @@ function ErrorMostrarConsulta()
 {
     alert("Error al Mostrar la consulta, favor e verificar que los parametros esten correctos")
 }
+
+function PaginaNoDisponible()
+{
+    alert("Esta Pantalla no esta disponible por el momento")
+}
