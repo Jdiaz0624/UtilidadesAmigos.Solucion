@@ -274,6 +274,33 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         protected global::System.Web.UI.WebControls.LinkButton linkTarjetasAccesos;
         
         /// <summary>
+        /// Control linkOpcionMenu.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkOpcionMenu;
+        
+        /// <summary>
+        /// Control linkOpcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkOpcion;
+        
+        /// <summary>
+        /// Control linkBotones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkBotones;
+        
+        /// <summary>
         /// Control linkCerrarCesion.
         /// </summary>
         /// <remarks>

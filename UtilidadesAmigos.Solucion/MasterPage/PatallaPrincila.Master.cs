@@ -216,5 +216,20 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
+
+        protected void linkOpcionMenu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void linkOpcion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void linkBotones_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

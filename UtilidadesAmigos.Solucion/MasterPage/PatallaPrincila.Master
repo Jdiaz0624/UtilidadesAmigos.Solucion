@@ -97,6 +97,9 @@
                                               <asp:LinkButton ID="linkPermisoUsuarios" runat="server" Text="Permisos Usuarios" OnClick="linkPermisoUsuarios_Click" class="dropdown-item"></asp:LinkButton>
                                               <asp:LinkButton ID="linkMovimientoUsuarios" runat="server" Text="Movimiento Usuario" OnClick="linkMovimientoUsuarios_Click" class="dropdown-item"></asp:LinkButton>
                                               <asp:LinkButton ID="linkTarjetasAccesos" runat="server" Text="Tarjetas de Accesos" OnClick="linkTarjetasAccesos_Click" class="dropdown-item"></asp:LinkButton>
+                                                <asp:LinkButton ID="linkOpcionMenu" runat="server" Text="Opcion Menu" OnClick="linkOpcionMenu_Click" class="dropdown-item"></asp:LinkButton>
+                                                <asp:LinkButton ID="linkOpcion" runat="server" Text="Opciones" OnClick="linkOpcion_Click" class="dropdown-item"></asp:LinkButton>
+                                                v<asp:LinkButton ID="linkBotones" runat="server" Text="Botones" OnClick="linkBotones_Click" class="dropdown-item"></asp:LinkButton>
                                             </div>
                                           </li>
                             <li class="nav-item">
