@@ -45,6 +45,7 @@
         </div>
     </div>
     <!--FIN DE LOS CONTROLES DE BUSQUEDA-->
+    <br />
 
     <!--INICIO DEL GRID-->
        <div class="container-fluid">
@@ -72,4 +73,37 @@
 
         </div>
     <!--FIN DEL GRID-->
+
+    <!--INICIO DE LOS CONTROLES PARA EL MANTENIMIENTO-->
+    <div class="container-fluid">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbClaveNueva" runat="server" Visible="false" Text="Clave Nueva"></asp:Label>
+                <asp:TextBox ID="txtClaveNueva" runat="server" Visible="false" PlaceHolder="Clave Nueva" CssClass="form-control" MaxLength="20" TextMode="Password"></asp:TextBox>
+            </div> 
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbConfirmarClave" runat="server" Visible="false" Text="Confirmar Clave"></asp:Label>
+                <asp:TextBox ID="txtConfirmarClave" runat="server" Visible="false" PlaceHolder="Confirmar Clave" CssClass="form-control" MaxLength="20" TextMode="Password"></asp:TextBox>
+            </div> 
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbSeleccionarUsuario" runat="server" Visible="false" Text="Seleccionar Usuario"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarusuario" Visible="false" runat="server" ToolTip="Seleccionar Usuario" CssClass="form-control"></asp:DropDownList>
+            </div> 
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbClaveSeguridad" runat="server" Visible="false" Text="Clave de Seguridad"></asp:Label>
+                <asp:TextBox ID="txtClaveSeguridad" runat="server" Visible="false" PlaceHolder="Clave de Seguridad" CssClass="form-control" MaxLength="20" TextMode="Password"></asp:TextBox>
+            </div> 
+
+    </div>
+        <div class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:CheckBox id="cbEstatus" runat="server" Visible="false" Text="Estatus" ToolTip="Estatus de Clave" CssClass="form-check-input" />
+            </div>
+        </div>
+        <div align="center">
+            <asp:Button ID="btnGuardar" runat="server" Visible="false" Text="Guardar" ToolTip="Guardar Operación" CssClass="btn btn-outline-primary btn-sm" />
+             <asp:Button ID="btnVolver" runat="server" Visible="false" Text="Volver" ToolTip="Volver" CssClass="btn btn-outline-primary btn-sm" />
+        </div>
+        </div>
+    <!--FIN DE LOS CONTROLES PARA EL MANTENIMIENTO-->
 </asp:Content>
