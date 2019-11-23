@@ -129,6 +129,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Properties\PublishProfiles\Prueba.pubxml" />
     <Content Include="Paginas\MantenimeintoPerfiles.aspx" />
+    <Content Include="Paginas\MantenimientoClaveSeguridad.aspx" />
     <Content Include="scripts\bootstrap.bundle.js" />
     <Content Include="scripts\bootstrap.bundle.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -306,6 +307,13 @@
     </Compile>
     <Compile Include="Paginas\MantenimeintoPerfiles.aspx.designer.cs">
       <DependentUpon>MantenimeintoPerfiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\MantenimientoClaveSeguridad.aspx.cs">
+      <DependentUpon>MantenimientoClaveSeguridad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\MantenimientoClaveSeguridad.aspx.designer.cs">
+      <DependentUpon>MantenimientoClaveSeguridad.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Oficinas.aspx.cs">
       <DependentUpon>Oficinas.aspx</DependentUpon>

@@ -156,15 +156,6 @@
       <Column Name="FechaNacimiento" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_BUSCA_CLAVE_SEGURIDAD" Method="SP_BUSCA_CLAVE_SEGURIDAD">
-    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="ClaveSeguridad" Parameter="claveSeguridad" Type="System.String" DbType="VarChar(8000)" />
-    <ElementType Name="SP_BUSCA_CLAVE_SEGURIDADResult">
-      <Column Name="IdClaveSeguridad" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
-      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_CARGAR_PERFILES" Method="SP_CARGAR_PERFILES">
     <Parameter Name="IdPerfil" Parameter="idPerfil" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Perfil" Parameter="perfil" Type="System.String" DbType="VarChar(100)" />
@@ -1051,6 +1042,18 @@
       <Column Name="IdPerfil" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
       <Column Name="Perfil" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_CLAVE_SEGURIDAD" Method="SP_BUSCA_CLAVE_SEGURIDAD">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="ClaveSeguridad" Parameter="claveSeguridad" Type="System.String" DbType="VarChar(8000)" />
+    <ElementType Name="SP_BUSCA_CLAVE_SEGURIDADResult">
+      <Column Name="IdClaveSeguridad" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

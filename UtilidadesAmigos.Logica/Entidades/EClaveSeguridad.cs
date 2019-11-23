@@ -12,6 +12,12 @@ namespace UtilidadesAmigos.Logica.Entidades
 
         public decimal? IdUsuario { get; set; }
 
+        public string Usuario { get; set; }
+
         public string Clave { get; set; }
+
+        public System.Nullable<bool> Estatus0 { get; set; }
+
+        public string Estatus { get; set; }
     }
 }

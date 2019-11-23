@@ -582,7 +582,10 @@ namespace UtilidadesAmigos.Logica.Logica
                           {
                               IdClaveSeguridad=n.IdClaveSeguridad,
                               IdUsuario=n.IdUsuario,
-                              Clave=n.Clave
+                              Usuario=n.Usuario,
+                              Clave=n.Clave,
+                              Estatus0=n.Estatus0,
+                              Estatus=n.Estatus
                           }).ToList();
             return Buscar;
         }
