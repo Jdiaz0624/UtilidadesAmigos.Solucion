@@ -24,6 +24,8 @@
         </div>
     </div>
     <!--FIN DEL ENCABEZADO-->
+    <asp:Label ID="lbIdPerfil" runat="server" Text="IdPerfil" Visible="false"></asp:Label>
+    <asp:Label ID="lbEstatus" runat="server" Text="Estatus" Visible="false"></asp:Label>
 
     <!--INICIO DE LO CONTROLES DE BUSQUEDA Y MANTENIMIENTO-->
     <div class="container-fluid">
@@ -44,13 +46,13 @@
         </div>
         <div>
             <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
-            <asp:Button ID="btnNuevo" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Guardar Perfil" />
+            <asp:Button ID="btnNuevo" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Guardar Perfil" OnClick="btnNuevo_Click" />
             <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" />
         </div>
         <br />
         <div>
-            <asp:Button ID="btnModificar" runat="server" Enabled="false" CssClass="btn btn-outline-primary btn-sm" Text="Modificar" ToolTip="Modificar Registro Seleccionado" />
-            <asp:Button ID="btnDeshabilitar" runat="server" Enabled="false" CssClass="btn btn-outline-primary btn-sm" Text="Deshabilitar" ToolTip="Deshabilitar Registro Seleccionado" />
+            <asp:Button ID="btnModificar" runat="server" Enabled="false" CssClass="btn btn-outline-primary btn-sm" Text="Modificar" ToolTip="Modificar Registro Seleccionado" OnClick="btnModificar_Click" />
+            <asp:Button ID="btnDeshabilitar" runat="server" Enabled="false" CssClass="btn btn-outline-primary btn-sm" Text="Deshabilitar" ToolTip="Deshabilitar Registro Seleccionado" OnClick="btnDeshabilitar_Click" />
             <asp:Button ID="btnAtras" runat="server" Enabled="false" Text="Atras" CssClass="btn btn-outline-primary btn-sm" ToolTip="Volver atras" OnClick="btnAtras_Click" />
         </div>
     </div>

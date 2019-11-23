@@ -41,3 +41,19 @@ function PaginaNoDisponible()
 {
     alert("Esta Pantalla no esta disponible por el momento")
 }
+
+function MensajeGuardar() {
+    alert("Registro Guardado con Exito")
+}
+
+function MensajrActualizar() {
+    alert("Registro Actualizado con Exito")
+}
+
+function MensajeDeshabilitar() {
+    alert("Registro Deshabilitado con Exito")
+}
+
+function MensajeBorrar() {
+    alert("Registro Eliminado Con Exito")
+}

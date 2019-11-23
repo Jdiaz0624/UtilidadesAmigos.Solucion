@@ -22,6 +22,24 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Label lbEncabezado;
         
         /// <summary>
+        /// Control lbIdPerfil.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbIdPerfil;
+        
+        /// <summary>
+        /// Control lbEstatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEstatus;
+        
+        /// <summary>
         /// Control lbDescripcionPerfil.
         /// </summary>
         /// <remarks>
