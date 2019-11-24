@@ -38,11 +38,11 @@
         <div>
             <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" ToolTip="Crear Nuevo Registro" CssClass="btn btn-outline-primary btn-sm" OnClick="btnNuevo_Click" />
             <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm" />
-            <asp:Button ID="btnModificar" runat="server" Text="Modificar" ToolTip="Modificar Registro Seleccionado" CssClass="btn btn-outline-primary btn-sm" />
+            <asp:Button ID="btnModificar" runat="server" Text="Modificar" ToolTip="Modificar Registro Seleccionado" CssClass="btn btn-outline-primary btn-sm" OnClick="btnModificar_Click" />
         </div>
         <br />
           <div>
-            <asp:Button ID="btnDeshabilitar" runat="server" Text="Deshabilitar" ToolTip="Deshabilitar Registro Seleccionado" CssClass="btn btn-outline-primary btn-sm" />
+            <asp:Button ID="btnDeshabilitar" runat="server" Text="Deshabilitar" ToolTip="Deshabilitar Registro Seleccionado" CssClass="btn btn-outline-primary btn-sm" OnClick="btnDeshabilitar_Click" />
             <asp:Button ID="btnAtras" runat="server" Text="Atras" ToolTip="Volver Atras" CssClass="btn btn-outline-primary btn-sm" />
         </div>
     </div>
@@ -55,7 +55,7 @@
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
                     <asp:CommandField ButtonType="Button" HeaderText="Seleccionar" SelectText="Ver" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
-                    <asp:BoundField DataField="IdClaveSeguridad" HeaderText="IdClaveSeguridad" />
+                    <asp:BoundField DataField="IdUsuario" HeaderText="IdUsuario" />
                     <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
                     <asp:BoundField DataField="Clave" HeaderText="Clave" />
                     <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
@@ -104,7 +104,7 @@
         </div>
         <div align="center">
             <asp:Button ID="btnGuardar" runat="server" Visible="false" Text="Guardar" ToolTip="Guardar Operación" CssClass="btn btn-outline-primary btn-sm" OnClick="btnGuardar_Click" />
-             <asp:Button ID="btnVolver" runat="server" Visible="false" Text="Volver" ToolTip="Volver" CssClass="btn btn-outline-primary btn-sm" />
+             <asp:Button ID="btnVolver" runat="server" Visible="false" Text="Volver" ToolTip="Volver" CssClass="btn btn-outline-primary btn-sm" OnClick="btnVolver_Click" />
         </div>
         </div>
     <!--FIN DE LOS CONTROLES PARA EL MANTENIMIENTO-->

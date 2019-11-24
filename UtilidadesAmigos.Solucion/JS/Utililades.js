@@ -12,6 +12,10 @@ function ClaveSeguridadNoValida()
     alert("La clave de seguridad ingresada no es valida, favor de verificar")
 }
 
+function UsuarioENcontrado() {
+    alert("El usuario seleccionado ya tiene una clave de seguridad asignada")
+}
+
 function UsuarioNoValido()
 {
     alert("El nombre de usuario ingresado ya esta registrado en el sistema, favor de intentar con otro")
@@ -60,4 +64,9 @@ function MensajeBorrar() {
 
 function ErrorMantenimiento() {
     alert("Error al realizar el mantenimiento")
+}
+
+function ClavesNoConcuerdan()
+{
+    alert("Las claves ingresada no concuerdan, favor de verificar")
 }
