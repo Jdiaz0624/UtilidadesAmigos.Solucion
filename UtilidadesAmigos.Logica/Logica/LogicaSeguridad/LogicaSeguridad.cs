@@ -48,6 +48,33 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSeguridad
             }
             return Mantenimiento;
         }
-#endregion
+        #endregion
+        #region MANTENIMIENTO DE CLAVE DE SEGURIDAD
+        public UtilidadesAmigos.Logica.Entidades.Seguridad.EMantenimientoClaveSeguridad MAntenimientoClaveSeguridad(UtilidadesAmigos.Logica.Entidades.Seguridad.EMantenimientoClaveSeguridad Item, string Accion)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Seguridad.EMantenimientoClaveSeguridad Mantenimeinto = null;
+
+            var ClaveSeguridad = ObjData.SP_MANTENIMIENTO_CLAVE_SEGURIDAD(
+                Item.IdClaveSeguridad,
+                Item.IdUsuario,
+                Item.Clave,
+                Item.Estatus,
+                Accion);
+            if (ClaveSeguridad != null)
+            {
+                Mantenimeinto = (from n in ClaveSeguridad
+                                 select new Entidades.Seguridad.EMantenimientoClaveSeguridad
+                                 {
+                                     IdClaveSeguridad=n.IdClaveSeguridad,
+                                     IdUsuario=n.IdUsuario,
+                                     Clave=n.Clave,
+                                     Estatus=n.Estatus
+                                 }).FirstOrDefault();
+            }
+            return Mantenimeinto;
+        }
+        #endregion
     }
 }

@@ -57,3 +57,7 @@ function MensajeDeshabilitar() {
 function MensajeBorrar() {
     alert("Registro Eliminado Con Exito")
 }
+
+function ErrorMantenimiento() {
+    alert("Error al realizar el mantenimiento")
+}

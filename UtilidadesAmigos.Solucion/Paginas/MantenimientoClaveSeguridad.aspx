@@ -24,6 +24,8 @@
         </div>
     </div>
     <!--FIN DEL ENCABEZADO DE LA PANTALLA-->
+    <asp:Label ID="lbIdClaveSeguridad" runat="server" Text="IdClaveSeguridad" Visible="false"></asp:Label>
+    <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
     <!--INICIO DE LOS CONTROLES DE BUSQUEDA-->
     <div class="container-fluid">
         <div class="form-row">
@@ -34,7 +36,7 @@
         </div>
 
         <div>
-            <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" ToolTip="Crear Nuevo Registro" CssClass="btn btn-outline-primary btn-sm" />
+            <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" ToolTip="Crear Nuevo Registro" CssClass="btn btn-outline-primary btn-sm" OnClick="btnNuevo_Click" />
             <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm" />
             <asp:Button ID="btnModificar" runat="server" Text="Modificar" ToolTip="Modificar Registro Seleccionado" CssClass="btn btn-outline-primary btn-sm" />
         </div>
@@ -49,7 +51,7 @@
 
     <!--INICIO DEL GRID-->
        <div class="container-fluid">
-            <asp:GridView id="gbListadoClaveSeguridad" runat="server" AllowPaging="True" OnPageIndexChanging="gbListadoClaveSeguridad_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbListadoClaveSeguridad_SelectedIndexChanged">
+            <asp:GridView id="gbListadoClaveSeguridad" runat="server" AllowPaging="True" OnPageIndexChanging="gbListadoClaveSeguridad_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbListadoClaveSeguridad_SelectedIndexChanged" OnRowDataBound="gbListadoClaveSeguridad_RowDataBound">
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
                     <asp:CommandField ButtonType="Button" HeaderText="Seleccionar" SelectText="Ver" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
@@ -101,7 +103,7 @@
             </div>
         </div>
         <div align="center">
-            <asp:Button ID="btnGuardar" runat="server" Visible="false" Text="Guardar" ToolTip="Guardar Operación" CssClass="btn btn-outline-primary btn-sm" />
+            <asp:Button ID="btnGuardar" runat="server" Visible="false" Text="Guardar" ToolTip="Guardar Operación" CssClass="btn btn-outline-primary btn-sm" OnClick="btnGuardar_Click" />
              <asp:Button ID="btnVolver" runat="server" Visible="false" Text="Volver" ToolTip="Volver" CssClass="btn btn-outline-primary btn-sm" />
         </div>
         </div>

@@ -117,6 +117,7 @@
     <Compile Include="Entidades\Mantenimientos\EEmpleado.cs" />
     <Compile Include="Entidades\Mantenimientos\EOficinas.cs" />
     <Compile Include="Entidades\ProduccionPorUsuario.cs" />
+    <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
