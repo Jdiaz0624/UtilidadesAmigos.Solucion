@@ -147,8 +147,8 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkTarjetasAccesos_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
-            //Response.Redirect("AsignacionTarjetas.aspx");
+           // ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            Response.Redirect("AsignacionTarjetas.aspx");
         }
 
         protected void linkMovimientoUsuarios_Click(object sender, EventArgs e)

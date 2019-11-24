@@ -35,11 +35,11 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                       <asp:Label ID="lbOficinaConsulta" runat="server" Text="Seleccionar Oficina"></asp:Label>
-                <asp:DropDownList ID="ddlOficinaConsulta" runat="server" AutoPostBack="true" ToolTip="Seleccionar Oficina" CssClass="form-control" OnSelectedIndexChanged="ddlOficinaConsulta_SelectedIndexChanged1"></asp:DropDownList>
+                <asp:DropDownList ID="ddlOficinaConsulta" runat="server" AutoPostBack="true" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="form-group col-md-6">
                 <asp:Label ID="lbDepartamentoConsulta" runat="server" Text="Seleccionar Departamento"></asp:Label>
-                <asp:DropDownList ID="ddlDepartamentoConsulta" runat="server" AutoPostBack="true" ToolTip="Seleccionar Departamento" CssClass="form-control" OnSelectedIndexChanged="ddlDepartamentoConsulta_SelectedIndexChanged1"></asp:DropDownList>
+                <asp:DropDownList ID="ddlDepartamentoConsulta" runat="server" AutoPostBack="true" ToolTip="Seleccionar Departamento" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="form-group col-md-6">
                 <asp:Label ID="lbEmpleadoConsulta" runat="server" Text="Seleccionar Colaborador"></asp:Label>
@@ -52,17 +52,17 @@
         </div>
         <div class="form-check-inline">
             <div class="form-group form-check">
-                 <asp:CheckBox ID="cbFiltrarPorRangoFechaConsulta" runat="server" Text="Filtrar Por Rango de Fecha" CssClass="form-check-input" />
+                 <asp:CheckBox ID="cbFiltrarPorRangoFechaConsulta" runat="server" AutoPostBack="true" Text="Filtrar Por Rango de Fecha" CssClass="form-check-input" OnCheckedChanged="cbFiltrarPorRangoFechaConsulta_CheckedChanged" />
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
-                   <asp:Label ID="lbFechaDesdeConsulta" runat="server" Text="Fecha Desde"></asp:Label>
-                <asp:TextBox ID="txtFechaDesdeConsulta" runat="server" PlaceHolder="Fecha Desde" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                   <asp:Label ID="lbFechaDesdeConsulta" Visible="false" runat="server" Text="Fecha Desde"></asp:Label>
+                <asp:TextBox ID="txtFechaDesdeConsulta" Visible="false" runat="server" PlaceHolder="Fecha Desde" TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="form-group col-md-3">
-                  <asp:Label ID="lbFechaHastaConsulta" runat="server" Text="Fecha Hasta"></asp:Label>
-                <asp:TextBox ID="txtFechaHastaConsulta" runat="server" PlaceHolder="Fecha Hasta" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                  <asp:Label ID="lbFechaHastaConsulta" runat="server" Visible="false" Text="Fecha Hasta"></asp:Label>
+                <asp:TextBox ID="txtFechaHastaConsulta" runat="server" Visible="false" PlaceHolder="Fecha Hasta" TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
     </div>
@@ -72,12 +72,12 @@
     <div class="container-fluid">
         <div>
             <asp:Button ID="btnConsultar" runat="server" Text="Buscar" ToolTip="Buscar registros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnConsultar_Click" />
-                <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" ToolTip="Crear un nuevo registro" CssClass="btn btn-outline-primary btn-sm" OnClick="btnNuevo_Click1" />
-                <asp:Button ID="btnAtras" runat="server" Text="Atras" ToolTip="Volver Atras" CssClass="btn btn-outline-primary btn-sm" OnClick="btnAtras_Click1" Enabled="False" />
+                <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" ToolTip="Crear un nuevo registro" CssClass="btn btn-outline-primary btn-sm" OnClick="btnNuevo_Click" />
+                <asp:Button ID="btnAtras" runat="server" Text="Atras" ToolTip="Volver Atras" CssClass="btn btn-outline-primary btn-sm" OnClick="btnAtras_Click" Enabled="False" />
         </div>
         <br />
         <div>
-                <asp:Button ID="btnModificar" runat="server" Text="Actualizar" ToolTip="Actualiza un registro seleccionado" CssClass="btn btn-outline-primary btn-sm" Enabled="False" OnClick="btnModificar_Click1" />
+                <asp:Button ID="btnModificar" runat="server" Text="Actualizar" ToolTip="Actualiza un registro seleccionado" CssClass="btn btn-outline-primary btn-sm" Enabled="False" OnClick="btnModificar_Click" />
                 <asp:Button ID="btnDeshabilitar" runat="server" Text="Deshabilitar" ToolTip="Deshabilita un registro seleccionado" CssClass="btn btn-outline-primary btn-sm" Enabled="False" OnClick="btnDeshabilitar_Click" OnClientClick="return confirm('¿Quieres deshabilitar este registro?');" />
                 <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar la data a exel" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportar_Click" />
         </div>
@@ -88,7 +88,7 @@
 
     <!--AQUI INICIA EL GRID-->
      <div class="container-fluid">
-            <asp:GridView ID="gvTarjetaAcceso" runat="server" AllowPaging="true" OnPageIndexChanging="gvTarjetaAcceso_PageIndexChanging" OnSelectedIndexChanged="gvTarjetaAcceso_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+            <asp:GridView ID="gvTarjetaAcceso" runat="server" AllowPaging="true" OnPageIndexChanging="gvTarjetaAcceso_PageIndexChanging" OnSelectedIndexChanged="gvTarjetaAcceso_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" OnRowDataBound="gvTarjetaAcceso_RowDataBound">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
@@ -124,11 +124,11 @@
         <div class="form-row">
         <div class="form-group col-md-6">
             <asp:Label ID="lbOficinaMantenimiento" Visible="false" runat="server" Text="Seleccionar Oficina"></asp:Label>
-            <asp:DropDownList ID="ddlOficinaMantenimiento" AutoPostBack="true" Visible="false" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged1"></asp:DropDownList>
+            <asp:DropDownList ID="ddlOficinaMantenimiento" AutoPostBack="true" Visible="false" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
         </div>
             <div class="form-group col-md-6">
                  <asp:Label ID="lbDepartamentoMantenimiento" Visible="false" runat="server" Text="Seleccionar Departamentos" CssClass="LabelFormularios"></asp:Label>
-            <asp:DropDownList ID="ddlDepartamentoMantenimiento" Visible="false" AutoPostBack="true" runat="server" CssClass="form-control" ToolTip="Seleccionar Departamentos" OnSelectedIndexChanged="ddlDepartamentoMantenimiento_SelectedIndexChanged1"></asp:DropDownList>
+            <asp:DropDownList ID="ddlDepartamentoMantenimiento" Visible="false" AutoPostBack="true" runat="server" CssClass="form-control" ToolTip="Seleccionar Departamentos"></asp:DropDownList>
             </div>
             <div class="form-group col-md-6">
                     <asp:Label ID="lbEmpleadoMantenimiento" Visible="false" runat="server" Text="Seleccionar Colaborador"></asp:Label>
@@ -150,8 +150,8 @@
         </div>
     </div>
        <div align="Center">
-                        <asp:Button ID="btnGuardarMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Guardar" ToolTip="Guardar Operación" OnClick="btnGuardarMantenimiento_Click" />
-                        <asp:Button ID="btnAtrasMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Atras" ToolTip="Volver Atras" OnClick="btnAtrasMantenimiento_Click" /><br />
+                        <asp:Button ID="btnGuardarMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Guardar" ToolTip="Guardar Operación" />
+                        <asp:Button ID="btnAtrasMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Atras" ToolTip="Volver Atras" /><br />
                         <asp:Label ID="lbIdMantenimiento" runat="server" Text="IdMantenimiento" Visible="false"></asp:Label>
                         <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
                     </div>
