@@ -15,7 +15,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            decimal? dd = txtNumerotarjetaMantenimiento.Text != "-1" ? decimal.Parse(txtNumerotarjetaMantenimiento.Text) : new Nullable<decimal>();
+            //decimal? dd = txtNumerotarjetaMantenimiento.Text != "-1" ? decimal.Parse(txtNumerotarjetaMantenimiento.Text) : new Nullable<decimal>();
 
 
         }

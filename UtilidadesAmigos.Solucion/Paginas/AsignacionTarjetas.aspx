@@ -122,32 +122,36 @@
     <!--AQUI PONEMOS LOS CONTROLES PARA REALIZAR EL MANTENIMIENTO-->
     <div class="container-fluid">
         <div class="form-row">
-        <div class="form-group col-md-6">
-            <asp:Label ID="lbOficinaMantenimiento" Visible="false" runat="server" Text="Seleccionar Oficina"></asp:Label>
-            <asp:DropDownList ID="ddlOficinaMantenimiento" AutoPostBack="true" Visible="false" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
+        <div class="form-group col-md-3">
+            <asp:Label ID="lbOficinaMantenimiento" Visible="false"  runat="server" Text="Seleccionar Oficina"></asp:Label>
+            <asp:DropDownList ID="ddlOficinaMantenimiento" Visible="false" AutoPostBack="true"  runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
         </div>
-            <div class="form-group col-md-6">
-                 <asp:Label ID="lbDepartamentoMantenimiento" Visible="false" runat="server" Text="Seleccionar Departamentos" CssClass="LabelFormularios"></asp:Label>
-            <asp:DropDownList ID="ddlDepartamentoMantenimiento" Visible="false" AutoPostBack="true" runat="server" CssClass="form-control" ToolTip="Seleccionar Departamentos"></asp:DropDownList>
-            </div>
-            <div class="form-group col-md-6">
-                    <asp:Label ID="lbEmpleadoMantenimiento" Visible="false" runat="server" Text="Seleccionar Colaborador"></asp:Label>
-                      <asp:DropDownList ID="ddlEmpleadoMantenimiento" Visible="false" AutoPostBack="true" runat="server" CssClass="form-control" ToolTip="Seleccionar Empleado"></asp:DropDownList>
-            </div>
-            <div class="form-group col-md-6">
-                    <asp:Label ID="lbNumeroTarjetraMantenimiento" Visible="false" runat="server" Text="Numero de tarjeta"></asp:Label>
-                    <asp:TextBox ID="txtNumerotarjetaMantenimiento" Visible="false" runat="server" CssClass="form-control" PlaceHolder="Ingrese Numero de Tarjeta de Acceso" TextMode="Number" MaxLength="100"></asp:TextBox>
+            <div class="form-group col-md-3">
+                 <asp:Label ID="lbDepartamentoMantenimiento" runat="server" Visible="false" Text="Seleccionar Departamentos" CssClass="LabelFormularios"></asp:Label>
+            <asp:DropDownList ID="ddlDepartamentoMantenimiento" Visible="false"  AutoPostBack="true" runat="server" CssClass="form-control" ToolTip="Seleccionar Departamentos"></asp:DropDownList>
             </div>
             <div class="form-group col-md-3">
-                <asp:Label ID="lbFechaEntregaMantenimiento" Visible="false" runat="server" Text="Fecha de Entrega"></asp:Label>
-                    <asp:TextBox ID="txtFechaEntregaMantenimiento" Visible="false" runat="server" CssClass="form-control" TextMode="Date" PlaceHolder="Fecha de Entrega"></asp:TextBox>
+                    <asp:Label ID="lbEmpleadoMantenimiento" Visible="false" runat="server" Text="Seleccionar Colaborador"></asp:Label>
+                      <asp:DropDownList ID="ddlEmpleadoMantenimiento" Visible="false"  AutoPostBack="true" runat="server" CssClass="form-control" ToolTip="Seleccionar Empleado"></asp:DropDownList>
+            </div>
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbSecuenciaInterna" runat="server" Visible="false" Text="Secuencia Interna"></asp:Label>
+                <asp:TextBox ID="txtSecuenciaInterna" runat="server" Visible="false" PlaceHolder="Secuencia Interna" CssClass="form-control"></asp:TextBox> 
+            </div>
+            <div class="form-group col-md-3">
+                    <asp:Label ID="lbNumeroTarjetraMantenimiento"  runat="server" Visible="false" Text="Numero de tarjeta"></asp:Label>
+                    <asp:TextBox ID="txtNumerotarjetaMantenimiento" Visible="false"  runat="server" CssClass="form-control" PlaceHolder="Ingrese Numero de Tarjeta de Acceso" TextMode="Number" MaxLength="100"></asp:TextBox>
+            </div>
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbFechaEntregaMantenimiento"  runat="server" Visible="false" Text="Fecha de Entrega"></asp:Label>
+                    <asp:TextBox ID="txtFechaEntregaMantenimiento" Visible="false"  runat="server" CssClass="form-control" TextMode="Date" PlaceHolder="Fecha de Entrega"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-3">
+                <asp:Label ID="lbEstatus" runat="server" Visible="false" Text="Estatus de tarjeta"></asp:Label>
+                <asp:DropDownList ID="ddlEstatus" runat="server" Visible="false" ToolTip="Seleccionar estatus de tarjeta" CssClass="form-control"></asp:DropDownList> 
             </div>
     </div>
-        <div class="form-check-inline">
-            <div class="form-group form-check">
-                <asp:CheckBox ID="cbEstatusMantenimiento" Visible="false" runat="server" CssClass="form-control" Text="Estatus" ToolTip="Estatus de Tarjeta" />
-            </div>
-        </div>
+       
     </div>
        <div align="Center">
                         <asp:Button ID="btnGuardarMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Guardar" ToolTip="Guardar Operación" />

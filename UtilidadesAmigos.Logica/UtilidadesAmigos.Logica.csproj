@@ -108,8 +108,6 @@
     <Compile Include="Entidades\ESacarRamoPoliza.cs" />
     <Compile Include="Entidades\ESacarreclamaciones.cs" />
     <Compile Include="Entidades\ESacarSubramoDetalle.cs" />
-    <Compile Include="Entidades\ETarjetaAcceso.cs" />
-    <Compile Include="Entidades\ETarjetaAccesoMantenimiento.cs" />
     <Compile Include="Entidades\ETransaccionesEfectivo.cs" />
     <Compile Include="Entidades\EUsuarios.cs" />
     <Compile Include="Entidades\EValidarPolizasCanceladasCoberturas.cs" />
