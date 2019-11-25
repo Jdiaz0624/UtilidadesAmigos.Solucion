@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <style type="text/css">
+    <style type="text/css">
         .jumbotron{
             color:#000000; 
             background:#7BC5FF;

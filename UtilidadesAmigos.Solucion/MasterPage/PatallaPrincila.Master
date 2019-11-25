@@ -53,6 +53,15 @@
                             </div>
                           </li>
 
+                            <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                              Reportes
+                            </a>
+                            <div class="dropdown-menu">
+                               <asp:LinkButton ID="LinkMarbeteDeclarativo" runat="server" ToolTip="Genera Marbetes Declarativos" Text="Marbetes declarativos" OnClick="LinkButton1_Click" class="dropdown-item"></asp:LinkButton>
+                            </div>
+                          </li>
+
                           <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                   Procesos
