@@ -76,6 +76,24 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.DropDownList ddlEmpleadoConsulta;
         
         /// <summary>
+        /// Control lbEstatustarjetaConsulta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEstatustarjetaConsulta;
+        
+        /// <summary>
+        /// Control ddlSeleccionarEstatustarjetaConsulta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarEstatustarjetaConsulta;
+        
+        /// <summary>
         /// Control lbNumeroTarjetaConsulta.
         /// </summary>
         /// <remarks>

@@ -10,12 +10,29 @@ namespace UtilidadesAmigos.Solucion.Paginas
     
     public partial class AsignacionTarjetas : System.Web.UI.Page
     {
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
+        #region CARGAR LOS DROP 
+        private void CargarDropConsulta()
+        {
+            //CARGAMOS LAS OFICINAS
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaConsulta, ObjData.Value.BuscaListas("OFICINA", null, null), true);
+            //CARGAMOS LOS DEPARTAMENTOS
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamentoConsulta, ObjData.Value.BuscaListas("DEPARTAMENTO", ddlOficinaConsulta.SelectedValue, null), true);
+            //CARGAMOS LOS EMPLEADOS
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlEmpleadoConsulta, ObjData.Value.BuscaListas("EMPLEADO", ddlOficinaConsulta.SelectedValue, ddlDepartamentoConsulta.SelectedValue), true);
+            //CARGAMOS LOS ESTATUS DE TARJETAS
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarEstatustarjetaConsulta, ObjData.Value.BuscaListas("ESTATUSTARJETA", null, null), true);
+        }
+        #endregion
 
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //decimal? dd = txtNumerotarjetaMantenimiento.Text != "-1" ? decimal.Parse(txtNumerotarjetaMantenimiento.Text) : new Nullable<decimal>();
+            if (!IsPostBack)
+            {
+                CargarDropConsulta();
+            }
 
 
         }
@@ -82,6 +99,19 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbFechaHastaConsulta.Visible = false;
                 txtFechaHastaConsulta.Visible = false;
             }
+        }
+
+        protected void ddlOficinaConsulta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamentoConsulta, ObjData.Value.BuscaListas("DEPARTAMENTO", ddlOficinaConsulta.SelectedValue, null), true);
+            //CARGAMOS LOS EMPLEADOS
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlEmpleadoConsulta, ObjData.Value.BuscaListas("EMPLEADO", ddlOficinaConsulta.SelectedValue, ddlDepartamentoConsulta.SelectedValue), true);
+        }
+
+        protected void ddlDepartamentoConsulta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //CARGAMOS LOS EMPLEADOS
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlEmpleadoConsulta, ObjData.Value.BuscaListas("EMPLEADO", ddlOficinaConsulta.SelectedValue, ddlDepartamentoConsulta.SelectedValue), true);
         }
     }
 }

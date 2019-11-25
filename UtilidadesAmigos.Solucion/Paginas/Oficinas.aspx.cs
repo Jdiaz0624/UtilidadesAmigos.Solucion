@@ -10,9 +10,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
     public partial class Oficinas : System.Web.UI.Page
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaMantenimientos.LogicaMantenimientos> Objdata = new Lazy<Logica.Logica.LogicaMantenimientos.LogicaMantenimientos>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjdataSistema = new Lazy<Logica.Logica.LogicaSistema>();
 
-        #region BUSCA OFICINAS
-        private void BuscaOficinas()
+        #region MOSTRAR EL LISTADO DE LAS OFICINAS
+        private void MostrarOficinas()
         {
             string _Oficina = string.IsNullOrEmpty(txtDescripcionOficina.Text.Trim()) ? null : txtDescripcionOficina.Text.Trim();
 
@@ -21,224 +22,195 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
                 _Oficina);
             gvOficinas.DataSource = Buscar;
             gvOficinas.DataBind();
-            //gvOficinas.Columns[1].Visible = true;
-            //gvOficinas.Columns[1].Visible = false;
         }
         #endregion
-        #region MANTENIMIENTO DE OFICINAS
-        private void MANOficina(decimal IdOficina,string Accion)
+        #region MOSTRAR Y OCULTAR CONTROLES
+        private void MostrarControles()
         {
-            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EOficinas Mantenimiento = new Logica.Entidades.Mantenimientos.EOficinas();
+            lbDescripcion.Visible = false;
+            txtDescripcionOficina.Visible = false;
+            btnConsultar.Visible = false;
+            btnNuevo.Visible = false;
+            btnRestabelcer.Visible = false;
+            btnModificar.Visible = false;
+            btnEliminar.Visible = false;
+            btnExportar.Visible = false;
+            gvOficinas.Visible = false;
 
-            Mantenimiento.IdOficina = IdOficina;
-            Mantenimiento.Oficina = txtDescripcionOficinaMAn.Text;
-            Mantenimiento.Estatus0 = cbEstatus.Checked;
-            Mantenimiento.UsuarioAdiciona = Convert.ToDecimal(Session["IdUsuario"]);
-            Mantenimiento.FechaAdiciona = DateTime.Now;
-            Mantenimiento.UsuarioModifica = Convert.ToDecimal(Session["IdUsuario"]);
-            Mantenimiento.FechaModifica = DateTime.Now;
-
-            var MAn = Objdata.Value.MantenimientoOficinas(Mantenimiento, Accion);
-        }
-        #endregion
-        #region RESTABLECER PANTALLA
-        private void Restablecer()
-        {
+            lbOficina.Visible = true;
+            txtDescripcionOficinaMAn.Visible = true;
+            lbClaveSeguridad.Visible = true;
+            txtClaveSeguridad.Visible = true;
             cbEstatus.Visible = true;
-            gvOficinas.Visible = true;
-            lbOficina.Visible = false;
-            txtDescripcionOficinaMAn.Visible = false;
-            cbEstatus.Checked = false;
-            cbEstatus.Visible = false;
-            btnGuardar.Visible = false;
+            btnGuardar.Visible = true;
+            btnVolver.Visible = true;
+        }
 
+        private void OcultarControles()
+        {
             lbDescripcion.Visible = true;
             txtDescripcionOficina.Visible = true;
-            btnConsultar.Enabled = true;
-            btnModificar.Enabled = true;
-            btnEliminar.Enabled = true;
-            btnExportar.Enabled = true;
-            btnNuevo.Enabled = true;
-            txtDescripcionOficina.Text = string.Empty;
-            txtDescripcionOficinaMAn.Text = string.Empty;
-            cbEstatus.Checked = false;
+            btnConsultar.Visible = true;
+            btnNuevo.Visible = true;
+            btnRestabelcer.Visible = true;
+            btnModificar.Visible = true;
+            btnEliminar.Visible = true;
+            btnExportar.Visible = true;
+            gvOficinas.Visible = true;
 
-            cbGuardar.Checked = false;
-            cbModificar.Checked = false;
-            cbDeshabilitar.Checked = false;
-            BuscaOficinas();
-            btnModificar.Enabled = false;
-            btnEliminar.Enabled = false;
+            lbOficina.Visible = false;
+            txtDescripcionOficinaMAn.Visible = false;
+            lbClaveSeguridad.Visible = false;
+            txtClaveSeguridad.Visible = false;
+            cbEstatus.Visible = false;
+            btnGuardar.Visible = false;
+            btnVolver.Visible = false;
+
+            txtDescripcionOficinaMAn.Text = string.Empty;
+            txtDescripcionOficina.Text = string.Empty;
+            cbEstatus.Checked = true;
+            cbEstatus.Visible = false;
+            txtClaveSeguridad.Text = string.Empty;
+            MostrarOficinas();
         }
-#endregion
+        #endregion
+        #region MANTENBIMIENTO DE OFICINAS
+        private void MANOficinas()
+        {
+            if (Session["IdUsuario"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                try {
+                    UtilidadesAmigos.Logica.Entidades.Mantenimientos.EOficinas Mantenimiento = new Logica.Entidades.Mantenimientos.EOficinas();
+
+                    Mantenimiento.IdOficina = Convert.ToDecimal(lbIdOficina.Text);
+                    Mantenimiento.Oficina = txtDescripcionOficinaMAn.Text;
+                    Mantenimiento.Estatus0 = cbEstatus.Checked;
+                    Mantenimiento.UsuarioAdiciona = Convert.ToDecimal(Session["IdUsuario"]);
+                    Mantenimiento.FechaAdiciona = DateTime.Now;
+                    Mantenimiento.UsuarioModifica = Convert.ToDecimal(Session["IdUsuario"]);
+                    Mantenimiento.FechaModifica = DateTime.Now;
+
+                    var MAn = Objdata.Value.MantenimientoOficinas(Mantenimiento, lbAccion.Text);
+
+                }
+                catch (Exception) {
+                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMantenimiento();", true);
+                }
+
+            }
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                btnModificar.Enabled = false;
-                btnEliminar.Enabled = false;
+                MostrarOficinas();
             }
         }
 
         protected void gvOficinas_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gvOficinas.PageIndex = e.NewPageIndex;
+            MostrarOficinas();
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            BuscaOficinas();
+            MostrarOficinas();
         }
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
-            //EXPORTAMOS LOS DATOS A EXEL
-            string _oficina = string.IsNullOrEmpty(txtDescripcionOficina.Text.Trim()) ? null : txtDescripcionOficina.Text.Trim();
-
-            var Exportar = (from n in Objdata.Value.BuscaOficinas(
-                new Nullable<decimal>(),
-                _oficina)
-                            select new
-                            {
-                                CodigoOficina = n.IdOficina,
-                                Oficina =n.Oficina,
-                                Estatus=n.Estatus,
-                                CreadoPor=n.Creadopor,
-                                FechaCreado=n.FechaAdiciona,
-                                ModificadoPor=n.ModificadoPor,
-                                FechaModifica =n.FechaModifica
-                            }).ToList();
-            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Oficinas", Exportar);
+          
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-            gvOficinas.Visible = false;
-            lbOficina.Visible = true;
-            txtDescripcionOficinaMAn.Visible = true;
+            MostrarControles();
+            lbIdOficina.Text = "0";
+            lbAccion.Text = "INSERT";
             cbEstatus.Checked = true;
-            cbEstatus.Visible = true;
-            btnGuardar.Visible = true;
-            lbDescripcion.Visible = false;
-            txtDescripcionOficina.Visible = false;
-            btnConsultar.Enabled = false;
-            btnModificar.Enabled = false;
-            btnEliminar.Enabled = false;
-            btnExportar.Enabled = false;
-            btnNuevo.Enabled = false;
-            txtDescripcionOficina.Text = string.Empty;
-            cbGuardar.Checked = true;
-            cbModificar.Checked = false;
-            cbDeshabilitar.Checked = false;
-            lbIdOficinaMantenimiento.Text = "0";
             cbEstatus.Visible = false;
-            cbEstatus.Checked = true;
+          //  MANOficinas();
         }
 
         protected void btnRestabelcer_Click(object sender, EventArgs e)
         {
-            Restablecer();
+         
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+
+            //VERIFICAMOS LOS CAMPOS VACIOS
             if (string.IsNullOrEmpty(txtDescripcionOficinaMAn.Text.Trim()))
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('El campo oicina no puede estar vacio favor de verificar');", true);
+                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "CamposVacios();", true);
             }
             else
             {
-                if (cbGuardar.Checked)
+                //VERIFICAMOS QUE EL CAMPO CLAVE DE SEGURIDAD NO ESTE VACIO
+                if (string.IsNullOrEmpty(txtClaveSeguridad.Text.Trim()))
                 {
-                    //VERIFICAMOS SI EL CAMPO INGRESADO YA ESTA REGISTRADO EN EL SISTEMA
-                    var ValidarRegistro = Objdata.Value.BuscaOficinas(
+                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ClaveSeguridadVacio();", true);
+                }
+                else
+                {
+                    //VALIDAMOS LA CLAVE DE SEGURIDAD
+                    var ValidarClave = ObjdataSistema.Value.BuscaClaveSeguridad(
                         new Nullable<decimal>(),
-                        txtDescripcionOficinaMAn.Text);
-                    if (ValidarRegistro.Count() < 1)
+                        UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(txtClaveSeguridad.Text));
+                    if (ValidarClave.Count() < 1)
                     {
-                        //PROCEDEMOS A GUARDAR EL REGISTRO
-                        MANOficina(
-                            Convert.ToDecimal(lbIdOficinaMantenimiento.Text), "INSERT");
-                        Restablecer();
+                        ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ClaveSeguridadNoValida();", true);
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertins", "alert('La oficina ingresada ya se encuentra registrada en el sistema, favor de revisar');", true);
-                        txtDescripcionOficinaMAn.Text = string.Empty;
+                        //REALIZAMOS EL MANTENIMIENTO
+                        MANOficinas();
+                        OcultarControles();
                     }
                 }
-                else if (cbModificar.Checked)
-                {
-                    MANOficina(Convert.ToDecimal(lbIdOficinaMantenimiento.Text), "UPDATE");
-                    Restablecer();
-                }
-                else if (cbDeshabilitar.Checked)
-                {
-                    MANOficina(Convert.ToDecimal(lbIdOficinaMantenimiento.Text), "DELETE");
-                    Restablecer();
-                }
             }
-           
         }
 
         protected void gvOficinas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GridViewRow gv = gvOficinas.SelectedRow;
-
-            lbIdOficinaMantenimiento.Text = gv.Cells[1].Text;
-            
-            btnConsultar.Enabled = false;
-            btnModificar.Enabled = true;
-            btnEliminar.Enabled = true;
-
-           
-            
 
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            gvOficinas.Visible = false;
-            lbOficina.Visible = true;
-            txtDescripcionOficinaMAn.Visible = true;
-            cbEstatus.Checked = true;
-            cbEstatus.Visible = true;
-            btnGuardar.Visible = true;
-            lbDescripcion.Visible = false;
-            txtDescripcionOficina.Visible = false;
-            btnConsultar.Enabled = false;
-            btnModificar.Enabled = false;
-            btnEliminar.Enabled = false;
-            btnExportar.Enabled = false;
-            btnNuevo.Enabled = false;
-            txtDescripcionOficina.Text = string.Empty;
-            cbGuardar.Checked = false;
-            cbModificar.Checked = true;
-            cbDeshabilitar.Checked = false;
-
-            //SACAMOS LA INFORMACION DEL REGISTRO SELECCIONADO
-            var SacarDatos = Objdata.Value.BuscaOficinas(
-                Convert.ToDecimal(lbIdOficinaMantenimiento.Text), null);
-            foreach (var n in SacarDatos)
-            {
-                txtDescripcionOficinaMAn.Text = n.Oficina;
-                cbEstatus.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
-            }
-            if (cbEstatus.Checked == true)
-            {
-                cbEstatus.Visible = false;
-            }
-            else
-            {
-                cbEstatus.Visible = true;
-            }
+           
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            MANOficina(
-                Convert.ToDecimal(lbIdOficinaMantenimiento.Text), "DELETE");
-            BuscaOficinas();
+
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvOficinas_DataBound(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void gvOficinas_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            try
+            {
+                e.Row.Cells[1].Visible = false;
+            }
+            catch (Exception) { }
         }
     }
 }

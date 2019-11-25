@@ -35,15 +35,19 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                       <asp:Label ID="lbOficinaConsulta" runat="server" Text="Seleccionar Oficina"></asp:Label>
-                <asp:DropDownList ID="ddlOficinaConsulta" runat="server" AutoPostBack="true" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="ddlOficinaConsulta" runat="server" AutoPostBack="true" ToolTip="Seleccionar Oficina" CssClass="form-control" OnSelectedIndexChanged="ddlOficinaConsulta_SelectedIndexChanged"></asp:DropDownList>
             </div>
             <div class="form-group col-md-6">
                 <asp:Label ID="lbDepartamentoConsulta" runat="server" Text="Seleccionar Departamento"></asp:Label>
-                <asp:DropDownList ID="ddlDepartamentoConsulta" runat="server" AutoPostBack="true" ToolTip="Seleccionar Departamento" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="ddlDepartamentoConsulta" runat="server" AutoPostBack="true" ToolTip="Seleccionar Departamento" CssClass="form-control" OnSelectedIndexChanged="ddlDepartamentoConsulta_SelectedIndexChanged"></asp:DropDownList>
             </div>
             <div class="form-group col-md-6">
                 <asp:Label ID="lbEmpleadoConsulta" runat="server" Text="Seleccionar Colaborador"></asp:Label>
                 <asp:DropDownList ID="ddlEmpleadoConsulta" runat="server" ToolTip="Seleccionar Colaborador" CssClass="form-control"></asp:DropDownList>
+            </div>
+            <div class="form-group col-md-6">
+                      <asp:Label ID="lbEstatustarjetaConsulta" runat="server" Text="Estatus de Consulta"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarEstatustarjetaConsulta" runat="server" AutoPostBack="true" ToolTip="Seleccionar Estatus de Consulta" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="form-group col-md-6">              
                 <asp:Label ID="lbNumeroTarjetaConsulta" runat="server" Text="Numero de tarjeta de Acceso"></asp:Label>

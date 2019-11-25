@@ -139,18 +139,18 @@ namespace UtilidadesAmigos.Logica.Logica
         }
 
         //CARGAR LAS OFICINAS
-        public List<Entidades.EOficinas> CargarOficinas(int? Oficina = null, string Descripcion = null)
-        {
-            Objdata.CommandTimeout = 999999999;
+        //public List<Entidades.EOficinas> CargarOficinas(int? Oficina = null, string Descripcion = null)
+        //{
+        //    Objdata.CommandTimeout = 999999999;
 
-            var Buscar = (from n in Objdata.SP_BUSCA_LISTA_OFICINAS(Oficina, Descripcion)
-                          select new Entidades.EOficinas
-                          {
-                              Oficina=n.Oficina,
-                              Descripcion=n.Descripcion
-                          }).ToList();
-            return Buscar;
-        }
+        //    var Buscar = (from n in Objdata.SP_BUSCA_LISTA_OFICINAS(Oficina, Descripcion)
+        //                  select new Entidades.EOficinas
+        //                  {
+        //                      Oficina=n.Oficina,
+        //                      Descripcion=n.Descripcion
+        //                  }).ToList();
+        //    return Buscar;
+        //}
 
         //CARGAR LOS EMPLEADOS
         public List<Entidades.EBuscarEmpleados> CargarEmpleados(decimal? IdDepartamento = null, decimal? IdOficina = null, decimal? IdEmpleado = null)

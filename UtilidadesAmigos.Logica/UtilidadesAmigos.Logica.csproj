@@ -92,7 +92,6 @@
     <Compile Include="Entidades\EListas.cs" />
     <Compile Include="Entidades\EMantenimientoProduccionTodosLosRamos.cs" />
     <Compile Include="Entidades\EMantenimientoUsuarios.cs" />
-    <Compile Include="Entidades\EOficinas.cs" />
     <Compile Include="Entidades\EOperacionesSospechosas.cs" />
     <Compile Include="Entidades\EPlanCoberturas.cs" />
     <Compile Include="Entidades\EProduccionDiariaConsulta.cs" />

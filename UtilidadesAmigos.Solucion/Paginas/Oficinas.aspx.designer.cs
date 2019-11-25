@@ -22,6 +22,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         protected global::System.Web.UI.WebControls.Label lbEncabezado;
         
         /// <summary>
+        /// Control lbIdOficina.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbIdOficina;
+        
+        /// <summary>
+        /// Control lbAccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbAccion;
+        
+        /// <summary>
         /// Control lbDescripcion.
         /// </summary>
         /// <remarks>
@@ -121,6 +139,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         protected global::System.Web.UI.WebControls.TextBox txtDescripcionOficinaMAn;
         
         /// <summary>
+        /// Control lbClaveSeguridad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbClaveSeguridad;
+        
+        /// <summary>
+        /// Control txtClaveSeguridad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtClaveSeguridad;
+        
+        /// <summary>
         /// Control cbEstatus.
         /// </summary>
         /// <remarks>
@@ -130,42 +166,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         protected global::System.Web.UI.WebControls.CheckBox cbEstatus;
         
         /// <summary>
-        /// Control cbGuardar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbGuardar;
-        
-        /// <summary>
-        /// Control cbModificar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbModificar;
-        
-        /// <summary>
-        /// Control cbDeshabilitar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbDeshabilitar;
-        
-        /// <summary>
-        /// Control lbIdOficinaMantenimiento.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbIdOficinaMantenimiento;
-        
-        /// <summary>
         /// Control btnGuardar.
         /// </summary>
         /// <remarks>
@@ -173,5 +173,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardar;
+        
+        /// <summary>
+        /// Control btnVolver.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVolver;
     }
 }

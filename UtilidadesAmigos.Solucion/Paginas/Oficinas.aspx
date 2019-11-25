@@ -17,10 +17,16 @@
             width: 78px;
         }
     </style>
+    <!--INICIO DEL ENCABEZADO DE LA PANTALLA-->
    <div class="container-fluid">
        <div align="Center" class="jumbotron">
        <asp:Label ID="lbEncabezado" runat="server"  Text="Mantenimiento de Oficinas"></asp:Label>
    </div>
+       <div>
+           <asp:Label ID="lbIdOficina" runat="server" Text="IdOficina" Visible="false"></asp:Label>
+           <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
+       </div>
+       <!--FIN DEL ENCABEZADO DE LA PANTALLA-->
        <br />
        <div class="form-row">
            <div class="form-group col-md-3">
@@ -34,17 +40,17 @@
 
 
             <div class="col-md-3">
-                    <asp:Button ID="btnConsultar" runat="server" Text="Buscar" ToolTip="Buscar Registros" CssClass="btn btn-outline-info btn-sm Custom" OnClick="btnConsultar_Click" />
+                    <asp:Button ID="btnConsultar" runat="server" Text="Buscar" ToolTip="Buscar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultar_Click" />
             <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" ToolTip="Crear Nuevo Registro" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnNuevo_Click" />
-            <asp:Button ID="btnRestabelcer" runat="server" Text="Atras" ToolTip="Restablecer Pantalla" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnRestabelcer_Click" /><br />
+            <asp:Button ID="btnRestabelcer" runat="server" Text="Atras" Enabled="false" ToolTip="Restablecer Pantalla" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnRestabelcer_Click" /><br />
      
 
             </div>
        <br />
        <div class="col-md-3">
-                           <asp:Button ID="btnModificar" runat="server" Text="Modificar" ToolTip="Modificar Registro seleccionado" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnModificar_Click" />
-            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" ToolTip="Deshabilitar registro seleccionado" CssClass="btn btn-outline-danger btn-sm Custom" OnClick="btnEliminar_Click" />
-            <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar a exel" CssClass="btn btn-outline-success btn-sm Custom" OnClick="btnExportar_Click" />
+                           <asp:Button ID="btnModificar" runat="server" Enabled="false" Text="Modificar" ToolTip="Modificar Registro seleccionado" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnModificar_Click" />
+            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" Enabled="false" ToolTip="Deshabilitar registro seleccionado" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnEliminar_Click" />
+            <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar a exel" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportar_Click" />
        </div>
        <br />
 
@@ -60,10 +66,10 @@
 
     <div class="container-fluid">
         <%--en esta parte agregamos el grid--%>
-        <asp:GridView ID="gvOficinas" runat="server"  AutoGenerateColumns="False" OnPageIndexChanging="gvOficinas_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" OnSelectedIndexChanged="gvOficinas_SelectedIndexChanged">
+        <asp:GridView ID="gvOficinas" runat="server"  AutoGenerateColumns="False" OnPageIndexChanging="gvOficinas_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" OnSelectedIndexChanged="gvOficinas_SelectedIndexChanged" OnDataBound="gvOficinas_DataBound" OnRowDataBound="gvOficinas_RowDataBound">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
-                <asp:CommandField ButtonType="Button" HeaderText="Select" ShowSelectButton="True" />
+                <asp:CommandField ButtonType="Button"  ControlStyle-CssClass="btn btn-outline-primary btn-sm Custom" HeaderText="Select" ShowSelectButton="True" />
                 <asp:BoundField DataField="IdOficina"   HeaderText="IdOficina" />
                 <asp:BoundField DataField="Oficina"  HeaderText="Oficina" />
                 <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
@@ -72,16 +78,15 @@
                 <asp:BoundField DataField="ModificadoPor" HeaderText="Modificado por" />
                 <asp:BoundField DataField="FechaModifica" HeaderText="Fecha Modifica" />
             </Columns>
-            <EditRowStyle BackColor="#999999" />
-            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-            <SortedAscendingCellStyle BackColor="#E9E7E2" />
-            <SortedAscendingHeaderStyle BackColor="#506C8C" />
-            <SortedDescendingCellStyle BackColor="#FFFDF8" />
-            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+             <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
         </asp:GridView>
     </div>
     <div>
@@ -89,18 +94,24 @@
         <div class="container-fluid">
             <div class="form-row">
                 <div class="form-group col-md-3">
-                    <asp:Label ID="lbOficina" Visible="false" runat="server" Text="Ingrese Oficina" CssClass="LabelFormularios"></asp:Label>
-        <asp:TextBox ID="txtDescripcionOficinaMAn" Visible="false" runat="server" PlaceHolder="Descripcion de Oficina" CssClass="form-control"></asp:TextBox><br />
-        <asp:CheckBox ID="cbEstatus" runat="server" Visible="false" Text="Estatus" CssClass="CheckBox-Formularios" ToolTip="Estatus de Oficina" /><br />
-        <asp:CheckBox ID="cbGuardar" runat="server" Visible="false" Text="Guardar" CssClass="CheckBox-Formularios" />
-        <asp:CheckBox ID="cbModificar" runat="server" Visible="false" Text="Modificar" CssClass="CheckBox-Formularios" />
-        <asp:CheckBox ID="cbDeshabilitar" runat="server" Visible="false" Text="Deshabilitar" CssClass="CheckBox-Formularios" /><br />
-        <asp:Label ID="lbIdOficinaMantenimiento" Visible="false" runat="server" Text="IdOficinaSeleccionado"></asp:Label>
+                    <asp:Label ID="lbOficina" Visible="false" runat="server" Text="Ingrese Oficina"></asp:Label>
+                    <asp:TextBox ID="txtDescripcionOficinaMAn" Visible="false" runat="server" AutoCompleteType="Disabled" PlaceHolder="Descripcion de Oficina" CssClass="form-control"></asp:TextBox>
+                    
+                </div>
+                <div class="form-group col-md-3">
+                    <asp:Label ID="lbClaveSeguridad" runat="server" Visible="false" Text="Clave de Seguridad"></asp:Label>
+                    <asp:TextBox ID="txtClaveSeguridad" runat="server" Visible="false" TextMode="Password" PlaceHolder="Clave de Seguridad" CssClass="form-control" MaxLength="20"></asp:TextBox>
+                </div>
+            </div>
+            <div class="form-check-inline">
+                <div class="form-group form-check">
+                    <asp:CheckBox ID="cbEstatus" runat="server" Visible="false" Text="Estatus" CssClass="form-check-input" ToolTip="Estatus de Oficina" />
                 </div>
             </div>
         </div>
         <div align="Center">
             <asp:Button ID="btnGuardar" Visible="false" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm Custom" ToolTip="Terminar Operacion" OnClick="btnGuardar_Click" />
+             <asp:Button ID="btnVolver" Visible="false" runat="server" Text="Volver" CssClass="btn btn-outline-primary btn-sm Custom" ToolTip="Volver Atras" OnClick="btnVolver_Click"/>
         </div>
     </div>
 </asp:Content>
