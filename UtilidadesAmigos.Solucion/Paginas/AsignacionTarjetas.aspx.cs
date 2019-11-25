@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {//decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? decimal.Parse(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
+    
     public partial class AsignacionTarjetas : System.Web.UI.Page
     {
 
@@ -14,7 +15,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            decimal? dd = txtNumerotarjetaMantenimiento.Text != "-1" ? decimal.Parse(txtNumerotarjetaMantenimiento.Text) : new Nullable<decimal>();
 
 
         }
