@@ -44,6 +44,25 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
             cbEstatus.Visible = true;
             btnGuardar.Visible = true;
             btnVolver.Visible = true;
+
+            if (lbAccion.Text != "INSERT")
+            {
+                var SACARdATOOFICINA = Objdata.Value.BuscaOficinas(
+                    Convert.ToDecimal(lbIdOficina.Text), null);
+                foreach (var n in SACARdATOOFICINA)
+                {
+                    txtDescripcionOficinaMAn.Text = n.Oficina;
+                    cbEstatus.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
+                    if (cbEstatus.Checked == true)
+                    {
+                        cbEstatus.Visible = false;
+                    }
+                    else
+                    {
+                        cbEstatus.Visible = true;
+                    }
+                }
+            }
         }
 
         private void OcultarControles()
@@ -72,6 +91,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
             cbEstatus.Visible = false;
             txtClaveSeguridad.Text = string.Empty;
             MostrarOficinas();
+            txtDescripcionOficinaMAn.Enabled = true;
+            cbEstatus.Enabled = true;
+
+            btnConsultar.Enabled = true;
+            btnNuevo.Enabled = true;
+            btnRestabelcer.Enabled = false;
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnExportar.Enabled = true;
         }
         #endregion
         #region MANTENBIMIENTO DE OFICINAS
@@ -126,14 +154,33 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
-          
+            try {
+                var Exportar = (from n in Objdata.Value.BuscaOficinas(
+                new Nullable<decimal>(),
+                txtDescripcionOficina.Text)
+                                select new
+                                {
+                                    IdOficina = n.IdOficina,
+                                    Oficina = n.Oficina,
+                                    Estatus = n.Estatus,
+                                    CreadoPor = n.Creadopor,
+                                    FechaCreado = n.FechaAdiciona,
+                                    ModificadoPor = n.ModificadoPor,
+                                    FechaModifica = n.FechaModifica
+                                }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Oficinas", Exportar);
+            }
+            catch (Exception) { }
+
+               
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-            MostrarControles();
             lbIdOficina.Text = "0";
             lbAccion.Text = "INSERT";
+            MostrarControles();
+ 
             cbEstatus.Checked = true;
             cbEstatus.Visible = false;
           //  MANOficinas();
@@ -141,7 +188,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
 
         protected void btnRestabelcer_Click(object sender, EventArgs e)
         {
-         
+            OcultarControles();
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -181,22 +228,43 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
 
         protected void gvOficinas_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GridViewRow gb = gvOficinas.SelectedRow;
 
+            var SacarDatos = Objdata.Value.BuscaOficinas(
+                Convert.ToDecimal(gb.Cells[1].Text),
+                null);
+            gvOficinas.DataSource = SacarDatos;
+            gvOficinas.DataBind();
+            foreach (var n in SacarDatos)
+            {
+                lbIdOficina.Text = n.IdOficina.ToString();
+            }
+            btnConsultar.Enabled = false;
+            btnNuevo.Enabled = false;
+            btnRestabelcer.Enabled = true;
+            btnModificar.Enabled = true;
+            btnEliminar.Enabled = true;
+            btnExportar.Enabled = false;
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-           
+            lbAccion.Text = "UPDATE";
+            MostrarControles();
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-
+            lbAccion.Text = "DELETE";
+            MostrarControles();
+            txtDescripcionOficinaMAn.Enabled = false;
+            cbEstatus.Enabled = false;
+            cbEstatus.Visible = true;
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-
+            OcultarControles();
         }
 
         protected void gvOficinas_DataBound(object sender, EventArgs e)
