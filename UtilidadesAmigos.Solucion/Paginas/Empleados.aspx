@@ -17,17 +17,21 @@
             width:90px;
         }
     </style>
-    <script type="text/javascript">
-        $(document).ready(function () {
-  
-        })
-    </script>
+   
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#<%=btnGuardarMantenimiento.ClientID%>').click(function () {
+            //OCULTAMOS LOS CONTROLES
+        
+
+            
+
+
+          <%--  $('#<%=btnGuardarMantenimiento.ClientID%>').click(function () {
                  //VALIDAMOS LOS CAMPOS VACIOS
                 var Oficina = $('#<%=txtNombreMantenimiento.ClientID%>').val().length;
+                var ClaveSeguridad = $('#<%=txtClaveSeguridad.ClientID%>').val().length;
+
                 if (Oficina < 1) {
                     alert("El campo nombre no puede estar vacio")
                     $('#<%=txtNombreMantenimiento.ClientID%>').css("border-color", "red");
@@ -35,16 +39,22 @@
                 } else
                 {
                     //VALIDAMOS EL CAMPO CLAVE DE SEGURIDAD
-                    var ClaveSeguridad = $('#<%=txtClaveSeguridad.ClientID%>').val().length;
+                    
                     if (ClaveSeguridad < 1) {
                         alert("Favor de ingresar la clave de seguridad para proceder")
                         $('#<%=txtClaveSeguridad.ClientID%>').css("border-color", "red");
                         return false;
                     }
+                    else
+                    {
+                         return true;
+
+                    }
+                   
                     
                     
                 }
-            })
+            })--%>
 
 
 
@@ -58,6 +68,10 @@
         <div align="center" class="jumbotron">
             <asp:Label ID="lbEncabezadoPantalla" runat="server" Text="Mantenimeinto de Empleados"></asp:Label>
         </div>
+    </div>
+    <div>
+        <asp:Label ID="lbIdEmpleado" runat="server" Text="IdEmpleado" Visible="false"></asp:Label>
+        <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
     </div>
     <!--FIN DEL ENCABEZADO DE LA PANTALLA-->
 
@@ -102,29 +116,28 @@
 
     <!--INICIO DEL GRID-->
     <div class="container-fluid">
-            <asp:GridView ID="gvEmpleados" runat="server" AllowPaging="true" OnPageIndexChanging="gvEmpleados_PageIndexChanging" OnSelectedIndexChanged="gvEmpleados_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+            <asp:GridView ID="gvEmpleados" runat="server" AllowPaging="true" OnPageIndexChanging="gvEmpleados_PageIndexChanging" OnSelectedIndexChanged="gvEmpleados_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" OnRowDataBound="gvEmpleados_RowDataBound">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    <asp:CommandField ButtonType="Button" HeaderStyle-Width="10%" HeaderText="Seleccionar"  ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Seleccionar" ShowSelectButton="True" />
-                    <asp:BoundField DataField="IdEmpleado" HeaderStyle-Width="5%" HeaderText="ID" />
-                    <asp:BoundField DataField="Oficina" HeaderStyle-Width="15%" HeaderText="<%$Resources:Traducciones,Oficina %>" />
-                    <asp:BoundField DataField="Departamento" HeaderStyle-Width="5%" HeaderText="<%$Resources:Traducciones,Departamento %>" />
-                    <asp:BoundField DataField="Nombre" HeaderStyle-Width="20%" HeaderText="<%$Resources:Traducciones,Nombre %>" />
-                    <asp:BoundField DataField="Estatus" HeaderStyle-Width="10%" HeaderText="<%$Resources:Traducciones,Estatus %>" />
-                    <asp:BoundField DataField="CreadoPor" HeaderStyle-Width="20%" HeaderText="<%$Resources:Traducciones,CreadoPor %>" />
-                    <asp:BoundField DataField="FechaAdiciona" HeaderStyle-Width="15%" HeaderText="<%$Resources:Traducciones,FechaAdiciona %>" />
+                    <asp:CommandField ButtonType="Button" HeaderText="Seleccionar"  ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Seleccionar" ShowSelectButton="True" />
+                    <asp:BoundField DataField="IdEmpleado" HeaderText="ID" />
+                    <asp:BoundField DataField="Oficina" HeaderText="Oficina" />
+                    <asp:BoundField DataField="Departamento" HeaderText="Departamento" />
+                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
+                    <asp:BoundField DataField="CreadoPor" HeaderText="Creado Por" />
+                    <asp:BoundField DataField="FechaAdiciona" HeaderText="Fecha Adiciona" />
                 </Columns  >
-                <EditRowStyle BackColor="#999999"  />
-                <FooterStyle BackColor="#5D7B9D" HorizontalAlign="Left" Font-Bold="True" ForeColor="Black" />
+                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
                 <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#F7F6F3" ForeColor="#333333"  />
-                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
             </asp:GridView>
     </div>
     <!--FIN DEL GRID-->
@@ -133,32 +146,32 @@
     <div  class="container-fluid">
         <div " class="form-row">
             <div class="form-group col-md-6">
-                 <asp:Label ID="lbOficinaMantenimiento" runat="server"  Text="Oficina"></asp:Label>
-                <asp:DropDownList ID="ddlOficinaMantenimiento" runat="server" CssClass="form-control"  AutoPostBack="True"  ToolTip="Seleccionar Oficina" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList><br />
+                 <asp:Label ID="lbOficinaMantenimiento" Visible="false" runat="server"  Text="Oficina"></asp:Label>
+                <asp:DropDownList ID="ddlOficinaMantenimiento" runat="server" Visible="false" CssClass="form-control"  AutoPostBack="True"  ToolTip="Seleccionar Oficina" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList><br />
             </div>
 
                <div class="form-group col-md-6">
-                    <asp:Label ID="lbDepartamentoMantenimiento"  runat="server"   Text="Departamento"></asp:Label>
-                   <asp:DropDownList ID="ddlDepartamenoMantenimiento" runat="server" CssClass="form-control"  ToolTip="Seleccionar Departamento"></asp:DropDownList>
+                    <asp:Label ID="lbDepartamentoMantenimiento" Visible="false"  runat="server"   Text="Departamento"></asp:Label>
+                   <asp:DropDownList ID="ddlDepartamenoMantenimiento" Visible="false" runat="server" CssClass="form-control"  ToolTip="Seleccionar Departamento"></asp:DropDownList>
             </div>
 
                <div class="form-group col-md-6">
-                    <asp:Label ID="lbNombreMantenimiento" runat="server"  Text="Nombre"></asp:Label>
-            <asp:TextBox ID="txtNombreMantenimiento" runat="server" AutoCompleteType="Disabled" CssClass="form-control"  PlaceHolder="Nombre" MaxLength="100"></asp:TextBox>
+                    <asp:Label ID="lbNombreMantenimiento" runat="server" Visible="false"  Text="Nombre"></asp:Label>
+            <asp:TextBox ID="txtNombreMantenimiento" runat="server" Visible="false" AutoCompleteType="Disabled" CssClass="form-control"  PlaceHolder="Nombre" MaxLength="100"></asp:TextBox>
             </div>
              <div class="form-group col-md-6">
-             <asp:Label ID="lbClaveSeguridad" runat="server"  Text="Clave de Seguridad"></asp:Label>
-            <asp:TextBox ID="txtClaveSeguridad" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Password"  PlaceHolder="Clave de Seguridad" MaxLength="20"></asp:TextBox>
+             <asp:Label ID="lbClaveSeguridad" runat="server" Visible="false" Text="Clave de Seguridad"></asp:Label>
+            <asp:TextBox ID="txtClaveSeguridad" runat="server" Visible="false" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Password"  PlaceHolder="Clave de Seguridad" MaxLength="20"></asp:TextBox>
             </div>
         </div>
       <div class="form-group form-check">
           <div class="form-check-inline">
-                   <asp:CheckBox ID="cbEstatusMantenimiento" runat="server" Text="Estatus" CssClass="form-check-input"  ToolTip="Estatus" />
+                   <asp:CheckBox ID="cbEstatusMantenimiento" Visible="false" runat="server" Text="Estatus" CssClass="form-check-input"  ToolTip="Estatus" />
           </div>
       </div>
         <div align="Center">
-                        <asp:Button ID="btnGuardarMantenimiento" runat="server" CssClass="btn btn-outline-primary btn-sm"  Text="Guardar" ToolTip="Guardar Operación" OnClick="btnGuardarMantenimiento_Click"/>
-                        <asp:Button ID="btnAtrasMantenimiento" runat="server" CssClass="btn btn-outline-primary btn-sm"  Text="Atras" ToolTip="Volver Atras" OnClick="btnAtrasMantenimiento_Click" />
+                        <asp:Button ID="btnGuardarMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm Custom"  Text="Guardar" ToolTip="Guardar Operación" OnClick="btnGuardarMantenimiento_Click"/>
+                        <asp:Button ID="btnAtrasMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm Custom"  Text="Atras" ToolTip="Volver Atras" OnClick="btnAtrasMantenimiento_Click" />
                     </div>
     </div>
     <!--AQUI TERMINAN LOS CONTROLES PARA REALIZAR LOS MANTENIMIENTOS CORRESPONDIENTES-->

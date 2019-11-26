@@ -21,6 +21,15 @@
         }
     </style>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+
+
+        });
+    </script>
+
 
 <!--INICIO DEL ENCABEZADO DE LA PANTALLA-->
     <div class="container-fluid">
