@@ -124,7 +124,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected void linkEmpleados_Click(object sender, EventArgs e)
         {
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
-           // Response.Redirect("Empleados.aspx");
+            Response.Redirect("Empleados.aspx");
         }
 
         protected void linkInventario_Click(object sender, EventArgs e)

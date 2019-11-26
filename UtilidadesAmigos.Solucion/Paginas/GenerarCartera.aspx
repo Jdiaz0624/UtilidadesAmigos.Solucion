@@ -41,7 +41,27 @@
         }
     </style>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
 
+
+
+            $('#<%=btnConsultar.ClientID%>').click(function () {
+                var CodigoSupervisor = $('#<%=txtCodigoSupervisor.ClientID%>').val().length;
+                if (CodigoSupervisor < 1) {
+                    $('#<%=txtCodigoSupervisor.ClientID%>').css("border-color", "red");
+                   
+                    alert("Favor ingresar el codigo de supervisor")
+                    return false;
+                }
+                return true;
+
+
+
+    })
+        })
+    </script>
 
     <!--INICIO DEL ENCABEZADO-->
     <div class="container-fluid">

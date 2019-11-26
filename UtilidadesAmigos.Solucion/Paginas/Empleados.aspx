@@ -22,6 +22,37 @@
   
         })
     </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#<%=btnGuardarMantenimiento.ClientID%>').click(function () {
+                 //VALIDAMOS LOS CAMPOS VACIOS
+                var Oficina = $('#<%=txtNombreMantenimiento.ClientID%>').val().length;
+                if (Oficina < 1) {
+                    alert("El campo nombre no puede estar vacio")
+                    $('#<%=txtNombreMantenimiento.ClientID%>').css("border-color", "red");
+                    return false;
+                } else
+                {
+                    //VALIDAMOS EL CAMPO CLAVE DE SEGURIDAD
+                    var ClaveSeguridad = $('#<%=txtClaveSeguridad.ClientID%>').val().length;
+                    if (ClaveSeguridad < 1) {
+                        alert("Favor de ingresar la clave de seguridad para proceder")
+                        $('#<%=txtClaveSeguridad.ClientID%>').css("border-color", "red");
+                        return false;
+                    }
+                    
+                    
+                }
+            })
+
+
+
+           
+
+
+        })
+    </script>
     <!--INICIO DEL ENCABEZADO DE LA PANTALLA-->
     <div class="container-fluid">
         <div align="center" class="jumbotron">
@@ -102,30 +133,32 @@
     <div  class="container-fluid">
         <div " class="form-row">
             <div class="form-group col-md-6">
-                 <asp:Label ID="lbOficinaMantenimiento" runat="server" Visible="false" Text="Oficina"></asp:Label>
-                <asp:DropDownList ID="ddlOficinaMantenimiento" runat="server" CssClass="form-control" Visible="false" AutoPostBack="True"  ToolTip="Seleccionar Oficina" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList><br />
+                 <asp:Label ID="lbOficinaMantenimiento" runat="server"  Text="Oficina"></asp:Label>
+                <asp:DropDownList ID="ddlOficinaMantenimiento" runat="server" CssClass="form-control"  AutoPostBack="True"  ToolTip="Seleccionar Oficina" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList><br />
             </div>
 
                <div class="form-group col-md-6">
-                    <asp:Label ID="lbDepartamentoMantenimiento"  runat="server"  Visible="false" Text="Departamento"></asp:Label>
-                   <asp:DropDownList ID="ddlDepartamenoMantenimiento" runat="server" CssClass="form-control" Visible="false" ToolTip="Seleccionar Departamento"></asp:DropDownList>
+                    <asp:Label ID="lbDepartamentoMantenimiento"  runat="server"   Text="Departamento"></asp:Label>
+                   <asp:DropDownList ID="ddlDepartamenoMantenimiento" runat="server" CssClass="form-control"  ToolTip="Seleccionar Departamento"></asp:DropDownList>
             </div>
 
                <div class="form-group col-md-6">
-                    <asp:Label ID="lbNombreMantenimiento" runat="server" Visible="false" Text="Nombre"></asp:Label>
-            <asp:TextBox ID="txtNombreMantenimiento" runat="server" AutoCompleteType="Disabled" CssClass="form-control" Visible="false" PlaceHolder="Nombre" MaxLength="100"></asp:TextBox>
+                    <asp:Label ID="lbNombreMantenimiento" runat="server"  Text="Nombre"></asp:Label>
+            <asp:TextBox ID="txtNombreMantenimiento" runat="server" AutoCompleteType="Disabled" CssClass="form-control"  PlaceHolder="Nombre" MaxLength="100"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-6">
+             <asp:Label ID="lbClaveSeguridad" runat="server"  Text="Clave de Seguridad"></asp:Label>
+            <asp:TextBox ID="txtClaveSeguridad" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Password"  PlaceHolder="Clave de Seguridad" MaxLength="20"></asp:TextBox>
             </div>
         </div>
       <div class="form-group form-check">
           <div class="form-check-inline">
-                   <asp:CheckBox ID="cbEstatusMantenimiento" runat="server" Text="Estatus" CssClass="form-check-input" Visible="false" ToolTip="Estatus" />
+                   <asp:CheckBox ID="cbEstatusMantenimiento" runat="server" Text="Estatus" CssClass="form-check-input"  ToolTip="Estatus" />
           </div>
       </div>
         <div align="Center">
-                        <asp:Button ID="btnGuardarMantenimiento" runat="server" CssClass="btn btn-outline-primary btn-sm" Visible="false" Text="Guardar" ToolTip="Guardar Operación" OnClick="btnGuardarMantenimiento_Click"/>
-                        <asp:Button ID="btnAtrasMantenimiento" runat="server" CssClass="btn btn-outline-primary btn-sm" Visible="false" Text="Atras" ToolTip="Volver Atras" OnClick="btnAtrasMantenimiento_Click" />
-                        <asp:Label ID="lbIdMantenimiento" runat="server" Text="IdMantenimiento" Visible="false"></asp:Label>
-                        <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
+                        <asp:Button ID="btnGuardarMantenimiento" runat="server" CssClass="btn btn-outline-primary btn-sm"  Text="Guardar" ToolTip="Guardar Operación" OnClick="btnGuardarMantenimiento_Click"/>
+                        <asp:Button ID="btnAtrasMantenimiento" runat="server" CssClass="btn btn-outline-primary btn-sm"  Text="Atras" ToolTip="Volver Atras" OnClick="btnAtrasMantenimiento_Click" />
                     </div>
     </div>
     <!--AQUI TERMINAN LOS CONTROLES PARA REALIZAR LOS MANTENIMIENTOS CORRESPONDIENTES-->
