@@ -12,21 +12,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjdataComun = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaMantenimientos.LogicaMantenimientos> Objdata = new Lazy<Logica.Logica.LogicaMantenimientos.LogicaMantenimientos>();
 
-        #region CARGAR LOS DROPS
-        private void CargarDropsConsulta()
-        {
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaConsulta, ObjdataComun.Value.BuscaListas("OFICINA", null, null), true);
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamentoConsulta, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlOficinaConsulta.SelectedValue, null), true);
-        }
 
-        private void CargarDropsMantenimiento()
-        {
-
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaMantenimiento, ObjdataComun.Value.BuscaListas("OFICINA", null, null));
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamenoMantenimiento, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlOficinaMantenimiento.SelectedValue, null));
-        }
-
-        #endregion
         #region MOSTRAR EL LISTADO DE LOS EMPLEADOS
         private void MostrarListadoEmpleados()
         {
@@ -41,6 +27,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 _Nombre);
             gvEmpleados.DataSource = Buscar;
             gvEmpleados.DataBind();
+        }
+        #endregion
+        #region CARGAR DROPS
+        private void LlenaDrop()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaConsulta, ObjdataComun.Value.BuscaListas("OFICINA", null, null), true);
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaMantenimiento, ObjdataComun.Value.BuscaListas("OFICINA", null, null));
+        }
+
+        private void CargarDepartamentosConsulta()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamentoConsulta, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlOficinaConsulta.SelectedValue, null),true);
+        }
+        private void CargarDepartamentosMantenimiento()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamenoMantenimiento, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlOficinaMantenimiento.SelectedValue, null));
         }
         #endregion
         #region MOSTRAR Y OCULTAR CONTROLES
@@ -72,7 +74,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnGuardarMantenimiento.Visible = true;
             btnAtrasMantenimiento.Visible = true;
 
-            CargarDropsMantenimiento();
 
             if (lbAccion.Text != "INSERT")
             {
@@ -80,7 +81,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     null, null, Convert.ToDecimal(lbIdEmpleado.Text));
                 foreach (var n in SacarDatos)
                 {
+                    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaMantenimiento, ObjdataComun.Value.BuscaListas("OFICINA", null, null));
                     UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlOficinaMantenimiento, n.IdOficina.ToString());
+                    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamenoMantenimiento, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlOficinaMantenimiento.SelectedValue, null));
                     UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlDepartamenoMantenimiento, n.IdDepartamento.ToString());
                     txtNombreMantenimiento.Text = n.Nombre;
                     cbEstatusMantenimiento.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
@@ -127,7 +130,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtNombreConsulta.Text = string.Empty;
             txtNombreMantenimiento.Text = string.Empty;
             txtClaveSeguridad.Text = string.Empty;
-            CargarDropsConsulta();
             MostrarListadoEmpleados();
 
             btnConsultar.Enabled = true;
@@ -175,7 +177,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack)
             {
-                CargarDropsConsulta();
+                LlenaDrop();
+                CargarDepartamentosConsulta();
                 MostrarListadoEmpleados();
             }
         }
@@ -222,6 +225,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             else
             {
                 MANEmpleados();
+                OcultarControles();
             }
 
         }
@@ -292,20 +296,21 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void ddlOficinaConsulta_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamentoConsulta, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlOficinaConsulta.SelectedValue, null), true);
+            CargarDepartamentosConsulta();
         }
 
         protected void ddlOficinaMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamenoMantenimiento, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlOficinaMantenimiento.SelectedValue, null));
+            CargarDepartamentosMantenimiento();
         }
 
         protected void gvEmpleados_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            //try {
-            //    e.Row.Cells[1].Visible = false;
-            //}
-            //catch (Exception) { }
+            try
+            {
+                e.Row.Cells[1].Visible = false;
+            }
+            catch (Exception) { }
         }
     }
 }

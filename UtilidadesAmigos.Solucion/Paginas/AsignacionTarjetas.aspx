@@ -28,6 +28,10 @@
             <asp:Label ID="lbEncabezado" runat="server" Text="Asignación de tarjetas de acceso"></asp:Label>
         </div>
     </div>
+    <div>
+        <asp:Label ID="lbIdMantenimiento" runat="server" Text="IdMantenimiento" Visible="false"></asp:Label>
+                        <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
+    </div>
     <!--AQUI TERMINA LA PARTE DEL ENCABEZADO-->
 
     <!--AQUI INICIAN LOS CONTROLES DE BUSQUEDA-->
@@ -43,7 +47,7 @@
             </div>
             <div class="form-group col-md-6">
                 <asp:Label ID="lbEmpleadoConsulta" runat="server" Text="Seleccionar Colaborador"></asp:Label>
-                <asp:DropDownList ID="ddlEmpleadoConsulta" runat="server" ToolTip="Seleccionar Colaborador" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="ddlEmpleadoConsulta"  runat="server" ToolTip="Seleccionar Colaborador" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="form-group col-md-6">
                       <asp:Label ID="lbEstatustarjetaConsulta" runat="server" Text="Estatus de Consulta"></asp:Label>
@@ -128,15 +132,15 @@
         <div class="form-row">
         <div class="form-group col-md-3">
             <asp:Label ID="lbOficinaMantenimiento" Visible="false"  runat="server" Text="Seleccionar Oficina"></asp:Label>
-            <asp:DropDownList ID="ddlOficinaMantenimiento" Visible="false" AutoPostBack="true"  runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
+            <asp:DropDownList ID="ddlOficinaMantenimiento" Visible="false" AutoPostBack="true"  runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
         </div>
             <div class="form-group col-md-3">
                  <asp:Label ID="lbDepartamentoMantenimiento" runat="server" Visible="false" Text="Seleccionar Departamentos" CssClass="LabelFormularios"></asp:Label>
-            <asp:DropDownList ID="ddlDepartamentoMantenimiento" Visible="false"  AutoPostBack="true" runat="server" CssClass="form-control" ToolTip="Seleccionar Departamentos"></asp:DropDownList>
+            <asp:DropDownList ID="ddlDepartamentoMantenimiento" Visible="false"  AutoPostBack="true" runat="server" CssClass="form-control" ToolTip="Seleccionar Departamentos" OnSelectedIndexChanged="ddlDepartamentoMantenimiento_SelectedIndexChanged"></asp:DropDownList>
             </div>
             <div class="form-group col-md-3">
                     <asp:Label ID="lbEmpleadoMantenimiento" Visible="false" runat="server" Text="Seleccionar Colaborador"></asp:Label>
-                      <asp:DropDownList ID="ddlEmpleadoMantenimiento" Visible="false"  AutoPostBack="true" runat="server" CssClass="form-control" ToolTip="Seleccionar Empleado"></asp:DropDownList>
+                      <asp:DropDownList ID="ddlEmpleadoMantenimiento" Visible="false"   runat="server" CssClass="form-control" ToolTip="Seleccionar Empleado"></asp:DropDownList>
             </div>
             <div class="form-group col-md-3">
                 <asp:Label ID="lbSecuenciaInterna" runat="server" Visible="false" Text="Secuencia Interna"></asp:Label>
@@ -154,14 +158,18 @@
                 <asp:Label ID="lbEstatus" runat="server" Visible="false" Text="Estatus de tarjeta"></asp:Label>
                 <asp:DropDownList ID="ddlEstatus" runat="server" Visible="false" ToolTip="Seleccionar estatus de tarjeta" CssClass="form-control"></asp:DropDownList> 
             </div>
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbClaveSeguridad" Visible="false" runat="server" Text="Clave de Seguridad"></asp:Label>
+                <asp:TextBox ID="txtClaveSeguridad" Visible="false" runat="server" placeholder="Clave de Seguridad" MaxLength="20" TextMode="Password" CssClass="form-control"></asp:TextBox>
+            </div>
     </div>
        
     </div>
        <div align="Center">
-                        <asp:Button ID="btnGuardarMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Guardar" ToolTip="Guardar Operación" />
-                        <asp:Button ID="btnAtrasMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Atras" ToolTip="Volver Atras" /><br />
-                        <asp:Label ID="lbIdMantenimiento" runat="server" Text="IdMantenimiento" Visible="false"></asp:Label>
-                        <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
+                        <asp:Button ID="btnGuardarMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Guardar" ToolTip="Guardar Operación" OnClick="btnGuardarMantenimiento_Click" />
+                        <asp:Button ID="btnAtrasMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Atras" ToolTip="Volver Atras" OnClick="btnAtrasMantenimiento_Click" /><br />
+                        
                     </div>
     <!--AQUI FINALIZAN LOS CONTROLES PARA REALIZAR EL MANTENIMIENTO-->
+
 </asp:Content>

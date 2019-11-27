@@ -286,7 +286,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            lbAccion.Text = "DESHABILITAR";
+            lbAccion.Text = "DISABLE";
             MostrarControles();
         }
 

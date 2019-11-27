@@ -80,7 +80,7 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <asp:Label ID="lbOficinaConsulta" runat="server" Text="Oficina"></asp:Label>
-                <asp:DropDownList ID="ddlOficinaConsulta" runat="server" CssClass="form-control" AutoPostBack="true" ToolTip="Oficina" OnSelectedIndexChanged="ddlOficinaConsulta_SelectedIndexChanged"></asp:DropDownList>
+                <asp:DropDownList ID="ddlOficinaConsulta" runat="server" CssClass="form-control" AutoPostBack="True" ToolTip="Oficina" OnSelectedIndexChanged="ddlOficinaConsulta_SelectedIndexChanged"></asp:DropDownList>
             </div>
 
             <div class="form-group col-md-3">

@@ -70,3 +70,9 @@ function ClavesNoConcuerdan()
 {
     alert("Las claves ingresada no concuerdan, favor de verificar")
 }
+
+
+
+function UsuarioEncontradoTarjetaAcceso() {
+    alert("El empleado seleccionado ya tiene una tarjeta de acceso asignada, favor de verificar e intentarlo nuevamente")
+}
