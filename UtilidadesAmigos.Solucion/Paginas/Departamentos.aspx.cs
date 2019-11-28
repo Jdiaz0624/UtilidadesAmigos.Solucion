@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.IO;
 using System.Web.UI.WebControls;
 
 namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
@@ -250,7 +251,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
                                   ModificadoPor=n.ModificadoPor,
                                   FechaModifica=n.FechaModifica
                               }).ToList();
-                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Departamentos", Buscar);
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.ExportarTXT("Listado de Departamentos", Buscar);
 
             }
             catch (Exception) { }
@@ -258,7 +259,45 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
 
         protected void btnRestabelcer_Click(object sender, EventArgs e)
         {
-            OcultarControles();
+            // OcultarControles();
+            //string rutaCompleta = @"C:\Users\Ing.Juan Marcelino\Desktop\Sistema\archivo.txt";
+            //string texto = "HOLA MUNDO ";
+
+            //using (StreamWriter mylogs = File.AppendText(rutaCompleta)) ;
+
+            //string rutaCompletas = @"C:\Users\Ing.Juan Marcelino\Desktop\Sistema\archivo.txt";
+            //decimal? _oficina = ddloficinaConsulta.SelectedValue != "-1" ? decimal.Parse(ddloficinaConsulta.SelectedValue) : new Nullable<decimal>();
+            //string _Departamento = string.IsNullOrEmpty(txtDescripcionDepartamento.Text.Trim()) ? null : txtDescripcionDepartamento.Text.Trim();
+            //string textos = "";
+            //var Buscar = Objdata.Value.BuscaDepartamentos(null, null, null);
+            //foreach (var n in Buscar)
+            //{
+            //    textos = n.Oficina + " | ";
+            //}
+            ////  string textos = "Infralution IPN.NET proporciona un completa ASP.NET solución para la automatización de su compra y el producto sistema de licencias de uso de PayPal Notificación de Pago instantánea(IPN) mecanismo.";
+
+            //using (StreamWriter file = new StreamWriter(rutaCompleta, true))
+            //{
+            //    file.WriteLine(textos); //se agrega información al documento
+
+            //    file.Close();
+            //}
+            //var Buscar = Objdata.Value.BuscaDepartamentos(null, null, null);
+            //foreach (var n in Buscar)
+            //{
+            //    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.ExportarTXT("dd",
+            //        n.Oficina + "|" +
+            //        n.Departamento + "|" +
+            //        n.Estatus + "|" +
+            //        n.CreadoPor + "|" +
+            //        n.FechaAdiciona + "|" +
+            //        n.ModificadoPor + "|" +
+            //        n.FechaModifica);
+            //}
+            txtDescripcionDepartamento.Text = FileUpload1.ToString();
+
+
+
         }
 
         protected void gvDepartamentos_SelectedIndexChanged(object sender, EventArgs e)

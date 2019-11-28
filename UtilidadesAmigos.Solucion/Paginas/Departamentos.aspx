@@ -15,6 +15,7 @@
 
         .Custom{
             width: 100px;
+            height: 40px;
         }
           .Mantenimiento{
             width: 100px;
@@ -65,7 +66,8 @@
              <asp:Button ID="btnModificar" runat="server" Enabled="false" Text="Actualizar" ToolTip="Actualizar" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnModificar_Click" />
             <asp:Button ID="btnEliminar" runat="server" Enabled="false" Text="Deshabilitar" ToolTip="Deshabilitar Registro Seleccionado" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnEliminar_Click" />
             <asp:Button ID="btnExportar" runat="server"  Text="Exportar" ToolTip="Exportar a exel" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportar_Click" />
-    </div>
+    <asp:FileUpload ID="FileUpload1" runat="server" />
+        </div>
         <!--FIN DE LOS CONTROLES PARA REALIZAR LA CONSULTA-->
 </div>
     <br />
@@ -119,6 +121,7 @@
          <div class="form-check-inline">
                 <div class="form-group form-check">
                     <asp:CheckBox ID="cbEstatus" runat="server"  Text="Estatus" Visible="false" CssClass="form-check-input" ToolTip="Estatus" />
+                    
                 </div>
         
             </div>

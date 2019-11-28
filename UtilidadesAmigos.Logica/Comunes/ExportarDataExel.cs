@@ -15,7 +15,11 @@ using System.Web.UI.WebControls;
 
 namespace UtilidadesAmigos.Logica.Comunes
 {
+
+   
     public class ExportarDataExel
+
+
     {
         public static void exporttoexcel(string filename, object datos)
         {
@@ -31,6 +35,14 @@ namespace UtilidadesAmigos.Logica.Comunes
             gv.RenderControl(htm);
             HttpContext.Current.Response.Write(sw.ToString());
             HttpContext.Current.Response.End();
+        }
+
+        public static void ExportarTXT(string NombreArchivo, Object Data)
+        {
+           // Cadena = n.Oficina + " | " + n.Departamento;
+            StreamWriter file = new StreamWriter(@"C:\Users\Ing.Juan Marcelino\Desktop\Sistema\" + NombreArchivo +".csv", true);
+            file.WriteLine(Data);
+            file.Close();
         }
     }
 }
