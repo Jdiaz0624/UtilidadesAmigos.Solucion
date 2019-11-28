@@ -96,7 +96,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnNuevo.Visible = false;
             btnAtras.Visible = false;
             btnModificar.Visible = false;
-            //btnDeshabilitar.Visible = false;
+            btnEliminar.Visible = false;
             btnExportar.Visible = false;
             gvTarjetaAcceso.Visible = false;
 
@@ -158,7 +158,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnNuevo.Visible = true;
             btnAtras.Visible = true;
             btnModificar.Visible = true;
-            //btnDeshabilitar.Visible = true;
+            btnEliminar.Visible = true;
             btnExportar.Visible = true;
             gvTarjetaAcceso.Visible = true;
 
@@ -189,8 +189,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnNuevo.Enabled = true;
             btnAtras.Enabled = false;
             btnModificar.Enabled = false;
-            //btnDeshabilitar.Enabled = false;
+            btnEliminar.Enabled = false;
             btnExportar.Enabled = true;
+            MostrarListadoTarjetas();
         }
         #endregion
         #region MANTENIMIENTO DE TARJETAS DE ACCESO
@@ -198,6 +199,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             try
             {
+                DateTime FechaEntrega = DateTime.Now;
+                if (string.IsNullOrEmpty(txtFechaEntregaMantenimiento.Text.Trim()))
+                {
+                     FechaEntrega = DateTime.Now;
+                }
+                else
+                {
+                     FechaEntrega = Convert.ToDateTime(txtFechaEntregaMantenimiento.Text);
+                }
+                
                 //REALIZAMOS EL MANTENIMIENTO
                 UtilidadesAmigos.Logica.Entidades.ETarjetaAcceso Mantenimiento = new Logica.Entidades.ETarjetaAcceso();
 
@@ -207,7 +218,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Mantenimiento.IdTarjetaAcceso = Convert.ToDecimal(lbIdMantenimiento.Text);
                 Mantenimiento.SecuenciaInterna = txtSecuenciaInterna.Text;
                 Mantenimiento.NumeroTarjeta = txtNumerotarjetaMantenimiento.Text;
-                Mantenimiento.FechaEntrega0 = Convert.ToDateTime(txtFechaEntregaMantenimiento.Text);
+                Mantenimiento.FechaEntrega0 = FechaEntrega;
                 Mantenimiento.Estatus0 = Convert.ToDecimal(ddlEstatus.SelectedValue);
                 Mantenimiento.UsuarioAdiciona = Convert.ToDecimal(Session["IdUsuario"]);
                 Mantenimiento.FechaAdiciona0 = DateTime.Now;
@@ -258,7 +269,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             lbAccion.Text = "UPDATE";
-            //CargarDropMantenimiento();
             MostrarControles();
         }
 
@@ -269,7 +279,60 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
+            //EXPORTAMOS LA DATA A EXEL
+            decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? decimal.Parse(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _Departamento = ddlDepartamentoConsulta.SelectedValue != "-1" ? decimal.Parse(ddlDepartamentoConsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _Empleado = ddlEmpleadoConsulta.SelectedValue != "-1" ? decimal.Parse(ddlEmpleadoConsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _Estatus = ddlSeleccionarEstatustarjetaConsulta.SelectedValue != "-1" ? decimal.Parse(ddlSeleccionarEstatustarjetaConsulta.SelectedValue) : new Nullable<decimal>();
+            string _NumeroTarjeta = string.IsNullOrEmpty(txtNumerotarjetaConsulta.Text.Trim()) ? null : txtNumerotarjetaConsulta.Text.Trim();
 
+            try {
+                if (cbFiltrarPorRangoFechaConsulta.Checked)
+                {
+                    var Exportar = (from n in ObjData.Value.BuscaTarjetaAcceso(
+                        _Oficina,
+                        _Departamento,
+                        _Empleado,
+                        new Nullable<decimal>(),
+                        _Estatus,
+                        _NumeroTarjeta,
+                        Convert.ToDateTime(txtFechaDesdeConsulta.Text),
+                        Convert.ToDateTime(txtFechaHastaConsulta.Text))
+                                    select new
+                                    {
+                                        Oficina=n.Oficina,
+                                        Departamento=n.Departamento,
+                                        Empleado=n.Empleado,
+                                        NumeroTarjeta=n.NumeroTarjeta,
+                                        SecuenciaInterna=n.SecuenciaInterna,
+                                        FechaEntrega=n.FechaEntrega,
+                                        Estatus=n.Estatus
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Tarjetas de Acceso", Exportar);
+                }
+                else
+                {
+                    var Exportar = (from n in ObjData.Value.BuscaTarjetaAcceso(
+                        _Oficina,
+                        _Departamento,
+                        _Empleado,
+                        new Nullable<decimal>(),
+                        _Estatus,
+                        _NumeroTarjeta)
+                                    select new
+                                    {
+                                        Oficina = n.Oficina,
+                                        Departamento = n.Departamento,
+                                        Empleado = n.Empleado,
+                                        NumeroTarjeta = n.NumeroTarjeta,
+                                        SecuenciaInterna = n.SecuenciaInterna,
+                                        FechaEntrega = n.FechaEntrega,
+                                        Estatus = n.Estatus
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Tarjetas de Acceso", Exportar);
+                }
+            }
+            catch (Exception) { }
         }
 
         protected void gvTarjetaAcceso_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -294,7 +357,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnNuevo.Enabled = false;
             btnAtras.Enabled = true;
             btnModificar.Enabled = true;
-            //btnDeshabilitar.Enabled = true;
+            btnEliminar.Enabled = true;
             btnExportar.Enabled = false;
         }
 
@@ -338,7 +401,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnGuardarMantenimiento_Click(object sender, EventArgs e)
         {
             //VERIFICAMOS LOS CAMPOS VACIOS
-            if (string.IsNullOrEmpty(txtSecuenciaInterna.Text.Trim()) || string.IsNullOrEmpty(txtNumerotarjetaMantenimiento.Text.Trim()) || string.IsNullOrEmpty(txtFechaEntregaMantenimiento.Text.Trim()))
+            if (string.IsNullOrEmpty(txtSecuenciaInterna.Text.Trim()) || string.IsNullOrEmpty(txtNumerotarjetaMantenimiento.Text.Trim()))
             {
                 ClientScript.RegisterStartupScript(GetType(), "Mensaje", "CamposVacios();", true);
             }
@@ -361,7 +424,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     }
                     else
                     {
-                        if (lbAccion.Text != "INSERT")
+                        if (lbAccion.Text == "INSERT")
                         {
                             //VERIFICAMOS SI EL EMPLEADO SELECCIONADO YA TIENE UNA TARJETA ASIGNADA
                             var VerificarTarjetaUsuario = ObjData.Value.BuscaTarjetaAcceso(
@@ -371,7 +434,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                 null, null, null, null);
                             if (VerificarTarjetaUsuario.Count() < 1)
                             {
-
+                                
                                 MANTArjetasAcceso();
                             }
                             else
@@ -406,6 +469,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnAtrasMantenimiento_Click(object sender, EventArgs e)
         {
             OcultarControles();
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            lbAccion.Text = "DELETE";
+            MostrarControles();
         }
     }
 }

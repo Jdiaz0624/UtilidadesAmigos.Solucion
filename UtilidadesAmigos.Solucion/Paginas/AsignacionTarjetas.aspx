@@ -86,7 +86,7 @@
         <br />
         <div>
                 <asp:Button ID="btnModificar" runat="server" Text="Actualizar" ToolTip="Actualiza un registro seleccionado" CssClass="btn btn-outline-primary btn-sm" Enabled="False" OnClick="btnModificar_Click" />
-                
+                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" ToolTip="Eliminar un registro seleccionado" CssClass="btn btn-outline-primary btn-sm" Enabled="false" OnClick="btnEliminar_Click" />
                 <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar la data a exel" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportar_Click" />
         </div>
     </div>
@@ -144,7 +144,7 @@
             </div>
             <div class="form-group col-md-3">
                 <asp:Label ID="lbSecuenciaInterna" runat="server" Visible="false" Text="Secuencia Interna"></asp:Label>
-                <asp:TextBox ID="txtSecuenciaInterna" runat="server" Visible="false" PlaceHolder="Secuencia Interna" CssClass="form-control"></asp:TextBox> 
+                <asp:TextBox ID="txtSecuenciaInterna" runat="server" Visible="false" PlaceHolder="Secuencia Interna" MaxLength="3" TextMode="Number" CssClass="form-control"></asp:TextBox> 
             </div>
             <div class="form-group col-md-3">
                     <asp:Label ID="lbNumeroTarjetraMantenimiento"  runat="server" Visible="false" Text="Numero de tarjeta"></asp:Label>
