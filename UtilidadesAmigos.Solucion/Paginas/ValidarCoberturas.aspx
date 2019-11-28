@@ -29,19 +29,19 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <asp:Label ID="lbSeleccionarCobertura" runat="server" Text="Seleccionar Cobertura"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarCpbertura" runat="server" CssClass="form-control" ToolTip="Seleccionar Cobertura"></asp:DropDownList>
+                <asp:DropDownList ID="ddlSeleccionarCpbertura" runat="server" AutoPostBack="true" CssClass="form-control" ToolTip="Seleccionar Cobertura" OnSelectedIndexChanged="ddlSeleccionarCpbertura_SelectedIndexChanged"></asp:DropDownList>
             </div>
             <div class="form-group col-md-3">
                 <asp:Label ID="lbSeleccionarPlanCobertura" runat="server" Text="Seleccionar Plan"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarPlanCobertura" runat="server" AutoPostBack="true" ToolTip="Seleccionar un plan Segun la cobertura seleccionada" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="ddlSeleccionarPlanCobertura" runat="server" ToolTip="Seleccionar un plan Segun la cobertura seleccionada" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="form-group col-md-3">
                 <asp:Label ID="lbPolizaFiltro" runat="server" Text="Poliza"></asp:Label>
-                <asp:TextBox ID="txtPolizaFiltro" runat="server" PlaceHolder="Numero de Poliza" MaxLength="20" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtPolizaFiltro" runat="server" AutoCompleteType="Disabled" PlaceHolder="Numero de Poliza" MaxLength="20" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="form-group col-md-3">
                 <asp:Label ID="lbChasisFiltro" runat="server" Text="Chasis"></asp:Label>
-                <asp:TextBox ID="txtChasisFiltro" runat="server" PlaceHolder="Chasis" MaxLength="50" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtChasisFiltro" runat="server" AutoCompleteType="Disabled" PlaceHolder="Chasis" MaxLength="50" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
         <!--FIN DE LOS MENUS DESPLEGABLES Y CONTROLES DE BUSQUEDA-->
@@ -58,11 +58,11 @@
         <!--FIN DE LOS RADIOS-->
         <!--INICIO DE LOS CONTROLES PARA RANGO DE FECHA-->
          <div class="form-row">
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <asp:Label ID="lbFechaDesde" runat="server" Visible="false" Text="Fecha Desde"></asp:Label>
                     <asp:TextBox ID="txtFechaDesde" runat="server" Visible="false" ToolTip="Inicio de Rango de fecha" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <asp:Label ID="lbFechaHasta" runat="server" Visible="false" Text="Fecha Hasta"></asp:Label>
                     <asp:TextBox ID="txtFechaHasta" runat="server" Visible="false" ToolTip="Fin de Rango de fecha" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </div>

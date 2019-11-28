@@ -10,13 +10,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
     public partial class ValidarCoberturas : System.Web.UI.Page
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> Objdata = new Lazy<Logica.Logica.LogicaSistema>();
-        
+
+        #region CARGAR LAS LISTAS DESPLEGABLES
+        private void CargarDrops()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarCpbertura, Objdata.Value.BuscaListas("COBERTURA", null, null), true);
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarPlanCobertura, Objdata.Value.BuscaListas("PLANCOBERTURA", ddlSeleccionarCpbertura.SelectedValue, null), true);
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 rbGenerarDataCompleta.Checked = true;
                 rbExportarExel.Checked = true;
+                CargarDrops();
             }
         }
 
@@ -79,6 +88,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbFechaHasta.Visible = false;
                 txtFechaHasta.Visible = false;
             }
+        }
+
+        protected void ddlSeleccionarCpbertura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarPlanCobertura, Objdata.Value.BuscaListas("PLANCOBERTURA", ddlSeleccionarCpbertura.SelectedValue, null), true);
         }
     }
 }
