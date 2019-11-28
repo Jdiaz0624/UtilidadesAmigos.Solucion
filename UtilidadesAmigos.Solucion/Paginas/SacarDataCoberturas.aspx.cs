@@ -13,5 +13,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
 
         }
+
+        protected void ddlSeleccionarCoberturas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

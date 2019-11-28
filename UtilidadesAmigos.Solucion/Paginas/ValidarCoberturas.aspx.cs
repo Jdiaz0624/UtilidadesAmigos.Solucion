@@ -10,42 +10,75 @@ namespace UtilidadesAmigos.Solucion.Paginas
     public partial class ValidarCoberturas : System.Web.UI.Page
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> Objdata = new Lazy<Logica.Logica.LogicaSistema>();
-
-        #region CARGAR LAS COBERTURAS
-        private void CargarCoberturas()
-        {
-            var Cargar = Objdata.Value.CargarListadoCoberturas();
-            ddlSeleccionarCobertura.DataSource = Cargar;
-            ddlSeleccionarCobertura.DataTextField = "Cobertura";
-            ddlSeleccionarCobertura.DataValueField = "IdCobertura";
-            ddlSeleccionarCobertura.DataBind();
-        }
-        #endregion
-
-        #region CARGAR LOS PLANES DE COBERTURAS
-        private void CargarPlanesCoberturas()
-        {
-            var CargarPlan = Objdata.Value.CargarPlanCoberturas(
-                Convert.ToDecimal(ddlSeleccionarCobertura.SelectedValue));
-            ddlSeleccionarplan.DataSource = CargarPlan;
-            ddlSeleccionarplan.DataTextField = "planCobertura";
-            ddlSeleccionarplan.DataValueField = "IdPlanCobertura";
-            ddlSeleccionarplan.DataBind();
-        }
-        #endregion
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                CargarCoberturas();
-                CargarPlanesCoberturas();
-                rbValidacionManual.Checked = true;
+                rbGenerarDataCompleta.Checked = true;
+                rbExportarExel.Checked = true;
             }
         }
 
-        protected void ddlSeleccionarCobertura_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            CargarPlanesCoberturas();
+
+        }
+
+        protected void btnExportar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvListadoCobertura_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void gvListadoCobertura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void rbGenerarDataRangoFecha_CheckedChanged(object sender, EventArgs e)
+        {
+         
+        }
+
+        protected void rbGenerarDataCompleta_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbGenerarDataCompleta.Checked)
+            {
+                lbFechaDesde.Visible = false;
+                txtFechaDesde.Visible = false;
+                lbFechaHasta.Visible = false;
+                txtFechaHasta.Visible = false;
+            }
+            else
+            {
+                lbFechaDesde.Visible = true;
+                txtFechaDesde.Visible = true;
+                lbFechaHasta.Visible = true;
+                txtFechaHasta.Visible = true;
+            }
+        }
+
+        protected void rbGenerarDataRangoFecha_CheckedChanged1(object sender, EventArgs e)
+        {
+            if (rbGenerarDataRangoFecha.Checked)
+            {
+                lbFechaDesde.Visible = true;
+                txtFechaDesde.Visible = true;
+                lbFechaHasta.Visible = true;
+                txtFechaHasta.Visible = true;
+            }
+            else
+            {
+                lbFechaDesde.Visible = false;
+                txtFechaDesde.Visible = false;
+                lbFechaHasta.Visible = false;
+                txtFechaHasta.Visible = false;
+            }
         }
     }
 }

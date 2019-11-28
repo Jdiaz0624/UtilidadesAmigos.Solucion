@@ -22,147 +22,183 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Label lbEncabezado;
         
         /// <summary>
-        /// rbValidacionManual control.
+        /// lbSeleccionarCobertura control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbValidacionManual;
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarCobertura;
         
         /// <summary>
-        /// rbValidarAutomatico control.
+        /// ddlSeleccionarCpbertura control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbValidarAutomatico;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarCpbertura;
         
         /// <summary>
-        /// cbAgregarRangoFecha control.
+        /// lbSeleccionarPlanCobertura control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAgregarRangoFecha;
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarPlanCobertura;
         
         /// <summary>
-        /// lbCantidadLetrero control.
+        /// ddlSeleccionarPlanCobertura control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadLetrero;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarPlanCobertura;
         
         /// <summary>
-        /// lbCantidadRegistros control.
+        /// lbPolizaFiltro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadRegistros;
+        protected global::System.Web.UI.WebControls.Label lbPolizaFiltro;
         
         /// <summary>
-        /// lbCobertura control.
+        /// txtPolizaFiltro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobertura;
+        protected global::System.Web.UI.WebControls.TextBox txtPolizaFiltro;
         
         /// <summary>
-        /// ddlSeleccionarCobertura control.
+        /// lbChasisFiltro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarCobertura;
+        protected global::System.Web.UI.WebControls.Label lbChasisFiltro;
         
         /// <summary>
-        /// lbPlan control.
+        /// txtChasisFiltro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPlan;
+        protected global::System.Web.UI.WebControls.TextBox txtChasisFiltro;
         
         /// <summary>
-        /// ddlSeleccionarplan control.
+        /// rbGenerarDataCompleta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarplan;
+        protected global::System.Web.UI.WebControls.RadioButton rbGenerarDataCompleta;
         
         /// <summary>
-        /// lbPoliza control.
+        /// rbGenerarDataRangoFecha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPoliza;
+        protected global::System.Web.UI.WebControls.RadioButton rbGenerarDataRangoFecha;
         
         /// <summary>
-        /// txtPoliza control.
+        /// lbFechaDesde control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPoliza;
+        protected global::System.Web.UI.WebControls.Label lbFechaDesde;
         
         /// <summary>
-        /// lbChasis control.
+        /// txtFechaDesde control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbChasis;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaDesde;
         
         /// <summary>
-        /// txtChasis control.
+        /// lbFechaHasta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtChasis;
+        protected global::System.Web.UI.WebControls.Label lbFechaHasta;
         
         /// <summary>
-        /// btnAgregar control.
+        /// txtFechaHasta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregar;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaHasta;
         
         /// <summary>
-        /// btnValidar control.
+        /// rbExportarExel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnValidar;
+        protected global::System.Web.UI.WebControls.RadioButton rbExportarExel;
         
         /// <summary>
-        /// btnLimpiar control.
+        /// rbExportarcsv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLimpiar;
+        protected global::System.Web.UI.WebControls.RadioButton rbExportarcsv;
+        
+        /// <summary>
+        /// rbExportartxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbExportartxt;
+        
+        /// <summary>
+        /// btnConsultar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConsultar;
+        
+        /// <summary>
+        /// btnExportar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExportar;
+        
+        /// <summary>
+        /// gvListadoCobertura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvListadoCobertura;
     }
 }

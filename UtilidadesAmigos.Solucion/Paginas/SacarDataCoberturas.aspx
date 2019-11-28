@@ -9,7 +9,7 @@
     <div>
         <h2><asp:Label ID="lbSubEncabezado" runat="server" Text="Coberturas Filtros" CssClass="Label-Encabezado"></asp:Label></h2>
          <asp:Label ID="lbSeleccionarCobertura" runat="server" CssClass="Label" Text="Cobertura"></asp:Label>
-        <asp:DropDownList ID="ddlSeleccionarCoberturas" runat="server" CssClass="combobox"></asp:DropDownList>
+        <asp:DropDownList ID="ddlSeleccionarCoberturas" runat="server" CssClass="combobox" OnSelectedIndexChanged="ddlSeleccionarCoberturas_SelectedIndexChanged"></asp:DropDownList>
         <asp:Label ID="lbSeleccionarPlan" runat="server" Text="Plan" CssClass="Label"></asp:Label>
         <asp:DropDownList ID="ddlSeleccionarplan" runat="server" CssClass="combobox"></asp:DropDownList>
         <br />
