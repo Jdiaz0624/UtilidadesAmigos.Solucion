@@ -96,7 +96,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnNuevo.Visible = false;
             btnAtras.Visible = false;
             btnModificar.Visible = false;
-            btnDeshabilitar.Visible = false;
+            //btnDeshabilitar.Visible = false;
             btnExportar.Visible = false;
             gvTarjetaAcceso.Visible = false;
 
@@ -135,6 +135,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     txtSecuenciaInterna.Text = n.SecuenciaInterna;
                     txtNumerotarjetaMantenimiento.Text = n.NumeroTarjeta;
                     txtFechaEntregaMantenimiento.Text = n.FechaEntrega0.ToString();
+                    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlEstatus, ObjData.Value.BuscaListas("ESTATUSTARJETA", null, null));
                     UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlEstatus, n.Estatus0.Value.ToString());
                 }
             }
@@ -157,7 +158,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnNuevo.Visible = true;
             btnAtras.Visible = true;
             btnModificar.Visible = true;
-            btnDeshabilitar.Visible = true;
+            //btnDeshabilitar.Visible = true;
             btnExportar.Visible = true;
             gvTarjetaAcceso.Visible = true;
 
@@ -188,8 +189,38 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnNuevo.Enabled = true;
             btnAtras.Enabled = false;
             btnModificar.Enabled = false;
-            btnDeshabilitar.Enabled = false;
+            //btnDeshabilitar.Enabled = false;
             btnExportar.Enabled = true;
+        }
+        #endregion
+        #region MANTENIMIENTO DE TARJETAS DE ACCESO
+        private void MANTArjetasAcceso()
+        {
+            try
+            {
+                //REALIZAMOS EL MANTENIMIENTO
+                UtilidadesAmigos.Logica.Entidades.ETarjetaAcceso Mantenimiento = new Logica.Entidades.ETarjetaAcceso();
+
+                Mantenimiento.IdOficina = Convert.ToDecimal(ddlOficinaMantenimiento.SelectedValue);
+                Mantenimiento.IdDepartamento = Convert.ToDecimal(ddlDepartamentoMantenimiento.SelectedValue);
+                Mantenimiento.IdEmpleado = Convert.ToDecimal(ddlEmpleadoMantenimiento.SelectedValue);
+                Mantenimiento.IdTarjetaAcceso = Convert.ToDecimal(lbIdMantenimiento.Text);
+                Mantenimiento.SecuenciaInterna = txtSecuenciaInterna.Text;
+                Mantenimiento.NumeroTarjeta = txtNumerotarjetaMantenimiento.Text;
+                Mantenimiento.FechaEntrega0 = Convert.ToDateTime(txtFechaEntregaMantenimiento.Text);
+                Mantenimiento.Estatus0 = Convert.ToDecimal(ddlEstatus.SelectedValue);
+                Mantenimiento.UsuarioAdiciona = Convert.ToDecimal(Session["IdUsuario"]);
+                Mantenimiento.FechaAdiciona0 = DateTime.Now;
+                Mantenimiento.UsuarioModicia = Convert.ToDecimal(Session["IdUsuario"]);
+                Mantenimiento.FechaModifica0 = DateTime.Now;
+
+                var MAN = ObjData.Value.MantenimientoTarjetaAcceso(Mantenimiento, lbAccion.Text);
+                OcultarControles();
+            }
+            catch (Exception)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMantenimiento();", true);
+            }
         }
         #endregion
 
@@ -227,7 +258,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             lbAccion.Text = "UPDATE";
-            CargarDropMantenimiento();
+            //CargarDropMantenimiento();
             MostrarControles();
         }
 
@@ -243,7 +274,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gvTarjetaAcceso_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gvTarjetaAcceso.PageIndex = e.NewPageIndex;
+            MostrarListadoTarjetas();
         }
 
         protected void gvTarjetaAcceso_SelectedIndexChanged(object sender, EventArgs e)
@@ -262,7 +294,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnNuevo.Enabled = false;
             btnAtras.Enabled = true;
             btnModificar.Enabled = true;
-            btnDeshabilitar.Enabled = true;
+            //btnDeshabilitar.Enabled = true;
             btnExportar.Enabled = false;
         }
 
@@ -308,14 +340,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
             //VERIFICAMOS LOS CAMPOS VACIOS
             if (string.IsNullOrEmpty(txtSecuenciaInterna.Text.Trim()) || string.IsNullOrEmpty(txtNumerotarjetaMantenimiento.Text.Trim()) || string.IsNullOrEmpty(txtFechaEntregaMantenimiento.Text.Trim()))
             {
-                //MENSAJE
+                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "CamposVacios();", true);
             }
             else
             {
                 //VERIFICAMOS SI EL CAMPO CLAVE DE SEGURIDAD ESTA VACIO
                 if (string.IsNullOrEmpty(txtClaveSeguridad.Text.Trim()))
                 {
-                    //MENSAJE
+                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ClaveSeguridadVacio();", true);
                 }
                 else
                 {
@@ -325,48 +357,34 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(txtClaveSeguridad.Text));
                     if (ValidarClave.Count() < 1)
                     {
-                        //MENSAJE
+                        ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ClaveSeguridadNoValida();", true);
                     }
                     else
                     {
-                        //VERIFICAMOS SI EL EMPLEADO SELECCIONADO YA TIENE UNA TARJETA ASIGNADA
-                        var VerificarTarjetaUsuario = ObjData.Value.BuscaTarjetaAcceso(
-                            null,
-                            null,
-                            Convert.ToDecimal(ddlEmpleadoMantenimiento.SelectedValue),
-                            null, null, null, null);
-                        if (VerificarTarjetaUsuario.Count() < 1)
+                        if (lbAccion.Text != "INSERT")
                         {
+                            //VERIFICAMOS SI EL EMPLEADO SELECCIONADO YA TIENE UNA TARJETA ASIGNADA
+                            var VerificarTarjetaUsuario = ObjData.Value.BuscaTarjetaAcceso(
+                                null,
+                                null,
+                                Convert.ToDecimal(ddlEmpleadoMantenimiento.SelectedValue),
+                                null, null, null, null);
+                            if (VerificarTarjetaUsuario.Count() < 1)
+                            {
 
-                            try {
-                                //REALIZAMOS EL MANTENIMIENTO
-                                UtilidadesAmigos.Logica.Entidades.ETarjetaAcceso Mantenimiento = new Logica.Entidades.ETarjetaAcceso();
-
-                                Mantenimiento.IdOficina = Convert.ToDecimal(ddlOficinaMantenimiento.SelectedValue);
-                                Mantenimiento.IdDepartamento = Convert.ToDecimal(ddlDepartamentoMantenimiento.SelectedValue);
-                                Mantenimiento.IdEmpleado = Convert.ToDecimal(ddlEmpleadoMantenimiento.SelectedValue);
-                                Mantenimiento.IdTarjetaAcceso = Convert.ToDecimal(lbIdMantenimiento.Text);
-                                Mantenimiento.SecuenciaInterna = txtSecuenciaInterna.Text;
-                                Mantenimiento.NumeroTarjeta = txtNumerotarjetaMantenimiento.Text;
-                                Mantenimiento.FechaEntrega0 = Convert.ToDateTime(txtFechaEntregaMantenimiento.Text);
-                                Mantenimiento.Estatus0 = Convert.ToDecimal(ddlEstatus.SelectedValue);
-                                Mantenimiento.UsuarioAdiciona = Convert.ToDecimal(Session["IdUsuario"]);
-                                Mantenimiento.FechaAdiciona0 = DateTime.Now;
-                                Mantenimiento.UsuarioModicia = Convert.ToDecimal(Session["IdUsuario"]);
-                                Mantenimiento.FechaModifica0 = DateTime.Now;
-
-                                var MAN = ObjData.Value.MantenimientoTarjetaAcceso(Mantenimiento, lbAccion.Text);
-                                OcultarControles();
+                                MANTArjetasAcceso();
                             }
-                            catch (Exception) {
+                            else
+                            {
                                 //MENSAJE
+                                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "UsuarioEncontradoTarjetaAcceso();", true);
                             }
                         }
                         else
                         {
-                            //MENSAJE
-                            ClientScript.RegisterStartupScript(GetType(), "Mensaje", "UsuarioEncontradoTarjetaAcceso();", true);
+                            MANTArjetasAcceso();
                         }
+                        
                     }
                 }
             }

@@ -86,7 +86,7 @@
         <br />
         <div>
                 <asp:Button ID="btnModificar" runat="server" Text="Actualizar" ToolTip="Actualiza un registro seleccionado" CssClass="btn btn-outline-primary btn-sm" Enabled="False" OnClick="btnModificar_Click" />
-                <asp:Button ID="btnDeshabilitar" runat="server" Text="Deshabilitar" ToolTip="Deshabilita un registro seleccionado" CssClass="btn btn-outline-primary btn-sm" Enabled="False" OnClick="btnDeshabilitar_Click" OnClientClick="return confirm('¿Quieres deshabilitar este registro?');" />
+                
                 <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar la data a exel" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportar_Click" />
         </div>
     </div>

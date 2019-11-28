@@ -63,7 +63,7 @@ function MensajeBorrar() {
 }
 
 function ErrorMantenimiento() {
-    alert("Error al realizar el mantenimiento")
+    alert("Error al realizar el Mantenimiento")
 }
 
 function ClavesNoConcuerdan()
