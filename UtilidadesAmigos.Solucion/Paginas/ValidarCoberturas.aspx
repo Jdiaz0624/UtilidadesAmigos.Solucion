@@ -43,6 +43,10 @@
                 <asp:Label ID="lbChasisFiltro" runat="server" Text="Chasis"></asp:Label>
                 <asp:TextBox ID="txtChasisFiltro" runat="server" AutoCompleteType="Disabled" PlaceHolder="Chasis" MaxLength="50" CssClass="form-control"></asp:TextBox>
             </div>
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbEstatus" runat="server" Text="Estatus"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarEstatus" runat="server" ToolTip="Seleccionar Estatus" CssClass="form-control"></asp:DropDownList> 
+            </div>
         </div>
         <!--FIN DE LOS MENUS DESPLEGABLES Y CONTROLES DE BUSQUEDA-->
 

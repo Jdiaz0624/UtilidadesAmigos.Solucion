@@ -14,8 +14,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region CARGAR LAS LISTAS DESPLEGABLES
         private void CargarDrops()
         {
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarCpbertura, Objdata.Value.BuscaListas("COBERTURA", null, null), true);
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarCpbertura, Objdata.Value.BuscaListas("COBERTURA", null, null));
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarPlanCobertura, Objdata.Value.BuscaListas("PLANCOBERTURA", ddlSeleccionarCpbertura.SelectedValue, null), true);
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarEstatus, Objdata.Value.BuscaListas("ESTATUS", null, null), true);
         }
         #endregion
 
