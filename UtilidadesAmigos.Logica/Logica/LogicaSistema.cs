@@ -1309,5 +1309,38 @@ namespace UtilidadesAmigos.Logica.Logica
         #endregion
 
 
+        #region GENERAR DATA COBERTURAS
+        //GENERAR LA DATA DE AEROAMBULANCIA
+        public List<UtilidadesAmigos.Logica.Entidades.EGenerarDataGruaAeroAmbulancia> GenerarDataAeroAmbulancia(decimal? Cobertura = null, string Poliza = null, string Chasis = null, string Estatus = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_GENERAR_DATA_GRUAS_AERO_AMBULANCIA(Cobertura,Poliza,Chasis,Estatus,FechaDesde,FechaHasta)
+                          select new UtilidadesAmigos.Logica.Entidades.EGenerarDataGruaAeroAmbulancia
+                          {
+                              Poliza=n.Poliza,
+                              Cliente=n.Cliente,
+                              NumeroIdentificacion=n.NumeroIdentificacion,
+                              Telefonos=n.Telefonos,
+                              InicioVigencia=n.InicioVigencia,
+                              FinVigencia=n.FinVigencia,
+                              TipoVehiculo=n.TipoVehiculo,
+                              Marca=n.Marca,
+                              Modelo=n.Modelo,
+                              Capacidad=n.Capacidad,
+                              Color=n.Color,
+                              Ano=n.Ano,
+                              Chasis=n.Chasis,
+                              Placa=n.Placa,
+                              ValorAsegurado=n.ValorAsegurado,
+                              Cobertura=n.Cobertura,
+                              TipoPlan=n.TipoPlan,
+                              Estatus=n.Estatus
+                          }).ToList();
+            return Buscar;
+        }
+        #endregion
+
+
     }
 }
