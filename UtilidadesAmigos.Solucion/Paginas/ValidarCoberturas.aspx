@@ -19,7 +19,9 @@
 <!--INICIO DEL ENCABEZADO-->
     <div class="container-fluid">
         <div class="jumbotron" align="Center">
-            <asp:Label ID="lbEncabezado" runat="server" Text="Sacar Data de Coberturas"></asp:Label>
+            <asp:Label ID="lbEncabezado" runat="server" Text="Sacar Data de Coberturas"></asp:Label><br />
+            <asp:Label ID="lbCantidad" runat="server" Text="Cantidad de Registros - "></asp:Label>
+            <asp:Label ID="lbCantidadRegistros" runat="server" Text="000000"></asp:Label>
         </div>
     </div>
 <!--FIN DEL ENCABEZADO-->
@@ -43,14 +45,22 @@
                 <asp:Label ID="lbChasisFiltro" runat="server" Text="Chasis"></asp:Label>
                 <asp:TextBox ID="txtChasisFiltro" runat="server" AutoCompleteType="Disabled" PlaceHolder="Chasis" MaxLength="50" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="form-group col-md-3">
-                <asp:Label ID="lbEstatus" runat="server" Text="Estatus"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarEstatus" runat="server" ToolTip="Seleccionar Estatus" CssClass="form-control"></asp:DropDownList> 
+        </div>
+        <div class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:RadioButton ID="rbGeberarTodo" runat="server" GroupName="Estatus" Text="Generar Todo" ToolTip="Generar las polizas activas y canceladas" CssClass="form-check-input" />
+            </div>
+            <div class="form-group form-check">
+                <asp:RadioButton ID="rbGenerarPolizasActivas" runat="server" GroupName="Estatus" Text="Polizas Activas" ToolTip="Generar Solo las polizas activas" CssClass="form-check-input" />
+            </div>
+            <div class="form-group form-check">
+                <asp:RadioButton ID="rbGenerarPolizasCanceladas" runat="server" GroupName="Estatus" Text="Polizas Canceladas" ToolTip="Generar solo las polizas canceladas" CssClass="form-check-input" />
             </div>
         </div>
         <!--FIN DE LOS MENUS DESPLEGABLES Y CONTROLES DE BUSQUEDA-->
-
+        <br />
         <!--INICIO DE LOS RADIOS-->
+    
         <div class="form-check-inline">
             <div class="form-group form-check">
                 <asp:RadioButton ID="rbGenerarDataCompleta" runat="server" AutoPostBack="true" Text="Generar Data Completa" GroupName="Filtro" CssClass="form-check-input" OnCheckedChanged="rbGenerarDataCompleta_CheckedChanged" />
@@ -92,6 +102,7 @@
             <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
             <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExportar_Click" />
         </div>
+        <br />
         <!--FIN DE LOS BOTONES-->
      <!--INICIO DEL GRID-->
     <div class="container-fluid">
@@ -101,11 +112,12 @@
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
                     
                     <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
+                    <asp:BoundField DataField="Chasis" HeaderText="Chasis" />
                     <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
                     <asp:BoundField DataField="InicioVigencia" HeaderText="Inicio Vigencia" />
                     <asp:BoundField DataField="FinVigencia" HeaderText="Fin Vigencia" />
                     <asp:BoundField DataField="Cobertura" HeaderText="Cobertura" />
-                    <asp:BoundField DataField="Plan" HeaderText="Plan" />
+                    <asp:BoundField DataField="TipoPlan" HeaderText="TipoPlan" />
                 </Columns  >
                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
