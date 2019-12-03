@@ -418,6 +418,87 @@ namespace UtilidadesAmigos.Solucion.Paginas
       
         }
         #endregion
+        #region EXPORTAR DATA
+        private void ExportarData()
+        {
+            //SELECCIONAMOS EL TIPO DE EXPORTACION
+
+            //EXPORTAMOS A EXEL
+            if (rbExportarExel.Checked)
+            {
+                //VALIDAMOS EL ESTATUS
+
+                //VALIDAMOS TODOS LOS ESTATUS
+                if (rbGeberarTodo.Checked)
+                {
+
+                }
+
+                //VALIDAMOS SOLO LAS POLIZAS ACTIVAS
+                if (rbGenerarPolizasActivas.Checked)
+                {
+
+                }
+
+                //VALIDAMOS SOLO LAS POLIZAS ANCELADAS
+                if (rbGenerarPolizasCanceladas.Checked)
+                {
+
+                }
+            }
+
+            //EXPORTAMOS A FORMATO CSV
+            if (rbExportarcsv.Checked)
+            {
+                //VALIDAMOS EL ESTATUS
+
+                //VALIDAMOS TODOS LOS ESTATUS
+                if (rbGeberarTodo.Checked)
+                {
+
+                }
+
+                //VALIDAMOS SOLO LAS POLIZAS ACTIVAS
+                if (rbGenerarPolizasActivas.Checked)
+                {
+
+                }
+
+                //VALIDAMOS SOLO LAS POLIZAS ANCELADAS
+                if (rbGenerarPolizasCanceladas.Checked)
+                {
+
+                }
+            }
+
+
+            //EXPORTAMOS A FORMATO TXT
+            if (rbExportartxt.Checked)
+            {
+                //VALIDAMOS EL ESTATUS
+
+                //VALIDAMOS TODOS LOS ESTATUS
+                if (rbGeberarTodo.Checked)
+                {
+
+                }
+
+                //VALIDAMOS SOLO LAS POLIZAS ACTIVAS
+                if (rbGenerarPolizasActivas.Checked)
+                {
+
+                }
+
+                //VALIDAMOS SOLO LAS POLIZAS ANCELADAS
+                if (rbGenerarPolizasCanceladas.Checked)
+                {
+
+                }
+            }
+        }
+        #endregion
+
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -437,7 +518,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
-
+            try {
+                ExportarData();
+            }
+            catch (Exception) { }
         }
 
         protected void gvListadoCobertura_PageIndexChanging(object sender, GridViewPageEventArgs e)
