@@ -19,9 +19,7 @@
 <!--INICIO DEL ENCABEZADO-->
     <div class="container-fluid">
         <div class="jumbotron" align="Center">
-            <asp:Label ID="lbEncabezado" runat="server" Text="Sacar Data de Coberturas"></asp:Label><br />
-            <asp:Label ID="lbCantidad" runat="server" Text="Cantidad de Registros - "></asp:Label>
-            <asp:Label ID="lbCantidadRegistros" runat="server" Text="000000"></asp:Label>
+            <asp:Label ID="lbEncabezado" runat="server" Text="Sacar Data de Coberturas"></asp:Label>
         </div>
     </div>
 <!--FIN DEL ENCABEZADO-->
