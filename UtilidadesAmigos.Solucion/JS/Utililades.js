@@ -76,3 +76,8 @@ function ClavesNoConcuerdan()
 function UsuarioEncontradoTarjetaAcceso() {
     alert("El empleado seleccionado ya tiene una tarjeta de acceso asignada, favor de verificar e intentarlo nuevamente")
 }
+
+function ErrorExportarData()
+{
+    alert("Error al exportar la data")
+}

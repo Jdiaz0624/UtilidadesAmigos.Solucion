@@ -72,7 +72,7 @@
          <div class="form-row">
                 <div class="form-group col-md-2">
                     <asp:Label ID="lbFechaDesde" runat="server" Visible="false" Text="Fecha Desde"></asp:Label>
-                    <asp:TextBox ID="txtFechaDesde" runat="server" Visible="false" ToolTip="Inicio de Rango de fecha" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                    <asp:TextBox ID="txtFechaDesde" runat="server" Visible="false" ToolTip="Inicio de Rango de fecha" TextMode="Date" CssClass="form-control" ></asp:TextBox>
                 </div>
                 <div class="form-group col-md-2">
                     <asp:Label ID="lbFechaHasta" runat="server" Visible="false" Text="Fecha Hasta"></asp:Label>

@@ -421,80 +421,243 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region EXPORTAR DATA
         private void ExportarData()
         {
-            //SELECCIONAMOS EL TIPO DE EXPORTACION
+            /*
+         * 1-Tu Asistencia.
+         * 2-Aeroambulancia.
+         * 3-Servi Grua.
+         * 4-Caribe Asistencia.
+         * 5-Casa del Conductor.
+         * 6-Cedensa.
+         * */
 
-            //EXPORTAMOS A EXEL
-            if (rbExportarExel.Checked)
+            //VALIDAMOS EL TIPO DE COBERTURA SELECCIONADA
+            decimal CoberturaSeleccionada = Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue);
+
+            #region EXPORTAMOS LA PARTE DE TU ASISTENCIA
+            if (CoberturaSeleccionada == 1)
+            {
+
+            }
+            #endregion
+
+            #region EXPORTAMOS LA PARTE DE AEROAMBULANCIA
+            else if (CoberturaSeleccionada == 2)
             {
                 //VALIDAMOS EL ESTATUS
-
-                //VALIDAMOS TODOS LOS ESTATUS
                 if (rbGeberarTodo.Checked)
                 {
+                    //VERIFICAMOS SI LLEVA RANGO DE FECHA
+                    if (rbGenerarDataRangoFecha.Checked)
+                    {
+                        //VERIFICAMOS EL TIPO E EXPORTACION
+                        if (rbExportarExel.Checked)
+                        {
+                            try
+                            {
+                                string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+                                string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
 
+                                var Exportar = (from n in Objdata.Value.GenerarDataAeroAmbulancia(
+                                    Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                    _Poliza,
+                                    _Chasis,
+                                    null,
+                                    Convert.ToDateTime(txtFechaDesde.Text),
+                                    Convert.ToDateTime(txtFechaHasta.Text))
+                                                select new
+                                                {
+                                                    Poliza = n.Poliza,
+                                                    Cliente = n.Cliente,
+                                                    NumeroIdentificacion = n.NumeroIdentificacion,
+                                                    Telefonos = n.Telefonos,
+                                                    InicioVigencia = n.InicioVigencia,
+                                                    FinVigencia = n.FinVigencia,
+                                                    TipoVehiculo = n.TipoVehiculo,
+                                                    Marca = n.Marca,
+                                                    Modelo = n.Modelo,
+                                                    Capacidad = n.Capacidad,
+                                                    Color = n.Color,
+                                                    Ano = n.Ano,
+                                                    Chasis = n.Chasis,
+                                                    Placa = n.Placa,
+                                                    ValorAsegurado = n.ValorAsegurado,
+                                                    Cobertura = n.Cobertura,
+                                                    TipoPlan = n.TipoPlan,
+                                                    Estatus = n.Estatus
+                                                }).ToList();
+                                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Aero Ambulancia Auto Alert Plus 1", Exportar);
+                            }
+                            catch (Exception)
+                            {
+                                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorExportarData();", true);
+                            }
+                        }
+                        else if (rbExportarcsv.Checked)
+                        {
+
+                        }
+                        else if (rbExportartxt.Checked)
+                        {
+
+                        }
+                    }
+                    else if (rbGenerarDataCompleta.Checked)
+                    {
+                        //VERIFICAMOS EL TIPO E EXPORTACION
+                        if (rbExportarExel.Checked)
+                        {
+                            try {
+                                string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+                                string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
+
+                                var Exportar = (from n in Objdata.Value.GenerarDataAeroAmbulancia(
+                                    Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                    _Poliza,
+                                    _Chasis,
+                                    null,
+                                    null,
+                                    null)
+                                                select new
+                                                {
+                                                    Poliza = n.Poliza,
+                                                    Cliente = n.Cliente,
+                                                    NumeroIdentificacion = n.NumeroIdentificacion,
+                                                    Telefonos = n.Telefonos,
+                                                    InicioVigencia = n.InicioVigencia,
+                                                    FinVigencia = n.FinVigencia,
+                                                    TipoVehiculo = n.TipoVehiculo,
+                                                    Marca = n.Marca,
+                                                    Modelo = n.Modelo,
+                                                    Capacidad = n.Capacidad,
+                                                    Color = n.Color,
+                                                    Ano = n.Ano,
+                                                    Chasis = n.Chasis,
+                                                    Placa = n.Placa,
+                                                    ValorAsegurado = n.ValorAsegurado,
+                                                    Cobertura = n.Cobertura,
+                                                    TipoPlan = n.TipoPlan,
+                                                    Estatus = n.Estatus
+                                                }).ToList();
+                                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Aero Ambulancia Auto Alert Plus 1", Exportar);
+                            }
+                            catch (Exception) {
+                                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorExportarData();", true);
+                            }
+                        }
+                        else if (rbExportarcsv.Checked)
+                        {
+
+                        }
+                        else if (rbExportartxt.Checked)
+                        {
+
+                        }
+                    }
                 }
 
-                //VALIDAMOS SOLO LAS POLIZAS ACTIVAS
-                if (rbGenerarPolizasActivas.Checked)
+                else if (rbGenerarPolizasActivas.Checked)
                 {
-
+                  
                 }
 
-                //VALIDAMOS SOLO LAS POLIZAS ANCELADAS
-                if (rbGenerarPolizasCanceladas.Checked)
+                else if (rbGenerarPolizasCanceladas.Checked)
                 {
+                    //VALIDAMOS EL ESTATUS
+                    if (rbGeberarTodo.Checked)
+                    {
+                        //VERIFICAMOS SI LLEVA RANGO DE FECHA
+                        if (rbGenerarDataRangoFecha.Checked)
+                        {
+                            //VERIFICAMOS EL TIPO E EXPORTACION
+                            if (rbExportarExel.Checked)
+                            {
+                                try
+                                {
+                                    string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+                                    string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
 
+                                    var Exportar = (from n in Objdata.Value.GenerarDataAeroAmbulancia(
+                                        Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                        _Poliza,
+                                        _Chasis,
+                                        "CANCELADA",
+                                        null,
+                                        null)
+                                                    select new
+                                                    {
+                                                        Poliza = n.Poliza,
+                                                        Cliente = n.Cliente,
+                                                        NumeroIdentificacion = n.NumeroIdentificacion,
+                                                        Telefonos = n.Telefonos,
+                                                        InicioVigencia = n.InicioVigencia,
+                                                        FinVigencia = n.FinVigencia,
+                                                        TipoVehiculo = n.TipoVehiculo,
+                                                        Marca = n.Marca,
+                                                        Modelo = n.Modelo,
+                                                        Capacidad = n.Capacidad,
+                                                        Color = n.Color,
+                                                        Ano = n.Ano,
+                                                        Chasis = n.Chasis,
+                                                        Placa = n.Placa,
+                                                        ValorAsegurado = n.ValorAsegurado,
+                                                        Cobertura = n.Cobertura,
+                                                        TipoPlan = n.TipoPlan,
+                                                        Estatus = n.Estatus
+                                                    }).ToList();
+                                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Aero Ambulancia Auto Alert Plus 1", Exportar);
+                                }
+                                catch (Exception)
+                                {
+                                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorExportarData();", true);
+                                }
+                            }
+                            else if (rbExportarcsv.Checked)
+                            {
+
+                            }
+                            else if (rbExportartxt.Checked)
+                            {
+
+                            }
+                        }
+                        else if (rbGenerarDataCompleta.Checked)
+                        {
+
+                        }
+                    }
                 }
             }
+            #endregion
 
-            //EXPORTAMOS A FORMATO CSV
-            if (rbExportarcsv.Checked)
+            #region EXPORTAMOS LA PARTE DE SERVI GRUA
+            if (CoberturaSeleccionada == 3)
             {
-                //VALIDAMOS EL ESTATUS
 
-                //VALIDAMOS TODOS LOS ESTATUS
-                if (rbGeberarTodo.Checked)
-                {
-
-                }
-
-                //VALIDAMOS SOLO LAS POLIZAS ACTIVAS
-                if (rbGenerarPolizasActivas.Checked)
-                {
-
-                }
-
-                //VALIDAMOS SOLO LAS POLIZAS ANCELADAS
-                if (rbGenerarPolizasCanceladas.Checked)
-                {
-
-                }
             }
+            #endregion
 
-
-            //EXPORTAMOS A FORMATO TXT
-            if (rbExportartxt.Checked)
+            #region EXPORAMOS LA PARTE DE CARIBE ASISTENCIA
+            if (CoberturaSeleccionada == 4)
             {
-                //VALIDAMOS EL ESTATUS
 
-                //VALIDAMOS TODOS LOS ESTATUS
-                if (rbGeberarTodo.Checked)
-                {
-
-                }
-
-                //VALIDAMOS SOLO LAS POLIZAS ACTIVAS
-                if (rbGenerarPolizasActivas.Checked)
-                {
-
-                }
-
-                //VALIDAMOS SOLO LAS POLIZAS ANCELADAS
-                if (rbGenerarPolizasCanceladas.Checked)
-                {
-
-                }
             }
+            #endregion
+
+            #region EXPORTAMOS LA PARTE DE CASA DEL CONDUCTOR
+            if (CoberturaSeleccionada == 5)
+            {
+
+            }
+            #endregion
+
+            #region EXPORTAMOS LA PARTE DE CEDENSA
+            if (CoberturaSeleccionada == 6)
+            {
+
+            }
+            #endregion
+
+
         }
         #endregion
 
