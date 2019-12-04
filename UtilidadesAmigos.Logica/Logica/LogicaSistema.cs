@@ -1339,6 +1339,40 @@ namespace UtilidadesAmigos.Logica.Logica
                           }).ToList();
             return Buscar;
         }
+
+        //GENERAR LA DATA DE CEDENSA
+        public List<UtilidadesAmigos.Logica.Entidades.EGenerarDataCedensa> GenerarDataCedensa(decimal? Cobertura = null, string Poliza = null, string Estatus = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_GENERAR_DATA_CEDENSA(Cobertura, Poliza, Estatus, FechaDesde, FechaHasta)
+                           select new UtilidadesAmigos.Logica.Entidades.EGenerarDataCedensa
+                           {
+                               Poliza=n.Poliza,
+                               Chasis=n.Chasis,
+                               Cotizacion=n.Cotizacion,
+                               CodRamo=n.CodRamo,
+                               Ramo=n.Ramo,
+                               FechaAdiciona=n.FechaAdiciona,
+                               Codigo=n.Codigo,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               TipoPlan=n.TipoPlan,
+                               Estatus=n.Estatus,
+                               Parentezco=n.Parentezco,
+                               Nombre=n.Nombre,
+                               Provincia=n.Provincia,
+                               Direccion=n.Direccion,
+                               Telefono=n.Telefono,
+                               Cedula=n.Cedula,
+                               FechadeNacimiento=n.FechadeNacimiento,
+                               Edad=n.Edad,
+                               Prima=n.Prima,
+                               Cobertura=n.Cobertura
+
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
 

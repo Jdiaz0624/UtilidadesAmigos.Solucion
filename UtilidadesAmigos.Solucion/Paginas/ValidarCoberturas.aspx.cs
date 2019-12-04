@@ -89,120 +89,125 @@ namespace UtilidadesAmigos.Solucion.Paginas
             //VALIDAMOS AEROAMBULANCIA
             else if (CoberturaSeleccionada == 2)
             {
-                //ELEGIMOS EL TIPO DE ESTATUS PARA REALIZAR LA CONSULTA
-                if (rbGeberarTodo.Checked)
-                {
-                    //BUSCAMOS TODOS LOS ESTATUS
-                    //BUSCAMOS TODOS LOS ESTATUS
-                    //VERIFICAMOS SI SE VAN AGREGAR LOS RANGO DE FECHAS
-                    if (rbGenerarDataRangoFecha.Checked)
+                try {
+                    //ELEGIMOS EL TIPO DE ESTATUS PARA REALIZAR LA CONSULTA
+                    if (rbGeberarTodo.Checked)
                     {
-                        //CONSULTAMOS
-                        string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
-                        string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
+                        //BUSCAMOS TODOS LOS ESTATUS
+                        //BUSCAMOS TODOS LOS ESTATUS
+                        //VERIFICAMOS SI SE VAN AGREGAR LOS RANGO DE FECHAS
+                        if (rbGenerarDataRangoFecha.Checked)
+                        {
+                            //CONSULTAMOS
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+                            string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
 
-                        var Buscar = Objdata.Value.GenerarDataAeroAmbulancia(
-                            Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
-                            _Poliza,
-                            _Chasis,
-                            null,
-                            Convert.ToDateTime(txtFechaDesde.Text),
-                            Convert.ToDateTime(txtFechaHasta.Text));
-                        gvListadoCobertura.DataSource = Buscar;
-                        gvListadoCobertura.DataBind();
+                            var Buscar = Objdata.Value.GenerarDataAeroAmbulancia(
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                _Poliza,
+                                _Chasis,
+                                null,
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text));
+                            gvListadoCobertura.DataSource = Buscar;
+                            gvListadoCobertura.DataBind();
+                        }
+                        else if (rbGenerarDataCompleta.Checked)
+                        {
+                            //CONSULTAMOS
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+                            string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
+
+                            var Buscar = Objdata.Value.GenerarDataAeroAmbulancia(
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                _Poliza,
+                                _Chasis,
+                                null,
+                                null,
+                                null);
+                            gvListadoCobertura.DataSource = Buscar;
+                            gvListadoCobertura.DataBind();
+                        }
                     }
-                    else if (rbGenerarDataCompleta.Checked)
+                    else if (rbGenerarPolizasActivas.Checked)
                     {
-                        //CONSULTAMOS
-                        string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
-                        string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
+                        //BUSCAMOS SOLO LAS POLIZAS ACTIVAS
+                        //BUSCAMOS TODOS LOS ESTATUS
+                        //VERIFICAMOS SI SE VAN AGREGAR LOS RANGO DE FECHAS
+                        if (rbGenerarDataRangoFecha.Checked)
+                        {
+                            //CONSULTAMOS
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+                            string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
 
-                        var Buscar = Objdata.Value.GenerarDataAeroAmbulancia(
-                            Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
-                            _Poliza,
-                            _Chasis,
-                            null,
-                            null,
-                            null);
-                        gvListadoCobertura.DataSource = Buscar;
-                        gvListadoCobertura.DataBind();
+                            var Buscar = Objdata.Value.GenerarDataAeroAmbulancia(
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                _Poliza,
+                                _Chasis,
+                                "ACTIVO",
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text));
+                            gvListadoCobertura.DataSource = Buscar;
+                            gvListadoCobertura.DataBind();
+                        }
+                        else if (rbGenerarDataCompleta.Checked)
+                        {
+                            //CONSULTAMOS
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+                            string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
+
+                            var Buscar = Objdata.Value.GenerarDataAeroAmbulancia(
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                _Poliza,
+                                _Chasis,
+                                "ACTIVO",
+                                null,
+                                null);
+                            gvListadoCobertura.DataSource = Buscar;
+                            gvListadoCobertura.DataBind();
+                        }
+                    }
+                    else if (rbGenerarPolizasCanceladas.Checked)
+                    {
+                        //BUSCAMOS SOLO LAS POLIZAS CANCELADAS
+                        //BUSCAMOS TODOS LOS ESTATUS
+                        //VERIFICAMOS SI SE VAN AGREGAR LOS RANGO DE FECHAS
+                        if (rbGenerarDataRangoFecha.Checked)
+                        {
+                            //CONSULTAMOS
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+                            string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
+
+                            var Buscar = Objdata.Value.GenerarDataAeroAmbulancia(
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                _Poliza,
+                                _Chasis,
+                                "CANCELADA",
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text));
+                            gvListadoCobertura.DataSource = Buscar;
+                            gvListadoCobertura.DataBind();
+                        }
+                        else if (rbGenerarDataCompleta.Checked)
+                        {
+                            //CONSULTAMOS
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+                            string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
+
+                            var Buscar = Objdata.Value.GenerarDataAeroAmbulancia(
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                _Poliza,
+                                _Chasis,
+                                "CANCELADA",
+                                null,
+                                null);
+                            gvListadoCobertura.DataSource = Buscar;
+                            gvListadoCobertura.DataBind();
+                        }
                     }
                 }
-                else if (rbGenerarPolizasActivas.Checked)
-                {
-                    //BUSCAMOS SOLO LAS POLIZAS ACTIVAS
-                    //BUSCAMOS TODOS LOS ESTATUS
-                    //VERIFICAMOS SI SE VAN AGREGAR LOS RANGO DE FECHAS
-                    if (rbGenerarDataRangoFecha.Checked)
-                    {
-                        //CONSULTAMOS
-                        string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
-                        string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
-
-                        var Buscar = Objdata.Value.GenerarDataAeroAmbulancia(
-                            Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
-                            _Poliza,
-                            _Chasis,
-                            "ACTIVO",
-                            Convert.ToDateTime(txtFechaDesde.Text),
-                            Convert.ToDateTime(txtFechaHasta.Text));
-                        gvListadoCobertura.DataSource = Buscar;
-                        gvListadoCobertura.DataBind();
-                    }
-                    else if (rbGenerarDataCompleta.Checked)
-                    {
-                        //CONSULTAMOS
-                        string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
-                        string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
-
-                        var Buscar = Objdata.Value.GenerarDataAeroAmbulancia(
-                            Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
-                            _Poliza,
-                            _Chasis,
-                            "ACTIVO",
-                            null,
-                            null);
-                        gvListadoCobertura.DataSource = Buscar;
-                        gvListadoCobertura.DataBind();
-                    }
-                }
-                else if (rbGenerarPolizasCanceladas.Checked)
-                {
-                    //BUSCAMOS SOLO LAS POLIZAS CANCELADAS
-                    //BUSCAMOS TODOS LOS ESTATUS
-                    //VERIFICAMOS SI SE VAN AGREGAR LOS RANGO DE FECHAS
-                    if (rbGenerarDataRangoFecha.Checked)
-                    {
-                        //CONSULTAMOS
-                        string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
-                        string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
-
-                        var Buscar = Objdata.Value.GenerarDataAeroAmbulancia(
-                            Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
-                            _Poliza,
-                            _Chasis,
-                            "CANCELADA",
-                            Convert.ToDateTime(txtFechaDesde.Text),
-                            Convert.ToDateTime(txtFechaHasta.Text));
-                        gvListadoCobertura.DataSource = Buscar;
-                        gvListadoCobertura.DataBind();
-                    }
-                    else if (rbGenerarDataCompleta.Checked)
-                    {
-                        //CONSULTAMOS
-                        string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
-                        string _Chasis = string.IsNullOrEmpty(txtChasisFiltro.Text.Trim()) ? null : txtChasisFiltro.Text.Trim();
-
-                        var Buscar = Objdata.Value.GenerarDataAeroAmbulancia(
-                            Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
-                            _Poliza,
-                            _Chasis,
-                            "CANCELADA",
-                            null,
-                            null);
-                        gvListadoCobertura.DataSource = Buscar;
-                        gvListadoCobertura.DataBind();
-                    }
+                catch (Exception) {
+                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true);
                 }
             }
 
@@ -371,48 +376,73 @@ namespace UtilidadesAmigos.Solucion.Paginas
             //VALIDAMOS CEDENSA
             else if (CoberturaSeleccionada == 6)
             {
-                //ELEGIMOS EL TIPO DE ESTATUS PARA REALIZAR LA CONSULTA
-                if (rbGeberarTodo.Checked)
-                {
-                    //BUSCAMOS TODOS LOS ESTATUS
-                    //BUSCAMOS TODOS LOS ESTATUS
-                    //VERIFICAMOS SI SE VAN AGREGAR LOS RANGO DE FECHAS
-                    if (rbGenerarDataRangoFecha.Checked)
+                try {
+                    //GENERAMOS TODA LA DATA
+                    if (rbGeberarTodo.Checked)
                     {
-                        //CONSULTAMOS
+                        //GENERAMOS LA CONSULTA POR RANGO DE FECHA
+                        if (rbGenerarDataRangoFecha.Checked)
+                        {
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+
+                            var Buscar = Objdata.Value.GenerarDataCedensa(
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                _Poliza,
+                                null,
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text));
+                            gvListadoCobertura.DataSource = Buscar;
+                            gvListadoCobertura.DataBind();
+                        }
+                        //GENERAMOS LA DATA COMPLETA
+                        else if (rbGenerarDataCompleta.Checked)
+                        {
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+
+                            var Buscar = Objdata.Value.GenerarDataCedensa(
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                _Poliza,
+                                null,
+                                null,
+                                null);
+                            gvListadoCobertura.DataSource = Buscar;
+                            gvListadoCobertura.DataBind();
+                        }
                     }
-                    else if (rbGenerarDataCompleta.Checked)
+
+                    //GENERAMOS SOLO LAS POLIZAS ACTIVAS
+                    else if (rbGenerarPolizasActivas.Checked)
                     {
-                        //CONSULTAMOS
+                        //GENERAMOS LA CONSULTA POR RANGO DE FECHA
+                        if (rbGenerarDataRangoFecha.Checked)
+                        {
+
+                        }
+                        //GENERAMOS LA DATA COMPLETA
+                        else if (rbGenerarDataCompleta.Checked)
+                        {
+
+                        }
                     }
+
+                    //GENERAMOS SOLO LAS POLIZAS CANCELADAS
+                    else if (rbGenerarPolizasCanceladas.Checked)
+                    {
+                        //GENERAMOS LA CONSULTA POR RANGO DE FECHA
+                        if (rbGenerarDataRangoFecha.Checked)
+                        {
+
+                        }
+                        //GENERAMOS LA DATA COMPLETA
+                        else if (rbGenerarDataCompleta.Checked)
+                        {
+
+                        }
+                    }
+
                 }
-                else if (rbGenerarPolizasActivas.Checked)
-                {
-                    //BUSCAMOS SOLO LAS POLIZAS ACTIVAS
-                    //BUSCAMOS TODOS LOS ESTATUS
-                    //VERIFICAMOS SI SE VAN AGREGAR LOS RANGO DE FECHAS
-                    if (rbGenerarDataRangoFecha.Checked)
-                    {
-                        //CONSULTAMOS
-                    }
-                    else if (rbGenerarDataCompleta.Checked)
-                    {
-                        //CONSULTAMOS
-                    }
-                }
-                else if (rbGenerarPolizasCanceladas.Checked)
-                {
-                    //BUSCAMOS SOLO LAS POLIZAS CANCELADAS
-                    //BUSCAMOS TODOS LOS ESTATUS
-                    //VERIFICAMOS SI SE VAN AGREGAR LOS RANGO DE FECHAS
-                    if (rbGenerarDataRangoFecha.Checked)
-                    {
-                        //CONSULTAMOS
-                    }
-                    else if (rbGenerarDataCompleta.Checked)
-                    {
-                        //CONSULTAMOS
-                    }
+                catch (Exception) {
+                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true);
                 }
             }
       
@@ -867,7 +897,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void ddlSeleccionarCpbertura_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarPlanCobertura, Objdata.Value.BuscaListas("PLANCOBERTURA", ddlSeleccionarCpbertura.SelectedValue, null), true);
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarPlanCobertura, Objdata.Value.BuscaListas("PLANCOBERTURA", ddlSeleccionarCpbertura.SelectedValue, null));
         }
     }
 }
