@@ -40,7 +40,15 @@ namespace UtilidadesAmigos.Logica.Comunes
         public static void ExportarTXT(string NombreArchivo, Object Data)
         {
            // Cadena = n.Oficina + " | " + n.Departamento;
-            StreamWriter file = new StreamWriter(@"C:\Users\Ing.Juan Marcelino\Desktop\Sistema\" + NombreArchivo +".csv", true);
+            StreamWriter file = new StreamWriter(@"C:\Users\Ing.Juan Marcelino\Desktop\Sistema\" + NombreArchivo +".txt", true);
+            file.WriteLine(Data);
+            file.Close();
+        }
+
+        public static void ExportarCSV(string NombreArchivo, Object Data)
+        {
+            // Cadena = n.Oficina + " | " + n.Departamento;
+            StreamWriter file = new StreamWriter(@"C:\Users\Ing.Juan Marcelino\Desktop\Sistema\" + NombreArchivo + ".csv", true);
             file.WriteLine(Data);
             file.Close();
         }
