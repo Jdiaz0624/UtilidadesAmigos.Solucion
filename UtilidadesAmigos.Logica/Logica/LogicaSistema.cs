@@ -1341,11 +1341,11 @@ namespace UtilidadesAmigos.Logica.Logica
         }
 
         //GENERAR LA DATA DE CEDENSA
-        public List<UtilidadesAmigos.Logica.Entidades.EGenerarDataCedensa> GenerarDataCedensa(decimal? Cobertura = null, string Poliza = null, string Estatus = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null)
+        public List<UtilidadesAmigos.Logica.Entidades.EGenerarDataCedensa> GenerarDataCedensa(string Poliza = null, string Estatus = null,decimal? Subramo = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_GENERAR_DATA_CEDENSA(Cobertura, Poliza, Estatus, FechaDesde, FechaHasta)
+            var Listado = (from n in Objdata.SP_GENERAR_DATA_CEDENSA(Poliza,Estatus,Subramo,FechaDesde,FechaHasta)
                            select new UtilidadesAmigos.Logica.Entidades.EGenerarDataCedensa
                            {
                                Poliza=n.Poliza,

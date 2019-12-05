@@ -12,7 +12,7 @@ namespace UtilidadesAmigos.Logica.Entidades
 
         public string Chasis {get;set;}
 
-        public decimal Cotizacion {get;set;}
+        public decimal? Cotizacion {get;set;}
 
         public System.Nullable<int> CodRamo {get;set;}
 

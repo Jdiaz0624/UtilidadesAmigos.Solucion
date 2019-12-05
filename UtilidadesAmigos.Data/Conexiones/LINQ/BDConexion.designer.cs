@@ -445,9 +445,9 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_GENERAR_DATA_CEDENSA")]
-		public ISingleResult<SP_GENERAR_DATA_CEDENSAResult> SP_GENERAR_DATA_CEDENSA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cobertura", DbType="Decimal(20,0)")] System.Nullable<decimal> cobertura, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="VarChar(100)")] string estatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta)
+		public ISingleResult<SP_GENERAR_DATA_CEDENSAResult> SP_GENERAR_DATA_CEDENSA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="VarChar(100)")] string estatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubRamo", DbType="Decimal(20,0)")] System.Nullable<decimal> subRamo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cobertura, poliza, estatus, fechaDesde, fechaHasta);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, estatus, subRamo, fechaDesde, fechaHasta);
 			return ((ISingleResult<SP_GENERAR_DATA_CEDENSAResult>)(result.ReturnValue));
 		}
 	}

@@ -1066,9 +1066,9 @@
     </ElementType>
   </Function>
   <Function Name="Utililades.SP_GENERAR_DATA_CEDENSA" Method="SP_GENERAR_DATA_CEDENSA">
-    <Parameter Name="Cobertura" Parameter="cobertura" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="Estatus" Parameter="estatus" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
     <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
     <ElementType Name="SP_GENERAR_DATA_CEDENSAResult">

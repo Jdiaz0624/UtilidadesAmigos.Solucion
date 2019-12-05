@@ -386,9 +386,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
 
                             var Buscar = Objdata.Value.GenerarDataCedensa(
-                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
                                 _Poliza,
                                 null,
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
                                 Convert.ToDateTime(txtFechaDesde.Text),
                                 Convert.ToDateTime(txtFechaHasta.Text));
                             gvListadoCobertura.DataSource = Buscar;
@@ -400,11 +400,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
 
                             var Buscar = Objdata.Value.GenerarDataCedensa(
-                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
                                 _Poliza,
                                 null,
-                                null,
-                                null);
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue));
                             gvListadoCobertura.DataSource = Buscar;
                             gvListadoCobertura.DataBind();
                         }
@@ -416,12 +414,28 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         //GENERAMOS LA CONSULTA POR RANGO DE FECHA
                         if (rbGenerarDataRangoFecha.Checked)
                         {
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
 
+                            var Buscar = Objdata.Value.GenerarDataCedensa(
+                                _Poliza,
+                                "ACTIVO",
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text));
+                            gvListadoCobertura.DataSource = Buscar;
+                            gvListadoCobertura.DataBind();
                         }
                         //GENERAMOS LA DATA COMPLETA
                         else if (rbGenerarDataCompleta.Checked)
                         {
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
 
+                            var Buscar = Objdata.Value.GenerarDataCedensa(
+                                _Poliza,
+                                "ACTIVO",
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue));
+                            gvListadoCobertura.DataSource = Buscar;
+                            gvListadoCobertura.DataBind();
                         }
                     }
 
@@ -431,12 +445,28 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         //GENERAMOS LA CONSULTA POR RANGO DE FECHA
                         if (rbGenerarDataRangoFecha.Checked)
                         {
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
 
+                            var Buscar = Objdata.Value.GenerarDataCedensa(
+                                _Poliza,
+                                "CANCELADA",
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text));
+                            gvListadoCobertura.DataSource = Buscar;
+                            gvListadoCobertura.DataBind();
                         }
                         //GENERAMOS LA DATA COMPLETA
                         else if (rbGenerarDataCompleta.Checked)
                         {
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
 
+                            var Buscar = Objdata.Value.GenerarDataCedensa(
+                                _Poliza,
+                                "CANCELADA",
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue));
+                            gvListadoCobertura.DataSource = Buscar;
+                            gvListadoCobertura.DataBind();
                         }
                     }
 
