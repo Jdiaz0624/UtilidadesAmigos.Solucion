@@ -493,6 +493,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             //VALIDAMOS EL TIPO DE COBERTURA SELECCIONADA
             decimal CoberturaSeleccionada = Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue);
 
+            //PENDIENTE
             #region EXPORTAMOS LA PARTE DE TU ASISTENCIA
             if (CoberturaSeleccionada == 1)
             {
@@ -500,6 +501,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             #endregion
 
+            //COMPLETO
             #region EXPORTAMOS LA PARTE DE AEROAMBULANCIA
             else if (CoberturaSeleccionada == 2)
             {
@@ -815,6 +817,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             #endregion
 
+            //PENDIENTE
             #region EXPORTAMOS LA PARTE DE SERVI GRUA
             if (CoberturaSeleccionada == 3)
             {
@@ -822,6 +825,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             #endregion
 
+            //PENDIENTE
             #region EXPORAMOS LA PARTE DE CARIBE ASISTENCIA
             if (CoberturaSeleccionada == 4)
             {
@@ -829,6 +833,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             #endregion
 
+            //PENDIENTE
             #region EXPORTAMOS LA PARTE DE CASA DEL CONDUCTOR
             if (CoberturaSeleccionada == 5)
             {
@@ -836,10 +841,326 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             #endregion
 
+            //PENDIENTE
             #region EXPORTAMOS LA PARTE DE CEDENSA
             if (CoberturaSeleccionada == 6)
             {
+                //VERIFICAMOS SI SE VA A EXPORTAR TODA LA DATA
+                if (rbGeberarTodo.Checked)
+                {
+                    //EXPORTAMOS MEDIANTE RANGO FECHA
+                    if (rbGenerarDataRangoFecha.Checked)
+                    {
+                        //EXPORTAMOS LA DATA A EXEL
+                        if (rbExportarExel.Checked)
+                        {
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
 
+                            var Exportar = (from n in Objdata.Value.GenerarDataCedensa(
+                                _Poliza,
+                                null,
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text))
+                                            select new
+                                            {
+                                                Poliza=n.Poliza,
+                                                Cotizacion=n.Cotizacion,
+                                                CodRamo=n.CodRamo,
+                                                Ramo=n.Ramo,
+                                                FechaAdiciona=n.FechaAdiciona,
+                                                Codigo=n.Codigo,
+                                                InicioVigencia=n.InicioVigencia,
+                                                FinVigencia=n.FinVigencia,
+                                                TipoPlan =n.TipoPlan,
+                                                Estatus=n.Estatus,
+                                                Parentezco=n.Parentezco,
+                                                Nombre=n.Nombre,
+                                                Provincia=n.Provincia,
+                                                Direccion=n.Direccion,
+                                                Telefono=n.Telefono,
+                                                Cedula=n.Cedula,
+                                                FechaNacimiento=n.FechadeNacimiento,
+                                                Edad=n.Edad,
+                                                Prima=n.Prima,
+                                                Cobertura=n.Cobertura
+                                            }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Cedensa Completa", Exportar);
+                        }
+                        //EXPORTAMOS A CSV
+                        if (rbExportarcsv.Checked)
+                        {
+
+                        }
+                        //EXPORTAMOS A TXT
+                        if (rbExportartxt.Checked)
+                        {
+
+                        }
+                    }
+
+                    //EXPORTAMOS SIN RANGO DE FECHA
+                    if (rbGenerarDataCompleta.Checked)
+                    {
+                        //EXPORTAMOS LA DATA A EXEL
+                        if (rbExportarExel.Checked)
+                        {
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+
+                            var Exportar = (from n in Objdata.Value.GenerarDataCedensa(
+                                _Poliza,
+                                null,
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                null,
+                                null)
+                                            select new
+                                            {
+                                                Poliza = n.Poliza,
+                                                Cotizacion = n.Cotizacion,
+                                                CodRamo = n.CodRamo,
+                                                Ramo = n.Ramo,
+                                                FechaAdiciona = n.FechaAdiciona,
+                                                Codigo = n.Codigo,
+                                                InicioVigencia = n.InicioVigencia,
+                                                FinVigencia = n.FinVigencia,
+                                                TipoPlan = n.TipoPlan,
+                                                Estatus = n.Estatus,
+                                                Parentezco = n.Parentezco,
+                                                Nombre = n.Nombre,
+                                                Provincia = n.Provincia,
+                                                Direccion = n.Direccion,
+                                                Telefono = n.Telefono,
+                                                Cedula = n.Cedula,
+                                                FechaNacimiento = n.FechadeNacimiento,
+                                                Edad = n.Edad,
+                                                Prima = n.Prima,
+                                                Cobertura = n.Cobertura
+                                            }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Cedensa Completa", Exportar);
+                        }
+                        //EXPORTAMOS A CSV
+                        if (rbExportarcsv.Checked)
+                        {
+
+                        }
+                        //EXPORTAMOS A TXT
+                        if (rbExportartxt.Checked)
+                        {
+
+                        }
+
+                    }
+                }
+
+                //EXPORTAMOS SOLO LAS POLIZAS ACTIVAS
+                else if (rbGenerarPolizasActivas.Checked)
+                {
+                    //EXPORTAMOS MEDIANTE RANGO FECHA
+                    if (rbGenerarDataRangoFecha.Checked)
+                    {
+                        //EXPORTAMOS LA DATA A EXEL
+                        if (rbExportarExel.Checked)
+                        {
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+
+                            var Exportar = (from n in Objdata.Value.GenerarDataCedensa(
+                                _Poliza,
+                                "ACTIVO",
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text))
+                                            select new
+                                            {
+                                                Poliza = n.Poliza,
+                                                Cotizacion = n.Cotizacion,
+                                                CodRamo = n.CodRamo,
+                                                Ramo = n.Ramo,
+                                                FechaAdiciona = n.FechaAdiciona,
+                                                Codigo = n.Codigo,
+                                                InicioVigencia = n.InicioVigencia,
+                                                FinVigencia = n.FinVigencia,
+                                                TipoPlan = n.TipoPlan,
+                                                Estatus = n.Estatus,
+                                                Parentezco = n.Parentezco,
+                                                Nombre = n.Nombre,
+                                                Provincia = n.Provincia,
+                                                Direccion = n.Direccion,
+                                                Telefono = n.Telefono,
+                                                Cedula = n.Cedula,
+                                                FechaNacimiento = n.FechadeNacimiento,
+                                                Edad = n.Edad,
+                                                Prima = n.Prima,
+                                                Cobertura = n.Cobertura
+                                            }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Cedensa Completa", Exportar);
+                        }
+                        //EXPORTAMOS A CSV
+                        if (rbExportarcsv.Checked)
+                        {
+
+                        }
+                        //EXPORTAMOS A TXT
+                        if (rbExportartxt.Checked)
+                        {
+
+                        }
+                    }
+
+                    //EXPORTAMOS SIN RANGO DE FECHA
+                    if (rbGenerarDataCompleta.Checked)
+                    {
+                        //EXPORTAMOS LA DATA A EXEL
+                        if (rbExportarExel.Checked)
+                        {
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+
+                            var Exportar = (from n in Objdata.Value.GenerarDataCedensa(
+                                _Poliza,
+                                "ACTIVO",
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue))
+                                            select new
+                                            {
+                                                Poliza = n.Poliza,
+                                                Cotizacion = n.Cotizacion,
+                                                CodRamo = n.CodRamo,
+                                                Ramo = n.Ramo,
+                                                FechaAdiciona = n.FechaAdiciona,
+                                                Codigo = n.Codigo,
+                                                InicioVigencia = n.InicioVigencia,
+                                                FinVigencia = n.FinVigencia,
+                                                TipoPlan = n.TipoPlan,
+                                                Estatus = n.Estatus,
+                                                Parentezco = n.Parentezco,
+                                                Nombre = n.Nombre,
+                                                Provincia = n.Provincia,
+                                                Direccion = n.Direccion,
+                                                Telefono = n.Telefono,
+                                                Cedula = n.Cedula,
+                                                FechaNacimiento = n.FechadeNacimiento,
+                                                Edad = n.Edad,
+                                                Prima = n.Prima,
+                                                Cobertura = n.Cobertura
+                                            }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Cedensa Activas", Exportar);
+                        }
+                        //EXPORTAMOS A CSV
+                        if (rbExportarcsv.Checked)
+                        {
+
+                        }
+                        //EXPORTAMOS A TXT
+                        if (rbExportartxt.Checked)
+                        {
+
+                        }
+
+                    }
+                }
+
+                //EXPORTAMOS SOLO LAS POLIZAS CANCELADAS
+                else if (rbGenerarPolizasCanceladas.Checked)
+                {
+                    //EXPORTAMOS MEDIANTE RANGO FECHA
+                    if (rbGenerarDataRangoFecha.Checked)
+                    {
+                        //EXPORTAMOS LA DATA A EXEL
+                        if (rbExportarExel.Checked)
+                        {
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+
+                            var Exportar = (from n in Objdata.Value.GenerarDataCedensa(
+                                _Poliza,
+                                "CANCELADA",
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue),
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text))
+                                            select new
+                                            {
+                                                Poliza = n.Poliza,
+                                                Cotizacion = n.Cotizacion,
+                                                CodRamo = n.CodRamo,
+                                                Ramo = n.Ramo,
+                                                FechaAdiciona = n.FechaAdiciona,
+                                                Codigo = n.Codigo,
+                                                InicioVigencia = n.InicioVigencia,
+                                                FinVigencia = n.FinVigencia,
+                                                TipoPlan = n.TipoPlan,
+                                                Estatus = n.Estatus,
+                                                Parentezco = n.Parentezco,
+                                                Nombre = n.Nombre,
+                                                Provincia = n.Provincia,
+                                                Direccion = n.Direccion,
+                                                Telefono = n.Telefono,
+                                                Cedula = n.Cedula,
+                                                FechaNacimiento = n.FechadeNacimiento,
+                                                Edad = n.Edad,
+                                                Prima = n.Prima,
+                                                Cobertura = n.Cobertura
+                                            }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Cedensa Canceladas", Exportar);
+                        }
+                        //EXPORTAMOS A CSV
+                        if (rbExportarcsv.Checked)
+                        {
+
+                        }
+                        //EXPORTAMOS A TXT
+                        if (rbExportartxt.Checked)
+                        {
+
+                        }
+                    }
+
+                    //EXPORTAMOS SIN RANGO DE FECHA
+                    if (rbGenerarDataCompleta.Checked)
+                    {
+                        //EXPORTAMOS LA DATA A EXEL
+                        if (rbExportarExel.Checked)
+                        {
+                            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+
+                            var Exportar = (from n in Objdata.Value.GenerarDataCedensa(
+                                _Poliza,
+                                "CANCELADA",
+                                Convert.ToDecimal(ddlSeleccionarPlanCobertura.SelectedValue))
+                                            select new
+                                            {
+                                                Poliza = n.Poliza,
+                                                Cotizacion = n.Cotizacion,
+                                                CodRamo = n.CodRamo,
+                                                Ramo = n.Ramo,
+                                                FechaAdiciona = n.FechaAdiciona,
+                                                Codigo = n.Codigo,
+                                                InicioVigencia = n.InicioVigencia,
+                                                FinVigencia = n.FinVigencia,
+                                                TipoPlan = n.TipoPlan,
+                                                Estatus = n.Estatus,
+                                                Parentezco = n.Parentezco,
+                                                Nombre = n.Nombre,
+                                                Provincia = n.Provincia,
+                                                Direccion = n.Direccion,
+                                                Telefono = n.Telefono,
+                                                Cedula = n.Cedula,
+                                                FechaNacimiento = n.FechadeNacimiento,
+                                                Edad = n.Edad,
+                                                Prima = n.Prima,
+                                                Cobertura = n.Cobertura
+                                            }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Cedensa Completa", Exportar);
+                        }
+                        //EXPORTAMOS A CSV
+                        if (rbExportarcsv.Checked)
+                        {
+
+                        }
+                        //EXPORTAMOS A TXT
+                        if (rbExportartxt.Checked)
+                        {
+
+                        }
+
+                    }
+                }
             }
             #endregion
 
