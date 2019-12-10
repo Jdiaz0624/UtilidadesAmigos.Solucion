@@ -376,7 +376,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             //VALIDAMOS CEDENSA
             else if (CoberturaSeleccionada == 6)
             {
-                try {
+               // try {
                     //GENERAMOS TODA LA DATA
                     if (rbGeberarTodo.Checked)
                     {
@@ -470,10 +470,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         }
                     }
 
-                }
-                catch (Exception) {
-                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true);
-                }
+                //}
+                //catch (Exception) {
+                //    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true);
+                //}
             }
       
         }
