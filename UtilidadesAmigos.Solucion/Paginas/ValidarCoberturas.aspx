@@ -46,13 +46,13 @@
         </div>
         <div class="form-check-inline">
             <div class="form-group form-check">
-                <asp:RadioButton ID="rbGeberarTodo" runat="server" GroupName="Estatus" Text="Generar Todo" ToolTip="Generar las polizas activas y canceladas" CssClass="form-check-input" />
+                <asp:RadioButton ID="rbGeberarTodo" runat="server" GroupName="Estatus" Text="Geberar Toda la data, (Incluciones y Excluciones)" CssClass="form-check-input" />
             </div>
             <div class="form-group form-check">
-                <asp:RadioButton ID="rbGenerarPolizasActivas" runat="server" GroupName="Estatus" Text="Polizas Activas" ToolTip="Generar Solo las polizas activas" CssClass="form-check-input" />
+                <asp:RadioButton ID="rbGenerarPolizasActivas" runat="server" GroupName="Estatus" Text="Generar Incluciones" ToolTip="Generar Solo las Incluciones segun la cobertura Seleccionada" CssClass="form-check-input" />
             </div>
             <div class="form-group form-check">
-                <asp:RadioButton ID="rbGenerarPolizasCanceladas" runat="server" GroupName="Estatus" Text="Polizas Canceladas" ToolTip="Generar solo las polizas canceladas" CssClass="form-check-input" />
+                <asp:RadioButton ID="rbGenerarPolizasCanceladas" runat="server" GroupName="Estatus" Text="Generar Excluciones" ToolTip="Generar Solo las excluciones segun la data seleccionada" CssClass="form-check-input" />
             </div>
         </div>
         <!--FIN DE LOS MENUS DESPLEGABLES Y CONTROLES DE BUSQUEDA-->
@@ -67,16 +67,24 @@
                 <asp:RadioButton ID="rbGenerarDataRangoFecha" runat="server" AutoPostBack="true" Text="Generar Data por Rango de Fecha" GroupName="Filtro" CssClass="form-check-input" OnCheckedChanged="rbGenerarDataRangoFecha_CheckedChanged1" />
             </div>
         </div>
+        <div class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:RadioButton ID="rbGenerarFechaProceso" runat="server" Text="Fecha de Procesado" ToolTip="Generar la data mediante la fecha de proceso" CssClass="form-check-input" GroupName="TipoFecha" />
+            </div>
+            <div class="form-group form-check">
+                <asp:RadioButton ID="rbGenerarFechaVigencia" runat="server" Text="Fecha de Vigencia" ToolTip="Generar la data mediante la fecha de vigencia" CssClass="form-check-input" GroupName="TipoFecha" />
+            </div>
+        </div>
         <!--FIN DE LOS RADIOS-->
         <!--INICIO DE LOS CONTROLES PARA RANGO DE FECHA-->
          <div class="form-row">
                 <div class="form-group col-md-2">
-                    <asp:Label ID="lbFechaDesde" runat="server" Visible="false" Text="Fecha Desde"></asp:Label>
-                    <asp:TextBox ID="txtFechaDesde" runat="server" Visible="false" ToolTip="Inicio de Rango de fecha" TextMode="Date" CssClass="form-control" ></asp:TextBox>
+                    <asp:Label ID="lbFechaDesde" runat="server" Text="Fecha Desde"></asp:Label>
+                    <asp:TextBox ID="txtFechaDesde" runat="server" ToolTip="Inicio de Rango de fecha" TextMode="Date" CssClass="form-control" ></asp:TextBox>
                 </div>
                 <div class="form-group col-md-2">
-                    <asp:Label ID="lbFechaHasta" runat="server" Visible="false" Text="Fecha Hasta"></asp:Label>
-                    <asp:TextBox ID="txtFechaHasta" runat="server" Visible="false" ToolTip="Fin de Rango de fecha" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                    <asp:Label ID="lbFechaHasta" runat="server" Text="Fecha Hasta"></asp:Label>
+                    <asp:TextBox ID="txtFechaHasta" runat="server" ToolTip="Fin de Rango de fecha" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </div>
             </div>
         <!--FIN DE LOS CONTROLES PARA RANGO DE FECHA-->
