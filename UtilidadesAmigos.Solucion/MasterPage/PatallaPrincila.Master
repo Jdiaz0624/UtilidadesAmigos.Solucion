@@ -70,6 +70,7 @@
                                   <asp:LinkButton ID="linkProcesarDataGruas" runat="server" Text="Procesar Data Gruas" OnClick="linkProcesarDataGruas_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     <asp:LinkButton ID="LinkEmisionPolizas" runat="server" Text="Emisión de Poliza" OnClick="LinkEmisionPolizas_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     <asp:LinkButton ID="LinkEnvioCorreo" runat="server" Text="Envio de Correo" OnClick="LinkEnvioCorreo_Click" CssClass="dropdown-item"></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkEliminarBalance" runat="server" Text="Eliminar Balance" OnClick="LinkEliminarBalance_Click" CssClass="dropdown-item"></asp:LinkButton>
                                 </div>
                               </li>
                               <li class="nav-item dropdown">

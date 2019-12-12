@@ -235,5 +235,10 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
 
         }
+
+        protected void LinkEliminarBalance_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EliminarBalancePoliza.aspx");
+        }
     }
 }
