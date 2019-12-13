@@ -1375,6 +1375,22 @@ namespace UtilidadesAmigos.Logica.Logica
         }
         #endregion
 
+        #region MOSTRAR EL LISTADO DE LAS POLIZAS A LAS CUALES SE LES A ELIMINAR EL BALANCE
+        //LISTADO
+        public List<Entidades.EPolizaEliminarBalanceCreditos> ListadPolizasEliminarBalance(string Poliza = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCA_POLIZAS_ELIMINAR_BALANCE_CREDITO(Poliza)
+                          select new Entidades.EPolizaEliminarBalanceCreditos
+                          {
+                              Poliza=n.Poliza,
+                              Balance=n.Balance
+                          }).ToList();
+            return Buscar;
+        }
+        #endregion
+
 
     }
 }

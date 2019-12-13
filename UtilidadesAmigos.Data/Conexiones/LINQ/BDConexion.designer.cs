@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString11, mappingSource)
 		{
 			OnCreated();
 		}
@@ -449,6 +449,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, estatus, subRamo, fechaDesde, fechaHasta);
 			return ((ISingleResult<SP_GENERAR_DATA_CEDENSAResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_POLIZAS_ELIMINAR_BALANCE_CREDITO")]
+		public ISingleResult<SP_BUSCA_POLIZAS_ELIMINAR_BALANCE_CREDITOResult> SP_BUSCA_POLIZAS_ELIMINAR_BALANCE_CREDITO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza);
+			return ((ISingleResult<SP_BUSCA_POLIZAS_ELIMINAR_BALANCE_CREDITOResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -12859,6 +12866,50 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Cobertura != value))
 				{
 					this._Cobertura = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_POLIZAS_ELIMINAR_BALANCE_CREDITOResult
+	{
+		
+		private string _Poliza;
+		
+		private System.Nullable<decimal> _Balance;
+		
+		public SP_BUSCA_POLIZAS_ELIMINAR_BALANCE_CREDITOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Balance", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Balance
+		{
+			get
+			{
+				return this._Balance;
+			}
+			set
+			{
+				if ((this._Balance != value))
+				{
+					this._Balance = value;
 				}
 			}
 		}
