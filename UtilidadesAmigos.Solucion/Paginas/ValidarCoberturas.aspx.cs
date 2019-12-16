@@ -9,7 +9,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
 {
     public partial class ValidarCoberturas : System.Web.UI.Page
     {
-      
+
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
+
+        #region CARGAR LAS LISTAS DESPLEGABLES
+        private void CargarCoberturas()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarCpbertura, ObjData.Value.BuscaListas("COBERTURA", null, null));
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarPlanCobertura, ObjData.Value.BuscaListas("PLANCOBERTURA", ddlSeleccionarCpbertura.SelectedValue, null));
+        }
+        private void CargarPlanCoberturas()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarPlanCobertura, ObjData.Value.BuscaListas("PLANCOBERTURA", ddlSeleccionarCpbertura.SelectedValue, null));
+        }
+        #endregion
 
 
 
@@ -17,13 +30,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (!IsPostBack)
             {
-            
+                CargarCoberturas();
             }
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-        
+            txtPolizaFiltro.Text = "hola";
         }
 
         protected void btnExportar_Click(object sender, EventArgs e)
@@ -58,7 +71,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void ddlSeleccionarCpbertura_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            CargarPlanCoberturas();
         }
     }
 }

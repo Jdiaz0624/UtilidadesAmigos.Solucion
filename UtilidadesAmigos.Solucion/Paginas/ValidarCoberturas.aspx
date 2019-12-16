@@ -16,6 +16,41 @@
             width:90px;
         }
     </style>
+    <script type="text/javascript">
+        $(document).ready(function ()
+        {
+            $('#<%=btnConsultar.ClientID%>').click(function ()
+            {
+                
+                var FechaDesde = $('#<%=txtFechaDesde.ClientID%>').val();
+                if (FechaDesde == "")
+                {
+                    $('#<%=txtFechaDesde.ClientID%>').css("border-color", "red");
+                    alert("Favor de seleccionar la fecha de inicio")
+                    return false;
+                }
+                else
+                {
+                    var FechaHasta = $('#<%=txtFechaHasta.ClientID%>').val();
+                    if (FechaHasta == "")
+                    {
+                        $('#<%=txtFechaHasta.ClientID%>').css("border-color", "red");
+                        alert("Favor de seleccionar la fecha de fin")
+                        return false;
+                    }
+                    else
+                    {
+                        $('#<%=txtFechaDesde.ClientID%>').css("border-color", "black");
+                         $('#<%=txtFechaHasta.ClientID%>').css("border-color", "black");
+                    }
+                }
+
+            })
+           
+         
+        }
+        )
+    </script>
 <!--INICIO DEL ENCABEZADO-->
     <div class="container-fluid">
         <div class="jumbotron" align="Center">
@@ -57,25 +92,6 @@
         </div>
         <!--FIN DE LOS MENUS DESPLEGABLES Y CONTROLES DE BUSQUEDA-->
         <br />
-        <!--INICIO DE LOS RADIOS-->
-    
-        <div class="form-check-inline">
-            <div class="form-group form-check">
-                <asp:RadioButton ID="rbGenerarDataCompleta" runat="server" AutoPostBack="true" Text="Generar Data Completa" GroupName="Filtro" CssClass="form-check-input" OnCheckedChanged="rbGenerarDataCompleta_CheckedChanged" />
-            </div>
-            <div class="form-group form-check">
-                <asp:RadioButton ID="rbGenerarDataRangoFecha" runat="server" AutoPostBack="true" Text="Generar Data por Rango de Fecha" GroupName="Filtro" CssClass="form-check-input" OnCheckedChanged="rbGenerarDataRangoFecha_CheckedChanged1" />
-            </div>
-        </div>
-        <div class="form-check-inline">
-            <div class="form-group form-check">
-                <asp:RadioButton ID="rbGenerarFechaProceso" runat="server" Text="Fecha de Procesado" ToolTip="Generar la data mediante la fecha de proceso" CssClass="form-check-input" GroupName="TipoFecha" />
-            </div>
-            <div class="form-group form-check">
-                <asp:RadioButton ID="rbGenerarFechaVigencia" runat="server" Text="Fecha de Vigencia" ToolTip="Generar la data mediante la fecha de vigencia" CssClass="form-check-input" GroupName="TipoFecha" />
-            </div>
-        </div>
-        <!--FIN DE LOS RADIOS-->
         <!--INICIO DE LOS CONTROLES PARA RANGO DE FECHA-->
          <div class="form-row">
                 <div class="form-group col-md-2">
