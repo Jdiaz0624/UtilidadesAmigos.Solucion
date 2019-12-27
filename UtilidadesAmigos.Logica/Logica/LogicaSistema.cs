@@ -1431,6 +1431,55 @@ namespace UtilidadesAmigos.Logica.Logica
             }
             return Mantenimiento;
         }
+
+
+        //LISTADO DE PLAN DE COBERTURAS
+        public List<UtilidadesAmigos.Logica.Entidades.EPlanCoberturasMantenimiento> BuscaPlanCoberturas(decimal? IdPlanCobertura = null, decimal? IdCobertura = null, decimal? CodigoCobertura = null, string Descripcion = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCA_PLAN_COBERTURAS(IdPlanCobertura, IdCobertura, CodigoCobertura, Descripcion)
+                          select new UtilidadesAmigos.Logica.Entidades.EPlanCoberturasMantenimiento
+                          {
+                              IdPlanCobertura=n.IdPlanCobertura,
+                              IdCobertura=n.IdCobertura,
+                              Cobertura=n.Cobertura,
+                              CodigoCobertura=n.CodigoCobertura,
+                              PlanCobertura=n.PlanCobertura,
+                              Estatus0=n.Estatus0,
+                              Estatus=n.Estatus
+                          }).ToList();
+            return Buscar;
+        }
+
+        //MANTENIMIENTO DE PLAND E COBERTURAS
+        public UtilidadesAmigos.Logica.Entidades.EPlanCoberturasMantenimiento MantenimientoPlanCoberturas(UtilidadesAmigos.Logica.Entidades.EPlanCoberturasMantenimiento Item, string Accion)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EPlanCoberturasMantenimiento Mantenimiento = null;
+
+            var PlanCobertura = Objdata.SP_MANTENIMIENTO_PLAN_COBERTURA(
+                Item.IdPlanCobertura,
+                Item.IdCobertura,
+                Item.CodigoCobertura,
+                Item.PlanCobertura,
+                Item.Estatus0,
+                Accion);
+            if (Mantenimiento != null)
+            {
+                Mantenimiento = (from n in PlanCobertura
+                                 select new UtilidadesAmigos.Logica.Entidades.EPlanCoberturasMantenimiento
+                                 {
+                                     IdPlanCobertura=n.IdPlanCobertura,
+                                     IdCobertura=n.IdCobertura,
+                                     CodigoCobertura=n.CodigoCobertura,
+                                     PlanCobertura=n.Descripcion,
+                                     Estatus0=n.Estatus
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
         #endregion
 
 

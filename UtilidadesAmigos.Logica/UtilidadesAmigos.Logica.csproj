@@ -97,6 +97,7 @@
     <Compile Include="Entidades\EMantenimientoUsuarios.cs" />
     <Compile Include="Entidades\EOperacionesSospechosas.cs" />
     <Compile Include="Entidades\EPlanCoberturas.cs" />
+    <Compile Include="Entidades\EPlanCoberturasMantenimiento.cs" />
     <Compile Include="Entidades\EPolizaEliminarBalanceCreditos.cs" />
     <Compile Include="Entidades\EProduccionDiariaConsulta.cs" />
     <Compile Include="Entidades\EProduccionDiariaDetalle.cs" />

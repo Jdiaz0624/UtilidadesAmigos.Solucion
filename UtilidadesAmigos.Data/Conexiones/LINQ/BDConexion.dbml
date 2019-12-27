@@ -1123,4 +1123,34 @@
       <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_PLAN_COBERTURAS" Method="SP_BUSCA_PLAN_COBERTURAS">
+    <Parameter Name="IdPlanCobertura" Parameter="idPlanCobertura" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdCobertura" Parameter="idCobertura" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoCobertura" Parameter="codigoCobertura" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_BUSCA_PLAN_COBERTURASResult">
+      <Column Name="IdPlanCobertura" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="IdCobertura" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Cobertura" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CodigoCobertura" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PlanCobertura" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MANTENIMIENTO_PLAN_COBERTURA" Method="SP_MANTENIMIENTO_PLAN_COBERTURA">
+    <Parameter Name="IdPlanCobertura" Parameter="idPlanCobertura" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdCobertura" Parameter="idCobertura" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoCobertura" Parameter="codigoCobertura" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MANTENIMIENTO_PLAN_COBERTURAResult">
+      <Column Name="IdPlanCobertura" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdCobertura" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CodigoCobertura" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

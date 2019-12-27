@@ -471,6 +471,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCobertura, descripcion, estatus, accion);
 			return ((ISingleResult<SP_MANTENIMIENTO_COBERTURAResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_PLAN_COBERTURAS")]
+		public ISingleResult<SP_BUSCA_PLAN_COBERTURASResult> SP_BUSCA_PLAN_COBERTURAS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdPlanCobertura", DbType="Decimal(20,0)")] System.Nullable<decimal> idPlanCobertura, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCobertura", DbType="Decimal(20,0)")] System.Nullable<decimal> idCobertura, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoCobertura", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoCobertura, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(150)")] string descripcion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idPlanCobertura, idCobertura, codigoCobertura, descripcion);
+			return ((ISingleResult<SP_BUSCA_PLAN_COBERTURASResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MANTENIMIENTO_PLAN_COBERTURA")]
+		public ISingleResult<SP_MANTENIMIENTO_PLAN_COBERTURAResult> SP_MANTENIMIENTO_PLAN_COBERTURA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdPlanCobertura", DbType="Decimal(20,0)")] System.Nullable<decimal> idPlanCobertura, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCobertura", DbType="Decimal(20,0)")] System.Nullable<decimal> idCobertura, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoCobertura", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoCobertura, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(150)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="Bit")] System.Nullable<bool> estatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idPlanCobertura, idCobertura, codigoCobertura, descripcion, estatus, accion);
+			return ((ISingleResult<SP_MANTENIMIENTO_PLAN_COBERTURAResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_LISTA_CARGAR_RAMOSResult
@@ -13034,6 +13048,238 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._IdCobertura != value))
 				{
 					this._IdCobertura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(150)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Bit")]
+		public System.Nullable<bool> Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_PLAN_COBERTURASResult
+	{
+		
+		private System.Nullable<decimal> _IdPlanCobertura;
+		
+		private System.Nullable<decimal> _IdCobertura;
+		
+		private string _Cobertura;
+		
+		private System.Nullable<decimal> _CodigoCobertura;
+		
+		private string _PlanCobertura;
+		
+		private System.Nullable<bool> _Estatus0;
+		
+		private string _Estatus;
+		
+		public SP_BUSCA_PLAN_COBERTURASResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdPlanCobertura", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> IdPlanCobertura
+		{
+			get
+			{
+				return this._IdPlanCobertura;
+			}
+			set
+			{
+				if ((this._IdPlanCobertura != value))
+				{
+					this._IdPlanCobertura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCobertura", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> IdCobertura
+		{
+			get
+			{
+				return this._IdCobertura;
+			}
+			set
+			{
+				if ((this._IdCobertura != value))
+				{
+					this._IdCobertura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cobertura", DbType="VarChar(150)")]
+		public string Cobertura
+		{
+			get
+			{
+				return this._Cobertura;
+			}
+			set
+			{
+				if ((this._Cobertura != value))
+				{
+					this._Cobertura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoCobertura", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> CodigoCobertura
+		{
+			get
+			{
+				return this._CodigoCobertura;
+			}
+			set
+			{
+				if ((this._CodigoCobertura != value))
+				{
+					this._CodigoCobertura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlanCobertura", DbType="VarChar(150)")]
+		public string PlanCobertura
+		{
+			get
+			{
+				return this._PlanCobertura;
+			}
+			set
+			{
+				if ((this._PlanCobertura != value))
+				{
+					this._PlanCobertura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus0", DbType="Bit")]
+		public System.Nullable<bool> Estatus0
+		{
+			get
+			{
+				return this._Estatus0;
+			}
+			set
+			{
+				if ((this._Estatus0 != value))
+				{
+					this._Estatus0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		public string Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MANTENIMIENTO_PLAN_COBERTURAResult
+	{
+		
+		private System.Nullable<decimal> _IdPlanCobertura;
+		
+		private System.Nullable<decimal> _IdCobertura;
+		
+		private System.Nullable<decimal> _CodigoCobertura;
+		
+		private string _Descripcion;
+		
+		private System.Nullable<bool> _Estatus;
+		
+		public SP_MANTENIMIENTO_PLAN_COBERTURAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdPlanCobertura", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdPlanCobertura
+		{
+			get
+			{
+				return this._IdPlanCobertura;
+			}
+			set
+			{
+				if ((this._IdPlanCobertura != value))
+				{
+					this._IdPlanCobertura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCobertura", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdCobertura
+		{
+			get
+			{
+				return this._IdCobertura;
+			}
+			set
+			{
+				if ((this._IdCobertura != value))
+				{
+					this._IdCobertura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoCobertura", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> CodigoCobertura
+		{
+			get
+			{
+				return this._CodigoCobertura;
+			}
+			set
+			{
+				if ((this._CodigoCobertura != value))
+				{
+					this._CodigoCobertura = value;
 				}
 			}
 		}
