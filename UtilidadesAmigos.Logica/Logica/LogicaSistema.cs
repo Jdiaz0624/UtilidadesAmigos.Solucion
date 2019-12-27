@@ -1391,6 +1391,48 @@ namespace UtilidadesAmigos.Logica.Logica
         }
         #endregion
 
+        #region MANTENIMIENTO DE COBERTURAS Y PLAN DE COBERTURAS
+        //LISTADO DE COBERTURAS
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscaCoberturasMantenimiento> BuscaCoberturaMantenimiento(decimal? IdCobertura = null, string Cobertura = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCA_COBERTURAS(IdCobertura, Cobertura)
+                          select new UtilidadesAmigos.Logica.Entidades.EBuscaCoberturasMantenimiento
+                          {
+                              IdCobertura=n.IdCobertura,
+                              Descripcion=n.Descripcion,
+                              Estatus0=n.Estatus0,
+                              Estatus=n.Estatus
+                          }).ToList();
+            return Buscar;
+        }
+        //MANTENIMIENTO DE COBERTURAS
+        public UtilidadesAmigos.Logica.Entidades.EBuscaCoberturasMantenimiento MantenimientoCobertura(UtilidadesAmigos.Logica.Entidades.EBuscaCoberturasMantenimiento Item, string Accion)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EBuscaCoberturasMantenimiento Mantenimiento = null;
+
+            var Cobertura = Objdata.SP_MANTENIMIENTO_COBERTURA(
+                Item.IdCobertura,
+                Item.Descripcion,
+                Item.Estatus0,
+                Accion);
+            if (Cobertura != null)
+            {
+                Mantenimiento = (from n in Cobertura
+                                 select new UtilidadesAmigos.Logica.Entidades.EBuscaCoberturasMantenimiento
+                                 {
+                                     IdCobertura=n.IdCobertura,
+                                     Descripcion=n.Descripcion,
+                                     Estatus0=n.Estatus
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
+        #endregion
+
 
     }
 }

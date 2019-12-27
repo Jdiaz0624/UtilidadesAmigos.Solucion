@@ -22,4 +22,11 @@
         <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="Boton-Consultar" />
     </div>
     <hr />
+
+
+
+
+
+
+
 </asp:Content>

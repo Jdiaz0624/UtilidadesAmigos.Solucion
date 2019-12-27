@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -24,6 +25,45 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
+        #region MOSTRAR LAS COBERTURAS
+        private void MostrarCoberturas()
+        {
+            txtCoberturaMantenimiento.Text = string.Empty;
+            string _Cobertura = string.IsNullOrEmpty(txtCoberturaMantenimiento.Text.Trim()) ? null : txtCoberturaMantenimiento.Text.Trim();
+
+            var Buscar = ObjData.Value.BuscaCoberturaMantenimiento(
+                new Nullable<decimal> (),
+                _Cobertura);
+            gbCoberturas.DataSource = Buscar;
+            gbCoberturas.DataBind();
+        }
+        #endregion
+        #region MANTENIMIENTO DE COBERTURAS
+        private void MAnCoberturas(decimal? IdCobertura)
+        {
+            try {
+                if (Session["IdUsuario"] != null)
+                {
+                    UtilidadesAmigos.Logica.Entidades.EBuscaCoberturasMantenimiento Mantenimiento = new Logica.Entidades.EBuscaCoberturasMantenimiento();
+
+                    Mantenimiento.IdCobertura = IdCobertura;
+                    Mantenimiento.Descripcion = txtCoberturaMantenimiento.Text;
+                    Mantenimiento.Estatus0 = cbEstatus.Checked;
+
+                    var MAN = ObjData.Value.MantenimientoCobertura(Mantenimiento, "UPDATE");
+                    MostrarCoberturas();
+                    CargarCoberturas();
+                }
+                else
+                {
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                }
+            }
+            catch (Exception) { }
+        }
+        #endregion
+
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -31,6 +71,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (!IsPostBack)
             {
                 CargarCoberturas();
+                MostrarCoberturas();
             }
         }
 
@@ -72,6 +113,47 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void ddlSeleccionarCpbertura_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarPlanCoberturas();
+        }
+
+        protected void gbCoberturas_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gbCoberturas.PageIndex = e.NewPageIndex;
+            MostrarCoberturas();
+        }
+
+        protected void gbCoberturas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow gb = gbCoberturas.SelectedRow;
+
+            var Buscar = ObjData.Value.BuscaCoberturaMantenimiento(Convert.ToDecimal(gb.Cells[0].Text));
+            foreach (var n in Buscar)
+            {
+                txtCoberturaMantenimiento.Text = n.Descripcion;
+                lbIdCobertura.Text = n.IdCobertura.ToString();
+                cbEstatus.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
+         
+            }
+
+        }
+
+        protected void btnGuardarCobertura_Click(object sender, EventArgs e)
+        {
+            MAnCoberturas(Convert.ToDecimal(lbIdCobertura.Text));
+        }
+
+        protected void gbPlanCobertura_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void gbPlanCobertura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardarPlanCobertura_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
