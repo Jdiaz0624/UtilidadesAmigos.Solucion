@@ -27,7 +27,35 @@
             $("#<%=txtCoberturaMantenimiento.ClientID%>").removeAttr("disabled", true);
         }
 
+        function ActivarControlesPlanCobertura() {
+            $("#<%=ddlCoberturaPlanCobertura.ClientID%>").removeAttr("disabled", true);
+            $("#<%=txtCodigoCoberturaPlanCobertura.ClientID%>").removeAttr("disabled", true);
+            $("#<%=txtPlanCobertura.ClientID%>").removeAttr("disabled", true);
+             $("#<%=cbEstatusPlanCobertura.ClientID%>").removeAttr("disabled", true);
+
+        }
+
+        function DesactivarControlesPlanCobertura() {
+
+            $("#<%=ddlCoberturaPlanCobertura.ClientID%>").attr("disabled", "disabled");
+            $("#<%=txtCodigoCoberturaPlanCobertura.ClientID%>").attr("disabled", "disabled");
+            $("#<%=txtPlanCobertura.ClientID%>").attr("disabled", "disabled");
+            $("#<%=cbEstatusPlanCobertura.ClientID%>").attr("disabled", "disabled");
+
+            $("#<%=txtCodigoCoberturaPlanCobertura.ClientID%>").val("");
+            $("#<%=txtPlanCobertura.ClientID%>").val("");
+            $("#<%=lbIdMantenimientoPlanCobertura.ClientID%>").text("0");
+        }
+
+
         $(document).ready(function () {
+
+            $("#btnPlan").click(function () {
+                DesactivarControlesPlanCobertura();
+
+            })
+
+
             //CONTROLAMOS EL EVENTO CLICK DEL BOTON COBERTURA
             $("#btnCobertura").click(function () {
                 OcultarControlesCoberturas();
@@ -41,6 +69,32 @@
                     $("#<%=txtCoberturaMantenimiento.ClientID%>").css("border-color", "red");
                     return false;
                 }
+
+            })
+
+
+            //CONTROLAMOS EL EVENTO CLICK DEL BOTON CONSULTA
+            $("#<%=btnConsultar.ClientID%>").click(function () {
+                //VALIDAMOS EL CAMPO COBERTURA
+                var Cobertura = $("#<%=ddlSeleccionarCpbertura.ClientID%>").val();
+                if (Cobertura < 1) {
+                    alert("El campo cobertura no puede estar vacio")
+                    $("#<%=ddlSeleccionarCpbertura.ClientID%>").css("border-color", "red");
+                    return false;
+
+                }
+                else
+                {
+                    var PlanCobertura = $("#<%=ddlSeleccionarPlanCobertura.ClientID%>").val();
+                    if (PlanCobertura < 1) {
+                         alert("El campo plan de cobertura no puede estar vacio")
+                    $("#<%=ddlSeleccionarPlanCobertura.ClientID%>").css("border-color", "red");
+                    return false;
+
+
+                    }
+                }
+
 
             })
 
@@ -72,17 +126,6 @@
             <div class="form-group col-md-3">
                 <asp:Label ID="lbChasisFiltro" runat="server" Text="Chasis"></asp:Label>
                 <asp:TextBox ID="txtChasisFiltro" runat="server" AutoCompleteType="Disabled" PlaceHolder="Chasis" MaxLength="50" CssClass="form-control"></asp:TextBox>
-            </div>
-        </div>
-        <div class="form-check-inline">
-            <div class="form-group form-check">
-                <asp:RadioButton ID="rbGeberarTodo" runat="server" GroupName="Estatus" Text="Geberar Toda la data, (Incluciones y Excluciones)" CssClass="form-check-input" />
-            </div>
-            <div class="form-group form-check">
-                <asp:RadioButton ID="rbGenerarPolizasActivas" runat="server" GroupName="Estatus" Text="Generar Incluciones" ToolTip="Generar Solo las Incluciones segun la cobertura Seleccionada" CssClass="form-check-input" />
-            </div>
-            <div class="form-group form-check">
-                <asp:RadioButton ID="rbGenerarPolizasCanceladas" runat="server" GroupName="Estatus" Text="Generar Excluciones" ToolTip="Generar Solo las excluciones segun la data seleccionada" CssClass="form-check-input" />
             </div>
         </div>
         <!--FIN DE LOS MENUS DESPLEGABLES Y CONTROLES DE BUSQUEDA-->
@@ -131,12 +174,12 @@
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
                     
                     <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
-                    <asp:BoundField DataField="Chasis" HeaderText="Chasis" />
                     <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
                     <asp:BoundField DataField="InicioVigencia" HeaderText="Inicio Vigencia" />
                     <asp:BoundField DataField="FinVigencia" HeaderText="Fin Vigencia" />
+                    <asp:BoundField DataField="FechaProceso" HeaderText="Proceso" />
                     <asp:BoundField DataField="Cobertura" HeaderText="Cobertura" />
-                    <asp:BoundField DataField="TipoPlan" HeaderText="TipoPlan" />
+                    <asp:BoundField DataField="TipoMovimiento" HeaderText="TipoMovimiento" />
                 </Columns  >
                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
@@ -257,7 +300,7 @@
                 <Columns>
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
                     
-                    <asp:BoundField DataField="IdCobertura" HeaderText="ID" />
+                    <asp:BoundField DataField="IdPlanCobertura" HeaderText="ID" />
                     <asp:BoundField DataField="Cobertura" HeaderText="Cobertura" />
                     <asp:BoundField DataField="CodigoCobertura" HeaderText="Codigo Plan" />
                     <asp:BoundField DataField="PlanCobertura" HeaderText="Plan" />
@@ -280,6 +323,7 @@
           <div align="center">
               <asp:Button ID="btnGuardarPlanCobertura" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnGuardarPlanCobertura_Click" ToolTip="Guardar Registro" />
     </div>
+          <br />
       </div>
     </div>
   </div>

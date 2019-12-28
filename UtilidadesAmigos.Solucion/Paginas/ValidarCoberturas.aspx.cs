@@ -17,6 +17,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void CargarCoberturas()
         {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarCpbertura, ObjData.Value.BuscaListas("COBERTURA", null, null));
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlCoberturaPlanCobertura, ObjData.Value.BuscaListas("COBERTURA", null, null));
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarPlanCobertura, ObjData.Value.BuscaListas("PLANCOBERTURA", ddlSeleccionarCpbertura.SelectedValue, null));
         }
         private void CargarPlanCoberturas()
@@ -63,6 +64,79 @@ namespace UtilidadesAmigos.Solucion.Paginas
             catch (Exception) { }
         }
         #endregion
+        #region MOSTRAR EL LISTADO DE LOS PLANES DE CBERTURAS
+        private void ListadoPlanCoberturas()
+        {
+            var Buscar = ObjData.Value.BuscaPlanCoberturas();
+            gbPlanCobertura.DataSource = Buscar;
+            gbPlanCobertura.DataBind();
+        }
+        #endregion
+        #region MANTENIMIENTO DE PLAN DE COBERTURAS
+        private void MANPlanCoberturas()
+        {
+            try {
+                if (Session["IdUsuario"] != null)
+                {
+                    UtilidadesAmigos.Logica.Entidades.EPlanCoberturasMantenimiento Mantenimiento = new Logica.Entidades.EPlanCoberturasMantenimiento();
+
+                    Mantenimiento.IdPlanCobertura = Convert.ToDecimal(lbIdMantenimientoPlanCobertura.Text);
+                    Mantenimiento.IdCobertura = Convert.ToDecimal(ddlCoberturaPlanCobertura.SelectedValue);
+                    Mantenimiento.CodigoCobertura = Convert.ToDecimal(txtCodigoCoberturaPlanCobertura.Text);
+                    Mantenimiento.PlanCobertura = txtPlanCobertura.Text;
+                    Mantenimiento.Estatus0 = cbEstatusPlanCobertura.Checked;
+
+                    var MAN = ObjData.Value.MantenimientoPlanCoberturas(Mantenimiento, "UPDATE");
+                }
+                else
+                {
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                }
+
+            }
+            catch (Exception) { }
+        }
+        #endregion
+        #region MOSTRAR LA DATA DE LAS COBERTURAS
+        private void MostrarDataCoberturas()
+        {
+            if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 1)
+            {
+
+            }
+            else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 2)
+            {
+
+            }
+            else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 3)
+            {
+
+            }
+            else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 4)
+            {
+
+            }
+            else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 5)
+            {
+                //SACAMOS LA DATA DE LA CASA DEL CONDUCTOR
+
+                var SacarDataCasaConductor = ObjData.Value.SacarDataCasaConductor(
+                    Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHasta.Text),
+                    txtPolizaFiltro.Text,
+                    17);
+                gvListadoCobertura.DataSource = SacarDataCasaConductor;
+                gvListadoCobertura.DataBind();
+
+
+            }
+            else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 6)
+            {
+
+            }
+        }
+        #endregion
 
 
 
@@ -72,22 +146,57 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 CargarCoberturas();
                 MostrarCoberturas();
+                ListadoPlanCoberturas();
+          
             }
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            txtPolizaFiltro.Text = "hola";
+            MostrarDataCoberturas();
         }
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
-          
+            var Exportar = (from n in ObjData.Value.SacarDataCasaConductor(
+                Convert.ToDateTime(txtFechaDesde.Text),
+                Convert.ToDateTime(txtFechaHasta.Text),
+                txtPolizaFiltro.Text,
+                17)
+                            select new
+                            {
+                                Poliza=n.Poliza,
+                                Items=n.Items,
+                                Estatus=n.Estatus,
+                                Concepto=n.Concepto,
+                                Cliente=n.Cliente,
+                                TipoIdentificacion=n.TipoIdentificacion,
+                                NumeroIdentificacion=n.NumeroIdentificacion,
+                                Intermediario=n.Intermediario,
+                                InicioVigencia=n.InicioVigencia,
+                                FinVigencia=n.FinVigencia,
+                                FechaProceso=n.FechaProceso,
+                                MesValidado=n.MesValidado,
+                                TipoVehiculo=n.Tipovehiculo,
+                                Marca=n.Marca,
+                                Modelo=n.Modelo,
+                                Capacidad=n.Capacidad,
+                                Ano=n.Ano,
+                                Color=n.Color,
+                                Chasis=n.Chasis,
+                                Placa=n.Placa,
+                                ValorAsegurado=n.ValorAsegurado,
+                                Cobertura=n.Cobertura,
+                                TipoMovimiento=n.TipoMovimiento,
+
+                            }).ToList();
+            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Registros Casa del Conductor", Exportar);
         }
 
         protected void gvListadoCobertura_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-          
+            gvListadoCobertura.PageIndex = e.NewPageIndex;
+            MostrarDataCoberturas();
         }
 
         protected void gvListadoCobertura_SelectedIndexChanged(object sender, EventArgs e)
@@ -139,21 +248,37 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnGuardarCobertura_Click(object sender, EventArgs e)
         {
             MAnCoberturas(Convert.ToDecimal(lbIdCobertura.Text));
+            ListadoPlanCoberturas();
+            CargarCoberturas();
         }
 
         protected void gbPlanCobertura_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gbPlanCobertura.PageIndex = e.NewPageIndex;
+            ListadoPlanCoberturas();
         }
 
         protected void gbPlanCobertura_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GridViewRow gb = gbPlanCobertura.SelectedRow;
 
+            var Buscar = ObjData.Value.BuscaPlanCoberturas(Convert.ToDecimal(gb.Cells[0].Text));
+            foreach (var n in Buscar)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "Activar", "ActivarControlesPlanCobertura();", true);
+                lbIdMantenimientoPlanCobertura.Text = n.IdPlanCobertura.ToString();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlCoberturaPlanCobertura, n.IdCobertura.ToString());
+                txtCodigoCoberturaPlanCobertura.Text = n.CodigoCobertura.ToString();
+                txtPlanCobertura.Text = n.PlanCobertura;
+                cbEstatusPlanCobertura.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
+            }
         }
 
         protected void btnGuardarPlanCobertura_Click(object sender, EventArgs e)
         {
-
+            MANPlanCoberturas();
+            ListadoPlanCoberturas();
+            CargarCoberturas();
         }
     }
 }

@@ -1483,5 +1483,46 @@ namespace UtilidadesAmigos.Logica.Logica
         #endregion
 
 
+        #region SACAR DATA DE LA CASA DEL CONDUCTOR
+        //SACAR EL LISTADO DE LA DATA DE LA CASA DEL CONDUCTOR
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarDataCasaConductor> SacarDataCasaConductor(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_SACAR_DATA_CASA_CONDUCTOR(FechaDesde, FechaHasta, Poliza, Cobertura)
+                          select new UtilidadesAmigos.Logica.Entidades.ESacarDataCasaConductor
+                          {
+                              Poliza=n.Poliza,
+                              Items=n.Items,
+                              Estatus=n.Estatus,
+                              Concepto=n.Concepto,
+                              Cliente=n.Cliente,
+                              TipoIdentificacion=n.TipoIdentificacion,
+                              NumeroIdentificacion=n.NumeroIdentificacion,
+                              Intermediario=n.Intermediario,
+                              FechaInicioVigencia=n.FechaInicioVigencia,
+                              FechaFinVigencia=n.FechaFinVigencia,
+                              InicioVigencia=n.InicioVigencia,
+                              FinVigencia=n.FinVigencia,
+                              FechaProcesoBruto=n.FechaProcesoBruto,
+                              FechaProceso=n.FechaProceso,
+                              MesValidado=n.MesValidado,
+                              Tipovehiculo=n.Tipovehiculo,
+                              Marca=n.Marca,
+                              Modelo=n.Modelo,
+                              Capacidad=n.Capacidad,
+                              Ano=n.Ano,
+                              Color=n.Color,
+                              Chasis=n.Chasis,
+                              Placa=n.Placa,
+                              ValorAsegurado=n.ValorAsegurado,
+                              Cobertura=n.Cobertura,
+                              TipoMovimiento=n.TipoMovimiento,
+                          }).ToList();
+            return Buscar;
+        }
+        #endregion
+
+
     }
 }

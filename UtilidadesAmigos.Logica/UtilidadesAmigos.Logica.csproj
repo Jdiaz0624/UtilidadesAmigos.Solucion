@@ -103,6 +103,7 @@
     <Compile Include="Entidades\EProduccionDiariaDetalle.cs" />
     <Compile Include="Entidades\EProduccionTodosLosRamos.cs" />
     <Compile Include="Entidades\ESacarCobrado.cs" />
+    <Compile Include="Entidades\ESacarDataCasaConductor.cs" />
     <Compile Include="Entidades\ESacarDataCobertura.cs" />
     <Compile Include="Entidades\ESacarDatosVehiculoDetalle.cs" />
     <Compile Include="Entidades\ESacarDetalleCobradoUsuario.cs" />
