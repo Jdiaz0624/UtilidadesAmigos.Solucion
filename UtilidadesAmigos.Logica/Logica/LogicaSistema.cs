@@ -1523,6 +1523,95 @@ namespace UtilidadesAmigos.Logica.Logica
         }
         #endregion
 
+        #region SACAR LA DATA DE CEDENSA
+        //SACAMOS EL LISTADO DE LA DATA DE CEDENSA
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarDataCedensa> SacarDataCedensa(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Subramo = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_SACAR_DATA_CEDENSA(FechaDesde, FechaHasta, Poliza, Subramo)
+                           select new UtilidadesAmigos.Logica.Entidades.ESacarDataCedensa
+                           {
+                               Poliza=n.Poliza,
+                               Cobertura=n.Cobertura,
+                               Parentezco=n.Parentezco,
+                               Nombre=n.Nombre,
+                               Cotizacion=n.Cotizacion,
+                               CodRamo=n.CodRamo,
+                               Ramo=n.Ramo,
+                               Estatus = n.Estatus,
+                               Concepto=n.Concepto,
+                               Cliente=n.Cliente,
+                               TipoIdentificacion=n.TipoIdentificacion,
+                               NumeroIdentificacion=n.NumeroIdentificacion,
+                               Intermediario=n.Intermediario,
+                               FechaInicioVigencia=n.FechaInicioVigencia,
+                               FechaFinVigencia=n.FechaFinVigencia,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               FechaProcesoBruto=n.FechaProcesoBruto,
+                               FechaProceso=n.FechaProceso,
+                               MesValidado=n.MesValidado,
+                               Provincia=n.Provincia,
+                               Direccion=n.Direccion,
+                               Telefono=n.Telefono,
+                               Cedula=n.Cedula,
+                               FechadeNacimiento=n.FechadeNacimiento,
+                               Edad=n.Edad,
+                               Prima=n.Prima,
+                               TipoMovimiento=n.TipoMovimiento
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
+
+        #region SACAR LA DATA DE TU ASISTENCIA
+        //SACAR EL LISTADO DE TU ASISTENCIA
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarDataTuAsistencia> SacarDataTuAsistencia(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_SACAR_DATA_TU_ASISTENCIA(FechaDesde, FechaHasta, Poliza, Cobertura)
+                          select new UtilidadesAmigos.Logica.Entidades.ESacarDataTuAsistencia
+                          {
+                              Nombre=n.Nombre,
+                              Apellido=n.Apellido,
+                              Poliza=n.Poliza,
+                              Ciudad=n.Ciudad,
+                              Direccion=n.Direccion,
+                              Telefono=n.Telefono,
+                              TipoIdentificacion=n.TipoIdentificacion,
+                              NumeroIdentificacion=n.NumeroIdentificacion,
+                              Tipovehiculo=n.Tipovehiculo,
+                              Marca=n.Marca,
+                              Modelo=n.Modelo,
+                              Ano=n.Ano,
+                              Color=n.Color,
+                              Chasis=n.Chasis,
+                              Placa=n.Placa,
+                              InicioVigencia=n.InicioVigencia,
+                              FinVigencia=n.FinVigencia,
+                              Estatus=n.Estatus,
+                              Cobertura = n.Cobertura,
+                              Items=n.Items,
+                              Concepto=n.Concepto,
+                              Cliente=n.Cliente,
+                              TipoIdentificacion1=n.TipoIdentificacion1,
+                              NumeroIdentificacion1=n.NumeroIdentificacion1,
+                              Intermediario=n.Intermediario,
+                              FechaInicioVigencia=n.FechaInicioVigencia,
+                              FechaFinVigencia=n.FechaFinVigencia,
+                              Prima=n.Prima,
+                              FechaProcesoBruto=n.FechaProcesoBruto,
+                              FechaProceso=n.FechaProceso,
+                              MesValidado=n.MesValidado,
+                              TipoMovimiento=n.TipoMovimiento
+                          }).ToList();
+            return Buscar;
+        }
+
+        #endregion
+
 
     }
 }
