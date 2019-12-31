@@ -47,6 +47,15 @@
             $("#<%=lbIdMantenimientoPlanCobertura.ClientID%>").text("0");
         }
 
+        function ErrorConsulta() {
+            alert("Error al realizar la consulta, favor de verificar los parametros seleccionados")
+
+        }
+
+        function ErrorExportar() {
+
+            alert("Error al realizar al exportar la data, favor de verificar los parametros seleccionados")
+        }
 
         $(document).ready(function () {
 
@@ -54,6 +63,11 @@
                 DesactivarControlesPlanCobertura();
 
             })
+
+
+          
+
+      
 
 
             //CONTROLAMOS EL EVENTO CLICK DEL BOTON COBERTURA
@@ -104,7 +118,14 @@
     <div class="container-fluid">
         <div class="jumbotron" align="Center">
             <asp:Label ID="lbEncabezado" runat="server" Text="Sacar Data de Coberturas"></asp:Label>
+            
         </div>
+        <div align="center">
+            <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros: ("></asp:Label>
+            <asp:Label ID="lbCantidadRegistros" runat="server" Text="0"></asp:Label>
+            <asp:Label ID="Label1" runat="server" Text=")"></asp:Label>
+        </div>
+        <br />
     </div>
 <!--FIN DEL ENCABEZADO-->
 
