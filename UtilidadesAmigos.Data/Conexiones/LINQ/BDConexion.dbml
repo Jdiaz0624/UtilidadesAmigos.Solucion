@@ -1281,4 +1281,13 @@
       <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_CONTAR_DATA_CASA_CONDUCTOR" Method="SP_CONTAR_DATA_CASA_CONDUCTOR">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Cobertura" Parameter="cobertura" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_CONTAR_DATA_CASA_CONDUCTORResult">
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

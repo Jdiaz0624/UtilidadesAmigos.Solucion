@@ -1638,6 +1638,20 @@ namespace UtilidadesAmigos.Logica.Logica
                           }).ToList();
             return Contar;
         }
+
+        //CONTAR LOS REGISTROS CORRESPONDIENTE A CASA DEL CONDUCTOR Y AEROAMBULANCIA
+        public List<UtilidadesAmigos.Logica.Entidades.EContarRegistros> ContarRegistrosCasaConductoraeroAmbulancia(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null,int? Cobertura = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Contar = (from n in Objdata.SP_CONTAR_DATA_CASA_CONDUCTOR(FechaDesde, FechaHasta, Poliza, Cobertura)
+                          select new UtilidadesAmigos.Logica.Entidades.EContarRegistros
+                          {
+                              Total=n.Total
+                          }).ToList();
+            return Contar;
+
+            }
         #endregion
 
 

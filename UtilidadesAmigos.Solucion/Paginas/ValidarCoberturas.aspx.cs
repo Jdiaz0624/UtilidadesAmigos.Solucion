@@ -236,7 +236,19 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else if (Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue) == 2)
             {
-
+                //CONTAMOS LA DATA DE AEROAMBULANCIA
+                try {
+                    var Contar = ObjData.Value.ContarRegistrosCasaConductoraeroAmbulancia(
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHasta.Text),
+                        txtPolizaFiltro.Text,
+                        Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
+                    foreach (var n in Contar)
+                    {
+                        lbCantidadRegistros.Text = n.Total.ToString();
+                    }
+                }
+                catch (Exception) { }
             }
             else if (Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue) == 3)
             {
@@ -248,7 +260,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else if (Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue) == 5)
             {
-
+                //CONTAMOS LA DATA DE CASA DEL CONDUCTOR
+                try
+                {
+                    var Contar = ObjData.Value.ContarRegistrosCasaConductoraeroAmbulancia(
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHasta.Text),
+                        txtPolizaFiltro.Text,
+                        Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
+                    foreach (var n in Contar)
+                    {
+                        lbCantidadRegistros.Text = n.Total.ToString();
+                    }
+                }
+                catch (Exception) { }
             }
             else if (Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue) == 6)
             {
