@@ -279,9 +279,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             Convert.ToDateTime(txtFechaHasta.Text),
                             txtPolizaFiltro.Text,
                             Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
+                        string nombrea = "";
+                        int TipoPlan = Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue);
+                        string Ano = Convert.ToDateTime(txtFechaHasta.Text).Year.ToString();
+                        string Dia = Convert.ToDateTime(txtFechaHasta.Text).Day.ToString();
+                        string Mes = Convert.ToDateTime(txtFechaHasta.Text).Month.ToString();
+                        if (TipoPlan == 32)
+                        {
+                            nombrea = "S001-GrupoNobeFull-" + Ano + Dia + Mes;
+                        }
+                        else
+                        {
+                            nombrea = "S002-GrupoNobeLey-" + Ano + Dia + Mes;
+                        }
                         foreach (var n in ExportarDataCSV)
                         {
-                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.ExportarCSV("Data Tu Asistencia",
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.ExportarCSV(nombrea,
                                 n.Nombre + "|" +
                                 n.Apellido + "|" +
                                 n.Poliza + "|" +
@@ -301,7 +314,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                 n.FinVigencia + "|" +
                                 n.Estatus + "|" +
                                 n.Cobertura + "|" +
-                                n.TipoMovimiento
+                                n.TipoMovimiento);
                         }
                     }
                 }
