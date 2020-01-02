@@ -114,6 +114,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                       Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
                     gvListadoCobertura.DataSource = SacarDataTuAsistencia;
                     gvListadoCobertura.DataBind();
+                    ContarCantidadRegistrosMostrados();
                 }
                 catch (Exception)
                 {
@@ -132,6 +133,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                        Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
                     gvListadoCobertura.DataSource = SacarDataCasaConductor;
                     gvListadoCobertura.DataBind();
+                    ContarCantidadRegistrosMostrados();
 
                 }
                 catch (Exception)
@@ -177,6 +179,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         17);
                     gvListadoCobertura.DataSource = SacarDataCasaConductor;
                     gvListadoCobertura.DataBind();
+                    ContarCantidadRegistrosMostrados();
                 }
                 catch (Exception)
                 {
@@ -198,6 +201,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
                     gvListadoCobertura.DataSource = SacarDataCedensa;
                     gvListadoCobertura.DataBind();
+                    ContarCantidadRegistrosMostrados();
 
                 }
                 catch (Exception)
@@ -207,6 +211,52 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
             
 
+            }
+        }
+        #endregion
+        #region CONTAR LA CANTIDAD DE REGISTROS MOSTRADOS
+        private void ContarCantidadRegistrosMostrados()
+        {
+            if (Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue) == 1)
+            {
+                //CONTAMOS LA DATA DE TU ASISTENCIA
+                try {
+                    var Contar = ObjData.Value.ContarRegistrosTuAsistencia(
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHasta.Text),
+                        txtPolizaFiltro.Text,
+                        Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
+                    foreach (var n in Contar)
+                    {
+                        lbCantidadRegistros.Text = n.Total.ToString();
+                    }
+
+                }
+                catch (Exception) { }
+            }
+            else if (Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue) == 2)
+            {
+
+            }
+            else if (Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue) == 3)
+            {
+
+            }
+            else if (Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue) == 4)
+            {
+
+            }
+            else if (Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue) == 5)
+            {
+
+            }
+            else if (Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue) == 6)
+            {
+
+            }
+            else
+            {
+                lbCantidadRegistros.Text = "0";
             }
         }
         #endregion
@@ -220,7 +270,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarCoberturas();
                 MostrarCoberturas();
                 ListadoPlanCoberturas();
-          
+                rbExportarExel.Checked = true;
             }
         }
 

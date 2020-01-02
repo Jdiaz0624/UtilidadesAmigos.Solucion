@@ -1612,6 +1612,21 @@ namespace UtilidadesAmigos.Logica.Logica
 
         #endregion
 
+        #region CONTAR REGISTROS
+        //CONTAR LOS REGISTROS DE TU ASISTENCIA
+        public List<UtilidadesAmigos.Logica.Entidades.EContarRegistros> ContarRegistrosTuAsistencia(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Contar = (from n in Objdata.SP_CONTAR_DATA_TU_ASISTENCIA(FechaDesde, FechaHasta, Poliza, Cobertura)
+                          select new UtilidadesAmigos.Logica.Entidades.EContarRegistros
+                          {
+                              Total=n.Total
+                          }).ToList();
+            return Contar;
+        }
+        #endregion
+
 
     }
 }
