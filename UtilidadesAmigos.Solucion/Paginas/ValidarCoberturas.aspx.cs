@@ -106,6 +106,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 try
                 {
+                    //SACAMOS LA DATA DE TU ASISTENCIA
                     var SacarDataTuAsistencia = ObjData.Value.SacarDataTuAsistencia(
                       Convert.ToDateTime(txtFechaDesde.Text),
                       Convert.ToDateTime(txtFechaHasta.Text),
@@ -232,7 +233,78 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 1)
             {
-                try { }
+                try {
+                    //EXPORTAMOS LA DATA DE TU ASISTENCIA
+                    //VERIFICAMOS QUE TIPO DE EXPORTACION SE VA A UTILIZAR
+                    if (rbExportarExel.Checked)
+                    {
+                        //EXPORTAMOS LA DATA A EXEL
+                        var ExportarExel = (from n in ObjData.Value.SacarDataTuAsistencia(
+                            Convert.ToDateTime(txtFechaDesde.Text),
+                            Convert.ToDateTime(txtFechaHasta.Text),
+                            txtPolizaFiltro.Text,
+                            Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue))
+                                            select new
+                                            {
+                                                Nombre=n.Nombre,
+                                                Apellido=n.Apellido,
+                                                Poliza=n.Poliza,
+                                                Ciudad=n.Ciudad,
+                                                Direccion=n.Direccion,
+                                                Telefono=n.Telefono,
+                                                TipoIdentificacion=n.TipoIdentificacion,
+                                                NoIdentificacion=n.NumeroIdentificacion,
+                                                TipoVehiculo=n.Tipovehiculo,
+                                                Marca=n.Marca,
+                                                Modelo=n.Modelo,
+                                                Ano=n.Ano,
+                                                Color=n.Color,
+                                                Chasis=n.Chasis,
+                                                Placa=n.Placa,
+                                                InicioVigencia=n.InicioVigencia,
+                                                FinVigencia=n.FinVigencia,
+                                                Estatus=n.Estatus,
+                                                Cobertura=n.Cobertura,
+                                                TipoMovimiento =n.TipoMovimiento
+                                            }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Tu Asistencia", ExportarExel);
+
+                    }
+                    else if (rbExportarcsv.Checked)
+                    {
+                        //EXPORTAMOS LA DATA A CSV
+
+                        var ExportarDataCSV = ObjData.Value.SacarDataTuAsistencia(
+                            Convert.ToDateTime(txtFechaDesde.Text),
+                            Convert.ToDateTime(txtFechaHasta.Text),
+                            txtPolizaFiltro.Text,
+                            Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
+                        foreach (var n in ExportarDataCSV)
+                        {
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.ExportarCSV("Data Tu Asistencia",
+                                n.Nombre + "|" +
+                                n.Apellido + "|" +
+                                n.Poliza + "|" +
+                                n.Ciudad + "|" +
+                                n.Direccion + "|" +
+                                n.Telefono + "|" +
+                                n.TipoIdentificacion + "|" +
+                                n.NumeroIdentificacion + "|" +
+                                n.Tipovehiculo + "|" +
+                                n.Marca + "|" +
+                                n.Modelo + "|" +
+                                n.Ano + "|" +
+                                n.Color + "|" +
+                                n.Chasis + "|" +
+                                n.Placa + "|" +
+                                n.InicioVigencia + "|" +
+                                n.FinVigencia + "|" +
+                                n.Estatus + "|" +
+                                n.Cobertura + "|" +
+                                n.TipoMovimiento
+                        }
+                    }
+                }
                 catch (Exception) {
                     ClientScript.RegisterStartupScript(GetType(), "Error", "ErrorExportar();", true);
                 }

@@ -48,7 +48,7 @@ namespace UtilidadesAmigos.Logica.Comunes
         public static void ExportarCSV(string NombreArchivo, Object Data)
         {
             // Cadena = n.Oficina + " | " + n.Departamento;
-            StreamWriter file = new StreamWriter(@"C:\Users\Ing.Juan Marcelino\Desktop\Sistema\" + NombreArchivo + ".csv", true);
+            StreamWriter file = new StreamWriter(@"C:\Users\juan.diaz\Desktop\DataCSV\" + NombreArchivo + ".csv", true);
             file.WriteLine(Data);
             file.Close();
         }

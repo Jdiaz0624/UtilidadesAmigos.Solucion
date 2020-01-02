@@ -170,7 +170,7 @@
                     <asp:RadioButton ID="rbExportarExel" runat="server" Text="Exportar a Exel" CssClass="form-check-input" ToolTip="Exportar a Formato de exel" GroupName="Exportar" />
                 </div>
                 <div class="form-group form-check">
-                    <asp:RadioButton ID="rbExportarcsv" runat="server" Text="Exportar a CSV" CssClass="form-check-input" Enabled="false" ToolTip="Exportar a Formato CSV Delimitado por |" GroupName="Exportar" />
+                    <asp:RadioButton ID="rbExportarcsv" runat="server" Text="Exportar a CSV" CssClass="form-check-input"  ToolTip="Exportar a Formato CSV Delimitado por |" GroupName="Exportar" />
                 </div>
                 <div class="form-group form-check">
                     <asp:RadioButton ID="rbExportartxt" runat="server" Text="Exportar a TXT" CssClass="form-check-input" Enabled="false" ToolTip="Exportar a formato de texto plano delimitado por |" GroupName="Exportar" />
