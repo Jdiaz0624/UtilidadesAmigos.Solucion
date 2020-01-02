@@ -252,7 +252,19 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else if (Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue) == 6)
             {
-
+                //CONTAMOS LA DATA CORRESPONDIENTE A CEDENSA
+                try {
+                    var Contar = ObjData.Value.ContarRegistrosCedensa(
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHasta.Text),
+                        txtPolizaFiltro.Text,
+                        Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
+                    foreach (var n in Contar)
+                    {
+                        lbCantidadRegistros.Text = n.Total.ToString();
+                    }
+                }
+                catch (Exception) { }
             }
             else
             {

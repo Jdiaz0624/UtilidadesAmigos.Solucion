@@ -1625,6 +1625,19 @@ namespace UtilidadesAmigos.Logica.Logica
                           }).ToList();
             return Contar;
         }
+
+        //CONTAR LOS REGISTROS CORRESPONDIENTE A CEDENSA
+        public List<UtilidadesAmigos.Logica.Entidades.EContarRegistros> ContarRegistrosCedensa(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Subramo = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Contar = (from n in Objdata.SP_CONTAR_DATA_CEDENSA(FechaDesde, FechaHasta, Poliza, Subramo)
+                          select new UtilidadesAmigos.Logica.Entidades.EContarRegistros
+                          {
+                              Total=n.Total
+                          }).ToList();
+            return Contar;
+        }
         #endregion
 
 

@@ -513,6 +513,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, poliza, cobertura);
 			return ((ISingleResult<SP_CONTAR_DATA_TU_ASISTENCIAResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_CONTAR_DATA_CEDENSA")]
+		public ISingleResult<SP_CONTAR_DATA_CEDENSAResult> SP_CONTAR_DATA_CEDENSA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Subramo", DbType="Int")] System.Nullable<int> subramo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, poliza, subramo);
+			return ((ISingleResult<SP_CONTAR_DATA_CEDENSAResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_LISTA_CARGAR_RAMOSResult
@@ -14923,6 +14930,32 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		private System.Nullable<int> _Total;
 		
 		public SP_CONTAR_DATA_TU_ASISTENCIAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Int")]
+		public System.Nullable<int> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_CONTAR_DATA_CEDENSAResult
+	{
+		
+		private System.Nullable<int> _Total;
+		
+		public SP_CONTAR_DATA_CEDENSAResult()
 		{
 		}
 		
