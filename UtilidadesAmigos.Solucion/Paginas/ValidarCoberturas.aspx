@@ -144,10 +144,6 @@
                 <asp:Label ID="lbPolizaFiltro" runat="server" Text="Poliza"></asp:Label>
                 <asp:TextBox ID="txtPolizaFiltro" runat="server" AutoCompleteType="Disabled" PlaceHolder="Numero de Poliza" MaxLength="20" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="form-group col-md-3">
-                <asp:Label ID="lbChasisFiltro" runat="server" Text="Chasis"></asp:Label>
-                <asp:TextBox ID="txtChasisFiltro" runat="server" AutoCompleteType="Disabled" PlaceHolder="Chasis" MaxLength="50" CssClass="form-control"></asp:TextBox>
-            </div>
         </div>
         <!--FIN DE LOS MENUS DESPLEGABLES Y CONTROLES DE BUSQUEDA-->
         <br />

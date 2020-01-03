@@ -17,6 +17,11 @@
         height:100px;
         text-align:center;
         }
+
+        .carousel {
+        border-color:blue;
+        
+        }
     </style>
 
     <div class="container-fluid">
@@ -36,13 +41,34 @@
         <div align="center" id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="../Imagenes/login.jpg" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
       <img src="../Imagenes/Logo.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="../Imagenes/tDYC1tp.jpg" class="d-block w-100" alt="...">
+      <img src="../Imagenes/login.jpg" class="d-block w-100" alt="...">
+    </div>
+   <div class="carousel-item">
+      <img src="../Imagenes/01.jpg" class="d-block w-100" alt="...">
+    </div>
+      <div class="carousel-item">
+      <img src="../Imagenes/02.gif" class="d-block w-100" alt="...">
+    </div>
+      <div class="carousel-item">
+      <img src="../Imagenes/03.jpg" class="d-block w-100" alt="...">
+    </div>
+      <div class="carousel-item">
+      <img src="../Imagenes/04.jfif" class="d-block w-100" alt="...">
+    </div>
+      <div class="carousel-item">
+      <img src="../Imagenes/05.jfif" class="d-block w-100" alt="...">
+    </div>
+      <div class="carousel-item">
+      <img src="../Imagenes/06.jpg" class="d-block w-100" alt="...">
+    </div>
+      <div class="carousel-item">
+      <img src="../Imagenes/07.jpg" class="d-block w-100" alt="...">
+    </div>
+      <div class="carousel-item">
+      <img src="../Imagenes/08.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
