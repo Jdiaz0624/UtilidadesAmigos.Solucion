@@ -47,7 +47,7 @@
                 <button type="button" id="btnCobertura" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">Modificar</button>
               <asp:Button ID="btnDeshabilitar" runat="server" Text="Deshabilitar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Deshabilitar Registro Seleccionado" OnClick="btnDeshabilitar_Click"/>
         </div>
-<div>
+    <div>
             <asp:GridView ID="gvInventario" runat="server" AllowPaging="true" OnPageIndexChanging="gvInventario_PageIndexChanging" OnSelectedIndexChanged="gvInventario_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
