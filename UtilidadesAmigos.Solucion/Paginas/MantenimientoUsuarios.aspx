@@ -18,6 +18,161 @@
             width:90px;
         }
     </style>
+    <script type="text/javascript">
+        function DesactivarBotones() {
+            $("#btnNuevo").attr("disabled", "disabled");
+            $("#<%=btnConsultar.ClientID%>").attr("disabled", "disabled");
+            $("#<%=btnExportar.ClientID%>").attr("disabled", "disabled");
+
+            $("#btnModificarConsulta").removeAttr("disabled", true);
+            $("#<%=btnDeshabilitar.ClientID%>").removeAttr("disabled", true);
+        }
+
+        function ActivarBotones() {
+            $("#button").removeAttr("disabled", true);
+            $("#<%=btnConsultar.ClientID%>").removeAttr("disabled", true);
+            $("#<%=btnExportar.ClientID%>").removeAttr("disabled", true);
+
+            $("#btnModificarConsulta").attr("disabled", "disabled");
+             $("#<%=btnDeshabilitar.ClientID%>").attr("disabled", "disabled");
+        }
+
+        function LimpiarControles() {
+            $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val("");
+            $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val("");
+            $("#<%=txtClaveMantenimiento.ClientID%>").val("");
+            $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val("");
+            $("#<%=txtEmailMantenimiento.ClientID%>").val("");
+            $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val("");
+           // $("#").val("");
+
+        }
+
+        function SeleccionarEstatus() {
+            $("#<%=cbEstatusMantenimiento.ClientID%>").prop("checked", true);
+        }
+        $(document).ready(function () {
+          //  ActivarBotones();
+            
+            //INICIO DEL EVENTO CLICK DEL BOTON NUEVO
+            $("#btnNuevo").click(function () {
+                LimpiarControles();
+                $("#<%=btnModificar.ClientID%>").hide();
+                $("#<%=btnGuardar.ClientID%>").show();
+
+                $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").removeAttr("disabled", true);
+                 $("#<%=txtClaveMantenimiento.ClientID%>").removeAttr("disabled", true);
+                 $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").removeAttr("disabled", true);
+                SeleccionarEstatus();
+
+            });
+
+            //EVENTO CLICK DEL BOTON GUARDAR
+            $("#<%=btnGuardar.ClientID%>").click(function () {
+              //VALIDAMOS QUE LOS CONTROLES OBLIGATORIOS NO ESTEN VACIOS
+              //VALIDAMOS EL CAMPO DEPARTAMENTO
+                var ValidarDepartamento = $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").val();
+                if (ValidarDepartamento < 1) {
+                    alert("El campo departamento no puede estar vacio, favor de verificar");
+                    $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else
+                {
+                     //VALIDAMOS EL CAMPO PERFIL
+                    var ValidarPerfil = $("#<%=ddlSeleccionarPerfilMantenimiento.ClientID%>").val();
+                    if (ValidarPerfil < 1) {
+                        alert("El campo perfil no puede estar vacio, favor de verificar");
+                        $("#<%=ddlSeleccionarPerfilMantenimiento.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else
+                    {
+                         //VALIDAMOS EL CAMPO NOMBRE DE USUARIO
+                        var ValidarNombreUsuario = $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val().lenght;
+                        if (ValidarNombreUsuario < 1) {
+                            alert("El campo nombre de usuario no puede estar vacio, favor de verificar");
+                            $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
+                        else {
+                            //VALIDAMOS EL NOMBRE DE LA PERSONA
+                            var ValidarNombrePersona = $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val().lenght;
+                            if (ValidarNombrePersona < 1) {
+                                alert("El campo nombre de Persona no puede estar vacio, favor de verificar");
+                                $("#<%=txtNombrePersonaMantenimiento.ClientID%>").css("border-color", "red");
+                                return false;
+                            }
+                            else {
+                                //VALIDAMOS EL CAMPO CLAVE
+                                var ValidarClave = $("#<%=txtClaveMantenimiento.ClientID%>").val().lenght;
+                                if (ValidarClave < 1) {
+                                    alert("El campo clave no puede estar vacio, favor de verificar");
+                                    $("#<%=txtClaveMantenimiento.ClientID%>").css("border-color", "red");
+                                    return false;
+                                }
+                                else {
+                                     //VALIDAMOS EL CAMPO CONFIRMACION DE CLAVE
+                                     var ValidarConfirmarClave = $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val().lenght;
+                                     if (ValidarConfirmarClave < 1) {
+                                         alert("El campo confirmación de clave no puede estar vacio, favor de verificar");
+                                         $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").css("border-color", "red");
+                                         return false;
+                                     }
+                                     else {
+                                         //VALIDAMOS EL CAMPO TIPO DE PERSONA
+                                         var ValidarTipoPersona = $("#<%=ddlSeleccionarTipoPersona.ClientID%>").val();
+                                         if (ValidarTipoPersona < 1) {
+                                             alert("El campo tipo de persona no puede estar vacio, favor de verificar");
+                                             $("#<%=ddlSeleccionarTipoPersona.ClientID%>").css("border-color", "red");
+                                             return false;
+                                         }
+                                         else
+                                         {
+                                             //VALIDAMOS EL CAMPO CLAVE DE SEGURIDAD
+                                                 var ValidarClaveSeguridad = $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val();
+                                                 if (ValidarClaveSeguridad < 1) {
+                                                     alert("El campo clave de seguridad no puede estar vacio, favor de verificar");
+                                                     $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").css("border-color", "red");
+                                                     return false;
+                                                 }
+                                                 else {
+                                                     //VALIDAMOS QUE LAS CLAVES INGERSADAS CONCUERDAN
+                                                     if (ValidarClave != ValidarConfirmarClave) {
+                                                         alert("Las claves ingresadas no concuerdan, favor de verificar");
+                                                         $("#<%=txtClaveMantenimiento.ClientID%>").css("border-color", "blue");
+                                                         $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").css("border-color", "blue");
+                                                         return false;
+                                                     }
+                                                 }
+                                         }
+                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+               
+              
+            });
+            //FIN DEL EVENTO CLICK DEL BOTON GUARDAR
+
+            //INICIO DEL EVENTO CLICK DEL BOTON MODIFICAR
+            $("#btnModificarConsulta").click(function () {
+                $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").attr("disabled", "disabled");
+                 $("#<%=txtClaveMantenimiento.ClientID%>").attr("disabled", "disabled");
+                 $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").attr("disabled", "disabled");
+
+                 $("#<%=btnGuardar.ClientID%>").hide();
+                 $("#<%=btnModificar.ClientID%>").show();
+
+                //VALIDAMOS EL CAMPO DEPARTAMENTO
+
+
+            });
+            //FIN DEL EVENTO CLICK DEL BOTON MODIFICAR
+        });
+    </script>
 
     <div class="container-fluid">
         <div class="jumbotron" align="center">
@@ -43,7 +198,7 @@
               <button type="button" id="btnNuevo" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">Nuevo</button>
             <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
             <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExportar_Click" /><br /><br />
-                <button type="button" id="btnCobertura" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">Modificar</button>
+                <button type="button" id="btnModificarConsulta" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">Modificar</button>
               <asp:Button ID="btnDeshabilitar" runat="server" Text="Deshabilitar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Deshabilitar Registro Seleccionado" OnClick="btnDeshabilitar_Click"/>
         </div>
           <div>
@@ -97,12 +252,12 @@
 
                       <div class="form-group col-md-6">
                           <asp:Label ID="lbNombreUsuarioMantenimiento" runat="server" Text="Usuario"></asp:Label>
-                          <asp:TextBox ID="txtNombreUsuarioMantenimiento" runat="server" MaxLength="20" CssClass="form-control"></asp:TextBox>
+                          <asp:TextBox ID="txtNombreUsuarioMantenimiento" AutoCompleteType="Disabled" runat="server" MaxLength="20" CssClass="form-control"></asp:TextBox>
                       </div>
 
                       <div class="form-group col-md-6">
                           <asp:Label ID="lbNombrePersonaMantenimeinto" runat="server" Text="Nombre"></asp:Label>
-                          <asp:TextBox ID="txtNombrePersonaMantenimiento" runat="server" MaxLength="150" CssClass="form-control"></asp:TextBox>
+                          <asp:TextBox ID="txtNombrePersonaMantenimiento" AutoCompleteType="Disabled" runat="server" MaxLength="150" CssClass="form-control"></asp:TextBox>
                       </div>
 
                       <div class="form-group col-md-6">
@@ -117,7 +272,7 @@
 
                       <div class="form-group col-md-6">
                           <asp:Label ID="lbEmailMantenimiento" runat="server" Text="Email"></asp:Label>
-                          <asp:TextBox ID="txtEmailMantenimiento" runat="server" MaxLength="100" CssClass="form-control"></asp:TextBox>
+                          <asp:TextBox ID="txtEmailMantenimiento" AutoCompleteType="Disabled" runat="server" MaxLength="100" CssClass="form-control"></asp:TextBox>
                       </div>
 
                       <div class="form-group col-md-6">
@@ -129,8 +284,27 @@
                           <asp:TextBox ID="txtClaveSeguridadMantenimiento" runat="server" TextMode="Password" MaxLength="20" CssClass="form-control"></asp:TextBox>
                       </div>
                   </div>
+                  <div class="form-check-inline">
+                      <div class="form-group form-check">
+                          <asp:CheckBox ID="cbEstatusMantenimiento" runat="server" Text="Estatus" CssClass="form-check-input" />
+                      </div>
+                      
+                      <div class="form-group form-check">
+                          <asp:CheckBox ID="cbLlevaEmailMantenimiento" AutoPostBack="true" runat="server" Text="¿Lleva Email?" CssClass="form-check-input" />
+                      </div>
+
+                      <div class="form-group form-check">
+                          <asp:CheckBox ID="cbCambiaClave" runat="server" Text="Cambia Clave" CssClass="form-check-input" />
+                      </div>
+                  </div>
               </ContentTemplate>
           </asp:UpdatePanel>
+          <!--BOTONES-->
+          <div align="center">
+               <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Guardar Registro" OnClick="btnGuardar_Click" />
+           <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Modificar Registro" OnClick="btnModificar_Click" />
+          </div>
+          <br />
       </div>
     </div>
   </div>

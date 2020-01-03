@@ -44,5 +44,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
 
         }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
