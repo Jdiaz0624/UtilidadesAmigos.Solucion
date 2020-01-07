@@ -140,6 +140,7 @@
     <Content Include="Paginas\Inventario.aspx" />
     <Content Include="Paginas\MantenimeintoPerfiles.aspx" />
     <Content Include="Paginas\MantenimientoClaveSeguridad.aspx" />
+    <Content Include="Paginas\MantenimientoDependientes.aspx" />
     <Content Include="scripts\bootstrap.bundle.js" />
     <Content Include="scripts\bootstrap.bundle.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -338,6 +339,13 @@
     </Compile>
     <Compile Include="Paginas\MantenimientoClaveSeguridad.aspx.designer.cs">
       <DependentUpon>MantenimientoClaveSeguridad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\MantenimientoDependientes.aspx.cs">
+      <DependentUpon>MantenimientoDependientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\MantenimientoDependientes.aspx.designer.cs">
+      <DependentUpon>MantenimientoDependientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Oficinas.aspx.cs">
       <DependentUpon>Oficinas.aspx</DependentUpon>

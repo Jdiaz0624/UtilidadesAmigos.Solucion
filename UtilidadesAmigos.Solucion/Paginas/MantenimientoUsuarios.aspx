@@ -19,22 +19,35 @@
         }
     </style>
     <script type="text/javascript">
+        function ErrorMantenimiento() {
+            alert("Error al realizar el mantenimiento, favor de contactar a tecnologia");
+            return false;
+        }
+
+         function ValidarClaveSeguridad() {
+             alert("La clave de seguridad ingresada no es valida, favor de verificar");
+             $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val("");
+             $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").css("border-color", "blue");
+            return false;
+        }
+       
         function DesactivarBotones() {
+            $("#btnModificarConsulta").attr("disabled", "disabled");
+            $("#<%=btnDeshabilitar.ClientID%>").attr("disabled", "disabled");
+       
+
+            $("#btnNuevo").removeAttr("disabled", true);
+            $("#<%=btnConsultar.ClientID%>").removeAttr("disabled", true);
+            $("#<%=btnExportar.ClientID%>").removeAttr("disabled", true);
+        }
+
+        function ActivarBotones() {
             $("#btnNuevo").attr("disabled", "disabled");
             $("#<%=btnConsultar.ClientID%>").attr("disabled", "disabled");
             $("#<%=btnExportar.ClientID%>").attr("disabled", "disabled");
 
             $("#btnModificarConsulta").removeAttr("disabled", true);
             $("#<%=btnDeshabilitar.ClientID%>").removeAttr("disabled", true);
-        }
-
-        function ActivarBotones() {
-            $("#button").removeAttr("disabled", true);
-            $("#<%=btnConsultar.ClientID%>").removeAttr("disabled", true);
-            $("#<%=btnExportar.ClientID%>").removeAttr("disabled", true);
-
-            $("#btnModificarConsulta").attr("disabled", "disabled");
-             $("#<%=btnDeshabilitar.ClientID%>").attr("disabled", "disabled");
         }
 
         function LimpiarControles() {
@@ -50,6 +63,18 @@
 
         function SeleccionarEstatus() {
             $("#<%=cbEstatusMantenimiento.ClientID%>").prop("checked", true);
+            $("#<%=cbLlevaEmailMantenimiento.ClientID%>").prop("checked", true);
+            $("#<%=cbCambiaClave.ClientID%>").prop("checked", true);
+        }
+
+        function CleanControls() {
+            $("#<%=txtUsuarioConsulta.ClientID%>").val("");
+            $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val("");
+            $("#<%=txtClaveMantenimiento.ClientID%>").val("");
+            $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val("");
+            $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val("");
+            $("#<%=txtEmailMantenimiento.ClientID%>").val("");
+            $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val("");
         }
         $(document).ready(function () {
           //  ActivarBotones();
@@ -63,7 +88,12 @@
                 $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").removeAttr("disabled", true);
                  $("#<%=txtClaveMantenimiento.ClientID%>").removeAttr("disabled", true);
                  $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").removeAttr("disabled", true);
-                SeleccionarEstatus();
+                 SeleccionarEstatus();
+
+                 $("#<%=lbClaveMantenimiento.ClientID%>").show();
+                 $("#<%=txtClaveMantenimiento.ClientID%>").show();
+                 $("#<%=lbConfirmarClaveMantenimiento.ClientID%>").show();
+                 $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").show();
 
             });
 
@@ -89,7 +119,7 @@
                     else
                     {
                          //VALIDAMOS EL CAMPO NOMBRE DE USUARIO
-                        var ValidarNombreUsuario = $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val().lenght;
+                        var ValidarNombreUsuario = $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val().length;
                         if (ValidarNombreUsuario < 1) {
                             alert("El campo nombre de usuario no puede estar vacio, favor de verificar");
                             $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").css("border-color", "red");
@@ -97,7 +127,7 @@
                         }
                         else {
                             //VALIDAMOS EL NOMBRE DE LA PERSONA
-                            var ValidarNombrePersona = $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val().lenght;
+                            var ValidarNombrePersona = $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val().length;
                             if (ValidarNombrePersona < 1) {
                                 alert("El campo nombre de Persona no puede estar vacio, favor de verificar");
                                 $("#<%=txtNombrePersonaMantenimiento.ClientID%>").css("border-color", "red");
@@ -105,7 +135,7 @@
                             }
                             else {
                                 //VALIDAMOS EL CAMPO CLAVE
-                                var ValidarClave = $("#<%=txtClaveMantenimiento.ClientID%>").val().lenght;
+                                var ValidarClave = $("#<%=txtClaveMantenimiento.ClientID%>").val().length;
                                 if (ValidarClave < 1) {
                                     alert("El campo clave no puede estar vacio, favor de verificar");
                                     $("#<%=txtClaveMantenimiento.ClientID%>").css("border-color", "red");
@@ -113,7 +143,7 @@
                                 }
                                 else {
                                      //VALIDAMOS EL CAMPO CONFIRMACION DE CLAVE
-                                     var ValidarConfirmarClave = $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val().lenght;
+                                     var ValidarConfirmarClave = $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val().length;
                                      if (ValidarConfirmarClave < 1) {
                                          alert("El campo confirmación de clave no puede estar vacio, favor de verificar");
                                          $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").css("border-color", "red");
@@ -156,7 +186,47 @@
               
             });
             //FIN DEL EVENTO CLICK DEL BOTON GUARDAR
+            $("#<%=btnModificar.ClientID%>").click(function () {
+                 var ValidarDepartamento = $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").val();
+                 if (ValidarDepartamento < 1) {
+                     alert("El campo departamento no puede estar vaico, favor de verificar");
+                     $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").css("border-color", "red");
+                     return false;
+                 }
+                 else {
+                     var ValidarPerfil = $("#<%=ddlSeleccionarPerfilMantenimiento.ClientID%>").val();
+                     if (ValidarPerfil < 1) {
+                         alert("El campo perfil no puede estar vacio, favor de verificar");
+                         $("#<%%>").css("border-color", "red");
+                         return false;
+                     }
+                     else {
+                         var ValidarNombrePersona = $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val().length;
+                         if (ValidarNombrePersona < 1) {
+                             alert("El campo nombre de persona no puede estar vacio, favor de verificar");
+                             $("#<%=txtNombrePersonaMantenimiento.ClientID%>").css("border-color", "red");
+                             return false;
+                         }
+                         else {
+                             var ValidarTipoPersona = $("#<%=ddlSeleccionarTipoPersona.ClientID%>").val();
+                             if (ValidarTipoPersona < 1) {
+                                 alert("El campo tipo de persona no puede estar vacio, favor de verificar");
+                                 $("#<%=ddlSeleccionarTipoPersona.ClientID%>").css("border-color", "red");
+                                 return false;
+                             }
+                             else {
+                                 var ValidarClaveSeguridad = $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val().length;
+                                 if (ValidarClaveSeguridad < 1) {
+                                     alert("El campo clave de seguridad no puede estar vacio, favor de verificar");
+                                     $("#<%%>").css("border-color", "red");
+                                     return false;
+                                 }
+                             }
+                         }
+                     }
+                 }
 
+            });
             //INICIO DEL EVENTO CLICK DEL BOTON MODIFICAR
             $("#btnModificarConsulta").click(function () {
                 $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").attr("disabled", "disabled");
@@ -166,6 +236,12 @@
                  $("#<%=btnGuardar.ClientID%>").hide();
                  $("#<%=btnModificar.ClientID%>").show();
 
+                 $("#<%=lbClaveMantenimiento.ClientID%>").hide();
+                 $("#<%=txtClaveMantenimiento.ClientID%>").hide();
+                 $("#<%=lbConfirmarClaveMantenimiento.ClientID%>").hide();
+                 $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").hide();
+
+                
                 //VALIDAMOS EL CAMPO DEPARTAMENTO
 
 
@@ -193,7 +269,7 @@
                <asp:TextBox ID="txtUsuarioConsulta" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </div>
         </div>
-        
+        <br />
          <div>
               <button type="button" id="btnNuevo" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">Nuevo</button>
             <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
@@ -207,6 +283,7 @@
                 <Columns>
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
                     
+                    <asp:BoundField DataField="IdUsuario" HeaderText="ID" />
                     <asp:BoundField DataField="Departamento" HeaderText="Departamento" />
                     <asp:BoundField DataField="Perfil" HeaderText="Perfil" />
                     <asp:BoundField DataField="Usuario" HeaderText="Usuario" />

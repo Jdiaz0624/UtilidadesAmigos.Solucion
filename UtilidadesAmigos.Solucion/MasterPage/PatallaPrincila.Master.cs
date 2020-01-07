@@ -209,7 +209,8 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkDependientes_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            Response.Redirect("MantenimientoDependientes.aspx");
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void linkClientes_Click(object sender, EventArgs e)
