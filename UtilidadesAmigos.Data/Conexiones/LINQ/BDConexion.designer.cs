@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString1, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -526,6 +526,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, poliza, cobertura);
 			return ((ISingleResult<SP_CONTAR_DATA_CASA_CONDUCTORResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_DEPENDIENTES")]
+		public ISingleResult<SP_BUSCAR_DEPENDIENTESResult> SP_BUSCAR_DEPENDIENTES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdAsegurado", DbType="Decimal(20,0)")] System.Nullable<decimal> idAsegurado)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, idAsegurado);
+			return ((ISingleResult<SP_BUSCAR_DEPENDIENTESResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -15004,6 +15011,464 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Total != value))
 				{
 					this._Total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCAR_DEPENDIENTESResult
+	{
+		
+		private string _Poliza;
+		
+		private string _Ramo;
+		
+		private string _SubRamo;
+		
+		private string _Estatus;
+		
+		private int _Compania;
+		
+		private decimal _Cotizacion;
+		
+		private int _Secuencia;
+		
+		private int _IdAsegurado;
+		
+		private string _Nombre;
+		
+		private string _Parentezco;
+		
+		private string _Cedula;
+		
+		private System.Nullable<System.DateTime> _FechaNacimiento0;
+		
+		private string _FechaNacimiento;
+		
+		private string _Sexo;
+		
+		private System.Nullable<decimal> _PorcPrima;
+		
+		private string _UsuarioAdiciona;
+		
+		private System.Nullable<System.DateTime> _FechaAdiciona0;
+		
+		private string _FechaAdiciona;
+		
+		private System.Nullable<byte> _Estatus0;
+		
+		private System.Nullable<decimal> _ValorAsegurado;
+		
+		private System.Nullable<decimal> _PorcCobertura;
+		
+		private System.Nullable<System.DateTime> _FechaInclusion0;
+		
+		private string _FechaInclusion;
+		
+		private System.Nullable<System.DateTime> _FechaInicioCobertura0;
+		
+		private string _FechaInicioCobertura;
+		
+		public SP_BUSCAR_DEPENDIENTESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ramo", DbType="NVarChar(65) NOT NULL", CanBeNull=false)]
+		public string Ramo
+		{
+			get
+			{
+				return this._Ramo;
+			}
+			set
+			{
+				if ((this._Ramo != value))
+				{
+					this._Ramo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubRamo", DbType="NVarChar(65) NOT NULL", CanBeNull=false)]
+		public string SubRamo
+		{
+			get
+			{
+				return this._SubRamo;
+			}
+			set
+			{
+				if ((this._SubRamo != value))
+				{
+					this._SubRamo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(50)")]
+		public string Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Compania", DbType="Int NOT NULL")]
+		public int Compania
+		{
+			get
+			{
+				return this._Compania;
+			}
+			set
+			{
+				if ((this._Compania != value))
+				{
+					this._Compania = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cotizacion", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Cotizacion
+		{
+			get
+			{
+				return this._Cotizacion;
+			}
+			set
+			{
+				if ((this._Cotizacion != value))
+				{
+					this._Cotizacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int NOT NULL")]
+		public int Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdAsegurado", DbType="Int NOT NULL")]
+		public int IdAsegurado
+		{
+			get
+			{
+				return this._IdAsegurado;
+			}
+			set
+			{
+				if ((this._IdAsegurado != value))
+				{
+					this._IdAsegurado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(150)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Parentezco", DbType="VarChar(50)")]
+		public string Parentezco
+		{
+			get
+			{
+				return this._Parentezco;
+			}
+			set
+			{
+				if ((this._Parentezco != value))
+				{
+					this._Parentezco = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cedula", DbType="VarChar(50)")]
+		public string Cedula
+		{
+			get
+			{
+				return this._Cedula;
+			}
+			set
+			{
+				if ((this._Cedula != value))
+				{
+					this._Cedula = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaNacimiento0", DbType="Date")]
+		public System.Nullable<System.DateTime> FechaNacimiento0
+		{
+			get
+			{
+				return this._FechaNacimiento0;
+			}
+			set
+			{
+				if ((this._FechaNacimiento0 != value))
+				{
+					this._FechaNacimiento0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaNacimiento", DbType="VarChar(38) NOT NULL", CanBeNull=false)]
+		public string FechaNacimiento
+		{
+			get
+			{
+				return this._FechaNacimiento;
+			}
+			set
+			{
+				if ((this._FechaNacimiento != value))
+				{
+					this._FechaNacimiento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sexo", DbType="VarChar(50)")]
+		public string Sexo
+		{
+			get
+			{
+				return this._Sexo;
+			}
+			set
+			{
+				if ((this._Sexo != value))
+				{
+					this._Sexo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcPrima", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> PorcPrima
+		{
+			get
+			{
+				return this._PorcPrima;
+			}
+			set
+			{
+				if ((this._PorcPrima != value))
+				{
+					this._PorcPrima = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioAdiciona", DbType="VarChar(50)")]
+		public string UsuarioAdiciona
+		{
+			get
+			{
+				return this._UsuarioAdiciona;
+			}
+			set
+			{
+				if ((this._UsuarioAdiciona != value))
+				{
+					this._UsuarioAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaAdiciona0
+		{
+			get
+			{
+				return this._FechaAdiciona0;
+			}
+			set
+			{
+				if ((this._FechaAdiciona0 != value))
+				{
+					this._FechaAdiciona0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona", DbType="VarChar(38) NOT NULL", CanBeNull=false)]
+		public string FechaAdiciona
+		{
+			get
+			{
+				return this._FechaAdiciona;
+			}
+			set
+			{
+				if ((this._FechaAdiciona != value))
+				{
+					this._FechaAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus0", DbType="TinyInt")]
+		public System.Nullable<byte> Estatus0
+		{
+			get
+			{
+				return this._Estatus0;
+			}
+			set
+			{
+				if ((this._Estatus0 != value))
+				{
+					this._Estatus0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorAsegurado", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> ValorAsegurado
+		{
+			get
+			{
+				return this._ValorAsegurado;
+			}
+			set
+			{
+				if ((this._ValorAsegurado != value))
+				{
+					this._ValorAsegurado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcCobertura", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> PorcCobertura
+		{
+			get
+			{
+				return this._PorcCobertura;
+			}
+			set
+			{
+				if ((this._PorcCobertura != value))
+				{
+					this._PorcCobertura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaInclusion0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaInclusion0
+		{
+			get
+			{
+				return this._FechaInclusion0;
+			}
+			set
+			{
+				if ((this._FechaInclusion0 != value))
+				{
+					this._FechaInclusion0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaInclusion", DbType="VarChar(38) NOT NULL", CanBeNull=false)]
+		public string FechaInclusion
+		{
+			get
+			{
+				return this._FechaInclusion;
+			}
+			set
+			{
+				if ((this._FechaInclusion != value))
+				{
+					this._FechaInclusion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaInicioCobertura0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaInicioCobertura0
+		{
+			get
+			{
+				return this._FechaInicioCobertura0;
+			}
+			set
+			{
+				if ((this._FechaInicioCobertura0 != value))
+				{
+					this._FechaInicioCobertura0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaInicioCobertura", DbType="VarChar(38) NOT NULL", CanBeNull=false)]
+		public string FechaInicioCobertura
+		{
+			get
+			{
+				return this._FechaInicioCobertura;
+			}
+			set
+			{
+				if ((this._FechaInicioCobertura != value))
+				{
+					this._FechaInicioCobertura = value;
 				}
 			}
 		}

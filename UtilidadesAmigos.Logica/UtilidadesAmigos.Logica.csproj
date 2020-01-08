@@ -83,6 +83,7 @@
     <Compile Include="Entidades\EClaveSeguridad.cs" />
     <Compile Include="Entidades\EComisionesSupervisores.cs" />
     <Compile Include="Entidades\EContarRegistros.cs" />
+    <Compile Include="Entidades\EDependientes.cs" />
     <Compile Include="Entidades\EDependientesDetalle.cs" />
     <Compile Include="Entidades\EDetalleCobrado.cs" />
     <Compile Include="Entidades\EDetalleInformacionEncabezado.cs" />

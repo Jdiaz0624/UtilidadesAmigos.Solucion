@@ -1654,6 +1654,44 @@ namespace UtilidadesAmigos.Logica.Logica
             }
         #endregion
 
+        #region MANTENIMIENTO DE DEPENDIENTES
+        //MOSTRAR EL LISTADO DE LOS DEPENDIENTES
+        public List<UtilidadesAmigos.Logica.Entidades.EDependientes> BuscaDependientes(string Poliza = null,decimal? IdAsegurado = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCAR_DEPENDIENTES(Poliza, IdAsegurado)
+                          select new UtilidadesAmigos.Logica.Entidades.EDependientes
+                          {
+                              Poliza=n.Poliza,
+                              Ramo=n.Ramo,
+                              SubRamo=n.SubRamo,
+                              Estatus=n.Estatus,
+                              Compania=n.Compania,
+                              Cotizacion=n.Cotizacion,
+                              Secuencia=n.Secuencia,
+                              IdAsegurado=n.IdAsegurado,
+                              Nombre=n.Nombre,
+                              Parentezco=n.Parentezco,
+                              Cedula=n.Cedula,
+                              FechaNacimiento0=n.FechaNacimiento0,
+                              FechaNacimiento=n.FechaNacimiento,
+                              Sexo=n.Sexo,
+                              PorcPrima=n.PorcPrima,
+                              UsuarioAdiciona=n.UsuarioAdiciona,
+                              FechaAdiciona0=n.FechaAdiciona0,
+                              FechaAdiciona=n.FechaAdiciona,
+                              Estatus0=n.Estatus0,
+                              ValorAsegurado=n.ValorAsegurado,
+                              PorcCobertura=n.PorcCobertura,
+                              FechaInclusion=n.FechaInclusion,
+                              FechaInclusion0=n.FechaInclusion0,
+                              FechaInicioCobertura=n.FechaInicioCobertura,
+                              FechaInicioCobertura0=n.FechaInicioCobertura0
+                          }).ToList();
+            return Buscar;
+        }
+        #endregion
 
     }
 }
