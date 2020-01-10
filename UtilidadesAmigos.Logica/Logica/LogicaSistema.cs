@@ -1691,6 +1691,59 @@ namespace UtilidadesAmigos.Logica.Logica
                           }).ToList();
             return Buscar;
         }
+
+        //MANTENIMIENTO DE DEPENDIENTES
+        public UtilidadesAmigos.Logica.Entidades.EDependientes MantenimientoDependientes(UtilidadesAmigos.Logica.Entidades.EDependientes Item, string Accion)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EDependientes Mantenimiento = null;
+
+            var Dependientes = Objdata.SP_GUARDAR_DEPENDIENTES(
+                Item.Compania,
+                Item.Cotizacion,
+                Item.Secuencia,
+                Item.IdAsegurado,
+                Item.Nombre,
+                Item.Parentezco,
+                Item.Cedula,
+                Item.FechaNacimiento0,
+                Item.Sexo,
+                Item.PorcPrima,
+                Item.UsuarioAdiciona,
+                Item.FechaAdiciona0,
+                Item.Estatus0,
+                Item.ValorAsegurado,
+                Item.PorcCobertura,
+                Item.FechaInclusion0,
+                Item.FechaInicioCobertura0,
+                Accion);
+            if (Dependientes != null)
+            {
+                Mantenimiento = (from n in Dependientes
+                                 select new UtilidadesAmigos.Logica.Entidades.EDependientes
+                                 {
+                                     Compania=n.Compania,
+                                     Cotizacion=n.Cotizacion,
+                                     Secuencia=n.Secuencia,
+                                     IdAsegurado=n.IdAsegurado,
+                                     Nombre=n.Nombre,
+                                     Parentezco=n.Parentezco,
+                                     Cedula=n.NumeroId,
+                                     FechaNacimiento0=n.FechaNacimiento,
+                                     Sexo=n.Sexo,
+                                     PorcPrima=n.PorcPrima,
+                                     UsuarioAdiciona=n.UsuarioAdiciona,
+                                     FechaAdiciona0=n.FechaAdiciona,
+                                     Estatus0=n.Estatus,
+                                     ValorAsegurado=n.ValorAsegurado,
+                                     PorcCobertura=n.PorcCobertura,
+                                     FechaInclusion0=n.FechaInclusion,
+                                     FechaInicioCobertura0=n.FechaInicioCobertura
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
         #endregion
 
     }

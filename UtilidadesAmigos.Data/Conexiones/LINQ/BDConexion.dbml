@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_LISTA_CARGAR_RAMOS" Method="SP_LISTA_CARGAR_RAMOS">
     <Parameter Name="IdRamo" Parameter="idRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
@@ -1319,6 +1319,45 @@
       <Column Name="FechaInclusion" Type="System.String" DbType="VarChar(38) NOT NULL" CanBeNull="false" />
       <Column Name="FechaInicioCobertura0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="FechaInicioCobertura" Type="System.String" DbType="VarChar(38) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_GUARDAR_DEPENDIENTES" Method="SP_GUARDAR_DEPENDIENTES">
+    <Parameter Name="Compania" Parameter="compania" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cotizacion" Parameter="cotizacion" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Secuencia" Parameter="secuencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdAsegurado" Parameter="idAsegurado" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="Parentezco" Parameter="parentezco" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NumeroId" Parameter="numeroId" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="FechaNacimiento" Parameter="fechaNacimiento" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Sexo" Parameter="sexo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="PorcPrima" Parameter="porcPrima" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="UsuarioAdiciona" Parameter="usuarioAdiciona" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="FechaAdiciona" Parameter="fechaAdiciona" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="ValorAsegurado" Parameter="valorAsegurado" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="PorcCobertura" Parameter="porcCobertura" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="FechaInclusion" Parameter="fechaInclusion" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaInicioCobertura" Parameter="fechaInicioCobertura" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_GUARDAR_DEPENDIENTESResult">
+      <Column Name="Compania" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Secuencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdAsegurado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Parentezco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NumeroId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaNacimiento" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Sexo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PorcPrima" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="UsuarioAdiciona" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="ValorAsegurado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="PorcCobertura" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="FechaInclusion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaInicioCobertura" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

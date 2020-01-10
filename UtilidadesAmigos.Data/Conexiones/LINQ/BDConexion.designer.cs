@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -533,6 +533,31 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, idAsegurado);
 			return ((ISingleResult<SP_BUSCAR_DEPENDIENTESResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_GUARDAR_DEPENDIENTES")]
+		public ISingleResult<SP_GUARDAR_DEPENDIENTESResult> SP_GUARDAR_DEPENDIENTES(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Compania", DbType="Int")] System.Nullable<int> compania, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cotizacion", DbType="Decimal(20,0)")] System.Nullable<decimal> cotizacion, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Int")] System.Nullable<int> secuencia, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdAsegurado", DbType="Int")] System.Nullable<int> idAsegurado, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(150)")] string nombre, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Parentezco", DbType="VarChar(50)")] string parentezco, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroId", DbType="VarChar(50)")] string numeroId, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaNacimiento", DbType="Date")] System.Nullable<System.DateTime> fechaNacimiento, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Sexo", DbType="VarChar(50)")] string sexo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PorcPrima", DbType="Decimal(20,2)")] System.Nullable<decimal> porcPrima, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioAdiciona", DbType="VarChar(50)")] string usuarioAdiciona, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaAdiciona", DbType="DateTime")] System.Nullable<System.DateTime> fechaAdiciona, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="TinyInt")] System.Nullable<byte> estatus, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorAsegurado", DbType="Decimal(20,2)")] System.Nullable<decimal> valorAsegurado, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PorcCobertura", DbType="Decimal(20,2)")] System.Nullable<decimal> porcCobertura, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaInclusion", DbType="DateTime")] System.Nullable<System.DateTime> fechaInclusion, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaInicioCobertura", DbType="DateTime")] System.Nullable<System.DateTime> fechaInicioCobertura, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), compania, cotizacion, secuencia, idAsegurado, nombre, parentezco, numeroId, fechaNacimiento, sexo, porcPrima, usuarioAdiciona, fechaAdiciona, estatus, valorAsegurado, porcCobertura, fechaInclusion, fechaInicioCobertura, accion);
+			return ((ISingleResult<SP_GUARDAR_DEPENDIENTESResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -15459,6 +15484,320 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaInicioCobertura", DbType="VarChar(38) NOT NULL", CanBeNull=false)]
 		public string FechaInicioCobertura
+		{
+			get
+			{
+				return this._FechaInicioCobertura;
+			}
+			set
+			{
+				if ((this._FechaInicioCobertura != value))
+				{
+					this._FechaInicioCobertura = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_GUARDAR_DEPENDIENTESResult
+	{
+		
+		private System.Nullable<int> _Compania;
+		
+		private System.Nullable<decimal> _Cotizacion;
+		
+		private System.Nullable<int> _Secuencia;
+		
+		private System.Nullable<int> _IdAsegurado;
+		
+		private string _Nombre;
+		
+		private string _Parentezco;
+		
+		private string _NumeroId;
+		
+		private System.Nullable<System.DateTime> _FechaNacimiento;
+		
+		private string _Sexo;
+		
+		private System.Nullable<decimal> _PorcPrima;
+		
+		private string _UsuarioAdiciona;
+		
+		private System.Nullable<System.DateTime> _FechaAdiciona;
+		
+		private System.Nullable<byte> _Estatus;
+		
+		private System.Nullable<decimal> _ValorAsegurado;
+		
+		private System.Nullable<decimal> _PorcCobertura;
+		
+		private System.Nullable<System.DateTime> _FechaInclusion;
+		
+		private System.Nullable<System.DateTime> _FechaInicioCobertura;
+		
+		public SP_GUARDAR_DEPENDIENTESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Compania", DbType="Int")]
+		public System.Nullable<int> Compania
+		{
+			get
+			{
+				return this._Compania;
+			}
+			set
+			{
+				if ((this._Compania != value))
+				{
+					this._Compania = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cotizacion", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> Cotizacion
+		{
+			get
+			{
+				return this._Cotizacion;
+			}
+			set
+			{
+				if ((this._Cotizacion != value))
+				{
+					this._Cotizacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int")]
+		public System.Nullable<int> Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdAsegurado", DbType="Int")]
+		public System.Nullable<int> IdAsegurado
+		{
+			get
+			{
+				return this._IdAsegurado;
+			}
+			set
+			{
+				if ((this._IdAsegurado != value))
+				{
+					this._IdAsegurado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(150)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Parentezco", DbType="VarChar(50)")]
+		public string Parentezco
+		{
+			get
+			{
+				return this._Parentezco;
+			}
+			set
+			{
+				if ((this._Parentezco != value))
+				{
+					this._Parentezco = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroId", DbType="VarChar(50)")]
+		public string NumeroId
+		{
+			get
+			{
+				return this._NumeroId;
+			}
+			set
+			{
+				if ((this._NumeroId != value))
+				{
+					this._NumeroId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaNacimiento", DbType="Date")]
+		public System.Nullable<System.DateTime> FechaNacimiento
+		{
+			get
+			{
+				return this._FechaNacimiento;
+			}
+			set
+			{
+				if ((this._FechaNacimiento != value))
+				{
+					this._FechaNacimiento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sexo", DbType="VarChar(50)")]
+		public string Sexo
+		{
+			get
+			{
+				return this._Sexo;
+			}
+			set
+			{
+				if ((this._Sexo != value))
+				{
+					this._Sexo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcPrima", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> PorcPrima
+		{
+			get
+			{
+				return this._PorcPrima;
+			}
+			set
+			{
+				if ((this._PorcPrima != value))
+				{
+					this._PorcPrima = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioAdiciona", DbType="VarChar(50)")]
+		public string UsuarioAdiciona
+		{
+			get
+			{
+				return this._UsuarioAdiciona;
+			}
+			set
+			{
+				if ((this._UsuarioAdiciona != value))
+				{
+					this._UsuarioAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaAdiciona
+		{
+			get
+			{
+				return this._FechaAdiciona;
+			}
+			set
+			{
+				if ((this._FechaAdiciona != value))
+				{
+					this._FechaAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="TinyInt")]
+		public System.Nullable<byte> Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorAsegurado", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ValorAsegurado
+		{
+			get
+			{
+				return this._ValorAsegurado;
+			}
+			set
+			{
+				if ((this._ValorAsegurado != value))
+				{
+					this._ValorAsegurado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcCobertura", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> PorcCobertura
+		{
+			get
+			{
+				return this._PorcCobertura;
+			}
+			set
+			{
+				if ((this._PorcCobertura != value))
+				{
+					this._PorcCobertura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaInclusion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaInclusion
+		{
+			get
+			{
+				return this._FechaInclusion;
+			}
+			set
+			{
+				if ((this._FechaInclusion != value))
+				{
+					this._FechaInclusion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaInicioCobertura", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaInicioCobertura
 		{
 			get
 			{
