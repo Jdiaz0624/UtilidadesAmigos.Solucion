@@ -26,7 +26,9 @@
     </style>
     <script type="text/javascript">
 
-
+        function ErrorMantenimiento() {
+            alert("Error al realizar este mantenimiento");
+        }
 
         function BloquearControlesQuitarModificar() {
             $("#<%=txtNombreQuitarModificar.ClientID%>").attr("disabled", "disabled");

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -28,6 +29,39 @@ namespace UtilidadesAmigos.Solucion.Paginas
             gvDependientes.DataSource = MostrarListado;
             gvDependientes.DataBind();
             ClientScript.RegisterStartupScript(GetType(), "ActivarRestablecerAgregar", "ActivarRestablecerAgregar();", true);
+        }
+        #endregion
+        #region MANTENIMIENTO DE DEPENDIENTES
+        private void AgregarDepenDependientes() {
+            //VERIFICAMOS SI NO SE PERDIO LA VARIABLE DE SESION
+            if (Session["IdUsuario"] != null)
+            {
+                try { }
+                catch (Exception) {
+                    ClientScript.RegisterStartupScript(GetType(), "ErrorMantenimiento", "ErrorMantenimiento();", true);
+                }
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
+        private void ModificarQuitarDependientes(string Accion) {
+            //VERIFICAMOS SI NO SE PERDIO LA VARIABLE DE SESION
+            if (Session["IdUsuario"] != null)
+            {
+                try { }
+                catch (Exception)
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "ErrorMantenimiento", "ErrorMantenimiento();", true);
+                }
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
         #endregion
         protected void Page_Load(object sender, EventArgs e)
