@@ -115,6 +115,12 @@
                 }
 
             });
+
+            //PRORAMAMOS EL EVENTO CLICK DEL BOTON ELIMINAR
+            $("#<%=btnQuitar.ClientID%>").click(function () {
+                ActivarControlesQuitarModificar();
+             
+            });
             //PROGRAMAMOS EL EVENTO CLICK DEL BOTON GUARDAR
             $("#<%=btnGuardar.ClientID%>").click(function () {
                 var Nombre = $("#<%=txtNombreMantenimiento.ClientID%>").val().length;
