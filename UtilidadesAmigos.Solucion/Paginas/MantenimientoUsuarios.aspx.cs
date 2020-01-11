@@ -26,7 +26,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region MOSTRAR EL LISTADO DE LOS USUAIROS
         private void MostrarListadoUsuarios()
         {
-            decimal? _Departamento = ddlSeleccionarPerfilConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarPerfilConsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _Departamento = ddlSeleccionarDepartamentoConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarDepartamentoConsulta.SelectedValue) : new Nullable<decimal>();
             decimal? _Perfil = ddlSeleccionarPerfilConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarPerfilConsulta.SelectedValue) : new Nullable<decimal>();
             string _Usuario = string.IsNullOrEmpty(txtUsuarioConsulta.Text.Trim()) ? null : txtUsuarioConsulta.Text.Trim();
 
@@ -98,7 +98,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
             MostrarListadoUsuarios();
-            Restablecer();
+          //  Restablecer();
         }
 
         protected void btnExportar_Click(object sender, EventArgs e)

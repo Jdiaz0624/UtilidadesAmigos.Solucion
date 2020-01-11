@@ -351,7 +351,7 @@
               </div>
               <div class="form-group col-md-6">
                   <asp:Label ID="lbCedulaQuitarModificar" runat="server" Text="Cedula" CssClass="LetrasNegrita"></asp:Label>
-                  <asp:TextBox ID="txtCedulaQuitarModificar AutoCompleteType="Disabled"" runat="server" MaxLength="150" CssClass="form-control"></asp:TextBox>
+                  <asp:TextBox ID="txtCedulaQuitarModificar" AutoCompleteType="Disabled" runat="server" MaxLength="150" CssClass="form-control"></asp:TextBox>
               </div>
               <div class="form-group col-md-6">
                    <asp:Label ID="lbFechaNacimientoQuitarModificar" runat="server" Text="Fecha Nacimiento" CssClass="LetrasNegrita"></asp:Label>
