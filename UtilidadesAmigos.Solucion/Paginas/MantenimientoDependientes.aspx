@@ -234,7 +234,7 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <asp:Label ID="lbNumeroPoliza" runat="server" CssClass="LetrasNegrita" Text="Poliza"></asp:Label>
-                <asp:TextBox ID="txtPolizaConsulta" runat="server" MaxLength="20" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtPolizaConsulta" AutoCompleteType="Disabled" runat="server" MaxLength="20" CssClass="form-control"></asp:TextBox>
                
             </div>
            
@@ -300,7 +300,7 @@
               </div>
               <div class="form-group col-md-6">
                     <asp:Label ID="lbParentezco" runat="server" Text="Parentezco" CssClass="LetrasNegrita"></asp:Label>
-                   <asp:TextBox ID="txtParentezzcoMantenimiento"  runat="server" CssClass="form-control"></asp:TextBox>
+                   <asp:TextBox ID="txtParentezzcoMantenimiento" AutoCompleteType="Disabled"  runat="server" CssClass="form-control"></asp:TextBox>
               </div>
               <div class="form-group col-md-6">
                   <asp:Label ID="lbNumeroID" runat="server" Text="Cedula" CssClass="LetrasNegrita"></asp:Label>
@@ -312,7 +312,7 @@
               </div>
               <div class="form-group col-md-6">
                   <asp:Label ID="lbSexoMantenimiento" runat="server" Text="Sexo" CssClass="LetrasNegrita"></asp:Label>
-                  <asp:TextBox ID="txtSexoMantenimiento" runat="server" CssClass="form-control"></asp:TextBox>
+                  <asp:TextBox ID="txtSexoMantenimiento" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
               </div>
               <div class="form-group col-md-6">
                        <asp:Label ID="lbProma" runat="server" Text="Prima" CssClass="LetrasNegrita"></asp:Label>
@@ -343,27 +343,27 @@
                   <div class="form-row">
               <div class="form-group col-md-6">
                   <asp:Label ID="lbNombreQuitarModificar" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
-                  <asp:TextBox ID="txtNombreQuitarModificar" runat="server" MaxLength="150" CssClass="form-control"></asp:TextBox>
+                  <asp:TextBox ID="txtNombreQuitarModificar" AutoCompleteType="Disabled" runat="server" MaxLength="150" CssClass="form-control"></asp:TextBox>
               </div>
               <div class="form-group col-md-6">
                     <asp:Label ID="lbParentezcoQuitarModificar" runat="server" Text="Parentezco" CssClass="LetrasNegrita"></asp:Label>
-                   <asp:TextBox ID="txtParentezcoQuitarModificar" runat="server" CssClass="form-control"></asp:TextBox>
+                   <asp:TextBox ID="txtParentezcoQuitarModificar" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
               </div>
               <div class="form-group col-md-6">
                   <asp:Label ID="lbCedulaQuitarModificar" runat="server" Text="Cedula" CssClass="LetrasNegrita"></asp:Label>
-                  <asp:TextBox ID="txtCedulaQuitarModificar" runat="server" MaxLength="150" CssClass="form-control"></asp:TextBox>
+                  <asp:TextBox ID="txtCedulaQuitarModificar AutoCompleteType="Disabled"" runat="server" MaxLength="150" CssClass="form-control"></asp:TextBox>
               </div>
               <div class="form-group col-md-6">
                    <asp:Label ID="lbFechaNacimientoQuitarModificar" runat="server" Text="Fecha Nacimiento" CssClass="LetrasNegrita"></asp:Label>
-                  <asp:TextBox ID="txtFechaNacimientoQuitarModificar" runat="server"  CssClass="form-control"></asp:TextBox>
+                  <asp:TextBox ID="txtFechaNacimientoQuitarModificar" AutoCompleteType="Disabled" runat="server"  CssClass="form-control"></asp:TextBox>
               </div>
               <div class="form-group col-md-6">
                   <asp:Label ID="lbSexoQuitarModificar" runat="server" Text="Sexo" CssClass="LetrasNegrita"></asp:Label>
-                  <asp:TextBox ID="txtSexoQuitarModificar" runat="server" CssClass="form-control"></asp:TextBox>
+                  <asp:TextBox ID="txtSexoQuitarModificar" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
               </div>
               <div class="form-group col-md-6">
                        <asp:Label ID="lbPrimaQUitarModificar" runat="server" Text="Prima" CssClass="LetrasNegrita"></asp:Label>
-                  <asp:TextBox ID="txtPrimaQuitarModificar" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                  <asp:TextBox ID="txtPrimaQuitarModificar" AutoCompleteType="Disabled" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
               </div>
           </div>
               </ContentTemplate>
