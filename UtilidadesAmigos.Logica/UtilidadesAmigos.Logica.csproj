@@ -104,11 +104,13 @@
     <Compile Include="Entidades\EProduccionDiariaConsulta.cs" />
     <Compile Include="Entidades\EProduccionDiariaDetalle.cs" />
     <Compile Include="Entidades\EProduccionTodosLosRamos.cs" />
+    <Compile Include="Entidades\ESacarCarteraIntermediario.cs" />
     <Compile Include="Entidades\ESacarCobrado.cs" />
     <Compile Include="Entidades\ESacarDataCasaConductor.cs" />
     <Compile Include="Entidades\ESacarDataCedensa.cs" />
     <Compile Include="Entidades\ESacarDataCobertura.cs" />
     <Compile Include="Entidades\ESacarDataTuAsistencia.cs" />
+    <Compile Include="Entidades\ESacarDatosIntermediarios.cs" />
     <Compile Include="Entidades\ESacarDatosVehiculoDetalle.cs" />
     <Compile Include="Entidades\ESacarDetalleCobradoUsuario.cs" />
     <Compile Include="Entidades\ESacarItemPoliza.cs" />

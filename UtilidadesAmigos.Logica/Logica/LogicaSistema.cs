@@ -1746,5 +1746,51 @@ namespace UtilidadesAmigos.Logica.Logica
         }
         #endregion
 
+        #region CARTERA INTERMEDIARIO
+        //SACAR LOS DATOS DEL INTERMEDIARIO
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarDatosIntermediarios> SacarDatosIntermediarios(string CodigoSupervisor = null, string CodigoIntermediario = null, int? OficinaIntermediario = null, string NombreIntermediario = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var SacarDatos = (from n in Objdata.SP_SACAR_DATOS_INTERMEDIARIOS(CodigoSupervisor, CodigoIntermediario, OficinaIntermediario, NombreIntermediario)
+                              select new UtilidadesAmigos.Logica.Entidades.ESacarDatosIntermediarios
+                              {
+                                  CodSupervisor=n.CodSupervisor,
+                                  Supervisor=n.Supervisor,
+                                  Codigo=n.Codigo,
+                                  NombreVendedor=n.NombreVendedor,
+                                  Oficina=n.Oficina,
+                                  Estatus=n.Estatus
+                              }).ToList();
+            return SacarDatos;
+        }
+
+        //SACAR LA CARTERA DE INTERMEDIARIO
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarCarteraIntermediario> BuscaSacarCarteraIntermediario(decimal? CodigoSupervisor = null, decimal? CodigoIntermediario = null, int? OficinaIntermediario = null, string NombreIntermediario = null)
+        {
+            Objdata.CommandTimeout = 99999999;
+
+            var Buscar = (from n in Objdata.SP_SACAR_CARTERA_INTERMEDIARIO(CodigoSupervisor, CodigoIntermediario, OficinaIntermediario, NombreIntermediario)
+                          select new UtilidadesAmigos.Logica.Entidades.ESacarCarteraIntermediario
+                          {
+                              Supervisor=n.Supervisor,
+                              Intermediario=n.Intermediario,
+                              CodigoSupervisor=n.CodigoSupervisor,
+                              CodigoIntermediario=n.CodigoIntermediario,
+                              Poliza=n.Poliza,
+                              Estatus=n.Estatus,
+                              Ramo=n.Ramo,
+                              SubRamo=n.SubRamo,
+                              Cliente=n.Cliente,
+                              SumaAsegurada=n.SumaAsegurada,
+                              prima=n.prima,
+                              TotalFacturado=n.TotalFacturado,
+                              TotalPagado=n.TotalPagado,
+                              Balance=n.Balance
+                          }).ToList();
+            return Buscar;
+        }
+        #endregion
+
     }
 }

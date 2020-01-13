@@ -44,5 +44,38 @@
                 <asp:TextBox ID="txtNombreConsulta" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
         </div>
+        <div>
+             <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
+             <asp:Button ID="btnRestabelecer" runat="server" Text="Restablecer" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnRestabelecer_Click" />
+             <button type="button" id="btnGenerarComision" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".GenerarComisionPOPO">Comisión</button>
+            <button type="button" id="btnGenerarCartera" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".GenerarCarteraPOPO">Cartera</button>
+            <button type="button" id="btnGenerarProduccion" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".GenerarProduccionPOPO">Producción</button>
+            </div>
+        <br />
+           <div>
+            <asp:GridView ID="gvListadoIntermediario" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoIntermediario_PageIndexChanging" OnSelectedIndexChanged="gvListadoIntermediario_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    
+                    <asp:BoundField DataField="CodSupervisor" HeaderText="CodSupervisor" />
+                    <asp:BoundField DataField="Supervisor" HeaderText="Supervisor" />
+                    <asp:BoundField DataField="Codigo" HeaderText="CodIntermediario" />
+                    <asp:BoundField DataField="NombreVendedor" HeaderText="Intermediario" />
+                    <asp:BoundField DataField="Oficina" HeaderText="Oficina" />
+                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
+                     <asp:CommandField ButtonType="Button" HeaderStyle-Width="11%" HeaderText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />
+                </Columns  >
+                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
     </div>
 </asp:Content>
