@@ -89,6 +89,7 @@
     <Compile Include="Entidades\EDetalleInformacionEncabezado.cs" />
     <Compile Include="Entidades\EDetalleProduccionDiaria.cs" />
     <Compile Include="Entidades\EEstatusTarjeta.cs" />
+    <Compile Include="Entidades\EGenerarComisionIntermediario.cs" />
     <Compile Include="Entidades\EGenerarDataCedensa.cs" />
     <Compile Include="Entidades\EGenerarDataGruaAeroAmbulancia.cs" />
     <Compile Include="Entidades\EListaDepartamentos.cs" />

@@ -1790,6 +1790,36 @@ namespace UtilidadesAmigos.Logica.Logica
                           }).ToList();
             return Buscar;
         }
+
+        //GENERAR LAS COMISIONES DE LOS INTERMEDIARIOS
+        public List<UtilidadesAmigos.Logica.Entidades.EGenerarComisionIntermediario> GenerarComisionIntermediario(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? CodigoIntermediario = null, int? Oficina = null)
+        {
+            Objdata.CommandTimeout = 99999999;
+
+            var Generar = (from n in Objdata.SP_SACAR_COMISIONES_INTERMEDIARIOS(FechaDesde, FechaHasta, CodigoIntermediario, Oficina)
+                           select new UtilidadesAmigos.Logica.Entidades.EGenerarComisionIntermediario
+                           {
+                               Supervisor=n.Supervisor,
+                               Intermediario=n.Intermediario,
+                               Cliente=n.Cliente,
+                               Recibo=n.Recibo,
+                               Fecha=n.Fecha,
+                               Factura=n.Factura,
+                               FechaFactura=n.FechaFactura,
+                               Moneda=n.Moneda,
+                               Poliza=n.Poliza,
+                               Producto=n.Producto,
+                               Bruto=n.Bruto,
+                               Neto=n.Neto,
+                               PorcientoComision=n.PorcientoComision,
+                               Comision=n.Comision,
+                               Retencion=n.Retencion,
+                               AvanceComision=n.AvanceComision,
+                               ALiquidar=n.ALiquidar,
+
+                           }).ToList();
+            return Generar;
+        }
         #endregion
 
     }
