@@ -1820,6 +1820,32 @@ namespace UtilidadesAmigos.Logica.Logica
                            }).ToList();
             return Generar;
         }
+
+        //SACAR LA PRODUCCION DE LOS INTERMEDIARIOS
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarProduccionIntermediario> SacarProduccionIntermediario(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? Vendedor = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_SACAR_PRODUCCION_INTERMEDIARIO(FechaDesde, FechaHasta, Vendedor)
+                          select new UtilidadesAmigos.Logica.Entidades.ESacarProduccionIntermediario
+                          {
+                              Poliza=n.Poliza,
+                              NoFactura=n.NoFactura,
+                              Fecha=n.Fecha,
+                              Valor=n.Valor,
+                              Cliente=n.Cliente,
+                              Vendedor=n.Vendedor,
+                              Cobrador=n.Cobrador,
+                              Concepto=n.Concepto,
+                              Balance=n.Balance,
+                              Ncf=n.Ncf,
+                              Tasa=n.Tasa,
+                              Moneda=n.Moneda,
+                              Oficina=n.Oficina,
+                              Total=n.Total
+                          }).ToList();
+            return Buscar;
+        }
         #endregion
 
     }

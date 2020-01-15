@@ -32,6 +32,13 @@
             $("#btnGenerarCartera").removeAttr("disabled", true);
             $("#btnGenerarProduccion").removeAttr("disabled",true);
         }
+
+        function ErrorConsulta() {
+            alert("Error al realizar la consulta, favor de verificar los parametros ingresados");
+        }
+
+
+        });
     </script>
     <div class="container-fluid">
         <div class="jumbotron" align="center">
@@ -169,6 +176,37 @@
           <div class="jumbotron" align="center">
               <asp:Label ID="lbNombreIntermediarioCartera" runat="server" Text="Nombre Intermediario"></asp:Label>
           </div>
+            <br />
+           <div>
+            <asp:GridView ID="gvCarteraIntermeiarios" runat="server" AllowPaging="true" OnPageIndexChanging="gvCarteraIntermeiarios_PageIndexChanging" OnSelectedIndexChanged="gvCarteraIntermeiarios_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    
+                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
+                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
+                    <asp:BoundField DataField="SumaAsegurada" HeaderText="Suma Asegurada" />
+                    <asp:BoundField DataField="prima" HeaderText="Prima" />
+                    <asp:BoundField DataField="TotalFacturado" HeaderText="Facturado" />
+                       <asp:BoundField DataField="TotalPagado" HeaderText="Pagado" />
+                       <asp:BoundField DataField="Balance" HeaderText="Balance" />
+                </Columns  >
+                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
+          <br />
+        <div align="center">
+              <asp:Button ID="btnExportarCarteraExel" runat="server" Text="Exportar" ToolTip="Exportar a Exel" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportarCarteraExel_Click" />
+        </div>
+          <br />
       </div>
     </div>
   </div>
@@ -177,7 +215,62 @@
     <div class="modal fade bd-example-modal-lg GenerarProduccionPOPO" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      PRODUCCION
+      <div class="container-fluid">
+          <div class="jumbotron" align="center">
+              <asp:Label ID="lbNombreIntermediarioProduccion" runat="server" Text="Nombre Intermediario"></asp:Label>
+          </div>
+          <asp:UpdatePanel ID="ProduccionUpdatePanel" runat="server" Visible="true">
+              <ContentTemplate>
+                  <div align="center">
+                      <asp:Label ID="lbTotalTitulo" runat="server" Text="Total ( " CssClass="LetrasNegrita"></asp:Label>
+                      <asp:Label ID="lbTotalProduccion" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
+                      <asp:Label ID="lbCierre" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-md-3">
+                          <asp:Label ID="lbFechaDesdeProduccion" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
+                          <asp:TextBox ID="txtFechaDesdeProduccion" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                      </div>
+                      <div class="form-group col-md-3">
+                           <asp:Label ID="lbFechaHastaProduccion" runat="server" Text="Fecha Hasta" CssClass="LetrasNegrita"></asp:Label>
+                          <asp:TextBox ID="txtFechaHastaProduccion" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                      </div>
+                  </div>
+                  <div>
+                      <asp:Button ID="btnBuscarProduccion" runat="server" Text="Buscar" OnClick="btnBuscarProduccion_Click" CssClass="btn btn-outline-primary btn-sm" ToolTip="Buscar la producción del intermediario seleccionado" />
+                  </div>
+                  <br />
+                   <div>
+            <asp:GridView ID="gvListadoProduccion" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoProduccion_PageIndexChanging" OnSelectedIndexChanged="gvListadoProduccion_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    
+                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
+                    <asp:BoundField DataField="NoFactura" HeaderText="Factura" />
+                    <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+                    <asp:BoundField DataField="Valor" HeaderText="Valor" />
+                    <asp:BoundField DataField="Concepto" HeaderText="Concepto" />
+                       <asp:BoundField DataField="Balance" HeaderText="Balance" />
+                </Columns  >
+                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
+              </ContentTemplate>
+          </asp:UpdatePanel>
+           <div align="center">
+                      <asp:Button ID="btnExportarExelProduccion" runat="server" Text="Exportar" OnClick="btnExportarExelProduccion_Click" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros a exel" />
+          </div>
+          <br />
+      </div>
     </div>
   </div>
 </div>
