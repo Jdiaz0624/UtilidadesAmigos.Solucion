@@ -94,6 +94,7 @@
     <Compile Include="Entidades\EGenerarDataGruaAeroAmbulancia.cs" />
     <Compile Include="Entidades\EListaDepartamentos.cs" />
     <Compile Include="Entidades\EListadoCoberturas.cs" />
+    <Compile Include="Entidades\EListadoRenovacion.cs" />
     <Compile Include="Entidades\EListaRamos.cs" />
     <Compile Include="Entidades\EListas.cs" />
     <Compile Include="Entidades\EMantenimientoProduccionTodosLosRamos.cs" />

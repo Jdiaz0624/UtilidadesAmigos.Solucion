@@ -1848,5 +1848,54 @@ namespace UtilidadesAmigos.Logica.Logica
         }
         #endregion
 
+        #region REPORTE DE RENOVACION DE POLIZAS
+        public List<UtilidadesAmigos.Logica.Entidades.EListadoRenovacion> ReporteRenovacionPoliza(DateTime? FechaDesde = null, DateTime? FechaFin = null, int? Ramo = null, int? SubRamo = null, string Poliza = null, decimal? Cotizacion = null, int? Oficina = null, string CodSupervisor = null, string CodIntermediario = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_MOSTRAR_LISTADO_RENOVACION(FechaDesde, FechaFin, Ramo, SubRamo, Poliza, Cotizacion, Oficina, CodSupervisor, CodIntermediario)
+                           select new UtilidadesAmigos.Logica.Entidades.EListadoRenovacion
+                           {
+                               Poliza=n.Poliza,
+                               Cotizacion=n.Cotizacion,
+                               Estatus=n.Estatus,
+                               Prima=n.Prima,
+                               SumaAsegurada=n.SumaAsegurada,
+                               CodRamo=n.CodRamo,
+                               CodSubramo=n.CodSubramo,
+                               Ramo=n.Ramo,
+                               SubRamo=n.SubRamo,
+                               Asegurado=n.Asegurado,
+                               Telefonos=n.Telefonos,
+                               Items=n.Items,
+                               FechaInicioVigencia0=n.FechaInicioVigencia0,
+                               FechaFinVigencia0=n.FechaFinVigencia0,
+                               FechaInicioVigencia=n.FechaInicioVigencia,
+                               FechaFinVigencia=n.FechaFinVigencia,
+                               Supervisor=n.Supervisor,
+                               Intermediario=n.Intermediario,
+                               CodSupervisor=n.CodSupervisor,
+                               CodIntermediario=n.CodIntermediario,
+                               TipoVehiculo=n.TipoVehiculo,
+                               Marca=n.Marca,
+                               Modelo=n.Modelo,
+                               Capacidad=n.Capacidad,
+                               Ano=n.Ano,
+                               Color=n.Color,
+                               Chasis=n.Chasis,
+                               Placa=n.Placa,
+                               Uso=n.Uso,
+                               ValorVehiculo=n.ValorVehiculo,
+                               NombreAsegurado=n.NombreAsegurado,
+                               Fianza=n.Fianza,
+                               Oficina=n.Oficina,
+                               Facturado=n.Facturado,
+                               Cobrado=n.Cobrado,
+                               Balance=n.Balance
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
+
     }
 }

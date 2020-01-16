@@ -138,6 +138,7 @@
     <None Include="Properties\PublishProfiles\Prueba.pubxml" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
+    <Content Include="Paginas\ListadoRenovacion.aspx" />
     <Content Include="Paginas\MantenimeintoPerfiles.aspx" />
     <Content Include="Paginas\MantenimientoClaveSeguridad.aspx" />
     <Content Include="Paginas\MantenimientoDependientes.aspx" />
@@ -311,6 +312,13 @@
     </Compile>
     <Compile Include="Paginas\Inventario.aspx.designer.cs">
       <DependentUpon>Inventario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\ListadoRenovacion.aspx.cs">
+      <DependentUpon>ListadoRenovacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\ListadoRenovacion.aspx.designer.cs">
+      <DependentUpon>ListadoRenovacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

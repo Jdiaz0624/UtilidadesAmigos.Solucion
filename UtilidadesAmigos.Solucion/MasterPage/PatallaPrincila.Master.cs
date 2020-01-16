@@ -185,7 +185,8 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkComisionesCobrador_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            Response.Redirect("ListadoRenovacion.aspx");
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void linkProcesarDataGruas_Click(object sender, EventArgs e)
