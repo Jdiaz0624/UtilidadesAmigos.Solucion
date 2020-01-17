@@ -1453,6 +1453,7 @@
     <Parameter Name="CodSupervisor" Parameter="codSupervisor" Type="System.String" DbType="VarChar(10)" />
     <Parameter Name="CodIntermediario" Parameter="codIntermediario" Type="System.String" DbType="VarChar(10)" />
     <Parameter Name="ValidarBalance" Parameter="validarBalance" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ExcluirRegistros" Parameter="excluirRegistros" Type="System.Int32" DbType="Int" />
     <ElementType Name="SP_MOSTRAR_LISTADO_RENOVACIONResult">
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />

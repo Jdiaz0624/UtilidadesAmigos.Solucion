@@ -30,41 +30,85 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlValidarBalance, Objdata.Value.BuscaListas("VALIDABALANCE", null, null));
         }
+        private void ExcluirMotores()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlExcluirMotorew, Objdata.Value.BuscaListas("EXCLUIR", null, null));
+        }
         #endregion
         #region MOSTRAR EL LISTADO DE LAS RENOVACIONES
         private void MostrarListadoRenovaciones()
         {
             try {
 
-                int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
-                int? _Subramo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
-                int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
-                int? _ValidarBalance = ddlValidarBalance.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalance.SelectedValue) : new Nullable<int>();
-                string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
-                string _CodSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
-                string _CodIntermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? null : txtFCodIntermediario.Text.Trim();
+                int RamoSeleccionado = Convert.ToInt32(ddlSeleccionarRamo.SelectedValue);
+                int Excluir = Convert.ToInt32(ddlExcluirMotorew.SelectedValue);
 
-                var Buscar = Objdata.Value.ReporteRenovacionPoliza(
-                    Convert.ToDateTime(txtFechaDesde.Text),
-                    Convert.ToDateTime(txtFechaHAsta.Text),
-                    _Ramo,
-                    _Subramo,
-                    _Poliza,
-                    null,
-                    _Oficina,
-                    _CodSupervisor,
-                    _CodIntermediario,
-                    _ValidarBalance);
-                foreach (var n in Buscar)
+                if (RamoSeleccionado == 106 && Excluir == 2)
                 {
-                    lbMesDesde.Text = n.FechaDesde;
-                    lbMesHasta.Text = n.FechaHasta;
-                    lbDIas.Text = n.Dias.ToString();
-                    lbMes.Text = n.Mes.ToString();
-                    lbano.Text = n.Anos.ToString();
+                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                    int? _Subramo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+                    int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                    int? _ValidarBalance = ddlValidarBalance.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalance.SelectedValue) : new Nullable<int>();
+                    string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+                    string _CodSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+                    string _CodIntermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? null : txtFCodIntermediario.Text.Trim();
+
+                    var Buscar = Objdata.Value.ReporteRenovacionPoliza(
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHAsta.Text),
+                        _Ramo,
+                        _Subramo,
+                        _Poliza,
+                        null,
+                        _Oficina,
+                        _CodSupervisor,
+                        _CodIntermediario,
+                        _ValidarBalance,
+                        2);
+                    foreach (var n in Buscar)
+                    {
+                        lbMesDesde.Text = n.FechaDesde;
+                        lbMesHasta.Text = n.FechaHasta;
+                        lbDIas.Text = n.Dias.ToString();
+                        lbMes.Text = n.Mes.ToString();
+                        lbano.Text = n.Anos.ToString();
+                    }
+                    gvListadoCoberturas.DataSource = Buscar;
+                    gvListadoCoberturas.DataBind();
                 }
-                gvListadoCoberturas.DataSource = Buscar;
-                gvListadoCoberturas.DataBind();
+                else
+                {
+                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                    int? _Subramo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+                    int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                    int? _ValidarBalance = ddlValidarBalance.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalance.SelectedValue) : new Nullable<int>();
+                    string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+                    string _CodSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+                    string _CodIntermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? null : txtFCodIntermediario.Text.Trim();
+
+                    var Buscar = Objdata.Value.ReporteRenovacionPoliza(
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHAsta.Text),
+                        _Ramo,
+                        _Subramo,
+                        _Poliza,
+                        null,
+                        _Oficina,
+                        _CodSupervisor,
+                        _CodIntermediario,
+                        _ValidarBalance,
+                        1);
+                    foreach (var n in Buscar)
+                    {
+                        lbMesDesde.Text = n.FechaDesde;
+                        lbMesHasta.Text = n.FechaHasta;
+                        lbDIas.Text = n.Dias.ToString();
+                        lbMes.Text = n.Mes.ToString();
+                        lbano.Text = n.Anos.ToString();
+                    }
+                    gvListadoCoberturas.DataSource = Buscar;
+                    gvListadoCoberturas.DataBind();
+                }
             }
             catch (Exception) {
                 ClientScript.RegisterStartupScript(GetType(), "ErrorConsulta", "ErrorConsulta();", true);
@@ -81,6 +125,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarSubramos();
                 CargarOficina();
                 ValidarBalance();
+                ExcluirMotores();
             }
         }
 
@@ -165,6 +210,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void ddlSeleccionarRamo_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarSubramos();
+            int Ramo = Convert.ToInt32(ddlSeleccionarRamo.SelectedValue);
+            if (Ramo == 106)
+            {
+                lbExcluirMotores.Visible = true;
+                ddlExcluirMotorew.Visible = true;
+            }
+            else
+            {
+                lbExcluirMotores.Visible = false;
+                ddlExcluirMotorew.Visible = false;
+            }
         }
     }
 }

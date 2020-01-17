@@ -95,6 +95,10 @@
                   <asp:Label ID="lbValidarBalance" runat="server" Text="Validar Balance" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlValidarBalance" runat="server" ToolTip="Validar Balance" CssClass="form-control"></asp:DropDownList>
             </div>
+             <div class="form-group col-md-3">
+                  <asp:Label ID="lbExcluirMotores" runat="server" Visible="false" Text="Excluir Motores" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlExcluirMotorew" runat="server" Visible="false" ToolTip="Excluir Motores" CssClass="form-control"></asp:DropDownList>
+            </div>
         </div>
         <!--FINALIZAN LOS CONTROLES DE FILTROS-->
 

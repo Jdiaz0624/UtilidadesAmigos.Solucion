@@ -1849,11 +1849,11 @@ namespace UtilidadesAmigos.Logica.Logica
         #endregion
 
         #region REPORTE DE RENOVACION DE POLIZAS
-        public List<UtilidadesAmigos.Logica.Entidades.EListadoRenovacion> ReporteRenovacionPoliza(DateTime? FechaDesde = null, DateTime? FechaFin = null, int? Ramo = null, int? SubRamo = null, string Poliza = null, decimal? Cotizacion = null, int? Oficina = null, string CodSupervisor = null, string CodIntermediario = null, int? ValidarBalance = null)
+        public List<UtilidadesAmigos.Logica.Entidades.EListadoRenovacion> ReporteRenovacionPoliza(DateTime? FechaDesde = null, DateTime? FechaFin = null, int? Ramo = null, int? SubRamo = null, string Poliza = null, decimal? Cotizacion = null, int? Oficina = null, string CodSupervisor = null, string CodIntermediario = null, int? ValidarBalance = null,int? ExcluirRegistros = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_MOSTRAR_LISTADO_RENOVACION(FechaDesde, FechaFin, Ramo, SubRamo, Poliza, Cotizacion, Oficina, CodSupervisor, CodIntermediario, ValidarBalance)
+            var Listado = (from n in Objdata.SP_MOSTRAR_LISTADO_RENOVACION(FechaDesde, FechaFin, Ramo, SubRamo, Poliza, Cotizacion, Oficina, CodSupervisor, CodIntermediario, ValidarBalance, ExcluirRegistros)
                            select new UtilidadesAmigos.Logica.Entidades.EListadoRenovacion
                            {
                                Poliza=n.Poliza,
