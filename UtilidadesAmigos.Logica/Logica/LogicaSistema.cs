@@ -1782,6 +1782,7 @@ namespace UtilidadesAmigos.Logica.Logica
                               Ramo=n.Ramo,
                               SubRamo=n.SubRamo,
                               Cliente=n.Cliente,
+                              Telefonos=n.Telefonos,
                               SumaAsegurada=n.SumaAsegurada,
                               prima=n.prima,
                               TotalFacturado=n.TotalFacturado,

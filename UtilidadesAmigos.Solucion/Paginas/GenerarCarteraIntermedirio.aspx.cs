@@ -218,6 +218,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                    Ramo = n.Ramo,
                                    SubRamo = n.SubRamo,
                                    Cliente = n.Cliente,
+                                   Telefonos=n.Telefonos,
                                    SumaAsegurada = n.SumaAsegurada,
                                    Prima = n.prima,
                                    TotalFacturado = n.TotalFacturado,
