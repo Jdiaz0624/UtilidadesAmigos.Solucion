@@ -25,6 +25,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarOficina, Objdata.Value.BuscaListas("OFICINANORMAL", null, null), true);
         }
+
+        private void ValidarBalance()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlValidarBalance, Objdata.Value.BuscaListas("VALIDABALANCE", null, null));
+        }
         #endregion
         #region MOSTRAR EL LISTADO DE LAS RENOVACIONES
         private void MostrarListadoRenovaciones()
@@ -34,6 +39,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
                 int? _Subramo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
                 int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                int? _ValidarBalance = ddlValidarBalance.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalance.SelectedValue) : new Nullable<int>();
                 string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
                 string _CodSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
                 string _CodIntermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? null : txtFCodIntermediario.Text.Trim();
@@ -47,7 +53,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     null,
                     _Oficina,
                     _CodSupervisor,
-                    _CodIntermediario);
+                    _CodIntermediario,
+                    _ValidarBalance);
+                foreach (var n in Buscar)
+                {
+                    lbMesDesde.Text = n.FechaDesde;
+                    lbMesHasta.Text = n.FechaHasta;
+                    lbDIas.Text = n.Dias.ToString();
+                    lbMes.Text = n.Mes.ToString();
+                    lbano.Text = n.Anos.ToString();
+                }
                 gvListadoCoberturas.DataSource = Buscar;
                 gvListadoCoberturas.DataBind();
             }
@@ -65,6 +80,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarRamos();
                 CargarSubramos();
                 CargarOficina();
+                ValidarBalance();
             }
         }
 
@@ -79,6 +95,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
                 int? _Subramo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
                 int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                int? _ValidarBalance = ddlValidarBalance.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalance.SelectedValue) : new Nullable<int>();
                 string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
                 string _CodSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
                 string _CodIntermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? null : txtFCodIntermediario.Text.Trim();
@@ -92,7 +109,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     null,
                     _Oficina,
                     _CodSupervisor,
-                    _CodIntermediario)
+                    _CodIntermediario,
+                    _ValidarBalance)
                                 select new
                                 {
                                     Poliza = n.Poliza,
@@ -135,7 +153,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gvListadoCoberturas_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gvListadoCoberturas.PageIndex = e.NewPageIndex;
+            MostrarListadoRenovaciones();
         }
 
         protected void gvListadoCoberturas_SelectedIndexChanged(object sender, EventArgs e)

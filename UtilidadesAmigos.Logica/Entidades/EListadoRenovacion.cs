@@ -79,5 +79,13 @@ namespace UtilidadesAmigos.Logica.Entidades
         public System.Nullable<decimal> Cobrado {get;set;}
 
         public System.Nullable<decimal> Balance {get;set;}
+        public string FechaDesde { get; set; }
+
+        public string FechaHasta { get; set; }
+        public System.Nullable<int> Dias { get; set; }
+
+        public System.Nullable<int> Mes { get; set; }
+
+        public System.Nullable<int> Anos { get; set; }
     }
 }

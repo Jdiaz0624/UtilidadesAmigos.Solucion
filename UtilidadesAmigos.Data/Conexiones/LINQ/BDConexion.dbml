@@ -1452,6 +1452,7 @@
     <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
     <Parameter Name="CodSupervisor" Parameter="codSupervisor" Type="System.String" DbType="VarChar(10)" />
     <Parameter Name="CodIntermediario" Parameter="codIntermediario" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="ValidarBalance" Parameter="validarBalance" Type="System.Int32" DbType="Int" />
     <ElementType Name="SP_MOSTRAR_LISTADO_RENOVACIONResult">
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
@@ -1489,6 +1490,11 @@
       <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="FechaDesde" Type="System.String" DbType="VarChar(43) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaHasta" Type="System.String" DbType="VarChar(43) NOT NULL" CanBeNull="false" />
+      <Column Name="Dias" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Mes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Anos" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
