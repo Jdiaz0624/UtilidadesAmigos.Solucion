@@ -137,61 +137,129 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnExportar_Click(object sender, EventArgs e)
         {
             try {
-                int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
-                int? _Subramo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
-                int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
-                int? _ValidarBalance = ddlValidarBalance.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalance.SelectedValue) : new Nullable<int>();
-                string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
-                string _CodSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
-                string _CodIntermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? null : txtFCodIntermediario.Text.Trim();
+                int RamoSeleccionado = Convert.ToInt32(ddlSeleccionarRamo.SelectedValue);
+                int Excluir = Convert.ToInt32(ddlExcluirMotorew.SelectedValue);
 
-                var Exportar = (from n in Objdata.Value.ReporteRenovacionPoliza(
-                    Convert.ToDateTime(txtFechaDesde.Text),
-                    Convert.ToDateTime(txtFechaHAsta.Text),
-                    _Ramo,
-                    _Subramo,
-                    _Poliza,
-                    null,
-                    _Oficina,
-                    _CodSupervisor,
-                    _CodIntermediario,
-                    _ValidarBalance)
-                                select new
-                                {
-                                    Poliza = n.Poliza,
-                                    Cotizacion = n.Cotizacion,
-                                    Estatus = n.Estatus,
-                                    Prima = n.Prima,
-                                    SumaAsegurada = n.SumaAsegurada,
-                                    CodRamo = n.CodRamo,
-                                    CodSubramo = n.CodSubramo,
-                                    Ramo = n.Ramo,
-                                    SubRamo = n.SubRamo,
-                                    Asegurado = n.Asegurado,
-                                    Telefonos = n.Telefonos,
-                                    Items = n.Items,
-                                    FechaInicioVigencia = n.FechaInicioVigencia,
-                                    FechaFinVigencia = n.FechaFinVigencia,
-                                    Supervisor = n.Supervisor,
-                                    Intermediario = n.Intermediario,
-                                    TipoVehiculo = n.TipoVehiculo,
-                                    Marca = n.Marca,
-                                    Modelo = n.Modelo,
-                                    Capacidad = n.Capacidad,
-                                    Ano = n.Ano,
-                                    Color = n.Color,
-                                    Chasis = n.Chasis,
-                                    Placa = n.Placa,
-                                    Uso = n.Uso,
-                                    ValorVehiculo = n.ValorVehiculo,
-                                    NombreAsegurado = n.NombreAsegurado,
-                                    Fianza = n.Fianza,
-                                    Oficina = n.Oficina,
-                                    Facturado = n.Facturado,
-                                    Cobrado = n.Cobrado,
-                                    Balance = n.Balance
-                                }).ToList();
-                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Renovacion", Exportar);
+                if (RamoSeleccionado == 106 && Excluir == 2)
+                {
+
+                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                    int? _Subramo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+                    int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                    int? _ValidarBalance = ddlValidarBalance.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalance.SelectedValue) : new Nullable<int>();
+                    string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+                    string _CodSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+                    string _CodIntermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? null : txtFCodIntermediario.Text.Trim();
+
+                    var Exportar = (from n in Objdata.Value.ReporteRenovacionPoliza(
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHAsta.Text),
+                        _Ramo,
+                        _Subramo,
+                        _Poliza,
+                        null,
+                        _Oficina,
+                        _CodSupervisor,
+                        _CodIntermediario,
+                        _ValidarBalance,
+                        2)
+                                    select new
+                                    {
+                                        Poliza = n.Poliza,
+                                        Cotizacion = n.Cotizacion,
+                                        Estatus = n.Estatus,
+                                        Prima = n.Prima,
+                                        SumaAsegurada = n.SumaAsegurada,
+                                        CodRamo = n.CodRamo,
+                                        CodSubramo = n.CodSubramo,
+                                        Ramo = n.Ramo,
+                                        SubRamo = n.SubRamo,
+                                        Asegurado = n.Asegurado,
+                                        Telefonos = n.Telefonos,
+                                        Items = n.Items,
+                                        FechaInicioVigencia = n.FechaInicioVigencia,
+                                        FechaFinVigencia = n.FechaFinVigencia,
+                                        Supervisor = n.Supervisor,
+                                        Intermediario = n.Intermediario,
+                                        TipoVehiculo = n.TipoVehiculo,
+                                        Marca = n.Marca,
+                                        Modelo = n.Modelo,
+                                        Capacidad = n.Capacidad,
+                                        Ano = n.Ano,
+                                        Color = n.Color,
+                                        Chasis = n.Chasis,
+                                        Placa = n.Placa,
+                                        Uso = n.Uso,
+                                        ValorVehiculo = n.ValorVehiculo,
+                                        NombreAsegurado = n.NombreAsegurado,
+                                        Fianza = n.Fianza,
+                                        Oficina = n.Oficina,
+                                        Facturado = n.Facturado,
+                                        Cobrado = n.Cobrado,
+                                        Balance = n.Balance
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Renovacion", Exportar);
+                }
+                else
+                {
+
+                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                    int? _Subramo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+                    int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                    int? _ValidarBalance = ddlValidarBalance.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalance.SelectedValue) : new Nullable<int>();
+                    string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+                    string _CodSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+                    string _CodIntermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? null : txtFCodIntermediario.Text.Trim();
+
+                    var Exportar = (from n in Objdata.Value.ReporteRenovacionPoliza(
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHAsta.Text),
+                        _Ramo,
+                        _Subramo,
+                        _Poliza,
+                        null,
+                        _Oficina,
+                        _CodSupervisor,
+                        _CodIntermediario,
+                        _ValidarBalance,
+                        1)
+                                    select new
+                                    {
+                                        Poliza = n.Poliza,
+                                        Cotizacion = n.Cotizacion,
+                                        Estatus = n.Estatus,
+                                        Prima = n.Prima,
+                                        SumaAsegurada = n.SumaAsegurada,
+                                        CodRamo = n.CodRamo,
+                                        CodSubramo = n.CodSubramo,
+                                        Ramo = n.Ramo,
+                                        SubRamo = n.SubRamo,
+                                        Asegurado = n.Asegurado,
+                                        Telefonos = n.Telefonos,
+                                        Items = n.Items,
+                                        FechaInicioVigencia = n.FechaInicioVigencia,
+                                        FechaFinVigencia = n.FechaFinVigencia,
+                                        Supervisor = n.Supervisor,
+                                        Intermediario = n.Intermediario,
+                                        TipoVehiculo = n.TipoVehiculo,
+                                        Marca = n.Marca,
+                                        Modelo = n.Modelo,
+                                        Capacidad = n.Capacidad,
+                                        Ano = n.Ano,
+                                        Color = n.Color,
+                                        Chasis = n.Chasis,
+                                        Placa = n.Placa,
+                                        Uso = n.Uso,
+                                        ValorVehiculo = n.ValorVehiculo,
+                                        NombreAsegurado = n.NombreAsegurado,
+                                        Fianza = n.Fianza,
+                                        Oficina = n.Oficina,
+                                        Facturado = n.Facturado,
+                                        Cobrado = n.Cobrado,
+                                        Balance = n.Balance
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Renovacion", Exportar);
+                }
             }
             catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "ErrorConsulta", "ErrorConsulta();", true); }
         }
