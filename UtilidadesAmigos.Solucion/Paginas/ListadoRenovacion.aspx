@@ -106,10 +106,6 @@
         <div>
             <asp:Button ID="btnConsultar" runat="server" Text="Buscar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultar_Click" />
             <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportar_Click" />
-            <button type="button" id="btnCondiciones" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".CondicionesPOPO">Condiciones</button><br /><br />
-            <button type="button" id="btnCoberturas" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".CoberturasPOPO">Coberturas</button>
-            <button type="button" id="btnReclamaciones" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".ReclamacionesPOPO">Reclamaciones</button>
-            <button type="button" id="btnDependientes" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".DependientesPOPO">Dependientes</button>
         </div>
         <!--FINALIZAMOS LOS BOTONES-->
         <br />
