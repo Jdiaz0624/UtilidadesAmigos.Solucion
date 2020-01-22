@@ -50,6 +50,8 @@
                                 <asp:LinkButton ID="linkComisionesCobrador" runat="server" Text="Listado de Renovacion" OnClick="linkComisionesCobrador_Click" CssClass="dropdown-item"></asp:LinkButton>
                                <asp:LinkButton ID="linkValidarCoberturas" runat="server" Text="Sacar Data Coberturas" OnClick="linkValidarCoberturas_Click" class="dropdown-item"></asp:LinkButton>
                                <asp:LinkButton ID="linkGenerarReporteUAF" runat="server" Text="Generar Reporte para la UAF" OnClick="linkGenerarReporteUAF_Click" class="dropdown-item"></asp:LinkButton>
+                                <asp:LinkButton ID="LinkReporteFianzas" runat="server" Text="Generar de Fianzas" OnClick="LinkReporteFianzas_Click" class="dropdown-item"></asp:LinkButton>
+                                <asp:LinkButton ID="LinkReporteReclamos" runat="server" Text="Generar de Reclamos" OnClick="LinkReporteReclamos_Click" class="dropdown-item"></asp:LinkButton>
                             </div>
                           </li>
 

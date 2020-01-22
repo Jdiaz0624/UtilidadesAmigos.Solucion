@@ -244,5 +244,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             Response.Redirect("EliminarBalancePoliza.aspx");
         }
+
+        protected void LinkReporteFianzas_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("GenerarReporteFianzas.aspx");
+        }
+
+        protected void LinkReporteReclamos_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

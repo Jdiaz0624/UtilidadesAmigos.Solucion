@@ -92,6 +92,7 @@
     <Compile Include="Entidades\EGenerarComisionIntermediario.cs" />
     <Compile Include="Entidades\EGenerarDataCedensa.cs" />
     <Compile Include="Entidades\EGenerarDataGruaAeroAmbulancia.cs" />
+    <Compile Include="Entidades\EGenerarProduccionFianza.cs" />
     <Compile Include="Entidades\EListaDepartamentos.cs" />
     <Compile Include="Entidades\EListadoCoberturas.cs" />
     <Compile Include="Entidades\EListadoRenovacion.cs" />

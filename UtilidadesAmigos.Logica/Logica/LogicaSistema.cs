@@ -1895,5 +1895,51 @@ namespace UtilidadesAmigos.Logica.Logica
         }
         #endregion
 
+        #region GENERAR REPORTE FIANZAS
+        public List<UtilidadesAmigos.Logica.Entidades.EGenerarProduccionFianza> GenerarProduccionFianzas(string Poliza = null, decimal? Subramo = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_GENERAR_PRODUCCION_FIANZAS(Poliza, Subramo, FechaDesde, FechaHasta)
+                          select new UtilidadesAmigos.Logica.Entidades.EGenerarProduccionFianza
+                          {
+                              NoFactura=n.NoFactura,
+                              Poliza=n.Poliza,
+                              Estatus=n.Estatus,
+                              CodRamo=n.CodRamo,
+                              CodSubramo=n.CodSubramo,
+                              Ramo=n.Ramo,
+                              SubRamo=n.SubRamo,
+                              Cliente=n.Cliente,
+                              Direccion=n.Direccion,
+                              UbicacionCliente=n.UbicacionCliente,
+                              ProvinciaCliente=n.ProvinciaCliente,
+                              MunicipioCliente=n.MunicipioCliente,
+                              SectorCliente=n.SectorCliente,
+                              Supervisor=n.Supervisor,
+                              Intermediario=n.Intermediario,
+                              UbicacionIntermediario=n.UbicacionIntermediario,
+                              ProvinciaIntermediario=n.ProvinciaIntermediario,
+                              MunicipioIntermediario=n.MunicipioIntermediario,
+                              SectorIntermediario=n.SectorIntermediario,
+                              Fecha=n.Fecha,
+                              FechaFacturacion=n.FechaFacturacion,
+                              InicioVigencia=n.InicioVigencia,
+                              FinVigencia=n.FinVigencia,
+                              SumaAsegurada=n.SumaAsegurada,
+                              Neto=n.Neto,
+                              Tasa=n.Tasa,
+                              Impuesto=n.Impuesto,
+                              PorcComision=n.PorcComision,
+                              Facturado=n.Facturado,
+                              Cobrado=n.Cobrado,
+                              Balance=n.Balance,
+                              LeyInfraccionImputado=n.LeyInfraccionImputado,
+                              Cantidad=n.Cantidad
+                          }).ToList();
+            return Buscar;
+        }
+        #endregion
+
     }
 }
