@@ -22,6 +22,10 @@
             $("#<%=txtCoberturaMantenimiento.ClientID%>").attr("disabled", "disabled");
         }
 
+        function DataCedensa() {
+            alert("Esta cobertura solo se exporta, ya que ellos requeiren toda la data completa correspondiente a las polizas activas, por lo tanto no hay necesidad de filtrar los registros");
+        }
+
         function MostrarControlesCoberturas() {
             $("#<%=cbEstatus.ClientID%>").show();
             $("#<%=txtCoberturaMantenimiento.ClientID%>").removeAttr("disabled", true);

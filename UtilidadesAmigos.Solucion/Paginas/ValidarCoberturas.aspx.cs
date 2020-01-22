@@ -194,14 +194,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 try {
                     //SACAMOS LA DATA DE CEDENSA
-                    var SacarDataCedensa = ObjData.Value.SacarDataCedensa(
-                        Convert.ToDateTime(txtFechaDesde.Text),
-                        Convert.ToDateTime(txtFechaHasta.Text),
-                        txtPolizaFiltro.Text,
-                        Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
-                    gvListadoCobertura.DataSource = SacarDataCedensa;
-                    gvListadoCobertura.DataBind();
-                    ContarCantidadRegistrosMostrados();
+                    ClientScript.RegisterStartupScript(GetType(), "DataCedensa", "DataCedensa();", true);
 
                 }
                 catch (Exception)
@@ -518,21 +511,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 try {
                     //EXPORTAR CEDENSA
-                    var ExportarCedensa = (from n in ObjData.Value.SacarDataCedensa(
-                        Convert.ToDateTime(txtFechaDesde.Text),
-                        Convert.ToDateTime(txtFechaHasta.Text),
-                        txtPolizaFiltro.Text,
-                        Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue))
+                    var ExportarCedensa = (from n in ObjData.Value.GenerarDataCedensa()
                                            select new
                                            {
                                                Poliza = n.Poliza,
-                                               Cotizacion = n.Cotizacion,
-                                               CodRamo = n.CodRamo,
-                                               Ramo = n.Ramo,
-                                               FechaAdiciona = n.FechaProceso,
-                                               InicioVigencia = n.InicioVigencia,
-                                               FinVigencia = n.FinVigencia,
-                                               TipoPlan = n.Cobertura,
+                                               Fecha_de_Adiciona = n.Fecha_de_Adiciona,
+                                               Inicio_de_Vigencia = n.Inicio_de_Vigencia,
+                                               Fin_de_Vigencia = n.Fin_de_Vigencia,
+                                               Tipo_de_Plan = n.Tipo_de_Plan,
                                                Estatus = n.Estatus,
                                                Parentezco = n.Parentezco,
                                                Nombre = n.Nombre,
@@ -540,14 +526,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                                Direccion = n.Direccion,
                                                Telefono = n.Telefono,
                                                Cedula = n.Cedula,
-                                               FechaNacimiento = n.FechadeNacimiento,
-                                               Edad = n.Edad,
+                                               Fecha_de_Nacimiento = n.Fecha_de_Nacimiento,
                                                Prima = n.Prima
 
 
                                            }).ToList();
 
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Registros Cedensa", ExportarCedensa);
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Cedensa", ExportarCedensa);
                 }
                 catch (Exception)
                 {

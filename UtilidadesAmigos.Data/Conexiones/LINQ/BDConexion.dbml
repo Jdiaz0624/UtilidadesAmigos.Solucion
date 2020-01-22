@@ -1065,36 +1065,6 @@
       <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_GENERAR_DATA_CEDENSA" Method="SP_GENERAR_DATA_CEDENSA">
-    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Estatus" Parameter="estatus" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
-    <ElementType Name="SP_GENERAR_DATA_CEDENSAResult">
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Chasis" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
-      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="CodRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Codigo" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
-      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="TipoPlan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Parentezco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Nombre" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="Provincia" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Cedula" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FechadeNacimiento" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="Edad" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
-      <Column Name="Prima" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Cobertura" Type="System.String" DbType="VarChar(7) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_BUSCA_POLIZAS_ELIMINAR_BALANCE_CREDITO" Method="SP_BUSCA_POLIZAS_ELIMINAR_BALANCE_CREDITO">
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
     <ElementType Name="SP_BUSCA_POLIZAS_ELIMINAR_BALANCE_CREDITOResult">
@@ -1497,6 +1467,24 @@
       <Column Name="TotalFacturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="TotalPagado" Type="System.Decimal" DbType="Money" CanBeNull="true" />
       <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_GENERAR_DATA_CEDENSA" Method="SP_GENERAR_DATA_CEDENSA">
+    <ElementType Name="SP_GENERAR_DATA_CEDENSAResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="[Fecha de Adiciona]" Member="Fecha_de_Adiciona" Type="System.String" DbType="VarChar(38) NOT NULL" CanBeNull="false" />
+      <Column Name="[Inicio de Vigencia]" Member="Inicio_de_Vigencia" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="[Fin de Vigencia]" Member="Fin_de_Vigencia" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="[Tipo de Plan]" Member="Tipo_de_Plan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Parentezco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Provincia" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cedula" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="[Fecha de Nacimiento]" Member="Fecha_de_Nacimiento" Type="System.String" DbType="VarChar(38) NOT NULL" CanBeNull="false" />
+      <Column Name="Prima" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
