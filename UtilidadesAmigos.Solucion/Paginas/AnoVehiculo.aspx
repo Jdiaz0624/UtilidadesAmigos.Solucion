@@ -30,7 +30,7 @@
               <asp:GridView ID="gvListadoAnoVehiculo" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoAnoVehiculo_PageIndexChanging" OnSelectedIndexChanged="gvListadoAnoVehiculo_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                   <%-- <%$ Resources:Traducciones,OrdddenNivel %>--%>
                     <asp:CommandField ButtonType="Button" HeaderStyle-Width="10%" HeaderText="<%$ Resources: Traducciones,Seleccionar %>" SelectText="Ver" ShowSelectButton="True" />
                     <asp:BoundField DataField="IdAnoVehiculo" HeaderStyle-Width="20%" HeaderText="ID" />
                     <asp:BoundField DataField="TipoCotizador" HeaderStyle-Width="20%" HeaderText="<%$Resources:Traducciones,TipoCotizador %>" />
