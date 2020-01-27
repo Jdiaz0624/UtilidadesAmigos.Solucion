@@ -254,5 +254,10 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
 
         }
+
+        protected void linkProcesoCasaConductor_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
