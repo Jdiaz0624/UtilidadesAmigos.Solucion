@@ -259,5 +259,10 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
 
         }
+
+        protected void LinkProduccionDiariaContabilidad_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ProduccionDiariaContabilidad.aspx");
+        }
     }
 }

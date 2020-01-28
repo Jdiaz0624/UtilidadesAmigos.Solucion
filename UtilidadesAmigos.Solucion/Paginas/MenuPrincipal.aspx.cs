@@ -6,7 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Speech.Synthesis;
 using System.Threading;
+
 namespace UtilidadesAmigos.Solucion.Paginas
+
 {
     public partial class MenuPrincipal : System.Web.UI.Page
     {
@@ -48,6 +50,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     {
                         // this.Master.FindControl("lbTiket").Visible = false;
                     }
+                    Thread tarea = new Thread(new ParameterizedThreadStart(UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar));
+                    tarea.Start("Hola");
 
                 }
             }
