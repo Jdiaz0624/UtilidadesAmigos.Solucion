@@ -1941,5 +1941,33 @@ namespace UtilidadesAmigos.Logica.Logica
         }
         #endregion
 
+        #region SACAR LA PRODUCCION DE CONTABILIDAD
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarProduccionContabilidad> SacarProduccionDiariaContabilidad(DateTime? Fechadesde = null, DateTime? FechaHasta = null, int? Ramo = null, int? Oficina = null, int? TipoDocumento = null, string CodigoIntermediario = null, int? LlevaIntermediario = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var SacarData = (from n in Objdata.SP_SACAR_PRODUCCION_CONTABILIDAD(Fechadesde, FechaHasta, Ramo, Oficina, TipoDocumento, CodigoIntermediario, LlevaIntermediario)
+                             select new UtilidadesAmigos.Logica.Entidades.ESacarProduccionContabilidad
+                             {
+                                 Intermediario=n.Intermediario,
+                                 Codigo=n.Codigo,
+                                 Ramo=n.Ramo,
+                                 Descripcion=n.Descripcion,
+                                 Tipo=n.Tipo,
+                                 DescripcionTipo=n.DescripcionTipo,
+                                 CodOficina=n.CodOficina,
+                                 Oficina=n.Oficina,
+                                 Concepto=n.Concepto,
+                                 FacturadoMes=n.FacturadoMes,
+                                 Total=n.Total,
+                                 MesAnterior=n.MesAnterior,
+                                 Hoy=n.Hoy,
+                                 TotalCredito=n.TotalCredito,
+                                 TotalDebito=n.TotalDebito,
+                                 TotalOtros=n.TotalOtros
+                             }).ToList();
+            return SacarData;
+        }
+        #endregion
     }
 }

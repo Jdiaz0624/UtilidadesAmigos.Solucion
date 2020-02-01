@@ -118,6 +118,7 @@
     <Compile Include="Entidades\ESacarDetalleCobradoUsuario.cs" />
     <Compile Include="Entidades\ESacarItemPoliza.cs" />
     <Compile Include="Entidades\ESacarMontoComisionesSupervisores.cs" />
+    <Compile Include="Entidades\ESacarProduccionContabilidad.cs" />
     <Compile Include="Entidades\ESacarProduccionDiariaDetalle.cs" />
     <Compile Include="Entidades\ESacarProduccionIntermediario.cs" />
     <Compile Include="Entidades\ESacarRamoPoliza.cs" />
