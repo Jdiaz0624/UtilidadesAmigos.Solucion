@@ -95,7 +95,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         //CARGAMOS LA DATA CON TODOS LOS INTERMEDIARIOS
                         try
                         {
-                            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()) || string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()))
+                            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
                             {
                                 ClientScript.RegisterStartupScript(GetType(), "CamposVacios", "CamposVacios();", true);
                                 if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
