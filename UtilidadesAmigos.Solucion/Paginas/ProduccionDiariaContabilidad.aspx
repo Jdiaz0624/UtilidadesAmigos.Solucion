@@ -26,6 +26,19 @@
         function ErrorConsulta() {
             alert("Error al realizar la consulta, favor de verificar los parametros ingresados o contactar al departamento de Tecnologia");
         }
+        function CamposVacios() {
+            alert("Has dejado campos vacios que son necesarios para realizar la consulta, favor de verificar");
+        }
+        function ValidarFechaDesde() {
+            $("#<%=txtFechaDesde.ClientID%>").css("border-color", "red");
+        }
+
+         function ValidarFechaHasta() {
+            $("#<%=txtFechaHasta.ClientID%>").css("border-color", "red");
+        }
+        function ValidarCodigoIntermediario() {
+            $("#<%=txtCodigoIntermediario.ClientID%>").css("border-color", "red");
+        }
     </script>
 
     <div class="container-fluid">
