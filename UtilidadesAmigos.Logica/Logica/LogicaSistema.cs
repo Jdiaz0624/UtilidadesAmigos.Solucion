@@ -1835,7 +1835,17 @@ namespace UtilidadesAmigos.Logica.Logica
                               Tasa=n.Tasa,
                               Moneda=n.Moneda,
                               Oficina=n.Oficina,
-                              Total=n.Total
+                              Total=n.Total,
+                              TipoVehiculo=n.TipoVehiculo,
+                              Marca=n.Marca,
+                              Modelo=n.Modelo,
+                              Capacidad=n.Capacidad,
+                              Ano=n.Ano,
+                              Color=n.Color,
+                              Chasis=n.Chasis,
+                              Placa=n.Placa,
+                              Uso=n.Uso,
+                              ValorVehiculo=n.ValorVehiculo
                           }).ToList();
             return Buscar;
         }

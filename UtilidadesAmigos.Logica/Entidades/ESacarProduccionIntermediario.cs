@@ -35,5 +35,24 @@ namespace UtilidadesAmigos.Logica.Entidades
         public string Oficina { get; set; }
 
         public System.Nullable<decimal> Total { get; set; }
+        public string TipoVehiculo { get; set; }
+
+        public string Marca { get; set; }
+
+        public string Modelo { get; set; }
+
+        public string Capacidad { get; set; }
+
+        public string Ano { get; set; }
+
+        public string Color { get; set; }
+
+        public string Chasis { get; set; }
+
+        public string Placa { get; set; }
+
+        public string Uso { get; set; }
+
+        public System.Nullable<decimal> ValorVehiculo { get; set; }
     }
 }

@@ -1369,27 +1369,6 @@
       <Column Name="ALiquidar" Type="System.Decimal" DbType="Decimal(22,2)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_SACAR_PRODUCCION_INTERMEDIARIO" Method="SP_SACAR_PRODUCCION_INTERMEDIARIO">
-    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="Vendedor" Parameter="vendedor" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <ElementType Name="SP_SACAR_PRODUCCION_INTERMEDIARIOResult">
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="NoFactura" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
-      <Column Name="Fecha" Type="System.String" DbType="VarChar(38) NOT NULL" CanBeNull="false" />
-      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Cliente" Type="System.String" DbType="VarChar(288) NOT NULL" CanBeNull="false" />
-      <Column Name="Vendedor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
-      <Column Name="Cobrador" Type="System.String" DbType="VarChar(108) NOT NULL" CanBeNull="false" />
-      <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Ncf" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Tasa" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Moneda" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Total" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_MOSTRAR_LISTADO_RENOVACION" Method="SP_MOSTRAR_LISTADO_RENOVACION">
     <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
     <Parameter Name="FechaFin" Parameter="fechaFin" Type="System.DateTime" DbType="Date" />
@@ -1553,6 +1532,37 @@
       <Column Name="TotalCredito" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="TotalDebito" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="TotalOtros" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_PRODUCCION_INTERMEDIARIO" Method="SP_SACAR_PRODUCCION_INTERMEDIARIO">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Vendedor" Parameter="vendedor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_SACAR_PRODUCCION_INTERMEDIARIOResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NoFactura" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.String" DbType="VarChar(38) NOT NULL" CanBeNull="false" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(288) NOT NULL" CanBeNull="false" />
+      <Column Name="Vendedor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="Cobrador" Type="System.String" DbType="VarChar(108) NOT NULL" CanBeNull="false" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Ncf" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Tasa" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TipoVehiculo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Marca" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Modelo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Capacidad" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Ano" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Chasis" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Placa" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Uso" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ValorVehiculo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

@@ -54,43 +54,7 @@
                 </asp:DropDownList>
             </div>
         </div>
-        <div align="center">
-            <asp:Label ID="lbFacturadoHoyTitulo" runat="server" Text="Facturado Hoy ( " CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="lbFacturadoHoyVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="lbFacturadoHoyCerrar" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
-
-             <asp:Label ID="Label1" runat="server" Text="," CssClass="LetrasNegrita"></asp:Label>
-
-            <asp:Label ID="lbTotalDebitosTitulo" runat="server" Text="Cantidad de Debitos ( " CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="lbCantidadDebitosVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="lbCantidadDebitosCerrar" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
-
-            <asp:Label ID="Label2" runat="server" Text="," CssClass="LetrasNegrita"></asp:Label>
-
-             <asp:Label ID="lbTotalCreditosTitulo" runat="server" Text="Cantidad de Creditos ( " CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="lbTotalCretitoVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="lbCantidadCreditosCerrar" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
-
-            <asp:Label ID="Label5" runat="server" Text="," CssClass="LetrasNegrita"></asp:Label>
-
-            <asp:Label ID="lbOtrosTitulo" runat="server" Text="Otros ( " CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="lbOtrosVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="lbOtrosCerrar" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
-
-            <asp:Label ID="Label3" runat="server" Text="," CssClass="LetrasNegrita"></asp:Label>
-
-             <asp:Label ID="lbTotalTitulo" runat="server" Text="Total ( " CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="LablbTotalVariableel7" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="Label8" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
-
-            <asp:Label ID="Label9" runat="server" Text="," CssClass="LetrasNegrita"></asp:Label>
-
-               <asp:Label ID="lbMesAnteriorTitulo" runat="server" Text="Total Mes Anterior ( " CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="lbMesAnteriorvariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="Label4" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
-
-
-        </div>
+       
         <div class="form-row">
             <div class="form-group col-md-3">
                 <asp:Label ID="lbFechaDesde" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
@@ -138,7 +102,7 @@
             <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExportar_Click" />
         </div>
 
-
+        <br />
           <!--INICIO DEL GRID-->
     <div class="container-fluid">
             <asp:GridView ID="gvGridSinIntermediario" runat="server" AllowPaging="true" OnPageIndexChanging="gvGridSinIntermediario_PageIndexChanging" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
@@ -155,6 +119,10 @@
                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
                 <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <PagerTemplate>
+                    <asp:Button ID="btnSiguiente" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Siguiente" ToolTip="Siguiente Pagina" />
+                    <asp:Button ID="btnAtras" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Atras" ToolTip="Volver Atras" />
+                </PagerTemplate>
                 <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
                 <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
                 <SortedAscendingCellStyle BackColor="#F1F1F1" />
@@ -191,5 +159,43 @@
             </asp:GridView>
     </div>
     <!--FIN DEL GRID-->
+        <br />
+         <div align="center">
+            <asp:Label ID="lbFacturadoHoyTitulo" runat="server" Text="Facturado Hoy ( " CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbFacturadoHoyVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbFacturadoHoyCerrar" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+
+             <asp:Label ID="Label1" runat="server" Text="," CssClass="LetrasNegrita"></asp:Label>
+
+            <asp:Label ID="lbTotalDebitosTitulo" runat="server" Text="Cantidad de Debitos ( " CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbCantidadDebitosVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbCantidadDebitosCerrar" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+
+            <asp:Label ID="Label2" runat="server" Text="," CssClass="LetrasNegrita"></asp:Label>
+
+             <asp:Label ID="lbTotalCreditosTitulo" runat="server" Text="Cantidad de Creditos ( " CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbTotalCretitoVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbCantidadCreditosCerrar" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+
+            <br />
+
+            <asp:Label ID="lbOtrosTitulo" runat="server" Text="Otros ( " CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbOtrosVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbOtrosCerrar" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+
+            <asp:Label ID="Label3" runat="server" Text="," CssClass="LetrasNegrita"></asp:Label>
+
+             <asp:Label ID="lbTotalTitulo" runat="server" Text="Total ( " CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="LablbTotalVariableel7" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="Label8" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+
+            <asp:Label ID="Label9" runat="server" Text="," CssClass="LetrasNegrita"></asp:Label>
+
+               <asp:Label ID="lbMesAnteriorTitulo" runat="server" Text="Total Mes Anterior ( " CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbMesAnteriorvariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="Label4" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+
+
+        </div>
     </div>
 </asp:Content>

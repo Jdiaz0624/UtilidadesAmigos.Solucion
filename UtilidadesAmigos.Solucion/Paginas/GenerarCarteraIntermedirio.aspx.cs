@@ -255,20 +255,30 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     Convert.ToDecimal(lbGenerarCodifoIntermediario.Text))
                                 select new
                                 {
-                                    Poliza=n.Poliza,
-                                    NoFactura=n.NoFactura,
+                                    Poliza=n.Poliza,                                   
                                     Fecha=n.Fecha,
-                                    Valor=n.Valor,
                                     Cliente=n.Cliente,
                                     Vendedor=n.Vendedor,
                                     Cobrador=n.Cobrador,
-                                    Concepto=n.Concepto,
+                                    NoFactura = n.NoFactura,
+                                    Valor = n.Valor,
+                                    Concepto =n.Concepto,
                                     Balance=n.Balance,
                                     Ncf=n.Ncf,
                                     Tasa=n.Tasa,
                                     Moneda=n.Moneda,
                                     Oficina=n.Oficina,
-                                    Total=n.Total
+                                    Total=n.Total,
+                                    TipoVehiculo = n.TipoVehiculo,
+                                    Marca = n.Marca,
+                                    Modelo = n.Modelo,
+                                    Capacidad = n.Capacidad,
+                                    Ano = n.Ano,
+                                    Color = n.Color,
+                                    Chasis = n.Chasis,
+                                    Placa = n.Placa,
+                                    Uso = n.Uso,
+                                    ValorVehiculo = n.ValorVehiculo
                                 }).ToList();
                 UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Producción " + lbNombreIntermediarioCartera.Text + "", Exportar);
             }
