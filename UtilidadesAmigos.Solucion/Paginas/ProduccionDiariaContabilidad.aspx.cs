@@ -228,7 +228,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 //CARGAMOS TODA LA DATA DE LO COBRADO
                 try
                 {
-
+                    ClientScript.RegisterStartupScript(GetType(), "OpcionNoDisponible", "OpcionNoDisponible();", true);
 
                 }
                 catch (Exception)
@@ -304,7 +304,205 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
+            //SELECCIONAMOS EL TIPO DE REPORTE
 
+            //SI TIPO DE REPORTE SELECCIONADO ES EL 1 EXPORTAMOS LA PRODUCCION
+            if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 1)
+            {
+                //VALIDAMOS SI LA EXPORTACION VA A LLEVAR INTERMEDIARIOS
+                //EXPORTAMOS LA DATA EN CASO DE QUE NO SE VAN A LLEVAR INTERMEDIAIROS
+                if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 1)
+                {
+                    //EN ESTE CASO SOLO VALIDAMOS SI LOS CAMPOS DE FECHA ESTAN VACIOS
+                    try {
+                        if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrWhiteSpace(txtFechaHasta.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "ErrorExportacionConsulta", "ErrorExportacionConsulta();", true);
+                            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                            {
+                                ClientScript.RegisterStartupScript(GetType(), "ValidarFechaDesde", "ValidarFechaDesde();", true);
+                            }
+                            if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                            {
+                                ClientScript.RegisterStartupScript(GetType(), "ValidarFechaHasta", "ValidarFechaHasta();", true);
+                            }
+                        }
+                        else
+                        {
+                            //EXPORTAMOS LA DATA PARA EL USUARUI, FILTRAMOS POR RAMO, Y OFICINA
+                            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                            int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                            int? _LlevaIntermediario = ddlLlevaIntermediario.SelectedValue != "-1" ? Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) : new Nullable<int>();
+
+                            var ExportarData = (from n in ObjData.Value.SacarProduccionDiariaContabilidad(
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text),
+                                _Ramo,
+                                _Oficina,
+                                null,
+                                null,
+                                _LlevaIntermediario)
+                                                select new
+                                                {
+                                                    Ramo = n.Ramo,
+                                                    Descripcion = n.Descripcion,
+                                                    Tipo = n.Tipo,
+                                                    DescripcionTipo = n.DescripcionTipo,
+                                                    CodOficina = n.CodOficina,
+                                                    Oficina = n.Oficina,
+                                                    Concepto = n.Concepto,
+                                                    FacturadoMes = n.FacturadoMes,
+                                                    Total = n.Total,
+                                                    MesAnterior = n.MesAnterior,
+                                                    Hoy = n.Hoy,
+                                                    TotalCredito = n.TotalCredito,
+                                                    TotalDebito = n.TotalDebito,
+                                                    TotalOtros = n.TotalOtros
+                                                }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Produccion Contabilidad Sin Intermediario", ExportarData);
+
+                        }
+                      
+                    }
+                    catch (Exception) {
+                        ClientScript.RegisterStartupScript(GetType(), "ErrorExportar", "ErrorExportar();", true);
+                    }
+                }
+                //MOSTRAMOS LA DATA EN CASO DE QUE SI LLEVA INTERMEDIARIOS
+                else if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 2)
+                {
+                    //VERIFICAMIS SI SE VA A FILTRAR POR UN SOLO INTERMEDIARIOS
+                    if (cbTodosLosIntermediarios.Checked == true)
+                    {
+                        try
+                        {
+                            //VALIDAMOS LOS CAMPOS DE FECHA
+                            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                            {
+                                ClientScript.RegisterStartupScript(GetType(), "ErrorExportacionConsulta", "ErrorExportacionConsulta();", true);
+                                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                                {
+                                    ClientScript.RegisterStartupScript(GetType(), "ValidarFechaDesde", "ValidarFechaDesde();", true);
+                                }
+                                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                                {
+                                    ClientScript.RegisterStartupScript(GetType(), "ValidarFechaHasta", "ValidarFechaHasta();", true);
+                                }
+                            }
+                            else
+                            {
+                                int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                                int? _Oficina = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                                int? _LlevaIntermediario = ddlLlevaIntermediario.SelectedValue != "-1" ? Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) : new Nullable<int>();
+                                string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+
+                                var ExportarData = (from n in ObjData.Value.SacarProduccionDiariaContabilidad(
+                                    Convert.ToDateTime(txtFechaDesde.Text),
+                                    Convert.ToDateTime(txtFechaHasta.Text),
+                                    _Ramo,
+                                    _Oficina,
+                                    null,
+                                    null,
+                                    _LlevaIntermediario)
+                                                    select new
+                                                    {
+                                                        Intermediario = n.Intermediario,
+                                                        Codigo = n.Codigo,
+                                                        Ramo = n.Ramo,
+                                                        Descripcion = n.Descripcion,
+                                                        Tipo = n.Tipo,
+                                                        DescripcionTipo = n.DescripcionTipo,
+                                                        CodOficina = n.CodOficina,
+                                                        Oficina = n.Oficina,
+                                                        Concepto = n.Concepto,
+                                                        FacturadoMes = n.FacturadoMes,
+                                                        Total = n.Total,
+                                                        MesAnterior = n.MesAnterior,
+                                                        Hoy = n.Hoy,
+                                                        TotalCredito = n.TotalCredito,
+                                                        TotalDebito = n.TotalDebito,
+                                                        TotalOtros = n.TotalOtros
+                                                    }).ToList();
+                                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Produccion Contabilidad Todos los Intermediarios", ExportarData);
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "ErrorExportar", "ErrorExportar();", true);
+                        }
+                    }
+                    else if (cbTodosLosIntermediarios.Checked == false)
+                    {
+                        try
+                        {
+                            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()) || string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()))
+                            {
+                                ClientScript.RegisterStartupScript(GetType(), "ErrorExportacionConsulta", "ErrorExportacionConsulta();", true);
+                                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                                {
+                                    ClientScript.RegisterStartupScript(GetType(), "ValidarFechaDesde", "ValidarFechaDesde();", true);
+                                }
+                                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                                {
+                                    ClientScript.RegisterStartupScript(GetType(), "ValidarFechaHasta", "ValidarFechaHasta();", true);
+                                }
+                                if (string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()))
+                                {
+                                    ClientScript.RegisterStartupScript(GetType(), "ValidarCodigoIntermediario", "ValidarCodigoIntermediario();", true);
+                                }
+                            }
+                            else
+                            {
+                                int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                                int? _Oficina = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                                int? _LlevaIntermediario = ddlLlevaIntermediario.SelectedValue != "-1" ? Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) : new Nullable<int>();
+                                string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+
+                                var ExportarData = (from n in ObjData.Value.SacarProduccionDiariaContabilidad(
+                                    Convert.ToDateTime(txtFechaDesde.Text),
+                                    Convert.ToDateTime(txtFechaHasta.Text),
+                                    _Ramo,
+                                    _Oficina,
+                                    null,
+                                    _CodigoIntermediario,
+                                    _LlevaIntermediario)
+                                                    select new
+                                                    {
+                                                        Intermediario = n.Intermediario,
+                                                        Codigo = n.Codigo,
+                                                        Ramo = n.Ramo,
+                                                        Descripcion = n.Descripcion,
+                                                        Tipo = n.Tipo,
+                                                        DescripcionTipo = n.DescripcionTipo,
+                                                        CodOficina = n.CodOficina,
+                                                        Oficina = n.Oficina,
+                                                        Concepto = n.Concepto,
+                                                        FacturadoMes = n.FacturadoMes,
+                                                        Total = n.Total,
+                                                        MesAnterior = n.MesAnterior,
+                                                        Hoy = n.Hoy,
+                                                        TotalCredito = n.TotalCredito,
+                                                        TotalDebito = n.TotalDebito,
+                                                        TotalOtros = n.TotalOtros
+                                                    }).ToList();
+                                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Produccion Contabilidad Con Intermediario", ExportarData);
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "ErrorExportar", "ErrorExportar();", true);
+                        }
+                    }
+                    
+
+                    
+                }
+            }
+            //DE LO CONTRARIO MOSTRAMOS LO CONTRARIO EXPORTAMOS LO COBRADO
+            else if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 2)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "OpcionNoDisponible", "OpcionNoDisponible();", true);
+            }
         }
     }
 }

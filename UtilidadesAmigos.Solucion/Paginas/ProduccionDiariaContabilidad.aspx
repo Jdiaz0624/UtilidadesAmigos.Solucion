@@ -26,6 +26,16 @@
         function ErrorConsulta() {
             alert("Error al realizar la consulta, favor de verificar los parametros ingresados o contactar al departamento de Tecnologia");
         }
+        function OpcionNoDisponible() {
+            alert("la Opción de cobros esta en desarrollo en estos momentos");
+        }
+
+        function ErrorExportacionConsulta() {
+            alert("Error al exportar la data, favor de verificar los parametros ingresados o contactar al departamento de tecnologia");
+        }
+        function ErrorExportar() {
+            alert("Error al Exportar la data");
+        }
         function CamposVacios() {
             alert("Has dejado campos vacios que son necesarios para realizar la consulta, favor de verificar");
         }
@@ -97,7 +107,7 @@
         </div>
 
         <!--BOTONES-->
-        <div>
+        <div align="center">
             <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
             <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExportar_Click" />
         </div>
