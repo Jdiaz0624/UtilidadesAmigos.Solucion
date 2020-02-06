@@ -1952,11 +1952,11 @@ namespace UtilidadesAmigos.Logica.Logica
         #endregion
 
         #region SACAR LA PRODUCCION DE CONTABILIDAD
-        public List<UtilidadesAmigos.Logica.Entidades.ESacarProduccionContabilidad> SacarProduccionDiariaContabilidad(DateTime? Fechadesde = null, DateTime? FechaHasta = null, int? Ramo = null, int? Oficina = null, int? TipoDocumento = null, string CodigoIntermediario = null, int? LlevaIntermediario = null)
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarProduccionContabilidad> SacarProduccionDiariaContabilidad(DateTime? Fechadesde = null, DateTime? FechaHasta = null, DateTime? FechadesdeAnterior = null, DateTime? FechaHastaAnterior = null, int? Ramo = null, int? Oficina = null, int? TipoDocumento = null, string CodigoIntermediario = null, int? LlevaIntermediario = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var SacarData = (from n in Objdata.SP_SACAR_PRODUCCION_CONTABILIDAD(Fechadesde, FechaHasta, Ramo, Oficina, TipoDocumento, CodigoIntermediario, LlevaIntermediario)
+            var SacarData = (from n in Objdata.SP_SACAR_PRODUCCION_CONTABILIDAD(Fechadesde, FechaHasta, FechadesdeAnterior, FechaHastaAnterior, Ramo, Oficina, TipoDocumento, CodigoIntermediario, LlevaIntermediario)
                              select new UtilidadesAmigos.Logica.Entidades.ESacarProduccionContabilidad
                              {
                                  Intermediario=n.Intermediario,
@@ -1977,6 +1977,21 @@ namespace UtilidadesAmigos.Logica.Logica
                                  TotalOtros=n.TotalOtros
                              }).ToList();
             return SacarData;
+        }
+        #endregion
+
+        #region SACAR EL LISTADO DE MESES
+        public List<UtilidadesAmigos.Logica.Entidades.EMeses> BuscaListadoMeses(decimal? IdMes = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCAR_MESES(IdMes)
+                          select new UtilidadesAmigos.Logica.Entidades.EMeses
+                          {
+                              IdMes=n.IdMes,
+                              Meses=n.Meses
+                          }).ToList();
+            return Buscar;
         }
         #endregion
     }

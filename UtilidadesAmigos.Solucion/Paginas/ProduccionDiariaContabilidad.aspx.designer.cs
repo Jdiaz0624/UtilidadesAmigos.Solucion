@@ -40,40 +40,40 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarTipoReporte;
         
         /// <summary>
-        /// lbFechaDesde control.
+        /// lbSeleccionarMes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFechaDesde;
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarMes;
         
         /// <summary>
-        /// txtFechaDesde control.
+        /// ddlSeleccionarMes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaDesde;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarMes;
         
         /// <summary>
-        /// lbFechaHasta control.
+        /// lbAno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFechaHasta;
+        protected global::System.Web.UI.WebControls.Label lbAno;
         
         /// <summary>
-        /// txtFechaHasta control.
+        /// txtAno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaHasta;
+        protected global::System.Web.UI.WebControls.TextBox txtAno;
         
         /// <summary>
         /// lbRamo control.

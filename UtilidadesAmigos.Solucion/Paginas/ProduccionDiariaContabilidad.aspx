@@ -40,14 +40,19 @@
             alert("Has dejado campos vacios que son necesarios para realizar la consulta, favor de verificar");
         }
         function ValidarFechaDesde() {
-            $("#<%=txtFechaDesde.ClientID%>").css("border-color", "red");
+       
         }
 
          function ValidarFechaHasta() {
-            $("#<%=txtFechaHasta.ClientID%>").css("border-color", "red");
+        
         }
         function ValidarCodigoIntermediario() {
             $("#<%=txtCodigoIntermediario.ClientID%>").css("border-color", "red");
+         }
+
+        function CampoAnoVacio() {
+            alert("El campo año no puede estar vaicio, favor de verificar");
+            $("#<%=txtAno.ClientID%>").css("border-color", "red");
         }
     </script>
 
@@ -67,12 +72,13 @@
        
         <div class="form-row">
             <div class="form-group col-md-3">
-                <asp:Label ID="lbFechaDesde" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtFechaDesde" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="lbSeleccionarMes" runat="server" Text="Seleccionar Mes" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarMes" runat="server" ToolTip="Seleccionar el mes a validar" CssClass="form-control">
+                </asp:DropDownList>
             </div>
              <div class="form-group col-md-3">
-                 <asp:Label ID="lbFechaHasta" runat="server" Text="Fecha Hasta" CssClass="LetrasNegrita"></asp:Label>
-                 <asp:TextBox ID="txtFechaHasta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                 <asp:Label ID="lbAno" runat="server" Text="Año" CssClass="LetrasNegrita"></asp:Label>
+                 <asp:TextBox ID="txtAno" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
              <div class="form-group col-md-3">
                    <asp:Label ID="lbRamo" runat="server" Text="Seleccionar Ramo" CssClass="LetrasNegrita"></asp:Label>
