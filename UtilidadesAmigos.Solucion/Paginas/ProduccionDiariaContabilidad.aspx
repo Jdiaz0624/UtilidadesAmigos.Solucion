@@ -126,13 +126,9 @@
                     <asp:BoundField DataField="Concepto" HeaderText="Concepto" />
                     <asp:BoundField DataField="FacturadoMes" HeaderText="Total" />
                 </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
                 <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <PagerTemplate>
-                    <asp:Button ID="btnSiguiente" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Siguiente" ToolTip="Siguiente Pagina" />
-                    <asp:Button ID="btnAtras" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Atras" ToolTip="Volver Atras" />
-                </PagerTemplate>
                 <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
                 <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
                 <SortedAscendingCellStyle BackColor="#F1F1F1" />
