@@ -54,6 +54,18 @@
             alert("El campo año no puede estar vaicio, favor de verificar");
             $("#<%=txtAno.ClientID%>").css("border-color", "red");
         }
+
+        function CampoCodogoIntermediarioVacio() {
+            alert("El campo Codigo de Intermediario no puede estar vaicio, favor de verificar");
+            $("#<%=txtCodigoIntermediario.ClientID%>").css("border-color", "red");
+        }
+
+        function DesactivarCodigoIntermediario() {
+            $("#<%=txtCodigoIntermediario.ClientID%>").attr("disabled", "disabled");
+        }
+        function ActivarCodigoIntermediario() {
+            $("#<%=txtCodigoIntermediario.ClientID%>").removeAttr("disabled", true);
+        }
     </script>
 
     <div class="container-fluid">
