@@ -737,7 +737,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                                 TotalDebito = n.TotalDebito,
                                                 TotalOtros = n.TotalOtros
                                             }).ToList();
-                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Producción Intermediario Espesifico", Exportar);
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Producción Intermediario Espesifico", Exportar); 
                         }
 
                     }
@@ -772,6 +772,104 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
+        #region OCULTAR Y MOSTRAR CONTROLES
+        private void ModoFacturracion()
+        {
+            lbFacturadoHoyTitulo.Visible = true;
+            lbFacturadoHoyVariable.Visible = true;
+            lbFacturadoHoyCerrar.Visible = true;
+            Label1.Visible = true;
+            lbTotalDebitosTitulo.Visible = true;
+            lbCantidadDebitosVariable.Visible = true;
+            lbCantidadDebitosCerrar.Visible = true;
+            Label2.Visible = true;
+            lbTotalCreditosTitulo.Visible = true;
+            lbTotalCretitoVariable.Visible = true;
+            lbCantidadCreditosCerrar.Visible = true;
+            lbOtrosTitulo.Visible = true;
+            lbOtrosVariable.Visible = true;
+            lbOtrosCerrar.Visible = true;
+            Label3.Visible = true;
+            lbTotalTitulo.Visible = true;
+            LablbTotalVariableel7.Visible = true;
+            Label8.Visible = true;
+            Label9.Visible = true;
+            lbMesAnteriorTitulo.Visible = true;
+            lbMesAnteriorvariable.Visible = true;
+            Label4.Visible = true;
+            gvGridConIntermediario.Visible = true;
+            gvGridSinIntermediario.Visible = true;
+
+
+
+            lbCobradoMesAnteriorCerrar.Visible = false;
+            lbCobradoMesAnteriorVariable.Visible = false;
+            lbCobradoMesAnteriorTitulo.Visible = false;
+            lbTotalCobradoCerrar.Visible = false;
+            lbTotalCobradoVariable.Visible = false;
+            lbTotalCobradoTitulo.Visible = false;
+            lbCobradoOtrosCerrar.Visible = false;
+            lbCobradoOtrosVariable.Visible = false;
+            lbCobradoOtrosTitulo.Visible = false;
+            lbCobradoSantiagoCerrar.Visible = false;
+            lbCobradoSantiagoVariable.Visible = false;
+            lbCobradoSantiagoTitulo.Visible = false;
+            lbCobradoSantoDomingoCerrar.Visible = false;
+            lbCobradoSantoDomingoVariable.Visible = false;
+            lbCobradoSantoDomingoTitulo.Visible = false;
+            gbCobradoConIntermediario.Visible = false;
+            gbCobradoSinIntermediario.Visible = false;
+        }
+        private void ModoCobrado()
+        {
+
+            lbFacturadoHoyTitulo.Visible = false;
+            lbFacturadoHoyVariable.Visible = false;
+            lbFacturadoHoyCerrar.Visible = false;
+            Label1.Visible = false;
+            lbTotalDebitosTitulo.Visible = false;
+            lbCantidadDebitosVariable.Visible = false;
+            lbCantidadDebitosCerrar.Visible = false;
+            Label2.Visible = false;
+            lbTotalCreditosTitulo.Visible = false;
+            lbTotalCretitoVariable.Visible = false;
+            lbCantidadCreditosCerrar.Visible = false;
+            lbOtrosTitulo.Visible = false;
+            lbOtrosVariable.Visible = false;
+            lbOtrosCerrar.Visible = false;
+            Label3.Visible = false;
+            lbTotalTitulo.Visible = false;
+            LablbTotalVariableel7.Visible = false;
+            Label8.Visible = false;
+            Label9.Visible = false;
+            lbMesAnteriorTitulo.Visible = false;
+            lbMesAnteriorvariable.Visible = false;
+            Label4.Visible = false;
+            gvGridConIntermediario.Visible = false;
+            gvGridSinIntermediario.Visible = false;
+
+
+
+            lbCobradoMesAnteriorCerrar.Visible = true;
+            lbCobradoMesAnteriorVariable.Visible = true;
+            lbCobradoMesAnteriorTitulo.Visible = true;
+            lbTotalCobradoCerrar.Visible = true;
+            lbTotalCobradoVariable.Visible = true;
+            lbTotalCobradoTitulo.Visible = true;
+            lbCobradoOtrosCerrar.Visible = true;
+            lbCobradoOtrosVariable.Visible = true;
+            lbCobradoOtrosTitulo.Visible = true;
+            lbCobradoSantiagoCerrar.Visible = true;
+            lbCobradoSantiagoVariable.Visible = true;
+            lbCobradoSantiagoTitulo.Visible = true;
+            lbCobradoSantoDomingoCerrar.Visible = true;
+            lbCobradoSantoDomingoVariable.Visible = true;
+            lbCobradoSantoDomingoTitulo.Visible = true;
+            gbCobradoConIntermediario.Visible = true;
+            gbCobradoSinIntermediario.Visible = true;
+
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -784,7 +882,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void ddlSeleccionarTipoReporte_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 1)
+            {
+                ModoFacturracion();
+            }
+            else if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 2)
+            {
+                ModoCobrado();
+            }
         }
 
         protected void ddlLlevaIntermediario_SelectedIndexChanged(object sender, EventArgs e)
@@ -842,6 +947,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnExportar_Click(object sender, EventArgs e)
         {
             ExportarDataExel();
+        }
+
+        protected void gbCobradoConIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void gbCobradoSinIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
         }
     }
 }

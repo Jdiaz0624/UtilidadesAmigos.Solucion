@@ -108,6 +108,7 @@
     <Compile Include="Entidades\EProduccionDiariaConsulta.cs" />
     <Compile Include="Entidades\EProduccionDiariaDetalle.cs" />
     <Compile Include="Entidades\EProduccionTodosLosRamos.cs" />
+    <Compile Include="Entidades\EReporteCobradoContabilidad.cs" />
     <Compile Include="Entidades\ESacarCarteraIntermediario.cs" />
     <Compile Include="Entidades\ESacarCobrado.cs" />
     <Compile Include="Entidades\ESacarDataCasaConductor.cs" />

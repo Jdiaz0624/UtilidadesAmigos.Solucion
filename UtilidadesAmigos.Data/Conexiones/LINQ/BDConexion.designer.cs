@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString12, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -614,6 +614,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idMes);
 			return ((ISingleResult<SP_BUSCAR_MESESResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_REPORTE_COBRADO_CONTABILIDAD")]
+		public ISingleResult<SP_SACAR_REPORTE_COBRADO_CONTABILIDADResult> SP_SACAR_REPORTE_COBRADO_CONTABILIDAD([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesdeAnterior", DbType="Date")] System.Nullable<System.DateTime> fechaDesdeAnterior, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHastaAnterior", DbType="Date")] System.Nullable<System.DateTime> fechaHastaAnterior, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LlevaIntermediario", DbType="Int")] System.Nullable<int> llevaIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="VarChar(10)")] string codigoIntermediario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, fechaDesdeAnterior, fechaHastaAnterior, ramo, oficina, llevaIntermediario, codigoIntermediario);
+			return ((ISingleResult<SP_SACAR_REPORTE_COBRADO_CONTABILIDADResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -18574,6 +18581,230 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Meses != value))
 				{
 					this._Meses = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_REPORTE_COBRADO_CONTABILIDADResult
+	{
+		
+		private string _Intermediario;
+		
+		private int _CodigoIntermediario;
+		
+		private System.Nullable<int> _CodRamo;
+		
+		private string _Ramo;
+		
+		private System.Nullable<int> _CodOficina;
+		
+		private string _Oficina;
+		
+		private System.Nullable<decimal> _Cobrado;
+		
+		private System.Nullable<decimal> _CobradoSantoDomingo;
+		
+		private System.Nullable<decimal> _CobradoSantiago;
+		
+		private System.Nullable<decimal> _CobradoOtros;
+		
+		private System.Nullable<decimal> _Total;
+		
+		private System.Nullable<decimal> _CobradoMesAnterior;
+		
+		public SP_SACAR_REPORTE_COBRADO_CONTABILIDADResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Intermediario", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string Intermediario
+		{
+			get
+			{
+				return this._Intermediario;
+			}
+			set
+			{
+				if ((this._Intermediario != value))
+				{
+					this._Intermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoIntermediario", DbType="Int NOT NULL")]
+		public int CodigoIntermediario
+		{
+			get
+			{
+				return this._CodigoIntermediario;
+			}
+			set
+			{
+				if ((this._CodigoIntermediario != value))
+				{
+					this._CodigoIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodRamo", DbType="Int")]
+		public System.Nullable<int> CodRamo
+		{
+			get
+			{
+				return this._CodRamo;
+			}
+			set
+			{
+				if ((this._CodRamo != value))
+				{
+					this._CodRamo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ramo", DbType="NVarChar(50)")]
+		public string Ramo
+		{
+			get
+			{
+				return this._Ramo;
+			}
+			set
+			{
+				if ((this._Ramo != value))
+				{
+					this._Ramo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodOficina", DbType="Int")]
+		public System.Nullable<int> CodOficina
+		{
+			get
+			{
+				return this._CodOficina;
+			}
+			set
+			{
+				if ((this._CodOficina != value))
+				{
+					this._CodOficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="VarChar(100)")]
+		public string Oficina
+		{
+			get
+			{
+				return this._Oficina;
+			}
+			set
+			{
+				if ((this._Oficina != value))
+				{
+					this._Oficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cobrado", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Cobrado
+		{
+			get
+			{
+				return this._Cobrado;
+			}
+			set
+			{
+				if ((this._Cobrado != value))
+				{
+					this._Cobrado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CobradoSantoDomingo", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> CobradoSantoDomingo
+		{
+			get
+			{
+				return this._CobradoSantoDomingo;
+			}
+			set
+			{
+				if ((this._CobradoSantoDomingo != value))
+				{
+					this._CobradoSantoDomingo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CobradoSantiago", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> CobradoSantiago
+		{
+			get
+			{
+				return this._CobradoSantiago;
+			}
+			set
+			{
+				if ((this._CobradoSantiago != value))
+				{
+					this._CobradoSantiago = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CobradoOtros", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> CobradoOtros
+		{
+			get
+			{
+				return this._CobradoOtros;
+			}
+			set
+			{
+				if ((this._CobradoOtros != value))
+				{
+					this._CobradoOtros = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CobradoMesAnterior", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> CobradoMesAnterior
+		{
+			get
+			{
+				return this._CobradoMesAnterior;
+			}
+			set
+			{
+				if ((this._CobradoMesAnterior != value))
+				{
+					this._CobradoMesAnterior = value;
 				}
 			}
 		}

@@ -221,5 +221,84 @@
 
 
         </div>
+        <br />
+        <!--INICIO DEL GRID PARA EL REPORTE DE COBROS-->
+        <!--SIN INTERMEDIARIO-->
+        <!--INICIO DEL GRID-->
+    <div class="container-fluid">
+            <asp:GridView ID="gbCobradoSinIntermediario" runat="server" Visible="false" AllowPaging="true" OnPageIndexChanging="gbCobradoSinIntermediario_PageIndexChanging" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    
+                    <asp:BoundField DataField="Ramo" HeaderText="Ramo" />
+                    <asp:BoundField DataField="Oficina" HeaderText="Oficina" />
+                    <asp:BoundField DataField="Cobrado" HeaderText="Cobrado" />
+                </Columns  >
+                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
+    <!--FIN DEL GRID-->
+        <!--CON INTERMEDIARIO-->
+        <!--INICIO DEL GRID-->
+    <div class="container-fluid">
+            <asp:GridView ID="gbCobradoConIntermediario" runat="server" Visible="false" AllowPaging="true" OnPageIndexChanging="gbCobradoConIntermediario_PageIndexChanging" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    
+                    <asp:BoundField DataField="Intermediario" HeaderText="Intermediario" />
+                    <asp:BoundField DataField="Ramo" HeaderText="Ramo" />
+                    <asp:BoundField DataField="Oficina" HeaderText="Oficina" />
+                    <asp:BoundField DataField="Cobrado" HeaderText="Cobrado" />
+                </Columns  >
+                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
+    <!--FIN DEL GRID-->
+        <br />
+        <div align="center">
+            <asp:Label ID="lbCobradoSantoDomingoTitulo" runat="server" Visible="false" Text="Cobrado Santo Domingo: ( " CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbCobradoSantoDomingoVariable" runat="server" Visible="false" Text="0" CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbCobradoSantoDomingoCerrar" runat="server" Visible="false" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+
+
+
+            <asp:Label ID="lbCobradoSantiagoTitulo" runat="server" Visible="false" Text="Cobrado Santiago: ( " CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbCobradoSantiagoVariable" runat="server" Visible="false" Text="0" CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbCobradoSantiagoCerrar" runat="server" Visible="false" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+
+
+
+            <asp:Label ID="lbCobradoOtrosTitulo" runat="server" Visible="false" Text="Cobrado Otros: ( " CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbCobradoOtrosVariable" runat="server" Visible="false" Text="0" CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbCobradoOtrosCerrar" runat="server" Visible="false" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+
+            <br />
+
+               <asp:Label ID="lbTotalCobradoTitulo" runat="server" Visible="false" Text="Facturado Hoy ( " CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbTotalCobradoVariable" runat="server" Visible="false" Text="0" CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbTotalCobradoCerrar" runat="server" Visible="false" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+
+               <asp:Label ID="lbCobradoMesAnteriorTitulo" runat="server" Visible="false" Text="Cobrado Mes Anterior ( " CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbCobradoMesAnteriorVariable" runat="server" Visible="false" Text="0" CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbCobradoMesAnteriorCerrar" runat="server" Visible="false" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+        </div>
     </div>
 </asp:Content>
