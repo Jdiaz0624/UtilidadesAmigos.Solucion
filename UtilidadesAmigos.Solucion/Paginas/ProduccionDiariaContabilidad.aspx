@@ -292,9 +292,13 @@
 
             <br />
 
-               <asp:Label ID="lbTotalCobradoTitulo" runat="server" Visible="false" Text="Facturado Hoy ( " CssClass="LetrasNegrita"></asp:Label>
+               <asp:Label ID="lbTotalCobradoTitulo" runat="server" Visible="false" Text="Total Cobrado ( " CssClass="LetrasNegrita"></asp:Label>
              <asp:Label ID="lbTotalCobradoVariable" runat="server" Visible="false" Text="0" CssClass="LetrasNegrita"></asp:Label>
              <asp:Label ID="lbTotalCobradoCerrar" runat="server" Visible="false" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+
+              <asp:Label ID="lbCobradoHoyTitulo" runat="server" Visible="false" Text="Cobrado Hoy ( " CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbCobradoHoyVariable" runat="server" Visible="false" Text="0" CssClass="LetrasNegrita"></asp:Label>
+             <asp:Label ID="lbCobradoHoyCerrar" runat="server" Visible="false" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
 
                <asp:Label ID="lbCobradoMesAnteriorTitulo" runat="server" Visible="false" Text="Cobrado Mes Anterior ( " CssClass="LetrasNegrita"></asp:Label>
              <asp:Label ID="lbCobradoMesAnteriorVariable" runat="server" Visible="false" Text="0" CssClass="LetrasNegrita"></asp:Label>

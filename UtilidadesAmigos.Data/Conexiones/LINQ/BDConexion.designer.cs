@@ -18603,6 +18603,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<decimal> _Cobrado;
 		
+		private System.Nullable<decimal> _CobradoHoy;
+		
 		private System.Nullable<decimal> _CobradoSantoDomingo;
 		
 		private System.Nullable<decimal> _CobradoSantiago;
@@ -18725,6 +18727,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Cobrado != value))
 				{
 					this._Cobrado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CobradoHoy", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> CobradoHoy
+		{
+			get
+			{
+				return this._CobradoHoy;
+			}
+			set
+			{
+				if ((this._CobradoHoy != value))
+				{
+					this._CobradoHoy = value;
 				}
 			}
 		}

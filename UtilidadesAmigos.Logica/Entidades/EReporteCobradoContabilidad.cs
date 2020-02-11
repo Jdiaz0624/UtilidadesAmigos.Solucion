@@ -21,6 +21,7 @@ namespace UtilidadesAmigos.Logica.Entidades
         public string Oficina { get; set; }
 
         public System.Nullable<decimal> Cobrado { get; set; }
+        public System.Nullable<decimal> CobradoHoy { get; set; }
 
         public System.Nullable<decimal> CobradoSantoDomingo { get; set; }
 

@@ -378,9 +378,42 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 {
                     //VERIFICAMOS SI LA CONSULTA LLEVA INTERMEDARIOS
                     //EN CASO DE QUE NO LLEVE INTERMEDIARIO
+                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                    int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                    int? _LlevaIntermediario = ddlLlevaIntermediario.SelectedValue != "-1" ? Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) : new Nullable<int>();
+                    string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
                     if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 1)
                     {
+                        var MostrarListado = ObjData.Value.ReporteCobradoCOntabilidad(
+                            FechaDesde,
+                            FechaHasta,
+                            FechaDesdeAnterior,
+                            FechaHastaAnterior,
+                            _Ramo,
+                            _Oficina,
+                            _LlevaIntermediario,
+                            null);
+                        foreach (var n in MostrarListado)
+                        {
+                            decimal CobradoSantoDomingo = 0, CobradoSantiago = 0, CobradoOtros = 0, TotalCobrado = 0, CobredoMesAnterior = 0, CobradoHoy = 0;
 
+                            CobradoSantoDomingo = Convert.ToDecimal(n.CobradoSantoDomingo);
+                            CobradoSantiago = Convert.ToDecimal(n.CobradoSantiago);
+                            CobradoOtros = Convert.ToDecimal(n.CobradoOtros);
+                            TotalCobrado = Convert.ToDecimal(n.Total);
+                            CobredoMesAnterior = Convert.ToDecimal(n.CobradoMesAnterior);
+                            CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
+
+
+                            lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
+                            lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
+                            lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
+                            lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
+                            lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
+                            lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                        }
+                        gbCobradoSinIntermediario.DataSource = MostrarListado;
+                        gbCobradoSinIntermediario.DataBind();
                     }
                     //EN CASO DE QUE LLEVE INTERMEDIARIO
                     if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 2)
@@ -389,12 +422,76 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         //VALIDAMOS TODOS LOS INTERMEDIAIOS
                         if (cbTodosLosIntermediarios.Checked)
                         {
+                            var MostrarListado = ObjData.Value.ReporteCobradoCOntabilidad(
+                            FechaDesde,
+                            FechaHasta,
+                            FechaDesdeAnterior,
+                            FechaHastaAnterior,
+                            _Ramo,
+                            _Oficina,
+                            _LlevaIntermediario);
+                            foreach (var n in MostrarListado)
+                            {
+                                decimal CobradoSantoDomingo = 0, CobradoSantiago = 0, CobradoOtros = 0, TotalCobrado = 0, CobredoMesAnterior = 0, CobradoHoy = 0;
 
+                                CobradoSantoDomingo = Convert.ToDecimal(n.CobradoSantoDomingo);
+                                CobradoSantiago = Convert.ToDecimal(n.CobradoSantiago);
+                                CobradoOtros = Convert.ToDecimal(n.CobradoOtros);
+                                TotalCobrado = Convert.ToDecimal(n.Total);
+                                CobredoMesAnterior = Convert.ToDecimal(n.CobradoMesAnterior);
+                                CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
+
+
+                                lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
+                                lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
+                                lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
+                                lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
+                                lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
+                                lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                            }
+                            gbCobradoSinIntermediario.DataSource = MostrarListado;
+                            gbCobradoSinIntermediario.DataBind();
                         }
                         //VALIDAMOS UN INTERMEDIARIO EN ESPESIFICO
                         else
                         {
+                            if (string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()))
+                            {
+                                ClientScript.RegisterStartupScript(GetType(), "CampoCodogoIntermediarioVacio", "CampoCodogoIntermediarioVacio();", true);
+                            }
+                            else
+                            {
+                                var MostrarListado = ObjData.Value.ReporteCobradoCOntabilidad(
+                            FechaDesde,
+                            FechaHasta,
+                            FechaDesdeAnterior,
+                            FechaHastaAnterior,
+                            _Ramo,
+                            _Oficina,
+                            _LlevaIntermediario,
+                            _CodigoIntermediario);
+                                foreach (var n in MostrarListado)
+                                {
+                                    decimal CobradoSantoDomingo = 0, CobradoSantiago = 0, CobradoOtros = 0, TotalCobrado = 0, CobredoMesAnterior = 0, CobradoHoy = 0;
 
+                                    CobradoSantoDomingo = Convert.ToDecimal(n.CobradoSantoDomingo);
+                                    CobradoSantiago = Convert.ToDecimal(n.CobradoSantiago);
+                                    CobradoOtros = Convert.ToDecimal(n.CobradoOtros);
+                                    TotalCobrado = Convert.ToDecimal(n.Total);
+                                    CobredoMesAnterior = Convert.ToDecimal(n.CobradoMesAnterior);
+                                    CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
+
+
+                                    lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
+                                    lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
+                                    lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
+                                    lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
+                                    lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
+                                    lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                                }
+                                gbCobradoSinIntermediario.DataSource = MostrarListado;
+                                gbCobradoSinIntermediario.DataBind();
+                            }
                         }
 
                     }
@@ -746,11 +843,38 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 //SI EL REPORTE A EXPORTAR ES DE LO COBRADO
                 else if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 2)
                 {
+                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                    int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                    int? _LlevaIntermediario = ddlLlevaIntermediario.SelectedValue != "-1" ? Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) : new Nullable<int>();
+                    string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
                     //VERIFICAMOS SI LA CONSULTA LLEVA INTERMEDARIOS
                     //EN CASO DE QUE NO LLEVE INTERMEDIARIO
                     if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 1)
                     {
-
+                        var Exportar = (from n in ObjData.Value.ReporteCobradoCOntabilidad(
+                            FechaDesde,
+                            FechaHasta,
+                            FechaDesdeAnterior,
+                            FechaHastaAnterior,
+                            _Ramo,
+                            _Oficina,
+                            _LlevaIntermediario,
+                            null)
+                                        select new
+                                        {
+                                            CodRamo = n.CodRamo,
+                                            Ramo = n.Ramo,
+                                            CodOficina = n.CodOficina,
+                                            Oficina = n.Oficina,
+                                            Cobrado = n.Cobrado,
+                                            CobradoHoy = n.CobradoHoy,
+                                            CobradoSantoDomingo = n.CobradoSantoDomingo,
+                                            CobradoSantiago = n.CobradoSantiago,
+                                            CobradoOtros = n.CobradoOtros,
+                                            Total = n.Total,
+                                            CobradoMesAnterior = n.CobradoMesAnterior
+                                        }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cobrado Sin Intermediario", Exportar);
                     }
                     //EN CASO DE QUE LLEVE INTERMEDIARIO
                     if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 2)
@@ -759,12 +883,62 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         //VALIDAMOS TODOS LOS INTERMEDIAIOS
                         if (cbTodosLosIntermediarios.Checked)
                         {
-
+                            var Exportar = (from n in ObjData.Value.ReporteCobradoCOntabilidad(
+                            FechaDesde,
+                            FechaHasta,
+                            FechaDesdeAnterior,
+                            FechaHastaAnterior,
+                            _Ramo,
+                            _Oficina,
+                            _LlevaIntermediario
+                            )
+                                            select new
+                                            {
+                                                Intermediario = n.Intermediario,
+                                                CodigoIntermediario = n.CodigoIntermediario,
+                                                CodRamo = n.CodRamo,
+                                                Ramo = n.Ramo,
+                                                CodOficina = n.CodOficina,
+                                                Oficina = n.Oficina,
+                                                Cobrado = n.Cobrado,
+                                                CobradoHoy = n.CobradoHoy,
+                                                CobradoSantoDomingo = n.CobradoSantoDomingo,
+                                                CobradoSantiago = n.CobradoSantiago,
+                                                CobradoOtros = n.CobradoOtros,
+                                                Total = n.Total,
+                                                CobradoMesAnterior = n.CobradoMesAnterior
+                                            }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cobrado Con Intermediario", Exportar);
                         }
                         //VALIDAMOS UN INTERMEDIARIO EN ESPESIFICO
                         else
                         {
-
+                            var Exportar = (from n in ObjData.Value.ReporteCobradoCOntabilidad(
+                            FechaDesde,
+                            FechaHasta,
+                            FechaDesdeAnterior,
+                            FechaHastaAnterior,
+                            _Ramo,
+                            _Oficina,
+                            _LlevaIntermediario,
+                            _CodigoIntermediario)
+                                            select new
+                                            {
+                                                Intermediario = n.Intermediario,
+                                                CodigoIntermediario = n.CodigoIntermediario,
+                                                CodRamo = n.CodRamo,
+                                                Ramo = n.Ramo,
+                                                CodOficina = n.CodOficina,
+                                                Oficina = n.Oficina,
+                                                Cobrado = n.Cobrado,
+                                                CobradoHoy = n.CobradoHoy,
+                                                CobradoSantoDomingo = n.CobradoSantoDomingo,
+                                                CobradoSantiago = n.CobradoSantiago,
+                                                CobradoOtros = n.CobradoOtros,
+                                                Total = n.Total,
+                                                CobradoMesAnterior = n.CobradoMesAnterior
+                                            }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cobrado Intermediario Espesifico", Exportar);
                         }
 
                     }
@@ -817,6 +991,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             lbCobradoSantoDomingoCerrar.Visible = false;
             lbCobradoSantoDomingoVariable.Visible = false;
             lbCobradoSantoDomingoTitulo.Visible = false;
+            lbCobradoHoyTitulo.Visible = false;
+            lbCobradoHoyVariable.Visible = false;
+            lbCobradoHoyCerrar.Visible = false;
             gbCobradoConIntermediario.Visible = false;
             gbCobradoSinIntermediario.Visible = false;
         }
@@ -865,6 +1042,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             lbCobradoSantoDomingoCerrar.Visible = true;
             lbCobradoSantoDomingoVariable.Visible = true;
             lbCobradoSantoDomingoTitulo.Visible = true;
+            lbCobradoHoyTitulo.Visible = true;
+            lbCobradoHoyVariable.Visible = true;
+            lbCobradoHoyCerrar.Visible = true;
             gbCobradoConIntermediario.Visible = true;
             gbCobradoSinIntermediario.Visible = true;
 

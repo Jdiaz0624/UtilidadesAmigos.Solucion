@@ -1994,5 +1994,32 @@ namespace UtilidadesAmigos.Logica.Logica
             return Buscar;
         }
         #endregion
+
+        #region MOSTRAR EL LISTADO DE LO COBRADO CONTABILIDAD
+        public List<UtilidadesAmigos.Logica.Entidades.EReporteCobradoContabilidad> ReporteCobradoCOntabilidad(DateTime? FechaDesde = null, DateTime? FechaHasta = null, DateTime? FechaDesdeAnterior = null, DateTime? FechaHastaAnterior = null, int? Ramo = null, int? Oficina = null, int? LlevaIntermediario = null, string CodigoIntermediario = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Cobrado = (from n in Objdata.SP_SACAR_REPORTE_COBRADO_CONTABILIDAD(FechaDesde, FechaHasta, FechaDesdeAnterior, FechaHastaAnterior, Ramo, Oficina, LlevaIntermediario, CodigoIntermediario)
+                           select new UtilidadesAmigos.Logica.Entidades.EReporteCobradoContabilidad
+                           {
+                               Intermediario=n.Intermediario,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               CodRamo=n.CodRamo,
+                               Ramo=n.Ramo,
+                               CodOficina=n.CodOficina,
+                               Oficina=n.Oficina,
+                               Cobrado=n.Cobrado,
+                               CobradoHoy=n.CobradoHoy,
+                               CobradoSantoDomingo=n.CobradoSantoDomingo,
+                               CobradoSantiago=n.CobradoSantiago,
+                               CobradoOtros=n.CobradoOtros,
+                               Total=n.Total,
+                               CobradoMesAnterior=n.CobradoMesAnterior
+                              
+                           }).ToList();
+            return Cobrado;
+        }
+        #endregion
     }
 }

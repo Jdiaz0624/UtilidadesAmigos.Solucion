@@ -1591,6 +1591,7 @@
       <Column Name="CodOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CobradoHoy" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="CobradoSantoDomingo" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="CobradoSantiago" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="CobradoOtros" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />

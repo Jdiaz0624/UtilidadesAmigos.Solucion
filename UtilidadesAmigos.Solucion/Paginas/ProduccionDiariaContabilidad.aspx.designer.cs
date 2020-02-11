@@ -526,6 +526,33 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Label lbTotalCobradoCerrar;
         
         /// <summary>
+        /// lbCobradoHoyTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCobradoHoyTitulo;
+        
+        /// <summary>
+        /// lbCobradoHoyVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCobradoHoyVariable;
+        
+        /// <summary>
+        /// lbCobradoHoyCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCobradoHoyCerrar;
+        
+        /// <summary>
         /// lbCobradoMesAnteriorTitulo control.
         /// </summary>
         /// <remarks>
