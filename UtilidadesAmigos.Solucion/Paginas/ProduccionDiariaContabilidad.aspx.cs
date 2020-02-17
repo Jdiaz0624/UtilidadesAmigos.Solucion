@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Text;
+using System.Threading.Tasks;
+using System.Speech.Synthesis;
+using System.Threading;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -1054,6 +1058,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (!IsPostBack)
             {
+                cbModoComparativo.Checked = false;
                 CargarRamos();
                 CargarOficinas();
                 CargarMeses();
@@ -1109,24 +1114,52 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gvGridSinIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvGridSinIntermediario.PageIndex = e.NewPageIndex;
-            CargarListado();
+            if (cbModoComparativo.Checked)
+            {
+
+            }
+            else
+            {
+                gvGridSinIntermediario.PageIndex = e.NewPageIndex;
+                CargarListado();
+            }
         }
 
         protected void gvGridConIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvGridConIntermediario.PageIndex = e.NewPageIndex;
-            CargarListado();
+            if (cbModoComparativo.Checked)
+            {
+
+            }
+            else
+            {
+                gvGridConIntermediario.PageIndex = e.NewPageIndex;
+                CargarListado();
+            }
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            CargarListado();
+            if (cbModoComparativo.Checked)
+            {
+
+            }
+            else
+            {
+                CargarListado();
+            }
         }
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
-            ExportarDataExel();
+            if (cbModoComparativo.Checked)
+            {
+
+            }
+            else
+            {
+                ExportarDataExel();
+            }
         }
 
         protected void gbCobradoConIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -1137,6 +1170,43 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void gbCobradoSinIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
+        }
+
+        protected void cbModoComparativo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbModoComparativo.Checked == true)
+            {
+
+                lbFechaDesdeModoComparativo.Visible = true;
+                txtFechaDesdeModoComparativo.Visible = true;
+                lbFechaHastaModoCOmparativo.Visible = true;
+                txtFechaHastaModoComparativo.Visible = true;
+                lbFechaDesdeMesAnteriorModoComparativo.Visible = true;
+                txtFechaDesdeMesAnteriorModoComparativo.Visible = true;
+                lbFechaHastaMesAnteriorModoComparativo.Visible = true;
+                txtFechaHastaMesAnteriorModoCOmparativo.Visible = true;
+
+                lbSeleccionarMes.Enabled = false;
+                ddlSeleccionarMes.Enabled = false;
+                lbAno.Enabled = false;
+                txtAno.Enabled = false;
+            }
+            else
+            {
+                lbFechaDesdeModoComparativo.Visible = false;
+                txtFechaDesdeModoComparativo.Visible = false;
+                lbFechaHastaModoCOmparativo.Visible = false;
+                txtFechaHastaModoComparativo.Visible = false;
+                lbFechaDesdeMesAnteriorModoComparativo.Visible = false;
+                txtFechaDesdeMesAnteriorModoComparativo.Visible = false;
+                lbFechaHastaMesAnteriorModoComparativo.Visible = false;
+                txtFechaHastaMesAnteriorModoCOmparativo.Visible = false;
+
+                lbSeleccionarMes.Enabled = true;
+                ddlSeleccionarMes.Enabled = true;
+                lbAno.Enabled = true;
+                txtAno.Enabled = true;
+            }
         }
     }
 }

@@ -66,6 +66,15 @@
         function ActivarCodigoIntermediario() {
             $("#<%=txtCodigoIntermediario.ClientID%>").removeAttr("disabled", true);
         }
+        function ModoComparativo() {
+            $("#<%=ddlSeleccionarMes.ClientID%>").attr("disabled", "disabled");
+            $("#<%=txtAno.ClientID%>").attr("disabled", "disabled");
+        }
+        function ModoNormal() {
+
+            $("#<%=ddlSeleccionarMes.ClientID%>").removeAttr("disabled", "true");
+            $("#<%=txtAno.ClientID%>").removeAttr("disabled", "true");
+        }
     </script>
 
     <div class="container-fluid">
@@ -81,7 +90,33 @@
                 </asp:DropDownList>
             </div>
         </div>
+        <div class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:CheckBox ID="cbModoComparativo" AutoPostBack="true" OnCheckedChanged="cbModoComparativo_CheckedChanged" runat="server" Text="Modo Comparativo" CssClass="form-check-input" ToolTip="Este modo es para comparar dos rangos de fechas" />
+            </div>
+        </div>
        
+         <%--  MODO COMPARATIVO--%>
+        <div class="form-row">
+             
+            <div class="form-group col-md-2">
+                <asp:Label ID="lbFechaDesdeModoComparativo" runat="server" Visible="false" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaDesdeModoComparativo" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-2">
+                 <asp:Label ID="lbFechaHastaModoCOmparativo" runat="server" Visible="false" Text="Fecha Hasta" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaHastaModoComparativo" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-2">
+                 <asp:Label ID="lbFechaDesdeMesAnteriorModoComparativo" runat="server" Visible="false" Text="Fecha Desde Mes Anterior" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaDesdeMesAnteriorModoComparativo" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-2">
+                 <asp:Label ID="lbFechaHastaMesAnteriorModoComparativo" runat="server" Visible="false" Text="Fecha Hasta Mes Anterior" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaHastaMesAnteriorModoCOmparativo" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
+            </div>
+        </div>
+        <%--  MODO NORMAL--%>
         <div class="form-row">
             <div class="form-group col-md-3">
                 <asp:Label ID="lbSeleccionarMes" runat="server" Text="Seleccionar Mes" CssClass="LetrasNegrita"></asp:Label>

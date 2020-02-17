@@ -40,6 +40,87 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarTipoReporte;
         
         /// <summary>
+        /// cbModoComparativo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbModoComparativo;
+        
+        /// <summary>
+        /// lbFechaDesdeModoComparativo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaDesdeModoComparativo;
+        
+        /// <summary>
+        /// txtFechaDesdeModoComparativo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaDesdeModoComparativo;
+        
+        /// <summary>
+        /// lbFechaHastaModoCOmparativo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaHastaModoCOmparativo;
+        
+        /// <summary>
+        /// txtFechaHastaModoComparativo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaHastaModoComparativo;
+        
+        /// <summary>
+        /// lbFechaDesdeMesAnteriorModoComparativo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaDesdeMesAnteriorModoComparativo;
+        
+        /// <summary>
+        /// txtFechaDesdeMesAnteriorModoComparativo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaDesdeMesAnteriorModoComparativo;
+        
+        /// <summary>
+        /// lbFechaHastaMesAnteriorModoComparativo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaHastaMesAnteriorModoComparativo;
+        
+        /// <summary>
+        /// txtFechaHastaMesAnteriorModoCOmparativo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaHastaMesAnteriorModoCOmparativo;
+        
+        /// <summary>
         /// lbSeleccionarMes control.
         /// </summary>
         /// <remarks>
