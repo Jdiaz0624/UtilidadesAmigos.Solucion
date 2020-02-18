@@ -28,7 +28,11 @@ namespace UtilidadesAmigos.Logica.Entidades
 
         public string Asegurado {get;set;}
 
-        public string Telefonos {get;set;}
+        public string TelefonoResidencia { get; set; }
+
+        public string Celular { get; set; }
+
+        public string TelefonoOficina { get; set; }
 
         public System.Nullable<int> Items {get;set;}
 

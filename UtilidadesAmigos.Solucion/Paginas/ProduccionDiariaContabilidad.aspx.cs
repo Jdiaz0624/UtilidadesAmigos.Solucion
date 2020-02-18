@@ -505,6 +505,274 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
         #endregion
+        #region CARGAR LISTADO EN MODO COMPARATIVO
+        private void CargarListadoModoCOmparativo()
+        {
+            try {
+                if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 1)
+                {
+                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                    int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                    int? _LlevaIntermediario = ddlLlevaIntermediario.SelectedValue != "-1" ? Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) : new Nullable<int>();
+                    string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+
+                    //VERIFICAMOS SI LA CONSULTA LLEVA INTERMEDARIOS
+                    //EN CASO DE QUE NO LLEVE INTERMEDIARIO
+                    if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 1)
+                    {
+                        var CargarListado = ObjData.Value.SacarProduccionDiariaContabilidad(
+                            Convert.ToDateTime(txtFechaDesdeModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaDesdeMesAnteriorModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaMesAnteriorModoCOmparativo.Text),
+                            _Ramo,
+                            _Oficina,
+                            null,
+                            null,
+                            _LlevaIntermediario);
+                        foreach (var n in CargarListado)
+                        {
+                            decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                            lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+
+                            decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                            lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+
+                            decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                            lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+
+                            decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                            lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+
+                            decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                            LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+
+                            decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                            lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+
+                        }
+                        gvGridSinIntermediario.DataSource = CargarListado;
+                        gvGridSinIntermediario.DataBind();
+
+                    }
+                    //EN CASO DE QUE LLEVE INTERMEDIARIO
+                    if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 2)
+                    {
+                        //VALIDAMOS SI SE VAN A FILTRAR TODOS LOS INTERMEDIARIOS O SOLO 1
+                        //VALIDAMOS TODOS LOS INTERMEDIAIOS
+                        if (cbTodosLosIntermediarios.Checked)
+                        {
+                            var CargarListado = ObjData.Value.SacarProduccionDiariaContabilidad(
+                         Convert.ToDateTime(txtFechaDesdeModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaDesdeMesAnteriorModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaMesAnteriorModoCOmparativo.Text),
+                        _Ramo,
+                        _Oficina,
+                        null,
+                        null,
+                        _LlevaIntermediario);
+                            foreach (var n in CargarListado)
+                            {
+                                decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                                lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+
+                                decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                                lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+
+                                decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                                lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+
+                                decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                                lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+
+                                decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                                LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+
+                                decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                                lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+
+                            }
+                            gvGridConIntermediario.DataSource = CargarListado;
+                            gvGridConIntermediario.DataBind();
+                        }
+                        //VALIDAMOS UN INTERMEDIARIO EN ESPESIFICO
+                        else
+                        {
+                            if (string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()))
+                            {
+                                ClientScript.RegisterStartupScript(GetType(), "CampoCodogoIntermediarioVacio", "CampoCodogoIntermediarioVacio()", true);
+                            }
+                            else
+                            {
+                                var CargarListado = ObjData.Value.SacarProduccionDiariaContabilidad(
+                        Convert.ToDateTime(txtFechaDesdeModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaDesdeMesAnteriorModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaMesAnteriorModoCOmparativo.Text),
+                           _Ramo,
+                           _Oficina,
+                           null,
+                           _CodigoIntermediario,
+                           _LlevaIntermediario);
+                                foreach (var n in CargarListado)
+                                {
+                                    decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                                    lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+
+                                    decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                                    lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+
+                                    decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                                    lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+
+                                    decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                                    lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+
+                                    decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                                    LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+
+                                    decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                                    lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+
+                                }
+                                gvGridConIntermediario.DataSource = CargarListado;
+                                gvGridConIntermediario.DataBind();
+                            }
+                        }
+
+                    }
+                }
+
+                //REPORTE DE COBROS
+                if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 2)
+                {
+                    //VERIFICAMOS SI LA CONSULTA LLEVA INTERMEDARIOS
+                    //EN CASO DE QUE NO LLEVE INTERMEDIARIO
+                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                    int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                    int? _LlevaIntermediario = ddlLlevaIntermediario.SelectedValue != "-1" ? Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) : new Nullable<int>();
+                    string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+                    if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 1)
+                    {
+                        var MostrarListado = ObjData.Value.ReporteCobradoCOntabilidad(
+                            Convert.ToDateTime(txtFechaDesdeModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaDesdeMesAnteriorModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaMesAnteriorModoCOmparativo.Text),
+                            _Ramo,
+                            _Oficina,
+                            _LlevaIntermediario,
+                            null);
+                        foreach (var n in MostrarListado)
+                        {
+                            decimal CobradoSantoDomingo = 0, CobradoSantiago = 0, CobradoOtros = 0, TotalCobrado = 0, CobredoMesAnterior = 0, CobradoHoy = 0;
+
+                            CobradoSantoDomingo = Convert.ToDecimal(n.CobradoSantoDomingo);
+                            CobradoSantiago = Convert.ToDecimal(n.CobradoSantiago);
+                            CobradoOtros = Convert.ToDecimal(n.CobradoOtros);
+                            TotalCobrado = Convert.ToDecimal(n.Total);
+                            CobredoMesAnterior = Convert.ToDecimal(n.CobradoMesAnterior);
+                            CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
+
+
+                            lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
+                            lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
+                            lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
+                            lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
+                            lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
+                            lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                        }
+                        gbCobradoSinIntermediario.DataSource = MostrarListado;
+                        gbCobradoSinIntermediario.DataBind();
+                    }
+                    //EN CASO DE QUE LLEVE INTERMEDIARIO
+                    if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 2)
+                    {
+                        //VALIDAMOS SI SE VAN A FILTRAR TODOS LOS INTERMEDIARIOS O SOLO 1
+                        //VALIDAMOS TODOS LOS INTERMEDIAIOS
+                        if (cbTodosLosIntermediarios.Checked)
+                        {
+                            var MostrarListado = ObjData.Value.ReporteCobradoCOntabilidad(
+                          Convert.ToDateTime(txtFechaDesdeModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaDesdeMesAnteriorModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaMesAnteriorModoCOmparativo.Text),
+                            _Ramo,
+                            _Oficina,
+                            _LlevaIntermediario);
+                            foreach (var n in MostrarListado)
+                            {
+                                decimal CobradoSantoDomingo = 0, CobradoSantiago = 0, CobradoOtros = 0, TotalCobrado = 0, CobredoMesAnterior = 0, CobradoHoy = 0;
+
+                                CobradoSantoDomingo = Convert.ToDecimal(n.CobradoSantoDomingo);
+                                CobradoSantiago = Convert.ToDecimal(n.CobradoSantiago);
+                                CobradoOtros = Convert.ToDecimal(n.CobradoOtros);
+                                TotalCobrado = Convert.ToDecimal(n.Total);
+                                CobredoMesAnterior = Convert.ToDecimal(n.CobradoMesAnterior);
+                                CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
+
+
+                                lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
+                                lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
+                                lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
+                                lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
+                                lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
+                                lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                            }
+                            gbCobradoSinIntermediario.DataSource = MostrarListado;
+                            gbCobradoSinIntermediario.DataBind();
+                        }
+                        //VALIDAMOS UN INTERMEDIARIO EN ESPESIFICO
+                        else
+                        {
+                            if (string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()))
+                            {
+                                ClientScript.RegisterStartupScript(GetType(), "CampoCodogoIntermediarioVacio", "CampoCodogoIntermediarioVacio();", true);
+                            }
+                            else
+                            {
+                                var MostrarListado = ObjData.Value.ReporteCobradoCOntabilidad(
+                         Convert.ToDateTime(txtFechaDesdeModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaDesdeMesAnteriorModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaMesAnteriorModoCOmparativo.Text),
+                            _Ramo,
+                            _Oficina,
+                            _LlevaIntermediario,
+                            _CodigoIntermediario);
+                                foreach (var n in MostrarListado)
+                                {
+                                    decimal CobradoSantoDomingo = 0, CobradoSantiago = 0, CobradoOtros = 0, TotalCobrado = 0, CobredoMesAnterior = 0, CobradoHoy = 0;
+
+                                    CobradoSantoDomingo = Convert.ToDecimal(n.CobradoSantoDomingo);
+                                    CobradoSantiago = Convert.ToDecimal(n.CobradoSantiago);
+                                    CobradoOtros = Convert.ToDecimal(n.CobradoOtros);
+                                    TotalCobrado = Convert.ToDecimal(n.Total);
+                                    CobredoMesAnterior = Convert.ToDecimal(n.CobradoMesAnterior);
+                                    CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
+
+
+                                    lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
+                                    lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
+                                    lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
+                                    lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
+                                    lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
+                                    lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                                }
+                                gbCobradoSinIntermediario.DataSource = MostrarListado;
+                                gbCobradoSinIntermediario.DataBind();
+                            }
+                        }
+
+                    }
+                }
+            }
+            catch (Exception) {
+                ClientScript.RegisterStartupScript(GetType(), "ErrorConsulta", "ErrorConsulta();", true);
+            }
+        }
+        #endregion
         #region CARGAR LOS MESES
         private void CargarMeses()
         {
@@ -950,6 +1218,237 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
+        #region EXPORTAR DATA MODO COMPARATIVO
+        private void ExportarDataModoCOmparativo()
+        {
+            try {
+                //VERIFICAMOS EL TIPO DE REPORTE SELECCIONAD
+                //SI EL REPORTE A EXPORTAR ES PRODUCCION
+                if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 1)
+                {
+                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                    int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                    int? _LlevaIntermediario = ddlLlevaIntermediario.SelectedValue != "-1" ? Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) : new Nullable<int>();
+                    string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+                    //VERIFICAMOS SI LA CONSULTA LLEVA INTERMEDARIOS
+                    //EN CASO DE QUE NO LLEVE INTERMEDIARIO
+                    if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 1)
+                    {
+                        var Exportar = (from n in ObjData.Value.SacarProduccionDiariaContabilidad(
+                             Convert.ToDateTime(txtFechaDesdeModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaDesdeMesAnteriorModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaMesAnteriorModoCOmparativo.Text),
+                            _Ramo,
+                            _Oficina,
+                            null,
+                            null,
+                            _LlevaIntermediario)
+                                        select new
+                                        {
+                                            Ramo = n.Ramo,
+                                            Descripcion = n.Descripcion,
+                                            Tipo = n.Tipo,
+                                            DescripcionTipo = n.DescripcionTipo,
+                                            CodOficina = n.CodOficina,
+                                            Oficina = n.Oficina,
+                                            Concepto = n.Concepto,
+                                            FacturadoMes = n.FacturadoMes,
+                                            Total = n.Total,
+                                            MesAnterior = n.MesAnterior,
+                                            Hoy = n.Hoy,
+                                            TotalCredito = n.TotalCredito,
+                                            TotalDebito = n.TotalDebito,
+                                            TotalOtros = n.TotalOtros
+                                        }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Producción Sin Intermediario", Exportar);
+
+                    }
+                    //EN CASO DE QUE LLEVE INTERMEDIARIO
+                    if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 2)
+                    {
+                        //VALIDAMOS SI SE VAN A FILTRAR TODOS LOS INTERMEDIARIOS O SOLO 1
+                        //VALIDAMOS TODOS LOS INTERMEDIAIOS
+                        if (cbTodosLosIntermediarios.Checked)
+                        {
+                            var Exportar = (from n in ObjData.Value.SacarProduccionDiariaContabilidad(
+                           Convert.ToDateTime(txtFechaDesdeModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaDesdeMesAnteriorModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaMesAnteriorModoCOmparativo.Text),
+                           _Ramo,
+                           _Oficina,
+                           null,
+                           null,
+                           _LlevaIntermediario)
+                                            select new
+                                            {
+                                                Intermediario = n.Intermediario,
+                                                Codigo = n.Codigo,
+                                                Ramo = n.Ramo,
+                                                Descripcion = n.Descripcion,
+                                                Tipo = n.Tipo,
+                                                DescripcionTipo = n.DescripcionTipo,
+                                                CodOficina = n.CodOficina,
+                                                Oficina = n.Oficina,
+                                                Concepto = n.Concepto,
+                                                FacturadoMes = n.FacturadoMes,
+                                                Total = n.Total,
+                                                MesAnterior = n.MesAnterior,
+                                                Hoy = n.Hoy,
+                                                TotalCredito = n.TotalCredito,
+                                                TotalDebito = n.TotalDebito,
+                                                TotalOtros = n.TotalOtros
+                                            }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Producción Todos los  Intermediario", Exportar);
+                        }
+                        //VALIDAMOS UN INTERMEDIARIO EN ESPESIFICO
+                        else
+                        {
+                            var Exportar = (from n in ObjData.Value.SacarProduccionDiariaContabilidad(
+                            Convert.ToDateTime(txtFechaDesdeModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaDesdeMesAnteriorModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaMesAnteriorModoCOmparativo.Text),
+                           _Ramo,
+                           _Oficina,
+                           null,
+                           _CodigoIntermediario,
+                           _LlevaIntermediario)
+                                            select new
+                                            {
+                                                Intermediario = n.Intermediario,
+                                                Codigo = n.Codigo,
+                                                Ramo = n.Ramo,
+                                                Descripcion = n.Descripcion,
+                                                Tipo = n.Tipo,
+                                                DescripcionTipo = n.DescripcionTipo,
+                                                CodOficina = n.CodOficina,
+                                                Oficina = n.Oficina,
+                                                Concepto = n.Concepto,
+                                                FacturadoMes = n.FacturadoMes,
+                                                Total = n.Total,
+                                                MesAnterior = n.MesAnterior,
+                                                Hoy = n.Hoy,
+                                                TotalCredito = n.TotalCredito,
+                                                TotalDebito = n.TotalDebito,
+                                                TotalOtros = n.TotalOtros
+                                            }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Producción Intermediario Espesifico", Exportar);
+                        }
+
+                    }
+
+                }
+                //SI EL REPORTE A EXPORTAR ES DE LO COBRADO
+                else if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 2)
+                {
+                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                    int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                    int? _LlevaIntermediario = ddlLlevaIntermediario.SelectedValue != "-1" ? Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) : new Nullable<int>();
+                    string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+                    //VERIFICAMOS SI LA CONSULTA LLEVA INTERMEDARIOS
+                    //EN CASO DE QUE NO LLEVE INTERMEDIARIO
+                    if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 1)
+                    {
+                        var Exportar = (from n in ObjData.Value.ReporteCobradoCOntabilidad(
+                            Convert.ToDateTime(txtFechaDesdeModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaDesdeMesAnteriorModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaMesAnteriorModoCOmparativo.Text),
+                            _Ramo,
+                            _Oficina,
+                            _LlevaIntermediario,
+                            null)
+                                        select new
+                                        {
+                                            CodRamo = n.CodRamo,
+                                            Ramo = n.Ramo,
+                                            CodOficina = n.CodOficina,
+                                            Oficina = n.Oficina,
+                                            Cobrado = n.Cobrado,
+                                            CobradoHoy = n.CobradoHoy,
+                                            CobradoSantoDomingo = n.CobradoSantoDomingo,
+                                            CobradoSantiago = n.CobradoSantiago,
+                                            CobradoOtros = n.CobradoOtros,
+                                            Total = n.Total,
+                                            CobradoMesAnterior = n.CobradoMesAnterior
+                                        }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cobrado Sin Intermediario", Exportar);
+                    }
+                    //EN CASO DE QUE LLEVE INTERMEDIARIO
+                    if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 2)
+                    {
+                        //VALIDAMOS SI SE VAN A FILTRAR TODOS LOS INTERMEDIARIOS O SOLO 1
+                        //VALIDAMOS TODOS LOS INTERMEDIAIOS
+                        if (cbTodosLosIntermediarios.Checked)
+                        {
+                            var Exportar = (from n in ObjData.Value.ReporteCobradoCOntabilidad(
+                          Convert.ToDateTime(txtFechaDesdeModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaDesdeMesAnteriorModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaMesAnteriorModoCOmparativo.Text),
+                            _Ramo,
+                            _Oficina,
+                            _LlevaIntermediario
+                            )
+                                            select new
+                                            {
+                                                Intermediario = n.Intermediario,
+                                                CodigoIntermediario = n.CodigoIntermediario,
+                                                CodRamo = n.CodRamo,
+                                                Ramo = n.Ramo,
+                                                CodOficina = n.CodOficina,
+                                                Oficina = n.Oficina,
+                                                Cobrado = n.Cobrado,
+                                                CobradoHoy = n.CobradoHoy,
+                                                CobradoSantoDomingo = n.CobradoSantoDomingo,
+                                                CobradoSantiago = n.CobradoSantiago,
+                                                CobradoOtros = n.CobradoOtros,
+                                                Total = n.Total,
+                                                CobradoMesAnterior = n.CobradoMesAnterior
+                                            }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cobrado Con Intermediario", Exportar);
+                        }
+                        //VALIDAMOS UN INTERMEDIARIO EN ESPESIFICO
+                        else
+                        {
+                            var Exportar = (from n in ObjData.Value.ReporteCobradoCOntabilidad(
+                            Convert.ToDateTime(txtFechaDesdeModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaDesdeMesAnteriorModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaHastaMesAnteriorModoCOmparativo.Text),
+                            _Ramo,
+                            _Oficina,
+                            _LlevaIntermediario,
+                            _CodigoIntermediario)
+                                            select new
+                                            {
+                                                Intermediario = n.Intermediario,
+                                                CodigoIntermediario = n.CodigoIntermediario,
+                                                CodRamo = n.CodRamo,
+                                                Ramo = n.Ramo,
+                                                CodOficina = n.CodOficina,
+                                                Oficina = n.Oficina,
+                                                Cobrado = n.Cobrado,
+                                                CobradoHoy = n.CobradoHoy,
+                                                CobradoSantoDomingo = n.CobradoSantoDomingo,
+                                                CobradoSantiago = n.CobradoSantiago,
+                                                CobradoOtros = n.CobradoOtros,
+                                                Total = n.Total,
+                                                CobradoMesAnterior = n.CobradoMesAnterior
+                                            }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cobrado Intermediario Espesifico", Exportar);
+                        }
+
+                    }
+                }
+            }
+            catch (Exception) {
+                ClientScript.RegisterStartupScript(GetType(), "ErrorExportacionConsulta", "ErrorExportacionConsulta();", true);
+            }
+        }
+        #endregion
         #region OCULTAR Y MOSTRAR CONTROLES
         private void ModoFacturracion()
         {
@@ -1116,7 +1615,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (cbModoComparativo.Checked)
             {
-
+                gvGridConIntermediario.PageIndex = e.NewPageIndex;
+                CargarListadoModoCOmparativo();
             }
             else
             {
@@ -1129,7 +1629,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (cbModoComparativo.Checked)
             {
-
+                gvGridConIntermediario.PageIndex = e.NewPageIndex;
+                CargarListadoModoCOmparativo();
             }
             else
             {
@@ -1142,7 +1643,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (cbModoComparativo.Checked)
             {
-
+                CargarListadoModoCOmparativo();
             }
             else
             {
@@ -1154,7 +1655,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (cbModoComparativo.Checked)
             {
-
+                ExportarDataModoCOmparativo();
             }
             else
             {
