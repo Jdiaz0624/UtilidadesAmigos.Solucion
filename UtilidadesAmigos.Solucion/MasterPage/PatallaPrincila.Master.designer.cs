@@ -157,22 +157,22 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         protected global::System.Web.UI.WebControls.LinkButton linkProcesarDataGruas;
         
         /// <summary>
-        /// linkProcesoCasaConductor control.
+        /// LinkCorregirValorDeclarativa control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkProcesoCasaConductor;
+        protected global::System.Web.UI.WebControls.LinkButton LinkCorregirValorDeclarativa;
         
         /// <summary>
-        /// LinkEmisionPolizas control.
+        /// LinkCorregirLimites control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkEmisionPolizas;
+        protected global::System.Web.UI.WebControls.LinkButton LinkCorregirLimites;
         
         /// <summary>
         /// LinkEnvioCorreo control.
@@ -256,22 +256,13 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         protected global::System.Web.UI.WebControls.LinkButton LinkCorreoElectronicos;
         
         /// <summary>
-        /// linkCotizadorFuturoSeguros control.
+        /// LinkSolicitudEmision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkCotizadorFuturoSeguros;
-        
-        /// <summary>
-        /// linkFuturoARS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkFuturoARS;
+        protected global::System.Web.UI.WebControls.LinkButton LinkSolicitudEmision;
         
         /// <summary>
         /// linkUsuarios control.

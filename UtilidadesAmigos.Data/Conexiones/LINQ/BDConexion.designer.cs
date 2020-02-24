@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString1, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -621,6 +621,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaFin, ramo, subRamo, poliza, cotizacion, oficina, codSupervisor, codIntermediario, validarBalance, excluirRegistros);
 			return ((ISingleResult<SP_MOSTRAR_LISTADO_RENOVACIONResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_DESCRIPCION_PRODUCTO")]
+		public ISingleResult<SP_SACAR_DESCRIPCION_PRODUCTOResult> SP_SACAR_DESCRIPCION_PRODUCTO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoProducto", DbType="Int")] System.Nullable<int> tipoProducto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Codigoproducto", DbType="Int")] System.Nullable<int> codigoproducto)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), tipoProducto, codigoproducto);
+			return ((ISingleResult<SP_SACAR_DESCRIPCION_PRODUCTOResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -18859,6 +18866,122 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Anos != value))
 				{
 					this._Anos = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_DESCRIPCION_PRODUCTOResult
+	{
+		
+		private decimal _IdProductoSubramo;
+		
+		private System.Nullable<int> _TipoProducto;
+		
+		private System.Nullable<int> _CodigoSubramo;
+		
+		private string _DescripcionSubramo;
+		
+		private string _Descripcion;
+		
+		private System.Nullable<bool> _Estatus;
+		
+		public SP_SACAR_DESCRIPCION_PRODUCTOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProductoSubramo", DbType="Decimal(20,0) NOT NULL")]
+		public decimal IdProductoSubramo
+		{
+			get
+			{
+				return this._IdProductoSubramo;
+			}
+			set
+			{
+				if ((this._IdProductoSubramo != value))
+				{
+					this._IdProductoSubramo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoProducto", DbType="Int")]
+		public System.Nullable<int> TipoProducto
+		{
+			get
+			{
+				return this._TipoProducto;
+			}
+			set
+			{
+				if ((this._TipoProducto != value))
+				{
+					this._TipoProducto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoSubramo", DbType="Int")]
+		public System.Nullable<int> CodigoSubramo
+		{
+			get
+			{
+				return this._CodigoSubramo;
+			}
+			set
+			{
+				if ((this._CodigoSubramo != value))
+				{
+					this._CodigoSubramo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescripcionSubramo", DbType="VarChar(100)")]
+		public string DescripcionSubramo
+		{
+			get
+			{
+				return this._DescripcionSubramo;
+			}
+			set
+			{
+				if ((this._DescripcionSubramo != value))
+				{
+					this._DescripcionSubramo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(100)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Bit")]
+		public System.Nullable<bool> Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
 				}
 			}
 		}

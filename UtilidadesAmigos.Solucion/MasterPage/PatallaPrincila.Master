@@ -71,8 +71,8 @@
                                 </a>
                                 <div class="dropdown-menu">
                                   <asp:LinkButton ID="linkProcesarDataGruas" runat="server" ForeColor="Red" Text="Procesar Data Gruas" OnClick="linkProcesarDataGruas_Click" CssClass="dropdown-item"></asp:LinkButton>
-                                    <asp:LinkButton ID="linkProcesoCasaConductor" runat="server" ForeColor="Red" Text="Proceso de Casa del Conductor" OnClick="linkProcesoCasaConductor_Click" CssClass="dropdown-item"></asp:LinkButton>
-                                    <asp:LinkButton ID="LinkEmisionPolizas" runat="server" ForeColor="Red" Text="Solicitud de Emisión" OnClick="LinkEmisionPolizas_Click" CssClass="dropdown-item"></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkCorregirValorDeclarativa" runat="server" ForeColor="Red" Text="Corregir Monto Declarativa" OnClick="LinkCorregirValorDeclarativa_Click" CssClass="dropdown-item"></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkCorregirLimites" runat="server" ForeColor="Red" Text="Corregir Limites" OnClick="LinkCorregirLimites_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     <asp:LinkButton ID="LinkEnvioCorreo" runat="server" ForeColor="Red" Text="Envio de Correo" OnClick="LinkEnvioCorreo_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     <asp:LinkButton ID="LinkEliminarBalance" runat="server" ForeColor="Red" Visible="false" Text="Eliminar Balance" OnClick="LinkEliminarBalance_Click" CssClass="dropdown-item"></asp:LinkButton>
                                 </div>
@@ -96,8 +96,8 @@
                                           Cotizador
                                         </a>
                                         <div class="dropdown-menu">
-                                           <asp:LinkButton ID="linkCotizadorFuturoSeguros" runat="server" ForeColor="Red" Text="Futuro Seguros" OnClick="linkCotizadorFuturoSeguros_Click" class="dropdown-item"></asp:LinkButton>
-                                           <asp:LinkButton ID="linkFuturoARS" runat="server" ForeColor="Red" Text="Futuro ARS" OnClick="linkFuturoARS_Click" class="dropdown-item"></asp:LinkButton>
+                                           <asp:LinkButton ID="LinkSolicitudEmision" runat="server" ForeColor="Red" Text="Solicitud" OnClick="LinkSolicitudEmision_Click" class="dropdown-item"></asp:LinkButton>
+                                          
                                         </div>
                                       </li>
                                       <li class="nav-item dropdown">

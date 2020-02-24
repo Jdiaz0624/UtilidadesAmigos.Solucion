@@ -148,6 +148,8 @@
     <Content Include="Paginas\MantenimientoClaveSeguridad.aspx" />
     <Content Include="Paginas\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\ProduccionDiariaContabilidad.aspx" />
+    <Content Include="Paginas\SolicitudEmisionPoliza.aspx" />
+    <Content Include="Paginas\SolicitudSeguroLey.aspx" />
     <Content Include="Prueba\Reporte.aspx" />
     <Content Include="scripts\bootstrap.bundle.js" />
     <Content Include="scripts\bootstrap.bundle.min.js" />
@@ -459,6 +461,20 @@
     </Compile>
     <Compile Include="Paginas\ServiciosFijos.aspx.designer.cs">
       <DependentUpon>ServiciosFijos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\SolicitudEmisionPoliza.aspx.cs">
+      <DependentUpon>SolicitudEmisionPoliza.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\SolicitudEmisionPoliza.aspx.designer.cs">
+      <DependentUpon>SolicitudEmisionPoliza.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\SolicitudSeguroLey.aspx.cs">
+      <DependentUpon>SolicitudSeguroLey.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\SolicitudSeguroLey.aspx.designer.cs">
+      <DependentUpon>SolicitudSeguroLey.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\TipoCotizador.aspx.cs">
       <DependentUpon>TipoCotizador.aspx</DependentUpon>

@@ -264,5 +264,20 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             Response.Redirect("ProduccionDiariaContabilidad.aspx");
         }
+
+        protected void LinkSolicitudEmision_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SolicitudEmisionPoliza.aspx");
+        }
+
+        protected void LinkCorregirValorDeclarativa_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkCorregirLimites_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

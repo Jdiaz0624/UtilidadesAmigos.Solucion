@@ -1231,7 +1231,6 @@ namespace UtilidadesAmigos.Logica.Logica
         }
         #endregion
 
-
         #region MANTENIMIENTO DE TARJETAS DE ACCESO
         //LISTADO DE TARJETAS DE ACCESO
         public List<UtilidadesAmigos.Logica.Entidades.ETarjetaAcceso> BuscaTarjetaAcceso(decimal? IdOficina = null, decimal? IdDepartamento = null, decimal? IdEmpleado = null,decimal? IdTarjetaAcceso = null, decimal? Estatus = null, string NumeroTarjeta = null, DateTime? FechaEntregaDesde = null, DateTime? FechaEntregaHasta = null)
@@ -1307,7 +1306,6 @@ namespace UtilidadesAmigos.Logica.Logica
             return Mantenimiento;
         }
         #endregion
-
 
         #region GENERAR DATA COBERTURAS
         //GENERAR LA DATA DE AEROAMBULANCIA
@@ -1473,7 +1471,6 @@ namespace UtilidadesAmigos.Logica.Logica
             return Mantenimiento;
         }
         #endregion
-
 
         #region SACAR DATA DE LA CASA DEL CONDUCTOR
         //SACAR EL LISTADO DE LA DATA DE LA CASA DEL CONDUCTOR
@@ -2021,6 +2018,25 @@ namespace UtilidadesAmigos.Logica.Logica
                               
                            }).ToList();
             return Cobrado;
+        }
+        #endregion
+
+        #region SACAR LA DESCRIPCION DEL PRODUCTO SELECCIONADO3
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarDescripcionProducto> SacarDescripcionProducto(int? TipoProducto = null, int? Codigoproducto = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var SacarListado = (from n in Objdata.SP_SACAR_DESCRIPCION_PRODUCTO(TipoProducto, Codigoproducto)
+                                select new UtilidadesAmigos.Logica.Entidades.ESacarDescripcionProducto
+                                {
+                                    IdProductoSubramo=n.IdProductoSubramo,
+                                    TipoProducto=n.TipoProducto,
+                                    CodigoSubramo=n.CodigoSubramo,
+                                    DescripcionSubramo=n.DescripcionSubramo,
+                                    Descripcion=n.Descripcion,
+                                    Estatus=n.Estatus
+                                }).ToList();
+            return SacarListado;
         }
         #endregion
     }
