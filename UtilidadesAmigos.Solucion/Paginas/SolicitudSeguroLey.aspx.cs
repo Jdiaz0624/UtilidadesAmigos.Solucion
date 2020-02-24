@@ -20,7 +20,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void Page_Load(object sender, EventArgs e)
         {
             lbProductoSeleccionado.Text= Session["ProductoSeleccionado"].ToString();
-            lbTipoProductoSeleccionadoNombre.Text = "Seguro de Ley";
             //SACAMOS LOS DATOS DEL PRODUCTO SELECCIONADO
 
             var SacarSubRamo = ObjData.SacarDescripcionProducto(
@@ -30,6 +29,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbProductoSeleccionadonombre.Text = n.DescripcionSubramo;
                 lbDescripcioNproducto.Text = n.Descripcion;
             }
+        }
+
+        protected void brnSiguienteCliente_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
