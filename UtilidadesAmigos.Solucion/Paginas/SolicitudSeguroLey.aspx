@@ -95,6 +95,10 @@
           <div align="center">
             <asp:Button ID="brnSiguienteCliente" runat="server" Text="Siguiente" CssClass="btn btn-outline-primary btn-sm" ToolTip="Pasar al Siguiente Paso" OnClick="brnSiguienteCliente_Click" />
         </div>
+        <hr />
+        <div align="center">
+            <asp:Label ID="lbDatosVehiculosTitulo" runat="server" Text="Datos del Vehiculo" CssClass="LetrasNegrita"></asp:Label>
+        </div>
         </div>
 
 </asp:Content>
