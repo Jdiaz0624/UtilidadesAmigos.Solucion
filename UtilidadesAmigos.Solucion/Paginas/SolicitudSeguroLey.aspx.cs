@@ -35,5 +35,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
 
         }
+
+        protected void btnSiguienteDatosVehiculo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

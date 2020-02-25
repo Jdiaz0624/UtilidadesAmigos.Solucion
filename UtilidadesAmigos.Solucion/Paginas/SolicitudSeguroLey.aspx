@@ -99,6 +99,71 @@
         <div align="center">
             <asp:Label ID="lbDatosVehiculosTitulo" runat="server" Text="Datos del Vehiculo" CssClass="LetrasNegrita"></asp:Label>
         </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <asp:Label ID="lbSeleccionarTipoVehiculo" runat="server" Text="Seleccionar Tipo de Vehiculo" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarTipoVehiculo" runat="server" ToolTip="Seleccionar Tipo de Vehiculo" CssClass="form-control"></asp:DropDownList>
+            </div>
+            <div class="form-group col-md-4">
+                <asp:Label ID="lbSeleccioanrMarcas" runat="server" Text="Seleccionar Marca" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccioanrMarcas" runat="server" ToolTip="Seleccionar Marcas" CssClass="form-control"></asp:DropDownList>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbSeleccionarModelo" runat="server" Text="Seleccionar Modelo" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarModelo" runat="server" ToolTip="Seleccionar Modelos" CssClass="form-control"></asp:DropDownList>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbIngresarAno" runat="server" Text="Año" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtAnoVehiculo" runat="server" TextMode="Number" MaxLength="4" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbChasis" runat="server" Text="Chasis" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtChasis" runat="server" MaxLength="100" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbPlaca" runat="server" Text="Matricula" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtMatricula" runat="server" MaxLength="100" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+            </div>
+            <div class="form-group col-md-4">
+                <asp:Label ID="lbPasajeros" runat="server" Text="Cantidad de Pasajeros" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtCantidadPasajeros" TextMode="Number" runat="server" MaxLength="100" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+            </div>
+            <div class="form-group col-md-4">
+                <asp:Label ID="ddlSeleccionarCilindraje" runat="server" Text="Seleccionar Cantidad de Cilindros" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarCilindros" runat="server" ToolTip="Seleccionar Cilindros" CssClass="form-control"></asp:DropDownList>
+            </div>
+            <div class="form-group col-md-4">
+                <asp:Label ID="lbSeleccionarCOlor" runat="server" Text="Seleccionar Color" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarColor" runat="server" ToolTip="Seleccionar Color" CssClass="form-control"></asp:DropDownList>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbSeleccionarUso" runat="server" Text="Seleccionar Uso" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarUso" runat="server" ToolTip="Seleccionar Uso" CssClass="form-control"></asp:DropDownList>
+            </div>
+        </div>
+        <asp:Label ID="lbServicioGrua" runat="server" Text="Servicio de Grua" CssClass="LetrasNegrita"></asp:Label>
+        <div class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:RadioButton ID="rbSinGrua" runat="server" Text="Sin Grua" GroupName="ServicioGrua" CssClass="form-check-input" />
+            </div>
+             <div class="form-group form-check">
+                <asp:RadioButton ID="rbGruaBasica" runat="server" Text="Grua Basica" GroupName="ServicioGrua" CssClass="form-check-input" />
+            </div>
+             <div class="form-group form-check">
+                <asp:RadioButton ID="rbGruaSuperior" runat="server" Text="Grua Superior" GroupName="ServicioGrua" CssClass="form-check-input" />
+            </div>
+             <div class="form-group form-check">
+                <asp:RadioButton ID="rbGruaPremium" runat="server" Text="Grua Premium" GroupName="ServicioGrua" CssClass="form-check-input" />
+            </div>
+        </div>
+        <div class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:CheckBox ID="cbCasaConductor" runat="server" Text="Casa del Conductor" CssClass="form-check-input" />
+            </div>
+        </div>
+        <div align="center">
+            <asp:Button ID="btnSiguienteDatosVehiculo" runat="server" Text="Siguiente" CssClass="btn btn-outline-primary btn-sm" ToolTip="Siguiente" OnClick="btnSiguienteDatosVehiculo_Click" />
+        </div>
         </div>
 
 </asp:Content>
