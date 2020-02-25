@@ -19,7 +19,7 @@
           font-weight:bold;
           }
 
-
+          hr {border: 3px solid #666; border-radius: 300px/10px; height: 0px; text-align: center;}
     </style>
 
 
@@ -92,9 +92,6 @@
             </div>
             </div>
              
-          <div align="center">
-            <asp:Button ID="brnSiguienteCliente" runat="server" Text="Siguiente" CssClass="btn btn-outline-primary btn-sm" ToolTip="Pasar al Siguiente Paso" OnClick="brnSiguienteCliente_Click" />
-        </div>
         <hr />
         <div align="center">
             <asp:Label ID="lbDatosVehiculosTitulo" runat="server" Text="Datos del Vehiculo" CssClass="LetrasNegrita"></asp:Label>
@@ -141,7 +138,7 @@
                 <asp:DropDownList ID="ddlSeleccionarUso" runat="server" ToolTip="Seleccionar Uso" CssClass="form-control"></asp:DropDownList>
             </div>
         </div>
-        <asp:Label ID="lbServicioGrua" runat="server" Text="Servicio de Grua" CssClass="LetrasNegrita"></asp:Label>
+        <asp:Label ID="lbServicioGrua" runat="server" Text="Servicio de Grua" CssClass="LetrasNegrita"></asp:Label><br />
         <div class="form-check-inline">
             <div class="form-group form-check">
                 <asp:RadioButton ID="rbSinGrua" runat="server" Text="Sin Grua" GroupName="ServicioGrua" CssClass="form-check-input" />
@@ -156,14 +153,13 @@
                 <asp:RadioButton ID="rbGruaPremium" runat="server" Text="Grua Premium" GroupName="ServicioGrua" CssClass="form-check-input" />
             </div>
         </div>
+        <br />
         <div class="form-check-inline">
             <div class="form-group form-check">
                 <asp:CheckBox ID="cbCasaConductor" runat="server" Text="Casa del Conductor" CssClass="form-check-input" />
             </div>
         </div>
-        <div align="center">
-            <asp:Button ID="btnSiguienteDatosVehiculo" runat="server" Text="Siguiente" CssClass="btn btn-outline-primary btn-sm" ToolTip="Siguiente" OnClick="btnSiguienteDatosVehiculo_Click" />
-        </div>
+       
         </div>
 
 </asp:Content>
