@@ -284,5 +284,21 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "ErrorConsulta", "ErrorConsulta();", true); }
         }
+
+        protected void gvComisionIntermediario_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void gvListadoProduccion_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            decimal Valor = 0;
+            decimal.TryParse(e.Row.Cells[3].Text, out Valor);
+            e.Row.Cells[3].Text = Valor.ToString("N2");
+
+            decimal Balance = 0;
+            decimal.TryParse(e.Row.Cells[5].Text, out Balance);
+            e.Row.Cells[5].Text = Balance.ToString("N2");
+        }
     }
 }

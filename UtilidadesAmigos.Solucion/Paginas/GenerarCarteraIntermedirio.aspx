@@ -130,7 +130,7 @@
                </div>
                     <br />
            <div>
-            <asp:GridView ID="gvComisionIntermediario" runat="server" AllowPaging="true" OnPageIndexChanging="gvComisionIntermediario_PageIndexChanging" OnSelectedIndexChanged="gvComisionIntermediario_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+            <asp:GridView ID="gvComisionIntermediario" runat="server" AllowPaging="true" OnRowDataBound="gvComisionIntermediario_RowDataBound" OnPageIndexChanging="gvComisionIntermediario_PageIndexChanging" OnSelectedIndexChanged="gvComisionIntermediario_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
@@ -241,7 +241,7 @@
                   </div>
                   <br />
                    <div>
-            <asp:GridView ID="gvListadoProduccion" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoProduccion_PageIndexChanging" OnSelectedIndexChanged="gvListadoProduccion_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+            <asp:GridView ID="gvListadoProduccion" runat="server" AllowPaging="true" OnRowDataBound="gvListadoProduccion_RowDataBound" OnPageIndexChanging="gvListadoProduccion_PageIndexChanging" OnSelectedIndexChanged="gvListadoProduccion_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
