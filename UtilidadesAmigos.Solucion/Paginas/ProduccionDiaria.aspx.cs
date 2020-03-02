@@ -331,6 +331,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
 
         }
+
+        protected void gbProduccionDiaria_DataBound(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void gbProduccionDiaria_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+           
+        }
     }
 }
  

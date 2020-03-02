@@ -137,13 +137,13 @@
                     
                     <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
-                    <asp:BoundField DataField="Bruto" HeaderText="Bruto" />
-                    <asp:BoundField DataField="Neto" HeaderText="Neto" />
+                    <asp:BoundField DataField="Bruto" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Bruto" />
+                    <asp:BoundField DataField="Neto" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Neto" />
                     <asp:BoundField DataField="PorcientoComision" HeaderText="% Comisión" />
-                       <asp:BoundField DataField="Comision" HeaderText="Comisión" />
-                       <asp:BoundField DataField="Retencion" HeaderText="Retención" />
-                       <asp:BoundField DataField="AvanceComision" HeaderText="Avance" />
-                       <asp:BoundField DataField="ALiquidar" HeaderText="A Liquidar" />
+                       <asp:BoundField DataField="Comision" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Comisión" />
+                       <asp:BoundField DataField="Retencion" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Retención" />
+                       <asp:BoundField DataField="AvanceComision" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Avance" />
+                       <asp:BoundField DataField="ALiquidar" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="A Liquidar" />
                 </Columns  >
                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
@@ -168,7 +168,9 @@
   </div>
 </div>
 
-<!--CARTERA-->
+<asp:UpdatePanel runat="server" ID="UpdatePanelCartera">
+    <ContentTemplate>
+        <!--CARTERA-->
 <div class="modal fade bd-example-modal-xl GenerarCarteraPOPO" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
@@ -185,11 +187,11 @@
                     
                     <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
                     <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
-                    <asp:BoundField DataField="SumaAsegurada" HeaderText="Suma Asegurada" />
-                    <asp:BoundField DataField="prima" HeaderText="Prima" />
-                    <asp:BoundField DataField="TotalFacturado" HeaderText="Facturado" />
-                       <asp:BoundField DataField="TotalPagado" HeaderText="Pagado" />
-                       <asp:BoundField DataField="Balance" HeaderText="Balance" />
+                    <asp:BoundField DataField="SumaAsegurada" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Suma Asegurada" />
+                    <asp:BoundField DataField="prima" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Prima" />
+                    <asp:BoundField DataField="TotalFacturado" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Facturado" />
+                       <asp:BoundField DataField="TotalPagado" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Pagado" />
+                       <asp:BoundField DataField="Balance" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Balance" />
                 </Columns  >
                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
@@ -211,6 +213,8 @@
     </div>
   </div>
 </div>
+    </ContentTemplate>
+</asp:UpdatePanel>
 <!--PRODUCCION-->
     <div class="modal fade bd-example-modal-lg GenerarProduccionPOPO" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -249,9 +253,9 @@
                     <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
                     <asp:BoundField DataField="NoFactura" HeaderText="Factura" />
                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
-                    <asp:BoundField DataField="Valor" HeaderText="Valor" />
+                    <asp:BoundField DataField="Valor" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Valor" />
                     <asp:BoundField DataField="Concepto" HeaderText="Concepto" />
-                       <asp:BoundField DataField="Balance" HeaderText="Balance" />
+                       <asp:BoundField DataField="Balance" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Balance" />
                 </Columns  >
                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />

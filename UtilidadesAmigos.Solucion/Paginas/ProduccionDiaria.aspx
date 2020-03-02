@@ -64,16 +64,16 @@
  
     <br />
      <div class="container-fluid">
-            <asp:GridView id="gbProduccionDiaria" runat="server" AllowPaging="True" OnPageIndexChanging="gbProduccionDiaria_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbProduccionDiaria_SelectedIndexChanged">
+            <asp:GridView id="gbProduccionDiaria" runat="server" AllowPaging="True" OnPageIndexChanging="gbProduccionDiaria_PageIndexChanging" OnRowDataBound="gbProduccionDiaria_RowDataBound" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbProduccionDiaria_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
                     <asp:BoundField DataField="CodRamo" HeaderText="CodRamo" />
                     <asp:BoundField DataField="Ramo" HeaderText="Ramo" />
                     <asp:BoundField DataField="Concepto" HeaderText="Concepto" />
-                    <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+                    <asp:BoundField DataField="Cantidad" DataFormatString="{0:N0}" HtmlEncode="false" HeaderText="Cantidad" />
                     <asp:BoundField DataField="Moneda" HeaderText="Moneda" />
-                    <asp:BoundField DataField="Facturado" HeaderText="Facturado" />
-                    <asp:BoundField DataField="PesosDominicanos" HeaderText="Pesos Dominicanos" />
+                    <asp:BoundField DataField="Facturado" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Facturado" />
+                    <asp:BoundField DataField="PesosDominicanos" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Pesos Dominicanos" />
                     <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Ver" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
                 </Columns>
                <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
@@ -112,7 +112,7 @@
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
                     <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
-                    <asp:BoundField DataField="Valor" HeaderText="Valor" />
+                    <asp:BoundField DataField="Valor" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Valor" />
                     <asp:BoundField DataField="FechaFacturacion" HeaderText="Fecha" />
                     <asp:BoundField DataField="Concepto" HeaderText="Concepto" />
                     <asp:BoundField DataField="Ramo" HeaderText="Ramo" />
