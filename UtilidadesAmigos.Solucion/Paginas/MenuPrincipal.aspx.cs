@@ -96,7 +96,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else
             {
-
+                var SacarSugerencias = Objtata.Value.BuscaSugerencias();
+                gbSugerencia.DataSource = SacarSugerencias;
+                gbSugerencia.DataBind();
+                txtRespuesta.Enabled = true;
+                lbAccion.Text = "INSERT";
             }
             
         }
@@ -144,6 +148,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             gbSugerencia.DataSource = SacarDatos;
             gbSugerencia.DataBind();
+            int IdPerfil = Convert.ToInt32(lbIdPerfil.Text);
+            if (IdPerfil != 1)
+            {
+                btnEliminar.Visible = false;
+            }
+            else
+            {
+                btnEliminar.Visible = true;
+            }
         }
 
         protected void btnAccion_Click(object sender, EventArgs e)
@@ -152,18 +165,42 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 lbAccion.Text = "UPDATE";
                 MAnSugerencias(lbAccion.Text, Convert.ToDecimal(lbIdMantenimiento.Text));
+                btnEliminar.Visible = false;
                 txtRespuesta.Text = string.Empty;
                 txtSugerencia.Text = string.Empty;
-                BuscarRegistros();
+                
+                int idperfil = Convert.ToInt32(lbIdPerfil.Text);
+                if (idperfil != 1)
+                {
+                    BuscarRegistros();
+                }
+                else
+                {
+                    var SacarSugerencias = Objtata.Value.BuscaSugerencias();
+                    gbSugerencia.DataSource = SacarSugerencias;
+                    gbSugerencia.DataBind();
+                }
+
             }
             else
             {
                 lbAccion.Text = "INSERT";
                 lbIdMantenimiento.Text = "0";
                 MAnSugerencias(lbAccion.Text, Convert.ToDecimal(lbIdMantenimiento.Text));
+                btnEliminar.Visible = false;
                 txtRespuesta.Text = string.Empty;
                 txtSugerencia.Text = string.Empty;
-                BuscarRegistros();
+                int idperfil = Convert.ToInt32(lbIdPerfil.Text);
+                if (idperfil != 1)
+                {
+                    BuscarRegistros();
+                }
+                else
+                {
+                    var SacarSugerencias = Objtata.Value.BuscaSugerencias();
+                    gbSugerencia.DataSource = SacarSugerencias;
+                    gbSugerencia.DataBind();
+                }
             }
         }
 
@@ -172,7 +209,26 @@ namespace UtilidadesAmigos.Solucion.Paginas
             lbAccion.Text = "INSERT";
             txtRespuesta.Text = string.Empty;
             txtSugerencia.Text = string.Empty;
+            
             BuscarRegistros();
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            lbAccion.Text = "DELETE";
+            MAnSugerencias(lbAccion.Text, Convert.ToDecimal(lbIdMantenimiento.Text));
+            btnEliminar.Visible = false;
+            int idperfil = Convert.ToInt32(lbIdPerfil.Text);
+            if (idperfil != 1)
+            {
+                BuscarRegistros();
+            }
+            else
+            {
+                var SacarSugerencias = Objtata.Value.BuscaSugerencias();
+                gbSugerencia.DataSource = SacarSugerencias;
+                gbSugerencia.DataBind();
+            }
         }
     }
 }

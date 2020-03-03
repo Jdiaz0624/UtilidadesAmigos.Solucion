@@ -146,6 +146,7 @@
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
                     <asp:BoundField DataField="IdSugerencia" HeaderText="ID" />
+                    <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
                     <asp:BoundField DataField="Sugerencia" HeaderText="Sugerencia" />
                     <asp:BoundField DataField="Respuesta" HeaderText="Respuesta" />
                     <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Select" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
@@ -164,9 +165,11 @@
 
 
         </div>
+                <br />
               <div align="center">
                     <asp:Button ID="btnAccion" class="btn btn-outline-primary btn-sm" runat="server" ToolTip="Guardar Operación" Text="Guardar" OnClick="btnAccion_Click" />
                 <asp:Button ID="btnCancelar" class="btn btn-outline-primary btn-sm" runat="server" ToolTip="Cancelar" Text="Cancelar" OnClick="btnCancelar_Click" />
+                   <asp:Button ID="btnEliminar" class="btn btn-outline-primary btn-sm" runat="server" ToolTip="Cancelar" Text="Eliminar" Visible="false" OnClick="btnEliminar_Click" />
               </div>
                 <br />
             </ContentTemplate>

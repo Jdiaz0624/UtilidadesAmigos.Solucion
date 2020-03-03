@@ -140,6 +140,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Properties\PublishProfiles\Prueba.pubxml" />
+    <Content Include="Paginas\DatosPoliza.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarReporteFianzas.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
@@ -279,6 +280,13 @@
     </Compile>
     <Compile Include="Paginas\CotizadorAmigos.aspx.designer.cs">
       <DependentUpon>CotizadorAmigos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\DatosPoliza.aspx.cs">
+      <DependentUpon>DatosPoliza.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\DatosPoliza.aspx.designer.cs">
+      <DependentUpon>DatosPoliza.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\EliminarBalancePoliza.aspx.cs">
       <DependentUpon>EliminarBalancePoliza.aspx</DependentUpon>

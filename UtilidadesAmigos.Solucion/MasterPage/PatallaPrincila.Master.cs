@@ -272,7 +272,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkCorregirValorDeclarativa_Click(object sender, EventArgs e)
         {
-
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("DatosPoliza.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
 
         protected void LinkCorregirLimites_Click(object sender, EventArgs e)
