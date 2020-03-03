@@ -22,6 +22,9 @@
         border-color:blue;
         
         }
+         .LetrasNegrita {
+          font-weight:bold;
+          }
     </style>
 
     <div class="container-fluid">
@@ -34,8 +37,29 @@
         <asp:Label ID="lbDepartamento" runat="server" Text="Departamento"></asp:Label>
     </div>
     </div>
-    </div>
+        <div align="center">
+            <asp:Label ID="lbCantidadTicketTitulo" runat="server" Text="Cantidad de Ticket Abiertos (" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadTicketVariable" runat="server" ForeColor="Blue" Text=" 0 " CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadTicketCerrar" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
 
+            <asp:Label ID="Label7" runat="server" Text=" " CssClass="LetrasNegrita"></asp:Label>
+
+            <asp:Label ID="lbCantidadTicketCerradosTitulo" runat="server" Text="Cantidad de Ticket Cerrados (" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadTicketCerradosVariables" ForeColor="Green" runat="server" Text=" 0 " CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadTicketCerradosCerrar" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
+
+            <asp:Label ID="Label8" runat="server" Text=" " CssClass="LetrasNegrita"></asp:Label>
+
+             <asp:Label ID="lbCantidadTicketDeclinadosTitulo" runat="server" Text="Cantidad de Ticket Declinados (" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadTicketDeclinadosVariable" runat="server" ForeColor="Red" Text=" 0 " CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadTicketDeclinadosCerrar" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
+        </div>
+    </div>
+    <br /><br />
+     <div align="center">
+        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-xl">Sugerencias</button>
+    </div>
+    <br /><br />
 <div class="container-fluid Imagenesxx">
 
         <div align="center" id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
@@ -80,6 +104,13 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+</div>
+   <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      SUGERENCIAS
+    </div>
+  </div>
 </div>
 
 </asp:Content>
