@@ -26,6 +26,15 @@
           font-weight:bold;
           }
     </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnSugerencia").click(function () {
+                $("#<%=txtSugerencia.ClientID%>").val("");
+                $("#<%=txtRespuesta.ClientID%>").val("");
+            });
+
+        });
+    </script>
 
     <div class="container-fluid">
         <div align="center" class="jumbotron">
@@ -35,6 +44,9 @@
     </div>
     <div>
         <asp:Label ID="lbDepartamento" runat="server" Text="Departamento"></asp:Label>
+        <asp:Label ID="lbIdPerfil" runat="server" Visible="false" Text="iDPerfil"></asp:Label>
+        <asp:Label ID="lbAccion" runat="server" Visible="false" Text="Accion"></asp:Label>
+        <asp:Label ID="lbIdMantenimiento" runat="server" Visible="false" Text="0"></asp:Label>
     </div>
     </div>
         <div align="center">
@@ -57,7 +69,7 @@
     </div>
     <br /><br />
      <div align="center">
-        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-xl">Sugerencias</button>
+        <button type="button" id="btnSugerencia" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-xl">Sugerencias</button>
     </div>
     <br /><br />
 <div class="container-fluid Imagenesxx">
@@ -108,7 +120,57 @@
    <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-      SUGERENCIAS
+      <div class="container-fluid">
+          <div class="jumbotron" align="center">
+              <asp:Label ID="lbSugerencias" runat="server" Text="Sugerencias" CssClass="LetrasNegrita"></asp:Label>
+          </div>
+      </div>
+        <asp:ScriptManager ID="ScripManagerSugerencia" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanelSugerencias" runat="server">
+            <ContentTemplate>
+               <div class="container-fluid">
+                    <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbSugerenciaMantenimiento" runat="server" Text="Sugerencia" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtSugerencia" AutoCompleteType="Disabled" runat="server" CssClass="form-control" MaxLength="8000"></asp:TextBox>
+                    </div>
+                    <div class="form-group col-md-6">
+                          <asp:Label ID="lbRespuesta" runat="server"  Text="Respuesta" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtRespuesta" AutoCompleteType="Disabled" runat="server" CssClass="form-control" MaxLength="8000"></asp:TextBox>
+                    </div>
+                </div>
+               </div>
+                <br />
+                   <div class="container-fluid">
+            <asp:GridView id="gbSugerencia" runat="server" AllowPaging="True" OnPageIndexChanging="gbSugerencia_PageIndexChanging"  AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbSugerencia_SelectedIndexChanged">
+                <AlternatingRowStyle BackColor="#DCDCDC" />
+                <Columns>
+                    <asp:BoundField DataField="IdSugerencia" HeaderText="ID" />
+                    <asp:BoundField DataField="Sugerencia" HeaderText="Sugerencia" />
+                    <asp:BoundField DataField="Respuesta" HeaderText="Respuesta" />
+                    <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Select" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
+                </Columns>
+               <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+                   
+
+
+        </div>
+              <div align="center">
+                    <asp:Button ID="btnAccion" class="btn btn-outline-primary btn-sm" runat="server" ToolTip="Guardar Operación" Text="Guardar" OnClick="btnAccion_Click" />
+                <asp:Button ID="btnCancelar" class="btn btn-outline-primary btn-sm" runat="server" ToolTip="Cancelar" Text="Cancelar" OnClick="btnCancelar_Click" />
+              </div>
+                <br />
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
   </div>
 </div>

@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -628,6 +628,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), tipoProducto, codigoproducto);
 			return ((ISingleResult<SP_SACAR_DESCRIPCION_PRODUCTOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_SUGERENCIAS")]
+		public ISingleResult<SP_BUSCA_SUGERENCIASResult> SP_BUSCA_SUGERENCIAS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSugerencia", DbType="Decimal(20,0)")] System.Nullable<decimal> idSugerencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idSugerencia, idUsuario);
+			return ((ISingleResult<SP_BUSCA_SUGERENCIASResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MANTENIMIENTO_SUGERENCIAS")]
+		public ISingleResult<SP_MANTENIMIENTO_SUGERENCIASResult> SP_MANTENIMIENTO_SUGERENCIAS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSugerencia", DbType="Decimal(20,0)")] System.Nullable<decimal> idSugerencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Sugerencia", DbType="VarChar(8000)")] string sugerencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Respuesta", DbType="VarChar(8000)")] string respuesta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idSugerencia, idUsuario, sugerencia, respuesta, accion);
+			return ((ISingleResult<SP_MANTENIMIENTO_SUGERENCIASResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -18982,6 +18996,184 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Estatus != value))
 				{
 					this._Estatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_SUGERENCIASResult
+	{
+		
+		private decimal _IdSugerencia;
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private string _Usuario;
+		
+		private string _Sugerencia;
+		
+		private string _Respuesta;
+		
+		public SP_BUSCA_SUGERENCIASResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdSugerencia", DbType="Decimal(20,0) NOT NULL")]
+		public decimal IdSugerencia
+		{
+			get
+			{
+				return this._IdSugerencia;
+			}
+			set
+			{
+				if ((this._IdSugerencia != value))
+				{
+					this._IdSugerencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(150)")]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this._Usuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sugerencia", DbType="VarChar(8000)")]
+		public string Sugerencia
+		{
+			get
+			{
+				return this._Sugerencia;
+			}
+			set
+			{
+				if ((this._Sugerencia != value))
+				{
+					this._Sugerencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Respuesta", DbType="VarChar(8000)")]
+		public string Respuesta
+		{
+			get
+			{
+				return this._Respuesta;
+			}
+			set
+			{
+				if ((this._Respuesta != value))
+				{
+					this._Respuesta = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MANTENIMIENTO_SUGERENCIASResult
+	{
+		
+		private System.Nullable<decimal> _IdSugerencia;
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private string _Sugerencia;
+		
+		private string _Respuesta;
+		
+		public SP_MANTENIMIENTO_SUGERENCIASResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdSugerencia", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdSugerencia
+		{
+			get
+			{
+				return this._IdSugerencia;
+			}
+			set
+			{
+				if ((this._IdSugerencia != value))
+				{
+					this._IdSugerencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sugerencia", DbType="VarChar(8000)")]
+		public string Sugerencia
+		{
+			get
+			{
+				return this._Sugerencia;
+			}
+			set
+			{
+				if ((this._Sugerencia != value))
+				{
+					this._Sugerencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Respuesta", DbType="VarChar(8000)")]
+		public string Respuesta
+		{
+			get
+			{
+				return this._Respuesta;
+			}
+			set
+			{
+				if ((this._Respuesta != value))
+				{
+					this._Respuesta = value;
 				}
 			}
 		}

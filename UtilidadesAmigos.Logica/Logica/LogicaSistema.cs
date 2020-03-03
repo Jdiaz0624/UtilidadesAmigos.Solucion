@@ -2039,5 +2039,50 @@ namespace UtilidadesAmigos.Logica.Logica
             return SacarListado;
         }
         #endregion
+
+        #region MANTENIMIENTO DE SUGERENCIAS
+        //LISTADO DE SUGERENCIAS
+        public List<UtilidadesAmigos.Logica.Entidades.ESugerencias> BuscaSugerencias(decimal? IdSugerencia = null, decimal? IdUsuario = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCA_SUGERENCIAS(IdSugerencia, IdUsuario)
+                          select new UtilidadesAmigos.Logica.Entidades.ESugerencias
+                          {
+                              IdSugerencia=n.IdSugerencia,
+                              IdUsuario=n.IdUsuario,
+                              Usuario=n.Usuario,
+                              Sugerencia=n.Sugerencia,
+                              Respuesta=n.Respuesta
+                          }).ToList();
+            return Buscar;
+        }
+        //MANTENIMIENTO DE SUGERENCIAS
+        public UtilidadesAmigos.Logica.Entidades.ESugerencias MantenimientoSugeencias(UtilidadesAmigos.Logica.Entidades.ESugerencias Item, string Accion)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.ESugerencias Mantenimiento = null;
+
+            var Sugerencia = Objdata.SP_MANTENIMIENTO_SUGERENCIAS(
+                Item.IdSugerencia,
+                Item.IdUsuario,
+                Item.Sugerencia,
+                Item.Respuesta,
+                Accion);
+            if (Sugerencia != null)
+            {
+                Mantenimiento = (from n in Sugerencia
+                                 select new UtilidadesAmigos.Logica.Entidades.ESugerencias
+                                 {
+                                     IdSugerencia=n.IdSugerencia,
+                                     IdUsuario=n.IdUsuario,
+                                     Sugerencia=n.Sugerencia,
+                                     Respuesta=n.Respuesta
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
+        #endregion
     }
 }
