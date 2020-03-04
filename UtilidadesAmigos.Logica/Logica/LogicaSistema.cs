@@ -2084,5 +2084,42 @@ namespace UtilidadesAmigos.Logica.Logica
             return Mantenimiento;
         }
         #endregion
+
+        #region MANTENIMIENTO DE DATOS POLIZA
+        //SACAR LOS DATOS DE LA POLIZA
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarDatosDatosPoliza> SacarDatosDatosPoliza(string Poliza = null, int? Item = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+            var Buscar = (from n in Objdata.SP_SACAR_DATOS_DATOS_POLIZA(Poliza, Item)
+                          select new UtilidadesAmigos.Logica.Entidades.ESacarDatosDatosPoliza
+                          {
+                              Poliza=n.Poliza,
+                              Estatus=n.Estatus,
+                              Item=n.Item,
+                              CodRamo=n.CodRamo,
+                              Ramo=n.Ramo,
+                              SubRamo=n.SubRamo,
+                              Tipo=n.Tipo,
+                              Marca=n.Marca,
+                              Modelo=n.Modelo,
+                              Capacidad=n.Capacidad,
+                              Ano=n.Ano,
+                              Color=n.Color,
+                              Chasis=n.Chasis,
+                              Placa=n.Placa,
+                              Uso=n.Uso,
+                              Valor=n.Valor,
+                              Fianza=n.Fianza,
+                              Asegurado=n.Asegurado,
+                              Cliente=n.Cliente,
+                              InicioVigencia=n.InicioVigencia,
+                              FinVigencia=n.FinVigencia,
+                              Supervisor=n.Supervisor,
+                              Intermediario=n.Intermediario,
+                              Neto=n.Neto
+                          }).ToList();
+            return Buscar;
+        }
+        #endregion
     }
 }

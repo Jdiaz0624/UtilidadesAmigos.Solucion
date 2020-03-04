@@ -115,6 +115,7 @@
     <Compile Include="Entidades\ESacarDataCedensa.cs" />
     <Compile Include="Entidades\ESacarDataCobertura.cs" />
     <Compile Include="Entidades\ESacarDataTuAsistencia.cs" />
+    <Compile Include="Entidades\ESacarDatosDatosPoliza.cs" />
     <Compile Include="Entidades\ESacarDatosIntermediarios.cs" />
     <Compile Include="Entidades\ESacarDatosVehiculoDetalle.cs" />
     <Compile Include="Entidades\ESacarDescripcionProducto.cs" />
