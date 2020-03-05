@@ -72,6 +72,7 @@
     <Compile Include="Entidades\EBuscaDetalleReclamaciones.cs" />
     <Compile Include="Entidades\EBuscaDetallesCobros.cs" />
     <Compile Include="Entidades\EBuscarEmpleados.cs" />
+    <Compile Include="Entidades\ECambiaValorPolizaCondiciones.cs" />
     <Compile Include="Entidades\ECargarDataproduccionPowerBi.cs" />
     <Compile Include="Entidades\ECargarDataReclamacionPowerBi.cs" />
     <Compile Include="Entidades\ECargarDatosTablaProduccionPowerBi.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Entidades\EMantenimientoProduccionTodosLosRamos.cs" />
     <Compile Include="Entidades\EMantenimientoUsuarios.cs" />
     <Compile Include="Entidades\EMeses.cs" />
+    <Compile Include="Entidades\EModificarVigenciaPoliza.cs" />
     <Compile Include="Entidades\EOperacionesSospechosas.cs" />
     <Compile Include="Entidades\EPlanCoberturas.cs" />
     <Compile Include="Entidades\EPlanCoberturasMantenimiento.cs" />

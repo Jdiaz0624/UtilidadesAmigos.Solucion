@@ -26,6 +26,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 foreach (var n in SacarDatos)
                 {
                     txtRamo.Text = n.Ramo;
+                    lbCotizacion.Text = n.Cotizacion.ToString();
                     txtSubramo.Text = n.SubRamo;
                     txtTipoVehiculo.Text = n.Tipo;
                     txtMarca.Text = n.Marca;
@@ -178,6 +179,42 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnGuardar.Visible = true;
         }
         #endregion
+        #region MANTENIMIENTO DE DATOS POLIZA
+        private void ActuaizarValor()
+        {
+            try {
+                UtilidadesAmigos.Logica.Entidades.ECambiaValorPolizaCondiciones Actualizar = new Logica.Entidades.ECambiaValorPolizaCondiciones();
+
+                Actualizar.Cotizacion = Convert.ToDecimal(lbCotizacion.Text);
+                Actualizar.Secuencia = Convert.ToInt32(txtIngresarItem.Text);
+                Actualizar.Neto = Convert.ToDecimal(txtPrimaNueva.Text);
+                Actualizar.MontoImpuesto = 0;
+                Actualizar.PrimaBruta = 0;
+
+                var MAn = Objdata.Value.CambiaValorPolizaCOndicion(Actualizar, "UPDATE");
+
+              
+            }
+            catch (Exception) {
+                ClientScript.RegisterStartupScript(GetType(), "ErrorCambio", "ErrorCambio()", true);
+            }
+
+        }
+        private void CambiaVigencia()
+        {
+            try {
+                UtilidadesAmigos.Logica.Entidades.EModificarVigenciaPoliza Modificar = new Logica.Entidades.EModificarVigenciaPoliza();
+
+                Modificar.Cotizacion = Convert.ToDecimal(lbCotizacion.Text);
+                Modificar.Secuencia = Convert.ToInt32(txtIngresarItem.Text);
+                Modificar.FechaInicioVigencia = Convert.ToDateTime(txtInicioVigencia.Text);
+                Modificar.FechaFinVigencia = Convert.ToDateTime(txtFInVigencia.Text);
+
+                var MAn = Objdata.Value.CambiaVigenciaPoliza(Modificar, "UPDATE");
+            }
+            catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "ErrorCambio", "ErrorCambio()", true); }
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -213,7 +250,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
                 else
                 {
-
+                    ActuaizarValor();
+                    CambiaVigencia();
+                    SacarDatosPoliza();
+                    txtPrimaNueva.Text = string.Empty;
+                    cbModificarPrima.Checked = false;
+                    cbModificarVigencia.Checked = false;
                 }
             }
             else if (cbModificarPrima.Checked == true && cbModificarVigencia.Checked == false)
@@ -228,6 +270,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
                 else
                 {
+                    ActuaizarValor();
+                    SacarDatosPoliza();
+                    txtPrimaNueva.Text = string.Empty;
+                    cbModificarPrima.Checked = false;
+                    cbModificarVigencia.Checked = false;
                 }
             }
             else if (cbModificarPrima.Checked == false && cbModificarVigencia.Checked == true)
@@ -244,6 +291,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         ClientScript.RegisterStartupScript(GetType(), "FInVigenciaVacio", "FInVigenciaVacio();", true);
                     }
 
+                }
+                else
+                {
+                    CambiaVigencia();
+                    SacarDatosPoliza();
+                    txtPrimaNueva.Text = string.Empty;
+                    cbModificarPrima.Checked = false;
+                    cbModificarVigencia.Checked = false;
                 }
             }
             else if (cbModificarPrima.Checked == false && cbModificarVigencia.Checked == false)

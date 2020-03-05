@@ -2095,6 +2095,7 @@ namespace UtilidadesAmigos.Logica.Logica
                           {
                               Poliza=n.Poliza,
                               Estatus=n.Estatus,
+                              Cotizacion=n.Cotizacion,
                               Item=n.Item,
                               CodRamo=n.CodRamo,
                               Ramo=n.Ramo,
@@ -2119,6 +2120,61 @@ namespace UtilidadesAmigos.Logica.Logica
                               Neto=n.Neto
                           }).ToList();
             return Buscar;
+        }
+        #endregion
+
+        #region ACTUALIZAR VALOR EN CONDICIONES PARTICULARES
+        public UtilidadesAmigos.Logica.Entidades.ECambiaValorPolizaCondiciones CambiaValorPolizaCOndicion(UtilidadesAmigos.Logica.Entidades.ECambiaValorPolizaCondiciones Item, string Accion)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.ECambiaValorPolizaCondiciones Mantenimiento = null;
+
+            var CambiaValores = Objdata.SP_CAMBIA_VALOR_POLIZA_CONDICIONES(
+                Item.Cotizacion,
+                Item.Secuencia,
+                Item.Neto,
+                Accion,
+                Item.MontoImpuesto,
+                Item.PrimaBruta);
+            if (CambiaValores != null)
+            {
+                Mantenimiento = (from n in CambiaValores
+                                 select new UtilidadesAmigos.Logica.Entidades.ECambiaValorPolizaCondiciones
+                                 {
+                                     Cotizacion=n.Cotizacion,
+                                     Secuencia=n.Secuencia,
+                                     Neto=n.Neto,
+                                     MontoImpuesto=n.MontoImpuesto,
+                                     PrimaBruta=n.PrimaBruta
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
+        public UtilidadesAmigos.Logica.Entidades.EModificarVigenciaPoliza CambiaVigenciaPoliza(UtilidadesAmigos.Logica.Entidades.EModificarVigenciaPoliza Item, string Accion)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EModificarVigenciaPoliza Modificar = null;
+
+            var VigenciaPoliza = Objdata.SP_MODIFICAR_VIGENCIA_POLIZA(
+                Item.Cotizacion,
+                Item.Secuencia,
+                Item.FechaInicioVigencia,
+                Item.FechaFinVigencia,
+                Accion);
+            if (VigenciaPoliza != null)
+            {
+                Modificar = (from n in VigenciaPoliza
+                             select new UtilidadesAmigos.Logica.Entidades.EModificarVigenciaPoliza
+                             {
+                                 Cotizacion=n.Cotizacion,
+                                 Secuencia=n.Secuencia,
+                                 FechaInicioVigencia=n.FechaInicioVigencia,
+                                 FechaFinVigencia=n.FechaFinVigencia
+                             }).FirstOrDefault();
+            }
+            return Modificar;
         }
         #endregion
     }

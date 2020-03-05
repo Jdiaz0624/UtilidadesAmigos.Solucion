@@ -650,6 +650,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, item);
 			return ((ISingleResult<SP_SACAR_DATOS_DATOS_POLIZAResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_CAMBIA_VALOR_POLIZA_CONDICIONES")]
+		public ISingleResult<SP_CAMBIA_VALOR_POLIZA_CONDICIONESResult> SP_CAMBIA_VALOR_POLIZA_CONDICIONES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cotizacion", DbType="Decimal(20,0)")] System.Nullable<decimal> cotizacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Int")] System.Nullable<int> secuencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Neto", DbType="Decimal(20,2)")] System.Nullable<decimal> neto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MontoImpuesto", DbType="Decimal(20,2)")] System.Nullable<decimal> montoImpuesto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrimaBruta", DbType="Decimal(20,2)")] System.Nullable<decimal> primaBruta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cotizacion, secuencia, neto, accion, montoImpuesto, primaBruta);
+			return ((ISingleResult<SP_CAMBIA_VALOR_POLIZA_CONDICIONESResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MODIFICAR_VIGENCIA_POLIZA")]
+		public ISingleResult<SP_MODIFICAR_VIGENCIA_POLIZAResult> SP_MODIFICAR_VIGENCIA_POLIZA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cotizacion", DbType="Decimal(20,0)")] System.Nullable<decimal> cotizacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item", DbType="Int")] System.Nullable<int> item, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="InicioVigencia", DbType="Date")] System.Nullable<System.DateTime> inicioVigencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FinVigencia", DbType="Date")] System.Nullable<System.DateTime> finVigencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cotizacion, item, inicioVigencia, finVigencia, accion);
+			return ((ISingleResult<SP_MODIFICAR_VIGENCIA_POLIZAResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_LISTA_CARGAR_RAMOSResult
@@ -19193,6 +19207,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private string _Estatus;
 		
+		private decimal _Cotizacion;
+		
 		private int _Item;
 		
 		private int _CodRamo;
@@ -19269,6 +19285,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Estatus != value))
 				{
 					this._Estatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cotizacion", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Cotizacion
+		{
+			get
+			{
+				return this._Cotizacion;
+			}
+			set
+			{
+				if ((this._Cotizacion != value))
+				{
+					this._Cotizacion = value;
 				}
 			}
 		}
@@ -19621,6 +19653,184 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Neto != value))
 				{
 					this._Neto = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_CAMBIA_VALOR_POLIZA_CONDICIONESResult
+	{
+		
+		private System.Nullable<decimal> _Cotizacion;
+		
+		private System.Nullable<int> _Secuencia;
+		
+		private System.Nullable<decimal> _MontoImpuesto;
+		
+		private System.Nullable<decimal> _PrimaBruta;
+		
+		private System.Nullable<decimal> _Neto;
+		
+		public SP_CAMBIA_VALOR_POLIZA_CONDICIONESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cotizacion", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> Cotizacion
+		{
+			get
+			{
+				return this._Cotizacion;
+			}
+			set
+			{
+				if ((this._Cotizacion != value))
+				{
+					this._Cotizacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int")]
+		public System.Nullable<int> Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoImpuesto", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> MontoImpuesto
+		{
+			get
+			{
+				return this._MontoImpuesto;
+			}
+			set
+			{
+				if ((this._MontoImpuesto != value))
+				{
+					this._MontoImpuesto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimaBruta", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> PrimaBruta
+		{
+			get
+			{
+				return this._PrimaBruta;
+			}
+			set
+			{
+				if ((this._PrimaBruta != value))
+				{
+					this._PrimaBruta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Neto", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Neto
+		{
+			get
+			{
+				return this._Neto;
+			}
+			set
+			{
+				if ((this._Neto != value))
+				{
+					this._Neto = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MODIFICAR_VIGENCIA_POLIZAResult
+	{
+		
+		private System.Nullable<decimal> _Cotizacion;
+		
+		private System.Nullable<int> _Secuencia;
+		
+		private System.Nullable<System.DateTime> _FechaInicioVigencia;
+		
+		private System.Nullable<System.DateTime> _FechaFinVigencia;
+		
+		public SP_MODIFICAR_VIGENCIA_POLIZAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cotizacion", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> Cotizacion
+		{
+			get
+			{
+				return this._Cotizacion;
+			}
+			set
+			{
+				if ((this._Cotizacion != value))
+				{
+					this._Cotizacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int")]
+		public System.Nullable<int> Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaInicioVigencia", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaInicioVigencia
+		{
+			get
+			{
+				return this._FechaInicioVigencia;
+			}
+			set
+			{
+				if ((this._FechaInicioVigencia != value))
+				{
+					this._FechaInicioVigencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaFinVigencia", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaFinVigencia
+		{
+			get
+			{
+				return this._FechaFinVigencia;
+			}
+			set
+			{
+				if ((this._FechaFinVigencia != value))
+				{
+					this._FechaFinVigencia = value;
 				}
 			}
 		}

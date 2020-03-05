@@ -11,6 +11,7 @@ namespace UtilidadesAmigos.Logica.Entidades
         public string Poliza { get; set; }
 
         public string Estatus { get; set; }
+        public decimal Cotizacion { get; set; }
 
         public int Item { get; set; }
         public int CodRamo { get; set; }

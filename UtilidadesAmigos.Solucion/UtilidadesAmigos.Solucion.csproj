@@ -127,6 +127,7 @@
     <Content Include="Imagenes\login.jpg" />
     <Content Include="Imagenes\Logo.ico" />
     <Content Include="Imagenes\tDYC1tp.jpg" />
+    <Content Include="JS\Mask.js" />
     <Content Include="JS\Utililades.js" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -169,10 +170,17 @@
     <Content Include="scripts\bootstrap.bundle.min.js.map" />
     <Content Include="scripts\bootstrap.bundle.js.map" />
     <None Include="scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="scripts\inputmask\bindings\inputmask.binding.js" />
+    <Content Include="scripts\inputmask\inputmask.js" />
+    <Content Include="scripts\inputmask\inputmask.min.js" />
+    <Content Include="scripts\inputmask\jquery.inputmask.js" />
+    <Content Include="scripts\inputmask\jquery.inputmask.min.js" />
     <Content Include="scripts\jquery-3.4.1.js" />
     <Content Include="scripts\jquery-3.4.1.min.js" />
     <Content Include="scripts\jquery-3.4.1.slim.js" />
     <Content Include="scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="scripts\jquery.maskedinput.js" />
+    <Content Include="scripts\jquery.maskedinput.min.js" />
     <Content Include="scripts\MensajesPagina.js" />
     <Content Include="scripts\popper-utils.js" />
     <Content Include="scripts\popper-utils.min.js" />

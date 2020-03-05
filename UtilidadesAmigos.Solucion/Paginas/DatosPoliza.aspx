@@ -42,6 +42,14 @@
         function RegistroNoEncontrado() {
             alert("Registro no encontrado, favor de verificar los parametros ingresados");
         }
+        function ErrorCambio() {
+            alert("Error al realizar el cambio, favor de verificar los parametros ingresados o comuniquese con tecnologia");
+        }
+
+         jQuery(function ($) {
+     
+            });
+   
         $(document).ready(function () {
             $("#<%=btnConsultar.ClientID%>").click(function () {
                 var ValidarCampoPoliza = $("#<%=txtIngresarPoliza.ClientID%>").val().length;
@@ -67,6 +75,7 @@
         <div class="jumbotron" align="center">
             <asp:Label ID="lbDatoPoliza" runat="server" Text="Datos Poliza"></asp:Label>
             <asp:Label ID="lbIdRamo" runat="server" Visible="false" Text="Datos Poliza"></asp:Label>
+             <asp:Label ID="lbCotizacion" runat="server" Visible="false" Text="Cotizacion"></asp:Label>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -151,7 +160,7 @@
             </div>
              <div class="form-group col-md-6">
                 <asp:Label ID="lbInicioVigencia" runat="server" Text="Inicio de Vigencia" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtInicioVigencia" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtInicioVigencia" runat="server"  TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
               <div class="form-group col-md-6">
                 <asp:Label ID="lbFinVigencia" runat="server" Text="Fin de Vigencia" CssClass="LetrasNegrita"></asp:Label>

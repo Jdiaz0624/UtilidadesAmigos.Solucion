@@ -73,7 +73,13 @@
             $("#btnQuitarDependiente").attr("disabled","disabled");
             $("#btnModificar").attr("disabled", "disabled");
         }
+          jQuery(function ($) {
+              $("#<%=txtCedula.ClientID%>").mask("999-9999999-9");
+            });
         $(document).ready(function () {
+
+           
+           
             //PROGRAMADOS EL EVENTO CLICO DEL NTON QUITAR
             $("#btnQuitarDependiente").click(function () {
                 BloquearControlesQuitarModificar();
@@ -113,6 +119,8 @@
                     return false;
 
                 }
+
+               
 
             });
 
@@ -234,8 +242,8 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <asp:Label ID="lbNumeroPoliza" runat="server" CssClass="LetrasNegrita" Text="Poliza"></asp:Label>
-                <asp:TextBox ID="txtPolizaConsulta" AutoCompleteType="Disabled" runat="server" MaxLength="20" CssClass="form-control"></asp:TextBox>
-               
+                <asp:TextBox ID="txtPolizaConsulta" AutoCompleteType="Disabled" runat="server" TextMode="Phone"  MaxLength="20" CssClass="form-control cpf"></asp:TextBox>
+          
             </div>
            
             
@@ -304,7 +312,7 @@
               </div>
               <div class="form-group col-md-6">
                   <asp:Label ID="lbNumeroID" runat="server" Text="Cedula" CssClass="LetrasNegrita"></asp:Label>
-                  <asp:TextBox ID="txtCedula" runat="server" MaxLength="150" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+                  <asp:TextBox ID="txtCedula" runat="server"  AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
               </div>
               <div class="form-group col-md-6">
                    <asp:Label ID="lbFechaNacimiento" runat="server" Text="Fecha Nacimiento" CssClass="LetrasNegrita"></asp:Label>

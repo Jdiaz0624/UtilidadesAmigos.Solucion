@@ -31,6 +31,15 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Label lbIdRamo;
         
         /// <summary>
+        /// lbCotizacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCotizacion;
+        
+        /// <summary>
         /// lbIngresaPoliza control.
         /// </summary>
         /// <remarks>
