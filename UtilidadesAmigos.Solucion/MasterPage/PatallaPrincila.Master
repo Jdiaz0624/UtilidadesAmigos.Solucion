@@ -75,7 +75,7 @@
                                 </a>
                                 <div class="dropdown-menu">
                                   <asp:LinkButton ID="linkProcesarDataGruas" runat="server" ForeColor="Red" Text="Procesar Data Gruas" OnClick="linkProcesarDataGruas_Click" CssClass="dropdown-item"></asp:LinkButton>
-                                    <asp:LinkButton ID="LinkCorregirValorDeclarativa" runat="server" ForeColor="Red" Text="Dato Poliza" OnClick="LinkCorregirValorDeclarativa_Click" CssClass="dropdown-item"></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkCorregirValorDeclarativa" runat="server" Text="Dato Poliza" OnClick="LinkCorregirValorDeclarativa_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     <asp:LinkButton ID="LinkCorregirLimites" runat="server" ForeColor="Red" Text="Corregir Limites" OnClick="LinkCorregirLimites_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     <asp:LinkButton ID="LinkEnvioCorreo" runat="server" ForeColor="Red" Text="Envio de Correo" OnClick="LinkEnvioCorreo_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     <asp:LinkButton ID="LinkEliminarBalance" runat="server" ForeColor="Red" Visible="false" Text="Eliminar Balance" OnClick="LinkEliminarBalance_Click" CssClass="dropdown-item"></asp:LinkButton>
