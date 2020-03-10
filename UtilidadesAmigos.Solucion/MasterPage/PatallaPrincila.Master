@@ -95,15 +95,9 @@
                                         <asp:LinkButton ID="LinkCorreoElectronicos" runat="server" ForeColor="Red" Text="Correo Electronico" OnClick="LinkCorreoElectronicos_Click" class="dropdown-item"></asp:LinkButton>
                                     </div>
                                   </li>
-                                  <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                          Cotizador
-                                        </a>
-                                        <div class="dropdown-menu">
-                                           <asp:LinkButton ID="LinkSolicitudEmision" runat="server" ForeColor="Red" Text="Solicitud" OnClick="LinkSolicitudEmision_Click" class="dropdown-item"></asp:LinkButton>
-                                          
-                                        </div>
-                                      </li>
+                                  <li class="nav-item">
+                            <asp:LinkButton ID="LinkSolicitudEmision" runat="server" ForeColor="Red" Text="Solicitud" OnClick="LinkSolicitudEmision_Click1" class="nav-link active"></asp:LinkButton>
+                          </li>
                                       <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                               Seguridad

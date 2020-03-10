@@ -13,42 +13,26 @@
         }
 
         .btn-sm{
-            width:100px;
+            width:400px;
+            height:200px;
         }
-          .LetrasNegrita {
-          font-weight:bold;
-          }
+
+           .BotonSolicitud {
+                width:450px;
+               height:250px;
+           }
 
 
     </style>
-        <script type="text/javascript">
-        function Mensaje() {
-            alert("Esta Opcion aun no esta disponible");
-        }
-    </script>
     <div class="container-fluid">
         <div class="jumbotron" align="center">
-            <asp:Label ID="lbTitulo" runat="server" Text="SOLICITUD DE EMISION"></asp:Label>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <asp:Label ID="lbSeleccionarTiposervicio" Text="Seleccionar Tipo de Solicitud" runat="server" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarTipoServicio" runat="server" AutoPostBack="true" ToolTip="Seleccionar el tipo de servicio" CssClass="form-control" OnSelectedIndexChanged="ddlSeleccionarTipoServicio_SelectedIndexChanged">
-                    <asp:ListItem Value="1">Seguro de Ley</asp:ListItem>
-                    <asp:ListItem Value="2">Seguro Full</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-             <div class="form-group col-md-4">
-                <asp:Label ID="Label1" Text="Seleccionar Producto" runat="server" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarProducto" runat="server" AutoPostBack="true" ToolTip="Seleccionar Producto" CssClass="form-control" OnSelectedIndexChanged="ddlSeleccionarProducto_SelectedIndexChanged"></asp:DropDownList>
-            </div>
-             <div class="form-group col-md-4">
-                <asp:Label ID="Label2" Text="Descripción" runat="server" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtDescripcionProducto" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-            </div>
+            <asp:Label ID="lbTitulo" runat="server" Text="SOLICITUD DE EMISION DE POLIZA"></asp:Label>
         </div>
         <div align="center">
-            <asp:Button ID="btnProcesar" runat="server" Text="Procesar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Comenzar Solicitud" OnClick="btnProcesar_Click" />
+
+            <asp:ImageButton ID="btnSeguroFull" runat="server" CssClass="BotonSolicitud" ToolTip="Solicitud de Seguros Full" ImageUrl="~/Imagenes/SeguroFull.jpg" />
+            <asp:ImageButton ID="btnSeguroLey" runat="server" CssClass="BotonSolicitud" ToolTip="Solicitud de Seguros de Ley" ImageUrl="~/Imagenes/Seguro de Ley.jpg" />
         </div>
     </div>
+
 </asp:Content>
