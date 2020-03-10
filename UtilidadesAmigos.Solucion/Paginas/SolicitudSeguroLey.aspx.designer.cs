@@ -121,24 +121,6 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtApodoCliente;
         
         /// <summary>
-        /// lbTipoComproBante control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTipoComproBante;
-        
-        /// <summary>
-        /// ddlSeleccionarTipoComprobante control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarTipoComprobante;
-        
-        /// <summary>
         /// lbTipoIdentificacion control.
         /// </summary>
         /// <remarks>
@@ -173,6 +155,24 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNumeroIdentificacion;
+        
+        /// <summary>
+        /// lbTipoComproBante control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTipoComproBante;
+        
+        /// <summary>
+        /// ddlSeleccionarTipoComprobante control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarTipoComprobante;
         
         /// <summary>
         /// lbTelefonoCasa control.
@@ -256,13 +256,13 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Label lbSeleccionarSector;
         
         /// <summary>
-        /// ddlSeleccionarSector control.
+        /// ddlSeleccionarMunicipio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarSector;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarMunicipio;
         
         /// <summary>
         /// lbDireccionCliente control.
@@ -310,24 +310,6 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Label lbDatosVehiculosTitulo;
         
         /// <summary>
-        /// lbSeleccionarTipoVehiculo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSeleccionarTipoVehiculo;
-        
-        /// <summary>
-        /// ddlSeleccionarTipoVehiculo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarTipoVehiculo;
-        
-        /// <summary>
         /// lbSeleccioanrMarcas control.
         /// </summary>
         /// <remarks>
@@ -362,6 +344,24 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarModelo;
+        
+        /// <summary>
+        /// lbSeleccionarTipoVehiculo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarTipoVehiculo;
+        
+        /// <summary>
+        /// ddlSeleccionarTipoVehiculo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarTipoVehiculo;
         
         /// <summary>
         /// lbIngresarAno control.
@@ -409,13 +409,13 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Label lbPlaca;
         
         /// <summary>
-        /// txtMatricula control.
+        /// txtPlaca control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMatricula;
+        protected global::System.Web.UI.WebControls.TextBox txtPlaca;
         
         /// <summary>
         /// lbPasajeros control.

@@ -22,7 +22,24 @@
           hr {border: 3px solid #666; border-radius: 300px/10px; height: 0px; text-align: center;}
     </style>
 
+    <script type="text/javascript">
+        function MascaraCedula() {
+            $("#<%=txtNumeroIdentificacion.ClientID%>").mask("999-9999999-9");
+        }
+        function MascaraRNC() {
+            $("#<%=txtNumeroIdentificacion.ClientID%>").mask("999-999999");
+        }
+        jQuery(function ($) {
+            $("#<%=txtTelefonoCasa.ClientID%>").mask("(999)-999-9999");
+            $("#<%=txtCelular.ClientID%>").mask("(999)-999-9999");
+            $("#<%=txtOtroTelefono.ClientID%>").mask("(999)-999-9999");
+        });
 
+        $(document).ready(function () {
+
+
+        });
+    </script>
     <div class="container-fluid">
         <div class="jumbotron" align="center">
             <asp:Label ID="LbTitulo" runat="server" Text="Solicitud de Seguros de Ley" CssClass="LetrasNegrita"></asp:Label>
@@ -50,17 +67,18 @@
                 <asp:Label ID="lbApodoCliente" runat="server"  Text="Apodo" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtApodoCliente" runat="server" AutoCompleteType="Disabled" CssClass="form-control" MaxLength="50"></asp:TextBox>
             </div>
-             <div class="form-group col-md-4">
-                <asp:Label ID="lbTipoComproBante" runat="server" AutoCompleteType="Disabled" Text="Tipo de Comprobante" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarTipoComprobante" runat="server" ToolTip="Seleccionar Tipo de comprobante" CssClass="form-control"></asp:DropDownList>
-            </div>
+            
             <div class="form-group col-md-4">
                 <asp:Label ID="lbTipoIdentificacion" runat="server"  Text="Seleccionar Tipo de Identificación" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarTipoIdentificacion" runat="server" ToolTip="Seleccionar Tipo de Identificación" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="ddlSeleccionarTipoIdentificacion" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarTipoIdentificacion_SelectedIndexChanged" ToolTip="Seleccionar Tipo de Identificación" CssClass="form-control"></asp:DropDownList>
             </div>
                <div class="form-group col-md-4">
                 <asp:Label ID="lbNumeroIdentificacion" runat="server" Text="RNC/Cedula" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtNumeroIdentificacion" AutoCompleteType="Disabled" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbTipoComproBante" runat="server" AutoCompleteType="Disabled" Text="Tipo de Comprobante" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarTipoComprobante" runat="server" ToolTip="Seleccionar Tipo de comprobante" CssClass="form-control"></asp:DropDownList>
             </div>
                  <div class="form-group col-md-4">
                 <asp:Label ID="lbTelefonoCasa" runat="server" Text="Telefono Casa" CssClass="LetrasNegrita"></asp:Label>
@@ -76,11 +94,11 @@
             </div>
             <div class="form-group col-md-6">
                 <asp:Label ID="lbSeleccionarProvincia" runat="server"  Text="Seleccionar Provincia" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarProdincia" runat="server" ToolTip="Seleccionar Provincia" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="ddlSeleccionarProdincia" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarProdincia_SelectedIndexChanged" ToolTip="Seleccionar Provincia" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="form-group col-md-6">
-                <asp:Label ID="lbSeleccionarSector" runat="server"  Text="Seleccionar Sector" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarSector" runat="server" ToolTip="Seleccionar Sector" CssClass="form-control"></asp:DropDownList>
+                <asp:Label ID="lbSeleccionarSector" runat="server"  Text="Seleccionar Municipio" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarMunicipio" runat="server" ToolTip="Seleccionar Municipio" CssClass="form-control"></asp:DropDownList>
             </div>
               <div class="form-group col-md-12">
                 <asp:Label ID="lbDireccionCliente" runat="server" Text="Dirección" CssClass="LetrasNegrita"></asp:Label>
@@ -93,21 +111,23 @@
             </div>
              
         <hr />
+        <!-- DATOS DEL VEHICULO-->
         <div align="center">
             <asp:Label ID="lbDatosVehiculosTitulo" runat="server" Text="Datos del Vehiculo" CssClass="LetrasNegrita"></asp:Label>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-4">
-                <asp:Label ID="lbSeleccionarTipoVehiculo" runat="server" Text="Seleccionar Tipo de Vehiculo" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarTipoVehiculo" runat="server" ToolTip="Seleccionar Tipo de Vehiculo" CssClass="form-control"></asp:DropDownList>
-            </div>
+           
             <div class="form-group col-md-4">
                 <asp:Label ID="lbSeleccioanrMarcas" runat="server" Text="Seleccionar Marca" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccioanrMarcas" runat="server" ToolTip="Seleccionar Marcas" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="ddlSeleccioanrMarcas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccioanrMarcas_SelectedIndexChanged" ToolTip="Seleccionar Marcas" CssClass="form-control"></asp:DropDownList>
             </div>
              <div class="form-group col-md-4">
                 <asp:Label ID="lbSeleccionarModelo" runat="server" Text="Seleccionar Modelo" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarModelo" runat="server" ToolTip="Seleccionar Modelos" CssClass="form-control"></asp:DropDownList>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbSeleccionarTipoVehiculo" runat="server" Text="Seleccionar Tipo de Vehiculo" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarTipoVehiculo" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarTipoVehiculo_SelectedIndexChanged" runat="server" ToolTip="Seleccionar Tipo de Vehiculo" CssClass="form-control"></asp:DropDownList>
             </div>
              <div class="form-group col-md-4">
                 <asp:Label ID="lbIngresarAno" runat="server" Text="Año" CssClass="LetrasNegrita"></asp:Label>
@@ -118,8 +138,8 @@
                 <asp:TextBox ID="txtChasis" runat="server" MaxLength="100" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
              <div class="form-group col-md-4">
-                <asp:Label ID="lbPlaca" runat="server" Text="Matricula" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtMatricula" runat="server" MaxLength="100" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                <asp:Label ID="lbPlaca" runat="server" Text="Placa" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtPlaca" runat="server" MaxLength="100" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
             <div class="form-group col-md-4">
                 <asp:Label ID="lbPasajeros" runat="server" Text="Cantidad de Pasajeros" CssClass="LetrasNegrita"></asp:Label>
