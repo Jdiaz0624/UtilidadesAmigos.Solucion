@@ -16,10 +16,23 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (!IsPostBack)
             {
-           
+                    ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
             }
         }
 
+        protected void ddlSeleccionarTipoIdentificacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        protected void ddlSeleccionarProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSiguienteCliente_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "DesbloquearControles", "DesbloquearControles();", true);
+        }
     }
 }

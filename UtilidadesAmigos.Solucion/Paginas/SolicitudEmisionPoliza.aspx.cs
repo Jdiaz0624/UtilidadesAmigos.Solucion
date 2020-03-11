@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -33,6 +34,28 @@ public partial class SolicitudEmisionPoliza : System.Web.UI.Page
 
         protected void btnSolicitudFull_Click(object sender, EventArgs e)
         {
+
+        }
+
+        protected void btnSeguroFull_Click(object sender, ImageClickEventArgs e)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "OpcionNoDisponible", "OpcionNoDisponible();", true);
+        }
+
+        protected void btnSeguroLey_Click(object sender, ImageClickEventArgs e)
+        {
+            try {
+                if (Session["IdUsuario"] != null)
+                {
+                    Response.Redirect("SolicitudSeguroLey.aspx");
+                }
+                else
+                {
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                }
+            }
+            catch (Exception) { }
 
         }
     }
