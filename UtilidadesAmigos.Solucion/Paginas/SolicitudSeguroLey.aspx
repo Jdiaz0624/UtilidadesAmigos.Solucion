@@ -52,7 +52,7 @@
 
         });
         $(document).ready(function () {
-            $("#btnSiguienteCliente").click(function () {
+            $("#<%=btnSiguienteCliente.ClientID%>").click(function () {
                 //VALIDAMOS EL CAMPO NOMBRE
                 var ValidarCampoNombre = $("#<%=txtNombreCliente.ClientID%>").val().length;
                 if (ValidarCampoNombre < 1) {
@@ -108,8 +108,8 @@
                                     }
                                     else {
                                         //VALIDAMOS EL CODIGO DEL INTERMEDIARIO
-                                        var CodigoIntermediario = $("#<%=txtCodigoIntermediario.ClientID%>").val().length;
-                                        if (CodigoIntermediario < 1) {
+                                        var CodigoVendedor = $("#<%=txtCodigoIntermediario.ClientID%>").val().length;
+                                        if (CodigoVendedor < 1) {
                                             alert("El campo codigo de intermediario no puede estar vacio, favor de verificar");
                                             $("#<%=txtCodigoIntermediario.ClientID%>").css("border-color", "red");
                                             $("#<%=txtCodigoIntermediario.ClientID%>").focus();
@@ -269,7 +269,7 @@
                        </div>
                    </div>
                     <div align="center">
-                        <button type="button" id="btnSiguienteCliente" class="btn btn-outline-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Siguiente</button>
+                        <asp:Button ID="btnSiguienteCliente" runat="server" CssClass="btn btn-outline-primary" Text="Siguiente" ToolTip="Pasar a completar los datos del vehiculo" OnClick="btnSiguienteCliente_Click1" />
                     </div>
                        </ContentTemplate>
                    </asp:UpdatePanel>

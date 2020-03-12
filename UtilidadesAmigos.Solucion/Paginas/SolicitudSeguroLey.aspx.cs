@@ -131,12 +131,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void txtCodigoIntermediario_TextChanged(object sender, EventArgs e)
         {
-            SacarDatosIntermediario(txtCodigoIntermediario.Text);
+           // SacarDatosIntermediario(txtCodigoIntermediario.Text);
         }
 
         protected void txtCodigoCobrador_TextChanged(object sender, EventArgs e)
         {
-            SacarDatosCobrador(Convert.ToDecimal(txtCodigoCobrador.Text));
+            
+        }
+
+        protected void btnSiguienteCliente_Click1(object sender, EventArgs e)
+        {
+           // ClientScript.RegisterStartupScript(GetType(), "DesbloquearControles", "DesbloquearControles();", true);
         }
     }
 }
