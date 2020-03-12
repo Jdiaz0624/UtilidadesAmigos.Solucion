@@ -105,6 +105,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
                 GenerarNumeroSolicitud();
                 CargarDropsCliente();
+                
             }
         }
 
@@ -136,12 +137,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void txtCodigoCobrador_TextChanged(object sender, EventArgs e)
         {
-            
+            ClientScript.RegisterStartupScript(GetType(), "DesbloquearControlesVehiculos", "DesbloquearControlesVehiculos();", true);
         }
 
         protected void btnSiguienteCliente_Click1(object sender, EventArgs e)
         {
-           // ClientScript.RegisterStartupScript(GetType(), "DesbloquearControles", "DesbloquearControles();", true);
+            ClientScript.RegisterStartupScript(GetType(), "DesbloquearControlesVehiculos", "DesbloquearControlesVehiculos();", true);
         }
     }
 }

@@ -28,14 +28,12 @@
     </style>
     <script type="text/javascript">
         function BloquearControles() {
-             $("#btnInformacionCliente").removeAttr("disabled", true);
-             $("#btnInformacionVehiculo").attr("disabled", "disabled");
-             $("#btnInformacionCobertura").attr("disabled", "disabled");
+            $("#btnProductosAgregados").attr("disabled", "disabled");
+            $("#<%=btnGuardarRegistro.ClientID%>").attr("disabled", "disabled");
         }
-        function DesbloquearControles() {
-             $("#btnInformacionCliente").removeAttr("disabled", true);
-             $("#btnInformacionVehiculo").removeAttr("disabled", true);
-             $("#btnInformacionCobertura").attr("disabled", "disabled");
+        function DesbloquearControlesVehiculos() {
+            $("#btnProductosAgregados").removeAttr("disabled", true);
+            $("#<%=btnGuardarRegistro.ClientID%>").removeAttr("disabled", true);
         }
 
         function MascaraCedula() {
@@ -52,77 +50,16 @@
 
         });
         $(document).ready(function () {
+
             $("#<%=btnSiguienteCliente.ClientID%>").click(function () {
-                //VALIDAMOS EL CAMPO NOMBRE
-                var ValidarCampoNombre = $("#<%=txtNombreCliente.ClientID%>").val().length;
-                if (ValidarCampoNombre < 1) {
-                    alert("El campo nombre no puede estar vacio, favor de verificar");
-                    $("#<%=txtNombreCliente.ClientID%>").css("border-color", "red");
-                    $("#<%=txtNombreCliente.ClientID%>").focus();
+                var Capacidad = $("#<%=txtCapacidad.ClientID%>").val().length;
+                if (Capacidad < 1) {
+                    alert("campo vacio");
+                    $("#<%=txtCapacidad.ClientID%>").css("border-color", "red");
                     return false;
                 }
                 else {
-                    //VALIDAMOS EL CAMPO APELLIDO
-                    var ValidarCampoApellido = $("#<%=txtApellidoCLiente.ClientID%>").val().length;
-                    if (ValidarCampoApellido < 1) {
-                        alert("El campo apellido no puede estar vacio, favor de verificar");
-                        $("#<%=txtApellidoCLiente.ClientID%>").css("border-color", "red");
-                        $("#<%=txtApellidoCLiente.ClientID%>").focus();
-                        return false;
-                    }
-                    else {
-                        //VALIDAMOS EL CAMPO NUMERO DE IDENTIFICACION
-                        var ValidarNumeroIdentificacion = $("#<%=txtNumeroIdentificacion.ClientID%>").val().length;
-                        if (ValidarNumeroIdentificacion < 1) {
-                            alert("El campo numero de identificación no puede estar vacio, favor de verificar");
-                            $("#<%=txtNumeroIdentificacion.ClientID%>").css("border-color", "red");
-                            $("#<%=txtNumeroIdentificacion.ClientID%>").focus();
-                            return false;
-                        }
-                        else {
-                            //VALIDAMOS EL CAMPO TELEFONO
-                            var Telefono = $("#<%=txtTelefono.ClientID%>").val().length;
-                            if (Telefono < 1) {
-                                alert("El campo telefono no puede estar vacio, favor de verificar");
-                                $("#<%=txtTelefono.ClientID%>").css("border-color", "red");
-                                $("#<%=txtTelefono.ClientID%>").focus();
-                                return false;
-                            }
-                            else {
-                                //VALIDAMOS EL CAMPO FECHA DE NACIMIENTO
-                                var FechaNacimiento = $("#<%=txtFechaNacimiento.ClientID%>").val().length;
-                                if (FechaNacimiento < 1) {
-                                    alert("El campo fecha de nacimiento no puede estar vacio, favor de verificar");
-                                    $("#<%=txtFechaNacimiento.ClientID%>").css("border-color", "red");
-                                    $("#<%=txtFechaNacimiento.ClientID%>").focus();
-                                    return false;
-                                }
-                                else {
-                                    //VALIDAMOS EL CODIGO DEL COBRADOR
-                                    var CodigoCobrador = $("#<%=txtCodigoCobrador.ClientID%>").val().length;
-                                    if (CodigoCobrador < 1) {
-                                        alert("El campo codigo de cobrador no puede estar vacio, favor de verificar");
-                                        $("#<%=txtCodigoCobrador.ClientID%>").css("border-color", "red");
-                                        $("#<%=txtCodigoCobrador.ClientID%>").focus();
-                                        return false;
-                                    }
-                                    else {
-                                        //VALIDAMOS EL CODIGO DEL INTERMEDIARIO
-                                        var CodigoVendedor = $("#<%=txtCodigoIntermediario.ClientID%>").val().length;
-                                        if (CodigoVendedor < 1) {
-                                            alert("El campo codigo de intermediario no puede estar vacio, favor de verificar");
-                                            $("#<%=txtCodigoIntermediario.ClientID%>").css("border-color", "red");
-                                            $("#<%=txtCodigoIntermediario.ClientID%>").focus();
-                                            return false;
-                                        }
-                                        else {
-                                            DesbloquearControles();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    DesbloquearControlesVehiculos();
                 }
             });
 
@@ -269,7 +206,7 @@
                        </div>
                    </div>
                     <div align="center">
-                        <asp:Button ID="btnSiguienteCliente" runat="server" CssClass="btn btn-outline-primary" Text="Siguiente" ToolTip="Pasar a completar los datos del vehiculo" OnClick="btnSiguienteCliente_Click1" />
+                        <asp:Button ID="btnSiguienteCliente" runat="server" CssClass="btn btn-outline-primary" Text="Siguiente" ToolTip="Pasar a completar los datos del vehiculo" OnClick="btnSiguienteCliente_Click" />
                     </div>
                        </ContentTemplate>
                    </asp:UpdatePanel>
