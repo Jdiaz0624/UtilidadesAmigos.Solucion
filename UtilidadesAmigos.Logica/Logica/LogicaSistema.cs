@@ -2177,5 +2177,19 @@ namespace UtilidadesAmigos.Logica.Logica
             return Modificar;
         }
         #endregion
+
+        #region SACAR EL NOMBRE DE COBRADOR
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscaDatosCobrador> SacarNombreCobrador(decimal? Codigo = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCA_DATOS_COBRADOR(Codigo)
+                          select new UtilidadesAmigos.Logica.Entidades.EBuscaDatosCobrador
+                          {
+                              NombreCobrador=n.NombreCobrador
+                          }).ToList();
+            return Buscar;
+        }
+        #endregion
     }
 }

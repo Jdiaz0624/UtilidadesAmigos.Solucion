@@ -191,9 +191,9 @@ a{color:inherit;text-decoration:none}
             <div class="hr"></div>
                <div class="form-group form-check">
                       <div class="form-check-inline">
-                           <asp:RadioButton ID="rbcolaborador" GroupName="Login" runat="server" AutoPostBack="true" CssClass="form-check-input" Text="Colaborador" OnCheckedChanged="rbcolaborador_CheckedChanged" Visible="False" />
-                          <asp:RadioButton ID="rbSupervisor" GroupName="Login" runat="server" AutoPostBack="true" CssClass="form-check-input" Text="Supervisor" OnCheckedChanged="rbSupervisor_CheckedChanged" Visible="False" />
-                          <asp:RadioButton ID="rbIntermediario" GroupName="Login" runat="server" AutoPostBack="true" CssClass="form-check-input" Text="Intermediario" OnCheckedChanged="rbIntermediario_CheckedChanged" Visible="False" />
+                           <asp:RadioButton ID="rbcolaborador" GroupName="Login" runat="server" AutoPostBack="true" CssClass="form-check-input" Text="Colaborador" OnCheckedChanged="rbcolaborador_CheckedChanged" />
+                          <asp:RadioButton ID="rbSupervisor" GroupName="Login" runat="server" AutoPostBack="true" CssClass="form-check-input" Text="Supervisor" OnCheckedChanged="rbSupervisor_CheckedChanged"/>
+                          <asp:RadioButton ID="rbIntermediario" GroupName="Login" runat="server" AutoPostBack="true" CssClass="form-check-input" Text="Intermediario" OnCheckedChanged="rbIntermediario_CheckedChanged"/>
                       </div>
                   </div>
           <div class="login-form">

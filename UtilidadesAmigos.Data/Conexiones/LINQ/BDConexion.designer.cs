@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -663,6 +663,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cotizacion, item, inicioVigencia, finVigencia, accion);
 			return ((ISingleResult<SP_MODIFICAR_VIGENCIA_POLIZAResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_DATOS_COBRADOR")]
+		public ISingleResult<SP_BUSCA_DATOS_COBRADORResult> SP_BUSCA_DATOS_COBRADOR([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Codigo", DbType="Decimal(20,0)")] System.Nullable<decimal> codigo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigo);
+			return ((ISingleResult<SP_BUSCA_DATOS_COBRADORResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -19831,6 +19838,32 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._FechaFinVigencia != value))
 				{
 					this._FechaFinVigencia = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_DATOS_COBRADORResult
+	{
+		
+		private string _NombreCobrador;
+		
+		public SP_BUSCA_DATOS_COBRADORResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreCobrador", DbType="VarChar(100)")]
+		public string NombreCobrador
+		{
+			get
+			{
+				return this._NombreCobrador;
+			}
+			set
+			{
+				if ((this._NombreCobrador != value))
+				{
+					this._NombreCobrador = value;
 				}
 			}
 		}

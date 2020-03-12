@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
       <style type="text/css">
         .jumbotron{
             color:#000000; 
@@ -37,63 +38,86 @@
              $("#btnInformacionCobertura").attr("disabled", "disabled");
         }
 
-        jQuery(function ($) {
+        function MascaraCedula() {
             $("#<%=txtNumeroIdentificacion.ClientID%>").mask("999-9999999-9");
+        }
+          function MascaraRnc() {
+            $("#<%=txtNumeroIdentificacion.ClientID%>").mask("999-999999");
+        }
+        jQuery(function ($) {
+            $("#<%=txtTelefono.ClientID%>").mask("(999)-999-9999");
+            $("#<%=txtCelular.ClientID%>").mask("(999)-999-9999");
+            $("#<%=txtOtroTelefono.ClientID%>").mask("(999)-999-9999");
+
 
         });
         $(document).ready(function () {
             $("#btnSiguienteCliente").click(function () {
-                //VALIDAMOS LOS CAMPOS VACIOS
-                var NombreCliente = $("#<%=txtNombreCliente.ClientID%>").val().length;
-                if (NombreCliente < 1) {
-                    alert("El campo nombre no puede estar vacio");
+                //VALIDAMOS EL CAMPO NOMBRE
+                var ValidarCampoNombre = $("#<%=txtNombreCliente.ClientID%>").val().length;
+                if (ValidarCampoNombre < 1) {
+                    alert("El campo nombre no puede estar vacio, favor de verificar");
                     $("#<%=txtNombreCliente.ClientID%>").css("border-color", "red");
                     $("#<%=txtNombreCliente.ClientID%>").focus();
                     return false;
                 }
                 else {
                     //VALIDAMOS EL CAMPO APELLIDO
-                    var ApellidoCliente = $("#<%=txtApellidoCLiente.ClientID%>").val().length;
-                    if (ApellidoCliente < 1) {
-                        alert("El campo apellido no puede estar vacio");
+                    var ValidarCampoApellido = $("#<%=txtApellidoCLiente.ClientID%>").val().length;
+                    if (ValidarCampoApellido < 1) {
+                        alert("El campo apellido no puede estar vacio, favor de verificar");
                         $("#<%=txtApellidoCLiente.ClientID%>").css("border-color", "red");
                         $("#<%=txtApellidoCLiente.ClientID%>").focus();
                         return false;
                     }
                     else {
-                        var NumeroIdentificacion = $("#<%=txtNumeroIdentificacion.ClientID%>").val().length;
-                        if (NumeroIdentificacion < 1) {
-                            alert("El campo numero de indentificación no puede estar vacio");
+                        //VALIDAMOS EL CAMPO NUMERO DE IDENTIFICACION
+                        var ValidarNumeroIdentificacion = $("#<%=txtNumeroIdentificacion.ClientID%>").val().length;
+                        if (ValidarNumeroIdentificacion < 1) {
+                            alert("El campo numero de identificación no puede estar vacio, favor de verificar");
                             $("#<%=txtNumeroIdentificacion.ClientID%>").css("border-color", "red");
                             $("#<%=txtNumeroIdentificacion.ClientID%>").focus();
                             return false;
                         }
                         else {
-                            var TelefonoCliente = $("#<%=txtTelefono.ClientID%>").val().length;
-                            if (TelefonoCliente < 1) {
-                                alert("El campo telefono no puede estar vacio");
+                            //VALIDAMOS EL CAMPO TELEFONO
+                            var Telefono = $("#<%=txtTelefono.ClientID%>").val().length;
+                            if (Telefono < 1) {
+                                alert("El campo telefono no puede estar vacio, favor de verificar");
                                 $("#<%=txtTelefono.ClientID%>").css("border-color", "red");
                                 $("#<%=txtTelefono.ClientID%>").focus();
                                 return false;
                             }
                             else {
-                                var CodigoCobrador = $("#<%=txtCodigoCobrador.ClientID%>").val().length;
-                                if (CodigoCobrador < 1) {
-                                    alert("El campo codigo de cobrador no puede estar vacio");
-                                    $("#<%=txtCodigoCobrador.ClientID%>").css("border-color", "red");
-                                    $("#<%=txtCodigoCobrador.ClientID%>").focus();
+                                //VALIDAMOS EL CAMPO FECHA DE NACIMIENTO
+                                var FechaNacimiento = $("#<%=txtFechaNacimiento.ClientID%>").val().length;
+                                if (FechaNacimiento < 1) {
+                                    alert("El campo fecha de nacimiento no puede estar vacio, favor de verificar");
+                                    $("#<%=txtFechaNacimiento.ClientID%>").css("border-color", "red");
+                                    $("#<%=txtFechaNacimiento.ClientID%>").focus();
                                     return false;
                                 }
                                 else {
-                                    var CodigoVendedor = $("#<%=txtCodigoIntermediario.ClientID%>").val().length;
-                                    if (CodigoVendedor < 1) {
-                                        alert("El campo codigo de Vendedor no puede estar vacio");
-                                        $("#<%=txtCodigoIntermediario.ClientID%>").css("border-color", "red");
-                                        $("#<%=txtCodigoIntermediario.ClientID%>").focus();
+                                    //VALIDAMOS EL CODIGO DEL COBRADOR
+                                    var CodigoCobrador = $("#<%=txtCodigoCobrador.ClientID%>").val().length;
+                                    if (CodigoCobrador < 1) {
+                                        alert("El campo codigo de cobrador no puede estar vacio, favor de verificar");
+                                        $("#<%=txtCodigoCobrador.ClientID%>").css("border-color", "red");
+                                        $("#<%=txtCodigoCobrador.ClientID%>").focus();
                                         return false;
                                     }
                                     else {
-                                        DesbloquearControles();
+                                        //VALIDAMOS EL CODIGO DEL INTERMEDIARIO
+                                        var CodigoIntermediario = $("#<%=txtCodigoIntermediario.ClientID%>").val().length;
+                                        if (CodigoIntermediario < 1) {
+                                            alert("El campo codigo de intermediario no puede estar vacio, favor de verificar");
+                                            $("#<%=txtCodigoIntermediario.ClientID%>").css("border-color", "red");
+                                            $("#<%=txtCodigoIntermediario.ClientID%>").focus();
+                                            return false;
+                                        }
+                                        else {
+                                            DesbloquearControles();
+                                        }
                                     }
                                 }
                             }
@@ -101,8 +125,32 @@
                     }
                 }
             });
+
+
+            //SOLO NUMEROS Y LIMINAR CARACTERES
+            //COBRADOR
+            $("#<%=txtCodigoCobrador.ClientID%>").on('keydown keypress', function (e) {
+                if (e.key.length == 1) {
+                    if ($(this).val().length < 4 && !isNaN(parseFloat(e.key))) {
+                        $(this).val($(this).val() + e.key);
+                    }
+                    return false;
+                }
+            });
+            //INTERMEDIARIO
+              $("#<%=txtCodigoIntermediario.ClientID%>").on("keydown keypress", function (e) {
+                if (e.key.length == 1) {
+                    if ($(this).val().length < 4 && !isNaN(parseFloat(e.key))) {
+                        $(this).val($(this).val() + e.key);
+                    }
+                    return false;
+                }
+            });
+        
         });
     </script>
+
+
       <div class="container-fluid">
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTitulo" runat="server" Text="Solicitud de Seguros de Ley"></asp:Label><br />
@@ -110,22 +158,23 @@
             <asp:Label ID="lbNumeroSolicitudVariable" runat="server" Text="0"></asp:Label>
         </div>
         <asp:ScriptManager ID="ScripManagerSegurosLey" runat="server"></asp:ScriptManager>
-        <asp:UpdatePanel ID="UpdatePanelSeguroLey" runat="server">
-            <ContentTemplate>
-                    <button class="btn btn-outline-primary btn-sm" id="btnInformacionCliente" type="button" data-toggle="collapse" data-target="#InformacionCliente" aria-expanded="false" aria-controls="collapseExample">
+
+                <button class="btn btn-outline-primary btn-sm" id="btnInformacionCliente" type="button" data-toggle="collapse" data-target="#InformacionCliente" aria-expanded="false" aria-controls="collapseExample">
                      INFORMACION DE CLIENTE
                      </button><br />
                 <div class="collapse" id="InformacionCliente">
                 <div class="card card-body">
-                   <div class="form-row">
+                   <asp:UpdatePanel ID="UpdatePanelCliente" runat="server">
+                       <ContentTemplate>
+                           <div class="form-row">
                        <!--NOMBRE DE CLIENTE-->
                        <div class="form-group col-md-4">
-                           <asp:Label ID="lbNombreCliente" runat="server" Text="Nombre de Cliente" CssClass="LetrasNegrita"></asp:Label>
+                           <asp:Label ID="lbNombreCliente" runat="server" Text="Nombre de Cliente *" CssClass="LetrasNegrita"></asp:Label>
                            <asp:TextBox ID="txtNombreCliente" runat="server" AutoCompleteType="Disabled" CssClass="form-control" MaxLength="20"></asp:TextBox>
                        </div>
                        <!--APELLIDO DE CLIENTE-->
                        <div class="form-group col-md-4">
-                           <asp:Label ID="lbApellidoCliente" runat="server" Text="Apellido de Cliente" CssClass="LetrasNegrita"></asp:Label>
+                           <asp:Label ID="lbApellidoCliente" runat="server" Text="Apellido de Cliente *" CssClass="LetrasNegrita"></asp:Label>
                            <asp:TextBox ID="txtApellidoCLiente" runat="server" AutoCompleteType="Disabled" CssClass="form-control" MaxLength="20"></asp:TextBox>
                        </div>
                        <!--APODO DE CLIENTE-->
@@ -140,8 +189,8 @@
                        </div>
                       <!--NUMERO DE IDENTIFICACION-->
                       <div class="form-group col-md-4">
-                           <asp:Label ID="lbNumeroIdentificacion" runat="server" Text="Numero de Identificación" CssClass="LetrasNegrita"></asp:Label>
-                       <asp:TextBox ID="txtNumeroIdentificacion" runat="server" CssClass="form-control"></asp:TextBox>
+                           <asp:Label ID="lbNumeroIdentificacion" runat="server" Text="Numero de Identificación *" CssClass="LetrasNegrita"></asp:Label>
+                       <asp:TextBox ID="txtNumeroIdentificacion" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                       </div>
                        <!--TIPO DE COMPROBANTE-->
                        <div class="form-group col-md-4">
@@ -150,22 +199,22 @@
                        </div>
                        <!--TELEFONO DE CASA-->
                        <div class="form-group col-md-4">
-                           <asp:Label ID="lbTelefonoCasa" runat="server" Text="Telefono" CssClass="LetrasNegrita"></asp:Label>
-                           <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control"></asp:TextBox>
+                           <asp:Label ID="lbTelefonoCasa" runat="server" Text="Telefono *" CssClass="LetrasNegrita"></asp:Label>
+                           <asp:TextBox ID="txtTelefono" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                        </div>
                        <!--CELULAR-->
                        <div class="form-group col-md-4">
                              <asp:Label ID="lbCelular" runat="server" Text="Celular" CssClass="LetrasNegrita"></asp:Label>
-                           <asp:TextBox ID="txtCelular" runat="server" CssClass="form-control"></asp:TextBox>
+                           <asp:TextBox ID="txtCelular" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                        </div>
                        <!--TELEFONO DE OFICINA-->
                        <div class="form-group col-md-4">
                              <asp:Label ID="lbOtroTelefono" runat="server" Text="Otro Telefono" CssClass="LetrasNegrita"></asp:Label>
-                           <asp:TextBox ID="txtOtroTelefono" runat="server" CssClass="form-control"></asp:TextBox>
+                           <asp:TextBox ID="txtOtroTelefono" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                        </div>
                        <!--FECHA DE NACIMIENTO-->
                        <div class="form-group col-md-4">
-                             <asp:Label ID="lbFechaNacimiento" runat="server" Text="Fecha de Nacimiento" CssClass="LetrasNegrita"></asp:Label>
+                             <asp:Label ID="lbFechaNacimiento" runat="server" Text="Fecha de Nacimiento *" CssClass="LetrasNegrita"></asp:Label>
                            <asp:TextBox ID="txtFechaNacimiento" TextMode="Date" runat="server" CssClass="form-control"></asp:TextBox>
                        </div>
                        <!--SELECCIONAR SEXO-->
@@ -181,17 +230,17 @@
                        <!--OCUPACION-->
                        <div class="form-group col-md-4">
                            <asp:Label ID="lbOcupacion" runat="server" Text="Ocupación" CssClass="LetrasNegrita"></asp:Label>
-                           <asp:TextBox ID="txtOcupacion" MaxLength="150" runat="server" CssClass="form-control"></asp:TextBox>
+                           <asp:TextBox ID="txtOcupacion" MaxLength="150" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
                        </div>
                          <!--COBRADOR-->
                        <div class="form-group col-md-4">
-                           <asp:Label ID="lbCodigoCobrador" runat="server" Text="Codigo de Cobrador" CssClass="LetrasNegrita"></asp:Label>
-                           <asp:TextBox ID="txtCodigoCobrador"  runat="server" CssClass="form-control"></asp:TextBox>
+                           <asp:Label ID="lbCodigoCobrador" runat="server" Text="Codigo de Cobrador *" CssClass="LetrasNegrita"></asp:Label>
+                           <asp:TextBox ID="txtCodigoCobrador" AutoCompleteType="Disabled" AutoPostBack="true" runat="server" CssClass="form-control" OnTextChanged="txtCodigoCobrador_TextChanged"></asp:TextBox>
                        </div>
                          <!--INTERMEDIARIO-->
                        <div class="form-group col-md-4">
-                             <asp:Label ID="lbCodigoIntermediario" runat="server" Text="Codigo de Vendedor" CssClass="LetrasNegrita"></asp:Label>
-                           <asp:TextBox ID="txtCodigoIntermediario"  runat="server" CssClass="form-control"></asp:TextBox>
+                             <asp:Label ID="lbCodigoIntermediario" runat="server" Text="Codigo de Vendedor *" CssClass="LetrasNegrita"></asp:Label>
+                           <asp:TextBox ID="txtCodigoIntermediario" AutoCompleteType="Disabled" AutoPostBack="true" runat="server" CssClass="form-control" OnTextChanged="txtCodigoIntermediario_TextChanged"></asp:TextBox>
                        </div>
                          <!--PROVINCIA-->
                        <div class="form-group col-md-4">
@@ -222,15 +271,66 @@
                     <div align="center">
                         <button type="button" id="btnSiguienteCliente" class="btn btn-outline-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Siguiente</button>
                     </div>
+                       </ContentTemplate>
+                   </asp:UpdatePanel>
                    </div>
                 </div>
                 <hr />
-                  <button class="btn btn-outline-primary btn-sm" id="btnInformacionVehiculo" type="button" data-toggle="collapse" data-target="#InformacionVehiculos" aria-expanded="false" aria-controls="collapseExample">
-                     INFORMACION DE VEHICULOS
-                     </button><br />
+                <button class="btn btn-outline-primary btn-sm" id="btnInformacionVehiculo" type="button" data-toggle="collapse" data-target="#InformacionVehiculos" aria-expanded="false" aria-controls="collapseExample">
+                     INFORMACION DE VEHICULOS</button><br />
                 <div class="collapse" id="InformacionVehiculos">
                 <div class="card card-body">
-                   INFORMACION DE VEHICULOS
+                   <div class="form-row">
+                       <!--MARCA DE VEHICULO-->
+                       <div class="form-group col-md-4">
+                           <asp:Label ID="lbMarcaVehiculo" runat="server" Text="Marca" CssClass="LetrasNegrita"></asp:Label>
+                           <asp:DropDownList ID="ddlSeleccionarMarcavehiculo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarMarcavehiculo_SelectedIndexChanged" ToolTip="Seleccionar Marca de Vehiculo" CssClass="form-control"></asp:DropDownList>
+                       </div>
+                       <!--MODELO DE VEHICULO-->
+                       <div class="form-group col-md-4">
+                           <asp:Label ID="lbModeloVehiculo" runat="server" Text="Modelo" CssClass="LetrasNegrita"></asp:Label>
+                           <asp:DropDownList ID="ddlSeleccionarModeloVehiculo" runat="server" ToolTip="Seleccionar Modelo" CssClass="form-control"></asp:DropDownList>
+                       </div>
+                       <!--AÑO DE VEICULO-->
+                       <div class="form-group col-md-4">
+                           <asp:Label ID="lbAnoVehiculo" runat="server" Text="Año" CssClass="LetrasNegrita"></asp:Label>
+                           <asp:TextBox ID="txtAnoVehiculo" runat="server" CssClass="form-control"></asp:TextBox>
+                       </div>
+                        <!--CHASIS-->
+                       <div class="form-group col-md-4">
+                           <asp:Label ID="lbClasis" runat="server" Text="Chasis" CssClass="LetrasNegrita"></asp:Label>
+                           <asp:TextBox ID="txtChasis" runat="server" CssClass="form-control"></asp:TextBox>
+                       </div>
+                       <!--PLACA-->
+                       <div class="form-group col-md-4">
+                           <asp:Label ID="lbPlaca" runat="server" Text="Placa" CssClass="LetrasNegrita"></asp:Label>
+                           <asp:TextBox ID="txtPlaca" runat="server" CssClass="form-control"></asp:TextBox>
+                       </div>
+                        <!--TIPO DE VEHICULO-->
+                       <div class="form-group col-md-4">
+                           <asp:Label ID="lbTipoVehiculo" runat="server" Text="Tipo de Vehiculo" CssClass="LetrasNegrita"></asp:Label>
+                           <asp:DropDownList ID="ddlSeleccionarTipoVehiculo" runat="server" ToolTip="Seleccionar Tipo de Vehiculo" CssClass="form-control"></asp:DropDownList>
+                       </div>
+                       <!--COLOR DE VEHICULO-->
+                       <div class="form-group col-md-4">
+                           <asp:Label ID="lbColorVehiculo" runat="server" Text="Color" CssClass="LetrasNegrita"></asp:Label>
+                           <asp:DropDownList ID="ddlSeleccionarColor" runat="server" ToolTip="Seleccionar Color" CssClass="form-control"></asp:DropDownList>
+                       </div>
+                       <!--CAPACIDAD-->
+                       <div class="form-group col-md-4">
+                           <asp:Label ID="lbCapacidad" runat="server" Text="Capacidad" CssClass="LetrasNegrita"></asp:Label>
+                           <asp:TextBox ID="txtCapacidad" runat="server" CssClass="form-control" MaxLength="40"></asp:TextBox>
+                       </div>
+                        <!--CANTIDAD DE PASAJEROS-->
+                       <div class="form-group col-md-4">
+                           <asp:Label ID="lbCantidadPasajeros" runat="server" Text="Cantidad de Pasajeros" CssClass="LetrasNegrita"></asp:Label>
+                           <asp:TextBox ID="txtCantidadPasajeros" runat="server" CssClass="form-control"></asp:TextBox>
+                       </div>
+                   </div>
+                    <div align="center">
+                        <button type="button" id="btnProductosAgregados" class="btn btn-outline-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Vehiculos Agregados</button>
+                        <asp:Button ID="btnGuardarRegistro" runat="server" Text="Guardar" ToolTip="Guardar Registros" class="btn btn-outline-primary" />
+                    </div>
                    </div>
                 </div>
                 <hr />
@@ -242,8 +342,7 @@
                    INFORMACION DE COBERTURAS
                    </div>
                 </div>
-            </ContentTemplate>
-        </asp:UpdatePanel>
+
        
     </div>
 

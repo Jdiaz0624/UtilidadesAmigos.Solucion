@@ -68,6 +68,7 @@
     <Compile Include="Entidades\EAccion.cs" />
     <Compile Include="Entidades\EBuscaClienteIntermediario.cs" />
     <Compile Include="Entidades\EBuscaCoberturasMantenimiento.cs" />
+    <Compile Include="Entidades\EBuscaDatosCobrador.cs" />
     <Compile Include="Entidades\EBuscaDetalleFacturacion.cs" />
     <Compile Include="Entidades\EBuscaDetalleReclamaciones.cs" />
     <Compile Include="Entidades\EBuscaDetallesCobros.cs" />
