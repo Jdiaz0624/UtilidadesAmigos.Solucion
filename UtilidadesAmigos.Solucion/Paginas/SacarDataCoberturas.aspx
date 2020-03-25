@@ -19,7 +19,7 @@
         <asp:TextBox ID="txtFechaHasta" runat="server" TextMode="Date" CssClass="Texbox-Fecha"></asp:TextBox><br />
         <asp:Label ID="lbConsultarPoliza" runat="server" Text="Poliza" CssClass="Label"></asp:Label>
         <asp:TextBox ID="txtPoliza" runat="server" MaxLength="20" PlaceHolder="Ingresar Poliza" CssClass="Caja-Texto-Login"></asp:TextBox><br />
-        <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="Boton-Consultar" />
+        <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="Boton-Consultar" OnClick="btnConsultar_Click" />
     </div>
     <hr />
 

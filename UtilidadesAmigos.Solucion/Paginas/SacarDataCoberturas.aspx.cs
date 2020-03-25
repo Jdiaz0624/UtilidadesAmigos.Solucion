@@ -18,5 +18,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
 
         }
+
+        protected void btnConsultar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
