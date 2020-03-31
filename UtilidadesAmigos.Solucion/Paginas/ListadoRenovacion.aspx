@@ -106,6 +106,7 @@
         <div>
             <asp:Button ID="btnConsultar" runat="server" Text="Buscar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultar_Click" />
             <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportar_Click" />
+            <button type="button" id="btnEstadistica" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".bd-example-modal-xl">Estadistica</button>
         </div>
         <!--FINALIZAMOS LOS BOTONES-->
         <br />
@@ -138,4 +139,29 @@
     </div>
         <!--FIN DEL GRID-->
     </div>
+
+
+    <!--ESTADISTICA-->
+    <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="container-fluid">
+          <div class="jumbotron" align="center">
+              <asp:Label ID="lbTituloEstatustica" runat="server" Text="Estadistica de Renovación"></asp:Label>
+          </div>
+          <asp:ScriptManager ID="EstadisticaScripmanager" runat="server"></asp:ScriptManager>
+          <asp:UpdatePanel ID="EstadisticaUpdatePanel" runat="server">
+              <ContentTemplate>
+                  <div class="form-row">
+                      <div class="form-group col-md-4">
+                          <asp:Label ID="lbFechaDesdeEstadistica" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
+                          <asp:TextBox ID="txtFechaDesdeEstadistica" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                      </div>
+                  </div>
+              </ContentTemplate>
+          </asp:UpdatePanel>
+      </div>
+    </div>
+  </div>
+</div>
 </asp:Content>
