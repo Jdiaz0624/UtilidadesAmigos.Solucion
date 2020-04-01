@@ -2208,6 +2208,6 @@ namespace UtilidadesAmigos.Logica.Logica
             return SacarData;
         }
         #endregion
-
+        //
     }
 }
