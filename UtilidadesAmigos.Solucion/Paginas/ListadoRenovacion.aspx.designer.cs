@@ -418,6 +418,24 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.UpdatePanel EstadisticaUpdatePanel;
         
         /// <summary>
+        /// rbEstadisticaSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbEstadisticaSupervisor;
+        
+        /// <summary>
+        /// rbEstadisticaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbEstadisticaIntermediario;
+        
+        /// <summary>
         /// lbFechaDesdeEstadistica control.
         /// </summary>
         /// <remarks>
@@ -434,5 +452,86 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFechaDesdeEstadistica;
+        
+        /// <summary>
+        /// lbFechaHastaEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaHastaEstadistica;
+        
+        /// <summary>
+        /// txtFechaHastaEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaHastaEstadistica;
+        
+        /// <summary>
+        /// lbSeleccionarRamoEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarRamoEstadistica;
+        
+        /// <summary>
+        /// ddlSeleccionarRamoEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarRamoEstadistica;
+        
+        /// <summary>
+        /// lbSeleccionarSubramoEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarSubramoEstadistica;
+        
+        /// <summary>
+        /// ddlSeleccionarSubramoEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarSubramoEstadistica;
+        
+        /// <summary>
+        /// lbValidarBalanceEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbValidarBalanceEstadistica;
+        
+        /// <summary>
+        /// ddlValidarBalanceEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlValidarBalanceEstadistica;
+        
+        /// <summary>
+        /// gvListadoEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvListadoEstadistica;
     }
 }

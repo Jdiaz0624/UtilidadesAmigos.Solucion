@@ -152,12 +152,63 @@
           <asp:ScriptManager ID="EstadisticaScripmanager" runat="server"></asp:ScriptManager>
           <asp:UpdatePanel ID="EstadisticaUpdatePanel" runat="server">
               <ContentTemplate>
+                  <div class="form-check">
+                      <div class="form-check-inline">
+                          <asp:RadioButton ID="rbEstadisticaSupervisor" runat="server" Text="Por Supervisor" GroupName="Estadistica" CssClass="form-check-input LetrasNegrita" />
+                      </div>
+                      <div class="form-check-inline">
+                          <asp:RadioButton ID="rbEstadisticaIntermediario" runat="server" Text="Por Intermediario" GroupName="Estadistica" CssClass="form-check-input LetrasNegrita" />
+                      </div>
+                  </div>
                   <div class="form-row">
                       <div class="form-group col-md-4">
                           <asp:Label ID="lbFechaDesdeEstadistica" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
                           <asp:TextBox ID="txtFechaDesdeEstadistica" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                       </div>
+
+                      <div class="form-group col-md-4">
+                          <asp:Label ID="lbFechaHastaEstadistica" runat="server" Text="Fecha Hasta" CssClass="LetrasNegrita"></asp:Label>
+                          <asp:TextBox ID="txtFechaHastaEstadistica" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                      </div>
+
+                      <div class="form-group col-md-4">
+                          <asp:Label ID="lbSeleccionarRamoEstadistica" runat="server" Text="Seleccionar Ramo" CssClass="LetrasNegrita"></asp:Label>
+                          <asp:DropDownList ID="ddlSeleccionarRamoEstadistica" runat="server" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
+                      </div>
+
+                       <div class="form-group col-md-4">
+                          <asp:Label ID="lbSeleccionarSubramoEstadistica" runat="server" Text="Seleccionar SubRamo" CssClass="LetrasNegrita"></asp:Label>
+                          <asp:DropDownList ID="ddlSeleccionarSubramoEstadistica" runat="server" ToolTip="Seleccionar SubRamo" CssClass="form-control"></asp:DropDownList>
+                      </div>
+
+                        <div class="form-group col-md-4">
+                          <asp:Label ID="lbValidarBalanceEstadistica" runat="server" Text="Validar Balance" CssClass="LetrasNegrita"></asp:Label>
+                          <asp:DropDownList ID="ddlValidarBalanceEstadistica" runat="server" ToolTip="Validar Balance" CssClass="form-control"></asp:DropDownList>
+                      </div>
                   </div>
+                  <!--INICIO DEL GRID-->
+                     <div>
+            <asp:GridView ID="gvListadoEstadistica" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoEstadistica_PageIndexChanging" OnSelectedIndexChanged="gvListadoEstadistica_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    
+                    <asp:BoundField DataField="Persona" HeaderText="Persona" />
+                    <asp:BoundField DataField="CantidadPoliza" HeaderText="Cantidad" />
+                    <asp:BoundField DataField="Monto" DataFormatString="N2" HeaderText="Monto" />
+                </Columns  >
+                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
+                  <!--FIN DEL GRID-->
               </ContentTemplate>
           </asp:UpdatePanel>
       </div>

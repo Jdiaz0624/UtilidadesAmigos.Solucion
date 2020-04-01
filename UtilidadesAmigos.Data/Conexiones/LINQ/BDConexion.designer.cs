@@ -671,6 +671,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, poliza, cobertura);
 			return ((ISingleResult<SP_SACAR_DATA_CASA_CONDUCTORResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_ESTADISTICA_RENOVACION")]
+		public ISingleResult<SP_SACAR_ESTADISTICA_RENOVACIONResult> SP_SACAR_ESTADISTICA_RENOVACION([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaFin", DbType="Date")] System.Nullable<System.DateTime> fechaFin, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubRamo", DbType="Int")] System.Nullable<int> subRamo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValidarBalance", DbType="Int")] System.Nullable<int> validarBalance, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExcluirRegistros", DbType="Int")] System.Nullable<int> excluirRegistros, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Persona", DbType="Int")] System.Nullable<int> persona)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaFin, ramo, subRamo, oficina, validarBalance, excluirRegistros, persona);
+			return ((ISingleResult<SP_SACAR_ESTADISTICA_RENOVACIONResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_LISTA_CARGAR_RAMOSResult
@@ -19864,6 +19871,68 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._TipoMovimiento != value))
 				{
 					this._TipoMovimiento = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_ESTADISTICA_RENOVACIONResult
+	{
+		
+		private string _Persona;
+		
+		private System.Nullable<int> _CantidadPoliza;
+		
+		private System.Nullable<decimal> _Monto;
+		
+		public SP_SACAR_ESTADISTICA_RENOVACIONResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Persona", DbType="VarChar(233) NOT NULL", CanBeNull=false)]
+		public string Persona
+		{
+			get
+			{
+				return this._Persona;
+			}
+			set
+			{
+				if ((this._Persona != value))
+				{
+					this._Persona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadPoliza", DbType="Int")]
+		public System.Nullable<int> CantidadPoliza
+		{
+			get
+			{
+				return this._CantidadPoliza;
+			}
+			set
+			{
+				if ((this._CantidadPoliza != value))
+				{
+					this._CantidadPoliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Monto", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Monto
+		{
+			get
+			{
+				return this._Monto;
+			}
+			set
+			{
+				if ((this._Monto != value))
+				{
+					this._Monto = value;
 				}
 			}
 		}

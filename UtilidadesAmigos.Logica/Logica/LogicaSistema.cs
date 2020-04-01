@@ -2191,5 +2191,23 @@ namespace UtilidadesAmigos.Logica.Logica
             return Buscar;
         }
         #endregion
+
+        #region MOSTRAR LAS ESTADISTICAS DE LAS RENOVACIONES3
+        //LISTADO DE ESTADISTICA DE RENOVACION
+        public List<UtilidadesAmigos.Logica.Entidades.EEstadisticaRenovacion> SacarEstadisticaRenovacion(DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Ramo = null, int? Subramo = null, int? Oficina = null, int? ValidarBalance = null, int? ExcluirRegistros = null, int? Persona = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var SacarData = (from n in Objdata.SP_SACAR_ESTADISTICA_RENOVACION(FechaDesde, FechaHasta, Ramo, Subramo, Oficina, ValidarBalance, ExcluirRegistros, Persona)
+                             select new UtilidadesAmigos.Logica.Entidades.EEstadisticaRenovacion
+                             {
+                                 Persona=n.Persona,
+                                 CantidadPoliza=n.CantidadPoliza,
+                                 Monto=n.Monto
+                             }).ToList();
+            return SacarData;
+        }
+        #endregion
+
     }
 }

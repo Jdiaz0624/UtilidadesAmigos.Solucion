@@ -126,6 +126,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarOficina();
                 ValidarBalance();
                 ExcluirMotores();
+                rbEstadisticaSupervisor.Checked = true;
             }
         }
 
@@ -289,6 +290,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbExcluirMotores.Visible = false;
                 ddlExcluirMotorew.Visible = false;
             }
+        }
+
+        protected void gvListadoEstadistica_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void gvListadoEstadistica_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
