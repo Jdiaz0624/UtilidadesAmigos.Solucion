@@ -35,6 +35,30 @@ namespace UtilidadesAmigos.Solucion.Paginas
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlExcluirMotorew, Objdata.Value.BuscaListas("EXCLUIR", null, null));
         }
         #endregion
+        #region CARGAR LAS LISTAS DESPLEGABLES PARA LA ESTADISTICA
+        private void CargarRamosEstadistica()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamoEstadistica, Objdata.Value.BuscaListas("RAMO", null, null), true);
+        }
+        private void CargarSubramosEstadistica()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSubramoEstadistica, Objdata.Value.BuscaListas("SUBRAMO", ddlSeleccionarRamoEstadistica.SelectedValue, null), true);
+
+        }
+        private void CargarOficinaEstadistica()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionaroficinaEstadistica, Objdata.Value.BuscaListas("OFICINANORMAL", null, null), true);
+        }
+
+        private void ValidarBalanceEstadistica()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlValidarBalanceEstadistica, Objdata.Value.BuscaListas("VALIDABALANCE", null, null));
+        }
+        private void ExcluirMotoresEstadistica()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlExcluirMotoresEstadistica, Objdata.Value.BuscaListas("EXCLUIR", null, null));
+        }
+        #endregion
         #region MOSTRAR EL LISTADO DE LAS RENOVACIONES
         private void MostrarListadoRenovaciones()
         {
@@ -127,6 +151,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 ValidarBalance();
                 ExcluirMotores();
                 rbEstadisticaSupervisor.Checked = true;
+                CargarRamosEstadistica();
+                CargarSubramosEstadistica();
+                CargarOficinaEstadistica();
+                ValidarBalanceEstadistica();
+                ExcluirMotoresEstadistica();
             }
         }
 
@@ -310,6 +339,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnExportarEstadistica_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void ddlSeleccionarRamoEstadistica_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarSubramosEstadistica();
+            if (Convert.ToInt32(ddlSeleccionarRamoEstadistica.SelectedValue) == 106)
+            {
+                lbExcluirMotoresEstadistica.Visible = true;
+                ddlExcluirMotoresEstadistica.Visible = true;
+            }
+            else {
+                lbExcluirMotoresEstadistica.Visible = false;
+                ddlExcluirMotoresEstadistica.Visible = false;
+            }
         }
     }
 }

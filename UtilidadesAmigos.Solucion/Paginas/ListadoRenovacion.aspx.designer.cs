@@ -508,6 +508,24 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarSubramoEstadistica;
         
         /// <summary>
+        /// lbSeleccionaroficinaEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionaroficinaEstadistica;
+        
+        /// <summary>
+        /// ddlSeleccionaroficinaEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionaroficinaEstadistica;
+        
+        /// <summary>
         /// lbValidarBalanceEstadistica control.
         /// </summary>
         /// <remarks>
@@ -535,13 +553,13 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Label lbExcluirMotoresEstadistica;
         
         /// <summary>
-        /// ddlExcluirMotores control.
+        /// ddlExcluirMotoresEstadistica control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlExcluirMotores;
+        protected global::System.Web.UI.WebControls.DropDownList ddlExcluirMotoresEstadistica;
         
         /// <summary>
         /// btnConsultarEstadistica control.
