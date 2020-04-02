@@ -333,7 +333,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultarEstadistica_Click(object sender, EventArgs e)
         {
-
+            //CONSULTAMOS LOS REGISTROS
+            //VALIDAMOS QUE LOS CAMPOS DE FECHA NO ESTEN VACIOS
+            if (string.IsNullOrEmpty(txtFechaDesdeEstadistica.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaEstadistica.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CamposVaciosEstadistica", "CamposVaciosEstadistica();", true);
+                if (string.IsNullOrEmpty(txtFechaDesdeEstadistica.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeVacio", "FechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHastaEstadistica.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaHastaVacio", "FechaHastaVacio();", true);
+                }
+            }
+            else
+            {
+                //CONSULTAMOS
+            }
         }
 
         protected void btnExportarEstadistica_Click(object sender, EventArgs e)

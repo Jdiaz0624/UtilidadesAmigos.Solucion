@@ -25,6 +25,15 @@
         function ErrorConsulta() {
             alert("Error al realizar la consulta, favor de verificar el rango de fecha");
         }
+              function CamposVaciosEstadistica(){
+                 alert("Has dejado campos vacios que son necesarios para realizar esta operación, favor de verificar");
+}
+            function FechaDesdeVacio(){
+               $("#<%=txtFechaDesdeEstadistica.ClientID %>").css("border-color","red");
+}
+            function FechaHastaVacio(){
+            $("#<%=txtFechaHastaEstadistica.ClientID %>").css("border-color","red");
+}
     </script>
     <div class="container-fluid">
         <div class="jumbotron" align="center">
