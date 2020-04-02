@@ -139,7 +139,59 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
+        #region CARGAR LISTADO ESTADISTICA
+        private void CargarListadoEstadistica()
+        {
+            try {
+                //CONSULTAMOS
+                //VERIFICAMOS LA CONDICION ESPECIAL
+                int Persona = 0;
+                int? _Ramo = ddlSeleccionarRamoEstadistica.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoEstadistica.SelectedValue) : new Nullable<int>();
+                int? _SubRamo = ddlSeleccionarSubramoEstadistica.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubramoEstadistica.SelectedValue) : new Nullable<int>();
+                int? _Oficina = ddlSeleccionaroficinaEstadistica.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaEstadistica.SelectedValue) : new Nullable<int>();
+                int? _ValidarBalance = ddlValidarBalanceEstadistica.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalanceEstadistica.SelectedValue) : new Nullable<int>();
+                int? _ExcluirMotores = ddlExcluirMotoresEstadistica.SelectedValue != "-1" ? Convert.ToInt32(ddlExcluirMotoresEstadistica.SelectedValue) : new Nullable<int>();
 
+                if (rbEstadisticaSupervisor.Checked == true)
+                {
+                    Persona = 1;
+                }
+                else if (rbEstadisticaIntermediario.Checked == true)
+                {
+                    Persona = 2;
+                }
+                if (Convert.ToInt32(ddlSeleccionarRamoEstadistica.SelectedValue) == 106 && Convert.ToInt32(ddlExcluirMotoresEstadistica.SelectedValue) == 2)
+                {
+                    var BuscarRegistros = Objdata.Value.SacarEstadisticaRenovacion(
+                        Convert.ToDateTime(txtFechaDesdeEstadistica.Text),
+                        Convert.ToDateTime(txtFechaHastaEstadistica.Text),
+                        _Ramo,
+                        _SubRamo,
+                        _Oficina,
+                        _ValidarBalance,
+                        _ExcluirMotores,
+                        Persona);
+                    gvListadoEstadistica.DataSource = BuscarRegistros;
+                    gvListadoEstadistica.DataBind();
+                }
+                else
+                {
+                    var BuscarRegistros = Objdata.Value.SacarEstadisticaRenovacion(
+                       Convert.ToDateTime(txtFechaDesdeEstadistica.Text),
+                       Convert.ToDateTime(txtFechaHastaEstadistica.Text),
+                       _Ramo,
+                       _SubRamo,
+                       _Oficina,
+                       _ValidarBalance,
+                       _ExcluirMotores,
+                       Persona);
+                    gvListadoEstadistica.DataSource = BuscarRegistros;
+                    gvListadoEstadistica.DataBind();
+                }
+            }
+            catch (Exception) { }
+        }
+        #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -323,7 +375,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gvListadoEstadistica_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gvListadoEstadistica.PageIndex = e.NewPageIndex;
+            CargarListadoEstadistica();
         }
 
         protected void gvListadoEstadistica_SelectedIndexChanged(object sender, EventArgs e)
@@ -337,7 +390,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             //VALIDAMOS QUE LOS CAMPOS DE FECHA NO ESTEN VACIOS
             if (string.IsNullOrEmpty(txtFechaDesdeEstadistica.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaEstadistica.Text.Trim()))
             {
-                ClientScript.RegisterStartupScript(GetType(), "CamposVaciosEstadistica", "CamposVaciosEstadistica();", true);
+                
                 if (string.IsNullOrEmpty(txtFechaDesdeEstadistica.Text.Trim()))
                 {
                     ClientScript.RegisterStartupScript(GetType(), "FechaDesdeVacio", "FechaDesdeVacio();", true);
@@ -346,16 +399,121 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 {
                     ClientScript.RegisterStartupScript(GetType(), "FechaHastaVacio", "FechaHastaVacio();", true);
                 }
+               // ClientScript.RegisterStartupScript(GetType(), "CamposVaciosEstadistica", "CamposVaciosEstadistica();", true);
             }
             else
             {
-                //CONSULTAMOS
+                CargarListadoEstadistica();
             }
         }
 
         protected void btnExportarEstadistica_Click(object sender, EventArgs e)
         {
+            try
+            {
+                //CONSULTAMOS
+                //VERIFICAMOS LA CONDICION ESPECIAL
+                int Persona = 0;
+                int? _Ramo = ddlSeleccionarRamoEstadistica.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoEstadistica.SelectedValue) : new Nullable<int>();
+                int? _SubRamo = ddlSeleccionarSubramoEstadistica.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubramoEstadistica.SelectedValue) : new Nullable<int>();
+                int? _Oficina = ddlSeleccionaroficinaEstadistica.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaEstadistica.SelectedValue) : new Nullable<int>();
+                int? _ValidarBalance = ddlValidarBalanceEstadistica.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalanceEstadistica.SelectedValue) : new Nullable<int>();
+                int? _ExcluirMotores = ddlExcluirMotoresEstadistica.SelectedValue != "-1" ? Convert.ToInt32(ddlExcluirMotoresEstadistica.SelectedValue) : new Nullable<int>();
 
+                if (rbEstadisticaSupervisor.Checked == true)
+                {
+                    Persona = 1;
+                }
+                else if (rbEstadisticaIntermediario.Checked == true)
+                {
+                    Persona = 2;
+                }
+                if (Convert.ToInt32(ddlSeleccionarRamoEstadistica.SelectedValue) == 106 && Convert.ToInt32(ddlExcluirMotoresEstadistica.SelectedValue) == 2)
+                {
+
+                    if (rbEstadisticaSupervisor.Checked == true)
+                    {
+                        var Exportar = (from n in Objdata.Value.SacarEstadisticaRenovacion(
+                       Convert.ToDateTime(txtFechaDesdeEstadistica.Text),
+                       Convert.ToDateTime(txtFechaHastaEstadistica.Text),
+                       _Ramo,
+                       _SubRamo,
+                       _Oficina,
+                       _ValidarBalance,
+                       _ExcluirMotores,
+                       Persona)
+                                        select new
+                                        {
+                                            Supervisor = n.Persona,
+                                            CantidadPoliza = n.CantidadPoliza,
+                                            Monto = n.Monto
+                                        }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Estadistica por Supervisor", Exportar);
+                    }
+                    else if (rbEstadisticaIntermediario.Checked == true)
+                    {
+                        var Exportar = (from n in Objdata.Value.SacarEstadisticaRenovacion(
+                       Convert.ToDateTime(txtFechaDesdeEstadistica.Text),
+                       Convert.ToDateTime(txtFechaHastaEstadistica.Text),
+                       _Ramo,
+                       _SubRamo,
+                       _Oficina,
+                       _ValidarBalance,
+                       _ExcluirMotores,
+                       Persona)
+                                        select new
+                                        {
+                                            Intermediario = n.Persona,
+                                            CantidadPoliza = n.CantidadPoliza,
+                                            Monto = n.Monto
+                                        }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Estadistica por Intermediario", Exportar);
+                    }
+
+                }
+                else
+                {
+                    if (rbEstadisticaSupervisor.Checked == true)
+                    {
+                        var Exportar = (from n in Objdata.Value.SacarEstadisticaRenovacion(
+                       Convert.ToDateTime(txtFechaDesdeEstadistica.Text),
+                       Convert.ToDateTime(txtFechaHastaEstadistica.Text),
+                       _Ramo,
+                       _SubRamo,
+                       _Oficina,
+                       _ValidarBalance,
+                       _ExcluirMotores,
+                       Persona)
+                                        select new
+                                        {
+                                            Supervisor = n.Persona,
+                                            CantidadPoliza = n.CantidadPoliza,
+                                            Monto = n.Monto
+                                        }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Estadistica por Supervisor", Exportar);
+                    }
+                    else if (rbEstadisticaIntermediario.Checked == true)
+                    {
+                        var Exportar = (from n in Objdata.Value.SacarEstadisticaRenovacion(
+                       Convert.ToDateTime(txtFechaDesdeEstadistica.Text),
+                       Convert.ToDateTime(txtFechaHastaEstadistica.Text),
+                       _Ramo,
+                       _SubRamo,
+                       _Oficina,
+                       _ValidarBalance,
+                       _ExcluirMotores,
+                       Persona)
+                                        select new
+                                        {
+                                            Intermediario = n.Persona,
+                                            CantidadPoliza = n.CantidadPoliza,
+                                            Monto = n.Monto
+                                        }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Estadistica por Intermediario", Exportar);
+                    }
+                }
+            }
+            catch (Exception) { }
         }
 
         protected void ddlSeleccionarRamoEstadistica_SelectedIndexChanged(object sender, EventArgs e)

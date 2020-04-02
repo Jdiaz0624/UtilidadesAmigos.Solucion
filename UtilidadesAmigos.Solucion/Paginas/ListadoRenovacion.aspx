@@ -26,11 +26,12 @@
             alert("Error al realizar la consulta, favor de verificar el rango de fecha");
         }
               function CamposVaciosEstadistica(){
-                 alert("Has dejado campos vacios que son necesarios para realizar esta operación, favor de verificar");
+                  alert("Has dejado campos vacios que son necesarios para realizar esta operación, favor de verificar");
+                  return false;
 }
-            function FechaDesdeVacio(){
-               $("#<%=txtFechaDesdeEstadistica.ClientID %>").css("border-color","red");
-}
+         function FechaDesdeVacio() {
+            $("#<%=txtFechaDesdeEstadistica.ClientID%>").css("border-color", "red");
+         }
             function FechaHastaVacio(){
             $("#<%=txtFechaHastaEstadistica.ClientID %>").css("border-color","red");
 }
@@ -129,10 +130,10 @@
                     <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
                     <asp:BoundField DataField="FechaInicioVigencia" HeaderText="Inicio" />
                     <asp:BoundField DataField="FechaFinVigencia" HeaderText="Fin" />
-                    <asp:BoundField DataField="Prima" HeaderText="Prima" />
-                    <asp:BoundField DataField="Facturado" HeaderText="Facturado" />
-                    <asp:BoundField DataField="Cobrado" HeaderText="Cobrado" />
-                    <asp:BoundField DataField="Balance" HeaderText="Balance" />
+                    <asp:BoundField DataField="Prima" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Prima" />
+                    <asp:BoundField DataField="Facturado" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Facturado" />
+                    <asp:BoundField DataField="Cobrado" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Cobrado" />
+                    <asp:BoundField DataField="Balance" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Balance" />
                      <asp:CommandField ButtonType="Button" HeaderStyle-Width="11%" HeaderText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />
                 </Columns  >
                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
@@ -205,10 +206,12 @@
                           <asp:DropDownList ID="ddlExcluirMotoresEstadistica" runat="server" Visible="false" ToolTip="Excluir Motores" CssClass="form-control"></asp:DropDownList>
                       </div>
                   </div>
-                  <div align="center">
+                 
+                   <div align="center">
                       <asp:Button ID="btnConsultarEstadistica" runat="server" Text="Buscar" ToolTip="Consultar Estadistica" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultarEstadistica_Click" />
-                      <asp:Button ID="btnExportarEstadistica" runat="server" Text="Exportar" ToolTip="Exportar Estadistica" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportarEstadistica_Click" />
+              
                   </div>
+          <br />
                   <!--INICIO DEL GRID-->
                      <div>
             <asp:GridView ID="gvListadoEstadistica" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoEstadistica_PageIndexChanging" OnSelectedIndexChanged="gvListadoEstadistica_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
@@ -217,8 +220,8 @@
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
                     
                     <asp:BoundField DataField="Persona" HeaderText="Persona" />
-                    <asp:BoundField DataField="CantidadPoliza" HeaderText="Cantidad" />
-                    <asp:BoundField DataField="Monto" DataFormatString="N2" HeaderText="Monto" />
+                    <asp:BoundField DataField="CantidadPoliza" DataFormatString="{0:N0}" HtmlEncode="false" HeaderText="Cantidad" />
+                    <asp:BoundField DataField="Monto" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Monto" />
                 </Columns  >
                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
@@ -234,6 +237,11 @@
                   <!--FIN DEL GRID-->
               </ContentTemplate>
           </asp:UpdatePanel>
+          <br />
+                <div align="center">
+                     <asp:Button ID="btnExportarEstadistica" runat="server" Text="Exportar" ToolTip="Exportar Estadistica" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportarEstadistica_Click" />
+                </div>
+          <br />
       </div>
     </div>
   </div>
