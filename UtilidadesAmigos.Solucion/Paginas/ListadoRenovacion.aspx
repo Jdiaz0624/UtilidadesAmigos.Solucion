@@ -173,7 +173,7 @@
 
                       <div class="form-group col-md-4">
                           <asp:Label ID="lbSeleccionarRamoEstadistica" runat="server" Text="Seleccionar Ramo" CssClass="LetrasNegrita"></asp:Label>
-                          <asp:DropDownList ID="ddlSeleccionarRamoEstadistica" runat="server" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
+                          <asp:DropDownList ID="ddlSeleccionarRamoEstadistica" runat="server" AutoPostBack="true" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
                       </div>
 
                        <div class="form-group col-md-4">
@@ -185,6 +185,14 @@
                           <asp:Label ID="lbValidarBalanceEstadistica" runat="server" Text="Validar Balance" CssClass="LetrasNegrita"></asp:Label>
                           <asp:DropDownList ID="ddlValidarBalanceEstadistica" runat="server" ToolTip="Validar Balance" CssClass="form-control"></asp:DropDownList>
                       </div>
+                        <div class="form-group col-md-4">
+                          <asp:Label ID="lbExcluirMotoresEstadistica" runat="server" Visible="false" Text="Excluir Motores" CssClass="LetrasNegrita"></asp:Label>
+                          <asp:DropDownList ID="ddlExcluirMotores" runat="server" Visible="false" ToolTip="Excluir Motores" CssClass="form-control"></asp:DropDownList>
+                      </div>
+                  </div>
+                  <div align="center">
+                      <asp:Button ID="btnConsultarEstadistica" runat="server" Text="Buscar" ToolTip="Consultar Estadistica" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultarEstadistica_Click" />
+                      <asp:Button ID="btnExportarEstadistica" runat="server" Text="Exportar" ToolTip="Exportar Estadistica" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportarEstadistica_Click" />
                   </div>
                   <!--INICIO DEL GRID-->
                      <div>

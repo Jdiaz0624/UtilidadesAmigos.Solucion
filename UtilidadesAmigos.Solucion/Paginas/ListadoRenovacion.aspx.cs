@@ -301,5 +301,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
 
         }
+
+        protected void btnConsultarEstadistica_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnExportarEstadistica_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

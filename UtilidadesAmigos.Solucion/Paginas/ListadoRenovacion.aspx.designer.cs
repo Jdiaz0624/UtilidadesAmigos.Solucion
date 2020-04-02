@@ -526,6 +526,42 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.DropDownList ddlValidarBalanceEstadistica;
         
         /// <summary>
+        /// lbExcluirMotoresEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbExcluirMotoresEstadistica;
+        
+        /// <summary>
+        /// ddlExcluirMotores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlExcluirMotores;
+        
+        /// <summary>
+        /// btnConsultarEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConsultarEstadistica;
+        
+        /// <summary>
+        /// btnExportarEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExportarEstadistica;
+        
+        /// <summary>
         /// gvListadoEstadistica control.
         /// </summary>
         /// <remarks>
