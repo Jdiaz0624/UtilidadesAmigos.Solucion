@@ -691,21 +691,6 @@
       <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_SACAR_PRODUCCION_DIARIA" Method="SP_SACAR_PRODUCCION_DIARIA">
-    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
-    <Parameter Name="NombreRamo" Parameter="nombreRamo" Type="System.String" DbType="VarChar(100)" />
-    <ElementType Name="SP_SACAR_PRODUCCION_DIARIAResult">
-      <Column Name="CodRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Moneda" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
-      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="PesosDominicanos" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_SACAR_DETALLE_PRODUCCION_DIARIA" Method="SP_SACAR_DETALLE_PRODUCCION_DIARIA">
     <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Concepto" Parameter="concepto" Type="System.String" DbType="VarChar(150)" />
@@ -1774,6 +1759,23 @@
       <Column Name="Balance" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="TotalPrima" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_PRODUCCION_DIARIA" Method="SP_SACAR_PRODUCCION_DIARIA">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreRamo" Parameter="nombreRamo" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_SACAR_PRODUCCION_DIARIAResult">
+      <Column Name="CodRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="PesosDominicanos" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="TotalFacturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TotalPesosDominicanos" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

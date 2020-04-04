@@ -15,6 +15,10 @@
             text-align:center;
             padding:25px;
         }
+         
+         .LetrasNegrita {
+          font-weight:bold;
+          }
     </style>
     <script type="text/javascript">
         function ErrorConsulta()
@@ -24,6 +28,13 @@
         }
         function ErrorExportar() {
             alert("Error al Exportar la data a exel, favor de verificar si los parametros estan correctos.")
+        }
+
+        function CampoFechaDesdeVacio() {
+            $("#<%=txtFechaDesde.ClientID%>").css("border-color", "red");
+        }
+        function CampoFechaHastaVacio() {
+             $("#<%=txtFechaHasta.ClientID%>").css("border-color", "red");
         }
     </script>
 <div class="container-fluid">
@@ -62,6 +73,18 @@
             <asp:Button ID="btnAtras" CssClass="btn btn-outline-primary btn-sm" ToolTip="Volver Atras" runat="server" Text="Atras" OnClick="btnAtras_Click" Visible="false" />
         </div>
  
+    <br />
+    <div align="center">
+        <asp:Label ID="lbCantidadFacturadoTitulo" runat="server" CssClass="LetrasNegrita" Visible="false" Text="Total Facturado ("></asp:Label>
+        <asp:Label ID="lbCantidadFActuradoVariable" runat="server" CssClass="LetrasNegrita" Visible="false" Text="0"></asp:Label>
+        <asp:Label ID="lbCantidadFacturadoCerrar" runat="server" CssClass="LetrasNegrita" Visible="false" Text=" )"></asp:Label>
+
+        <asp:Label ID="lbEspacio" runat="server" CssClass="LetrasNegrita" Visible="false" Text="  "></asp:Label>
+
+        <asp:Label ID="lbCantidadFacturadoPesosTitulo" runat="server" CssClass="LetrasNegrita" Visible="false" Text="Total Pesos ("></asp:Label>
+        <asp:Label ID="lbCantidadFacturadoPesosVariable" runat="server" CssClass="LetrasNegrita" Visible="false" Text="0"></asp:Label>
+        <asp:Label ID="lbCantidadFacturadoPesosCerrar" runat="server" CssClass="LetrasNegrita" Visible="false" Text=" )"></asp:Label>
+    </div>
     <br />
      <div class="container-fluid">
             <asp:GridView id="gbProduccionDiaria" runat="server" AllowPaging="True" OnPageIndexChanging="gbProduccionDiaria_PageIndexChanging" OnRowDataBound="gbProduccionDiaria_RowDataBound" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbProduccionDiaria_SelectedIndexChanged">

@@ -19,7 +19,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region CARGAR LOS RAMOS
         private void CargarRamos()
         {
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamo, ObjDataLogica.Value.BuscaListas("RAMO", null, null), true);
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamo, ObjDataLogica.Value.BuscaListas("RAMO", null, null));
         }
         #endregion
         #region MOSTRAR EL LISTADO DE LA PRODUCCION DIARIA
@@ -34,6 +34,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     null);
                 gbProduccionDiaria.DataSource = MostrarData;
                 gbProduccionDiaria.DataBind();
+                decimal TotalFacturado = 0, TotalPesosDominicanos = 0;
+                foreach (var n in MostrarData)
+                {
+                    TotalFacturado = Convert.ToDecimal(n.TotalFacturado);
+                    TotalPesosDominicanos = Convert.ToDecimal(n.TotalPesosDominicanos);
+                    lbCantidadFActuradoVariable.Text = TotalFacturado.ToString("N2");
+                    lbCantidadFacturadoPesosVariable.Text = TotalPesosDominicanos.ToString("N2");
+                }
             }
             else
             {
@@ -42,6 +50,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     Convert.ToDateTime(txtFechaHasta.Text));
                 gbProduccionDiaria.DataSource = MostrarData;
                 gbProduccionDiaria.DataBind();
+                decimal TotalFacturado = 0, TotalPesosDominicanos = 0;
+                foreach (var n in MostrarData)
+                {
+                    TotalFacturado = Convert.ToDecimal(n.TotalFacturado);
+                    TotalPesosDominicanos = Convert.ToDecimal(n.TotalPesosDominicanos);
+                    lbCantidadFActuradoVariable.Text = TotalFacturado.ToString("N2");
+                    lbCantidadFacturadoPesosVariable.Text = TotalPesosDominicanos.ToString("N2");
+                }
             }
         }
         #endregion
@@ -158,26 +174,74 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gbProduccionDiaria_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lbCantidadFacturadoTitulo.Visible = false;
+            lbCantidadFActuradoVariable.Visible = false;
+            lbCantidadFacturadoCerrar.Visible = false;
+            lbEncabezado.Visible = false;
+            lbCantidadFacturadoPesosTitulo.Visible = false;
+            lbCantidadFacturadoPesosVariable.Visible = false;
+            lbCantidadFacturadoPesosCerrar.Visible = false;
             MostrarDetalleProduccionDiaria();
         }
 
         protected void btnBuscarRegistros_Click(object sender, EventArgs e)
         {
-            try {
-                MostrarProduccionDiaria();
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorConsulta();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio", "CampoFechaHastaVacio();", true);
+                }
             }
-            catch (Exception) {
-                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorConsulta()", true);
+            else
+            {
+                try
+                {
+                    lbCantidadFacturadoTitulo.Visible = true;
+                    lbCantidadFActuradoVariable.Visible = true;
+                    lbCantidadFacturadoCerrar.Visible = true;
+                    lbEncabezado.Visible = true;
+                    lbCantidadFacturadoPesosTitulo.Visible = true;
+                    lbCantidadFacturadoPesosVariable.Visible = true;
+                    lbCantidadFacturadoPesosCerrar.Visible = true;
+                    MostrarProduccionDiaria();
+                }
+                catch (Exception)
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "ErrorConsulta", "ErrorConsulta();", true);
+                }
             }
         }
 
         protected void btnGenerarReporte_Click(object sender, EventArgs e)
         {
-            try {
-                ExportarDataExel();
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "ErrorExportar", "ErrorExportar();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio", "CampoFechaHastaVacio();", true);
+                }
             }
-            catch (Exception) {
-                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorExportar()", true);
+            else
+            {
+                try
+                {
+                    ExportarDataExel();
+                }
+                catch (Exception)
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorExportar()", true);
+                }
             }
         }
 
@@ -195,6 +259,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtFechaDesde.Enabled = true;
             txtFechaHasta.Enabled = true;
             cbExportarTodo.Visible = false;
+
+
+            lbCantidadFacturadoTitulo.Visible = true;
+            lbCantidadFActuradoVariable.Visible = true;
+            lbCantidadFacturadoCerrar.Visible = true;
+            lbEncabezado.Visible = true;
+            lbCantidadFacturadoPesosTitulo.Visible = true;
+            lbCantidadFacturadoPesosVariable.Visible = true;
+            lbCantidadFacturadoPesosCerrar.Visible = true;
+
+           
         }
 
         protected void gbProduccionDiariaDetalle_PageIndexChanging(object sender, GridViewPageEventArgs e)

@@ -302,7 +302,9 @@ namespace UtilidadesAmigos.Logica.Logica
                               Cantidad=n.Cantidad,
                               Moneda=n.Moneda,
                               Facturado=n.Facturado,
-                              PesosDominicanos=n.PesosDominicanos
+                              PesosDominicanos=n.PesosDominicanos,
+                              TotalFacturado=n.TotalFacturado,
+                              TotalPesosDominicanos=n.TotalPesosDominicanos
                           }).ToList();
             return Buscar;
         }

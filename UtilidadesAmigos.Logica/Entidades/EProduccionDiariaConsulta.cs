@@ -21,5 +21,9 @@ namespace UtilidadesAmigos.Logica.Entidades
         public System.Nullable<decimal> Facturado { get; set; }
 
         public System.Nullable<decimal> PesosDominicanos { get; set; }
+
+        public System.Nullable<decimal> TotalFacturado { get; set; }
+
+        public System.Nullable<decimal> TotalPesosDominicanos { get; set; }
     }
 }

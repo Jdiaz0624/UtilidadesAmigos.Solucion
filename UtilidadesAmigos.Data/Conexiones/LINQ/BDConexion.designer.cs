@@ -318,13 +318,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_SACAR_RECLAMACIONESResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_PRODUCCION_DIARIA")]
-		public ISingleResult<SP_SACAR_PRODUCCION_DIARIAResult> SP_SACAR_PRODUCCION_DIARIA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreRamo", DbType="VarChar(100)")] string nombreRamo)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, ramo, nombreRamo);
-			return ((ISingleResult<SP_SACAR_PRODUCCION_DIARIAResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_DETALLE_PRODUCCION_DIARIA")]
 		public ISingleResult<SP_SACAR_DETALLE_PRODUCCION_DIARIAResult> SP_SACAR_DETALLE_PRODUCCION_DIARIA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Concepto", DbType="VarChar(150)")] string concepto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza)
 		{
@@ -691,6 +684,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, usuario, concepto);
 			return ((ISingleResult<SP_BUSCA_DETALLE_FACTURACIONResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_PRODUCCION_DIARIA")]
+		public ISingleResult<SP_SACAR_PRODUCCION_DIARIAResult> SP_SACAR_PRODUCCION_DIARIA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreRamo", DbType="VarChar(100)")] string nombreRamo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, ramo, nombreRamo);
+			return ((ISingleResult<SP_SACAR_PRODUCCION_DIARIAResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -8755,140 +8755,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Cantidad != value))
 				{
 					this._Cantidad = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_SACAR_PRODUCCION_DIARIAResult
-	{
-		
-		private System.Nullable<int> _CodRamo;
-		
-		private string _Ramo;
-		
-		private string _Concepto;
-		
-		private System.Nullable<int> _Cantidad;
-		
-		private string _Moneda;
-		
-		private System.Nullable<decimal> _Facturado;
-		
-		private System.Nullable<decimal> _PesosDominicanos;
-		
-		public SP_SACAR_PRODUCCION_DIARIAResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodRamo", DbType="Int")]
-		public System.Nullable<int> CodRamo
-		{
-			get
-			{
-				return this._CodRamo;
-			}
-			set
-			{
-				if ((this._CodRamo != value))
-				{
-					this._CodRamo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ramo", DbType="NVarChar(50)")]
-		public string Ramo
-		{
-			get
-			{
-				return this._Ramo;
-			}
-			set
-			{
-				if ((this._Ramo != value))
-				{
-					this._Ramo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Concepto", DbType="VarChar(200)")]
-		public string Concepto
-		{
-			get
-			{
-				return this._Concepto;
-			}
-			set
-			{
-				if ((this._Concepto != value))
-				{
-					this._Concepto = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
-		public System.Nullable<int> Cantidad
-		{
-			get
-			{
-				return this._Cantidad;
-			}
-			set
-			{
-				if ((this._Cantidad != value))
-				{
-					this._Cantidad = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Moneda", DbType="VarChar(3)")]
-		public string Moneda
-		{
-			get
-			{
-				return this._Moneda;
-			}
-			set
-			{
-				if ((this._Moneda != value))
-				{
-					this._Moneda = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Facturado", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> Facturado
-		{
-			get
-			{
-				return this._Facturado;
-			}
-			set
-			{
-				if ((this._Facturado != value))
-				{
-					this._Facturado = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PesosDominicanos", DbType="Decimal(20,2)")]
-		public System.Nullable<decimal> PesosDominicanos
-		{
-			get
-			{
-				return this._PesosDominicanos;
-			}
-			set
-			{
-				if ((this._PesosDominicanos != value))
-				{
-					this._PesosDominicanos = value;
 				}
 			}
 		}
@@ -20737,6 +20603,176 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._TotalPrima != value))
 				{
 					this._TotalPrima = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_PRODUCCION_DIARIAResult
+	{
+		
+		private System.Nullable<int> _CodRamo;
+		
+		private string _Ramo;
+		
+		private string _Concepto;
+		
+		private System.Nullable<int> _Cantidad;
+		
+		private string _Moneda;
+		
+		private System.Nullable<decimal> _Facturado;
+		
+		private System.Nullable<decimal> _PesosDominicanos;
+		
+		private System.Nullable<decimal> _TotalFacturado;
+		
+		private System.Nullable<decimal> _TotalPesosDominicanos;
+		
+		public SP_SACAR_PRODUCCION_DIARIAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodRamo", DbType="Int")]
+		public System.Nullable<int> CodRamo
+		{
+			get
+			{
+				return this._CodRamo;
+			}
+			set
+			{
+				if ((this._CodRamo != value))
+				{
+					this._CodRamo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ramo", DbType="NVarChar(50)")]
+		public string Ramo
+		{
+			get
+			{
+				return this._Ramo;
+			}
+			set
+			{
+				if ((this._Ramo != value))
+				{
+					this._Ramo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Concepto", DbType="VarChar(200)")]
+		public string Concepto
+		{
+			get
+			{
+				return this._Concepto;
+			}
+			set
+			{
+				if ((this._Concepto != value))
+				{
+					this._Concepto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
+		public System.Nullable<int> Cantidad
+		{
+			get
+			{
+				return this._Cantidad;
+			}
+			set
+			{
+				if ((this._Cantidad != value))
+				{
+					this._Cantidad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Moneda", DbType="VarChar(3)")]
+		public string Moneda
+		{
+			get
+			{
+				return this._Moneda;
+			}
+			set
+			{
+				if ((this._Moneda != value))
+				{
+					this._Moneda = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Facturado", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Facturado
+		{
+			get
+			{
+				return this._Facturado;
+			}
+			set
+			{
+				if ((this._Facturado != value))
+				{
+					this._Facturado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PesosDominicanos", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> PesosDominicanos
+		{
+			get
+			{
+				return this._PesosDominicanos;
+			}
+			set
+			{
+				if ((this._PesosDominicanos != value))
+				{
+					this._PesosDominicanos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalFacturado", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> TotalFacturado
+		{
+			get
+			{
+				return this._TotalFacturado;
+			}
+			set
+			{
+				if ((this._TotalFacturado != value))
+				{
+					this._TotalFacturado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalPesosDominicanos", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> TotalPesosDominicanos
+		{
+			get
+			{
+				return this._TotalPesosDominicanos;
+			}
+			set
+			{
+				if ((this._TotalPesosDominicanos != value))
+				{
+					this._TotalPesosDominicanos = value;
 				}
 			}
 		}

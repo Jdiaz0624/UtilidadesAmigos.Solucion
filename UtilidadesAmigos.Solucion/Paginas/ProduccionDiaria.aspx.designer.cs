@@ -112,6 +112,69 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Button btnAtras;
         
         /// <summary>
+        /// lbCantidadFacturadoTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadFacturadoTitulo;
+        
+        /// <summary>
+        /// lbCantidadFActuradoVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadFActuradoVariable;
+        
+        /// <summary>
+        /// lbCantidadFacturadoCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadFacturadoCerrar;
+        
+        /// <summary>
+        /// lbEspacio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEspacio;
+        
+        /// <summary>
+        /// lbCantidadFacturadoPesosTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadFacturadoPesosTitulo;
+        
+        /// <summary>
+        /// lbCantidadFacturadoPesosVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadFacturadoPesosVariable;
+        
+        /// <summary>
+        /// lbCantidadFacturadoPesosCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadFacturadoPesosCerrar;
+        
+        /// <summary>
         /// gbProduccionDiaria control.
         /// </summary>
         /// <remarks>
