@@ -18,6 +18,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         string NombreUsuario = "";
 
+        string Usuario = "";
+        string Concepto = "";
+
         #region EXPORTAR LOS DATOS DE LA CONSULTA A EXEL CON EL FORMATO DEL GRID
         //public override void VerifyRenderingInServerForm(Control control)
         //{
@@ -182,15 +185,19 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 {
                     try
                     {
-                        var COnsultarReclamos = ObjData.Value.SacarReclamacionesHeader(
+                        int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                        int? _Departamento = ddlSeleccionarDepartamento.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarDepartamento.SelectedValue) : new Nullable<int>();
+                        int? _Usuario = ddlSeleccionarUsuario.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarUsuario.SelectedValue) : new Nullable<int>();
+                        //BUSCAMOS FILTRANDO EL DEPARTAMENTO Y EL USUARIO
+
+                        var BuscarReclamos = ObjData.Value.BuscaProduccionReclamos(
                             Convert.ToDateTime(txtFechaDesde.Text),
                             Convert.ToDateTime(txtFechaHasta.Text),
-                            Convert.ToInt32(ddlSeleccionarOficina.SelectedValue),
-                            Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue),
-                            Convert.ToDecimal(ddlSeleccionarUsuario.SelectedValue));
-                        gbListadoUsuarios.DataSource = COnsultarReclamos;
+                            _Oficina,
+                            _Departamento,
+                            _Usuario);
+                        gbListadoUsuarios.DataSource = BuscarReclamos;
                         gbListadoUsuarios.DataBind();
-                        gbListadoUsuarios.Visible = true;
 
                     }
                     catch (Exception) { MensajeErrorConsulta(1); }
@@ -199,27 +206,33 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 {
                     try
                     {
-                        var COnsultarReclamos = ObjData.Value.SacarReclamacionesHeader(
+                        int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                        int? _Departamento = ddlSeleccionarDepartamento.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarDepartamento.SelectedValue) : new Nullable<int>();
+                        //FILTRAMOS SOLO CON EL DEPARTAMENTO
+                        var BuscarReclamos = ObjData.Value.BuscaProduccionReclamos(
                            Convert.ToDateTime(txtFechaDesde.Text),
                            Convert.ToDateTime(txtFechaHasta.Text),
-                           Convert.ToInt32(ddlSeleccionarOficina.SelectedValue),
-                           Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue));
-                        gbListadoUsuarios.DataSource = COnsultarReclamos;
+                           _Oficina,
+                           _Departamento,
+                           null);
+                        gbListadoUsuarios.DataSource = BuscarReclamos;
                         gbListadoUsuarios.DataBind();
-                        gbListadoUsuarios.Visible = true;
                     }
                     catch (Exception) { MensajeErrorConsulta(1); }
                 }
                 else
                 {
                     try {
-                        var COnsultarReclamos = ObjData.Value.SacarReclamacionesHeader(
-                           Convert.ToDateTime(txtFechaDesde.Text),
-                           Convert.ToDateTime(txtFechaHasta.Text),
-                           Convert.ToInt32(ddlSeleccionarOficina.SelectedValue));
-                        gbListadoUsuarios.DataSource = COnsultarReclamos;
+                        int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                        //FILTRAR SOLO CON RANGO DE FECHA
+                        var BuscarReclamos = ObjData.Value.BuscaProduccionReclamos(
+                         Convert.ToDateTime(txtFechaDesde.Text),
+                         Convert.ToDateTime(txtFechaHasta.Text),
+                         _Oficina,
+                         null,
+                         null);
+                        gbListadoUsuarios.DataSource = BuscarReclamos;
                         gbListadoUsuarios.DataBind();
-                        gbListadoUsuarios.Visible = true;
                     }
                     catch (Exception) { MensajeErrorConsulta(1); }
                 }
@@ -233,7 +246,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             //Seleccionamos Los Registros
             GridViewRow gb = gbListadoUsuarios.SelectedRow;
+            lbUsuario.Text = gb.Cells[2].Text;
+            lbConcepto.Text = gb.Cells[3].Text;
             int TipoOperacion = Convert.ToInt32(ddlTipoReporte.SelectedValue);
+            //FACTURACION
             if (TipoOperacion == 1)
             {
                 gbListadoUsuarios.Visible = false;
@@ -245,7 +261,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     gb.Cells[3].Text);
                 gbDetalle.DataSource = SacarInformacion;
                 gbDetalle.DataBind();
+                lbTotalPrimaTitulo.Visible = true;
+                lbTotalPrimaVariable.Visible = true;
+                lbTotalPrimacerrar.Visible = true;
+                decimal TotalPrima;
+                lbTotalPrimaTitulo.Text = "TOTAL FACTURADO POR " + lbUsuario.Text + " ( ";
+                foreach (var n in SacarInformacion)
+                {
+                    TotalPrima = Convert.ToDecimal(n.TotalPrima);
+                    lbTotalPrimaVariable.Text = TotalPrima.ToString("N2");
+                }
             }
+            //COBROS
             else if (TipoOperacion == 2)
             {
                 gbListadoUsuarios.Visible = false;
@@ -256,12 +283,30 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     gb.Cells[2].Text);
                 gbDetalle.DataSource = SacarDetalleCobrado;
                 gbDetalle.DataBind();
-                NombreUsuario = gb.Cells[2].Text;
+                NombreUsuario = lbUsuario.Text;
+                lbTotalPrimaTitulo.Visible = true;
+                lbTotalPrimaVariable.Visible = true;
+                lbTotalPrimacerrar.Visible = true;
+                decimal TotalPrima;
+                lbTotalPrimaTitulo.Text = "TOTAL COBRADO POR " + lbUsuario.Text + " ( ";
+                foreach (var n in SacarDetalleCobrado)
+                {
+                    TotalPrima = Convert.ToDecimal(n.TotalPrima);
+                    lbTotalPrimaVariable.Text = TotalPrima.ToString("N2");
+                }
             }
+            //RECLAMACIONES
             else if (TipoOperacion == 3)
             {
                 gbListadoUsuarios.Visible = false;
                 gbDetalle.Visible = true;
+                var SacarDetalleReclamos = ObjData.Value.BuscarProduccionReclamosDetalle(
+                    Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHasta.Text),
+                    lbUsuario.Text);
+                gbDetalle.DataSource = SacarDetalleReclamos;
+                gbDetalle.DataBind();
+
             }
 
        
@@ -499,7 +544,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
             gbDetalle.Visible = false;
             gbListadoUsuarios.Visible = true;
             btnExportarExelDetalle.Visible = false;
-            
+
+            lbTotalPrimaTitulo.Visible = false;
+            lbTotalPrimaVariable.Visible = false;
+            lbTotalPrimacerrar.Visible = false;
+
         }
         #endregion
 
@@ -751,12 +800,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 {
                     try
                     {
-                        var Exportar = (from n in ObjData.Value.SacarReclamacionesHeader(
+                        var Exportar = (from n in ObjData.Value.BuscaProduccionReclamos(
                         Convert.ToDateTime(txtFechaDesde.Text),
                         Convert.ToDateTime(txtFechaHasta.Text),
                         Convert.ToInt32(ddlSeleccionarOficina.SelectedValue),
-                        Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue),
-                        Convert.ToDecimal(ddlSeleccionarOficina.SelectedValue))
+                        Convert.ToInt32(ddlSeleccionarDepartamento.SelectedValue),
+                        Convert.ToInt32(ddlSeleccionarOficina.SelectedValue))
                                         select new
                                         {
                                             Oficina = n.Oficina,
@@ -773,11 +822,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 {
                     try
                     {
-                        var Exportar = (from n in ObjData.Value.SacarReclamacionesHeader(
+                        var Exportar = (from n in ObjData.Value.BuscaProduccionReclamos(
                         Convert.ToDateTime(txtFechaDesde.Text),
                         Convert.ToDateTime(txtFechaHasta.Text),
                         Convert.ToInt32(ddlSeleccionarOficina.SelectedValue),
-                        Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue))
+                        Convert.ToInt32(ddlSeleccionarDepartamento.SelectedValue))
                                         select new
                                         {
                                             Oficina = n.Oficina,
@@ -794,7 +843,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 {
                     try
                     {
-                        var Exportar = (from n in ObjData.Value.SacarReclamacionesHeader(
+                        var Exportar = (from n in ObjData.Value.BuscaProduccionReclamos(
                         Convert.ToDateTime(txtFechaDesde.Text),
                         Convert.ToDateTime(txtFechaHasta.Text),
                         Convert.ToInt32(ddlSeleccionarOficina.SelectedValue))
@@ -979,37 +1028,86 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnExportarExelDetalle_Click(object sender, EventArgs e)
         {
-            GridViewRow gb = gbDetalle.SelectedRow;
-            int TipoReporte = Convert.ToInt32(ddlTipoReporte.SelectedValue);
-            if (TipoReporte == 1)
+            if (Convert.ToInt32(ddlTipoReporte.SelectedValue) == 1)
             {
-
-            }
-            else if (TipoReporte == 2)
-            {
-                try {
-                    var ExportarDetalleCobrado = (from n in ObjData.Value.SacarDetalleCobradoUsuario(
+                var Exportar = (from n in ObjData.Value.BuscaDetalleFacturacion(
                     Convert.ToDateTime(txtFechaDesde.Text),
                     Convert.ToDateTime(txtFechaHasta.Text),
-                    NombreUsuario)
-                                                  select new
-                                                  {
-                                                      Usuario =n.Usuario,
-                                                      Recibo =n.Recibo,
-                                                      Valor =n.Valor,
-                                                      Poliza =n.Poliza,
-                                                      Fecha=n.Fecha,
-                                                      Facturado=n.Facturado,
-                                                      Cobrado=n.TotalPagado,
-                                                      Balance=n.Balance
-                                                  }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Detalle Cobrado " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, ExportarDetalleCobrado);
-                }
-                catch (Exception) { MensajeErrorConsulta(2); }
-            }
-            else if (TipoReporte == 3)
-            {
+                    lbUsuario.Text,
+                    lbConcepto.Text)
+                                      select new {
+                                          Usuario = n.Usuario,
+                                          Numero = n.Numero,
+                                          Valor = n.Valor,
+                                          Poliza = n.Poliza,
+                                          Fecha = n.Fecha,
+                                          Balance = n.Balance,
+                                          Concepto = n.Concepto
 
+
+                                      }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Detalle de Facturacion de " + lbUsuario.Text, Exportar);
+            }
+            else if (Convert.ToInt32(ddlTipoReporte.SelectedValue) == 2)
+            {
+                var Exportar = (from n in ObjData.Value.SacarDetalleCobradoUsuario(
+                    Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHasta.Text),
+                    lbUsuario.Text)
+                                select new {
+                                    Usuario = n.Usuario,
+                                    Numero = n.Numero,
+                                    Valor = n.Valor,
+                                    Poliza = n.Poliza,
+                                    Fecha = n.Fecha,
+                                    Facturado = n.Facturado,
+                                    TotalPagado = n.TotalPagado,
+                                    Balance = n.Balance,
+                                    Concepto = n.Concepto
+
+
+                                }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Detalle de Cobrado de " + lbUsuario.Text, Exportar);
+            }
+            else if (Convert.ToInt32(ddlTipoReporte.SelectedValue) == 3)
+            {
+                var Exportar = (from n in ObjData.Value.BuscarProduccionReclamosDetalle(
+                    Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHasta.Text),
+                    lbUsuario.Text)
+                                select new
+                                {
+                                    Usuario = n.Usuario,
+                                    Numero = n.Numero,
+                                    Valor = n.Valor,
+                                    ValorAjustado = n.ValorAjustado,
+                                    ValorSalvamento = n.ValorSalvamento,
+                                    ValorAsegurado = n.ValorAsegurado,
+                                    Poliza = n.Poliza,
+                                    Fecha = n.Fecha,
+                                    FechaSiniestro = n.FechaSiniestro,
+                                    FechaCierre = n.FechaCierre,
+                                    Balance = n.Balance,
+                                    Concepto = n.Concepto,
+                                    Ramo = n.Ramo,
+                                    SubRamo = n.SubRamo,
+                                    InicioVigencia = n.InicioVigencia,
+                                    FinVigencia = n.FinVigencia,
+                                    TipoVehiculo = n.TipoVehiculo,
+                                    Marca = n.Marca,
+                                    Modelo = n.Modelo,
+                                    Capacidad = n.Capacidad,
+                                    Ano = n.Ano,
+                                    Color = n.Color,
+                                    Chasis = n.Chasis,
+                                    Placa = n.Placa,
+                                    Uso = n.Uso,
+                                    ValorVehiculo = n.ValorVehiculo,
+                                    Fianza = n.Fianza,
+                                    Asegurado = n.Asegurado,
+                                    Comentario = n.Comentario
+                                }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Reclamaciones de " + lbUsuario.Text, Exportar);
             }
         }
     }

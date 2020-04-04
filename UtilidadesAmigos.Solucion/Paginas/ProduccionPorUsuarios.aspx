@@ -12,6 +12,10 @@
             font-family:'Gill Sans';
             padding:25px;
         }
+
+         .LetrasNegrita {
+          font-weight:bold;
+          }
     </style>
 
     <script type="text/javascript">
@@ -27,6 +31,8 @@
     <div class="container-fluid">
         <div id="Color-Jumboton" class="jumbotron text-center">
         <asp:Label ID="lbEncabezado" runat="server" Text="Producción por Usuarios"></asp:Label>
+            <asp:Label ID="lbUsuario" runat="server" Text="Usuario" Visible="false"></asp:Label>
+             <asp:Label ID="lbConcepto" runat="server" Text="Concepto" Visible="false"></asp:Label>
   
 </div>
     </div>
@@ -115,7 +121,7 @@
                     <asp:BoundField DataField="Departamento" HeaderText="Departamento" />
                     <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
                     <asp:BoundField DataField="Concepto" HeaderText="Concepto" />
-                    <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+                    <asp:BoundField DataField="Cantidad" DataFormatString="{0:N0}" HtmlEncode="false" HeaderText="Cantidad" />
                     <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Ver" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
                 </Columns>
                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
@@ -129,13 +135,26 @@
                 <SortedDescendingHeaderStyle BackColor="#000065" />
             </asp:GridView>
 
-
+            <div align="center">
+                <br />
+                <asp:Label ID="lbTotalPrimaTitulo" Visible="false" CssClass="LetrasNegrita" runat="server" Text="Total Prima ( "></asp:Label>
+                <asp:Label ID="lbTotalPrimaVariable" Visible="false" CssClass="LetrasNegrita" runat="server" Text="0"></asp:Label>
+                <asp:Label ID="lbTotalPrimacerrar" Visible="false" CssClass="LetrasNegrita" runat="server" Text=" )"></asp:Label>
+            </div>
+            <br />
         </div>
         <div class="container-fluid" >
-            <asp:GridView id="gbDetalle" runat="server" AllowPaging="True" OnPageIndexChanging="gbDetalle_PageIndexChanging" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbDetalle_SelectedIndexChanged">
+            <asp:GridView id="gbDetalle" runat="server" AllowPaging="True" AutoGenerateColumns="false" OnPageIndexChanging="gbDetalle_PageIndexChanging" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbDetalle_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
                     <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn btn-outline-primary btn-sm" HeaderText="Detalle" SelectText="Entrar" ShowSelectButton="True" />
+                    <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
+                    <asp:BoundField DataField="Numero" HeaderText="Numero" />
+                    <asp:BoundField DataField="Valor" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Valor" />
+                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
+                    <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+                    <asp:BoundField DataField="Balance" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Balance" />
+                    <asp:BoundField DataField="Concepto" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Concepto" />
                 </Columns>
               <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
@@ -149,7 +168,7 @@
             </asp:GridView>
         </div>
     <br />
-    <div class="container">
+    <div align="center">
         <asp:Button ID="btnExportarExelDetalle" runat="server" Text="Exportar Detalle a Exel" ToolTip="Exportar el Detalle a Exel" class="btn btn-outline-success" Visible="false" OnClick="btnExportarExelDetalle_Click" />
     </div>
 

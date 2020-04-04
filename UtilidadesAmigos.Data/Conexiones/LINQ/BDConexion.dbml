@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString7" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_LISTA_CARGAR_RAMOS" Method="SP_LISTA_CARGAR_RAMOS">
     <Parameter Name="IdRamo" Parameter="idRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
@@ -35,35 +35,6 @@
       <Column Name="Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Oficina" Type="System.String" DbType="VarChar(21) NOT NULL" CanBeNull="false" />
       <Column Name="IdOficinaPertenece" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_BUSCA_DETALLE_FACTURACION" Method="SP_BUSCA_DETALLE_FACTURACION">
-    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Concepto" Parameter="concepto" Type="System.String" DbType="VarChar(1000)" />
-    <ElementType Name="SP_BUSCA_DETALLE_FACTURACIONResult">
-      <Column Name="Usuario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Factura" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Fecha" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.sp_BUSCA_DETALLE_COBROS" Method="sp_BUSCA_DETALLE_COBROS">
-    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Concepto" Parameter="concepto" Type="System.String" DbType="VarChar(1000)" />
-    <ElementType Name="sp_BUSCA_DETALLE_COBROSResult">
-      <Column Name="Usuario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="NumeroPago" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Fecha" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="Concepto" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="Utililades.SP_BUSCA_DETALLE_RECLAMACIONES" Method="SP_BUSCA_DETALLE_RECLAMACIONES">
@@ -718,21 +689,6 @@
       <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Concepto" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
       <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_SACAR_DETALLE_COBRADO_USUARIO" Method="SP_SACAR_DETALLE_COBRADO_USUARIO">
-    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(100)" />
-    <ElementType Name="SP_SACAR_DETALLE_COBRADO_USUARIOResult">
-      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Recibo" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Fecha" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="TotalPagado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="Utililades.SP_SACAR_PRODUCCION_DIARIA" Method="SP_SACAR_PRODUCCION_DIARIA">
@@ -1715,6 +1671,109 @@
       <Column Name="Persona" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
       <Column Name="CantidadPoliza" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Monto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.sp_BUSCA_DETALLE_COBROS" Method="sp_BUSCA_DETALLE_COBROS">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Concepto" Parameter="concepto" Type="System.String" DbType="VarChar(1000)" />
+    <ElementType Name="sp_BUSCA_DETALLE_COBROSResult">
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Numero" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_DETALLE_COBRADO_USUARIO" Method="SP_SACAR_DETALLE_COBRADO_USUARIO">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_SACAR_DETALLE_COBRADO_USUARIOResult">
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Numero" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TotalPagado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalPrima" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCAR_PRODUCCION_RECLAMACIONES" Method="SP_BUSCAR_PRODUCCION_RECLAMACIONES">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHAsta" Parameter="fechaHAsta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUaurio" Parameter="idUaurio" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCAR_PRODUCCION_RECLAMACIONESResult">
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Departamento" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(7) NOT NULL" CanBeNull="false" />
+      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCAR_PRODUCCION_RECLAMACIONES_DETALLE" Method="SP_BUSCAR_PRODUCCION_RECLAMACIONES_DETALLE">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_BUSCAR_PRODUCCION_RECLAMACIONES_DETALLEResult">
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Numero" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ValorAjustado" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ValorSalvamento" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ValorAsegurado" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FechaSiniestro" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FechaCierre" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(7) NOT NULL" CanBeNull="false" />
+      <Column Name="CodRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CodSubramo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubRamo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="TipoVehiculo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Marca" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Modelo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Capacidad" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Ano" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Chasis" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Placa" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Uso" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ValorVehiculo" Type="System.String" DbType="VarChar(41)" CanBeNull="true" />
+      <Column Name="Fianza" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Asegurado" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_DETALLE_FACTURACION" Method="SP_BUSCA_DETALLE_FACTURACION">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Concepto" Parameter="concepto" Type="System.String" DbType="VarChar(1000)" />
+    <ElementType Name="SP_BUSCA_DETALLE_FACTURACIONResult">
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Numero" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TotalPrima" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

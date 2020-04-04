@@ -447,13 +447,14 @@ namespace UtilidadesAmigos.Logica.Logica
             var Buscar = (from n in Objdata.SP_BUSCA_DETALLE_FACTURACION(FechaDesde, FechaHasta, Usuario, Concepto)
                           select new Entidades.EBuscaDetalleFacturacion
                           {
-                              Usuario=n.Usuario,
-                              Factura=n.Factura,
-                              Valor=n.Valor,
-                              Poliza=n.Poliza,
-                              Fecha=n.Fecha,
-                              Balance=n.Balance,
-                              Concepto=n.Concepto
+                              Usuario = n.Usuario,
+                              Numero = n.Numero,
+                              Valor = n.Valor,
+                              Poliza = n.Poliza,
+                              Fecha = n.Fecha,
+                              Balance = n.Balance,
+                              Concepto = n.Concepto,
+                              TotalPrima=n.TotalPrima
                           }).ToList();
             return Buscar;
 
@@ -467,12 +468,13 @@ namespace UtilidadesAmigos.Logica.Logica
             var Buscar = (from n in Objdata.sp_BUSCA_DETALLE_COBROS(FechaDesde, FechaHasta, Usuario, Concepto)
                           select new Entidades.EBuscaDetallesCobros
                           {
-                              Usuario=n.Usuario,
-                              NumeroPago=n.NumeroPago,
-                              Valor=n.Valor,
-                              Poliza=n.Poliza,
-                              Fecha=n.Fecha,
-                              Concepto=n.Concepto
+                             Usuario=n.Usuario,
+                             Numero=n.Numero,
+                             Valor=n.Valor,
+                             Poliza=n.Poliza,
+                             Fecha=n.Fecha,
+                             Balance=n.Balance,
+                             Concepto=n.Concepto
                           }).ToList();
             return Buscar;
         }
@@ -1218,13 +1220,15 @@ namespace UtilidadesAmigos.Logica.Logica
                            select new UtilidadesAmigos.Logica.Entidades.ESacarDetalleCobradoUsuario
                            {
                                Usuario=n.Usuario,
-                               Recibo=n.Recibo,
+                               Numero=n.Numero,
                                Valor=n.Valor,
                                Poliza=n.Poliza,
                                Fecha=n.Fecha,
                                Facturado=n.Facturado,
                                TotalPagado=n.TotalPagado,
-                               Balance=n.Balance
+                               Balance=n.Balance,
+                               Concepto=n.Concepto,
+                               TotalPrima=n.TotalPrima
 
                            }).ToList();
             return Detalle;
@@ -2206,6 +2210,72 @@ namespace UtilidadesAmigos.Logica.Logica
                                  Monto=n.Monto
                              }).ToList();
             return SacarData;
+        }
+        #endregion
+
+        #region MOSTRAR LA PRODUCCION DE RECLAMOS
+        //MOSTRAR LA CONSULTA DE LA PRODUCCION DE RECLAMOS
+        public List<UtilidadesAmigos.Logica.Entidades.EProduccionReclamos> BuscaProduccionReclamos(DateTime? FechaDesde = null, DateTime? FechaHAsta = null, int? IdOficina = null, int? IdDepartamento = null, int? IdUaurio = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCAR_PRODUCCION_RECLAMACIONES(FechaDesde, FechaHAsta, IdOficina, IdDepartamento, IdUaurio)
+                          select new UtilidadesAmigos.Logica.Entidades.EProduccionReclamos
+                          {
+                              Oficina=n.Oficina,
+                              Departamento=n.Departamento,
+                              Usuario=n.Usuario,
+                              Concepto=n.Concepto,
+                              IdOficina=n.IdOficina,
+                              IdDepartamento=n.IdDepartamento,
+                              IdUsuario=n.IdUsuario,
+                              Cantidad=n.Cantidad
+                          }).ToList();
+            return Buscar;
+        }
+
+        //MOSTRAR LA CONSULTA DE LA PRODUCCION DE RECLAMOS DETALLE
+        public List<UtilidadesAmigos.Logica.Entidades.EprogramacionReclamoDetalle> BuscarProduccionReclamosDetalle(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Usuario = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCAR_PRODUCCION_RECLAMACIONES_DETALLE(FechaDesde, FechaHasta, Usuario)
+                          select new UtilidadesAmigos.Logica.Entidades.EprogramacionReclamoDetalle
+                          {
+                              Usuario=n.Usuario,
+                              Numero=n.Numero,
+                              Valor=n.Valor,
+                              ValorAjustado=n.ValorAjustado,
+                              ValorSalvamento=n.ValorSalvamento,
+                              ValorAsegurado=n.ValorAsegurado,
+                              Poliza=n.Poliza,
+                              Fecha=n.Fecha,
+                              FechaSiniestro=n.FechaSiniestro,
+                              FechaCierre = n.FechaCierre,
+                              Balance=n.Balance,
+                              Concepto=n.Concepto,
+                              CodRamo=n.CodRamo,
+                              Ramo=n.Ramo,
+                              CodSubramo=n.CodSubramo,
+                              SubRamo=n.SubRamo,
+                              InicioVigencia=n.InicioVigencia,
+                              FinVigencia=n.FinVigencia,
+                              TipoVehiculo=n.TipoVehiculo,
+                              Marca=n.Marca,
+                              Modelo=n.Modelo,
+                              Capacidad=n.Capacidad,
+                              Ano=n.Ano,
+                              Color=n.Color,
+                              Chasis=n.Chasis,
+                              Placa=n.Placa,
+                              Uso=n.Uso,
+                              ValorVehiculo=n.ValorVehiculo,
+                              Fianza=n.Fianza,
+                              Asegurado=n.Asegurado,
+                              Comentario=n.Comentario
+
+                          }).ToList();
+            return Buscar;
         }
         #endregion
 

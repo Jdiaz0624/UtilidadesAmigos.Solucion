@@ -10,8 +10,7 @@ namespace UtilidadesAmigos.Logica.Entidades
     {
         public string Usuario { get; set; }
 
-
-        public decimal? Recibo { get; set; }
+        public decimal? Numero { get; set; }
 
         public System.Nullable<decimal> Valor { get; set; }
 
@@ -24,5 +23,8 @@ namespace UtilidadesAmigos.Logica.Entidades
         public System.Nullable<decimal> TotalPagado { get; set; }
 
         public System.Nullable<decimal> Balance { get; set; }
+
+        public string Concepto { get; set; }
+        public System.Nullable<decimal> TotalPrima { get; set; }
     }
 }

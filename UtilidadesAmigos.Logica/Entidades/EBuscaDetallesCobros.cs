@@ -10,13 +10,15 @@ namespace UtilidadesAmigos.Logica.Entidades
     {
         public string Usuario { get; set; }
 
-        public decimal NumeroPago { get; set; }
+        public decimal? Numero { get; set; }
 
         public System.Nullable<decimal> Valor { get; set; }
 
         public string Poliza { get; set; }
 
         public string Fecha { get; set; }
+
+        public System.Nullable<decimal> Balance { get; set; }
 
         public string Concepto { get; set; }
     }

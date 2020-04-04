@@ -111,7 +111,9 @@
     <Compile Include="Entidades\EPolizaEliminarBalanceCreditos.cs" />
     <Compile Include="Entidades\EProduccionDiariaConsulta.cs" />
     <Compile Include="Entidades\EProduccionDiariaDetalle.cs" />
+    <Compile Include="Entidades\EProduccionReclamos.cs" />
     <Compile Include="Entidades\EProduccionTodosLosRamos.cs" />
+    <Compile Include="Entidades\EprogramacionReclamoDetalle.cs" />
     <Compile Include="Entidades\EReporteCobradoContabilidad.cs" />
     <Compile Include="Entidades\ESacarCarteraIntermediario.cs" />
     <Compile Include="Entidades\ESacarCobrado.cs" />
