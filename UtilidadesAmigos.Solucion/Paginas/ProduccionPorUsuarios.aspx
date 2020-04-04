@@ -23,7 +23,14 @@
             alert("Error al Mostrar la consulta, favor de verificar que los parametros esten bien.")
         }
         function MensajeExportar() {
-            alert("Error al Exportar la Información, favor de verificar que los parametros esten bien cor1rectamente.")
+            alert("Error al Exportar la Información, favor de verificar que los parametros esten bien correctamente.")
+        }
+
+        function CampoFechaDesdeVacio() {
+            $("#<%=txtFechaDesde.ClientID%>").css("border-color", "red");
+        }
+        function CampoFechaHAstaVacio() {
+            $("#<%=txtFechaHasta.ClientID%>").css("border-color", "red");
         }
     </script>
 

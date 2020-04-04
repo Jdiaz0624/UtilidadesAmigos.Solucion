@@ -637,231 +637,262 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnBuscarRegistros_Click(object sender, EventArgs e)
         {
-            MostrarProduccion();
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "MensajeConsulta", "MensajeConsulta();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHAstaVacio", "CampoFechaHAstaVacio();", true);
+                }
+            }
+            else {
+                MostrarProduccion();
+            }
         }
 
         protected void btnGenerarReporte_Click(object sender, EventArgs e)
         {
-            //EXPORTAMOS LOS DATOS A EXEL
-            int TipoOperacion = Convert.ToInt32(ddlTipoReporte.SelectedValue);
-            if (TipoOperacion == 1)
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
             {
-                string Nombre = "";   
-                if (cbAgregarDepartamentos.Checked && cbAgregarUsuarios.Checked)
+                ClientScript.RegisterStartupScript(GetType(), "MensajeExportar", "MensajeExportar();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
                 {
-                    try {
-                        var Exportar = (from n in ObjData.Value.BuscaProduccionPorUsuarios(
-                        Convert.ToDateTime(txtFechaDesde.Text),
-                        Convert.ToDateTime(txtFechaHasta.Text),
-                        Convert.ToDecimal(ddlSeleccionarOficina.SelectedValue),
-                        Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue),
-                        Convert.ToDecimal(ddlSeleccionarUsuario.SelectedValue))
-                                        select new
-                                        {
-                                            Oficina = n.Oficina,
-                                            Departamento = n.Departamento,
-                                            Usuario = n.Usuario,
-                                            Concepto = n.Concepto,
-                                            Cantidad = n.Cantidad,
-                                            FechaDesde = n.FechaDesde,
-                                            FechaHasta = n.FechaHasta,
-                                            Nombre = n.Usuario
-                                        }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Produccion de " + Nombre + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
-                        Voz();
-                    }
-                    catch (Exception) { }
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHAstaVacio", "CampoFechaHAstaVacio();", true);
+                }
+                else
+                {
+                    //EXPORTAMOS LOS DATOS A EXEL
+                    int TipoOperacion = Convert.ToInt32(ddlTipoReporte.SelectedValue);
+                    if (TipoOperacion == 1)
+                    {
+                        string Nombre = "";
+                        if (cbAgregarDepartamentos.Checked && cbAgregarUsuarios.Checked)
+                        {
+                            try
+                            {
+                                var Exportar = (from n in ObjData.Value.BuscaProduccionPorUsuarios(
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text),
+                                Convert.ToDecimal(ddlSeleccionarOficina.SelectedValue),
+                                Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue),
+                                Convert.ToDecimal(ddlSeleccionarUsuario.SelectedValue))
+                                                select new
+                                                {
+                                                    Oficina = n.Oficina,
+                                                    Departamento = n.Departamento,
+                                                    Usuario = n.Usuario,
+                                                    Concepto = n.Concepto,
+                                                    Cantidad = n.Cantidad,
+                                                    FechaDesde = n.FechaDesde,
+                                                    FechaHasta = n.FechaHasta,
+                                                    Nombre = n.Usuario
+                                                }).ToList();
+                                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Produccion de " + Nombre + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
+                                Voz();
+                            }
+                            catch (Exception) { }
 
-                }
-                else if (cbAgregarDepartamentos.Checked)
-                {
-                    try
-                    {
-                        var Exportar = (from n in ObjData.Value.BuscaProduccionPorUsuarios(
-                        Convert.ToDateTime(txtFechaDesde.Text),
-                        Convert.ToDateTime(txtFechaHasta.Text),
-                        Convert.ToDecimal(ddlSeleccionarOficina.SelectedValue),
-                        Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue))
-                                        select new
-                                        {
-                                            Oficina = n.Oficina,
-                                            Departamento = n.Departamento,
-                                            Usuario = n.Usuario,
-                                            Concepto = n.Concepto,
-                                            Cantidad = n.Cantidad,
-                                            FechaDesde = n.FechaDesde,
-                                            FechaHasta = n.FechaHasta,
-                                            Nombre = n.Usuario
-                                        }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Produccion por usuario Por Departamento " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
-                        Voz();
-                    }
-                    catch (Exception) { }
-                }
-                else
-                {
-                    try
-                    {
-                        var Exportar = (from n in ObjData.Value.BuscaProduccionPorUsuarios(
-                        Convert.ToDateTime(txtFechaDesde.Text),
-                        Convert.ToDateTime(txtFechaHasta.Text),
-                        Convert.ToDecimal(ddlSeleccionarOficina.SelectedValue))
-                                        select new
-                                        {
-                                            Oficina = n.Oficina,
-                                            Departamento = n.Departamento,
-                                            Usuario = n.Usuario,
-                                            Concepto = n.Concepto,
-                                            Cantidad = n.Cantidad,
-                                            FechaDesde = n.FechaDesde,
-                                            FechaHasta = n.FechaHasta,
-                                            Nombre = n.Usuario
-                                        }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Produccion Por Usuario general " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
-                        Voz();
-                    }
-                    catch (Exception) { }
-                }
-               
-            }
-            else if (TipoOperacion == 2)
-            {
-                //EXPORTAMOS A EXEL LA PARTE DE LOS COBROS
-                if (cbAgregarDepartamentos.Checked && cbAgregarUsuarios.Checked)
-                {
-                    try {
-                        var ExportaCobros = (from n in ObjData.Value.SacarCobrado(
-                       Convert.ToDateTime(txtFechaDesde.Text),
-                       Convert.ToDateTime(txtFechaHasta.Text),
-                       Convert.ToDecimal(ddlSeleccionarOficina.SelectedValue),
-                       Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue),
-                       Convert.ToDecimal(ddlSeleccionarUsuario.SelectedValue))
-                                             select new
-                                             {
-                                                 Oficina = n.Oficina,
-                                                 Departamento = n.Departamento,
-                                                 Usuario = n.Usuario,
-                                                 Concepto = n.Concepto,
-                                                 Cantidad = n.Cantidad
-                                             }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de lo Cobrado Por Oficina", ExportaCobros);
-                        Voz();
-                    }
-                    catch (Exception) { }
-                }
-                else if (cbAgregarDepartamentos.Checked)
-                {
-                    try
-                    {
-                        var ExportaCobros = (from n in ObjData.Value.SacarCobrado(
-                       Convert.ToDateTime(txtFechaDesde.Text),
-                       Convert.ToDateTime(txtFechaHasta.Text),
-                       Convert.ToDecimal(ddlSeleccionarOficina.SelectedValue),
-                       Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue))
-                                             select new
-                                             {
-                                                 Oficina = n.Oficina,
-                                                 Departamento = n.Departamento,
-                                                 Usuario = n.Usuario,
-                                                 Concepto = n.Concepto,
-                                                 Cantidad = n.Cantidad
-                                             }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de lo Cobrado Por Oficina", ExportaCobros);
-                        //Voz();
-                    }
-                    catch (Exception) { }
-                }
-                else
-                {
-                    try
-                    {
-                        var ExportaCobros = (from n in ObjData.Value.SacarCobrado(
-                       Convert.ToDateTime(txtFechaDesde.Text),
-                       Convert.ToDateTime(txtFechaHasta.Text),
-                       Convert.ToDecimal(ddlSeleccionarOficina.SelectedValue))
-                                             select new
-                                             {
-                                                 Oficina = n.Oficina,
-                                                 Departamento = n.Departamento,
-                                                 Usuario = n.Usuario,
-                                                 Concepto = n.Concepto,
-                                                 Cantidad = n.Cantidad
-                                             }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de lo Cobrado Por Oficina", ExportaCobros);
-                        Voz();
-                    }
-                    catch (Exception) { }
-                }
-            }
-            else if (TipoOperacion == 3)
-            {
-                //EXPORTAMOS A EXEL LA PARTE DE LAS RECLAMACIONES
-                if (cbAgregarDepartamentos.Checked && cbAgregarUsuarios.Checked)
-                {
-                    try
-                    {
-                        var Exportar = (from n in ObjData.Value.BuscaProduccionReclamos(
-                        Convert.ToDateTime(txtFechaDesde.Text),
-                        Convert.ToDateTime(txtFechaHasta.Text),
-                        Convert.ToInt32(ddlSeleccionarOficina.SelectedValue),
-                        Convert.ToInt32(ddlSeleccionarDepartamento.SelectedValue),
-                        Convert.ToInt32(ddlSeleccionarOficina.SelectedValue))
-                                        select new
-                                        {
-                                            Oficina = n.Oficina,
-                                            Departamento = n.Departamento,
-                                            Usuario = n.Usuario,
-                                            Concepto = n.Concepto,
-                                            Cantidad = n.Cantidad
-                                        }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reclamaciones " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
-                    }
-                    catch (Exception) { MensajeErrorConsulta(2); }
-                }
-                else if (cbAgregarDepartamentos.Checked)
-                {
-                    try
-                    {
-                        var Exportar = (from n in ObjData.Value.BuscaProduccionReclamos(
-                        Convert.ToDateTime(txtFechaDesde.Text),
-                        Convert.ToDateTime(txtFechaHasta.Text),
-                        Convert.ToInt32(ddlSeleccionarOficina.SelectedValue),
-                        Convert.ToInt32(ddlSeleccionarDepartamento.SelectedValue))
-                                        select new
-                                        {
-                                            Oficina = n.Oficina,
-                                            Departamento = n.Departamento,
-                                            Usuario = n.Usuario,
-                                            Concepto = n.Concepto,
-                                            Cantidad = n.Cantidad
-                                        }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reclamaciones " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
-                    }
-                    catch (Exception) { MensajeErrorConsulta(2); }
-                }
-                else
-                {
-                    try
-                    {
-                        var Exportar = (from n in ObjData.Value.BuscaProduccionReclamos(
-                        Convert.ToDateTime(txtFechaDesde.Text),
-                        Convert.ToDateTime(txtFechaHasta.Text),
-                        Convert.ToInt32(ddlSeleccionarOficina.SelectedValue))
-                                        select new
-                                        {
-                                            Oficina = n.Oficina,
-                                            Departamento = n.Departamento,
-                                            Usuario = n.Usuario,
-                                            Concepto = n.Concepto,
-                                            Cantidad = n.Cantidad
-                                        }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reclamaciones " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
-                    }
-                    catch (Exception) { MensajeErrorConsulta(2); }
-                }
+                        }
+                        else if (cbAgregarDepartamentos.Checked)
+                        {
+                            try
+                            {
+                                var Exportar = (from n in ObjData.Value.BuscaProduccionPorUsuarios(
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text),
+                                Convert.ToDecimal(ddlSeleccionarOficina.SelectedValue),
+                                Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue))
+                                                select new
+                                                {
+                                                    Oficina = n.Oficina,
+                                                    Departamento = n.Departamento,
+                                                    Usuario = n.Usuario,
+                                                    Concepto = n.Concepto,
+                                                    Cantidad = n.Cantidad,
+                                                    FechaDesde = n.FechaDesde,
+                                                    FechaHasta = n.FechaHasta,
+                                                    Nombre = n.Usuario
+                                                }).ToList();
+                                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Produccion por usuario Por Departamento " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
+                                Voz();
+                            }
+                            catch (Exception) { }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                var Exportar = (from n in ObjData.Value.BuscaProduccionPorUsuarios(
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text),
+                                Convert.ToDecimal(ddlSeleccionarOficina.SelectedValue))
+                                                select new
+                                                {
+                                                    Oficina = n.Oficina,
+                                                    Departamento = n.Departamento,
+                                                    Usuario = n.Usuario,
+                                                    Concepto = n.Concepto,
+                                                    Cantidad = n.Cantidad,
+                                                    FechaDesde = n.FechaDesde,
+                                                    FechaHasta = n.FechaHasta,
+                                                    Nombre = n.Usuario
+                                                }).ToList();
+                                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Produccion Por Usuario general " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
+                                Voz();
+                            }
+                            catch (Exception) { }
+                        }
 
+                    }
+                    else if (TipoOperacion == 2)
+                    {
+                        //EXPORTAMOS A EXEL LA PARTE DE LOS COBROS
+                        if (cbAgregarDepartamentos.Checked && cbAgregarUsuarios.Checked)
+                        {
+                            try
+                            {
+                                var ExportaCobros = (from n in ObjData.Value.SacarCobrado(
+                               Convert.ToDateTime(txtFechaDesde.Text),
+                               Convert.ToDateTime(txtFechaHasta.Text),
+                               Convert.ToDecimal(ddlSeleccionarOficina.SelectedValue),
+                               Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue),
+                               Convert.ToDecimal(ddlSeleccionarUsuario.SelectedValue))
+                                                     select new
+                                                     {
+                                                         Oficina = n.Oficina,
+                                                         Departamento = n.Departamento,
+                                                         Usuario = n.Usuario,
+                                                         Concepto = n.Concepto,
+                                                         Cantidad = n.Cantidad
+                                                     }).ToList();
+                                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de lo Cobrado Por Oficina", ExportaCobros);
+                                Voz();
+                            }
+                            catch (Exception) { }
+                        }
+                        else if (cbAgregarDepartamentos.Checked)
+                        {
+                            try
+                            {
+                                var ExportaCobros = (from n in ObjData.Value.SacarCobrado(
+                               Convert.ToDateTime(txtFechaDesde.Text),
+                               Convert.ToDateTime(txtFechaHasta.Text),
+                               Convert.ToDecimal(ddlSeleccionarOficina.SelectedValue),
+                               Convert.ToDecimal(ddlSeleccionarDepartamento.SelectedValue))
+                                                     select new
+                                                     {
+                                                         Oficina = n.Oficina,
+                                                         Departamento = n.Departamento,
+                                                         Usuario = n.Usuario,
+                                                         Concepto = n.Concepto,
+                                                         Cantidad = n.Cantidad
+                                                     }).ToList();
+                                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de lo Cobrado Por Oficina", ExportaCobros);
+                                //Voz();
+                            }
+                            catch (Exception) { }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                var ExportaCobros = (from n in ObjData.Value.SacarCobrado(
+                               Convert.ToDateTime(txtFechaDesde.Text),
+                               Convert.ToDateTime(txtFechaHasta.Text),
+                               Convert.ToDecimal(ddlSeleccionarOficina.SelectedValue))
+                                                     select new
+                                                     {
+                                                         Oficina = n.Oficina,
+                                                         Departamento = n.Departamento,
+                                                         Usuario = n.Usuario,
+                                                         Concepto = n.Concepto,
+                                                         Cantidad = n.Cantidad
+                                                     }).ToList();
+                                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de lo Cobrado Por Oficina", ExportaCobros);
+                                Voz();
+                            }
+                            catch (Exception) { }
+                        }
+                    }
+                    else if (TipoOperacion == 3)
+                    {
+                        //EXPORTAMOS A EXEL LA PARTE DE LAS RECLAMACIONES
+                        if (cbAgregarDepartamentos.Checked && cbAgregarUsuarios.Checked)
+                        {
+                            try
+                            {
+                                var Exportar = (from n in ObjData.Value.BuscaProduccionReclamos(
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text),
+                                Convert.ToInt32(ddlSeleccionarOficina.SelectedValue),
+                                Convert.ToInt32(ddlSeleccionarDepartamento.SelectedValue),
+                                Convert.ToInt32(ddlSeleccionarOficina.SelectedValue))
+                                                select new
+                                                {
+                                                    Oficina = n.Oficina,
+                                                    Departamento = n.Departamento,
+                                                    Usuario = n.Usuario,
+                                                    Concepto = n.Concepto,
+                                                    Cantidad = n.Cantidad
+                                                }).ToList();
+                                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reclamaciones " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
+                            }
+                            catch (Exception) { MensajeErrorConsulta(2); }
+                        }
+                        else if (cbAgregarDepartamentos.Checked)
+                        {
+                            try
+                            {
+                                var Exportar = (from n in ObjData.Value.BuscaProduccionReclamos(
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text),
+                                Convert.ToInt32(ddlSeleccionarOficina.SelectedValue),
+                                Convert.ToInt32(ddlSeleccionarDepartamento.SelectedValue))
+                                                select new
+                                                {
+                                                    Oficina = n.Oficina,
+                                                    Departamento = n.Departamento,
+                                                    Usuario = n.Usuario,
+                                                    Concepto = n.Concepto,
+                                                    Cantidad = n.Cantidad
+                                                }).ToList();
+                                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reclamaciones " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
+                            }
+                            catch (Exception) { MensajeErrorConsulta(2); }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                var Exportar = (from n in ObjData.Value.BuscaProduccionReclamos(
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text),
+                                Convert.ToInt32(ddlSeleccionarOficina.SelectedValue))
+                                                select new
+                                                {
+                                                    Oficina = n.Oficina,
+                                                    Departamento = n.Departamento,
+                                                    Usuario = n.Usuario,
+                                                    Concepto = n.Concepto,
+                                                    Cantidad = n.Cantidad
+                                                }).ToList();
+                                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reclamaciones " + txtFechaDesde.Text + " - " + txtFechaHasta.Text, Exportar);
+                            }
+                            catch (Exception) { MensajeErrorConsulta(2); }
+                        }
+
+                    }
+                }
             }
-            }
+        }
 
         protected void gbListado_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
