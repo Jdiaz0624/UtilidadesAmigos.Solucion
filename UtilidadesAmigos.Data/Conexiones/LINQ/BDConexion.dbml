@@ -1778,4 +1778,40 @@
       <Column Name="TotalPesosDominicanos" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_SACAR_PRODUCCION_SUPERVISOR" Method="SP_SACAR_PRODUCCION_SUPERVISOR">
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Subramo" Parameter="subramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ExcluirMotores" Parameter="excluirMotores" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SACAR_PRODUCCION_SUPERVISORResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Prima" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="SumaAsegurada" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="CodRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CodSubRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Subramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CodCliente" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="CodSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Numero" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CreadoPor" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TotalFacturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -38,12 +38,163 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             catch (Exception) { }
         }
-#endregion
+        #endregion
+        #region CARGAR LAS LISTAS DESPLEGABLES DE LA PRODUCCION
+        private void CargarRamosProduccion()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamoProduccion, ObjData.Value.BuscaListas("RAMO", null, null), true);
+        }
+        private void CargarSubramosProduccion()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSubRamoProduccion, ObjData.Value.BuscaListas("SUBRAMO", ddlSeleccionarRamoProduccion.SelectedValue, null), true);
+        }
+        private void CargarExliirProduccion() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlExcluirMotoresProduccion, ObjData.Value.BuscaListas("EXCLUIR", null, null));
+        }
+        #endregion
+        #region BUSCAR PRODUCCION
+        private void BuscarProduccionSupervisor() {
+            try {
+                int? _Ramo = ddlSeleccionarRamoProduccion.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoProduccion.SelectedValue) : new Nullable<int>();
+                int? _SubRamo = ddlSeleccionarSubRamoProduccion.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamoProduccion.SelectedValue) : new Nullable<int>();
+                decimal TotalFacturado = 0;
+                if (Convert.ToInt32(ddlSeleccionarRamoProduccion.SelectedValue) == 106 && Convert.ToInt32(ddlExcluirMotoresProduccion.SelectedValue) == 2)
+                {
+                    //BUSCAMOS SIN MOTORES
+                    var Buscar = ObjData.Value.SacarProduccionSupervisor(
+                        Convert.ToInt32(txtCodigoSupervisor.Text),
+                        null,
+                        _Ramo,
+                        _SubRamo,
+                        Convert.ToDateTime(txtFechaDesdeProduccion.Text),
+                        Convert.ToDateTime(txtFechaHastaProduccion.Text),
+                        1);
+                    gvProduccion.DataSource = Buscar;
+                    gvProduccion.DataBind();
+                    foreach (var n in Buscar) {
+                        TotalFacturado = Convert.ToDecimal(n.TotalFacturado);
+                        lbTotalFacturadoVariableProduccion.Text = TotalFacturado.ToString("N2");
+                    }
+
+                }
+                else
+                {
+                    //BUSCAMOS CON MOTORES
+                    var Buscar = ObjData.Value.SacarProduccionSupervisor(
+                        Convert.ToInt32(txtCodigoSupervisor.Text),
+                        null,
+                        _Ramo,
+                        _SubRamo,
+                        Convert.ToDateTime(txtFechaDesdeProduccion.Text),
+                        Convert.ToDateTime(txtFechaHastaProduccion.Text),
+                        2);
+                    gvProduccion.DataSource = Buscar;
+                    gvProduccion.DataBind();
+                    foreach (var n in Buscar)
+                    {
+                        TotalFacturado = Convert.ToDecimal(n.TotalFacturado);
+                        lbTotalFacturadoVariableProduccion.Text = TotalFacturado.ToString("N2");
+                    }
+                }
+            }
+            catch (Exception) { }
+        }
+        private void ExportarProduccionSupervisor() {
+            int? _Ramo = ddlSeleccionarRamoProduccion.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoProduccion.SelectedValue) : new Nullable<int>();
+            int? _SubRamo = ddlSeleccionarSubRamoProduccion.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamoProduccion.SelectedValue) : new Nullable<int>();
+            try
+            {
+                if (Convert.ToInt32(ddlSeleccionarRamoProduccion.SelectedValue) == 106 && Convert.ToInt32(ddlExcluirMotoresProduccion.SelectedValue) == 2)
+                {
+                    var Exportar = (from n in ObjData.Value.SacarProduccionSupervisor(
+                        Convert.ToInt32(txtCodigoSupervisor.Text),
+                        null,
+                        _Ramo,
+                        _SubRamo,
+                        Convert.ToDateTime(txtFechaDesdeProduccion.Text),
+                        Convert.ToDateTime(txtFechaHastaProduccion.Text),
+                        1)
+                                    select new
+                                    {
+                                        Poliza = n.Poliza,
+                                        Estatus = n.Estatus,
+                                        Prima = n.Prima,
+                                        SumaAsegurada = n.SumaAsegurada,
+                                        InicioVigencia = n.InicioVigencia,
+                                        FinVigencia = n.FinVigencia,
+                                        CodRamo = n.CodRamo,
+                                        Ramo = n.Ramo,
+                                        CodSubRamo = n.CodSubRamo,
+                                        Subramo = n.Subramo,
+                                        CodCliente = n.CodCliente,
+                                        Cliente = n.Cliente,
+                                        CodSupervisor = n.CodSupervisor,
+                                        Supervisor = n.Supervisor,
+                                        CodIntermediario = n.CodIntermediario,
+                                        Intermediario = n.Intermediario,
+                                        Fecha = n.Fecha,
+                                        Valor = n.Valor,
+                                        Numero = n.Numero,
+                                        Concepto = n.Concepto,
+                                        CreadoPor = n.CreadoPor,
+                                        Facturado = n.Facturado,
+                                        Cobrado = n.Cobrado,
+                                        Balance = n.Balance
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Produccion por supervisor", Exportar);
+                }
+                else
+                {
+                    var Exportar = (from n in ObjData.Value.SacarProduccionSupervisor(
+                           Convert.ToInt32(txtCodigoSupervisor.Text),
+                           null,
+                           _Ramo,
+                           _SubRamo,
+                           Convert.ToDateTime(txtFechaDesdeProduccion.Text),
+                           Convert.ToDateTime(txtFechaHastaProduccion.Text),
+                           2)
+                                    select new
+                                    {
+                                        Poliza = n.Poliza,
+                                        Estatus = n.Estatus,
+                                        Prima = n.Prima,
+                                        SumaAsegurada = n.SumaAsegurada,
+                                        InicioVigencia = n.InicioVigencia,
+                                        FinVigencia = n.FinVigencia,
+                                        CodRamo = n.CodRamo,
+                                        Ramo = n.Ramo,
+                                        CodSubRamo = n.CodSubRamo,
+                                        Subramo = n.Subramo,
+                                        CodCliente = n.CodCliente,
+                                        Cliente = n.Cliente,
+                                        CodSupervisor = n.CodSupervisor,
+                                        Supervisor = n.Supervisor,
+                                        CodIntermediario = n.CodIntermediario,
+                                        Intermediario = n.Intermediario,
+                                        Fecha = n.Fecha,
+                                        Valor = n.Valor,
+                                        Numero = n.Numero,
+                                        Concepto = n.Concepto,
+                                        CreadoPor = n.CreadoPor,
+                                        Facturado = n.Facturado,
+                                        Cobrado = n.Cobrado,
+                                        Balance = n.Balance
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Produccion por supervisor", Exportar);
+
+                }
+            }
+            catch (Exception) { }
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-
+                CargarRamosProduccion();
+                CargarSubramosProduccion();
+                CargarExliirProduccion();
+                ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
             }
         }
 
@@ -119,6 +270,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 MostrarCartera();
             }
+            ClientScript.RegisterStartupScript(GetType(), "DesbloquearBotones", "DesbloquearBotones();", true);
+            txtCodigoSupervisor.Enabled = false;
         }
 
         protected void cbComicion_CheckedChanged(object sender, EventArgs e)
@@ -162,12 +315,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtNombreIntermediario.Visible = true;
                 lbEncabezado.Text = "Cartera de Supervisores";
             }
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
         }
 
         protected void gbListadoCarteraSupervisor_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gbListadoCarteraSupervisor.PageIndex = e.NewPageIndex;
             MostrarCartera();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
         }
 
         protected void gbListadoCarteraSupervisor_SelectedIndexChanged(object sender, EventArgs e)
@@ -222,6 +377,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(gb.Cells[1].Text, SacarCliente);
             }
             catch (Exception) { }
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
         }
 
         protected void btnExportar_Click(object sender, EventArgs e)
@@ -302,7 +458,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
             }
 
-
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
         }
 
         protected void gbListadoCarteraSupervisor_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -311,6 +467,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 e.Row.Cells[0].Visible = false;
             }
             catch (Exception) { }
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
         }
 
         protected void cbAgregarOficina_CheckedChanged(object sender, EventArgs e)
@@ -327,21 +484,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbSeleccionaroficina.Visible = false;
                 ddlSeleccionaroficina.Visible = false;
             }
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
         }
 
         protected void gbListadoComisiones_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
         }
 
         protected void gbListadoComisiones_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
         }
 
         protected void gbListadoComisiones_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
         }
 
         protected void btnExportarListadoCompleto_Click(object sender, EventArgs e)
@@ -398,12 +556,56 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
                 catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
             }
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
         }
 
         protected void gbListadoCarteraSupervisor_RowDataBound1(object sender, GridViewRowEventArgs e)
         {
             try { e.Row.Cells[0].Visible = false; }
             catch (Exception) { }
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
+        }
+
+        protected void btnRestablecerPantalla_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
+            txtCodigoSupervisor.Enabled = true;
+            txtCodigoSupervisor.Text = string.Empty;
+
+        }
+
+        protected void btnConsultarProduccion_Click(object sender, EventArgs e)
+        {
+            BuscarProduccionSupervisor();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
+        }
+
+        protected void gvProduccion_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvProduccion.PageIndex = e.NewPageIndex;
+            BuscarProduccionSupervisor();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
+        }
+
+        protected void ddlSeleccionarRamoProduccion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarSubramosProduccion();
+            if (Convert.ToInt32(ddlSeleccionarRamoProduccion.SelectedValue) == 106)
+            {
+                lbExcluirMotoresProduccion.Visible = true;
+                ddlExcluirMotoresProduccion.Visible = true;
+            }
+            else {
+                lbExcluirMotoresProduccion.Visible = false;
+                ddlExcluirMotoresProduccion.Visible = false;
+            }
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
+        }
+
+        protected void btnExportarProduccion_Click(object sender, EventArgs e)
+        {
+            ExportarProduccionSupervisor();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
         }
     }
 }

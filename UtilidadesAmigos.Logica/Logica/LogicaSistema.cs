@@ -2281,5 +2281,43 @@ namespace UtilidadesAmigos.Logica.Logica
         }
         #endregion
 
+        #region SACAR LA PRODUCCION DE SUPERVISORES
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarProduccionSupervisor> SacarProduccionSupervisor(int? CodigoSupervisor = null, string Poliza = null, int? Ramo = null, int? Subramo = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? ExcluirMotores = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var ProduccionSupervisor = (from n in Objdata.SP_SACAR_PRODUCCION_SUPERVISOR(CodigoSupervisor, Poliza, Ramo, Subramo, FechaDesde, FechaHasta, ExcluirMotores)
+                                        select new UtilidadesAmigos.Logica.Entidades.ESacarProduccionSupervisor
+                                        {
+                                            Poliza=n.Poliza,
+                                            Estatus=n.Estatus,
+                                            Prima=n.Prima,
+                                            SumaAsegurada=n.SumaAsegurada,
+                                            InicioVigencia=n.InicioVigencia,
+                                            FinVigencia=n.FinVigencia,
+                                            CodRamo=n.CodRamo,
+                                            Ramo=n.Ramo,
+                                            CodSubRamo=n.CodSubRamo,
+                                            Subramo=n.Subramo,
+                                            CodCliente=n.CodCliente,
+                                            Cliente=n.Cliente,
+                                            CodSupervisor=n.CodSupervisor,
+                                            Supervisor=n.Supervisor,
+                                            CodIntermediario=n.CodIntermediario,
+                                            Intermediario=n.Intermediario,
+                                            Fecha=n.Fecha,
+                                            Valor=n.Valor,
+                                            Numero=n.Numero,
+                                            Concepto=n.Concepto,
+                                            CreadoPor=n.CreadoPor,
+                                            Facturado=n.Facturado,
+                                            Cobrado=n.Cobrado,
+                                            Balance=n.Balance,
+                                            TotalFacturado=n.TotalFacturado
+                                        }).ToList();
+            return ProduccionSupervisor;
+        }
+        #endregion
+
     }
 }

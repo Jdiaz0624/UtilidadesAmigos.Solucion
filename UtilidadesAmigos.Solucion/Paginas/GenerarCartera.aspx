@@ -39,9 +39,26 @@
             font-size:20px;
             font-weight:bold;
         }
+         .LetraNegrita {
+         font-weight:bold;
+         }
     </style>
 
     <script type="text/javascript">
+
+        function BloquearBotones() {
+            $("#<%=btnExportar.ClientID%>").attr("Disabled", "Disabled");
+            $("#<%=btnExportarListadoCompleto.ClientID%>").attr("Disabled", "Disabled");
+            $("#<%=btnRestablecerPantalla.ClientID%>").attr("Disabled", "Disabled");
+            $("#btnProduccionSupervisor").attr("Disabled", "Disabled");
+        }
+        function DesbloquearBotones() {
+            $("#<%=btnExportar.ClientID%>").removeAttr("Disabled", true);
+            $("#<%=btnExportarListadoCompleto.ClientID%>").removeAttr("Disabled", true);
+            $("#<%=btnRestablecerPantalla.ClientID%>").removeAttr("Disabled", true);
+            $("#btnProduccionSupervisor").removeAttr("Disabled", true);
+        }
+
         $(document).ready(function () {
             
 
@@ -59,8 +76,19 @@
 
 
 
-    })
+            })
+
+              $("#<%=txtCodigoSupervisor.ClientID%>").on('keydown keypress', function (e) {
+                if (e.key.length == 1) {
+                    if ($(this).val().length < 4 && !isNaN(parseFloat(e.key))) {
+                        $(this).val($(this).val() + e.key);
+                    }
+                    return false;
+                }
+            });
         })
+
+       
     </script>
 
     <!--INICIO DEL ENCABEZADO-->
@@ -85,12 +113,12 @@
         <div class="form-row">
                 <div class="form-group col-md-3">
                 <asp:Label ID="lbCodigoSupervisor" runat="server" Text="Codigo de Supervisor"></asp:Label>
-                <asp:TextBox ID="txtCodigoSupervisor" runat="server" PlaceHolder="Ingrese Codigo"  CssClass="form-control" MaxLength="6" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtCodigoSupervisor" runat="server" AutoCompleteType="Disabled" PlaceHolder="Ingrese Codigo"  CssClass="form-control"></asp:TextBox>
               
            </div>
             <div class="form-group col-md-3">
                     <asp:Label ID="lbNombreIntermediario" runat="server" Text="Nombre de Intermediario"></asp:Label>
-                    <asp:TextBox ID="txtNombreIntermediario" runat="server" PlaceHolder="Nombre de Intermediario" CssClass="form-control" MaxLength="150"></asp:TextBox>
+                    <asp:TextBox ID="txtNombreIntermediario" runat="server" PlaceHolder="Nombre de Intermediario" AutoCompleteType="Disabled" CssClass="form-control" MaxLength="150"></asp:TextBox>
                 </div>
                    </div>
             <div class="form-row">
@@ -129,10 +157,12 @@
             </div>
           </div>
 
-               <div class="container-fluid">
+               <div align="center">
                    <asp:Button ID="btnConsultar"  runat="server"  Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultar_Click" />
                    <asp:Button ID="btnExportar"  runat="server" Text="Exportar" ToolTip="Exportar Registros a Exel" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportar_Click" />
                    <asp:Button ID="btnExportarListadoCompleto" runat="server" Text="Exportar Todo" ToolTip="Exportar todo el listado de comisiones" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportarListadoCompleto_Click" />
+                   <button type="button" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" id="btnProduccionSupervisor" data-target=".bd-example-modal-xl">Produccón</button>
+                   <asp:Button ID="btnRestablecerPantalla" runat="server" Text="Restablecer" ToolTip="Restablecer Pantalla" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnRestablecerPantalla_Click" />
         </div>
     <br />
 <!--FIN DE LOS CONTROLES DE BUSQUEDA-->
@@ -153,7 +183,7 @@
                     <asp:BoundField DataField="Direccion" HeaderText="Dirección"/>
                     <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
                     <asp:BoundField DataField="OficinaSupervisor" HeaderText="Oficina" />
-                    <asp:CommandField ButtonType="Button" HeaderText="Cliente" SelectText="Ver" ControlStyle-CssClass="btn btn-outline-primary btn-sm Custom" ShowSelectButton="True" />
+                    <asp:CommandField ButtonType="Button" HeaderText="Cliente" SelectText="Exportar" ControlStyle-CssClass="btn btn-outline-primary btn-sm Custom" ShowSelectButton="True" />
                      
                 </Columns>
                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
@@ -198,4 +228,90 @@
 
         </div>
     <!--FIN DEL GRID PARA MOSTRAR LAS COMISIONES-->
+
+    <!--MODAL PARA LA PRODUCCION DE SUPERVISOR-->
+    <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="container-fluid">
+          <div class="jumbotron" align="center">
+              <asp:Label ID="lbProduccionPorSupervisor" runat="server" CssClass="LetraNegrita" Text="Producción Por Supervisor"></asp:Label>
+          </div>
+          <asp:ScriptManager ID="ScripManagerproduccion" runat="server"></asp:ScriptManager>
+          <asp:UpdatePanel ID="UpdatePanelProduccion" runat="server">
+              <ContentTemplate>
+                  <!--COLOCAMOS LOS COMTROLES DE BUSQUEDA-->
+                  <div class="form-row" >
+                      <div class="form-group col-md-4">
+                          <asp:Label ID="lbFechaDesdeProduccion" runat="server" Text="Fecha Desde" CssClass="LetraNegrita"></asp:Label>
+                          <asp:TextBox ID="txtFechaDesdeProduccion" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                      </div>
+
+                       <div class="form-group col-md-4">
+                          <asp:Label ID="lbFechaHastaProduccion" runat="server" Text="Fecha Hasta" CssClass="LetraNegrita"></asp:Label>
+                          <asp:TextBox ID="txtFechaHastaProduccion" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                      </div>
+
+                      <div class="form-group col-md-4">
+                          <asp:Label ID="lbSeleccionarRamoProduccion" runat="server" Text="Seleccionar Ramo" CssClass="LetraNegrita"></asp:Label>
+                          <asp:DropDownList ID="ddlSeleccionarRamoProduccion" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarRamoProduccion_SelectedIndexChanged" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
+                      </div>
+
+                      <div class="form-group col-md-4">
+                          <asp:Label ID="lbSeleccionaSubRamoProduccion" runat="server" Text="Seleccionar Sub Ramo" CssClass="LetraNegrita"></asp:Label>
+                          <asp:DropDownList ID="ddlSeleccionarSubRamoProduccion" runat="server" ToolTip="Seleccionar Sub Ramo" CssClass="form-control"></asp:DropDownList>
+                      </div>
+
+                      <div class="form-group col-md-4">
+                          <asp:Label ID="lbExcluirMotoresProduccion" Visible="false" runat="server" Text="Excluir Motores" CssClass="LetraNegrita"></asp:Label>
+                          <asp:DropDownList ID="ddlExcluirMotoresProduccion" Visible="false" runat="server" ToolTip="Excluir Motores" CssClass="form-control"></asp:DropDownList>
+                      </div>
+                  </div>
+                  <div align="center">
+                      <asp:Button ID="btnConsultarProduccion"  runat="server"  Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultarProduccion_Click" />
+                  </div>
+                
+                  <div align="center">
+                      <asp:Label ID="lbTotalFacturadoTiruloProduccion" runat="server" Text="Total Producción (" CssClass="LetraNegrita"></asp:Label>
+                      <asp:Label ID="lbTotalFacturadoVariableProduccion" runat="server" Text="0" CssClass="LetraNegrita"></asp:Label>
+                      <asp:Label ID="lbTotalFacturadoCerrarProduccion" runat="server" Text=" )" CssClass="LetraNegrita"></asp:Label>
+                  </div>
+                    <br />
+
+            <asp:GridView id="gvProduccion" runat="server"  AllowPaging="True" OnPageIndexChanging="gvProduccion_PageIndexChanging" AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%">
+                <AlternatingRowStyle BackColor="#DCDCDC" />
+                <Columns>
+                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
+                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
+                    <asp:BoundField DataField="Ramo" HeaderText="Ramo" />
+                    <asp:BoundField DataField="Numero" HeaderText="No Factura"/>
+                    <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+                    <asp:BoundField DataField="Valor" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Monto" />
+                    <asp:BoundField DataField="Concepto" HeaderText="Concepto" />
+                </Columns>
+              <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+
+                
+
+
+              </ContentTemplate>
+          </asp:UpdatePanel>
+            <br />
+                     <div align="center">
+                      <asp:Button ID="btnExportarProduccion"  runat="server"  Text="Exportar" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportarProduccion_Click" />
+                  </div>
+          <br />
+      </div>
+    </div>
+  </div>
+</div>
 </asp:Content>

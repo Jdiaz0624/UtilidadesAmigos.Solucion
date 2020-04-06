@@ -131,6 +131,7 @@
     <Compile Include="Entidades\ESacarProduccionContabilidad.cs" />
     <Compile Include="Entidades\ESacarProduccionDiariaDetalle.cs" />
     <Compile Include="Entidades\ESacarProduccionIntermediario.cs" />
+    <Compile Include="Entidades\ESacarProduccionSupervisor.cs" />
     <Compile Include="Entidades\ESacarRamoPoliza.cs" />
     <Compile Include="Entidades\ESacarreclamaciones.cs" />
     <Compile Include="Entidades\ESacarSubramoDetalle.cs" />
