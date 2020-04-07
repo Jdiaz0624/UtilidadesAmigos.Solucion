@@ -29,7 +29,7 @@
           .carousel-item {
       display: block;
       width: 100%;
-      height: 300px;
+      height: 330px;
 }
 .carousel-item img {
       height: 100%;

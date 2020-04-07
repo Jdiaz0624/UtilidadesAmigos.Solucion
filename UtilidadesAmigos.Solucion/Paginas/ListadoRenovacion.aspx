@@ -29,11 +29,11 @@
                   alert("Has dejado campos vacios que son necesarios para realizar esta operación, favor de verificar");
                   return false;
 }
-         function FechaDesdeVacio() {
-            $("#<%=txtFechaDesdeEstadistica.ClientID%>").css("border-color", "red");
+              function FechaDesdeVacio() {
+                  $("#<%=txtFechaDesde.ClientID%>").css("border-color", "red");
          }
-            function FechaHastaVacio(){
-            $("#<%=txtFechaHastaEstadistica.ClientID %>").css("border-color","red");
+              function FechaHastaVacio() {
+                  $("#<%=txtFechaHAsta.ClientID%>").css("border-color", "red");
 }
     </script>
     <div class="container-fluid">
@@ -134,7 +134,6 @@
                     <asp:BoundField DataField="Facturado" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Facturado" />
                     <asp:BoundField DataField="Cobrado" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Cobrado" />
                     <asp:BoundField DataField="Balance" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Balance" />
-                     <asp:CommandField ButtonType="Button" HeaderStyle-Width="11%" HeaderText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />
                 </Columns  >
                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />

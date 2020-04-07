@@ -213,7 +213,23 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            MostrarListadoRenovaciones();
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHAsta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "ErrorConsulta", "ErrorConsulta();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeVacio", "FechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHAsta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaHastaVacio", "FechaHastaVacio();", true);
+                }
+            }
+            else
+            {
+                MostrarListadoRenovaciones();
+            }
+            
         }
 
         protected void btnExportar_Click(object sender, EventArgs e)
