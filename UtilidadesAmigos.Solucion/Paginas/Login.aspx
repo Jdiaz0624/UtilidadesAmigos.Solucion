@@ -19,7 +19,7 @@ body{
 }
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}
-.clearfix:after{clear:both;display:block}
+.clearfix:after{clear:both;display:block} 
 a{color:inherit;text-decoration:none}
 
 .login-wrap{
