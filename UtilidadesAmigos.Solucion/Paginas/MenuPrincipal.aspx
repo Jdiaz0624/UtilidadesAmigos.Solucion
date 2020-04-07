@@ -12,11 +12,11 @@
             padding:25px;
         }
 
-        .Imagenesxx {
+        /*.Imagenesxx {
         width:300px;
         height:100px;
         text-align:center;
-        }
+        }*/
 
         .carousel {
         border-color:blue;
@@ -25,6 +25,16 @@
          .LetrasNegrita {
           font-weight:bold;
           }
+
+          .carousel-item {
+      display: block;
+      width: 100%;
+      height: 300px;
+}
+.carousel-item img {
+      height: 100%;
+      width: 100%;
+}
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -71,7 +81,7 @@
      <div align="center">
         <button type="button" id="btnSugerencia" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-xl">Sugerencias</button>
     </div>
-    <br /><br />
+    <br />
 <div class="container-fluid Imagenesxx">
 
         <div align="center" id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">

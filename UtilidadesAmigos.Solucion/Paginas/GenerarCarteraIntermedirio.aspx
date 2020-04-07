@@ -168,8 +168,7 @@
   </div>
 </div>
 
-<asp:UpdatePanel runat="server" ID="UpdatePanelCartera">
-    <ContentTemplate>
+
         <!--CARTERA-->
 <div class="modal fade bd-example-modal-xl GenerarCarteraPOPO" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
@@ -179,7 +178,10 @@
               <asp:Label ID="lbNombreIntermediarioCartera" runat="server" Text="Nombre Intermediario"></asp:Label>
           </div>
             <br />
-           <div>
+        
+          <asp:UpdatePanel ID="UpdatePanelCaretera" runat="server">
+              <ContentTemplate>
+                   <div>
             <asp:GridView ID="gvCarteraIntermeiarios" runat="server" AllowPaging="true" OnPageIndexChanging="gvCarteraIntermeiarios_PageIndexChanging" OnSelectedIndexChanged="gvCarteraIntermeiarios_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
@@ -204,6 +206,8 @@
                 <SortedDescendingHeaderStyle BackColor="#000065" />
             </asp:GridView>
     </div>
+              </ContentTemplate>
+          </asp:UpdatePanel>
           <br />
         <div align="center">
               <asp:Button ID="btnExportarCarteraExel" runat="server" Text="Exportar" ToolTip="Exportar a Exel" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportarCarteraExel_Click" />
@@ -213,8 +217,7 @@
     </div>
   </div>
 </div>
-    </ContentTemplate>
-</asp:UpdatePanel>
+
 <!--PRODUCCION-->
     <div class="modal fade bd-example-modal-lg GenerarProduccionPOPO" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">

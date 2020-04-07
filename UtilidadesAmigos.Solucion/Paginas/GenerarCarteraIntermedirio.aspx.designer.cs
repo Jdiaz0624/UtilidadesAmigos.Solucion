@@ -265,6 +265,15 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Label lbNombreIntermediarioCartera;
         
         /// <summary>
+        /// UpdatePanelCaretera control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelCaretera;
+        
+        /// <summary>
         /// gvCarteraIntermeiarios control.
         /// </summary>
         /// <remarks>
