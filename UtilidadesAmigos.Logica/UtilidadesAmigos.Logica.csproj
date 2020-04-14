@@ -72,6 +72,7 @@
     <Compile Include="Entidades\EBuscaDetalleFacturacion.cs" />
     <Compile Include="Entidades\EBuscaDetalleReclamaciones.cs" />
     <Compile Include="Entidades\EBuscaDetallesCobros.cs" />
+    <Compile Include="Entidades\EBuscaHistoricoPolizaFianza.cs" />
     <Compile Include="Entidades\EBuscarEmpleados.cs" />
     <Compile Include="Entidades\ECambiaValorPolizaCondiciones.cs" />
     <Compile Include="Entidades\ECargarDataproduccionPowerBi.cs" />

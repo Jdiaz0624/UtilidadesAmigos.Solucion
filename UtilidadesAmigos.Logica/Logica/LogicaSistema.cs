@@ -2319,5 +2319,36 @@ namespace UtilidadesAmigos.Logica.Logica
         }
         #endregion
 
+        #region BUSCA_HISTORICO_FIANZAS
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscaHistoricoPolizaFianza> BuscaHistoriclPoliza(string Poliza = null, int? Subramo = null, DateTime? FechaDede = null, DateTime? FechaHasta = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCA_HISTORICO_POLIZA_FIANZAS(Poliza, Subramo, FechaDede, FechaHasta)
+                          select new UtilidadesAmigos.Logica.Entidades.EBuscaHistoricoPolizaFianza
+                          {
+                              Poliza=n.Poliza,
+                              Estatus=n.Estatus,
+                              Cliente=n.Cliente,
+                              Intermediario=n.Intermediario,
+                              Prima=n.Prima,
+                              SumaAsegurada=n.SumaAsegurada,
+                              Ramo=n.Ramo,
+                              Subramo=n.Subramo,
+                              Concepto=n.Concepto,
+                              Fecha=n.Fecha,
+                              Fecha0=n.Fecha0,
+                              Usuario=n.Usuario,
+                              Valor=n.Valor,
+                              TotalFacturado=n.TotalFacturado,
+                              TotalCobrado=n.TotalCobrado,
+                              Balance=n.Balance,
+                              CantidadRegistros=n.CantidadRegistros
+
+                          }).ToList();
+            return Buscar;
+        }
+        #endregion
+
     }
 }

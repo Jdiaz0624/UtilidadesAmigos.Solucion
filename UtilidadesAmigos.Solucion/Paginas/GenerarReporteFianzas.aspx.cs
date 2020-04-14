@@ -15,6 +15,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void CargarSubramo(string Ramo)
         {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSubramo, ObjData.Value.BuscaListas("SUBRAMO", Ramo, null), true);
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSubramHistoriclPoliza, ObjData.Value.BuscaListas("SUBRAMO", Ramo, null), true);
         }
         #endregion
 
@@ -52,6 +53,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
                 gvInventario.DataSource = Buscar;
                 gvInventario.DataBind();
+            }
+        }
+        #endregion
+        #region CONSULTAR HISTORICO
+        private void ConsultarHistorico()
+        {
+            string _poliza = string.IsNullOrEmpty(txtPolizaHistoricoPoliza.Text.Trim()) ? null : txtPolizaHistoricoPoliza.Text.Trim();
+            int? _Subramo = ddlSeleccionarSubramHistoriclPoliza.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubramHistoriclPoliza.SelectedValue) : new Nullable<int>();
+
+            var Buscar = ObjData.Value.BuscaHistoriclPoliza(
+                _poliza,
+                _Subramo,
+                Convert.ToDateTime(txtFechaDesdeHistoricoPoliza.Text),
+                Convert.ToDateTime(txtFechaHAstaHistoricoPoliza.Text));
+            gvHistoricoPolizaFianza.DataSource = Buscar;
+            gvHistoricoPolizaFianza.DataBind();
+            int CantidadRegistros;
+            foreach (var n in Buscar)
+            {
+                CantidadRegistros = Convert.ToInt32(n.CantidadRegistros);
+                lbCantidadRegistrosVariable.Text = CantidadRegistros.ToString("N0");
             }
         }
         #endregion
@@ -142,6 +164,71 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void gvInventario_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void gvHistoricoPolizaFianza_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvHistoricoPolizaFianza.PageIndex = e.NewPageIndex;
+            ConsultarHistorico();
+        }
+
+        protected void btnConsultarHistorico_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFechaDesdeHistoricoPoliza.Text.Trim()) || string.IsNullOrEmpty(txtFechaHAstaHistoricoPoliza.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "MensajeConsulta", "MensajeConsulta();", true);
+            }
+            else {
+
+                try {
+                    ConsultarHistorico();
+                }
+                catch (Exception) { }
+
+            }
+        }
+
+        protected void btnExportarHistoriclPoliza_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFechaDesdeHistoricoPoliza.Text.Trim()) || string.IsNullOrEmpty(txtFechaHAstaHistoricoPoliza.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "MensajeConsulta", "MensajeConsulta();", true);
+            }
+            else
+            {
+                try {
+                    string _poliza = string.IsNullOrEmpty(txtPolizaHistoricoPoliza.Text.Trim()) ? null : txtPolizaHistoricoPoliza.Text.Trim();
+                    int? _Subramo = ddlSeleccionarSubramHistoriclPoliza.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubramHistoriclPoliza.SelectedValue) : new Nullable<int>();
+
+                    var Exportar = (from n in ObjData.Value.BuscaHistoriclPoliza(
+                        _poliza,
+                        _Subramo,
+                        Convert.ToDateTime(txtFechaDesdeHistoricoPoliza.Text),
+                        Convert.ToDateTime(txtFechaHAstaHistoricoPoliza.Text))
+                                    select new
+                                    {
+                                        Poliza = n.Poliza,
+                                        Estatus = n.Estatus,
+                                        Cliente = n.Cliente,
+                                        Intermediario = n.Intermediario,
+                                        Prima = n.Prima,
+                                        SumaAsegurada = n.SumaAsegurada,
+                                        Ramo = n.Ramo,
+                                        Subramo = n.Subramo,
+                                        Concepto = n.Concepto,
+                                        FechaFacturacionFormateada = n.Fecha,
+                                        FechaFacturacion = n.Fecha0,
+                                        Usuario = n.Usuario,
+                                        Valor = n.Valor,
+                                        TotalFacturado = n.TotalFacturado,
+                                        TotalCobrado = n.TotalCobrado,
+                                        Balance = n.Balance,
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Historico de Polizas Fianzas", Exportar);
+                }
+                catch (Exception) { }
+                //EXPORTAR
+            }
         }
     }
 }
