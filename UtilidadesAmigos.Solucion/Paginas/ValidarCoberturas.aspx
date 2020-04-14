@@ -15,6 +15,10 @@
         .btn-sm{
             width:90px;
         }
+
+              .LetrasNegritas {
+              font-weight:bold;
+              }
     </style>
     <script type="text/javascript">
       function OcultarControlesCoberturas() {
@@ -125,9 +129,9 @@
             
         </div>
         <div align="center">
-            <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros: ("></asp:Label>
-            <asp:Label ID="lbCantidadRegistros" runat="server" Text="0"></asp:Label>
-            <asp:Label ID="Label1" runat="server" Text=")"></asp:Label>
+            <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" CssClass="LetrasNegritas" Text="Cantidad de Registros: ("></asp:Label>
+            <asp:Label ID="lbCantidadRegistros" runat="server" CssClass="LetrasNegritas" Text="0"></asp:Label>
+            <asp:Label ID="Label1" runat="server" CssClass="LetrasNegritas" Text=")"></asp:Label>
         </div>
         <br />
     </div>

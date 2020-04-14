@@ -372,30 +372,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         {
                             nombrea = "S002-GrupoNobeLey-" + Ano + Dia + Mes;
                         }
+                    //    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.ExportarCSV(nombrea, ExportarDataCSV);UtilidadesAmigos.Logica.Entidades.EExportarDatatxtCSV Exportar = new Logica.Entidades.EExportarDatatxtCSV();
+                    UtilidadesAmigos.Logica.Entidades.EExportarDatatxtCSV Exportar = new Logica.Entidades.EExportarDatatxtCSV();
+
                         foreach (var n in ExportarDataCSV)
                         {
-                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.ExportarCSV(nombrea,
-                                n.Nombre + "|" +
-                                n.Apellido + "|" +
-                                n.Poliza + "|" +
-                                n.Ciudad + "|" +
-                                n.Direccion + "|" +
-                                n.Telefono + "|" +
-                                n.TipoIdentificacion + "|" +
-                                n.NumeroIdentificacion + "|" +
-                                n.Tipovehiculo + "|" +
-                                n.Marca + "|" +
-                                n.Modelo + "|" +
-                                n.Ano + "|" +
-                                n.Color + "|" +
-                                n.Chasis + "|" +
-                                n.Placa + "|" +
-                                n.InicioVigencia + "|" +
-                                n.FinVigencia + "|" +
-                                n.Estatus + "|" +
-                                n.Cobertura + "|" +
-                                n.TipoMovimiento);
+                            Exportar.Nombre = n.Nombre;
+                                Exportar.Apellido = n.Apellido;
+                            Response.Clear();
+                            Response.ContentType = "text/csv";
+                            Response.AddHeader("Content-Disposition", "attachment;filename=Plantilla.csv");
+                            Response.Write(Exportar.ToString());
+                            Response.End();
                         }
+                    
+                        
+                     
                     }
                 }
                 catch (Exception) {

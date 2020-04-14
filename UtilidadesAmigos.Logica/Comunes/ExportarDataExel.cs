@@ -39,18 +39,23 @@ namespace UtilidadesAmigos.Logica.Comunes
 
         public static void ExportarTXT(string NombreArchivo, Object Data)
         {
-           // Cadena = n.Oficina + " | " + n.Departamento;
-            StreamWriter file = new StreamWriter(@"C:\Users\Ing.Juan Marcelino\Desktop\Sistema\" + NombreArchivo +".txt", true);
-            file.WriteLine(Data);
-            file.Close();
+         
         }
 
         public static void ExportarCSV(string NombreArchivo, Object Data)
         {
-            // Cadena = n.Oficina + " | " + n.Departamento;
-            StreamWriter file = new StreamWriter(@"C:\Users\juan.diaz\Desktop\DataCSV\" + NombreArchivo + ".csv", true);
-            file.WriteLine(Data);
-            file.Close();
+            GridView gv = new GridView();
+            gv.DataSource = Data;
+            gv.DataBind();
+
+            HttpContext.Current.Response.ClearContent();
+            HttpContext.Current.Response.AddHeader("content-disposition", "attachment;filename=" + NombreArchivo + ".csv");
+            HttpContext.Current.Response.ContentType = "text/csv";
+            StringWriter sw = new StringWriter(); ;
+            HtmlTextWriter htm = new HtmlTextWriter(sw);
+            gv.RenderControl(htm);
+            HttpContext.Current.Response.Write(sw.ToString());
+            HttpContext.Current.Response.End();
         }
     }
 }
