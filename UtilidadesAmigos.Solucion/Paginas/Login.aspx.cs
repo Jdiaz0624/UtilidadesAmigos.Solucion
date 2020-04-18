@@ -105,11 +105,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             txtConfirmarClave.Visible = true;
                             btnCambiarClave.Visible = true;
                             Session["IdUsuario"] = Convert.ToDecimal(VariablesGlobales.IdUsuario);
+                            
 
                         }
                         else
                         {
                             Session["IdUsuario"] = Convert.ToDecimal(VariablesGlobales.IdUsuario);
+                            Session["Veronica"] = 1;
                             FormsAuthentication.RedirectFromLoginPage(_Usuario, false);
                         }
                     }

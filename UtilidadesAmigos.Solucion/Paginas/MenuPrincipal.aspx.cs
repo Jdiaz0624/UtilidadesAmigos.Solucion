@@ -116,12 +116,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 {
                     SacarDatosUsuario(Convert.ToDecimal(Session["IdUsuario"]));
                     decimal idiusuario = Convert.ToDecimal(Session["IdUsuario"]);
+                    decimal Hablar = Convert.ToDecimal(Session["Veronica"]);
                     if (idiusuario == 1)
                     {
                         // this.Master.FindControl("lbTiket").Visible = false;
                     }
-                    Thread tarea = new Thread(new ParameterizedThreadStart(UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar));
-                    tarea.Start("Hola");
+               //     lbHablar.Text = Session["Veronica"].ToString();
+                    if (Session["Veronica"] != null)
+                    {
+                        Thread tarea = new Thread(new ParameterizedThreadStart(UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar));
+                        tarea.Start("Hola " + lbUsuarioConectado.Text + ", ¿Como puedo ayudarte?");
+                        Session["Veronica"] = null;
+
+                    }
+                    
 
                 }
             }
