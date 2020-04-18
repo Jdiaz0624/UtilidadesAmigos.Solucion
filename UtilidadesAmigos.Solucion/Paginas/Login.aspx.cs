@@ -142,6 +142,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 btnCambiarClave.Visible = false;
                 rbcolaborador.Checked = true;
                 lbContadorBloqueo.Text = "0";
+                UtilidadesAmigos.Logica.Comunes.Mail Correo = new Logica.Comunes.Mail();
+
+               // Correo.EnviarCorreo("ing.juanmarcelinom.diaz@gmail.com", "!@@Pa$$W0rd!@*-", "jmdiaz@amigosseguros.com", "Prueba de Correo");
             }
         }
 

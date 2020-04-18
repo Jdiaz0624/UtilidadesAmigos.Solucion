@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Comunes\Conversiones.cs" />
     <Compile Include="Comunes\ExportarDataExel.cs" />
+    <Compile Include="Comunes\Mail.cs" />
     <Compile Include="Comunes\SeguridadEncriptacion.cs" />
     <Compile Include="Comunes\UtilidadDrop.cs" />
     <Compile Include="Comunes\ValidarControles.cs" />
