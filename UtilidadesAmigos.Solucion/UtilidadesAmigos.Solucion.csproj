@@ -123,6 +123,7 @@
     <Content Include="Imagenes\07.jpg" />
     <Content Include="Imagenes\08.jpg" />
     <Content Include="Imagenes\155805d262d9564.jpg" />
+    <Content Include="Imagenes\CampoImagen.jpg" />
     <Content Include="Imagenes\Iniciales.ico" />
     <Content Include="Imagenes\login.jpg" />
     <Content Include="Imagenes\Logo.ico" />
@@ -152,6 +153,7 @@
     <Content Include="Paginas\MantenimientoClaveSeguridad.aspx" />
     <Content Include="Paginas\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\ProduccionDiariaContabilidad.aspx" />
+    <Content Include="Paginas\SistemaTicket.aspx" />
     <Content Include="Paginas\SolicitudEmisionPoliza.aspx" />
     <Content Include="Paginas\SolicitudSeguroLey.aspx" />
     <Content Include="Prueba\Reporte.aspx" />
@@ -479,6 +481,13 @@
     </Compile>
     <Compile Include="Paginas\ServiciosFijos.aspx.designer.cs">
       <DependentUpon>ServiciosFijos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\SistemaTicket.aspx.cs">
+      <DependentUpon>SistemaTicket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\SistemaTicket.aspx.designer.cs">
+      <DependentUpon>SistemaTicket.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\SolicitudEmisionPoliza.aspx.cs">
       <DependentUpon>SolicitudEmisionPoliza.aspx</DependentUpon>

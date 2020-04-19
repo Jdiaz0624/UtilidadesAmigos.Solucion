@@ -82,7 +82,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkTicket_Click(object sender, EventArgs e)
         {
-
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("SistemaTicket.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
 
         protected void linkProduccionDiaria_Click(object sender, EventArgs e)
