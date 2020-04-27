@@ -545,5 +545,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 ddlExcluirMotoresEstadistica.Visible = false;
             }
         }
+
+        protected void btnImprimir_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "OpcionEnDesarrollo", "OpcionEnDesarrollo();", true);
+        }
     }
 }

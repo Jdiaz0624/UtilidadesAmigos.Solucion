@@ -25,6 +25,10 @@
         function ErrorConsulta() {
             alert("Error al realizar la consulta, favor de verificar el rango de fecha");
         }
+
+        function OpcionEnDesarrollo() {
+            alert("Esta Opción esta en desarrollo por el momento");
+        }
               function CamposVaciosEstadistica(){
                   alert("Has dejado campos vacios que son necesarios para realizar esta operación, favor de verificar");
                   return false;
@@ -117,6 +121,7 @@
             <asp:Button ID="btnConsultar" runat="server" Text="Buscar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultar_Click" />
             <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportar_Click" />
             <button type="button" id="btnEstadistica" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".bd-example-modal-xl">Estadistica</button>
+            <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" CssClass="btn btn-outline-primary btn-sm Custom" ToolTip="Imprimir listado de renovación" OnClick="btnImprimir_Click" />
         </div>
         <!--FINALIZAMOS LOS BOTONES-->
         <br />
