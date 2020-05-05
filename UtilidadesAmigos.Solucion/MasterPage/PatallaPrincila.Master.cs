@@ -297,5 +297,18 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             Response.Redirect("SolicitudEmisionPoliza.aspx");
         }
+
+        protected void LinkBakupBD_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("GenerarBakupBD.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }
