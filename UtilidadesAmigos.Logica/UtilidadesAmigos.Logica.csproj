@@ -146,11 +146,15 @@
     <Compile Include="Entidades\Mantenimientos\EDepartamentos.cs" />
     <Compile Include="Entidades\Mantenimientos\EEmpleado.cs" />
     <Compile Include="Entidades\Mantenimientos\EOficinas.cs" />
+    <Compile Include="Entidades\OpcionesAdministrador\EMantenimientoBackupDatabase.cs" />
+    <Compile Include="Entidades\OpcionesAdministrador\ERutaArchivoBakup.cs" />
+    <Compile Include="Entidades\OpcionesAdministrador\GenerarBakupBD.cs" />
     <Compile Include="Entidades\ProduccionPorUsuario.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
+    <Compile Include="Logica\LogicaOpcionesAdministrador\LogicaOpcionesdministrador.cs" />
     <Compile Include="Logica\LogicaSeguridad\LogicaSeguridad.cs" />
     <Compile Include="Logica\LogicaSistema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

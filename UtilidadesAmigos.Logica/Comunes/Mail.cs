@@ -13,11 +13,12 @@ namespace UtilidadesAmigos.Logica.Comunes
         MailMessage Mensaje = new MailMessage();
         SmtpClient smtp = new SmtpClient();
 
-        public bool EnviarCorreo(string CorreoOrigen, string ClaveCorreo, string CorreoDestino, string Cuerpo)
+        public bool EnviarCorreo(string CorreoOrigen, string ClaveCorreo, string CorreoDestino, string Copia, string Cuerpo)
         {
             try {
                 Mensaje.From = new MailAddress(CorreoOrigen);
                 Mensaje.To.Add(new MailAddress(CorreoDestino));
+                Mensaje.CC.Add(new MailAddress(Copia));
                 Mensaje.Subject = "Veronica - Utilidades Amigos";
                 Mensaje.Body = Cuerpo;
 
