@@ -207,7 +207,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     InformacionBackup.Add("Descripcion: " + variablesGlobales.DescripcionArchivoBackup);
                     InformacionBackup.Add("Generado Por: " + variablesGlobales.UsuarioBackup);
                     InformacionBackup.Add("Fecha: " + variablesGlobales.FechaBAckup);
-                    InformacionBackup.Add("Hora: " + variablesGlobales.FechaBAckup);
+                    InformacionBackup.Add("Hora: " + variablesGlobales.HoraBackup);
                     InformacionBackup.Add("Estatus: " + variablesGlobales.EstatusBAckup);
                     InformacionBackup.Add("Observacion: " + variablesGlobales.ComentarioBAckup);
 
