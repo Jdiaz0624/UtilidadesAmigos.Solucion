@@ -146,6 +146,7 @@
     <Compile Include="Entidades\Mantenimientos\EDepartamentos.cs" />
     <Compile Include="Entidades\Mantenimientos\EEmpleado.cs" />
     <Compile Include="Entidades\Mantenimientos\EOficinas.cs" />
+    <Compile Include="Entidades\OpcionesAdministrador\ECorreosEnviar.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\EMantenimientoBackupDatabase.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\ERutaArchivoBakup.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\GenerarBakupBD.cs" />

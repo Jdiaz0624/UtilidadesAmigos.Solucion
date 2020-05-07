@@ -12,7 +12,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaOpcionesAdministrador.LogicaOpcionesdministrador> ObjDataAdministrador = new Lazy<Logica.Logica.LogicaOpcionesAdministrador.LogicaOpcionesdministrador>();
-        UtilidadesAmigos.Logica.Comunes.Mail EnvioCorreo = new Logica.Comunes.Mail();
+        UtilidadesAmigos.Logica.Comunes.Mail Correo = new Logica.Comunes.Mail();
+
 
         #region OCULTAR CONTROLES
         private void OcultarControles()
@@ -163,13 +164,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 
                         UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.EMantenimientoBackupDatabase Guardar = new Logica.Entidades.OpcionesAdministrador.EMantenimientoBackupDatabase();
 
+
                         Guardar.IdHistorialBakupDatabase = 0;
                         Guardar.NumeroBackup = lbNumeroBackup.Text;
                         Guardar.IdUsuario = Convert.ToDecimal(lbIdUsuario.Text);
                         Guardar.NombreArchivo = txtNombrearchivo.Text;
                         Guardar.Descripcion = "Bakup de Base de datos";
                         Guardar.FechaCreado = DateTime.Now;
-                        Guardar.Hora = DateTime.Now.ToLongTimeString();
+                        Guardar.Hora0 = DateTime.Now;
                         Guardar.IdEstatus = false;
                         Guardar.Comentario = "Registro Guardado con exito";
 
@@ -177,8 +179,69 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
 
                     //PROCEDEMOS A GENERAR EL BACKUP
-                    GenerarBAckup(@"" + Rutaarchivo + txtNombrearchivo.Text + Extencion);
-                  
+                  GenerarBAckup(@"" + Rutaarchivo + txtNombrearchivo.Text + Extencion);
+
+                    //SACAMOS EL REGISTRO GUARDADO
+                    var SacarRegistroGuardado = ObjDataAdministrador.Value.BuscaHistorialBakupDatabase(
+                        new Nullable<decimal>(),
+                        lbNumeroBackup.Text,
+                        null, null, null);
+
+                    string NombreDeArchivo = "";
+                    string Descripcion = "";
+                    string Usuario = "";
+                    string Fecha = "";
+                    string Hora = "";
+                    string Estatus = "";
+                    string Comentario = "";
+
+                    foreach (var Datos in SacarRegistroGuardado)
+                    {
+                        NombreDeArchivo = Datos.NombreArchivo;
+                        Descripcion = Datos.Descripcion;
+                        Usuario = Datos.Usuario;
+                        Fecha = Datos.Fecha;
+                        Hora = Datos.Hora;
+                        Estatus = Datos.Estatus;
+                        Comentario = Datos.Comentario;
+                    }
+
+                    List<string> InformacionBackup = new List<string>();
+                    InformacionBackup.Add("Nombre del archivo: " + NombreDeArchivo);
+                    InformacionBackup.Add("Descripcion: " + Descripcion);
+                    InformacionBackup.Add("Generado Por: " + Usuario);
+                    InformacionBackup.Add("Fecha: " + Fecha);
+                    InformacionBackup.Add("Hora: " + Hora);
+                    InformacionBackup.Add("Estatus: " + Estatus);
+                    InformacionBackup.Add("Observacion: " + Comentario);
+
+                    string Data = "";
+                    foreach (var Informacion in InformacionBackup)
+                    {
+                        Data = Data + Informacion + " | ";
+
+                    
+                    }
+                    //MANDAMOS EL CORREO CON DE AVISO DE QUE SE CREO EL BACKUP
+                    //MANDAMOS LOS DATOS A LOA CORREOS CORRESPONDIENTES
+                    decimal IdCorreoEnviar = 0;
+                    var MandarCorreos = ObjDataAdministrador.Value.BuscaCorreosEnviar(
+                        new Nullable<decimal>(),
+                        1, null, true);
+                    foreach (var n2 in MandarCorreos)
+                    {
+                        //BUSCAMOS EL CORREO
+                        IdCorreoEnviar = Convert.ToDecimal(n2.IdCorreoEnviar);
+                        var BuscarCorreo = ObjDataAdministrador.Value.BuscaCorreosEnviar(IdCorreoEnviar);
+                        foreach (var n3 in BuscarCorreo)
+                        {
+                            Correo.EnviarCorreo("ing.juanmarcelinom.diaz@hotmail.com", "!@Pa$$W0rd!@0624", n3.Correo, @"" + Data, "Backup de Base de datos");
+                        }
+                    }
+
+                    // Correo.EnviarCorreo("ing.juanmarcelinom.diaz@hotmail.com", "!@Pa$$W0rd!@0624", "jmdiaz@amigosseguros.com",@""+ Data);
+                    //   Correo.EnviarCorreo("ing.juanmarcelinom.diaz@hotmail.com", "!@Pa$$W0rd!@0624", "jmdiaz@amigosseguros.com", @"" + Data, "Backup de Base de datos");
+
                 }
                 else if (rbConfigurarRutaBD.Checked == true)
                 {

@@ -144,7 +144,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbContadorBloqueo.Text = "0";
                 UtilidadesAmigos.Logica.Comunes.Mail Correo = new Logica.Comunes.Mail();
 
-               // Correo.EnviarCorreo("ing.juanmarcelinom.diaz@gmail.com", "!@@Pa$$W0rd!@*-", "jmdiaz@amigosseguros.com", "Prueba de Correo");
+                //List<string> coreos = new List<string>();
+                //coreos.Add("jmdiaz@amigosseguros.com");
+                //coreos.Add("ing.juanmarcelinom.diaz@gmail.com");
+                //coreos.Add("juanmarcelinoo0624@gmail.com");
+
+
+                //foreach (var n in coreos)
+                //{
+                //    Correo.EnviarCorreo("ing.juanmarcelinom.diaz@hotmail.com", "!@Pa$$W0rd!@0624", n, "Prueba de Correo Sistema");
+                //}
+
+                
+                //Correo.EnviarCorreo("ing.juanmarcelinom.diaz@hotmail.com", "!@Pa$$W0rd!@0624", "jairoantonio1867@gmail.com", "Prueba de Correo Sistema");
+                //Correo.EnviarCorreo("ing.juanmarcelinom.diaz@hotmail.com", "!@Pa$$W0rd!@0624", "jmdiaz@amigosseguros.com", "Prueba de Correo Sistema");
+                //Correo.EnviarCorreo("ing.juanmarcelinom.diaz@hotmail.com", "!@Pa$$W0rd!@0624", "ing.juanmarcelinom.diaz@gmail.com", "Prueba de Correo Sistema");
+                //Correo.EnviarCorreo("ing.juanmarcelinom.diaz@hotmail.com", "!@Pa$$W0rd!@0624", "juanmarcelinoo0624@gmail.com", "Prueba de Correo Sistema");
             }
         }
 

@@ -41,7 +41,8 @@
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="FechaCreado" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="Hora" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Hora0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="IdEstatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
       <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
@@ -54,7 +55,7 @@
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="NombreArchivo" Parameter="nombreArchivo" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Hora" Parameter="hora" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Hora" Parameter="hora" Type="System.DateTime" DbType="DateTime" />
     <Parameter Name="IdEstatus" Parameter="idEstatus" Type="System.Boolean" DbType="Bit" />
     <Parameter Name="Comentario" Parameter="comentario" Type="System.String" DbType="VarChar(8000)" />
     <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
@@ -65,9 +66,36 @@
       <Column Name="NombreArchivo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Fecha" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="Hora" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Hora" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="IdEstatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_CORREOS_ENVIAR" Method="SP_BUSCA_CORREOS_ENVIAR">
+    <Parameter Name="IdCorreoEnviar" Parameter="idCorreoEnviar" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdProceso" Parameter="idProceso" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="SP_BUSCA_CORREOS_ENVIARResult">
+      <Column Name="IdCorreoEnviar" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdProceso" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="ProcesoCorreo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MANTENIMIENTO_CORREOS_ENVIAR" Method="SP_MANTENIMIENTO_CORREOS_ENVIAR">
+    <Parameter Name="IdCorreoEnviar" Parameter="idCorreoEnviar" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdProceso" Parameter="idProceso" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MANTENIMIENTO_CORREOS_ENVIARResult">
+      <Column Name="IdCorreoEnviar" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdProceso" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

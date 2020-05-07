@@ -92,6 +92,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaOpcionesAdministrador
                                  Descripcion=n.Descripcion,
                                  FechaCreado=n.FechaCreado,
                                  Fecha=n.Fecha,
+                                 Hora0=n.Hora0,
                                  Hora=n.Hora,
                                  IdEstatus=n.IdEstatus,
                                  Estatus=n.Estatus,
@@ -114,7 +115,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaOpcionesAdministrador
                 Item.IdUsuario,
                 Item.NombreArchivo,
                 Item.Descripcion,
-                Item.Hora,
+                Item.Hora0,
                 Item.IdEstatus,
                 Item.Comentario,
                 Accion);
@@ -129,8 +130,55 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaOpcionesAdministrador
                                      NombreArchivo=n.NombreArchivo,
                                      Descripcion=n.Descripcion,
                                      FechaCreado=n.Fecha,
-                                     Hora=n.Hora,
+                                     Hora0 = n.Hora,
                                      IdEstatus=n.IdEstatus
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
+        #endregion
+
+        #region MANTENIMEINTO DE CORREOS ENVIAR
+        //LISTADO DE CORREOS A ENVIAR
+        public List<UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.ECorreosEnviar> BuscaCorreosEnviar(decimal? IdCorreoEnviar = null, decimal? IdProceso = null, string Correo = null, bool? Estatus = null)
+        {
+            ObdataConexion.CommandTimeout = 999999999;
+
+            var Buscar = (from n in ObdataConexion.SP_BUSCA_CORREOS_ENVIAR(IdCorreoEnviar,IdProceso,Correo, Estatus)
+                          select new UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.ECorreosEnviar
+                          {
+                              IdCorreoEnviar=n.IdCorreoEnviar,
+                              IdProceso=n.IdProceso,
+                              ProcesoCorreo=n.ProcesoCorreo,
+                              Correo=n.Correo,
+                              Estatus0=n.Estatus0,
+                              Estatus=n.Estatus
+                          }).ToList();
+            return Buscar;
+        }
+
+        //MANTENIMIENTO DE CORREOS A ENVIAR
+        public UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.ECorreosEnviar MantenimientoCorreosEnviar(UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.ECorreosEnviar Item, string Accion)
+        {
+            ObdataConexion.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.ECorreosEnviar Mantenimiento = null;
+
+            var CorreosEnviar = ObdataConexion.SP_MANTENIMIENTO_CORREOS_ENVIAR(
+                Item.IdCorreoEnviar,
+                Item.IdProceso,
+                Item.Correo,
+                Item.Estatus0,
+                Accion);
+            if (CorreosEnviar != null)
+            {
+                Mantenimiento = (from n in CorreosEnviar
+                                 select new UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.ECorreosEnviar
+                                 {
+                                     IdCorreoEnviar=n.IdCorreoEnviar,
+                                     IdProceso=n.IdProceso,
+                                     Correo=n.Correo,
+                                     Estatus0=n.Estatus,
                                  }).FirstOrDefault();
             }
             return Mantenimiento;

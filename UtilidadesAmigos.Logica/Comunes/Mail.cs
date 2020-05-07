@@ -13,21 +13,26 @@ namespace UtilidadesAmigos.Logica.Comunes
         MailMessage Mensaje = new MailMessage();
         SmtpClient smtp = new SmtpClient();
 
-        public bool EnviarCorreo(string CorreoOrigen, string ClaveCorreo, string CorreoDestino, string Copia, string Cuerpo)
+        public bool EnviarCorreo(string CorreoOrigen, string ClaveCorreo, string CorreoDestino, string Cuerpo, string Notificacion)
         {
             try {
                 Mensaje.From = new MailAddress(CorreoOrigen);
-                Mensaje.To.Add(new MailAddress(CorreoDestino));
-                Mensaje.CC.Add(new MailAddress(Copia));
-                Mensaje.Subject = "Veronica - Utilidades Amigos";
+                Mensaje.Bcc.Add(new MailAddress(CorreoDestino));
+                Mensaje.Subject = "Veronica - Utilidades (" + Notificacion + ")";
+             //   string filename = @"C:\Users\Ing.Juan Marcelino\Pictures\Parte de Alante.jpg";
+             //   Mensaje.Attachments.Add(new Attachment(filename));
                 Mensaje.Body = Cuerpo;
+           
 
-                smtp.Host="smtp.gmail.com";
+                smtp.Host= "smtp.live.com";
                 smtp.Port = 587;
                 smtp.Credentials = new NetworkCredential(CorreoOrigen, ClaveCorreo);
                 smtp.EnableSsl = true;
+            //    smtp.Timeout = 999999999;
                 smtp.Send(Mensaje);
+                Mensaje.Bcc.Clear();
                 return true;
+                
             }
             catch (Exception) {
                 return false;
