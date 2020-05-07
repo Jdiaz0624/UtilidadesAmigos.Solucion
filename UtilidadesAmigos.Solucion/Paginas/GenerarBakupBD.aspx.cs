@@ -284,7 +284,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Update.Comentario = MensajeError;
 
                 var MAN = ObjDataAdministrador.Value.MantenimientoHistorialDatabase(Update, "UPDATE");
-                //SACAMOS LAS CREDENCIALES DEL CORREO
+                //SACAMOS LAS CREDENCIALES DEL CORREOd
                 Correo.EnviarCorreo("ing.juanmarcelinom.diaz@hotmail.com", "!@Pa$$W0rd!@0624", "jmdiaz@amigosseguros.com", @"" + MensajeError, "Backup de Base de datos");
             }
         }
