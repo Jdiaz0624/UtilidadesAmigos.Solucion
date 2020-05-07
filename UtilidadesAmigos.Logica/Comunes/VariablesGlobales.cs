@@ -43,5 +43,26 @@ namespace UtilidadesAmigos.Logica.Comunes
         public DateTime FechaDesde { get; set; }
         public DateTime FechaHasta { get; set; }
         #endregion
+
+
+
+        #region VARIABLS PARA EL PROCESO DE BACKUP
+        public string CorreoEmisorBakupBD { get; set; }
+        public string ClaveCorreoEmisionBackup { get; set; }
+
+        public string NombreArchivoBackup { get; set; }
+        public string DescripcionArchivoBackup { get; set; }
+        public string UsuarioBackup { get; set; }
+        public string FechaBAckup { get; set; }
+        public string HoraBackup { get; set; }
+        public string EstatusBAckup { get; set; }
+        public string ComentarioBAckup { get; set; }
+
+        public string RutaGuardarBackup { get; set; }
+        public string ExtencionBackup { get; set; }
+
+
+
+        #endregion
     }
 }

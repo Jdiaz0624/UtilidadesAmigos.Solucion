@@ -122,13 +122,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         // this.Master.FindControl("lbTiket").Visible = false;
                     }
                //     lbHablar.Text = Session["Veronica"].ToString();
-                    if (Session["Veronica"] != null)
-                    {
-                        Thread tarea = new Thread(new ParameterizedThreadStart(UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar));
-                        tarea.Start("Hola " + lbUsuarioConectado.Text + ", ¿Como puedo ayudarte?");
-                        Session["Veronica"] = null;
+                    //if (Session["Veronica"] != null)
+                    //{
+                    //    Thread tarea = new Thread(new ParameterizedThreadStart(UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar));
+                    //    tarea.Start("Hola " + lbUsuarioConectado.Text + ", ¿Como puedo ayudarte?");
+                    //    Session["Veronica"] = null;
 
-                    }
+                    //}
                     
 
                 }

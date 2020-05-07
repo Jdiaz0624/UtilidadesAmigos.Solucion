@@ -13,6 +13,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaOpcionesAdministrador.LogicaOpcionesdministrador> ObjDataAdministrador = new Lazy<Logica.Logica.LogicaOpcionesAdministrador.LogicaOpcionesdministrador>();
         UtilidadesAmigos.Logica.Comunes.Mail Correo = new Logica.Comunes.Mail();
+        UtilidadesAmigos.Logica.Comunes.VariablesGlobales variablesGlobales = new Logica.Comunes.VariablesGlobales();
 
 
         #region OCULTAR CONTROLES
@@ -179,7 +180,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
 
                     //PROCEDEMOS A GENERAR EL BACKUP
-                  GenerarBAckup(@"" + Rutaarchivo + txtNombrearchivo.Text + Extencion);
+                    variablesGlobales.RutaGuardarBackup = Rutaarchivo + txtNombrearchivo.Text + Extencion;
+                    GenerarBAckup(@"" + variablesGlobales.RutaGuardarBackup);
 
                     //SACAMOS EL REGISTRO GUARDADO
                     var SacarRegistroGuardado = ObjDataAdministrador.Value.BuscaHistorialBakupDatabase(
@@ -187,37 +189,32 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         lbNumeroBackup.Text,
                         null, null, null);
 
-                    string NombreDeArchivo = "";
-                    string Descripcion = "";
-                    string Usuario = "";
-                    string Fecha = "";
-                    string Hora = "";
-                    string Estatus = "";
-                    string Comentario = "";
+                  
 
                     foreach (var Datos in SacarRegistroGuardado)
                     {
-                        NombreDeArchivo = Datos.NombreArchivo;
-                        Descripcion = Datos.Descripcion;
-                        Usuario = Datos.Usuario;
-                        Fecha = Datos.Fecha;
-                        Hora = Datos.Hora;
-                        Estatus = Datos.Estatus;
-                        Comentario = Datos.Comentario;
+                        variablesGlobales.NombreArchivoBackup = Datos.NombreArchivo;
+                        variablesGlobales.DescripcionArchivoBackup = Datos.Descripcion;
+                        variablesGlobales.UsuarioBackup = Datos.Usuario;
+                        variablesGlobales.FechaBAckup = Datos.Fecha;
+                        variablesGlobales.HoraBackup = Datos.Hora;
+                        variablesGlobales.EstatusBAckup = Datos.Estatus;
+                        variablesGlobales.ComentarioBAckup = Datos.Comentario;
                     }
 
                     List<string> InformacionBackup = new List<string>();
-                    InformacionBackup.Add("Nombre del archivo: " + NombreDeArchivo);
-                    InformacionBackup.Add("Descripcion: " + Descripcion);
-                    InformacionBackup.Add("Generado Por: " + Usuario);
-                    InformacionBackup.Add("Fecha: " + Fecha);
-                    InformacionBackup.Add("Hora: " + Hora);
-                    InformacionBackup.Add("Estatus: " + Estatus);
-                    InformacionBackup.Add("Observacion: " + Comentario);
+                    InformacionBackup.Add("Nombre del archivo: " + variablesGlobales.NombreArchivoBackup);
+                    InformacionBackup.Add("Descripcion: " + variablesGlobales.DescripcionArchivoBackup);
+                    InformacionBackup.Add("Generado Por: " + variablesGlobales.UsuarioBackup);
+                    InformacionBackup.Add("Fecha: " + variablesGlobales.FechaBAckup);
+                    InformacionBackup.Add("Hora: " + variablesGlobales.FechaBAckup);
+                    InformacionBackup.Add("Estatus: " + variablesGlobales.EstatusBAckup);
+                    InformacionBackup.Add("Observacion: " + variablesGlobales.ComentarioBAckup);
 
                     string Data = "";
                     foreach (var Informacion in InformacionBackup)
                     {
+                        
                         Data = Data + Informacion + " | ";
 
                     
@@ -277,7 +274,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
             }
             catch (Exception ex) {
+                //MANDAMOS UN CORREO CON EL ERROR RELACIONADO
+                string MensajeError = "Se encontro el siguiente error al realizar el proceso de Base de datos, favor de verificar, Error: --> " + ex.Message;
 
+                //ACTUALIZAMOS EL REGISTRO EN LA BASE DE DATOS
+                UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.EMantenimientoBackupDatabase Update = new Logica.Entidades.OpcionesAdministrador.EMantenimientoBackupDatabase();
+
+                Update.NumeroBackup = lbNumeroBackup.Text;
+                Update.Comentario = MensajeError;
+
+                var MAN = ObjDataAdministrador.Value.MantenimientoHistorialDatabase(Update, "UPDATE");
+                //SACAMOS LAS CREDENCIALES DEL CORREO
+                Correo.EnviarCorreo("ing.juanmarcelinom.diaz@hotmail.com", "!@Pa$$W0rd!@0624", "jmdiaz@amigosseguros.com", @"" + MensajeError, "Backup de Base de datos");
             }
         }
 
