@@ -73,6 +73,7 @@
     <Compile Include="Entidades\EBuscaDetalleFacturacion.cs" />
     <Compile Include="Entidades\EBuscaDetalleReclamaciones.cs" />
     <Compile Include="Entidades\EBuscaDetallesCobros.cs" />
+    <Compile Include="Entidades\EBuscaEstatusReclamacion.cs" />
     <Compile Include="Entidades\EBuscaHistoricoPolizaFianza.cs" />
     <Compile Include="Entidades\EBuscarEmpleados.cs" />
     <Compile Include="Entidades\ECambiaValorPolizaCondiciones.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Entidades\ECarteraSupervisor.cs" />
     <Compile Include="Entidades\EClaveSeguridad.cs" />
     <Compile Include="Entidades\EComisionesSupervisores.cs" />
+    <Compile Include="Entidades\ECondicionReclamacion.cs" />
     <Compile Include="Entidades\EContarRegistros.cs" />
     <Compile Include="Entidades\EDependientes.cs" />
     <Compile Include="Entidades\EDependientesDetalle.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="Entidades\EProduccionReclamos.cs" />
     <Compile Include="Entidades\EProduccionTodosLosRamos.cs" />
     <Compile Include="Entidades\EprogramacionReclamoDetalle.cs" />
+    <Compile Include="Entidades\EReclamacion.cs" />
     <Compile Include="Entidades\EReporteCobradoContabilidad.cs" />
     <Compile Include="Entidades\ESacarCarteraIntermediario.cs" />
     <Compile Include="Entidades\ESacarCobrado.cs" />
@@ -140,6 +143,7 @@
     <Compile Include="Entidades\ESacarSubramoDetalle.cs" />
     <Compile Include="Entidades\ESugerencias.cs" />
     <Compile Include="Entidades\ETarjetaAcceso.cs" />
+    <Compile Include="Entidades\ETipoReclamacion.cs" />
     <Compile Include="Entidades\ETransaccionesEfectivo.cs" />
     <Compile Include="Entidades\EUsuarios.cs" />
     <Compile Include="Entidades\EValidarPolizasCanceladasCoberturas.cs" />

@@ -48,14 +48,14 @@
                             </a>
                             <div class="dropdown-menu">
                                <asp:LinkButton ID="linkProduccionPorUsuarios" runat="server" ToolTip="Muestra la Producción por usuarios con movimientos en Cobros, Producción y Reclamaciones" Text="Produccion Por Usuario" OnClick="linkProduccionPorUsuarios_Click" class="dropdown-item"></asp:LinkButton>
-                               <asp:LinkButton ID="linkProduccionDiaria" runat="server" Text="Produccion Diaria" OnClick="linkProduccionDiaria_Click" class="dropdown-item"></asp:LinkButton>
-                               <asp:LinkButton ID="linkGenerarCartera" runat="server" Text="Generar Cartera Supervisores" OnClick="linkGenerarCartera_Click" class="dropdown-item"></asp:LinkButton>
+                               <asp:LinkButton ID="linkProduccionDiaria" runat="server" ToolTip="Mostrar la Producción diaria" Text="Produccion Diaria" OnClick="linkProduccionDiaria_Click" class="dropdown-item"></asp:LinkButton>
+                               <asp:LinkButton ID="linkGenerarCartera" runat="server" ToolTip="Generar Cartera de Supervisores" Text="Generar Cartera Supervisores" OnClick="linkGenerarCartera_Click" class="dropdown-item"></asp:LinkButton>
                                <asp:LinkButton ID="linkCarteraIntermediarios" runat="server" Text="Generar Cartera Intermediario" OnClick="linkCarteraIntermediarios_Click" class="dropdown-item"></asp:LinkButton>
                                 <asp:LinkButton ID="linkComisionesCobrador" runat="server" Text="Listado de Renovacion" OnClick="linkComisionesCobrador_Click" CssClass="dropdown-item"></asp:LinkButton>
                                <asp:LinkButton ID="linkValidarCoberturas" runat="server" Text="Sacar Data Coberturas" OnClick="linkValidarCoberturas_Click" class="dropdown-item"></asp:LinkButton>
                                <asp:LinkButton ID="linkGenerarReporteUAF" runat="server" Text="Generar Reporte para la UAF" OnClick="linkGenerarReporteUAF_Click" class="dropdown-item"></asp:LinkButton>
                                 <asp:LinkButton ID="LinkReporteFianzas" runat="server" Text="Reporte de Fianzas" OnClick="LinkReporteFianzas_Click" class="dropdown-item"></asp:LinkButton>
-                                <asp:LinkButton ID="LinkReporteReclamos" runat="server" ForeColor="Red" Text="Reporte de Reclamos" OnClick="LinkReporteReclamos_Click" class="dropdown-item"></asp:LinkButton>
+                                <asp:LinkButton ID="LinkReporteReclamos" runat="server"  Text="Reporte de Reclamos" OnClick="LinkReporteReclamos_Click" class="dropdown-item"></asp:LinkButton>
                                 <asp:LinkButton ID="LinkProduccionDiariaContabilidad" runat="server" Text="Producción diaria Contabilidad" ToolTip="Mostrar la Producción diaria para contablidad" OnClick="LinkProduccionDiariaContabilidad_Click" class="dropdown-item"></asp:LinkButton>
                             </div>
                           </li>

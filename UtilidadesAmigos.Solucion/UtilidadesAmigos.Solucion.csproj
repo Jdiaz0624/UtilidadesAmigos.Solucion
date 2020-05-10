@@ -154,6 +154,7 @@
     <Content Include="Paginas\MantenimientoClaveSeguridad.aspx" />
     <Content Include="Paginas\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\ProduccionDiariaContabilidad.aspx" />
+    <Content Include="Paginas\ReporteReclamos.aspx" />
     <Content Include="Paginas\SistemaTicket.aspx" />
     <Content Include="Paginas\SolicitudEmisionPoliza.aspx" />
     <Content Include="Paginas\SolicitudSeguroLey.aspx" />
@@ -475,6 +476,13 @@
     </Compile>
     <Compile Include="Paginas\ReporteOperacionesSospechosas.aspx.designer.cs">
       <DependentUpon>ReporteOperacionesSospechosas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\ReporteReclamos.aspx.cs">
+      <DependentUpon>ReporteReclamos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\ReporteReclamos.aspx.designer.cs">
+      <DependentUpon>ReporteReclamos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\SacarDataCoberturas.aspx.cs">
       <DependentUpon>SacarDataCoberturas.aspx</DependentUpon>

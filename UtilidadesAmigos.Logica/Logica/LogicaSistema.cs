@@ -2350,5 +2350,235 @@ namespace UtilidadesAmigos.Logica.Logica
         }
         #endregion
 
+        #region MANTENIMIENTO DE RECLAMACIONES
+        //LISTADO DE RECLAMACIONES
+        public List<UtilidadesAmigos.Logica.Entidades.EReclamacion> BuscaReclamaciones(decimal? Numero = null, string Reclamacion = null, string Poliza = null, string Intermediario = null, string Asegurado = null, decimal? IdCondicion = null, string Beneficiario = null, decimal? IdTipo = null, DateTime? InicioVigenciaDesde = null, DateTime? InicioVigenciaHasta = null, DateTime? FinVigenciaDesde = null, DateTime? FinVigenciaHasta = null, DateTime? FechaAperturaDesde = null, DateTime? FechaAperturaHasta = null, DateTime? FechaSiniestroDesde = null, DateTime? FechaSiniestroHAsta = null, decimal? IdEstatus = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCA_LISTADO_RECLAMACIONES(Numero, Reclamacion, Poliza, Intermediario, Asegurado, IdCondicion, Beneficiario, IdTipo, InicioVigenciaDesde, InicioVigenciaHasta, FinVigenciaDesde, FinVigenciaHasta, FechaAperturaDesde, FechaAperturaHasta, FechaSiniestroDesde, FechaSiniestroHAsta, IdEstatus)
+                          select new UtilidadesAmigos.Logica.Entidades.EReclamacion
+                          {
+                              Numero=n.Numero,
+                              Reclamacion=n.Reclamacion,
+                              Poliza=n.Poliza,
+                              Estatus=n.Estatus,
+                              Intermediario=n.Intermediario,
+                              NombreIntermediario=n.NombreIntermediario,
+                              Asegurado=n.Asegurado,
+                              IdCondicion=n.IdCondicion,
+                              Condicion=n.Condicion,
+                              Monto=n.Monto,
+                              Beneficiario=n.Beneficiario,
+                              IdTipo=n.IdTipo,
+                              TipoReclamacion=n.TipoReclamacion,
+                              InicioVigencia0=n.InicioVigencia0,
+                              InicioVigencia=n.InicioVigencia,
+                              FinVigencia0=n.FinVigencia0,
+                              FinVigencia=n.FinVigencia,
+                              FechaApertura0=n.FechaApertura0,
+                              FechaApertura=n.FechaApertura,
+                              FechaSiniestro0=n.FechaSiniestro0,
+                              FechaSiniestro=n.FechaSiniestro,
+                              FechaFactura0=n.FechaFactura0,
+                              FechaFactura=n.FechaFactura,
+                              FechaCreacion0=n.FechaCreacion0,
+                              FechaCreacion=n.FechaCreacion,
+                              IdEstatus=n.IdEstatus,
+                              EstatusReclamacion=n.EstatusReclamacion,
+                              IdUsuario=n.IdUsuario,
+                              Usuario=n.Usuario,
+                              Comentario=n.Comentario,
+                              CantidadRegistros=n.CantidadRegistros
+                          }).ToList();
+            return Buscar;
+        }
+
+        //MANTENIMIENTO DE RECLAMACIONES
+        public UtilidadesAmigos.Logica.Entidades.EReclamacion MantenimientoReclamaciones(UtilidadesAmigos.Logica.Entidades.EReclamacion Item, string Accion)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EReclamacion Mantenimiento = null;
+
+            var Reclamaciones = Objdata.SP_MANTENIMIENTO_RECLAMACIONES(
+                Item.Numero,
+                Item.Reclamacion,
+                Item.Poliza,
+                Item.Intermediario,
+                Item.Asegurado,
+                Item.IdCondicion,
+                Item.Monto,
+                Item.Beneficiario,
+                Item.IdTipo,
+                Item.InicioVigencia0,
+                Item.FinVigencia0,
+                Item.FechaApertura0,
+                Item.FechaSiniestro0,
+                Item.FechaFactura0,
+                Item.IdEstatus,
+                Item.IdUsuario,
+                Item.Comentario,
+                Accion);
+            if (Reclamaciones != null)
+            {
+                Mantenimiento = (from n in Reclamaciones
+                                 select new UtilidadesAmigos.Logica.Entidades.EReclamacion
+                                 {
+                                     Numero=n.Numero,
+                                     Reclamacion=n.Reclamacion,
+                                     Poliza=n.Poliza,
+                                     Intermediario=n.Intermediario,
+                                     Asegurado=n.Asegurado,
+                                     IdCondicion=n.IdCondicion,
+                                     Monto=n.Monto,
+                                     Beneficiario=n.Beneficiario,
+                                     IdTipo=n.IdTipo,
+                                     InicioVigencia0=n.InicioVigencia,
+                                     FinVigencia0=n.FinVigencia,
+                                     FechaApertura0=n.FechaApertura,
+                                     FechaSiniestro0=n.FechaSiniestro,
+                                     FechaFactura0=n.FechaFactura,
+                                     FechaCreacion0=n.FechaCreacion,
+                                     IdEstatus=n.IdEstatus,
+                                     IdUsuario=n.IdUsuario,
+                                     Comentario=n.Comentario
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
+        #endregion
+
+        #region MANTENIMEINTO DE CONDICION DE RECLAMACIONES
+        //LISTADO DE CONDICIONES DE RECLAMACIONES
+        public List<UtilidadesAmigos.Logica.Entidades.ECondicionReclamacion> BuscaCondicionReclamaciones(decimal? IdCondicion = null, string Descripcion = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var CondicionReclamacion = (from n in Objdata.SP_BUSCA_CONDICION_RECLAMACION(IdCondicion, Descripcion)
+                                        select new UtilidadesAmigos.Logica.Entidades.ECondicionReclamacion
+                                        {
+                                            IdCondicion=n.IdCondicion,
+                                            Condicion=n.Condicion,
+                                            Estatus0=n.Estatus0,
+                                            Estatus=n.Estatus
+                                        }).ToList();
+            return CondicionReclamacion;
+        }
+
+        //MANTENIMIENTO DE CONDICIONE DE RECLAMACIONES
+        public UtilidadesAmigos.Logica.Entidades.ECondicionReclamacion MantenimientoCondicionesReclamos(UtilidadesAmigos.Logica.Entidades.ECondicionReclamacion Item, string Accion)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.ECondicionReclamacion Mantenimiento = null;
+
+            var CondicionReclamacion = Objdata.SP_MANTENIMIENTO_CONDICION_RECLAMACION(
+                Item.IdCondicion,
+                Item.Condicion,
+                Item.Estatus0,
+                Accion);
+            if (CondicionReclamacion != null)
+            {
+                Mantenimiento = (from n in CondicionReclamacion
+                                 select new UtilidadesAmigos.Logica.Entidades.ECondicionReclamacion
+                                 {
+                                     IdCondicion=n.IdCondicion,
+                                     Condicion=n.Descripcion,
+                                     Estatus0=n.Estatus
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+
+        }
+        #endregion
+
+        #region MANTENIMIENTO DE TIPO DE RECLAMACION
+        //LISTADO DE TIPO DE RECLAMACIONES
+        public List<UtilidadesAmigos.Logica.Entidades.ETipoReclamacion> BuscaTipoReclamacion(decimal? IdTipoReclamacion = null, string Descripcion = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var TipoReclamacion = (from n in Objdata.SP_BUSCA_TIPO_RECLAMACION(IdTipoReclamacion, Descripcion)
+                                        select new UtilidadesAmigos.Logica.Entidades.ETipoReclamacion
+                                        {
+                                            IdTipoReclamacion = n.IdTipoReclamacion,
+                                            Tipo = n.Tipo,
+                                            Estatus0 = n.Estatus0,
+                                            Estatus = n.Estatus
+                                        }).ToList();
+            return TipoReclamacion;
+        }
+
+        //MANTENIMIENTO DE TIPO DE RECLAMACIONES
+        public UtilidadesAmigos.Logica.Entidades.ETipoReclamacion MantenimientoTipoReclamos(UtilidadesAmigos.Logica.Entidades.ETipoReclamacion Item, string Accion)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.ETipoReclamacion Mantenimiento = null;
+
+            var TipoReclamacion = Objdata.SP_MANTENIMIENTO_TIPO_RECLAMACION(
+                Item.IdTipoReclamacion,
+                Item.Tipo,
+                Item.Estatus0,
+                Accion);
+            if (TipoReclamacion != null)
+            {
+                Mantenimiento = (from n in TipoReclamacion
+                                 select new UtilidadesAmigos.Logica.Entidades.ETipoReclamacion
+                                 {
+                                     IdTipoReclamacion = n.IdTipoReclamacion,
+                                     Tipo = n.Descripcion,
+                                     Estatus0 = n.Estatus
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+
+        }
+        #endregion
+
+        #region MANTENIMIENTO DE ESTATUS DE RECLAMACION
+        //LISTADO DE ESTATUS DE RECLAMACION
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscaEstatusReclamacion> BuscaEstatusReclamacion(decimal? IdEstatusReclamacion = null, string Descripcion = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCA_ESTATUS_RECLAMACION(IdEstatusReclamacion, Descripcion)
+                          select new UtilidadesAmigos.Logica.Entidades.EBuscaEstatusReclamacion
+                          {
+                              IdEstatusReclamacion=n.IdEstatusReclamacion,
+                              DescripcionEstatus=n.DescripcionEstatus,
+                              Estatus0=n.Estatus0,
+                              Estatus=n.Estatus
+                              
+                          }).ToList();
+            return Buscar;
+        }
+        //MANTENIMIENTO DE ESTATUS DE RECLAMACION
+        public UtilidadesAmigos.Logica.Entidades.EBuscaEstatusReclamacion MantenimientoEstatusReclamacion(UtilidadesAmigos.Logica.Entidades.EBuscaEstatusReclamacion Item, string Accion)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EBuscaEstatusReclamacion Mantenimeinto = null;
+
+            var EstatusReclamacion = Objdata.SP_MANTENIMIENTO_ESTATUS_RECLAMACION(
+                Item.IdEstatusReclamacion,
+                Item.DescripcionEstatus,
+                Item.Estatus0,
+                Accion);
+            if (EstatusReclamacion != null)
+            {
+                Mantenimeinto = (from n in EstatusReclamacion
+                                 select new UtilidadesAmigos.Logica.Entidades.EBuscaEstatusReclamacion
+                                 {
+                                     IdEstatusReclamacion=n.IdEstatusReclamacion,
+                                     DescripcionEstatus=n.Descripcion,
+                                     Estatus0=n.Estatus
+                                 }).FirstOrDefault();
+            }
+            return Mantenimeinto;
+        }
+        #endregion
+
     }
 }

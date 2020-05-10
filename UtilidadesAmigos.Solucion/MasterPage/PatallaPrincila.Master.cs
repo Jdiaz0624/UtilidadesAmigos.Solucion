@@ -260,7 +260,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkReporteReclamos_Click(object sender, EventArgs e)
         {
-
+            //MOSTRAR EL REPORTE DE RECLAMOS
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("ReporteReclamos.aspx");
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
 
         protected void linkProcesoCasaConductor_Click(object sender, EventArgs e)
