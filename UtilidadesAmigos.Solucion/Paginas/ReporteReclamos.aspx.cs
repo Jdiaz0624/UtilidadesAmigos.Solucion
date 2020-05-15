@@ -16,9 +16,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region CARGAMOS LAS LISTAS DESPLEGABLES PARA LA CONSULTA
         private void CargarListasDesplegablesConsulta()
         {
+            //LISTAS DESPLEGABLES EN LA PANTALLA DE CONSULTA
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarCondicionConsulta, ObjData.Value.BuscaListas("CONDICIONRECLAMACION", null, null), true);
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarTipoConsulta, ObjData.Value.BuscaListas("TIPORECLAMACION", null, null), true);
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarEstatutsConsulta, ObjData.Value.BuscaListas("ESTATUSRECLAMACION", null, null), true);
+
+            //LISTAS DESPLEGABLES EN LA PANTALLA DE MANTENIMIENTO
         }
         #endregion
         #region CONSULTAR REGISTROS
@@ -510,6 +513,85 @@ namespace UtilidadesAmigos.Solucion.Paginas
             catch (Exception) { }
         }
         #endregion
+        #region MOSTRAR EL LISTADO DE LOS TIPOS DE RECLAMACIONES
+        private void MostrarListadoTipoReclamos()
+        {
+            string _TipoReclamo = string.IsNullOrEmpty(txtMantenimientoTipoReclamo.Text.Trim()) ? null : txtMantenimientoTipoReclamo.Text.Trim();
+
+            var BuscarTipoReclamao = ObjData.Value.BuscaTipoReclamacion(
+                new Nullable<decimal>(),
+                _TipoReclamo);
+            gvListadoTipoReclamo.DataSource = BuscarTipoReclamao;
+            gvListadoTipoReclamo.DataBind();
+        }
+        #endregion
+        #region MANTENIMIENTO DE TIPO DE RECLAMO
+        private void MANTipoReclamo(string Accion)
+        {
+            try {
+                UtilidadesAmigos.Logica.Entidades.ETipoReclamacion Mantenimiento = new Logica.Entidades.ETipoReclamacion();
+
+                Mantenimiento.IdTipoReclamacion = Convert.ToDecimal(lbIdMantenimientoTipoReclamo.Text);
+                Mantenimiento.Tipo = txtMantenimientoTipoReclamo.Text;
+                Mantenimiento.Estatus0 = cbEstatusTipoRecmalo.Checked;
+
+                var MAn = ObjData.Value.MantenimientoTipoReclamos(Mantenimiento, Accion);
+            }
+            catch (Exception) { }
+        }
+        #endregion
+        #region LIMPIAR CONTROLES EN TIPO DE RECLAMOS
+        private void LimpiarControlesTipoReclamo() {
+            txtMantenimientoTipoReclamo.Text = string.Empty;
+            cbEstatusTipoRecmalo.Checked = true;
+            cbEstatusTipoRecmalo.ForeColor = System.Drawing.Color.Green;
+            MostrarListadoTipoReclamos();
+            btnConsultarTipoReclamo.Visible = true;
+            btnGuardarTipoReclamo.Visible = true;
+            btnModificarTipoReclamo.Visible = false;
+            btnRestablecerTipoReclamo.Visible = false;
+            CargarListasDesplegablesConsulta();
+        }
+        #endregion
+        #region MOSTRAR EL LISTADO DE LOS ESTATUS DE RECLAMO
+        private void MostrarListadoEstatusReclamo()
+        {
+            string _Estatus = string.IsNullOrEmpty(txtMantenimientoEstatusReclamo.Text.Trim()) ? null : txtMantenimientoEstatusReclamo.Text.Trim();
+
+            var Buscar = ObjData.Value.BuscaEstatusReclamacion(
+                new Nullable<decimal>(),
+                _Estatus);
+            gvListadoEstatusReclamo.DataSource = Buscar;
+            gvListadoEstatusReclamo.DataBind();
+        }
+        #endregion
+        #region MANTENIMIENTO DE ESTATUS DE RECLAMO
+        private void MANEstatusReclamo(string Accion)
+        {
+            try {
+                UtilidadesAmigos.Logica.Entidades.EBuscaEstatusReclamacion Mantenimiento = new Logica.Entidades.EBuscaEstatusReclamacion();
+
+                Mantenimiento.IdEstatusReclamacion = Convert.ToDecimal(lbIdMantenimientoEstatusReclamo.Text);
+                Mantenimiento.DescripcionEstatus = txtMantenimientoEstatusReclamo.Text;
+                Mantenimiento.Estatus0 = cbMantenimientoEstatusReclamo.Checked;
+
+                var MAn = ObjData.Value.MantenimientoEstatusReclamacion(Mantenimiento, Accion);
+            }
+            catch (Exception) { }
+        }
+        #endregion
+        #region RESTABELCER ESTATUS RECLAMO
+        private void ResablecerEstatusReclamo()
+        {
+            txtMantenimientoEstatusReclamo.Text = string.Empty;
+            cbMantenimientoEstatusReclamo.Checked = true;
+            btnConsultarEstatusReclamo.Visible = true;
+            btnGuardarEstatusReclamo.Visible = true;
+            btnModificarEstatusReclamo.Visible = false;
+            btnRestablecerEstatusReclamo.Visible = false;
+            MostrarListadoEstatusReclamo();
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -517,6 +599,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarListasDesplegablesConsulta();
                 ConsultarRegistros();
                 ClientScript.RegisterStartupScript(GetType(), "ModoConsulta", "ModoConsulta();", true);
+                cbEstatusMantenimientoCondicion.Checked = true;
+                cbEstatusTipoRecmalo.Checked = true;
+                cbEstatusTipoRecmalo.ForeColor = System.Drawing.Color.Green;
             }
         }
 
@@ -610,6 +695,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 MAnCondicionreclamacion(lbAccionCondicionMantenimiento.Text);
                 txtMantenimientoCOndicion.Text = string.Empty;
                 MostrarListadoCondicionesReclamos();
+                CargarListasDesplegablesConsulta();
             }
         }
 
@@ -624,6 +710,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 MAnCondicionreclamacion("UPDATE");
                 txtMantenimientoCOndicion.Text = string.Empty;
                 MostrarListadoCondicionesReclamos();
+                CargarListasDesplegablesConsulta();
             }
         }
 
@@ -638,6 +725,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbAccionCondicionMantenimiento.Text = "DELETE";
                 txtMantenimientoCOndicion.Text = string.Empty;
                 MostrarListadoCondicionesReclamos();
+                CargarListasDesplegablesConsulta();
             }
         }
 
@@ -677,6 +765,148 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtMantenimientoCOndicion.Text = n.Condicion;
                 cbEstatusMantenimientoCondicion.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
             }
+        }
+
+        protected void btnConsultarTipoReclamo_Click(object sender, EventArgs e)
+        {
+            MostrarListadoTipoReclamos();
+        }
+
+        protected void btnGuardarTipoReclamo_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMantenimientoTipoReclamo.Text.Trim()))
+            {
+
+            }
+            else
+            {
+                lbIdMantenimientoTipoReclamo.Text = "0";
+                MANTipoReclamo("INSERT");
+                LimpiarControlesTipoReclamo();
+            }
+        }
+
+        protected void btnModificarTipoReclamo_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMantenimientoTipoReclamo.Text.Trim()))
+            {
+
+            }
+            else
+            {
+               // lbIdMantenimientoTipoReclamo.Text = "0";
+                MANTipoReclamo("UPDATE");
+                LimpiarControlesTipoReclamo();
+            }
+        }
+
+        protected void btnRestablecerTipoReclamo_Click(object sender, EventArgs e)
+        {
+            LimpiarControlesTipoReclamo();
+        }
+
+        protected void gvListadoTipoReclamo_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvListadoTipoReclamo.PageIndex = e.NewPageIndex;
+            MostrarListadoTipoReclamos();
+        }
+
+        protected void gvListadoTipoReclamo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow gb = gvListadoTipoReclamo.SelectedRow;
+
+            lbIdMantenimientoTipoReclamo.Text = gb.Cells[0].Text;
+
+            var Buscar = ObjData.Value.BuscaTipoReclamacion(
+                Convert.ToDecimal(gb.Cells[0].Text));
+            gvListadoTipoReclamo.DataSource = Buscar;
+            gvListadoTipoReclamo.DataBind();
+            btnConsultarTipoReclamo.Visible = false;
+            btnGuardarTipoReclamo.Visible = false;
+            btnModificarTipoReclamo.Visible = true;
+            btnRestablecerTipoReclamo.Visible = true;
+            foreach (var n in Buscar)
+            {
+                txtMantenimientoTipoReclamo.Text = n.Tipo;
+                cbEstatusTipoRecmalo.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
+            }
+        }
+
+        protected void cbEstatusTipoRecmalo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbEstatusTipoRecmalo.Checked)
+            {
+                cbEstatusTipoRecmalo.ForeColor = System.Drawing.Color.Green;
+            }
+            else
+            {
+                cbEstatusTipoRecmalo.ForeColor = System.Drawing.Color.Red;
+            }
+        }
+
+        protected void btnConsultarEstatusReclamo_Click(object sender, EventArgs e)
+        {
+            MostrarListadoEstatusReclamo();
+        }
+
+        protected void btnGuardarEstatusReclamo_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(lbIdMantenimientoEstatusReclamo.Text.Trim()))
+            {
+
+            }
+            else
+            {
+                lbIdMantenimientoEstatusReclamo.Text = "0";
+                MANEstatusReclamo("INSERT");
+                ResablecerEstatusReclamo();
+            }
+        }
+
+        protected void btnModificarEstatusReclamo_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(lbIdMantenimientoEstatusReclamo.Text.Trim()))
+            {
+
+            }
+            else
+            {
+               // lbIdMantenimientoEstatusReclamo.Text = "0";
+                MANEstatusReclamo("UPDATE");
+                ResablecerEstatusReclamo();
+            }
+        }
+
+        protected void btnRestablecerEstatusReclamo_Click(object sender, EventArgs e)
+        {
+            ResablecerEstatusReclamo();
+        }
+
+        protected void gvListadoEstatusReclamo_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvListadoEstatusReclamo.PageIndex = e.NewPageIndex;
+            MostrarListadoEstatusReclamo();
+        }
+
+        protected void gvListadoEstatusReclamo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow gb = gvListadoEstatusReclamo.SelectedRow;
+
+            lbIdMantenimientoEstatusReclamo.Text = gb.Cells[0].Text;
+
+            var SacarDatos = ObjData.Value.BuscaEstatusReclamacion(
+                Convert.ToDecimal(gb.Cells[0].Text));
+            gvListadoEstatusReclamo.DataSource = SacarDatos;
+            gvListadoEstatusReclamo.DataBind();
+            foreach (var n in SacarDatos)
+            {
+                txtMantenimientoEstatusReclamo.Text = n.DescripcionEstatus;
+                cbMantenimientoEstatusReclamo.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
+            }
+            btnConsultarEstatusReclamo.Visible = false;
+            btnGuardarEstatusReclamo.Visible = false;
+            btnModificarEstatusReclamo.Visible = true;
+            btnRestablecerEstatusReclamo.Visible = true;
         }
     }
 }

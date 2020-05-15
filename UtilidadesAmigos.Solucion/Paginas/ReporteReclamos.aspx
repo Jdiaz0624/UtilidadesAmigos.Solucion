@@ -64,6 +64,10 @@
 
         }
 
+        function CheckVerde() {
+            $("#<%=cbEstatusTipoRecmalo.ClientID%>").css("border-color", "green");
+        }
+
    
         $(document).ready(function () {
             //RECLAMACION CONSULTA
@@ -169,18 +173,18 @@
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-3>
+            <div class="form-group col-md-3">
                 <asp:Label ID="lbFechaDesdeConsulta" runat="server" Visible="false" Text="Fecha Desde" CssClass="LetrasNegritas"></asp:Label>
                 <asp:TextBox ID="txtFechaDesdeConsulta" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
-               <div class="form-group col-md-3>
+               <div class="form-group col-md-3">
                 <asp:Label ID="lbFechHAstaConsulta" runat="server" Visible="false" Text="Fecha Hasta" CssClass="LetrasNegritas"></asp:Label>
                 <asp:TextBox ID="txtFechaHAstaConsulta" runat="server" Visible="false"  TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
 
         <!--INGRESAMOS LOS BOTONES PARA LAS DISTINTAS OPERACIONES DE LA PAGINA-->
-        <div>
+        <div align="center">
             <asp:Button ID="btnConsultarRegistros" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Consultar" ToolTip="Consultar Registros" OnClick="btnConsultarRegistros_Click" />
             <asp:Button ID="btnExportarRegistrosConsulta" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Exportar" ToolTip="Exportar Data a Exel" OnClick="btnExportarRegistrosConsulta_Click" />
             <button type="button" id="btnNuevo" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".MANTENIMIENTOPOPOP">Nuevo</button>
@@ -386,7 +390,64 @@
                 <div class="modal fade POPOTIPORECLAMO" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-      POPOP DE TIPO DE RECLAMO
+       <div class="container-fluid">
+          <div class="jumbotron" align="center">
+              <asp:Label ID="lbMantenimeintoTipoReclamoTitulo" runat="server" Text="Mantenimiento de Tipo de reclamos"></asp:Label>
+              <asp:Label ID="lbIdMantenimientoTipoReclamo" runat="server" Text="0" Visible="false"></asp:Label>
+              <asp:Label ID="lbAccionTipoReclamo" runat="server" Text="INSERT" Visible="false"></asp:Label>
+          </div>
+          <asp:UpdatePanel ID="UpdatePanelTipoReclamos" runat="server">
+              <ContentTemplate>
+                  <div class="form-row">
+                      <div class="form-group col-md-4">
+                          <asp:Label ID="lbMantenimientoTipoReclamo" runat="server" Text="Tipo de Reclamo" CssClass="LetrasNegritas"></asp:Label>
+                          <asp:TextBox ID="txtMantenimientoTipoReclamo" runat="server" MaxLength="100" CssClass="form-control"></asp:TextBox>
+                      </div>
+
+                    
+
+                  </div>
+                  <div class="form-check-inline">
+                      <div class="form-group form-check">
+                          <asp:CheckBox ID="cbEstatusTipoRecmalo" runat="server" AutoPostBack="true" Text="Estatus" CssClass="form-check-input" ToolTip="Estatus de Tipo de reclamación" OnCheckedChanged="cbEstatusTipoRecmalo_CheckedChanged" />
+                      </div>
+                  </div>
+                  <br />
+                   <div align="center">
+                       <asp:Button ID="btnConsultarTipoReclamo" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Consultar" Visible="true" ToolTip="Consultar Registros" OnClick="btnConsultarTipoReclamo_Click" />
+                       <asp:Button ID="btnGuardarTipoReclamo" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Guardar" Visible="true" ToolTip="Guardar Registro" OnClick="btnGuardarTipoReclamo_Click" />
+                       <asp:Button ID="btnModificarTipoReclamo" runat="server" CssClass="btn btn-outline-primary btn-sm" Visible="false" Text="Modificar" ToolTip="Modificar Registro Seleccionado" OnClick="btnModificarTipoReclamo_Click" />
+                       <asp:Button ID="btnRestablecerTipoReclamo" runat="server" CssClass="btn btn-outline-primary btn-sm" Visible="false" Text="Restablecer" ToolTip="Restablecer Pantalla" OnClick="btnRestablecerTipoReclamo_Click" />
+                     </div>
+                  <br />
+                   <!--GRID-->
+         <div>
+            <asp:GridView ID="gvListadoTipoReclamo" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoTipoReclamo_PageIndexChanging" OnSelectedIndexChanged="gvListadoTipoReclamo_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    <asp:BoundField DataField="IdTipoReclamacion" HeaderText="ID" />
+                    <asp:BoundField DataField="Tipo" HeaderText="Tipo" />
+                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
+                     <asp:CommandField ButtonType="Button" HeaderStyle-Width="11%" HeaderText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />
+                </Columns  >
+                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
+
+        <!--GRID-->
+                  <br />
+              </ContentTemplate>
+          </asp:UpdatePanel>
+      </div>
     </div>
   </div>
 </div>
@@ -397,7 +458,63 @@
          <div class="modal fade POPOESTATUSRECLAMO" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-      POPOP DE ESTATUS DE RECLAMO
+       <div class="container-fluid">
+          <div class="jumbotron" align="center">
+              <asp:Label ID="lbTituloEstatusMantenimiento" runat="server" Text="Mantenimiento de Estatus de reclamos"></asp:Label>
+              <asp:Label ID="lbIdMantenimientoEstatusReclamo" runat="server" Text="0" Visible="false"></asp:Label>
+          </div>
+          <asp:UpdatePanel ID="UpdatePanelEstatusReclamo" runat="server">
+              <ContentTemplate>
+                  <div class="form-row">
+                      <div class="form-group col-md-4">
+                          <asp:Label ID="lbMantenimientoEstatusReclamo" runat="server" Text="Estatus de Reclamo" CssClass="LetrasNegritas"></asp:Label>
+                          <asp:TextBox ID="txtMantenimientoEstatusReclamo" runat="server" MaxLength="100" CssClass="form-control"></asp:TextBox>
+                      </div>
+
+                    
+
+                  </div>
+                  <div class="form-check-inline">
+                      <div class="form-group form-check">
+                          <asp:CheckBox ID="cbMantenimientoEstatusReclamo" runat="server" AutoPostBack="true" Text="Estatus" CssClass="form-check-input" ToolTip="Estatus de Estatus de reclamación" OnCheckedChanged="cbEstatusTipoRecmalo_CheckedChanged" />
+                      </div>
+                  </div>
+                  <br />
+                   <div align="center">
+                       <asp:Button ID="btnConsultarEstatusReclamo" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Consultar" Visible="true" ToolTip="Consultar Registros" OnClick="btnConsultarEstatusReclamo_Click" />
+                       <asp:Button ID="btnGuardarEstatusReclamo" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Guardar" Visible="true" ToolTip="Guardar Registro" OnClick="btnGuardarEstatusReclamo_Click" />
+                       <asp:Button ID="btnModificarEstatusReclamo" runat="server" CssClass="btn btn-outline-primary btn-sm" Visible="false" Text="Modificar" ToolTip="Modificar Registro Seleccionado" OnClick="btnModificarEstatusReclamo_Click" />
+                       <asp:Button ID="btnRestablecerEstatusReclamo" runat="server" CssClass="btn btn-outline-primary btn-sm" Visible="false" Text="Restablecer" ToolTip="Restablecer Pantalla" OnClick="btnRestablecerEstatusReclamo_Click" />
+                     </div>
+                  <br />
+                   <!--GRID-->
+         <div>
+            <asp:GridView ID="gvListadoEstatusReclamo" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoEstatusReclamo_PageIndexChanging" OnSelectedIndexChanged="gvListadoEstatusReclamo_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    <asp:BoundField DataField="IdEstatusReclamacion" HeaderText="ID" />
+                    <asp:BoundField DataField="DescripcionEstatus" HeaderText="Estatus" />
+                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
+                     <asp:CommandField ButtonType="Button" HeaderStyle-Width="11%" HeaderText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />
+                </Columns  >
+                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
+
+        <!--GRID-->
+                  <br />
+              </ContentTemplate>
+          </asp:UpdatePanel>
+      </div>
     </div>
   </div>
 </div>
