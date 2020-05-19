@@ -175,6 +175,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         Guardar.Hora0 = DateTime.Now;
                         Guardar.IdEstatus = false;
                         Guardar.Comentario = "Registro Guardado con exito";
+                    //holA
 
                         var MAN = ObjDataAdministrador.Value.MantenimientoHistorialDatabase(Guardar, "INSERT");
 
