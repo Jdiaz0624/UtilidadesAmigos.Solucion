@@ -24,6 +24,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
             //LISTAS DESPLEGABLES EN LA PANTALLA DE MANTENIMIENTO
         }
         #endregion
+        #region CARGAR EL LISTADO DE LAS LISTAS EN EL MANTENIMIENTO
+        private void CargarListasMAN() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarCondicionMantenimiento, ObjData.Value.BuscaListas("CONDICIONRECLAMACION", null, null));
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarTipoMantenimiento, ObjData.Value.BuscaListas("TIPORECLAMACION", null, null));
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarEstatusMantenimiento, ObjData.Value.BuscaListas("ESTATUSRECLAMACION", null, null));
+        }
+        #endregion
         #region CONSULTAR REGISTROS
         private void ConsultarRegistros()
         {
@@ -288,7 +295,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                                 FinVigencia = n.FinVigencia,
                                                 FechaApertura = n.FechaApertura,
                                                 FechaSiniestro = n.FechaSiniestro,
-                                                FechaFactura = n.FechaFactura,
                                                 FechaCreacion = n.FechaCreacion,
                                                 EstatusReclamacion = n.EstatusReclamacion,
                                                 Usuario = n.Usuario,
@@ -334,7 +340,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                                 FinVigencia = n.FinVigencia,
                                                 FechaApertura = n.FechaApertura,
                                                 FechaSiniestro = n.FechaSiniestro,
-                                                FechaFactura = n.FechaFactura,
                                                 FechaCreacion = n.FechaCreacion,
                                                 EstatusReclamacion = n.EstatusReclamacion,
                                                 Usuario = n.Usuario,
@@ -380,7 +385,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                                 FinVigencia = n.FinVigencia,
                                                 FechaApertura = n.FechaApertura,
                                                 FechaSiniestro = n.FechaSiniestro,
-                                                FechaFactura = n.FechaFactura,
                                                 FechaCreacion = n.FechaCreacion,
                                                 EstatusReclamacion = n.EstatusReclamacion,
                                                 Usuario = n.Usuario,
@@ -426,7 +430,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                                 FinVigencia = n.FinVigencia,
                                                 FechaApertura = n.FechaApertura,
                                                 FechaSiniestro = n.FechaSiniestro,
-                                                FechaFactura = n.FechaFactura,
                                                 FechaCreacion = n.FechaCreacion,
                                                 EstatusReclamacion = n.EstatusReclamacion,
                                                 Usuario = n.Usuario,
@@ -472,7 +475,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                             FinVigencia = n.FinVigencia,
                                             FechaApertura = n.FechaApertura,
                                             FechaSiniestro = n.FechaSiniestro,
-                                            FechaFactura = n.FechaFactura,
                                             FechaCreacion = n.FechaCreacion,
                                             EstatusReclamacion = n.EstatusReclamacion,
                                             Usuario = n.Usuario,
@@ -597,11 +599,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (!IsPostBack)
             {
                 CargarListasDesplegablesConsulta();
+                CargarListasMAN();
                 ConsultarRegistros();
                 ClientScript.RegisterStartupScript(GetType(), "ModoConsulta", "ModoConsulta();", true);
                 cbEstatusMantenimientoCondicion.Checked = true;
                 cbEstatusTipoRecmalo.Checked = true;
                 cbEstatusTipoRecmalo.ForeColor = System.Drawing.Color.Green;
+                
             }
         }
 
@@ -907,6 +911,37 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnGuardarEstatusReclamo.Visible = false;
             btnModificarEstatusReclamo.Visible = true;
             btnRestablecerEstatusReclamo.Visible = true;
+        }
+
+        protected void cbBuscarFechaAutomatico_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbBuscarFechaAutomatico.Checked)
+            {
+                txtInicioVigenciaMantenimiento.Visible = false;
+                txtFechaInicioVigenciaAutomatico.Visible = true;
+                txtFinVigenciaMantenimiento.Visible = false;
+                txtFechaFinVigenciaAutomatico.Visible = true;
+                txtFechaAperturaMantenimiento.Visible = false;
+                txtFechaAperturaAutomatica.Visible = true;
+                txtFechaSiniestroMantenimiento.Visible = false;
+                txtFechaSiniestroAutomatica.Visible = true;
+            }
+            else
+            {
+                txtInicioVigenciaMantenimiento.Visible = true;
+                txtFechaInicioVigenciaAutomatico.Visible = false;
+                txtFinVigenciaMantenimiento.Visible = true;
+                txtFechaFinVigenciaAutomatico.Visible = false;
+                txtFechaAperturaMantenimiento.Visible = true;
+                txtFechaAperturaAutomatica.Visible = false;
+                txtFechaSiniestroMantenimiento.Visible = true;
+                txtFechaSiniestroAutomatica.Visible = false;
+            }
+        }
+
+        protected void btnGuardarMantenimiento_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "PararEjecucion", "PararEjecucion();", true);
         }
     }
 }

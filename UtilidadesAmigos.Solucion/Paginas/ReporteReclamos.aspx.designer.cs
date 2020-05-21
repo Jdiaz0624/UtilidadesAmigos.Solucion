@@ -544,6 +544,15 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtInicioVigenciaMantenimiento;
         
         /// <summary>
+        /// txtFechaInicioVigenciaAutomatico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaInicioVigenciaAutomatico;
+        
+        /// <summary>
         /// lbFinVigenciaMantenimiento control.
         /// </summary>
         /// <remarks>
@@ -560,6 +569,15 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFinVigenciaMantenimiento;
+        
+        /// <summary>
+        /// txtFechaFinVigenciaAutomatico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaFinVigenciaAutomatico;
         
         /// <summary>
         /// lbFechaAperturaMAntenimiento control.
@@ -580,6 +598,15 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtFechaAperturaMantenimiento;
         
         /// <summary>
+        /// txtFechaAperturaAutomatica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaAperturaAutomatica;
+        
+        /// <summary>
         /// lbFechaSiniestroMantenimiento control.
         /// </summary>
         /// <remarks>
@@ -596,6 +623,51 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFechaSiniestroMantenimiento;
+        
+        /// <summary>
+        /// txtFechaSiniestroAutomatica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaSiniestroAutomatica;
+        
+        /// <summary>
+        /// cbBuscarFechaAutomatico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbBuscarFechaAutomatico;
+        
+        /// <summary>
+        /// lbComentarioMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbComentarioMantenimiento;
+        
+        /// <summary>
+        /// txtComentarioMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtComentarioMantenimiento;
+        
+        /// <summary>
+        /// btnGuardarMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarMantenimiento;
         
         /// <summary>
         /// lbMantenimientoCondicionTitulo control.

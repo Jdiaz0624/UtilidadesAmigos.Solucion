@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=jdiaz0624;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString8" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_LISTA_CARGAR_RAMOS" Method="SP_LISTA_CARGAR_RAMOS">
     <Parameter Name="IdRamo" Parameter="idRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
@@ -1839,98 +1839,6 @@
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_BUSCA_LISTADO_RECLAMACIONES" Method="SP_BUSCA_LISTADO_RECLAMACIONES">
-    <Parameter Name="Numero" Parameter="numero" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Reclamacion" Parameter="reclamacion" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(30)" />
-    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.String" DbType="VarChar(10)" />
-    <Parameter Name="Asegurado" Parameter="asegurado" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="IdCondicion" Parameter="idCondicion" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Beneficiario" Parameter="beneficiario" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="IdTipo" Parameter="idTipo" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="InicioVigenciaDesde" Parameter="inicioVigenciaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="InicioVigenciaHasta" Parameter="inicioVigenciaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FinVigenciaDesde" Parameter="finVigenciaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FinVigenciaHasta" Parameter="finVigenciaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaAperturaDesde" Parameter="fechaAperturaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaAperturaHasta" Parameter="fechaAperturaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaSiniestroDesde" Parameter="fechaSiniestroDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaSiniestroHAsta" Parameter="fechaSiniestroHAsta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="IdEstatus" Parameter="idEstatus" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <ElementType Name="SP_BUSCA_LISTADO_RECLAMACIONESResult">
-      <Column Name="Numero" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Reclamacion" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Intermediario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="NombreIntermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
-      <Column Name="Asegurado" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdCondicion" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Condicion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Monto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
-      <Column Name="Beneficiario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdTipo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="TipoReclamacion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="InicioVigencia0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="FinVigencia0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="FechaApertura0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FechaApertura" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="FechaSiniestro0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FechaSiniestro" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="FechaFactura0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FechaFactura" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="FechaCreacion0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FechaCreacion" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="IdEstatus" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="EstatusReclamacion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_MANTENIMIENTO_RECLAMACIONES" Method="SP_MANTENIMIENTO_RECLAMACIONES">
-    <Parameter Name="Numero" Parameter="numero" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Reclamacion" Parameter="reclamacion" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(30)" />
-    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Asegurado" Parameter="asegurado" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="IdCondicion" Parameter="idCondicion" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Monto" Parameter="monto" Type="System.Decimal" DbType="Decimal(20,2)" />
-    <Parameter Name="Beneficiario" Parameter="beneficiario" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="IdTipo" Parameter="idTipo" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="InicioVigencia" Parameter="inicioVigencia" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FinVigencia" Parameter="finVigencia" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaApertura" Parameter="fechaApertura" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaSiniestro" Parameter="fechaSiniestro" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaFactura" Parameter="fechaFactura" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="IdEstatus" Parameter="idEstatus" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Comentario" Parameter="comentario" Type="System.String" DbType="VarChar(8000)" />
-    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
-    <ElementType Name="SP_MANTENIMIENTO_RECLAMACIONESResult">
-      <Column Name="Numero" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Reclamacion" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="Intermediario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Asegurado" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdCondicion" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Monto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
-      <Column Name="Beneficiario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdTipo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="InicioVigencia" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FinVigencia" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FechaApertura" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FechaSiniestro" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FechaFactura" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FechaCreacion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="IdEstatus" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_BUSCA_CONDICION_RECLAMACION" Method="SP_BUSCA_CONDICION_RECLAMACION">
     <Parameter Name="IdCondicion" Parameter="idCondicion" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(100)" />
@@ -1992,6 +1900,94 @@
       <Column Name="DescripcionEstatus" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MANTENIMIENTO_RECLAMACIONES" Method="SP_MANTENIMIENTO_RECLAMACIONES">
+    <Parameter Name="Numero" Parameter="numero" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Reclamacion" Parameter="reclamacion" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Asegurado" Parameter="asegurado" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="IdCondicion" Parameter="idCondicion" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Monto" Parameter="monto" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Beneficiario" Parameter="beneficiario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="IdTipo" Parameter="idTipo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="InicioVigencia" Parameter="inicioVigencia" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FinVigencia" Parameter="finVigencia" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaApertura" Parameter="fechaApertura" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaSiniestro" Parameter="fechaSiniestro" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="IdEstatus" Parameter="idEstatus" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Comentario" Parameter="comentario" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MANTENIMIENTO_RECLAMACIONESResult">
+      <Column Name="Numero" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Reclamacion" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Asegurado" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdCondicion" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Monto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Beneficiario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdTipo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaApertura" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaSiniestro" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaCreacion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="IdEstatus" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_LISTADO_RECLAMACIONES" Method="SP_BUSCA_LISTADO_RECLAMACIONES">
+    <Parameter Name="Numero" Parameter="numero" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Reclamacion" Parameter="reclamacion" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Asegurado" Parameter="asegurado" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="IdCondicion" Parameter="idCondicion" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Beneficiario" Parameter="beneficiario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="IdTipo" Parameter="idTipo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="InicioVigenciaDesde" Parameter="inicioVigenciaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="InicioVigenciaHasta" Parameter="inicioVigenciaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FinVigenciaDesde" Parameter="finVigenciaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FinVigenciaHasta" Parameter="finVigenciaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaAperturaDesde" Parameter="fechaAperturaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaAperturaHasta" Parameter="fechaAperturaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaSiniestroDesde" Parameter="fechaSiniestroDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaSiniestroHAsta" Parameter="fechaSiniestroHAsta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="IdEstatus" Parameter="idEstatus" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCA_LISTADO_RECLAMACIONESResult">
+      <Column Name="Numero" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Reclamacion" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NombreIntermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="Asegurado" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdCondicion" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Condicion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Monto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Beneficiario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdTipo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="TipoReclamacion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="InicioVigencia0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FinVigencia0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FechaApertura0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaApertura" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FechaSiniestro0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaSiniestro" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FechaCreacion0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaCreacion" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="IdEstatus" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="EstatusReclamacion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

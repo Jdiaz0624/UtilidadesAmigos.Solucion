@@ -22,6 +22,10 @@
 
     <script type="text/javascript">
 
+        function PararEjecucion() {
+            return false;
+        }
+
         function Mensaje() {
             alert("Esta opción esta en desarrollo");
         }
@@ -90,9 +94,19 @@
                 }
               });
 
-              $("#btnCondicion").click(function () {
-                  ModoConsultaCondicion();
+             //INTERMEDIARIO EN MANTENIMIENTO
+              $("#<%=txtIntermediarioMantenimiento.ClientID%>").on("keydown keypress", function (e) {
+                if (e.key.length == 1) {
+                    if ($(this).val().length < 4 && !isNaN(parseFloat(e.key))) {
+                        $(this).val($(this).val() + e.key);
+                    }
+                    return false;
+                }
               });
+
+          
+
+
 
 
 
@@ -100,6 +114,89 @@
            
 
             //FIN DE MANTENIMIENTO DE CONDICIONES DE RECLAMOS
+
+
+              $("#<%=btnGuardarMantenimiento.ClientID%>").click(function () {
+                  //VALIDAMOS EL NUMERO DE RCLAMO
+                  var ValidarReclamacion = $("#<%=txtNumeroReclamacionMantenimiento.ClientID%>").val().length;
+                  if (ValidarReclamacion < 1) {
+                      alert("El campo numero de reclamación no puede estar vacio, favor de verificar");
+                      $("#<%=txtNumeroReclamacionMantenimiento.ClientID%>").css("border-color", "red");
+                      return false;
+                  }
+                  else {
+                      //VALIDAMOS EL NUMERO DE POLIZA
+                      var ValidarPoliza = $("#<%=txtPolizaMantenimiento.ClientID%>").val().length;
+                      if (ValidarPoliza < 1) {
+                          alert("El campo poliza no puede estar vacio, favor de verificar");
+                          $("#<%=txtPolizaMantenimiento.ClientID%>").css("border-color", "red");
+                          return false;
+                      }
+                      else {
+                          //VALIDAMOS EL CODIGO DEL INTERMEDIARIO
+                          var CodigoIntermediario = $("#<%=txtIntermediarioMantenimiento.ClientID%>").val().length;
+                          if (CodigoIntermediario < 1) {
+                              alert("El codigo del intermediario no puede estar vacio, favor de verificar");
+                              $("#<%=txtIntermediarioMantenimiento.ClientID%>").css("border-color", "red");
+                              return false;
+                          }
+                          else {
+                              //VALIDAMOS EL NOMBRE DEL ASEGURADO
+                              var ValidarAsegurado = $("#<%=txtAseguradoMantenimiento.ClientID%>").val().length;
+                              if (ValidarAsegurado < 1) {
+                                  alert("el campo asegurado no puede estar vacio, favor de verificar");
+                                  $("#<%=txtAseguradoMantenimiento.ClientID%>").css("border-color", "red");
+                                  return false;
+                              }
+                              else {
+                                  var ValidarTipoReclamo = $("#<%=ddlSeleccionarTipoMantenimiento.ClientID%>").val();
+                                  if (ValidarTipoReclamo < 1) {
+                                      alert("El campo tipo de reclamación no puede estar vacio, favor de verificar");
+                                      $("#<%=ddlSeleccionarTipoMantenimiento.ClientID%>").css("border-color", "red");
+                                      return false;
+                                  }
+
+                                  else {
+                                      var ValidarCondicionReclamo = $("#<%=ddlSeleccionarCondicionMantenimiento.ClientID%>").val();
+                                      if (ValidarCondicionReclamo < 1) {
+                                          alert("El campo Condición de reclamo no puede estar vacio, favor de verificar");
+                                          $("#<%=ddlSeleccionarCondicionMantenimiento.ClientID%>").css("border-color", "red");
+                                          return false;
+                                      }
+                                      else {
+                                          //BALIDAMOS EL MONTO DE RECLAMO
+                                          var MontoReclamo = $("#<%=txtMontoMantenimiento.ClientID%>").val().length;
+
+                                          if (MontoReclamo < 1) {
+                                              alert("El campo monto no puede estar vacio, favor de verificar");
+                                              $("#<%=txtMontoMantenimiento.ClientID%>").css("border-color", "red");
+                                              return false;
+                                          }
+                                          else {
+                                              //VALIDAMOS EL BENEFICIARIO
+                                              var ValidarBeneficiarioReclamo = $("#").val().length;
+                                              if (ValidarBeneficiarioReclamo < 1) {
+                                                  alert("El campo beneficiario no puede estar vacio, favor de verificar");
+                                                  $("#<%=txtBeneficiarioMantenimiento.ClientID%>").css("border-color");
+                                                  return false;
+                                              }
+                                              else {
+                                                  //VALIDAR EL ESTATUS DE LA RECLAMACION
+                                                  var EstatusREclamo = $("#<%=ddlSeleccionarEstatusMantenimiento.ClientID%>").val();
+                                                  if (EstatusREclamo < 1) {
+                                                      alert("El campo reclamo no peude estar vacio, favor de verificar");
+                                                      $("#<%=ddlSeleccionarEstatusMantenimiento.ClientID%>").css("border-color", "red");
+                                                      return false;
+                                                  }
+                                              }
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  }
+              });
 
         });
     </script>
@@ -252,7 +349,7 @@
 
                         <div class="form-group col-md-4">
                            <asp:Label ID="lbPolizaMantenimiento" runat="server" Text="Numero de Poliza" CssClass="LetrasNegritas"></asp:Label>
-                           <asp:TextBox ID="txtPolizaMantenimiento" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
+                           <asp:TextBox ID="txtPolizaMantenimiento" AutoCompleteType="Disabled" MaxLength="30" runat="server" CssClass="form-control"></asp:TextBox>
                        </div>
 
                          <div class="form-group col-md-4">
@@ -262,7 +359,7 @@
 
                          <div class="form-group col-md-4">
                            <asp:Label ID="lbAseguradoMantenimiento" runat="server" Text="Asegurado" CssClass="LetrasNegritas"></asp:Label>
-                           <asp:TextBox ID="txtAseguradoMantenimiento" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
+                           <asp:TextBox ID="txtAseguradoMantenimiento" AutoCompleteType="Disabled" MaxLength="100" runat="server" CssClass="form-control"></asp:TextBox>
                        </div>
 
                         <div class="form-group col-md-4">
@@ -277,12 +374,12 @@
 
                         <div class="form-group col-md-4">
                            <asp:Label ID="lbMontoMantenimiento" runat="server" Text="Monto" CssClass="LetrasNegritas"></asp:Label>
-                           <asp:TextBox ID="txtMontoMantenimiento" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
+                           <asp:TextBox ID="txtMontoMantenimiento" AutoCompleteType="Disabled" TextMode="Number" step="0.01"  runat="server" CssClass="form-control"></asp:TextBox>
                        </div>
 
                         <div class="form-group col-md-4">
                            <asp:Label ID="lbBeneficiarioMantenimiento" runat="server" Text="Beneficiario" CssClass="LetrasNegritas"></asp:Label>
-                           <asp:TextBox ID="txtBeneficiarioMantenimiento" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
+                           <asp:TextBox ID="txtBeneficiarioMantenimiento" AutoCompleteType="Disabled" MaxLength="100" runat="server" CssClass="form-control"></asp:TextBox>
                        </div>
 
                        <div class="form-group col-md-4">
@@ -292,26 +389,47 @@
 
                        <div class="form-group col-md-3">
                            <asp:Label ID="lbFechaInicioVigencia" runat="server" Text="Inicio de Vigencia" CssClass="LetrasNegritas"></asp:Label>
-                           <asp:TextBox ID="txtInicioVigenciaMantenimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                           <asp:TextBox ID="txtInicioVigenciaMantenimiento" runat="server" Visible="true" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                           <asp:TextBox ID="txtFechaInicioVigenciaAutomatico" runat="server" Enabled="false" Visible="false" CssClass="form-control" ></asp:TextBox>
                        </div>
 
                        <div class="form-group col-md-3">
                            <asp:Label ID="lbFinVigenciaMantenimiento" runat="server" Text="FIn de Vigencia" CssClass="LetrasNegritas"></asp:Label>
-                           <asp:TextBox ID="txtFinVigenciaMantenimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                           <asp:TextBox ID="txtFinVigenciaMantenimiento" runat="server" Visible="true" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                           <asp:TextBox ID="txtFechaFinVigenciaAutomatico" runat="server" Enabled="false" Visible="false" CssClass="form-control" ></asp:TextBox>
                        </div>
 
                        <div class="form-group col-md-3">
                            <asp:Label ID="lbFechaAperturaMAntenimiento" runat="server" Text="Fecha de Apertura" CssClass="LetrasNegritas"></asp:Label>
-                           <asp:TextBox ID="txtFechaAperturaMantenimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                           <asp:TextBox ID="txtFechaAperturaMantenimiento" runat="server"  Visible="true" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                           <asp:TextBox ID="txtFechaAperturaAutomatica" runat="server" Enabled="false" Visible="false" CssClass="form-control" ></asp:TextBox>
                        </div>
 
                        <div class="form-group col-md-3">
                            <asp:Label ID="lbFechaSiniestroMantenimiento" runat="server" Text="Fecha de Siniestro" CssClass="LetrasNegritas"></asp:Label>
-                           <asp:TextBox ID="txtFechaSiniestroMantenimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                           <asp:TextBox ID="txtFechaSiniestroMantenimiento" runat="server" Visible="true" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                           <asp:TextBox ID="txtFechaSiniestroAutomatica" runat="server" Enabled="false" Visible="false" CssClass="form-control" ></asp:TextBox>
                        </div>
                    </div>
+                   <!--AGREGAR CHECK-->
+                   <div class="form-check-inline">
+                       <div class="form-group form-check">
+                           <asp:CheckBox ID="cbBuscarFechaAutomatico" runat="server" Text="Buscar las Fecha de manera automatica" OnCheckedChanged="cbBuscarFechaAutomatico_CheckedChanged" AutoPostBack="true" ToolTip="Busca la fecha de vigencia, siniestro y de apertura a partir del numero de reclamación ya ingresado en el sistema" CssClass="form-check-input" />
+                       </div>
+                   </div>
+                   <div class="form-row">
+                       <div class="form-group col-md-12">
+                           <asp:Label ID="lbComentarioMantenimiento" runat="server" Text="Comentario" CssClass="LetrasNegritas"></asp:Label>
+                           <asp:TextBox ID="txtComentarioMantenimiento" runat="server" CssClass="form-control" TextMode="MultiLine" MaxLength="8000"></asp:TextBox>
+                       </div>
+                   </div>
+
+                     <div align="center">
+               <asp:Button ID="btnGuardarMantenimiento" runat="server" Text="Completar" ToolTip="Completar Operación" OnClick="btnGuardarMantenimiento_Click" CssClass="btn btn-outline-primary btn-sm" />
+           </div>
                </ContentTemplate>
            </asp:UpdatePanel>
+         
        </div>
     </div>
   </div>
