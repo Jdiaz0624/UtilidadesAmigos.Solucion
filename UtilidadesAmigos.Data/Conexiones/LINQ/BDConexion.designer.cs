@@ -796,6 +796,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numero, reclamacion, poliza, intermediario, asegurado, idCondicion, beneficiario, idTipo, inicioVigenciaDesde, inicioVigenciaHasta, finVigenciaDesde, finVigenciaHasta, fechaAperturaDesde, fechaAperturaHasta, fechaSiniestroDesde, fechaSiniestroHAsta, idEstatus);
 			return ((ISingleResult<SP_BUSCA_LISTADO_RECLAMACIONESResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_FECHA_RECLAMACIONES")]
+		public ISingleResult<SP_SACAR_FECHA_RECLAMACIONESResult> SP_SACAR_FECHA_RECLAMACIONES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroReclamacion", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroReclamacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroReclamacion);
+			return ((ISingleResult<SP_SACAR_FECHA_RECLAMACIONESResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_LISTA_CARGAR_RAMOSResult
@@ -22919,6 +22926,176 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadRegistros != value))
 				{
 					this._CantidadRegistros = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_FECHA_RECLAMACIONESResult
+	{
+		
+		private decimal _Reclamacion;
+		
+		private System.Nullable<System.DateTime> _InicioVigencia0;
+		
+		private string _InicioVigencia;
+		
+		private System.Nullable<System.DateTime> _FinVigencia0;
+		
+		private string _FinVigencia;
+		
+		private System.Nullable<System.DateTime> _FechaApertura0;
+		
+		private string _FechaApertura;
+		
+		private System.Nullable<System.DateTime> _FechaSiniestro0;
+		
+		private string _FechaSiniestro;
+		
+		public SP_SACAR_FECHA_RECLAMACIONESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reclamacion", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Reclamacion
+		{
+			get
+			{
+				return this._Reclamacion;
+			}
+			set
+			{
+				if ((this._Reclamacion != value))
+				{
+					this._Reclamacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InicioVigencia0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> InicioVigencia0
+		{
+			get
+			{
+				return this._InicioVigencia0;
+			}
+			set
+			{
+				if ((this._InicioVigencia0 != value))
+				{
+					this._InicioVigencia0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InicioVigencia", DbType="NVarChar(4000)")]
+		public string InicioVigencia
+		{
+			get
+			{
+				return this._InicioVigencia;
+			}
+			set
+			{
+				if ((this._InicioVigencia != value))
+				{
+					this._InicioVigencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinVigencia0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FinVigencia0
+		{
+			get
+			{
+				return this._FinVigencia0;
+			}
+			set
+			{
+				if ((this._FinVigencia0 != value))
+				{
+					this._FinVigencia0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinVigencia", DbType="NVarChar(4000)")]
+		public string FinVigencia
+		{
+			get
+			{
+				return this._FinVigencia;
+			}
+			set
+			{
+				if ((this._FinVigencia != value))
+				{
+					this._FinVigencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaApertura0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaApertura0
+		{
+			get
+			{
+				return this._FechaApertura0;
+			}
+			set
+			{
+				if ((this._FechaApertura0 != value))
+				{
+					this._FechaApertura0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaApertura", DbType="NVarChar(4000)")]
+		public string FechaApertura
+		{
+			get
+			{
+				return this._FechaApertura;
+			}
+			set
+			{
+				if ((this._FechaApertura != value))
+				{
+					this._FechaApertura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaSiniestro0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaSiniestro0
+		{
+			get
+			{
+				return this._FechaSiniestro0;
+			}
+			set
+			{
+				if ((this._FechaSiniestro0 != value))
+				{
+					this._FechaSiniestro0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaSiniestro", DbType="NVarChar(4000)")]
+		public string FechaSiniestro
+		{
+			get
+			{
+				return this._FechaSiniestro;
+			}
+			set
+			{
+				if ((this._FechaSiniestro != value))
+				{
+					this._FechaSiniestro = value;
 				}
 			}
 		}

@@ -1990,4 +1990,18 @@
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_SACAR_FECHA_RECLAMACIONES" Method="SP_SACAR_FECHA_RECLAMACIONES">
+    <Parameter Name="NumeroReclamacion" Parameter="numeroReclamacion" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_SACAR_FECHA_RECLAMACIONESResult">
+      <Column Name="Reclamacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="InicioVigencia0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FinVigencia0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FechaApertura0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaApertura" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FechaSiniestro0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaSiniestro" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

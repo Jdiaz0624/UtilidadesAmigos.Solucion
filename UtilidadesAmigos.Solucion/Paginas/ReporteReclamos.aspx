@@ -22,7 +22,14 @@
 
     <script type="text/javascript">
 
-        function PararEjecucion() {
+
+        function NumeroReclamoVacio() {
+            alert("El campo numero de reclamación no puede estar vacio para generar las fechas automaticas");
+            $("#<%=txtNumeroReclamacionMantenimiento.ClientID%>").css("border-color", "red");
+        }
+        function NumeroReclamoNoValido() {
+            alert("El Numero de reclamo ingresado no es valido, favor de verificar");
+            $("#<%=txtNumeroReclamacionMantenimiento.ClientID%>").css("border-color", "red");
             return false;
         }
 
@@ -72,8 +79,37 @@
             $("#<%=cbEstatusTipoRecmalo.ClientID%>").css("border-color", "green");
         }
 
-   
+        function BotonNuevo() {
+                 $("#<%=btnGuardarMantenimiento.ClientID%>").show();
+                $("#<%=btnModificarMantenimeinto.ClientID%>").hide();
+                $("#<%=btnEliminarMantenimiento.ClientID%>").hide();
+
+                //LIMPIAMOS LOS CONTROLES
+                $("#<%=txtNumeroReclamacionMantenimiento.ClientID%>").val("");
+                $("#<%=txtPolizaMantenimiento.ClientID%>").val("");
+                $("#<%=txtIntermediarioMantenimiento.ClientID%>").val("");
+                $("#<%=txtAseguradoMantenimiento.ClientID%>").val("");
+                $("#<%=txtMontoMantenimiento.ClientID%>").val("");
+                $("#<%=txtBeneficiarioMantenimiento.ClientID%>").val("");
+                $("#<%=txtInicioVigenciaMantenimiento.ClientID%>").val("");
+                $("#<%=txtFechaInicioVigenciaAutomatico.ClientID%>").val("");
+                $("#<%=txtFinVigenciaMantenimiento.ClientID%>").val("");
+                $("#<%=txtFechaFinVigenciaAutomatico.ClientID%>").val("");
+                $("#<%=txtFechaAperturaMantenimiento.ClientID%>").val("");
+                $("#<%=txtFechaAperturaAutomatica.ClientID%>").val("");
+                $("#<%=txtFechaSiniestroMantenimiento.ClientID%>").val("");
+                $("#<%=txtFechaSiniestroAutomatica.ClientID%>").val("");
+                $("#<%=txtComentarioMantenimiento.ClientID%>").val("");
+                $("#<%=lbTituloMantenimiento.ClientID%>").text("Guardar Nuevo Registro");
+        }
         $(document).ready(function () {
+            //ACCION PARA EJECUTAR POR EL BOTON NUEVO
+            $("#btnNuevo").click(function () {
+                BotonNuevo();
+              
+
+            });
+
             //RECLAMACION CONSULTA
               $("#<%=txtReclamacionConsulta.ClientID%>").on("keydown keypress", function (e) {
                 if (e.key.length == 1) {
@@ -103,10 +139,20 @@
                     return false;
                 }
               });
+              
 
+            //CAMPO NUMERICO NUMERO DE RECLAMACION
+             $("#<%=txtNumeroReclamacionMantenimiento.ClientID%>").on("keydown keypress", function (e) {
+                if (e.key.length == 1) {
+                    if ($(this).val().length < 20 && !isNaN(parseFloat(e.key))) {
+                        $(this).val($(this).val() + e.key);
+                    }
+                    return false;
+                }
+              });
           
 
-
+           
 
 
 
@@ -206,6 +252,7 @@
             <asp:Label ID="lbIdMantenimiento" runat="server" Text="Numero de Reclamos" Visible="false"></asp:Label>
             <asp:Label ID="lbNumeroReclamacionSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
             <asp:Label ID="lbPolizaSeleccionada" runat="server" Text="Poliza" Visible="false"></asp:Label>
+            <asp:Label ID="lbIdUsuarioConectado" runat="server" Text="Id de usuario conectado" Visible="false"></asp:Label>
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
@@ -300,7 +347,7 @@
             <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" Text=")" CssClass="LetrasNegritas"></asp:Label>
         </div>
          <div>
-            <asp:GridView ID="gvListadoReclamos" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoReclamos_PageIndexChanging" OnSelectedIndexChanged="gvListadoReclamos_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+            <asp:GridView ID="gvListadoReclamos" runat="server" AllowPaging="true" OnRowDataBound="gvListadoReclamos_RowDataBound" OnPageIndexChanging="gvListadoReclamos_PageIndexChanging" OnSelectedIndexChanged="gvListadoReclamos_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
@@ -328,6 +375,82 @@
 
         <!--GRID-->
 
+        <!--MOSTRAMOS LA INFORMACION SELECCIONADA DEL REGISTRO SELECCIONADO-->
+        <div align="center">
+                <asp:Label ID="lbRegistroSeleccionado" runat="server" Visible="false" Text="Registro Seleccionado" CssClass="LetrasNegritas"></asp:Label>
+            </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <asp:Label ID="lbNumeriIDSeleccionadoConsulta" runat="server" Visible="false" Text="Numero de Orden" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtNumeroIdSeleccionadoConsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+            
+            <div class="form-group col-md-4">
+                <asp:Label ID="lbNumeroreclamacinSeleccionadoConsulta" runat="server" Visible="false" Text="Numero de Reclamación" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtNumeroreclamacionSeleccionadoConsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="form-group col-md-4">
+                <asp:Label ID="lbPolizaSeleccionadaConsulta" runat="server" Visible="false" Text="Numero de Poliza" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtPolizaSeleccionadaConsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="form-group col-md-4">
+                <asp:Label ID="lbEstatusPolizaSeleccionadaConsulta" runat="server" Visible="false" Text="Estatus de Poliza" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtEstatusPolizaSelccionadaConsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbIntermediarioSeleccionadoCOnsulta" runat="server" Visible="false" Text="Intermediario" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtIntermediarioSeleccionadoConsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbAseguradoSeleccionadoConsulta" runat="server" Visible="false" Text="Asegurado" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtaseguradoSeleccionadoConsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbBeneficiarioSeleccionadoCOnsulta" runat="server" Visible="false" Text="Beneficiario" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtBeneficiarioSeleccionadoConsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbTipoSeleccionadoConsulta" runat="server" Visible="false" Text="Tipo de Reclamo" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtTipoReclamoSeleccionado" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbCondicionSeleccionadaConsulta" runat="server" Visible="false" Text="Condición de Reclamo" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtCondicionSeleccionadaConsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbEstatusSeleccionadaConsulta" runat="server" Visible="false" Text="Estatus de reclamo" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtEstatusSeleccionadoConsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbMontoSeleccionadoConsulta" runat="server" Visible="false" Text="Monto del reclamo" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtMontoSeleccionadoConsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-4">
+                <asp:Label ID="lbUsuarioSeleccionadoCOnsulta" runat="server" Visible="false" Text="Creado Por" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtUsuarioSeleccionadoCOnsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+             <div class="form-group col-md-3">
+                <asp:Label ID="lbInicioVigenciaSeleccionadoConsulta" runat="server" Visible="false" Text="Inicio de Vigencia" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtInicioVigenciaSeleccionadoConsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+              <div class="form-group col-md-3">
+                <asp:Label ID="lbFechaFinVigenciaSeleccionadaConsulta" runat="server" Visible="false" Text="Fin de Vigencia" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtFechaFinVigenciaSeleccionadaConsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+              <div class="form-group col-md-3">
+                <asp:Label ID="lbFechaAperturaSeleccionadaConsulta" runat="server" Visible="false" Text="Fecha de Apertura" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtFechaAperturaSeleccionadaConsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+              <div class="form-group col-md-3">
+                <asp:Label ID="lbFechaSiniestroSeleccionadaConsulta" runat="server" Text="Fecha de Siniestro" Visible="false" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtFechaSiniestroSeleccionadaConsulta" runat="server" Enabled="false" Visible="false" CssClass="form-control"></asp:TextBox>
+            </div>
+                 <div class="form-group col-md-12">
+                <asp:Label ID="lbComentarioSeleccionadoConsulta" runat="server" Text="Comentario" Visible="false" CssClass="LetrasNegritas"></asp:Label>
+                <asp:TextBox ID="txtComentarioSeleccionadoCnsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+        </div>
+
         <asp:ScriptManager ID="ScripsManagerPOPOP" runat="server"></asp:ScriptManager>
 
         <!--MANTENIMIENTO POPOP-->
@@ -344,7 +467,7 @@
                    <div class="form-row">
                        <div class="form-group col-md-4">
                            <asp:Label ID="lbNumeroReclamacionMantenimiento" runat="server" Text="Numero de Reclamación" CssClass="LetrasNegritas"></asp:Label>
-                           <asp:TextBox ID="txtNumeroReclamacionMantenimiento" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
+                           <asp:TextBox ID="txtNumeroReclamacionMantenimiento" TextMode="Number" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
                        </div>
 
                         <div class="form-group col-md-4">
@@ -354,7 +477,7 @@
 
                          <div class="form-group col-md-4">
                            <asp:Label ID="lbIntermediarioMantenimeinto" runat="server" Text="Codigo de Intermediario" CssClass="LetrasNegritas"></asp:Label>
-                           <asp:TextBox ID="txtIntermediarioMantenimiento" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
+                           <asp:TextBox ID="txtIntermediarioMantenimiento" TextMode="Number" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
                        </div>
 
                          <div class="form-group col-md-4">
@@ -424,12 +547,15 @@
                        </div>
                    </div>
 
-                     <div align="center">
-               <asp:Button ID="btnGuardarMantenimiento" runat="server" Text="Completar" ToolTip="Completar Operación" OnClick="btnGuardarMantenimiento_Click" CssClass="btn btn-outline-primary btn-sm" />
-           </div>
+                    
                </ContentTemplate>
            </asp:UpdatePanel>
-         
+        <div align="center">
+               <asp:Button ID="btnGuardarMantenimiento" runat="server" Text="Guardar" ToolTip="Guardar registro" OnClick="btnGuardarMantenimiento_Click" CssClass="btn btn-outline-primary btn-sm" />
+              <asp:Button ID="btnModificarMantenimeinto" runat="server" Text="Modificar" ToolTip="Modificar Registro" OnClick="btnModificarMantenimeinto_Click" CssClass="btn btn-outline-primary btn-sm" />
+              <asp:Button ID="btnEliminarMantenimiento" runat="server" Text="Eliminar" ToolTip="Eliminar Registro" OnClick="btnEliminarMantenimiento_Click" CssClass="btn btn-outline-primary btn-sm" />
+           </div>
+           <br />
        </div>
     </div>
   </div>

@@ -12,6 +12,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
         UtilidadesAmigos.Logica.Comunes.Mail Correo = new Logica.Comunes.Mail();
+        DateTime InicioVigencia = DateTime.Now, Finvigencia = DateTime.Now, FechaSiniestro = DateTime.Now, fechaApertura = DateTime.Now;
 
         #region CARGAMOS LAS LISTAS DESPLEGABLES PARA LA CONSULTA
         private void CargarListasDesplegablesConsulta()
@@ -239,6 +240,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         }
                     }
                 }
+               // gvListadoReclamos.Columns[0].Visible = false;
             }
             catch (Exception ex) { }
         }
@@ -485,7 +487,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             catch (Exception ex) {
                 string MEnsajeError = "Error al exportar la data a exel en la pantalla de consulta de reclamaciones " + ex.Message;
-                Correo.EnviarCorreo("ing.juanmarcelinom.diaz@hotmail.com", "!@Pa$$W0rd!@0624", "jmdiaz@amigosseguros.com", MEnsajeError, "Error en Proceso");
+               // Correo.EnviarCorreo("ing.juanmarcelinom.diaz@hotmail.com", "!@Pa$$W0rd!@0624", "jmdiaz@amigosseguros.com", MEnsajeError, "Error en Proceso");
             }
         }
         #endregion
@@ -594,6 +596,48 @@ namespace UtilidadesAmigos.Solucion.Paginas
             MostrarListadoEstatusReclamo();
         }
         #endregion
+        #region MANTENIMIENTO DE RECLAMACIONES
+        private void MANReclamaciones(decimal IdReclamacion, string Accion) {
+            try {
+              
+
+                if (cbBuscarFechaAutomatico.Checked == false)
+                {
+                    InicioVigencia = Convert.ToDateTime(txtInicioVigenciaMantenimiento.Text);
+                    Finvigencia = Convert.ToDateTime(txtFinVigenciaMantenimiento.Text);
+                    fechaApertura = Convert.ToDateTime(txtFechaAperturaMantenimiento.Text);
+                    FechaSiniestro = Convert.ToDateTime(txtFechaSiniestroMantenimiento.Text);
+                }
+
+                UtilidadesAmigos.Logica.Entidades.EReclamacion Mantenimiento = new Logica.Entidades.EReclamacion();
+
+                Mantenimiento.Numero = IdReclamacion;
+                Mantenimiento.Reclamacion = Convert.ToDecimal(txtNumeroReclamacionMantenimiento.Text);
+                Mantenimiento.Poliza = txtPolizaMantenimiento.Text;
+                Mantenimiento.Intermediario = Convert.ToDecimal(txtIntermediarioMantenimiento.Text);
+                Mantenimiento.Asegurado = txtAseguradoMantenimiento.Text;
+                Mantenimiento.IdCondicion = Convert.ToDecimal(ddlSeleccionarCondicionMantenimiento.SelectedValue);
+                Mantenimiento.Monto = Convert.ToDecimal(txtMontoMantenimiento.Text);
+                Mantenimiento.Beneficiario = txtBeneficiarioMantenimiento.Text;
+                Mantenimiento.IdTipo = Convert.ToDecimal(ddlSeleccionarTipoMantenimiento.SelectedValue);
+                Mantenimiento.InicioVigencia0 = InicioVigencia;
+                Mantenimiento.FinVigencia0 = Finvigencia;
+                Mantenimiento.FechaApertura0 = fechaApertura;
+                Mantenimiento.FechaSiniestro0 = FechaSiniestro;
+                Mantenimiento.FechaCreacion0 = DateTime.Now;
+                Mantenimiento.IdEstatus = Convert.ToDecimal(ddlSeleccionarEstatusMantenimiento.SelectedValue);
+                Mantenimiento.IdUsuario = Convert.ToDecimal(lbIdUsuarioConectado.Text);
+                Mantenimiento.Comentario = txtComentarioMantenimiento.Text;
+
+                var MAN = ObjData.Value.MantenimientoReclamaciones(Mantenimiento, Accion);
+
+                
+            }
+            catch (Exception ex) {
+                string mensajeEroror = ex.Message;
+            }
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -605,7 +649,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 cbEstatusMantenimientoCondicion.Checked = true;
                 cbEstatusTipoRecmalo.Checked = true;
                 cbEstatusTipoRecmalo.ForeColor = System.Drawing.Color.Green;
-                
+                lbIdUsuarioConectado.Text = Session["IdUsuario"].ToString();
+              
             }
         }
 
@@ -626,12 +671,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
             gvListadoReclamos.PageIndex = e.NewPageIndex;
             ConsultarRegistros();
             ClientScript.RegisterStartupScript(GetType(), "ModoConsulta", "ModoConsulta();", true);
+           
         }
 
         protected void gvListadoReclamos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(GetType(), "Mensaje", "Mensaje();", true);
-           // ClientScript.RegisterStartupScript(GetType(), "ModoMantenimiento", "ModoMantenimiento();", true);
+            GridViewRow Gb = gvListadoReclamos.SelectedRow;
+            Gb.Cells[0].Visible = false;
+            lbNumeroReclamacionSeleccionado.Text = Gb.Cells[0].Text;
+            lbPolizaSeleccionada.Text = Gb.Cells[1].Text;
+
+            var BuscarRegistro = ObjData.Value.BuscaReclamaciones(
+                Convert.ToDecimal(lbNumeroReclamacionSeleccionado.Text));
+            gvListadoReclamos.DataSource = BuscarRegistro;
+            gvListadoReclamos.DataBind();
         }
 
         protected void cbAgregarRangoFechaConsulta_CheckedChanged(object sender, EventArgs e)
@@ -892,6 +945,21 @@ namespace UtilidadesAmigos.Solucion.Paginas
             MostrarListadoEstatusReclamo();
         }
 
+        protected void btnModificarMantenimeinto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEliminarMantenimiento_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvListadoReclamos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+           
+        }
+
         protected void gvListadoEstatusReclamo_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow gb = gvListadoEstatusReclamo.SelectedRow;
@@ -917,14 +985,49 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (cbBuscarFechaAutomatico.Checked)
             {
-                txtInicioVigenciaMantenimiento.Visible = false;
-                txtFechaInicioVigenciaAutomatico.Visible = true;
-                txtFinVigenciaMantenimiento.Visible = false;
-                txtFechaFinVigenciaAutomatico.Visible = true;
-                txtFechaAperturaMantenimiento.Visible = false;
-                txtFechaAperturaAutomatica.Visible = true;
-                txtFechaSiniestroMantenimiento.Visible = false;
-                txtFechaSiniestroAutomatica.Visible = true;
+                //VERIFICAMOS QUE EL CAMPO NUMERO DE RECLAMO NO ESTE VACIO
+                if (string.IsNullOrEmpty(txtNumeroReclamacionMantenimiento.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "NumeroReclamoVacio", "NumeroReclamoVacio();", true);
+                    cbBuscarFechaAutomatico.Checked = false;
+                }
+                else
+                {
+                    //VALIDAMOS EL NUMERO DE RECLAMO
+                    string _NumeroReclamo = string.IsNullOrEmpty(txtNumeroReclamacionMantenimiento.Text.Trim()) ? null : txtNumeroReclamacionMantenimiento.Text.Trim();
+
+                    var Validar = ObjData.Value.BuscaFechaReclamos(Convert.ToDecimal(_NumeroReclamo));
+                    if (Validar.Count() < 1)
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "NumeroReclamoNoValido", "NumeroReclamoNoValido();", true);
+                        cbBuscarFechaAutomatico.Checked = false;
+                    }
+                    else
+                    {
+                        txtInicioVigenciaMantenimiento.Visible = false;
+                        txtFechaInicioVigenciaAutomatico.Visible = true;
+                        txtFinVigenciaMantenimiento.Visible = false;
+                        txtFechaFinVigenciaAutomatico.Visible = true;
+                        txtFechaAperturaMantenimiento.Visible = false;
+                        txtFechaAperturaAutomatica.Visible = true;
+                        txtFechaSiniestroMantenimiento.Visible = false;
+                        txtFechaSiniestroAutomatica.Visible = true;
+                        txtNumeroReclamacionMantenimiento.Enabled = false;
+
+                        //SACAMOS LOS DATOS PARA REALIZAR LA OPERACIóN
+                        foreach (var n in Validar)
+                        {
+                            txtFechaInicioVigenciaAutomatico.Text = n.InicioVigencia;
+                            txtFechaFinVigenciaAutomatico.Text = n.FinVigencia;
+                            txtFechaAperturaAutomatica.Text = n.FechaApertura;
+                            txtFechaSiniestroAutomatica.Text = n.FechaSiniestro;
+                            InicioVigencia = Convert.ToDateTime(n.InicioVigencia0);
+                            Finvigencia = Convert.ToDateTime(n.FinVigencia0);
+                            fechaApertura = Convert.ToDateTime(n.FechaApertura0);
+                            FechaSiniestro = Convert.ToDateTime(n.FechaSiniestro0);
+                        }
+                    }
+                }
             }
             else
             {
@@ -936,12 +1039,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtFechaAperturaAutomatica.Visible = false;
                 txtFechaSiniestroMantenimiento.Visible = true;
                 txtFechaSiniestroAutomatica.Visible = false;
+                txtNumeroReclamacionMantenimiento.Enabled = true;
             }
+            
         }
 
         protected void btnGuardarMantenimiento_Click(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(GetType(), "PararEjecucion", "PararEjecucion();", true);
+            MANReclamaciones(0, "INSERT");
+            ConsultarRegistros();
+            ClientScript.RegisterStartupScript(GetType(), "ModoConsulta", "ModoConsulta();", true);
         }
     }
 }
+ 

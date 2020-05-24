@@ -2575,6 +2575,27 @@ namespace UtilidadesAmigos.Logica.Logica
             return Mantenimeinto;
         }
         #endregion
+        #region SACAR LAS FECHA DE LAS RECLAMACIONES
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscaFechaReclamos> BuscaFechaReclamos(decimal? NumeroReclamacion = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_SACAR_FECHA_RECLAMACIONES(NumeroReclamacion)
+                          select new UtilidadesAmigos.Logica.Entidades.EBuscaFechaReclamos
+                          {
+                              Reclamacion=n.Reclamacion,
+                              InicioVigencia0=n.InicioVigencia0,
+                              InicioVigencia=n.InicioVigencia,
+                              FinVigencia0=n.FinVigencia0,
+                              FinVigencia=n.FinVigencia,
+                              FechaApertura0=n.FechaApertura0,
+                              FechaApertura=n.FechaApertura,
+                              FechaSiniestro0=n.FechaSiniestro0,
+                              FechaSiniestro=n.FechaSiniestro
+                          }).ToList();
+            return Buscar;
+        }
+        #endregion
 
     }
 }
