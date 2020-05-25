@@ -985,6 +985,33 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtComentarioMantenimiento;
         
         /// <summary>
+        /// cbModificarInicioVigencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbModificarInicioVigencia;
+        
+        /// <summary>
+        /// lbClaveseguridadMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbClaveseguridadMantenimiento;
+        
+        /// <summary>
+        /// txtClaveSeguridadMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtClaveSeguridadMantenimiento;
+        
+        /// <summary>
         /// btnGuardarMantenimiento control.
         /// </summary>
         /// <remarks>

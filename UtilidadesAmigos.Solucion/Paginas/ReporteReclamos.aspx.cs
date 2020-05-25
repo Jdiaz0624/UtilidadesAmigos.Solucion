@@ -638,6 +638,125 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
+        #region MANTENIMIENTO PARA ELIMINAR Y MODIFICAR
+        private void MANElimianrModificar(decimal IdReclamacion, DateTime FechaInicioMAN, DateTime FechaFinMAN, DateTime FechaAperturaMAN, DateTime FechaSinietroMAN, string Accion)
+        {
+            try {
+                UtilidadesAmigos.Logica.Entidades.EReclamacion Mantenimiento = new Logica.Entidades.EReclamacion();
+
+                Mantenimiento.Numero = IdReclamacion;
+                Mantenimiento.Reclamacion = Convert.ToDecimal(txtNumeroReclamacionMantenimiento.Text);
+                Mantenimiento.Poliza = txtPolizaMantenimiento.Text;
+                Mantenimiento.Intermediario = Convert.ToDecimal(txtIntermediarioMantenimiento.Text);
+                Mantenimiento.Asegurado = txtAseguradoMantenimiento.Text;
+                Mantenimiento.IdCondicion = Convert.ToDecimal(ddlSeleccionarCondicionMantenimiento.SelectedValue);
+                Mantenimiento.Monto = Convert.ToDecimal(txtMontoMantenimiento.Text);
+                Mantenimiento.Beneficiario = txtBeneficiarioMantenimiento.Text;
+                Mantenimiento.IdTipo = Convert.ToDecimal(ddlSeleccionarTipoMantenimiento.SelectedValue);
+                Mantenimiento.InicioVigencia0 = FechaInicioMAN;
+                Mantenimiento.FinVigencia0 = FechaFinMAN;
+                Mantenimiento.FechaApertura0 = FechaAperturaMAN;
+                Mantenimiento.FechaSiniestro0 = FechaSinietroMAN;
+                Mantenimiento.FechaCreacion0 = DateTime.Now;
+                Mantenimiento.IdEstatus = Convert.ToDecimal(ddlSeleccionarEstatusMantenimiento.SelectedValue);
+                Mantenimiento.IdUsuario = Convert.ToDecimal(lbIdUsuarioConectado.Text);
+                Mantenimiento.Comentario = txtComentarioMantenimiento.Text;
+
+                var MAN = ObjData.Value.MantenimientoReclamaciones(Mantenimiento, Accion);
+            }
+            catch (Exception ex) { }
+        }
+        #endregion
+        #region RESTABLECER
+        private void Restablecer() {
+            lbRegistroSeleccionado.Visible = false;
+            txtReclamacionConsulta.Text = string.Empty;
+            txtPolizaConsulta.Text = string.Empty;
+            txtIntermediarioConsulta.Text = string.Empty;
+            txtAseguradoCOnsulta.Text = string.Empty;
+            txtBeneficiarioConsulta.Text = string.Empty;
+            cbAgregarRangoFechaConsulta.Checked = false;
+            txtFechaDesdeConsulta.Text = string.Empty;
+            txtFechaHAstaConsulta.Text = string.Empty;
+            CargarListasDesplegablesConsulta();
+            ConsultarRegistros();
+
+            //MOSTRAMOS LOS CONTROLES NECESARIOS
+            lbRegistroSeleccionado.Visible = false;
+            lbNumeriIDSeleccionadoConsulta.Visible = false;
+            txtNumeroIdSeleccionadoConsulta.Visible = false;
+            lbNumeroreclamacinSeleccionadoConsulta.Visible = false;
+            txtNumeroreclamacionSeleccionadoConsulta.Visible = false;
+            lbPolizaSeleccionadaConsulta.Visible = false;
+            txtPolizaSeleccionadaConsulta.Visible = false;
+            lbEstatusPolizaSeleccionadaConsulta.Visible = false;
+            txtEstatusPolizaSelccionadaConsulta.Visible = false;
+            lbIntermediarioSeleccionadoCOnsulta.Visible = false;
+            txtIntermediarioSeleccionadoConsulta.Visible = false;
+            lbAseguradoSeleccionadoConsulta.Visible = false;
+            txtaseguradoSeleccionadoConsulta.Visible = false;
+            lbBeneficiarioSeleccionadoCOnsulta.Visible = false;
+            txtBeneficiarioSeleccionadoConsulta.Visible = false;
+            lbTipoSeleccionadoConsulta.Visible = false;
+            txtTipoReclamoSeleccionado.Visible = false;
+            lbCondicionSeleccionadaConsulta.Visible = false;
+            txtCondicionSeleccionadaConsulta.Visible = false;
+            lbEstatusSeleccionadaConsulta.Visible = false;
+            txtEstatusSeleccionadoConsulta.Visible = false;
+            lbMontoSeleccionadoConsulta.Visible = false;
+            txtMontoSeleccionadoConsulta.Visible = false;
+            lbUsuarioSeleccionadoCOnsulta.Visible = false;
+            txtUsuarioSeleccionadoCOnsulta.Visible = false;
+            lbInicioVigenciaSeleccionadoConsulta.Visible = false;
+            txtInicioVigenciaSeleccionadoConsulta.Visible = false;
+            lbFechaFinVigenciaSeleccionadaConsulta.Visible = false;
+            txtFechaFinVigenciaSeleccionadaConsulta.Visible = false;
+            lbFechaAperturaSeleccionadaConsulta.Visible = false;
+            txtFechaAperturaSeleccionadaConsulta.Visible = false;
+            lbFechaSiniestroSeleccionadaConsulta.Visible = false;
+            lbComentarioSeleccionadoConsulta.Visible = false;
+            txtComentarioSeleccionadoCnsulta.Visible = false;
+            txtFechaSiniestroSeleccionadaConsulta.Visible = false;
+
+
+            //MOSTRAMOS LOS CONTROLES NECESARIOS
+            lbRegistroSeleccionado.Text = string.Empty;
+            lbNumeriIDSeleccionadoConsulta.Text = string.Empty;
+            txtNumeroIdSeleccionadoConsulta.Text = string.Empty;
+            lbNumeroreclamacinSeleccionadoConsulta.Text = string.Empty;
+            txtNumeroreclamacionSeleccionadoConsulta.Text = string.Empty;
+            lbPolizaSeleccionadaConsulta.Text = string.Empty;
+            txtPolizaSeleccionadaConsulta.Text = string.Empty;
+            lbEstatusPolizaSeleccionadaConsulta.Text = string.Empty;
+            txtEstatusPolizaSelccionadaConsulta.Text = string.Empty;
+            lbIntermediarioSeleccionadoCOnsulta.Text = string.Empty;
+            txtIntermediarioSeleccionadoConsulta.Text = string.Empty;
+            lbAseguradoSeleccionadoConsulta.Text = string.Empty;
+            txtaseguradoSeleccionadoConsulta.Text = string.Empty;
+            lbBeneficiarioSeleccionadoCOnsulta.Text = string.Empty;
+            txtBeneficiarioSeleccionadoConsulta.Text = string.Empty;
+            lbTipoSeleccionadoConsulta.Text = string.Empty;
+            txtTipoReclamoSeleccionado.Text = string.Empty;
+            lbCondicionSeleccionadaConsulta.Text = string.Empty;
+            txtCondicionSeleccionadaConsulta.Text = string.Empty;
+            lbEstatusSeleccionadaConsulta.Text = string.Empty;
+            txtEstatusSeleccionadoConsulta.Text = string.Empty;
+            lbMontoSeleccionadoConsulta.Text = string.Empty;
+            txtMontoSeleccionadoConsulta.Text = string.Empty;
+            lbUsuarioSeleccionadoCOnsulta.Text = string.Empty;
+            txtUsuarioSeleccionadoCOnsulta.Text = string.Empty;
+            lbInicioVigenciaSeleccionadoConsulta.Text = string.Empty;
+            txtInicioVigenciaSeleccionadoConsulta.Text = string.Empty;
+            lbFechaFinVigenciaSeleccionadaConsulta.Text = string.Empty;
+            txtFechaFinVigenciaSeleccionadaConsulta.Text = string.Empty;
+            lbFechaAperturaSeleccionadaConsulta.Text = string.Empty;
+            txtFechaAperturaSeleccionadaConsulta.Text = string.Empty;
+            lbFechaSiniestroSeleccionadaConsulta.Text = string.Empty;
+            lbComentarioSeleccionadoConsulta.Text = string.Empty;
+            txtComentarioSeleccionadoCnsulta.Text = string.Empty;
+            ClientScript.RegisterStartupScript(GetType(), "ModoConsulta", "ModoConsulta();", true);
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -685,6 +804,101 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Convert.ToDecimal(lbNumeroReclamacionSeleccionado.Text));
             gvListadoReclamos.DataSource = BuscarRegistro;
             gvListadoReclamos.DataBind();
+            //SACAMOS LOS DATOS NECESARIOS PARA REALIZAR EL PROCESO
+            foreach (var n in BuscarRegistro)
+            {
+                lbCantidadRegistrosVariables.Text = n.CantidadRegistros.ToString();
+                lbRegistroSeleccionado.Visible = true;
+                txtInicioVigenciaMantenimiento.Visible = false;
+                txtFechaInicioVigenciaAutomatico.Visible = true;
+                txtFinVigenciaMantenimiento.Visible = false;
+                txtFechaFinVigenciaAutomatico.Visible = true;
+                txtFechaAperturaMantenimiento.Visible = false;
+                txtFechaAperturaAutomatica.Visible = true;
+                txtFechaSiniestroMantenimiento.Visible = false;
+                txtFechaSiniestroAutomatica.Visible = true;
+                InicioVigencia = Convert.ToDateTime(n.InicioVigencia0);
+                Finvigencia = Convert.ToDateTime(n.FinVigencia0);
+                fechaApertura = Convert.ToDateTime(n.FechaApertura0);
+                FechaSiniestro = Convert.ToDateTime(n.FechaSiniestro0);
+                lbClaveseguridadMantenimiento.Visible = true;
+                txtClaveSeguridadMantenimiento.Visible = true;
+                cbModificarInicioVigencia.Visible = true;
+
+                //SACAMOS LOS DATOS PARA EL MANTENIMIENTO
+                txtNumeroReclamacionMantenimiento.Text = n.Reclamacion.ToString();
+                txtPolizaMantenimiento.Text = n.Poliza;
+                txtIntermediarioMantenimiento.Text = n.Intermediario.ToString();
+                txtAseguradoMantenimiento.Text = n.Asegurado;
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarTipoMantenimiento, n.IdTipo.ToString());
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarCondicionMantenimiento, n.IdCondicion.ToString());
+                txtMontoMantenimiento.Text = n.Monto.ToString();
+                txtBeneficiarioMantenimiento.Text = n.Beneficiario;
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarEstatusMantenimiento, n.IdEstatus.ToString());
+                txtFechaInicioVigenciaAutomatico.Text = n.InicioVigencia;
+                txtFechaFinVigenciaAutomatico.Text = n.FinVigencia;
+                txtFechaAperturaAutomatica.Text = n.FechaApertura;
+                txtFechaSiniestroAutomatica.Text = n.FechaSiniestro;
+                txtComentarioMantenimiento.Text = n.Comentario;
+
+                //MOSTRAMOS LOS CONTROLES NECESARIOS
+                lbRegistroSeleccionado.Visible = true;
+                lbNumeriIDSeleccionadoConsulta.Visible = true;
+                txtNumeroIdSeleccionadoConsulta.Visible = true;
+                lbNumeroreclamacinSeleccionadoConsulta.Visible = true;
+                txtNumeroreclamacionSeleccionadoConsulta.Visible = true;
+                lbPolizaSeleccionadaConsulta.Visible = true;
+                txtPolizaSeleccionadaConsulta.Visible = true;
+                lbEstatusPolizaSeleccionadaConsulta.Visible = true;
+                txtEstatusPolizaSelccionadaConsulta.Visible = true;
+                lbIntermediarioSeleccionadoCOnsulta.Visible = true;
+                txtIntermediarioSeleccionadoConsulta.Visible = true;
+                lbAseguradoSeleccionadoConsulta.Visible = true;
+                txtaseguradoSeleccionadoConsulta.Visible = true;
+                lbBeneficiarioSeleccionadoCOnsulta.Visible = true;
+                txtBeneficiarioSeleccionadoConsulta.Visible = true;
+                lbTipoSeleccionadoConsulta.Visible = true;
+                txtTipoReclamoSeleccionado.Visible = true;
+                lbCondicionSeleccionadaConsulta.Visible = true;
+                txtCondicionSeleccionadaConsulta.Visible = true;
+                lbEstatusSeleccionadaConsulta.Visible = true;
+                txtEstatusSeleccionadoConsulta.Visible = true;
+                lbMontoSeleccionadoConsulta.Visible = true;
+                txtMontoSeleccionadoConsulta.Visible = true;
+                lbUsuarioSeleccionadoCOnsulta.Visible = true;
+                txtUsuarioSeleccionadoCOnsulta.Visible = true;
+                lbInicioVigenciaSeleccionadoConsulta.Visible = true;
+                txtInicioVigenciaSeleccionadoConsulta.Visible = true;
+                lbFechaFinVigenciaSeleccionadaConsulta.Visible = true;
+                txtFechaFinVigenciaSeleccionadaConsulta.Visible = true;
+                lbFechaAperturaSeleccionadaConsulta.Visible = true;
+                txtFechaAperturaSeleccionadaConsulta.Visible = true;
+                lbFechaSiniestroSeleccionadaConsulta.Visible = true;
+                lbComentarioSeleccionadoConsulta.Visible = true;
+                txtComentarioSeleccionadoCnsulta.Visible = true;
+                txtFechaSiniestroSeleccionadaConsulta.Visible = true;
+
+                //MOSTRAMOS LOS DATOS
+                txtNumeroIdSeleccionadoConsulta.Text = n.Numero.ToString();
+                txtNumeroreclamacionSeleccionadoConsulta.Text = n.Reclamacion.ToString();
+                txtPolizaSeleccionadaConsulta.Text = n.Poliza;
+                txtEstatusPolizaSelccionadaConsulta.Text = n.Estatus;
+                txtIntermediarioSeleccionadoConsulta.Text = n.NombreIntermediario;
+                txtaseguradoSeleccionadoConsulta.Text = n.Asegurado;
+                txtBeneficiarioSeleccionadoConsulta.Text = n.Beneficiario;
+                txtTipoReclamoSeleccionado.Text = n.TipoReclamacion;
+                txtCondicionSeleccionadaConsulta.Text = n.Condicion;
+                txtEstatusSeleccionadoConsulta.Text = n.EstatusReclamacion;
+                decimal MontoReclamo = Convert.ToDecimal(n.Monto);
+                txtMontoSeleccionadoConsulta.Text = MontoReclamo.ToString("N2");
+                txtUsuarioSeleccionadoCOnsulta.Text = n.Usuario;
+                txtInicioVigenciaSeleccionadoConsulta.Text = n.InicioVigencia;
+                txtFechaFinVigenciaSeleccionadaConsulta.Text = n.FinVigencia;
+                txtFechaAperturaSeleccionadaConsulta.Text = n.FechaApertura;
+                txtFechaSiniestroSeleccionadaConsulta.Text = n.FechaSiniestro;
+                txtComentarioSeleccionadoCnsulta.Text = n.Comentario;
+            }
+            ClientScript.RegisterStartupScript(GetType(), "ModoMantenimiento", "ModoMantenimiento();", true);
         }
 
         protected void cbAgregarRangoFechaConsulta_CheckedChanged(object sender, EventArgs e)
@@ -723,6 +937,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnRestabelcerPantalla_Click(object sender, EventArgs e)
         {
+            Restablecer();
             ClientScript.RegisterStartupScript(GetType(), "ModoConsulta", "ModoConsulta();", true);
         }
 
@@ -928,8 +1143,56 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else
             {
-               // lbIdMantenimientoEstatusReclamo.Text = "0";
-                MANEstatusReclamo("UPDATE");
+                // lbIdMantenimientoEstatusReclamo.Text = "0";
+                if (cbModificarInicioVigencia.Checked)
+                {
+                    UtilidadesAmigos.Logica.Entidades.EReclamacion Mantenimiento = new Logica.Entidades.EReclamacion();
+
+                    Mantenimiento.Numero = Convert.ToDecimal(txtNumeroIdSeleccionadoConsulta.Text);
+                    Mantenimiento.Reclamacion = Convert.ToDecimal(txtNumeroReclamacionMantenimiento.Text);
+                    Mantenimiento.Poliza = txtPolizaMantenimiento.Text;
+                    Mantenimiento.Intermediario = Convert.ToDecimal(txtIntermediarioMantenimiento.Text);
+                    Mantenimiento.Asegurado = txtAseguradoMantenimiento.Text;
+                    Mantenimiento.IdCondicion = Convert.ToDecimal(ddlSeleccionarCondicionMantenimiento.SelectedValue);
+                    Mantenimiento.Monto = Convert.ToDecimal(txtMontoMantenimiento.Text);
+                    Mantenimiento.Beneficiario = txtBeneficiarioMantenimiento.Text;
+                    Mantenimiento.IdTipo = Convert.ToDecimal(ddlSeleccionarTipoMantenimiento.SelectedValue);
+                    Mantenimiento.InicioVigencia0 = InicioVigencia;
+                    Mantenimiento.FinVigencia0 = Finvigencia;
+                    Mantenimiento.FechaApertura0 = fechaApertura;
+                    Mantenimiento.FechaSiniestro0 = FechaSiniestro;
+                    Mantenimiento.FechaCreacion0 = DateTime.Now;
+                    Mantenimiento.IdEstatus = Convert.ToDecimal(ddlSeleccionarEstatusMantenimiento.SelectedValue);
+                    Mantenimiento.IdUsuario = Convert.ToDecimal(lbIdUsuarioConectado.Text);
+                    Mantenimiento.Comentario = txtComentarioMantenimiento.Text;
+
+                    var MAN = ObjData.Value.MantenimientoReclamaciones(Mantenimiento, "UPDATE");
+                }
+                else
+                {
+                    UtilidadesAmigos.Logica.Entidades.EReclamacion Mantenimiento = new Logica.Entidades.EReclamacion();
+
+                    Mantenimiento.Numero = Convert.ToDecimal(txtNumeroIdSeleccionadoConsulta.Text);
+                    Mantenimiento.Reclamacion = Convert.ToDecimal(txtNumeroReclamacionMantenimiento.Text);
+                    Mantenimiento.Poliza = txtPolizaMantenimiento.Text;
+                    Mantenimiento.Intermediario = Convert.ToDecimal(txtIntermediarioMantenimiento.Text);
+                    Mantenimiento.Asegurado = txtAseguradoMantenimiento.Text;
+                    Mantenimiento.IdCondicion = Convert.ToDecimal(ddlSeleccionarCondicionMantenimiento.SelectedValue);
+                    Mantenimiento.Monto = Convert.ToDecimal(txtMontoMantenimiento.Text);
+                    Mantenimiento.Beneficiario = txtBeneficiarioMantenimiento.Text;
+                    Mantenimiento.IdTipo = Convert.ToDecimal(ddlSeleccionarTipoMantenimiento.SelectedValue);
+                    Mantenimiento.InicioVigencia0 = InicioVigencia;
+                    Mantenimiento.FinVigencia0 = Finvigencia;
+                    Mantenimiento.FechaApertura0 = fechaApertura;
+                    Mantenimiento.FechaSiniestro0 = FechaSiniestro;
+                    Mantenimiento.FechaCreacion0 = DateTime.Now;
+                    Mantenimiento.IdEstatus = Convert.ToDecimal(ddlSeleccionarEstatusMantenimiento.SelectedValue);
+                    Mantenimiento.IdUsuario = Convert.ToDecimal(lbIdUsuarioConectado.Text);
+                    Mantenimiento.Comentario = txtComentarioMantenimiento.Text;
+
+                    var MAN = ObjData.Value.MantenimientoReclamaciones(Mantenimiento, "UPDATE");
+                }
+
                 ResablecerEstatusReclamo();
             }
         }
@@ -947,18 +1210,155 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnModificarMantenimeinto_Click(object sender, EventArgs e)
         {
+            //VERIFICAMOS SI LA CLAVE DE SEGURIDAD INGRESADA NO ES VALIDA
+            string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridadMantenimiento.Text.Trim()) ? null : txtClaveSeguridadMantenimiento.Text.Trim();
+
+            var ValidarClaveSeguridad = ObjData.Value.BuscaClaveSeguridad(
+                new Nullable<decimal>(),
+                UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(_ClaveSeguridad));
+            if (ValidarClaveSeguridad.Count()<1)
+            {
+                //MENSAJE
+                ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadErronea", "ClaveSeguridadErronea();", true);
+            }
+            else
+            {
+                DateTime fechaInicioVigenciaUpdate2 = DateTime.Now, FechaFinVigenciaUpdate2 = DateTime.Now, FechaAperturaUpdate2 = DateTime.Now, FechaSIniestroUpdate2 = DateTime.Now;
+
+                var Sacarfechas = ObjData.Value.BuscaFechaReclamos(Convert.ToDecimal(txtNumeroreclamacionSeleccionadoConsulta.Text));
+                foreach (var n in Sacarfechas)
+                {
+                    fechaInicioVigenciaUpdate2 = Convert.ToDateTime(n.InicioVigencia0);
+                    FechaFinVigenciaUpdate2 = Convert.ToDateTime(n.FinVigencia0);
+                    FechaAperturaUpdate2 = Convert.ToDateTime(n.FechaApertura0);
+                    FechaSIniestroUpdate2 = Convert.ToDateTime(n.FechaSiniestro0);
+                }
+
+                if (cbModificarInicioVigencia.Checked)
+                {
+
+                    DateTime fechaInicioVigenciaUpdate3 = DateTime.Now, FechaFinVigenciaUpdate3 = DateTime.Now, FechaAperturaUpdate3 = DateTime.Now, FechaSIniestroUpdate3 = DateTime.Now;
+
+                    if (string.IsNullOrEmpty(txtInicioVigenciaMantenimiento.Text.Trim()))
+                    {
+                        fechaInicioVigenciaUpdate3 = fechaInicioVigenciaUpdate2;
+                    }
+                    else
+                    {
+                        fechaInicioVigenciaUpdate3 = Convert.ToDateTime(txtInicioVigenciaMantenimiento.Text);
+                    }
+
+                    if (string.IsNullOrEmpty(txtFinVigenciaMantenimiento.Text.Trim()))
+                    {
+                        FechaFinVigenciaUpdate3 = FechaFinVigenciaUpdate2;
+                    }
+                    else {
+                        FechaFinVigenciaUpdate3 = Convert.ToDateTime(txtFinVigenciaMantenimiento.Text);
+                    }
+
+                    if (string.IsNullOrEmpty(txtFechaAperturaMantenimiento.Text.Trim()))
+                    {
+                        FechaAperturaUpdate3 = FechaAperturaUpdate2;
+                    }
+                    else {
+                        FechaAperturaUpdate3 = Convert.ToDateTime(txtFechaAperturaMantenimiento.Text);
+                    }
+
+                    if (string.IsNullOrEmpty(txtFechaSiniestroMantenimiento.Text.Trim()))
+                    {
+                        FechaSIniestroUpdate3 = FechaSIniestroUpdate2;
+                    }
+                    else {
+                        FechaSIniestroUpdate3 = Convert.ToDateTime(txtFechaSiniestroMantenimiento.Text);
+                    }
+
+                    //MODIFICAMOS EL REGISTRO
+                    MANElimianrModificar(
+                        Convert.ToDecimal(txtNumeroIdSeleccionadoConsulta.Text),
+                        fechaInicioVigenciaUpdate3,
+                        FechaFinVigenciaUpdate3,
+                        FechaAperturaUpdate3,
+                        FechaSIniestroUpdate3,
+                        "UPDATE");
+                    Restablecer();
+                }
+                else
+                {
+                    //MODIFICAMOS EL REGISTRO
+                    MANElimianrModificar(
+                        Convert.ToDecimal(txtNumeroIdSeleccionadoConsulta.Text),
+                        fechaInicioVigenciaUpdate2,
+                        FechaFinVigenciaUpdate2,
+                        FechaAperturaUpdate2,
+                        FechaSIniestroUpdate2,
+                        "UPDATE");
+                    Restablecer();
+                }
+            }
 
         }
 
         protected void btnEliminarMantenimiento_Click(object sender, EventArgs e)
         {
+            try {
+                string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridadMantenimiento.Text.Trim()) ? null : txtClaveSeguridadMantenimiento.Text.Trim();
 
+                var ValidarClave = ObjData.Value.BuscaClaveSeguridad(
+                    new Nullable<decimal>(),
+                    UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(_ClaveSeguridad));
+                if (ValidarClave.Count() < 1)
+                {
+                    //MENSAJE
+                    ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadErronea", "ClaveSeguridadErronea();", true);
+
+                }
+                else
+                {
+                    //ELIMINAMOS EL REGISTRO
+                    UtilidadesAmigos.Logica.Entidades.EReclamacion Mantenimiento = new Logica.Entidades.EReclamacion();
+
+                    Mantenimiento.Numero = Convert.ToDecimal(txtNumeroIdSeleccionadoConsulta.Text);
+
+                    var MAN = ObjData.Value.MantenimientoReclamaciones(Mantenimiento, "DELETE");
+                    Restablecer();
+                }
+            }
+            catch (Exception) { }
         }
 
         protected void gvListadoReclamos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
            
         }
+
+        protected void cbModificarInicioVigencia_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbModificarInicioVigencia.Checked)
+            {
+                txtInicioVigenciaMantenimiento.Visible = true;
+                txtFinVigenciaMantenimiento.Visible = true;
+                txtFechaSiniestroMantenimiento.Visible = true;
+                txtFechaAperturaMantenimiento.Visible = true;
+
+                txtFechaFinVigenciaAutomatico.Visible = false;
+                txtFechaInicioVigenciaAutomatico.Visible = false;
+                txtFechaAperturaAutomatica.Visible = false;
+                txtFechaSiniestroAutomatica.Visible = false;
+            }
+            else
+            {
+                txtInicioVigenciaMantenimiento.Visible = false;
+                txtFinVigenciaMantenimiento.Visible = false;
+                txtFechaSiniestroMantenimiento.Visible = false;
+                txtFechaAperturaMantenimiento.Visible = false;
+
+                txtFechaFinVigenciaAutomatico.Visible = true;
+                txtFechaInicioVigenciaAutomatico.Visible = true;
+                txtFechaAperturaAutomatica.Visible = true;
+                txtFechaSiniestroAutomatica.Visible = true;
+            }
+        }
+
 
         protected void gvListadoEstatusReclamo_SelectedIndexChanged(object sender, EventArgs e)
         {

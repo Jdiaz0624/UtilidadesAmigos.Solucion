@@ -22,6 +22,34 @@
 
     <script type="text/javascript">
 
+        function BloquearControlesMantenimiento() {
+            $("#<%=txtNumeroReclamacionMantenimiento.ClientID%>").attr("disabled", "disabled");
+            $("#<%=txtPolizaMantenimiento.ClientID%>").attr("disabled", "disabled");
+            $("#<%=txtIntermediarioMantenimiento.ClientID%>").attr("disabled", "disabled");
+            $("#<%=txtAseguradoMantenimiento.ClientID%>").attr("disabled", "disabled");
+            $("#<%=ddlSeleccionarTipoMantenimiento.ClientID%>").attr("disabled", "disabled");
+            $("#<%=ddlSeleccionarCondicionMantenimiento.ClientID%>").attr("disabled", "disabled");
+            $("#<%=txtMontoMantenimiento.ClientID%>").attr("disabled", "disabled");
+            $("#<%=txtBeneficiarioMantenimiento.ClientID%>").attr("disabled", "disabled");
+            $("#<%=ddlSeleccionarEstatusMantenimiento.ClientID%>").attr("disabled", "disabled");
+            $("#<%=cbModificarInicioVigencia.ClientID%>").attr("disabled", "disabled");
+            $("#<%=txtComentarioMantenimiento.ClientID%>").attr("disabled", "disabled");
+        }
+        function DesbloquearControlesMantenimiento() {
+            $("#<%=txtNumeroReclamacionMantenimiento.ClientID%>").removeAttr("disabled", "true");
+            $("#<%=txtPolizaMantenimiento.ClientID%>").removeAttr("disabled", "true");
+            $("#<%=txtIntermediarioMantenimiento.ClientID%>").removeAttr("disabled", "true");
+            $("#<%=txtAseguradoMantenimiento.ClientID%>").removeAttr("disabled", "true");
+            $("#<%=ddlSeleccionarTipoMantenimiento.ClientID%>").removeAttr("disabled", "true");
+            $("#<%=ddlSeleccionarCondicionMantenimiento.ClientID%>").removeAttr("disabled", "true");
+            $("#<%=txtMontoMantenimiento.ClientID%>").removeAttr("disabled", "true");
+            $("#<%=txtBeneficiarioMantenimiento.ClientID%>").removeAttr("disabled", "true");
+            $("#<%=ddlSeleccionarEstatusMantenimiento.ClientID%>").removeAttr("disabled", "true");
+            $("#<%=cbModificarInicioVigencia.ClientID%>").removeAttr("disabled", "true");
+            $("#<%=txtComentarioMantenimiento.ClientID%>").removeAttr("disabled", "true");
+
+        }
+
 
         function NumeroReclamoVacio() {
             alert("El campo numero de reclamación no puede estar vacio para generar las fechas automaticas");
@@ -65,12 +93,12 @@
             $("#<%=btnRestabelcerPantalla.ClientID%>").removeAttr("disabled", "true");
 
             //BLOQUEAR CONTROLES
-            $("#<%=btnConsultarRegistros.ClientID%>").removeAttr("disabled", "true");
-            $("#<%=btnExportarRegistrosConsulta.ClientID%>").removeAttr("disabled", "true");
-            $("#btnNuevo").removeAttr("disabled", "true");
-            $("#btnCondicion").removeAttr("disabled", "true");
-            $("#btnTipo").removeAttr("disabled", "true");
-            $("#btnEstatus").removeAttr("disabled", "true");
+            $("#<%=btnConsultarRegistros.ClientID%>").attr("disabled", "disabled");
+            $("#<%=btnExportarRegistrosConsulta.ClientID%>").attr("disabled", "disabled");
+            $("#btnNuevo").attr("disabled", "disabled");
+            $("#btnCondicion").attr("disabled", "disabled");
+            $("#btnTipo").attr("disabled", "disabled");
+            $("#btnEstatus").attr("disabled", "disabled");
          //   $("#").removeAttr("disabled", "true");
 
         }
@@ -80,7 +108,7 @@
         }
 
         function BotonNuevo() {
-                 $("#<%=btnGuardarMantenimiento.ClientID%>").show();
+                $("#<%=btnGuardarMantenimiento.ClientID%>").show();
                 $("#<%=btnModificarMantenimeinto.ClientID%>").hide();
                 $("#<%=btnEliminarMantenimiento.ClientID%>").hide();
 
@@ -102,14 +130,74 @@
                 $("#<%=txtComentarioMantenimiento.ClientID%>").val("");
                 $("#<%=lbTituloMantenimiento.ClientID%>").text("Guardar Nuevo Registro");
         }
+
+        function BotonModificar() {
+            $("#<%=btnModificarMantenimeinto.ClientID%>").show();
+            $("#<%=btnGuardarMantenimiento.ClientID%>").hide();
+            $("#<%=btnEliminarMantenimiento.ClientID%>").hide();
+            $("#<%=lbTituloMantenimiento.ClientID%>").text("Modificar Registro Seleccionado");
+        }
+        function BotonEliminar() {
+            $("#<%=btnModificarMantenimeinto.ClientID%>").hide();
+            $("#<%=btnGuardarMantenimiento.ClientID%>").hide();
+            $("#<%=btnEliminarMantenimiento.ClientID%>").show();
+            $("#<%=lbTituloMantenimiento.ClientID%>").text("Eliminar Registro Seleccionado");
+        }
+        function ClaveSeguridadErronea() {
+            alert("La clave de seguridad ingresada no es valida");
+            $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val("");
+            return false;
+        }
         $(document).ready(function () {
-            //ACCION PARA EJECUTAR POR EL BOTON NUEVO
+            //ACCION PARA EL BOTON ELIMINAR EN EL MANTENIMIENTO DE RECLAMACIONES
+            $("#<%=btnEliminarMantenimiento.ClientID%>").click(function () {
+                var ValidarClaveSeguridadEliminar = $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val().length;
+                if (ValidarClaveSeguridadEliminar < 1) {
+                    alert("El campo clave de seguridad no puede estar vacio para eliminar el registro seleccionado, favor de verificar");
+                    $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
+
+            //ACCION PARA EL BOTON DE MOFICIAR EN EL MANTENIMIENTO DE RECLAMACIONES
+            $("#<%=btnModificarMantenimeinto.ClientID%>").click(function () {
+                var ValidarClaveSeguridad = $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val().length;
+                if (ValidarClaveSeguridad < 1) {
+                    alert("La clave de seguridad ingresada no puede estar vacia para modificar el registro seleccionado, favor de verificar");
+                    $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
+            //ACCION PARA EJECUTAR POR EL BOTON NUEVO DE RECLAMACIONES
             $("#btnNuevo").click(function () {
+                DesbloquearControlesMantenimiento();
                 BotonNuevo();
-              
+                $("#<%=lbClaveseguridadMantenimiento.ClientID%>").hide();
+                $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").hide();
+                $("#<%=cbBuscarFechaAutomatico.ClientID%>").show();
+                $("#<%=cbModificarInicioVigencia.ClientID%>").hide();
 
             });
 
+            $("#brnModificar").click(function () {
+                DesbloquearControlesMantenimiento();
+                BotonModificar();
+                $("#<%=lbClaveseguridadMantenimiento.ClientID%>").show();
+                $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").show();
+                $("#<%=cbBuscarFechaAutomatico.ClientID%>").hide();
+                $("#<%=cbModificarInicioVigencia.ClientID%>").show();
+
+            });
+
+            $("#brnEliminar").click(function () {
+                BloquearControlesMantenimiento();
+                BotonEliminar();
+                $("#<%=lbClaveseguridadMantenimiento.ClientID%>").show();
+                $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").show();
+                $("#<%=cbBuscarFechaAutomatico.ClientID%>").hide();
+                $("#<%=cbModificarInicioVigencia.ClientID%>").show();
+            });
+         
             //RECLAMACION CONSULTA
               $("#<%=txtReclamacionConsulta.ClientID%>").on("keydown keypress", function (e) {
                 if (e.key.length == 1) {
@@ -333,7 +421,7 @@
             <asp:Button ID="btnExportarRegistrosConsulta" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Exportar" ToolTip="Exportar Data a Exel" OnClick="btnExportarRegistrosConsulta_Click" />
             <button type="button" id="btnNuevo" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".MANTENIMIENTOPOPOP">Nuevo</button>
              <button type="button" id="brnModificar" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".MANTENIMIENTOPOPOP">Modificar</button>
-            <button type="button" id="brnEliminar" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".ELIMINARREGISTROPOPOP">Eliminar</button>
+            <button type="button" id="brnEliminar" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".MANTENIMIENTOPOPOP">Eliminar</button>
             <button type="button" id="btnCondicion" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".POPOCONDICIONESRECLAMOS">Condición</button>
             <button type="button" id="btnTipo" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".POPOTIPORECLAMO">Tipo</button>
             <button type="button" id="btnEstatus" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".POPOESTATUSRECLAMO">Estatus</button>
@@ -374,7 +462,9 @@
     </div>
 
         <!--GRID-->
-
+        <br /> 
+        <hr />
+        <br />
         <!--MOSTRAMOS LA INFORMACION SELECCIONADA DEL REGISTRO SELECCIONADO-->
         <div align="center">
                 <asp:Label ID="lbRegistroSeleccionado" runat="server" Visible="false" Text="Registro Seleccionado" CssClass="LetrasNegritas"></asp:Label>
@@ -539,17 +629,32 @@
                        <div class="form-group form-check">
                            <asp:CheckBox ID="cbBuscarFechaAutomatico" runat="server" Text="Buscar las Fecha de manera automatica" OnCheckedChanged="cbBuscarFechaAutomatico_CheckedChanged" AutoPostBack="true" ToolTip="Busca la fecha de vigencia, siniestro y de apertura a partir del numero de reclamación ya ingresado en el sistema" CssClass="form-check-input" />
                        </div>
+                       
                    </div>
                    <div class="form-row">
                        <div class="form-group col-md-12">
                            <asp:Label ID="lbComentarioMantenimiento" runat="server" Text="Comentario" CssClass="LetrasNegritas"></asp:Label>
                            <asp:TextBox ID="txtComentarioMantenimiento" runat="server" CssClass="form-control" TextMode="MultiLine" MaxLength="8000"></asp:TextBox>
                        </div>
+                        
                    </div>
 
                     
                </ContentTemplate>
            </asp:UpdatePanel>
+
+           <div class="form-check-inline">
+               <div class="form-group form-check">
+                           <asp:CheckBox ID="cbModificarInicioVigencia" runat="server" Text="Modificar fechas" OnCheckedChanged="cbModificarInicioVigencia_CheckedChanged" AutoPostBack="true" ToolTip="Modificar fechas" CssClass="form-check-input" />
+                       </div>
+           </div>
+
+           <div class="form-row">
+                 <div class="form-group col-md-4">
+                           <asp:Label ID="lbClaveseguridadMantenimiento" runat="server" Visible="false" Text="Clave de Seguridad" CssClass="LetrasNegritas"></asp:Label>
+                           <asp:TextBox ID="txtClaveSeguridadMantenimiento" AutoCompleteType="Disabled" Visible="false" TextMode="Password" MaxLength="20" runat="server" CssClass="form-control"></asp:TextBox>
+                       </div>
+           </div>
         <div align="center">
                <asp:Button ID="btnGuardarMantenimiento" runat="server" Text="Guardar" ToolTip="Guardar registro" OnClick="btnGuardarMantenimiento_Click" CssClass="btn btn-outline-primary btn-sm" />
               <asp:Button ID="btnModificarMantenimeinto" runat="server" Text="Modificar" ToolTip="Modificar Registro" OnClick="btnModificarMantenimeinto_Click" CssClass="btn btn-outline-primary btn-sm" />
