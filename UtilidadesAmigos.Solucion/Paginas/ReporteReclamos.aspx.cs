@@ -720,39 +720,39 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
 
             //MOSTRAMOS LOS CONTROLES NECESARIOS
-            lbRegistroSeleccionado.Text = string.Empty;
-            lbNumeriIDSeleccionadoConsulta.Text = string.Empty;
+          //  lbRegistroSeleccionado.Text = string.Empty;
+         //   lbNumeriIDSeleccionadoConsulta.Text = string.Empty;
             txtNumeroIdSeleccionadoConsulta.Text = string.Empty;
-            lbNumeroreclamacinSeleccionadoConsulta.Text = string.Empty;
+          //  lbNumeroreclamacinSeleccionadoConsulta.Text = string.Empty;
             txtNumeroreclamacionSeleccionadoConsulta.Text = string.Empty;
-            lbPolizaSeleccionadaConsulta.Text = string.Empty;
+          //  lbPolizaSeleccionadaConsulta.Text = string.Empty;
             txtPolizaSeleccionadaConsulta.Text = string.Empty;
-            lbEstatusPolizaSeleccionadaConsulta.Text = string.Empty;
+         //   lbEstatusPolizaSeleccionadaConsulta.Text = string.Empty;
             txtEstatusPolizaSelccionadaConsulta.Text = string.Empty;
-            lbIntermediarioSeleccionadoCOnsulta.Text = string.Empty;
+          //  lbIntermediarioSeleccionadoCOnsulta.Text = string.Empty;
             txtIntermediarioSeleccionadoConsulta.Text = string.Empty;
-            lbAseguradoSeleccionadoConsulta.Text = string.Empty;
+          //  lbAseguradoSeleccionadoConsulta.Text = string.Empty;
             txtaseguradoSeleccionadoConsulta.Text = string.Empty;
-            lbBeneficiarioSeleccionadoCOnsulta.Text = string.Empty;
+         //  lbBeneficiarioSeleccionadoCOnsulta.Text = string.Empty;
             txtBeneficiarioSeleccionadoConsulta.Text = string.Empty;
-            lbTipoSeleccionadoConsulta.Text = string.Empty;
+         //   lbTipoSeleccionadoConsulta.Text = string.Empty;
             txtTipoReclamoSeleccionado.Text = string.Empty;
-            lbCondicionSeleccionadaConsulta.Text = string.Empty;
+         //   lbCondicionSeleccionadaConsulta.Text = string.Empty;
             txtCondicionSeleccionadaConsulta.Text = string.Empty;
-            lbEstatusSeleccionadaConsulta.Text = string.Empty;
+         //   lbEstatusSeleccionadaConsulta.Text = string.Empty;
             txtEstatusSeleccionadoConsulta.Text = string.Empty;
-            lbMontoSeleccionadoConsulta.Text = string.Empty;
+          //  lbMontoSeleccionadoConsulta.Text = string.Empty;
             txtMontoSeleccionadoConsulta.Text = string.Empty;
-            lbUsuarioSeleccionadoCOnsulta.Text = string.Empty;
+          //  lbUsuarioSeleccionadoCOnsulta.Text = string.Empty;
             txtUsuarioSeleccionadoCOnsulta.Text = string.Empty;
-            lbInicioVigenciaSeleccionadoConsulta.Text = string.Empty;
+         //   lbInicioVigenciaSeleccionadoConsulta.Text = string.Empty;
             txtInicioVigenciaSeleccionadoConsulta.Text = string.Empty;
-            lbFechaFinVigenciaSeleccionadaConsulta.Text = string.Empty;
+         //   lbFechaFinVigenciaSeleccionadaConsulta.Text = string.Empty;
             txtFechaFinVigenciaSeleccionadaConsulta.Text = string.Empty;
-            lbFechaAperturaSeleccionadaConsulta.Text = string.Empty;
+         //   lbFechaAperturaSeleccionadaConsulta.Text = string.Empty;
             txtFechaAperturaSeleccionadaConsulta.Text = string.Empty;
-            lbFechaSiniestroSeleccionadaConsulta.Text = string.Empty;
-            lbComentarioSeleccionadoConsulta.Text = string.Empty;
+         //   lbFechaSiniestroSeleccionadaConsulta.Text = string.Empty;
+         //   lbComentarioSeleccionadoConsulta.Text = string.Empty;
             txtComentarioSeleccionadoCnsulta.Text = string.Empty;
             ClientScript.RegisterStartupScript(GetType(), "ModoConsulta", "ModoConsulta();", true);
         }
