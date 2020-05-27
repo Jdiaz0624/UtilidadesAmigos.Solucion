@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=jdiaz0624;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString8" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_LISTA_CARGAR_RAMOS" Method="SP_LISTA_CARGAR_RAMOS">
     <Parameter Name="IdRamo" Parameter="idRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
@@ -2002,6 +2002,48 @@
       <Column Name="FechaApertura" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="FechaSiniestro0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="FechaSiniestro" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_FACTURAS_PAGADAS_RECLAMACIONES" Method="SP_BUSCA_FACTURAS_PAGADAS_RECLAMACIONES">
+    <Parameter Name="NumeroReclamacion" Parameter="numeroReclamacion" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Anulado" Parameter="anulado" Type="System.String" DbType="VarChar(1)" />
+    <ElementType Name="SP_BUSCA_FACTURAS_PAGADAS_RECLAMACIONESResult">
+      <Column Name="Compania" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Tipo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Anulado0" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Anulado" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Numero" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="proveedor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreProveedor" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="TipoProveedor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaCobro0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaCobro" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FacturaProveedor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaProveedor0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaProveedor" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="balance" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Prima" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ValorItbis" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="PorcItbis" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="CodMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DescMoneda" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="SiglasMoneda" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UsuarioAdiciona" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TipoOrden" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumeroOrden" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Clasificacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ncf" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ItbisRetenido" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ValorLey" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ValorReal" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="SubProveedor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Referencia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AreaReferencia" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

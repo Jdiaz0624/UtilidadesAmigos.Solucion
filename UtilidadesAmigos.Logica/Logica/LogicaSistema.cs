@@ -2575,6 +2575,7 @@ namespace UtilidadesAmigos.Logica.Logica
             return Mantenimeinto;
         }
         #endregion
+
         #region SACAR LAS FECHA DE LAS RECLAMACIONES
         public List<UtilidadesAmigos.Logica.Entidades.EBuscaFechaReclamos> BuscaFechaReclamos(decimal? NumeroReclamacion = null)
         {
@@ -2594,6 +2595,56 @@ namespace UtilidadesAmigos.Logica.Logica
                               FechaSiniestro=n.FechaSiniestro
                           }).ToList();
             return Buscar;
+        }
+        #endregion
+
+        #region BUSCAR FACTURAS RECLAMACIONES PAGADAS
+        //MOSTRAR EL LISTADO DE LAS FACTURAS DE LAS RECLAMACIONE PAGADAS
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscaFActurasPagadasReclamacion> BuscaFActurasPagadasReclamos(string Numeroreclamacion = null, string Anulado = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_FACTURAS_PAGADAS_RECLAMACIONES(Numeroreclamacion, Anulado)
+                           select new UtilidadesAmigos.Logica.Entidades.EBuscaFActurasPagadasReclamacion
+                           {
+                               Compania=n.Compania,
+                               Tipo=n.Tipo,
+                               Anulado0=n.Anulado0,
+                               Anulado=n.Anulado,
+                               Numero=n.Numero,
+                               Fecha0=n.Fecha0,
+                               Fecha=n.Fecha,
+                               Valor=n.Valor,
+                               proveedor=n.proveedor,
+                               NombreProveedor=n.NombreProveedor,
+                               TipoProveedor=n.TipoProveedor,
+                               FechaCobro0=n.FechaCobro0,
+                               FechaCobro=n.FechaCobro,
+                               FacturaProveedor=n.FacturaProveedor,
+                               FechaProveedor0=n.FechaProveedor0,
+                               FechaProveedor=n.FechaProveedor,
+                               balance=n.balance,
+                               Prima=n.Prima,
+                               ValorItbis=n.ValorItbis,
+                               PorcItbis=n.PorcItbis,
+                               CodMoneda=n.CodMoneda,
+                               DescMoneda=n.DescMoneda,
+                               SiglasMoneda=n.SiglasMoneda,
+                               UsuarioAdiciona=n.UsuarioAdiciona,
+                               TipoOrden=n.TipoOrden,
+                               NumeroOrden=n.NumeroOrden,
+                               Clasificacion=n.Clasificacion,
+                               Ncf=n.Ncf,
+                               ItbisRetenido=n.ItbisRetenido,
+                               ValorLey=n.ValorLey,
+                               ValorReal=n.ValorReal,
+                               SubProveedor=n.SubProveedor,
+                               FechaAdiciona=n.FechaAdiciona,
+                               IdOficina=n.IdOficina,
+                               Referencia=n.Referencia,
+                               AreaReferencia=n.AreaReferencia
+                           }).ToList();
+            return Listado;
         }
         #endregion
 

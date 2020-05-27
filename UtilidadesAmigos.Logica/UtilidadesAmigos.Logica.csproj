@@ -74,6 +74,7 @@
     <Compile Include="Entidades\EBuscaDetalleReclamaciones.cs" />
     <Compile Include="Entidades\EBuscaDetallesCobros.cs" />
     <Compile Include="Entidades\EBuscaEstatusReclamacion.cs" />
+    <Compile Include="Entidades\EBuscaFActurasPagadasReclamacion.cs" />
     <Compile Include="Entidades\EBuscaFechaReclamos.cs" />
     <Compile Include="Entidades\EBuscaHistoricoPolizaFianza.cs" />
     <Compile Include="Entidades\EBuscarEmpleados.cs" />

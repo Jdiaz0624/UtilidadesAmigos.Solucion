@@ -754,7 +754,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
          //   lbFechaSiniestroSeleccionadaConsulta.Text = string.Empty;
          //   lbComentarioSeleccionadoConsulta.Text = string.Empty;
             txtComentarioSeleccionadoCnsulta.Text = string.Empty;
+
+            rbBuscarFacturasTodas.Visible = false;
+            rbBuscaFActurasAnuladas.Visible = false;
+            rbBuscarFacturasActivas.Visible = false;
+            lbLetreroNumeroFacturaRelacionado.Visible = false;
+            gvListadoFacturaReclamos.Visible = false;
+
             ClientScript.RegisterStartupScript(GetType(), "ModoConsulta", "ModoConsulta();", true);
+        }
+        #endregion
+        #region MOSTRAR EL LISTADO DE LAS FACTURAS PAGADAS
+        private void MostrarListadoFacturasPaadasReclamos(string Numerpreclamo, string Anulado ) {
+            try {
+                var Buscar = ObjData.Value.BuscaFActurasPagadasReclamos(Numerpreclamo, Anulado);
+                gvListadoFacturaReclamos.DataSource = Buscar;
+                gvListadoFacturaReclamos.DataBind();
+            }
+            catch (Exception) { }
         }
         #endregion
         protected void Page_Load(object sender, EventArgs e)
@@ -769,7 +786,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 cbEstatusTipoRecmalo.Checked = true;
                 cbEstatusTipoRecmalo.ForeColor = System.Drawing.Color.Green;
                 lbIdUsuarioConectado.Text = Session["IdUsuario"].ToString();
-              
+                rbBuscarFacturasTodas.Checked = true;
             }
         }
 
@@ -897,6 +914,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtFechaAperturaSeleccionadaConsulta.Text = n.FechaApertura;
                 txtFechaSiniestroSeleccionadaConsulta.Text = n.FechaSiniestro;
                 txtComentarioSeleccionadoCnsulta.Text = n.Comentario;
+
+                //MOSTRAMOS EL LISTADO DE LAS FACTURAS RELACIONADO CON EL NUMERO DE RECLAMO SELECCIONADO
+                rbBuscarFacturasTodas.Visible = true;
+                rbBuscaFActurasAnuladas.Visible = true;
+                rbBuscarFacturasActivas.Visible = true;
+                gvListadoFacturaReclamos.Visible = true;
+                rbBuscarFacturasTodas.Checked = true;
+                lbLetreroNumeroFacturaRelacionado.Visible = true;
+                MostrarListadoFacturasPaadasReclamos(txtNumeroreclamacionSeleccionadoConsulta.Text,null);
             }
             ClientScript.RegisterStartupScript(GetType(), "ModoMantenimiento", "ModoMantenimiento();", true);
         }
@@ -1359,6 +1385,47 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
 
+        protected void gvListadoFacturaReclamos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void gvListadoFacturaReclamos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void gvListadoFacturaReclamos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void rbBuscarFacturasTodas_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbBuscarFacturasTodas.Checked)
+            {
+                MostrarListadoFacturasPaadasReclamos(txtNumeroreclamacionSeleccionadoConsulta.Text,null);
+            }
+            else { }
+        }
+
+        protected void rbBuscarFacturasActivas_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbBuscarFacturasActivas.Checked)
+            {
+                MostrarListadoFacturasPaadasReclamos(txtNumeroreclamacionSeleccionadoConsulta.Text, "N");
+            }
+            else { }
+        }
+
+        protected void rbBuscaFActurasAnuladas_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbBuscaFActurasAnuladas.Checked)
+            {
+                MostrarListadoFacturasPaadasReclamos(txtNumeroreclamacionSeleccionadoConsulta.Text, "S");
+            }
+            else { }
+        }
 
         protected void gvListadoEstatusReclamo_SelectedIndexChanged(object sender, EventArgs e)
         {

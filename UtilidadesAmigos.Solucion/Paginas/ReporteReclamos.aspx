@@ -539,8 +539,49 @@
                 <asp:Label ID="lbComentarioSeleccionadoConsulta" runat="server" Text="Comentario" Visible="false" CssClass="LetrasNegritas"></asp:Label>
                 <asp:TextBox ID="txtComentarioSeleccionadoCnsulta" runat="server" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
             </div>
-        </div>
 
+        </div>
+        
+            <!--AGREGAMOS EL GRID CORRESPONDIENTE-->
+            <div align="center">
+                <asp:Label ID="lbLetreroNumeroFacturaRelacionado" runat="server" Visible="false" Text="Listado de Facturas relacionada con el reclamo seleccionado" CssClass="LetrasNegritas"></asp:Label>
+                <br />
+                <div class="form-check-inline">
+                    <div class="form-group form-check">
+                        <asp:RadioButton ID="rbBuscarFacturasTodas" runat="server" Text="Todas" ToolTip="Busca todas las facturas sin importar si esta anulada o no" CssClass="form-check-input" GroupName="FacturaReclamos" Visible="false" AutoPostBack="true" OnCheckedChanged="rbBuscarFacturasTodas_CheckedChanged" />
+                        <asp:RadioButton ID="rbBuscarFacturasActivas" runat="server" Text="Activas" ToolTip="Busca todas las facturas activas del registro seleccionado" CssClass="form-check-input" GroupName="FacturaReclamos" Visible="false" AutoPostBack="true" OnCheckedChanged="rbBuscarFacturasActivas_CheckedChanged" />
+                        <asp:RadioButton ID="rbBuscaFActurasAnuladas" runat="server" Text="Anuladas" ToolTip="Busca todas las facturas anuladas del registro seleccionado" CssClass="form-check-input" GroupName="FacturaReclamos" Visible="false" AutoPostBack="true" OnCheckedChanged="rbBuscaFActurasAnuladas_CheckedChanged" />
+                    </div>
+                </div>
+                 
+            </div>
+        <br />
+         <div >
+            <asp:GridView ID="gvListadoFacturaReclamos" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoFacturaReclamos_PageIndexChanging" OnSelectedIndexChanged="gvListadoFacturaReclamos_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    <asp:BoundField DataField="Numero" HeaderText="Numero" />
+                    <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+                    <asp:BoundField DataField="NombreProveedor" HeaderText="Proveedor" />
+                    <asp:BoundField DataField="FechaCobro" HeaderText="Fecha Cobro" />
+                    <asp:BoundField DataField="FechaProveedor" HeaderText="Fecha Proveedor" />
+                    <asp:BoundField DataField="Valor" HeaderText="Valor" DataFormatString="{0:N2}" />               
+                    <asp:BoundField DataField="anulado" HeaderText="Anulado" />
+                    <%-- <asp:CommandField ButtonType="Button" HeaderStyle-Width="11%" HeaderText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />--%>
+                </Columns  >
+                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
+        <br />
         <asp:ScriptManager ID="ScripsManagerPOPOP" runat="server"></asp:ScriptManager>
 
         <!--MANTENIMIENTO POPOP-->
