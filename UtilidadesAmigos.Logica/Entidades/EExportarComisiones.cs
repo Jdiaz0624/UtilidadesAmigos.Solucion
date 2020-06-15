@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace UtilidadesAmigos.Logica.Entidades
 {
-    public class EGenerarComisionIntermediario
+    public class EExportarComisiones
     {
-        public string Supervisor {get;set;}
+        public System.Nullable<decimal> CodigoIntermediario {get;set;}
 
-        public int? Codigo {get;set;}
+        public System.Nullable<System.DateTime> FechaDesde0 {get;set;}
+
+        public System.Nullable<System.DateTime> FechaHasta0 {get;set;}
+
+        public string FechaDesde {get;set;}
+
+        public string FechaHasta {get;set;}
 
         public string Intermediario {get;set;}
 
@@ -24,29 +30,13 @@ namespace UtilidadesAmigos.Logica.Entidades
 
         public string Banco {get;set;}
 
-        public string Cliente {get;set;}
-
-        public string Recibo {get;set;}
-
-        public string Fecha {get;set;}
-
-        public string Factura {get;set;}
-
-        public string FechaFactura {get;set;}
-
-        public string Moneda {get;set;}
-
-        public string Poliza {get;set;}
-
-        public string Producto {get;set;}
+        public System.Nullable<int> Cantidad {get;set;}
 
         public System.Nullable<decimal> Bruto {get;set;}
 
         public System.Nullable<decimal> Neto {get;set;}
 
-        public System.Nullable<decimal> PorcientoComision {get;set;}
-
-        public System.Nullable<decimal> Comision {get;set;}
+        public System.Nullable<decimal> ComisionBruta {get;set;}
 
         public System.Nullable<decimal> Retencion {get;set;}
 

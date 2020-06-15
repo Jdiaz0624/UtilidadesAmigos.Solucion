@@ -1795,23 +1795,29 @@ namespace UtilidadesAmigos.Logica.Logica
             var Generar = (from n in Objdata.SP_SACAR_COMISIONES_INTERMEDIARIOS(FechaDesde, FechaHasta, CodigoIntermediario, Oficina)
                            select new UtilidadesAmigos.Logica.Entidades.EGenerarComisionIntermediario
                            {
-                               Supervisor=n.Supervisor,
-                               Intermediario=n.Intermediario,
-                               Cliente=n.Cliente,
-                               Recibo=n.Recibo,
-                               Fecha=n.Fecha,
-                               Factura=n.Factura,
-                               FechaFactura=n.FechaFactura,
-                               Moneda=n.Moneda,
-                               Poliza=n.Poliza,
-                               Producto=n.Producto,
+                               Supervisor = n.Supervisor,
+                               Codigo = n.Codigo,
+                               Intermediario = n.Intermediario,
+                               Oficina = n.Oficina,
+                               NumeroIdentificacion = n.NumeroIdentificacion,
+                               CuentaBanco = n.CuentaBanco,
+                               TipoCuenta = n.TipoCuenta,
+                               Banco = n.Banco,
+                               Cliente = n.Cliente,
+                               Recibo = n.Recibo,
+                               Fecha = n.Fecha,
+                               Factura = n.Factura,
+                               FechaFactura = n.FechaFactura,
+                               Moneda = n.Moneda,
+                               Poliza = n.Poliza,
+                               Producto = n.Producto,
                                Bruto=n.Bruto,
                                Neto=n.Neto,
                                PorcientoComision=n.PorcientoComision,
                                Comision=n.Comision,
                                Retencion=n.Retencion,
                                AvanceComision=n.AvanceComision,
-                               ALiquidar=n.ALiquidar,
+                               ALiquidar=n.ALiquidar
 
                            }).ToList();
             return Generar;
@@ -2648,5 +2654,127 @@ namespace UtilidadesAmigos.Logica.Logica
         }
         #endregion
 
+
+        #region SACAR LOS CODIGOS DE LOS INTERMENIDARIOS PARA PAGAR LAS COMISIONES
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarCodigoIntermediarios> SacarCodigoIntermediarios(DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Ramo = null, int? Oficina = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var BuscarRegistro = (from n in Objdata.SP_SACAR_CODIGOS_INTERMEDIARIOS_COMISION(FechaDesde, FechaHasta, Ramo, Oficina)
+                                  select new UtilidadesAmigos.Logica.Entidades.ESacarCodigoIntermediarios
+                                  {
+                                      Vendedor=n.Vendedor,
+                                      Intermediario=n.Intermediario,
+                                      Oficina=n.Oficina,
+                                      NumeroIdentificacion=n.NumeroIdentificacion,
+                                      CuentaBanco=n.CuentaBanco,
+                                      Banco=n.Banco
+                                  }).ToList();
+            return BuscarRegistro;
+        }
+        #endregion
+
+        #region GUARDAR LAS COMISIONES DE LOS INTERMEDIARIOS
+        public UtilidadesAmigos.Logica.Entidades.EGuardarDatosComisionIntermediario GuardarComisionesIntermediario(UtilidadesAmigos.Logica.Entidades.EGuardarDatosComisionIntermediario Item, string Accion)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EGuardarDatosComisionIntermediario Guardar = null;
+
+            var ComisionesIntermediarios = Objdata.SP_GUARDAR_DATOS_COMISION_INTERMEDIARIO(
+                Item.IdUsuario,
+                Item.FechaDesde,
+                Item.FechaHasta,
+                Item.Supervisor,
+                Item.CodigoIntermediario,
+                Item.Intermediario,
+                Item.Oficina,
+                Item.NumeroIdentificacion,
+                Item.CuentaBanco,
+                Item.TipoCuenta,
+                Item.Banco,
+                Item.Cliente,
+                Item.Recibo,
+                Item.Fecha,
+                Item.Factura,
+                Item.FechaFactura,
+                Item.Moneda,
+                Item.Poliza,
+                Item.Producto,
+                Item.Bruto,
+                Item.Neto,
+                Item.PorcientoComision,
+                Item.Comision,
+                Item.Retencion,
+                Item.AvanceComision,
+                Item.ALiquidar,
+                Accion);
+            if (ComisionesIntermediarios != null)
+            {
+                Guardar = (from n in ComisionesIntermediarios
+                           select new UtilidadesAmigos.Logica.Entidades.EGuardarDatosComisionIntermediario
+                           {
+                               IdUsuario=n.IdUsuario,
+                               FechaDesde=n.FechaDesde,
+                               FechaHasta=n.FechaHasta,
+                               Supervisor=n.Supervisor,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               Oficina=n.Oficina,
+                               NumeroIdentificacion=n.NumeroIdentificacion,
+                               CuentaBanco=n.CuentaBanco,
+                               TipoCuenta=n.TipoCuenta,
+                               Banco=n.Banco,
+                               Cliente=n.Cliente,
+                               Recibo=n.Recibo,
+                               Fecha=n.Fecha,
+                               Factura=n.Factura,
+                               FechaFactura=n.FechaFactura,
+                               Moneda=n.Moneda,
+                               Poliza=n.Poliza,
+                               Producto=n.Producto,
+                               Bruto=n.Bruto,
+                               Neto=n.Neto,
+                               PorcientoComision=n.PorcientoComision,
+                               Comision=n.Comision,
+                               Retencion=n.Retencion,
+                               AvanceComision=n.AvanceComision,
+                               ALiquidar=n.ALiquidar
+                           }).FirstOrDefault();
+            }
+            return Guardar;
+        }
+        #endregion
+
+        #region EXPORTAR COMISIONES
+        public List<UtilidadesAmigos.Logica.Entidades.EExportarComisiones> ExportarComisionesIntermediario(decimal? IdUsuario = null)
+        {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_EXPORTAR_COMISIONES(IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.EExportarComisiones
+                           {
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               FechaDesde0=n.FechaDesde0,
+                               FechaHasta0=n.FechaHasta0,
+                               FechaDesde=n.FechaDesde,
+                               FechaHasta=n.FechaHasta,
+                               Intermediario=n.Intermediario,
+                               Oficina=n.Oficina,
+                               NumeroIdentificacion=n.NumeroIdentificacion,
+                               CuentaBanco=n.CuentaBanco,
+                               TipoCuenta=n.TipoCuenta,
+                               Banco=n.Banco,
+                               Cantidad=n.Cantidad,
+                               Bruto=n.Bruto,
+                               Neto=n.Neto,
+                               ComisionBruta=n.ComisionBruta,
+                               Retencion=n.Retencion,
+                               AvanceComision=n.AvanceComision,
+                               ALiquidar=n.ALiquidar
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }

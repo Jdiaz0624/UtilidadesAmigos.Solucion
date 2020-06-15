@@ -97,12 +97,119 @@ namespace UtilidadesAmigos.Solucion.Paginas
             catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "ErrorConsulta", "ErrorConsulta();", true); }
         }
         #endregion
+        #region GENERAR LISTADO DE COMISIONES MASIVO
+        private void GenerarProcesoComisionesmAsivo()
+        {
+            //VERIFICAMOS SI LOS CAMPOS DE FECHA ESTAN VACIOS
+            if (string.IsNullOrEmpty(txtFechaDesdeGenerarComision.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaGenerarComision.Text.Trim()))
+            {
+            }
+            else
+            { 
+         
+
+                //SACAMOS EL LISTADO DE COMISIONES MEDIANTE LOS PARAMETROS INGRESADOS
+                int? _Oficina = ddlSeleccionaroficinaComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaComisiones.SelectedValue) : new Nullable<int>();
+                int? _Ramo = ddlSeleccionarRamoComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoComisiones.SelectedValue) : new Nullable<int>();
+
+                var BuscarCodigosIntermediarios = ObjDataConexion.Value.SacarCodigoIntermediarios(
+                    Convert.ToDateTime(txtFechaDesdeGenerarComision.Text),
+                    Convert.ToDateTime(txtFechaHastaGenerarComision.Text),
+                    _Ramo,
+                    _Oficina);
+                if (BuscarCodigosIntermediarios.Count() < 1)
+                {
+
+                }
+                else
+                {
+                    //RECORREMOS EL LISTADO ENCONTRADO PARA IR GUARDADO LOS DATOS EN LA TABLA Y EXPORTAR A EXEL
+                    foreach (var n in BuscarCodigosIntermediarios)
+                    {
+                        var BuscarComisiones = ObjDataConexion.Value.GenerarComisionIntermediario(
+                            Convert.ToDateTime(txtFechaDesdeGenerarComision.Text),
+                            Convert.ToDateTime(txtFechaHastaGenerarComision.Text),
+                            Convert.ToDecimal(n.Vendedor),
+                            _Oficina);
+                        if (BuscarComisiones.Count() < 1)
+                        {
+
+                        }
+                        else
+                        {
+                            foreach (var n2 in BuscarComisiones)
+                            {
+                                //GUARDAMOS LOS DATOS
+                                UtilidadesAmigos.Logica.Entidades.EGuardarDatosComisionIntermediario Guardar = new Logica.Entidades.EGuardarDatosComisionIntermediario();
+                                Guardar.IdUsuario = Convert.ToDecimal(lbCodigoUsuario.Text);
+                                Guardar.FechaDesde = Convert.ToDateTime(txtFechaDesdeGenerarComision.Text);
+                                Guardar.FechaHasta = Convert.ToDateTime(txtFechaHastaGenerarComision.Text);
+                                Guardar.Supervisor = n2.Supervisor;
+                                Guardar.CodigoIntermediario = Convert.ToDecimal(n2.Codigo);
+                                Guardar.Intermediario = n2.Intermediario;
+                                Guardar.Oficina = n2.Oficina;
+                                Guardar.NumeroIdentificacion = n2.NumeroIdentificacion;
+                                Guardar.CuentaBanco = n2.CuentaBanco;
+                                Guardar.TipoCuenta = n2.TipoCuenta;
+                                Guardar.Banco = n2.Banco;
+                                Guardar.Cliente = n2.Cliente;
+                                Guardar.Recibo = n2.Recibo;
+                                Guardar.Fecha = n2.Fecha;
+                                Guardar.Factura = n2.Factura;
+                                Guardar.FechaFactura = n2.FechaFactura;
+                                Guardar.Moneda = n2.Moneda;
+                                Guardar.Poliza = n2.Poliza;
+                                Guardar.Producto = n2.Producto;
+                                Guardar.Bruto = Convert.ToDecimal(n2.Bruto);
+                                Guardar.Neto = Convert.ToDecimal(n2.Neto);
+                                Guardar.PorcientoComision = Convert.ToDecimal(n2.PorcientoComision);
+                                Guardar.Comision = Convert.ToDecimal(n2.Comision);
+                                Guardar.Retencion = Convert.ToDecimal(n2.Retencion);
+                                Guardar.AvanceComision = Convert.ToDecimal(n2.AvanceComision);
+                                Guardar.ALiquidar = Convert.ToDecimal(n2.ALiquidar);
+
+                                var MANGuardar = ObjDataConexion.Value.GuardarComisionesIntermediario(Guardar, "INSERT");
+                            }
+                        }
+                    }
+                    //EXPORTAMOS LA INFORMACION A EXEL
+                    var ExportarComisiones = (from n in ObjDataConexion.Value.ExportarComisionesIntermediario(Convert.ToDecimal(lbCodigoUsuario.Text))
+                                              select new
+                                              {
+                                                  Intermediario = n.Intermediario,
+                                                  Oficina = n.Oficina,
+                                                  NumeroIdentificacion = n.NumeroIdentificacion,
+                                                  CuentaBanco = n.CuentaBanco,
+                                                  TipoCuenta = n.TipoCuenta,
+                                                  Banco = n.Banco,
+                                                  Cantidad = n.Cantidad,
+                                                  Bruto = n.Bruto,
+                                                  Neto = n.Neto,
+                                                  ComisionBruta = n.ComisionBruta,
+                                                  Retencion = n.Retencion,
+                                                  AvanceComision = n.AvanceComision,
+                                                  ALiquidar = n.ALiquidar
+                                              }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comisiones desde " + txtFechaDesdeGenerarComision.Text + " Hasta " + txtFechaHastaGenerarComision.Text + " de " + ddlSeleccionaroficinaComisiones.Text, ExportarComisiones);
+                }
+            }
+        }
+        #endregion
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 CargarOficinas();
                 ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();",true);
+
+                lbSeleccionarOficinaComisiones.Visible = false;
+                ddlSeleccionaroficinaComisiones.Visible = false;
+                //CARGAR LAS OFICINAS Y RAMOS PARA GENERAR LAS COMISIONES
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionaroficinaComisiones, ObjDataConexion.Value.BuscaListas("OFICINAS", null, null), true);
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamoComisiones, ObjDataConexion.Value.BuscaListas("RAMO", null, null), true);
+                lbCodigoUsuario.Text = Session["IdUsuario"].ToString();
+
             }
         }
 
@@ -149,6 +256,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnGenerarComisionIntermediario_Click(object sender, EventArgs e)
         {
             MostrarComisionesIntermediario();
+         
         }
 
         protected void btnExportarExel_Click(object sender, EventArgs e)
@@ -162,9 +270,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                 {
                                     Supervisor = n.Supervisor,
                                     Intermediario = n.Intermediario,
+                                    Oficina = n.Oficina,
+                                    NumeroIdentificacion = n.NumeroIdentificacion,
+                                    CuentaBanco = n.CuentaBanco,
+                                    TipoCuenta = n.TipoCuenta,
+                                    Banco = n.Banco,
                                     Cliente = n.Cliente,
                                     Recibo = n.Recibo,
-                                    FechaRecibo = n.Fecha,
+                                    Fecha = n.Fecha,
                                     Factura = n.Factura,
                                     FechaFactura = n.FechaFactura,
                                     Moneda = n.Moneda,
@@ -292,6 +405,50 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gvListadoProduccion_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+        }
+
+        protected void cbGenerarComisionGlobal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbGenerarComisionGlobal.Checked == true)
+            {
+                lbSeleccionarOficinaComisiones.Visible = true;
+                ddlSeleccionaroficinaComisiones.Visible = true;
+
+                lbSeleccionarRamoComisiones.Visible = true;
+                ddlSeleccionarRamoComisiones.Visible = true;
+
+                btnGenerarComisionIntermediario.Enabled = false;
+                btnExportarExel.Enabled = false;
+
+                btnGenerarComisionGeneral.Enabled = true;
+            }
+            else
+            {
+                lbSeleccionarOficinaComisiones.Visible = false;
+                ddlSeleccionaroficinaComisiones.Visible = false;
+
+
+                lbSeleccionarRamoComisiones.Visible = false;
+                ddlSeleccionarRamoComisiones.Visible = false;
+
+                btnGenerarComisionIntermediario.Enabled = true;
+                btnExportarExel.Enabled = true;
+
+                btnGenerarComisionGeneral.Enabled = false;
+            }
+        }
+
+        protected void btnGenerarComisionGeneral_Click(object sender, EventArgs e)
+        {
+            if (cbGenerarComisionGlobal.Checked == true)
+            {
+                //ELIMINAMOS LOS DATOS BAJO EL USUAIRO INGRESADO
+
+                UtilidadesAmigos.Logica.Entidades.EGuardarDatosComisionIntermediario Eliminar = new Logica.Entidades.EGuardarDatosComisionIntermediario();
+                Eliminar.IdUsuario = Convert.ToDecimal(lbCodigoUsuario.Text);
+                var MANDelete = ObjDataConexion.Value.GuardarComisionesIntermediario(Eliminar, "DELETE");
+                GenerarProcesoComisionesmAsivo();
+            }
         }
     }
 }

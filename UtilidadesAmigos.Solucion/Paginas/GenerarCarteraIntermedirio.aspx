@@ -23,12 +23,12 @@
     </style>
     <script type="text/javascript">
         function BloquearControles() {
-             $("#btnGenerarComision").attr("disabled", "disabled");
+
              $("#btnGenerarCartera").attr("disabled", "disabled");
              $("#btnGenerarProduccion").attr("disabled", "disabled");
         }
         function ActivarControles() {
-            $("#btnGenerarComision").removeAttr("disabled", true);
+
             $("#btnGenerarCartera").removeAttr("disabled", true);
             $("#btnGenerarProduccion").removeAttr("disabled",true);
         }
@@ -36,14 +36,17 @@
         function ErrorConsulta() {
             alert("Error al realizar la consulta, favor de verificar los parametros ingresados");
         }
+          function OpcionFuncionando() {
+            alert("Esta opcion esta funcionando");
+        }
 
-
-        });
+        //});
     </script>
     <div class="container-fluid">
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTituloCOnsulta" runat="server" Text="Generar Cartera de Intermediario"></asp:Label>
              <asp:Label ID="lbGenerarCodifoIntermediario" runat="server" Text="Codigo Intermediario" Visible="false"></asp:Label>
+            <asp:Label ID="lbCodigoUsuario" runat="server" Text="Codigo Usuario" Visible="False"></asp:Label>
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
@@ -124,8 +127,25 @@
                       <asp:TextBox ID="txtFechaHastaGenerarComision" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
                   </div>
                   </div>
+                  <div class="form-check-inline">
+                      <div class="form-group form-check">
+                          <asp:CheckBox ID="cbGenerarComisionGlobal" runat="server" AutoPostBack="true" OnCheckedChanged="cbGenerarComisionGlobal_CheckedChanged" Text="Generar Comisiones Global" CssClass="form-check-input" ToolTip="Generar las comisiones a pagar de todos los intermediarios" />
+                      </div>
+                  </div>
+                  <br />
+                  <div class="form-row">
+                      <div class="form-group col-md-6">
+                          <asp:Label ID="lbSeleccionarOficinaComisiones" runat="server" Visible="false" Text="Seleccionar Oficina" CssClass="LetrasNegrita"></asp:Label>
+                          <asp:DropDownList ID="ddlSeleccionaroficinaComisiones" Visible="false" runat="server" CssClass="form-control" ToolTip="Seleccionar Oficina para generar las comisiones"></asp:DropDownList>
+                      </div>
+
+                       <div class="form-group col-md-6">
+                          <asp:Label ID="lbSeleccionarRamoComisiones" runat="server" Visible="false" Text="Seleccionar Ramo" CssClass="LetrasNegrita"></asp:Label>
+                          <asp:DropDownList ID="ddlSeleccionarRamoComisiones" Visible="false" runat="server" CssClass="form-control" ToolTip="Seleccionar Ramo para generar las comisiones"></asp:DropDownList>
+                      </div>
+                  </div>
                <div align="center">
-                      <asp:Button ID="btnGenerarComisionIntermediario" runat="server" OnClick="btnGenerarComisionIntermediario_Click" Text="Generar" ToolTip="Generar la comisión del intermediario seleccionado" CssClass="btn btn-outline-primary btn-sm" />
+                      <asp:Button ID="btnGenerarComisionIntermediario" runat="server" OnClick="btnGenerarComisionIntermediario_Click"  Text="Comisión" ToolTip="Generar la comisión del intermediario seleccionado" CssClass="btn btn-outline-primary btn-sm" />
                   
                </div>
                     <br />
@@ -160,7 +180,8 @@
           </asp:UpdatePanel>
           <br />
           <div align="center">
-               <asp:Button ID="btnExportarExel" runat="server" OnClick="btnExportarExel_Click" Text="Exportar" ToolTip="Exportar Data a Exel" CssClass="btn btn-outline-primary btn-sm" />
+               <asp:Button ID="btnExportarExel" runat="server" OnClick="btnExportarExel_Click"  Text="Exportar" ToolTip="Exportar Data a Exel" CssClass="btn btn-outline-primary btn-sm" />
+               <asp:Button ID="btnGenerarComisionGeneral" runat="server" OnClick="btnGenerarComisionGeneral_Click" Text="Comisión"  ToolTip="Generar las comisiones General" CssClass="btn btn-outline-primary btn-sm" />
           </div>
           <br />
       </div>

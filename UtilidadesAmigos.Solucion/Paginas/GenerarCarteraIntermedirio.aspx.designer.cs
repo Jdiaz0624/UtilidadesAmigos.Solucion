@@ -31,6 +31,15 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Label lbGenerarCodifoIntermediario;
         
         /// <summary>
+        /// lbCodigoUsuario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoUsuario;
+        
+        /// <summary>
         /// lbCodigoSupervisor control.
         /// </summary>
         /// <remarks>
@@ -220,6 +229,51 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtFechaHastaGenerarComision;
         
         /// <summary>
+        /// cbGenerarComisionGlobal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbGenerarComisionGlobal;
+        
+        /// <summary>
+        /// lbSeleccionarOficinaComisiones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarOficinaComisiones;
+        
+        /// <summary>
+        /// ddlSeleccionaroficinaComisiones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionaroficinaComisiones;
+        
+        /// <summary>
+        /// lbSeleccionarRamoComisiones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarRamoComisiones;
+        
+        /// <summary>
+        /// ddlSeleccionarRamoComisiones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarRamoComisiones;
+        
+        /// <summary>
         /// btnGenerarComisionIntermediario control.
         /// </summary>
         /// <remarks>
@@ -247,13 +301,13 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Button btnExportarExel;
         
         /// <summary>
-        /// UpdatePanelCartera control.
+        /// btnGenerarComisionGeneral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelCartera;
+        protected global::System.Web.UI.WebControls.Button btnGenerarComisionGeneral;
         
         /// <summary>
         /// lbNombreIntermediarioCartera control.

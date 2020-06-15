@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace UtilidadesAmigos.Logica.Entidades
 {
-    public class EGenerarComisionIntermediario
+    public class EGuardarDatosComisionIntermediario
     {
+        public System.Nullable<decimal> IdUsuario {get;set;}
+
+        public System.Nullable<System.DateTime> FechaDesde {get;set;}
+
+        public System.Nullable<System.DateTime> FechaHasta {get;set;}
+
         public string Supervisor {get;set;}
 
-        public int? Codigo {get;set;}
+        public System.Nullable<decimal> CodigoIntermediario {get;set;}
 
         public string Intermediario {get;set;}
 
