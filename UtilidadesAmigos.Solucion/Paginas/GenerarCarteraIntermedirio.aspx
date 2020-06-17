@@ -183,6 +183,7 @@
                <asp:Button ID="btnExportarExel" runat="server" OnClick="btnExportarExel_Click"  Text="Exportar" ToolTip="Exportar Data a Exel" CssClass="btn btn-outline-primary btn-sm" />
                <asp:Button ID="btnGenerarComisionGeneral" runat="server" OnClick="btnGenerarComisionGeneral_Click" Text="Comisión"  ToolTip="Generar las comisiones General" CssClass="btn btn-outline-primary btn-sm" />
           </div>
+
           <br />
       </div>
     </div>

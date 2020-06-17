@@ -31,15 +31,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         protected global::System.Web.UI.WebControls.Label lbIdOficina;
         
         /// <summary>
-        /// lbAccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbAccion;
-        
-        /// <summary>
         /// lbSucursalConsulta control.
         /// </summary>
         /// <remarks>
@@ -85,15 +76,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         protected global::System.Web.UI.WebControls.Button btnConsultar;
         
         /// <summary>
-        /// btnNuevo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNuevo;
-        
-        /// <summary>
         /// btnRestabelcer control.
         /// </summary>
         /// <remarks>
@@ -101,24 +83,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRestabelcer;
-        
-        /// <summary>
-        /// btnModificar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificar;
-        
-        /// <summary>
-        /// btnEliminar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEliminar;
         
         /// <summary>
         /// btnExportar control.
@@ -137,6 +101,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvOficinas;
+        
+        /// <summary>
+        /// lbEncabezadoMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEncabezadoMantenimiento;
         
         /// <summary>
         /// lbSeleccionarSucursalmantenimiento control.
@@ -211,12 +184,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         protected global::System.Web.UI.WebControls.Button btnGuardar;
         
         /// <summary>
-        /// btnVolver control.
+        /// btnModificarMantenimiento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolver;
+        protected global::System.Web.UI.WebControls.Button btnModificarMantenimiento;
     }
 }

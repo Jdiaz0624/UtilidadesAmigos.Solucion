@@ -26,86 +26,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
             gvOficinas.DataBind();
         }
         #endregion
-        #region MOSTRAR Y OCULTAR CONTROLES
-        private void MostrarControles()
-        {
-            lbDescripcion.Visible = false;
-            txtDescripcionOficina.Visible = false;
-            btnConsultar.Visible = false;
-            btnNuevo.Visible = false;
-            btnRestabelcer.Visible = false;
-            btnModificar.Visible = false;
-            btnEliminar.Visible = false;
-            btnExportar.Visible = false;
-            gvOficinas.Visible = false;
 
-            lbOficina.Visible = true;
-            txtDescripcionOficinaMAn.Visible = true;
-            lbClaveSeguridad.Visible = true;
-            txtClaveSeguridad.Visible = true;
-            cbEstatus.Visible = true;
-            btnGuardar.Visible = true;
-            btnVolver.Visible = true;
-
-            if (lbAccion.Text != "INSERT")
-            {
-                var SACARdATOOFICINA = Objdata.Value.BuscaOficinas(
-                    Convert.ToDecimal(lbIdOficina.Text), null);
-                foreach (var n in SACARdATOOFICINA)
-                {
-                    txtDescripcionOficinaMAn.Text = n.Oficina;
-                    cbEstatus.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
-                    if (cbEstatus.Checked == true)
-                    {
-                        cbEstatus.Visible = false;
-                    }
-                    else
-                    {
-                        cbEstatus.Visible = true;
-                    }
-                }
-            }
-        }
-
-        private void OcultarControles()
-        {
-            lbDescripcion.Visible = true;
-            txtDescripcionOficina.Visible = true;
-            btnConsultar.Visible = true;
-            btnNuevo.Visible = true;
-            btnRestabelcer.Visible = true;
-            btnModificar.Visible = true;
-            btnEliminar.Visible = true;
-            btnExportar.Visible = true;
-            gvOficinas.Visible = true;
-
-            lbOficina.Visible = false;
-            txtDescripcionOficinaMAn.Visible = false;
-            lbClaveSeguridad.Visible = false;
-            txtClaveSeguridad.Visible = false;
-            cbEstatus.Visible = false;
-            btnGuardar.Visible = false;
-            btnVolver.Visible = false;
-
-            txtDescripcionOficinaMAn.Text = string.Empty;
-            txtDescripcionOficina.Text = string.Empty;
-            cbEstatus.Checked = true;
-            cbEstatus.Visible = false;
-            txtClaveSeguridad.Text = string.Empty;
-            MostrarOficinas();
-            txtDescripcionOficinaMAn.Enabled = true;
-            cbEstatus.Enabled = true;
-
-            btnConsultar.Enabled = true;
-            btnNuevo.Enabled = true;
-            btnRestabelcer.Enabled = false;
-            btnModificar.Enabled = false;
-            btnEliminar.Enabled = false;
-            btnExportar.Enabled = true;
-        }
-        #endregion
         #region MANTENBIMIENTO DE OFICINAS
-        private void MANOficinas()
+        private void MANOficinas( string Accion)
         {
             if (Session["IdUsuario"] == null)
             {
@@ -117,6 +40,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
                     UtilidadesAmigos.Logica.Entidades.Mantenimientos.EOficinas Mantenimiento = new Logica.Entidades.Mantenimientos.EOficinas();
 
                     Mantenimiento.IdOficina = Convert.ToDecimal(lbIdOficina.Text);
+                    Mantenimiento.IdSucursal = Convert.ToDecimal(ddlSeleccionarSucursalMantenimiento.SelectedValue);
                     Mantenimiento.Oficina = txtDescripcionOficinaMAn.Text;
                     Mantenimiento.Estatus0 = cbEstatus.Checked;
                     Mantenimiento.UsuarioAdiciona = Convert.ToDecimal(Session["IdUsuario"]);
@@ -124,7 +48,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
                     Mantenimiento.UsuarioModifica = Convert.ToDecimal(Session["IdUsuario"]);
                     Mantenimiento.FechaModifica = DateTime.Now;
 
-                    var MAn = Objdata.Value.MantenimientoOficinas(Mantenimiento, lbAccion.Text);
+                    var MAn = Objdata.Value.MantenimientoOficinas(Mantenimiento, Accion);
 
                 }
                 catch (Exception) {
@@ -143,6 +67,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSucursalConsulta, ObjdataSistema.Value.BuscaListas("SUCURSAL", null, null), true);
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSucursalMantenimiento, ObjdataSistema.Value.BuscaListas("SUCURSAL", null, null));
                 MostrarOficinas();
+                ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
             }
         }
 
@@ -150,6 +75,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
         {
             gvOficinas.PageIndex = e.NewPageIndex;
             MostrarOficinas();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
@@ -178,61 +104,44 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
                                     FechaModifica = n.FechaModifica
                                 }).ToList();
                 UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Oficinas", Exportar);
+                ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
             }
             catch (Exception) { }
 
                
         }
 
-        protected void btnNuevo_Click(object sender, EventArgs e)
-        {
-            lbIdOficina.Text = "0";
-            lbAccion.Text = "INSERT";
-            MostrarControles();
  
-            cbEstatus.Checked = true;
-            cbEstatus.Visible = false;
-          //  MANOficinas();
-        }
 
         protected void btnRestabelcer_Click(object sender, EventArgs e)
         {
-            OcultarControles();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-
-            //VERIFICAMOS LOS CAMPOS VACIOS
-            if (string.IsNullOrEmpty(txtDescripcionOficinaMAn.Text.Trim()))
+            string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridad.Text.Trim()) ? null : txtClaveSeguridad.Text.Trim();
+            //VALIDAMOS LA CLAVE DE SEGURIDAD
+            var ValidarClave = ObjdataSistema.Value.BuscaClaveSeguridad(
+                new Nullable<decimal>(),
+                UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(_ClaveSeguridad));
+            if (ValidarClave.Count() < 1)
             {
-                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "CamposVacios();", true);
+                ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadNoValida", "ClaveSeguridadNoValida();", true);
+                ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
             }
             else
             {
-                //VERIFICAMOS QUE EL CAMPO CLAVE DE SEGURIDAD NO ESTE VACIO
-                if (string.IsNullOrEmpty(txtClaveSeguridad.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ClaveSeguridadVacio();", true);
-                }
-                else
-                {
-                    //VALIDAMOS LA CLAVE DE SEGURIDAD
-                    var ValidarClave = ObjdataSistema.Value.BuscaClaveSeguridad(
-                        new Nullable<decimal>(),
-                        UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(txtClaveSeguridad.Text));
-                    if (ValidarClave.Count() < 1)
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ClaveSeguridadNoValida();", true);
-                    }
-                    else
-                    {
-                        //REALIZAMOS EL MANTENIMIENTO
-                        MANOficinas();
-                        OcultarControles();
-                    }
-                }
+                lbIdOficina.Text = "0";
+                MANOficinas("INSERT");
+                ClientScript.RegisterStartupScript(GetType(), "RegistroGuardado", "RegistroGuardado();", true);
+                MostrarOficinas();
+                ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
             }
+
+          
+
+
         }
 
         protected void gvOficinas_SelectedIndexChanged(object sender, EventArgs e)
@@ -247,47 +156,47 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
             foreach (var n in SacarDatos)
             {
                 lbIdOficina.Text = n.IdOficina.ToString();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarSucursalMantenimiento, Convert.ToDecimal(n.IdSucursal).ToString());
+                txtDescripcionOficinaMAn.Text = n.Oficina;
+                cbEstatus.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
             }
             btnConsultar.Enabled = false;
-            btnNuevo.Enabled = false;
             btnRestabelcer.Enabled = true;
-            btnModificar.Enabled = true;
-            btnEliminar.Enabled = true;
             btnExportar.Enabled = false;
+            ClientScript.RegisterStartupScript(GetType(), "DesbloquearControles", "DesbloquearControles();", true);
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            lbAccion.Text = "UPDATE";
-            MostrarControles();
+            
+
         }
 
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-            lbAccion.Text = "DELETE";
-            MostrarControles();
-            txtDescripcionOficinaMAn.Enabled = false;
-            cbEstatus.Enabled = false;
-            cbEstatus.Visible = true;
-        }
-
-        protected void btnVolver_Click(object sender, EventArgs e)
-        {
-            OcultarControles();
-        }
-
-        protected void gvOficinas_DataBound(object sender, EventArgs e)
+        protected void btnModificar_Click1(object sender, EventArgs e)
         {
             
         }
 
-        protected void gvOficinas_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void btnModificarMantenimiento_Click(object sender, EventArgs e)
         {
-            try
+            string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridad.Text.Trim()) ? null : txtClaveSeguridad.Text.Trim();
+            //VALIDAMOS LA CLAVE DE SEGURIDAD
+            var ValidarClave = ObjdataSistema.Value.BuscaClaveSeguridad(
+                new Nullable<decimal>(),
+                UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(_ClaveSeguridad));
+            if (ValidarClave.Count() < 1)
             {
-                e.Row.Cells[1].Visible = false;
+                ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadNoValida", "ClaveSeguridadNoValida();", true);
+                ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
             }
-            catch (Exception) { }
+            else
+            {
+                //lbIdOficina.Text = "0";
+                MANOficinas("UPDATE");
+                ClientScript.RegisterStartupScript(GetType(), "RegistroModificado", "RegistroModificado();", true);
+                MostrarOficinas();
+                ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
+            }
         }
     }
 }
