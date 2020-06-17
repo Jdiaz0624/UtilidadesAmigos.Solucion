@@ -44,7 +44,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             var Buscar = ObjData.BuscaUsuarios(
                 new Nullable<decimal>(),
-                null, null,
+                null, null, null, null,
                 _Usuario,
                 null, null, null);
             gbListadoUsuarios.DataSource = Buscar;

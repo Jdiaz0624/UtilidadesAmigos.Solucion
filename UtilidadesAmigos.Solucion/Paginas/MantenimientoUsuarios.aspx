@@ -19,235 +19,7 @@
         }
     </style>
     <script type="text/javascript">
-        function ErrorMantenimiento() {
-            alert("Error al realizar el mantenimiento, favor de contactar a tecnologia");
-            return false;
-        }
 
-         function ValidarClaveSeguridad() {
-             alert("La clave de seguridad ingresada no es valida, favor de verificar");
-             $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val("");
-             $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").css("border-color", "blue");
-            return false;
-        }
-       
-        function DesactivarBotones() {
-            $("#btnModificarConsulta").attr("disabled", "disabled");
-            $("#<%=btnDeshabilitar.ClientID%>").attr("disabled", "disabled");
-       
-
-            $("#btnNuevo").removeAttr("disabled", true);
-            $("#<%=btnConsultar.ClientID%>").removeAttr("disabled", true);
-            $("#<%=btnExportar.ClientID%>").removeAttr("disabled", true);
-        }
-
-        function ActivarBotones() {
-            $("#btnNuevo").attr("disabled", "disabled");
-            $("#<%=btnConsultar.ClientID%>").attr("disabled", "disabled");
-            $("#<%=btnExportar.ClientID%>").attr("disabled", "disabled");
-
-            $("#btnModificarConsulta").removeAttr("disabled", true);
-            $("#<%=btnDeshabilitar.ClientID%>").removeAttr("disabled", true);
-        }
-
-        function LimpiarControles() {
-            $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val("");
-            $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val("");
-            $("#<%=txtClaveMantenimiento.ClientID%>").val("");
-            $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val("");
-            $("#<%=txtEmailMantenimiento.ClientID%>").val("");
-            $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val("");
-           // $("#").val("");
-
-        }
-
-        function SeleccionarEstatus() {
-            $("#<%=cbEstatusMantenimiento.ClientID%>").prop("checked", true);
-            $("#<%=cbLlevaEmailMantenimiento.ClientID%>").prop("checked", true);
-            $("#<%=cbCambiaClave.ClientID%>").prop("checked", true);
-        }
-
-        function CleanControls() {
-            $("#<%=txtUsuarioConsulta.ClientID%>").val("");
-            $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val("");
-            $("#<%=txtClaveMantenimiento.ClientID%>").val("");
-            $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val("");
-            $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val("");
-            $("#<%=txtEmailMantenimiento.ClientID%>").val("");
-            $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val("");
-        }
-        $(document).ready(function () {
-          //  ActivarBotones();
-            
-            //INICIO DEL EVENTO CLICK DEL BOTON NUEVO
-            $("#btnNuevo").click(function () {
-                LimpiarControles();
-                $("#<%=btnModificar.ClientID%>").hide();
-                $("#<%=btnGuardar.ClientID%>").show();
-
-                $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").removeAttr("disabled", true);
-                 $("#<%=txtClaveMantenimiento.ClientID%>").removeAttr("disabled", true);
-                 $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").removeAttr("disabled", true);
-                 SeleccionarEstatus();
-
-                 $("#<%=lbClaveMantenimiento.ClientID%>").show();
-                 $("#<%=txtClaveMantenimiento.ClientID%>").show();
-                 $("#<%=lbConfirmarClaveMantenimiento.ClientID%>").show();
-                 $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").show();
-
-            });
-
-            //EVENTO CLICK DEL BOTON GUARDAR
-            $("#<%=btnGuardar.ClientID%>").click(function () {
-              //VALIDAMOS QUE LOS CONTROLES OBLIGATORIOS NO ESTEN VACIOS
-              //VALIDAMOS EL CAMPO DEPARTAMENTO
-                var ValidarDepartamento = $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").val();
-                if (ValidarDepartamento < 1) {
-                    alert("El campo departamento no puede estar vacio, favor de verificar");
-                    $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").css("border-color", "red");
-                    return false;
-                }
-                else
-                {
-                     //VALIDAMOS EL CAMPO PERFIL
-                    var ValidarPerfil = $("#<%=ddlSeleccionarPerfilMantenimiento.ClientID%>").val();
-                    if (ValidarPerfil < 1) {
-                        alert("El campo perfil no puede estar vacio, favor de verificar");
-                        $("#<%=ddlSeleccionarPerfilMantenimiento.ClientID%>").css("border-color", "red");
-                        return false;
-                    }
-                    else
-                    {
-                         //VALIDAMOS EL CAMPO NOMBRE DE USUARIO
-                        var ValidarNombreUsuario = $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val().length;
-                        if (ValidarNombreUsuario < 1) {
-                            alert("El campo nombre de usuario no puede estar vacio, favor de verificar");
-                            $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").css("border-color", "red");
-                            return false;
-                        }
-                        else {
-                            //VALIDAMOS EL NOMBRE DE LA PERSONA
-                            var ValidarNombrePersona = $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val().length;
-                            if (ValidarNombrePersona < 1) {
-                                alert("El campo nombre de Persona no puede estar vacio, favor de verificar");
-                                $("#<%=txtNombrePersonaMantenimiento.ClientID%>").css("border-color", "red");
-                                return false;
-                            }
-                            else {
-                                //VALIDAMOS EL CAMPO CLAVE
-                                var ValidarClave = $("#<%=txtClaveMantenimiento.ClientID%>").val().length;
-                                if (ValidarClave < 1) {
-                                    alert("El campo clave no puede estar vacio, favor de verificar");
-                                    $("#<%=txtClaveMantenimiento.ClientID%>").css("border-color", "red");
-                                    return false;
-                                }
-                                else {
-                                     //VALIDAMOS EL CAMPO CONFIRMACION DE CLAVE
-                                     var ValidarConfirmarClave = $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val().length;
-                                     if (ValidarConfirmarClave < 1) {
-                                         alert("El campo confirmación de clave no puede estar vacio, favor de verificar");
-                                         $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").css("border-color", "red");
-                                         return false;
-                                     }
-                                     else {
-                                         //VALIDAMOS EL CAMPO TIPO DE PERSONA
-                                         var ValidarTipoPersona = $("#<%=ddlSeleccionarTipoPersona.ClientID%>").val();
-                                         if (ValidarTipoPersona < 1) {
-                                             alert("El campo tipo de persona no puede estar vacio, favor de verificar");
-                                             $("#<%=ddlSeleccionarTipoPersona.ClientID%>").css("border-color", "red");
-                                             return false;
-                                         }
-                                         else
-                                         {
-                                             //VALIDAMOS EL CAMPO CLAVE DE SEGURIDAD
-                                                 var ValidarClaveSeguridad = $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val();
-                                                 if (ValidarClaveSeguridad < 1) {
-                                                     alert("El campo clave de seguridad no puede estar vacio, favor de verificar");
-                                                     $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").css("border-color", "red");
-                                                     return false;
-                                                 }
-                                                 else {
-                                                     //VALIDAMOS QUE LAS CLAVES INGERSADAS CONCUERDAN
-                                                     if (ValidarClave != ValidarConfirmarClave) {
-                                                         alert("Las claves ingresadas no concuerdan, favor de verificar");
-                                                         $("#<%=txtClaveMantenimiento.ClientID%>").css("border-color", "blue");
-                                                         $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").css("border-color", "blue");
-                                                         return false;
-                                                     }
-                                                 }
-                                         }
-                                     }
-                                }
-                            }
-                        }
-                    }
-                }
-               
-              
-            });
-            //FIN DEL EVENTO CLICK DEL BOTON GUARDAR
-            $("#<%=btnModificar.ClientID%>").click(function () {
-                 var ValidarDepartamento = $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").val();
-                 if (ValidarDepartamento < 1) {
-                     alert("El campo departamento no puede estar vaico, favor de verificar");
-                     $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").css("border-color", "red");
-                     return false;
-                 }
-                 else {
-                     var ValidarPerfil = $("#<%=ddlSeleccionarPerfilMantenimiento.ClientID%>").val();
-                     if (ValidarPerfil < 1) {
-                         alert("El campo perfil no puede estar vacio, favor de verificar");
-                         $("#<%%>").css("border-color", "red");
-                         return false;
-                     }
-                     else {
-                         var ValidarNombrePersona = $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val().length;
-                         if (ValidarNombrePersona < 1) {
-                             alert("El campo nombre de persona no puede estar vacio, favor de verificar");
-                             $("#<%=txtNombrePersonaMantenimiento.ClientID%>").css("border-color", "red");
-                             return false;
-                         }
-                         else {
-                             var ValidarTipoPersona = $("#<%=ddlSeleccionarTipoPersona.ClientID%>").val();
-                             if (ValidarTipoPersona < 1) {
-                                 alert("El campo tipo de persona no puede estar vacio, favor de verificar");
-                                 $("#<%=ddlSeleccionarTipoPersona.ClientID%>").css("border-color", "red");
-                                 return false;
-                             }
-                             else {
-                                 var ValidarClaveSeguridad = $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val().length;
-                                 if (ValidarClaveSeguridad < 1) {
-                                     alert("El campo clave de seguridad no puede estar vacio, favor de verificar");
-                                     $("#<%%>").css("border-color", "red");
-                                     return false;
-                                 }
-                             }
-                         }
-                     }
-                 }
-
-            });
-            //INICIO DEL EVENTO CLICK DEL BOTON MODIFICAR
-            $("#btnModificarConsulta").click(function () {
-                $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").attr("disabled", "disabled");
-                 $("#<%=txtClaveMantenimiento.ClientID%>").attr("disabled", "disabled");
-                 $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").attr("disabled", "disabled");
-
-                 $("#<%=btnGuardar.ClientID%>").hide();
-                 $("#<%=btnModificar.ClientID%>").show();
-
-                 $("#<%=lbClaveMantenimiento.ClientID%>").hide();
-                 $("#<%=txtClaveMantenimiento.ClientID%>").hide();
-                 $("#<%=lbConfirmarClaveMantenimiento.ClientID%>").hide();
-                 $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").hide();
-
-                
-                //VALIDAMOS EL CAMPO DEPARTAMENTO
-
-
-            });
-            //FIN DEL EVENTO CLICK DEL BOTON MODIFICAR
-        });
     </script>
 
     <div class="container-fluid">
@@ -256,15 +28,27 @@
             <asp:Label ID="lbMantenimientoUsuario" runat="server" Text="IdMantenimiento" Visible="false"></asp:Label>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbSeleccionarSucursal" runat="server" Text="Sucursal"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarSucursalConsulta" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarSucursalConsulta_SelectedIndexChanged"  runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
+            </div>
+
+                <div class="form-group col-md-3">
+                <asp:Label ID="lbSeleccionaroficinaConsulta" runat="server" Text="Oficina"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionaroficinaConsulta" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionaroficinaConsulta_SelectedIndexChanged" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
+            </div>
+
+            <div class="form-group col-md-3">
                 <asp:Label ID="lbSeleccionarDepartamentoConsulta" runat="server" Text="Departamento"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarDepartamentoConsulta" runat="server" ToolTip="Seleccionar Departamento" CssClass="form-control"></asp:DropDownList>
             </div>
-              <div class="form-group col-md-4">
+
+              <div class="form-group col-md-3">
                      <asp:Label ID="lbSeleccionarPerfilConsulta" runat="server" Text="Perfil"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarPerfilConsulta" runat="server" ToolTip="Seleccionar Perfil" CssClass="form-control"></asp:DropDownList>
             </div>
-              <div class="form-group col-md-4">
+
+              <div class="form-group col-md-3">
                       <asp:Label ID="lbUsuarioConsulta" runat="server" Text="Consulta"></asp:Label>
                <asp:TextBox ID="txtUsuarioConsulta" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </div>
@@ -319,46 +103,57 @@
           <asp:UpdatePanel ID="UsuarioUpdatePanel" runat="server" Visible="true">
               <ContentTemplate>
                   <div class="form-row">
-                      <div class="form-group col-md-6">
+                       <div class="form-group col-md-4">
+                          <asp:Label ID="lbSeleccionarSucursalMantenimiento" runat="server" Text="Sucursal"></asp:Label>
+                           <asp:DropDownList ID="ddlSeleccionarSucursalMantenimeinto" runat="server" CssClass="form-control" ToolTip="Seleccionar Sucursal" OnSelectedIndexChanged="ddlSeleccionarSucursalMantenimeinto_SelectedIndexChanged"></asp:DropDownList>
+                         
+                      </div>
+
+                       <div class="form-group col-md-4">
+                          <asp:Label ID="lbSeleccionarOficinaMantenimiento" runat="server" Text="Oficina"></asp:Label>
+                           <asp:DropDownList ID="ddlSeleccionarOficinaMantenimiento" runat="server" CssClass="form-control" ToolTip="Seleccionar Oficina" OnSelectedIndexChanged="ddlSeleccionarOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
+                      </div>
+
+                      <div class="form-group col-md-4">
                           <asp:Label ID="lbSeleccionarDepartamentoMantenimiento" runat="server" Text="Departamento"></asp:Label>
                           <asp:DropDownList ID="ddlSeleccionarDepartamentoMantenimiento" runat="server" ToolTip="Seleccionar Departamento" CssClass="form-control"></asp:DropDownList>
                       </div>
 
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-4">
                           <asp:Label ID="lbSeleccionarPerfilMantenimiento" runat="server" Text="Perfil"></asp:Label>
                           <asp:DropDownList ID="ddlSeleccionarPerfilMantenimiento" runat="server" ToolTip="Seleccionar Perfil" CssClass="form-control"></asp:DropDownList>
                       </div>
 
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-4">
                           <asp:Label ID="lbNombreUsuarioMantenimiento" runat="server" Text="Usuario"></asp:Label>
                           <asp:TextBox ID="txtNombreUsuarioMantenimiento" AutoCompleteType="Disabled" runat="server" MaxLength="20" CssClass="form-control"></asp:TextBox>
                       </div>
 
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-4">
                           <asp:Label ID="lbNombrePersonaMantenimeinto" runat="server" Text="Nombre"></asp:Label>
                           <asp:TextBox ID="txtNombrePersonaMantenimiento" AutoCompleteType="Disabled" runat="server" MaxLength="150" CssClass="form-control"></asp:TextBox>
                       </div>
 
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-4">
                           <asp:Label ID="lbClaveMantenimiento" runat="server" Text="Clave"></asp:Label>
                           <asp:TextBox ID="txtClaveMantenimiento" TextMode="Password" runat="server" MaxLength="20" CssClass="form-control"></asp:TextBox>
                       </div>
 
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-4">
                           <asp:Label ID="lbConfirmarClaveMantenimiento" runat="server" Text="Confirmar Clave"></asp:Label>
                           <asp:TextBox ID="txtConfirmarClaveMantenimiento" runat="server" TextMode="Password" MaxLength="20" CssClass="form-control"></asp:TextBox>
                       </div>
 
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-4">
                           <asp:Label ID="lbEmailMantenimiento" runat="server" Text="Email"></asp:Label>
                           <asp:TextBox ID="txtEmailMantenimiento" AutoCompleteType="Disabled" runat="server" MaxLength="100" CssClass="form-control"></asp:TextBox>
                       </div>
 
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-4">
                           <asp:Label ID="lbTipoPersonaMantenimiento" runat="server" Text="Tipo de Persona"></asp:Label>
                          <asp:DropDownList ID="ddlSeleccionarTipoPersona" runat="server" ToolTip="Seleccionar el Tipo de Persona" CssClass="form-control"></asp:DropDownList>
                       </div>
-                          <div class="form-group col-md-6">
+                          <div class="form-group col-md-4">
                           <asp:Label ID="lbClaveSeguridad" runat="server" Text="Clave de Seguridad"></asp:Label>
                           <asp:TextBox ID="txtClaveSeguridadMantenimiento" runat="server" TextMode="Password" MaxLength="20" CssClass="form-control"></asp:TextBox>
                       </div>

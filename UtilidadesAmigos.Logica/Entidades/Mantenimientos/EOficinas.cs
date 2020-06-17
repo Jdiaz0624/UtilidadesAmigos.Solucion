@@ -10,6 +10,10 @@ namespace UtilidadesAmigos.Logica.Entidades.Mantenimientos
     {
         public decimal? IdOficina {get;set;}
 
+        public decimal? IdSucursal {get;set;}
+
+        public string Sucursal {get;set;}
+
         public string Oficina {get;set;}
 
         public System.Nullable<bool> Estatus0 {get;set;}

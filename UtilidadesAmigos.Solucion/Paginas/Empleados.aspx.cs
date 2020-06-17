@@ -16,17 +16,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region MOSTRAR EL LISTADO DE LOS EMPLEADOS
         private void MostrarListadoEmpleados()
         {
-            decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? decimal.Parse(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
-            decimal? _Departamento = ddlDepartamentoConsulta.SelectedValue != "-1" ? decimal.Parse(ddlDepartamentoConsulta.SelectedValue) : new Nullable<decimal>();
-            string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.Text) ? null : txtNombreConsulta.Text.Trim();
+            //decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? decimal.Parse(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
+            //decimal? _Departamento = ddlDepartamentoConsulta.SelectedValue != "-1" ? decimal.Parse(ddlDepartamentoConsulta.SelectedValue) : new Nullable<decimal>();
+            //string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.Text) ? null : txtNombreConsulta.Text.Trim();
 
-            var Buscar = Objdata.Value.BuscaEmpleado(
-                _Oficina,
-                _Departamento,
-                null,
-                _Nombre);
-            gvEmpleados.DataSource = Buscar;
-            gvEmpleados.DataBind();
+            //var Buscar = Objdata.Value.BuscaEmpleado(
+            //    _Oficina,
+            //    _Departamento,
+            //    null,
+            //    _Nombre);
+            //gvEmpleados.DataSource = Buscar;
+            //gvEmpleados.DataBind();
         }
         #endregion
         #region CARGAR DROPS
@@ -79,26 +79,26 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             if (lbAccion.Text != "INSERT")
             {
-                var SacarDatos = Objdata.Value.BuscaEmpleado(
-                    null, null, Convert.ToDecimal(lbIdEmpleado.Text));
-                foreach (var n in SacarDatos)
-                {
-                    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaMantenimiento, ObjdataComun.Value.BuscaListas("OFICINA", null, null));
-                    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlOficinaMantenimiento, n.IdOficina.ToString());
-                    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamenoMantenimiento, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlOficinaMantenimiento.SelectedValue, null));
-                    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlDepartamenoMantenimiento, n.IdDepartamento.ToString());
-                    txtNombreMantenimiento.Text = n.Nombre;
-                    cbEstatusMantenimiento.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
+                //var SacarDatos = Objdata.Value.BuscaEmpleado(
+                //    null, null, Convert.ToDecimal(lbIdEmpleado.Text));
+                //foreach (var n in SacarDatos)
+                //{
+                //    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaMantenimiento, ObjdataComun.Value.BuscaListas("OFICINA", null, null));
+                //    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlOficinaMantenimiento, n.IdOficina.ToString());
+                //    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamenoMantenimiento, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlOficinaMantenimiento.SelectedValue, null));
+                //    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlDepartamenoMantenimiento, n.IdDepartamento.ToString());
+                //    txtNombreMantenimiento.Text = n.Nombre;
+                //    cbEstatusMantenimiento.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
 
-                    if (cbEstatusMantenimiento.Checked == true)
-                    {
-                        cbEstatusMantenimiento.Visible = false;
-                    }
-                    else
-                    {
-                        cbEstatusMantenimiento.Visible = true;
-                    }
-                }
+                //    if (cbEstatusMantenimiento.Checked == true)
+                //    {
+                //        cbEstatusMantenimiento.Visible = false;
+                //    }
+                //    else
+                //    {
+                //        cbEstatusMantenimiento.Visible = true;
+                //    }
+                //}
             }
         }
         private void OcultarControles()
@@ -194,23 +194,23 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void gvEmpleados_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            GridViewRow gb = gvEmpleados.SelectedRow;
+            //GridViewRow gb = gvEmpleados.SelectedRow;
 
-            var Seleccionar = Objdata.Value.BuscaEmpleado(
-                null, null, Convert.ToDecimal(gb.Cells[1].Text));
-            gvEmpleados.DataSource = Seleccionar;
-            gvEmpleados.DataBind();
-            foreach (var n in Seleccionar)
-            {
-                lbIdEmpleado.Text = n.IdEmpleado.ToString();
-            }
+            //var Seleccionar = Objdata.Value.BuscaEmpleado(
+            //    null, null, Convert.ToDecimal(gb.Cells[1].Text));
+            //gvEmpleados.DataSource = Seleccionar;
+            //gvEmpleados.DataBind();
+            //foreach (var n in Seleccionar)
+            //{
+            //    lbIdEmpleado.Text = n.IdEmpleado.ToString();
+            //}
 
-            btnConsultar.Enabled = false;
-            btnNuevo.Enabled = false;
-            btnatrasConsulta.Enabled = true;
-            btnModificar.Enabled = true;
-            btnDeshabilitar.Enabled = true;
-            btnExportar.Enabled = false;
+            //btnConsultar.Enabled = false;
+            //btnNuevo.Enabled = false;
+            //btnatrasConsulta.Enabled = true;
+            //btnModificar.Enabled = true;
+            //btnDeshabilitar.Enabled = true;
+            //btnExportar.Enabled = false;
         }
 
         protected void btnGuardarMantenimiento_Click(object sender, EventArgs e)
@@ -270,30 +270,30 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
-            try {
-                decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? decimal.Parse(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
-                decimal? _Departamento = ddlDepartamentoConsulta.SelectedValue != "-1" ? decimal.Parse(ddlDepartamentoConsulta.SelectedValue) : new Nullable<decimal>();
-                string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.Text.Trim()) ? null : txtNombreConsulta.Text.Trim();
+            //try {
+            //    decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? decimal.Parse(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
+            //    decimal? _Departamento = ddlDepartamentoConsulta.SelectedValue != "-1" ? decimal.Parse(ddlDepartamentoConsulta.SelectedValue) : new Nullable<decimal>();
+            //    string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.Text.Trim()) ? null : txtNombreConsulta.Text.Trim();
 
-                var Exportar = (from n in Objdata.Value.BuscaEmpleado(
-                    _Oficina,
-                    _Departamento,
-                    new Nullable<decimal>(),
-                    _Nombre)
-                                select new
-                                {
-                                    Oficina=n.Oficina,
-                                    Departamento=n.Departamento,
-                                    Nombre=n.Nombre,
-                                    Estatus=n.Estatus,
-                                    CreadoPor=n.CreadoPor,
-                                    FechaCreado=n.FechaAdiciona,
-                                    ModificadoPor=n.ModificadoPor,
-                                    FechaModifica=n.FechaModifica
-                                }).ToList();
-                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Empleados", Exportar);
-            }
-            catch (Exception) { }
+            //    var Exportar = (from n in Objdata.Value.BuscaEmpleado(
+            //        _Oficina,
+            //        _Departamento,
+            //        new Nullable<decimal>(),
+            //        _Nombre)
+            //                    select new
+            //                    {
+            //                        Oficina=n.Oficina,
+            //                        Departamento=n.Departamento,
+            //                        Nombre=n.Nombre,
+            //                        Estatus=n.Estatus,
+            //                        CreadoPor=n.CreadoPor,
+            //                        FechaCreado=n.FechaAdiciona,
+            //                        ModificadoPor=n.ModificadoPor,
+            //                        FechaModifica=n.FechaModifica
+            //                    }).ToList();
+            //    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Empleados", Exportar);
+            //}
+            //catch (Exception) { }
         }
 
         protected void ddlOficinaConsulta_SelectedIndexChanged(object sender, EventArgs e)

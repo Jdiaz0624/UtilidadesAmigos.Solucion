@@ -15,10 +15,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
         #region MOSTRAR EL LISTADO DE LAS OFICINAS
         private void MostrarOficinas()
         {
+            decimal? _Sucursal = ddlSeleccionarSucursalConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarSucursalConsulta.SelectedValue) : new Nullable<decimal>();
             string _Oficina = string.IsNullOrEmpty(txtDescripcionOficina.Text.Trim()) ? null : txtDescripcionOficina.Text.Trim();
 
             var Buscar = Objdata.Value.BuscaOficinas(
                 new Nullable<decimal>(),
+                _Sucursal,
                 _Oficina);
             gvOficinas.DataSource = Buscar;
             gvOficinas.DataBind();
@@ -137,6 +139,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
         {
             if (!IsPostBack)
             {
+                //CARGAMOS LAS LISTAS DESPLEGABLES
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSucursalConsulta, ObjdataSistema.Value.BuscaListas("SUCURSAL", null, null), true);
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSucursalMantenimiento, ObjdataSistema.Value.BuscaListas("SUCURSAL", null, null));
                 MostrarOficinas();
             }
         }
@@ -155,9 +160,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
         protected void btnExportar_Click(object sender, EventArgs e)
         {
             try {
+                decimal? _Sucursal = ddlSeleccionarSucursalConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarSucursalConsulta.SelectedValue) : new Nullable<decimal>();
+                string _Oficina = string.IsNullOrEmpty(txtDescripcionOficina.Text.Trim()) ? null : txtDescripcionOficina.Text.Trim();
+
                 var Exportar = (from n in Objdata.Value.BuscaOficinas(
                 new Nullable<decimal>(),
-                txtDescripcionOficina.Text)
+                _Sucursal,
+                _Oficina)
                                 select new
                                 {
                                     IdOficina = n.IdOficina,

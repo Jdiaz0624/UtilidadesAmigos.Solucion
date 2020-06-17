@@ -31,14 +31,18 @@ namespace UtilidadesAmigos.Logica.Logica
 
         #region MANTENIMIENTO DE USUARIOS
         //LISTADO DE USUARIOS
-        public List<UtilidadesAmigos.Logica.Entidades.EUsuarios> BuscaUsuarios(decimal? IdUsuario = null, decimal? IdDepartamento = null, decimal? IdPerfil = null, string UsuarioConsulta = null, string Usuario = null, string Clave = null, bool? Estatus = null)
+        public List<UtilidadesAmigos.Logica.Entidades.EUsuarios> BuscaUsuarios(decimal? IdUsuario = null, decimal? IdSucursal = null, decimal? IdOficina = null, decimal? IdDepartamento = null, decimal? IdPerfil = null, string UsuarioConsulta = null, string Usuario = null, string Clave = null, bool? Estatus = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var Buscar = (from n in Objdata.SP_BUSCA_USUARIO(IdUsuario, IdDepartamento, IdPerfil, UsuarioConsulta, Usuario, Clave, Estatus)
+            var Buscar = (from n in Objdata.SP_BUSCA_USUARIO(IdUsuario, IdSucursal, IdOficina, IdDepartamento, IdPerfil, UsuarioConsulta, Usuario, Clave, Estatus)
                           select new Entidades.EUsuarios
                           {
                               IdUsuario = n.IdUsuario,
+                              IdSucursal=n.IdSucursal,
+                              Sucursal=n.Sucursal,
+                              IdOficina=n.IdOficina,
+                              Oficina=n.Oficina,
                               IdDepartamento=n.IdDepartamento,
                               Departamento=n.Departamento,
                               IdPerfil=n.IdPerfil,
@@ -71,6 +75,8 @@ namespace UtilidadesAmigos.Logica.Logica
 
             var Usuario = Objdata.SP_MANTENIMIENTO_USUARIOS(
                 Item.IdUsuario,
+                Item.IdSucursal,
+                Item.IdOficina,
                 Item.IdDepartamento,
                 Item.IdPerfil,
                 Item.Usuario,
@@ -90,6 +96,8 @@ namespace UtilidadesAmigos.Logica.Logica
                                  select new UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios
                                  {
                                      IdUsuario=n.IdUsuario,
+                                     IdSucursal=n.IdSucursal,
+                                     IdOficina=n.IdOficina,
                                      IdDepartamento=n.IdDepartamento,
                                      IdPerfil=n.IdPerfil,
                                      Usuario=n.Usuario,
@@ -1932,6 +1940,11 @@ namespace UtilidadesAmigos.Logica.Logica
                               Ramo=n.Ramo,
                               SubRamo=n.SubRamo,
                               Cliente=n.Cliente,
+                              TelefonoResidencia=n.TelefonoResidencia,
+                              TelefonoOficina=n.TelefonoOficina,
+                              Celular=n.Celular,
+                              fax=n.fax,
+                              Otro=n.Otro,
                               Direccion=n.Direccion,
                               UbicacionCliente=n.UbicacionCliente,
                               ProvinciaCliente=n.ProvinciaCliente,

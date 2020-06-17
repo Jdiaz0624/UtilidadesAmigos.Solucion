@@ -53,7 +53,12 @@
         <asp:Label ID="lbUsuarioConectado" runat="server" Text="Usuario Conectado"></asp:Label>
     </div>
     <div>
-        <asp:Label ID="lbDepartamento" runat="server" Text="Departamento"></asp:Label>
+      
+        <asp:Label ID="lbSucursal" runat="server" Visible="true" Text="iDPerfil"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Visible="true" Text=" - "></asp:Label>
+        <asp:Label ID="lbOficina" runat="server" Visible="true" Text="iDPerfil"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Visible="true" Text=" - "></asp:Label>
+          <asp:Label ID="lbDepartamento" runat="server" Text="Departamento"></asp:Label>
         <asp:Label ID="lbIdPerfil" runat="server" Visible="false" Text="iDPerfil"></asp:Label>
         <asp:Label ID="lbAccion" runat="server" Visible="false" Text="Accion"></asp:Label>
         <asp:Label ID="lbIdMantenimiento" runat="server" Visible="false" Text="0"></asp:Label>

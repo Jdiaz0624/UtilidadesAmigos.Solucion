@@ -10,6 +10,10 @@ namespace UtilidadesAmigos.Logica.Entidades
     {
         public System.Nullable<decimal> IdUsuario {get;set;}
 
+        public System.Nullable<decimal> IdSucursal {get;set;}
+
+        public System.Nullable<decimal> IdOficina {get;set;}
+
         public System.Nullable<decimal> IdDepartamento {get;set;}
 
         public System.Nullable<decimal> IdPerfil {get;set;}

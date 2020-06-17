@@ -29,6 +29,11 @@
        <!--FIN DEL ENCABEZADO DE LA PANTALLA-->
        <br />
        <div class="form-row">
+            <div class="form-group col-md-3">
+               <asp:Label ID="lbSucursalConsulta" Text="Sucursal" runat="server"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarSucursalConsulta" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
+           </div>
+
            <div class="form-group col-md-3">
                <asp:Label ID="lbDescripcion" Text="Oficina" runat="server"></asp:Label>
             <asp:TextBox ID="txtDescripcionOficina" runat="server" CssClass="form-control" Palceholder="Descripcion Oficina" MaxLength="100"></asp:TextBox>
@@ -70,13 +75,15 @@
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:CommandField ButtonType="Button"  ControlStyle-CssClass="btn btn-outline-primary btn-sm Custom" HeaderText="Select" ShowSelectButton="True" />
+                 
                 <asp:BoundField DataField="IdOficina"   HeaderText="IdOficina" />
+                 <asp:BoundField DataField="Sucursal"   HeaderText="Sucursal" />
                 <asp:BoundField DataField="Oficina"  HeaderText="Oficina" />
                 <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
                 <asp:BoundField DataField="Creadopor" HeaderText="Creado Por" />
                 <asp:BoundField DataField="FechaAdiciona" HeaderText="Fecha Creado" />
-                <asp:BoundField DataField="ModificadoPor" HeaderText="Modificado por" />
-                <asp:BoundField DataField="FechaModifica" HeaderText="Fecha Modifica" />
+             <%--   <asp:BoundField DataField="ModificadoPor" HeaderText="Modificado por" />
+                <asp:BoundField DataField="FechaModifica" HeaderText="Fecha Modifica" />--%>
             </Columns>
              <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
@@ -93,6 +100,10 @@
         <%--en esta parte agregamos los controles para el mantenimiento--%>
         <div class="container-fluid">
             <div class="form-row">
+                    <div class="form-group col-md-3">
+               <asp:Label ID="lbSeleccionarSucursalmantenimiento" Text="Sucursal" runat="server"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarSucursalMantenimiento" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
+           </div>
                 <div class="form-group col-md-3">
                     <asp:Label ID="lbOficina" Visible="false" runat="server" Text="Ingrese Oficina"></asp:Label>
                     <asp:TextBox ID="txtDescripcionOficinaMAn" Visible="false" runat="server" AutoCompleteType="Disabled" PlaceHolder="Descripcion de Oficina" CssClass="form-control"></asp:TextBox>

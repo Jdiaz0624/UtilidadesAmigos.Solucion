@@ -78,6 +78,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 lbUsuarioConectado.Text = n.Persona;
                 lbDepartamento.Text = n.Departamento;
+                lbSucursal.Text = n.Sucursal;
+                lbOficina.Text = n.Oficina;
                 lbIdPerfil.Text = n.IdPerfil.ToString();
             }
 

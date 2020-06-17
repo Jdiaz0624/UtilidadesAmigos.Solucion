@@ -9,9 +9,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
 {
     public partial class Inventario : System.Web.UI.Page
     {
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                //CARGAMOS LAS LISTAS DESPLEGABLES
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSucursalCOnsulta, ObjData.Value.BuscaListas("SUCURSAL", null, null), true);
+            }
         }
 
         protected void gvInventario_PageIndexChanging(object sender, GridViewPageEventArgs e)

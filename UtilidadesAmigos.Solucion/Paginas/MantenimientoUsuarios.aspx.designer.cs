@@ -31,6 +31,42 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Label lbMantenimientoUsuario;
         
         /// <summary>
+        /// lbSeleccionarSucursal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarSucursal;
+        
+        /// <summary>
+        /// ddlSeleccionarSucursalConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarSucursalConsulta;
+        
+        /// <summary>
+        /// lbSeleccionaroficinaConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionaroficinaConsulta;
+        
+        /// <summary>
+        /// ddlSeleccionaroficinaConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionaroficinaConsulta;
+        
+        /// <summary>
         /// lbSeleccionarDepartamentoConsulta control.
         /// </summary>
         /// <remarks>
@@ -155,6 +191,42 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UsuarioUpdatePanel;
+        
+        /// <summary>
+        /// lbSeleccionarSucursalMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarSucursalMantenimiento;
+        
+        /// <summary>
+        /// ddlSeleccionarSucursalMantenimeinto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarSucursalMantenimeinto;
+        
+        /// <summary>
+        /// lbSeleccionarOficinaMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarOficinaMantenimiento;
+        
+        /// <summary>
+        /// ddlSeleccionarOficinaMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarOficinaMantenimiento;
         
         /// <summary>
         /// lbSeleccionarDepartamentoMantenimiento control.

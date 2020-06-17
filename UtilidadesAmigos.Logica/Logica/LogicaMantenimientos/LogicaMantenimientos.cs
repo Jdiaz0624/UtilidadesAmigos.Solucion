@@ -12,14 +12,16 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
 
         #region MANTENIMIENTO DE OFICINAS
         //LISTADO DE OFICINAS
-        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EOficinas> BuscaOficinas(decimal? IdOficina = null, string Descripcion = null)
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EOficinas> BuscaOficinas(decimal? IdOficina = null, decimal? IdSucursal = null, string Descripcion = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var Buscar = (from n in Objdata.SP_BUSCA_OFICINAS(IdOficina, Descripcion)
+            var Buscar = (from n in Objdata.SP_BUSCA_OFICINAS(IdOficina, IdSucursal, Descripcion)
                           select new Entidades.Mantenimientos.EOficinas
                           {
                               IdOficina=n.IdOficina,
+                              IdSucursal=n.IdSucursal,
+                              Sucursal=n.Sucursal,
                               Oficina=n.Oficina,
                               Estatus0=n.Estatus0,
                               Estatus=n.Estatus,
@@ -42,6 +44,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
 
             var MAN = Objdata.SP_MANTENIMIENTO_OFICINAS(
                 Item.IdOficina,
+                Item.IdSucursal,
                 Item.Oficina,
                 Item.Estatus0,
                 Item.UsuarioAdiciona,
@@ -52,6 +55,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                                  select new Entidades.Mantenimientos.EOficinas
                                  {
                                      IdOficina=n.IdOficina,
+                                     IdSucursal=n.IdSucursal,
                                      Oficina=n.Descripcion,
                                      Estatus0=n.Estatus,
                                      UsuarioAdiciona=n.UsuarioAdiciona,
@@ -124,31 +128,31 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
 
         #region MANTENIMIENTO DE EMPLEADOS
         //LISTADO DE EMPLEADOS
-        public List<Entidades.Mantenimientos.EEmpleado> BuscaEmpleado(decimal? IdOficina = null, decimal? IdDepartamento = null, decimal? IdEmpleado = null, string Nombre = null)
-        {
-            Objdata.CommandTimeout = 999999999;
+        //public List<Entidades.Mantenimientos.EEmpleado> BuscaEmpleado(decimal? IdOficina = null, decimal? IdDepartamento = null, decimal? IdEmpleado = null, string Nombre = null)
+        //{
+        //    Objdata.CommandTimeout = 999999999;
 
-            var Buscar = (from n in Objdata.SP_MAN_BUSCA_EMPLEADOS(IdOficina, IdDepartamento, IdEmpleado, Nombre)
-                          select new Entidades.Mantenimientos.EEmpleado
-                          {
-                              IdOficina=n.IdOficina,
-                              Oficina=n.Oficina,
-                              IdDepartamento=n.IdDepartamento,
-                              Departamento=n.Departamento,
-                              IdEmpleado=n.IdEmpleado,
-                              Nombre=n.Nombre,
-                              Estatus=n.Estatus,
-                              Estatus0=n.Estatus0,
-                              UsuarioAdiciona=n.UsuarioAdiciona,
-                              CreadoPor=n.CreadoPor,
-                              FechaAdiciona=n.FechaAdiciona,
-                              UsuarioModifica=n.UsuarioModifica,
-                              ModificadoPor=n.ModificadoPor,
-                              FechaModifica=n.FechaModifica
-                          }).ToList();
-            return Buscar;
+        //    var Buscar = (from n in Objdata.SP_MAN_BUSCA_EMPLEADOS(IdOficina, IdDepartamento, IdEmpleado, Nombre)
+        //                  select new Entidades.Mantenimientos.EEmpleado
+        //                  {
+        //                      IdOficina=n.IdOficina,
+        //                      Oficina=n.Oficina,
+        //                      IdDepartamento=n.IdDepartamento,
+        //                      Departamento=n.Departamento,
+        //                      IdEmpleado=n.IdEmpleado,
+        //                      Nombre=n.Nombre,
+        //                      Estatus=n.Estatus,
+        //                      Estatus0=n.Estatus0,
+        //                      UsuarioAdiciona=n.UsuarioAdiciona,
+        //                      CreadoPor=n.CreadoPor,
+        //                      FechaAdiciona=n.FechaAdiciona,
+        //                      UsuarioModifica=n.UsuarioModifica,
+        //                      ModificadoPor=n.ModificadoPor,
+        //                      FechaModifica=n.FechaModifica
+        //                  }).ToList();
+        //    return Buscar;
 
-        }
+        //}
 
         //MANTENIMIENTO DE EMPLEADOS
         public Entidades.Mantenimientos.EEmpleado MantenimientoEmpleado(Entidades.Mantenimientos.EEmpleado Item, string Accion)

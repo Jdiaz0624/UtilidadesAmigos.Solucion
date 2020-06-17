@@ -41,6 +41,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     null,
                     null,
                     null,
+                    null,
+                    null,
                     _Usuario,
                     VariablesGlobales.ClaveEncriptada,
                     null);
@@ -54,7 +56,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         //BLOQUEAMOS EL USUARIO
                         var BuscarUsuario = ObjDataLogica.Value.BuscaUsuarios(
                             new Nullable<decimal>(),
-                            null, null, null, txtUsuario.Text);
+                            null, null, null, null, null, txtUsuario.Text);
                         foreach (var n in BuscarUsuario)
                         {
                             UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios Bloquear = new Logica.Entidades.EMantenimientoUsuarios();

@@ -10,6 +10,14 @@ namespace UtilidadesAmigos.Logica.Entidades
     {
         public decimal? IdUsuario {get;set;}
 
+        public System.Nullable<decimal> IdSucursal {get;set;}
+
+        public string Sucursal {get;set;}
+
+        public System.Nullable<decimal> IdOficina {get;set;}
+
+        public string Oficina {get;set;}
+
         public System.Nullable<decimal> IdDepartamento {get;set;}
 
         public string Departamento {get;set;}
@@ -42,7 +50,7 @@ namespace UtilidadesAmigos.Logica.Entidades
 
         public string RazonBloqueo {get;set;}
 
-        public decimal IdTipoPersona {get;set;}
+        public decimal? IdTipoPersona {get;set;}
 
         public string TipoPersona {get;set;}
     }

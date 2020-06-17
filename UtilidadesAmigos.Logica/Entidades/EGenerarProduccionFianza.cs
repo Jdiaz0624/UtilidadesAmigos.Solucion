@@ -14,15 +14,25 @@ namespace UtilidadesAmigos.Logica.Entidades
 
         public string Estatus {get;set;}
 
-        public int? CodRamo {get;set;}
+        public int CodRamo {get;set;}
 
-        public int? CodSubramo {get;set;}
+        public int CodSubramo {get;set;}
 
         public string Ramo {get;set;}
 
         public string SubRamo {get;set;}
 
         public string Cliente {get;set;}
+
+        public string TelefonoResidencia {get;set;}
+
+        public string TelefonoOficina {get;set;}
+
+        public string Celular {get;set;}
+
+        public string fax {get;set;}
+
+        public string Otro {get;set;}
 
         public string Direccion {get;set;}
 
@@ -71,6 +81,7 @@ namespace UtilidadesAmigos.Logica.Entidades
         public System.Nullable<decimal> Balance {get;set;}
 
         public string LeyInfraccionImputado {get;set;}
-        public System.Nullable<int> Cantidad { get; set; }
+
+        public System.Nullable<int> Cantidad {get;set;}
     }
 }
