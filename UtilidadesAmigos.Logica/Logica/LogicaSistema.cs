@@ -1935,6 +1935,7 @@ namespace UtilidadesAmigos.Logica.Logica
                               NoFactura=n.NoFactura,
                               Poliza=n.Poliza,
                               Estatus=n.Estatus,
+                              NoFormulario=n.NoFormulario,
                               CodRamo=n.CodRamo,
                               CodSubramo=n.CodSubramo,
                               Ramo=n.Ramo,

@@ -2124,6 +2124,7 @@
       <Column Name="NoFactura" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NoFormulario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="CodRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CodSubramo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Ramo" Type="System.String" DbType="NVarChar(83) NOT NULL" CanBeNull="false" />

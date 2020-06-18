@@ -121,6 +121,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                         NoFactura = n.NoFactura,
                                         Poliza = n.Poliza,
                                         Estatus = n.Estatus,
+                                        NoFormulario=n.NoFormulario,
                                         Ramo = n.Ramo,
                                         SubRamo = n.SubRamo,
                                         Cliente = n.Cliente,

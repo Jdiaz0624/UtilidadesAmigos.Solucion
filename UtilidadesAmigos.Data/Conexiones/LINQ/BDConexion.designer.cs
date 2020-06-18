@@ -24375,6 +24375,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private string _Estatus;
 		
+		private string _NoFormulario;
+		
 		private int _CodRamo;
 		
 		private int _CodSubramo;
@@ -24493,6 +24495,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Estatus != value))
 				{
 					this._Estatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoFormulario", DbType="VarChar(50)")]
+		public string NoFormulario
+		{
+			get
+			{
+				return this._NoFormulario;
+			}
+			set
+			{
+				if ((this._NoFormulario != value))
+				{
+					this._NoFormulario = value;
 				}
 			}
 		}

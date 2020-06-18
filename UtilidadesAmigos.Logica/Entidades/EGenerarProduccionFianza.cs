@@ -14,9 +14,11 @@ namespace UtilidadesAmigos.Logica.Entidades
 
         public string Estatus {get;set;}
 
-        public int CodRamo {get;set;}
+        public string NoFormulario {get;set;}
 
-        public int CodSubramo {get;set;}
+        public int? CodRamo {get;set;}
+
+        public int? CodSubramo {get;set;}
 
         public string Ramo {get;set;}
 
