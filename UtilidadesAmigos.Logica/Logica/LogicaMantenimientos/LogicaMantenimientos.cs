@@ -70,13 +70,15 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
 
         #region MANTENIMIENTO DE DEPARTAMENTOS
         //LISTADO DE DEPARTAMENTOS
-        public List<Entidades.Mantenimientos.EDepartamentos> BuscaDepartamentos(decimal? IdOficina = null, decimal? IdDepartamento = null, string Descripcion = null)
+        public List<Entidades.Mantenimientos.EDepartamentos> BuscaDepartamentos(decimal? IdSucursal = null, decimal? IdOficina = null, decimal? IdDepartamento = null, string Descripcion = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var Buscar = (from n in Objdata.SP_MAN_BUSCA_DEPARTAMENTOS(IdOficina, IdDepartamento, Descripcion)
+            var Buscar = (from n in Objdata.SP_MAN_BUSCA_DEPARTAMENTOS(IdSucursal,IdOficina, IdDepartamento, Descripcion)
                           select new Entidades.Mantenimientos.EDepartamentos
                           {
+                              IdSucursal=n.IdSucursal,
+                              Sucursal=n.Sucursal,
                               IdOficina=n.IdOficina,
                               Oficina=n.Oficina,
                               IdDepartamento=n.IdDepartamento,
@@ -86,9 +88,12 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                               UsuarioAdiciona=n.UsuarioAdiciona,
                               CreadoPor=n.CreadoPor,
                               FechaAdiciona=n.FechaAdiciona,
+                              FechaCreado=n.FechaCreado,
                               UsuarioModifica=n.UsuarioModifica,
                               ModificadoPor=n.ModificadoPor,
-                              FechaModifica=n.FechaModifica
+                              FechaModifica=n.FechaModifica,
+                              FechaModificado=n.FechaModificado,
+                              CantidadRegistros=n.CantidadRegistros
                           }).ToList();
             return Buscar;
         }
@@ -101,6 +106,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             Entidades.Mantenimientos.EDepartamentos Mantenimiento = null;
 
             var Departamentos = Objdata.SP_MAN_MANTENIMIENTO_DEPARTAMENTOS(
+                Item.IdSucursal,
                 Item.IdOficina,
                 Item.IdDepartamento,
                 Item.Departamento,
@@ -112,6 +118,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                 Mantenimiento = (from n in Departamentos
                                  select new Entidades.Mantenimientos.EDepartamentos
                                  {
+                                     IdSucursal=n.IdSucursal,
                                      IdOficina = n.IdOficina,
                                      IdDepartamento = n.IdDepartamento,
                                      Departamento = n.Descripcion,

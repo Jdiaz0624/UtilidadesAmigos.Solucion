@@ -1,42 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionMantenimientosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
-  <Function Name="Utililades.SP_MAN_BUSCA_DEPARTAMENTOS" Method="SP_MAN_BUSCA_DEPARTAMENTOS">
-    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(100)" />
-    <ElementType Name="SP_MAN_BUSCA_DEPARTAMENTOSResult">
-      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Departamento" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
-      <Column Name="UsuarioAdiciona" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="CreadoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UsuarioModifica" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="ModificadoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="FechaModifica" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_MAN_MANTENIMIENTO_DEPARTAMENTOS" Method="SP_MAN_MANTENIMIENTO_DEPARTAMENTOS">
-    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="UsuarioAdiciona" Parameter="usuarioAdiciona" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
-    <ElementType Name="SP_MAN_MANTENIMIENTO_DEPARTAMENTOSResult">
-      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="UsuarioAdiciona" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UsuarioModifica" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="FechaModifica" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_MAN_MANTENIMIENTO_EMPLEADO" Method="SP_MAN_MANTENIMIENTO_EMPLEADO">
     <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(18,0)" />
     <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(18,0)" />
@@ -86,6 +49,51 @@
     <ElementType Name="SP_MANTENIMIENTO_OFICINASResult">
       <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="IdSucursal" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UsuarioAdiciona" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuarioModifica" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="FechaModifica" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MAN_BUSCA_DEPARTAMENTOS" Method="SP_MAN_BUSCA_DEPARTAMENTOS">
+    <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_MAN_BUSCA_DEPARTAMENTOSResult">
+      <Column Name="IdSucursal" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Sucursal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Departamento" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="UsuarioAdiciona" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CreadoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaCreado" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="UsuarioModifica" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ModificadoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FechaModifica" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaModificado" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MAN_MANTENIMIENTO_DEPARTAMENTOS" Method="SP_MAN_MANTENIMIENTO_DEPARTAMENTOS">
+    <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="UsuarioAdiciona" Parameter="usuarioAdiciona" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MAN_MANTENIMIENTO_DEPARTAMENTOSResult">
+      <Column Name="IdSucursal" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="UsuarioAdiciona" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
