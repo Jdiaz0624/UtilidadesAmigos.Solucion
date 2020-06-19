@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -13,163 +14,74 @@ namespace UtilidadesAmigos.Solucion.Paginas
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaMantenimientos.LogicaMantenimientos> Objdata = new Lazy<Logica.Logica.LogicaMantenimientos.LogicaMantenimientos>();
 
 
+        #region CARGAR LAS LISTAS PARA LA CONSULTA
+        private void CargarListasConsulta() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSucursalConsulta, ObjdataComun.Value.BuscaListas("SUCURSAL", null, null), true);
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaConsulta, ObjdataComun.Value.BuscaListas("OFICINA", ddlSeleccionarSucursalConsulta.SelectedValue, null), true);
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamentoConsulta, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlSeleccionarSucursalConsulta.SelectedValue, ddlOficinaConsulta.SelectedValue), true);
+        }
+        private void CargarListasMantenimeinto() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSucursalmantenimiento, ObjdataComun.Value.BuscaListas("SUCURSAL", null, null));
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaMantenimiento, ObjdataComun.Value.BuscaListas("OFICINA", ddlSeleccionarSucursalmantenimiento.SelectedValue, null));
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamenoMantenimiento, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlSeleccionarSucursalmantenimiento.SelectedValue, ddlOficinaMantenimiento.SelectedValue));
+        }
+        #endregion
         #region MOSTRAR EL LISTADO DE LOS EMPLEADOS
-        private void MostrarListadoEmpleados()
-        {
-            //decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? decimal.Parse(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
-            //decimal? _Departamento = ddlDepartamentoConsulta.SelectedValue != "-1" ? decimal.Parse(ddlDepartamentoConsulta.SelectedValue) : new Nullable<decimal>();
-            //string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.Text) ? null : txtNombreConsulta.Text.Trim();
+        private void MostrarListado() {
+            decimal? _Sucursal = ddlSeleccionarSucursalConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarSucursalConsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _Departamento = ddlDepartamentoConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlDepartamentoConsulta.SelectedValue) : new Nullable<decimal>();
+            string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.TemplateSourceDirectory.Trim()) ? null : txtNombreConsulta.Text.Trim();
 
-            //var Buscar = Objdata.Value.BuscaEmpleado(
-            //    _Oficina,
-            //    _Departamento,
-            //    null,
-            //    _Nombre);
-            //gvEmpleados.DataSource = Buscar;
-            //gvEmpleados.DataBind();
-        }
-        #endregion
-        #region CARGAR DROPS
-        private void LlenaDrop()
-        {
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaConsulta, ObjdataComun.Value.BuscaListas("OFICINA", null, null), true);
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamentoConsulta, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlOficinaConsulta.SelectedValue, null), true);
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaMantenimiento, ObjdataComun.Value.BuscaListas("OFICINA", null, null));
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamenoMantenimiento, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlOficinaMantenimiento.SelectedValue, null));
-        }
-
-        private void CargarDepartamentosConsulta()
-        {
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamentoConsulta, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlOficinaConsulta.SelectedValue, null),true);
-        }
-        private void CargarDepartamentosMantenimiento()
-        {
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamenoMantenimiento, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlOficinaMantenimiento.SelectedValue, null));
-        }
-        #endregion
-        #region MOSTRAR Y OCULTAR CONTROLES
-        private void MostrarControles()
-        {
-            lbOficinaConsulta.Visible = false;
-            ddlOficinaConsulta.Visible = false;
-            lbDepartamentoConsulta.Visible = false;
-            ddlDepartamentoConsulta.Visible = false;
-            lbNombreConsulta.Visible = false;
-            txtNombreConsulta.Visible = false;
-            btnConsultar.Visible = false;
-            btnNuevo.Visible = false;
-            btnatrasConsulta.Visible = false;
-            btnModificar.Visible = false;
-            btnDeshabilitar.Visible = false;
-            btnExportar.Visible = false;
-            gvEmpleados.Visible = false;
-
-            lbOficinaMantenimiento.Visible = true;
-            ddlOficinaMantenimiento.Visible = true;
-            lbDepartamentoMantenimiento.Visible = true;
-            ddlDepartamenoMantenimiento.Visible = true;
-            lbNombreMantenimiento.Visible = true;
-            txtNombreMantenimiento.Visible = true;
-            lbClaveSeguridad.Visible = true;
-            txtClaveSeguridad.Visible = true;
-            cbEstatusMantenimiento.Visible = true;
-            btnGuardarMantenimiento.Visible = true;
-            btnAtrasMantenimiento.Visible = true;
-
-
-            if (lbAccion.Text != "INSERT")
+            var Buscar = Objdata.Value.BuscaEmpleados(
+                _Sucursal,
+                _Oficina,
+                _Departamento,
+                new Nullable<decimal>(),
+                _Nombre);
+            gvEmpleados.DataSource = Buscar;
+            gvEmpleados.DataBind();
+            if (Buscar.Count() < 1)
             {
-                //var SacarDatos = Objdata.Value.BuscaEmpleado(
-                //    null, null, Convert.ToDecimal(lbIdEmpleado.Text));
-                //foreach (var n in SacarDatos)
-                //{
-                //    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaMantenimiento, ObjdataComun.Value.BuscaListas("OFICINA", null, null));
-                //    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlOficinaMantenimiento, n.IdOficina.ToString());
-                //    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamenoMantenimiento, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlOficinaMantenimiento.SelectedValue, null));
-                //    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlDepartamenoMantenimiento, n.IdDepartamento.ToString());
-                //    txtNombreMantenimiento.Text = n.Nombre;
-                //    cbEstatusMantenimiento.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
-
-                //    if (cbEstatusMantenimiento.Checked == true)
-                //    {
-                //        cbEstatusMantenimiento.Visible = false;
-                //    }
-                //    else
-                //    {
-                //        cbEstatusMantenimiento.Visible = true;
-                //    }
-                //}
-            }
-        }
-        private void OcultarControles()
-        {
-            lbOficinaConsulta.Visible = true;
-            ddlOficinaConsulta.Visible = true;
-            lbDepartamentoConsulta.Visible = true;
-            ddlDepartamentoConsulta.Visible = true;
-            lbNombreConsulta.Visible = true;
-            txtNombreConsulta.Visible = true;
-            btnConsultar.Visible = true;
-            btnNuevo.Visible = true;
-            btnatrasConsulta.Visible = true;
-            btnModificar.Visible = true;
-            btnDeshabilitar.Visible = true;
-            btnExportar.Visible = true;
-            gvEmpleados.Visible = true;
-
-            lbOficinaMantenimiento.Visible = false;
-            ddlOficinaMantenimiento.Visible = false;
-            lbDepartamentoMantenimiento.Visible = false;
-            ddlDepartamenoMantenimiento.Visible = false;
-            lbNombreMantenimiento.Visible = false;
-            txtNombreMantenimiento.Visible = false;
-            lbClaveSeguridad.Visible = false;
-            txtClaveSeguridad.Visible = false;
-            cbEstatusMantenimiento.Visible = false;
-            btnGuardarMantenimiento.Visible = false;
-            btnAtrasMantenimiento.Visible = false;
-
-            txtNombreConsulta.Text = string.Empty;
-            txtNombreMantenimiento.Text = string.Empty;
-            txtClaveSeguridad.Text = string.Empty;
-            MostrarListadoEmpleados();
-
-            btnConsultar.Enabled = true;
-            btnNuevo.Enabled = true;
-            btnatrasConsulta.Enabled = false;
-            btnModificar.Enabled = false;
-            btnDeshabilitar.Enabled = false;
-            btnExportar.Enabled = true;
-        }
-        #endregion
-        #region MANTENIMIENTO DE EMPLEADOS
-        private void MANEmpleados()
-        {
-            if (Session["IdUsuario"] == null)
-            {
-                Response.Redirect("Login.aspx");
+                lbCantidadRegistrosdVariable.Text = "0";
             }
             else
             {
+                foreach (var n in Buscar)
+                {
+                    int cantidad = Convert.ToInt32(n.CantidadRegistros);
+                    lbCantidadRegistrosdVariable.Text = cantidad.ToString("N0");
+                }
+            }
+        }
+        #endregion
+        #region MANTENIMIENTO DE EMPLEADOS
+        private void MAnEmpleados(string Accion)
+        {
+            if (Session["Idusuario"] != null)
+            {
                 try {
+                    UtilidadesAmigos.Logica.Entidades.Mantenimientos.EEmpleado Mantenimeinto = new Logica.Entidades.Mantenimientos.EEmpleado();
 
-                    //REALIZAMOS EL MANTENIMIENTO
-                    UtilidadesAmigos.Logica.Entidades.Mantenimientos.EEmpleado Mantenimiento = new Logica.Entidades.Mantenimientos.EEmpleado();
+                    Mantenimeinto.IdSucursal = Convert.ToDecimal(ddlSeleccionarSucursalmantenimiento.SelectedValue);
+                    Mantenimeinto.IdOfiicna = Convert.ToDecimal(ddlOficinaMantenimiento.SelectedValue);
+                    Mantenimeinto.IdDepartamento = Convert.ToDecimal(ddlDepartamenoMantenimiento.SelectedValue);
+                    Mantenimeinto.IdEmpleado = Convert.ToDecimal(lbIdEmpleado.Text);
+                    Mantenimeinto.Nombre = txtNombreMantenimiento.Text;
+                    Mantenimeinto.Estatus0 = cbEstatusMantenimiento.Checked;
+                    Mantenimeinto.UsuarioAdiciona = Convert.ToDecimal(Session["IdUsuario"]);
+                    Mantenimeinto.FechaAdiciona = DateTime.Now;
+                    Mantenimeinto.UsuarioModifica = Convert.ToDecimal(Session["IdUsuario"]);
+                    Mantenimeinto.FechaModifica = DateTime.Now;
 
-                    Mantenimiento.IdOficina = Convert.ToDecimal(ddlOficinaMantenimiento.SelectedValue);
-                    Mantenimiento.IdDepartamento = Convert.ToDecimal(ddlDepartamenoMantenimiento.SelectedValue);
-                    Mantenimiento.IdEmpleado = Convert.ToDecimal(lbIdEmpleado.Text);
-                    Mantenimiento.Nombre = txtNombreMantenimiento.Text;
-                    Mantenimiento.Estatus0 = cbEstatusMantenimiento.Checked;
-                    Mantenimiento.UsuarioAdiciona = Convert.ToDecimal(Session["IdUsuario"]);
-                    Mantenimiento.FechaAdiciona = DateTime.Now;
-                    Mantenimiento.UsuarioModifica = Convert.ToDecimal(Session["IdUsuario"]);
-                    Mantenimiento.FechaModifica = DateTime.Now;
-
-                    var MAn = Objdata.Value.MantenimientoEmpleado(Mantenimiento, lbAccion.Text);
-
+                    var MAN = Objdata.Value.MantenimientoEmpleado(Mantenimeinto, Accion);
                 }
                 catch (Exception) { }
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
             }
         }
         #endregion
@@ -179,140 +91,164 @@ namespace UtilidadesAmigos.Solucion.Paginas
             MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack)
             {
-                LlenaDrop();
-                CargarDepartamentosConsulta();
-                MostrarListadoEmpleados();
+                CargarListasConsulta();
+                CargarListasMantenimeinto();
+                ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
             }
+        }
+
+        protected void ddlSeleccionarSucursalConsulta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaConsulta, ObjdataComun.Value.BuscaListas("OFICINA", ddlSeleccionarSucursalConsulta.SelectedValue, null), true);
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamentoConsulta, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlSeleccionarSucursalConsulta.SelectedValue, ddlOficinaConsulta.SelectedValue), true);
+            ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
+        }
+
+        protected void ddlOficinaConsulta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamentoConsulta, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlSeleccionarSucursalConsulta.SelectedValue, ddlOficinaConsulta.SelectedValue), true);
+            ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
+        }
+
+        protected void btnConsultar_Click(object sender, EventArgs e)
+        {
+            MostrarListado();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
+        }
+
+        protected void btnRestabelcer_Click(object sender, EventArgs e)
+        {
+            CargarListasConsulta();
+            CargarListasMantenimeinto();
+            txtNombreConsulta.Text = string.Empty;
+            MostrarListado();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
+        }
+
+        protected void btnExportar_Click(object sender, EventArgs e)
+        {
+            decimal? _Sucursal = ddlSeleccionarSucursalConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarSucursalConsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _Departamento = ddlDepartamentoConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlDepartamentoConsulta.SelectedValue) : new Nullable<decimal>();
+            string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.TemplateSourceDirectory.Trim()) ? null : txtNombreConsulta.Text.Trim();
+
+            var Exportar = (from n in Objdata.Value.BuscaEmpleados(
+                _Sucursal,
+                _Oficina,
+                _Departamento,
+                new Nullable<decimal>(),
+                _Nombre)
+                            select new
+                            {
+                               //IdSucursal = n.IdSucursal,
+                                Sucursal = n.Sucursal,
+                               //IdOfiicna = n.IdOfiicna,
+                                Oficina = n.Oficina,
+                                //IdDepartamento = n.IdDepartamento,
+                                Departamento = n.Departamento,
+                                //IdEmpleado = n.IdEmpleado,
+                                Nombre = n.Nombre,
+                                //Estatus0 = n.Estatus0,
+                                Estatus = n.Estatus,
+                                //UsuarioAdiciona = n.UsuarioAdiciona,
+                                CreadoPor = n.CreadoPor,
+                                //FechaAdiciona = n.FechaAdiciona,
+                                FechaCreado = n.FechaCreado,
+                                //UsuarioModifica = n.UsuarioModifica,
+                                ModificadoPor = n.ModificadoPor,
+                                //FechaModifica = n.FechaModifica,
+                                FechaModificado = n.FechaModificado,
+                                //CantidadRegistros = n.CantidadRegistros
+                            }).ToList();
+            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Empleados", Exportar);
+                        ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
         }
 
         protected void gvEmpleados_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvEmpleados.PageIndex = e.NewPageIndex;
-            MostrarListadoEmpleados();
+            MostrarListado();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
         }
 
         protected void gvEmpleados_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GridViewRow gv = gvEmpleados.SelectedRow;
 
-            //GridViewRow gb = gvEmpleados.SelectedRow;
-
-            //var Seleccionar = Objdata.Value.BuscaEmpleado(
-            //    null, null, Convert.ToDecimal(gb.Cells[1].Text));
-            //gvEmpleados.DataSource = Seleccionar;
-            //gvEmpleados.DataBind();
-            //foreach (var n in Seleccionar)
-            //{
-            //    lbIdEmpleado.Text = n.IdEmpleado.ToString();
-            //}
-
-            //btnConsultar.Enabled = false;
-            //btnNuevo.Enabled = false;
-            //btnatrasConsulta.Enabled = true;
-            //btnModificar.Enabled = true;
-            //btnDeshabilitar.Enabled = true;
-            //btnExportar.Enabled = false;
-        }
-
-        protected void btnGuardarMantenimiento_Click(object sender, EventArgs e)
-        {
-
-            //VALIDAMOS LA CLAVE DE SEGURIDAD
-            var ValidarClave = ObjdataComun.Value.BuscaClaveSeguridad(
-                new Nullable<decimal>(),
-                UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(txtClaveSeguridad.Text));
-            if (ValidarClave.Count() < 1)
+            var Seleccionar = Objdata.Value.BuscaEmpleados(
+                null,
+                null,
+                null,
+                Convert.ToDecimal(gv.Cells[1].Text),
+                null);
+            gvEmpleados.DataSource = Seleccionar;
+            gvEmpleados.DataBind();
+            foreach (var n in Seleccionar)
             {
-                ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ClaveSeguridadNoValida();", true);
+                int cantidad = Convert.ToInt32(n.CantidadRegistros);
+                lbCantidadRegistrosdVariable.Text = cantidad.ToString("N0");
+
+                lbIdEmpleado.Text = n.IdEmpleado.ToString();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarSucursalmantenimiento, n.IdSucursal.ToString());
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlOficinaMantenimiento, n.IdOfiicna.ToString());
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamenoMantenimiento, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlSeleccionarSucursalmantenimiento.SelectedValue, ddlOficinaMantenimiento.SelectedValue));
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlDepartamenoMantenimiento, n.IdDepartamento.ToString());
+                txtNombreMantenimiento.Text = n.Nombre;
+                cbEstatusMantenimiento.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
             }
-            else
-            {
-                MANEmpleados();
-                OcultarControles();
-            }
-
+            ClientScript.RegisterStartupScript(GetType(), "DesbloquearControles", "DesbloquearControles();", true);
         }
 
-        protected void btnAtrasMantenimiento_Click(object sender, EventArgs e)
+        protected void ddlSeleccionarSucursalmantenimiento_SelectedIndexChanged(object sender, EventArgs e)
         {
-            OcultarControles();
-        }
-
-        protected void btnConsultar_Click(object sender, EventArgs e)
-        {
-            MostrarListadoEmpleados();
-        }
-
-        protected void btnNuevo_Click(object sender, EventArgs e)
-        {
-            lbIdEmpleado.Text = "0";
-            lbAccion.Text = "INSERT";
-            MostrarControles();
-            cbEstatusMantenimiento.Visible = false;
-            cbEstatusMantenimiento.Checked = true;
-        }
-
-        protected void btnatrasConsulta_Click(object sender, EventArgs e)
-        {
-            OcultarControles();
-        }
-
-        protected void btnModificar_Click(object sender, EventArgs e)
-        {
-            lbAccion.Text = "UPDATE";
-            MostrarControles();
-        }
-
-        protected void btnDeshabilitar_Click(object sender, EventArgs e)
-        {
-            lbAccion.Text = "DISABLE";
-            MostrarControles();
-        }
-
-        protected void btnExportar_Click(object sender, EventArgs e)
-        {
-            //try {
-            //    decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? decimal.Parse(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
-            //    decimal? _Departamento = ddlDepartamentoConsulta.SelectedValue != "-1" ? decimal.Parse(ddlDepartamentoConsulta.SelectedValue) : new Nullable<decimal>();
-            //    string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.Text.Trim()) ? null : txtNombreConsulta.Text.Trim();
-
-            //    var Exportar = (from n in Objdata.Value.BuscaEmpleado(
-            //        _Oficina,
-            //        _Departamento,
-            //        new Nullable<decimal>(),
-            //        _Nombre)
-            //                    select new
-            //                    {
-            //                        Oficina=n.Oficina,
-            //                        Departamento=n.Departamento,
-            //                        Nombre=n.Nombre,
-            //                        Estatus=n.Estatus,
-            //                        CreadoPor=n.CreadoPor,
-            //                        FechaCreado=n.FechaAdiciona,
-            //                        ModificadoPor=n.ModificadoPor,
-            //                        FechaModifica=n.FechaModifica
-            //                    }).ToList();
-            //    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Empleados", Exportar);
-            //}
-            //catch (Exception) { }
-        }
-
-        protected void ddlOficinaConsulta_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CargarDepartamentosConsulta();
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaMantenimiento, ObjdataComun.Value.BuscaListas("OFICINA", ddlSeleccionarSucursalmantenimiento.SelectedValue, null));
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamenoMantenimiento, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlSeleccionarSucursalmantenimiento.SelectedValue, ddlOficinaMantenimiento.SelectedValue));
+            ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
         }
 
         protected void ddlOficinaMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarDepartamentosMantenimiento();
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamenoMantenimiento, ObjdataComun.Value.BuscaListas("DEPARTAMENTO", ddlSeleccionarSucursalmantenimiento.SelectedValue, ddlOficinaMantenimiento.SelectedValue));
+            ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
         }
 
-        protected void gvEmpleados_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void btnGuardarMantenimiento_Click(object sender, EventArgs e)
         {
-            try
+            //VALIDAMOS LA CLAVE DE SEGURIDAD
+            string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridad.Text.Trim()) ? null : txtClaveSeguridad.Text.Trim();
+
+            var Validar = ObjdataComun.Value.BuscaClaveSeguridad(
+                new Nullable<decimal>(),
+               UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(_ClaveSeguridad));
+            if (Validar.Count() < 1)
             {
-                e.Row.Cells[1].Visible = false;
+                ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadNoValida", "ClaveSeguridadNoValida();", true);
             }
-            catch (Exception) { }
+            else
+            {
+                MAnEmpleados("INSERT");
+                MostrarListado();
+            }
+            ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
+        }
+
+        protected void btnModificarMantenimiento_Click(object sender, EventArgs e)
+        {
+            string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridad.Text.Trim()) ? null : txtClaveSeguridad.Text.Trim();
+
+            var Validar = ObjdataComun.Value.BuscaClaveSeguridad(
+                new Nullable<decimal>(),
+               UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(_ClaveSeguridad));
+            if (Validar.Count() < 1)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadNoValida", "ClaveSeguridadNoValida();", true);
+            }
+            else
+            {
+                MAnEmpleados("UPDATE");
+                MostrarListado();
+            }
+            ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
         }
     }
 }

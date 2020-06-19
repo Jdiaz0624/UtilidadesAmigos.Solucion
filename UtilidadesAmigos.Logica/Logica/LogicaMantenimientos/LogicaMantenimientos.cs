@@ -135,31 +135,35 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
 
         #region MANTENIMIENTO DE EMPLEADOS
         //LISTADO DE EMPLEADOS
-        //public List<Entidades.Mantenimientos.EEmpleado> BuscaEmpleado(decimal? IdOficina = null, decimal? IdDepartamento = null, decimal? IdEmpleado = null, string Nombre = null)
-        //{
-        //    Objdata.CommandTimeout = 999999999;
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EEmpleado> BuscaEmpleados(decimal? IdSucursal = null, decimal? IdOficina = null, decimal? IdDepartamento = null, decimal? IdEmpleado = null, string Nombre = null)
+        {
+            Objdata.CommandTimeout = 999999999;
 
-        //    var Buscar = (from n in Objdata.SP_MAN_BUSCA_EMPLEADOS(IdOficina, IdDepartamento, IdEmpleado, Nombre)
-        //                  select new Entidades.Mantenimientos.EEmpleado
-        //                  {
-        //                      IdOficina=n.IdOficina,
-        //                      Oficina=n.Oficina,
-        //                      IdDepartamento=n.IdDepartamento,
-        //                      Departamento=n.Departamento,
-        //                      IdEmpleado=n.IdEmpleado,
-        //                      Nombre=n.Nombre,
-        //                      Estatus=n.Estatus,
-        //                      Estatus0=n.Estatus0,
-        //                      UsuarioAdiciona=n.UsuarioAdiciona,
-        //                      CreadoPor=n.CreadoPor,
-        //                      FechaAdiciona=n.FechaAdiciona,
-        //                      UsuarioModifica=n.UsuarioModifica,
-        //                      ModificadoPor=n.ModificadoPor,
-        //                      FechaModifica=n.FechaModifica
-        //                  }).ToList();
-        //    return Buscar;
-
-        //}
+            var Buscar = (from n in Objdata.SP_MAN_BUSCA_EMPLEADOS(IdSucursal, IdOficina, IdDepartamento, IdEmpleado, Nombre)
+                          select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EEmpleado
+                          {
+                              IdSucursal=n.IdSucursal,
+                              Sucursal=n.Sucursal,
+                              IdOfiicna=n.IdOfiicna,
+                              Oficina=n.Oficina,
+                              IdDepartamento=n.IdDepartamento,
+                              Departamento=n.Departamento,
+                              IdEmpleado=n.IdEmpleado,
+                              Nombre=n.Nombre,
+                              Estatus0=n.Estatus0,
+                              Estatus=n.Estatus,
+                              UsuarioAdiciona=n.UsuarioAdiciona,
+                              CreadoPor=n.CreadoPor,
+                              FechaAdiciona=n.FechaAdiciona,
+                              FechaCreado=n.FechaCreado,
+                              UsuarioModifica=n.UsuarioModifica,
+                              ModificadoPor=n.ModificadoPor,
+                              FechaModifica=n.FechaModifica,
+                              FechaModificado=n.FechaModificado,
+                              CantidadRegistros=n.CantidadRegistros
+                          }).ToList();
+            return Buscar;
+        }
 
         //MANTENIMIENTO DE EMPLEADOS
         public Entidades.Mantenimientos.EEmpleado MantenimientoEmpleado(Entidades.Mantenimientos.EEmpleado Item, string Accion)
@@ -169,7 +173,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             Entidades.Mantenimientos.EEmpleado Mantenimiento = null;
 
             var Empleado = Objdata.SP_MAN_MANTENIMIENTO_EMPLEADO(
-                Item.IdOficina,
+                Item.IdSucursal,
+                Item.IdOfiicna,
                 Item.IdDepartamento,
                 Item.IdEmpleado,
                 Item.Nombre,
@@ -179,9 +184,10 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             if (Empleado != null)
             {
                 Mantenimiento = (from n in Empleado
-                                 select new Entidades.Mantenimientos.EEmpleado
+                                 select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EEmpleado
                                  {
-                                     IdOficina=n.IdOficina,
+                                     IdSucursal=n.IdSucursal,
+                                     IdOfiicna=n.IdOfiicna,
                                      IdDepartamento=n.IdDepartamento,
                                      IdEmpleado=n.IdEmpleado,
                                      Nombre=n.Nombre,
