@@ -31,7 +31,7 @@ namespace UtilidadesAmigos.Logica.Comunes
             //    smtp.Timeout = 999999999;
                 smtp.Send(Mensaje);
                 Mensaje.Bcc.Clear();
-                return true;
+                return true; 
                 
             }
             catch (Exception) {
