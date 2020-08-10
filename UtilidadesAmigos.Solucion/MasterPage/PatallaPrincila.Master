@@ -80,6 +80,7 @@
                                     <asp:LinkButton ID="LinkCorregirLimites" runat="server" ForeColor="Red" Text="Corregir Limites" OnClick="LinkCorregirLimites_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     <asp:LinkButton ID="LinkEnvioCorreo" runat="server" ForeColor="Red" Text="Envio de Correo" OnClick="LinkEnvioCorreo_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     <asp:LinkButton ID="LinkEliminarBalance" runat="server" ForeColor="Red" Visible="false" Text="Eliminar Balance" OnClick="LinkEliminarBalance_Click" CssClass="dropdown-item"></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkGenerarFacturasPDF" runat="server" Text="Generar Facturas PDF" OnClick="LinkGenerarFacturasPDF_Click" CssClass="dropdown-item"></asp:LinkButton>
                                 </div>
                               </li>
                               <li class="nav-item dropdown">

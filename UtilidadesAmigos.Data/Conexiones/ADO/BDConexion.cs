@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace UtilidadesAmigos.Data.Conexiones.ADO
 {
-    class BDConexion
+    public static class BDConexion
     {
+        public static SqlConnection ObtenerConexion()
+        {
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            Conexion.Open();
+            return Conexion;
+        }
+
     }
 }

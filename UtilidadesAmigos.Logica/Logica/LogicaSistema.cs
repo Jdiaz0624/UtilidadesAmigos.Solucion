@@ -2790,5 +2790,70 @@ namespace UtilidadesAmigos.Logica.Logica
             return Listado;
         }
         #endregion
+
+        #region GENERAR DATOS PARA FACTURAS EN PDF
+        public List<UtilidadesAmigos.Logica.Entidades.EGenerarDatosFacturasPDF> GenerarDatosFacturasPDF(decimal? IdComprobante = null, string Poliza = null, string Comprobante = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_GENERAR_DATOS_FACTURAS_PDF(IdComprobante,Poliza,Comprobante)
+                           select new UtilidadesAmigos.Logica.Entidades.EGenerarDatosFacturasPDF
+                           {
+                               IdComprobante=n.IdComprobante,
+                               Comprobante=n.Comprobante,
+                               ComprobanteAfectado=n.ComprobanteAfectado,
+                               DescripcionComprobante=n.DescripcionComprobante,
+                               FechaVencimiento0=n.FechaVencimiento0,
+                               FechaVencimiento=n.FechaVencimiento,
+                               NumeroFactura=n.NumeroFactura,
+                               Oficina=n.Oficina,
+                               Deudor=n.Deudor,
+                               Direccion=n.Direccion,
+                               Asegurado=n.Asegurado,
+                               Comunicacion=n.Comunicacion,
+                               Cedula=n.Cedula,
+                               Intermediario=n.Intermediario,
+                               DireccionIntermediario=n.DireccionIntermediario,
+                               ComunicacionIntermediario=n.ComunicacionIntermediario,
+                               Supervisor=n.Supervisor,
+                               Concepto=n.Concepto,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               FechaProceso=n.FechaProceso,
+                               Poliza=n.Poliza,
+                               SumaAsegurada=n.SumaAsegurada,
+                               SubTotal=n.SubTotal,
+                               ISC=n.ISC,
+                               Total=n.Total,
+                               Tasa=n.Tasa,
+                               PieNota=n.PieNota,
+                               DireccionCompania=n.DireccionCompania,
+                               CantidadRegistros=n.CantidadRegistros
+                                   
+
+    }).ToList();
+            return Listado;
+        }
+
+        public UtilidadesAmigos.Logica.Entidades.EGenerarDatosFacturasPDF MantenimientoFacturasPDF(UtilidadesAmigos.Logica.Entidades.EGenerarDatosFacturasPDF Item, string Accion) {
+
+            UtilidadesAmigos.Logica.Entidades.EGenerarDatosFacturasPDF Mantenimeinto = null;
+
+            var FacturasPDF = Objdata.SP_ELIMINAR_REGISTROS_PDF(
+                Item.IdComprobante,
+                Item.Comprobante,
+                Item.ComprobanteAfectado,
+                Accion);
+            if (FacturasPDF != null) {
+                Mantenimeinto = (from n in FacturasPDF
+                                 select new UtilidadesAmigos.Logica.Entidades.EGenerarDatosFacturasPDF
+                                 {
+                                     IdComprobante = n.IdComprobante,
+                                     Comprobante = n.Comprobante,
+                                     ComprobanteAfectado=n.ComprobanteAfectado
+                                 }).FirstOrDefault();
+            }
+            return Mantenimeinto;
+        }
+        #endregion
     }
 }

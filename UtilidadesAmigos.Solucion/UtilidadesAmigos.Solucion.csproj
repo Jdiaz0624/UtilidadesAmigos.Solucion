@@ -147,6 +147,7 @@
     <Content Include="Paginas\DatosPoliza.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarBakupBD.aspx" />
+    <Content Include="Paginas\GenerarFacturasPDF.aspx" />
     <Content Include="Paginas\GenerarReporteFianzas.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
     <Content Include="Paginas\ListadoRenovacion.aspx" />
@@ -343,6 +344,13 @@
     </Compile>
     <Compile Include="Paginas\GenerarDataCoberturas.aspx.designer.cs">
       <DependentUpon>GenerarDataCoberturas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\GenerarFacturasPDF.aspx.cs">
+      <DependentUpon>GenerarFacturasPDF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\GenerarFacturasPDF.aspx.designer.cs">
+      <DependentUpon>GenerarFacturasPDF.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\GenerarReporteFianzas.aspx.cs">
       <DependentUpon>GenerarReporteFianzas.aspx</DependentUpon>

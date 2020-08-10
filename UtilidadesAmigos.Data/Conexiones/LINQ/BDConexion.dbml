@@ -2162,4 +2162,52 @@
       <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_GENERAR_DATOS_FACTURAS_PDF" Method="SP_GENERAR_DATOS_FACTURAS_PDF">
+    <Parameter Name="IdComprobante" Parameter="idComprobante" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Comprobante" Parameter="comprobante" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_GENERAR_DATOS_FACTURAS_PDFResult">
+      <Column Name="IdComprobante" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Comprobante" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ComprobanteAfectado" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DescripcionComprobante" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FechaVencimiento0" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="FechaVencimiento" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="NumeroFactura" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Deudor" Type="System.String" DbType="VarChar(288)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Asegurado" Type="System.String" DbType="VarChar(288) NOT NULL" CanBeNull="false" />
+      <Column Name="Comunicacion" Type="System.String" DbType="VarChar(156)" CanBeNull="true" />
+      <Column Name="Cedula" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(233)" CanBeNull="true" />
+      <Column Name="DireccionIntermediario" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ComunicacionIntermediario" Type="System.String" DbType="VarChar(96)" CanBeNull="true" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(233)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FechaProceso" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SumaAsegurada" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="SubTotal" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ISC" Type="System.Decimal" DbType="Decimal(21,2)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Tasa" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="PieNota" Type="System.String" DbType="VarChar(283) NOT NULL" CanBeNull="false" />
+      <Column Name="DireccionCompania" Type="System.String" DbType="VarChar(124) NOT NULL" CanBeNull="false" />
+      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_ELIMINAR_REGISTROS_PDF" Method="SP_ELIMINAR_REGISTROS_PDF">
+    <Parameter Name="IdComprobante" Parameter="idComprobante" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Comprobante" Parameter="comprobante" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ComprobanteAfectado" Parameter="comprobanteAfectado" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_ELIMINAR_REGISTROS_PDFResult">
+      <Column Name="IdComprobante" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Comprobante" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ComprobanteAfectado" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
