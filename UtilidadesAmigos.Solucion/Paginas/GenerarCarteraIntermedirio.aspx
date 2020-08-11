@@ -267,6 +267,7 @@
                   </div>
                   <div>
                       <asp:Button ID="btnBuscarProduccion" runat="server" Text="Buscar" OnClick="btnBuscarProduccion_Click" CssClass="btn btn-outline-primary btn-sm" ToolTip="Buscar la producción del intermediario seleccionado" />
+                       <asp:Button ID="btnGenerarReporteProduccion" runat="server" Text="Reporte" OnClick="btnGenerarReporteProduccion_Click" CssClass="btn btn-outline-primary btn-sm" ToolTip="Generar Reporte de Producción" />
                   </div>
                   <br />
                    <div>
@@ -297,6 +298,7 @@
           </asp:UpdatePanel>
            <div align="center">
                       <asp:Button ID="btnExportarExelProduccion" runat="server" Text="Exportar" OnClick="btnExportarExelProduccion_Click" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros a exel" />
+              
           </div>
           <br />
       </div>

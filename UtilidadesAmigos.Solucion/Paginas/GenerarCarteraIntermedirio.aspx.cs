@@ -4,6 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportSource;
+using CrystalDecisions.Shared;
+using System.Data.SqlClient;
+using System.Data;
+using System.IO;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -195,7 +201,115 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
-       
+        #region GENERAR REPORTE PRODUCCION INTERMEDIARIO
+        private void GenerarReporteProduccionIntermediario(decimal IdUsuario) {
+
+
+            UtilidadesAmigos.Logica.Comunes.GuardarRegistrosReporteIntermediario Eliminar = new Logica.Comunes.GuardarRegistrosReporteIntermediario(
+                  IdUsuario,
+                  "",
+                  "",
+                  DateTime.Now,
+                  "",
+                  "",
+                  0,
+                  "",
+                  "",
+                  "",
+                  "",
+                  0,
+                  "",
+                  0,
+                  "",
+                  "",
+                  0,
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  0,
+                  "DELETE");
+            Eliminar.ProcesarInformacion();
+            //GUARDAMOS LOS DATOS A PROCESAR
+
+            var SacarProduccion = ObjDataConexion.Value.SacarProduccionIntermediario(
+                   Convert.ToDateTime(txtFechaDesdeProduccion.Text),
+                   Convert.ToDateTime(txtFechaHastaProduccion.Text),
+                   Convert.ToDecimal(lbGenerarCodifoIntermediario.Text));
+            foreach (var n in SacarProduccion)
+            {
+                //GUARDAMOS
+                UtilidadesAmigos.Logica.Comunes.GuardarRegistrosReporteIntermediario Guardar = new Logica.Comunes.GuardarRegistrosReporteIntermediario(
+                    IdUsuario,
+                    n.Poliza,
+                    n.NoFactura,
+                    Convert.ToDateTime(n.Fecha0),
+                    n.Mes,
+                    n.Fecha,
+                    Convert.ToDecimal(n.Valor),
+                    n.Cliente,
+                    n.Vendedor,
+                    n.Cobrador,
+                    n.Concepto,
+                    Convert.ToDecimal(n.Balance),
+                    n.Ncf,
+                    Convert.ToDecimal(n.Tasa),
+                    n.Moneda,
+                    n.Oficina,
+                    Convert.ToDecimal(n.Total),
+                    n.TipoVehiculo,
+                    n.Marca,
+                    n.Modelo,
+                    n.Capacidad,
+                    n.Ano,
+                    n.Color,
+                    n.Chasis,
+                    n.Placa,
+                    n.Uso,
+                    Convert.ToDecimal(n.ValorVehiculo),
+                    "INSERT");
+                Guardar.ProcesarInformacion();
+
+
+              
+
+            }
+            try
+            {
+
+                ReportDocument Factura = new ReportDocument();
+
+                SqlCommand comando = new SqlCommand();
+                comando.CommandText = "[Utililades].[SP_GENERAR_REPORTE_PRODUCCION_INTERMEDIARIO] @IdUsuario";
+                comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+
+                comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
+                comando.Parameters["@IdUsuario"].Value = IdUsuario;
+
+                Factura.Load(@"C:\Users\Ing.Juan Marcelino\Desktop\ReporteProduccionIntermediario.rpt");
+                Factura.Refresh();
+                Factura.SetParameterValue("@IdUsuario", IdUsuario);
+                Factura.SetDatabaseLogon("sa", "Pa$$W0rd");
+                Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Produccion ");
+                //  Factura.PrintToPrinter(1, false, 0, 1);
+                //  crystalReportViewer1.ReportSource = Factura;
+
+
+
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Error al generar la factura de venta, favor de contactar al administrador del sistema, codigo de error--> " + ex.Message, VariablesGlobales.NombreSistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -215,8 +329,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            MostrarListadoIntermediaioro();
+              MostrarListadoIntermediaioro();
             ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
+          
         }
 
         protected void btnRestabelecer_Click(object sender, EventArgs e)
@@ -449,6 +564,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 var MANDelete = ObjDataConexion.Value.GuardarComisionesIntermediario(Eliminar, "DELETE");
                 GenerarProcesoComisionesmAsivo();
             }
+        }
+
+        protected void btnGenerarReporteProduccion_Click(object sender, EventArgs e)
+        {
+            GenerarReporteProduccionIntermediario(Convert.ToDecimal(Session["IdUsuario"]));
         }
     }
 }

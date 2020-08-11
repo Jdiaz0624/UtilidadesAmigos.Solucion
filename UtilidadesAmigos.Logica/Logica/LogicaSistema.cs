@@ -1841,6 +1841,8 @@ namespace UtilidadesAmigos.Logica.Logica
                           {
                               Poliza=n.Poliza,
                               NoFactura=n.NoFactura,
+                              Fecha0=n.Fecha0,
+                              Mes=n.Mes,
                               Fecha=n.Fecha,
                               Valor=n.Valor,
                               Cliente=n.Cliente,
@@ -2853,6 +2855,78 @@ namespace UtilidadesAmigos.Logica.Logica
                                  }).FirstOrDefault();
             }
             return Mantenimeinto;
+        }
+        #endregion
+        #region GUARDAR LOS DATOS PARA EL REPORTE DE LA PRODUCCION DE UN INTERMEDIARIO
+        public UtilidadesAmigos.Logica.Entidades.EGuardarRegistrosProduccionIntermediario GaurdarRegistrosProduccionIntermediario(UtilidadesAmigos.Logica.Entidades.EGuardarRegistrosProduccionIntermediario Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EGuardarRegistrosProduccionIntermediario Guardar = null;
+
+            var RegistrosProduccionIntermediario = Objdata.SP_GUARDAR_REGISTROS_REPORTE_PRODUCCION_INTERMEIARIO(
+                Item.IdUsuario,
+                Item.Poliza,
+                Item.NoFactura,
+                Item.FechaSinFormato,
+                Item.Mes,
+                Item.Fecha,
+                Item.Valor,
+                Item.Cliente,
+                Item.Vendedor,
+                Item.Cobreaor,
+                Item.Concepto,
+                Item.Balance,
+                Item.NCF,
+                Item.Tasa,
+                Item.Moneda,
+                Item.Ofiicna,
+                Item.Total,
+                Item.TipoVehiculo,
+                Item.Marca,
+                Item.Modelo,
+                Item.Capacidad,
+                Item.Ano,
+                Item.Color,
+                Item.Chasis,
+                Item.Placa,
+                Item.Uso,
+                Item.ValorVehiculo,
+                Accion);
+            if (RegistrosProduccionIntermediario != null) {
+                Guardar = (from n in RegistrosProduccionIntermediario
+                           select new UtilidadesAmigos.Logica.Entidades.EGuardarRegistrosProduccionIntermediario
+                           {
+                               IdUsuario=n.IdUsuario,
+                               Poliza=n.Poliza,
+                               NoFactura=n.NoFactura,
+                               FechaSinFormato=n.FechaSinFormato,
+                               Mes=n.Mes,
+                               Fecha=n.Fecha,
+                               Valor=n.Valor,
+                               Cliente=n.Cliente,
+                               Vendedor=n.Vendedor,
+                               Cobreaor=n.Cobreaor,
+                               Concepto=n.Concepto,
+                               Balance=n.Balance,
+                               NCF=n.NCF,
+                               Tasa=n.Tasa,
+                               Moneda=n.Moneda,
+                               Ofiicna=n.Ofiicna,
+                               Total=n.Total,
+                               TipoVehiculo=n.TipoVehiculo,
+                               Marca=n.Marca,
+                               Modelo=n.Modelo,
+                               Capacidad=n.Capacidad,
+                               Ano=n.Ano,
+                               Color=n.Color,
+                               Chasis=n.Chasis,
+                               Placa=n.Placa,
+                               Uso=n.Uso,
+                               ValorVehiculo=n.ValorVehiculo
+                           }).FirstOrDefault();
+
+            }
+            return Guardar;
         }
         #endregion
     }

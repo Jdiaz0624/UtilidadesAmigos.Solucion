@@ -11,6 +11,9 @@ namespace UtilidadesAmigos.Logica.Entidades
         public string Poliza { get; set; }
 
         public string NoFactura { get; set; }
+        public System.Nullable<System.DateTime> Fecha0 { get; set; }
+
+        public string Mes { get; set; }
 
         public string Fecha { get; set; }
 

@@ -102,6 +102,7 @@
     <Compile Include="Comunes\EliminarFacturaPDF.cs" />
     <Compile Include="Comunes\ExportarDataExel.cs" />
     <Compile Include="Comunes\ExportarReportePDF.cs" />
+    <Compile Include="Comunes\GuardarRegistrosReporteIntermediario.cs" />
     <Compile Include="Comunes\Mail.cs" />
     <Compile Include="Comunes\SeguridadEncriptacion.cs" />
     <Compile Include="Comunes\UtilidadDrop.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Entidades\EGenerarDatosFacturasPDF.cs" />
     <Compile Include="Entidades\EGenerarProduccionFianza.cs" />
     <Compile Include="Entidades\EGuardarDatosComisionIntermediario.cs" />
+    <Compile Include="Entidades\EGuardarRegistrosProduccionIntermediario.cs" />
     <Compile Include="Entidades\EListaDepartamentos.cs" />
     <Compile Include="Entidades\EListadoCoberturas.cs" />
     <Compile Include="Entidades\EListadoRenovacion.cs" />

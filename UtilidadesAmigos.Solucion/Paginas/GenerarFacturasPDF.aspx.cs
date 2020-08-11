@@ -102,7 +102,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             string Poliza = gv.Cells[2].Text;
             string Comprobante = gv.Cells[3].Text;
             string NombreArchivo = IdComprobante.ToString() + " - " + Poliza + " - " + Comprobante + ".pdf";
-            ImprimirFactura(IdComprobante, @"C:\Users\juan.diaz\Desktop\GenerarFacturaPDF.rpt", "sa", "Pa$$W0rd", NombreArchivo);
+            ImprimirFactura(IdComprobante, @"C:\Users\Ing.Juan Marcelino\Downloads\GenerarFacturaPDF.rpt", "sa", "!@Pa$$W0rd!@0624", NombreArchivo);
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
