@@ -46,7 +46,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void ImprimirFactura(decimal IdComprobante, string RutaReporte, string UsuaruoBD, string ClaveBD, string NombreArchivo) {
             try
             {
-
+                  
                 ReportDocument Factura = new ReportDocument();
 
                 SqlCommand comando = new SqlCommand();
