@@ -220,6 +220,7 @@
     <Compile Include="Logica\LogicaOpcionesAdministrador\LogicaOpcionesdministrador.cs" />
     <Compile Include="Logica\LogicaSeguridad\LogicaSeguridad.cs" />
     <Compile Include="Logica\LogicaSistema.cs" />
+    <Compile Include="ProcesoInformacion\ProcesarInformacionUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

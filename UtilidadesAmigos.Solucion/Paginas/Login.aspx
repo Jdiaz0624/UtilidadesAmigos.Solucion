@@ -179,7 +179,8 @@ a{color:inherit;text-decoration:none}
             alert("Las claves ingresadas no concuerdan favor de verificar")
         }
         function UsuarioBloqueado() {
-            alert("Este usuario se encuentra bloqueado, favor comunicarse con un administrador para desbloquear la cuenta")
+          //  alert("Este usuario se encuentra bloqueado, favor comunicarse con un administrador para desbloquear la cuenta.")
+            alert("Este usuario se encuentra bloqueado, Si lo quieres desbloquear, comprale una malta (ALEMANA) a juan para que te lo habilite.")
         }
     </script>
 </head>
