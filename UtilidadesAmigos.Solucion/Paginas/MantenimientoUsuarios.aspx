@@ -19,7 +19,247 @@
         }
     </style>
     <script type="text/javascript">
+        function BloquearControles() {
+            $("#btnModificarConsulta").attr("disabled", "disabled");
+            $("#<%=btnDeshabilitar.ClientID%>").attr("disabled", "disabled");
+            $("#<%=btnRestablecerPantalla.ClientID%>").attr("disabled", "disabled");
 
+            $("#btnNuevo").removeAttr("disabled", true);
+            $("#<%=btnConsultar.ClientID%>").removeAttr("disabled", true);
+            $("#<%=btnExportar.ClientID%>").removeAttr("disabled", true);
+        }
+
+        function DesbloquearControles() {
+            $("#btnNuevo").attr("disabled", "disabled");
+            $("#<%=btnConsultar.ClientID%>").attr("disabled", "disabled");
+            $("#<%=btnExportar.ClientID%>").attr("disabled", "disabled");
+
+            $("#btnModificarConsulta").removeAttr("disabled", true);
+            $("#<%=btnDeshabilitar.ClientID%>").removeAttr("disabled", true);
+            $("#<%=btnRestablecerPantalla.ClientID%>").removeAttr("disabled", true);
+        }
+
+        $(document).ready(function () {
+            //EVENTO PARA EL BOTON NUEVO
+            $("#btnNuevo").click(function () {
+                $("#<%=btnModificar.ClientID%>").hide();
+                $("#<%=btnGuardar.ClientID%>").show();
+            })
+
+            //EVENTO PARA EL BOTON MODIFICAR
+            $("#btnModificarConsulta").click(function () {
+                $("#<%=btnModificar.ClientID%>").show();
+                $("#<%=btnGuardar.ClientID%>").hide();
+            })
+
+            //EVENTO DEL BOTON GUARDAR
+            $("#<%=btnGuardar.ClientID%>").click(function () {
+                //VERIFICAMOS QUE EL CAMPO SUCURSAL NO ESTE VACIO
+                var ValidarSucursal = $("#<%=ddlSeleccionarSucursalMantenimeinto.ClientID%>").val();
+                if (ValidarSucursal < 1) {
+                    alert("El campo sucursal no puede estar vacio para guardar este registro, favor de verificar");
+                    $("#<%=ddlSeleccionarSucursalMantenimeinto.ClientID%>").css("Border-color", "red");
+                    return false;
+                }
+                else {
+                    //VALIDAMOS EL CAMPO OFICINA
+                    var ValidarOficina = $("#<%=ddlSeleccionarOficinaMantenimiento.ClientID%>").val();
+                    if (ValidarOficina < 1) {
+                        alert("El campo oficina no puede estar vacio para guardar este registro, favor de verificar");
+                        $("#<%=ddlSeleccionarOficinaMantenimiento.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else {
+                        //VALIDAMOS EL CAMPO DEPARTAMENTO
+                        var ValidarDepartamento = $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").val();
+                        if (ValidarDepartamento < 1) {
+                            alert("El campo departamento no puede estar vacio para guardar este registro, favor de verificar");
+                            $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
+                        else {
+                            //VALIDAMOS EL CAMPO PERFIL
+                            var ValidarPerfil = $("#<%=ddlSeleccionarPerfilMantenimiento.ClientID%>").val();
+                            if (ValidarPerfil < 1) {
+                                alert("El campo perfil no puede estar vacio para guardar este registro, favor de verificar");
+                                $("#<%=ddlSeleccionarPerfilMantenimiento.ClientID%>").css("border-color", "red");
+                                return false;
+                            }
+                            else {
+                                //VALIDAMOS EL CAMPO USUARIO
+                                var ValidarUsuario = $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val().length;
+                                if (ValidarUsuario < 1) {
+                                    alert("El campo usuario no puede estar vacio para guardar este registro, favor de verificar");
+                                    $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").css("border-color", "red");
+                                    return false;
+                                }
+                                else {
+                                    //VALIDAMOS EL CAMPO NOMBRE DE USUARIO
+                                    var ValidarNombrePersona = $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val().length;
+                                    if (ValidarNombrePersona < 1) {
+                                        alert("El campo Nombre no puede estar vacio para guardar este registro, favor de verificar.");
+                                        $("#<%=txtNombrePersonaMantenimiento.ClientID%>").css("border-color", "red");
+                                        return false;
+                                    }
+                                    else {
+                                        //VALIDAMOS EL CAMPO CLAVE
+                                        var ValidarCampoClave = $("#<%=txtClaveMantenimiento.ClientID%>").val().length;
+                                        if (ValidarCampoClave < 1) {
+                                            alert("El campo clave no puede estar vacio para guardar este registro, favor de verificar.");
+                                            $("#<%=txtClaveMantenimiento.ClientID%>").css("border-color", "red");
+                                            return false;
+                                        }
+                                        else {
+                                            //VALIDAMOS EL CAMPO CONFIRMAR CLAVE
+                                            var ValidarCampoConfirmarClave = $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val().length;
+                                            if (ValidarCampoConfirmarClave < 1) {
+                                                alert("El campo confirmar clave no puede estar vacio para guardar este registro, favor de verificar.");
+                                                $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").css("border-color", "red");
+                                                return false;
+                                            }
+                                            else {
+                                                //VALIDAMOS EL CAMPO TIPO DE PERSONA
+                                                var ValidarTipoPersona = $("#<%=ddlSeleccionarTipoPersona.ClientID%>").val();
+                                                if (ValidarTipoPersona < 1) {
+                                                    alert("El campo tipo de persona no puede estar vacio para guardar este registro, favor de verificar.");
+                                                    $("#<%=ddlSeleccionarTipoPersona.ClientID%>").css("border-color", "red");
+                                                    return false;
+                                                }
+                                                else {
+                                                    //VALIDAMOS EL CAMPO CLAVE DE SEGURIDAD
+                                                    var ValidarClaveSeguridad = $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val().length;
+                                                    if (ValidarClaveSeguridad < 1) {
+                                                        alert("El campo clave de seguridad no puede estar vacio para guardar este registro, favor de verificar.");
+                                                        $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").css("border-color", "red");
+                                                        return false;
+                                                    }
+                                                    else {
+                                                        if (ValidarCampoClave != ValidarCampoConfirmarClave) {
+                                                            alert("Las claves ingresada no con cuerdan favor de verificar.");
+                                                            $("#<%=txtClaveMantenimiento.ClientID%>").css("border-color", "red");
+                                                            $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").css("border-color", "red");
+                                                            $("#<%=txtClaveMantenimiento.ClientID%>").val("");
+                                                            $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val("");
+                                                            return false;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+            })
+
+            //EVENTO DEL BOTON MODIFICAR
+            $("#<%=btnModificar.ClientID%>").click(function () {
+                //VERIFICAMOS QUE EL CAMPO SUCURSAL NO ESTE VACIO
+                var ValidarSucursal = $("#<%=ddlSeleccionarSucursalMantenimeinto.ClientID%>").val();
+                if (ValidarSucursal < 1) {
+                    alert("El campo sucursal no puede estar vacio para guardar este registro, favor de verificar");
+                    $("#<%=ddlSeleccionarSucursalMantenimeinto.ClientID%>").css("Border-color", "red");
+                    return false;
+                }
+                else {
+                    //VALIDAMOS EL CAMPO OFICINA
+                    var ValidarOficina = $("#<%=ddlSeleccionarOficinaMantenimiento.ClientID%>").val();
+                    if (ValidarOficina < 1) {
+                        alert("El campo oficina no puede estar vacio para guardar este registro, favor de verificar");
+                        $("#<%=ddlSeleccionarOficinaMantenimiento.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else {
+                        //VALIDAMOS EL CAMPO DEPARTAMENTO
+                        var ValidarDepartamento = $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").val();
+                        if (ValidarDepartamento < 1) {
+                            alert("El campo departamento no puede estar vacio para guardar este registro, favor de verificar");
+                            $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
+                        else {
+                            //VALIDAMOS EL CAMPO PERFIL
+                            var ValidarPerfil = $("#<%=ddlSeleccionarPerfilMantenimiento.ClientID%>").val();
+                            if (ValidarPerfil < 1) {
+                                alert("El campo perfil no puede estar vacio para guardar este registro, favor de verificar");
+                                $("#<%=ddlSeleccionarPerfilMantenimiento.ClientID%>").css("border-color", "red");
+                                return false;
+                            }
+                            else {
+                                //VALIDAMOS EL CAMPO USUARIO
+                                var ValidarUsuario = $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val().length;
+                                if (ValidarUsuario < 1) {
+                                    alert("El campo usuario no puede estar vacio para guardar este registro, favor de verificar");
+                                    $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").css("border-color", "red");
+                                    return false;
+                                }
+                                else {
+                                    //VALIDAMOS EL CAMPO NOMBRE DE USUARIO
+                                    var ValidarNombrePersona = $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val().length;
+                                    if (ValidarNombrePersona < 1) {
+                                        alert("El campo Nombre no puede estar vacio para guardar este registro, favor de verificar.");
+                                        $("#<%=txtNombrePersonaMantenimiento.ClientID%>").css("border-color", "red");
+                                        return false;
+                                    }
+                                    else {
+                                        //VALIDAMOS EL CAMPO CLAVE
+                                        var ValidarCampoClave = $("#<%=txtClaveMantenimiento.ClientID%>").val().length;
+                                        if (ValidarCampoClave < 1) {
+                                            alert("El campo clave no puede estar vacio para guardar este registro, favor de verificar.");
+                                            $("#<%=txtClaveMantenimiento.ClientID%>").css("border-color", "red");
+                                            return false;
+                                        }
+                                        else {
+                                            //VALIDAMOS EL CAMPO CONFIRMAR CLAVE
+                                            var ValidarCampoConfirmarClave = $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val().length;
+                                            if (ValidarCampoConfirmarClave < 1) {
+                                                alert("El campo confirmar clave no puede estar vacio para guardar este registro, favor de verificar.");
+                                                $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").css("border-color", "red");
+                                                return false;
+                                            }
+                                            else {
+                                                //VALIDAMOS EL CAMPO TIPO DE PERSONA
+                                                var ValidarTipoPersona = $("#<%=ddlSeleccionarTipoPersona.ClientID%>").val();
+                                                if (ValidarTipoPersona < 1) {
+                                                    alert("El campo tipo de persona no puede estar vacio para guardar este registro, favor de verificar.");
+                                                    $("#<%=ddlSeleccionarTipoPersona.ClientID%>").css("border-color", "red");
+                                                    return false;
+                                                }
+                                                else {
+                                                    //VALIDAMOS EL CAMPO CLAVE DE SEGURIDAD
+                                                    var ValidarClaveSeguridad = $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val().length;
+                                                    if (ValidarClaveSeguridad < 1) {
+                                                        alert("El campo clave de seguridad no puede estar vacio para guardar este registro, favor de verificar.");
+                                                        $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").css("border-color", "red");
+                                                        return false;
+                                                    }
+                                                    else {
+                                                        if (ValidarCampoClave != ValidarCampoConfirmarClave) {
+                                                            alert("Las claves ingresada no con cuerdan favor de verificar.");
+                                                            $("#<%=txtClaveMantenimiento.ClientID%>").css("border-color", "red");
+                                                            $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").css("border-color", "red");
+                                                            $("#<%=txtClaveMantenimiento.ClientID%>").val("");
+                                                            $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val("");
+                                                            return false;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+
+        });
     </script>
 
     <div class="container-fluid">
@@ -105,13 +345,13 @@
                   <div class="form-row">
                        <div class="form-group col-md-4">
                           <asp:Label ID="lbSeleccionarSucursalMantenimiento" runat="server" Text="Sucursal"></asp:Label>
-                           <asp:DropDownList ID="ddlSeleccionarSucursalMantenimeinto" runat="server" CssClass="form-control" ToolTip="Seleccionar Sucursal" OnSelectedIndexChanged="ddlSeleccionarSucursalMantenimeinto_SelectedIndexChanged"></asp:DropDownList>
+                           <asp:DropDownList ID="ddlSeleccionarSucursalMantenimeinto" runat="server" CssClass="form-control" AutoPostBack="true" ToolTip="Seleccionar Sucursal" OnSelectedIndexChanged="ddlSeleccionarSucursalMantenimeinto_SelectedIndexChanged"></asp:DropDownList>
                          
                       </div>
 
                        <div class="form-group col-md-4">
                           <asp:Label ID="lbSeleccionarOficinaMantenimiento" runat="server" Text="Oficina"></asp:Label>
-                           <asp:DropDownList ID="ddlSeleccionarOficinaMantenimiento" runat="server" CssClass="form-control" ToolTip="Seleccionar Oficina" OnSelectedIndexChanged="ddlSeleccionarOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
+                           <asp:DropDownList ID="ddlSeleccionarOficinaMantenimiento" runat="server" CssClass="form-control" AutoPostBack="true" ToolTip="Seleccionar Oficina" OnSelectedIndexChanged="ddlSeleccionarOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
                       </div>
 
                       <div class="form-group col-md-4">
@@ -146,7 +386,7 @@
 
                       <div class="form-group col-md-4">
                           <asp:Label ID="lbEmailMantenimiento" runat="server" Text="Email"></asp:Label>
-                          <asp:TextBox ID="txtEmailMantenimiento" AutoCompleteType="Disabled" runat="server" MaxLength="100" CssClass="form-control"></asp:TextBox>
+                          <asp:TextBox ID="txtEmailMantenimiento" AutoCompleteType="Disabled" TextMode="Email" runat="server" MaxLength="100" CssClass="form-control"></asp:TextBox>
                       </div>
 
                       <div class="form-group col-md-4">
