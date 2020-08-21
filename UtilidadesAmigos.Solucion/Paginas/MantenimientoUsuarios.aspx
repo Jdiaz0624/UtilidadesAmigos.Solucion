@@ -411,7 +411,7 @@
                       </div>
                       
                       <div class="form-group form-check">
-                          <asp:CheckBox ID="cbLlevaEmailMantenimiento" AutoPostBack="true" runat="server" Text="¿Lleva Email?" CssClass="form-check-input" />
+                          <asp:CheckBox ID="cbLlevaEmailMantenimiento"  runat="server" Text="¿Lleva Email?" CssClass="form-check-input" />
                       </div>
 
                       <div class="form-group form-check">
