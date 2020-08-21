@@ -73,6 +73,7 @@ namespace UtilidadesAmigos.Logica.ProcesoInformacion
             Procesar.IdDepartamento = IdDepartamento;
             Procesar.IdPerfil = IdPerfil;
             Procesar.Usuario = Usuario;
+            Procesar.Clave = Clave;
             Procesar.Persona = Persona;
             Procesar.Estatus = Estatus;
             Procesar.LlevaEmail = LlevaEmail;
