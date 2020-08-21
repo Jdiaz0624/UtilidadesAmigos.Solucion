@@ -42,9 +42,6 @@
             $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val("");
             $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val("");
             $("#<%=txtUsuarioConsulta.ClientID%>").val("");
-            $("#<%=cbEstatusMantenimiento.ClientID%>").prop(checked, "false");
-            $("#<%=cbLlevaEmailMantenimiento.ClientID%>").prop(checked, "false");
-            $("#<%=cbCambiaClave.ClientID%>").prop(checked, "false");
         }
         function ClaveSeguridadNoValida() {
             alert("La Clave de seguridad ingresada no es valida, favor de verificar");
