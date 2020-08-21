@@ -29,6 +29,28 @@
             $("#<%=btnExportar.ClientID%>").removeAttr("disabled", true);
         }
 
+       
+        function ErrorGuardarRegistro() {
+            alert("Error al guardar el registro, favor de verificar los parametros ingresados o comunicarse con el departamento de tecnologia")
+        }
+
+        function LimpiarControles() {
+            $("#<%=txtClaveMantenimiento.ClientID%>").val("");
+            $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val("");
+            $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val("");
+            $("#<%=txtEmailMantenimiento.ClientID%>").val("");
+            $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val("");
+            $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val("");
+            $("#<%=txtUsuarioConsulta.ClientID%>").val("");
+            $("#<%=cbEstatusMantenimiento.ClientID%>").prop(checked, "false");
+            $("#<%=cbLlevaEmailMantenimiento.ClientID%>").prop(checked, "false");
+            $("#<%=cbCambiaClave.ClientID%>").prop(checked, "false");
+        }
+        function ClaveSeguridadNoValida() {
+            alert("La Clave de seguridad ingresada no es valida, favor de verificar");
+            $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val("");
+            return false;
+        }
         function DesbloquearControles() {
             $("#btnNuevo").attr("disabled", "disabled");
             $("#<%=btnConsultar.ClientID%>").attr("disabled", "disabled");
@@ -205,22 +227,7 @@
                                         $("#<%=txtNombrePersonaMantenimiento.ClientID%>").css("border-color", "red");
                                         return false;
                                     }
-                                    else {
-                                        //VALIDAMOS EL CAMPO CLAVE
-                                        var ValidarCampoClave = $("#<%=txtClaveMantenimiento.ClientID%>").val().length;
-                                        if (ValidarCampoClave < 1) {
-                                            alert("El campo clave no puede estar vacio para guardar este registro, favor de verificar.");
-                                            $("#<%=txtClaveMantenimiento.ClientID%>").css("border-color", "red");
-                                            return false;
-                                        }
-                                        else {
-                                            //VALIDAMOS EL CAMPO CONFIRMAR CLAVE
-                                            var ValidarCampoConfirmarClave = $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val().length;
-                                            if (ValidarCampoConfirmarClave < 1) {
-                                                alert("El campo confirmar clave no puede estar vacio para guardar este registro, favor de verificar.");
-                                                $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").css("border-color", "red");
-                                                return false;
-                                            }
+                                    
                                             else {
                                                 //VALIDAMOS EL CAMPO TIPO DE PERSONA
                                                 var ValidarTipoPersona = $("#<%=ddlSeleccionarTipoPersona.ClientID%>").val();
@@ -249,8 +256,8 @@
                                                     }
                                                 }
                                             }
-                                        }
-                                    }
+                                        
+                                    
 
                                 }
                             }
@@ -300,7 +307,7 @@
             <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExportar_Click" /><br /><br />
                 <button type="button" id="btnModificarConsulta" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">Modificar</button>
               <asp:Button ID="btnDeshabilitar" runat="server" Text="Deshabilitar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Deshabilitar Registro Seleccionado" OnClick="btnDeshabilitar_Click"/>
-             <asp:Button ID="btnRestablecerPantalla" runat="server" Text="Restablecer" CssClass="btn btn-outline-primary btn-sm" ToolTip="Restablecer la pantalla" />
+             <asp:Button ID="btnRestablecerPantalla" runat="server" Text="Restablecer" CssClass="btn btn-outline-primary btn-sm" ToolTip="Restablecer la pantalla" OnClick="btnRestablecerPantalla_Click" />
         </div>
         <br />
           <div>

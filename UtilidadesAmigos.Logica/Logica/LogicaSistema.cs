@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UtilidadesAmigos.Logica.Entidades;
 
 namespace UtilidadesAmigos.Logica.Logica
 {
@@ -65,6 +66,11 @@ namespace UtilidadesAmigos.Logica.Logica
                           }).ToList();
             return Buscar;
         }
+
+        //internal object MantenimientoUsuarios(EUsuarios procesar, string accion)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         //MANTENIMIENTO DE USUARIOS
         public UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios MantenimientoUsuarios(UtilidadesAmigos.Logica.Entidades.EMantenimientoUsuarios Item, string Accion)
