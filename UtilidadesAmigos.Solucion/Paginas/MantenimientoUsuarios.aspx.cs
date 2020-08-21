@@ -47,7 +47,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         private void CargarTipoPersonaMantenimiento() {
             
-                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarTipoPersona, ObjDataLogica.Value.BuscaListas("TIPOPERSONA", null, null));
+           UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarTipoPersona, ObjDataLogica.Value.BuscaListas("TIPOPERSONA", null, null));
         }
         #endregion
 
@@ -210,15 +210,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
             gvUsuario.DataBind();
             //SACAMOS LOS DATOS DEL USUARIO SELECCIONADO
             foreach (var n in BuscarRegistroSeleccionado) {
+                CargarSucursalesMantenimiento();
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarSucursalMantenimeinto, n.IdSucursal.ToString());
+                CargarOficinasMantenimiento();
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarOficinaMantenimiento, n.IdOficina.ToString());
+                CargarDepartamentosMantenimiento();
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarDepartamentoMantenimiento, n.IdDepartamento.ToString());
+                CargarPerfilesUsuariosMantenimiento();
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarPerfilMantenimiento, n.IdPerfil.ToString());
                 txtNombreUsuarioMantenimiento.Text = n.Usuario;
                 txtNombrePersonaMantenimiento.Text = n.Persona;
                 txtClaveMantenimiento.Text = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(n.Clave);
                 txtConfirmarClaveMantenimiento.Text = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(n.Clave);
                 txtEmailMantenimiento.Text = n.Email;
+                CargarTipoPersonaMantenimiento();
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarTipoPersona, n.IdTipoPersona.ToString());
                 cbEstatusMantenimiento.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
                 cbLlevaEmailMantenimiento.Checked = (n.LlevaEmail0.HasValue ? n.LlevaEmail0.Value : false);
