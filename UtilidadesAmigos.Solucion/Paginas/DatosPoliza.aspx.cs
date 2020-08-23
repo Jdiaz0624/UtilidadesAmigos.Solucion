@@ -56,6 +56,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     btnGuardar.Visible = true;
                     btnRegresar.Visible = true;
                 }
+                MostrarCoberturas();
             }
         }
         #endregion
@@ -215,6 +216,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
             catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "ErrorCambio", "ErrorCambio()", true); }
         }
         #endregion
+        #region MOSTRAR EL LISTADO DE LAS COBERTURAS DE LA POLIZA CONSULTADA
+        private void MostrarCoberturas() {
+            var Listado = Objdata.Value.BuscarCoberturaPolizas(
+                txtIngresarPoliza.Text,
+                Convert.ToInt32(txtIngresarItem.Text));
+            gvCoberturasPoliza.DataSource = Listado;
+            gvCoberturasPoliza.DataBind();
+            foreach (var n in Listado) {
+                lbPolizaConsultaVariable.Text = n.Poliza;
+                lbItemSeleccionadoVariable.Text = n.SecuenciaCot.ToString();
+                lbEstatusPolizaVariableVariable.Text = n.Estatus;
+                lbInicioVigenciaVariable.Text = n.InicioVigencia;
+                lbFinVigenciaVariable.Text = n.FinVigencia;
+            }
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -347,6 +364,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtIngresarPoliza.Text = string.Empty;
             txtIngresarItem.Text = string.Empty;
             OcultarControles();
+        }
+
+        protected void gvCoberturasPoliza_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void gvCoberturasPoliza_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

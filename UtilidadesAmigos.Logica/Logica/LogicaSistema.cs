@@ -2935,5 +2935,29 @@ namespace UtilidadesAmigos.Logica.Logica
             return Guardar;
         }
         #endregion
+
+        #region MOSTRAR LA COBERTURAS DE LAS POLIZAS
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscarCoberturasPoliza> BuscarCoberturaPolizas(string Poliza = null, int? Item = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCAR_COBERTURAS_POLIZA(Poliza, Item)
+                           select new UtilidadesAmigos.Logica.Entidades.EBuscarCoberturasPoliza
+                           {
+                               Poliza=n.Poliza,
+                               Estatus=n.Estatus,
+                               Prima=n.Prima,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               SecuenciaCot=n.SecuenciaCot,
+                               Secuencia =n.Secuencia,
+                               Descripcion=n.Descripcion,
+                               MontoInformativo=n.MontoInformativo,
+                               PorcDeducible=n.PorcDeducible,
+                               MinimoDeducible=n.MinimoDeducible,
+                               PorcCobertura=n.PorcCobertura
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }

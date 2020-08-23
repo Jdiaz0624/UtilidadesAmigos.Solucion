@@ -90,6 +90,7 @@
         <br />
         <div align="center">
              <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
+            <button type="button" id="btnCoberturas" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".ModificarCoberturas">Coberturas</button>
         </div>
         <br />
         <div class="form-check-inline">
@@ -173,4 +174,75 @@
         </div>
         <br />
     </div>
+
+     <div class="modal fade bd-example-modal-xl ModificarCoberturas" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+        <div class="jumbotron" align="center">
+            <asp:Label ID="lbEncabezadoMantenimiento" runat="server" Text="Modificar Coberturas"></asp:Label>
+        </div>
+       <asp:ScriptManager ID="ScripManagerDatoPoliza" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanelDatoPoliza" runat="server">
+            <ContentTemplate>
+                 <div align="center">
+            <asp:Label ID="lbPolizaConsultadaTitulo" runat="server" Text="Poliza: " CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbPolizaConsultaVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
+
+              <asp:Label ID="Label1" runat="server" Text="   " CssClass="LetrasNegrita"></asp:Label>
+
+            <asp:Label ID="lbItemSeleccionadoTitulo" runat="server" Text="Item Seleccionado: " CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbItemSeleccionadoVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
+
+              <asp:Label ID="Label2" runat="server" Text="   " CssClass="LetrasNegrita"></asp:Label>
+
+            <asp:Label ID="lbEstatusPolizaTitulo" runat="server" Text="Estatus: " CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbEstatusPolizaVariableVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
+            <br />
+
+                <asp:Label ID="lbInicioVigenciaTitulo" runat="server" Text="Inicio de Vigencia: " CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbInicioVigenciaVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
+
+            <asp:Label ID="Label3" runat="server" Text="   " CssClass="LetrasNegrita"></asp:Label>
+
+            <asp:Label ID="lbFinVigenciaTitulo" runat="server" Text="Fin de Vigencia: " CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbFinVigenciaVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
+        </div>
+        <br />
+        <div align="center">
+            <asp:Label ID="lbSeleccionarCobertura" runat="server" Text="Seleccionar Cobertura" CssClass="LetrasNegrita"></asp:Label>
+        </div>
+
+            <!--INICIO DEL GRID-->
+    <div class="container-fluid">
+            <asp:GridView ID="gvCoberturasPoliza" runat="server" AllowPaging="true" OnPageIndexChanging="gvCoberturasPoliza_PageIndexChanging" OnSelectedIndexChanged="gvCoberturasPoliza_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    <asp:CommandField ButtonType="Button" HeaderText="Seleccionar"  ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Seleccionar" ShowSelectButton="True" />
+                    <asp:BoundField DataField="Secuencia" HeaderText="ID" />
+                    <asp:BoundField DataField="Descripcion" HeaderText="Cobertura" />
+                    <asp:BoundField DataField="MontoInformativo" HeaderText="Limite" />
+                    <asp:BoundField DataField="PorcDeducible" HeaderText="% Deducible" />
+                    <asp:BoundField DataField="MinimoDeducible" HeaderText="Minimo" />
+                    <asp:BoundField DataField="PorcCobertura" HeaderText="% Cobertura" />
+                </Columns  >
+                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
+    <!--FIN DEL GRID-->
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+  </div>
+</div>
+
+
 </asp:Content>

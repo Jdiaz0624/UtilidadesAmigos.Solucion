@@ -923,6 +923,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, vendedor);
 			return ((ISingleResult<SP_SACAR_PRODUCCION_INTERMEDIARIOResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_COBERTURAS_POLIZA")]
+		public ISingleResult<SP_BUSCAR_COBERTURAS_POLIZAResult> SP_BUSCAR_COBERTURAS_POLIZA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item", DbType="Int")] System.Nullable<int> item)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, item);
+			return ((ISingleResult<SP_BUSCAR_COBERTURAS_POLIZAResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_LISTA_CARGAR_RAMOSResult
@@ -26260,6 +26267,230 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._ValorVehiculo != value))
 				{
 					this._ValorVehiculo = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCAR_COBERTURAS_POLIZAResult
+	{
+		
+		private string _Poliza;
+		
+		private string _Estatus;
+		
+		private System.Nullable<decimal> _Prima;
+		
+		private string _InicioVigencia;
+		
+		private string _FinVigencia;
+		
+		private int _SecuenciaCot;
+		
+		private int _Secuencia;
+		
+		private string _Descripcion;
+		
+		private string _MontoInformativo;
+		
+		private System.Nullable<decimal> _PorcDeducible;
+		
+		private System.Nullable<decimal> _MinimoDeducible;
+		
+		private System.Nullable<decimal> _PorcCobertura;
+		
+		public SP_BUSCAR_COBERTURAS_POLIZAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(50)")]
+		public string Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prima", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Prima
+		{
+			get
+			{
+				return this._Prima;
+			}
+			set
+			{
+				if ((this._Prima != value))
+				{
+					this._Prima = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InicioVigencia", DbType="NVarChar(4000)")]
+		public string InicioVigencia
+		{
+			get
+			{
+				return this._InicioVigencia;
+			}
+			set
+			{
+				if ((this._InicioVigencia != value))
+				{
+					this._InicioVigencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinVigencia", DbType="NVarChar(4000)")]
+		public string FinVigencia
+		{
+			get
+			{
+				return this._FinVigencia;
+			}
+			set
+			{
+				if ((this._FinVigencia != value))
+				{
+					this._FinVigencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecuenciaCot", DbType="Int NOT NULL")]
+		public int SecuenciaCot
+		{
+			get
+			{
+				return this._SecuenciaCot;
+			}
+			set
+			{
+				if ((this._SecuenciaCot != value))
+				{
+					this._SecuenciaCot = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int NOT NULL")]
+		public int Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(250)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoInformativo", DbType="VarChar(50)")]
+		public string MontoInformativo
+		{
+			get
+			{
+				return this._MontoInformativo;
+			}
+			set
+			{
+				if ((this._MontoInformativo != value))
+				{
+					this._MontoInformativo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcDeducible", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> PorcDeducible
+		{
+			get
+			{
+				return this._PorcDeducible;
+			}
+			set
+			{
+				if ((this._PorcDeducible != value))
+				{
+					this._PorcDeducible = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinimoDeducible", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> MinimoDeducible
+		{
+			get
+			{
+				return this._MinimoDeducible;
+			}
+			set
+			{
+				if ((this._MinimoDeducible != value))
+				{
+					this._MinimoDeducible = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcCobertura", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> PorcCobertura
+		{
+			get
+			{
+				return this._PorcCobertura;
+			}
+			set
+			{
+				if ((this._PorcCobertura != value))
+				{
+					this._PorcCobertura = value;
 				}
 			}
 		}
