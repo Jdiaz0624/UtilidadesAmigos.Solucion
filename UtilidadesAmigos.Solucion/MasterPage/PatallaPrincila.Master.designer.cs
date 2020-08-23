@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UtilidadesAmigos.Solucion.MasterPage {
-    
-    
-    public partial class PatallaPrincila {
-        
+namespace UtilidadesAmigos.Solucion.MasterPage
+{
+
+
+    public partial class PatallaPrincila
+    {
+
         /// <summary>
         /// head control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
-        
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// LinkInicio control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkInicio;
-        
+
         /// <summary>
         /// linkTicket control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkTicket;
-        
+
         /// <summary>
         /// linkProduccionPorUsuarios control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkProduccionPorUsuarios;
-        
+
         /// <summary>
         /// linkProduccionDiaria control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkProduccionDiaria;
-        
+
         /// <summary>
         /// linkGenerarCartera control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkGenerarCartera;
-        
+
         /// <summary>
         /// linkCarteraIntermediarios control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkCarteraIntermediarios;
-        
+
         /// <summary>
         /// linkComisionesCobrador control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkComisionesCobrador;
-        
+
         /// <summary>
         /// linkValidarCoberturas control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkValidarCoberturas;
-        
+
         /// <summary>
         /// linkGenerarReporteUAF control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkGenerarReporteUAF;
-        
+
         /// <summary>
         /// LinkReporteFianzas control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkReporteFianzas;
-        
+
         /// <summary>
         /// LinkReporteReclamos control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkReporteReclamos;
-        
+
         /// <summary>
         /// LinkProduccionDiariaContabilidad control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkProduccionDiariaContabilidad;
-        
+
         /// <summary>
         /// LinkMarbeteDeclarativo control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkMarbeteDeclarativo;
-        
+
         /// <summary>
         /// LinkBakupBD control.
         /// </summary>
@@ -155,16 +157,16 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkBakupBD;
-        
+
         /// <summary>
-        /// linkProcesarDataGruas control.
+        /// LinkProcesarDataAsegurado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkProcesarDataGruas;
-        
+        protected global::System.Web.UI.WebControls.LinkButton LinkProcesarDataAsegurado;
+
         /// <summary>
         /// LinkCorregirValorDeclarativa control.
         /// </summary>
@@ -173,7 +175,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkCorregirValorDeclarativa;
-        
+
         /// <summary>
         /// LinkCorregirLimites control.
         /// </summary>
@@ -182,7 +184,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkCorregirLimites;
-        
+
         /// <summary>
         /// LinkEnvioCorreo control.
         /// </summary>
@@ -191,7 +193,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkEnvioCorreo;
-        
+
         /// <summary>
         /// LinkEliminarBalance control.
         /// </summary>
@@ -200,7 +202,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkEliminarBalance;
-        
+
         /// <summary>
         /// LinkGenerarFacturasPDF control.
         /// </summary>
@@ -209,7 +211,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkGenerarFacturasPDF;
-        
+
         /// <summary>
         /// linkOficinas control.
         /// </summary>
@@ -218,7 +220,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkOficinas;
-        
+
         /// <summary>
         /// linkDeprtamentos control.
         /// </summary>
@@ -227,7 +229,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkDeprtamentos;
-        
+
         /// <summary>
         /// linkEmpleados control.
         /// </summary>
@@ -236,7 +238,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkEmpleados;
-        
+
         /// <summary>
         /// linkInventario control.
         /// </summary>
@@ -245,7 +247,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkInventario;
-        
+
         /// <summary>
         /// linkClientes control.
         /// </summary>
@@ -254,7 +256,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkClientes;
-        
+
         /// <summary>
         /// LinkDependientes control.
         /// </summary>
@@ -263,7 +265,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkDependientes;
-        
+
         /// <summary>
         /// LinkCorreoElectronicos control.
         /// </summary>
@@ -272,7 +274,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkCorreoElectronicos;
-        
+
         /// <summary>
         /// LinkSolicitudEmision control.
         /// </summary>
@@ -281,7 +283,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkSolicitudEmision;
-        
+
         /// <summary>
         /// linkUsuarios control.
         /// </summary>
@@ -290,7 +292,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkUsuarios;
-        
+
         /// <summary>
         /// linkPerfilesUsuarios control.
         /// </summary>
@@ -299,7 +301,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkPerfilesUsuarios;
-        
+
         /// <summary>
         /// linkClaveSeguridad control.
         /// </summary>
@@ -308,7 +310,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkClaveSeguridad;
-        
+
         /// <summary>
         /// linkMovimientoUsuarios control.
         /// </summary>
@@ -317,7 +319,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkMovimientoUsuarios;
-        
+
         /// <summary>
         /// linkTarjetasAccesos control.
         /// </summary>
@@ -326,7 +328,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkTarjetasAccesos;
-        
+
         /// <summary>
         /// linkOpcionMenu control.
         /// </summary>
@@ -335,7 +337,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkOpcionMenu;
-        
+
         /// <summary>
         /// linkOpcion control.
         /// </summary>
@@ -344,7 +346,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkOpcion;
-        
+
         /// <summary>
         /// linkBotones control.
         /// </summary>
@@ -353,7 +355,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkBotones;
-        
+
         /// <summary>
         /// linkPermisoUsuarios control.
         /// </summary>
@@ -362,7 +364,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkPermisoUsuarios;
-        
+
         /// <summary>
         /// linkCerrarCesion control.
         /// </summary>
@@ -371,7 +373,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkCerrarCesion;
-        
+
         /// <summary>
         /// ContentPlaceHolder1 control.
         /// </summary>

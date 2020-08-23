@@ -75,7 +75,7 @@
                                 </a>
                                 <div class="dropdown-menu">
                                     <asp:LinkButton ID="LinkBakupBD" runat="server" Text="Generar Bakup de BD" OnClick="LinkBakupBD_Click" CssClass="dropdown-item"></asp:LinkButton>
-                                  <asp:LinkButton ID="linkProcesarDataGruas" runat="server" ForeColor="Red" Text="Procesar Data Gruas" OnClick="linkProcesarDataGruas_Click" CssClass="dropdown-item"></asp:LinkButton>
+                                  <asp:LinkButton ID="LinkProcesarDataAsegurado" runat="server" Text="Procesar Data Asegura.do" OnClick="LinkProcesarDataAsegurado_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     <asp:LinkButton ID="LinkCorregirValorDeclarativa" runat="server" Text="Dato Poliza" OnClick="LinkCorregirValorDeclarativa_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     <asp:LinkButton ID="LinkCorregirLimites" runat="server" ForeColor="Red" Text="Corregir Limites" OnClick="LinkCorregirLimites_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     <asp:LinkButton ID="LinkEnvioCorreo" runat="server" ForeColor="Red" Text="Envio de Correo" OnClick="LinkEnvioCorreo_Click" CssClass="dropdown-item"></asp:LinkButton>
@@ -96,8 +96,7 @@
                                         <asp:LinkButton ID="LinkDependientes" runat="server" Text="Dependientes" OnClick="LinkDependientes_Click" class="dropdown-item"></asp:LinkButton>
                                         <asp:LinkButton ID="LinkCorreoElectronicos" runat="server" ForeColor="Red" Text="Correo Electronico" OnClick="LinkCorreoElectronicos_Click" class="dropdown-item"></asp:LinkButton>
                                     </div>
-                                  </li>
-                                  <li class="nav-item">
+                                  </li>+
                             <asp:LinkButton ID="LinkSolicitudEmision" runat="server" ForeColor="Red" Text="Solicitud" OnClick="LinkSolicitudEmision_Click1" class="nav-link active"></asp:LinkButton>
                           </li>
                                       <li class="nav-item dropdown">

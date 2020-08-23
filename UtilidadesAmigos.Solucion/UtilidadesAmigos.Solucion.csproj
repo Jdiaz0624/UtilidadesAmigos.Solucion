@@ -164,6 +164,7 @@
     <Content Include="Paginas\MantenimeintoPerfiles.aspx" />
     <Content Include="Paginas\MantenimientoClaveSeguridad.aspx" />
     <Content Include="Paginas\MantenimientoDependientes.aspx" />
+    <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
     <Content Include="Paginas\ProduccionDiariaContabilidad.aspx" />
     <Content Include="Paginas\ReporteReclamos.aspx" />
     <Content Include="Paginas\SistemaTicket.aspx" />
@@ -444,6 +445,13 @@
     </Compile>
     <Compile Include="Paginas\PermisoUsuarios.aspx.designer.cs">
       <DependentUpon>PermisoUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\ProcesarDataAsegurado.aspx.cs">
+      <DependentUpon>ProcesarDataAsegurado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\ProcesarDataAsegurado.aspx.designer.cs">
+      <DependentUpon>ProcesarDataAsegurado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ProcesarDataGruas.aspx.cs">
       <DependentUpon>ProcesarDataGruas.aspx</DependentUpon>
