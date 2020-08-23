@@ -60,9 +60,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Factura.Refresh();
                 Factura.SetParameterValue("@IdComprobante", IdComprobante);
                 Factura.SetDatabaseLogon(UsuaruoBD, ClaveBD);
-                Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, NombreArchivo);
-              //  Factura.PrintToPrinter(1, false, 0, 1);
-              //  crystalReportViewer1.ReportSource = Factura;
+                Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+
+                //  Factura.PrintToPrinter(1, false, 0, 1);
+                //  crystalReportViewer1.ReportSource = Factura;
 
 
 
@@ -102,7 +103,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             string Poliza = gv.Cells[2].Text;
             string Comprobante = gv.Cells[3].Text;
             string NombreArchivo = IdComprobante.ToString() + " - " + Poliza + " - " + Comprobante + ".pdf";
-            ImprimirFactura(IdComprobante, @"C:\Users\Ing. Juan Marcelino\Desktop\GenerarFacturaPDF.rpt", "sa", "!@Pa$$W0rd!@0624", NombreArchivo);
+            ImprimirFactura(IdComprobante, Server.MapPath("GenerarFacturaPDF.rpt"), "sa", "Pa$$W0rd", NombreArchivo);
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)

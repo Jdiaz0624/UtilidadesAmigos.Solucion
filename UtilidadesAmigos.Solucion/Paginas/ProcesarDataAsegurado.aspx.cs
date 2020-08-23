@@ -18,7 +18,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnBuscarRuta_Click(object sender, EventArgs e)
         {
             var CSVFile = File.ReadAllLines(Server.MapPath(@"ASE_AMSEG_NEW_20200805.csv"));
-
+          //  var CSVFile = File.ReadAllLines(System.Web.ht Server.MapPath(@"~C:\Users\Ing. Juan Marcelino\Desktop\Archivo\ASE_AMSEG_NEW_20200805.csv"));
             var Consulta = (from n in CSVFile
                             let fila = n.Split(',')
                             select new
@@ -28,8 +28,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                 Cedula=fila[2]
                             }).Skip(1);
 
-            //GridView1.DataSource = Consulta;
-            //GridView1.DataBind();
+            GridView1.DataSource = Consulta;
+            GridView1.DataBind();
         }
     }
 }
