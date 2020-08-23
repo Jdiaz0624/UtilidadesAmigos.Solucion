@@ -42,6 +42,14 @@
             $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val("");
             $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val("");
             $("#<%=txtUsuarioConsulta.ClientID%>").val("");
+
+            $("#btnModificarConsulta").attr("disabled", "disabled");
+            $("#<%=btnDeshabilitar.ClientID%>").attr("disabled", "disabled");
+            $("#<%=btnRestablecerPantalla.ClientID%>").attr("disabled", "disabled");
+
+            $("#btnNuevo").removeAttr("disabled", true);
+            $("#<%=btnConsultar.ClientID%>").removeAttr("disabled", true);
+            $("#<%=btnExportar.ClientID%>").removeAttr("disabled", true);
         }
         function ClaveSeguridadNoValida() {
             alert("La Clave de seguridad ingresada no es valida, favor de verificar");

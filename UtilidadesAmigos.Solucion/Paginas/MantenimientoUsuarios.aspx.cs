@@ -289,7 +289,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnRestablecerPantalla_Click(object sender, EventArgs e)
         {
             ClientScript.RegisterStartupScript(GetType(), "LimpiarControles", "LimpiarControles()", true);
-            ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles()", true);
+            CargarListadoUsuarios();
         }
     }
 }
