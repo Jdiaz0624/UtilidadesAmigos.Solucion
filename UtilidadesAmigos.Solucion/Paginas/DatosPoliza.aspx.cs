@@ -220,7 +220,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void MostrarCoberturas() {
             var Listado = Objdata.Value.BuscarCoberturaPolizas(
                 txtIngresarPoliza.Text,
-                Convert.ToInt32(txtIngresarItem.Text));
+                Convert.ToInt32(txtIngresarItem.Text),
+                null);
             gvCoberturasPoliza.DataSource = Listado;
             gvCoberturasPoliza.DataBind();
             foreach (var n in Listado) {
@@ -230,6 +231,42 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbInicioVigenciaVariable.Text = n.InicioVigencia;
                 lbFinVigenciaVariable.Text = n.FinVigencia;
             }
+        }
+        #endregion
+
+        #region MODIFICAR DATA COBERTURA
+        private void ModificarCobertura() {
+
+            try {
+                // decimal Cotizacion = UtilidadesAmigos.Logica.Comunes.coti
+                UtilidadesAmigos.Logica.ProcesoInformacion.ProcesarInformacionModificarCoberturaPoliza Procesar = new Logica.ProcesoInformacion.ProcesarInformacionModificarCoberturaPoliza(
+                    30,
+                    UtilidadesAmigos.Logica.Comunes.SacarNumeroCotizacionPoliza.SacarNumeroCotiacion(txtIngresarPoliza.Text),
+                    0, 0,
+                    Convert.ToInt32(txtIngresarItem.Text),
+                    Convert.ToInt32(lbCodigoCobertura.Text),
+                    txtCoberturaSeleccionada.Text,
+                    txtMontoInformativo.Text,
+                    "S",
+                    0,
+                    0,
+                    Convert.ToDecimal(txtPorciendoDeducible.Text),
+                    Convert.ToDecimal(txtMinimoDeducible.Text),
+                    "",
+                    Convert.ToDecimal(txtPorcientoCobertura.Text),
+                    0, "UPDATE");
+                Procesar.ModificarCoberturas();
+
+
+                txtCoberturaSeleccionada.Text = string.Empty;
+                txtMontoInformativo.Text = string.Empty;
+                txtPorciendoDeducible.Text = string.Empty;
+                txtMinimoDeducible.Text = string.Empty;
+                txtPorcientoCobertura.Text = string.Empty;
+                lbCodigoCobertura.Text = "999";
+                MostrarCoberturas();
+            }
+            catch (Exception) { }
         }
         #endregion
         protected void Page_Load(object sender, EventArgs e)
@@ -364,16 +401,39 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtIngresarPoliza.Text = string.Empty;
             txtIngresarItem.Text = string.Empty;
             OcultarControles();
+            ClientScript.RegisterStartupScript(GetType(), "LimpiarControlesCoberturas", "LimpiarControlesCoberturas();", true);
         }
 
         protected void gvCoberturasPoliza_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            gvCoberturasPoliza.PageIndex = e.NewPageIndex;
+            MostrarCoberturas();
 
         }
 
         protected void gvCoberturasPoliza_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GridViewRow gb = gvCoberturasPoliza.SelectedRow;
 
+            var BuscarInformacion = Objdata.Value.BuscarCoberturaPolizas(
+                txtIngresarPoliza.Text,
+                Convert.ToInt32(txtIngresarItem.Text),
+                Convert.ToInt32(gb.Cells[1].Text));
+            foreach (var n in BuscarInformacion) {
+                txtCoberturaSeleccionada.Text = n.Descripcion;
+                txtMontoInformativo.Text = n.MontoInformativo;
+                txtPorciendoDeducible.Text = n.PorcDeducible.ToString();
+                txtMinimoDeducible.Text = n.MinimoDeducible.ToString();
+                txtPorcientoCobertura.Text = n.PorcCobertura.ToString();
+                lbCodigoCobertura.Text = n.Secuencia.ToString();
+            }
+            ClientScript.RegisterStartupScript(GetType(), "ActivarBotonModificar", "ActivarBotonModificar();", true);
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            ModificarCobertura();
+            ClientScript.RegisterStartupScript(GetType(), "LimpiarControlesCoberturas", "LimpiarControlesCoberturas();", true);
         }
     }
 }

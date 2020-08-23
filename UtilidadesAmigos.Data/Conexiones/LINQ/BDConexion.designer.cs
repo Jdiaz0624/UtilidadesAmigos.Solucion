@@ -924,11 +924,42 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_SACAR_PRODUCCION_INTERMEDIARIOResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_COBERTURAS_POLIZA")]
-		public ISingleResult<SP_BUSCAR_COBERTURAS_POLIZAResult> SP_BUSCAR_COBERTURAS_POLIZA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item", DbType="Int")] System.Nullable<int> item)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MODIFICAR_COBERTURAS_POLIZAS")]
+		public ISingleResult<SP_MODIFICAR_COBERTURAS_POLIZASResult> SP_MODIFICAR_COBERTURAS_POLIZAS(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Compania", DbType="Int")] System.Nullable<int> compania, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cotizacion", DbType="Decimal(20,0)")] System.Nullable<decimal> cotizacion, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubRamo", DbType="Int")] System.Nullable<int> subRamo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SecuenciaCot", DbType="Int")] System.Nullable<int> secuenciaCot, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Int")] System.Nullable<int> secuencia, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(250)")] string descripcion, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MontoInformativo", DbType="VarChar(50)")] string montoInformativo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TieneCobertura", DbType="Char(1)")] System.Nullable<char> tieneCobertura, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Porciento", DbType="Decimal(20,0)")] System.Nullable<decimal> porciento, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Prima", DbType="Decimal(20,0)")] System.Nullable<decimal> prima, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PorcDeducible", DbType="Decimal(20,0)")] System.Nullable<decimal> porcDeducible, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MinimoDeducible", DbType="Decimal(20,0)")] System.Nullable<decimal> minimoDeducible, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Endoso", DbType="VarChar(50)")] string endoso, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PorcCobertura", DbType="Decimal(20,0)")] System.Nullable<decimal> porcCobertura, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorServicio", DbType="Decimal(20,0)")] System.Nullable<decimal> valorServicio, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, item);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), compania, cotizacion, ramo, subRamo, secuenciaCot, secuencia, descripcion, montoInformativo, tieneCobertura, porciento, prima, porcDeducible, minimoDeducible, endoso, porcCobertura, valorServicio, accion);
+			return ((ISingleResult<SP_MODIFICAR_COBERTURAS_POLIZASResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_COBERTURAS_POLIZA")]
+		public ISingleResult<SP_BUSCAR_COBERTURAS_POLIZAResult> SP_BUSCAR_COBERTURAS_POLIZA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Item", DbType="Int")] System.Nullable<int> item, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoCobertura", DbType="Int")] System.Nullable<int> codigoCobertura)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, item, codigoCobertura);
 			return ((ISingleResult<SP_BUSCAR_COBERTURAS_POLIZAResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_NUMERO_COTIZACION_POLIZA")]
+		public ISingleResult<SP_SACAR_NUMERO_COTIZACION_POLIZAResult> SP_SACAR_NUMERO_COTIZACION_POLIZA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza);
+			return ((ISingleResult<SP_SACAR_NUMERO_COTIZACION_POLIZAResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -26272,10 +26303,308 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
+	public partial class SP_MODIFICAR_COBERTURAS_POLIZASResult
+	{
+		
+		private System.Nullable<int> _Compania;
+		
+		private System.Nullable<decimal> _Cotizacion;
+		
+		private System.Nullable<int> _Ramo;
+		
+		private System.Nullable<int> _SubRamo;
+		
+		private System.Nullable<int> _SecuenciaCot;
+		
+		private System.Nullable<int> _Secuencia;
+		
+		private string _Descripcion;
+		
+		private string _MontoInformativo;
+		
+		private System.Nullable<char> _TieneCobertura;
+		
+		private System.Nullable<decimal> _Porciento;
+		
+		private System.Nullable<decimal> _Prima;
+		
+		private System.Nullable<decimal> _PorcDeducible;
+		
+		private System.Nullable<decimal> _MinimoDeducible;
+		
+		private string _Endoso;
+		
+		private System.Nullable<decimal> _PorcCobertura;
+		
+		private System.Nullable<decimal> _ValorServicio;
+		
+		public SP_MODIFICAR_COBERTURAS_POLIZASResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Compania", DbType="Int")]
+		public System.Nullable<int> Compania
+		{
+			get
+			{
+				return this._Compania;
+			}
+			set
+			{
+				if ((this._Compania != value))
+				{
+					this._Compania = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cotizacion", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> Cotizacion
+		{
+			get
+			{
+				return this._Cotizacion;
+			}
+			set
+			{
+				if ((this._Cotizacion != value))
+				{
+					this._Cotizacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ramo", DbType="Int")]
+		public System.Nullable<int> Ramo
+		{
+			get
+			{
+				return this._Ramo;
+			}
+			set
+			{
+				if ((this._Ramo != value))
+				{
+					this._Ramo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubRamo", DbType="Int")]
+		public System.Nullable<int> SubRamo
+		{
+			get
+			{
+				return this._SubRamo;
+			}
+			set
+			{
+				if ((this._SubRamo != value))
+				{
+					this._SubRamo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecuenciaCot", DbType="Int")]
+		public System.Nullable<int> SecuenciaCot
+		{
+			get
+			{
+				return this._SecuenciaCot;
+			}
+			set
+			{
+				if ((this._SecuenciaCot != value))
+				{
+					this._SecuenciaCot = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int")]
+		public System.Nullable<int> Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(250)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoInformativo", DbType="VarChar(50)")]
+		public string MontoInformativo
+		{
+			get
+			{
+				return this._MontoInformativo;
+			}
+			set
+			{
+				if ((this._MontoInformativo != value))
+				{
+					this._MontoInformativo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TieneCobertura", DbType="Char(1)")]
+		public System.Nullable<char> TieneCobertura
+		{
+			get
+			{
+				return this._TieneCobertura;
+			}
+			set
+			{
+				if ((this._TieneCobertura != value))
+				{
+					this._TieneCobertura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Porciento", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> Porciento
+		{
+			get
+			{
+				return this._Porciento;
+			}
+			set
+			{
+				if ((this._Porciento != value))
+				{
+					this._Porciento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prima", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> Prima
+		{
+			get
+			{
+				return this._Prima;
+			}
+			set
+			{
+				if ((this._Prima != value))
+				{
+					this._Prima = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcDeducible", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> PorcDeducible
+		{
+			get
+			{
+				return this._PorcDeducible;
+			}
+			set
+			{
+				if ((this._PorcDeducible != value))
+				{
+					this._PorcDeducible = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinimoDeducible", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> MinimoDeducible
+		{
+			get
+			{
+				return this._MinimoDeducible;
+			}
+			set
+			{
+				if ((this._MinimoDeducible != value))
+				{
+					this._MinimoDeducible = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Endoso", DbType="VarChar(50)")]
+		public string Endoso
+		{
+			get
+			{
+				return this._Endoso;
+			}
+			set
+			{
+				if ((this._Endoso != value))
+				{
+					this._Endoso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcCobertura", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> PorcCobertura
+		{
+			get
+			{
+				return this._PorcCobertura;
+			}
+			set
+			{
+				if ((this._PorcCobertura != value))
+				{
+					this._PorcCobertura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorServicio", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> ValorServicio
+		{
+			get
+			{
+				return this._ValorServicio;
+			}
+			set
+			{
+				if ((this._ValorServicio != value))
+				{
+					this._ValorServicio = value;
+				}
+			}
+		}
+	}
+	
 	public partial class SP_BUSCAR_COBERTURAS_POLIZAResult
 	{
 		
 		private string _Poliza;
+		
+		private decimal _Cotizacion;
 		
 		private string _Estatus;
 		
@@ -26315,6 +26644,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Poliza != value))
 				{
 					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cotizacion", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Cotizacion
+		{
+			get
+			{
+				return this._Cotizacion;
+			}
+			set
+			{
+				if ((this._Cotizacion != value))
+				{
+					this._Cotizacion = value;
 				}
 			}
 		}
@@ -26491,6 +26836,32 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._PorcCobertura != value))
 				{
 					this._PorcCobertura = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_NUMERO_COTIZACION_POLIZAResult
+	{
+		
+		private decimal _Cotizacion;
+		
+		public SP_SACAR_NUMERO_COTIZACION_POLIZAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cotizacion", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Cotizacion
+		{
+			get
+			{
+				return this._Cotizacion;
+			}
+			set
+			{
+				if ((this._Cotizacion != value))
+				{
+					this._Cotizacion = value;
 				}
 			}
 		}

@@ -45,10 +45,17 @@
         function ErrorCambio() {
             alert("Error al realizar el cambio, favor de verificar los parametros ingresados o comuniquese con tecnologia");
         }
+   
 
-         jQuery(function ($) {
-     
-            });
+        function LimpiarControlesCoberturas() {
+            $("#<%=txtCoberturaSeleccionada.ClientID%>").val("");
+            $("#<%=txtMontoInformativo.ClientID%>").val("");
+            $("#<%=txtPorciendoDeducible.ClientID%>").val("");
+            $("#<%=txtMinimoDeducible.ClientID%>").val("");
+            $("#<%=txtPorcientoCobertura.ClientID%>").val("");
+
+            $("#btnCoberturas").attr("disabled", "disabled");
+        }
    
         $(document).ready(function () {
             $("#<%=btnConsultar.ClientID%>").click(function () {
@@ -69,6 +76,65 @@
 
             });
 
+            //EVENTO DEL BOTON MODIFICAR
+            $("#<%=btnModificar.ClientID%>").click(function () {
+                var Cobertura = $("#<%=txtCoberturaSeleccionada.ClientID%>").val().length;
+                if (Cobertura < 1) {
+                    alert("El campo cobertura no puede estar vacio para modificar este registro, favor de verificar");
+                    $("#<%=txtCoberturaSeleccionada.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+                    var MontoInformativo = $("#<%=txtMontoInformativo.ClientID%>").val().length;
+                    if (MontoInformativo < 1) {
+                        alert("El campo monto informativo no puede estar vacio para modificar este registro, favor de verificar");
+                        $("#<%=txtMontoInformativo.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else {
+                        var PorcientoDeducible = $("#<%=txtPorciendoDeducible.ClientID%>").val().length;
+                        if (PorcientoDeducible < 1) {
+                            alert("El campo % deducible no puede estar vacio para modificar este registro, favor de verificar");
+                            $("#<%=txtPorciendoDeducible.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
+                        else {
+                            var MinimoDeducible = $("#<%=txtMinimoDeducible.ClientID%>").val().length;
+                            if (MinimoDeducible < 1) {
+                                alert("El campo Minimo Deducible no puede estar vacio para modificar este registro, favor de verificar");
+                                $("#<%=txtMinimoDeducible.ClientID%>").css("border-color", "red");
+                                return false;
+                            }
+                            else {
+                                var PorcientoCobertura = $("#<%=txtPorcientoCobertura.ClientID%>").val().length;
+                                if (PorcientoCobertura < 1) {
+                                    alert("El campo % de cobertura no puede estar vacio para modificar este registro, favor de verificar");
+                                    $("#<%=txtPorcientoCobertura.ClientID%>").css("border-color", "red");
+                                    return false;
+                                }
+                                else {
+                                    var ValorPorcientoDeducible = $("#<%=txtPorciendoDeducible.ClientID%>").val();
+                                    if (ValorPorcientoDeducible > 100) {
+                                        alert("El % de deducible no puede ser mayor a 100, favor de verificar");
+                                        $("#<%=txtPorciendoDeducible.ClientID%>").css("border-color", "blue");
+                                        return false;
+                                    }
+                                    else {
+                                        var ValorPorcientoCobertura = $("#<%=txtPorcientoCobertura.ClientID%>").val();
+                                        if (ValorPorcientoCobertura > 100) {
+                                            alert("El % de cobertura no puede ser mayor a 100, favor de verificar");
+                                            $("#<%=txtPorcientoCobertura.ClientID%>").css("border-color", "blue");
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+          
         });
     </script>
     <div class="container-fluid">
@@ -188,12 +254,12 @@
             <asp:Label ID="lbPolizaConsultadaTitulo" runat="server" Text="Poliza: " CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbPolizaConsultaVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
 
-              <asp:Label ID="Label1" runat="server" Text="   " CssClass="LetrasNegrita"></asp:Label>
+              <asp:Label ID="Label1" runat="server" Text=" - " CssClass="LetrasNegrita"></asp:Label>
 
             <asp:Label ID="lbItemSeleccionadoTitulo" runat="server" Text="Item Seleccionado: " CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbItemSeleccionadoVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
 
-              <asp:Label ID="Label2" runat="server" Text="   " CssClass="LetrasNegrita"></asp:Label>
+              <asp:Label ID="Label2" runat="server" Text=" - " CssClass="LetrasNegrita"></asp:Label>
 
             <asp:Label ID="lbEstatusPolizaTitulo" runat="server" Text="Estatus: " CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbEstatusPolizaVariableVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
@@ -202,11 +268,13 @@
                 <asp:Label ID="lbInicioVigenciaTitulo" runat="server" Text="Inicio de Vigencia: " CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbInicioVigenciaVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
 
-            <asp:Label ID="Label3" runat="server" Text="   " CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="Label3" runat="server" Text=" - " CssClass="LetrasNegrita"></asp:Label>
 
             <asp:Label ID="lbFinVigenciaTitulo" runat="server" Text="Fin de Vigencia: " CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbFinVigenciaVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
         </div>
+
+                <asp:Label ID="lbCodigoCobertura" runat="server" Text="Dato" Visible="false" CssClass="LetrasNegrita"></asp:Label>
         <br />
         <div align="center">
             <asp:Label ID="lbSeleccionarCobertura" runat="server" Text="Seleccionar Cobertura" CssClass="LetrasNegrita"></asp:Label>
@@ -223,7 +291,7 @@
                     <asp:BoundField DataField="Descripcion" HeaderText="Cobertura" />
                     <asp:BoundField DataField="MontoInformativo" HeaderText="Limite" />
                     <asp:BoundField DataField="PorcDeducible" HeaderText="% Deducible" />
-                    <asp:BoundField DataField="MinimoDeducible" HeaderText="Minimo" />
+                    <asp:BoundField DataField="MinimoDeducible" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Minimo"  />
                     <asp:BoundField DataField="PorcCobertura" HeaderText="% Cobertura" />
                 </Columns  >
                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
@@ -238,8 +306,45 @@
             </asp:GridView>
     </div>
     <!--FIN DEL GRID-->
+                <br />
+                <!-- MOSTRAMOS LOS CONTROLES PARA MODIFICAR EL REGISTRO SELECCIONADO-->
+
+                <div class="container-fluid">
+                    <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <asp:Label ID="lbCoberturaSeleccionada" runat="server" Text="Cobertura" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtCoberturaSeleccionada" runat="server" Enabled="false" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbMontoInformativoSeleccionado" runat="server" Text="Limite" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtMontoInformativo" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbPorcientoDeducibleSeleccionado" runat="server" Text="% Deducible" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtPorciendoDeducible" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group col-md-6">
+                          <asp:Label ID="lbMinimoDeducibleSeleccionado" runat="server" Text="Minimo Deducible" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtMinimoDeducible" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbPorcientoCobertura" runat="server" Text="% Cobertura" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtPorcientoCobertura" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+                </div>
+
+                  <div align="center">
+             <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Modificar Registro" OnClick="btnModificar_Click" />
+        </div>
             </ContentTemplate>
         </asp:UpdatePanel>
+      
+        <br />
     </div>
   </div>
 </div>

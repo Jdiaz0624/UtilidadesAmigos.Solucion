@@ -555,6 +555,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbFinVigenciaVariable;
 
         /// <summary>
+        /// lbCodigoCobertura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoCobertura;
+
+        /// <summary>
         /// lbSeleccionarCobertura control.
         /// </summary>
         /// <remarks>
@@ -571,5 +580,104 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvCoberturasPoliza;
+
+        /// <summary>
+        /// lbCoberturaSeleccionada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCoberturaSeleccionada;
+
+        /// <summary>
+        /// txtCoberturaSeleccionada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCoberturaSeleccionada;
+
+        /// <summary>
+        /// lbMontoInformativoSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbMontoInformativoSeleccionado;
+
+        /// <summary>
+        /// txtMontoInformativo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMontoInformativo;
+
+        /// <summary>
+        /// lbPorcientoDeducibleSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPorcientoDeducibleSeleccionado;
+
+        /// <summary>
+        /// txtPorciendoDeducible control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPorciendoDeducible;
+
+        /// <summary>
+        /// lbMinimoDeducibleSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbMinimoDeducibleSeleccionado;
+
+        /// <summary>
+        /// txtMinimoDeducible control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMinimoDeducible;
+
+        /// <summary>
+        /// lbPorcientoCobertura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPorcientoCobertura;
+
+        /// <summary>
+        /// txtPorcientoCobertura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPorcientoCobertura;
+
+        /// <summary>
+        /// btnModificar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificar;
     }
 }

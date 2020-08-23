@@ -2271,11 +2271,50 @@
       <Column Name="ValorVehiculo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_MODIFICAR_COBERTURAS_POLIZAS" Method="SP_MODIFICAR_COBERTURAS_POLIZAS">
+    <Parameter Name="Compania" Parameter="compania" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cotizacion" Parameter="cotizacion" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SecuenciaCot" Parameter="secuenciaCot" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Secuencia" Parameter="secuencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="MontoInformativo" Parameter="montoInformativo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TieneCobertura" Parameter="tieneCobertura" Type="System.Char" DbType="Char(1)" />
+    <Parameter Name="Porciento" Parameter="porciento" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Prima" Parameter="prima" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="PorcDeducible" Parameter="porcDeducible" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="MinimoDeducible" Parameter="minimoDeducible" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Endoso" Parameter="endoso" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="PorcCobertura" Parameter="porcCobertura" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="ValorServicio" Parameter="valorServicio" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MODIFICAR_COBERTURAS_POLIZASResult">
+      <Column Name="Compania" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SecuenciaCot" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Secuencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="MontoInformativo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TieneCobertura" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Porciento" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Prima" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="PorcDeducible" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="MinimoDeducible" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Endoso" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PorcCobertura" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="ValorServicio" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="Utililades.SP_BUSCAR_COBERTURAS_POLIZA" Method="SP_BUSCAR_COBERTURAS_POLIZA">
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="Item" Parameter="item" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoCobertura" Parameter="codigoCobertura" Type="System.Int32" DbType="Int" />
     <ElementType Name="SP_BUSCAR_COBERTURAS_POLIZAResult">
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Prima" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
@@ -2287,6 +2326,12 @@
       <Column Name="PorcDeducible" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="MinimoDeducible" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="PorcCobertura" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_NUMERO_COTIZACION_POLIZA" Method="SP_SACAR_NUMERO_COTIZACION_POLIZA">
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_SACAR_NUMERO_COTIZACION_POLIZAResult">
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

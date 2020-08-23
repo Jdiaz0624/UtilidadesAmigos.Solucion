@@ -8,27 +8,30 @@ namespace UtilidadesAmigos.Logica.Entidades
 {
     public class EBuscarCoberturasPoliza
     {
-		public string Poliza { get; set; }
+		public string Poliza {get;set;}
 
-		public string Estatus { get; set; }
+		public decimal? Cotizacion {get;set;}
 
-		public System.Nullable<decimal> Prima { get; set; }
+		public string Estatus {get;set;}
 
-		public string InicioVigencia { get; set; }
+		public System.Nullable<decimal> Prima {get;set;}
 
-		public string FinVigencia { get; set; }
-		public int SecuenciaCot { get; set; }
+		public string InicioVigencia {get;set;}
 
-		public int Secuencia { get; set; }
+		public string FinVigencia {get;set;}
 
-		public string Descripcion { get; set; }
+		public int? SecuenciaCot {get;set;}
 
-		public string MontoInformativo { get; set; }
+		public int? Secuencia {get;set;}
 
-		public System.Nullable<decimal> PorcDeducible { get; set; }
+		public string Descripcion {get;set;}
 
-		public System.Nullable<decimal> MinimoDeducible { get; set; }
+		public string MontoInformativo {get;set;}
 
-		public System.Nullable<decimal> PorcCobertura { get; set; }
+		public System.Nullable<decimal> PorcDeducible {get;set;}
+
+		public System.Nullable<decimal> MinimoDeducible {get;set;}
+
+		public System.Nullable<decimal> PorcCobertura {get;set;}
 	}
 }

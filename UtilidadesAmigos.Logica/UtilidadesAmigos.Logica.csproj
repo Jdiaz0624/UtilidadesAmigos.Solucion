@@ -104,6 +104,7 @@
     <Compile Include="Comunes\ExportarReportePDF.cs" />
     <Compile Include="Comunes\GuardarRegistrosReporteIntermediario.cs" />
     <Compile Include="Comunes\Mail.cs" />
+    <Compile Include="Comunes\SacarNumeroCotizacionPoliza.cs" />
     <Compile Include="Comunes\SeguridadEncriptacion.cs" />
     <Compile Include="Comunes\UtilidadDrop.cs" />
     <Compile Include="Comunes\ValidarControles.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="Entidades\EMantenimientoProduccionTodosLosRamos.cs" />
     <Compile Include="Entidades\EMantenimientoUsuarios.cs" />
     <Compile Include="Entidades\EMeses.cs" />
+    <Compile Include="Entidades\EModificarCoberturasPolizas.cs" />
     <Compile Include="Entidades\EModificarVigenciaPoliza.cs" />
     <Compile Include="Entidades\EOperacionesSospechosas.cs" />
     <Compile Include="Entidades\EPlanCoberturas.cs" />
@@ -193,6 +195,7 @@
     <Compile Include="Entidades\ESacarDetalleCobradoUsuario.cs" />
     <Compile Include="Entidades\ESacarItemPoliza.cs" />
     <Compile Include="Entidades\ESacarMontoComisionesSupervisores.cs" />
+    <Compile Include="Entidades\ESacarNumeroCotizacionPoliza.cs" />
     <Compile Include="Entidades\ESacarProduccionContabilidad.cs" />
     <Compile Include="Entidades\ESacarProduccionDiariaDetalle.cs" />
     <Compile Include="Entidades\ESacarProduccionIntermediario.cs" />
@@ -221,6 +224,7 @@
     <Compile Include="Logica\LogicaOpcionesAdministrador\LogicaOpcionesdministrador.cs" />
     <Compile Include="Logica\LogicaSeguridad\LogicaSeguridad.cs" />
     <Compile Include="Logica\LogicaSistema.cs" />
+    <Compile Include="ProcesoInformacion\ProcesarInformacionModificarCoberturaPoliza.cs" />
     <Compile Include="ProcesoInformacion\ProcesarInformacionUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

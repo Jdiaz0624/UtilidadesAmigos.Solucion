@@ -2937,13 +2937,14 @@ namespace UtilidadesAmigos.Logica.Logica
         #endregion
 
         #region MOSTRAR LA COBERTURAS DE LAS POLIZAS
-        public List<UtilidadesAmigos.Logica.Entidades.EBuscarCoberturasPoliza> BuscarCoberturaPolizas(string Poliza = null, int? Item = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscarCoberturasPoliza> BuscarCoberturaPolizas(string Poliza = null, int? Item = null, int? CodigoCobertura = null) {
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_BUSCAR_COBERTURAS_POLIZA(Poliza, Item)
+            var Listado = (from n in Objdata.SP_BUSCAR_COBERTURAS_POLIZA(Poliza, Item, CodigoCobertura)
                            select new UtilidadesAmigos.Logica.Entidades.EBuscarCoberturasPoliza
                            {
                                Poliza=n.Poliza,
+                               Cotizacion=n.Cotizacion,
                                Estatus=n.Estatus,
                                Prima=n.Prima,
                                InicioVigencia=n.InicioVigencia,
@@ -2957,6 +2958,67 @@ namespace UtilidadesAmigos.Logica.Logica
                                PorcCobertura=n.PorcCobertura
                            }).ToList();
             return Listado;
+        }
+        //MODIFICAR LA DATA DE LAS COBERTURAS
+        public UtilidadesAmigos.Logica.Entidades.EModificarCoberturasPolizas ModificarCoberturasPolizas(UtilidadesAmigos.Logica.Entidades.EModificarCoberturasPolizas Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EModificarCoberturasPolizas Modificar = null;
+
+            var CoberturaPoliza = Objdata.SP_MODIFICAR_COBERTURAS_POLIZAS(
+                Item.Compania,
+                Item.Cotizacion,
+                Item.Ramo,
+                Item.SubRamo,
+                Item.SecuenciaCot,
+                Item.Secuencia,
+                Item.Descripcion,
+                Item.MontoInformativo,
+                Item.TieneCobertura,
+                Item.Porciento,
+                Item.Prima,
+                Item.PorcDeducible,
+                Item.MinimoDeducible,
+                Item.Endoso,
+                Item.PorcCobertura,
+                Item.ValorServicio,
+                Accion);
+            if (CoberturaPoliza != null) {
+                Modificar = (from n in CoberturaPoliza
+                             select new UtilidadesAmigos.Logica.Entidades.EModificarCoberturasPolizas
+                             {
+                                 Compania =n.Compania,
+                                 Cotizacion =n.Cotizacion,
+                                 Ramo=n.Ramo,
+                                 SubRamo=n.SubRamo,
+                                 SecuenciaCot=n.SecuenciaCot,
+                                 Secuencia=n.Secuencia,
+                                 Descripcion=n.Descripcion,
+                                 MontoInformativo=n.MontoInformativo,
+                                 TieneCobertura=n.TieneCobertura,
+                                 Porciento=n.Porciento,
+                                 Prima=n.Prima,
+                                 PorcDeducible=n.PorcDeducible,
+                                 MinimoDeducible=n.MinimoDeducible,
+                                 Endoso=n.Endoso,
+                                 PorcCobertura=n.PorcCobertura,
+                                 ValorServicio=n.ValorServicio
+                             }).FirstOrDefault();
+            }
+            return Modificar;
+        }
+        #endregion
+
+        #region SACAR EL NUMERO DE COTIZACION DE POLIZAS
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarNumeroCotizacionPoliza> SacarNumeroCotizacion(string Poliza = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Numero = (from n in Objdata.SP_SACAR_NUMERO_COTIZACION_POLIZA(Poliza)
+                          select new UtilidadesAmigos.Logica.Entidades.ESacarNumeroCotizacionPoliza
+                          {
+                              Cotizacion=n.Cotizacion
+                          }).ToList();
+            return Numero;
         }
         #endregion
     }
