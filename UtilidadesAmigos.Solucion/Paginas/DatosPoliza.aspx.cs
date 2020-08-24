@@ -269,11 +269,34 @@ namespace UtilidadesAmigos.Solucion.Paginas
             catch (Exception) { }
         }
         #endregion
+        private void MostrarotrosFiltros() {
+            int TipoDato = 0;
+            if (rbBuscarChasis.Checked)
+            {
+                TipoDato = 1;
+            }
+            else if (rbBuscarPorPlaca.Checked)
+            {
+                TipoDato = 2;
+            }
+
+            var BuscarRegistros = Objdata.Value.BuscaOtrosTipoFiltros(txtDatoOtrosFiltros.Text, TipoDato);
+            if (BuscarRegistros.Count() < 1) {
+                ClientScript.RegisterStartupScript(GetType(), "RegistroNoEncontrado", "RegistroNoEncontrado();", true);
+            }
+            else {
+                gvOtrosFiltros.DataSource = BuscarRegistros;
+                gvOtrosFiltros.DataBind();
+            }
+
+            
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 OcultarControles();
+                rbBuscarChasis.Checked = true;
             }
         }
 
@@ -438,7 +461,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnCFonsultarOtrosRegistros_Click(object sender, EventArgs e)
         {
-            txtDatoOtrosFiltros.Text = "hola";
+            MostrarotrosFiltros();
+        }
+        protected void gvOtrosFiltros_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void gvOtrosFiltros_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+        
+
         }
     }
 }

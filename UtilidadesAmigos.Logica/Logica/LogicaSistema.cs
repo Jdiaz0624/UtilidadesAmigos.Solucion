@@ -3021,5 +3021,38 @@ namespace UtilidadesAmigos.Logica.Logica
             return Numero;
         }
         #endregion
+
+        #region OTROS TIPOS DE BUSQUEDA
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscaOtrosTiposBusqurdaPolizas> BuscaOtrosTipoFiltros(string DatoBusqueda = null, int? TipoDato = null, decimal? Cotizacion = null, int? Item = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCA_OTROS_TIPOS_BUSQUEDA_POLIZA(DatoBusqueda, TipoDato, Cotizacion, Item)
+                          select new UtilidadesAmigos.Logica.Entidades.EBuscaOtrosTiposBusqurdaPolizas
+                          {
+                              Poliza=n.Poliza,
+                              Item=n.Item,
+                              Estatus=n.Estatus,
+                              SumaAsegurada=n.SumaAsegurada,
+                              Cliente=n.Cliente,
+                              Asegurado=n.Asegurado,
+                              Intermediario=n.Intermediario,
+                              Prima=n.Prima,
+                              Cotizacion=n.Cotizacion,
+                              Ramo=n.Ramo,
+                              Subramo=n.Subramo,
+                              TipoVehiculo=n.TipoVehiculo,
+                              Marca=n.Marca,
+                              Modelo=n.Modelo,
+                              Capacidad=n.Capacidad,
+                              Ano=n.Ano,
+                              Color=n.Color,
+                              Chasis=n.Chasis,
+                              Placa=n.Placa,
+                              Uso=n.Uso,
+                              ValorVehiculo=n.ValorVehiculo
+                          }).ToList();
+            return Buscar;
+        }
+        #endregion
     }
 }

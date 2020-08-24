@@ -129,6 +129,7 @@
     <Compile Include="Entidades\EBuscaFActurasPagadasReclamacion.cs" />
     <Compile Include="Entidades\EBuscaFechaReclamos.cs" />
     <Compile Include="Entidades\EBuscaHistoricoPolizaFianza.cs" />
+    <Compile Include="Entidades\EBuscaOtrosTiposBusqurdaPolizas.cs" />
     <Compile Include="Entidades\EBuscarCoberturasPoliza.cs" />
     <Compile Include="Entidades\EBuscarEmpleados.cs" />
     <Compile Include="Entidades\ECambiaValorPolizaCondiciones.cs" />

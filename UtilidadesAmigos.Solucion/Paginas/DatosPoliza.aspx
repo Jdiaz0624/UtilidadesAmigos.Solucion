@@ -25,6 +25,9 @@
         function CamposVacios() {
             alert("Has dejado campos vacios que son necesarios para realizar esta operación");
         }
+        function RegistroNoEncontrado() {
+            alert("El registro ingresado no se encuentra registrado");
+        }
         function PrimaVacia() {
             $("#<%=txtPrimaNueva.ClientID%>").css("border-color", "red");
         }
@@ -134,7 +137,15 @@
                 }
             });
 
-          
+            //EVENTO DEL BOTON CONSULTAR OTROS FILTROS
+            $("#<%=btnCFonsultarOtrosRegistros.ClientID%>").click(function () {
+                var ValidarCampo = $("#<%=txtDatoOtrosFiltros.ClientID%>").val().length;
+                if (ValidarCampo < 1) {
+                    alert("Favor de ingresar el dato a buscar");
+                    $("#<%=txtDatoOtrosFiltros.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
         });
     </script>
     <div class="container-fluid">
@@ -398,7 +409,7 @@
                     <asp:BoundField DataField="Item" HeaderText="Item" />
                     <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
                     <asp:BoundField DataField="Cotizacion" HeaderText="Cotizacion" />
-                    <asp:BoundField DataField="Ramo"HeaderText="Ramo"  />
+                    <asp:BoundField DataField="Ramo" HeaderText="Ramo" />
                     <asp:BoundField DataField="Subramo" HeaderText="% Cobertura" />
                 </Columns  >
                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
