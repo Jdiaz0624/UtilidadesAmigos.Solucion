@@ -28,9 +28,9 @@
 
           .carousel-item {
       display: block;
-      width: 75%;
-      height: 300px;
-      left:220px;
+      width: 100%;
+      height: 250px;
+      
 }
 .carousel-item img {
       height: 100%;

@@ -435,5 +435,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
             ModificarCobertura();
             ClientScript.RegisterStartupScript(GetType(), "LimpiarControlesCoberturas", "LimpiarControlesCoberturas();", true);
         }
+
+        protected void btnCFonsultarOtrosRegistros_Click(object sender, EventArgs e)
+        {
+            txtDatoOtrosFiltros.Text = "hola";
+        }
     }
 }

@@ -157,6 +157,7 @@
         <div align="center">
              <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
             <button type="button" id="btnCoberturas" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".ModificarCoberturas">Coberturas</button>
+            <button type="button" id="btnOtrosFiltros" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".OtrosFiltros">Otros Filtros</button>
         </div>
         <br />
         <div class="form-check-inline">
@@ -349,5 +350,75 @@
   </div>
 </div>
 
+
+
+
+
+
+         <div class="modal fade bd-example-modal-xl OtrosFiltros" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+        <div class="jumbotron" align="center">
+            <asp:Label ID="Label4" runat="server" Text="Otros Filtros Poliza"></asp:Label>
+        </div>
+        <asp:UpdatePanel ID="UpdatePanelOtrosFiltros" runat="server">
+            <ContentTemplate>
+               <div class="container-fluid">
+                    <div align="center">
+                    <asp:Label ID="lbSeleccionarTipoOpcion" runat="server" Text="Seleccionar Tipo de Consulta" CssClass="LetrasNegrita"></asp:Label>
+                </div>
+                <div  align="center">
+                     <div class="form-check-inline">
+                    <div class="form-group form-check">
+                        <asp:RadioButton ID="rbBuscarChasis" runat="server" GroupName="OtrosFiltros" Text="Buscar por Chasis" ToolTip="Seleccionar para buscar mediante el chasis" CssClass="form-check-input" />
+                        <asp:RadioButton ID="rbBuscarPorPlaca" runat="server" GroupName="OtrosFiltros" Text="Buscar por Placa" ToolTip="Seleccionar para buscar mediante la placa" CssClass="form-check-input" />
+                    </div>
+                </div>
+
+                    
+                </div>
+                <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <asp:Label ID="lbIngresarOtroFiltro" runat="server" Text="Ingresar Dato" CssClass="LetrasNegrita"></asp:Label>
+                            <asp:TextBox ID="txtDatoOtrosFiltros" runat="server" CssClass="form-control"></asp:TextBox>
+                          
+                        </div>
+                    </div>
+                     <asp:Button ID="btnCFonsultarOtrosRegistros" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnCFonsultarOtrosRegistros_Click" ToolTip="Consultar"/>
+               </div>
+               <br />
+                  <!--INICIO DEL GRID-->
+    <div class="container-fluid">
+            <asp:GridView ID="gvOtrosFiltros" runat="server" AllowPaging="true" OnPageIndexChanging="gvOtrosFiltros_PageIndexChanging" OnSelectedIndexChanged="gvOtrosFiltros_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    <asp:CommandField ButtonType="Button" HeaderText="Ver"  ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />
+                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
+                    <asp:BoundField DataField="Item" HeaderText="Item" />
+                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
+                    <asp:BoundField DataField="Cotizacion" HeaderText="Cotizacion" />
+                    <asp:BoundField DataField="Ramo"HeaderText="Ramo"  />
+                    <asp:BoundField DataField="Subramo" HeaderText="% Cobertura" />
+                </Columns  >
+                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
+    <!--FIN DEL GRID-->
+            </ContentTemplate>
+        </asp:UpdatePanel>
+      
+        <br />
+    </div>
+  </div>
+</div>
 
 </asp:Content>
