@@ -29,11 +29,13 @@
           .carousel-item {
       display: block;
       width: 100%;
-      height: 330px;
+      height: 250px;
+      
 }
 .carousel-item img {
       height: 100%;
       width: 100%;
+
 }
     </style>
     <script type="text/javascript">

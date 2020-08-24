@@ -152,6 +152,8 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
     <None Include="Properties\PublishProfiles\Prueba.pubxml" />
     <Content Include="Paginas\DatosPoliza.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
@@ -163,6 +165,7 @@
     <Content Include="Paginas\MantenimeintoPerfiles.aspx" />
     <Content Include="Paginas\MantenimientoClaveSeguridad.aspx" />
     <Content Include="Paginas\MantenimientoDependientes.aspx" />
+    <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
     <Content Include="Paginas\ProduccionDiariaContabilidad.aspx" />
     <Content Include="Paginas\ReporteReclamos.aspx" />
     <Content Include="Paginas\SistemaTicket.aspx" />
@@ -353,6 +356,12 @@
     <Compile Include="Paginas\GenerarDataCoberturas.aspx.designer.cs">
       <DependentUpon>GenerarDataCoberturas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\GenerarFacturaPDF.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GenerarFacturaPDF.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Paginas\GenerarFacturasPDF.aspx.cs">
       <DependentUpon>GenerarFacturasPDF.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -443,6 +452,13 @@
     </Compile>
     <Compile Include="Paginas\PermisoUsuarios.aspx.designer.cs">
       <DependentUpon>PermisoUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\ProcesarDataAsegurado.aspx.cs">
+      <DependentUpon>ProcesarDataAsegurado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\ProcesarDataAsegurado.aspx.designer.cs">
+      <DependentUpon>ProcesarDataAsegurado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ProcesarDataGruas.aspx.cs">
       <DependentUpon>ProcesarDataGruas.aspx</DependentUpon>
@@ -596,6 +612,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Prueba\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Paginas\GenerarFacturaPDF.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GenerarFacturaPDF.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
