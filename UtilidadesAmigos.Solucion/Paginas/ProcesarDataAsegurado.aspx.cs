@@ -23,13 +23,37 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             let fila = n.Split(',')
                             select new
                             {
-                                Nombre=fila[0],
-                                Apellido=fila[1],
-                                Cedula=fila[2]
+                                nombres = fila[0],
+                                apellidos = fila[1],
+                                poliza = fila[18],
+                                fechaInicial = fila[19],
+                                fechaFinal = fila[20],
+                                prima = fila[22],
+                                id = fila[24]
                             }).Skip(1);
 
-            GridView1.DataSource = Consulta;
-            GridView1.DataBind();
+            gvDataAsegurado.DataSource = Consulta;
+            gvDataAsegurado.DataBind();
+        }
+
+        protected void gvAsegurado_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void gvAsegurado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvDataAsegurado_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void gvDataAsegurado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
