@@ -422,8 +422,114 @@
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#000065" />
             </asp:GridView>
-    </div>
+    
     <!--FIN DEL GRID-->
+                <br />
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbPolizaOtrosFiltros" runat="server"  Visible="false" Text="Poliza" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtPolizaOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbItemOtrosFiltros" runat="server" Visible="false" Text="Item" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtNumeroItemOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbEstatusOtrosFiltros" runat="server" Visible="false" Text="Estatus" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtEstatusOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbSumaAseguradaOtrosFiltros" runat="server" Visible="false" Text="Suma Asegurada" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtSumaAseguradaOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbClienteOtrosFiltros" runat="server" Visible="false" Text="Cliente" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtClienteOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbAseguradoOtrosFiltros" runat="server" Visible="false" Text="Asegurado" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtAseguradoOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                     <div class="form-group col-md-6">
+                        <asp:Label ID="lbIntermediarioOtrosFiltros" Visible="false" runat="server" Text="Intermediario" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtIntermediarioOtrosFiltros" Visible="false" runat="server" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                     <div class="form-group col-md-6">
+                        <asp:Label ID="lbPrimaOtrosFiltros" runat="server" Visible="false" Text="Prima" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtPrimaOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                     <div class="form-group col-md-6">
+                        <asp:Label ID="lbCotizacionOtrosFiltros" runat="server" Visible="false" Text="Cotizacion" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtCotizacionotrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                      <div class="form-group col-md-6">
+                        <asp:Label ID="lbValorVehiculoOtrosFiltros" runat="server" Visible="false" Text="Valor de Vehiculo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtValorVehiculoOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                      <div class="form-group col-md-6">
+                        <asp:Label ID="lbRamoOtrosFiltros" runat="server" Visible="false" Text="Ramo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtRamoOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                      <div class="form-group col-md-6">
+                        <asp:Label ID="lbSubramoOtrosFiltros" runat="server" Visible="false" Text="Sub Ramo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtSubramoOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                      <div class="form-group col-md-6">
+                        <asp:Label ID="lbTipoVehiculoOtrosFiltros" runat="server" Visible="false" Text="Tipo de Vehiculo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtTipoVehiculoOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                      <div class="form-group col-md-6">
+                        <asp:Label ID="lbMarcaOtrosFiltros" runat="server" Visible="false" Text="Marca" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtMarcaOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                      <div class="form-group col-md-6">
+                        <asp:Label ID="lbModeloOtrosFiltros" runat="server" Visible="false" Text="Modelo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtModelosOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                     <div class="form-group col-md-6">
+                        <asp:Label ID="lbCapacidadOtrosFiltros" runat="server" Visible="false" Text="Capacidad" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtCapacidadOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                     <div class="form-group col-md-6">
+                        <asp:Label ID="lbAnoOtrosFiltros" runat="server" Visible="false" Text="Año" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtAnoOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbColorOtrosFiltros" runat="server" Text="Color" Visible="false"   CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtColorOtrosFiltros" runat="server" MaxLength="100" Visible="false"  Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbChasisOtrosFiltros" runat="server" Text="Chasis" Visible="false" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtChasisOtrosFiltros" runat="server" MaxLength="100" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbPlacaOtrosFiltros" runat="server" Text="Placa" Visible="false" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtPlacaOtrosFiltros" runat="server" MaxLength="100" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbUsoOtrosFiltros" runat="server" Text="Uso" Visible="false" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtUsoOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+        </div>
             </ContentTemplate>
         </asp:UpdatePanel>
       

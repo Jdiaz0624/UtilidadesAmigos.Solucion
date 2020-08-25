@@ -288,8 +288,139 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 gvOtrosFiltros.DataSource = BuscarRegistros;
                 gvOtrosFiltros.DataBind();
             }
+           
 
-            
+        }
+
+        private void MostrarControles() {
+            btnRegresar.Visible = true;
+            txtDatoOtrosFiltros.Enabled = false;
+            rbBuscarChasis.Enabled = false;
+            rbBuscarPorPlaca.Enabled = false;
+            lbPolizaOtrosFiltros.Visible = true;
+            txtPolizaOtrosFiltros.Visible = true;
+            lbItemOtrosFiltros.Visible = true;
+            txtNumeroItemOtrosFiltros.Visible = true;
+            lbEstatusOtrosFiltros.Visible = true;
+            txtEstatusOtrosFiltros.Visible = true;
+            lbSumaAseguradaOtrosFiltros.Visible = true;
+            txtSumaAseguradaOtrosFiltros.Visible = true;
+            lbClienteOtrosFiltros.Visible = true;
+            txtClienteOtrosFiltros.Visible = true;
+            lbAseguradoOtrosFiltros.Visible = true;
+            txtAseguradoOtrosFiltros.Visible = true;
+            lbIntermediarioOtrosFiltros.Visible = true;
+            txtIntermediarioOtrosFiltros.Visible = true;
+            lbPrimaOtrosFiltros.Visible = true;
+            txtPrimaOtrosFiltros.Visible = true;
+            lbCotizacionOtrosFiltros.Visible = true;
+            txtCotizacionotrosFiltros.Visible = true;
+            lbValorVehiculoOtrosFiltros.Visible = true;
+            txtValorVehiculoOtrosFiltros.Visible = true;
+            lbRamoOtrosFiltros.Visible = true;
+            txtRamoOtrosFiltros.Visible = true;
+            lbSubramoOtrosFiltros.Visible = true;
+            txtSubramoOtrosFiltros.Visible = true;
+            lbTipoVehiculoOtrosFiltros.Visible = true;
+            txtTipoVehiculoOtrosFiltros.Visible = true;
+            lbMarcaOtrosFiltros.Visible = true;
+            txtMarcaOtrosFiltros.Visible = true;
+            lbModeloOtrosFiltros.Visible = true;
+            txtModelosOtrosFiltros.Visible = true;
+            lbCapacidadOtrosFiltros.Visible = true;
+            txtCapacidadOtrosFiltros.Visible = true;
+            lbAnoOtrosFiltros.Visible = true;
+            txtAnoOtrosFiltros.Visible = true;
+            lbColorOtrosFiltros.Visible = true;
+            txtColorOtrosFiltros.Visible = true;
+            lbChasisOtrosFiltros.Visible = true;
+            txtChasisOtrosFiltros.Visible = true;
+            lbPlacaOtrosFiltros.Visible = true;
+            txtPlacaOtrosFiltros.Visible = true;
+            lbUsoOtrosFiltros.Visible = true;
+            txtUsoOtrosFiltros.Visible = true;
+        }
+
+        private void OcultarControlesOtrosFiltros() {
+            btnRegresar.Visible = false;
+            txtDatoOtrosFiltros.Enabled = true;
+            rbBuscarChasis.Enabled = true;
+            rbBuscarPorPlaca.Enabled = true;
+            rbBuscarChasis.Checked = true;
+            lbPolizaOtrosFiltros.Visible = false;
+            txtPolizaOtrosFiltros.Visible = false;
+            lbItemOtrosFiltros.Visible = false;
+            txtNumeroItemOtrosFiltros.Visible = false;
+            lbEstatusOtrosFiltros.Visible = false;
+            txtEstatusOtrosFiltros.Visible = false;
+            lbSumaAseguradaOtrosFiltros.Visible = false;
+            txtSumaAseguradaOtrosFiltros.Visible = false;
+            lbClienteOtrosFiltros.Visible = false;
+            txtClienteOtrosFiltros.Visible = false;
+            lbAseguradoOtrosFiltros.Visible = false;
+            txtAseguradoOtrosFiltros.Visible = false;
+            lbIntermediarioOtrosFiltros.Visible = false;
+            txtIntermediarioOtrosFiltros.Visible = false;
+            lbPrimaOtrosFiltros.Visible = false;
+            txtPrimaOtrosFiltros.Visible = false;
+            lbCotizacionOtrosFiltros.Visible = false;
+            txtCotizacionotrosFiltros.Visible = false;
+            lbValorVehiculoOtrosFiltros.Visible = false;
+            txtValorVehiculoOtrosFiltros.Visible = false;
+            lbRamoOtrosFiltros.Visible = false;
+            txtRamoOtrosFiltros.Visible = false;
+            lbSubramoOtrosFiltros.Visible = false;
+            txtSubramoOtrosFiltros.Visible = false;
+            lbTipoVehiculoOtrosFiltros.Visible = false;
+            txtTipoVehiculoOtrosFiltros.Visible = false;
+            lbMarcaOtrosFiltros.Visible = false;
+            txtMarcaOtrosFiltros.Visible = false;
+            lbModeloOtrosFiltros.Visible = false;
+            txtModelosOtrosFiltros.Visible = false;
+            lbCapacidadOtrosFiltros.Visible = false;
+            txtCapacidadOtrosFiltros.Visible = false;
+            lbAnoOtrosFiltros.Visible = false;
+            txtAnoOtrosFiltros.Visible = false;
+            lbColorOtrosFiltros.Visible = false;
+            txtColorOtrosFiltros.Visible = false;
+            lbChasisOtrosFiltros.Visible = false;
+            txtChasisOtrosFiltros.Visible = false;
+            lbPlacaOtrosFiltros.Visible = false;
+            txtPlacaOtrosFiltros.Visible = false;
+            lbUsoOtrosFiltros.Visible = false;
+            txtUsoOtrosFiltros.Visible = false;
+
+
+
+
+
+            txtPolizaOtrosFiltros.Text = string.Empty;
+            txtNumeroItemOtrosFiltros.Text = string.Empty;
+            txtEstatusOtrosFiltros.Text = string.Empty;
+            txtSumaAseguradaOtrosFiltros.Text = string.Empty;
+            txtClienteOtrosFiltros.Text = string.Empty;
+            txtAseguradoOtrosFiltros.Text = string.Empty;
+            txtIntermediarioOtrosFiltros.Text = string.Empty;
+            txtPrimaOtrosFiltros.Text = string.Empty;
+            txtCotizacionotrosFiltros.Text = string.Empty;
+            txtValorVehiculoOtrosFiltros.Text = string.Empty;
+            txtRamoOtrosFiltros.Text = string.Empty;
+            txtSubramoOtrosFiltros.Text = string.Empty;
+            txtTipoVehiculoOtrosFiltros.Text = string.Empty;
+            txtMarcaOtrosFiltros.Text = string.Empty;
+            txtModelosOtrosFiltros.Text = string.Empty;
+            txtCapacidadOtrosFiltros.Text = string.Empty;
+            txtAnoOtrosFiltros.Text = string.Empty;
+            txtColorOtrosFiltros.Text = string.Empty;
+            txtChasisOtrosFiltros.Text = string.Empty;
+            txtPlacaOtrosFiltros.Text = string.Empty;
+            txtUsoOtrosFiltros.Text = string.Empty;
+        }
+        private void RestablecerPantalla() {
+            txtDatoOtrosFiltros.Enabled = true;
+            rbBuscarChasis.Enabled = true;
+            rbBuscarPorPlaca.Enabled = true;
+            txtDatoOtrosFiltros.Text = string.Empty;
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -462,15 +593,64 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnCFonsultarOtrosRegistros_Click(object sender, EventArgs e)
         {
             MostrarotrosFiltros();
+           
         }
         protected void gvOtrosFiltros_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GridViewRow Grid = gvOtrosFiltros.SelectedRow;
 
+            int TipoDato = 0;
+            if (rbBuscarChasis.Checked) {
+                TipoDato = 1;
+            }
+            else if (rbBuscarPorPlaca.Checked) {
+                TipoDato = 2;
+            }
+            MostrarControles();
+            var BuscarRegistros = Objdata.Value.BuscaOtrosTipoFiltros(
+                txtDatoOtrosFiltros.Text,
+                TipoDato,
+                Convert.ToDecimal(Grid.Cells[4].Text),
+                Convert.ToInt32(Grid.Cells[2].Text));
+            foreach (var n in BuscarRegistros) {
+                decimal SumaAsegurada = 0, Prima = 0, ValorVehiculo = 0;
+                SumaAsegurada = Convert.ToDecimal(n.SumaAsegurada);
+                Prima = Convert.ToDecimal(n.Prima);
+                ValorVehiculo = Convert.ToDecimal(n.ValorVehiculo);
+
+                txtPolizaOtrosFiltros.Text = n.Poliza;
+                txtNumeroItemOtrosFiltros.Text = n.Item.ToString();
+                txtEstatusOtrosFiltros.Text = n.Estatus;
+                txtSumaAseguradaOtrosFiltros.Text = SumaAsegurada.ToString("N2");
+                txtClienteOtrosFiltros.Text = n.Cliente;
+                txtAseguradoOtrosFiltros.Text = n.Asegurado;
+                txtIntermediarioOtrosFiltros.Text = n.Intermediario;
+                txtPrimaOtrosFiltros.Text = Prima.ToString("N2");
+                txtCotizacionotrosFiltros.Text = n.Cotizacion.ToString();
+                txtValorVehiculoOtrosFiltros.Text = ValorVehiculo.ToString("N2");
+                txtRamoOtrosFiltros.Text = n.Ramo.ToString();
+                txtSubramoOtrosFiltros.Text = n.Subramo.ToString();
+                txtTipoVehiculoOtrosFiltros.Text = n.TipoVehiculo;
+                txtMarcaOtrosFiltros.Text = n.Marca;
+                txtModelosOtrosFiltros.Text = n.Modelo;
+                txtCapacidadOtrosFiltros.Text = n.Capacidad;
+                txtAnoOtrosFiltros.Text = n.Ano;
+                txtColorOtrosFiltros.Text = n.Color;
+                txtChasisOtrosFiltros.Text = n.Chasis;
+                txtPlacaOtrosFiltros.Text = n.Placa;
+                txtUsoOtrosFiltros.Text = n.Uso;
+            }
         }
         protected void gvOtrosFiltros_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-        
+            gvOtrosFiltros.PageIndex = e.NewPageIndex;
+            MostrarotrosFiltros();
 
+        }
+
+        protected void btnRestablecerOtrosFiltros_Click(object sender, EventArgs e)
+        {
+            OcultarControlesOtrosFiltros();
         }
     }
 }

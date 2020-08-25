@@ -396,6 +396,7 @@
                         </div>
                     </div>
                      <asp:Button ID="btnCFonsultarOtrosRegistros" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnCFonsultarOtrosRegistros_Click" ToolTip="Consultar"/>
+                   <asp:Button ID="btnRestablecerOtrosFiltros" runat="server" Text="Restablecer" CssClass="btn btn-outline-primary btn-sm" OnClick="btnRestablecerOtrosFiltros_Click" ToolTip="Restablecer Pantalla"/>
                </div>
                <br />
                   <!--INICIO DEL GRID-->
