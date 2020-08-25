@@ -389,7 +389,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtPlacaOtrosFiltros.Visible = false;
             lbUsoOtrosFiltros.Visible = false;
             txtUsoOtrosFiltros.Visible = false;
-
+            rbBuscarChasis.Checked = true;
+            txtDatoOtrosFiltros.Text = string.Empty;
 
 
 

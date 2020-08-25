@@ -391,7 +391,7 @@
                 <div class="form-row">
                         <div class="form-group col-md-3">
                             <asp:Label ID="lbIngresarOtroFiltro" runat="server" Text="Ingresar Dato" CssClass="LetrasNegrita"></asp:Label>
-                            <asp:TextBox ID="txtDatoOtrosFiltros" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtDatoOtrosFiltros" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                           
                         </div>
                     </div>
