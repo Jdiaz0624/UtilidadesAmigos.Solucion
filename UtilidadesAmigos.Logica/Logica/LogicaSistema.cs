@@ -359,23 +359,22 @@ namespace UtilidadesAmigos.Logica.Logica
 
         #region PRODUCCION POR USUARIOS
         //LISTADO DE PRODUCCION POR USUARIOS
-        public List<Entidades.ProduccionPorUsuario> BuscaProduccionPorUsuarios(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? IdOficina = null, decimal? IdDepartamento = null, decimal? IdEmpleado = null)
+        public List<Entidades.ProduccionPorUsuario> BuscaProduccionPorUsuarios(DateTime? FechaDesde = null, DateTime? FechaHasta = null,decimal? IdSucursal = null, decimal? IdOficina = null, decimal? IdDepartamento = null, decimal? IdEmpleado = null, int? TipoMovimiento = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var SacarProduccion = (from n in Objdata.SP_PRODUCCION_POR_USUARIO(FechaDesde, FechaHasta, IdOficina, IdDepartamento, IdEmpleado)
+            var SacarProduccion = (from n in Objdata.SP_PRODUCCION_POR_USUARIO(FechaDesde, FechaHasta, IdSucursal, IdOficina, IdDepartamento, IdEmpleado, TipoMovimiento)
                                    select new Entidades.ProduccionPorUsuario
                                    {
-                                       IdOficina=n.IdOficina,
-                                       Oficina=n.Oficina,
-                                       IdDepartamento=n.IdDepartamento,
-                                       Departamento=n.Departamento,
-                                       IdEmpleado=n.IdEmpleado,
-                                       Usuario=n.Usuario,
-                                       Concepto=n.Concepto,
-                                       Cantidad=n.Cantidad,
-                                       FechaDesde=n.FechaDesde,
-                                       FechaHasta=n.FechaHasta
+                                    Sucursal=n.Sucursal,
+                                    Oficina=n.Oficina,
+                                    Departamento=n.Departamento,
+                                    Usuario=n.Usuario,
+                                    Concepto=n.Concepto,
+                                    Cantidad=n.Cantidad,
+                                    Total=n.Total,
+                                    TotalRegistros=n.TotalRegistros,
+                                    TotalValor=n.TotalValor
                                    }).ToList();
             return SacarProduccion;
         }

@@ -391,11 +391,12 @@
                 <div class="form-row">
                         <div class="form-group col-md-3">
                             <asp:Label ID="lbIngresarOtroFiltro" runat="server" Text="Ingresar Dato" CssClass="LetrasNegrita"></asp:Label>
-                            <asp:TextBox ID="txtDatoOtrosFiltros" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtDatoOtrosFiltros" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                           
                         </div>
                     </div>
                      <asp:Button ID="btnCFonsultarOtrosRegistros" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnCFonsultarOtrosRegistros_Click" ToolTip="Consultar"/>
+                   <asp:Button ID="btnRestablecerOtrosFiltros" runat="server" Text="Restablecer" CssClass="btn btn-outline-primary btn-sm" OnClick="btnRestablecerOtrosFiltros_Click" ToolTip="Restablecer Pantalla"/>
                </div>
                <br />
                   <!--INICIO DEL GRID-->

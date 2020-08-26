@@ -8,15 +8,11 @@ namespace UtilidadesAmigos.Logica.Entidades
 {
     public class ProduccionPorUsuario
     {
-        public decimal? IdOficina { get; set; }
+        public string Sucursal { get; set; }
 
         public string Oficina { get; set; }
 
-        public decimal? IdDepartamento { get; set; }
-
         public string Departamento { get; set; }
-
-        public decimal? IdEmpleado { get; set; }
 
         public string Usuario { get; set; }
 
@@ -24,10 +20,10 @@ namespace UtilidadesAmigos.Logica.Entidades
 
         public System.Nullable<int> Cantidad { get; set; }
 
-        public string FechaDesde { get; set; }
+        public System.Nullable<decimal> Total { get; set; }
 
-        public string FechaHasta { get; set; }
+        public System.Nullable<int> TotalRegistros { get; set; }
 
-
+        public System.Nullable<decimal> TotalValor { get; set; }
     }
 }

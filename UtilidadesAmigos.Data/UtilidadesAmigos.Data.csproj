@@ -56,6 +56,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BDConexionMantenimientos.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Conexiones\LINQ\BDConexionReportes.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDConexionReportes.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Conexiones\LINQ\BDCotizador.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -83,6 +88,11 @@
     <None Include="Conexiones\LINQ\BDConexionMantenimientos.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>BDConexionMantenimientos.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Conexiones\LINQ\BDConexionReportes.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>BDConexionReportes.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Conexiones\LINQ\BDCotizador.dbml">
@@ -121,6 +131,11 @@
   <ItemGroup>
     <None Include="Conexiones\LINQ\BDOpcionesAdministrador.dbml.layout">
       <DependentUpon>BDOpcionesAdministrador.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Conexiones\LINQ\BDConexionReportes.dbml.layout">
+      <DependentUpon>BDConexionReportes.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
