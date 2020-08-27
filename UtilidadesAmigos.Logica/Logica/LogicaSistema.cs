@@ -378,6 +378,26 @@ namespace UtilidadesAmigos.Logica.Logica
                                    }).ToList();
             return SacarProduccion;
         }
+
+        //BUSCAR LA PRODUCCION POR USUARIO EN DETALLE
+        public List<UtilidadesAmigos.Logica.Entidades.EProduccionUsuariosDetalle> BuscaProduccionUsuarioDetalle(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? IdSucursal = null, decimal? IdOficina = null, decimal? IdDepartamento = null, decimal? IdEmpleado = null, int? TipoMovimiento = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_PRODUCCION_POR_USUARIO_DELATTE(FechaDesde, FechaHasta, IdSucursal, IdOficina, IdDepartamento, IdEmpleado, TipoMovimiento)
+                           select new UtilidadesAmigos.Logica.Entidades.EProduccionUsuariosDetalle
+                           {
+                               Sucursal=n.Sucursal,
+                               Oficina=n.Oficina,
+                               Departamento=n.Departamento,
+                               Usuario=n.Usuario,
+                               Concepto=n.Concepto,
+                               Poliza=n.Poliza,
+                               Monto=n.Monto,
+                               TotalRegistros=n.TotalRegistros,
+                               TotalValor=n.TotalValor
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
         #region PRODUCCION DIARIA TODOS LOS RAMOS

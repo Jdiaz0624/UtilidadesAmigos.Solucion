@@ -40,6 +40,17 @@
             <asp:RadioButton ID="rbBuscarPagos" runat="server" Text="Pagos" AutoPostBack="true" ToolTip="Buscar los pagos aplicados mediante el rango de fecha seleccionado" GroupName="ProduccionPorUsuarios" CssClass="form-check-input LetraNegrita" OnCheckedChanged="rbBuscarPagos_CheckedChanged" />
         </div>
     </div>
+        <hr />
+        <div alien="center">
+            <asp:Label ID="lbTipoImpresion" runat="server" Text="Tipo de Consulta" CssClass="LetraNegrita"></asp:Label>
+            <br />
+            <div class="form-check-inline">
+                <div class="form-group form-check">
+                    <asp:RadioButton ID="rbGenerarDaraResumido" runat="server" Text="Resumido" AutoPostBack="true" CssClass="form-check-input LetraNegrita" GroupName="TipoData" Checked="true" OnCheckedChanged="rbGenerarDaraResumido_CheckedChanged" />
+                    <asp:RadioButton ID="rbGenerarDataDetalle" runat="server" Text="Detalle" AutoPostBack="true" CssClass="form-check-input LetraNegrita" GroupName="TipoData" OnCheckedChanged="rbGenerarDataDetalle_CheckedChanged" />
+                </div>
+            </div>
+        </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -95,7 +106,8 @@
     <br />
           <!--INICIO DEL GRID-->
     <div class="container-fluid">
-            <asp:GridView ID="gvListadoProduccion" runat="server" AllowPaging="true" OnSelectedIndexChanged="gvListadoProduccion_SelectedIndexChanged" OnPageIndexChanging="gvListadoProduccion_PageIndexChanging" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+        <!--GRID 1-->
+            <asp:GridView ID="gvListadoProduccion" runat="server" Visible="true" AllowPaging="true" OnPageIndexChanging="gvListadoProduccion_PageIndexChanging" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
@@ -106,6 +118,32 @@
                     <asp:BoundField DataField="Concepto" HeaderText="Concepto" />
                     <asp:BoundField DataField="Cantidad" DataFormatString="{0:N0}" HtmlEncode="false" HeaderText="Cantidad" />
                     <asp:BoundField DataField="Total" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Total" />
+                </Columns  >
+                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
+    
+
+     <!--GRID 1-->
+            <asp:GridView ID="gvListadoProduccionDetalle" runat="server" Visible="false" AllowPaging="true" OnPageIndexChanging="gvListadoProduccionDetalle_PageIndexChanging" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                   <asp:BoundField DataField="Sucursal" HeaderText="Sucursal" />
+                    <asp:BoundField DataField="Oficina" HeaderText="Oficina" />
+                    <asp:BoundField DataField="Departamento" HeaderText="Departamento" />
+                    <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
+                    <asp:BoundField DataField="Concepto" HeaderText="Concepto" />
+                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
+                    <asp:BoundField DataField="Monto" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Monto" />
                 </Columns  >
                   <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />

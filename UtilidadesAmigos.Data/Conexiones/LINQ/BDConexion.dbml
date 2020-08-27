@@ -2364,4 +2364,24 @@
       <Column Name="TotalValor" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.[SP_PRODUCCION POR USUARIO_DELATTE]" Method="SP_PRODUCCION_POR_USUARIO_DELATTE">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="IdEmpleado" Parameter="idEmpleado" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="TipoMovimiento" Parameter="tipoMovimiento" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_PRODUCCION_POR_USUARIO_DELATTEResult">
+      <Column Name="Sucursal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Departamento" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Monto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="TotalRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalValor" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

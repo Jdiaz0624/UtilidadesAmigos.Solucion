@@ -56,5 +56,46 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
      
         }
         #endregion
+        #region GUARDAR DATOS REPORTE PRODUCCION POR USUARIOS DETALLE
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EProduccionPorUsuarioDetalle DataProduccionusuarioDetalle(UtilidadesAmigos.Logica.Entidades.Reportes.EProduccionPorUsuarioDetalle Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EProduccionPorUsuarioDetalle Guardar = null;
+
+            var ProduccionUsuarioDetalle = ObjData.SP_GUARDAR_DATOS_PRODUCCION_USUARIO_DETALLE(
+                Item.IdUsuario,
+                Item.FechaDesde,
+                Item.FechaHasta,
+                Item.Sucursal,
+                Item.Oficina,
+                Item.Departamento,
+                Item.Usuario,
+                Item.Concepto,
+                Item.Poliza,
+                Item.Monto,
+                Item.TotalRegistros,
+                Item.TotalValor,
+                Accion);
+            if (ProduccionUsuarioDetalle != null) {
+                Guardar = (from n in ProduccionUsuarioDetalle
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EProduccionPorUsuarioDetalle
+                           {
+                               IdUsuario =n.IdUsuario,
+                               FechaDesde=n.FechaDesde,
+                               FechaHasta=n.FechaHasta,
+                               Sucursal=n.Sucursal,
+                               Oficina=n.Oficina,
+                               Departamento=n.Departamento,
+                               Usuario=n.Usuario,
+                               Concepto=n.Concepto,
+                               Poliza=n.Poliza,
+                               Monto=n.Monto,
+                               TotalRegistros=n.TotalRegistros,
+                               TotalValor=n.TotalValor
+                           }).FirstOrDefault();
+            }
+            return Guardar;
+        }
+        #endregion
     }
 }
