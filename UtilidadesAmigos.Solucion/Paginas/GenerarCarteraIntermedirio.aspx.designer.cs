@@ -76,6 +76,24 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtCodigoIntermediario;
         
         /// <summary>
+        /// lbSeleccionarSucursalConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarSucursalConsulta;
+        
+        /// <summary>
+        /// ddlSeleccionarSucursalConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarSucursalConsulta;
+        
+        /// <summary>
         /// lbSeleccionarOficina control.
         /// </summary>
         /// <remarks>
@@ -128,6 +146,33 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRestabelecer;
+        
+        /// <summary>
+        /// lbCantidadRegistrosMostradosTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosMostradosTitulo;
+        
+        /// <summary>
+        /// lbCantidadRegistrosMostradosVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosMostradosVariable;
+        
+        /// <summary>
+        /// lbCantidadRegistrosCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosCerrar;
         
         /// <summary>
         /// gvListadoIntermediario control.
@@ -193,123 +238,6 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.UpdatePanel GenerarComisionUpdatePanel;
         
         /// <summary>
-        /// lbFechaDesdeGenerarComision control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFechaDesdeGenerarComision;
-        
-        /// <summary>
-        /// txtFechaDesdeGenerarComision control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaDesdeGenerarComision;
-        
-        /// <summary>
-        /// lbFechaHastaGenerarComision control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFechaHastaGenerarComision;
-        
-        /// <summary>
-        /// txtFechaHastaGenerarComision control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaHastaGenerarComision;
-        
-        /// <summary>
-        /// cbGenerarComisionGlobal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbGenerarComisionGlobal;
-        
-        /// <summary>
-        /// lbSeleccionarOficinaComisiones control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSeleccionarOficinaComisiones;
-        
-        /// <summary>
-        /// ddlSeleccionaroficinaComisiones control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionaroficinaComisiones;
-        
-        /// <summary>
-        /// lbSeleccionarRamoComisiones control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSeleccionarRamoComisiones;
-        
-        /// <summary>
-        /// ddlSeleccionarRamoComisiones control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarRamoComisiones;
-        
-        /// <summary>
-        /// btnGenerarComisionIntermediario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGenerarComisionIntermediario;
-        
-        /// <summary>
-        /// gvComisionIntermediario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvComisionIntermediario;
-        
-        /// <summary>
-        /// btnExportarExel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportarExel;
-        
-        /// <summary>
-        /// btnGenerarComisionGeneral control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGenerarComisionGeneral;
-        
-        /// <summary>
         /// lbNombreIntermediarioCartera control.
         /// </summary>
         /// <remarks>
@@ -328,24 +256,6 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.UpdatePanel UpdatePanelCaretera;
         
         /// <summary>
-        /// gvCarteraIntermeiarios control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCarteraIntermeiarios;
-        
-        /// <summary>
-        /// btnExportarCarteraExel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportarCarteraExel;
-        
-        /// <summary>
         /// lbNombreIntermediarioProduccion control.
         /// </summary>
         /// <remarks>
@@ -362,104 +272,5 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel ProduccionUpdatePanel;
-        
-        /// <summary>
-        /// lbTotalTitulo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalTitulo;
-        
-        /// <summary>
-        /// lbTotalProduccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalProduccion;
-        
-        /// <summary>
-        /// lbCierre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCierre;
-        
-        /// <summary>
-        /// lbFechaDesdeProduccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFechaDesdeProduccion;
-        
-        /// <summary>
-        /// txtFechaDesdeProduccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaDesdeProduccion;
-        
-        /// <summary>
-        /// lbFechaHastaProduccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFechaHastaProduccion;
-        
-        /// <summary>
-        /// txtFechaHastaProduccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaHastaProduccion;
-        
-        /// <summary>
-        /// btnBuscarProduccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarProduccion;
-        
-        /// <summary>
-        /// btnGenerarReporteProduccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGenerarReporteProduccion;
-        
-        /// <summary>
-        /// gvListadoProduccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvListadoProduccion;
-        
-        /// <summary>
-        /// btnExportarExelProduccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportarExelProduccion;
     }
 }

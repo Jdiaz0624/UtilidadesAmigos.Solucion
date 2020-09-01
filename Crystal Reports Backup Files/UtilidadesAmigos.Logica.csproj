@@ -104,6 +104,8 @@
     <Compile Include="Comunes\ExportarReportePDF.cs" />
     <Compile Include="Comunes\GuardarRegistrosReporteIntermediario.cs" />
     <Compile Include="Comunes\Mail.cs" />
+    <Compile Include="Comunes\Reportes\ProcesarInformacionProduccuinPorUsuarioDetalle.cs" />
+    <Compile Include="Comunes\Reportes\ProcesarProduccionPorUsuarioResumido.cs" />
     <Compile Include="Comunes\SacarNumeroCotizacionPoliza.cs" />
     <Compile Include="Comunes\SeguridadEncriptacion.cs" />
     <Compile Include="Comunes\UtilidadDrop.cs" />
@@ -179,6 +181,7 @@
     <Compile Include="Entidades\EProduccionDiariaDetalle.cs" />
     <Compile Include="Entidades\EProduccionReclamos.cs" />
     <Compile Include="Entidades\EProduccionTodosLosRamos.cs" />
+    <Compile Include="Entidades\EProduccionUsuariosDetalle.cs" />
     <Compile Include="Entidades\EprogramacionReclamoDetalle.cs" />
     <Compile Include="Entidades\EReclamacion.cs" />
     <Compile Include="Entidades\EReporteCobradoContabilidad.cs" />
@@ -218,11 +221,14 @@
     <Compile Include="Entidades\OpcionesAdministrador\ERutaArchivoBakup.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\GenerarBakupBD.cs" />
     <Compile Include="Entidades\ProduccionPorUsuario.cs" />
+    <Compile Include="Entidades\Reportes\EProduccionPorUsuarioDetalle.cs" />
+    <Compile Include="Entidades\Reportes\EProduccionPorusuarioResumido.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
     <Compile Include="Logica\LogicaOpcionesAdministrador\LogicaOpcionesdministrador.cs" />
+    <Compile Include="Logica\LogicaReportes\ProduccionPorUsuarioResumido.cs" />
     <Compile Include="Logica\LogicaSeguridad\LogicaSeguridad.cs" />
     <Compile Include="Logica\LogicaSistema.cs" />
     <Compile Include="ProcesoInformacion\ProcesarInformacionModificarCoberturaPoliza.cs" />
