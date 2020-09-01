@@ -3074,5 +3074,77 @@ namespace UtilidadesAmigos.Logica.Logica
             return Buscar;
         }
         #endregion
+
+        #region PROCESAR INFORMACION COMISIONES INTERMEDIARIO
+        public UtilidadesAmigos.Logica.Entidades.EProcesarComisionesIntermediario ProcesarInformacionReporteComisioIntermediario(UtilidadesAmigos.Logica.Entidades.EProcesarComisionesIntermediario Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EProcesarComisionesIntermediario Procesar = null;
+
+            var InformacionReporteComisionIntermediario = Objdata.SP_PROCESAR_INFORMACION_REPORTE_COMISIONES_INTERMEDIARIO(
+                Item.IdUsuario,
+                Item.Supervisor,
+                Item.CodigoIntermediario,
+                Item.Intermediario,
+                Item.Oficina,
+                Item.NumeroIdentificacion,
+                Item.CuentaBanco,
+                Item.TipoCuenta,
+                Item.Banco,
+                Item.Cliente,
+                Item.NumeroRecibo,
+                Item.FechaRecibo,
+                Item.NumeroFactura,
+                Item.FechaFactura,
+                Item.Moneda,
+                Item.Poliza,
+                Item.Producto,
+                Item.MontoBruto,
+                Item.MontoNeto,
+                Item.PorcientoComision,
+                Item.Comsiion,
+                Item.Retencion,
+                Item.AvanceComision,
+                Item.ALiquidar,
+                Item.CantidadRegistros,
+                Item.ValidadoDesde,
+                Item.ValidadoHasta,
+                Accion);
+            if (InformacionReporteComisionIntermediario != null) {
+                Procesar = (from n in InformacionReporteComisionIntermediario
+                            select new UtilidadesAmigos.Logica.Entidades.EProcesarComisionesIntermediario
+                            {
+                                IdUsuario=n.IdUsuario,
+                                Supervisor=n.Supervisor,
+                                CodigoIntermediario=n.CodigoIntermediario,
+                                Intermediario=n.Intermediario,
+                                Oficina=n.Oficina,
+                                NumeroIdentificacion=n.NumeroIdentificacion,
+                                CuentaBanco=n.CuentaBanco,
+                                TipoCuenta=n.TipoCuenta,
+                                Banco=n.Banco,
+                                Cliente=n.Cliente,
+                                NumeroRecibo=n.NumeroRecibo,
+                                FechaRecibo=n.FechaRecibo,
+                                NumeroFactura=n.NumeroFactura,
+                                FechaFactura=n.FechaFactura,
+                                Moneda=n.Moneda,
+                                Poliza=n.Poliza,
+                                Producto=n.Producto,
+                                MontoBruto=n.MontoBruto,
+                                MontoNeto=n.MontoNeto,
+                                PorcientoComision=n.PorcientoComision,
+                                Comsiion=n.Comsiion,
+                                Retencion=n.Retencion,
+                                AvanceComision=n.AvanceComision,
+                                ALiquidar=n.ALiquidar,
+                                CantidadRegistros=n.CantidadRegistros,
+                                ValidadoDesde=n.ValidadoDesde,
+                                ValidadoHasta=n.ValidadoHasta
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }

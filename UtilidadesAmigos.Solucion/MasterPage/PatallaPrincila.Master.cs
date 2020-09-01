@@ -348,7 +348,16 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LiniComisionesIntermediarios_Click(object sender, EventArgs e)
         {
-
+            //MOSTRAR EL REPORTE DE RECLAMOS
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("ComisionesIntermediarios.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
 
         protected void LinkComisionesSupervisores_Click(object sender, EventArgs e)

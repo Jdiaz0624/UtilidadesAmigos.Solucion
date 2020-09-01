@@ -59,12 +59,12 @@
               </div>
           </div>
           <div align="center">
-              <asp:Button ID="btnConsultarComisiones" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultarComisiones_Click"  />
+              <asp:Button ID="btnConsultarComisiones" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick=""  />
               <asp:Button ID="btnExortarComisiones" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExortarComisiones_Click" />
               <asp:Button ID="btnReporteCOmisiones" runat="server" Text="Reporte" CssClass="btn btn-outline-primary btn-sm" ToolTip="Reporte de Comisiones" OnClick="btnReporteCOmisiones_Click" />
           </div>
           <br />
-                      <asp:GridView ID="gvComisionIntermediario" runat="server" AllowPaging="true" OnPageIndexChanging="gvComisionIntermediario_PageIndexChanging" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                      <asp:GridView ID="gvComisionIntermediario" runat="server" AllowPaging="true" OnPageIndexChanging="gvComisionIntermediario_PageIndexChanging1" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>

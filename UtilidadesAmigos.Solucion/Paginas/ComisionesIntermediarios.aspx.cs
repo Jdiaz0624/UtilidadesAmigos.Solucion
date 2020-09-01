@@ -100,10 +100,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                         ALiquidar = n.ALiquidar
 
                                     }).ToList();
-
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Comisiones Intermediarios", Exportar);
                 }
             }
             catch (Exception) { }
+        }
+        #endregion
+        #region PROCESAR INFORMACION
+        private void ProcesarInformacionComisiones() {
+            //ELIMINAMOS LOS REGISTROS
+         
         }
         #endregion
         private void CargarSucursalesComisiones()
@@ -117,6 +123,31 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void Page_Load(object sender, EventArgs e)
         {
             CargarSucursalesComisiones();
+            CargarOficinasComisiones();
+        }
+
+        protected void btnConsultarComisiones_Click(object sender, EventArgs e)
+        {
+            GenerarComisionesIntermediarios();
+        }
+
+        protected void btnExortarComisiones_Click(object sender, EventArgs e)
+        {
+            ExportarComisionesIntermediarios();
+        }
+
+        protected void btnReporteCOmisiones_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvComisionIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void ddlSeleccionarSucursalComisiones_SelectedIndexChanged(object sender, EventArgs e)
+        {
             CargarOficinasComisiones();
         }
     }

@@ -184,24 +184,6 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.GridView gvListadoIntermediario;
         
         /// <summary>
-        /// IntermediariosScriptManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager IntermediariosScriptManager;
-        
-        /// <summary>
-        /// GenerarComisionUpdatePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel GenerarComisionUpdatePanel;
-        
-        /// <summary>
         /// lbNombreIntermediarioCartera control.
         /// </summary>
         /// <remarks>

@@ -12,7 +12,7 @@ namespace UtilidadesAmigos.Data.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -156,6 +156,17 @@ namespace UtilidadesAmigos.Data.Properties {
         public string SysFlexSegurosConnectionString12 {
             get {
                 return ((string)(this["SysFlexSegurosConnectionString12"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa;Password=Pa$$W0" +
+            "rd")]
+        public string SysFlexSegurosConnectionString13 {
+            get {
+                return ((string)(this["SysFlexSegurosConnectionString13"]));
             }
         }
     }
