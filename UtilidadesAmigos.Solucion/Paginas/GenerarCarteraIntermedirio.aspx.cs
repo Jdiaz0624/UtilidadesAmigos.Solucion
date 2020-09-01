@@ -24,6 +24,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void CargarOficinasCOnsulta() {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarOficinaConsulta, ObjDataConexion.Value.BuscaListas("OFICINA", ddlSeleccionarSucursalConsulta.SelectedValue, null), true);
         }
+
+     
         #endregion
         #region BUSCAR INTERMEDIARIOS
         private void BuscarIntermediarios() {
@@ -39,9 +41,19 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 NombreIntermediario);
             gvListadoIntermediario.DataSource = BuscarRegistros;
             gvListadoIntermediario.DataBind();
+            if (BuscarRegistros.Count() < 1)
+            {
+                lbCantidadRegistrosMostradosVariable.Text = "0";
+            }
+            else {
+                foreach (var n in BuscarRegistros) {
+                    int Cantidad = Convert.ToInt32(n.CantidadRegistros);
+                    lbCantidadRegistrosMostradosVariable.Text = Cantidad.ToString("N0");
+                }
+            }
         }
         #endregion
-
+     
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -51,6 +63,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarSucursales();
                 CargarOficinasCOnsulta();
 
+               
             }
         }
 
@@ -66,6 +79,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnRestabelecer_Click(object sender, EventArgs e)
         {
+            Session["CodigoVendedor"] = null;
             BuscarIntermediarios();
         }
 
@@ -77,7 +91,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gvListadoIntermediario_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            GridViewRow GV = gvListadoIntermediario.SelectedRow;
+
+           
+            var Seleccionar = ObjDataConexion.Value.SacarDatosIntermediarios(
+                null,
+                GV.Cells[2].Text,
+                null, null);
+            gvListadoIntermediario.DataSource = Seleccionar;
+            gvListadoIntermediario.DataBind();
+            foreach (var n in Seleccionar) {
+                Session["CodigoVendedor"] = GV.Cells[2].Text;
+            }
         }
 
         protected void gvComisionIntermediario_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -89,5 +114,29 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
 
         }
+
+        protected void ddlSeleccionarSucursalComisiones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarOficinasComisiones();
+
+        }
+
+        protected void btnConsultarComisiones_Click(object sender, EventArgs e)
+        {
+            GenerarComisionesIntermediarios();
+
+        }
+
+        protected void btnExortarComisiones_Click(object sender, EventArgs e)
+        {
+            ExportarComisionesIntermediarios();
+        }
+
+        protected void btnReporteCOmisiones_Click(object sender, EventArgs e)
+        {
+
+        }
+
+    
     }
 }

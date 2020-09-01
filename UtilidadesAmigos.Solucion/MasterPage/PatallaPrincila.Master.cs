@@ -345,5 +345,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LiniComisionesIntermediarios_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkComisionesSupervisores_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

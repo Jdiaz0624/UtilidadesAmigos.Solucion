@@ -53,5 +53,6 @@ namespace UtilidadesAmigos.Logica.Entidades
         public System.Nullable<decimal> AvanceComision {get;set;}
 
         public System.Nullable<decimal> ALiquidar {get;set;}
+        public System.Nullable<int> CantidadRegistros { get; set; }
     }
 }

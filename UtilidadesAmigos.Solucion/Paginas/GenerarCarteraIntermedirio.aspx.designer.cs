@@ -184,42 +184,6 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.GridView gvListadoIntermediario;
         
         /// <summary>
-        /// lbNombreIntermediarioComision control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNombreIntermediarioComision;
-        
-        /// <summary>
-        /// lbComisionMontoPagar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbComisionMontoPagar;
-        
-        /// <summary>
-        /// lbMontoComision control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMontoComision;
-        
-        /// <summary>
-        /// lbParentesis control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbParentesis;
-        
-        /// <summary>
         /// IntermediariosScriptManager control.
         /// </summary>
         /// <remarks>

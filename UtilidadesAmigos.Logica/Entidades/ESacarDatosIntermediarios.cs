@@ -19,5 +19,6 @@ namespace UtilidadesAmigos.Logica.Entidades
         public string Oficina { get; set; }
 
         public string Estatus { get; set; }
+        public System.Nullable<int> CantidadRegistros { get; set; }
     }
 }

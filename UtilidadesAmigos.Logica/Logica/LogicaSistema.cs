@@ -1788,7 +1788,8 @@ namespace UtilidadesAmigos.Logica.Logica
                                   Codigo=n.Codigo,
                                   NombreVendedor=n.NombreVendedor,
                                   Oficina=n.Oficina,
-                                  Estatus=n.Estatus
+                                  Estatus=n.Estatus,
+                                  CantidadRegistros=n.CantidadRegistros
                               }).ToList();
             return SacarDatos;
         }
@@ -1821,7 +1822,7 @@ namespace UtilidadesAmigos.Logica.Logica
         }
 
         //GENERAR LAS COMISIONES DE LOS INTERMEDIARIOS
-        public List<UtilidadesAmigos.Logica.Entidades.EGenerarComisionIntermediario> GenerarComisionIntermediario(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? CodigoIntermediario = null, int? Oficina = null)
+        public List<UtilidadesAmigos.Logica.Entidades.EGenerarComisionIntermediario> GenerarComisionIntermediario(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string CodigoIntermediario = null, int? Oficina = null)
         {
             Objdata.CommandTimeout = 99999999;
 
@@ -1850,8 +1851,8 @@ namespace UtilidadesAmigos.Logica.Logica
                                Comision=n.Comision,
                                Retencion=n.Retencion,
                                AvanceComision=n.AvanceComision,
-                               ALiquidar=n.ALiquidar
-
+                               ALiquidar=n.ALiquidar,
+                               CantidadRegistros=n.CantidadRegistros
                            }).ToList();
             return Generar;
         }

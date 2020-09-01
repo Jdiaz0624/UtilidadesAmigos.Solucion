@@ -39,6 +39,13 @@
           function OpcionFuncionando() {
             alert("Esta opcion esta funcionando");
         }
+        function FechaDesdeComisionesVacio() {
+            $("#<%=txtFechaDesdeComisiones.ClientID%>").css("border-color", "red");
+        }
+        function FechaHastaComisionesVAcio() {
+            $("#<%=txtFechaHastaComisiones.ClientID%>").css("border-color", "red");
+        }
+
 
         //});
     </script>
@@ -111,30 +118,19 @@
     </div>
     </div>
 
+
+    <!--GENERAR COMISIONES INTERMEDIARIOS-->
     <div class="modal fade bd-example-modal-lg GenerarComisionPOPO" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-      <div class="container-fluid">
-          <div class="jumbotron" align="center">
-           
-              <asp:Label ID="lbNombreIntermediarioComision" runat="server" Text="Nombre Intermediario"></asp:Label>
-          </div>
-          <div align="center">
-              <asp:Label ID="lbComisionMontoPagar" runat="server" Visible="false" Text="Comision a Pagar ( " CssClass="LetrasNegrita"></asp:Label>
-              <asp:Label ID="lbMontoComision" runat="server" Text="0" Visible="false" CssClass="LetrasNegrita"></asp:Label>
-              <asp:Label ID="lbParentesis" runat="server" Visible="false" Text=" )" CssClass="LetrasNegrita"></asp:Label>
-          </div>
-          <asp:ScriptManager ID="IntermediariosScriptManager" runat="server"></asp:ScriptManager>
+                  <asp:ScriptManager ID="IntermediariosScriptManager" runat="server"></asp:ScriptManager>
           <asp:UpdatePanel ID="GenerarComisionUpdatePanel" runat="server" Visible="true">
               <ContentTemplate>
 
-              </ContentTemplate>
+            
+
+                    </ContentTemplate>
           </asp:UpdatePanel>
-          <br />
-
-
-          <br />
-      </div>
     </div>
   </div>
 </div>
