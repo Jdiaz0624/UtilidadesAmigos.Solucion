@@ -39,12 +39,7 @@
           function OpcionFuncionando() {
             alert("Esta opcion esta funcionando");
         }
-        function FechaDesdeComisionesVacio() {
-            $("#<%=txtFechaDesdeComisiones.ClientID%>").css("border-color", "red");
-        }
-        function FechaHastaComisionesVAcio() {
-            $("#<%=txtFechaHastaComisiones.ClientID%>").css("border-color", "red");
-        }
+     
 
 
         //});
