@@ -76,7 +76,6 @@
         <div>
              <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click"/>
              <asp:Button ID="btnRestabelecer" runat="server" Text="Restablecer" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnRestabelecer_Click" />
-             <button type="button" id="btnGenerarComision" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".GenerarComisionPOPO">Comisión</button>
             <button type="button" id="btnGenerarCartera" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".GenerarCarteraPOPO">Cartera</button>
             <button type="button" id="btnGenerarProduccion" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".GenerarProduccionPOPO">Producción</button>
             </div>
@@ -114,21 +113,6 @@
     </div>
 
 
-    <!--GENERAR COMISIONES INTERMEDIARIOS-->
-    <div class="modal fade bd-example-modal-lg GenerarComisionPOPO" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-                  <asp:ScriptManager ID="IntermediariosScriptManager" runat="server"></asp:ScriptManager>
-          <asp:UpdatePanel ID="GenerarComisionUpdatePanel" runat="server" Visible="true">
-              <ContentTemplate>
-
-            
-
-                    </ContentTemplate>
-          </asp:UpdatePanel>
-    </div>
-  </div>
-</div>
 
 
         <!--CARTERA-->
