@@ -139,6 +139,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         protected global::System.Web.UI.WebControls.LinkButton LinkProduccionDiariaContabilidad;
         
         /// <summary>
+        /// LinkMarbeteDeclarativo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkMarbeteDeclarativo;
+        
+        /// <summary>
         /// LiniComisionesIntermediarios control.
         /// </summary>
         /// <remarks>
@@ -155,15 +164,6 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkComisionesSupervisores;
-        
-        /// <summary>
-        /// LinkMarbeteDeclarativo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkMarbeteDeclarativo;
         
         /// <summary>
         /// LinkBakupBD control.

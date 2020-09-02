@@ -177,7 +177,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     Guardar.ProcesarInformacion();
                    
                 }
-                ImprimirFactura(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionesIntermediario.rpt"), "sa", "Pa$$W0rd", "Listado de Comisiones");
+                // ImprimirReporteResumido(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionIntermediarioResumido.rpt"), "sa", "Pa$$W0rd", "Listado de Comisiones Resumido");
+                if (rbGenerarReporteResumido.Checked)
+                {
+                    ImprimirReporteResumido(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionIntermediarioResumido.rpt"), "sa", "Pa$$W0rd", "Listado de Comisiones Resumido");
+                }
+
+                else if (rbGenerarReporteDetalle.Checked)
+                {
+                    ImprimirFactura(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionesIntermediario.rpt"), "sa", "Pa$$W0rd", "Listado de Comisiones");
+                }
+
             }
         }
         #endregion
@@ -214,7 +224,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
 
-        private void ImprimirReportePduccionDetalle(decimal IdUsuario, string RutaReporte, string UsuaruoBD, string ClaveBD, string NombreArchivo)
+        private void ImprimirReporteResumido(decimal IdUsuario, string RutaReporte, string UsuaruoBD, string ClaveBD, string NombreArchivo)
         {
             try
             {
@@ -222,15 +232,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 ReportDocument Factura = new ReportDocument();
 
                 SqlCommand comando = new SqlCommand();
-                comando.CommandText = "EXEC [Utililades].[SP_BUSCA_DATA_REPORTE_PRODUCCION_USUARIO_DETALLE] @IdUsuaio";
+                comando.CommandText = "EXEC [Utililades].[SP_GENERAR_REPORTE_COMISIONES_INTERMEDIARIO_RESUMIDO] @IdUsuario";
                 comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
 
-                comando.Parameters.Add("@IdUsuaio", SqlDbType.Decimal);
-                comando.Parameters["@IdUsuaio"].Value = IdUsuario;
+                comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
+                comando.Parameters["@IdUsuario"].Value = IdUsuario;
 
                 Factura.Load(RutaReporte);
                 Factura.Refresh();
-                Factura.SetParameterValue("@IdUsuaio", IdUsuario);
+                Factura.SetParameterValue("@IdUsuario", IdUsuario);
                 Factura.SetDatabaseLogon(UsuaruoBD, ClaveBD);
                 Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
 
@@ -259,6 +269,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (!IsPostBack) {
                 CargarSucursalesComisiones();
                 CargarOficinasComisiones();
+                rbGenerarReporteResumido.Checked = true;
             }
         }
 
