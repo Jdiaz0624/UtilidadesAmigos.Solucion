@@ -47,7 +47,7 @@
               </div>
                <div class="form-group col-md-3">
                   <asp:Label ID="lbCodigoIntermediarioComisiones" runat="server" Text="Codigo de Intermediario" CssClass="LetrasNegrita"></asp:Label>
-                  <asp:TextBox ID="txtCodigoIntermediarioComisiones" runat="server" CssClass="form-control"></asp:TextBox>
+                  <asp:TextBox ID="txtCodigoIntermediarioComisiones" runat="server" MaxLength="4" TextMode="Number" CssClass="form-control"></asp:TextBox>
               </div>
               <div class="form-group col-md-3">
                   <asp:Label ID="lbSeleccionarSucursalComisiones" runat="server" Text="Seleccionar Sucursal" CssClass="LetrasNegrita"></asp:Label>

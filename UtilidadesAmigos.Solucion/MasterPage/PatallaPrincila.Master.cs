@@ -348,7 +348,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LiniComisionesIntermediarios_Click(object sender, EventArgs e)
         {
-            //MOSTRAR EL REPORTE DE RECLAMOS
+            //MOSTRAR EL REPORTE DE COMISIONES DE INTERMEDARIOS
             if (Session["IdUsuario"] != null)
             {
                 Response.Redirect("ComisionesIntermediarios.aspx");
@@ -362,7 +362,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkComisionesSupervisores_Click(object sender, EventArgs e)
         {
-
+            //MOSTRAR EL REPORTE DE COMISIONES DE LOS SUPERVISORES
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("ComisionesSupervisores.aspx");
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
     }
 }
