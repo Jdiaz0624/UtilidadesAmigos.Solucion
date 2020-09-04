@@ -57,44 +57,11 @@
                 </div>
             </div>
             <br />
-            
-            
+            <asp:Button ID="btnConsultarRegistros" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick=""/>
+            <asp:Button ID="btnExportarRegistros" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnConsultar_Click" />
+            <asp:Button ID="btnReporte" runat="server" Text="Reporte" CssClass="btn btn-outline-primary btn-sm" ToolTip="Generar Reporte" OnClick="btnConsultar_Click" />
             
         </div>
-        <div align="center">
-              <asp:Button ID="btnConsultarComisiones" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultarComisiones_Click"  />
-              <asp:Button ID="btnExortarComisiones" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExortarComisiones_Click" />
-              <asp:Button ID="btnReporteCOmisiones" runat="server" Text="Reporte" CssClass="btn btn-outline-primary btn-sm" ToolTip="Reporte de Comisiones" OnClick="btnReporteCOmisiones_Click" />
-          </div>
-          <br />
-                      <asp:GridView ID="gvComisionSupervisor" runat="server" AllowPaging="true" OnPageIndexChanging="gvComisionSupervisor_PageIndexChanging" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    
-                    <asp:BoundField DataField="Supervisor" HeaderText="Supervisor" />
-                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
-                    <asp:BoundField DataField="Bruto" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Bruto" />
-                    <asp:BoundField DataField="Neto" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Neto" />
-                    <asp:BoundField DataField="PorcientoComision" HeaderText="% Comisión" />
-                       <asp:BoundField DataField="Comision" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Comisión" />
-                       <asp:BoundField DataField="Retencion" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Retención" />
-                       <asp:BoundField DataField="AvanceComision" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Avance" />
-                       <asp:BoundField DataField="ALiquidar" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="A Liquidar" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-    </div>
-
-          <br />
 
     </div>
 </asp:Content>

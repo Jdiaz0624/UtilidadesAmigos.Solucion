@@ -139,30 +139,39 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.RadioButton rbReporteDetalle;
         
         /// <summary>
-        /// btnConsultarRegistros control.
+        /// btnConsultarComisiones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConsultarRegistros;
+        protected global::System.Web.UI.WebControls.Button btnConsultarComisiones;
         
         /// <summary>
-        /// btnExportarRegistros control.
+        /// btnExortarComisiones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportarRegistros;
+        protected global::System.Web.UI.WebControls.Button btnExortarComisiones;
         
         /// <summary>
-        /// btnReporte control.
+        /// btnReporteCOmisiones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReporte;
+        protected global::System.Web.UI.WebControls.Button btnReporteCOmisiones;
+        
+        /// <summary>
+        /// gvComisionSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvComisionSupervisor;
     }
 }

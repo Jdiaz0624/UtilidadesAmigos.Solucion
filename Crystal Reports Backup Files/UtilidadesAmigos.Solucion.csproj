@@ -158,8 +158,11 @@
     <None Include="Properties\PublishProfiles\FolderProfile4.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile5.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile6.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile7.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile8.pubxml" />
     <None Include="Properties\PublishProfiles\Prueba.pubxml" />
     <Content Include="Paginas\ComisionesIntermediarios.aspx" />
+    <Content Include="Paginas\ComisionesSupervisores.aspx" />
     <Content Include="Paginas\DatosPoliza.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarBakupBD.aspx" />
@@ -304,6 +307,13 @@
     </Compile>
     <Compile Include="Paginas\ComisionesIntermediarios.aspx.designer.cs">
       <DependentUpon>ComisionesIntermediarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\ComisionesSupervisores.aspx.cs">
+      <DependentUpon>ComisionesSupervisores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\ComisionesSupervisores.aspx.designer.cs">
+      <DependentUpon>ComisionesSupervisores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ComprensivoIncendioRoboPoPup.aspx.cs">
       <DependentUpon>ComprensivoIncendioRoboPoPup.aspx</DependentUpon>
