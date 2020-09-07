@@ -17,7 +17,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             try {
                 if (string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()))
                 {
-
+               
                 }
                 else
                 {

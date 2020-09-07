@@ -2445,4 +2445,45 @@
       <Column Name="ValidadoHasta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOS" Method="SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOS">
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOSResult">
+      <Column Name="IdRegistro" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FechaAgregado0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaAgregado" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CreadoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MANTENIMEINTO_CODIGOS_PERMITIDOS" Method="SP_MANTENIMEINTO_CODIGOS_PERMITIDOS">
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MANTENIMEINTO_CODIGOS_PERMITIDOSResult">
+      <Column Name="IdRegistro" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="FechaAgregado" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_INFORMACION_SUPERVISOR_CODIGOS_PERMITIDOS" Method="SP_BUSCA_INFORMACION_SUPERVISOR_CODIGOS_PERMITIDOS">
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.String" DbType="VarChar(4)" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_BUSCA_INFORMACION_SUPERVISOR_CODIGOS_PERMITIDOSResult">
+      <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

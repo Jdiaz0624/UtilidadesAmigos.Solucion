@@ -3146,5 +3146,70 @@ namespace UtilidadesAmigos.Logica.Logica
             return Procesar;
         }
         #endregion
+
+        #region MANTENIMIENTO DE CODIGOS DE SUPERVISORES PERMITIDOS
+        //BUSCAR LOS CODIGOS DE SUPERVISORES PERMITIDOS
+
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscarCodigosSupervisoresPermitidos> BuscarCodigosSupervisoresPermitidos(decimal? IdRegistro = null, decimal? CodigoSupervisor = null, decimal? IdUsuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOS(IdRegistro, CodigoSupervisor, IdUsuario, FechaDesde, FechaHasta)
+                          select new UtilidadesAmigos.Logica.Entidades.EBuscarCodigosSupervisoresPermitidos
+                          {
+                              IdRegistro=n.IdRegistro,
+                              CodigoSupervisor=n.CodigoSupervisor, /*(*_*)*/
+                              Nombre=n.Nombre,/*(*_*)*/
+                              CodigoOficina =n.CodigoOficina,
+                              Oficina=n.Oficina,/*(*_*)*/
+                              FechaAgregado0 =n.FechaAgregado0,
+                              FechaAgregado=n.FechaAgregado,/*(*_*)*/
+                              IdUsuario =n.IdUsuario,
+                              CreadoPor=n.CreadoPor/*(*_*)*/
+                          }).ToList();
+            return Buscar;
+        }
+
+        //MANTENIMEINTO DE CODIGOS SUPERVISORES PERMITIDOS
+        public UtilidadesAmigos.Logica.Entidades.EBuscarCodigosSupervisoresPermitidos MantenimientoCodigoSupervisoresPermitidos(UtilidadesAmigos.Logica.Entidades.EBuscarCodigosSupervisoresPermitidos Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EBuscarCodigosSupervisoresPermitidos Mantenimiento = null;
+
+            var CodigosSupervisoresPermitidos = Objdata.SP_MANTENIMEINTO_CODIGOS_PERMITIDOS(
+                Item.IdRegistro,
+                Item.CodigoSupervisor,
+                Item.IdUsuario,
+                Accion);
+            if (CodigosSupervisoresPermitidos != null) {
+                Mantenimiento = (from n in CodigosSupervisoresPermitidos
+                                 select new UtilidadesAmigos.Logica.Entidades.EBuscarCodigosSupervisoresPermitidos
+                                 {
+                                     IdRegistro=n.IdRegistro,
+                                     CodigoSupervisor=n.CodigoSupervisor,
+                                     IdUsuario=n.IdUsuario,
+                                     FechaAgregado0=n.FechaAgregado
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
+
+        #region BUSCAR INFORMACION SUPERVISOR CODIGOS PERMITIDOS
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscaInformacionSupervisorCodigoPermitido> BuscaInformacionSUperisor(string Codigo = null, string Nombre = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_BUSCA_INFORMACION_SUPERVISOR_CODIGOS_PERMITIDOS(Codigo, Nombre)
+                          select new UtilidadesAmigos.Logica.Entidades.EBuscaInformacionSupervisorCodigoPermitido
+                          {
+                              Codigo=n.Codigo,
+                              Nombre=n.Nombre,
+                              Estatus=n.Estatus,
+                              CodigoOficina=n.CodigoOficina,
+                              Oficina=n.Oficina
+                          }).ToList();
+            return Buscar;
+
+        }
+        #endregion
+        #endregion
     }
 }
