@@ -105,6 +105,7 @@
     <Compile Include="Comunes\GuardarRegistrosReporteIntermediario.cs" />
     <Compile Include="Comunes\Mail.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosComisionesSupervisores.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionProduccuinPorUsuarioDetalle.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionReporteComisionIntermediario.cs" />
     <Compile Include="Comunes\Reportes\ProcesarProduccionPorUsuarioResumido.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Entidades\EPlanCoberturasMantenimiento.cs" />
     <Compile Include="Entidades\EPolizaEliminarBalanceCreditos.cs" />
     <Compile Include="Entidades\EProcesarComisionesIntermediario.cs" />
+    <Compile Include="Entidades\EProcesarDatosComisionesSupervisores.cs" />
     <Compile Include="Entidades\EProduccionDiariaConsulta.cs" />
     <Compile Include="Entidades\EProduccionDiariaDetalle.cs" />
     <Compile Include="Entidades\EProduccionReclamos.cs" />

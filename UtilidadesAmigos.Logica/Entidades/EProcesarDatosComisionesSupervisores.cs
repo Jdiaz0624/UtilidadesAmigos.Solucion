@@ -6,19 +6,25 @@ using System.Threading.Tasks;
 
 namespace UtilidadesAmigos.Logica.Entidades
 {
-    public class EComisionesSupervisores
+    public class EProcesarDatosComisionesSupervisores
     {
-        public int? CodigoSupervisor {get;set;}
+        public System.Nullable<decimal> IdUsuario {get;set;}
+
+        public System.Nullable<System.DateTime> FechaDesde {get;set;}
+
+        public System.Nullable<System.DateTime> FechaHasta {get;set;}
+
+        public System.Nullable<int> CodigoSupervisor {get;set;}
 
         public string Supervisor {get;set;}
 
-        public int? CodigoIntermediario {get;set;}
+        public System.Nullable<int> CodigoIntermediario {get;set;}
 
         public string Intermediario {get;set;}
 
         public string Poliza {get;set;}
 
-        public decimal NumeroFactura {get;set;}
+        public System.Nullable<decimal> NumeroFactura {get;set;}
 
         public System.Nullable<decimal> Valor {get;set;}
 
@@ -30,9 +36,9 @@ namespace UtilidadesAmigos.Logica.Entidades
 
         public string Oficina {get;set;}
 
-        public string Concepto {get;set;}
+        public string Conepto {get;set;}
 
-        public System.Nullable<decimal> PorcuentoComision {get;set;}
+        public System.Nullable<decimal> PorcientoComision {get;set;}
 
         public System.Nullable<decimal> ComisionPagar {get;set;}
     }

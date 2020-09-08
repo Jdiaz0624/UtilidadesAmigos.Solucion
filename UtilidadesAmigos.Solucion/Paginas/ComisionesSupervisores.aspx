@@ -53,7 +53,7 @@
             </div>
             <div class="form-group col-md-3">
                 <asp:Label ID="ldSeleccionarSucursalConsulta" runat="server" Text="Seleccionar Sucursal" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarSucursalConsulta" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="ddlSeleccionarSucursalConsulta" runat="server" OnSelectedIndexChanged="ddlSeleccionarSucursalConsulta_SelectedIndexChanged" AutoPostBack="true" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
             </div>
              <div class="form-group col-md-3">
                 <asp:Label ID="lbSeleccionarOficinaConsulta" runat="server" Text="Seleccionar Oficina" CssClass="LetrasNegrita"></asp:Label>
@@ -87,13 +87,12 @@
                     
                     <asp:BoundField DataField="Supervisor" HeaderText="Supervisor" />
                     <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
-                    <asp:BoundField DataField="Bruto" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Bruto" />
-                    <asp:BoundField DataField="Neto" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Neto" />
-                    <asp:BoundField DataField="PorcientoComision" HeaderText="% Comisión" />
-                       <asp:BoundField DataField="Comision" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Comisión" />
-                       <asp:BoundField DataField="Retencion" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Retención" />
-                       <asp:BoundField DataField="AvanceComision" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Avance" />
-                       <asp:BoundField DataField="ALiquidar" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="A Liquidar" />
+                    <asp:BoundField DataField="NumeroFactura" HeaderText="Factura" />
+                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+                    <asp:BoundField DataField="Valor" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Valor" />
+                    <asp:BoundField DataField="PorcuentoComision" HeaderText="%" />
+                       <asp:BoundField DataField="ComisionPagar" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="A Pagar" />                     
+                       <asp:BoundField DataField="Oficina" HeaderText="Oficina" />
                 </Columns  >
                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />

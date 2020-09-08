@@ -1192,24 +1192,27 @@ namespace UtilidadesAmigos.Logica.Logica
         }
 
         //SACAR LAS COMISIONES DE LOS SUPERVISORES
-        public List<UtilidadesAmigos.Logica.Entidades.EComisionesSupervisores> ComisionesSupervisores(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? CodigoSupervisor = null, int? Oficina = null)
+        public List<UtilidadesAmigos.Logica.Entidades.EComisionesSupervisores> ComisionesSupervisores(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string CodigoSupervisor = null, int? Oficina = null)
         {
             Objdata.CommandTimeout = 999999999;
 
             var Listado = (from n in Objdata.SP_SACAR_COMISIONES_SUPERVISORES(FechaDesde, FechaHasta, CodigoSupervisor, Oficina)
                            select new UtilidadesAmigos.Logica.Entidades.EComisionesSupervisores
                            {
+                            CodigoSupervisor=n.CodigoSupervisor,
                                Supervisor=n.Supervisor,
+                               CodigoIntermediario=n.CodigoIntermediario,
                                Intermediario=n.Intermediario,
-                               Numero=n.Numero,
+                               Poliza=n.Poliza,
+                               NumeroFactura=n.NumeroFactura,
                                Valor=n.Valor,
-                               Oficina=n.Oficina,
                                Fecha=n.Fecha,
+                               Fecha0=n.Fecha0,
+                               CodigoOficina=n.CodigoOficina,
+                               Oficina=n.Oficina,
                                Concepto=n.Concepto,
-                               __Comision=n._Comision,
-                               ComisionPagar=n.ComisionPagar,
-                               ValidadoDesde=n.ValidadoDesde,
-                               ValidadoHasta=n.ValidadoHasta
+                               PorcuentoComision=n.PorcuentoComision,
+                               ComisionPagar=n.ComisionPagar
                            }).ToList();
             return Listado;
         }
@@ -3210,6 +3213,58 @@ namespace UtilidadesAmigos.Logica.Logica
 
         }
         #endregion
+        #endregion
+        #region GENERAR CODIGOS COMISIONES SUPERVISORES
+        //PROCESAR DATOS COMISIONES SUPERVISORES
+        public UtilidadesAmigos.Logica.Entidades.EProcesarDatosComisionesSupervisores ProcesarDatosComisionesSupervisores(UtilidadesAmigos.Logica.Entidades.EProcesarDatosComisionesSupervisores Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EProcesarDatosComisionesSupervisores Procesar = null;
+
+            var DatosComisionesSupervisores = Objdata.SP_PROCESAR_DATOS_COMISIONES_SUPERVISORES(
+                Item.IdUsuario,
+                Item.FechaDesde,
+                Item.FechaHasta,
+                Item.CodigoSupervisor,
+                Item.Supervisor,
+                Item.CodigoIntermediario,
+                Item.Intermediario,
+                Item.Poliza,
+                Item.NumeroFactura,
+                Item.Valor,
+                Item.Fecha,
+                Item.Fecha0,
+                Item.CodigoOficina,
+                Item.Oficina,
+                Item.Conepto,
+                Item.PorcientoComision,
+                Item.ComisionPagar,
+                Accion);
+            if (DatosComisionesSupervisores != null) {
+                Procesar = (from n in DatosComisionesSupervisores
+                            select new UtilidadesAmigos.Logica.Entidades.EProcesarDatosComisionesSupervisores
+                            {
+                                IdUsuario=n.IdUsuario,
+                                FechaDesde=n.FechaDesde,
+                                FechaHasta=n.FechaHasta,
+                                CodigoSupervisor=n.CodigoSupervisor,
+                                Supervisor=n.Supervisor,
+                                CodigoIntermediario=n.CodigoIntermediario,
+                                Intermediario=n.Intermediario,
+                                Poliza=n.Poliza,
+                                NumeroFactura=n.NumeroFactura,
+                                Valor=n.Valor,
+                                Fecha=n.Fecha,
+                                Fecha0=n.Fecha0,
+                                CodigoOficina=n.CodigoOficina,
+                                Oficina=n.Oficina,
+                                Conepto=n.Conepto,
+                                PorcientoComision=n.PorcientoComision,
+                                ComisionPagar=n.ComisionPagar
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
         #endregion
     }
 }

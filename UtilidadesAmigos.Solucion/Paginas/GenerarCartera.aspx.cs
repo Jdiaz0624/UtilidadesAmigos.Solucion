@@ -200,78 +200,78 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            if (cbComicion.Checked)
-            {
-                if (cbAgregarOficina.Checked)
-                {
-                    try {
-                        var BuscarComisiones = ObjData.Value.ComisionesSupervisores(
-                          Convert.ToDateTime(txtFechaDesde.Text),
-                          Convert.ToDateTime(txtFechaHasta.Text),
-                          Convert.ToDecimal(txtCodigoSupervisor.Text),
-                          Convert.ToInt32(ddlSeleccionaroficina.SelectedValue));
-                        foreach (var n in BuscarComisiones)
-                        {
-                            lbNombreSupervisor.Visible = true;
-                            lbNombreSupervisor.Text = n.Supervisor;
-                        }
-                        gbListadoComisiones.DataSource = BuscarComisiones;
-                        gbListadoComisiones.DataBind();
+            //if (cbComicion.Checked)
+            //{
+            //    if (cbAgregarOficina.Checked)
+            //    {
+            //        try {
+            //            var BuscarComisiones = ObjData.Value.ComisionesSupervisores(
+            //              Convert.ToDateTime(txtFechaDesde.Text),
+            //              Convert.ToDateTime(txtFechaHasta.Text),
+            //              Convert.ToDecimal(txtCodigoSupervisor.Text),
+            //              Convert.ToInt32(ddlSeleccionaroficina.SelectedValue));
+            //            foreach (var n in BuscarComisiones)
+            //            {
+            //                lbNombreSupervisor.Visible = true;
+            //                lbNombreSupervisor.Text = n.Supervisor;
+            //            }
+            //            gbListadoComisiones.DataSource = BuscarComisiones;
+            //            gbListadoComisiones.DataBind();
 
-                        //SACAMOS EL MONTO
-                        var SacarMonto = ObjData.Value.SacarmontoComisiones(
-                          Convert.ToDateTime(txtFechaDesde.Text),
-                          Convert.ToDateTime(txtFechaHasta.Text),
-                          Convert.ToDecimal(txtCodigoSupervisor.Text),
-                          Convert.ToInt32(ddlSeleccionaroficina.SelectedValue));
-                        foreach (var n in SacarMonto)
-                        {
-                            lbNombreSupervisor.Visible = true;
-                            lbMontoComisionPagar.Text = n.ComisionPagar.ToString();
-                        }
-                    }
-                    catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
-                }
-                else
-                {
-                    try {
-                       // decimal? _Supervisor = Convert.ToDecimal(string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim());
-                        var BuscarComisiones = ObjData.Value.ComisionesSupervisores(
-                            Convert.ToDateTime(txtFechaDesde.Text),
-                            Convert.ToDateTime(txtFechaHasta.Text),
-                            Convert.ToDecimal(txtCodigoSupervisor.Text),
-                            null);
-                        foreach (var n in BuscarComisiones)
-                        {
-                            lbNombreSupervisor.Visible = true;
-                            lbNombreSupervisor.Text = n.Supervisor;
-                        }
-                        gbListadoComisiones.DataSource = BuscarComisiones;
-                        gbListadoComisiones.DataBind();
+            //            //SACAMOS EL MONTO
+            //            var SacarMonto = ObjData.Value.SacarmontoComisiones(
+            //              Convert.ToDateTime(txtFechaDesde.Text),
+            //              Convert.ToDateTime(txtFechaHasta.Text),
+            //              Convert.ToDecimal(txtCodigoSupervisor.Text),
+            //              Convert.ToInt32(ddlSeleccionaroficina.SelectedValue));
+            //            foreach (var n in SacarMonto)
+            //            {
+            //                lbNombreSupervisor.Visible = true;
+            //                lbMontoComisionPagar.Text = n.ComisionPagar.ToString();
+            //            }
+            //        }
+            //        catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
+            //    }
+            //    else
+            //    {
+            //        try {
+            //           // decimal? _Supervisor = Convert.ToDecimal(string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim());
+            //            var BuscarComisiones = ObjData.Value.ComisionesSupervisores(
+            //                Convert.ToDateTime(txtFechaDesde.Text),
+            //                Convert.ToDateTime(txtFechaHasta.Text),
+            //                Convert.ToDecimal(txtCodigoSupervisor.Text),
+            //                null);
+            //            foreach (var n in BuscarComisiones)
+            //            {
+            //                lbNombreSupervisor.Visible = true;
+            //                lbNombreSupervisor.Text = n.Supervisor;
+            //            }
+            //            gbListadoComisiones.DataSource = BuscarComisiones;
+            //            gbListadoComisiones.DataBind();
 
-                        //SACAR MONTO
-                        var SacarMonto = ObjData.Value.SacarmontoComisiones(
-                          Convert.ToDateTime(txtFechaDesde.Text),
-                          Convert.ToDateTime(txtFechaHasta.Text),
-                          Convert.ToDecimal(txtCodigoSupervisor.Text),
-                          null);
-                        foreach (var n in SacarMonto)
-                        {
-                            lbMontoComisionPagar.Text = n.ComisionPagar.ToString();
-                        }
-                    }
-                    catch (Exception) {
-                        ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true);
-                    }
-                }
+            //            //SACAR MONTO
+            //            var SacarMonto = ObjData.Value.SacarmontoComisiones(
+            //              Convert.ToDateTime(txtFechaDesde.Text),
+            //              Convert.ToDateTime(txtFechaHasta.Text),
+            //              Convert.ToDecimal(txtCodigoSupervisor.Text),
+            //              null);
+            //            foreach (var n in SacarMonto)
+            //            {
+            //                lbMontoComisionPagar.Text = n.ComisionPagar.ToString();
+            //            }
+            //        }
+            //        catch (Exception) {
+            //            ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true);
+            //        }
+            //    }
 
-            }
-            else
-            {
-                MostrarCartera();
-            }
-            ClientScript.RegisterStartupScript(GetType(), "DesbloquearBotones", "DesbloquearBotones();", true);
-            txtCodigoSupervisor.Enabled = false;
+            //}
+            //else
+            //{
+            //    MostrarCartera();
+            //}
+            //ClientScript.RegisterStartupScript(GetType(), "DesbloquearBotones", "DesbloquearBotones();", true);
+            //txtCodigoSupervisor.Enabled = false;
         }
 
         protected void cbComicion_CheckedChanged(object sender, EventArgs e)
@@ -382,83 +382,83 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
-            if (cbComicion.Checked)
-            {
-                if (cbAgregarOficina.Checked)
-                {
-                    try
-                    {
-                        var Exportar = (from n in ObjData.Value.ComisionesSupervisores(
-                     Convert.ToDateTime(txtFechaDesde.Text),
-                     Convert.ToDateTime(txtFechaHasta.Text),
-                     Convert.ToDecimal(txtCodigoSupervisor.Text),
-                     Convert.ToInt32(ddlSeleccionaroficina.SelectedValue))
-                                        select new
-                                        {
-                                            Supervisor = n.Supervisor,
-                                            Intermediario = n.Intermediario,
-                                            Factura = n.Numero,
-                                            Valor = n.Valor,
-                                            Oficina = n.Oficina,
-                                            Fecha = n.Fecha,
-                                            Concepto = n.Concepto,
-                                            PorcientoComision = n.__Comision,
-                                            ComisionPagar = n.ComisionPagar,
-                                            ValidadoDesde = n.ValidadoDesde,
-                                            ValidadoHasta = n.ValidadoHasta
-                                        }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comision Supervisor", Exportar);
-                    }
-                    catch (Exception) { }
-                }
-                else
-                {
-                    try {
-                        var Exportar = (from n in ObjData.Value.ComisionesSupervisores(
-                     Convert.ToDateTime(txtFechaDesde.Text),
-                     Convert.ToDateTime(txtFechaHasta.Text),
-                     Convert.ToDecimal(txtCodigoSupervisor.Text),
-                     null)
-                                        select new
-                                        {
-                                            Supervisor =n.Supervisor,
-                                            Intermediario=n.Intermediario,
-                                            Factura=n.Numero,
-                                            Valor=n.Valor,
-                                            Oficina=n.Oficina,
-                                            Fecha=n.Fecha,
-                                            Concepto =n.Concepto,
-                                            PorcientoComision=n.__Comision,
-                                            ComisionPagar=n.ComisionPagar,
-                                            ValidadoDesde=n.ValidadoDesde,
-                                            ValidadoHasta=n.ValidadoHasta
-                                        }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comision Supervisor", Exportar);
-                    }
-                    catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
-                }
-            }
-            else
-            {
-                try {
+            //if (cbComicion.Checked)
+            //{
+            //    if (cbAgregarOficina.Checked)
+            //    {
+            //        try
+            //        {
+            //            var Exportar = (from n in ObjData.Value.ComisionesSupervisores(
+            //         Convert.ToDateTime(txtFechaDesde.Text),
+            //         Convert.ToDateTime(txtFechaHasta.Text),
+            //         Convert.ToDecimal(txtCodigoSupervisor.Text),
+            //         Convert.ToInt32(ddlSeleccionaroficina.SelectedValue))
+            //                            select new
+            //                            {
+            //                                Supervisor = n.Supervisor,
+            //                                Intermediario = n.Intermediario,
+            //                                Factura = n.Numero,
+            //                                Valor = n.Valor,
+            //                                Oficina = n.Oficina,
+            //                                Fecha = n.Fecha,
+            //                                Concepto = n.Concepto,
+            //                                PorcientoComision = n.__Comision,
+            //                                ComisionPagar = n.ComisionPagar,
+            //                                ValidadoDesde = n.ValidadoDesde,
+            //                                ValidadoHasta = n.ValidadoHasta
+            //                            }).ToList();
+            //            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comision Supervisor", Exportar);
+            //        }
+            //        catch (Exception) { }
+            //    }
+            //    else
+            //    {
+            //        try {
+            //            var Exportar = (from n in ObjData.Value.ComisionesSupervisores(
+            //         Convert.ToDateTime(txtFechaDesde.Text),
+            //         Convert.ToDateTime(txtFechaHasta.Text),
+            //         Convert.ToDecimal(txtCodigoSupervisor.Text),
+            //         null)
+            //                            select new
+            //                            {
+            //                                Supervisor =n.Supervisor,
+            //                                Intermediario=n.Intermediario,
+            //                                Factura=n.Numero,
+            //                                Valor=n.Valor,
+            //                                Oficina=n.Oficina,
+            //                                Fecha=n.Fecha,
+            //                                Concepto =n.Concepto,
+            //                                PorcientoComision=n.__Comision,
+            //                                ComisionPagar=n.ComisionPagar,
+            //                                ValidadoDesde=n.ValidadoDesde,
+            //                                ValidadoHasta=n.ValidadoHasta
+            //                            }).ToList();
+            //            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comision Supervisor", Exportar);
+            //        }
+            //        catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
+            //    }
+            //}
+            //else
+            //{
+            //    try {
 
-                    var Exportar = (from n in ObjData.Value.SacarCarteraSupervisor(
-                  Convert.ToDecimal(txtCodigoSupervisor.Text))
-                                    select new
-                                    {
-                                        Supervisor = n.Supervisor,
-                                        Intermediario = n.Intermediario,
-                                        Telefono = n.Telefono,
-                                        Direccion = n.Direccion,
-                                        Estatus = n.Estatus,
-                                        Oficina = n.OficinaSupervisor
-                                    }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cartera de Supervisor " + lbNombreSupervisor.Text, Exportar);
-                }
-                catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
-            }
+            //        var Exportar = (from n in ObjData.Value.SacarCarteraSupervisor(
+            //      Convert.ToDecimal(txtCodigoSupervisor.Text))
+            //                        select new
+            //                        {
+            //                            Supervisor = n.Supervisor,
+            //                            Intermediario = n.Intermediario,
+            //                            Telefono = n.Telefono,
+            //                            Direccion = n.Direccion,
+            //                            Estatus = n.Estatus,
+            //                            Oficina = n.OficinaSupervisor
+            //                        }).ToList();
+            //        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cartera de Supervisor " + lbNombreSupervisor.Text, Exportar);
+            //    }
+            //    catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
+            //}
 
-            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
+            //ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
         }
 
         protected void gbListadoCarteraSupervisor_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -504,59 +504,59 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnExportarListadoCompleto_Click(object sender, EventArgs e)
         {
-            if (cbAgregarOficina.Checked)
-            {
-                try
-                {
-                    var Exportar = (from n in ObjData.Value.ComisionesSupervisores(
-                 Convert.ToDateTime(txtFechaDesde.Text),
-                 Convert.ToDateTime(txtFechaHasta.Text),
-                 null,
-                 Convert.ToInt32(ddlSeleccionaroficina.SelectedValue))
-                                    select new
-                                    {
-                                        Supervisor = n.Supervisor,
-                                        Intermediario = n.Intermediario,
-                                        Factura = n.Numero,
-                                        Valor = n.Valor,
-                                        Oficina = n.Oficina,
-                                        Fecha = n.Fecha,
-                                        Concepto = n.Concepto,
-                                        PorcientoComision = n.__Comision,
-                                        ComisionPagar = n.ComisionPagar,
-                                        ValidadoDesde = n.ValidadoDesde,
-                                        ValidadoHasta = n.ValidadoHasta
-                                    }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comision Supervisor Completo", Exportar);
-                }
-                catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
-            }
-            else
-            {
-                try
-                {
-                    var Exportar = (from n in ObjData.Value.ComisionesSupervisores(
-                 Convert.ToDateTime(txtFechaDesde.Text),
-                 Convert.ToDateTime(txtFechaHasta.Text))
-                                    select new
-                                    {
-                                        Supervisor = n.Supervisor,
-                                        Intermediario = n.Intermediario,
-                                        Factura = n.Numero,
-                                        Valor = n.Valor,
-                                        Oficina = n.Oficina,
-                                        Fecha = n.Fecha,
-                                        Concepto = n.Concepto,
-                                        PorcientoComision = n.__Comision,
-                                        ComisionPagar = n.ComisionPagar,
-                                        ValidadoDesde = n.ValidadoDesde,
-                                        ValidadoHasta = n.ValidadoHasta
-                                    }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comision Supervisor Completo", Exportar);
-                }
-                catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
-            }
-            ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
+            //if (cbAgregarOficina.Checked)
+            //{
+            //    try
+            //    {
+            //        var Exportar = (from n in ObjData.Value.ComisionesSupervisores(
+            //     Convert.ToDateTime(txtFechaDesde.Text),
+            //     Convert.ToDateTime(txtFechaHasta.Text),
+            //     null,
+            //     Convert.ToInt32(ddlSeleccionaroficina.SelectedValue))
+            //                        select new
+            //                        {
+            //                            Supervisor = n.Supervisor,
+            //                            Intermediario = n.Intermediario,
+            //                            Factura = n.Numero,
+            //                            Valor = n.Valor,
+            //                            Oficina = n.Oficina,
+            //                            Fecha = n.Fecha,
+            //                            Concepto = n.Concepto,
+            //                            PorcientoComision = n.__Comision,
+            //                            ComisionPagar = n.ComisionPagar,
+            //                            ValidadoDesde = n.ValidadoDesde,
+            //                            ValidadoHasta = n.ValidadoHasta
+            //                        }).ToList();
+            //        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comision Supervisor Completo", Exportar);
+            //    }
+            //    catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
+            //}
+            //else
+            //{
+            //    try
+            //    {
+            //        var Exportar = (from n in ObjData.Value.ComisionesSupervisores(
+            //     Convert.ToDateTime(txtFechaDesde.Text),
+            //     Convert.ToDateTime(txtFechaHasta.Text))
+            //                        select new
+            //                        {
+            //                            Supervisor = n.Supervisor,
+            //                            Intermediario = n.Intermediario,
+            //                            Factura = n.Numero,
+            //                            Valor = n.Valor,
+            //                            Oficina = n.Oficina,
+            //                            Fecha = n.Fecha,
+            //                            Concepto = n.Concepto,
+            //                            PorcientoComision = n.__Comision,
+            //                            ComisionPagar = n.ComisionPagar,
+            //                            ValidadoDesde = n.ValidadoDesde,
+            //                            ValidadoHasta = n.ValidadoHasta
+            //                        }).ToList();
+            //        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comision Supervisor Completo", Exportar);
+            //    }
+            //    catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "Mensaje", "ErrorMostrarConsulta();", true); }
+            //}
+            //ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
         }
 
         protected void gbListadoCarteraSupervisor_RowDataBound1(object sender, GridViewRowEventArgs e)

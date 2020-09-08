@@ -43,6 +43,33 @@ namespace UtilidadesAmigos.Solucion.Paginas
             Restablecer();
         }
         #endregion
+        #region CARGAR LAS LISTAS DESPLEGABLES
+        private void CargarListasDesplegables() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSucursalConsulta, ObjData.Value.BuscaListas("SUCURSAL", null, null), true);
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionaroficinaConsulta, ObjData.Value.BuscaListas("OFICINA", ddlSeleccionarSucursalConsulta.SelectedValue, null), true);
+        }
+        #endregion
+        #region MOSTRAR EL LISTADO DE LAS COMISIONES DE LOS SUPERVISORES
+        private void ConsultarComisionesSupervisores() {
+            if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
+            {
+                //CAMPOS VACIOS
+            }
+            else
+            {
+                string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+                int? _Oficina = ddlSeleccionaroficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaConsulta.SelectedValue) : new Nullable<int>();
+
+                var Consultar = ObjData.Value.ComisionesSupervisores(
+                    Convert.ToDateTime(txtFechaDesdeConsulta.Text),
+                    Convert.ToDateTime(txtFechaHastaConsulta.Text),
+                    _CodigoSupervisor,
+                    _Oficina);
+                gvComisionSupervisor.DataSource = Consultar;
+                gvComisionSupervisor.DataBind();
+            }
+        }
+        #endregion
 
         private void Restablecer() {
             //MOSTRAMOS LOS CONTROLES
@@ -72,17 +99,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (!IsPostBack) {
                 MostrarCodigospermitidos();
+                CargarListasDesplegables();
             }
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-
+          
         }
 
         protected void btnConsultarComisiones_Click(object sender, EventArgs e)
         {
-
+            ConsultarComisionesSupervisores();
         }
 
         protected void btnExortarComisiones_Click(object sender, EventArgs e)
@@ -97,7 +125,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gvComisionSupervisor_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gvComisionSupervisor.PageIndex = e.NewPageIndex;
+            ConsultarComisionesSupervisores();
         }
 
         protected void btnValidarClaveSeguridad_Click(object sender, EventArgs e)
@@ -248,6 +277,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             Restablecer();
 
+        }
+
+        protected void ddlSeleccionarSucursalConsulta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionaroficinaConsulta, ObjData.Value.BuscaListas("OFICINA", ddlSeleccionarSucursalConsulta.SelectedValue, null), true);
         }
     }
 }
