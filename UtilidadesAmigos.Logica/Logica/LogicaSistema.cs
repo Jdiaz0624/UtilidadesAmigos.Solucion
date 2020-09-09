@@ -3266,5 +3266,28 @@ namespace UtilidadesAmigos.Logica.Logica
             return Procesar;
         }
         #endregion
+        #region CONSULTAR DATOS COMISIONES SUPERVISOR
+        //REPORTE RESUMIDO
+        public List<UtilidadesAmigos.Logica.Entidades.EReporteComisionSupervisorResumido> ReporteComisionesSupervisorResumido(decimal? IdUsuario = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_REPORTE_DETALLE_COMISION_RESUMIDO(IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.EReporteComisionSupervisorResumido
+                           {
+                               IdUsuario=n.IdUsuario,
+                               GeneradoPor=n.GeneradoPor,
+                               FechaDesde0=n.FechaDesde0,
+                               ValidadoDesde=n.ValidadoDesde,
+                               FechaHasta0=n.FechaHasta0,
+                               ValidadoHasta=n.ValidadoHasta,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               Oficina=n.Oficina,
+                               ComisionPagar=n.ComisionPagar
+
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }

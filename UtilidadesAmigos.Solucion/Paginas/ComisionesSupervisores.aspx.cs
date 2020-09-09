@@ -100,6 +100,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (!IsPostBack) {
                 MostrarCodigospermitidos();
                 CargarListasDesplegables();
+                rbReporteResumido.Checked = true;
             }
         }
 
@@ -115,6 +116,67 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnExortarComisiones_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
+            {
+
+            }
+            else {
+                if (Session["IdUsuario"] != null) {
+                    //ELIMINAKMOS LOS REGISTROS BAJO EL USUARIO INGRESADO
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores(
+                        Convert.ToDecimal(Session["IdUsuario"]),
+                        DateTime.Now,
+                        DateTime.Now,
+                        0, "", 0, "", "", 0, 0, "", DateTime.Now, 0, "", "", 0, 0, "DELETE");
+                    Eliminar.ProcesarInformacion();
+
+                    //GUARDAMOS LOS DATOS PARA EXPORTAR LOS DATOS
+                    string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+                    int? _oficina = ddlSeleccionaroficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaConsulta.SelectedValue) : new Nullable<int>();
+
+                    var BuscarRegistros = ObjData.Value.ComisionesSupervisores(
+                        Convert.ToDateTime(txtFechaDesdeConsulta.Text),
+                        Convert.ToDateTime(txtFechaHastaConsulta.Text),
+                        _CodigoSupervisor,
+                        _oficina);
+                    if (BuscarRegistros.Count() < 1)
+                    {
+
+                    }
+                    else
+                    {
+                        foreach (var n in BuscarRegistros)
+                        {
+                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores(
+                                Convert.ToDecimal(Session["IdUsuario"]),
+                                Convert.ToDateTime(txtFechaDesdeConsulta.Text),
+                                Convert.ToDateTime(txtFechaHastaConsulta.Text),
+                                Convert.ToInt32(n.CodigoSupervisor),
+                                n.Supervisor,
+                                Convert.ToInt32(n.CodigoIntermediario),
+                                n.Intermediario,
+                                n.Poliza,
+                                Convert.ToDecimal(n.NumeroFactura),
+                                Convert.ToDecimal(n.Valor),
+                                n.Fecha,
+                                Convert.ToDateTime(n.Fecha0),
+                                Convert.ToInt32(n.CodigoOficina),
+                                n.Oficina,
+                                n.Concepto,
+                                Convert.ToDecimal(n.PorcuentoComision),
+                                Convert.ToDecimal(n.ComisionPagar),
+                                "INSERT");
+                            Procesar.ProcesarInformacion();
+                        }
+                    }
+                }
+                  
+                //EXPORTAMOS
+               
+
+              
+            }
+
 
         }
 
