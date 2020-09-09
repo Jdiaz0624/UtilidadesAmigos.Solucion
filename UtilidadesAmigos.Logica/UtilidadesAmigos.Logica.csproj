@@ -193,6 +193,7 @@
     <Compile Include="Entidades\EReclamacion.cs" />
     <Compile Include="Entidades\EReporteCobradoContabilidad.cs" />
     <Compile Include="Entidades\EReporteComisionSupervisorResumido.cs" />
+    <Compile Include="Entidades\EReporteDetalleComisionSupervisores.cs" />
     <Compile Include="Entidades\ESacarCarteraIntermediario.cs" />
     <Compile Include="Entidades\ESacarCobrado.cs" />
     <Compile Include="Entidades\ESacarCodigoIntermediarios.cs" />

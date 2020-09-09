@@ -3288,6 +3288,37 @@ namespace UtilidadesAmigos.Logica.Logica
                            }).ToList();
             return Listado;
         }
+
+        //REPORTE COMISIONES DETALLE
+        public List<UtilidadesAmigos.Logica.Entidades.EReporteDetalleComisionSupervisores> ReporteComisionesSupervisoresDetalle(decimal? IdUsuario = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_REPORTE_DETALLE_COMISION_SUPERVISORES(IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.EReporteDetalleComisionSupervisores
+                           {
+                               IdUsuario=n.IdUsuario,
+                               GeneradoPor=n.GeneradoPor,
+                               FechaDesde0=n.FechaDesde0,
+                               ValidadoDesde=n.ValidadoDesde,
+                               FechaHasta0=n.FechaHasta0,
+                               ValidadoHasta=n.ValidadoHasta,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               Poliza=n.Poliza,
+                               NumeroFactura=n.NumeroFactura,
+                               Valor=n.Valor,
+                               Fecha=n.Fecha,
+                               Fecha0=n.Fecha0,
+                               CodigoOficina=n.CodigoOficina,
+                               Oficina=n.Oficina,
+                               Conepto=n.Conepto,
+                               PorcientoComision=n.PorcientoComision,
+                               ComisionPagar=n.ComisionPagar
+                           }).ToList();
+            return Listado;
+        }
         #endregion
     }
 }

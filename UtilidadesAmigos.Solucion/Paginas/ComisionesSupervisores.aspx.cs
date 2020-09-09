@@ -4,6 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportSource;
+using CrystalDecisions.Shared;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -68,6 +73,53 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 gvComisionSupervisor.DataSource = Consultar;
                 gvComisionSupervisor.DataBind();
             }
+        }
+        #endregion
+        #region IMPRIMIR REPORTE
+        private void ImprimirReporteResumido(decimal IdUsuario, string RutaReporte, string UsuaruoBD, string ClaveBD, string NombreArchivo) {
+            try {
+                ReportDocument Factura = new ReportDocument();
+
+                SqlCommand comando = new SqlCommand();
+                comando.CommandText = "EXEC [Utililades].[SP_REPORTE_DETALLE_COMISION_RESUMIDO] @IdUsuario";
+                comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+
+                comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
+                comando.Parameters["@IdUsuario"].Value = IdUsuario;
+
+                Factura.Load(RutaReporte);
+                Factura.Refresh();
+                Factura.SetParameterValue("@IdUsuario", IdUsuario);
+                Factura.SetDatabaseLogon(UsuaruoBD, ClaveBD);
+                Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+
+                //  Factura.PrintToPrinter(1, false, 0, 1);
+                //  crystalReportViewer1.ReportSource = Factura;
+            }
+            catch (Exception) { }
+
+        }
+        private void ImprimirReporteDetalle(decimal IdUsuario, string RutaReporte, string UsuaruoBD, string ClaveBD, string NombreArchivo) {
+            try {
+                ReportDocument Factura = new ReportDocument();
+
+                SqlCommand comando = new SqlCommand();
+                comando.CommandText = "EXEC [Utililades].[SP_REPORTE_DETALLE_COMISION_SUPERVISORES] @IdUsuario";
+                comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+
+                comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
+                comando.Parameters["@IdUsuario"].Value = IdUsuario;
+
+                Factura.Load(RutaReporte);
+                Factura.Refresh();
+                Factura.SetParameterValue("@IdUsuario", IdUsuario);
+                Factura.SetDatabaseLogon(UsuaruoBD, ClaveBD);
+                Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+
+                //  Factura.PrintToPrinter(1, false, 0, 1);
+                //  crystalReportViewer1.ReportSource = Factura;
+            }
+            catch (Exception) { }
         }
         #endregion
 
@@ -169,9 +221,46 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             Procesar.ProcesarInformacion();
                         }
                     }
+
+                    //EXPORTAMOS
+                    if (rbReporteResumido.Checked)
+                    {
+                        var Exportar = (from n in ObjData.Value.ReporteComisionesSupervisorResumido(Convert.ToDecimal(Session["IdUsuario"]))
+                                        select new
+                                        {
+                                            Supervisor = n.Supervisor,
+                                            Oficina = n.Oficina,
+                                            ValidadoDesde = n.ValidadoDesde,
+                                            ValidadoHasta = n.ValidadoHasta,
+                                            ComisionPagar = n.ComisionPagar
+
+                                        }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comisiones Supervisor Resumido", Exportar);
+                    }
+                    else
+                    {
+                        var ExportarDetalle = (from n in ObjData.Value.ReporteComisionesSupervisoresDetalle(Convert.ToDecimal(Session["IdUsuario"]))
+                                               select new
+                                               {
+                                                   GeneradoPor = n.GeneradoPor,
+                                                   ValidadoDesde = n.ValidadoDesde,
+                                                   ValidadoHasta = n.ValidadoHasta,
+                                                   Supervisor = n.Supervisor,
+                                                   Intermediario = n.Intermediario,
+                                                   Poliza = n.Poliza,
+                                                   NumeroFactura = n.NumeroFactura,
+                                                   Valor = n.Valor,
+                                                   Fecha = n.Fecha,
+                                                   Oficina = n.Oficina,
+                                                   Conepto = n.Conepto,
+                                                   PorcientoComision = n.PorcientoComision,
+                                                   ComisionPagar = n.ComisionPagar
+
+                                               }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comisiones Supervisor Detalle", ExportarDetalle);
+                    }
                 }
-                  
-                //EXPORTAMOS
+
                
 
               
@@ -182,7 +271,78 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnReporteCOmisiones_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
+            {
 
+            }
+            else
+            {
+                if (Session["IdUsuario"] != null)
+                {
+                    //ELIMINAKMOS LOS REGISTROS BAJO EL USUARIO INGRESADO
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores(
+                        Convert.ToDecimal(Session["IdUsuario"]),
+                        DateTime.Now,
+                        DateTime.Now,
+                        0, "", 0, "", "", 0, 0, "", DateTime.Now, 0, "", "", 0, 0, "DELETE");
+                    Eliminar.ProcesarInformacion();
+
+                    //GUARDAMOS LOS DATOS PARA EXPORTAR LOS DATOS
+                    string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+                    int? _oficina = ddlSeleccionaroficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaConsulta.SelectedValue) : new Nullable<int>();
+
+                    var BuscarRegistros = ObjData.Value.ComisionesSupervisores(
+                        Convert.ToDateTime(txtFechaDesdeConsulta.Text),
+                        Convert.ToDateTime(txtFechaHastaConsulta.Text),
+                        _CodigoSupervisor,
+                        _oficina);
+                    if (BuscarRegistros.Count() < 1)
+                    {
+
+                    }
+                    else
+                    {
+                        foreach (var n in BuscarRegistros)
+                        {
+                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores(
+                                Convert.ToDecimal(Session["IdUsuario"]),
+                                Convert.ToDateTime(txtFechaDesdeConsulta.Text),
+                                Convert.ToDateTime(txtFechaHastaConsulta.Text),
+                                Convert.ToInt32(n.CodigoSupervisor),
+                                n.Supervisor,
+                                Convert.ToInt32(n.CodigoIntermediario),
+                                n.Intermediario,
+                                n.Poliza,
+                                Convert.ToDecimal(n.NumeroFactura),
+                                Convert.ToDecimal(n.Valor),
+                                n.Fecha,
+                                Convert.ToDateTime(n.Fecha0),
+                                Convert.ToInt32(n.CodigoOficina),
+                                n.Oficina,
+                                n.Concepto,
+                                Convert.ToDecimal(n.PorcuentoComision),
+                                Convert.ToDecimal(n.ComisionPagar),
+                                "INSERT");
+                            Procesar.ProcesarInformacion();
+                        }
+                    }
+
+                    //GENERAMOS
+                    if (rbReporteResumido.Checked)
+                    {
+                        //ImprimirFactura(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionesIntermediario.rpt"), "sa", "Pa$$W0rd", "Listado de Comisiones");
+                        ImprimirReporteResumido(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionSupervisorResumido.rpt"), "sa", "Pa$$W0rd", "Comisiones Supervisores Resumido");
+                    }
+                    else
+                    {
+                        ImprimirReporteDetalle(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionesSupervisoresDetalle.rpt"), "sa", "Pa$$W0rd", "Comisiones Supervisores Detalle");
+                    }
+                }
+
+
+
+
+            }
         }
 
         protected void gvComisionSupervisor_PageIndexChanging(object sender, GridViewPageEventArgs e)
