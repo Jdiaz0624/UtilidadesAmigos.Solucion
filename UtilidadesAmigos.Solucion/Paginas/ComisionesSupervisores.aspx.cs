@@ -172,8 +172,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
 
             }
-            else {
-                if (Session["IdUsuario"] != null) {
+            else
+            {
+                if (Session["IdUsuario"] != null)
+                {
                     //ELIMINAKMOS LOS REGISTROS BAJO EL USUARIO INGRESADO
                     UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores(
                         Convert.ToDecimal(Session["IdUsuario"]),
@@ -222,48 +224,50 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         }
                     }
 
-                    //EXPORTAMOS
+                    //GENERAMOS
                     if (rbReporteResumido.Checked)
                     {
-                        var Exportar = (from n in ObjData.Value.ReporteComisionesSupervisorResumido(Convert.ToDecimal(Session["IdUsuario"]))
+                        var Resumido = (from n in ObjData.Value.ReporteComisionesSupervisorResumido(Convert.ToDecimal(Session["IdUsuario"]))
                                         select new
                                         {
                                             Supervisor = n.Supervisor,
-                                            Oficina = n.Oficina,
+                                            Oficina=n.Oficina,
                                             ValidadoDesde = n.ValidadoDesde,
-                                            ValidadoHasta = n.ValidadoHasta,
-                                            ComisionPagar = n.ComisionPagar
-
+                                            ValidadoHasta=n.ValidadoHasta,
+                                            APagar=n.ComisionPagar
                                         }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comisiones Supervisor Resumido", Exportar);
+                        string Nombrearchivo = "Reporte de Comisiones Supervisores Resumido " + txtFechaDesdeConsulta.Text + " Hasta " + txtFechaHastaConsulta.Text;
+
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(Nombrearchivo, Resumido);
                     }
                     else
                     {
-                        var ExportarDetalle = (from n in ObjData.Value.ReporteComisionesSupervisoresDetalle(Convert.ToDecimal(Session["IdUsuario"]))
-                                               select new
-                                               {
-                                                   GeneradoPor = n.GeneradoPor,
-                                                   ValidadoDesde = n.ValidadoDesde,
-                                                   ValidadoHasta = n.ValidadoHasta,
-                                                   Supervisor = n.Supervisor,
-                                                   Intermediario = n.Intermediario,
-                                                   Poliza = n.Poliza,
-                                                   NumeroFactura = n.NumeroFactura,
-                                                   Valor = n.Valor,
-                                                   Fecha = n.Fecha,
-                                                   Oficina = n.Oficina,
-                                                   Conepto = n.Conepto,
-                                                   PorcientoComision = n.PorcientoComision,
-                                                   ComisionPagar = n.ComisionPagar
+                        var Detalle = (from n in ObjData.Value.ReporteComisionesSupervisoresDetalle(Convert.ToDecimal(Session["IdUsuario"]))
+                                        select new
+                                        {
+                                            Supervisor = n.Supervisor,
+                                            Intermediairo =n.Intermediario,
+                                            ValidadoDesde = n.ValidadoDesde,
+                                            ValidadoHasta =n.ValidadoHasta,
+                                            Poliza=n.Poliza,
+                                            NumeroFactura=n.NumeroFactura,
+                                            FechaFactura =n.Fecha,
+                                            ValorFactura=n.Valor,
+                                            Concepto =n.Conepto,
+                                            Oficina=n.Oficina,
+                                            PorcientoComision=n.PorcientoComision,
+                                            APagar=n.ComisionPagar
 
-                                               }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comisiones Supervisor Detalle", ExportarDetalle);
+                                        }).ToList();
+                        string Nombrearchivo = "Reporte de Comisiones Supervisores Detalle " + txtFechaDesdeConsulta.Text + " Hasta " + txtFechaHastaConsulta.Text;
+
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(Nombrearchivo, Detalle);
                     }
                 }
 
-               
 
-              
+
+
             }
 
 
@@ -330,12 +334,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     //GENERAMOS
                     if (rbReporteResumido.Checked)
                     {
-                        //ImprimirFactura(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionesIntermediario.rpt"), "sa", "Pa$$W0rd", "Listado de Comisiones");
-                        ImprimirReporteResumido(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionSupervisorResumido.rpt"), "sa", "Pa$$W0rd", "Comisiones Supervisores Resumido");
+                        string Nombrearchivo = "Reporte de Comisiones Supervisores Resumido " + txtFechaDesdeConsulta.Text + " Hasta " + txtFechaHastaConsulta.Text;
+                        ImprimirReporteResumido(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionSupervisorResumido.rpt"), "sa", "Pa$$W0rd", Nombrearchivo);
                     }
                     else
                     {
-                        ImprimirReporteDetalle(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionesSupervisoresDetalle.rpt"), "sa", "Pa$$W0rd", "Comisiones Supervisores Detalle");
+                        string Nombrearchivo = "Reporte de Comisiones Supervisores Detalle " + txtFechaDesdeConsulta.Text + " Hasta " + txtFechaHastaConsulta.Text;
+                        ImprimirReporteDetalle(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionesSupervisoresDetalle.rpt"), "sa", "Pa$$W0rd", Nombrearchivo);
                     }
                 }
 
