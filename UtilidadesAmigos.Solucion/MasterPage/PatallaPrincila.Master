@@ -66,7 +66,7 @@
                               Reportes
                             </a>
                             <div class="dropdown-menu">
-                               <asp:LinkButton ID="LinkMarbeteDeclarativo" runat="server" ForeColor="Red" ToolTip="Genera Marbetes Declarativos" Text="Marbetes declarativos" OnClick="LinkButton1_Click" class="dropdown-item"></asp:LinkButton>
+                               <asp:LinkButton ID="LinkGenerarMarbetesBehiculo" runat="server" ForeColor="Red" ToolTip="Genera Marbetes" Text="Marbetes declarativos" OnClick="LinkGenerarMarbetesBehiculo_Click" class="dropdown-item"></asp:LinkButton>
                                 <asp:LinkButton ID="LiniComisionesIntermediarios" runat="server" Text="Generar Comisiones de Intermediario" OnClick="LiniComisionesIntermediarios_Click" class="dropdown-item"></asp:LinkButton>
                                 <asp:LinkButton ID="LinkComisionesSupervisores" runat="server" Text="Generar Comisiones de Supervisores" OnClick="LinkComisionesSupervisores_Click" class="dropdown-item"></asp:LinkButton>
                                 <asp:LinkButton ID="LinkProduccionDiariaContabilidad" runat="server" Text="Producción diaria Contabilidad" ToolTip="Mostrar la Producción diaria para contablidad" OnClick="LinkProduccionDiariaContabilidad_Click" class="dropdown-item"></asp:LinkButton>

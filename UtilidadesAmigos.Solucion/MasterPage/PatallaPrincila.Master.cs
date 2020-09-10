@@ -372,5 +372,19 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkGenerarMarbetesBehiculo_Click(object sender, EventArgs e)
+        {
+            //MOSTRAR EL REPORTE DE COMISIONES DE LOS SUPERVISORES
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("GenerarMarbetes.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }
