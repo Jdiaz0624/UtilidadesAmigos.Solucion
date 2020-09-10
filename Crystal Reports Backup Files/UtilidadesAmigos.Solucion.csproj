@@ -153,6 +153,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile10.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile3.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile4.pubxml" />
@@ -160,6 +161,7 @@
     <None Include="Properties\PublishProfiles\FolderProfile6.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile7.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile8.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile9.pubxml" />
     <None Include="Properties\PublishProfiles\Prueba.pubxml" />
     <Content Include="Paginas\ComisionesIntermediarios.aspx" />
     <Content Include="Paginas\ComisionesSupervisores.aspx" />
@@ -167,6 +169,7 @@
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarBakupBD.aspx" />
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
+    <Content Include="Paginas\GenerarMarbetes.aspx" />
     <Content Include="Paginas\GenerarReporteFianzas.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
     <Content Include="Paginas\ListadoRenovacion.aspx" />
@@ -390,6 +393,13 @@
     </Compile>
     <Compile Include="Paginas\GenerarFacturasPDF.aspx.designer.cs">
       <DependentUpon>GenerarFacturasPDF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\GenerarMarbetes.aspx.cs">
+      <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\GenerarMarbetes.aspx.designer.cs">
+      <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\GenerarReporteFianzas.aspx.cs">
       <DependentUpon>GenerarReporteFianzas.aspx</DependentUpon>

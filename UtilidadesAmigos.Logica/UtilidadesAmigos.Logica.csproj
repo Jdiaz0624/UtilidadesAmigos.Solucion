@@ -229,6 +229,7 @@
     <Compile Include="Entidades\OpcionesAdministrador\EMantenimientoBackupDatabase.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\ERutaArchivoBakup.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\GenerarBakupBD.cs" />
+    <Compile Include="Entidades\Procesos\EGenerarDatosMarbeteVehiculo.cs" />
     <Compile Include="Entidades\ProduccionPorUsuario.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorUsuarioDetalle.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorusuarioResumido.cs" />
@@ -237,6 +238,7 @@
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
     <Compile Include="Logica\LogicaOpcionesAdministrador\LogicaOpcionesdministrador.cs" />
+    <Compile Include="Logica\LogicaProcesos\LogicaProcesos.cs" />
     <Compile Include="Logica\LogicaReportes\ProduccionPorUsuarioResumido.cs" />
     <Compile Include="Logica\LogicaSeguridad\LogicaSeguridad.cs" />
     <Compile Include="Logica\LogicaSistema.cs" />

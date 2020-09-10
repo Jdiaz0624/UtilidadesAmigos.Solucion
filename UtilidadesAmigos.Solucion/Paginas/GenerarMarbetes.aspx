@@ -20,7 +20,24 @@
         font-weight:bold;
         }
     </style>
-
+    <script type="text/javascript">
+        function CampoPolizaVacio() {
+            alert("El campo poliza no puede estar vacio para realizar este tipo de consulta, favor de verificar");
+            $("#<%=txtPolizaConsulta.ClientID%>").css("border-color", "red");
+        }
+        function CamposChasisPlacaVacios() {
+            alert("Para realizar una consulta por placa o por chasis, uno de los dos campos debe de estar lleno, favor de verificar");
+            var CampoChasis = $("#<%=txtChasisConsulta.ClientID%>").val().length; 
+            var CampoPlaca = $("#<%=txtPlacaConsulta.ClientID%>").val().length;
+            if (CampoChasis < 1) {
+                $("#<%=txtChasisConsulta.ClientID%>").css("border-color", "blue");
+            }
+            if (CampoPlaca < 1) {
+                $("#<%=txtPlacaConsulta.ClientID%>").css("border-color", "blue");
+            }
+        }
+       
+    </script>
 
     <div class="container-fluid">
         <div class="jumbotron" align="center">
@@ -30,9 +47,9 @@
             <asp:Label ID="lbSeleccionarFiltros" runat="server" Text="Seleccionar Filtros" CssClass="Letranegrita"></asp:Label><br />
             <div class="form-check-inline">
                 <div class="form-group form-check">
-                    <asp:CheckBox ID="cbOtrosFiltros" runat="server" Text="Buscar por Chasis o Placa" AutoPostBack="true" CssClass="form-check-input Letranegrita" />
-                    <asp:RadioButton ID="rbBuscarPorChasis" runat="server" Text="Buscar por Chasis" GroupName="OtrosFiltros" CssClass="form-check-input Letranegrita" />
-                    <asp:RadioButton ID="rbBuscarPorPlaca" runat="server" Text="Buscar por Placa" GroupName="OtrosFiltros" CssClass="form-check-input Letranegrita" />
+                    <asp:CheckBox ID="cbOtrosFiltros" runat="server" Text="Buscar por Chasis o Placa" AutoPostBack="true" CssClass="form-check-input Letranegrita" OnCheckedChanged="cbOtrosFiltros_CheckedChanged" />
+                    <asp:RadioButton ID="rbBuscarPorChasis" Visible="false" runat="server" Text="Buscar por Chasis" GroupName="OtrosFiltros" CssClass="form-check-input Letranegrita" />
+                    <asp:RadioButton ID="rbBuscarPorPlaca" Visible="false" runat="server" Text="Buscar por Placa" GroupName="OtrosFiltros" CssClass="form-check-input Letranegrita" />
 
                 </div>
             </div><br />
@@ -64,6 +81,171 @@
                 <asp:Label ID="lbPlacaConsulta" runat="server" Text="Placa" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtPlacaConsulta" AutoCompleteType="Disabled" MaxLength="50" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
+        </div>
+        <div align="center">
+             <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
+        </div>
+        <br />
+        <div align="center">
+            <asp:Label ID="lbCantidadRegistrosTirulo" runat="server" Text="Cantidad de Registros (" CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCantidadRegistrosVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" Text=")" CssClass="Letranegrita"></asp:Label>
+
+        </div>
+        <br />
+           <div>
+            <asp:GridView ID="gvListadoPoliza" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoPoliza_PageIndexChanging" OnSelectedIndexChanged="gvListadoPoliza_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    
+                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
+                    <asp:BoundField DataField="Secuencia" HeaderText="Item" />
+                    <asp:BoundField DataField="NombreCliente" HeaderText="Cliente" />
+                    <asp:BoundField DataField="Asegurado" HeaderText="Asegurado" />
+                    <asp:BoundField DataField="InicioVigencia" HeaderText="Inicio" />
+                    <asp:BoundField DataField="FinVigencia" HeaderText="Fin" />
+                     <asp:CommandField ButtonType="Button" HeaderStyle-Width="11%" HeaderText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />
+                </Columns  >
+                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
+        <br />
+        <div align="center">
+            <asp:Label ID="lbTituloDatosPolizas" Visible="false" runat="server" Text="Información de registro seleccionado" CssClass="Letranegrita"></asp:Label><hr />
+        </div>
+        <!--PRIMERA LINEA-->
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbPolizaMantenimiento" runat="server" Text="Poliza" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtPolizaMantenimiento" runat="server" Enabled="false" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+             <div class="form-group col-md-3">
+                <asp:Label ID="lbCotizacionMantenimiento" runat="server" Text="Cotización" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtCotizacionMantenimeinto" Enabled="false" runat="server" Visible="false" CssClass="form-control"></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbCodigoClienteMantenimiento" runat="server" Visible="false" Text="Codigo de Cliente" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtCodigoClienteMantenimiento" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbItemMantenimiento" runat="server" Text="Numero de Item" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtItemMantenimiento" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <!--SEGUNDA LINEA-->
+             <div class="form-group col-md-3">
+                <asp:Label ID="lbNombreClienteMantenimiento" runat="server" Text="Nombre de Cliente" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtNombreClienteMantenimiento" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+             <div class="form-group col-md-3">
+                <asp:Label ID="lbNombreAseguradoMantenimiento" runat="server" Text="Nombre de Asegurado" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtNombreAseguradoMantenimiento" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+             <div class="form-group col-md-3">
+                <asp:Label ID="lbInicioVigenciaMantenimeinto" runat="server" Text="Inicio de Vigencia" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtInicioVigenciaMantenimiento" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+             <div class="form-group col-md-3">
+                <asp:Label ID="lbFinVigenciaMantenimiento" runat="server" Text="Fin de Vigencia" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtFinVigenciaMantenimiento" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <!--TERCERA LINEA-->
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbTipoVehiculoMantenimiento" runat="server" Text="Tipo de Vehiculo" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtTipoVehiculoMantenimiento" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbMarcaMantenimiento" runat="server" Text="Marca" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtMarcaMantenimeinto" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbModeloMantenimiento" runat="server" Text="Modelo" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtModeloMantenimeinto" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbCapacidadMantenimiento" runat="server" Text="Capacidad" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtCapacidadMantenimeinto" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <!--CUARTA LINEA-->
+             <div class="form-group col-md-3">
+                <asp:Label ID="lbChasisMantenimiento" runat="server" Text="Chasis" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtChasisMantenimiento" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbPlacaMantenimiento" runat="server" Text="Placa" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtPlacaMantenimiento" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbColorMantenimiento" runat="server" Text="Color" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtColorMantenimiento" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbAnoMantenimiento" runat="server" Text="Año" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtAnoMantenimiento" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <!--QUINTA LINEA-->
+             <div class="form-group col-md-3">
+                <asp:Label ID="lbUsoMantenimiento" runat="server" Text="Uso" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtUsoMantenimiento" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbValorVehiculo" runat="server" Text="Valor de Vehiuclo" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtValorVehiculo" Enabled="false" Visible="false" runat="server" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbFianzaJudicialMantenimiento" runat="server" Text="Fianza Judicial" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtFianzaJudicialMantenimiento" Enabled="false" Visible="false" runat="server" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbVendedorMantenimiento" Visible="false" runat="server" Text="Vendedor" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtVendedorMantenimiento" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <!--SEXTA LINEA-->
+             <div class="form-group col-md-3">
+                <asp:Label ID="lbGruaMantenimiento" runat="server" Text="Grua" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtGruaMantenimiento" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbAeroAmbulanciaMantenimiento" runat="server" Text="Aero Ambulancia" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtAeroAmbulancia" Enabled="false" runat="server" Visible="false" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            <div class="form-group col-md-6">
+                <asp:Label ID="lbOtrosServiciosMantenimiento" runat="server" Text="Otros Servicios" Visible="false" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtOtrosServiciosMantenimiento" Enabled="false" Visible="false" runat="server" CssClass="form-control" ></asp:TextBox>
+            </div>
+
+            
+
         </div>
     </div>
 </asp:Content>
