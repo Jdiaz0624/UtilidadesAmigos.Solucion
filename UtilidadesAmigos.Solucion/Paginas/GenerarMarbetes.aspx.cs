@@ -390,5 +390,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
             LimpiarControles();
             OcultarControles();
         }
+
+        protected void rbImprimirPVC_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
