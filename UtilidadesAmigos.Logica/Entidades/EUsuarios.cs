@@ -53,5 +53,7 @@ namespace UtilidadesAmigos.Logica.Entidades
         public decimal? IdTipoPersona {get;set;}
 
         public string TipoPersona {get;set;}
+        public System.Nullable<bool> PermisoImpresionMarbete0 { get; set; }
+        public string PermisoImpresionMarbete { get; set; }
     }
 }

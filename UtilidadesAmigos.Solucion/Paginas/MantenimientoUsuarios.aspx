@@ -420,7 +420,10 @@
                       </div>
 
                       <div class="form-group form-check">
-                          <asp:CheckBox ID="cbCambiaClave" runat="server" Text="Cambia Clave" CssClass="form-check-input" />
+                          <asp:CheckBox ID="cbCambiaClave" runat="server" Text="Cambia Clave" ToolTip="Permitirle al usuario cambiar su clave al momento de ingresar al sistema" CssClass="form-check-input" />
+                      </div>
+                      <div class="form-group form-check">
+                          <asp:CheckBox ID="cbPermisoImpresionmarbete" runat="server" Text="Impresión de Marbete" ToolTip="Asignarle permiso al usuario para que pueda imprimir marbetes" CssClass="form-check-input" />
                       </div>
                   </div>
               </ContentTemplate>

@@ -93,7 +93,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Factura.SetDatabaseLogon(UsuaruoBD, ClaveBD);
                 Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
 
-                //  Factura.PrintToPrinter(1, false, 0, 1);
+                  //Factura.PrintToPrinter(1, false, 0, 1);
                 //  crystalReportViewer1.ReportSource = Factura;
             }
             catch (Exception) { }

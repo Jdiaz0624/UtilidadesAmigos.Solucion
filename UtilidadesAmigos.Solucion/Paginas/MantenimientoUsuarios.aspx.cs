@@ -105,6 +105,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                   cbCambiaClave.Checked,
                   "",
                   Convert.ToDecimal(ddlSeleccionarTipoPersona.SelectedValue),
+                  cbPermisoImpresionmarbete.Checked,
                   Accion);
                     Procesar.ProcesarInformacion();
                 }
@@ -162,12 +163,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 _Perfil,
                 _Usuario, null, null, null)
                             select new {
-                                ID=n.IdUsuario,
-                                Persona=n.Persona,
-                                Usuario=n.Usuario,
-                                Estatus =n.Estatus,
-                                CambiaClave =n.CambiaClave,
-                                LlevaEmail=n.LlevaEmail,
+                                ID = n.IdUsuario,
+                                Persona = n.Persona,
+                                Usuario = n.Usuario,
+                                Estatus = n.Estatus,
+                                CambiaClave = n.CambiaClave,
+                                LlevaEmail = n.LlevaEmail,
+                                PermisoImpresionMarbete = n.PermisoImpresionMarbete,
                                 Email=n.Email
                             });
             UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Usurios", Exportar);
@@ -228,6 +230,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 cbEstatusMantenimiento.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
                 cbLlevaEmailMantenimiento.Checked = (n.LlevaEmail0.HasValue ? n.LlevaEmail0.Value : false);
                 cbCambiaClave.Checked = (n.CambiaClave0.HasValue ? n.CambiaClave0.Value : false);
+                cbPermisoImpresionmarbete.Checked = (n.PermisoImpresionMarbete0.HasValue ? n.PermisoImpresionMarbete0.Value : false);
             }
             ClientScript.RegisterStartupScript(GetType(), "DesbloquearControles", "DesbloquearControles()", true);
         }

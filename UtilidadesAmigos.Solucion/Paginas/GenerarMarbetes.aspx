@@ -36,12 +36,17 @@
                 $("#<%=txtPlacaConsulta.ClientID%>").css("border-color", "blue");
             }
         }
+
+        function PermisoDenegado() {
+            alert("No tienes permiso para imprimir este registro, favor de contactar un administrador para asignar el permiso.");
+        }
        
     </script>
 
     <div class="container-fluid">
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTituloGenerarMarbetes" runat="server" Text="GENERAR MARBETES"></asp:Label>
+            <asp:Label ID="lbIdusuario" Visible="false" runat="server" Text="GENERAR MARBETES"></asp:Label>
         </div>
         <div align="center">
             <asp:Label ID="lbSeleccionarFiltros" runat="server" Text="Seleccionar Filtros" CssClass="Letranegrita"></asp:Label><br />
@@ -247,5 +252,11 @@
             
 
         </div>
+          <div align="center">
+             <asp:Button ID="btnImprimirMarbete" runat="server" Visible="false" Text="Imprimir" CssClass="btn btn-outline-primary btn-sm" ToolTip="Imprimir Marbete" OnClick="btnImprimirMarbete_Click" />
+               <asp:Button ID="btnRestablecer" runat="server" Text="Volver" Visible="false" CssClass="btn btn-outline-primary btn-sm" ToolTip="Volver" OnClick="btnRestablecer_Click" />
+        </div>
+        <br />
+
     </div>
 </asp:Content>

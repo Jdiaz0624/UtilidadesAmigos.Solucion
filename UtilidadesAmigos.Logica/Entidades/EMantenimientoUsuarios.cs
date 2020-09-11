@@ -37,5 +37,6 @@ namespace UtilidadesAmigos.Logica.Entidades
         public string RazonBloqueo {get;set;}
 
         public System.Nullable<decimal> IdTipoPersona {get;set;}
+        public System.Nullable<bool> PermisoImpresionMarbete { get; set; }
     }
 }

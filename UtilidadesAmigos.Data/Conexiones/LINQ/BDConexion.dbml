@@ -1930,77 +1930,6 @@
       <Column Name="ALiquidar" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_BUSCA_USUARIO" Method="SP_BUSCA_USUARIO">
-    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(4,0)" />
-    <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(4,0)" />
-    <Parameter Name="IdPerfil" Parameter="idPerfil" Type="System.Decimal" DbType="Decimal(4,0)" />
-    <Parameter Name="UsuarioConsulta" Parameter="usuarioConsulta" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Clave" Parameter="clave" Type="System.String" DbType="VarChar(8000)" />
-    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
-    <ElementType Name="SP_BUSCA_USUARIOResult">
-      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" CanBeNull="false" />
-      <Column Name="IdSucursal" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Sucursal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
-      <Column Name="Departamento" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdPerfil" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
-      <Column Name="Perfil" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Usuario" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-      <Column Name="Persona" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
-      <Column Name="LlevaEmail" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="LlevaEmail0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Contador" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CambiaClave" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="CambiaClave0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="RazonBloqueo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="IdTipoPersona" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
-      <Column Name="TipoPersona" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_MANTENIMIENTO_USUARIOS" Method="SP_MANTENIMIENTO_USUARIOS">
-    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(4,0)" />
-    <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(4,0)" />
-    <Parameter Name="IdPerfil" Parameter="idPerfil" Type="System.Decimal" DbType="Decimal(4,0)" />
-    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(20)" />
-    <Parameter Name="Clave" Parameter="clave" Type="System.String" DbType="VarChar(8000)" />
-    <Parameter Name="Persona" Parameter="persona" Type="System.String" DbType="VarChar(150)" />
-    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="LlevaEmail" Parameter="llevaEmail" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Contador" Parameter="contador" Type="System.Int32" DbType="Int" />
-    <Parameter Name="CambiaClave" Parameter="cambiaClave" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="RazonBloqueo" Parameter="razonBloqueo" Type="System.String" DbType="VarChar(1000)" />
-    <Parameter Name="IdTipoPersona" Parameter="idTipoPersona" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
-    <ElementType Name="SP_MANTENIMIENTO_USUARIOSResult">
-      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
-      <Column Name="IdSucursal" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
-      <Column Name="IdPerfil" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
-      <Column Name="Usuario" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-      <Column Name="Persona" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="LlevaEmail" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Contador" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CambiaClave" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="RazonBloqueo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="IdTipoPersona" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_GENERAR_PRODUCCION_FIANZAS" Method="SP_GENERAR_PRODUCCION_FIANZAS">
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(20)" />
     <Parameter Name="Subramo" Parameter="subramo" Type="System.Decimal" DbType="Decimal(20,0)" />
@@ -2566,6 +2495,81 @@
       <Column Name="Conepto" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Column Name="PorcientoComision" Type="System.Decimal" DbType="Decimal(3,2)" CanBeNull="true" />
       <Column Name="ComisionPagar" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_USUARIO" Method="SP_BUSCA_USUARIO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(4,0)" />
+    <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(4,0)" />
+    <Parameter Name="IdPerfil" Parameter="idPerfil" Type="System.Decimal" DbType="Decimal(4,0)" />
+    <Parameter Name="UsuarioConsulta" Parameter="usuarioConsulta" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Clave" Parameter="clave" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="SP_BUSCA_USUARIOResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(4,0) NOT NULL" CanBeNull="false" />
+      <Column Name="IdSucursal" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Sucursal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Column Name="Departamento" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdPerfil" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Column Name="Perfil" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="Persona" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="LlevaEmail" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="LlevaEmail0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Contador" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CambiaClave" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="CambiaClave0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="RazonBloqueo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IdTipoPersona" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoPersona" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="PermisoImpresionMarbete0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PermisoImpresionMarbete" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MANTENIMIENTO_USUARIOS" Method="SP_MANTENIMIENTO_USUARIOS">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(4,0)" />
+    <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(4,0)" />
+    <Parameter Name="IdPerfil" Parameter="idPerfil" Type="System.Decimal" DbType="Decimal(4,0)" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Clave" Parameter="clave" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="Persona" Parameter="persona" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="LlevaEmail" Parameter="llevaEmail" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Contador" Parameter="contador" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CambiaClave" Parameter="cambiaClave" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="RazonBloqueo" Parameter="razonBloqueo" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="IdTipoPersona" Parameter="idTipoPersona" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="PermisoImpresionMarbete" Parameter="permisoImpresionMarbete" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MANTENIMIENTO_USUARIOSResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Column Name="IdSucursal" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Column Name="IdPerfil" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="Persona" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LlevaEmail" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Contador" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CambiaClave" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="RazonBloqueo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IdTipoPersona" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="PermisoImpresionMarbete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

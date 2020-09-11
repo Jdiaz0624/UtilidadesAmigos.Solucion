@@ -45,5 +45,72 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
             return Listado;
         }
         #endregion
+        #region PROCESAR INFORMACION IMPRESION MARBETES
+        public UtilidadesAmigos.Logica.Entidades.Procesos.EProcesarInformacionMarbetes ProcesarImpresionMarbete(UtilidadesAmigos.Logica.Entidades.Procesos.EProcesarInformacionMarbetes Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.EProcesarInformacionMarbetes Mantenimiento = null;
+
+            var ImpresionMarbete = ObjData.SP_PROCESAR_INFORMACION_MARBETES(
+                Item.IdUsuario,
+                Item.Poliza,
+                Item.Cotizacion,
+                Item.CodigoCliente,
+                Item.Secuencia,
+                Item.NombreCliente,
+                Item.InicioVigencia,
+                Item.FinVigencia,
+                Item.Asegurado,
+                Item.TipoVehiculo,
+                Item.Marca,
+                Item.Modelo,
+                Item.Chasis,
+                Item.Placa,
+                Item.Color,
+                Item.Uso,
+                Item.Ano,
+                Item.Capacidad,
+                Item.ValorVehiculo,
+                Item.FianzaJudicial,
+                Item.Vendedor,
+                Item.Grua,
+                Item.AeroAmbulancia,
+                Item.OtrosServicios,
+                Item.CantidadRegistros,
+                Accion);
+            if (ImpresionMarbete != null) {
+                Mantenimiento = (from n in ImpresionMarbete
+                                 select new UtilidadesAmigos.Logica.Entidades.Procesos.EProcesarInformacionMarbetes
+                                 {
+                                     IdUsuario = n.IdUsuario,
+                                     Poliza = n.Poliza,
+                                     Cotizacion = n.Cotizacion,
+                                     CodigoCliente = n.CodigoCliente,
+                                     Secuencia = n.Secuencia,
+                                     NombreCliente = n.NombreCliente,
+                                     InicioVigencia = n.InicioVigencia,
+                                     FinVigencia = n.FinVigencia,
+                                     Asegurado = n.Asegurado,
+                                     TipoVehiculo = n.TipoVehiculo,
+                                     Marca = n.Marca,
+                                     Modelo = n.Modelo,
+                                     Chasis = n.Chasis,
+                                     Placa = n.Placa,
+                                     Color = n.Color,
+                                     Uso = n.Uso,
+                                     Ano = n.Ano,
+                                     Capacidad = n.Capacidad,
+                                     ValorVehiculo = n.ValorVehiculo,
+                                     FianzaJudicial = n.FianzaJudicial,
+                                     Vendedor = n.Vendedor,
+                                     Grua = n.Grua,
+                                     AeroAmbulancia = n.AeroAmbulancia,
+                                     OtrosServicios = n.OtrosServicios,
+                                     CantidadRegistros = n.CantidadRegistros
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
+        #endregion
     }
 }

@@ -61,7 +61,10 @@ namespace UtilidadesAmigos.Logica.Logica
                               CambiaClave0=n.CambiaClave0,
                               RazonBloqueo=n.RazonBloqueo,
                               IdTipoPersona=n.IdTipoPersona,
-                              TipoPersona=n.TipoPersona
+                              TipoPersona=n.TipoPersona,
+                              PermisoImpresionMarbete0=n.PermisoImpresionMarbete0,
+                              PermisoImpresionMarbete=n.PermisoImpresionMarbete
+                              
 
                           }).ToList();
             return Buscar;
@@ -95,6 +98,7 @@ namespace UtilidadesAmigos.Logica.Logica
                 Item.CambiaClave,
                 Item.RazonBloqueo,
                 Item.IdTipoPersona,
+                Item.PermisoImpresionMarbete,
                 Accion);
             if (Usuario != null)
             {
@@ -114,7 +118,10 @@ namespace UtilidadesAmigos.Logica.Logica
                                      Email=n.Email,
                                      Contador=n.Contador,
                                      CambiaClave=n.CambiaClave,
-                                     RazonBloqueo=n.RazonBloqueo
+                                     RazonBloqueo=n.RazonBloqueo,
+                                     IdTipoPersona = n.IdTipoPersona,
+                                     PermisoImpresionMarbete =n.PermisoImpresionMarbete
+                                    
                                  }).FirstOrDefault();
 
             }

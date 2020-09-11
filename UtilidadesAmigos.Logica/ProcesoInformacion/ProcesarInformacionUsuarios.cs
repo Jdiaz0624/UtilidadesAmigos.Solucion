@@ -26,6 +26,7 @@ namespace UtilidadesAmigos.Logica.ProcesoInformacion
         private bool CambiaClave = false;
         private string RazonBloqueo = "";
         private decimal IdTipoPersona = 0;
+        private bool PermisoImpresionMarbete = false;
         private string Accion = "";
 
         public ProcesarInformacionUsuarios(
@@ -44,6 +45,7 @@ namespace UtilidadesAmigos.Logica.ProcesoInformacion
             bool CambiaClaveCON,
             string RazonBloqueoCON,
             decimal IdTipoPersonaCON,
+            bool PermisoImpresionMarbeteCON,
             string AccionCON)
         {
             IdUsuario = IdUsuarioCON;
@@ -61,6 +63,7 @@ namespace UtilidadesAmigos.Logica.ProcesoInformacion
             CambiaClave = CambiaClaveCON;
             RazonBloqueo = RazonBloqueoCON;
             IdTipoPersona = IdTipoPersonaCON;
+            PermisoImpresionMarbete = PermisoImpresionMarbeteCON;
             Accion = AccionCON;
         }
 
@@ -82,6 +85,7 @@ namespace UtilidadesAmigos.Logica.ProcesoInformacion
             Procesar.CambiaClave = CambiaClave;
             Procesar.RazonBloqueo = RazonBloqueo;
             Procesar.IdTipoPersona = IdTipoPersona;
+            Procesar.PermisoImpresionMarbete = PermisoImpresionMarbete;
 
             MantenimientoUsuarios(Procesar, Accion);
 
