@@ -231,6 +231,7 @@
     <Compile Include="Entidades\OpcionesAdministrador\EMantenimientoBackupDatabase.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\ERutaArchivoBakup.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\GenerarBakupBD.cs" />
+    <Compile Include="Entidades\Procesos\EBuscaHistoricoImpresionMarbetes.cs" />
     <Compile Include="Entidades\Procesos\EGenerarDatosMarbeteVehiculo.cs" />
     <Compile Include="Entidades\Procesos\EProcesarHistoricoImprsionMarbete.cs" />
     <Compile Include="Entidades\Procesos\EProcesarInformacionMarbetes.cs" />

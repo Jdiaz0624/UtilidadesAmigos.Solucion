@@ -254,6 +254,91 @@ namespace UtilidadesAmigos.Solucion.Paginas
             catch (Exception) { }
 
         }
+
+        private void ImprimirMarbeteHoja(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string Nombrearchivo) {
+            try
+            {
+                ReportDocument Factura = new ReportDocument();
+
+                SqlCommand comando = new SqlCommand();
+                comando.CommandText = "EXEC [Utililades].[SP_GENERAR_REPORTE_MARBETE] @IdUsuario";
+                comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+
+                comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
+                comando.Parameters["@IdUsuario"].Value = IdUsuario;
+
+                Factura.Load(RutaReporte);
+                Factura.Refresh();
+                Factura.SetParameterValue("@IdUsuario", IdUsuario);
+                Factura.SetDatabaseLogon(UsuarioBD, ClaveBD);
+                Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, Nombrearchivo);
+
+                //Factura.PrintToPrinter(1, true, 0, 2);
+                //  crystalReportViewer1.ReportSource = Factura;
+            }
+            catch (Exception) { }
+        }
+        #endregion
+        #region GUARDAR LOS DATOS DEL HISTORIAL
+        private void GuardarHistorial(int TipoImpresion) {
+            string NombreUsuario = "";
+            string Accion = "";
+            
+
+            //SACAR EL NOMBRE DEL USUARIO
+            var SacarNombreusuario = ObjDataGeneral.Value.BuscaUsuarios(Convert.ToDecimal(lbIdusuario.Text));
+            foreach (var n in SacarNombreusuario) {
+                NombreUsuario = n.Persona;
+            }
+
+
+            //VALIDAMOS SI EL REGISTRO EXISTE PARA DETERMINAR SI SE INSERTA O SE ACTUALIZA
+            var Validar = ObjdataProcesos.Value.BuscaHistoricoImpresionMarbetes(
+                new Nullable<decimal>(),
+                txtPolizaMantenimiento.Text,
+                Convert.ToInt32(txtItemMantenimiento.Text),
+                txtInicioVigenciaMantenimiento.Text,
+                txtFinVigenciaMantenimiento.Text,
+                Convert.ToDecimal(txtCotizacionMantenimeinto.Text),null,null,null,null,null,null,null,null,null,
+                TipoImpresion);
+            if (Validar.Count() < 1) {
+                Accion = "INSERT";
+            }
+            else {
+                Accion = "UPDATE";
+            }
+
+            UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarHistoricoImpresionMarbetes ProcesarHistorico = new Logica.Comunes.Reportes.ProcesarHistoricoImpresionMarbetes(
+                0,
+                txtPolizaMantenimiento.Text,
+                Convert.ToDecimal(txtCotizacionMantenimeinto.Text),
+                Convert.ToDecimal(txtCodigoClienteMantenimiento.Text),
+                Convert.ToInt32(txtItemMantenimiento.Text),
+                txtNombreClienteMantenimiento.Text,
+                txtInicioVigenciaMantenimiento.Text,
+                txtFinVigenciaMantenimiento.Text,
+                txtNombreAseguradoMantenimiento.Text,
+                txtTipoVehiculoMantenimiento.Text,
+                txtMarcaMantenimeinto.Text,
+                txtModeloMantenimeinto.Text,
+                txtChasisConsulta.Text,
+                txtPlacaConsulta.Text,
+                txtColorMantenimiento.Text,
+                txtUsoMantenimiento.Text,
+                txtAnoMantenimiento.Text,
+                txtCapacidadMantenimeinto.Text,
+                Convert.ToDecimal(txtValorVehiculo.Text),
+                txtFianzaJudicialMantenimiento.Text,
+                txtVendedorMantenimiento.Text,
+                txtGruaMantenimiento.Text,
+                txtAeroAmbulancia.Text,
+                txtOtrosServiciosMantenimiento.Text,
+                NombreUsuario,
+                TipoImpresion,
+                0,
+                Accion);
+            ProcesarHistorico.ProcesarInformacion();
+        }
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
@@ -262,6 +347,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 cbOtrosFiltros.Checked = false;
                 rbMarbetePVC.Checked = true;
                 lbIdusuario.Text = Session["IdUsuario"].ToString();
+                rbImprimirPVC.Checked = true;
             }
         }
       
@@ -380,8 +466,23 @@ namespace UtilidadesAmigos.Solucion.Paginas
                        txtOtrosServiciosMantenimiento.Text,
                        1, "INSERT");
                 Guardar.ProcesarInformacion();
-                //ImprimirReporteResumido(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionSupervisorResumido.rpt"), "sa", "Pa$$W0rd", Nombrearchivo);
-                ImprimirMarbete(Convert.ToDecimal(lbIdusuario.Text), Server.MapPath("Marbete.rpt"), "sa", "Pa$$W0rd");
+
+                // 
+
+              
+
+                if (rbImprimirPVC.Checked == true && rbImprimirHoja.Checked==false) {
+                    //GUARDMOS LOS DATOS DEL HISTORIAL
+                    GuardarHistorial(1);
+                   ImprimirMarbete(Convert.ToDecimal(lbIdusuario.Text), Server.MapPath("Marbete.rpt"), "sa", "Pa$$W0rd");
+                }
+                else if (rbImprimirHoja.Checked == true && rbImprimirPVC.Checked==false) {
+                    GuardarHistorial(2);
+                    string NombreArchivo = "";
+                    NombreArchivo = "Marbete " + txtPolizaMantenimiento.Text + " Item " + txtItemMantenimiento.Text;
+                    ImprimirMarbeteHoja(Convert.ToDecimal(lbIdusuario.Text), Server.MapPath("Marbete.rpt"), "sa", "Pa$$W0rd", NombreArchivo);
+                   // ImprimirMarbete(Convert.ToDecimal(lbIdusuario.Text), Server.MapPath("Marbete.rpt"), "sa", "Pa$$W0rd");
+                }
             }
         }
 

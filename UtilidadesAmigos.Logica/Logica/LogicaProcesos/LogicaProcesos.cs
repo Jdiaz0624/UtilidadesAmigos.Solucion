@@ -184,5 +184,50 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
             return Procesar;
         }
         #endregion
+        #region BUSCA HISTORICO IMPRESION MARBETES
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaHistoricoImpresionMarbetes> BuscaHistoricoImpresionMarbetes(decimal? IdRegistro = null, string Poliza = null, int? Item = null, string InicioVigencia = null, string FinVigencia = null, decimal? Cotizacion = null, string NombreCliente = null, string Asegurado = null, string TipoVehiculo = null, string MarcaVehiculo = null, string ModeloVehiculo = null, string Chasis = null, string Placa = null, string Ano = null, string Vendedor = null, int? TipoImpresion = null, string NombreUsuario = null, DateTime? FechaImpresionDesde = null, DateTime? FechaImpresionHasta = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Historico = (from n in ObjData.SP_BUSCA_HISTORICO_IMPRESION_MARBETES(IdRegistro, Poliza, Item, InicioVigencia, FinVigencia, Cotizacion, NombreCliente, Asegurado, TipoVehiculo, MarcaVehiculo, ModeloVehiculo, Chasis, Placa, Ano, Vendedor, TipoImpresion, NombreCliente, FechaImpresionDesde, FechaImpresionHasta)
+                             select new UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaHistoricoImpresionMarbetes
+                             {
+                                 IdRegistro=n.IdRegistro,
+                                 Poliza=n.Poliza,
+                                 Cotizacion=n.Cotizacion,
+                                 CodigoCliente=n.CodigoCliente,
+                                 Secuencia=n.Secuencia,
+                                 NombreCliente=n.NombreCliente,
+                                 InicioVigencia=n.InicioVigencia,
+                                 FinVigencia=n.FinVigencia,
+                                 Asegurado=n.Asegurado,
+                                 TipoVehiculo=n.TipoVehiculo,
+                                 MarcaVehiculo=n.MarcaVehiculo,
+                                 ModeloVehiculo=n.ModeloVehiculo,
+                                 Chasis=n.Chasis,
+                                 Placa=n.Placa,
+                                 Color=n.Color,
+                                 uso=n.uso,
+                                 Ano=n.Ano,
+                                 Capacidad=n.Capacidad,
+                                 ValorVehiculo=n.ValorVehiculo,
+                                 FianzaJudicial=n.FianzaJudicial,
+                                 Vendedor=n.Vendedor,
+                                 Grua=n.Grua,
+                                 AeroAmbulancia=n.AeroAmbulancia,
+                                 OtrosServicios=n.OtrosServicios,
+                                 FechaCreado0=n.FechaCreado0,
+                                 FechaCreado=n.FechaCreado,
+                                 UsuarioImprime=n.UsuarioImprime,
+                                 TipoImpresion0=n.TipoImpresion0,
+                                 TipoImpresion=n.TipoImpresion,
+                                 CantidadImpreso=n.CantidadImpreso,
+                                 CandidadImpresionesPVC=n.CandidadImpresionesPVC,
+                                 CandidadImpresionesHoja=n.CandidadImpresionesHoja,
+                                 CandidadImpresiones=n.CandidadImpresiones,
+                                 CandidadRegistros=n.CandidadRegistros
+                             }).ToList();
+            return Historico;
+        } 
+        #endregion
     }
 }

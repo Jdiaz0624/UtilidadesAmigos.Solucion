@@ -136,6 +136,32 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, poliza, cotizacion, codigoCliente, secuencia, nombreCliente, inicioVigencia, finVigencia, asegurado, tipoVehiculo, marcaVehiculo, modeloVehiculo, chasis, placa, color, uso, ano, capacidad, valorVehiculo, fianzaJudicial, vendedor, grua, aeroAmbulancia, otrosServicios, usuarioImprime, tipoImpresion, cantidadImpreso, accion);
 			return ((ISingleResult<SP_PROCESAR_HISTORICO_IMPRESION_MARBETEResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_HISTORICO_IMPRESION_MARBETES")]
+		public ISingleResult<SP_BUSCA_HISTORICO_IMPRESION_MARBETESResult> SP_BUSCA_HISTORICO_IMPRESION_MARBETES(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Decimal(25,0)")] System.Nullable<decimal> idRegistro, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ITEM", DbType="Int")] System.Nullable<int> iTEM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="InicioVigencia", DbType="VarChar(100)")] string inicioVigencia, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FinVigencia", DbType="VarChar(100)")] string finVigencia, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cotizacion", DbType="Decimal(20,0)")] System.Nullable<decimal> cotizacion, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreCliente", DbType="VarChar(1000)")] string nombreCliente, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Asegurado", DbType="VarChar(1000)")] string asegurado, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoVehiculo", DbType="VarChar(100)")] string tipoVehiculo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MarcaVehiculo", DbType="VarChar(100)")] string marcaVehiculo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ModeloVehiculo", DbType="VarChar(100)")] string modeloVehiculo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Chasis", DbType="VarChar(100)")] string chasis, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Placa", DbType="VarChar(100)")] string placa, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ano", DbType="VarChar(10)")] string ano, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vendedor", DbType="VarChar(100)")] string vendedor, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoImpresion", DbType="Int")] System.Nullable<int> tipoImpresion, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreUsuario", DbType="VarChar(100)")] string nombreUsuario, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaImpresionDesde", DbType="Date")] System.Nullable<System.DateTime> fechaImpresionDesde, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaImpresionHasta", DbType="Date")] System.Nullable<System.DateTime> fechaImpresionHasta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, poliza, iTEM, inicioVigencia, finVigencia, cotizacion, nombreCliente, asegurado, tipoVehiculo, marcaVehiculo, modeloVehiculo, chasis, placa, ano, vendedor, tipoImpresion, nombreUsuario, fechaImpresionDesde, fechaImpresionHasta);
+			return ((ISingleResult<SP_BUSCA_HISTORICO_IMPRESION_MARBETESResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_GENERAR_DATOS_PARA_MARBETE_VEHICULOResult
@@ -1543,6 +1569,626 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadImpreso != value))
 				{
 					this._CantidadImpreso = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_HISTORICO_IMPRESION_MARBETESResult
+	{
+		
+		private decimal _IdRegistro;
+		
+		private string _Poliza;
+		
+		private System.Nullable<decimal> _Cotizacion;
+		
+		private System.Nullable<decimal> _CodigoCliente;
+		
+		private System.Nullable<int> _Secuencia;
+		
+		private string _NombreCliente;
+		
+		private string _InicioVigencia;
+		
+		private string _FinVigencia;
+		
+		private string _Asegurado;
+		
+		private string _TipoVehiculo;
+		
+		private string _MarcaVehiculo;
+		
+		private string _ModeloVehiculo;
+		
+		private string _Chasis;
+		
+		private string _Placa;
+		
+		private string _Color;
+		
+		private string _uso;
+		
+		private string _Ano;
+		
+		private string _Capacidad;
+		
+		private System.Nullable<decimal> _ValorVehiculo;
+		
+		private string _FianzaJudicial;
+		
+		private string _Vendedor;
+		
+		private string _Grua;
+		
+		private string _AeroAmbulancia;
+		
+		private string _OtrosServicios;
+		
+		private System.Nullable<System.DateTime> _FechaCreado0;
+		
+		private string _FechaCreado;
+		
+		private string _UsuarioImprime;
+		
+		private System.Nullable<int> _TipoImpresion0;
+		
+		private string _TipoImpresion;
+		
+		private System.Nullable<int> _CantidadImpreso;
+		
+		private System.Nullable<int> _CandidadImpresionesPVC;
+		
+		private System.Nullable<int> _CandidadImpresionesHoja;
+		
+		private System.Nullable<int> _CandidadImpresiones;
+		
+		private System.Nullable<int> _CandidadRegistros;
+		
+		public SP_BUSCA_HISTORICO_IMPRESION_MARBETESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Decimal(25,0) NOT NULL")]
+		public decimal IdRegistro
+		{
+			get
+			{
+				return this._IdRegistro;
+			}
+			set
+			{
+				if ((this._IdRegistro != value))
+				{
+					this._IdRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cotizacion", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> Cotizacion
+		{
+			get
+			{
+				return this._Cotizacion;
+			}
+			set
+			{
+				if ((this._Cotizacion != value))
+				{
+					this._Cotizacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoCliente", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> CodigoCliente
+		{
+			get
+			{
+				return this._CodigoCliente;
+			}
+			set
+			{
+				if ((this._CodigoCliente != value))
+				{
+					this._CodigoCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int")]
+		public System.Nullable<int> Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreCliente", DbType="VarChar(200)")]
+		public string NombreCliente
+		{
+			get
+			{
+				return this._NombreCliente;
+			}
+			set
+			{
+				if ((this._NombreCliente != value))
+				{
+					this._NombreCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InicioVigencia", DbType="VarChar(20)")]
+		public string InicioVigencia
+		{
+			get
+			{
+				return this._InicioVigencia;
+			}
+			set
+			{
+				if ((this._InicioVigencia != value))
+				{
+					this._InicioVigencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinVigencia", DbType="VarChar(20)")]
+		public string FinVigencia
+		{
+			get
+			{
+				return this._FinVigencia;
+			}
+			set
+			{
+				if ((this._FinVigencia != value))
+				{
+					this._FinVigencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Asegurado", DbType="VarChar(200)")]
+		public string Asegurado
+		{
+			get
+			{
+				return this._Asegurado;
+			}
+			set
+			{
+				if ((this._Asegurado != value))
+				{
+					this._Asegurado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoVehiculo", DbType="VarChar(100)")]
+		public string TipoVehiculo
+		{
+			get
+			{
+				return this._TipoVehiculo;
+			}
+			set
+			{
+				if ((this._TipoVehiculo != value))
+				{
+					this._TipoVehiculo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MarcaVehiculo", DbType="VarChar(100)")]
+		public string MarcaVehiculo
+		{
+			get
+			{
+				return this._MarcaVehiculo;
+			}
+			set
+			{
+				if ((this._MarcaVehiculo != value))
+				{
+					this._MarcaVehiculo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModeloVehiculo", DbType="VarChar(100)")]
+		public string ModeloVehiculo
+		{
+			get
+			{
+				return this._ModeloVehiculo;
+			}
+			set
+			{
+				if ((this._ModeloVehiculo != value))
+				{
+					this._ModeloVehiculo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Chasis", DbType="VarChar(100)")]
+		public string Chasis
+		{
+			get
+			{
+				return this._Chasis;
+			}
+			set
+			{
+				if ((this._Chasis != value))
+				{
+					this._Chasis = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Placa", DbType="VarChar(100)")]
+		public string Placa
+		{
+			get
+			{
+				return this._Placa;
+			}
+			set
+			{
+				if ((this._Placa != value))
+				{
+					this._Placa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Color", DbType="VarChar(100)")]
+		public string Color
+		{
+			get
+			{
+				return this._Color;
+			}
+			set
+			{
+				if ((this._Color != value))
+				{
+					this._Color = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uso", DbType="VarChar(100)")]
+		public string uso
+		{
+			get
+			{
+				return this._uso;
+			}
+			set
+			{
+				if ((this._uso != value))
+				{
+					this._uso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ano", DbType="VarChar(4)")]
+		public string Ano
+		{
+			get
+			{
+				return this._Ano;
+			}
+			set
+			{
+				if ((this._Ano != value))
+				{
+					this._Ano = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Capacidad", DbType="VarChar(100)")]
+		public string Capacidad
+		{
+			get
+			{
+				return this._Capacidad;
+			}
+			set
+			{
+				if ((this._Capacidad != value))
+				{
+					this._Capacidad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorVehiculo", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ValorVehiculo
+		{
+			get
+			{
+				return this._ValorVehiculo;
+			}
+			set
+			{
+				if ((this._ValorVehiculo != value))
+				{
+					this._ValorVehiculo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FianzaJudicial", DbType="VarChar(100)")]
+		public string FianzaJudicial
+		{
+			get
+			{
+				return this._FianzaJudicial;
+			}
+			set
+			{
+				if ((this._FianzaJudicial != value))
+				{
+					this._FianzaJudicial = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vendedor", DbType="VarChar(200)")]
+		public string Vendedor
+		{
+			get
+			{
+				return this._Vendedor;
+			}
+			set
+			{
+				if ((this._Vendedor != value))
+				{
+					this._Vendedor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Grua", DbType="VarChar(200)")]
+		public string Grua
+		{
+			get
+			{
+				return this._Grua;
+			}
+			set
+			{
+				if ((this._Grua != value))
+				{
+					this._Grua = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AeroAmbulancia", DbType="VarChar(200)")]
+		public string AeroAmbulancia
+		{
+			get
+			{
+				return this._AeroAmbulancia;
+			}
+			set
+			{
+				if ((this._AeroAmbulancia != value))
+				{
+					this._AeroAmbulancia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtrosServicios", DbType="VarChar(1000)")]
+		public string OtrosServicios
+		{
+			get
+			{
+				return this._OtrosServicios;
+			}
+			set
+			{
+				if ((this._OtrosServicios != value))
+				{
+					this._OtrosServicios = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCreado0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaCreado0
+		{
+			get
+			{
+				return this._FechaCreado0;
+			}
+			set
+			{
+				if ((this._FechaCreado0 != value))
+				{
+					this._FechaCreado0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCreado", DbType="NVarChar(4000)")]
+		public string FechaCreado
+		{
+			get
+			{
+				return this._FechaCreado;
+			}
+			set
+			{
+				if ((this._FechaCreado != value))
+				{
+					this._FechaCreado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioImprime", DbType="VarChar(100)")]
+		public string UsuarioImprime
+		{
+			get
+			{
+				return this._UsuarioImprime;
+			}
+			set
+			{
+				if ((this._UsuarioImprime != value))
+				{
+					this._UsuarioImprime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoImpresion0", DbType="Int")]
+		public System.Nullable<int> TipoImpresion0
+		{
+			get
+			{
+				return this._TipoImpresion0;
+			}
+			set
+			{
+				if ((this._TipoImpresion0 != value))
+				{
+					this._TipoImpresion0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoImpresion", DbType="VarChar(4) NOT NULL", CanBeNull=false)]
+		public string TipoImpresion
+		{
+			get
+			{
+				return this._TipoImpresion;
+			}
+			set
+			{
+				if ((this._TipoImpresion != value))
+				{
+					this._TipoImpresion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadImpreso", DbType="Int")]
+		public System.Nullable<int> CantidadImpreso
+		{
+			get
+			{
+				return this._CantidadImpreso;
+			}
+			set
+			{
+				if ((this._CantidadImpreso != value))
+				{
+					this._CantidadImpreso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CandidadImpresionesPVC", DbType="Int")]
+		public System.Nullable<int> CandidadImpresionesPVC
+		{
+			get
+			{
+				return this._CandidadImpresionesPVC;
+			}
+			set
+			{
+				if ((this._CandidadImpresionesPVC != value))
+				{
+					this._CandidadImpresionesPVC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CandidadImpresionesHoja", DbType="Int")]
+		public System.Nullable<int> CandidadImpresionesHoja
+		{
+			get
+			{
+				return this._CandidadImpresionesHoja;
+			}
+			set
+			{
+				if ((this._CandidadImpresionesHoja != value))
+				{
+					this._CandidadImpresionesHoja = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CandidadImpresiones", DbType="Int")]
+		public System.Nullable<int> CandidadImpresiones
+		{
+			get
+			{
+				return this._CandidadImpresiones;
+			}
+			set
+			{
+				if ((this._CandidadImpresiones != value))
+				{
+					this._CandidadImpresiones = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CandidadRegistros", DbType="Int")]
+		public System.Nullable<int> CandidadRegistros
+		{
+			get
+			{
+				return this._CandidadRegistros;
+			}
+			set
+			{
+				if ((this._CandidadRegistros != value))
+				{
+					this._CandidadRegistros = value;
 				}
 			}
 		}

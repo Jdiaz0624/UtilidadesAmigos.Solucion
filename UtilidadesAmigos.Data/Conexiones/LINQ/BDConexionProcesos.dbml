@@ -147,4 +147,61 @@
       <Column Name="CantidadImpreso" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_HISTORICO_IMPRESION_MARBETES" Method="SP_BUSCA_HISTORICO_IMPRESION_MARBETES">
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Decimal" DbType="Decimal(25,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ITEM" Parameter="iTEM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="InicioVigencia" Parameter="inicioVigencia" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="FinVigencia" Parameter="finVigencia" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Cotizacion" Parameter="cotizacion" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="NombreCliente" Parameter="nombreCliente" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="Asegurado" Parameter="asegurado" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="TipoVehiculo" Parameter="tipoVehiculo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="MarcaVehiculo" Parameter="marcaVehiculo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ModeloVehiculo" Parameter="modeloVehiculo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Chasis" Parameter="chasis" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Placa" Parameter="placa" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Ano" Parameter="ano" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Vendedor" Parameter="vendedor" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TipoImpresion" Parameter="tipoImpresion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreUsuario" Parameter="nombreUsuario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="FechaImpresionDesde" Parameter="fechaImpresionDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaImpresionHasta" Parameter="fechaImpresionHasta" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="SP_BUSCA_HISTORICO_IMPRESION_MARBETESResult">
+      <Column Name="IdRegistro" Type="System.Decimal" DbType="Decimal(25,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Secuencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreCliente" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Asegurado" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TipoVehiculo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MarcaVehiculo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ModeloVehiculo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Chasis" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Placa" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="uso" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Ano" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="Capacidad" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ValorVehiculo" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="FianzaJudicial" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Vendedor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Grua" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="AeroAmbulancia" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="OtrosServicios" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="FechaCreado0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaCreado" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="UsuarioImprime" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoImpresion0" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoImpresion" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="CantidadImpreso" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CandidadImpresionesPVC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CandidadImpresionesHoja" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CandidadImpresiones" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CandidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

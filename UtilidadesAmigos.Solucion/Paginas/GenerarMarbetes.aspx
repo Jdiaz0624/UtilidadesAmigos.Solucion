@@ -252,10 +252,11 @@
             
 
         </div>
-        <div class="form-check-inline">
+       <div align="center">
+            <div class="form-check-inline">
             <div class="form-group form-check">
-                <asp:RadioButton ID="rbImprimirPVC" runat="server" AutoPostBack="false" OnCheckedChanged="rbImprimirPVC_CheckedChanged" Text="Imprimir en PVC" CssClass="form-check-input" ToolTip="Imprimir el marbete en PVC" />
-                 <asp:RadioButton ID="rbImprimirHoja" runat="server" Text="Imprimir en Hoja" CssClass="form-check-input" ToolTip="Imprimir el marbete en Hoja" />
+                <asp:RadioButton ID="rbImprimirPVC" runat="server" AutoPostBack="false" GroupName="IMPRESION" OnCheckedChanged="rbImprimirPVC_CheckedChanged" Text="Imprimir en PVC" CssClass="form-check-input" ToolTip="Imprimir el marbete en PVC" />
+                 <asp:RadioButton ID="rbImprimirHoja" runat="server" Text="Imprimir en Hoja" GroupName="IMPRESION" CssClass="form-check-input" ToolTip="Imprimir el marbete en Hoja" />
             </div>
         </div>
           <div align="center">
