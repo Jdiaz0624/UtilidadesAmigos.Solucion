@@ -89,6 +89,7 @@
         </div>
         <div align="center">
              <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
+            <button type="button" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" id="btnHistoricoImpresion" data-target=".HistoricoImpresion">Historico</button>
         </div>
         <br />
         <div align="center">
@@ -266,4 +267,98 @@
         <br />
 
     </div>
+
+
+        <div class="modal fade bd-example-modal-xl HistoricoImpresion" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl " role="document">
+    <div class="modal-content">
+      <div class="container-fluid">
+          <div class="jumbotron" align="center">
+              <asp:Label ID="lbHistoricoImpresion" runat="server" CssClass="LetraNegrita" Text="Historico de Impresión"></asp:Label>
+          </div>
+         <asp:ScriptManager ID="ScripManagerHistorico" runat="server"></asp:ScriptManager>
+          <asp:UpdatePanel ID="UpdatePanelHistorico" runat="server">
+              <ContentTemplate>
+                   <div class="form-row">
+              <div class="form-group col-md-3">
+                  <asp:Label ID="lbFechaDesdeHistorico" runat="server" Text="Fecha Desde" CssClass="Letranegrita"></asp:Label>
+                  <asp:TextBox ID="txtFechaDesdeHistorico" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+              </div>
+
+              <div class="form-group col-md-3">
+                  <asp:Label ID="lbFechaHastaHistorico" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
+                  <asp:TextBox ID="txtFechaHastaHistorico" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+              </div>
+
+              <div class="form-group col-md-3">
+                  <asp:Label ID="lbPolizaHistorico" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
+                  <asp:TextBox ID="txtPolizaHistorico" runat="server" MaxLength="20" CssClass="form-control"></asp:TextBox>
+              </div>
+
+              <div class="form-group col-md-3">
+                  <asp:Label ID="lbItemHistorico" runat="server" Text="Item" CssClass="Letranegrita"></asp:Label>
+                  <asp:TextBox ID="txtItemHistorico" runat="server" MaxLength="20" CssClass="form-control"></asp:TextBox>
+              </div>
+          </div>
+
+                 <div align="center">
+                      <div class="form-check-inline">
+                      <div class="form-group form-check">
+                          <asp:RadioButton ID="rbProcesarDataResumidaHistorico" runat="server" Text="Exportar Resumido" CssClass="form-check-input Letranegrita" GroupName="Exportar" />
+                          <asp:RadioButton ID="rbProcesarDataDetalleHistorico" runat="server" Text="Exportar Detalle" CssClass="form-check-input Letranegrita" GroupName="Exportar" />
+                      </div>
+                  </div>
+                     <br />
+                     <asp:Button ID="btnConsultarHistorico" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnConsultarHistorico_Click" />
+                     <asp:Button ID="btnExportarExelHistorixo" runat="server" Text="Exportar" ToolTip="Exportar la data a exel" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportarExelHistorixo_Click" /><br />
+
+                     <asp:Label ID="lbCantidadImpresoPVCTitulo" runat="server" Text="Cantidad en PVC (" CssClass="Letranegrita"></asp:Label>
+                     <asp:Label ID="lbCantidadImpresoPVCVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+                     <asp:Label ID="lbCantidadImpresoPVCCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+                      <asp:Label ID="lbEspacio" runat="server" Text=" - " CssClass="Letranegrita"></asp:Label>
+
+                     <asp:Label ID="lbCantidadImpresoHojaTitulo" runat="server" Text="Cantidad en Hoja (" CssClass="Letranegrita"></asp:Label>
+                     <asp:Label ID="lbCantidadImpresoHojaVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+                     <asp:Label ID="lbCantidadImpresoHojaCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+                      <asp:Label ID="Label4" runat="server" Text=" - " CssClass="Letranegrita"></asp:Label>
+
+                      <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros (" CssClass="Letranegrita"></asp:Label>
+                     <asp:Label ID="lbCantidadRegistrosVariableHistorico" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+                     <asp:Label ID="lbCantidadRegistrosCerrarHistorico" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+                     
+
+                 </div>
+                  <br />
+                     <div>
+            <asp:GridView ID="gvHistoricoImpresion" runat="server" AllowPaging="true" OnPageIndexChanging="gvHistoricoImpresion_PageIndexChanging" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    
+                    <asp:BoundField DataField="UsuarioImprime" HeaderText="Usuario" />
+                    <asp:BoundField DataField="FechaCreado" HeaderText="Fecha" />
+                    <asp:BoundField DataField="CantidadImpreso" HeaderText="Cantidad" />
+                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
+                    <asp:BoundField DataField="Secuencia" HeaderText="Item" />
+                    <asp:BoundField DataField="TipoImpresion" HeaderText="Tipo de Impresión" />
+                </Columns  >
+                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
+              </ContentTemplate>
+          </asp:UpdatePanel>
+       
+          <br />
+      </div>
+    </div>
+  </div>
+</div>
 </asp:Content>

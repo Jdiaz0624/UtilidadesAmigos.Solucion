@@ -141,7 +141,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		public ISingleResult<SP_BUSCA_HISTORICO_IMPRESION_MARBETESResult> SP_BUSCA_HISTORICO_IMPRESION_MARBETES(
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Decimal(25,0)")] System.Nullable<decimal> idRegistro, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ITEM", DbType="Int")] System.Nullable<int> iTEM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ITEM", DbType="VarChar(10)")] string iTEM, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="InicioVigencia", DbType="VarChar(100)")] string inicioVigencia, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FinVigencia", DbType="VarChar(100)")] string finVigencia, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cotizacion", DbType="Decimal(20,0)")] System.Nullable<decimal> cotizacion, 

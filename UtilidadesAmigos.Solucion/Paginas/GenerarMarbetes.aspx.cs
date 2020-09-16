@@ -296,7 +296,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             var Validar = ObjdataProcesos.Value.BuscaHistoricoImpresionMarbetes(
                 new Nullable<decimal>(),
                 txtPolizaMantenimiento.Text,
-                Convert.ToInt32(txtItemMantenimiento.Text),
+                txtItemMantenimiento.Text,
                 txtInicioVigenciaMantenimiento.Text,
                 txtFinVigenciaMantenimiento.Text,
                 Convert.ToDecimal(txtCotizacionMantenimeinto.Text),null,null,null,null,null,null,null,null,null,
@@ -493,6 +493,21 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
 
         protected void rbImprimirPVC_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnConsultarHistorico_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        protected void btnExportarExelHistorixo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvHistoricoImpresion_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
         }

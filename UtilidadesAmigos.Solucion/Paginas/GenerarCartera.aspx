@@ -48,7 +48,7 @@
 
         function BloquearBotones() {
             $("#<%=btnExportar.ClientID%>").attr("Disabled", "Disabled");
-            $("#<%=btnExportarListadoCompleto.ClientID%>").attr("Disabled", "Disabled");
+            $("#<%=btnExportarListadoCompletoClientID%>").attr("Disabled", "Disabled");
             $("#<%=btnRestablecerPantalla.ClientID%>").attr("Disabled", "Disabled");
             $("#btnProduccionSupervisor").attr("Disabled", "Disabled");
         }

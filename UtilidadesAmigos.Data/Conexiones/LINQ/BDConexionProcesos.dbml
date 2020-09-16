@@ -150,7 +150,7 @@
   <Function Name="Utililades.SP_BUSCA_HISTORICO_IMPRESION_MARBETES" Method="SP_BUSCA_HISTORICO_IMPRESION_MARBETES">
     <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Decimal" DbType="Decimal(25,0)" />
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="ITEM" Parameter="iTEM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ITEM" Parameter="iTEM" Type="System.String" DbType="VarChar(10)" />
     <Parameter Name="InicioVigencia" Parameter="inicioVigencia" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="FinVigencia" Parameter="finVigencia" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="Cotizacion" Parameter="cotizacion" Type="System.Decimal" DbType="Decimal(20,0)" />
