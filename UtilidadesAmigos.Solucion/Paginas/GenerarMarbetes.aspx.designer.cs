@@ -769,24 +769,6 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtItemHistorico;
         
         /// <summary>
-        /// rbProcesarDataResumidaHistorico control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbProcesarDataResumidaHistorico;
-        
-        /// <summary>
-        /// rbProcesarDataDetalleHistorico control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbProcesarDataDetalleHistorico;
-        
-        /// <summary>
         /// btnConsultarHistorico control.
         /// </summary>
         /// <remarks>
@@ -794,15 +776,6 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConsultarHistorico;
-        
-        /// <summary>
-        /// btnExportarExelHistorixo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportarExelHistorixo;
         
         /// <summary>
         /// lbCantidadImpresoPVCTitulo control.
@@ -911,5 +884,32 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvHistoricoImpresion;
+        
+        /// <summary>
+        /// rbProcesarDataResumidaHistorico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbProcesarDataResumidaHistorico;
+        
+        /// <summary>
+        /// rbProcesarDataDetalleHistorico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbProcesarDataDetalleHistorico;
+        
+        /// <summary>
+        /// btnExportarExelHistorixo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExportarExelHistorixo;
     }
 }

@@ -162,6 +162,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, poliza, iTEM, inicioVigencia, finVigencia, cotizacion, nombreCliente, asegurado, tipoVehiculo, marcaVehiculo, modeloVehiculo, chasis, placa, ano, vendedor, tipoImpresion, nombreUsuario, fechaImpresionDesde, fechaImpresionHasta);
 			return ((ISingleResult<SP_BUSCA_HISTORICO_IMPRESION_MARBETESResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_HISTORICO_IMPRESION_MARBETE_RESUMIDO")]
+		public ISingleResult<SP_BUSCA_HISTORICO_IMPRESION_MARBETE_RESUMIDOResult> SP_BUSCA_HISTORICO_IMPRESION_MARBETE_RESUMIDO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
+			return ((ISingleResult<SP_BUSCA_HISTORICO_IMPRESION_MARBETE_RESUMIDOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MANTENIMIENTO_HISTORICO_IMPRESION_MARBETE_RESUMIDO")]
+		public ISingleResult<SP_MANTENIMIENTO_HISTORICO_IMPRESION_MARBETE_RESUMIDOResult> SP_MANTENIMIENTO_HISTORICO_IMPRESION_MARBETE_RESUMIDO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Decimal(25,0)")] System.Nullable<decimal> idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioImprime", DbType="VarChar(100)")] string usuarioImprime, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoImprecion", DbType="VarChar(100)")] string tipoImprecion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CantidadImpresion", DbType="Int")] System.Nullable<int> cantidadImpresion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CantidadPVC", DbType="Int")] System.Nullable<int> cantidadPVC, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CantidadHoja", DbType="Int")] System.Nullable<int> cantidadHoja, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TotalImpresiones", DbType="Int")] System.Nullable<int> totalImpresiones, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CantidadMovimientos", DbType="Int")] System.Nullable<int> cantidadMovimientos, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, idRegistro, usuarioImprime, tipoImprecion, cantidadImpresion, cantidadPVC, cantidadHoja, totalImpresiones, cantidadMovimientos, accion);
+			return ((ISingleResult<SP_MANTENIMIENTO_HISTORICO_IMPRESION_MARBETE_RESUMIDOResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_GENERAR_DATOS_PARA_MARBETE_VEHICULOResult
@@ -2189,6 +2203,328 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CandidadRegistros != value))
 				{
 					this._CandidadRegistros = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_HISTORICO_IMPRESION_MARBETE_RESUMIDOResult
+	{
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private string _UsuarioImprime;
+		
+		private string _TipoImprecion;
+		
+		private System.Nullable<int> _CantidadImpresion;
+		
+		private System.Nullable<int> _CantidadPVC;
+		
+		private System.Nullable<int> _CantidadHoja;
+		
+		private System.Nullable<int> _TotalImpresiones;
+		
+		private System.Nullable<int> _CantidadMovimientos;
+		
+		public SP_BUSCA_HISTORICO_IMPRESION_MARBETE_RESUMIDOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioImprime", DbType="VarChar(100)")]
+		public string UsuarioImprime
+		{
+			get
+			{
+				return this._UsuarioImprime;
+			}
+			set
+			{
+				if ((this._UsuarioImprime != value))
+				{
+					this._UsuarioImprime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoImprecion", DbType="VarChar(100)")]
+		public string TipoImprecion
+		{
+			get
+			{
+				return this._TipoImprecion;
+			}
+			set
+			{
+				if ((this._TipoImprecion != value))
+				{
+					this._TipoImprecion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadImpresion", DbType="Int")]
+		public System.Nullable<int> CantidadImpresion
+		{
+			get
+			{
+				return this._CantidadImpresion;
+			}
+			set
+			{
+				if ((this._CantidadImpresion != value))
+				{
+					this._CantidadImpresion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadPVC", DbType="Int")]
+		public System.Nullable<int> CantidadPVC
+		{
+			get
+			{
+				return this._CantidadPVC;
+			}
+			set
+			{
+				if ((this._CantidadPVC != value))
+				{
+					this._CantidadPVC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadHoja", DbType="Int")]
+		public System.Nullable<int> CantidadHoja
+		{
+			get
+			{
+				return this._CantidadHoja;
+			}
+			set
+			{
+				if ((this._CantidadHoja != value))
+				{
+					this._CantidadHoja = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalImpresiones", DbType="Int")]
+		public System.Nullable<int> TotalImpresiones
+		{
+			get
+			{
+				return this._TotalImpresiones;
+			}
+			set
+			{
+				if ((this._TotalImpresiones != value))
+				{
+					this._TotalImpresiones = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadMovimientos", DbType="Int")]
+		public System.Nullable<int> CantidadMovimientos
+		{
+			get
+			{
+				return this._CantidadMovimientos;
+			}
+			set
+			{
+				if ((this._CantidadMovimientos != value))
+				{
+					this._CantidadMovimientos = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MANTENIMIENTO_HISTORICO_IMPRESION_MARBETE_RESUMIDOResult
+	{
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private System.Nullable<decimal> _IdRegistro;
+		
+		private string _UsuarioImprime;
+		
+		private string _TipoImprecion;
+		
+		private System.Nullable<int> _CantidadImpresion;
+		
+		private System.Nullable<int> _CantidadPVC;
+		
+		private System.Nullable<int> _CantidadHoja;
+		
+		private System.Nullable<int> _TotalImpresiones;
+		
+		private System.Nullable<int> _CantidadMovimientos;
+		
+		public SP_MANTENIMIENTO_HISTORICO_IMPRESION_MARBETE_RESUMIDOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Decimal(25,0)")]
+		public System.Nullable<decimal> IdRegistro
+		{
+			get
+			{
+				return this._IdRegistro;
+			}
+			set
+			{
+				if ((this._IdRegistro != value))
+				{
+					this._IdRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioImprime", DbType="VarChar(100)")]
+		public string UsuarioImprime
+		{
+			get
+			{
+				return this._UsuarioImprime;
+			}
+			set
+			{
+				if ((this._UsuarioImprime != value))
+				{
+					this._UsuarioImprime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoImprecion", DbType="VarChar(100)")]
+		public string TipoImprecion
+		{
+			get
+			{
+				return this._TipoImprecion;
+			}
+			set
+			{
+				if ((this._TipoImprecion != value))
+				{
+					this._TipoImprecion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadImpresion", DbType="Int")]
+		public System.Nullable<int> CantidadImpresion
+		{
+			get
+			{
+				return this._CantidadImpresion;
+			}
+			set
+			{
+				if ((this._CantidadImpresion != value))
+				{
+					this._CantidadImpresion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadPVC", DbType="Int")]
+		public System.Nullable<int> CantidadPVC
+		{
+			get
+			{
+				return this._CantidadPVC;
+			}
+			set
+			{
+				if ((this._CantidadPVC != value))
+				{
+					this._CantidadPVC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadHoja", DbType="Int")]
+		public System.Nullable<int> CantidadHoja
+		{
+			get
+			{
+				return this._CantidadHoja;
+			}
+			set
+			{
+				if ((this._CantidadHoja != value))
+				{
+					this._CantidadHoja = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalImpresiones", DbType="Int")]
+		public System.Nullable<int> TotalImpresiones
+		{
+			get
+			{
+				return this._TotalImpresiones;
+			}
+			set
+			{
+				if ((this._TotalImpresiones != value))
+				{
+					this._TotalImpresiones = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadMovimientos", DbType="Int")]
+		public System.Nullable<int> CantidadMovimientos
+		{
+			get
+			{
+				return this._CantidadMovimientos;
+			}
+			set
+			{
+				if ((this._CantidadMovimientos != value))
+				{
+					this._CantidadMovimientos = value;
 				}
 			}
 		}

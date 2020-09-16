@@ -340,6 +340,41 @@ namespace UtilidadesAmigos.Solucion.Paginas
             ProcesarHistorico.ProcesarInformacion();
         }
         #endregion
+        #region HISTORICO DE IMPRESION
+        private void HistoricoImpresion() {
+            string _Poliza = string.IsNullOrEmpty(txtPolizaHistorico.Text.Trim()) ? null : txtPolizaHistorico.Text.Trim();
+            string _Item = string.IsNullOrEmpty(txtItemHistorico.Text.Trim()) ? null : txtItemHistorico.Text.Trim();
+
+            var Buscar = ObjdataProcesos.Value.BuscaHistoricoImpresionMarbetes(
+                new Nullable<decimal>(),
+                _Poliza,
+                _Item,
+                null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                Convert.ToDateTime(txtFechaDesdeHistorico.Text),
+                Convert.ToDateTime(txtFechaHastaHistorico.Text));
+            gvHistoricoImpresion.DataSource = Buscar;
+            gvHistoricoImpresion.DataBind();
+            if (Buscar.Count() < 1)
+            {
+                lbCantidadImpresoPVCVariable.Text = "0";
+                lbCantidadImpresoHojaVariable.Text = "0";
+                lbCantidadRegistrosVariableHistorico.Text = "0";
+            }
+            else {
+                int CantidadImprecionPVC = 0, CantidadImpresionHoja = 0, CantidadRregistros = 0;
+
+                foreach (var n in Buscar) {
+                    CantidadImprecionPVC = Convert.ToInt32(n.CandidadImpresionesPVC);
+                    CantidadImpresionHoja = Convert.ToInt32(n.CandidadImpresionesHoja);
+                    CantidadRregistros = Convert.ToInt32(n.CandidadRegistros);
+
+                    lbCantidadImpresoPVCVariable.Text = CantidadImprecionPVC.ToString("N0");
+                    lbCantidadImpresoHojaVariable.Text = CantidadImpresionHoja.ToString("N0");
+                    lbCantidadRegistrosVariableHistorico.Text = CantidadRregistros.ToString("N0");
+                }
+            }
+        }
+        #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -348,6 +383,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 rbMarbetePVC.Checked = true;
                 lbIdusuario.Text = Session["IdUsuario"].ToString();
                 rbImprimirPVC.Checked = true;
+                rbProcesarDataDetalleHistorico.Checked = true;
+                rbProcesarDataDetalleHistorico.Visible = false;
+                rbProcesarDataResumidaHistorico.Visible = false;
             }
         }
       
@@ -499,17 +537,139 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultarHistorico_Click(object sender, EventArgs e)
         {
-           
+            if (string.IsNullOrEmpty(txtFechaDesdeHistorico.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaHistorico.Text.Trim()))
+            {
+                if (string.IsNullOrEmpty(txtFechaDesdeHistorico.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeVacio()", "FechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHastaHistorico.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaHastaHistorico()", "FechaHastaHistorico();", true);
+                }
+            }
+            else {
+                HistoricoImpresion();
+            }
         }
 
         protected void btnExportarExelHistorixo_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtFechaDesdeHistorico.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaHistorico.Text.Trim())) {
+                if (string.IsNullOrEmpty(txtFechaDesdeHistorico.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeVacio()", "FechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHastaHistorico.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaHastaHistorico()", "FechaHastaHistorico();", true);
+                }
 
+            }
+            else {
+                if (rbProcesarDataResumidaHistorico.Checked) {
+                    //ELIMINAMOS
+                    UtilidadesAmigos.Logica.Entidades.Procesos.EHistoricoImpresionResumido Eliminar = new Logica.Entidades.Procesos.EHistoricoImpresionResumido();
+                    Eliminar.IdUsuario = Convert.ToDecimal(lbIdusuario.Text);
+                    var MAN = ObjdataProcesos.Value.MantenimientoHistoricoImpresionMarbeteResumido(Eliminar, "DELETE");
+
+                    //BUSCAMOS LOS REGISTROS QUE SE VAN A EXPORTAR
+                    string _Poliza = string.IsNullOrEmpty(txtPolizaHistorico.Text.Trim()) ? null : txtPolizaHistorico.Text.Trim();
+                    string _Item = string.IsNullOrEmpty(txtItemHistorico.Text.Trim()) ? null : txtItemHistorico.Text.Trim();
+
+                    var Buscar = ObjdataProcesos.Value.BuscaHistoricoImpresionMarbetes(
+                        new Nullable<decimal>(),
+                        _Poliza,
+                        _Item,
+                        null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                        Convert.ToDateTime(txtFechaDesdeHistorico.Text),
+                        Convert.ToDateTime(txtFechaHastaHistorico.Text));
+                    foreach (var n in Buscar) {
+                        UtilidadesAmigos.Logica.Entidades.Procesos.EHistoricoImpresionResumido Guardar = new Logica.Entidades.Procesos.EHistoricoImpresionResumido();
+
+                        Guardar.IdUsuario = Convert.ToDecimal(lbIdusuario.Text);
+                        Guardar.IdRegistro = Convert.ToDecimal(n.IdRegistro);
+                        Guardar.UsuarioImprime = n.UsuarioImprime;
+                        Guardar.TipoImprecion = n.TipoImpresion;
+                        Guardar.CantidadImpresion = Convert.ToInt32(n.CantidadImpreso);
+                        Guardar.CantidadPVC = Convert.ToInt32(n.CandidadImpresionesPVC);
+                        Guardar.CantidadHoja = Convert.ToInt32(n.CandidadImpresionesHoja);
+                        Guardar.TotalImpresiones = Convert.ToInt32(n.CandidadImpresiones);
+                        Guardar.CantidadMovimientos = Convert.ToInt32(n.CandidadRegistros);
+
+                        var MAN2 = ObjdataProcesos.Value.MantenimientoHistoricoImpresionMarbeteResumido(Guardar, "INSERT");
+                    }
+
+                    var ExportarResumen = (from n in ObjdataProcesos.Value.BuscaHistoricoImpresionMarbeteResumido(Convert.ToDecimal(lbIdusuario.Text))
+                                           select new {
+                                               Usuario =n.UsuarioImprime,
+                                               TipoImpresion=n.TipoImprecion,
+                                               CantidadImpresion=n.CantidadImpresion,
+                                               CantidadPVC=n.CantidadPVC,
+                                               CantidadHoja=n.CantidadHoja,
+                                               TotalImpresiones=n.TotalImpresiones,
+                                               CantidadMovimientos=n.CantidadMovimientos
+
+                                           }).ToList();
+                    string Nombre = "";
+                    Nombre = "Reporte de Impresiones Resumido " + txtFechaDesdeHistorico.Text + " - " + txtFechaHastaHistorico.Text;
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(Nombre, ExportarResumen);
+
+                }
+                else
+                {
+                    string _Poliza = string.IsNullOrEmpty(txtPolizaHistorico.Text.Trim()) ? null : txtPolizaHistorico.Text.Trim();
+                    string _Item = string.IsNullOrEmpty(txtItemHistorico.Text.Trim()) ? null : txtItemHistorico.Text.Trim();
+
+                    var exportar = (from n in ObjdataProcesos.Value.BuscaHistoricoImpresionMarbetes(
+                        new Nullable<decimal>(),
+                        _Poliza,
+                        _Item,
+                        null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                        Convert.ToDateTime(txtFechaDesdeHistorico.Text),
+                        Convert.ToDateTime(txtFechaHastaHistorico.Text))
+                                    select new
+                                    {
+                                        UsuarioImprime = n.UsuarioImprime,
+                                        FechaImpresion = n.FechaCreado,
+                                        TipoImpresion = n.TipoImpresion,
+                                        CantidadImpreso = n.CantidadImpreso,
+                                        Poliza = n.Poliza,
+                                        Item = n.Secuencia,
+                                        Cliente = n.NombreCliente,
+                                        Asegurado = n.Asegurado,
+                                        InicioVigencia = n.InicioVigencia,
+                                        FinVigencia = n.FinVigencia,
+                                        Tipo = n.TipoVehiculo,
+                                        Marca = n.MarcaVehiculo,
+                                        Modelo = n.ModeloVehiculo,
+                                        Chasis = n.Chasis,
+                                        Placa = n.Placa,
+                                        Color = n.Color,
+                                        Uso = n.uso,
+                                        Ano = n.Ano,
+                                        Capacidad = n.Capacidad,
+                                        ValorVehiculo = n.ValorVehiculo,
+                                        FianzaJudicial = n.FianzaJudicial,
+                                        Intermediario = n.Vendedor,
+                                        Grua = n.Grua,
+                                        AeroAmbulancia = n.AeroAmbulancia,
+                                        OtrosServicios = n.OtrosServicios,
+                                        CantidadImprecionPVC = n.CandidadImpresionesPVC,
+                                        CantidadImpresionHoja = n.CandidadImpresionesHoja,
+                                        CantidadImpresiones = n.CandidadImpresiones,
+                                        CantidadRegistros = n.CandidadRegistros
+                                    }).ToList();
+                    string Nombre = "";
+                    Nombre = "Historico de Impresion " + txtFechaDesdeHistorico.Text + " - " + txtFechaHastaHistorico.Text;
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(Nombre, exportar);
+                }
+            }
         }
 
         protected void gvHistoricoImpresion_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gvHistoricoImpresion.PageIndex = e.NewPageIndex;
+            HistoricoImpresion();
         }
     }
 }

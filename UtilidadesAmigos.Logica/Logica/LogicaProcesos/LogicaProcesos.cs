@@ -227,7 +227,63 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
                                  CandidadRegistros=n.CandidadRegistros
                              }).ToList();
             return Historico;
-        } 
+        }
+        #endregion
+        #region MANTENIMIENTO IMPRESION MARBETE RESUMIDO
+        //LISTADO MANTENIMIENTO IMPRESION MARBETE RESUMIDO
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EHistoricoImpresionResumido> BuscaHistoricoImpresionMarbeteResumido(decimal? IdUsuario = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_HISTORICO_IMPRESION_MARBETE_RESUMIDO(IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.EHistoricoImpresionResumido
+                           {
+                               IdUsuario=n.IdUsuario,
+                               UsuarioImprime=n.UsuarioImprime,
+                               TipoImprecion=n.TipoImprecion,
+                               CantidadImpresion=n.CantidadImpresion,
+                               CantidadPVC=n.CantidadPVC,
+                               CantidadHoja=n.CantidadHoja,
+                               TotalImpresiones=n.TotalImpresiones,
+                               CantidadMovimientos=n.CantidadMovimientos,
+
+                           }).ToList();
+            return Listado;
+        }
+
+        //MANTENIMIENTO HISTORIAL IMPRESION MARBETE RESUMIDO
+        public UtilidadesAmigos.Logica.Entidades.Procesos.EHistoricoImpresionResumido MantenimientoHistoricoImpresionMarbeteResumido(UtilidadesAmigos.Logica.Entidades.Procesos.EHistoricoImpresionResumido Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.EHistoricoImpresionResumido Mantenimiento = null;
+
+            var ImpresionmarbeteResumido = ObjData.SP_MANTENIMIENTO_HISTORICO_IMPRESION_MARBETE_RESUMIDO(
+                Item.IdUsuario,
+                Item.IdRegistro,
+                Item.UsuarioImprime,
+                Item.TipoImprecion,
+                Item.CantidadImpresion,
+                Item.CantidadPVC,
+                Item.CantidadHoja,
+                Item.TotalImpresiones,
+                Item.CantidadMovimientos,
+                Accion);
+            if (ImpresionmarbeteResumido != null) {
+                Mantenimiento = (from n in ImpresionmarbeteResumido
+                                 select new UtilidadesAmigos.Logica.Entidades.Procesos.EHistoricoImpresionResumido
+                                 {
+                                     IdUsuario = n.IdUsuario,
+                                     IdRegistro=n.IdRegistro,
+                                     UsuarioImprime=n.UsuarioImprime,
+                                     TipoImprecion=n.TipoImprecion,
+                                     CantidadImpresion=n.CantidadImpresion,
+                                     CantidadPVC=n.CantidadPVC,
+                                     CantidadHoja=n.CantidadHoja,
+                                     TotalImpresiones=n.TotalImpresiones,
+                                     CantidadMovimientos=n.CantidadMovimientos
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
         #endregion
     }
 }

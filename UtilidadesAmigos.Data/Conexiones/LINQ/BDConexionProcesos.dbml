@@ -204,4 +204,40 @@
       <Column Name="CandidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_HISTORICO_IMPRESION_MARBETE_RESUMIDO" Method="SP_BUSCA_HISTORICO_IMPRESION_MARBETE_RESUMIDO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCA_HISTORICO_IMPRESION_MARBETE_RESUMIDOResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="UsuarioImprime" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoImprecion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CantidadImpresion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadPVC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadHoja" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalImpresiones" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadMovimientos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MANTENIMIENTO_HISTORICO_IMPRESION_MARBETE_RESUMIDO" Method="SP_MANTENIMIENTO_HISTORICO_IMPRESION_MARBETE_RESUMIDO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Decimal" DbType="Decimal(25,0)" />
+    <Parameter Name="UsuarioImprime" Parameter="usuarioImprime" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TipoImprecion" Parameter="tipoImprecion" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CantidadImpresion" Parameter="cantidadImpresion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CantidadPVC" Parameter="cantidadPVC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CantidadHoja" Parameter="cantidadHoja" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TotalImpresiones" Parameter="totalImpresiones" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CantidadMovimientos" Parameter="cantidadMovimientos" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MANTENIMIENTO_HISTORICO_IMPRESION_MARBETE_RESUMIDOResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdRegistro" Type="System.Decimal" DbType="Decimal(25,0)" CanBeNull="true" />
+      <Column Name="UsuarioImprime" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoImprecion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CantidadImpresion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadPVC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadHoja" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalImpresiones" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadMovimientos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
