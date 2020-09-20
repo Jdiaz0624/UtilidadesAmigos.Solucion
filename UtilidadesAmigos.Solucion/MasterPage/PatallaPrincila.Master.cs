@@ -386,5 +386,21 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkClientes_Click1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkIntermediariosSupervisores_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null) {
+                Response.Redirect("IntermediariosSupervisores.aspx");
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }

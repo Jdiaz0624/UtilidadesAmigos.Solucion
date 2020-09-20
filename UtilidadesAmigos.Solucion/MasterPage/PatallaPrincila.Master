@@ -92,11 +92,12 @@
                                       Mantenimientos
                                     </a>
                                     <div class="dropdown-menu">
+                                        <asp:LinkButton ID="LinkClientes" runat="server" Text="Clientes" OnClick="LinkClientes_Click1" class="dropdown-item"></asp:LinkButton>
+                                        <asp:LinkButton ID="LinkIntermediariosSupervisores" runat="server" Text="Intermediarios / Supervisores" OnClick="LinkIntermediariosSupervisores_Click" class="dropdown-item"></asp:LinkButton>
                                         <asp:LinkButton ID="linkOficinas" runat="server" Text="Oficinas" OnClick="linkOficinas_Click" class="dropdown-item"></asp:LinkButton>
                                         <asp:LinkButton ID="linkDeprtamentos" runat="server" Text="Departamentos" OnClick="linkDeprtamentos_Click" class="dropdown-item"></asp:LinkButton>
                                         <asp:LinkButton ID="linkEmpleados" runat="server" Text="Empleados" OnClick="linkEmpleados_Click" class="dropdown-item"></asp:LinkButton>
                                         <asp:LinkButton ID="linkInventario" runat="server" ForeColor="Red" Text="Inventario" OnClick="linkInventario_Click" class="dropdown-item"></asp:LinkButton>
-                                        <asp:LinkButton ID="linkClientes" runat="server" ForeColor="Red" Text="Clientes" OnClick="linkClientes_Click" class="dropdown-item"></asp:LinkButton>
                                         <asp:LinkButton ID="LinkDependientes" runat="server" Text="Dependientes" OnClick="LinkDependientes_Click" class="dropdown-item"></asp:LinkButton>
                                         <asp:LinkButton ID="LinkCorreoElectronicos" runat="server" ForeColor="Red" Text="Correo Electronico" OnClick="LinkCorreoElectronicos_Click" class="dropdown-item"></asp:LinkButton>
                                     </div>

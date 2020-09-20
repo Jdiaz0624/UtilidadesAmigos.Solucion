@@ -40,7 +40,15 @@
         function PermisoDenegado() {
             alert("No tienes permiso para imprimir este registro, favor de contactar un administrador para asignar el permiso.");
         }
-       
+
+        function FechaDesdeVacio() {
+            $("#<%=txtFechaDesdeHistorico.ClientID%>").css("border-color", "red");
+            return false;
+        }
+        function FechaHastaHistorico() {
+            $("#<%=txtFechaHastaHistorico.ClientID%>").css("border-color", "red");
+            return false;
+        }
     </script>
 
     <div class="container-fluid">
@@ -302,15 +310,10 @@
           </div>
 
                  <div align="center">
-                      <div class="form-check-inline">
-                      <div class="form-group form-check">
-                          <asp:RadioButton ID="rbProcesarDataResumidaHistorico" runat="server" Text="Exportar Resumido" CssClass="form-check-input Letranegrita" GroupName="Exportar" />
-                          <asp:RadioButton ID="rbProcesarDataDetalleHistorico" runat="server" Text="Exportar Detalle" CssClass="form-check-input Letranegrita" GroupName="Exportar" />
-                      </div>
-                  </div>
+                    
                      <br />
                      <asp:Button ID="btnConsultarHistorico" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnConsultarHistorico_Click" />
-                     <asp:Button ID="btnExportarExelHistorixo" runat="server" Text="Exportar" ToolTip="Exportar la data a exel" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportarExelHistorixo_Click" /><br />
+                    <br />
 
                      <asp:Label ID="lbCantidadImpresoPVCTitulo" runat="server" Text="Cantidad en PVC (" CssClass="Letranegrita"></asp:Label>
                      <asp:Label ID="lbCantidadImpresoPVCVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
@@ -353,9 +356,19 @@
                 <SortedDescendingHeaderStyle BackColor="#000065" />
             </asp:GridView>
     </div>
+                  <br />
+
               </ContentTemplate>
           </asp:UpdatePanel>
-       
+       <div align="center">
+             <div class="form-check-inline">
+                      <div class="form-group form-check">
+                          <asp:RadioButton ID="rbProcesarDataResumidaHistorico" runat="server" Text="Exportar Resumido" CssClass="form-check-input Letranegrita" GroupName="Exportar" />
+                          <asp:RadioButton ID="rbProcesarDataDetalleHistorico" runat="server" Text="Exportar Detalle" CssClass="form-check-input Letranegrita" GroupName="Exportar" />
+                      </div>
+                  </div>
+            <asp:Button ID="btnExportarExelHistorixo" runat="server" Text="Exportar" ToolTip="Exportar la data a exel" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportarExelHistorixo_Click" /><br />
+       </div>
           <br />
       </div>
     </div>
