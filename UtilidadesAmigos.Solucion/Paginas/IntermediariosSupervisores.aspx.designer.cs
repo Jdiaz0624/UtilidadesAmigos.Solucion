@@ -87,6 +87,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Button btnCOnsultarRegistros;
 
         /// <summary>
+        /// gvIntermediarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvIntermediarios;
+
+        /// <summary>
+        /// ScripManagerIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScripManagerIntermediario;
+
+        /// <summary>
         /// lbEncabezadoMantenimiento control.
         /// </summary>
         /// <remarks>
@@ -96,6 +114,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbEncabezadoMantenimiento;
 
         /// <summary>
+        /// UpdatePanelMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelMantenimiento;
+
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -103,5 +130,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// UpdatePanelComisionesIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelComisionesIntermediario;
     }
 }

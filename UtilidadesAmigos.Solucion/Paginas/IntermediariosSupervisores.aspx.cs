@@ -13,5 +13,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
 
         }
+
+        protected void btnCOnsultarRegistros_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvIntermediarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void gvIntermediarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

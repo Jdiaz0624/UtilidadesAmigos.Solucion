@@ -40,73 +40,38 @@
             </div>
         </div><br />
         <div align="center">
-            <asp:Button ID="btnCOnsultarRegistros" runat="server" Text="Consultar" ToolTip="Consultar Registros" OnClick="btnCOnsultarRegistros_Click" CssClass="btn btn-outline-primary btn-sm"/>
+            <asp:Button ID="btnCOnsultarRegistros" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm"/>
             <button type="button" id="btnNuevo" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".MantenimientoIntermediario">Nuevo</button>
             <button type="button" id="btnModificar" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".MantenimientoIntermediario">Editar</button>
             <button type="button" id="btnComisiones" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".ComisionesIntermediario">Comisiones</button>
         </div>
         <br />
-      <div>
-              <asp:GridView ID="gvIntermediarios" runat="server" AllowPaging="true" OnPageIndexChanging="gvIntermediarios_PageIndexChanging" OnSelectedIndexChanged="gvIntermediarios_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    <asp:CommandField ButtonType="Button" HeaderText="Seleccionar"  ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Seleccionar" ShowSelectButton="True" />
-                    <asp:BoundField DataField="#" HeaderText="Codigo" />
-                    <asp:BoundField DataField="#" HeaderText="Intermediario" />
-                    <asp:BoundField DataField="#" HeaderText="Estatus" />
-                    <asp:BoundField DataField="#" HeaderText="Oficina" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-        </div>
+     
 
 
         <br />
     </div>
-    <asp:ScriptManager ID="ScripManagerIntermediario" runat="server"></asp:ScriptManager>
+
     <!--POPOP DE INTERMEDIARIOS-->
      <div class="modal fade bd-example-modal-lg MantenimientoIntermediario" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
         <div class="jumbotron" align="center">
             <asp:Label ID="lbEncabezadoMantenimiento" runat="server" Text="Mantenimiento de Intermediario"></asp:Label>
         </div>
         <!--CONTROLES-->
-        <div class="container-fluid">
-            <asp:UpdatePanel ID="UpdatePanelMantenimiento" runat="server">
-                <ContentTemplate>
-
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
     </div>
   </div>
 </div>
 
     <!--POPOP DE COMISIONES-->
      <div class="modal fade bd-example-modal-lg ComisionesIntermediario" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
         <div class="jumbotron" align="center">
             <asp:Label ID="Label1" runat="server" Text="Mantenimiento de Comisiones de Intermediarios"></asp:Label>
         </div>
         <!--CONTROLES-->
-    <div class="container-fluid">
-        <asp:UpdatePanel ID="UpdatePanelComisionesIntermediario" runat="server">
-            <ContentTemplate>
-
-            </ContentTemplate>
-        </asp:UpdatePanel>
-    </div>
     </div>
   </div>
 </div>
