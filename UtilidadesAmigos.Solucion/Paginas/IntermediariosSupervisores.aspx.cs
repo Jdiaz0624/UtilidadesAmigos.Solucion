@@ -28,5 +28,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
 
         }
+
+        protected void txtCodigoSupervisor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

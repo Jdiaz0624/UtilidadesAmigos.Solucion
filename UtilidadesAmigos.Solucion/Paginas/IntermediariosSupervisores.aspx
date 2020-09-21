@@ -32,7 +32,7 @@
             </div>
             <div class="form-group col-md-3">
                 <asp:Label ID="lbNombreIntermediario" runat="server" Text="Nombre Intermediario" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtNombreIntermediarioCOnsulta" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                <asp:TextBox ID="txtNombreIntermediarioCOnsulta" runat="server" CssClass="form-control" MaxLength="100" ></asp:TextBox>
             </div>
             <div class="form-group col-md-3">
                 <asp:Label ID="lbSelecionarOficina" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
@@ -84,7 +84,88 @@
         <div class="container-fluid">
             <asp:UpdatePanel ID="UpdatePanelMantenimiento" runat="server">
                 <ContentTemplate>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <asp:Label ID="lbFechaEntradaMantenimiento" runat="server" Text="Fecha de Entrada" CssClass="Letranegrita"></asp:Label>
+                            <asp:TextBox ID="txtFechaEntradaMantenimiento" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                        </div>
 
+                         <div class="form-group col-md-3">
+                            <asp:Label ID="lbFechaNacimientoMantenimiento" runat="server" Text="Fecha de Nacimiento" CssClass="Letranegrita"></asp:Label>
+                            <asp:TextBox ID="txtFechaMAcimientoMantenimiento" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <asp:Label ID="lbSeleccionarTipoIdentificacionMantenimiento" runat="server" Text="Seleccionr Tipo de Identificación" CssClass="Letranegrita"></asp:Label>
+                            <asp:DropDownList ID="ddlSeleccionarTipoIdentificacionMantenimiento" runat="server" ToolTip="Seleccionar Tipo de Identificacion" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                         <div class="form-group col-md-3">
+                            <asp:Label ID="lbNumeroIdentificacionMantenimiento" runat="server" Text="Numero de identificación" CssClass="Letranegrita"></asp:Label>
+                            <asp:TextBox ID="txtNumeroIdentificacionMantenimiento" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <asp:Label ID="lbApellidoIntermediarioMantenimiento" runat="server" Text="Apellido" CssClass="Letranegrita"></asp:Label>
+                            <asp:TextBox ID="txtApellidoIntermediarioMantenimiento" runat="server" MaxLength="100" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <asp:Label ID="lbNombreIntermediarioMantenimiento" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
+                            <asp:TextBox ID="txtNombreIntermediarioMantenimiento" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <asp:Label ID="lbDireccionIntermediarioMantenimiento" runat="server" Text="Dirección" CssClass="Letranegrita"></asp:Label>
+                            <asp:TextBox ID="txtDireccionntermediarioMantenimiento" runat="server" CssClass="form-control" MaxLength="250"></asp:TextBox>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <asp:Label ID="lbContactoIntermediarioMantenimiento" runat="server" Text="Contacto Intermediario" CssClass="Letranegrita"></asp:Label>
+                            <asp:TextBox ID="txtContactoIntermediarioMantenimiento" runat="server" MaxLength="100" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <!--UBICACION DE INTERMEDIARIOS-->
+                        <div class="form-group col-md-4">
+                            <asp:Label ID="lbSeleccionarPaisMantenimiento" runat="server" Text="Seleccionar Pais" CssClass="Letranegrita"></asp:Label>
+                            <asp:DropDownList ID="ddlSeleccionarPaisMantenimiento" runat="server" ToolTip="Seleccionar Pais" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                         <div class="form-group col-md-4">
+                            <asp:Label ID="lbSeleccionarZonaMantenimiento" runat="server" Text="Seleccionar Zona" CssClass="Letranegrita"></asp:Label>
+                            <asp:DropDownList ID="ddlSeleccionarZonaMantenimiento" runat="server" ToolTip="Seleccionar Zona" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                         <div class="form-group col-md-4">
+                            <asp:Label ID="lbSeleccionarProvinciaMantenimiento" runat="server" Text="Seleccionar Provincia" CssClass="Letranegrita"></asp:Label>
+                            <asp:DropDownList ID="ddlSeleccionarProvinciaMantenimiento" runat="server" ToolTip="Seleccionar Provincia" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                         <div class="form-group col-md-4">
+                            <asp:Label ID="lbseleccionarMunicipioMantenimiento" runat="server" Text="Seleccionar Municipio" CssClass="Letranegrita"></asp:Label>
+                            <asp:DropDownList ID="ddlSeleccionarMunicipioMantenimiento" runat="server" ToolTip="Seleccionar Municipio" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                         <div class="form-group col-md-4">
+                            <asp:Label ID="lbSeleccionarSectorMantenimiento" runat="server" Text="Seleccionar Sector" CssClass="Letranegrita"></asp:Label>
+                            <asp:DropDownList ID="ddlSeleccionarSectorMantenimiento" runat="server" ToolTip="Seleccionar Sector" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                         <div class="form-group col-md-4">
+                            <asp:Label ID="lbSeleccionarUbicacionMantenimiento" runat="server" Text="Seleccionar Ubicación" CssClass="Letranegrita"></asp:Label>
+                            <asp:DropDownList ID="ddlSeleccionarUbicacionMantenimiento" runat="server" ToolTip="Seleccionar Ubicación" CssClass="form-control"></asp:DropDownList>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <asp:Label ID="lbCodigoSupervisorMantenimiento" runat="server" Text="Codigo de Supervisor" CssClass="Letranegrita"></asp:Label>
+                            <asp:TextBox ID="txtCodigoSupervisor" runat="server" OnTextChanged="txtCodigoSupervisor_TextChanged" AutoPostBack="true" TextMode="Number" MaxLength="4" CssClass="form-control"></asp:TextBox>
+                        </div>
+                         <div class="form-group col-md-9">
+                            <asp:Label ID="lbNombreSupervisor" runat="server" Text="Nombre de Supervisor" CssClass="Letranegrita"></asp:Label>
+                            <asp:TextBox ID="txtNombreSupervisor" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <asp:Label ID="ddlSeleccionarOficinaIntermediarioMantenimiento" runat="server" Text="Seleccionar Oficina" CssClass="Letranegrita"></asp:Label>
+                            <asp:DropDownList ID="ddlSeleccionarOficinaIntermeiarioMantenimiento" runat="server" ToolTip="Seleccionar la Oficina del Intermediario" CssClass="form-control"></asp:DropDownList>
+                        </div>
+
+                          <div class="form-group col-md-6">
+                            <asp:Label ID="lbSeleccionarBancoIntermediarioMantenimiento" runat="server" Text="Seleccionar Banco" CssClass="Letranegrita"></asp:Label>
+                            <asp:DropDownList ID="ddlSeleccionarBancoIntermediarioMantenimeitto" runat="server" ToolTip="Seleccionar el Banco del Intermediario" CssClass="form-control"></asp:DropDownList>
+                        </div>
+
+                        
+                    </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
