@@ -208,5 +208,46 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
         //MANTENIMIENTO DE TARJETAS DE ACCESO
 
         #endregion
+
+        #region MANTENIMIENTO DE COMISIONES POR DEFECTO
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EComisionesPorDefecto> BuscaComisionesPorDefecto(decimal? IdRegistro = null, string Ramo = null, string SubRamo = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var ListadoComisiones = (from n in Objdata.SP_BUSCA_PORCIENTO_COMISION_POR_DEFECTO(IdRegistro, Ramo, SubRamo)
+                                     select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EComisionesPorDefecto
+                                     {
+                                         IdRegistro=n.IdRegistro,
+                                         CodRamo=n.CodRamo,
+                                         Ramo=n.Ramo,
+                                         CodSubramo=n.CodSubramo,
+                                         Subramo=n.Subramo,
+                                         PorcientoComision=n.PorcientoComision
+                                     }).ToList();
+            return ListadoComisiones;
+        }
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EComisionesPorDefecto MantenimientoPorcientoComisionPorDefecto(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EComisionesPorDefecto Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EComisionesPorDefecto Mantenimiento = null;
+
+            var PorcientoComsionesPorDefecto = Objdata.SP_MANTENIMIENTO_COMISIONES_POR_DEFECTO(
+                Item.IdRegistro,
+                Item.CodRamo,
+                Item.CodSubramo,
+                Item.PorcientoComision,
+                Accion);
+            if (PorcientoComsionesPorDefecto != null) {
+                Mantenimiento = (from n in PorcientoComsionesPorDefecto
+                                 select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EComisionesPorDefecto
+                                 {
+                                     IdRegistro=n.IdRegistro,
+                                     CodRamo=n.Ramo,
+                                     CodSubramo=n.SubRamo,
+                                     PorcientoComision=n.PorcientoComision
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
+        #endregion
     }
 }

@@ -100,6 +100,7 @@
                                         <asp:LinkButton ID="linkInventario" runat="server" ForeColor="Red" Text="Inventario" OnClick="linkInventario_Click" class="dropdown-item"></asp:LinkButton>
                                         <asp:LinkButton ID="LinkDependientes" runat="server" Text="Dependientes" OnClick="LinkDependientes_Click" class="dropdown-item"></asp:LinkButton>
                                         <asp:LinkButton ID="LinkCorreoElectronicos" runat="server" ForeColor="Red" Text="Correo Electronico" OnClick="LinkCorreoElectronicos_Click" class="dropdown-item"></asp:LinkButton>
+                                        <asp:LinkButton ID="LinkMantenimientoPorcientoComisionPorDefecto" runat="server" Text="Porciento Comisión" OnClick="LinkMantenimientoPorcientoComisionPorDefecto_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     </div>
                                   </li>+
                             <asp:LinkButton ID="LinkSolicitudEmision" runat="server" ForeColor="Red" Text="Solicitud" OnClick="LinkSolicitudEmision_Click1" class="nav-link active"></asp:LinkButton>
