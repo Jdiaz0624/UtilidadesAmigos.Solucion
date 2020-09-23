@@ -25,6 +25,7 @@
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTitulo" runat="server" Text="Mantenimiento Intermediario / Supervisor"></asp:Label>
         </div>
+     
         <div class="form-row">
             <div class="form-group col-md-3">
                 <asp:Label ID="lbCodigoIntermediario" runat="server" Text="Codigo de Intermediario" CssClass="Letranegrita"></asp:Label>
@@ -71,19 +72,22 @@
 
 
         <br />
-    </div>
-    <asp:ScriptManager ID="ScripManagerIntermediario" runat="server"></asp:ScriptManager>
-    <!--POPOP DE INTERMEDIARIOS-->
-     <div class="modal fade bd-example-modal-lg MantenimientoIntermediario" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="lbEncabezadoMantenimiento" runat="server" Text="Mantenimiento de Intermediario"></asp:Label>
+
+
+
+                               <div class="form-check-inline">
+            <div class="form-group form-check">
+               <asp:RadioButton ID="rbRetensionSiMantenimiento" runat="server" GroupName="Retencion" Text="Retención Si" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbRetensionNOMantenimiento" runat="server" GroupName="Retencion" Text="Retención No" CssClass="form-check-input Letranegrita" />
+                <asp:Label ID="LBsEPARADOR1" runat="server" Text=" | " CssClass="Letranegrita"></asp:Label>
+                <asp:RadioButton ID="rbEstatusMantenimiento" runat="server" GroupName="Estatus" Text="Activo" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbEstatusInactivoMantenimiento" runat="server" GroupName="Estatus" Text="Inactivo" CssClass="form-check-input Letranegrita" />
+                <asp:Label ID="LBsEPARADOR2" runat="server" Text=" | " CssClass="Letranegrita"></asp:Label>
+                 <asp:RadioButton ID="rbIntermediarioDirecto" runat="server" GroupName="Directo" Text="Intermediario Directo" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbIntermediarioNoDirecto" runat="server" GroupName="Directo" Text="Intermediario No Directo" CssClass="form-check-input Letranegrita" />
+
+            </div>
         </div>
-        <!--CONTROLES-->
-        <div class="container-fluid">
-            <asp:UpdatePanel ID="UpdatePanelMantenimiento" runat="server">
-                <ContentTemplate>
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <asp:Label ID="lbFechaEntradaMantenimiento" runat="server" Text="Fecha de Entrada" CssClass="Letranegrita"></asp:Label>
@@ -164,14 +168,66 @@
                             <asp:DropDownList ID="ddlSeleccionarBancoIntermediarioMantenimeitto" runat="server" ToolTip="Seleccionar el Banco del Intermediario" CssClass="form-control"></asp:DropDownList>
                         </div>
 
+                        <div class="form-group col-md-6">
+                            <asp:Label ID="lbCuentaBancoMantenimiento" runat="server" Text="Numero de Cuenta" CssClass="Letranegrita"></asp:Label>
+                            <asp:TextBox ID="txtNumeroCuentaBancoMantenimiento" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <asp:Label ID="lbSeleccionarCanalDistribucionMantenimiento" runat="server" Text="Seleccionar canal de distribución" CssClass="Letranegrita"></asp:Label>
+                            <asp:DropDownList ID="ddlSeleccionarCanalDistribucionMantenimiento" runat="server" ToolTip="Seleccionar Canal de distribución" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                      
                         
                     </div>
-                </ContentTemplate>
-            </asp:UpdatePanel>
+        <asp:Label ID="lbTipoCuentaBancoMantenimiento" runat="server" Text="Tipo de Cuenta" CssClass="Letranegrita"></asp:Label><br />
+        <div class="form-check-inline">
+            
+            <asp:RadioButton ID="rbCuentaAhorroMantenimiento" runat="server" Text="Cuenta de Ahorro" CssClass="form-check-input Letranegrita" GroupName="TipoCuentas" />
+            <asp:RadioButton ID="rbCuentaCorrienteMantenimiento" runat="server" Text="Cuenta Corriente" CssClass="form-check-input Letranegrita" GroupName="TipoCuentas" />
+            <asp:RadioButton ID="rbTarjetaMantenimiento" runat="server" Text="Tarjeta" CssClass="form-check-input Letranegrita" GroupName="TipoCuentas" />
+            <asp:RadioButton ID="rbPrestamoMantenimiento" runat="server" Text="Prestamo" CssClass="form-check-input Letranegrita" GroupName="TipoCuentas" />
         </div>
+        <br />
+
+        <asp:Label ID="lbTipoCobroTitulo" runat="server" Text="Tipo de Cobro" CssClass="Letranegrita"></asp:Label><br />
+          <div class="form-check-inline">
+            <asp:RadioButton ID="rbCobroChequesMantenimiento" runat="server" Text="Cuenta de Ahorro" CssClass="form-check-input Letranegrita" GroupName="TipoCobro" />
+            <asp:RadioButton ID="rbCobroEfectivoMantenimiento" runat="server" Text="Cuenta Corriente" CssClass="form-check-input Letranegrita" GroupName="TipoCobro" />
+            <asp:RadioButton ID="rbCobroTransferenciaMantenimiento" runat="server" Text="Tarjeta" CssClass="form-check-input Letranegrita" GroupName="TipoCobro" />
+            <asp:RadioButton ID="rbCobroCuentasPorPagarMantenimiento" runat="server" Text="Cuentas Por Pagar" CssClass="form-check-input Letranegrita" GroupName="TipoCobro" />
+        </div>
+      <div class="form-row">
+          <div class="form-group col-md-4">
+             <asp:Label ID="lbTelefono1Mantenimiento" runat="server" Text="Telefono 1" CssClass="Letranegrita"></asp:Label>
+              <asp:TextBox ID="txtTelefono1Mantenimiento" runat="server" CssClass="form-control"></asp:TextBox>
+          </div>
+
+           <div class="form-group col-md-4">
+             <asp:Label ID="lbTelefono2Mantenimiento" runat="server" Text="Telefono 2" CssClass="Letranegrita"></asp:Label>
+              <asp:TextBox ID="txtTelefono2Mantenimiento" runat="server" CssClass="form-control"></asp:TextBox>
+          </div>
+          <div class="form-group col-md-4">
+             <asp:Label ID="lbTelefono3Mantenimiento" runat="server" Text="Telefono 3" CssClass="Letranegrita"></asp:Label>
+              <asp:TextBox ID="txtTelefono3Mantenimiento" runat="server" CssClass="form-control"></asp:TextBox>
+          </div>
+              <div class="form-group col-md-4">
+             <asp:Label ID="lbCelularMantenimiento" runat="server" Text="Celular" CssClass="Letranegrita"></asp:Label>
+              <asp:TextBox ID="txtCelularMantenimiento" runat="server" CssClass="form-control"></asp:TextBox>
+          </div>
+              <div class="form-group col-md-4">
+             <asp:Label ID="lbFaxMantenimiento" runat="server" Text="Fax" CssClass="Letranegrita"></asp:Label>
+              <asp:TextBox ID="txtFaxMantenimiento" runat="server" CssClass="form-control"></asp:TextBox>
+          </div>
+              <div class="form-group col-md-4">
+             <asp:Label ID="lbEmailMantenimiento" runat="server" Text="Email" CssClass="Letranegrita"></asp:Label>
+              <asp:TextBox ID="txtEnailMantenimiento" runat="server" TextMode="Email" CssClass="form-control"></asp:TextBox>
+          </div>
+      </div>
+
+
     </div>
-  </div>
-</div>
+    <asp:ScriptManager ID="ScripManagerIntermediario" runat="server"></asp:ScriptManager>
+
 
     <!--POPOP DE COMISIONES-->
      <div class="modal fade bd-example-modal-lg ComisionesIntermediario" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

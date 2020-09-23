@@ -130,19 +130,19 @@
                         </div>
                          <div class="form-group col-md-4">
                             <asp:Label ID="lbSeleccionarZonaMantenimiento" runat="server" Text="Seleccionar Zona" CssClass="Letranegrita"></asp:Label>
-                            <asp:DropDownList ID="ddlSeleccionarZonaMantenimiento" runat="server" ToolTip="Seleccionar Zona" CssClass="form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlSeleccionarZonaMantenimiento" AutoPostBack="true" runat="server" ToolTip="Seleccionar Zona" CssClass="form-control" OnSelectedIndexChanged="ddlSeleccionarZonaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
                         </div>
                          <div class="form-group col-md-4">
                             <asp:Label ID="lbSeleccionarProvinciaMantenimiento" runat="server" Text="Seleccionar Provincia" CssClass="Letranegrita"></asp:Label>
-                            <asp:DropDownList ID="ddlSeleccionarProvinciaMantenimiento" runat="server" ToolTip="Seleccionar Provincia" CssClass="form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlSeleccionarProvinciaMantenimiento" AutoPostBack="true" runat="server" ToolTip="Seleccionar Provincia" CssClass="form-control" OnSelectedIndexChanged="ddlSeleccionarProvinciaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
                         </div>
                          <div class="form-group col-md-4">
                             <asp:Label ID="lbseleccionarMunicipioMantenimiento" runat="server" Text="Seleccionar Municipio" CssClass="Letranegrita"></asp:Label>
-                            <asp:DropDownList ID="ddlSeleccionarMunicipioMantenimiento" runat="server" ToolTip="Seleccionar Municipio" CssClass="form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlSeleccionarMunicipioMantenimiento" runat="server" AutoPostBack="true" ToolTip="Seleccionar Municipio" CssClass="form-control" OnSelectedIndexChanged="ddlSeleccionarMunicipioMantenimiento_SelectedIndexChanged"></asp:DropDownList>
                         </div>
                          <div class="form-group col-md-4">
                             <asp:Label ID="lbSeleccionarSectorMantenimiento" runat="server" Text="Seleccionar Sector" CssClass="Letranegrita"></asp:Label>
-                            <asp:DropDownList ID="ddlSeleccionarSectorMantenimiento" runat="server" ToolTip="Seleccionar Sector" CssClass="form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlSeleccionarSectorMantenimiento" runat="server" AutoPostBack="true" ToolTip="Seleccionar Sector" CssClass="form-control" OnSelectedIndexChanged="ddlSeleccionarSectorMantenimiento_SelectedIndexChanged"></asp:DropDownList>
                         </div>
                          <div class="form-group col-md-4">
                             <asp:Label ID="lbSeleccionarUbicacionMantenimiento" runat="server" Text="Seleccionar Ubicación" CssClass="Letranegrita"></asp:Label>
