@@ -249,5 +249,81 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             return Mantenimiento;
         }
         #endregion
+
+        #region MANTENIMIENTO DE INTERMEIDAIROS
+        //MOSTRAR EL LISTADO DE LOS INTERMEDIARIOS
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EBuscaListadoIntermediarios> BuscaListadoIntermediario(string CodigoIntermediario = null, string NombreIntermediario = null, string CodigoSupervisor = null, string NombreSupervisor = null, int? Oficin = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_LISTADO_INTERMEDIARIOS(CodigoIntermediario, NombreIntermediario, CodigoSupervisor, NombreSupervisor, Oficin)
+                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EBuscaListadoIntermediarios
+                           {
+                               Compania=n.Compania,
+                               Codigo=n.Codigo,
+                               Cuenta=n.Cuenta,
+                               Auxiliar=n.Auxiliar,
+                               TipoRnc=n.TipoRnc,
+                               DescripcionTipoRNC=n.DescripcionTipoRNC,
+                               Rnc=n.Rnc,
+                               NombreVendedor=n.NombreVendedor,
+                               PorcientoComision=n.PorcientoComision,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Estatus0=n.Estatus0,
+                               Estatus=n.Estatus,
+                               Fecha_Entrada=n.Fecha_Entrada,
+                               FechaEntrada=n.FechaEntrada,
+                               UsuarioAdiciona=n.UsuarioAdiciona,
+                               FechaAdiciona=n.FechaAdiciona,
+                               UsuarioModifica=n.UsuarioModifica,
+                               FechaModifica=n.FechaModifica,
+                               PorcientoGastos=n.PorcientoGastos,
+                               nota=n.nota,
+                               tipo_Intermediario=n.tipo_Intermediario,
+                               Agencia=n.Agencia,
+                               Fec_Nac=n.Fec_Nac,
+                               FechaNacimiento=n.FechaNacimiento,
+                               Publicidad=n.Publicidad,
+                               PagoComPor=n.PagoComPor,
+                               Banco=n.Banco,
+                               NombreBanco=n.NombreBanco,
+                               CtaBanco=n.CtaBanco,
+                               CodigoRnc=n.CodigoRnc,
+                               Retencion=n.Retencion,
+                               PorcDescuento=n.PorcDescuento,
+                               SupervisorCrea=n.SupervisorCrea,
+                               VendedorCrea=n.VendedorCrea,
+                               Supervisor=n.Supervisor,
+                               Poliza=n.Poliza,
+                               Direccion=n.Direccion,
+                               Ubicacion=n.Ubicacion,
+                               DescripcionUbicacion=n.DescripcionUbicacion,
+                               Telefono=n.Telefono,
+                               TelefonoOficina=n.TelefonoOficina,
+                               Celular=n.Celular,
+                               Beeper=n.Beeper,
+                               Fax=n.Fax,
+                               //Beeper=n.Beeper,
+                               LicenciaSeguro=n.LicenciaSeguro,
+                               CodigoAnterior=n.CodigoAnterior,
+                               Apellido=n.Apellido,
+                               Nombre=n.Nombre,
+                               Oficina=n.Oficina,
+                               NombreOficina=n.NombreOficina,
+                               TipoCuentaBco=n.TipoCuentaBco,
+                               EjecutivoServicio=n.EjecutivoServicio,
+                               AsumeCxc=n.AsumeCxc,
+                               CodigoCliente=n.CodigoCliente,
+                               Record_Id=n.Record_Id,
+                               PorcientoCapitalizacion=n.PorcientoCapitalizacion,
+                               Gestor=n.Gestor,
+                               EjecutivoCobros=n.EjecutivoCobros,
+                               DiasCancelacionAutomatica=n.DiasCancelacionAutomatica,
+                               CodigoSupervisor1=n.CodigoSupervisor1,
+                               NombreSupervisor=n.NombreSupervisor,
+                               CantidadRegistros=n.CantidadRegistros
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }

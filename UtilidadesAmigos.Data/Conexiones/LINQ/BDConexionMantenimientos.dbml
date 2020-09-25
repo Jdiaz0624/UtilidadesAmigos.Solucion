@@ -158,4 +158,76 @@
       <Column Name="PorcientoComision" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_LISTADO_INTERMEDIARIOS" Method="SP_BUSCA_LISTADO_INTERMEDIARIOS">
+    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="NombreIntermediario" Parameter="nombreIntermediario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="NombreSupervisor" Parameter="nombreSupervisor" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Oficin" Parameter="oficin" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_LISTADO_INTERMEDIARIOSResult">
+      <Column Name="Compania" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cuenta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Auxiliar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoRnc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DescripcionTipoRNC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Rnc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NombreVendedor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PorcientoComision" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Entrada" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaEntrada" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="UsuarioAdiciona" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuarioModifica" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FechaModifica" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PorcientoGastos" Type="System.Decimal" DbType="Decimal(8,2)" CanBeNull="true" />
+      <Column Name="nota" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="tipo_Intermediario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Agencia" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Fec_Nac" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FechaNacimiento" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="Publicidad" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="PagoComPor" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Banco" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreBanco" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CtaBanco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoRnc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Retencion" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="PorcDescuento" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="SupervisorCrea" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VendedorCrea" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Ubicacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DescripcionUbicacion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Celular" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Beeper" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LicenciaSeguro" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoAnterior" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Apellido" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreOficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoCuentaBco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EjecutivoServicio" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AsumeCxc" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="CodigoCliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Record_Id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="PorcientoCapitalizacion" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Gestor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EjecutivoCobros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DiasCancelacionAutomatica" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoSupervisor1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
