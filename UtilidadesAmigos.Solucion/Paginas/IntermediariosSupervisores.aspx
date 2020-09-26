@@ -21,6 +21,16 @@
         }
     </style>
 
+    <script type="text/javascript">
+     
+        $(document).ready(function () {
+
+           
+
+        })
+       
+    </script>
+
     <div class="container-fluid">
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTitulo" runat="server" Text="Mantenimiento Intermediario / Supervisor"></asp:Label>
@@ -100,12 +110,12 @@
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <asp:Label ID="lbFechaEntradaMantenimiento" runat="server" Visible="false" Text="Fecha de Entrada" CssClass="Letranegrita"></asp:Label>
-                            <asp:TextBox ID="txtFechaEntradaMantenimiento" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtFechaEntradaMantenimiento" runat="server" TextMode="Date" Visible="false"  CssClass="form-control"></asp:TextBox>
                         </div>
 
                          <div class="form-group col-md-3">
                             <asp:Label ID="lbFechaNacimientoMantenimiento" runat="server" Visible="false" Text="Fecha de Nacimiento" CssClass="Letranegrita"></asp:Label>
-                            <asp:TextBox ID="txtFechaMAcimientoMantenimiento" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtFechaMAcimientoMantenimiento" runat="server" TextMode="Date" Visible="false"  CssClass="form-control"></asp:TextBox>
                         </div>
 
                         <div class="form-group col-md-3">
@@ -118,11 +128,11 @@
                         </div>
                         <div class="form-group col-md-6">
                             <asp:Label ID="lbApellidoIntermediarioMantenimiento" runat="server" Visible="false" Text="Apellido" CssClass="Letranegrita"></asp:Label>
-                            <asp:TextBox ID="txtApellidoIntermediarioMantenimiento" runat="server" Visible="false" MaxLength="100" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtApellidoIntermediarioMantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" MaxLength="100" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="form-group col-md-6">
                             <asp:Label ID="lbNombreIntermediarioMantenimiento" runat="server" Visible="false" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                            <asp:TextBox ID="txtNombreIntermediarioMantenimiento" runat="server" Visible="false" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                            <asp:TextBox ID="txtNombreIntermediarioMantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" CssClass="form-control" MaxLength="100"></asp:TextBox>
                         </div>
                         <div class="form-group col-md-12">
                             <asp:Label ID="lbDireccionIntermediarioMantenimiento" runat="server" Visible="false" Text="Dirección" CssClass="Letranegrita"></asp:Label>
@@ -191,19 +201,19 @@
         <asp:Label ID="lbTipoCuentaBancoMantenimiento" runat="server" Visible="false" Text="Tipo de Cuenta" CssClass="Letranegrita"></asp:Label><br />
         <div class="form-check-inline">
             
-            <asp:RadioButton ID="rbCuentaAhorroMantenimiento" runat="server" Visible="false" Text="Cuenta de Ahorro" CssClass="form-check-input Letranegrita" GroupName="TipoCuentas" />
-            <asp:RadioButton ID="rbCuentaCorrienteMantenimiento" runat="server" Visible="false" Text="Cuenta Corriente" CssClass="form-check-input Letranegrita" GroupName="TipoCuentas" />
-            <asp:RadioButton ID="rbTarjetaMantenimiento" runat="server" Visible="false" Text="Tarjeta" CssClass="form-check-input Letranegrita" GroupName="TipoCuentas" />
-            <asp:RadioButton ID="rbPrestamoMantenimiento" runat="server" Visible="false" Text="Prestamo" CssClass="form-check-input Letranegrita" GroupName="TipoCuentas" />
+            <asp:RadioButton ID="rbCuentaAhorroMantenimiento" runat="server" Visible="false" Text=" Cuenta de Ahorro" CssClass="form-check-input Letranegrita" GroupName="TipoCuentas" />
+            <asp:RadioButton ID="rbCuentaCorrienteMantenimiento" runat="server" Visible="false" Text=" Cuenta Corriente" CssClass="form-check-input Letranegrita" GroupName="TipoCuentas" />
+            <asp:RadioButton ID="rbTarjetaMantenimiento" runat="server" Visible="false" Text=" Tarjeta" CssClass="form-check-input Letranegrita" GroupName="TipoCuentas" />
+            <asp:RadioButton ID="rbPrestamoMantenimiento" runat="server" Visible="false" Text=" Prestamo" CssClass="form-check-input Letranegrita" GroupName="TipoCuentas" />
         </div>
         <br />
 
         <asp:Label ID="lbTipoCobroTitulo" runat="server" Visible="false" Text="Tipo de Cobro" CssClass="Letranegrita"></asp:Label><br />
           <div class="form-check-inline">
-            <asp:RadioButton ID="rbCobroChequesMantenimiento" runat="server" Visible="false" Text="Cheque" CssClass="form-check-input Letranegrita" GroupName="TipoCobro" />
-            <asp:RadioButton ID="rbCobroEfectivoMantenimiento" runat="server" Visible="false" Text="Efectivo" CssClass="form-check-input Letranegrita" GroupName="TipoCobro" />
-            <asp:RadioButton ID="rbCobroTransferenciaMantenimiento" runat="server" Visible="false" Text="Transferencia" CssClass="form-check-input Letranegrita" GroupName="TipoCobro" />
-            <asp:RadioButton ID="rbCobroCuentasPorPagarMantenimiento" runat="server" Visible="false" Text="Cuentas Por Pagar" CssClass="form-check-input Letranegrita" GroupName="TipoCobro" />
+            <asp:RadioButton ID="rbCobroChequesMantenimiento" runat="server" Visible="false" Text=" Cheque" CssClass="form-check-input Letranegrita" GroupName="TipoCobro" />
+            <asp:RadioButton ID="rbCobroEfectivoMantenimiento" runat="server" Visible="false" Text= "Efectivo" CssClass="form-check-input Letranegrita" GroupName="TipoCobro" />
+            <asp:RadioButton ID="rbCobroTransferenciaMantenimiento" runat="server" Visible="false" Text=" Transferencia" CssClass="form-check-input Letranegrita" GroupName="TipoCobro" />
+            <asp:RadioButton ID="rbCobroCuentasPorPagarMantenimiento" runat="server" Visible="false" Text=" Cuentas Por Pagar" CssClass="form-check-input Letranegrita" GroupName="TipoCobro" />
         </div>
       <div class="form-row">
           <div class="form-group col-md-4">

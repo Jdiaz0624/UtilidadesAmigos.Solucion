@@ -428,6 +428,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
             MostrarControles();
+            
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
@@ -475,7 +476,110 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     rbIntermediarioDirecto.Checked = false;
                     rbIntermediarioNoDirecto.Checked = true;
                 }
-               
+
+                //SACAMOS LAS FECHA DE ENTRADA Y NACIMIENTO
+                DateTime FechaEntrada = Convert.ToDateTime(n.Fecha_Entrada);
+                DateTime FechaNacimiento = Convert.ToDateTime(n.Fec_Nac);
+                txtFechaEntradaMantenimiento.Text = FechaEntrada.ToString("yyyy-MM-dd");
+                txtFechaMAcimientoMantenimiento.Text = FechaNacimiento.ToString("yyyy-MM-dd");
+
+                //SACAMOS EL TIPO Y EL NUMERO DE RNC
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarTipoIdentificacionMantenimiento, n.TipoRnc.ToString());
+                txtNumeroIdentificacionMantenimiento.Text = n.Rnc;
+
+                //SACAMOS LOS DATOS GENERALES DEL INTERMEDIRIO
+                txtApellidoIntermediarioMantenimiento.Text = n.Apellido;
+                txtNombreIntermediarioMantenimiento.Text = n.Nombre;
+                txtDireccionntermediarioMantenimiento.Text = n.Direccion;
+                txtContactoIntermediarioMantenimiento.Text = n.Agencia;
+                txtCodigoSupervisor.Text = n.VendedorCrea.ToString();
+                //SACAMOS EL NOMBRE DEL SUPERVISOR
+                if (string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim())) {
+                    txtNombreIntermediarioMantenimiento.Text = "";
+                }
+                else {
+                    var SacarNombreSupervisor = ObjData.BuscaInformacionSUperisor(
+                        txtCodigoSupervisor.Text, null);
+                    if (SacarNombreSupervisor.Count() < 1) {
+                        txtNombreSupervisor.Text = "";
+                    }
+                    else {
+                        foreach (var nSupervisor in SacarNombreSupervisor) {
+                            txtNombreSupervisor.Text = nSupervisor.Nombre;
+                        }
+                    }
+                }
+                //SACAMOS BANCO Y OFICINA
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarOficinaIntermeiarioMantenimiento, n.Oficina.ToString());
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarBancoIntermediarioMantenimeitto, n.Banco.ToString());
+                txtNumeroCuentaBancoMantenimiento.Text = n.CtaBanco;
+
+                string CanalDistribucion = n.tipo_Intermediario;
+                int IdCanalDistribucion = 0;
+                switch (CanalDistribucion) {
+                    case "Agentes":
+                        IdCanalDistribucion = 1;
+                        break;
+
+                    case "Corredor":
+                        IdCanalDistribucion = 2;
+                        break;
+
+                    case "Canales Alternos":
+                        IdCanalDistribucion = 3;
+                        break;
+
+                    case "Banca Seguros":
+                        IdCanalDistribucion = 4;
+                        break;
+
+                    case "Dealers":
+                        IdCanalDistribucion = 5;
+                        break;
+
+                    case "Gerente Senior":
+                        IdCanalDistribucion = 6;
+                        break;
+
+                }
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarCanalDistribucionMantenimiento, IdCanalDistribucion.ToString());
+
+                //SACAMOS EL TIPO DE CUENTA DE BANCO
+                string TipoCuentaBanco = n.TipoCuentaBco;
+                switch (TipoCuentaBanco) {
+                    case "Ahorro":
+                        rbCuentaCorrienteMantenimiento.Checked = false;
+                        rbTarjetaMantenimiento.Checked = false;
+                        rbPrestamoMantenimiento.Checked = false;
+                        rbCuentaAhorroMantenimiento.Checked = true;
+                        break;
+
+                    case "Corriente":
+                        rbTarjetaMantenimiento.Checked = false;
+                        rbPrestamoMantenimiento.Checked = false;
+                        rbCuentaAhorroMantenimiento.Checked = false;
+                        rbCuentaCorrienteMantenimiento.Checked = true;
+                        break;
+
+                    case "Tarjeta":
+                        rbPrestamoMantenimiento.Checked = false;
+                        rbCuentaAhorroMantenimiento.Checked = false;
+                        rbCuentaCorrienteMantenimiento.Checked = false;
+                        rbTarjetaMantenimiento.Checked = true;
+                        break;
+                    case "Prestamo":
+                        rbCuentaAhorroMantenimiento.Checked = false;
+                        rbCuentaCorrienteMantenimiento.Checked = false;
+                        rbTarjetaMantenimiento.Checked = false;
+                        rbPrestamoMantenimiento.Checked = true;
+                        break;
+                    default:
+                        rbCuentaCorrienteMantenimiento.Checked = false;
+                        rbTarjetaMantenimiento.Checked = false;
+                        rbPrestamoMantenimiento.Checked = false;
+                        rbCuentaAhorroMantenimiento.Checked = true;
+                        break;
+                }
             }
         }
 
