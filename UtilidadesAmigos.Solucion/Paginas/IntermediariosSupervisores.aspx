@@ -24,7 +24,59 @@
     <script type="text/javascript">
      
         $(document).ready(function () {
-
+            //Evento deo boton Guardar
+            $("#<%=btnGuardar.ClientID%>").click(function () {
+                //Validamos el campo de fecha de entrada
+                var FechaEntrada = $("#<%=txtFechaEntradaMantenimiento.ClientID%>").val().length;
+                if (FechaEntrada < 1) {
+                    alert("El campo fecha de Entrada no pude estar vacio, favor de verificar.");
+                    $("#<%=txtFechaEntradaMantenimiento.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+                    //VALIDAMOS EL CAMPO FECHA DE NACIMIENTO
+                    var FechaNacimiento = $("#<%=txtFechaMAcimientoMantenimiento.ClientID%>").val().length;
+                    if (FechaNacimiento < 1) {
+                        alert("El campo fecha de nacimiento no puede estar vacio, favor de verificar.");
+                        $("#<%=txtFechaMAcimientoMantenimiento.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else {
+                        //VALIDAMOS EL CAMPO NUMERO DE IDENTIFICACION
+                        var NumeroIdentificacion = $("#<%=txtNumeroIdentificacionMantenimiento.ClientID%>").val().length;
+                        if (NumeroIdentificacion < 1) {
+                            alert("El numero de identificación no puede estar vacio, favor de verificar.");
+                            $("#<%=txtNumeroIdentificacionMantenimiento.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
+                        else {
+                            //VALIDAMOS EL NOMBRE DEL INTERMEDIARIO
+                            var NombreIntermediario = $("#<%=txtNombreIntermediarioMantenimiento.ClientID%>").val().length;
+                            if (NombreIntermediario < 1) {
+                                alert("El campo nombre de intermediario no puede estar vacio, favor de verificar");
+                                $("#<%=txtNombreIntermediarioMantenimiento.ClientID%>").css("border-color", "red");
+                                return false;
+                            }
+                            else {
+                                var Ubicacion = $("#<%=ddlSeleccionarUbicacionMantenimiento.ClientID%>").val();
+                                if (Ubicacion < 1) {
+                                    alert("El campo ubicación no puede estar vacio, favor de verificar.");
+                                    $("#<%=ddlSeleccionarUbicacionMantenimiento.ClientID%>").css("border-color", "red");
+                                    return false;
+                                }
+                                else {
+                                    var CodigoSupervisor = $("#<%=txtCodigoSupervisor.ClientID%>").val().length;
+                                    if (CodigoSupervisor < 1) {
+                                        alert("El codigo de supervisor no puede estar vacio, favor de verificar.");
+                                        $("#<%=txtCodigoSupervisor.ClientID%>").css("border-color", "red");
+                                        return false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
            
 
         })
@@ -263,7 +315,49 @@
     <div class="container-fluid">
         <asp:UpdatePanel ID="UpdatePanelComisionesIntermediario" runat="server">
             <ContentTemplate>
-
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <asp:Label ID="lbSeleccionarRamoComisionesConsulta" runat="server" Text="Seleccionar Ramo" CssClass="Letranegrita"></asp:Label>
+                        <asp:DropDownList ID="ddlSeleccionarRamoComisionesConsulta" runat="server" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <asp:Label ID="lbSeleccionarSubRamoComisionesConsulta" runat="server" Text="Seleccionar Sub Ramo" CssClass="Letranegrita"></asp:Label>
+                        <asp:DropDownList ID="ddlSeleccionarSubRamoComisionesConsulta" runat="server" ToolTip="Seleccionar Sub Ramo" CssClass="form-control"></asp:DropDownList>
+                    </div>
+                </div>
+                <div align="center">
+                    <asp:Button ID="btnConsultarComisiobesIntermediario" runat="server" Text="Consultar" ToolTip="Consultar Comisiones" OnClick="btnConsultarComisiobesIntermediario_Click" CssClass="btn btn-outline-primary btn-sm"/>
+                </div>
+                <br />
+                     <div>
+              <asp:GridView ID="gvListadoComisionesIntermediario" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoComisionesIntermediario_PageIndexChanging" OnSelectedIndexChanged="gvListadoComisionesIntermediario_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    <asp:CommandField ButtonType="Button" HeaderText="Seleccionar"  ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Seleccionar" ShowSelectButton="True" />
+                    <asp:BoundField DataField="#" HeaderText="Ramo" />
+                    <asp:BoundField DataField="#" HeaderText="Sub Ramo" />
+                    <asp:BoundField DataField="#" HeaderText="% de Comisión" />
+                </Columns  >
+                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+        </div>
+                <br />
+                <!--CONTROLES PARA REALIZAR EL MANTENIMIENTO-->
+               <div class="form-row">
+                   <div class="form-group col-md-6">
+                       <asp:Label ID="lbRamoComsionesMantenimiento" runat="server" Text="Ramo" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtRamoComisionesMantenimiento" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                   </div>
+               </div>
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>

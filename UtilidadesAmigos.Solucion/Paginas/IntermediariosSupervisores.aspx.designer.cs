@@ -857,5 +857,77 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanelComisionesIntermediario;
+        
+        /// <summary>
+        /// lbSeleccionarRamoComisionesConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarRamoComisionesConsulta;
+        
+        /// <summary>
+        /// ddlSeleccionarRamoComisionesConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarRamoComisionesConsulta;
+        
+        /// <summary>
+        /// lbSeleccionarSubRamoComisionesConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarSubRamoComisionesConsulta;
+        
+        /// <summary>
+        /// ddlSeleccionarSubRamoComisionesConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarSubRamoComisionesConsulta;
+        
+        /// <summary>
+        /// btnConsultarComisiobesIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConsultarComisiobesIntermediario;
+        
+        /// <summary>
+        /// gvListadoComisionesIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvListadoComisionesIntermediario;
+        
+        /// <summary>
+        /// lbRamoComsionesMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbRamoComsionesMantenimiento;
+        
+        /// <summary>
+        /// txtRamoComisionesMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRamoComisionesMantenimiento;
     }
 }

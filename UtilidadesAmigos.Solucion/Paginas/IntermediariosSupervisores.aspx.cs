@@ -664,5 +664,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             LimpiarControles();
         }
+
+        protected void btnConsultarComisiobesIntermediario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvListadoComisionesIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void gvListadoComisionesIntermediario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
