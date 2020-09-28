@@ -509,6 +509,43 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         }
                     }
                 }
+
+                //SACAMOS LOS DATOS DE LA UBICACION GEIGRAFICA
+                int CodigoPais = 0, CodigoZona = 0, CodigoProvincia = 0, CodigoMinicipio = 0, CodigoSector = 0, CodigoUbicacion = 0;
+                
+
+                //SACAMOS LOS DATOS DE LA UBICACION DEOGRAFICA (CODIGOS)
+                var SacarCodigosUbicacionGeografica = ObjData.BuscaDatosUbicacionGeografica(
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    Convert.ToInt32(n.Ubicacion));
+                foreach (var nGeografia in SacarCodigosUbicacionGeografica) {
+                    CodigoPais = Convert.ToInt32(nGeografia.CodPais);
+                    CodigoZona = Convert.ToInt32(nGeografia.CodZona);
+                    CodigoProvincia = Convert.ToInt32(nGeografia.CodProvincia);
+                    CodigoMinicipio = Convert.ToInt32(nGeografia.CodMunicipio);
+                    CodigoSector = Convert.ToInt32(nGeografia.CodSector);
+                    CodigoUbicacion = Convert.ToInt32(nGeografia.CodUbicacion);
+                }
+                MostrarPais();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarPaisMantenimiento, CodigoPais.ToString());
+                MostrarZonas();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarZonaMantenimiento, CodigoZona.ToString());
+                MostrarProvincias();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarProvinciaMantenimiento, CodigoProvincia.ToString());
+                MostrarMunicipios();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarMunicipioMantenimiento, CodigoMinicipio.ToString());
+                MostrarSector();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarSectorMantenimiento, CodigoSector.ToString());
+                MostrarBarrio();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarUbicacionMantenimiento, CodigoUbicacion.ToString());
+
+
+
+
                 //SACAMOS BANCO Y OFICINA
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarOficinaIntermeiarioMantenimiento, n.Oficina.ToString());
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarBancoIntermediarioMantenimeitto, n.Banco.ToString());
@@ -580,6 +617,46 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         rbCuentaAhorroMantenimiento.Checked = true;
                         break;
                 }
+
+                //SACAMOS EL TIPO DE OCBRO
+                string TipoCobro = n.PagoComPor;
+                switch (TipoCobro) {
+                    case "CK":                      
+                        rbCobroEfectivoMantenimiento.Checked = false;
+                        rbCobroTransferenciaMantenimiento.Checked = false;
+                        rbCobroCuentasPorPagarMantenimiento.Checked = false;
+                        rbCobroChequesMantenimiento.Checked = true;
+                        break;
+
+                    case "EF":
+                        rbCobroTransferenciaMantenimiento.Checked = false;
+                        rbCobroCuentasPorPagarMantenimiento.Checked = false;
+                        rbCobroChequesMantenimiento.Checked = false;
+                        rbCobroEfectivoMantenimiento.Checked = true;
+                        break;
+
+                    case "DP":
+                        rbCobroCuentasPorPagarMantenimiento.Checked = false;
+                        rbCobroChequesMantenimiento.Checked = false;
+                        rbCobroEfectivoMantenimiento.Checked = false;
+                        rbCobroTransferenciaMantenimiento.Checked = true;
+                        break;
+
+                    case "CXP":    
+                        rbCobroChequesMantenimiento.Checked = false;
+                        rbCobroEfectivoMantenimiento.Checked = false;
+                        rbCobroTransferenciaMantenimiento.Checked = false;
+                        rbCobroCuentasPorPagarMantenimiento.Checked = true;
+                        break;
+                }
+
+                //SACAMOS LOS DATOS DE LA COMUNICACION
+                txtTelefono1Mantenimiento.Text = n.Telefono;
+                txtTelefono2Mantenimiento.Text = n.TelefonoOficina;
+                txtTelefono3Mantenimiento.Text = n.Beeper;
+                txtCelularMantenimiento.Text = n.Celular;
+                txtFaxMantenimiento.Text = n.Fax;
+                txtEnailMantenimiento.Text = n.Email;
             }
         }
 

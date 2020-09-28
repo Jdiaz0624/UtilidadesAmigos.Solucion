@@ -302,7 +302,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                                Celular=n.Celular,
                                Beeper=n.Beeper,
                                Fax=n.Fax,
-                               //Beeper=n.Beeper,
+                               Email=n.Email,
                                LicenciaSeguro=n.LicenciaSeguro,
                                CodigoAnterior=n.CodigoAnterior,
                                Apellido=n.Apellido,

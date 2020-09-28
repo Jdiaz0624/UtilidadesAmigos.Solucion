@@ -1071,6 +1071,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, idSucursal, idOficina, idDepartamento, idPerfil, usuario, clave, persona, estatus, llevaEmail, email, contador, cambiaClave, razonBloqueo, idTipoPersona, permisoImpresionMarbete, accion);
 			return ((ISingleResult<SP_MANTENIMIENTO_USUARIOSResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_DATOS_UBICACION_GEOGRAFICA")]
+		public ISingleResult<SP_SACAR_DATOS_UBICACION_GEOGRAFICAResult> SP_SACAR_DATOS_UBICACION_GEOGRAFICA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoPais", DbType="Int")] System.Nullable<int> codigoPais, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoZona", DbType="Int")] System.Nullable<int> codigoZona, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoProvincia", DbType="Int")] System.Nullable<int> codigoProvincia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoMunicipio", DbType="Int")] System.Nullable<int> codigoMunicipio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSector", DbType="Int")] System.Nullable<int> codigoSector, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoUbicacion", DbType="Int")] System.Nullable<int> codigoUbicacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoPais, codigoZona, codigoProvincia, codigoMunicipio, codigoSector, codigoUbicacion);
+			return ((ISingleResult<SP_SACAR_DATOS_UBICACION_GEOGRAFICAResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_LISTA_CARGAR_RAMOSResult
@@ -29366,6 +29373,230 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._PermisoImpresionMarbete != value))
 				{
 					this._PermisoImpresionMarbete = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_DATOS_UBICACION_GEOGRAFICAResult
+	{
+		
+		private int _CodPais;
+		
+		private string _Pais;
+		
+		private int _CodZona;
+		
+		private string _Zona;
+		
+		private int _CodProvincia;
+		
+		private string _Provincia;
+		
+		private int _CodMunicipio;
+		
+		private string _Municipio;
+		
+		private int _CodSector;
+		
+		private string _Sector;
+		
+		private int _CodUbicacion;
+		
+		private string _Ubicacion;
+		
+		public SP_SACAR_DATOS_UBICACION_GEOGRAFICAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodPais", DbType="Int NOT NULL")]
+		public int CodPais
+		{
+			get
+			{
+				return this._CodPais;
+			}
+			set
+			{
+				if ((this._CodPais != value))
+				{
+					this._CodPais = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pais", DbType="VarChar(255)")]
+		public string Pais
+		{
+			get
+			{
+				return this._Pais;
+			}
+			set
+			{
+				if ((this._Pais != value))
+				{
+					this._Pais = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodZona", DbType="Int NOT NULL")]
+		public int CodZona
+		{
+			get
+			{
+				return this._CodZona;
+			}
+			set
+			{
+				if ((this._CodZona != value))
+				{
+					this._CodZona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Zona", DbType="VarChar(255)")]
+		public string Zona
+		{
+			get
+			{
+				return this._Zona;
+			}
+			set
+			{
+				if ((this._Zona != value))
+				{
+					this._Zona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodProvincia", DbType="Int NOT NULL")]
+		public int CodProvincia
+		{
+			get
+			{
+				return this._CodProvincia;
+			}
+			set
+			{
+				if ((this._CodProvincia != value))
+				{
+					this._CodProvincia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="VarChar(255)")]
+		public string Provincia
+		{
+			get
+			{
+				return this._Provincia;
+			}
+			set
+			{
+				if ((this._Provincia != value))
+				{
+					this._Provincia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodMunicipio", DbType="Int NOT NULL")]
+		public int CodMunicipio
+		{
+			get
+			{
+				return this._CodMunicipio;
+			}
+			set
+			{
+				if ((this._CodMunicipio != value))
+				{
+					this._CodMunicipio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Municipio", DbType="VarChar(255)")]
+		public string Municipio
+		{
+			get
+			{
+				return this._Municipio;
+			}
+			set
+			{
+				if ((this._Municipio != value))
+				{
+					this._Municipio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodSector", DbType="Int NOT NULL")]
+		public int CodSector
+		{
+			get
+			{
+				return this._CodSector;
+			}
+			set
+			{
+				if ((this._CodSector != value))
+				{
+					this._CodSector = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sector", DbType="VarChar(255)")]
+		public string Sector
+		{
+			get
+			{
+				return this._Sector;
+			}
+			set
+			{
+				if ((this._Sector != value))
+				{
+					this._Sector = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodUbicacion", DbType="Int NOT NULL")]
+		public int CodUbicacion
+		{
+			get
+			{
+				return this._CodUbicacion;
+			}
+			set
+			{
+				if ((this._CodUbicacion != value))
+				{
+					this._CodUbicacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ubicacion", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string Ubicacion
+		{
+			get
+			{
+				return this._Ubicacion;
+			}
+			set
+			{
+				if ((this._Ubicacion != value))
+				{
+					this._Ubicacion = value;
 				}
 			}
 		}

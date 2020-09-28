@@ -3327,5 +3327,29 @@ namespace UtilidadesAmigos.Logica.Logica
             return Listado;
         }
         #endregion
+
+        #region BUSCAR DATOS PARA LA UBICACION GEOGRAFICA
+        public List<UtilidadesAmigos.Logica.Entidades.EDatosUbicacionGeografica> BuscaDatosUbicacionGeografica(int? CodigoPais = null, int? CodigoZona = null, int? CodigoProvincia = null, int? CodigoMunicipio = null, int? CodigoSector = null, int? CodigoUbicacion = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_SACAR_DATOS_UBICACION_GEOGRAFICA(CodigoPais, CodigoZona, CodigoProvincia, CodigoMunicipio, CodigoSector, CodigoUbicacion)
+                           select new UtilidadesAmigos.Logica.Entidades.EDatosUbicacionGeografica
+                           {
+                               CodPais=n.CodPais,
+                               Pais=n.Pais,
+                               CodZona=n.CodZona,
+                               Zona=n.Zona,
+                               CodProvincia=n.CodProvincia,
+                               Provincia=n.Provincia,
+                               CodMunicipio=n.CodMunicipio,
+                               Municipio=n.Municipio,
+                               CodSector=n.CodSector,
+                               Sector=n.Sector,
+                               CodUbicacion=n.CodUbicacion,
+                               Ubicacion=n.Ubicacion
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }

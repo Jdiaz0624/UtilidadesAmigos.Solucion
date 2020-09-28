@@ -155,6 +155,7 @@
     <Compile Include="Entidades\EComisionesSupervisores.cs" />
     <Compile Include="Entidades\ECondicionReclamacion.cs" />
     <Compile Include="Entidades\EContarRegistros.cs" />
+    <Compile Include="Entidades\EDatosUbicacionGeografica.cs" />
     <Compile Include="Entidades\EDependientes.cs" />
     <Compile Include="Entidades\EDependientesDetalle.cs" />
     <Compile Include="Entidades\EDetalleCobrado.cs" />
