@@ -22,7 +22,13 @@
     </style>
 
     <script type="text/javascript">
-     
+
+        function BloquearComision() {
+            $("#btnComisiones").attr("disabled", "disabled");
+        }
+        function DesbloquearComision() {
+            $("#btnComisiones").removeAttr("disabled", "true");
+        }
         $(document).ready(function () {
             //Evento deo boton Guardar
             $("#<%=btnGuardar.ClientID%>").click(function () {
@@ -176,7 +182,7 @@
                         </div>
                          <div class="form-group col-md-3">
                             <asp:Label ID="lbNumeroIdentificacionMantenimiento" runat="server" Visible="false" Text="Numero de identificación" CssClass="Letranegrita"></asp:Label>
-                            <asp:TextBox ID="txtNumeroIdentificacionMantenimiento" runat="server" Visible="false" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtNumeroIdentificacionMantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" TextMode="Number" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="form-group col-md-6">
                             <asp:Label ID="lbApellidoIntermediarioMantenimiento" runat="server" Visible="false" Text="Apellido" CssClass="Letranegrita"></asp:Label>
@@ -184,15 +190,15 @@
                         </div>
                         <div class="form-group col-md-6">
                             <asp:Label ID="lbNombreIntermediarioMantenimiento" runat="server" Visible="false" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                            <asp:TextBox ID="txtNombreIntermediarioMantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                            <asp:TextBox ID="txtNombreIntermediarioMantenimiento" runat="server"  AutoCompleteType="Disabled" Visible="false" CssClass="form-control" MaxLength="100"></asp:TextBox>
                         </div>
                         <div class="form-group col-md-12">
                             <asp:Label ID="lbDireccionIntermediarioMantenimiento" runat="server" Visible="false" Text="Dirección" CssClass="Letranegrita"></asp:Label>
-                            <asp:TextBox ID="txtDireccionntermediarioMantenimiento" runat="server" Visible="false" CssClass="form-control" MaxLength="250"></asp:TextBox>
+                            <asp:TextBox ID="txtDireccionntermediarioMantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" CssClass="form-control" MaxLength="250"></asp:TextBox>
                         </div>
                         <div class="form-group col-md-12">
                             <asp:Label ID="lbContactoIntermediarioMantenimiento" runat="server" Visible="false" Text="Contacto Intermediario" CssClass="Letranegrita"></asp:Label>
-                            <asp:TextBox ID="txtContactoIntermediarioMantenimiento" runat="server" Visible="false" MaxLength="100" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtContactoIntermediarioMantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" MaxLength="100" CssClass="form-control"></asp:TextBox>
                         </div>
                         <!--UBICACION DE INTERMEDIARIOS-->
                         <div class="form-group col-md-4">
@@ -222,11 +228,11 @@
 
                         <div class="form-group col-md-3">
                             <asp:Label ID="lbCodigoSupervisorMantenimiento" runat="server" Visible="false" Text="Codigo de Supervisor" CssClass="Letranegrita"></asp:Label>
-                            <asp:TextBox ID="txtCodigoSupervisor" runat="server" Visible="false" OnTextChanged="txtCodigoSupervisor_TextChanged" AutoPostBack="true" TextMode="Number" MaxLength="4" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtCodigoSupervisor" runat="server" Visible="false" AutoCompleteType="Disabled" OnTextChanged="txtCodigoSupervisor_TextChanged" AutoPostBack="true" TextMode="Number" MaxLength="4" CssClass="form-control"></asp:TextBox>
                         </div>
                          <div class="form-group col-md-9">
                             <asp:Label ID="lbNombreSupervisor" runat="server" Text="Nombre de Supervisor" Visible="false" CssClass="Letranegrita"></asp:Label>
-                            <asp:TextBox ID="txtNombreSupervisor" runat="server" Enabled="false" Visible="false" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtNombreSupervisor" runat="server" AutoCompleteType="Disabled" Enabled="false" Visible="false" CssClass="form-control"></asp:TextBox>
                         </div>
 
                         <div class="form-group col-md-6">
@@ -241,7 +247,7 @@
 
                         <div class="form-group col-md-6">
                             <asp:Label ID="lbCuentaBancoMantenimiento" runat="server" Visible="false" Text="Numero de Cuenta" CssClass="Letranegrita"></asp:Label>
-                            <asp:TextBox ID="txtNumeroCuentaBancoMantenimiento" runat="server" Visible="false"  CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtNumeroCuentaBancoMantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false"  CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="form-group col-md-6">
                             <asp:Label ID="lbSeleccionarCanalDistribucionMantenimiento" runat="server" Visible="false" Text="Seleccionar canal de distribución" CssClass="Letranegrita"></asp:Label>
@@ -270,28 +276,28 @@
       <div class="form-row">
           <div class="form-group col-md-4">
              <asp:Label ID="lbTelefono1Mantenimiento" runat="server" Visible="false" Text="Telefono 1" CssClass="Letranegrita"></asp:Label>
-              <asp:TextBox ID="txtTelefono1Mantenimiento" runat="server" Visible="false" CssClass="form-control"></asp:TextBox>
+              <asp:TextBox ID="txtTelefono1Mantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" CssClass="form-control"></asp:TextBox>
           </div>
 
            <div class="form-group col-md-4">
              <asp:Label ID="lbTelefono2Mantenimiento" runat="server" Visible="false" Text="Telefono 2" CssClass="Letranegrita"></asp:Label>
-              <asp:TextBox ID="txtTelefono2Mantenimiento" runat="server" Visible="false" CssClass="form-control"></asp:TextBox>
+              <asp:TextBox ID="txtTelefono2Mantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" CssClass="form-control"></asp:TextBox>
           </div>
           <div class="form-group col-md-4">
              <asp:Label ID="lbTelefono3Mantenimiento" runat="server" Visible="false" Text="Telefono 3" CssClass="Letranegrita"></asp:Label>
-              <asp:TextBox ID="txtTelefono3Mantenimiento" runat="server" Visible="false" CssClass="form-control"></asp:TextBox>
+              <asp:TextBox ID="txtTelefono3Mantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" CssClass="form-control"></asp:TextBox>
           </div>
               <div class="form-group col-md-4">
              <asp:Label ID="lbCelularMantenimiento" runat="server" Visible="false" Text="Celular" CssClass="Letranegrita"></asp:Label>
-              <asp:TextBox ID="txtCelularMantenimiento" runat="server" Visible="false" CssClass="form-control"></asp:TextBox>
+              <asp:TextBox ID="txtCelularMantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" CssClass="form-control"></asp:TextBox>
           </div>
               <div class="form-group col-md-4">
              <asp:Label ID="lbFaxMantenimiento" runat="server" Visible="false" Text="Fax" CssClass="Letranegrita"></asp:Label>
-              <asp:TextBox ID="txtFaxMantenimiento" runat="server" Visible="false" CssClass="form-control"></asp:TextBox>
+              <asp:TextBox ID="txtFaxMantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" CssClass="form-control"></asp:TextBox>
           </div>
               <div class="form-group col-md-4">
              <asp:Label ID="lbEmailMantenimiento" runat="server" Visible="false" Text="Email" CssClass="Letranegrita"></asp:Label>
-              <asp:TextBox ID="txtEnailMantenimiento" runat="server" Visible="false" TextMode="Email" CssClass="form-control"></asp:TextBox>
+              <asp:TextBox ID="txtEnailMantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" TextMode="Email" CssClass="form-control"></asp:TextBox>
           </div>
       </div>
         <div align="center">
@@ -309,7 +315,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
         <div class="jumbotron" align="center">
-            <asp:Label ID="Label1" runat="server" Text="Mantenimiento de Comisiones de Intermediarios"></asp:Label>
+            <asp:Label ID="lbNombreIntermediarioComisionesTitulo" runat="server" Text="Mantenimiento de Comisiones de Intermediarios"></asp:Label>
         </div>
         <!--CONTROLES-->
     <div class="container-fluid">
@@ -318,7 +324,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <asp:Label ID="lbSeleccionarRamoComisionesConsulta" runat="server" Text="Seleccionar Ramo" CssClass="Letranegrita"></asp:Label>
-                        <asp:DropDownList ID="ddlSeleccionarRamoComisionesConsulta" runat="server" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlSeleccionarRamoComisionesConsulta" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarRamoComisionesConsulta_SelectedIndexChanged" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
                     </div>
                     <div class="form-group col-md-4">
                         <asp:Label ID="lbSeleccionarSubRamoComisionesConsulta" runat="server" Text="Seleccionar Sub Ramo" CssClass="Letranegrita"></asp:Label>
@@ -354,10 +360,26 @@
                 <!--CONTROLES PARA REALIZAR EL MANTENIMIENTO-->
                <div class="form-row">
                    <div class="form-group col-md-6">
-                       <asp:Label ID="lbRamoComsionesMantenimiento" runat="server" Text="Ramo" CssClass="Letranegrita"></asp:Label>
-                       <asp:TextBox ID="txtRamoComisionesMantenimiento" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                       <asp:Label ID="lbRamoComsionesMantenimiento" Visible="false" runat="server" Text="Ramo" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtRamoComisionesMantenimiento" Visible="false" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-6">
+                       <asp:Label ID="lbSubRamoComisionesMantenimiento" Visible="false" runat="server" Text="Sub Ramo" CssClass="Letranegrita"></asp:Label>
+                           
+                       <asp:TextBox ID="txtSubRamoComisionesMAntenimiento" Visible="false" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-6">
+                       <asp:Label ID="lbPorcientoComisionesComisionesMantenimiento" Visible="false" runat="server" Text="% de Comisión" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtPorcientoCOmisionesComisionesMantenimiento" Visible="false" runat="server" CssClass="form-control" TextMode="Number" step="0.01"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-6">
+                       <asp:Label ID="lbClaveSeguridadComisionesMAntenimiento"  Visible="false" runat="server" Text="Clave de Seguridad" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtClaveSeguridadComisionesMAntenimiento" Visible="false" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Password"></asp:TextBox>
                    </div>
                </div>
+                  <div align="center">
+                    <asp:Button ID="btnGuardarComisionesIntermediarios" Visible="false" runat="server" Text="Guardar" ToolTip="Guardar" OnClick="btnGuardarComisionesIntermediarios_Click" CssClass="btn btn-outline-primary btn-sm"/>
+                </div>
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>

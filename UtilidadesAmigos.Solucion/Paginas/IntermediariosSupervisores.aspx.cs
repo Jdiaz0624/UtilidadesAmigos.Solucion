@@ -323,9 +323,42 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
+        #region MOSTRAR Y OCOLTAR CONTROLES EN LAS COMISIONES
+        private void MostrarControlesCmisiones() {
+            lbRamoComsionesMantenimiento.Visible = true;
+            txtRamoComisionesMantenimiento.Visible = true;
+            lbSubRamoComisionesMantenimiento.Visible = true;
+            txtSubRamoComisionesMAntenimiento.Visible = true;
+            lbPorcientoComisionesComisionesMantenimiento.Visible = true;
+            txtPorcientoCOmisionesComisionesMantenimiento.Visible = true;
+            lbClaveSeguridadComisionesMAntenimiento.Visible = true;
+            txtClaveSeguridadComisionesMAntenimiento.Visible = true;
+            btnGuardarComisionesIntermediarios.Visible = true;
+        }
+        private void OcultarControlesComisiones() {
+            lbRamoComsionesMantenimiento.Visible = false;
+            txtRamoComisionesMantenimiento.Visible = false;
+            lbSubRamoComisionesMantenimiento.Visible = false;
+            txtSubRamoComisionesMAntenimiento.Visible = false;
+            lbPorcientoComisionesComisionesMantenimiento.Visible = false;
+            txtPorcientoCOmisionesComisionesMantenimiento.Visible = false;
+            lbClaveSeguridadComisionesMAntenimiento.Visible = false;
+            txtClaveSeguridadComisionesMAntenimiento.Visible = false;
+            btnGuardarComisionesIntermediarios.Visible = false;
+        }
+        #endregion
+        #region MOSTRAR LOS RAMOS Y LOS SUB RAMOS
+        private void CargarRamos() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamoComisionesConsulta, ObjData.BuscaListas("RAMO", null, null), true);
+        }
+        private void CargarSubramos() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSubRamoComisionesConsulta, ObjData.BuscaListas("SUBRAMO", ddlSeleccionarRamoComisionesConsulta.SelectedValue, null), true);
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
+                ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
                 rbRetensionNOMantenimiento.Checked = true;
                 rbEstatusMantenimiento.Checked = true;
                 rbIntermediarioNoDirecto.Checked = true;
@@ -343,12 +376,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnCOnsultarRegistros_Click(object sender, EventArgs e)
         {
             CargarListadoIntermediarios();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 
         protected void gvIntermediarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvIntermediarios.PageIndex = e.NewPageIndex;
             CargarListadoIntermediarios();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 
         protected void gvIntermediarios_SelectedIndexChanged(object sender, EventArgs e)
@@ -365,6 +400,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
             gvIntermediarios.DataSource = BuscarRegistro;
             gvIntermediarios.DataBind();
             lbCantidadRegistrosVariable.Text = "1";
+            CargarRamos();
+            CargarSubramos();
+
+            foreach (var n in BuscarRegistro) {
+                lbNombreIntermediarioComisionesTitulo.Text = "COMISIONES DE " + n.NombreVendedor.ToUpper();
+            }
+            ClientScript.RegisterStartupScript(GetType(), "DesbloquearComision()", "DesbloquearComision();", true);
         }
 
         protected void txtCodigoSupervisor_TextChanged(object sender, EventArgs e)
@@ -372,6 +414,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()))
             {
                 txtNombreSupervisor.Text = string.Empty;
+                ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
             }
             else {
                 var BuscarDataSupervisor = ObjData.BuscaInformacionSUperisor(
@@ -385,6 +428,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         txtNombreSupervisor.Text = n.Nombre;
                     }
                 }
+                ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
             }
         }
 
@@ -394,6 +438,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             MostrarMunicipios();
             MostrarSector();
             MostrarBarrio();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 
         protected void ddlSeleccionarProvinciaMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
@@ -401,34 +446,39 @@ namespace UtilidadesAmigos.Solucion.Paginas
             MostrarMunicipios();
             MostrarSector();
             MostrarBarrio();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 
         protected void ddlSeleccionarMunicipioMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
         {
             MostrarSector();
             MostrarBarrio();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 
         protected void ddlSeleccionarSectorMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
         {
             MostrarBarrio();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
           //  OcultarControles();
             LimpiarControles();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
             MostrarControles();
-            
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
+
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
@@ -658,26 +708,39 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtFaxMantenimiento.Text = n.Fax;
                 txtEnailMantenimiento.Text = n.Email;
             }
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 
         protected void btnRestabelcerPantalla_Click(object sender, EventArgs e)
         {
             LimpiarControles();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 
         protected void btnConsultarComisiobesIntermediario_Click(object sender, EventArgs e)
         {
-
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 
         protected void gvListadoComisionesIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            ClientScript.RegisterStartupScript(GetType(), "DesbloquearComision()", "DesbloquearComision();", true);
         }
 
         protected void gvListadoComisionesIntermediario_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ClientScript.RegisterStartupScript(GetType(), "DesbloquearComision()", "DesbloquearComision();", true);
+        }
 
+        protected void btnGuardarComisionesIntermediarios_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
+        }
+
+        protected void ddlSeleccionarRamoComisionesConsulta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarSubramos();
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
     }
 }

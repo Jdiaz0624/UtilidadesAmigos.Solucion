@@ -841,13 +841,13 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.ScriptManager ScripManagerIntermediario;
         
         /// <summary>
-        /// Label1 control.
+        /// lbNombreIntermediarioComisionesTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbNombreIntermediarioComisionesTitulo;
         
         /// <summary>
         /// UpdatePanelComisionesIntermediario control.
@@ -929,5 +929,68 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRamoComisionesMantenimiento;
+        
+        /// <summary>
+        /// lbSubRamoComisionesMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSubRamoComisionesMantenimiento;
+        
+        /// <summary>
+        /// txtSubRamoComisionesMAntenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSubRamoComisionesMAntenimiento;
+        
+        /// <summary>
+        /// lbPorcientoComisionesComisionesMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPorcientoComisionesComisionesMantenimiento;
+        
+        /// <summary>
+        /// txtPorcientoCOmisionesComisionesMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPorcientoCOmisionesComisionesMantenimiento;
+        
+        /// <summary>
+        /// lbClaveSeguridadComisionesMAntenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbClaveSeguridadComisionesMAntenimiento;
+        
+        /// <summary>
+        /// txtClaveSeguridadComisionesMAntenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtClaveSeguridadComisionesMAntenimiento;
+        
+        /// <summary>
+        /// btnGuardarComisionesIntermediarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarComisionesIntermediarios;
     }
 }
