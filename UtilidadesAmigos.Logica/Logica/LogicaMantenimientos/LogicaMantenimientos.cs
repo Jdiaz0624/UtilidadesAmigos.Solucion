@@ -324,6 +324,63 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                            }).ToList();
             return Listado;
         }
+
+        //BUSCAR LAS COMISIONES DE LOS INTERMEDIARIOS
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EBuscarComisionesIntermediarios> BuscaComisionesIntermediario(int? CodigoIntermediario = null, int? Ramo = null, int? SubRamo = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCAR_COMISIONES_INTERMEDIARIO(CodigoIntermediario, Ramo, SubRamo)
+                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EBuscarComisionesIntermediarios
+                           {
+                               Codigo=n.Codigo,
+                               Intermediario=n.Intermediario,
+                               IdRamo=n.IdRamo,
+                               Ramo=n.Ramo,
+                               IdSubRamo=n.IdSubRamo,
+                               Subramo=n.Subramo,
+                               PorcientoComision=n.PorcientoComision
+                           }).ToList();
+            return Listado;
+        }
+
+        //MANTENIMIENTO DE COMISIONES DE INTERMEDIARIO
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.MantenimientoComisionesIntermediarios MantenimientoComisionesIntermediario(UtilidadesAmigos.Logica.Entidades.Mantenimientos.MantenimientoComisionesIntermediarios Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.MantenimientoComisionesIntermediarios Mantenimiento = null;
+
+            var ComisionesIntermediarios = Objdata.SP_MANTENIMIENTO_PORCIENTO_COMISION_INTERMEDIARIO_SELECCIONADO(
+                Item.Compania,
+                Item.Codigo,
+                Item.Ramo,
+                Item.SubRamo,
+                Item.PorcientoComision,
+                Item.PorcientoGastos,
+                Item.PorcientoNivel1,
+                Item.PorcientoNivel2,
+                Item.Record_Id,
+                Item.Usuario,
+                Accion);
+            if (ComisionesIntermediarios != null) {
+                Mantenimiento = (from n in ComisionesIntermediarios
+                                 select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.MantenimientoComisionesIntermediarios
+                                 {
+                                     Compania=n.Compania,
+                                     Codigo=n.Codigo,
+                                     Ramo=n.Ramo,
+                                     SubRamo=n.SubRamo,
+                                     PorcientoComision=n.PorcientoComision,
+                                     PorcientoGastos=n.PorcientoGastos,
+                                     PorcientoNivel1=n.PorcientoNivel1,
+                                     PorcientoNivel2=n.PorcientoNivel2,
+                                     Record_Id=n.Record_Id,
+                                     Usuario=n.Usuario
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+
+        }
         #endregion
+
     }
 }

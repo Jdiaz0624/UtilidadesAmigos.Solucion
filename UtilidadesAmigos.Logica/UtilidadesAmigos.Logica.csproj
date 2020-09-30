@@ -105,6 +105,7 @@
     <Compile Include="Comunes\GuardarRegistrosReporteIntermediario.cs" />
     <Compile Include="Comunes\Mail.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosComisionesSupervisores.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionImpresionMarbetes.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionPorcientoComisionesPorDefecto.cs" />
@@ -227,10 +228,12 @@
     <Compile Include="Entidades\EUsuarios.cs" />
     <Compile Include="Entidades\EValidarPolizasCanceladasCoberturas.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscaListadoIntermediarios.cs" />
+    <Compile Include="Entidades\Mantenimientos\EBuscarComisionesIntermediarios.cs" />
     <Compile Include="Entidades\Mantenimientos\EComisionesPorDefecto.cs" />
     <Compile Include="Entidades\Mantenimientos\EDepartamentos.cs" />
     <Compile Include="Entidades\Mantenimientos\EEmpleado.cs" />
     <Compile Include="Entidades\Mantenimientos\EOficinas.cs" />
+    <Compile Include="Entidades\Mantenimientos\MantenimientoComisionesIntermediarios.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\ECorreosEnviar.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\EMantenimientoBackupDatabase.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\ERutaArchivoBakup.cs" />

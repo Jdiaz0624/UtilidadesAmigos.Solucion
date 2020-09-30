@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionMantenimientosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.26.24.199;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString12" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_BUSCA_OFICINAS" Method="SP_BUSCA_OFICINAS">
     <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(18,0)" />
     <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Decimal" DbType="Decimal(20,0)" />
@@ -228,6 +228,45 @@
       <Column Name="CodigoSupervisor1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCAR_COMISIONES_INTERMEDIARIO" Method="SP_BUSCAR_COMISIONES_INTERMEDIARIO">
+    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCAR_COMISIONES_INTERMEDIARIOResult">
+      <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="IdRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IdSubRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Subramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PorcientoComision" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MANTENIMIENTO_PORCIENTO_COMISION_INTERMEDIARIO_SELECCIONADO" Method="SP_MANTENIMIENTO_PORCIENTO_COMISION_INTERMEDIARIO_SELECCIONADO">
+    <Parameter Name="Compania" Parameter="compania" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="Codigo" Parameter="codigo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PorcientoComision" Parameter="porcientoComision" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="PorcientoGastos" Parameter="porcientoGastos" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="PorcientoNivel1" Parameter="porcientoNivel1" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="PorcientoNivel2" Parameter="porcientoNivel2" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Record_Id" Parameter="record_Id" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_MANTENIMIENTO_PORCIENTO_COMISION_INTERMEDIARIO_SELECCIONADOResult">
+      <Column Name="Compania" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Codigo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PorcientoComision" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="PorcientoGastos" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="PorcientoNivel1" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="PorcientoNivel2" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Record_Id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

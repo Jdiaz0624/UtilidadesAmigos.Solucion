@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionMantenimientosDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString1, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString12, mappingSource)
 		{
 			OnCreated();
 		}
@@ -123,6 +123,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoIntermediario, nombreIntermediario, codigoSupervisor, nombreSupervisor, oficin);
 			return ((ISingleResult<SP_BUSCA_LISTADO_INTERMEDIARIOSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_COMISIONES_INTERMEDIARIO")]
+		public ISingleResult<SP_BUSCAR_COMISIONES_INTERMEDIARIOResult> SP_BUSCAR_COMISIONES_INTERMEDIARIO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubRamo", DbType="Int")] System.Nullable<int> subRamo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoIntermediario, ramo, subRamo);
+			return ((ISingleResult<SP_BUSCAR_COMISIONES_INTERMEDIARIOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MANTENIMIENTO_PORCIENTO_COMISION_INTERMEDIARIO_SELECCIONADO")]
+		public ISingleResult<SP_MANTENIMIENTO_PORCIENTO_COMISION_INTERMEDIARIO_SELECCIONADOResult> SP_MANTENIMIENTO_PORCIENTO_COMISION_INTERMEDIARIO_SELECCIONADO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Compania", DbType="TinyInt")] System.Nullable<byte> compania, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Codigo", DbType="Int")] System.Nullable<int> codigo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubRamo", DbType="Int")] System.Nullable<int> subRamo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PorcientoComision", DbType="Decimal(20,2)")] System.Nullable<decimal> porcientoComision, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PorcientoGastos", DbType="Decimal(20,2)")] System.Nullable<decimal> porcientoGastos, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PorcientoNivel1", DbType="Decimal(20,2)")] System.Nullable<decimal> porcientoNivel1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PorcientoNivel2", DbType="Decimal(20,2)")] System.Nullable<decimal> porcientoNivel2, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Record_Id", DbType="UniqueIdentifier")] System.Nullable<System.Guid> record_Id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(50)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), compania, codigo, ramo, subRamo, porcientoComision, porcientoGastos, porcientoNivel1, porcientoNivel2, record_Id, usuario, accion);
+			return ((ISingleResult<SP_MANTENIMIENTO_PORCIENTO_COMISION_INTERMEDIARIO_SELECCIONADOResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2857,6 +2871,328 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadRegistros != value))
 				{
 					this._CantidadRegistros = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCAR_COMISIONES_INTERMEDIARIOResult
+	{
+		
+		private int _Codigo;
+		
+		private string _Intermediario;
+		
+		private int _IdRamo;
+		
+		private string _Ramo;
+		
+		private int _IdSubRamo;
+		
+		private string _Subramo;
+		
+		private System.Nullable<decimal> _PorcientoComision;
+		
+		public SP_BUSCAR_COMISIONES_INTERMEDIARIOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", DbType="Int NOT NULL")]
+		public int Codigo
+		{
+			get
+			{
+				return this._Codigo;
+			}
+			set
+			{
+				if ((this._Codigo != value))
+				{
+					this._Codigo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Intermediario", DbType="VarChar(200)")]
+		public string Intermediario
+		{
+			get
+			{
+				return this._Intermediario;
+			}
+			set
+			{
+				if ((this._Intermediario != value))
+				{
+					this._Intermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRamo", DbType="Int NOT NULL")]
+		public int IdRamo
+		{
+			get
+			{
+				return this._IdRamo;
+			}
+			set
+			{
+				if ((this._IdRamo != value))
+				{
+					this._IdRamo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ramo", DbType="NVarChar(50)")]
+		public string Ramo
+		{
+			get
+			{
+				return this._Ramo;
+			}
+			set
+			{
+				if ((this._Ramo != value))
+				{
+					this._Ramo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdSubRamo", DbType="Int NOT NULL")]
+		public int IdSubRamo
+		{
+			get
+			{
+				return this._IdSubRamo;
+			}
+			set
+			{
+				if ((this._IdSubRamo != value))
+				{
+					this._IdSubRamo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Subramo", DbType="NVarChar(50)")]
+		public string Subramo
+		{
+			get
+			{
+				return this._Subramo;
+			}
+			set
+			{
+				if ((this._Subramo != value))
+				{
+					this._Subramo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcientoComision", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> PorcientoComision
+		{
+			get
+			{
+				return this._PorcientoComision;
+			}
+			set
+			{
+				if ((this._PorcientoComision != value))
+				{
+					this._PorcientoComision = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MANTENIMIENTO_PORCIENTO_COMISION_INTERMEDIARIO_SELECCIONADOResult
+	{
+		
+		private System.Nullable<byte> _Compania;
+		
+		private System.Nullable<int> _Codigo;
+		
+		private System.Nullable<int> _Ramo;
+		
+		private System.Nullable<int> _SubRamo;
+		
+		private System.Nullable<decimal> _PorcientoComision;
+		
+		private System.Nullable<decimal> _PorcientoGastos;
+		
+		private System.Nullable<decimal> _PorcientoNivel1;
+		
+		private System.Nullable<decimal> _PorcientoNivel2;
+		
+		private System.Nullable<System.Guid> _Record_Id;
+		
+		private string _Usuario;
+		
+		public SP_MANTENIMIENTO_PORCIENTO_COMISION_INTERMEDIARIO_SELECCIONADOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Compania", DbType="TinyInt")]
+		public System.Nullable<byte> Compania
+		{
+			get
+			{
+				return this._Compania;
+			}
+			set
+			{
+				if ((this._Compania != value))
+				{
+					this._Compania = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", DbType="Int")]
+		public System.Nullable<int> Codigo
+		{
+			get
+			{
+				return this._Codigo;
+			}
+			set
+			{
+				if ((this._Codigo != value))
+				{
+					this._Codigo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ramo", DbType="Int")]
+		public System.Nullable<int> Ramo
+		{
+			get
+			{
+				return this._Ramo;
+			}
+			set
+			{
+				if ((this._Ramo != value))
+				{
+					this._Ramo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubRamo", DbType="Int")]
+		public System.Nullable<int> SubRamo
+		{
+			get
+			{
+				return this._SubRamo;
+			}
+			set
+			{
+				if ((this._SubRamo != value))
+				{
+					this._SubRamo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcientoComision", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> PorcientoComision
+		{
+			get
+			{
+				return this._PorcientoComision;
+			}
+			set
+			{
+				if ((this._PorcientoComision != value))
+				{
+					this._PorcientoComision = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcientoGastos", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> PorcientoGastos
+		{
+			get
+			{
+				return this._PorcientoGastos;
+			}
+			set
+			{
+				if ((this._PorcientoGastos != value))
+				{
+					this._PorcientoGastos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcientoNivel1", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> PorcientoNivel1
+		{
+			get
+			{
+				return this._PorcientoNivel1;
+			}
+			set
+			{
+				if ((this._PorcientoNivel1 != value))
+				{
+					this._PorcientoNivel1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcientoNivel2", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> PorcientoNivel2
+		{
+			get
+			{
+				return this._PorcientoNivel2;
+			}
+			set
+			{
+				if ((this._PorcientoNivel2 != value))
+				{
+					this._PorcientoNivel2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Record_Id", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> Record_Id
+		{
+			get
+			{
+				return this._Record_Id;
+			}
+			set
+			{
+				if ((this._Record_Id != value))
+				{
+					this._Record_Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(50)")]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this._Usuario = value;
 				}
 			}
 		}

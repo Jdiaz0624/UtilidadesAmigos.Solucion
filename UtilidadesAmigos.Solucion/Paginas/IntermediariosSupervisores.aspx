@@ -26,6 +26,10 @@
         function BloquearComision() {
             $("#btnComisiones").attr("disabled", "disabled");
         }
+
+        function ErrorgenerarprocesarComisiones() {
+            alert("Error al procesar las comisiones del intermediario seleccionado");
+        }
         function DesbloquearComision() {
             $("#btnComisiones").removeAttr("disabled", "true");
         }
@@ -175,7 +179,7 @@
                             <asp:Label ID="lbFechaNacimientoMantenimiento" runat="server" Visible="false" Text="Fecha de Nacimiento" CssClass="Letranegrita"></asp:Label>
                             <asp:TextBox ID="txtFechaMAcimientoMantenimiento" runat="server" TextMode="Date" Visible="false"  CssClass="form-control"></asp:TextBox>
                         </div>
-
+                        
                         <div class="form-group col-md-3">
                             <asp:Label ID="lbSeleccionarTipoIdentificacionMantenimiento" Visible="false" runat="server" Text="Seleccionr Tipo de Identificación" CssClass="Letranegrita"></asp:Label>
                             <asp:DropDownList ID="ddlSeleccionarTipoIdentificacionMantenimiento" Visible="false" runat="server" ToolTip="Seleccionar Tipo de Identificacion" CssClass="form-control"></asp:DropDownList>
@@ -341,9 +345,9 @@
                 <Columns>
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
                     <asp:CommandField ButtonType="Button" HeaderText="Seleccionar"  ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Seleccionar" ShowSelectButton="True" />
-                    <asp:BoundField DataField="#" HeaderText="Ramo" />
-                    <asp:BoundField DataField="#" HeaderText="Sub Ramo" />
-                    <asp:BoundField DataField="#" HeaderText="% de Comisión" />
+                    <asp:BoundField DataField="Ramo" HeaderText="Ramo" />
+                    <asp:BoundField DataField="Subramo" HeaderText="Sub Ramo" />
+                    <asp:BoundField DataField="PorcientoComision" HeaderText="% de Comisión" />
                 </Columns  >
                  <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />

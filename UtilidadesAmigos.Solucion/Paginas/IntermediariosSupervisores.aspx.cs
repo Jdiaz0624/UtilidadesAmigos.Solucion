@@ -355,6 +355,25 @@ namespace UtilidadesAmigos.Solucion.Paginas
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSubRamoComisionesConsulta, ObjData.BuscaListas("SUBRAMO", ddlSeleccionarRamoComisionesConsulta.SelectedValue, null), true);
         }
         #endregion
+        #region BUSCAR COMISIONES INTERMEDIARIOS
+        private void MostrarComisionesIntermediario(int CodigoVenbdedor) {
+
+            int? _Ramo = ddlSeleccionarRamoComisionesConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoComisionesConsulta.SelectedValue) : new Nullable<int>();
+            int? _Subramo = ddlSeleccionarSubRamoComisionesConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamoComisionesConsulta.SelectedValue) : new Nullable<int>();
+
+            var Listado = Objdatamantenimientos.BuscaComisionesIntermediario(
+                CodigoVenbdedor,
+                _Ramo,
+                _Subramo);
+            gvListadoComisionesIntermediario.DataSource = Listado;
+            gvListadoComisionesIntermediario.DataBind();
+        }
+        #endregion
+        #region MANTENIMIENTO DE COMISIONES DE INTERMEDIARIO
+        private void GenerarComisionesIntermediarios(string Accion) {
+            
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
@@ -719,6 +738,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultarComisiobesIntermediario_Click(object sender, EventArgs e)
         {
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
             ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 
@@ -734,6 +754,21 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnGuardarComisionesIntermediarios_Click(object sender, EventArgs e)
         {
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesIntermediarioSeleccionado Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesIntermediarioSeleccionado(
+                0
+                , Convert.ToInt32(lbCodigoSeleccionadoVariable.Text)
+                , Convert.ToInt32(Session["IdRamo"])
+                , Convert.ToInt32(Session["IdSubRamo"])
+                , Convert.ToDecimal(txtPorcientoCOmisionesComisionesMantenimiento.Text)
+                , 0
+                , 0
+                , 0
+                , Guid.NewGuid()
+                , ""
+                , "UPDATE");
+            Procesar.ProcesarInformacion();
+                
+                
             ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 
