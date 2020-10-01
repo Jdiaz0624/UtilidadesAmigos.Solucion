@@ -120,6 +120,7 @@
     <Compile Include="Comunes\VariablesGlobales.cs" />
     <Compile Include="Comunes\VariablesPowerBi.cs" />
     <Compile Include="Comunes\VozVeronica.cs" />
+    <Compile Include="Entidades\ComisionesIntermediarioDetalle.cs" />
     <Compile Include="Entidades\Cotizador\EAnoVehiculo.cs" />
     <Compile Include="Entidades\Cotizador\EComprensivoIncendioRobo.cs" />
     <Compile Include="Entidades\Cotizador\EServiciosFijos.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Entidades\ECarteraSupervisor.cs" />
     <Compile Include="Entidades\EClaveSeguridad.cs" />
     <Compile Include="Entidades\EComisionesSupervisores.cs" />
+    <Compile Include="Entidades\EComisionIntermediarioResumido.cs" />
     <Compile Include="Entidades\ECondicionReclamacion.cs" />
     <Compile Include="Entidades\EContarRegistros.cs" />
     <Compile Include="Entidades\EDatosUbicacionGeografica.cs" />
