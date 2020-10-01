@@ -33,6 +33,13 @@
         function DesbloquearComision() {
             $("#btnComisiones").removeAttr("disabled", "true");
         }
+
+        function PorcientoComisionVacio() {
+            $("#<%=txtPorcientoCOmisionesComisionesMantenimiento.ClientID%>").css("border-color", "red");
+        }
+        function ClaveSeguridadVacio() {
+            $("#<%=txtClaveSeguridadComisionesMAntenimiento.ClientID%>").css("border-color", "red");
+        }
         $(document).ready(function () {
             //Evento deo boton Guardar
             $("#<%=btnGuardar.ClientID%>").click(function () {
@@ -320,6 +327,8 @@
     <div class="modal-content">
         <div class="jumbotron" align="center">
             <asp:Label ID="lbNombreIntermediarioComisionesTitulo" runat="server" Text="Mantenimiento de Comisiones de Intermediarios"></asp:Label>
+            <asp:Label ID="lbCodigoRamoSeleccionadoComisionesMantenimiento" Visible="false" runat="server" Text="Ramo"></asp:Label>
+            <asp:Label ID="lbCodigoSubramoSeleccionaroComisionesMantenimiento" Visible="false" runat="server" Text="Sub Ramo"></asp:Label>
         </div>
         <!--CONTROLES-->
     <div class="container-fluid">
@@ -345,7 +354,9 @@
                 <Columns>
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
                     <asp:CommandField ButtonType="Button" HeaderText="Seleccionar"  ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Seleccionar" ShowSelectButton="True" />
+                    <asp:BoundField DataField="IdRamo" HeaderText="ID Ramo" />
                     <asp:BoundField DataField="Ramo" HeaderText="Ramo" />
+                    <asp:BoundField DataField="IdSubRamo" HeaderText="ID Subramo" />
                     <asp:BoundField DataField="Subramo" HeaderText="Sub Ramo" />
                     <asp:BoundField DataField="PorcientoComision" HeaderText="% de Comisión" />
                 </Columns  >

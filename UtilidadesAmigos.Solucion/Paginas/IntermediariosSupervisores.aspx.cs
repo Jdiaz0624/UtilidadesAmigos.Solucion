@@ -744,21 +744,56 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gvListadoComisionesIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            gvListadoComisionesIntermediario.PageIndex = e.NewPageIndex;
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
             ClientScript.RegisterStartupScript(GetType(), "DesbloquearComision()", "DesbloquearComision();", true);
         }
 
         protected void gvListadoComisionesIntermediario_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GridViewRow gbComisiones = gvListadoComisionesIntermediario.SelectedRow;
+            lbCodigoRamoSeleccionadoComisionesMantenimiento.Text = gbComisiones.Cells[1].Text;
+            lbCodigoSubramoSeleccionaroComisionesMantenimiento.Text = gbComisiones.Cells[3].Text;
+
+            MostrarControlesCmisiones();
+            var SacarInformacion = Objdatamantenimientos.BuscaComisionesIntermediario(
+                Convert.ToInt32(lbCodigoSeleccionadoVariable.Text),
+                Convert.ToInt32(lbCodigoRamoSeleccionadoComisionesMantenimiento.Text),
+                Convert.ToInt32(lbCodigoSubramoSeleccionaroComisionesMantenimiento.Text));
+            foreach (var n in SacarInformacion) {
+                txtRamoComisionesMantenimiento.Text = n.Ramo;
+                txtSubRamoComisionesMAntenimiento.Text = n.Subramo;
+                txtPorcientoCOmisionesComisionesMantenimiento.Text = n.PorcientoComision.ToString();
+            }
             ClientScript.RegisterStartupScript(GetType(), "DesbloquearComision()", "DesbloquearComision();", true);
         }
 
         protected void btnGuardarComisionesIntermediarios_Click(object sender, EventArgs e)
         {
-            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesIntermediarioSeleccionado Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesIntermediarioSeleccionado(
+            //VALIDAMOS EL CAMPO CLAVE DE SEGURIDAD
+            if (string.IsNullOrEmpty(txtPorcientoCOmisionesComisionesMantenimiento.Text.Trim()) || string.IsNullOrEmpty(txtClaveSeguridadComisionesMAntenimiento.Text.Trim())) {
+                if (string.IsNullOrEmpty(txtPorcientoCOmisionesComisionesMantenimiento.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "PorcientoComisionVacio()", "PorcientoComisionVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtClaveSeguridadComisionesMAntenimiento.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadVacio()", "ClaveSeguridadVacio();", true);
+                }
+            }
+            else {
+                string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridadComisionesMAntenimiento.Text.Trim()) ? null : txtClaveSeguridadComisionesMAntenimiento.Text.Trim();
+
+                var ValidarClaveSeguridad = ObjData.BuscaClaveSeguridad(
+                    new Nullable<decimal>(),
+                    UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(_ClaveSeguridad));
+                if (ValidarClaveSeguridad.Count() < 1) {
+                    ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadVacio()", "ClaveSeguridadVacio();", true);
+                }
+                else {
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesIntermediarioSeleccionado Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesIntermediarioSeleccionado(
                 0
                 , Convert.ToInt32(lbCodigoSeleccionadoVariable.Text)
-                , Convert.ToInt32(Session["IdRamo"])
-                , Convert.ToInt32(Session["IdSubRamo"])
+                , Convert.ToInt32(lbCodigoRamoSeleccionadoComisionesMantenimiento.Text)
+                , Convert.ToInt32(lbCodigoSubramoSeleccionaroComisionesMantenimiento.Text)
                 , Convert.ToDecimal(txtPorcientoCOmisionesComisionesMantenimiento.Text)
                 , 0
                 , 0
@@ -766,9 +801,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 , Guid.NewGuid()
                 , ""
                 , "UPDATE");
-            Procesar.ProcesarInformacion();
-                
-                
+                    Procesar.ProcesarInformacion();
+                    OcultarControlesComisiones();
+                    MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
+                }
+            }
+
+
             ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 

@@ -9,6 +9,8 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos
     public class ProcesarInformacionComisionesIntermediarioSeleccionado
     {
         readonly UtilidadesAmigos.Logica.Logica.LogicaMantenimientos.LogicaMantenimientos ObData = new Logica.LogicaMantenimientos.LogicaMantenimientos();
+        //Guid RegistroHuid = new Guid();
+
 
         private int Compania = 0;
         private int Codigo = 0;
@@ -18,7 +20,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos
         private decimal PorcientoGastos = 0;
         private decimal PorcientoNivel1 = 0;
         private decimal PorcientoNivel2 = 0;
-        private Guid Record_Id = Guid.Parse("");
+        private Guid Record_Id = Guid.NewGuid();
         private string Usuario = "";
         private string Accion = "";
 

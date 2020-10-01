@@ -522,6 +522,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                    // ImprimirMarbete(Convert.ToDecimal(lbIdusuario.Text), Server.MapPath("Marbete.rpt"), "sa", "Pa$$W0rd");
                 }
             }
+            LimpiarControles();
+            OcultarControles();
         }
 
         protected void btnRestablecer_Click(object sender, EventArgs e)

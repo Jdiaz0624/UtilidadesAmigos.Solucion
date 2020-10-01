@@ -850,6 +850,24 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Label lbNombreIntermediarioComisionesTitulo;
         
         /// <summary>
+        /// lbCodigoRamoSeleccionadoComisionesMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoRamoSeleccionadoComisionesMantenimiento;
+        
+        /// <summary>
+        /// lbCodigoSubramoSeleccionaroComisionesMantenimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoSubramoSeleccionaroComisionesMantenimiento;
+        
+        /// <summary>
         /// UpdatePanelComisionesIntermediario control.
         /// </summary>
         /// <remarks>
