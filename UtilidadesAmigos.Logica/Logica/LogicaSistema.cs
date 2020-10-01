@@ -1936,6 +1936,46 @@ namespace UtilidadesAmigos.Logica.Logica
                            }).ToList();
             return Listado;
         }
+
+        //SACAR LAS COMISIONES DE LOS INTERMEDIARIOS EN DETALLE
+        public List<UtilidadesAmigos.Logica.Entidades.ComisionesIntermediarioDetalle> ComisionIntermediarioDetalle(decimal? IdUsuario = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_GENERAR_REPORTE_COMISIONES_INTERMEDIARIO(IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.ComisionesIntermediarioDetalle
+                           {
+                               IdUsuario=n.IdUsuario,
+                               Supervisor=n.Supervisor,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               Oficina=n.Oficina,
+                               NumeroIdentificacion=n.NumeroIdentificacion,
+                               CuentaBanco=n.CuentaBanco,
+                               TipoCuenta=n.TipoCuenta,
+                               Banco=n.Banco,
+                               Cliente=n.Cliente,
+                               NumeroRecibo=n.NumeroRecibo,
+                               FechaRecibo=n.FechaRecibo,
+                               NumeroFactura=n.NumeroFactura,
+                               FechaFactura=n.FechaFactura,
+                               Moneda=n.Moneda,
+                               Poliza=n.Poliza,
+                               Producto=n.Producto,
+                               MontoBruto=n.MontoBruto,
+                               MontoNeto=n.MontoNeto,
+                               PorcientoComision=n.PorcientoComision,
+                               Comsiion=n.Comsiion,
+                               Retencion=n.Retencion,
+                               AvanceComision=n.AvanceComision,
+                               ALiquidar=n.ALiquidar,
+                               CantidadRegistros=n.CantidadRegistros,
+                               ValidadoDesde=n.ValidadoDesde,
+                               FechaDesde=n.FechaDesde,
+                               ValidadoHasta=n.ValidadoHasta,
+                               FechaHasta=n.FechaHasta
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
         #region REPORTE DE RENOVACION DE POLIZAS

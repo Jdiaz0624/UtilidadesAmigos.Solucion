@@ -146,12 +146,40 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                                    FechaDesde = n.FechaDesde,
                                                    FechaHasta = n.FechaHasta
                                                }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comisión de Intermediario Detalle " + txtFechaDesdeComisiones.Text + " - " + txtFechaHastaComisiones.Text, ExportarResumen);
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comisión de Intermediario Fesumen " + txtFechaDesdeComisiones.Text + " - " + txtFechaHastaComisiones.Text, ExportarResumen);
                     }
 
                     else if (rbGenerarReporteDetalle.Checked)
                     {
-                       
+                       //var ExportarDetalle = (from n in ObjDataConexion.Value.ComisionIntermediarioDetalle(Convert.ToDecimal(Convert.ToDecimal(Session["IdUsuario"])))
+                       //                       select new
+                       //                       {
+                       //                           Supervisor = n.Supervisor,
+                       //                           Intermediario = n.Intermediario,
+                       //                           Oficina = n.Oficina,
+                       //                           NumeroIdentificacion = n.NumeroIdentificacion,
+                       //                           CuentaBanco = n.CuentaBanco,
+                       //                           TipoCuenta = n.TipoCuenta,
+                       //                           Banco = n.Banco,
+                       //                           Cliente = n.Cliente,
+                       //                           NumeroRecibo = n.NumeroRecibo,
+                       //                           FechaRecibo = n.FechaRecibo,
+                       //                           NumeroFactura = n.NumeroFactura,
+                       //                           FechaFactura = n.FechaFactura,
+                       //                           Moneda = n.Moneda,
+                       //                           Poliza = n.Poliza,
+                       //                           Producto = n.Producto,
+                       //                           MontoBruto = n.MontoBruto,
+                       //                           MontoNeto = n.MontoNeto,
+                       //                           PorcientoComision = n.PorcientoComision,
+                       //                           Comsiion = n.Comsiion,
+                       //                           Retencion = n.Retencion,
+                       //                           AvanceComision = n.AvanceComision,
+                       //                           ALiquidar = n.ALiquidar,
+                       //                           FechaDesde = n.FechaDesde,
+                       //                           FechaHasta = n.FechaHasta
+                       //                       }).ToList();
+                       // UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comisión de Intermediario Detalle " + txtFechaDesdeComisiones.Text + " - " + txtFechaHastaComisiones.Text, ExportarDetalle);
                     }
                 }
             }

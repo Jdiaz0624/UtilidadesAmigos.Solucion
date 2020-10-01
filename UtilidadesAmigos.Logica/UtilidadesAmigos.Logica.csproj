@@ -120,6 +120,7 @@
     <Compile Include="Comunes\VariablesGlobales.cs" />
     <Compile Include="Comunes\VariablesPowerBi.cs" />
     <Compile Include="Comunes\VozVeronica.cs" />
+    <Compile Include="Entidades\ComisionesIntermediarioDetalle.cs" />
     <Compile Include="Entidades\Cotizador\EAnoVehiculo.cs" />
     <Compile Include="Entidades\Cotizador\EComprensivoIncendioRobo.cs" />
     <Compile Include="Entidades\Cotizador\EServiciosFijos.cs" />
