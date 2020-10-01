@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString13" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.26.24.199;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString12" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_LISTA_CARGAR_RAMOS" Method="SP_LISTA_CARGAR_RAMOS">
     <Parameter Name="IdRamo" Parameter="idRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
@@ -2592,6 +2592,31 @@
       <Column Name="Sector" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="CodUbicacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Ubicacion" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_GENERAR_REPORTE_COMISIONES_INTERMEDIARIO_RESUMIDO" Method="SP_GENERAR_REPORTE_COMISIONES_INTERMEDIARIO_RESUMIDO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_GENERAR_REPORTE_COMISIONES_INTERMEDIARIO_RESUMIDOResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NumeroIdentificacion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CuentaBanco" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoCuenta" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Banco" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Producto" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MontoBruto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="MontoNeto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Comision" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Retencion" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="AvanceComision" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="ALiquidar" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaDesde" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FechaHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

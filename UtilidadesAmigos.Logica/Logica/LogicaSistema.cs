@@ -1904,6 +1904,38 @@ namespace UtilidadesAmigos.Logica.Logica
                           }).ToList();
             return Buscar;
         }
+
+        //SACAR LAS COMISIONES DE LOS INTERMEDIARIOS RESUMIDO
+        public List<UtilidadesAmigos.Logica.Entidades.EComisionIntermediarioResumido> ComisionIntermediarioResumido(decimal? IdUsuario = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_GENERAR_REPORTE_COMISIONES_INTERMEDIARIO_RESUMIDO(IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.EComisionIntermediarioResumido
+                           {
+                               IdUsuario=n.IdUsuario,
+                               GeneradoPor=n.GeneradoPor,
+                               Supervisor=n.Supervisor,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario =n.Intermediario,
+                               Oficina=n.Oficina,
+                               NumeroIdentificacion=n.NumeroIdentificacion,
+                               CuentaBanco=n.CuentaBanco,
+                               TipoCuenta=n.TipoCuenta,
+                               Banco=n.Banco,
+                               Producto=n.Producto,
+                               MontoBruto=n.MontoBruto,
+                               MontoNeto=n.MontoNeto,
+                               Comision=n.Comision,
+                               Retencion=n.Retencion,
+                               AvanceComision=n.AvanceComision,
+                               ALiquidar=n.ALiquidar,
+                               ValidadoDesde=n.ValidadoDesde,
+                               FechaDesde=n.FechaDesde,
+                               FechaHasta=n.FechaHasta
+
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
         #region REPORTE DE RENOVACION DE POLIZAS

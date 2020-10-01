@@ -63,7 +63,7 @@
                   <div class="form-check-inline">
                       <div class="form-group form-check">
                           <asp:RadioButton ID="rbGenerarReporteResumido" runat="server" Text="Resumido" ToolTip="Generar reporte de comisión resumido" GroupName="Reporte" CssClass="form-check-input LetrasNegrita" />
-                          <asp:RadioButton ID="rbGenerarReporteDetalle" runat="server" Text="Detalle" ToolTip="Generar reporte de comsiion detalle" GroupName="Reporte" CssClass="form-check-input LetrasNegrita" />
+                          <asp:RadioButton ID="rbGenerarReporteDetalle" runat="server" Text="Detalle" Enabled="false" ToolTip="Generar reporte de comsiion detalle" GroupName="Reporte" CssClass="form-check-input LetrasNegrita" />
                       </div>
               </div>
           <div align="center">

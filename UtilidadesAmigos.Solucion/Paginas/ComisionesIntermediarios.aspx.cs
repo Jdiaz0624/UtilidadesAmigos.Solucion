@@ -71,41 +71,88 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
                 else
                 {
+                    //ELIMINAMOS LOS REGISTROS
+                    UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario Eliminar = new Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario(
+                        Convert.ToDecimal(Session["IdUsuario"]), "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, DateTime.Now, DateTime.Now, "DELETE");
+                    Eliminar.ProcesarInformacion();
+
                     string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioComisiones.Text.Trim()) ? null : txtCodigoIntermediarioComisiones.Text.Trim();
                     int? _Oficina = ddlSeleccionaroficinaComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaComisiones.SelectedValue) : new Nullable<int>();
+                   
 
-                    var Exportar = (from n in ObjDataConexion.Value.GenerarComisionIntermediario(
+                    var GenerarComisiones = ObjDataConexion.Value.GenerarComisionIntermediario(
                         Convert.ToDateTime(txtFechaDesdeComisiones.Text),
                         Convert.ToDateTime(txtFechaHastaComisiones.Text),
                         _CodigoIntermediario,
-                        _Oficina)
-                                    select new
-                                    {
-                                        Supervisor = n.Supervisor,
-                                        Intermediario = n.Intermediario,
-                                        Oficina = n.Oficina,
-                                        Numeroidentificacion = n.NumeroIdentificacion,
-                                        CuentaBanco = n.CuentaBanco,
-                                        TipoCuenta = n.TipoCuenta,
-                                        Banco = n.Banco,
-                                        Cliente = n.Cliente,
-                                        NumeroRecibo = n.Recibo,
-                                        FechaPago = n.Fecha,
-                                        NumeroFactura = n.Factura,
-                                        FechaFactura = n.FechaFactura,
-                                        Moneda = n.Moneda,
-                                        Poliza = n.Poliza,
-                                        Producto = n.Producto,
-                                        MontoBruto = n.Bruto,
-                                        MontoNeto = n.Neto,
-                                        PorcientoComision = n.PorcientoComision,
-                                        Comision = n.Comision,
-                                        Retencion = n.Retencion,
-                                        AvanceComision = n.AvanceComision,
-                                        ALiquidar = n.ALiquidar
+                        _Oficina);
+                    foreach (var n in GenerarComisiones)
+                    {
+                        UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario Guardar = new Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario(
+                            Convert.ToDecimal(Session["IdUsuario"]),
+                            n.Supervisor,
+                            Convert.ToInt32(n.Codigo),
+                            n.Intermediario,
+                            n.Oficina,
+                            n.NumeroIdentificacion,
+                            n.CuentaBanco,
+                            n.TipoCuenta,
+                            n.Banco,
+                            n.Cliente,
+                            n.Recibo,
+                            n.Fecha,
+                            n.Factura,
+                            n.FechaFactura,
+                            n.Moneda,
+                            n.Poliza,
+                            n.Producto,
+                            Convert.ToDecimal(n.Bruto),
+                            Convert.ToDecimal(n.Neto),
+                            Convert.ToDecimal(n.PorcientoComision),
+                            Convert.ToDecimal(n.Comision),
+                            Convert.ToDecimal(n.Retencion),
+                            Convert.ToDecimal(n.AvanceComision),
+                            Convert.ToDecimal(n.ALiquidar),
+                            Convert.ToDecimal(n.CantidadRegistros),
+                            Convert.ToDateTime(txtFechaDesdeComisiones.Text),
+                            Convert.ToDateTime(txtFechaHastaComisiones.Text),
+                            "INSERT");
+                        Guardar.ProcesarInformacion();
 
-                                    }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Comisiones Intermediarios", Exportar);
+                    }
+                    // ImprimirReporteResumido(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionIntermediarioResumido.rpt"), "sa", "Pa$$W0rd", "Listado de Comisiones Resumido");
+                    if (rbGenerarReporteResumido.Checked)
+                    {
+                        var ExportarResumen = (from n in ObjDataConexion.Value.ComisionIntermediarioResumido(Convert.ToDecimal(Session["IdUsuario"]))
+                                               select new
+                                               {
+                                                   //IdUsuario = n.IdUsuario,
+                                                   //GeneradoPor = n.GeneradoPor,
+                                                   Supervisor = n.Supervisor,
+                                                   //CodigoIntermediario = n.CodigoIntermediario,
+                                                   Intermediario = n.Intermediario,
+                                                   Oficina = n.Oficina,
+                                                   NumeroIdentificacion = n.NumeroIdentificacion,
+                                                   CuentaBanco = n.CuentaBanco,
+                                                   TipoCuenta = n.TipoCuenta,
+                                                   Banco = n.Banco,
+                                                   Producto = n.Producto,
+                                                   MontoBruto = n.MontoBruto,
+                                                   MontoNeto = n.MontoNeto,
+                                                   Comision = n.Comision,
+                                                   Retencion = n.Retencion,
+                                                   AvanceComision = n.AvanceComision,
+                                                   ALiquidar = n.ALiquidar,
+                                                   //ValidadoDesde = n.ValidadoDesde,
+                                                   FechaDesde = n.FechaDesde,
+                                                   FechaHasta = n.FechaHasta
+                                               }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comisión de Intermediario Detalle " + txtFechaDesdeComisiones.Text + " - " + txtFechaHastaComisiones.Text, ExportarResumen);
+                    }
+
+                    else if (rbGenerarReporteDetalle.Checked)
+                    {
+                       
+                    }
                 }
             }
             catch (Exception) { }
