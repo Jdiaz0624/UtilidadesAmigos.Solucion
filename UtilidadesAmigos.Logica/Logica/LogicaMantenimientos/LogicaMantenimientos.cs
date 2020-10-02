@@ -380,6 +380,128 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             return Mantenimiento;
 
         }
+
+        //MANTENIMIENTO DE INTERMEDIARIOS Y SUPERVISORES
+        /// <summary>
+        /// Este metodo es para Realizar el mantenimiento de los intermediarios y los supervisores ya sea crear uno nuevo o modificar uno ya existente.
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMantenimientoIntermediariosSupervisores MantenimientoIntermediarioSupervisor(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMantenimientoIntermediariosSupervisores Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMantenimientoIntermediariosSupervisores Mantenimiento = null;
+
+            var IntermediarioSupervisor = Objdata.SP_MANTENIMIENTO_INTERMEDIARIOS_SUPERVISORES(
+                Item.Compania,
+                Item.Codigo,
+                Item.Cuenta,
+                Item.Auxiliar,
+                Item.TipoRnc,
+                Item.Rnc,
+                Item.PorcientoComision,
+                Item.CodigoSupervisor,
+                Item.Estatus,
+                Item.Fecha_Entrada,
+                Item.UsuarioAdiciona,
+                Item.PorcientoGastos,
+                Item.tipo_Intermediario,
+                Item.Agencia,
+                Item.Fec_Nac,
+                Item.Publicidad,
+                Item.PagoComPor,
+                Item.Banco,
+                Item.CtaBanco,
+                Item.CodigoRnc,
+                Item.Retencion,
+                Item.PorcDescuento,
+                Item.SupervisorCrea,
+                Item.VendedorCrea,
+                Item.Poliza,
+                Item.Direccion,
+                Item.Ubicacion,
+                Item.Telefono,
+                Item.TelefonoOficina,
+                Item.Celular,
+                Item.Beeper,
+                Item.Fax,
+                Item.Email,
+                Item.LicenciaSeguro,
+                Item.CodigoAnterior,
+                Item.Apellido,
+                Item.Nombre,
+                Item.Oficina,
+                Item.TipoCuentaBco,
+                Item.EjecutivoCobros,
+                Item.AsumeCxc,
+                Item.CodigoCliente,
+                Item.Record_Id,
+                Item.PorcientoCapitalizacion,
+                Item.Gestor,
+                Item.EjecutivoCobros,
+                Item.DiasCancelacionAutomatica,
+                Accion);
+            if (IntermediarioSupervisor != null) {
+                Mantenimiento = (from n in IntermediarioSupervisor
+                                 select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMantenimientoIntermediariosSupervisores
+                                 {
+                                     Compania = n.Compania,
+                                     Codigo = n.Codigo,
+                                     Cuenta = n.Cuenta,
+                                     Auxiliar = n.Auxiliar,
+                                     TipoRnc = n.TipoRnc,
+                                     Rnc = n.Rnc,
+                                     NombreVendedor = n.NombreVendedor,
+                                     PorcientoComision = n.PorcientoComision,
+                                     CodigoSupervisor = n.CodigoSupervisor,
+                                     Estatus = n.Estatus,
+                                     Fecha_Entrada = n.Fecha_Entrada,
+                                     UsuarioAdiciona = n.UsuarioAdiciona,
+                                     FechaAdiciona = n.FechaAdiciona,
+                                     UsuarioModifica = n.UsuarioModifica,
+                                     FechaModifica = n.FechaModifica,
+                                     PorcientoGastos = n.PorcientoGastos,
+                                     nota = n.nota,
+                                     tipo_Intermediario = n.tipo_Intermediario,
+                                     Agencia = n.Agencia,
+                                     Fec_Nac = n.Fec_Nac,
+                                     Publicidad = n.Publicidad,
+                                     PagoComPor = n.PagoComPor,
+                                     Banco = n.Banco,
+                                     CtaBanco = n.CtaBanco,
+                                     CodigoRnc = n.CodigoRnc,
+                                     Retencion = n.Retencion,
+                                     PorcDescuento = n.PorcDescuento,
+                                     SupervisorCrea = n.SupervisorCrea,
+                                     VendedorCrea = n.VendedorCrea,
+                                     Poliza = n.Poliza,
+                                     Direccion = n.Direccion,
+                                     Ubicacion = n.Ubicacion,
+                                     Telefono = n.Telefono,
+                                     TelefonoOficina = n.TelefonoOficina,
+                                     Celular = n.Celular,
+                                     Beeper = n.Beeper,
+                                     Fax = n.Fax,
+                                     Email = n.Email,
+                                     LicenciaSeguro = n.LicenciaSeguro,
+                                     CodigoAnterior = n.CodigoAnterior,
+                                     Apellido = n.Apellido,
+                                     Nombre = n.Nombre,
+                                     Oficina = n.Oficina,
+                                     TipoCuentaBco = n.TipoCuentaBco,
+                                     EjecutivoServicio = n.EjecutivoServicio,
+                                     AsumeCxc = n.AsumeCxc,
+                                     CodigoCliente = n.CodigoCliente,
+                                     Record_Id = n.Record_Id,
+                                     PorcientoCapitalizacion = n.PorcientoCapitalizacion,
+                                     Gestor = n.Gestor,
+                                     EjecutivoCobros = n.EjecutivoCobros,
+                                     DiasCancelacionAutomatica = n.DiasCancelacionAutomatica,
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
         #endregion
 
     }

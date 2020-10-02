@@ -169,5 +169,15 @@ namespace UtilidadesAmigos.Data.Properties {
                 return ((string)(this["SysFlexSegurosConnectionString13"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=TECNOLOGIA;Initial Catalog=SysFlexSeguros;User ID=sa")]
+        public string SysFlexSegurosConnectionString14 {
+            get {
+                return ((string)(this["SysFlexSegurosConnectionString14"]));
+            }
+        }
     }
 }
