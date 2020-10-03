@@ -33,6 +33,9 @@
         function DesbloquearComision() {
             $("#btnComisiones").removeAttr("disabled", "true");
         }
+        function ErrorRealizarMantenimiento() {
+            alert("Error al realizar el mantenimiento");
+        }
 
         function PorcientoComisionVacio() {
             $("#<%=txtPorcientoCOmisionesComisionesMantenimiento.ClientID%>").css("border-color", "red");
@@ -103,6 +106,7 @@
     <div class="container-fluid">
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTitulo" runat="server" Text="Mantenimiento Intermediario / Supervisor"></asp:Label>
+            <asp:Label ID="lbAccionTomar" runat="server" Text="Accion" Visible="false"></asp:Label>
         </div>
         <div align="center">
             <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros: ( " CssClass="Letranegrita"></asp:Label>

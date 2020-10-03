@@ -374,6 +374,73 @@ namespace UtilidadesAmigos.Solucion.Paginas
             
         }
         #endregion
+        #region MANTENIMIENTO DE INTERMEDIARIOS
+        private void MANIntermediario(int CodigoIntermediario, int Estatus, string UsuarioProcesa, string CanalDistribucion,string Publicidad, string TipoPago,string Retencion,string TipoCuentaBanco, string Accion) {
+            try {
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionMantenimientoIntermediariosSupervisores Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionMantenimientoIntermediariosSupervisores(
+                    30,
+                    CodigoIntermediario,
+                    "",
+                    0,
+                    Convert.ToInt32(ddlSeleccionarTipoIdentificacionMantenimiento.SelectedValue),
+                    txtNumeroIdentificacionMantenimiento.Text,
+                    "",
+                    0,
+                    0,
+                    Estatus,
+                    Convert.ToDateTime(txtFechaEntradaMantenimiento.Text),
+                    UsuarioProcesa,
+                    DateTime.Now,
+                    UsuarioProcesa,
+                    DateTime.Now,
+                    0,
+                    "",
+                    CanalDistribucion,
+                    txtContactoIntermediarioMantenimiento.Text,
+                    Convert.ToDateTime(txtFechaMAcimientoMantenimiento.Text),
+                    Publicidad,
+                    TipoPago,
+                    Convert.ToInt32(ddlSeleccionarBancoIntermediarioMantenimeitto.SelectedValue),
+                    txtNumeroCuentaBancoMantenimiento.Text,
+                    0,
+                    Retencion,
+                    Convert.ToDecimal(17.50),
+                    0,
+                    Convert.ToInt32(txtCodigoSupervisor.Text),
+                    "",
+                    txtDireccionntermediarioMantenimiento.Text,
+                    Convert.ToInt32(ddlSeleccionarUbicacionMantenimiento.SelectedValue),
+                    txtTelefono2Mantenimiento.Text,
+                    txtTelefono1Mantenimiento.Text,
+                    txtCelularMantenimiento.Text,
+                    txtTelefono3Mantenimiento.Text,
+                    txtFaxMantenimiento.Text,
+                    txtEnailMantenimiento.Text,
+                    "", //--> CAMPO LICENCIAS DE SEGURO
+                    "", //--> CAMPO CODIGO ANTERIOR
+                    txtApellidoIntermediarioMantenimiento.Text,
+                    txtNombreIntermediarioMantenimiento.Text,
+                    Convert.ToInt32(ddlSeleccionarOficinaIntermeiarioMantenimiento.SelectedValue),
+                    TipoCuentaBanco,
+                    0,
+                    0,
+                    0,
+                    Guid.NewGuid(),
+                    0,
+                    0,
+                    0,
+                    0,
+                    Accion);
+                Procesar.ProcesarInformacion();
+
+
+            }
+            catch (Exception ex) {
+                ClientScript.RegisterStartupScript(GetType(), "ErrorRealizarMantenimiento()", "ErrorRealizarMantenimiento();", true);
+                ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
+            }
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
@@ -483,6 +550,109 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            int CodigoIntermediario = 0;
+            int EstatusIntermediario = 0, Publicidad = 0;
+            string UsuarioProcesa = "", CanalDistribucion = "", TipoPago = "", Retencion = "", TipoCuenta = "";
+            int CodigoCanalDistribucion = Convert.ToInt32(ddlSeleccionarCanalDistribucionMantenimiento.SelectedValue);
+            if (lbAccionTomar.Text == "INSERT") {
+                CodigoIntermediario = 0;
+            }
+            else {
+                CodigoIntermediario = Convert.ToInt32(lbCodigoSeleccionadoVariable.Text);
+            }
+            //SACAMOS EL ESTATUS
+            if (rbEstatusMantenimiento.Checked == true) {
+                EstatusIntermediario = 1;
+            }
+            else if (rbEstatusInactivoMantenimiento.Checked == true) {
+                EstatusIntermediario = 2;
+            }
+
+            //SACAMOS EL NOMBRE DEL USUARIO QUE ESTA PROCESANDO LA INFORMACION
+            var SacarNombreUsuario = ObjData.BuscaUsuarios(
+                Convert.ToDecimal(Session["IdUsuario"]), null, null, null, null, null, null, null, null);
+            foreach (var nUsuario in SacarNombreUsuario) {
+                UsuarioProcesa = nUsuario.Persona;
+            }
+
+            //SACAMOS LOS CANALES DE DISTRIBUCION
+            switch (CodigoCanalDistribucion)
+            {
+                case 1:
+                    CanalDistribucion = "Agentes";
+                    break;
+
+                case 2:
+                    CanalDistribucion = "Corredor";
+                    break;
+
+                case 3:
+                    CanalDistribucion = "Canales Alternos";
+                    break;
+
+                case 4:
+                    CanalDistribucion = "Banca Seguros";
+                    break;
+
+                case 5:
+                    CanalDistribucion = "Dealers";
+                    break;
+
+                case 6:
+                    CanalDistribucion = "Gerente Senior";
+                    break;
+
+                default:
+                    CanalDistribucion = "Agentes";
+                    break;
+            }
+            //SACAMOS LA PUBLICIDAD O SI EL INTERMEDIARIO ES DIRECTO O NO
+            if (rbIntermediarioDirecto.Checked == true) {
+                Publicidad = 1;
+            }
+            else if (rbIntermediarioNoDirecto.Checked == true) {
+                Publicidad = 0;
+            }
+
+            //SACAMOS EL TIPO DE PAGO
+            if (rbCobroChequesMantenimiento.Checked == true) {
+                TipoPago = "CK";
+            }
+            else if (rbCobroEfectivoMantenimiento.Checked == true) {
+                TipoPago = "EF";
+            }
+            else if (rbCobroTransferenciaMantenimiento.Checked == true) {
+                TipoPago = "DP";
+            }
+            else if (rbCobroCuentasPorPagarMantenimiento.Checked == true) {
+                TipoPago = "CXP";
+            }
+
+            //SACAMOS LA RETENCION DEL INTERMEDIARIO
+            if (rbRetensionSiMantenimiento.Checked == true) {
+                Retencion = "S";
+            }
+            else if (rbRetensionNOMantenimiento.Checked == true) {
+                Retencion = "N";
+            }
+
+            //SACAMOS EL TIPO DE CUENTA DEL INTERMEDIARIO
+            if (rbCuentaAhorroMantenimiento.Checked == true) {
+                TipoCuenta = "Ahorro";
+            }
+            else if (rbCuentaCorrienteMantenimiento.Checked == true) {
+                TipoCuenta = "Corriente";
+            }
+            else if (rbTarjetaMantenimiento.Checked == true) {
+                TipoCuenta = "Tarjeta";
+            }
+            else if (rbPrestamoMantenimiento.Checked == true) {
+                TipoCuenta = "Prestamo";
+            }
+
+
+            MANIntermediario(CodigoIntermediario, EstatusIntermediario, UsuarioProcesa, CanalDistribucion, Publicidad.ToString(), TipoPago, Retencion, TipoCuenta, lbAccionTomar.Text);
+            LimpiarControles();
             ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 
@@ -496,6 +666,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
             MostrarControles();
+            lbAccionTomar.Text = "INSERT";
             ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
 
         }
@@ -503,6 +674,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             MostrarControles();
+            lbAccionTomar.Text = "UPDATE";
             //BUSCAMOS LOS DATOS DEL INTERMEDIARIO SELECCIONADO
             var SacarDatosRegistroSeleccionado = Objdatamantenimientos.BuscaListadoIntermediario(
                 lbCodigoSeleccionadoVariable.Text,
@@ -806,6 +978,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
                 }
             }
+
 
 
             ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);

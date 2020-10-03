@@ -108,6 +108,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosComisionesSupervisores.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionImpresionMarbetes.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionMantenimientoIntermediariosSupervisores.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionPorcientoComisionesPorDefecto.cs" />
     <Compile Include="Comunes\Reportes\ProcesarHistoricoImpresionMarbetes.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionProduccuinPorUsuarioDetalle.cs" />
@@ -234,6 +235,7 @@
     <Compile Include="Entidades\Mantenimientos\EComisionesPorDefecto.cs" />
     <Compile Include="Entidades\Mantenimientos\EDepartamentos.cs" />
     <Compile Include="Entidades\Mantenimientos\EEmpleado.cs" />
+    <Compile Include="Entidades\Mantenimientos\EMantenimientoIntermediariosSupervisores.cs" />
     <Compile Include="Entidades\Mantenimientos\EOficinas.cs" />
     <Compile Include="Entidades\Mantenimientos\MantenimientoComisionesIntermediarios.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\ECorreosEnviar.cs" />

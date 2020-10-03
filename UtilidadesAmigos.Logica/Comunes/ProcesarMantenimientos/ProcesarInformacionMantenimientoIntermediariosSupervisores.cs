@@ -179,7 +179,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos
         }
 
         //CREAMOS UN METODO PARA PROCESAR
-        private void ProcesarInformacion() {
+        public void ProcesarInformacion() {
             UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMantenimientoIntermediariosSupervisores Procesar = new Entidades.Mantenimientos.EMantenimientoIntermediariosSupervisores();
 
             Procesar.Compania = Convert.ToByte(Compania);
