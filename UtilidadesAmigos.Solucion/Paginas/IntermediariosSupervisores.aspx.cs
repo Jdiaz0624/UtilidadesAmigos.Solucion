@@ -668,19 +668,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
 
             MANIntermediario(CodigoIntermediario, EstatusIntermediario, UsuarioProcesa, CanalDistribucion, Publicidad.ToString(), TipoPago, Retencion, TipoCuenta, lbAccionTomar.Text);
+         
 
             decimal CodigoVendedorAfectado = 0;
             if (lbAccionTomar.Text == "UPDATE") {
                 CodigoVendedorAfectado = Convert.ToDecimal(lbCodigoSeleccionadoVariable.Text);
+               
             }
             else {
                 //SACAMOS EL CODIGO MAXIMO PARA REALIZAR LA CONSULTA
+
                 var SacarCodigoMaximo = Objdatamantenimientos.SacarCodigoMaximo();
                 foreach (var n in SacarCodigoMaximo) {
                     CodigoVendedorAfectado = Convert.ToDecimal(n.Codigo);
                 }
             }
-
+            MANIntermediarioCadenaDetalle(30, Convert.ToInt32(CodigoVendedorAfectado), Convert.ToInt32(txtCodigoSupervisor.Text), UsuarioProcesa, lbAccionTomar.Text);
             var Buscar = Objdatamantenimientos.BuscaListadoIntermediario(CodigoVendedorAfectado.ToString(), null, null, null, null);
             gvIntermediarios.DataSource = Buscar;
             gvIntermediarios.DataBind();
