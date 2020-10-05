@@ -502,6 +502,44 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             }
             return Mantenimiento;
         }
+
+        //SACAR EL CODIGO MAXIMO DE LOS INTERMEDIARIOS
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.ESacarCodigoMaximoIntermediaio> SacarCodigoMaximo() {
+            Objdata.CommandTimeout = 999999999;
+
+            var Sacar = (from n in Objdata.SP_SACAR_CODIGO_MAXIMO_INTERMEDIARIO()
+                         select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.ESacarCodigoMaximoIntermediaio
+                         {
+                             Codigo=n.Codigo
+                         }).ToList();
+            return Sacar;
+        }
+
+        //MANTENIMIENTO DE INTERMEDIARIO CADENA DETALLE
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.ECadenaIntermediarioDetalle MantenimientoIntermediarioCadenaDetalle(UtilidadesAmigos.Logica.Entidades.Mantenimientos.ECadenaIntermediarioDetalle Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.ECadenaIntermediarioDetalle Mantenimiento = null;
+
+            var IntermediarioCadenaDetalle = Objdata.SP_GUARDAR_CADENA_DETALLE_INTERMEDIARIO(
+                Item.Compania,
+                Item.IdIntermediario,
+                Item.IdIntermediarioSupervisa,
+                Item.UsuarioAdiciona,
+                Accion);
+            if (IntermediarioCadenaDetalle != null) {
+                Mantenimiento = (from n in IntermediarioCadenaDetalle
+                                 select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.ECadenaIntermediarioDetalle
+                                 {
+                                     Compania=n.Compania,
+                                     IdIntermediario=n.IdIntermediario,
+                                     IdIntermediarioSupervisa=n.IdIntermediarioSupervisa,
+                                     UsuarioAdiciona=n.UsuarioAdiciona,
+                                     FechaAdiciona=n.FechaAdiciona
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
         #endregion
 
     }

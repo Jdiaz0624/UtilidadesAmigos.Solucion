@@ -241,6 +241,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnNuevo.Enabled = true;
             btnModificar.Enabled = false;
             btnRestabelcerPantalla.Enabled = false;
+          // CargarListadoIntermediarios();
 
         }
         #endregion
@@ -439,6 +440,21 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 ClientScript.RegisterStartupScript(GetType(), "ErrorRealizarMantenimiento()", "ErrorRealizarMantenimiento();", true);
                 ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
             }
+        }
+        #endregion
+        #region MANTENIMIENTO DE INTERMEDIARIO CADENA DETALLE
+        private void MANIntermediarioCadenaDetalle(int Compania, int IdIntermediario, int IdSupervisor, string UsuarioAdiciona, string Accion) {
+            try {
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionIntermediarioCadenaDetalle Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionIntermediarioCadenaDetalle(
+                    Compania,
+                    IdIntermediario,
+                    IdSupervisor,
+                    UsuarioAdiciona,
+                    DateTime.Now,
+                    Accion);
+                Procesar.ProcesarInformaicon();
+            }
+            catch (Exception) { }
         }
         #endregion
         protected void Page_Load(object sender, EventArgs e)
@@ -652,7 +668,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
 
             MANIntermediario(CodigoIntermediario, EstatusIntermediario, UsuarioProcesa, CanalDistribucion, Publicidad.ToString(), TipoPago, Retencion, TipoCuenta, lbAccionTomar.Text);
+
+            decimal CodigoVendedorAfectado = 0;
+            if (lbAccionTomar.Text == "UPDATE") {
+                CodigoVendedorAfectado = Convert.ToDecimal(lbCodigoSeleccionadoVariable.Text);
+            }
+            else {
+                //SACAMOS EL CODIGO MAXIMO PARA REALIZAR LA CONSULTA
+                var SacarCodigoMaximo = Objdatamantenimientos.SacarCodigoMaximo();
+                foreach (var n in SacarCodigoMaximo) {
+                    CodigoVendedorAfectado = Convert.ToDecimal(n.Codigo);
+                }
+            }
+
+            var Buscar = Objdatamantenimientos.BuscaListadoIntermediario(CodigoVendedorAfectado.ToString(), null, null, null, null);
+            gvIntermediarios.DataSource = Buscar;
+            gvIntermediarios.DataBind();
             LimpiarControles();
+
             ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
 

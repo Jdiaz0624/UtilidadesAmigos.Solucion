@@ -373,4 +373,23 @@
       <Column Name="DiasCancelacionAutomatica" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_SACAR_CODIGO_MAXIMO_INTERMEDIARIO" Method="SP_SACAR_CODIGO_MAXIMO_INTERMEDIARIO">
+    <ElementType Name="SP_SACAR_CODIGO_MAXIMO_INTERMEDIARIOResult">
+      <Column Name="Codigo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_GUARDAR_CADENA_DETALLE_INTERMEDIARIO" Method="SP_GUARDAR_CADENA_DETALLE_INTERMEDIARIO">
+    <Parameter Name="Compania" Parameter="compania" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdIntermediario" Parameter="idIntermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdIntermediarioSupervisa" Parameter="idIntermediarioSupervisa" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UsuarioAdiciona" Parameter="usuarioAdiciona" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_GUARDAR_CADENA_DETALLE_INTERMEDIARIOResult">
+      <Column Name="Compania" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdIntermediarioSupervisa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioAdiciona" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

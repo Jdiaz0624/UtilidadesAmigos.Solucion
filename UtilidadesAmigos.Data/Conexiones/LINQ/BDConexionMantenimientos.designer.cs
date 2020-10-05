@@ -193,6 +193,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), compania, codigo, cuenta, auxiliar, tipoRnc, rnc, porcientoComision, codigoSupervisor, estatus, fecha_Entrada, usuarioProcesa, porcientoGastos, tipo_Intermediario, agencia, fec_Nac, publicidad, pagoComPor, banco, ctaBanco, codigoRnc, retencion, porcDescuento, supervisorCrea, vendedorCrea, poliza, direccion, ubicacion, telefono, telefonoOficina, celular, beeper, fax, email, licenciaSeguro, codigoAnterior, apellido, nombre, oficina, tipoCuentaBco, ejecutivoServicio, asumeCxc, codigoCliente, record_Id, porcientoCapitalizacion, gestor, ejecutivoCobros, diasCancelacionAutomatica, accion);
 			return ((ISingleResult<SP_MANTENIMIENTO_INTERMEDIARIOS_SUPERVISORESResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_CODIGO_MAXIMO_INTERMEDIARIO")]
+		public ISingleResult<SP_SACAR_CODIGO_MAXIMO_INTERMEDIARIOResult> SP_SACAR_CODIGO_MAXIMO_INTERMEDIARIO()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_SACAR_CODIGO_MAXIMO_INTERMEDIARIOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_GUARDAR_CADENA_DETALLE_INTERMEDIARIO")]
+		public ISingleResult<SP_GUARDAR_CADENA_DETALLE_INTERMEDIARIOResult> SP_GUARDAR_CADENA_DETALLE_INTERMEDIARIO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Compania", DbType="Int")] System.Nullable<int> compania, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdIntermediario", DbType="Int")] System.Nullable<int> idIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdIntermediarioSupervisa", DbType="Int")] System.Nullable<int> idIntermediarioSupervisa, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioAdiciona", DbType="VarChar(50)")] string usuarioAdiciona, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), compania, idIntermediario, idIntermediarioSupervisa, usuarioAdiciona, accion);
+			return ((ISingleResult<SP_GUARDAR_CADENA_DETALLE_INTERMEDIARIOResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_BUSCA_OFICINASResult
@@ -4192,6 +4206,130 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._DiasCancelacionAutomatica != value))
 				{
 					this._DiasCancelacionAutomatica = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_CODIGO_MAXIMO_INTERMEDIARIOResult
+	{
+		
+		private System.Nullable<int> _Codigo;
+		
+		public SP_SACAR_CODIGO_MAXIMO_INTERMEDIARIOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", DbType="Int")]
+		public System.Nullable<int> Codigo
+		{
+			get
+			{
+				return this._Codigo;
+			}
+			set
+			{
+				if ((this._Codigo != value))
+				{
+					this._Codigo = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_GUARDAR_CADENA_DETALLE_INTERMEDIARIOResult
+	{
+		
+		private System.Nullable<int> _Compania;
+		
+		private System.Nullable<int> _IdIntermediario;
+		
+		private System.Nullable<int> _IdIntermediarioSupervisa;
+		
+		private string _UsuarioAdiciona;
+		
+		private System.Nullable<System.DateTime> _FechaAdiciona;
+		
+		public SP_GUARDAR_CADENA_DETALLE_INTERMEDIARIOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Compania", DbType="Int")]
+		public System.Nullable<int> Compania
+		{
+			get
+			{
+				return this._Compania;
+			}
+			set
+			{
+				if ((this._Compania != value))
+				{
+					this._Compania = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdIntermediario", DbType="Int")]
+		public System.Nullable<int> IdIntermediario
+		{
+			get
+			{
+				return this._IdIntermediario;
+			}
+			set
+			{
+				if ((this._IdIntermediario != value))
+				{
+					this._IdIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdIntermediarioSupervisa", DbType="Int")]
+		public System.Nullable<int> IdIntermediarioSupervisa
+		{
+			get
+			{
+				return this._IdIntermediarioSupervisa;
+			}
+			set
+			{
+				if ((this._IdIntermediarioSupervisa != value))
+				{
+					this._IdIntermediarioSupervisa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioAdiciona", DbType="VarChar(50)")]
+		public string UsuarioAdiciona
+		{
+			get
+			{
+				return this._UsuarioAdiciona;
+			}
+			set
+			{
+				if ((this._UsuarioAdiciona != value))
+				{
+					this._UsuarioAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaAdiciona
+		{
+			get
+			{
+				return this._FechaAdiciona;
+			}
+			set
+			{
+				if ((this._FechaAdiciona != value))
+				{
+					this._FechaAdiciona = value;
 				}
 			}
 		}
