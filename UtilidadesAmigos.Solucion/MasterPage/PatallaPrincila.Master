@@ -79,6 +79,7 @@
                                 </a>
                                 <div class="dropdown-menu">
                                     <asp:LinkButton ID="LinkBakupBD" runat="server" Text="Generar Bakup de BD" OnClick="LinkBakupBD_Click" CssClass="dropdown-item"></asp:LinkButton>
+                                     <asp:LinkButton ID="LinkGenerarSOlicitudChequeComisiones" runat="server" Text="Solicitud de Cheques Intermediario" CssClass="dropdown-item"></asp:LinkButton>
                                   <asp:LinkButton ID="LinkProcesarDataAsegurado" runat="server" Text="Procesar Data Asegura.do" OnClick="LinkProcesarDataAsegurado_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     <asp:LinkButton ID="LinkCorregirValorDeclarativa" runat="server" Text="Dato Poliza" OnClick="LinkCorregirValorDeclarativa_Click" CssClass="dropdown-item"></asp:LinkButton>
                                     <asp:LinkButton ID="LinkCorregirLimites" runat="server" ForeColor="Red" Text="Corregir Limites" OnClick="LinkCorregirLimites_Click" CssClass="dropdown-item"></asp:LinkButton>

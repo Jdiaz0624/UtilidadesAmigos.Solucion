@@ -175,6 +175,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage {
         protected global::System.Web.UI.WebControls.LinkButton LinkBakupBD;
         
         /// <summary>
+        /// LinkGenerarSOlicitudChequeComisiones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkGenerarSOlicitudChequeComisiones;
+        
+        /// <summary>
         /// LinkProcesarDataAsegurado control.
         /// </summary>
         /// <remarks>
