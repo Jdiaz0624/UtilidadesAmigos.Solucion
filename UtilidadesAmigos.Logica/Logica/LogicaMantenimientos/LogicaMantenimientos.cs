@@ -542,5 +542,139 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
         }
         #endregion
 
+        #region MANTENIMIENTO DE PROVEEDORES DE SOLICITUD DE CHEQUES
+        //BUSCA PROVEEDORES
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EBuscarProveedoresSolicitudCheques> BuscaProveedores(int? Codigo = null, string RNC = null, string NombreVendedor = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCAR_PROVEEDOR_SOLICITUD_CHEQUE(Codigo, RNC, NombreVendedor)
+                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EBuscarProveedoresSolicitudCheques
+                           {
+                               Compania=n.Compania,
+                               Codigo=n.Codigo,
+                               TipoCliente=n.TipoCliente,
+                               TipoRnc=n.TipoRnc,
+                               RNC=n.RNC,
+                               NombreCliente=n.NombreCliente,
+                               Ubicacion=n.Ubicacion,
+                               LimiteCredito=n.LimiteCredito,
+                               Descuento=n.Descuento,
+                               CondicionPago=n.CondicionPago,
+                               Estatus=n.Estatus,
+                               FechaUltPago=n.FechaUltPago,
+                               MontoUltPago=n.MontoUltPago,
+                               Balance=n.Balance,
+                               UsuarioAdiciona=n.UsuarioAdiciona,
+                               FechaAdiciona=n.FechaAdiciona,
+                               FechaCreado=n.FechaCreado,
+                               UsuarioModifica=n.UsuarioModifica,
+                               FechaModifica=n.FechaModifica,
+                               FechaModificado=n.FechaModificado,
+                               CodigoRnc=n.CodigoRnc,
+                               PorcComision=n.PorcComision,
+                               CodMoneda=n.CodMoneda,
+                               TelefonoCasa=n.TelefonoCasa,
+                               TelefonoOficina=n.TelefonoOficina,
+                               Celular=n.Celular,
+                               Fax=n.Fax,
+                               Beeper=n.Beeper,
+                               Email=n.Email,
+                               TipoPago=n.TipoPago,
+                               Banco=n.Banco,
+                               CuentaBanco=n.CuentaBanco,
+                               Contacto=n.Contacto,
+                               TipoCuentaBanco=n.TipoCuentaBanco,
+                               ClaseProveedor=n.ClaseProveedor
+                           }).ToList();
+            return Listado;
+
+        }
+
+        //MANTENIMIENTO DE PROVEEDORES DE SOLICITUD
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMantenimientoProveedoresSolicitud MantenimientoProveedoresSolicitud(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMantenimientoProveedoresSolicitud Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMantenimientoProveedoresSolicitud Mantenimiento = null;
+
+            var ProveedoresSOlicitud = Objdata.SP_MANTENIMIENTO_PROCEEDORES_SOLICITUD(
+                Item.Compania,
+                Item.Codigo,
+                Item.TipoCliente,
+                Item.TipoRnc,
+                Item.RNC,
+                Item.NombreCliente,
+                Item.Direccion,
+                Item.Ubicacion,
+                Item.LimiteCredito,
+                Item.Descuento,
+                Item.CondicionPago,
+                Item.Estatus,
+                Item.FechaUltPago,
+                Item.MontoUltPago,
+                Item.Balance,
+                Item.UsuarioAdiciona,
+                Item.FechaAdiciona,
+                Item.UsuarioModifica,
+                Item.FechaModifica,
+                Item.CodigoRnc,
+                Item.PorcComision,
+                Item.CodMoneda,
+                Item.TelefonoCasa,
+                Item.TelefonoOficina,
+                Item.Celular,
+                Item.Fax,
+                Item.Beeper,
+                Item.Email,
+                Item.TipoPago,
+                Item.Banco,
+                Item.CuentaBanco,
+                Item.Contacto,
+                Item.TipoCuentaBanco,
+                Item.ClaseProveedor,
+                Accion);
+            if (ProveedoresSOlicitud != null) {
+                Mantenimiento = (from n in ProveedoresSOlicitud
+                                 select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMantenimientoProveedoresSolicitud
+                                 {
+                                     Compania=n.Compania,
+                                     Codigo=n.Codigo,
+                                     TipoCliente=n.TipoCliente,
+                                     TipoRnc=n.TipoRnc,
+                                     RNC=n.RNC,
+                                     NombreCliente=n.NombreCliente,
+                                     Direccion=n.Direccion,
+                                     Ubicacion=n.Ubicacion,
+                                     LimiteCredito=n.LimiteCredito,
+                                     Descuento=n.Descuento,
+                                     CondicionPago=n.CondicionPago,
+                                     Estatus=n.Estatus,
+                                     FechaUltPago=n.FechaUltPago,
+                                     MontoUltPago=n.MontoUltPago,
+                                     Balance=n.Balance,
+                                     UsuarioAdiciona=n.UsuarioAdiciona,
+                                     FechaAdiciona=n.FechaAdiciona,
+                                     UsuarioModifica=n.UsuarioModifica,
+                                     FechaModifica=n.FechaModifica,
+                                     CodigoRnc=n.CodigoRnc,
+                                     PorcComision=n.PorcComision,
+                                     CodMoneda=n.CodMoneda,
+                                     TelefonoCasa=n.TelefonoCasa,
+                                     TelefonoOficina=n.TelefonoOficina,
+                                     Celular=n.Celular,
+                                     Fax=n.Fax,
+                                     Beeper=n.Beeper,
+                                     Email=n.Email,
+                                     TipoPago=n.TipoPago,
+                                     Banco=n.Banco,
+                                     CuentaBanco=n.CuentaBanco,
+                                     Contacto=n.Contacto,
+                                     TipoCuentaBanco=n.TipoCuentaBanco,
+                                     ClaseProveedor=n.ClaseProveedor
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
+        #endregion
+
     }
 }

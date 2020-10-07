@@ -414,5 +414,17 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkGenerarSOlicitudChequeComisiones_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null) {
+                Response.Redirect("GenerarSolicitudChequeComisionesIntermediarios.aspx");
+
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }

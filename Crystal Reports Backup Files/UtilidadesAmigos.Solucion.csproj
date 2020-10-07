@@ -177,6 +177,7 @@
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
     <Content Include="Paginas\GenerarMarbetes.aspx" />
     <Content Include="Paginas\GenerarReporteFianzas.aspx" />
+    <Content Include="Paginas\GenerarSolicitudChequeComisionesIntermediarios.aspx" />
     <Content Include="Paginas\IntermediariosSupervisores.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
     <Content Include="Paginas\ListadoRenovacion.aspx" />
@@ -415,6 +416,13 @@
     </Compile>
     <Compile Include="Paginas\GenerarReporteFianzas.aspx.designer.cs">
       <DependentUpon>GenerarReporteFianzas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\GenerarSolicitudChequeComisionesIntermediarios.aspx.cs">
+      <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\GenerarSolicitudChequeComisionesIntermediarios.aspx.designer.cs">
+      <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\IntermediariosSupervisores.aspx.cs">
       <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>

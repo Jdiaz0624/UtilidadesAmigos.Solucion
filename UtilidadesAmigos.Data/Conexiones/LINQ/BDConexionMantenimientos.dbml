@@ -392,4 +392,120 @@
       <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_MANTENIMIENTO_PROCEEDORES_SOLICITUD" Method="SP_MANTENIMIENTO_PROCEEDORES_SOLICITUD">
+    <Parameter Name="Compania" Parameter="compania" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="Codigo" Parameter="codigo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TipoCliente" Parameter="tipoCliente" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TipoRnc" Parameter="tipoRnc" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="RNC" Parameter="rNC" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NombreCliente" Parameter="nombreCliente" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Ubicacion" Parameter="ubicacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LimiteCredito" Parameter="limiteCredito" Type="System.Decimal" DbType="Decimal(19,2)" />
+    <Parameter Name="Descuento" Parameter="descuento" Type="System.Decimal" DbType="Decimal(19,2)" />
+    <Parameter Name="CondicionPago" Parameter="condicionPago" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="FechaUltPago" Parameter="fechaUltPago" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="MontoUltPago" Parameter="montoUltPago" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Parameter Name="Balance" Parameter="balance" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Parameter Name="UsuarioAdiciona" Parameter="usuarioAdiciona" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="FechaAdiciona" Parameter="fechaAdiciona" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="UsuarioModifica" Parameter="usuarioModifica" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="FechaModifica" Parameter="fechaModifica" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CodigoRnc" Parameter="codigoRnc" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PorcComision" Parameter="porcComision" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="CodMoneda" Parameter="codMoneda" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TelefonoCasa" Parameter="telefonoCasa" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TelefonoOficina" Parameter="telefonoOficina" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Celular" Parameter="celular" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Fax" Parameter="fax" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Beeper" Parameter="beeper" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TipoPago" Parameter="tipoPago" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="Banco" Parameter="banco" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CuentaBanco" Parameter="cuentaBanco" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Contacto" Parameter="contacto" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TipoCuentaBanco" Parameter="tipoCuentaBanco" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ClaseProveedor" Parameter="claseProveedor" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MANTENIMIENTO_PROCEEDORES_SOLICITUDResult">
+      <Column Name="Compania" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Codigo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoCliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoRnc" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="RNC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NombreCliente" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Ubicacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LimiteCredito" Type="System.Decimal" DbType="Decimal(19,2)" CanBeNull="true" />
+      <Column Name="Descuento" Type="System.Decimal" DbType="Decimal(19,2)" CanBeNull="true" />
+      <Column Name="CondicionPago" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="FechaUltPago" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MontoUltPago" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="UsuarioAdiciona" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuarioModifica" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaModifica" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CodigoRnc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PorcComision" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CodMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TelefonoCasa" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Celular" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Beeper" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoPago" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Banco" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CuentaBanco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Contacto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TipoCuentaBanco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ClaseProveedor" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCAR_PROVEEDOR_SOLICITUD_CHEQUE" Method="SP_BUSCAR_PROVEEDOR_SOLICITUD_CHEQUE">
+    <Parameter Name="Codigo" Parameter="codigo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="RNC" Parameter="rNC" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_BUSCAR_PROVEEDOR_SOLICITUD_CHEQUEResult">
+      <Column Name="Compania" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TipoCliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoRnc" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="RNC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NombreCliente" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Ubicacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LimiteCredito" Type="System.Decimal" DbType="Decimal(19,2)" CanBeNull="true" />
+      <Column Name="Descuento" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="CondicionPago" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="FechaUltPago" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MontoUltPago" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="UsuarioAdiciona" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaCreado" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="UsuarioModifica" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaModifica" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaModificado" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="CodigoRnc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PorcComision" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="CodMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TelefonoCasa" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Celular" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Beeper" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoPago" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Banco" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CuentaBanco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Contacto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TipoCuentaBanco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ClaseProveedor" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

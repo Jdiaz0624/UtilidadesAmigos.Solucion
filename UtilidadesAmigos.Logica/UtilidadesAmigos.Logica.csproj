@@ -111,6 +111,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionIntermediarioCadenaDetalle.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionMantenimientoIntermediariosSupervisores.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionPorcientoComisionesPorDefecto.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProveedoresSolicitud.cs" />
     <Compile Include="Comunes\Reportes\ProcesarHistoricoImpresionMarbetes.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionProduccuinPorUsuarioDetalle.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionReporteComisionIntermediario.cs" />
@@ -233,11 +234,13 @@
     <Compile Include="Entidades\EValidarPolizasCanceladasCoberturas.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscaListadoIntermediarios.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscarComisionesIntermediarios.cs" />
+    <Compile Include="Entidades\Mantenimientos\EBuscarProveedoresSolicitudCheques.cs" />
     <Compile Include="Entidades\Mantenimientos\ECadenaIntermediarioDetalle.cs" />
     <Compile Include="Entidades\Mantenimientos\EComisionesPorDefecto.cs" />
     <Compile Include="Entidades\Mantenimientos\EDepartamentos.cs" />
     <Compile Include="Entidades\Mantenimientos\EEmpleado.cs" />
     <Compile Include="Entidades\Mantenimientos\EMantenimientoIntermediariosSupervisores.cs" />
+    <Compile Include="Entidades\Mantenimientos\EMantenimientoProveedoresSolicitud.cs" />
     <Compile Include="Entidades\Mantenimientos\EOficinas.cs" />
     <Compile Include="Entidades\Mantenimientos\ESacarCodigoMaximoIntermediaio.cs" />
     <Compile Include="Entidades\Mantenimientos\MantenimientoComisionesIntermediarios.cs" />
