@@ -676,5 +676,59 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
         }
         #endregion
 
+        #region MANTENIMIENTO MONTOS SOLICITUD CHEQUES
+        //BUSCAR MONTOS GUARDADOS
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMontosSolicitudCheques> BuscaMontos(decimal? Idusuario = null, int? CodigoIntermediario = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_MONTOS_SOLICITUD_CHEQUES(Idusuario, CodigoIntermediario)
+                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMontosSolicitudCheques
+                           {
+                               IdUsuario = n.IdUsuario,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Bruto=n.Bruto,
+                               Neto=n.Neto,
+                               Comision=n.Comision,
+                               Retencion=n.Retencion,
+                               Avance=n.Avance,
+                               ALiquidar=n.ALiquidar
+                           }).ToList();
+            return Listado;
+        }
+
+        //PROCESAR INFORMACION PARA LOS MONTOS
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMontosSolicitudCheques ProcesarMontosSolicitudCheque(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMontosSolicitudCheques Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMontosSolicitudCheques Mantenimeinto = null;
+
+            var MontosSolicitudCheques = Objdata.SP_PROCESAR_MONTOS_SOLICITUD_CHEQUE(
+                Item.IdUsuario,
+                Item.CodigoIntermediario,
+                Item.Bruto,
+                Item.Neto,
+                Item.Comision,
+                Item.Retencion,
+                Item.Avance,
+                Item.ALiquidar,
+                Accion);
+            if (MontosSolicitudCheques != null) {
+                Mantenimeinto = (from n in MontosSolicitudCheques
+                                 select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMontosSolicitudCheques
+                                 {
+                                     IdUsuario = n.IdUsuario,
+                                     CodigoIntermediario = n.CodigoIntermediario,
+                                     Bruto = n.Bruto,
+                                     Neto = n.Neto,
+                                     Comision = n.Comision,
+                                     Retencion = n.Retencion,
+                                     Avance = n.Avance,
+                                     ALiquidar = n.ALiquidar
+                                 }).FirstOrDefault();
+            }
+            return Mantenimeinto;
+        }
+        #endregion
+
     }
 }

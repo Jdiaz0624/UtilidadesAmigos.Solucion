@@ -205,6 +205,48 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                 CodigoProveedorSacardo = Convert.ToInt32(n.Codigo);
                             }
                         }
+
+
+
+                        //PROCESAMOS LA INFORMACION PARA SACAR LOS DATOS DE LOS MONTOS PARA GUARDAR LA SOLICITUD
+                        
+
+                        var SacarLosMontosProcesados = ObjData.Value.GenerarComisionIntermediario(
+                            Convert.ToDateTime(txtFechaDesde.Text),
+                            Convert.ToDateTime(txtFechaHasta.Text),
+                            Codigo.ToString(), null);
+
+                        //ELIMINAMOS LOS REGISTROS DE LA TABLA DE MONTOS
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarMontosSolicitudCheques Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarMontosSolicitudCheques(
+                            Convert.ToDecimal(Session["IdUsuario"]),
+                            Codigo, 0, 0, 0, 0, 0, 0, "DELETE");
+                        Eliminar.ProcesarInformacion();
+
+                        foreach (var nMontos in SacarLosMontosProcesados) {
+                            decimal BrutoSacado = 0, NetoSacado = 0, Comisionsacada = 0, Retencionsacada = 0, Avancesacado = 0, ALiquidarSacada = 0;
+
+                            BrutoSacado = Convert.ToDecimal(nMontos.Bruto);
+                            NetoSacado = Convert.ToDecimal(nMontos.Neto);
+                            Comisionsacada = Convert.ToDecimal(nMontos.Comision);
+                            Retencionsacada = Convert.ToDecimal(nMontos.Retencion);
+                            Avancesacado = Convert.ToDecimal(nMontos.AvanceComision);
+                            ALiquidarSacada = Convert.ToDecimal(nMontos.ALiquidar);
+
+
+
+                            //GUARDAMOS LOS REGISTROS
+                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarMontosSolicitudCheques Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarMontosSolicitudCheques(
+                                Convert.ToDecimal(Session["IdUsuario"]),
+                                Codigo,
+                                BrutoSacado,
+                                NetoSacado,
+                                Comisionsacada,
+                                Retencionsacada,
+                                Avancesacado,
+                                ALiquidarSacada,
+                                "INSERT");
+                            Procesar.ProcesarInformacion();
+                        }
                     }
                     else {
                         FormsAuthentication.SignOut();
@@ -213,6 +255,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 }
             }
+
+
+
         }
 
         protected void txtCodigoIntermediario_TextChanged(object sender, EventArgs e)

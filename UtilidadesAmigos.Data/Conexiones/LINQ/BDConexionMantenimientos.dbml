@@ -508,4 +508,39 @@
       <Column Name="ClaseProveedor" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_MONTOS_SOLICITUD_CHEQUES" Method="SP_BUSCA_MONTOS_SOLICITUD_CHEQUES">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_MONTOS_SOLICITUD_CHEQUESResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Bruto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Neto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Comision" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Retencion" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Avance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="ALiquidar" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_MONTOS_SOLICITUD_CHEQUE" Method="SP_PROCESAR_MONTOS_SOLICITUD_CHEQUE">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Bruto" Parameter="bruto" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Neto" Parameter="neto" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Comision" Parameter="comision" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Retencion" Parameter="retencion" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Avance" Parameter="avance" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="ALiquidar" Parameter="aLiquidar" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_MONTOS_SOLICITUD_CHEQUEResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Bruto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Neto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Comision" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Retencion" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Avance" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ALiquidar" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

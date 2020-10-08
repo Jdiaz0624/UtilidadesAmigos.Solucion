@@ -256,6 +256,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigo, rNC, nombre);
 			return ((ISingleResult<SP_BUSCAR_PROVEEDOR_SOLICITUD_CHEQUEResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_MONTOS_SOLICITUD_CHEQUES")]
+		public ISingleResult<SP_BUSCA_MONTOS_SOLICITUD_CHEQUESResult> SP_BUSCA_MONTOS_SOLICITUD_CHEQUES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, codigoIntermediario);
+			return ((ISingleResult<SP_BUSCA_MONTOS_SOLICITUD_CHEQUESResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_MONTOS_SOLICITUD_CHEQUE")]
+		public ISingleResult<SP_PROCESAR_MONTOS_SOLICITUD_CHEQUEResult> SP_PROCESAR_MONTOS_SOLICITUD_CHEQUE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Bruto", DbType="Decimal(20,2)")] System.Nullable<decimal> bruto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Neto", DbType="Decimal(20,2)")] System.Nullable<decimal> neto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Comision", DbType="Decimal(20,2)")] System.Nullable<decimal> comision, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Retencion", DbType="Decimal(20,2)")] System.Nullable<decimal> retencion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Avance", DbType="Decimal(20,2)")] System.Nullable<decimal> avance, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ALiquidar", DbType="Decimal(20,2)")] System.Nullable<decimal> aLiquidar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, codigoIntermediario, bruto, neto, comision, retencion, avance, aLiquidar, accion);
+			return ((ISingleResult<SP_PROCESAR_MONTOS_SOLICITUD_CHEQUEResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_BUSCA_OFICINASResult
@@ -5655,6 +5669,310 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._ClaseProveedor != value))
 				{
 					this._ClaseProveedor = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_MONTOS_SOLICITUD_CHEQUESResult
+	{
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private System.Nullable<int> _CodigoIntermediario;
+		
+		private System.Nullable<decimal> _Bruto;
+		
+		private System.Nullable<decimal> _Neto;
+		
+		private System.Nullable<decimal> _Comision;
+		
+		private System.Nullable<decimal> _Retencion;
+		
+		private System.Nullable<decimal> _Avance;
+		
+		private System.Nullable<decimal> _ALiquidar;
+		
+		public SP_BUSCA_MONTOS_SOLICITUD_CHEQUESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoIntermediario", DbType="Int")]
+		public System.Nullable<int> CodigoIntermediario
+		{
+			get
+			{
+				return this._CodigoIntermediario;
+			}
+			set
+			{
+				if ((this._CodigoIntermediario != value))
+				{
+					this._CodigoIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bruto", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Bruto
+		{
+			get
+			{
+				return this._Bruto;
+			}
+			set
+			{
+				if ((this._Bruto != value))
+				{
+					this._Bruto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Neto", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Neto
+		{
+			get
+			{
+				return this._Neto;
+			}
+			set
+			{
+				if ((this._Neto != value))
+				{
+					this._Neto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comision", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Comision
+		{
+			get
+			{
+				return this._Comision;
+			}
+			set
+			{
+				if ((this._Comision != value))
+				{
+					this._Comision = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Retencion", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Retencion
+		{
+			get
+			{
+				return this._Retencion;
+			}
+			set
+			{
+				if ((this._Retencion != value))
+				{
+					this._Retencion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Avance", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Avance
+		{
+			get
+			{
+				return this._Avance;
+			}
+			set
+			{
+				if ((this._Avance != value))
+				{
+					this._Avance = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ALiquidar", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> ALiquidar
+		{
+			get
+			{
+				return this._ALiquidar;
+			}
+			set
+			{
+				if ((this._ALiquidar != value))
+				{
+					this._ALiquidar = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_MONTOS_SOLICITUD_CHEQUEResult
+	{
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private System.Nullable<int> _CodigoIntermediario;
+		
+		private System.Nullable<decimal> _Bruto;
+		
+		private System.Nullable<decimal> _Neto;
+		
+		private System.Nullable<decimal> _Comision;
+		
+		private System.Nullable<decimal> _Retencion;
+		
+		private System.Nullable<decimal> _Avance;
+		
+		private System.Nullable<decimal> _ALiquidar;
+		
+		public SP_PROCESAR_MONTOS_SOLICITUD_CHEQUEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoIntermediario", DbType="Int")]
+		public System.Nullable<int> CodigoIntermediario
+		{
+			get
+			{
+				return this._CodigoIntermediario;
+			}
+			set
+			{
+				if ((this._CodigoIntermediario != value))
+				{
+					this._CodigoIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bruto", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Bruto
+		{
+			get
+			{
+				return this._Bruto;
+			}
+			set
+			{
+				if ((this._Bruto != value))
+				{
+					this._Bruto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Neto", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Neto
+		{
+			get
+			{
+				return this._Neto;
+			}
+			set
+			{
+				if ((this._Neto != value))
+				{
+					this._Neto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comision", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Comision
+		{
+			get
+			{
+				return this._Comision;
+			}
+			set
+			{
+				if ((this._Comision != value))
+				{
+					this._Comision = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Retencion", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Retencion
+		{
+			get
+			{
+				return this._Retencion;
+			}
+			set
+			{
+				if ((this._Retencion != value))
+				{
+					this._Retencion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Avance", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Avance
+		{
+			get
+			{
+				return this._Avance;
+			}
+			set
+			{
+				if ((this._Avance != value))
+				{
+					this._Avance = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ALiquidar", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ALiquidar
+		{
+			get
+			{
+				return this._ALiquidar;
+			}
+			set
+			{
+				if ((this._ALiquidar != value))
+				{
+					this._ALiquidar = value;
 				}
 			}
 		}
