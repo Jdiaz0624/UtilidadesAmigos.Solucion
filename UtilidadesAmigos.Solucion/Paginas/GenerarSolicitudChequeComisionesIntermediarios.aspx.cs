@@ -249,6 +249,85 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                 "INSERT");
                             Procesar.ProcesarInformacion();
                         }
+
+                        //SACAMOS LA SUMA DE LOS MONTOS GUARDADOS ANTERIORMENTE
+                        decimal SumaBruto = 0, SumaNeto = 0, SumaComision = 0, SumaRetencion = 0, SumaAvance = 0, SumaALiquidar = 0;
+
+                        var SacarSumaMontos = ObjdataMantenimiento.Value.BuscaMontos(
+                            Convert.ToDecimal(Session["IdUsuario"]), Codigo);
+                        foreach (var nSumaMontos in SacarSumaMontos) {
+                            SumaBruto = Convert.ToDecimal(nSumaMontos.Bruto);
+                            SumaNeto = Convert.ToDecimal(nSumaMontos.Neto);
+                            SumaComision = Convert.ToDecimal(nSumaMontos.Comision);
+                            SumaRetencion = Convert.ToDecimal(nSumaMontos.Retencion);
+                            SumaAvance = Convert.ToDecimal(nSumaMontos.Avance);
+                            SumaALiquidar = Convert.ToDecimal(nSumaMontos.ALiquidar);
+                        }
+
+                        //GUARDAMOS LOS DATOS DE LA SOLICITUD DE CHEQUE
+                        string Endosable= "";
+                        if (rbChequeEndosable.Checked == true) {
+                            Endosable = "SI";
+                        }
+                        else if (rbChequeNoEndosable.Checked == false) {
+                            Endosable = "NO";
+                        }
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCheques ProcesarSolicitud = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCheques(
+                            0,
+                            ""
+                            ,
+                            0,
+                            0,
+                            0,
+                            "",
+                            DateTime.Now,
+                            0,
+                            "",
+                            0,
+                            "",
+                            0,
+                            "",
+                            TipoRnc,
+                            RNC,
+                            CodigoProveedorSacardo,
+                            "",
+                            "",
+                            Endosable,
+                            Convert.ToInt32(ddlSeleccionarBanco.SelectedValue),
+                            CuentaBanco,
+                            SumaALiquidar,
+                            "",
+                            "",
+                            0,
+                            DateTime.Now,
+                            0,
+                            DateTime.Now,
+                            UsuarioProcesa,
+                            UsuarioProcesa,
+                            DateTime.Now,
+                            DateTime.Now,
+                            0,
+                            DateTime.Now,
+                            UsuarioProcesa,
+                            "",
+                            "",
+                            UsuarioProcesa,
+                            0,
+                            "N",
+                            0,
+                            Convert.ToDateTime(txtFechaDesde.Text),
+                            Convert.ToDateTime(txtFechaHasta.Text),
+                            SumaBruto,
+                            SumaComision,
+                            SumaRetencion,
+                            "INSERT");
+                        ProcesarSolicitud.ProcesarInformacion();
+
+                        //SACAMOS EL NUMERO DE SOLICITUD GENERADO
+                        int NumeroSolicitudGenerado = UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.SacarUltimoNumeroSolicitudGenerada.SacarNumeroSolicitud(CodigoProveedorSacardo);
+                        string NumeroSolicitudConvertida = NumeroSolicitudGenerado.ToString();
+                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Numero de Solicitud Generada " + NumeroSolicitudConvertida + "');", true);
+
                     }
                     else {
                         FormsAuthentication.SignOut();

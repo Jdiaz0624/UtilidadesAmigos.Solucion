@@ -201,7 +201,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos
             Procesar.Impresion = Convert.ToChar(Impresion);
             Procesar.TipoDoc = TipoDoc;
 
-            var MAN = Objdata.ProcesarSolicitudCheques(Procesar, FechaProcesoDesde, FechaProcesoHasta, TotalCobradoVendedor, ComisionBrutaVendedor, RetencionVendedor, Accion);
+            var MAN = Objdata.ProcesarSolicitudCheques(Procesar,FechaProcesoDesde,FechaProcesoHasta,TotalCobradoVendedor,ComisionBrutaVendedor,RetencionVendedor,Accion);
         }
     }
 }

@@ -801,6 +801,18 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             }
             return Procesar;
         }
+
+        //SACAR ULTIMO NUMERO SOLICITUD GENERADO
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.ESacarUltimoNumeroSolicitudGenerado> SacarUltimoNumeroSolicitudGenrado(int? CodigoBeneficiario = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var NumeroSolicitud = (from n in Objdata.SP_SACAR_ULTIMO_NUMERO_SOLICITUD_GENERADO(CodigoBeneficiario)
+                                   select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.ESacarUltimoNumeroSolicitudGenerado
+                                   {
+                                       NumeroSolicitud=n.NumeroSolicitud
+                                   }).ToList();
+            return NumeroSolicitud;
+        }
         #endregion
 
     }

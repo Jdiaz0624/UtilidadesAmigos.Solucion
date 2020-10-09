@@ -603,4 +603,10 @@
       <Column Name="TipoDoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_SACAR_ULTIMO_NUMERO_SOLICITUD_GENERADO" Method="SP_SACAR_ULTIMO_NUMERO_SOLICITUD_GENERADO">
+    <Parameter Name="CodigoProveedor" Parameter="codigoProveedor" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SACAR_ULTIMO_NUMERO_SOLICITUD_GENERADOResult">
+      <Column Name="NumeroSolicitud" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

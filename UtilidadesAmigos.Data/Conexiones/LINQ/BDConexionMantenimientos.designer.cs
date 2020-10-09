@@ -277,6 +277,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), solicitud, rNCTipo, rNC, codigoBeneficiario, endosable, ctaBanco, cuentaBanco, valor, usuarioProcesa, fechaDesde, fechaHasta, totalCobradoVendedor, comisionBrutaVendedor, retencionVendedor, accion);
 			return ((ISingleResult<SP_PROCESAR_SOLICITUD_CHEQUEResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_ULTIMO_NUMERO_SOLICITUD_GENERADO")]
+		public ISingleResult<SP_SACAR_ULTIMO_NUMERO_SOLICITUD_GENERADOResult> SP_SACAR_ULTIMO_NUMERO_SOLICITUD_GENERADO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoProveedor", DbType="Int")] System.Nullable<int> codigoProveedor)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoProveedor);
+			return ((ISingleResult<SP_SACAR_ULTIMO_NUMERO_SOLICITUD_GENERADOResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_BUSCA_OFICINASResult
@@ -6726,6 +6733,32 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._TipoDoc != value))
 				{
 					this._TipoDoc = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_ULTIMO_NUMERO_SOLICITUD_GENERADOResult
+	{
+		
+		private System.Nullable<int> _NumeroSolicitud;
+		
+		public SP_SACAR_ULTIMO_NUMERO_SOLICITUD_GENERADOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroSolicitud", DbType="Int")]
+		public System.Nullable<int> NumeroSolicitud
+		{
+			get
+			{
+				return this._NumeroSolicitud;
+			}
+			set
+			{
+				if ((this._NumeroSolicitud != value))
+				{
+					this._NumeroSolicitud = value;
 				}
 			}
 		}
