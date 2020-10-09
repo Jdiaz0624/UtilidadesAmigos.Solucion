@@ -728,6 +728,79 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             }
             return Mantenimeinto;
         }
+
+
+        //PROCESAR INFORMACION SOLICITUD DE CHEQUES
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarSolicitudCheques ProcesarSolicitudCheques(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarSolicitudCheques Item,DateTime? FechaDesde, DateTime? FechaHasta,decimal? TotalCobradoVendedor, decimal? ComisionBrutaVendedor,decimal? RetencionVendedor, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarSolicitudCheques Procesar = null;
+
+            var SolicitudCheque = Objdata.SP_PROCESAR_SOLICITUD_CHEQUE(
+                Item.Solicitud,
+                Item.RNCTipo,
+                Item.RNC,
+                Item.CodigoBeneficiario,
+                Item.Endosable,
+                Item.CtaBanco,
+                Item.CuentaBanco,
+                Item.Valor,
+                Item.UsuarioDigita,
+                FechaDesde,
+                FechaHasta,
+                TotalCobradoVendedor,
+                ComisionBrutaVendedor,
+                RetencionVendedor,
+                Accion);
+            if (SolicitudCheque != null) {
+                Procesar = (from n in SolicitudCheque
+                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarSolicitudCheques
+                            {
+                                Compania = n.Compania,
+                                Anulado = n.Anulado,
+                                Sistema = n.Sistema,
+                                Solicitud = n.Solicitud,
+                                TipoSolicitud = n.TipoSolicitud,
+                                DescTipoSolicitud = n.DescTipoSolicitud,
+                                FechaSolicitud = n.FechaSolicitud,
+                                Sucursal = n.Sucursal,
+                                DescSucursal = n.DescSucursal,
+                                Departamento = n.Departamento,
+                                DescDepto = n.DescDepto,
+                                Seccion = n.Seccion,
+                                DescSeccion = n.DescSeccion,
+                                RNCTipo = n.RNCTipo,
+                                RNC = n.RNC,
+                                CodigoBeneficiario = n.CodigoBeneficiario,
+                                Beneficiario1 = n.Beneficiario1,
+                                Beneficiario2 = n.Beneficiario2,
+                                Endosable = n.Endosable,
+                                CtaBanco = n.CtaBanco,
+                                CuentaBanco = n.CuentaBanco,
+                                Valor = n.Valor,
+                                Concepto1 = n.Concepto1,
+                                Concepto2 = n.Concepto2,
+                                NumeroCheque = n.NumeroCheque,
+                                FechaCheque = n.FechaCheque,
+                                AnoMesConciliado = n.AnoMesConciliado,
+                                FechaConciliado = n.FechaConciliado,
+                                UsuarioDigita = n.UsuarioDigita,
+                                UsuarioModifica = n.UsuarioModifica,
+                                FechaDigita = n.FechaDigita,
+                                FechaModifica = n.FechaModifica,
+                                Aprobado = n.Aprobado,
+                                FechaAprobado = n.FechaAprobado,
+                                UsuarioCheque = n.UsuarioCheque,
+                                PrimeraFirma = n.PrimeraFirma,
+                                SegundaFirma = n.SegundaFirma,
+                                UsuarioCancel = n.UsuarioCancel,
+                                Estatus = n.Estatus,
+                                Impresion = n.Impresion,
+                                TipoDoc = n.TipoDoc
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
         #endregion
 
     }
