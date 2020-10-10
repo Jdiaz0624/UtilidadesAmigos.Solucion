@@ -284,6 +284,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoProveedor);
 			return ((ISingleResult<SP_SACAR_ULTIMO_NUMERO_SOLICITUD_GENERADOResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_DATOS_SOLICITUD_CHEQUES_CUENTAS")]
+		public ISingleResult<SP_PROCESAR_DATOS_SOLICITUD_CHEQUES_CUENTASResult> SP_PROCESAR_DATOS_SOLICITUD_CHEQUES_CUENTAS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Solicitud", DbType="Int")] System.Nullable<int> solicitud, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Int")] System.Nullable<int> secuencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cuenta", DbType="NVarChar(28)")] string cuenta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Auxiliar", DbType="Int")] System.Nullable<int> auxiliar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Origen", DbType="VarChar(2)")] string origen, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Valor", DbType="Money")] System.Nullable<decimal> valor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), solicitud, secuencia, cuenta, auxiliar, origen, valor, fechaDesde, fechaHasta, accion);
+			return ((ISingleResult<SP_PROCESAR_DATOS_SOLICITUD_CHEQUES_CUENTASResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_BUSCA_OFICINASResult
@@ -6759,6 +6766,230 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._NumeroSolicitud != value))
 				{
 					this._NumeroSolicitud = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_DATOS_SOLICITUD_CHEQUES_CUENTASResult
+	{
+		
+		private System.Nullable<byte> _Compania;
+		
+		private string _Anulado;
+		
+		private System.Nullable<byte> _Sistema;
+		
+		private System.Nullable<int> _Solicitud;
+		
+		private System.Nullable<int> _Secuencia;
+		
+		private string _Cuenta;
+		
+		private System.Nullable<int> _Auxiliar;
+		
+		private string _DescCuenta;
+		
+		private string _Origen;
+		
+		private System.Nullable<decimal> _Valor;
+		
+		private System.Nullable<int> _TipoCompromiso;
+		
+		private System.Nullable<int> _Departamento;
+		
+		public SP_PROCESAR_DATOS_SOLICITUD_CHEQUES_CUENTASResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Compania", DbType="TinyInt")]
+		public System.Nullable<byte> Compania
+		{
+			get
+			{
+				return this._Compania;
+			}
+			set
+			{
+				if ((this._Compania != value))
+				{
+					this._Compania = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Anulado", DbType="VarChar(1)")]
+		public string Anulado
+		{
+			get
+			{
+				return this._Anulado;
+			}
+			set
+			{
+				if ((this._Anulado != value))
+				{
+					this._Anulado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sistema", DbType="TinyInt")]
+		public System.Nullable<byte> Sistema
+		{
+			get
+			{
+				return this._Sistema;
+			}
+			set
+			{
+				if ((this._Sistema != value))
+				{
+					this._Sistema = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Solicitud", DbType="Int")]
+		public System.Nullable<int> Solicitud
+		{
+			get
+			{
+				return this._Solicitud;
+			}
+			set
+			{
+				if ((this._Solicitud != value))
+				{
+					this._Solicitud = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int")]
+		public System.Nullable<int> Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cuenta", DbType="NVarChar(28)")]
+		public string Cuenta
+		{
+			get
+			{
+				return this._Cuenta;
+			}
+			set
+			{
+				if ((this._Cuenta != value))
+				{
+					this._Cuenta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Auxiliar", DbType="Int")]
+		public System.Nullable<int> Auxiliar
+		{
+			get
+			{
+				return this._Auxiliar;
+			}
+			set
+			{
+				if ((this._Auxiliar != value))
+				{
+					this._Auxiliar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescCuenta", DbType="VarChar(50)")]
+		public string DescCuenta
+		{
+			get
+			{
+				return this._DescCuenta;
+			}
+			set
+			{
+				if ((this._DescCuenta != value))
+				{
+					this._DescCuenta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Origen", DbType="VarChar(2)")]
+		public string Origen
+		{
+			get
+			{
+				return this._Origen;
+			}
+			set
+			{
+				if ((this._Origen != value))
+				{
+					this._Origen = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Valor", DbType="Money")]
+		public System.Nullable<decimal> Valor
+		{
+			get
+			{
+				return this._Valor;
+			}
+			set
+			{
+				if ((this._Valor != value))
+				{
+					this._Valor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoCompromiso", DbType="Int")]
+		public System.Nullable<int> TipoCompromiso
+		{
+			get
+			{
+				return this._TipoCompromiso;
+			}
+			set
+			{
+				if ((this._TipoCompromiso != value))
+				{
+					this._TipoCompromiso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Departamento", DbType="Int")]
+		public System.Nullable<int> Departamento
+		{
+			get
+			{
+				return this._Departamento;
+			}
+			set
+			{
+				if ((this._Departamento != value))
+				{
+					this._Departamento = value;
 				}
 			}
 		}

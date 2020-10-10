@@ -113,6 +113,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionPorcientoComisionesPorDefecto.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProveedoresSolicitud.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionSolicitudCheques.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionSolicitudCuentas.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarMontosSolicitudCheques.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\SacarUltimoNumeroSolicitudGenerada.cs" />
     <Compile Include="Comunes\Reportes\ProcesarHistoricoImpresionMarbetes.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="Entidades\Mantenimientos\EMantenimientoProveedoresSolicitud.cs" />
     <Compile Include="Entidades\Mantenimientos\EMontosSolicitudCheques.cs" />
     <Compile Include="Entidades\Mantenimientos\EOficinas.cs" />
+    <Compile Include="Entidades\Mantenimientos\EProcesarDatosSolicitudChequesCuentas.cs" />
     <Compile Include="Entidades\Mantenimientos\EProcesarSolicitudCheques.cs" />
     <Compile Include="Entidades\Mantenimientos\ESacarCodigoMaximoIntermediaio.cs" />
     <Compile Include="Entidades\Mantenimientos\ESacarUltimoNumeroSolicitudGenerado.cs" />

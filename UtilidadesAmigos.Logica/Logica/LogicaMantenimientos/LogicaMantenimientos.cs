@@ -813,6 +813,44 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                                    }).ToList();
             return NumeroSolicitud;
         }
+
+        //PROCESAR LOS DATOS DE LAS COLICITUD DE CHEQUES CUENTAS
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarDatosSolicitudChequesCuentas ProcesarDatosSolicitudCuentas(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarDatosSolicitudChequesCuentas Item, DateTime? FechaDesde, DateTime? FechaHAsta, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarDatosSolicitudChequesCuentas Procesar = null;
+
+
+            var SolicitudCuentas = Objdata.SP_PROCESAR_DATOS_SOLICITUD_CHEQUES_CUENTAS(
+                Item.Solicitud,
+                Item.Secuencia,
+                Item.Cuenta,
+                Item.Auxiliar,
+                Item.Origen,
+                Item.Valor,
+                FechaDesde,
+                FechaHAsta,
+                Accion);
+            if (SolicitudCuentas != null) {
+                Procesar = (from n in SolicitudCuentas
+                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarDatosSolicitudChequesCuentas
+                            {
+                                Compania =n.Compania,
+                                Anulado = n.Anulado,
+                                Sistema = n.Sistema,
+                                Solicitud = n.Solicitud,
+                                Secuencia = n.Secuencia,
+                                Cuenta = n.Cuenta,
+                                Auxiliar = n.Auxiliar,
+                                DescCuenta = n.DescCuenta,
+                                Origen = n.Origen,
+                                Valor = n.Valor,
+                                TipoCompromiso = n.TipoCompromiso,
+                                Departamento = n.Departamento
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
         #endregion
 
     }

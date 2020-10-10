@@ -609,4 +609,29 @@
       <Column Name="NumeroSolicitud" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_PROCESAR_DATOS_SOLICITUD_CHEQUES_CUENTAS" Method="SP_PROCESAR_DATOS_SOLICITUD_CHEQUES_CUENTAS">
+    <Parameter Name="Solicitud" Parameter="solicitud" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Secuencia" Parameter="secuencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cuenta" Parameter="cuenta" Type="System.String" DbType="NVarChar(28)" />
+    <Parameter Name="Auxiliar" Parameter="auxiliar" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Origen" Parameter="origen" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="Valor" Parameter="valor" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_DATOS_SOLICITUD_CHEQUES_CUENTASResult">
+      <Column Name="Compania" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Anulado" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="Sistema" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Solicitud" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Secuencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cuenta" Type="System.String" DbType="NVarChar(28)" CanBeNull="true" />
+      <Column Name="Auxiliar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DescCuenta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Origen" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TipoCompromiso" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Departamento" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
