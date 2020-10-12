@@ -19,18 +19,18 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             var Buscar = (from n in Objdata.SP_BUSCA_OFICINAS(IdOficina, IdSucursal, Descripcion)
                           select new Entidades.Mantenimientos.EOficinas
                           {
-                              IdOficina=n.IdOficina,
-                              IdSucursal=n.IdSucursal,
-                              Sucursal=n.Sucursal,
-                              Oficina=n.Oficina,
-                              Estatus0=n.Estatus0,
-                              Estatus=n.Estatus,
-                              UsuarioAdiciona=n.UsuarioAdiciona,
-                              Creadopor=n.Creadopor,
-                              FechaAdiciona=n.FechaAdiciona,
-                              UsuarioModifica=n.UsuarioModifica,
-                              ModificadoPor=n.ModificadoPor,
-                              FechaModifica=n.FechaModifica
+                              IdOficina = n.IdOficina,
+                              IdSucursal = n.IdSucursal,
+                              Sucursal = n.Sucursal,
+                              Oficina = n.Oficina,
+                              Estatus0 = n.Estatus0,
+                              Estatus = n.Estatus,
+                              UsuarioAdiciona = n.UsuarioAdiciona,
+                              Creadopor = n.Creadopor,
+                              FechaAdiciona = n.FechaAdiciona,
+                              UsuarioModifica = n.UsuarioModifica,
+                              ModificadoPor = n.ModificadoPor,
+                              FechaModifica = n.FechaModifica
                           }).ToList();
             return Buscar;
         }
@@ -54,14 +54,14 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                 Mantenimiento = (from n in MAN
                                  select new Entidades.Mantenimientos.EOficinas
                                  {
-                                     IdOficina=n.IdOficina,
-                                     IdSucursal=n.IdSucursal,
-                                     Oficina=n.Descripcion,
-                                     Estatus0=n.Estatus,
-                                     UsuarioAdiciona=n.UsuarioAdiciona,
-                                     FechaAdiciona=n.FechaAdiciona,
-                                     UsuarioModifica=n.UsuarioModifica,
-                                     FechaModifica=n.FechaModifica
+                                     IdOficina = n.IdOficina,
+                                     IdSucursal = n.IdSucursal,
+                                     Oficina = n.Descripcion,
+                                     Estatus0 = n.Estatus,
+                                     UsuarioAdiciona = n.UsuarioAdiciona,
+                                     FechaAdiciona = n.FechaAdiciona,
+                                     UsuarioModifica = n.UsuarioModifica,
+                                     FechaModifica = n.FechaModifica
                                  }).FirstOrDefault();
             }
             return Mantenimiento;
@@ -74,26 +74,26 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
         {
             Objdata.CommandTimeout = 999999999;
 
-            var Buscar = (from n in Objdata.SP_MAN_BUSCA_DEPARTAMENTOS(IdSucursal,IdOficina, IdDepartamento, Descripcion)
+            var Buscar = (from n in Objdata.SP_MAN_BUSCA_DEPARTAMENTOS(IdSucursal, IdOficina, IdDepartamento, Descripcion)
                           select new Entidades.Mantenimientos.EDepartamentos
                           {
-                              IdSucursal=n.IdSucursal,
-                              Sucursal=n.Sucursal,
-                              IdOficina=n.IdOficina,
-                              Oficina=n.Oficina,
-                              IdDepartamento=n.IdDepartamento,
-                              Departamento=n.Departamento,
-                              Estatus0=n.Estatus0,
-                              Estatus=n.Estatus,
-                              UsuarioAdiciona=n.UsuarioAdiciona,
-                              CreadoPor=n.CreadoPor,
-                              FechaAdiciona=n.FechaAdiciona,
-                              FechaCreado=n.FechaCreado,
-                              UsuarioModifica=n.UsuarioModifica,
-                              ModificadoPor=n.ModificadoPor,
-                              FechaModifica=n.FechaModifica,
-                              FechaModificado=n.FechaModificado,
-                              CantidadRegistros=n.CantidadRegistros
+                              IdSucursal = n.IdSucursal,
+                              Sucursal = n.Sucursal,
+                              IdOficina = n.IdOficina,
+                              Oficina = n.Oficina,
+                              IdDepartamento = n.IdDepartamento,
+                              Departamento = n.Departamento,
+                              Estatus0 = n.Estatus0,
+                              Estatus = n.Estatus,
+                              UsuarioAdiciona = n.UsuarioAdiciona,
+                              CreadoPor = n.CreadoPor,
+                              FechaAdiciona = n.FechaAdiciona,
+                              FechaCreado = n.FechaCreado,
+                              UsuarioModifica = n.UsuarioModifica,
+                              ModificadoPor = n.ModificadoPor,
+                              FechaModifica = n.FechaModifica,
+                              FechaModificado = n.FechaModificado,
+                              CantidadRegistros = n.CantidadRegistros
                           }).ToList();
             return Buscar;
         }
@@ -118,7 +118,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                 Mantenimiento = (from n in Departamentos
                                  select new Entidades.Mantenimientos.EDepartamentos
                                  {
-                                     IdSucursal=n.IdSucursal,
+                                     IdSucursal = n.IdSucursal,
                                      IdOficina = n.IdOficina,
                                      IdDepartamento = n.IdDepartamento,
                                      Departamento = n.Descripcion,
@@ -142,25 +142,25 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             var Buscar = (from n in Objdata.SP_MAN_BUSCA_EMPLEADOS(IdSucursal, IdOficina, IdDepartamento, IdEmpleado, Nombre)
                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EEmpleado
                           {
-                              IdSucursal=n.IdSucursal,
-                              Sucursal=n.Sucursal,
-                              IdOfiicna=n.IdOfiicna,
-                              Oficina=n.Oficina,
-                              IdDepartamento=n.IdDepartamento,
-                              Departamento=n.Departamento,
-                              IdEmpleado=n.IdEmpleado,
-                              Nombre=n.Nombre,
-                              Estatus0=n.Estatus0,
-                              Estatus=n.Estatus,
-                              UsuarioAdiciona=n.UsuarioAdiciona,
-                              CreadoPor=n.CreadoPor,
-                              FechaAdiciona=n.FechaAdiciona,
-                              FechaCreado=n.FechaCreado,
-                              UsuarioModifica=n.UsuarioModifica,
-                              ModificadoPor=n.ModificadoPor,
-                              FechaModifica=n.FechaModifica,
-                              FechaModificado=n.FechaModificado,
-                              CantidadRegistros=n.CantidadRegistros
+                              IdSucursal = n.IdSucursal,
+                              Sucursal = n.Sucursal,
+                              IdOfiicna = n.IdOfiicna,
+                              Oficina = n.Oficina,
+                              IdDepartamento = n.IdDepartamento,
+                              Departamento = n.Departamento,
+                              IdEmpleado = n.IdEmpleado,
+                              Nombre = n.Nombre,
+                              Estatus0 = n.Estatus0,
+                              Estatus = n.Estatus,
+                              UsuarioAdiciona = n.UsuarioAdiciona,
+                              CreadoPor = n.CreadoPor,
+                              FechaAdiciona = n.FechaAdiciona,
+                              FechaCreado = n.FechaCreado,
+                              UsuarioModifica = n.UsuarioModifica,
+                              ModificadoPor = n.ModificadoPor,
+                              FechaModifica = n.FechaModifica,
+                              FechaModificado = n.FechaModificado,
+                              CantidadRegistros = n.CantidadRegistros
                           }).ToList();
             return Buscar;
         }
@@ -186,16 +186,16 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                 Mantenimiento = (from n in Empleado
                                  select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EEmpleado
                                  {
-                                     IdSucursal=n.IdSucursal,
-                                     IdOfiicna=n.IdOfiicna,
-                                     IdDepartamento=n.IdDepartamento,
-                                     IdEmpleado=n.IdEmpleado,
-                                     Nombre=n.Nombre,
-                                     Estatus0=n.Estatus,
-                                     UsuarioAdiciona=n.UsuarioAdiciona,
-                                     FechaAdiciona=n.FechaAdiciona,
-                                     UsuarioModifica=n.UsuarioModifica,
-                                     FechaModifica=n.FechaModifica
+                                     IdSucursal = n.IdSucursal,
+                                     IdOfiicna = n.IdOfiicna,
+                                     IdDepartamento = n.IdDepartamento,
+                                     IdEmpleado = n.IdEmpleado,
+                                     Nombre = n.Nombre,
+                                     Estatus0 = n.Estatus,
+                                     UsuarioAdiciona = n.UsuarioAdiciona,
+                                     FechaAdiciona = n.FechaAdiciona,
+                                     UsuarioModifica = n.UsuarioModifica,
+                                     FechaModifica = n.FechaModifica
                                  }).FirstOrDefault();
             }
             return Mantenimiento;
@@ -216,12 +216,12 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             var ListadoComisiones = (from n in Objdata.SP_BUSCA_PORCIENTO_COMISION_POR_DEFECTO(IdRegistro, Ramo, SubRamo)
                                      select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EComisionesPorDefecto
                                      {
-                                         IdRegistro=n.IdRegistro,
-                                         CodRamo=n.CodRamo,
-                                         Ramo=n.Ramo,
-                                         CodSubramo=n.CodSubramo,
-                                         Subramo=n.Subramo,
-                                         PorcientoComision=n.PorcientoComision
+                                         IdRegistro = n.IdRegistro,
+                                         CodRamo = n.CodRamo,
+                                         Ramo = n.Ramo,
+                                         CodSubramo = n.CodSubramo,
+                                         Subramo = n.Subramo,
+                                         PorcientoComision = n.PorcientoComision
                                      }).ToList();
             return ListadoComisiones;
         }
@@ -240,10 +240,10 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                 Mantenimiento = (from n in PorcientoComsionesPorDefecto
                                  select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EComisionesPorDefecto
                                  {
-                                     IdRegistro=n.IdRegistro,
-                                     CodRamo=n.Ramo,
-                                     CodSubramo=n.SubRamo,
-                                     PorcientoComision=n.PorcientoComision
+                                     IdRegistro = n.IdRegistro,
+                                     CodRamo = n.Ramo,
+                                     CodSubramo = n.SubRamo,
+                                     PorcientoComision = n.PorcientoComision
                                  }).FirstOrDefault();
             }
             return Mantenimiento;
@@ -258,69 +258,69 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             var Listado = (from n in Objdata.SP_BUSCA_LISTADO_INTERMEDIARIOS(CodigoIntermediario, NombreIntermediario, CodigoSupervisor, NombreSupervisor, Oficin)
                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EBuscaListadoIntermediarios
                            {
-                               Compania=n.Compania,
-                               Codigo=n.Codigo,
-                               Cuenta=n.Cuenta,
-                               Auxiliar=n.Auxiliar,
-                               TipoRnc=n.TipoRnc,
-                               DescripcionTipoRNC=n.DescripcionTipoRNC,
-                               Rnc=n.Rnc,
-                               NombreVendedor=n.NombreVendedor,
-                               PorcientoComision=n.PorcientoComision,
-                               CodigoSupervisor=n.CodigoSupervisor,
-                               Estatus0=n.Estatus0,
-                               Estatus=n.Estatus,
-                               Fecha_Entrada=n.Fecha_Entrada,
-                               FechaEntrada=n.FechaEntrada,
-                               UsuarioAdiciona=n.UsuarioAdiciona,
-                               FechaAdiciona=n.FechaAdiciona,
-                               UsuarioModifica=n.UsuarioModifica,
-                               FechaModifica=n.FechaModifica,
-                               PorcientoGastos=n.PorcientoGastos,
-                               nota=n.nota,
-                               tipo_Intermediario=n.tipo_Intermediario,
-                               Agencia=n.Agencia,
-                               Fec_Nac=n.Fec_Nac,
-                               FechaNacimiento=n.FechaNacimiento,
-                               Publicidad=n.Publicidad,
-                               PagoComPor=n.PagoComPor,
-                               Banco=n.Banco,
-                               NombreBanco=n.NombreBanco,
-                               CtaBanco=n.CtaBanco,
-                               CodigoRnc=n.CodigoRnc,
-                               Retencion=n.Retencion,
-                               PorcDescuento=n.PorcDescuento,
-                               SupervisorCrea=n.SupervisorCrea,
-                               VendedorCrea=n.VendedorCrea,
-                               Supervisor=n.Supervisor,
-                               Poliza=n.Poliza,
-                               Direccion=n.Direccion,
-                               Ubicacion=n.Ubicacion,
-                               DescripcionUbicacion=n.DescripcionUbicacion,
-                               Telefono=n.Telefono,
-                               TelefonoOficina=n.TelefonoOficina,
-                               Celular=n.Celular,
-                               Beeper=n.Beeper,
-                               Fax=n.Fax,
-                               Email=n.Email,
-                               LicenciaSeguro=n.LicenciaSeguro,
-                               CodigoAnterior=n.CodigoAnterior,
-                               Apellido=n.Apellido,
-                               Nombre=n.Nombre,
-                               Oficina=n.Oficina,
-                               NombreOficina=n.NombreOficina,
-                               TipoCuentaBco=n.TipoCuentaBco,
-                               EjecutivoServicio=n.EjecutivoServicio,
-                               AsumeCxc=n.AsumeCxc,
-                               CodigoCliente=n.CodigoCliente,
-                               Record_Id=n.Record_Id,
-                               PorcientoCapitalizacion=n.PorcientoCapitalizacion,
-                               Gestor=n.Gestor,
-                               EjecutivoCobros=n.EjecutivoCobros,
-                               DiasCancelacionAutomatica=n.DiasCancelacionAutomatica,
-                               CodigoSupervisor1=n.CodigoSupervisor1,
-                               NombreSupervisor=n.NombreSupervisor,
-                               CantidadRegistros=n.CantidadRegistros
+                               Compania = n.Compania,
+                               Codigo = n.Codigo,
+                               Cuenta = n.Cuenta,
+                               Auxiliar = n.Auxiliar,
+                               TipoRnc = n.TipoRnc,
+                               DescripcionTipoRNC = n.DescripcionTipoRNC,
+                               Rnc = n.Rnc,
+                               NombreVendedor = n.NombreVendedor,
+                               PorcientoComision = n.PorcientoComision,
+                               CodigoSupervisor = n.CodigoSupervisor,
+                               Estatus0 = n.Estatus0,
+                               Estatus = n.Estatus,
+                               Fecha_Entrada = n.Fecha_Entrada,
+                               FechaEntrada = n.FechaEntrada,
+                               UsuarioAdiciona = n.UsuarioAdiciona,
+                               FechaAdiciona = n.FechaAdiciona,
+                               UsuarioModifica = n.UsuarioModifica,
+                               FechaModifica = n.FechaModifica,
+                               PorcientoGastos = n.PorcientoGastos,
+                               nota = n.nota,
+                               tipo_Intermediario = n.tipo_Intermediario,
+                               Agencia = n.Agencia,
+                               Fec_Nac = n.Fec_Nac,
+                               FechaNacimiento = n.FechaNacimiento,
+                               Publicidad = n.Publicidad,
+                               PagoComPor = n.PagoComPor,
+                               Banco = n.Banco,
+                               NombreBanco = n.NombreBanco,
+                               CtaBanco = n.CtaBanco,
+                               CodigoRnc = n.CodigoRnc,
+                               Retencion = n.Retencion,
+                               PorcDescuento = n.PorcDescuento,
+                               SupervisorCrea = n.SupervisorCrea,
+                               VendedorCrea = n.VendedorCrea,
+                               Supervisor = n.Supervisor,
+                               Poliza = n.Poliza,
+                               Direccion = n.Direccion,
+                               Ubicacion = n.Ubicacion,
+                               DescripcionUbicacion = n.DescripcionUbicacion,
+                               Telefono = n.Telefono,
+                               TelefonoOficina = n.TelefonoOficina,
+                               Celular = n.Celular,
+                               Beeper = n.Beeper,
+                               Fax = n.Fax,
+                               Email = n.Email,
+                               LicenciaSeguro = n.LicenciaSeguro,
+                               CodigoAnterior = n.CodigoAnterior,
+                               Apellido = n.Apellido,
+                               Nombre = n.Nombre,
+                               Oficina = n.Oficina,
+                               NombreOficina = n.NombreOficina,
+                               TipoCuentaBco = n.TipoCuentaBco,
+                               EjecutivoServicio = n.EjecutivoServicio,
+                               AsumeCxc = n.AsumeCxc,
+                               CodigoCliente = n.CodigoCliente,
+                               Record_Id = n.Record_Id,
+                               PorcientoCapitalizacion = n.PorcientoCapitalizacion,
+                               Gestor = n.Gestor,
+                               EjecutivoCobros = n.EjecutivoCobros,
+                               DiasCancelacionAutomatica = n.DiasCancelacionAutomatica,
+                               CodigoSupervisor1 = n.CodigoSupervisor1,
+                               NombreSupervisor = n.NombreSupervisor,
+                               CantidadRegistros = n.CantidadRegistros
                            }).ToList();
             return Listado;
         }
@@ -332,13 +332,13 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             var Listado = (from n in Objdata.SP_BUSCAR_COMISIONES_INTERMEDIARIO(CodigoIntermediario, Ramo, SubRamo)
                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EBuscarComisionesIntermediarios
                            {
-                               Codigo=n.Codigo,
-                               Intermediario=n.Intermediario,
-                               IdRamo=n.IdRamo,
-                               Ramo=n.Ramo,
-                               IdSubRamo=n.IdSubRamo,
-                               Subramo=n.Subramo,
-                               PorcientoComision=n.PorcientoComision
+                               Codigo = n.Codigo,
+                               Intermediario = n.Intermediario,
+                               IdRamo = n.IdRamo,
+                               Ramo = n.Ramo,
+                               IdSubRamo = n.IdSubRamo,
+                               Subramo = n.Subramo,
+                               PorcientoComision = n.PorcientoComision
                            }).ToList();
             return Listado;
         }
@@ -365,16 +365,16 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                 Mantenimiento = (from n in ComisionesIntermediarios
                                  select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.MantenimientoComisionesIntermediarios
                                  {
-                                     Compania=n.Compania,
-                                     Codigo=n.Codigo,
-                                     Ramo=n.Ramo,
-                                     SubRamo=n.SubRamo,
-                                     PorcientoComision=n.PorcientoComision,
-                                     PorcientoGastos=n.PorcientoGastos,
-                                     PorcientoNivel1=n.PorcientoNivel1,
-                                     PorcientoNivel2=n.PorcientoNivel2,
-                                     Record_Id=n.Record_Id,
-                                     Usuario=n.Usuario
+                                     Compania = n.Compania,
+                                     Codigo = n.Codigo,
+                                     Ramo = n.Ramo,
+                                     SubRamo = n.SubRamo,
+                                     PorcientoComision = n.PorcientoComision,
+                                     PorcientoGastos = n.PorcientoGastos,
+                                     PorcientoNivel1 = n.PorcientoNivel1,
+                                     PorcientoNivel2 = n.PorcientoNivel2,
+                                     Record_Id = n.Record_Id,
+                                     Usuario = n.Usuario
                                  }).FirstOrDefault();
             }
             return Mantenimiento;
@@ -510,7 +510,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             var Sacar = (from n in Objdata.SP_SACAR_CODIGO_MAXIMO_INTERMEDIARIO()
                          select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.ESacarCodigoMaximoIntermediaio
                          {
-                             Codigo=n.Codigo
+                             Codigo = n.Codigo
                          }).ToList();
             return Sacar;
         }
@@ -531,11 +531,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                 Mantenimiento = (from n in IntermediarioCadenaDetalle
                                  select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.ECadenaIntermediarioDetalle
                                  {
-                                     Compania=n.Compania,
-                                     IdIntermediario=n.IdIntermediario,
-                                     IdIntermediarioSupervisa=n.IdIntermediarioSupervisa,
-                                     UsuarioAdiciona=n.UsuarioAdiciona,
-                                     FechaAdiciona=n.FechaAdiciona
+                                     Compania = n.Compania,
+                                     IdIntermediario = n.IdIntermediario,
+                                     IdIntermediarioSupervisa = n.IdIntermediarioSupervisa,
+                                     UsuarioAdiciona = n.UsuarioAdiciona,
+                                     FechaAdiciona = n.FechaAdiciona
                                  }).FirstOrDefault();
             }
             return Mantenimiento;
@@ -550,41 +550,41 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             var Listado = (from n in Objdata.SP_BUSCAR_PROVEEDOR_SOLICITUD_CHEQUE(Codigo, RNC, NombreVendedor)
                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EBuscarProveedoresSolicitudCheques
                            {
-                               Compania=n.Compania,
-                               Codigo=n.Codigo,
-                               TipoCliente=n.TipoCliente,
-                               TipoRnc=n.TipoRnc,
-                               RNC=n.RNC,
-                               NombreCliente=n.NombreCliente,
-                               Ubicacion=n.Ubicacion,
-                               LimiteCredito=n.LimiteCredito,
-                               Descuento=n.Descuento,
-                               CondicionPago=n.CondicionPago,
-                               Estatus=n.Estatus,
-                               FechaUltPago=n.FechaUltPago,
-                               MontoUltPago=n.MontoUltPago,
-                               Balance=n.Balance,
-                               UsuarioAdiciona=n.UsuarioAdiciona,
-                               FechaAdiciona=n.FechaAdiciona,
-                               FechaCreado=n.FechaCreado,
-                               UsuarioModifica=n.UsuarioModifica,
-                               FechaModifica=n.FechaModifica,
-                               FechaModificado=n.FechaModificado,
-                               CodigoRnc=n.CodigoRnc,
-                               PorcComision=n.PorcComision,
-                               CodMoneda=n.CodMoneda,
-                               TelefonoCasa=n.TelefonoCasa,
-                               TelefonoOficina=n.TelefonoOficina,
-                               Celular=n.Celular,
-                               Fax=n.Fax,
-                               Beeper=n.Beeper,
-                               Email=n.Email,
-                               TipoPago=n.TipoPago,
-                               Banco=n.Banco,
-                               CuentaBanco=n.CuentaBanco,
-                               Contacto=n.Contacto,
-                               TipoCuentaBanco=n.TipoCuentaBanco,
-                               ClaseProveedor=n.ClaseProveedor
+                               Compania = n.Compania,
+                               Codigo = n.Codigo,
+                               TipoCliente = n.TipoCliente,
+                               TipoRnc = n.TipoRnc,
+                               RNC = n.RNC,
+                               NombreCliente = n.NombreCliente,
+                               Ubicacion = n.Ubicacion,
+                               LimiteCredito = n.LimiteCredito,
+                               Descuento = n.Descuento,
+                               CondicionPago = n.CondicionPago,
+                               Estatus = n.Estatus,
+                               FechaUltPago = n.FechaUltPago,
+                               MontoUltPago = n.MontoUltPago,
+                               Balance = n.Balance,
+                               UsuarioAdiciona = n.UsuarioAdiciona,
+                               FechaAdiciona = n.FechaAdiciona,
+                               FechaCreado = n.FechaCreado,
+                               UsuarioModifica = n.UsuarioModifica,
+                               FechaModifica = n.FechaModifica,
+                               FechaModificado = n.FechaModificado,
+                               CodigoRnc = n.CodigoRnc,
+                               PorcComision = n.PorcComision,
+                               CodMoneda = n.CodMoneda,
+                               TelefonoCasa = n.TelefonoCasa,
+                               TelefonoOficina = n.TelefonoOficina,
+                               Celular = n.Celular,
+                               Fax = n.Fax,
+                               Beeper = n.Beeper,
+                               Email = n.Email,
+                               TipoPago = n.TipoPago,
+                               Banco = n.Banco,
+                               CuentaBanco = n.CuentaBanco,
+                               Contacto = n.Contacto,
+                               TipoCuentaBanco = n.TipoCuentaBanco,
+                               ClaseProveedor = n.ClaseProveedor
                            }).ToList();
             return Listado;
 
@@ -636,40 +636,40 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                 Mantenimiento = (from n in ProveedoresSOlicitud
                                  select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMantenimientoProveedoresSolicitud
                                  {
-                                     Compania=n.Compania,
-                                     Codigo=n.Codigo,
-                                     TipoCliente=n.TipoCliente,
-                                     TipoRnc=n.TipoRnc,
-                                     RNC=n.RNC,
-                                     NombreCliente=n.NombreCliente,
-                                     Direccion=n.Direccion,
-                                     Ubicacion=n.Ubicacion,
-                                     LimiteCredito=n.LimiteCredito,
-                                     Descuento=n.Descuento,
-                                     CondicionPago=n.CondicionPago,
-                                     Estatus=n.Estatus,
-                                     FechaUltPago=n.FechaUltPago,
-                                     MontoUltPago=n.MontoUltPago,
-                                     Balance=n.Balance,
-                                     UsuarioAdiciona=n.UsuarioAdiciona,
-                                     FechaAdiciona=n.FechaAdiciona,
-                                     UsuarioModifica=n.UsuarioModifica,
-                                     FechaModifica=n.FechaModifica,
-                                     CodigoRnc=n.CodigoRnc,
-                                     PorcComision=n.PorcComision,
-                                     CodMoneda=n.CodMoneda,
-                                     TelefonoCasa=n.TelefonoCasa,
-                                     TelefonoOficina=n.TelefonoOficina,
-                                     Celular=n.Celular,
-                                     Fax=n.Fax,
-                                     Beeper=n.Beeper,
-                                     Email=n.Email,
-                                     TipoPago=n.TipoPago,
-                                     Banco=n.Banco,
-                                     CuentaBanco=n.CuentaBanco,
-                                     Contacto=n.Contacto,
-                                     TipoCuentaBanco=n.TipoCuentaBanco,
-                                     ClaseProveedor=n.ClaseProveedor
+                                     Compania = n.Compania,
+                                     Codigo = n.Codigo,
+                                     TipoCliente = n.TipoCliente,
+                                     TipoRnc = n.TipoRnc,
+                                     RNC = n.RNC,
+                                     NombreCliente = n.NombreCliente,
+                                     Direccion = n.Direccion,
+                                     Ubicacion = n.Ubicacion,
+                                     LimiteCredito = n.LimiteCredito,
+                                     Descuento = n.Descuento,
+                                     CondicionPago = n.CondicionPago,
+                                     Estatus = n.Estatus,
+                                     FechaUltPago = n.FechaUltPago,
+                                     MontoUltPago = n.MontoUltPago,
+                                     Balance = n.Balance,
+                                     UsuarioAdiciona = n.UsuarioAdiciona,
+                                     FechaAdiciona = n.FechaAdiciona,
+                                     UsuarioModifica = n.UsuarioModifica,
+                                     FechaModifica = n.FechaModifica,
+                                     CodigoRnc = n.CodigoRnc,
+                                     PorcComision = n.PorcComision,
+                                     CodMoneda = n.CodMoneda,
+                                     TelefonoCasa = n.TelefonoCasa,
+                                     TelefonoOficina = n.TelefonoOficina,
+                                     Celular = n.Celular,
+                                     Fax = n.Fax,
+                                     Beeper = n.Beeper,
+                                     Email = n.Email,
+                                     TipoPago = n.TipoPago,
+                                     Banco = n.Banco,
+                                     CuentaBanco = n.CuentaBanco,
+                                     Contacto = n.Contacto,
+                                     TipoCuentaBanco = n.TipoCuentaBanco,
+                                     ClaseProveedor = n.ClaseProveedor
                                  }).FirstOrDefault();
             }
             return Mantenimiento;
@@ -685,13 +685,13 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMontosSolicitudCheques
                            {
                                IdUsuario = n.IdUsuario,
-                               CodigoIntermediario=n.CodigoIntermediario,
-                               Bruto=n.Bruto,
-                               Neto=n.Neto,
-                               Comision=n.Comision,
-                               Retencion=n.Retencion,
-                               Avance=n.Avance,
-                               ALiquidar=n.ALiquidar
+                               CodigoIntermediario = n.CodigoIntermediario,
+                               Bruto = n.Bruto,
+                               Neto = n.Neto,
+                               Comision = n.Comision,
+                               Retencion = n.Retencion,
+                               Avance = n.Avance,
+                               ALiquidar = n.ALiquidar
                            }).ToList();
             return Listado;
         }
@@ -731,7 +731,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
 
 
         //PROCESAR INFORMACION SOLICITUD DE CHEQUES
-        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarSolicitudCheques ProcesarSolicitudCheques(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarSolicitudCheques Item,DateTime? FechaDesde, DateTime? FechaHasta,decimal? TotalCobradoVendedor, decimal? ComisionBrutaVendedor,decimal? RetencionVendedor, string Accion) {
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarSolicitudCheques ProcesarSolicitudCheques(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarSolicitudCheques Item, DateTime? FechaDesde, DateTime? FechaHasta, decimal? TotalCobradoVendedor, decimal? ComisionBrutaVendedor, decimal? RetencionVendedor, string Accion) {
             Objdata.CommandTimeout = 999999999;
 
             UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarSolicitudCheques Procesar = null;
@@ -809,7 +809,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             var NumeroSolicitud = (from n in Objdata.SP_SACAR_ULTIMO_NUMERO_SOLICITUD_GENERADO(CodigoBeneficiario)
                                    select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.ESacarUltimoNumeroSolicitudGenerado
                                    {
-                                       NumeroSolicitud=n.NumeroSolicitud
+                                       NumeroSolicitud = n.NumeroSolicitud
                                    }).ToList();
             return NumeroSolicitud;
         }
@@ -835,7 +835,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                 Procesar = (from n in SolicitudCuentas
                             select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarDatosSolicitudChequesCuentas
                             {
-                                Compania =n.Compania,
+                                Compania = n.Compania,
                                 Anulado = n.Anulado,
                                 Sistema = n.Sistema,
                                 Solicitud = n.Solicitud,
@@ -847,6 +847,155 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                                 Valor = n.Valor,
                                 TipoCompromiso = n.TipoCompromiso,
                                 Departamento = n.Departamento
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
+
+        #region REPORTE DE ANTIGUEDAD DE SALGO
+        //BUSCAR LOS DATOS DEL REPORTE
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EConsultarAntiguedadSaldos> BuscarDatosAntiguedadSaldo(DateTime? FechaCorte = null, string NumeroFactura = null, string Poliza = "", int? Ramo = null, int? Tipo = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_CONSULTAR_DATOS_ANTIGUEDAD_SALDO(FechaCorte, NumeroFactura, Poliza, Ramo, Tipo)
+                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EConsultarAntiguedadSaldos
+                           {
+                               Documento = n.Documento,
+                               NumeroFacturaFiltro = n.NumeroFacturaFiltro,
+                               Tipo = n.Tipo,
+                               DescripcionTipo = n.DescripcionTipo,
+                               Asegurado = n.Asegurado,
+                               ClienteFiltro = n.ClienteFiltro,
+                               Fecha = n.Fecha,
+                               Intermediario = n.Intermediario,
+                               VendedorFiltro = n.VendedorFiltro,
+                               Poliza = n.Poliza,
+                               CodMoneda = n.CodMoneda,
+                               DescripcionMoneda = n.DescripcionMoneda,
+                               Estatus = n.Estatus,
+                               CodRamo = n.CodRamo,
+                               DescripcionRamo = n.DescripcionRamo,
+                               InicioVigencia = n.InicioVigencia,
+                               Inicio = n.Inicio,
+                               FinVigencia = n.FinVigencia,
+                               Fin = n.Fin,
+                               CodOficina = n.CodOficina,
+                               Oficina = n.Oficina,
+                               Dias = n.Dias,
+                               Facturado = n.Facturado,
+                               Cobrado = n.Cobrado,
+                               Balance = n.Balance,
+                               Impuesto = n.Impuesto,
+                               PorcComision = n.PorcComision,
+                               ValorComision = n.ValorComision,
+                               ComisionPendiente = n.ComisionPendiente,
+                               __0_10 = n._0_10,
+                               __0_30 = n._0_30,
+                               __31_60 = n._31_60,
+                               __61_90 = n._61_90,
+                               __91_120 = n._91_120,
+                               __121_150 = n._121_150,
+                               __151_MAS = n._151_MAS,
+                               Total = n.Total,
+                               Diferencia = n.Diferencia,
+                               OrdenTipo = n.OrdenTipo
+                           }).ToList();
+            return Listado;
+        }
+
+        //PROCESAR INFORMACION PARA EL REPORTE DE ANTIGUEDAD DE SALDO
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionAntiguedadSaldo ProcesarInformacionAntiguedadSaldo(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionAntiguedadSaldo Item, string accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionAntiguedadSaldo Procesar = null;
+
+            var AntiguedadSaldo = Objdata.SP_PROCESAR_INFORMACION_REPORTE_ANTIGUEDAD_SALDO(
+                Item.IdUsuario,
+                Item.FechaCorte,
+                Item.DocumentoFormateado,
+                Item.DocumentoFiltro,
+                Item.Tipo,
+                Item.DescripcionTipo,
+                Item.Asegurado,
+                Item.CodCliente,
+                Item.FechaFactura,
+                Item.Intermediario,
+                Item.CodIntermediario,
+                Item.Poliza,
+                Item.CodMoneda,
+                Item.DescripcionMoneda,
+                Item.Estatus,
+                Item.CodRamo,
+                Item.InicioVigencia,
+                Item.Inicio,
+                Item.FinVigencia,
+                Item.Fin,
+                Item.CodOficina,
+                Item.Oficina,
+                Item.dias,
+                Item.Facturado,
+                Item.Cobrado,
+                Item.Balance,
+                Item.Impuesto,
+                Item.PorcientoComision,
+                Item.ValorComision,
+                Item.ComisionPendiente,
+                Item.__0_10,
+                Item.__0_30,
+                Item.__31_60,
+                Item.__61_90,
+                Item.__91_120,
+                Item.__121_150,
+                Item.__151_mas,
+                Item.Total,
+                Item.Diferencia,
+                Item.OrigenTipo,
+                accion);
+            if (AntiguedadSaldo != null) {
+                Procesar = (from n in AntiguedadSaldo
+                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionAntiguedadSaldo
+                            {
+                                IdUsuario = n.IdUsuario,
+                                FechaCorte = n.FechaCorte,
+                                DocumentoFormateado = n.DocumentoFormateado,
+                                DocumentoFiltro = n.DocumentoFiltro,
+                                Tipo = n.Tipo,
+                                DescripcionTipo = n.DescripcionTipo,
+                                Asegurado = n.Asegurado,
+                                CodCliente = n.CodCliente,
+                                FechaFactura = n.FechaFactura,
+                                Intermediario = n.Intermediario,
+                                CodIntermediario = n.CodIntermediario,
+                                Poliza = n.Poliza,
+                                CodMoneda = n.CodMoneda,
+                                DescripcionMoneda = n.DescripcionMoneda,
+                                Estatus = n.Estatus,
+                                CodRamo = n.CodRamo,
+                                InicioVigencia = n.InicioVigencia,
+                                Inicio = n.Inicio,
+                                FinVigencia = n.FinVigencia,
+                                Fin = n.Fin,
+                                CodOficina = n.CodOficina,
+                                Oficina = n.Oficina,
+                                dias = n.dias,
+                                Facturado = n.Facturado,
+                                Cobrado = n.Cobrado,
+                                Balance = n.Balance,
+                                Impuesto = n.Impuesto,
+                                PorcientoComision = n.PorcientoComision,
+                                ValorComision = n.ValorComision,
+                                ComisionPendiente = n.ComisionPendiente,
+                                __0_10 = n._0_10,
+                                __0_30 = n._0_30,
+                                __31_60 = n._31_60,
+                                __61_90 = n._61_90,
+                                __91_120 = n._91_120,
+                                __121_150 = n._121_150,
+                                __151_mas = n._151_mas,
+                                Total = n.Total,
+                                Diferencia = n.Diferencia,
+                                OrigenTipo = n.OrigenTipo
                             }).FirstOrDefault();
             }
             return Procesar;

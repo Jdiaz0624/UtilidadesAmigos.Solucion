@@ -11,6 +11,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack) {
+                rbReporteResumido.Checked = true;
+               // rbPorRamo.Checked = true;
+                rbTodosMovimientos.Checked = true;
+            }
+        }
+
+        protected void btnExportarRegistros_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGenerarReporte_Click(object sender, EventArgs e)
+        {
 
         }
     }

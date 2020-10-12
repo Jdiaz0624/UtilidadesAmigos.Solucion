@@ -54,13 +54,13 @@
                 <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Reporte Detallado" ToolTip="Mostrar el reporte detallado" GroupName="TipoReporte" CssClass="form-check-input LetrasNegrita" />
             </div>
             <br />
-           <%--  <div class="form-group form-check">
+             <div class="form-group form-check">
                 <asp:Label ID="lbTipoOrganizacion" runat="server" Text="Tipo de Organizacion" CssClass="LetrasNegrita"></asp:Label><br />
                 <asp:RadioButton ID="rbPorRamo" runat="server" Text="Ramo" GroupName="TipoOrganizacion" ToolTip="Organizar reporte por ramo" CssClass="form-check-input LetrasNegrita" />
                 <asp:RadioButton ID="rbPorIntermediario" runat="server" Text="Intermediario" GroupName="TipoOrganizacion" ToolTip="Organizar reporte por intermediario" CssClass="form-check-input LetrasNegrita" />
                  <asp:RadioButton ID="rbPorOficina" runat="server" Text="Oficina" GroupName="TipoOrganizacion" ToolTip="Organizar reporte por oficina" CssClass="form-check-input LetrasNegrita" />
                  <asp:RadioButton ID="rbPorMoneda" runat="server" Text="Moneda" ToolTip="Organizar reporte por monedas" GroupName="TipoOrganizacion" CssClass="form-check-input LetrasNegrita" />
-            </div>--%>
+            </div>
 
             <div class="form-group form-check">
                 <asp:Label ID="lbMovimientosAMostrar" runat="server" Text="Movimientos a Mostrar" CssClass="LetrasNegrita"></asp:Label><br />
@@ -73,8 +73,8 @@
         </div>
         <br />
           <div align="Center">
-         <asp:Button ID="btnExportarRegistros"  runat="server" CssClass="btn btn-outline-primary btn-sm Custom"  Text="Exportar" ToolTip="Exportar Registros" OnClick="btnExportarRegistros_Click" />
-         <asp:Button ID="btnGenerarReporte"  runat="server" CssClass="btn btn-outline-primary btn-sm Custom"  Text="Reporte" ToolTip="Generar Reporte" OnClick="btnGenerarReporte_Click"/>
+         <asp:Button ID="btnExportarRegistros"  runat="server" CssClass="btn btn-outline-primary btn-sm Custom"  Text="Exportar" ToolTip="Exportar Registros" />
+         <asp:Button ID="btnGenerarReporte"  runat="server" CssClass="btn btn-outline-primary btn-sm Custom"  Text="Reporte" ToolTip="Generar Reporte"/>
         </div>
     </div>
 </asp:Content>
