@@ -426,5 +426,17 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkAntiguedadSaldo_Click(object sender, EventArgs e)
+        {
+            if (Session["Idusuario"] != null)
+            {
+                Response.Redirect("GenerarReporteAntiguedadSaldo.aspx");
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }
