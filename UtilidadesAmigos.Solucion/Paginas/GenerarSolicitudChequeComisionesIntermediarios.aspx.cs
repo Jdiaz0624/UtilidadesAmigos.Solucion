@@ -267,10 +267,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         //GUARDAMOS LOS DATOS DE LA SOLICITUD DE CHEQUE
                         string Endosable= "";
                         if (rbChequeEndosable.Checked == true) {
-                            Endosable = "SI";
+                            Endosable = "Si";
                         }
-                        else if (rbChequeNoEndosable.Checked == false) {
-                            Endosable = "NO";
+                        else if (rbChequeNoEndosable.Checked == true) {
+                            Endosable = "No";
                         }
                         UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCheques ProcesarSolicitud = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCheques(
                             0,
@@ -326,8 +326,26 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         //SACAMOS EL NUMERO DE SOLICITUD GENERADO
                         int NumeroSolicitudGenerado = UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.SacarUltimoNumeroSolicitudGenerada.SacarNumeroSolicitud(CodigoProveedorSacardo);
                         string NumeroSolicitudConvertida = NumeroSolicitudGenerado.ToString();
-                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Numero de Solicitud Generada " + NumeroSolicitudConvertida + "');", true);
+                       
 
+
+                        //GUARDAMOS LOS DATOS DE LAS CUENTAS CONTABLES
+                        //CUENTA 1203
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas Cuenta1 = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas(
+                            30, "N", 13, NumeroSolicitudGenerado, 0, "1203", 1, "", "2", SumaALiquidar, 0, 0, Convert.ToDateTime(txtFechaDesde.Text), Convert.ToDateTime(txtFechaHasta.Text), "INSERT");
+                        Cuenta1.ProcesarInformacion();
+
+                        //CUENTA 2503
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas Cuenta2 = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas(
+                            30, "N", 13, NumeroSolicitudGenerado, 0, "2503", 0, "", "1", SumaComision, 0, 0, Convert.ToDateTime(txtFechaDesde.Text), Convert.ToDateTime(txtFechaHasta.Text), "INSERT");
+                        Cuenta2.ProcesarInformacion();
+
+                        //CUENTA 2706
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas Cuenta3 = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas(
+                            30, "N", 13, NumeroSolicitudGenerado, 0, "2706", 0, "", "2", SumaRetencion, 0, 0, Convert.ToDateTime(txtFechaDesde.Text), Convert.ToDateTime(txtFechaHasta.Text), "INSERT");
+                        Cuenta3.ProcesarInformacion();
+
+                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Numero de Solicitud Generada " + NumeroSolicitudConvertida + "');", true);
                     }
                     else {
                         FormsAuthentication.SignOut();
