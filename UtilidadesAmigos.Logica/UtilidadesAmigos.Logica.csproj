@@ -122,6 +122,7 @@
     <Compile Include="Comunes\Reportes\ProcesarInformacionReporteComisionIntermediario.cs" />
     <Compile Include="Comunes\Reportes\ProcesarProduccionPorUsuarioResumido.cs" />
     <Compile Include="Comunes\SacarNumeroCotizacionPoliza.cs" />
+    <Compile Include="Comunes\SacartasaMoneda.cs" />
     <Compile Include="Comunes\SeguridadEncriptacion.cs" />
     <Compile Include="Comunes\UtilidadDrop.cs" />
     <Compile Include="Comunes\ValidarControles.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="Entidades\Mantenimientos\EProcesarInformacionAntiguedadSaldo.cs" />
     <Compile Include="Entidades\Mantenimientos\EProcesarSolicitudCheques.cs" />
     <Compile Include="Entidades\Mantenimientos\ESacarCodigoMaximoIntermediaio.cs" />
+    <Compile Include="Entidades\Mantenimientos\ESacarTasaMoneda.cs" />
     <Compile Include="Entidades\Mantenimientos\ESacarUltimoNumeroSolicitudGenerado.cs" />
     <Compile Include="Entidades\Mantenimientos\MantenimientoComisionesIntermediarios.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\ECorreosEnviar.cs" />

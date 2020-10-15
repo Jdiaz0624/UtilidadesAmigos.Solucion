@@ -1002,5 +1002,18 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
         }
         #endregion
 
+        #region SACAR LA TASA DE A MONEDA
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.ESacarTasaMoneda> SacartasaMoneda(int? CodigoMoneda = null){
+            Objdata.CommandTimeout = 999999999;
+
+            var Tasa = (from n in Objdata.SP_SACAR_TASA_MONEDA(CodigoMoneda)
+                        select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.ESacarTasaMoneda
+                        {
+                            Prima=n.Prima
+                        }).ToList();
+            return Tasa;
+        }
+        #endregion
+
     }
 }

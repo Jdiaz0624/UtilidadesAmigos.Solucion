@@ -19,7 +19,23 @@
           font-weight:bold;
           }
     </style>
+    <script type="text/javascript">
 
+        function CamposVacios() {
+            alert("Has dejado campos vacios que son necesarios para generar este reporte, favor de revisar");
+        }
+        function Campofechacortevacio() {
+            
+            $("#<%=txtFechaCorteConsulta.ClientID%>").css("border-color", "red");
+        }
+        function CampoTasaVacio() {
+            $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
+        }
+
+        function ErrorProceso() {
+            alert("Error al procesar la información, favor de contactar a tecnologia");
+        }
+    </script>
     <div class="container-fluid">
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTitulo" runat="server" Text="Reporte de Antiguedad de Saldo"></asp:Label>
@@ -28,7 +44,7 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <asp:Label ID="lbFechacorteConsulta" runat="server" Text="Fecha de corte" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtFechaCorteConsulta" runat="server" CssClass="form-control" TextMode="DateTime"></asp:TextBox>
+                <asp:TextBox ID="txtFechaCorteConsulta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
 
              <div class="form-group col-md-3">
@@ -44,6 +60,11 @@
              <div class="form-group col-md-3">
                 <asp:Label ID="lbSeleccionarRamo" runat="server" Text="Ramo" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarRamoConsulta" runat="server" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
+            </div>
+
+                <div class="form-group col-md-3">
+                <asp:Label ID="lbTasaDollar" runat="server" Text="Tasa de Dolar" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtTasaDollar" runat="server" CssClass="form-control" TextMode="Number" step="0.01"></asp:TextBox>
             </div>
         </div>
         <!--TIPO DE REPORTE-->
