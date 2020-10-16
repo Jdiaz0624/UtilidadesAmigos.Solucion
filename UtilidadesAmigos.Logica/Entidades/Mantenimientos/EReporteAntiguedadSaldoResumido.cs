@@ -44,5 +44,6 @@ namespace UtilidadesAmigos.Logica.Entidades.Mantenimientos
         public string GeneradoPor { get; set; }
 
         public System.Nullable<decimal> TotalPesos { get; set; }
+        public System.Nullable<decimal> Tasa { get; set; }
     }
 }

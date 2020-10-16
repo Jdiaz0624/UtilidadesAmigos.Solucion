@@ -354,18 +354,18 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_SACAR_TASA_MONEDAResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_REPORTE_ANTIDAD_SALDO_RESUMIDO")]
-		public ISingleResult<SP_REPORTE_ANTIDAD_SALDO_RESUMIDOResult> SP_REPORTE_ANTIDAD_SALDO_RESUMIDO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TasaDollar", DbType="Decimal(20,2)")] System.Nullable<decimal> tasaDollar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SuperResumido", DbType="Int")] System.Nullable<int> superResumido)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, tasaDollar, superResumido);
-			return ((ISingleResult<SP_REPORTE_ANTIDAD_SALDO_RESUMIDOResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_REPORTE_ANTIDAD_SALDO_DETALLE")]
 		public ISingleResult<SP_REPORTE_ANTIDAD_SALDO_DETALLEResult> SP_REPORTE_ANTIDAD_SALDO_DETALLE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TasaDollar", DbType="Decimal(20,2)")] System.Nullable<decimal> tasaDollar)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, tasaDollar);
 			return ((ISingleResult<SP_REPORTE_ANTIDAD_SALDO_DETALLEResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_REPORTE_ANTIDAD_SALDO_RESUMIDO")]
+		public ISingleResult<SP_REPORTE_ANTIDAD_SALDO_RESUMIDOResult> SP_REPORTE_ANTIDAD_SALDO_RESUMIDO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TasaDollar", DbType="Decimal(20,2)")] System.Nullable<decimal> tasaDollar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SuperResumido", DbType="Int")] System.Nullable<int> superResumido)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, tasaDollar, superResumido);
+			return ((ISingleResult<SP_REPORTE_ANTIDAD_SALDO_RESUMIDOResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -8535,356 +8535,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_REPORTE_ANTIDAD_SALDO_RESUMIDOResult
-	{
-		
-		private System.Nullable<int> _CodMoneda;
-		
-		private string _FechaCorte;
-		
-		private string _DescripcionMoneda;
-		
-		private string _Ramo;
-		
-		private System.Nullable<int> _CodRamo;
-		
-		private System.Nullable<int> _CantidadFactura;
-		
-		private System.Nullable<int> _CantidadCreditos;
-		
-		private System.Nullable<int> _CantidadPrimaDeposito;
-		
-		private System.Nullable<int> _CantidadRegistros;
-		
-		private System.Nullable<decimal> _Balance;
-		
-		private System.Nullable<decimal> @__0_30;
-		
-		private System.Nullable<decimal> @__31_60;
-		
-		private System.Nullable<decimal> @__61_90;
-		
-		private System.Nullable<decimal> @__91_120;
-		
-		private System.Nullable<decimal> @__121_150;
-		
-		private System.Nullable<decimal> @__151_Mas;
-		
-		private System.Nullable<decimal> _Total;
-		
-		private string _GeneradoPor;
-		
-		private System.Nullable<decimal> _TotalPesos;
-		
-		public SP_REPORTE_ANTIDAD_SALDO_RESUMIDOResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodMoneda", DbType="Int")]
-		public System.Nullable<int> CodMoneda
-		{
-			get
-			{
-				return this._CodMoneda;
-			}
-			set
-			{
-				if ((this._CodMoneda != value))
-				{
-					this._CodMoneda = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCorte", DbType="NVarChar(4000)")]
-		public string FechaCorte
-		{
-			get
-			{
-				return this._FechaCorte;
-			}
-			set
-			{
-				if ((this._FechaCorte != value))
-				{
-					this._FechaCorte = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescripcionMoneda", DbType="VarChar(100)")]
-		public string DescripcionMoneda
-		{
-			get
-			{
-				return this._DescripcionMoneda;
-			}
-			set
-			{
-				if ((this._DescripcionMoneda != value))
-				{
-					this._DescripcionMoneda = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ramo", DbType="NVarChar(50)")]
-		public string Ramo
-		{
-			get
-			{
-				return this._Ramo;
-			}
-			set
-			{
-				if ((this._Ramo != value))
-				{
-					this._Ramo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodRamo", DbType="Int")]
-		public System.Nullable<int> CodRamo
-		{
-			get
-			{
-				return this._CodRamo;
-			}
-			set
-			{
-				if ((this._CodRamo != value))
-				{
-					this._CodRamo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadFactura", DbType="Int")]
-		public System.Nullable<int> CantidadFactura
-		{
-			get
-			{
-				return this._CantidadFactura;
-			}
-			set
-			{
-				if ((this._CantidadFactura != value))
-				{
-					this._CantidadFactura = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadCreditos", DbType="Int")]
-		public System.Nullable<int> CantidadCreditos
-		{
-			get
-			{
-				return this._CantidadCreditos;
-			}
-			set
-			{
-				if ((this._CantidadCreditos != value))
-				{
-					this._CantidadCreditos = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadPrimaDeposito", DbType="Int")]
-		public System.Nullable<int> CantidadPrimaDeposito
-		{
-			get
-			{
-				return this._CantidadPrimaDeposito;
-			}
-			set
-			{
-				if ((this._CantidadPrimaDeposito != value))
-				{
-					this._CantidadPrimaDeposito = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadRegistros", DbType="Int")]
-		public System.Nullable<int> CantidadRegistros
-		{
-			get
-			{
-				return this._CantidadRegistros;
-			}
-			set
-			{
-				if ((this._CantidadRegistros != value))
-				{
-					this._CantidadRegistros = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Balance", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> Balance
-		{
-			get
-			{
-				return this._Balance;
-			}
-			set
-			{
-				if ((this._Balance != value))
-				{
-					this._Balance = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_0_30]", Storage="__0_30", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> _0_30
-		{
-			get
-			{
-				return this.@__0_30;
-			}
-			set
-			{
-				if ((this.@__0_30 != value))
-				{
-					this.@__0_30 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_31_60]", Storage="__31_60", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> _31_60
-		{
-			get
-			{
-				return this.@__31_60;
-			}
-			set
-			{
-				if ((this.@__31_60 != value))
-				{
-					this.@__31_60 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_61_90]", Storage="__61_90", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> _61_90
-		{
-			get
-			{
-				return this.@__61_90;
-			}
-			set
-			{
-				if ((this.@__61_90 != value))
-				{
-					this.@__61_90 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_91_120]", Storage="__91_120", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> _91_120
-		{
-			get
-			{
-				return this.@__91_120;
-			}
-			set
-			{
-				if ((this.@__91_120 != value))
-				{
-					this.@__91_120 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_121_150]", Storage="__121_150", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> _121_150
-		{
-			get
-			{
-				return this.@__121_150;
-			}
-			set
-			{
-				if ((this.@__121_150 != value))
-				{
-					this.@__121_150 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_151_Mas]", Storage="__151_Mas", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> _151_Mas
-		{
-			get
-			{
-				return this.@__151_Mas;
-			}
-			set
-			{
-				if ((this.@__151_Mas != value))
-				{
-					this.@__151_Mas = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> Total
-		{
-			get
-			{
-				return this._Total;
-			}
-			set
-			{
-				if ((this._Total != value))
-				{
-					this._Total = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GeneradoPor", DbType="VarChar(150)")]
-		public string GeneradoPor
-		{
-			get
-			{
-				return this._GeneradoPor;
-			}
-			set
-			{
-				if ((this._GeneradoPor != value))
-				{
-					this._GeneradoPor = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalPesos", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> TotalPesos
-		{
-			get
-			{
-				return this._TotalPesos;
-			}
-			set
-			{
-				if ((this._TotalPesos != value))
-				{
-					this._TotalPesos = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_REPORTE_ANTIDAD_SALDO_DETALLEResult
 	{
 		
@@ -8981,6 +8631,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		private System.Nullable<int> _CantidadPrimaDeposito;
 		
 		private System.Nullable<int> _CantidadRegistros;
+		
+		private System.Nullable<decimal> _Tasa;
 		
 		public SP_REPORTE_ANTIDAD_SALDO_DETALLEResult()
 		{
@@ -9734,6 +9386,390 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadRegistros != value))
 				{
 					this._CantidadRegistros = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tasa", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Tasa
+		{
+			get
+			{
+				return this._Tasa;
+			}
+			set
+			{
+				if ((this._Tasa != value))
+				{
+					this._Tasa = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_REPORTE_ANTIDAD_SALDO_RESUMIDOResult
+	{
+		
+		private System.Nullable<int> _CodMoneda;
+		
+		private string _FechaCorte;
+		
+		private string _DescripcionMoneda;
+		
+		private string _Ramo;
+		
+		private System.Nullable<int> _CodRamo;
+		
+		private System.Nullable<int> _CantidadFactura;
+		
+		private System.Nullable<int> _CantidadCreditos;
+		
+		private System.Nullable<int> _CantidadPrimaDeposito;
+		
+		private System.Nullable<int> _CantidadRegistros;
+		
+		private System.Nullable<decimal> _Balance;
+		
+		private System.Nullable<decimal> @__0_30;
+		
+		private System.Nullable<decimal> @__31_60;
+		
+		private System.Nullable<decimal> @__61_90;
+		
+		private System.Nullable<decimal> @__91_120;
+		
+		private System.Nullable<decimal> @__121_150;
+		
+		private System.Nullable<decimal> @__151_Mas;
+		
+		private System.Nullable<decimal> _Total;
+		
+		private string _GeneradoPor;
+		
+		private System.Nullable<decimal> _TotalPesos;
+		
+		private System.Nullable<decimal> _Tasa;
+		
+		public SP_REPORTE_ANTIDAD_SALDO_RESUMIDOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodMoneda", DbType="Int")]
+		public System.Nullable<int> CodMoneda
+		{
+			get
+			{
+				return this._CodMoneda;
+			}
+			set
+			{
+				if ((this._CodMoneda != value))
+				{
+					this._CodMoneda = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCorte", DbType="NVarChar(4000)")]
+		public string FechaCorte
+		{
+			get
+			{
+				return this._FechaCorte;
+			}
+			set
+			{
+				if ((this._FechaCorte != value))
+				{
+					this._FechaCorte = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescripcionMoneda", DbType="VarChar(100)")]
+		public string DescripcionMoneda
+		{
+			get
+			{
+				return this._DescripcionMoneda;
+			}
+			set
+			{
+				if ((this._DescripcionMoneda != value))
+				{
+					this._DescripcionMoneda = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ramo", DbType="NVarChar(50)")]
+		public string Ramo
+		{
+			get
+			{
+				return this._Ramo;
+			}
+			set
+			{
+				if ((this._Ramo != value))
+				{
+					this._Ramo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodRamo", DbType="Int")]
+		public System.Nullable<int> CodRamo
+		{
+			get
+			{
+				return this._CodRamo;
+			}
+			set
+			{
+				if ((this._CodRamo != value))
+				{
+					this._CodRamo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadFactura", DbType="Int")]
+		public System.Nullable<int> CantidadFactura
+		{
+			get
+			{
+				return this._CantidadFactura;
+			}
+			set
+			{
+				if ((this._CantidadFactura != value))
+				{
+					this._CantidadFactura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadCreditos", DbType="Int")]
+		public System.Nullable<int> CantidadCreditos
+		{
+			get
+			{
+				return this._CantidadCreditos;
+			}
+			set
+			{
+				if ((this._CantidadCreditos != value))
+				{
+					this._CantidadCreditos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadPrimaDeposito", DbType="Int")]
+		public System.Nullable<int> CantidadPrimaDeposito
+		{
+			get
+			{
+				return this._CantidadPrimaDeposito;
+			}
+			set
+			{
+				if ((this._CantidadPrimaDeposito != value))
+				{
+					this._CantidadPrimaDeposito = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadRegistros", DbType="Int")]
+		public System.Nullable<int> CantidadRegistros
+		{
+			get
+			{
+				return this._CantidadRegistros;
+			}
+			set
+			{
+				if ((this._CantidadRegistros != value))
+				{
+					this._CantidadRegistros = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Balance", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Balance
+		{
+			get
+			{
+				return this._Balance;
+			}
+			set
+			{
+				if ((this._Balance != value))
+				{
+					this._Balance = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_0_30]", Storage="__0_30", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> _0_30
+		{
+			get
+			{
+				return this.@__0_30;
+			}
+			set
+			{
+				if ((this.@__0_30 != value))
+				{
+					this.@__0_30 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_31_60]", Storage="__31_60", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> _31_60
+		{
+			get
+			{
+				return this.@__31_60;
+			}
+			set
+			{
+				if ((this.@__31_60 != value))
+				{
+					this.@__31_60 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_61_90]", Storage="__61_90", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> _61_90
+		{
+			get
+			{
+				return this.@__61_90;
+			}
+			set
+			{
+				if ((this.@__61_90 != value))
+				{
+					this.@__61_90 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_91_120]", Storage="__91_120", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> _91_120
+		{
+			get
+			{
+				return this.@__91_120;
+			}
+			set
+			{
+				if ((this.@__91_120 != value))
+				{
+					this.@__91_120 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_121_150]", Storage="__121_150", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> _121_150
+		{
+			get
+			{
+				return this.@__121_150;
+			}
+			set
+			{
+				if ((this.@__121_150 != value))
+				{
+					this.@__121_150 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_151_Mas]", Storage="__151_Mas", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> _151_Mas
+		{
+			get
+			{
+				return this.@__151_Mas;
+			}
+			set
+			{
+				if ((this.@__151_Mas != value))
+				{
+					this.@__151_Mas = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GeneradoPor", DbType="VarChar(150)")]
+		public string GeneradoPor
+		{
+			get
+			{
+				return this._GeneradoPor;
+			}
+			set
+			{
+				if ((this._GeneradoPor != value))
+				{
+					this._GeneradoPor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalPesos", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> TotalPesos
+		{
+			get
+			{
+				return this._TotalPesos;
+			}
+			set
+			{
+				if ((this._TotalPesos != value))
+				{
+					this._TotalPesos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tasa", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Tasa
+		{
+			get
+			{
+				return this._Tasa;
+			}
+			set
+			{
+				if ((this._Tasa != value))
+				{
+					this._Tasa = value;
 				}
 			}
 		}

@@ -19,7 +19,23 @@
           font-weight:bold;
           }
     </style>
+    <script type="text/javascript">
 
+        function CamposVacios() {
+            alert("Has dejado campos vacios que son necesarios para generar este reporte, favor de revisar");
+        }
+        function Campofechacortevacio() {
+            
+            $("#<%=txtFechaCorteConsulta.ClientID%>").css("border-color", "red");
+        }
+        function CampoTasaVacio() {
+            $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
+        }
+
+        function ErrorProceso() {
+            alert("Error al procesar la información, favor de contactar a tecnologia");
+        }
+    </script>
     <div class="container-fluid">
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTitulo" runat="server" Text="Reporte de Antiguedad de Saldo"></asp:Label>
@@ -28,7 +44,7 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <asp:Label ID="lbFechacorteConsulta" runat="server" Text="Fecha de corte" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtFechaCorteConsulta" runat="server" CssClass="form-control" TextMode="DateTime"></asp:TextBox>
+                <asp:TextBox ID="txtFechaCorteConsulta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
 
              <div class="form-group col-md-3">
@@ -45,6 +61,11 @@
                 <asp:Label ID="lbSeleccionarRamo" runat="server" Text="Ramo" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarRamoConsulta" runat="server" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
             </div>
+
+                <div class="form-group col-md-3">
+                <asp:Label ID="lbTasaDollar" runat="server" Text="Tasa de Dolar" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtTasaDollar" runat="server" CssClass="form-control" TextMode="Number" step="0.01"></asp:TextBox>
+            </div>
         </div>
         <!--TIPO DE REPORTE-->
         <div class="form-check-inline">
@@ -54,13 +75,13 @@
                 <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Reporte Detallado" ToolTip="Mostrar el reporte detallado" GroupName="TipoReporte" CssClass="form-check-input LetrasNegrita" />
             </div>
             <br />
-             <div class="form-group form-check">
+           <%--  <div class="form-group form-check">
                 <asp:Label ID="lbTipoOrganizacion" runat="server" Text="Tipo de Organizacion" CssClass="LetrasNegrita"></asp:Label><br />
                 <asp:RadioButton ID="rbPorRamo" runat="server" Text="Ramo" GroupName="TipoOrganizacion" ToolTip="Organizar reporte por ramo" CssClass="form-check-input LetrasNegrita" />
                 <asp:RadioButton ID="rbPorIntermediario" runat="server" Text="Intermediario" GroupName="TipoOrganizacion" ToolTip="Organizar reporte por intermediario" CssClass="form-check-input LetrasNegrita" />
                  <asp:RadioButton ID="rbPorOficina" runat="server" Text="Oficina" GroupName="TipoOrganizacion" ToolTip="Organizar reporte por oficina" CssClass="form-check-input LetrasNegrita" />
                  <asp:RadioButton ID="rbPorMoneda" runat="server" Text="Moneda" ToolTip="Organizar reporte por monedas" GroupName="TipoOrganizacion" CssClass="form-check-input LetrasNegrita" />
-            </div>
+            </div>--%>
 
             <div class="form-group form-check">
                 <asp:Label ID="lbMovimientosAMostrar" runat="server" Text="Movimientos a Mostrar" CssClass="LetrasNegrita"></asp:Label><br />
@@ -73,8 +94,8 @@
         </div>
         <br />
           <div align="Center">
-         <asp:Button ID="btnExportarRegistros"  runat="server" CssClass="btn btn-outline-primary btn-sm Custom"  Text="Exportar" ToolTip="Exportar Registros" />
-         <asp:Button ID="btnGenerarReporte"  runat="server" CssClass="btn btn-outline-primary btn-sm Custom"  Text="Reporte" ToolTip="Generar Reporte"/>
+         <asp:Button ID="btnExportarRegistros"  runat="server" CssClass="btn btn-outline-primary btn-sm Custom"  Text="Exportar" ToolTip="Exportar Registros" OnClick="btnExportarRegistros_Click" />
+         <asp:Button ID="btnGenerarReporte"  runat="server" CssClass="btn btn-outline-primary btn-sm Custom"  Text="Reporte" ToolTip="Generar Reporte" OnClick="btnGenerarReporte_Click"/>
         </div>
     </div>
 </asp:Content>

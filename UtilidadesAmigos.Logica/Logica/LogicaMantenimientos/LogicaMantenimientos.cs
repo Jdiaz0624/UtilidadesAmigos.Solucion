@@ -1031,7 +1031,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                                 __151_Mas=n._151_Mas,
                                 Total=n.Total,
                                 GeneradoPor=n.GeneradoPor,
-                                TotalPesos=n.TotalPesos
+                                TotalPesos=n.TotalPesos,
+                                Tasa=n.Tasa
                                 
                             }).ToList();
             return Resumido;
@@ -1082,6 +1083,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                                              ValorComision=n.ValorComision,
                                              ComisionPendiente=n.ComisionPendiente,
                                              __0_10=n._0_10,
+                                             __0_30=n._0_30,
                                              __31_60=n._31_60,
                                              __61_90=n._61_90,
                                              __91_120=n._91_120,
@@ -1094,7 +1096,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                                              CantidadFactura=n.CantidadFactura,
                                              CantidadCreditos=n.CantidadCreditos,
                                              CantidadPrimaDeposito=n.CantidadPrimaDeposito,
-                                             CantidadRegistros=n.CantidadRegistros
+                                             CantidadRegistros=n.CantidadRegistros,
+                                             Tasa=n.Tasa
                                          }).ToList();
             return AntigueadSaldoDetalle;
         }

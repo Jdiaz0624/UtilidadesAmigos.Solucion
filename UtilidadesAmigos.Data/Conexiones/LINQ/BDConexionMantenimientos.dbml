@@ -773,32 +773,6 @@
       <Column Name="Prima" Type="System.Decimal" DbType="Decimal(8,2)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_REPORTE_ANTIDAD_SALDO_RESUMIDO" Method="SP_REPORTE_ANTIDAD_SALDO_RESUMIDO">
-    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="TasaDollar" Parameter="tasaDollar" Type="System.Decimal" DbType="Decimal(20,2)" />
-    <Parameter Name="SuperResumido" Parameter="superResumido" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_REPORTE_ANTIDAD_SALDO_RESUMIDOResult">
-      <Column Name="CodMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FechaCorte" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="DescripcionMoneda" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CodRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CantidadFactura" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CantidadCreditos" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CantidadPrimaDeposito" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="[_0_30]" Member="_0_30" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="[_31_60]" Member="_31_60" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="[_61_90]" Member="_61_90" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="[_91_120]" Member="_91_120" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="[_121_150]" Member="_121_150" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="[_151_Mas]" Member="_151_Mas" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="Total" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="TotalPesos" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_REPORTE_ANTIDAD_SALDO_DETALLE" Method="SP_REPORTE_ANTIDAD_SALDO_DETALLE">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="TasaDollar" Parameter="tasaDollar" Type="System.Decimal" DbType="Decimal(20,2)" />
@@ -850,6 +824,34 @@
       <Column Name="CantidadCreditos" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CantidadPrimaDeposito" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tasa" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_REPORTE_ANTIDAD_SALDO_RESUMIDO" Method="SP_REPORTE_ANTIDAD_SALDO_RESUMIDO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="TasaDollar" Parameter="tasaDollar" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="SuperResumido" Parameter="superResumido" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_REPORTE_ANTIDAD_SALDO_RESUMIDOResult">
+      <Column Name="CodMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaCorte" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="DescripcionMoneda" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CodRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadFactura" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadCreditos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadPrimaDeposito" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="[_0_30]" Member="_0_30" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="[_31_60]" Member="_31_60" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="[_61_90]" Member="_61_90" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="[_91_120]" Member="_91_120" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="[_121_150]" Member="_121_150" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="[_151_Mas]" Member="_151_Mas" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="TotalPesos" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Tasa" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

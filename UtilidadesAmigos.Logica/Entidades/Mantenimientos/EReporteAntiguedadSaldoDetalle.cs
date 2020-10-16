@@ -101,5 +101,6 @@ namespace UtilidadesAmigos.Logica.Entidades.Mantenimientos
         public System.Nullable<int> CantidadPrimaDeposito { get; set; }
 
         public System.Nullable<int> CantidadRegistros { get; set; }
+        public System.Nullable<decimal> Tasa { get; set; }
     }
 }

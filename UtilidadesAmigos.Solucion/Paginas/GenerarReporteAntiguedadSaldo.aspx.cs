@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportSource;
+using CrystalDecisions.Shared;
+using System.Data.SqlClient;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -12,6 +16,48 @@ namespace UtilidadesAmigos.Solucion.Paginas
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjdataGeneral = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaMantenimientos.LogicaMantenimientos> ObDataMantenimiento = new Lazy<Logica.Logica.LogicaMantenimientos.LogicaMantenimientos>();
+
+        #region GENERAR REPORTE
+        //REPORTE RESUMIDO
+        private void AntiguedadSaldoResumido(decimal IdUsuario, decimal TasaDollar, int SuperResumido, string RutaReporte, string UsuaruoBD, string ClaveBD, string NombreArchivo)
+        {
+            try
+            {
+
+                ReportDocument Factura = new ReportDocument();
+
+                SqlCommand comando = new SqlCommand();
+                comando.CommandText = "EXEC [Utililades].[SP_REPORTE_ANTIDAD_SALDO_RESUMIDO] @IdUsuario,@TasaDollar,@SuperResumido";
+                comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+
+                comando.Parameters.Add("@IdUsuario", System.Data.SqlDbType.Decimal);
+                comando.Parameters.Add("@TasaDollar", System.Data.SqlDbType.Decimal);
+                comando.Parameters.Add("@SuperResumido", System.Data.SqlDbType.Int);
+
+                comando.Parameters["@IdUsuario"].Value = IdUsuario;
+                comando.Parameters["@TasaDollar"].Value = TasaDollar;
+                comando.Parameters["@SuperResumido"].Value = SuperResumido;
+
+                Factura.Load(RutaReporte);
+                Factura.Refresh();
+                Factura.SetParameterValue("@IdUsuario", IdUsuario);
+                Factura.SetParameterValue("@TasaDollar", TasaDollar);
+                Factura.SetParameterValue("@SuperResumido", SuperResumido);
+                Factura.SetDatabaseLogon(UsuaruoBD, ClaveBD);
+                Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+
+                //  Factura.PrintToPrinter(1, false, 0, 1);
+                //  crystalReportViewer1.ReportSource = Factura;
+
+
+
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Error al generar la factura de venta, favor de contactar al administrador del sistema, codigo de error--> " + ex.Message, VariablesGlobales.NombreSistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
 
         private void ProcesarInformacion() {
           //  try {
@@ -132,6 +178,78 @@ namespace UtilidadesAmigos.Solucion.Paginas
                        (decimal)Session["Idusuario"], DateTime.Now, "", 0, 0, "", "", 0, "", "", 0, "", 0, "", "", 0, "", DateTime.Now, "", DateTime.Now, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "DELETE");
                     Eliminar.ProcesarInformacion();
                     ProcesarInformacion();
+
+                    //EXPORTAMOS LA INFORMACION
+                    //RESUMIDA
+                    if (rbReporteResumido.Checked == true) {
+                        var ExportarReporteResumido = (from n in ObDataMantenimiento.Value.ReporteAntiguedadSaldoResumido(
+                            (decimal)Session["IdUsuario"],
+                            Convert.ToDecimal(txtTasaDollar.Text),
+                            0)
+                                                       select new {
+                                                           Moneda =n.DescripcionMoneda,
+                                                           Ramo=n.Ramo,
+                                                           Balance=n.Balance,
+                                                           _0_30=n.__0_30,
+                                                           _31_60=n.__31_60,
+                                                           _61_90=n.__61_90,
+                                                           _91_120=n.__91_120,
+                                                           _121_150=n.__121_150,
+                                                           _151_Mas=n.__151_Mas,
+                                                           Total=n.Total,
+                                                           TotalPesos=n.TotalPesos,
+                                                           Tasa=n.Tasa
+
+                                                       }).ToList();
+                        string FechaCorte = txtFechaCorteConsulta.Text;
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Antiguedad Saldo Resumido cortado al " + FechaCorte, ExportarReporteResumido);
+                    }
+                    //SUPER RESUMIDA
+                    else if (rbReporteSuperResumido.Checked == true) {
+                        ClientScript.RegisterStartupScript(GetType(), "FuncionNoDisponible()", "FuncionNoDisponible();", true);
+                    }
+                    //DETALLADA
+                    else if (rbReporteDetallado.Checked == true) {
+                        var ExportarReporteDetallado = (from n in ObDataMantenimiento.Value.ReporteAntiguedadSaldoDetalle(
+                            (decimal)Session["IdUsuario"],
+                            Convert.ToDecimal(txtTasaDollar.Text))
+                                                        select new {
+                                                            Numero_Factura=n.DocumentoFormateado,
+                                                            Tipo_Documento=n.DescripcionTipo,
+                                                            Fecha_Factura=n.FechaFactura,
+                                                            Asegurado=n.Asegurado,
+                                                            Intermediario=n.Intermediario,
+                                                            Poliza=n.Poliza,
+                                                            Moneda=n.DescripcionMoneda,
+                                                            Estatus=n.Estatus,
+                                                            Ramo=n.Ramo,
+                                                            Inicio_Vigencia=n.InicioVigencia,
+                                                            Fin_Vigencia=n.FinVigencia,
+                                                            Oficina=n.Oficina,
+                                                            CantidadDias=n.dias,
+                                                            Facturado=n.Facturado,
+                                                            Cobrado=n.Cobrado,
+                                                            Balance=n.Balance,
+                                                            Impuesto=n.Impuesto,
+                                                            PorcientoComision=n.PorcientoComision,
+                                                            ValorComision=n.ValorComision,
+                                                            ComisionPendiente=n.ComisionPendiente,
+                                                            _0_30=n.__0_30,
+                                                            _31_60=n.__31_60,
+                                                            _61_90=n.__61_90,
+                                                            _91_120=n.__91_120,
+                                                            _121_150=n.__121_150,
+                                                            _151_Mas=n.__151_mas,
+                                                            Total=n.Total,
+                                                            Diferencia=n.Diferencia,
+                                                            TotalPesos=n.TotalPesos,
+                                                            Tasa=n.Tasa
+                                                        }).ToList();
+                        DateTime FechaCorte = Convert.ToDateTime(txtFechaCorteConsulta.Text);
+                        string FechaCorteString = FechaCorte.ToShortDateString();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de Antiguedad de Saldo Detalle cortado al " + FechaCorteString, ExportarReporteDetallado);
+
+                    }
                 }
                 else {
                     FormsAuthentication.SignOut();
@@ -162,6 +280,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
                        (decimal)Session["Idusuario"], DateTime.Now, "", 0, 0, "", "", 0, "", "", 0, "", 0, "", "", 0, "", DateTime.Now, "", DateTime.Now, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "DELETE");
                     Eliminar.ProcesarInformacion();
                     ProcesarInformacion();
+
+                    if (rbReporteResumido.Checked == true) {
+                        AntiguedadSaldoResumido((decimal)Session["IdUsuario"],Convert.ToDecimal(txtTasaDollar.Text),0, Server.MapPath("AntiguedadSaldoResumido.rpt"), "sa", "Pa$$W0rd", "ResumidoPrueba");
+                    }
                 }
                 else
                 {
