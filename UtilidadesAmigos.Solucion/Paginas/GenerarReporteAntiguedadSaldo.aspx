@@ -77,7 +77,7 @@
                 <asp:Label ID="lbTIpoReporte" runat="server" Text="Tipo de Reporte" CssClass="LetrasNegrita"></asp:Label><br />
                 <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Reporte Resumido" ToolTip="Mostrar el reporte resumido" GroupName="TipoReporte" CssClass="form-check-input LetrasNegrita" />
                <asp:RadioButton ID="rbReporteSuperResumido" runat="server" Visible="false" Text="Reporte Super Resumido" ToolTip="Mostrar el reporte super resumido, vinculando los ramos y convirtiendo todo a pesos directamente" GroupName="GroupName" CssClass="form-check-input LetrasNegrita" />
-                <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Reporte Detallado" ToolTip="Mostrar el reporte detallado" GroupName="TipoReporte" CssClass="form-check-input LetrasNegrita" Enabled="False" />
+                <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Reporte Detallado" ToolTip="Mostrar el reporte detallado" GroupName="TipoReporte" CssClass="form-check-input LetrasNegrita" />
             </div>
             <br />
            <%--  <div class="form-group form-check">

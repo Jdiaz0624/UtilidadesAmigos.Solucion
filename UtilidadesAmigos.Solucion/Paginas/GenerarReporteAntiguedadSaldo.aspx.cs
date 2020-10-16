@@ -57,6 +57,43 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 //MessageBox.Show("Error al generar la factura de venta, favor de contactar al administrador del sistema, codigo de error--> " + ex.Message, VariablesGlobales.NombreSistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        //REPORTE DETALLE
+        private void AntiguedadSaldoDetalle(decimal IdUsuario, decimal TasaDollar, string RutaReporte, string UsuaruoBD, string ClaveBD, string NombreArchivo)
+        {
+            try
+            {
+
+                ReportDocument Factura = new ReportDocument();
+
+                SqlCommand comando = new SqlCommand();
+                comando.CommandText = "EXEC [Utililades].[SP_REPORTE_ANTIDAD_SALDO_DETALLE] @IdUsuario,@TasaDollar";
+                comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+
+                comando.Parameters.Add("@IdUsuario", System.Data.SqlDbType.Decimal);
+                comando.Parameters.Add("@TasaDollar", System.Data.SqlDbType.Decimal);
+
+                comando.Parameters["@IdUsuario"].Value = IdUsuario;
+                comando.Parameters["@TasaDollar"].Value = TasaDollar;
+
+                Factura.Load(RutaReporte);
+                Factura.Refresh();
+                Factura.SetParameterValue("@IdUsuario", IdUsuario);
+                Factura.SetParameterValue("@TasaDollar", TasaDollar);
+                Factura.SetDatabaseLogon(UsuaruoBD, ClaveBD);
+                Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+
+                //  Factura.PrintToPrinter(1, false, 0, 1);
+                //  crystalReportViewer1.ReportSource = Factura;
+
+
+
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Error al generar la factura de venta, favor de contactar al administrador del sistema, codigo de error--> " + ex.Message, VariablesGlobales.NombreSistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #endregion
 
         private void ProcesarInformacion() {
@@ -281,8 +318,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     Eliminar.ProcesarInformacion();
                     ProcesarInformacion();
 
-                    if (rbReporteResumido.Checked == true) {
-                        AntiguedadSaldoResumido((decimal)Session["IdUsuario"],Convert.ToDecimal(txtTasaDollar.Text),0, Server.MapPath("AntiguedadSaldoResumido.rpt"), "sa", "Pa$$W0rd", "ResumidoPrueba");
+                    if (rbReporteResumido.Checked == true)
+                    {
+                        DateTime FechaCorte = Convert.ToDateTime(txtFechaCorteConsulta.Text);
+                        string FechaCorteString = FechaCorte.ToShortDateString();
+                        string Tasa = txtTasaDollar.Text;
+                        string NombreReporte = "Antiguedad de Saldo Resumido Cortado al " + FechaCorteString + " a Tasa Dollar " + Tasa;
+                        AntiguedadSaldoResumido((decimal)Session["IdUsuario"], Convert.ToDecimal(txtTasaDollar.Text), 0, Server.MapPath("AntiguedadSaldoResumido.rpt"), "sa", "Pa$$W0rd", NombreReporte);
+                    }
+                    else if (rbReporteDetallado.Checked == true) {
+                        DateTime FechaCorte = Convert.ToDateTime(txtFechaCorteConsulta.Text);
+                        string FechaCorteString = FechaCorte.ToShortDateString();
+                        string Tasa = txtTasaDollar.Text;
+                        string NombreReporte = "Antiguedad de Saldo Detalle Cortado al " + FechaCorteString + " a Tasa Dollar " + Tasa;
+                        AntiguedadSaldoDetalle((decimal)Session["IdUsuario"],Convert.ToDecimal(txtTasaDollar.Text), Server.MapPath("AntiguedadSaldoDetalle.rpt"), "sa", "Pa$$W0rd", NombreReporte);
                     }
                 }
                 else
