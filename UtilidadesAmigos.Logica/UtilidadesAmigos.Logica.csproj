@@ -253,6 +253,8 @@
     <Compile Include="Entidades\Mantenimientos\EProcesarDatosSolicitudChequesCuentas.cs" />
     <Compile Include="Entidades\Mantenimientos\EProcesarInformacionAntiguedadSaldo.cs" />
     <Compile Include="Entidades\Mantenimientos\EProcesarSolicitudCheques.cs" />
+    <Compile Include="Entidades\Mantenimientos\EReporteAntiguedadSaldoDetalle.cs" />
+    <Compile Include="Entidades\Mantenimientos\EReporteAntiguedadSaldoResumido.cs" />
     <Compile Include="Entidades\Mantenimientos\ESacarCodigoMaximoIntermediaio.cs" />
     <Compile Include="Entidades\Mantenimientos\ESacarTasaMoneda.cs" />
     <Compile Include="Entidades\Mantenimientos\ESacarUltimoNumeroSolicitudGenerado.cs" />
