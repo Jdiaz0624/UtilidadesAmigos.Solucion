@@ -682,8 +682,32 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 foreach (var n in SacarCodigoMaximo) {
                     CodigoVendedorAfectado = Convert.ToDecimal(n.Codigo);
                 }
+
+                //EN ESTA PARTE INGRESAMOS LOS DATOS DE LAS COMISIONES DEL INTERMEDIARIO CREADO
+                //BUSCAMOS LAS COMISIONES POR DEFECTO
+                var BuscarComisionesPorDefecto = Objdatamantenimientos.BuscaComisionesPorDefecto(
+                    new Nullable<decimal>(),
+                    null, null);
+                foreach (var nNuevoPorDefecto in BuscarComisionesPorDefecto) {
+                    //GUARDAMOS LOS DATOS DE LAS COMISIONES DEL INTERMEDIARIO
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesIntermediarioSeleccionado NuevaComision = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesIntermediarioSeleccionado(
+                        30,
+                        (int)CodigoVendedorAfectado,
+                        (int)nNuevoPorDefecto.CodRamo,
+                        (int)nNuevoPorDefecto.CodSubramo,
+                        (decimal)nNuevoPorDefecto.PorcientoComision,
+                        0,
+                        0,
+                        0,
+                        new Guid(),
+                        UsuarioProcesa,
+                        "INSERT");
+                    NuevaComision.ProcesarInformacion();
+                }
+
             }
             MANIntermediarioCadenaDetalle(30, Convert.ToInt32(CodigoVendedorAfectado), Convert.ToInt32(txtCodigoSupervisor.Text), UsuarioProcesa, lbAccionTomar.Text);
+
             var Buscar = Objdatamantenimientos.BuscaListadoIntermediario(CodigoVendedorAfectado.ToString(), null, null, null, null);
             gvIntermediarios.DataSource = Buscar;
             gvIntermediarios.DataBind();
