@@ -461,8 +461,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #endregion
         #region RESTABLECER POPOP DE COMISIONES
         private void RestablecerPOPOPComisionesIntermediario() {
-            MostrarComisionesIntermediario(9999999);
-            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
+            //int  CodigoVacio = 0000;
+            //MostrarComisionesIntermediario(CodigoVacio);
+            //ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
         #endregion
         protected void Page_Load(object sender, EventArgs e)

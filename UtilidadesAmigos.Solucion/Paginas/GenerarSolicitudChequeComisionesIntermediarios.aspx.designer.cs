@@ -40,6 +40,24 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.RadioButton rbChequeEndosable;
         
         /// <summary>
+        /// cbGenerarSolicidutLote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbGenerarSolicidutLote;
+        
+        /// <summary>
+        /// lbLetreroSolicitudCheque control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbLetreroSolicitudCheque;
+        
+        /// <summary>
         /// lbIngresarCodigoIntermediario control.
         /// </summary>
         /// <remarks>

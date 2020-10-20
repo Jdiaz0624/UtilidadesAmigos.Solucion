@@ -51,6 +51,8 @@
         <div class="jumbotron" align="center">
         <asp:Label ID="lbTituloPagina" runat="server" Text="Generar Solicitud de Cheques Intermediarios"></asp:Label>
     </div>
+
+
         <div class="form-check-inline">
             <div class="form-group form-check">
                 <asp:RadioButton ID="rbChequeNoEndosable" runat="server" Text="No Endosable" ToolTip="Generar Solicitud No Endosable" GroupName="TipoCheque" CssClass="form-check-input LetrasNegrita" />
@@ -58,6 +60,12 @@
             </div>
               </div>
             <br />
+        <div class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:CheckBox ID="cbGenerarSolicidutLote" runat="server" AutoPostBack="true" OnCheckedChanged="cbGenerarSolicidutLote_CheckedChanged" Text="Generar Solicitud por lote" CssClass="form-check-input LetrasNegrita" />
+                <asp:Label ID="lbLetreroSolicitudCheque" runat="server" Text="Este proceso puede durar hasta 5 Minutos o mas dependiendo de la cantidad de registros a procesar" Visible="false" CssClass="LetrasNegrita" ForeColor="Red"></asp:Label>
+            </div>
+        </div>
             <div class="form-row">
                
                 <div class="form-group col-md-3">
@@ -82,11 +90,10 @@
                     <asp:TextBox ID="txtFechaHasta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </div>
             </div>
-                 <!--BOTONES-->
+                  <!--BOTONES-->
                  <div align="center">
                      <asp:Button ID="btnProcesarSolicitud" runat="server" Text="Procesar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnProcesarSolicitud_Click" ToolTip="Generar la solicitud de cheque" />
                  </div>
-                 <!--BOTONES-->
-      
+                 <!--BOTONES-->                    
     </div>
 </asp:Content>
