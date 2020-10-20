@@ -241,7 +241,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnNuevo.Enabled = true;
             btnModificar.Enabled = false;
             btnRestabelcerPantalla.Enabled = false;
-          // CargarListadoIntermediarios();
+            // CargarListadoIntermediarios();
+
+            RestablecerPOPOPComisionesIntermediario();
 
         }
         #endregion
@@ -455,6 +457,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Procesar.ProcesarInformaicon();
             }
             catch (Exception) { }
+        }
+        #endregion
+        #region RESTABLECER POPOP DE COMISIONES
+        private void RestablecerPOPOPComisionesIntermediario() {
+            MostrarComisionesIntermediario(9999999);
+            ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
         #endregion
         protected void Page_Load(object sender, EventArgs e)
@@ -1049,5 +1057,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             CargarSubramos();
             ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
+
+
     }
 }
