@@ -148,6 +148,24 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtFechaHasta;
         
         /// <summary>
+        /// lbMontoMinimoProceso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbMontoMinimoProceso;
+        
+        /// <summary>
+        /// txtMontoMinimoProceso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMontoMinimoProceso;
+        
+        /// <summary>
         /// btnProcesarSolicitud control.
         /// </summary>
         /// <remarks>

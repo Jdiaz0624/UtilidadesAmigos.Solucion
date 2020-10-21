@@ -77,6 +77,8 @@
                     <asp:TextBox ID="txtNombreIntermediario" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
 
+               
+
                  <div class="form-group col-md-6">
                     <asp:Label ID="lbSeleccionarBanco" runat="server" Text="Seleccionar Banco de Banco" CssClass="LetrasNegrita"></asp:Label>
                     <asp:DropDownList ID="ddlSeleccionarBanco" runat="server" ToolTip="Seleccionar Banco" CssClass="form-control"></asp:DropDownList>
@@ -90,6 +92,12 @@
                     <asp:TextBox ID="txtFechaHasta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </div>
             </div>
+        <div class="form-row">
+             <div class="form-group col-md-3">
+                    <asp:Label ID="lbMontoMinimoProceso" runat="server" Text="Monto Minimo" CssClass="LetrasNegrita" Visible="false"></asp:Label>
+                   <asp:TextBox ID="txtMontoMinimoProceso" runat="server" CssClass="form-control" TextMode="Number" step="0.01" Visible="false"></asp:TextBox>
+                </div>
+        </div>
                   <!--BOTONES-->
                  <div align="center">
                      <asp:Button ID="btnProcesarSolicitud" runat="server" Text="Procesar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnProcesarSolicitud_Click" ToolTip="Generar la solicitud de cheque" />

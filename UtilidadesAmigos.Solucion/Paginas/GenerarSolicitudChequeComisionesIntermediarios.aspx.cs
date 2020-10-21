@@ -56,86 +56,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     //VALIDAMOS LA VARIABLE DE SESION
                     if (Session["IdUsuario"] != null) {
                       
-                        //ELIMIMANOS TODOS LOS REGISTROS EN LA TABLA DE PROCESAR DE INTERMEDIARIOS
-                        UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario Eliminar = new Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario(
-                        Convert.ToDecimal(Session["IdUsuario"]), "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, DateTime.Now, DateTime.Now, "DELETE");
-                        Eliminar.ProcesarInformacion();
-
-                        //BUSCAMOS TODAS LAS COMISIONES DE TODOS LOS INTERMEDIARIOS SEGUN EL RANGO DE FECHA INGRESADO
-                        var BuscarTodasLasComisiones = ObjData.Value.GenerarComisionIntermediario(
-                            Convert.ToDateTime(txtFechaDesde.Text),
-                            Convert.ToDateTime(txtFechaHasta.Text),
-                            null, null);
-                        if (BuscarTodasLasComisiones.Count() < 1) { }
-                        else {
-                            foreach (var n in BuscarTodasLasComisiones)
-                            {
-                                UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario Guardar = new Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario(
-                       Convert.ToDecimal(Session["IdUsuario"]),
-                       n.Supervisor,
-                       Convert.ToInt32(n.Codigo),
-                       n.Intermediario,
-                       n.Oficina,
-                       n.NumeroIdentificacion,
-                       n.CuentaBanco,
-                       n.TipoCuenta,
-                       n.Banco,
-                       n.Cliente,
-                       n.Recibo,
-                       n.Fecha,
-                       n.Factura,
-                       n.FechaFactura,
-                       n.Moneda,
-                       n.Poliza,
-                       n.Producto,
-                       Convert.ToDecimal(n.Bruto),
-                       Convert.ToDecimal(n.Neto),
-                       Convert.ToDecimal(n.PorcientoComision),
-                       Convert.ToDecimal(n.Comision),
-                       Convert.ToDecimal(n.Retencion),
-                       Convert.ToDecimal(n.AvanceComision),
-                       Convert.ToDecimal(n.ALiquidar),
-                       Convert.ToDecimal(n.CantidadRegistros),
-                       Convert.ToDateTime(txtFechaDesde.Text),
-                       Convert.ToDateTime(txtFechaHasta.Text),
-                       "INSERT");
-                                Guardar.ProcesarInformacion();
-                            }
-
-                        }
-
-                        //CONSULTAMOS TODA LA INFORMACION GUARDADA DE MANERA RESUMIDA
-                        var ConsultarInformacionResumida = ObjData.Value.ComisionIntermediarioResumido((decimal)Session["IdUsuario"]);
-                        if (ConsultarInformacionResumida.Count() < 1) { }
-                        else {
-                            //RECORREMOS TODA LA INFORMACION, VALIDADO QUE LA COMISION A PAGAR SEA MAYOR A 500, PESOS PARA GENERAR LA SOLICITUD.
-                            decimal ComisionPagar = 0;
-                            int CodigoIntermediarioProcesoLote = 0;
-                            string NombreIntermediarioProcesoLote = "", RNCIntermediarioProcesoLote = "";
-                            foreach (var nInformacionResumida in ConsultarInformacionResumida) {
-                                ComisionPagar = Convert.ToDecimal(nInformacionResumida.ALiquidar);
-                                CodigoIntermediarioProcesoLote = Convert.ToInt32(nInformacionResumida.CodigoIntermediario);
-                                NombreIntermediarioProcesoLote = nInformacionResumida.Intermediario;
-                                RNCIntermediarioProcesoLote = nInformacionResumida.NumeroIdentificacion;
-
-                                if (ComisionPagar > 500) {
-                                    var BuscarProveedores = ObjdataMantenimiento.Value.BuscaProveedores(
-                                        new Nullable<int>(),
-                                        RNCIntermediarioProcesoLote,
-                                        NombreIntermediarioProcesoLote);
-                                    if (BuscarProveedores.Count() < 1)
-                                    {
-                                        //CREAMOS UN REGISTRO NUEVO CON LOS DATOS DEL INTERMEDIARIO CONSULTADO Y LUEGO SACAMOS TODA LA INFORMACION NECESARIA
-                                    }
-                                    else {
-                                        //SACAMOS TODA LA INFORMACION NECESARIA
-                                    }
-                                }
-                                else {
-                                    //GUARDAMOS EN UNA TABLA TODOS LOS INTERMEDIARIOS QUE NO CUMPLIERON CON ESTA CONDICION.
-                                }
-                            }
-                        }
+                     
                     }
                     else {
                         FormsAuthentication.SignOut();
@@ -494,12 +415,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtNombreIntermediario.Text = "Proceso de Solicitud en lote";
                 txtCodigoIntermediario.Enabled = false;
                 lbLetreroSolicitudCheque.Visible = true;
+                lbMontoMinimoProceso.Visible = true;
+                txtMontoMinimoProceso.Visible = true;
+                txtMontoMinimoProceso.Text = "500";
             }
             else if (cbGenerarSolicidutLote.Checked == false) {
                 txtCodigoIntermediario.Text = string.Empty;
                 txtNombreIntermediario.Text = string.Empty;
                 txtCodigoIntermediario.Enabled = true;
                 lbLetreroSolicitudCheque.Visible = false;
+                lbMontoMinimoProceso.Visible = false;
+                txtMontoMinimoProceso.Visible = false;
+                txtMontoMinimoProceso.Text = string.Empty;
             }
         }
     }
