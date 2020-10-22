@@ -1116,6 +1116,72 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
         }
         #endregion
 
+        #region MANTENIMEINTO DE REGISTROS DE COLICITUD DE CHEQUE
+        //LISTADO DE REGISTROS DE SOLICITUD DE CHEQUE
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.ERegistrosSolicitudChequeLote> BuscaRegistrosSolicitudCheque(decimal? IdUsuario = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_REGISTROS_SOLICITUD_CHEQUE_LOTE(IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.ERegistrosSolicitudChequeLote
+                           {
+                               IdRegistro=n.IdRegistro,
+                               IdUsuairo=n.IdUsuairo,
+                               CreadoPor=n.CreadoPor,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               NumeroSolicitud=n.NumeroSolicitud,
+                               FechaProceso0=n.FechaProceso0,
+                               FechaProceso=n.FechaProceso,
+                               FechaDesde=n.FechaDesde,
+                               ValidadoDesde=n.ValidadoDesde,
+                               FechaHasta=n.FechaHasta,
+                               ValidadoHasta=n.ValidadoHasta,
+                               MontoSolicitud=n.MontoSolicitud,
+                               Estatus0=n.Estatus0,
+                               Estatus=n.Estatus,
+                               CantidadProcesados=n.CantidadProcesados,
+                               CantidadDescartados=n.CantidadDescartados,
+                               CantidadRegistros=n.CantidadRegistros
+
+                           }).ToList();
+            return Listado;
+        }
+
+        //MANTENIMIENTO DE REGISTROS DE SOLICITUD DE CHEQUE
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.ERegistrosSolicitudChequeLote MantenimientoRegistrosSolicitudLone(UtilidadesAmigos.Logica.Entidades.Mantenimientos.ERegistrosSolicitudChequeLote Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.ERegistrosSolicitudChequeLote Mantenimeinto = null;
+
+            var RegistroSolicitudChequeLote = Objdata.SP_PROCESAR_INFORMACION_REGISTROS_SOLICITUD_CHEQUE_LOTE(
+                Item.IdRegistro,
+                Item.IdUsuairo,
+                Item.CodigoIntermediario,
+                Item.NumeroSolicitud,
+                Item.FechaDesde,
+                Item.FechaHasta,
+                Item.MontoSolicitud,
+                Item.Estatus0,
+                Accion);
+            if (RegistroSolicitudChequeLote != null) {
+                Mantenimeinto = (from n in RegistroSolicitudChequeLote
+                                 select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.ERegistrosSolicitudChequeLote
+                                 {
+                                     IdRegistro=n.IdRegistro,
+                                     IdUsuairo=n.IdUsuairo,
+                                    CodigoIntermediario=n.CodigoIntermediario,
+                                    NumeroSolicitud=n.NumeroSolicitud,
+                                    FechaProceso0=n.FechaProceso,
+                                    FechaDesde=n.FechaDesde,
+                                    FechaHasta=n.FechaDesde,
+                                    MontoSolicitud=n.MontoSolicitud,
+                                    Estatus0=n.Estatus
+                                 }).FirstOrDefault();
+            }
+            return Mantenimeinto;
+        }
+        #endregion
+
 
     }
 }

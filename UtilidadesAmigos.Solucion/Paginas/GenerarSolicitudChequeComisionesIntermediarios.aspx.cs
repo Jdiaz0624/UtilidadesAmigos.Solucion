@@ -55,8 +55,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 if (cbGenerarSolicidutLote.Checked == true) {
                     //VALIDAMOS LA VARIABLE DE SESION
                     if (Session["IdUsuario"] != null) {
-                      
-                     
+                        //ELIMINAMOS TODOS LOS REGISTROS DE LA TABLA DE COMISIONES DE INTERMEDIARIO
+                        UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario Eliminar = new Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario(
+                        Convert.ToDecimal(Session["IdUsuario"]), "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, DateTime.Now, DateTime.Now, "DELETE");
+                        Eliminar.ProcesarInformacion();
+
+                        //ELIMINAR LOS DATOS DE LA TABLA DE REGISTROS DE SOLICITUD DE CHEQUE EN LOTE
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionRegistrosSolicitudChequeLote EliminarDatosLote = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionRegistrosSolicitudChequeLote(
+                            0, (decimal)Session["IdUsuario"], 0, 0, DateTime.Now, DateTime.Now, DateTime.Now, 0, false, "DELETE");
+                        EliminarDatosLote.ProcesarInformacion();
+
                     }
                     else {
                         FormsAuthentication.SignOut();
