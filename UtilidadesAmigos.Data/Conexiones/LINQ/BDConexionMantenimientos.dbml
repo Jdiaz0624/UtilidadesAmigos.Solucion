@@ -878,6 +878,7 @@
   </Function>
   <Function Name="Utililades.SP_BUSCA_REGISTROS_SOLICITUD_CHEQUE_LOTE" Method="SP_BUSCA_REGISTROS_SOLICITUD_CHEQUE_LOTE">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
     <ElementType Name="SP_BUSCA_REGISTROS_SOLICITUD_CHEQUE_LOTEResult">
       <Column Name="IdRegistro" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
       <Column Name="IdUsuairo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />

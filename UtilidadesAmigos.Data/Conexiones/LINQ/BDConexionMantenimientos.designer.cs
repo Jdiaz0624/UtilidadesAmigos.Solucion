@@ -376,9 +376,9 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_REGISTROS_SOLICITUD_CHEQUE_LOTE")]
-		public ISingleResult<SP_BUSCA_REGISTROS_SOLICITUD_CHEQUE_LOTEResult> SP_BUSCA_REGISTROS_SOLICITUD_CHEQUE_LOTE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario)
+		public ISingleResult<SP_BUSCA_REGISTROS_SOLICITUD_CHEQUE_LOTEResult> SP_BUSCA_REGISTROS_SOLICITUD_CHEQUE_LOTE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="Bit")] System.Nullable<bool> estatus)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, estatus);
 			return ((ISingleResult<SP_BUSCA_REGISTROS_SOLICITUD_CHEQUE_LOTEResult>)(result.ReturnValue));
 		}
 	}

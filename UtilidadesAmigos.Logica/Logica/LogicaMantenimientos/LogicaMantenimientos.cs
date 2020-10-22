@@ -1118,10 +1118,10 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
 
         #region MANTENIMEINTO DE REGISTROS DE COLICITUD DE CHEQUE
         //LISTADO DE REGISTROS DE SOLICITUD DE CHEQUE
-        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.ERegistrosSolicitudChequeLote> BuscaRegistrosSolicitudCheque(decimal? IdUsuario = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.ERegistrosSolicitudChequeLote> BuscaRegistrosSolicitudChequeLote(decimal? IdUsuario = null,bool? Estatus = null) {
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_BUSCA_REGISTROS_SOLICITUD_CHEQUE_LOTE(IdUsuario)
+            var Listado = (from n in Objdata.SP_BUSCA_REGISTROS_SOLICITUD_CHEQUE_LOTE(IdUsuario, Estatus)
                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.ERegistrosSolicitudChequeLote
                            {
                                IdRegistro=n.IdRegistro,
