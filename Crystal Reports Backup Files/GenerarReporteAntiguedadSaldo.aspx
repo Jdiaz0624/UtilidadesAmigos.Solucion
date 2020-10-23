@@ -35,6 +35,10 @@
         function ErrorProceso() {
             alert("Error al procesar la información, favor de contactar a tecnologia");
         }
+
+        function FuncionNoDisponible() {
+            alert("Esta opción a un no esta disponible.";
+        }
     </script>
     <div class="container-fluid">
         <div class="jumbotron" align="center">
@@ -72,6 +76,7 @@
             <div class="form-group form-check">
                 <asp:Label ID="lbTIpoReporte" runat="server" Text="Tipo de Reporte" CssClass="LetrasNegrita"></asp:Label><br />
                 <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Reporte Resumido" ToolTip="Mostrar el reporte resumido" GroupName="TipoReporte" CssClass="form-check-input LetrasNegrita" />
+               <asp:RadioButton ID="rbReporteSuperResumido" runat="server" Visible="false" Text="Reporte Super Resumido" ToolTip="Mostrar el reporte super resumido, vinculando los ramos y convirtiendo todo a pesos directamente" GroupName="GroupName" CssClass="form-check-input LetrasNegrita" />
                 <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Reporte Detallado" ToolTip="Mostrar el reporte detallado" GroupName="TipoReporte" CssClass="form-check-input LetrasNegrita" />
             </div>
             <br />

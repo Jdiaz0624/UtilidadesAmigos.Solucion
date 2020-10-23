@@ -115,6 +115,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cargando.gif" />
+    <Content Include="cargando2.gif" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -161,7 +163,11 @@
     <None Include="Properties\PublishProfiles\FolderProfile15.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile16.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile17.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile18.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile19.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile20.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile21.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile3.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile4.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile5.pubxml" />

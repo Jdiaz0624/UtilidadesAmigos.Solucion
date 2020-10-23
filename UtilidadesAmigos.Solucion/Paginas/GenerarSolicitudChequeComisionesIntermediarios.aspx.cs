@@ -27,14 +27,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
         #region GENERAR LA SOLICITUD DE CHEQUE
-        private void GenerarSolicitudChequeIntermediario(int TipoCheque, string CodigoIntermediario, int CodigoBanco, DateTime FechaDesde, DateTime FechaHasta, decimal MontoMinimo) {
+        private void GenerarSolicitudChequeIntermediario(string TipoChequeParametro, string CodigoIntermediarioParametro, int CodigoBancoParametro, DateTime FechaDesdeParametro, DateTime FechaHastaParametro, decimal MontoMinimoParametro) {
             try
             {
                 //VALIDAMOS QUE EL CODIGO DE INTERMEDIARIO INGRESADO ES VALIDO
 
 
                 var Validar = ObjdataMantenimiento.Value.BuscaListadoIntermediario(
-                    CodigoIntermediario);
+                    CodigoIntermediarioParametro);
                 if (Validar.Count() < 1)
                 {
                     string Mensaje = "El codigo " + txtCodigoIntermediario.Text + " no existe, favor de verificar e intentar nuevamente";
@@ -205,8 +205,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                         //PROCESAMOS LA INFORMACION PARA SACAR LOS DATOS DE LOS MONTOS PARA GUARDAR LA SOLICITUD
                         var SacarLosMontosProcesados = ObjData.Value.GenerarComisionIntermediario(
-                            Convert.ToDateTime(txtFechaDesde.Text),
-                            Convert.ToDateTime(txtFechaHasta.Text),
+                            FechaDesdeParametro,
+                            FechaHastaParametro,
                             Codigo.ToString(), null);
 
 
@@ -254,14 +254,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         }
 
                         //GUARDAMOS LOS DATOS DE LA SOLICITUD DE CHEQUE
-                        string Endosable = "";
                         if (rbChequeEndosable.Checked == true)
                         {
-                            Endosable = "Si";
+                            TipoChequeParametro = "Si";
                         }
                         else if (rbChequeNoEndosable.Checked == true)
                         {
-                            Endosable = "No";
+                            TipoChequeParametro = "No";
                         }
                         UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCheques ProcesarSolicitud = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCheques(
                             0,
@@ -283,8 +282,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             CodigoProveedorSacardo,
                             "",
                             "",
-                            Endosable,
-                            Convert.ToInt32(ddlSeleccionarBanco.SelectedValue),
+                            TipoChequeParametro,
+                            CodigoBancoParametro,
                             CuentaBanco,
                             SumaALiquidar,
                             "",
@@ -306,8 +305,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             0,
                             "N",
                             0,
-                            Convert.ToDateTime(txtFechaDesde.Text),
-                            Convert.ToDateTime(txtFechaHasta.Text),
+                            FechaDesdeParametro,
+                            FechaHastaParametro,
                             SumaBruto,
                             SumaComision,
                             SumaRetencion,
@@ -323,20 +322,23 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         //GUARDAMOS LOS DATOS DE LAS CUENTAS CONTABLES
                         //CUENTA 1203
                         UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas Cuenta1 = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas(
-                            30, "N", 13, NumeroSolicitudGenerado, 0, "1203", 1, "", "2", SumaALiquidar, 0, 0, Convert.ToDateTime(txtFechaDesde.Text), Convert.ToDateTime(txtFechaHasta.Text), "INSERT");
+                            30, "N", 13, NumeroSolicitudGenerado, 0, "1203", 1, "", "2", SumaALiquidar, 0, 0, FechaDesdeParametro, FechaHastaParametro, "INSERT");
                         Cuenta1.ProcesarInformacion();
 
                         //CUENTA 2503
                         UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas Cuenta2 = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas(
-                            30, "N", 13, NumeroSolicitudGenerado, 0, "2503", 0, "", "1", SumaComision, 0, 0, Convert.ToDateTime(txtFechaDesde.Text), Convert.ToDateTime(txtFechaHasta.Text), "INSERT");
+                            30, "N", 13, NumeroSolicitudGenerado, 0, "2503", 0, "", "1", SumaComision, 0, 0, FechaDesdeParametro, FechaHastaParametro, "INSERT");
                         Cuenta2.ProcesarInformacion();
 
                         //CUENTA 2706
                         UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas Cuenta3 = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas(
-                            30, "N", 13, NumeroSolicitudGenerado, 0, "2706", 0, "", "2", SumaRetencion, 0, 0, Convert.ToDateTime(txtFechaDesde.Text), Convert.ToDateTime(txtFechaHasta.Text), "INSERT");
+                            30, "N", 13, NumeroSolicitudGenerado, 0, "2706", 0, "", "2", SumaRetencion, 0, 0, FechaDesdeParametro, FechaHastaParametro, "INSERT");
                         Cuenta3.ProcesarInformacion();
 
-                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Numero de Solicitud Generada " + NumeroSolicitudConvertida + "');", true);
+                        if (cbGenerarSolicidutLote.Checked == true) { }
+                        else {
+                            ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Numero de Solicitud Generada " + NumeroSolicitudConvertida + "');", true);
+                        }
                     }
                     else
                     {
@@ -380,7 +382,91 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 if (cbGenerarSolicidutLote.Checked == true) {
                     //VALIDAMOS LA VARIABLE DE SESION
                     if (Session["IdUsuario"] != null) {
-                     
+                        if (string.IsNullOrEmpty(txtMontoMinimoProceso.Text.Trim())) {
+                            txtMontoMinimoProceso.Text = "500";
+                        }
+
+                        //ELIMINAMOS LOS REGISTROS DE LA TABLA DE COMISIONES
+                        UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario EliminarRegistros = new Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario(
+                            Convert.ToDecimal(Session["IdUsuario"]), "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, DateTime.Now, DateTime.Now, "DELETE");
+                        EliminarRegistros.ProcesarInformacion();
+
+                        //ELIMINAMOS LOS DATOS DE LA TABLA DE PROCESO EN LOTE
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionRegistrosSolicitudChequeLote EliminarDatosLote = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionRegistrosSolicitudChequeLote(
+                            0, Convert.ToDecimal(Session["IdUsuario"]), 0, 0, DateTime.Now, DateTime.Now, DateTime.Now, 0, false, "DELETE");
+                        EliminarDatosLote.ProcesarInformacion();
+
+
+                        //BUSCAMOS LAS COMISIONES
+                        var GenerarComisiones = ObjData.Value.GenerarComisionIntermediario(
+                            Convert.ToDateTime(txtFechaDesde.Text),
+                            Convert.ToDateTime(txtFechaHasta.Text));
+                        
+                        foreach (var n in GenerarComisiones) {
+                            //GUARDAMOS LOS DATOS EN LA TABLA DE COMISIONES
+                            UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario GuardarComisiones = new Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario(
+                                (decimal)Session["IdUsuario"],
+                                n.Supervisor,
+                                Convert.ToInt32(n.Codigo),
+                                n.Intermediario,
+                                n.Oficina,
+                                n.NumeroIdentificacion,
+                                n.CuentaBanco,
+                                n.TipoCuenta,
+                                n.Banco,
+                                n.Cliente,
+                                n.Recibo,
+                                n.Fecha,
+                                n.Factura,
+                                n.FechaFactura,
+                                n.Moneda,
+                                n.Poliza,
+                                n.Producto,
+                                Convert.ToDecimal(n.Bruto),
+                                Convert.ToDecimal(n.Neto),
+                                Convert.ToDecimal(n.PorcientoComision),
+                                Convert.ToDecimal(n.Comision),
+                                Convert.ToDecimal(n.Retencion),
+                                Convert.ToDecimal(n.AvanceComision),
+                                Convert.ToDecimal(n.ALiquidar),
+                                Convert.ToDecimal(n.CantidadRegistros),
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text),
+                                "INSERT");
+                            GuardarComisiones.ProcesarInformacion();
+
+
+                        }
+
+                        //CONSULTAMOS LOS DATOS DE MANERA RESUMIDA
+                        var ConsultarComisionResumida = ObjData.Value.ComisionIntermediarioResumido(Convert.ToDecimal(Session["IdUsuario"]));
+                        int CodigoIntermediarioResumido = 0;
+                        decimal ALiquidar = 0;
+                        decimal MontoMinimo = Convert.ToDecimal(txtMontoMinimoProceso.Text);
+                        foreach (var n2 in ConsultarComisionResumida) {
+                            CodigoIntermediarioResumido = Convert.ToInt32(n2.CodigoIntermediario);
+                            ALiquidar = Convert.ToDecimal(n2.ALiquidar);
+
+                            if (ALiquidar < MontoMinimo) {
+                                //GUARDAMOS LOS DATOS DE LOS REGISTROS QUE NO SE PROCESAROS
+                                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionRegistrosSolicitudChequeLote GuardarInformacionlote = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionRegistrosSolicitudChequeLote(
+                                    0,
+                                    Convert.ToDecimal(Session["IdUsuario"]),
+                                    CodigoIntermediarioResumido,
+                                    0,
+                                    DateTime.Now,
+                                    Convert.ToDateTime(txtFechaDesde.Text),
+                                    Convert.ToDateTime(txtFechaHasta.Text),
+                                    ALiquidar,
+                                    false,
+                                    "INSERT");
+                                GuardarInformacionlote.ProcesarInformacion();
+                            }
+                            else {
+
+                                //GENERAMOS LAS COLICITUDES DE CHEQUES
+                            }
+                        }
 
                     }
                     else {
@@ -400,7 +486,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 //GENERAMOS LA SOLICITUD DE CHEQUE DE MANERA INDIVIDUAL
                 else if (cbGenerarSolicidutLote.Checked == false) {
-                    
+
+                    GenerarSolicitudChequeIntermediario("", txtCodigoIntermediario.Text, Convert.ToInt32(ddlSeleccionarBanco.SelectedValue), Convert.ToDateTime(txtFechaDesde.Text), Convert.ToDateTime(txtFechaHasta.Text), 0);
 
                 
 
