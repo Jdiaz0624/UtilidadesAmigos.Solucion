@@ -335,7 +335,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             30, "N", 13, NumeroSolicitudGenerado, 0, "2706", 0, "", "2", SumaRetencion, 0, 0, FechaDesdeParametro, FechaHastaParametro, "INSERT");
                         Cuenta3.ProcesarInformacion();
 
-                        if (cbGenerarSolicidutLote.Checked == true) { }
+                        if (cbGenerarSolicidutLote.Checked == true) {
+                            //GUARDAMOS EL REGISTRO 
+                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionRegistrosSolicitudChequeLote GuardarLote = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionRegistrosSolicitudChequeLote(
+                                0,
+                                (decimal)Session["IdUsuario"],
+                                Convert.ToInt32(CodigoIntermediarioParametro),
+                                Convert.ToDecimal(NumeroSolicitudGenerado),
+                                DateTime.Now,
+                                FechaDesdeParametro,
+                                FechaHastaParametro,
+                                SumaALiquidar,
+                                true,
+                                "INSERT");
+                            GuardarLote.ProcesarInformacion();
+
+                        }
                         else {
                             ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Numero de Solicitud Generada " + NumeroSolicitudConvertida + "');", true);
                         }
@@ -465,25 +480,37 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             else {
 
                                 //GENERAMOS LAS COLICITUDES DE CHEQUES
+                                GenerarSolicitudChequeIntermediario("", CodigoIntermediarioResumido.ToString(), Convert.ToInt32(ddlSeleccionarBanco.SelectedValue), Convert.ToDateTime(txtFechaDesde.Text), Convert.ToDateTime(txtFechaHasta.Text), Convert.ToDecimal(txtMontoMinimoProceso.Text));
                             }
                         }
+                        btnProcesarSolicitud.Enabled = false;
+                        btnVolverAtras.Visible = true;
 
+                        ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Hola');", true);
+
+                        //EXPORTAMOS LOS REGISTROS GENERADOS A EXEL
+                        var GenerarRegistrosExel = (from n in ObjdataMantenimiento.Value.BuscaRegistrosSolicitudChequeLote((decimal)Session["IdUsuario"], null)
+                                                    select new
+                                                    {
+                                                        Registro_No=n.IdRegistro,
+                                                        GeneradoPor=n.CreadoPor,
+                                                        Codigo_Intermediario=n.CodigoIntermediario,
+                                                        Nombre_Intermediario=n.Intermediario,
+                                                        Numero_Solicitud_Cheque=n.NumeroSolicitud,
+                                                        Fecha_Proceso=n.FechaProceso,
+                                                        Validado_Desde=n.ValidadoDesde,
+                                                        Validado_Hasta=n.ValidadoHasta,
+                                                        Valor_Solicitud=n.MontoSolicitud,
+                                                        Estatus=n.Estatus
+                                                    }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Proceso Solicitud Cheque Lote", GenerarRegistrosExel);
+                       
                     }
                     else {
                         FormsAuthentication.SignOut();
                         FormsAuthentication.RedirectToLoginPage();
                     }
                 }
-
-
-                //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\\
-                //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\\
-                //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\\
-                //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\\
-                //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\\
-                //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\\
-
-
                 //GENERAMOS LA SOLICITUD DE CHEQUE DE MANERA INDIVIDUAL
                 else if (cbGenerarSolicidutLote.Checked == false) {
 
@@ -526,6 +553,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtMontoMinimoProceso.Visible = false;
                 txtMontoMinimoProceso.Text = string.Empty;
             }
+        }
+
+        protected void btnVolverAtras_Click(object sender, EventArgs e)
+        {
+            btnProcesarSolicitud.Enabled = true;
+            btnVolverAtras.Visible = false;
+            lbLetreroProcesoTerminado.Visible = false;
+            cbGenerarSolicidutLote.Checked = false;
+            rbChequeNoEndosable.Checked = true;
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarBanco, ObjData.Value.BuscaListas("LISTADOBANCOS", null, null));
         }
     }
 }

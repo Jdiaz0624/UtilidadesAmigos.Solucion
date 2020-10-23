@@ -98,9 +98,15 @@
                    <asp:TextBox ID="txtMontoMinimoProceso" runat="server" CssClass="form-control" TextMode="Number" step="0.01" Visible="false"></asp:TextBox>
                 </div>
         </div>
+        <div class="form-row">
+            <div class="form-group col-md-3" align="center">
+                <asp:Label ID="lbLetreroProcesoTerminado" runat="server" Text="Proceso Terminado" Visible="false" CssClass="LetrasNegrita"></asp:Label>
+            </div>
+        </div>
                   <!--BOTONES-->
                  <div align="center">
                      <asp:Button ID="btnProcesarSolicitud" runat="server" Text="Procesar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnProcesarSolicitud_Click" ToolTip="Generar la solicitud de cheque" />
+                     <asp:Button ID="btnVolverAtras" runat="server" Text="Regresar" CssClass="btn btn-outline-primary btn-sm" Visible="false" OnClick="btnVolverAtras_Click" ToolTip="Volver Atras" />
                  </div>
                  <!--BOTONES-->                    
     </div>
