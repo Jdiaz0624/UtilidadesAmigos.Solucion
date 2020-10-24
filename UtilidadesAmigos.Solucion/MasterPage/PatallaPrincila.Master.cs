@@ -95,7 +95,8 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkProduccionDiaria_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ProduccionDiaria.aspx");
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            // Response.Redirect("ProduccionDiaria.aspx");
         }
 
         protected void linkGenerarCartera_Click(object sender, EventArgs e)
