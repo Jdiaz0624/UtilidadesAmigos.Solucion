@@ -1229,5 +1229,116 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
         #endregion
 
 
+        #region MANTENIMIENTO DE HISTORIAL DE ANTIGUEDAD DE SALDO
+        /// <summary>
+        /// Este metodo es para procesar la información del historial de los datos de antiguedad de saldo.
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionHistorialDatosAntiguedadSaldo ProcesarHistorialAntiguedadSaldo(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionHistorialDatosAntiguedadSaldo Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionHistorialDatosAntiguedadSaldo Procesar = null;
+
+            var HistorialDatosAntiguedadSaldo = Objdata.SP_PROCESAR_INFORMACION_HISTORIAL_DATOS_ANTIGUEDAD_SALDO(
+                Item.NoRegistro,
+                Item.Secuencia,
+                Item.FechaCorte,
+                Item.DocumentoFormateado,
+                Item.DocumentoFiltro,
+                Item.Tipo,
+                Item.DocumentoTipo,
+                Item.Asegurado,
+                Item.CodCliente,
+                Item.FechaFactura,
+                Item.Intermediario,
+                Item.CodIntermediario,
+                Item.Poliza,
+                Item.CodMoneda,
+                Item.DescripcionMoneda,
+                Item.Estatus,
+                Item.CodRamo,
+                Item.InicioVigencia,
+                Item.Inicio,
+                Item.FinVigencia,
+                Item.Fin,
+                Item.CodOficina,
+                Item.Oficina,
+                Item.Dias,
+                Item.Facturado,
+                Item.Cobrado,
+                Item.Balance,
+                Item.Impuesto,
+                Item.PorcientoComision,
+                Item.ValorComision,
+                Item.ComisionPendiente,
+                Item.__0_10,
+                Item.__0_30,
+                Item.__31_60,
+                Item.__61_90,
+                Item.__91_120,
+                Item.__121_150,
+                Item.__151_Mas,
+                Item.Total,
+                Item.Diferencia,
+                Item.OrigenTipo,
+                Item.IdUsuario,
+                Accion);
+
+            if (HistorialDatosAntiguedadSaldo != null) {
+                Procesar = (from n in HistorialDatosAntiguedadSaldo
+                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionHistorialDatosAntiguedadSaldo
+                            {
+                                NoRegistro=n.NoRegistro,
+                                Secuencia=n.Secuencia,
+                                FechaGuardado=n.FechaGuardado,
+                                FechaCorte=n.FechaCorte,
+                                DocumentoFormateado=n.DocumentoFormateado,
+                                DocumentoFiltro=n.DocumentoFiltro,
+                                Tipo=n.Tipo,
+                                DocumentoTipo=n.DocumentoTipo,
+                                Asegurado=n.Asegurado,
+                                CodCliente=n.CodCliente,
+                                FechaFactura=n.FechaFactura,
+                                Intermediario=n.Intermediario,
+                                CodIntermediario=n.CodIntermediario,
+                                Poliza=n.Poliza,
+                                CodMoneda=n.CodMoneda,
+                                DescripcionMoneda=n.DescripcionMoneda,
+                                Estatus=n.Estatus,
+                                CodRamo=n.CodRamo,
+                                InicioVigencia=n.InicioVigencia,
+                                Inicio=n.Inicio,
+                                FinVigencia=n.FinVigencia,
+                                Fin=n.Fin,
+                                CodOficina=n.CodOficina,
+                                Oficina=n.Oficina,
+                                Dias=n.Dias,
+                                Facturado=n.Facturado,
+                                Cobrado=n.Cobrado,
+                                Balance=n.Balance,
+                                Impuesto=n.Impuesto,
+                                PorcientoComision=n.PorcientoComision,
+                                ValorComision=n.ValorComision,
+                                ComisionPendiente=n.ComisionPendiente,
+                                __0_10=n._0_10,
+                                __0_30=n._0_30,
+                                __31_60=n._31_60,
+                                __61_90=n._61_90,
+                                __91_120=n._91_120,
+                                __121_150=n._121_150,
+                                __151_Mas=n._151_Mas,
+                                Total=n.Total,
+                                Diferencia=n.Diferencia,
+                                OrigenTipo=n.OrigenTipo,
+                                IdUsuario=n.IdUsuario
+
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
+
     }
 }

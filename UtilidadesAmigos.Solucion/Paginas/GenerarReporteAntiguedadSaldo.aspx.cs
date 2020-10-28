@@ -131,6 +131,33 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
+        #region OCULTAR Y MOSTRAR CONTROLES
+        private void OcularControles() {
+            lbSeleccionarSecuenciaRegistro.Visible = false;
+            ddlSeleccionarSecuencia.Visible = false;
+            lbFechaGuardado.Visible = false;
+            txtFechaGuardado.Visible = false;
+            lbMontoGuardado.Visible = false;
+            txtMontoGuardado.Visible = false;
+            lbClaveSeguridad.Visible = false;
+            txtClaveSeguridad.Visible = false;
+            btnConsultarHistorico.Visible = false;
+            btnGuardarHistorico.Visible = false;
+        }
+        private void MostrarControles() {
+
+            lbSeleccionarSecuenciaRegistro.Visible = true;
+            ddlSeleccionarSecuencia.Visible = true;
+            lbFechaGuardado.Visible = true;
+            txtFechaGuardado.Visible = true;
+            lbMontoGuardado.Visible = true;
+            txtMontoGuardado.Visible = true;
+            lbClaveSeguridad.Visible = true;
+            txtClaveSeguridad.Visible = true;
+            btnConsultarHistorico.Visible = true;
+            btnGuardarHistorico.Visible = true;
+        }
+        #endregion
 
         private void ProcesarInformacion() {
           //  try {
@@ -226,6 +253,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 //SACAMOS LA TASA DE LA MONEDA
                 txtTasaDollar.Text = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2).ToString();
+                OcularControles();
             }
         }
 
@@ -447,12 +475,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void rbConsuntaSistema_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (rbConsuntaSistema.Checked == true) {
+                OcularControles();
+            }
+            else {
+                MostrarControles();
+            }
         }
 
         protected void rbConsuntaHistorico_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (rbConsuntaHistorico.Checked == true) {
+                MostrarControles();
+            }
+            else {
+                OcularControles();
+            }
         }
 
         protected void btnConsultarHistorico_Click(object sender, EventArgs e)
@@ -462,7 +500,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnGuardarHistorico_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtFechaCorteConsulta.Text.Trim()) || string.IsNullOrEmpty(txtTasaDollar.Text.Trim()) || string.IsNullOrEmpty(txtClaveSeguridad.Text.Trim()))
+            {
 
+            }
+            else {
+                txtMontoGuardado.Text = "hola";
+            }
         }
 
         protected void ddlSeleccionarSecuencia_SelectedIndexChanged(object sender, EventArgs e)

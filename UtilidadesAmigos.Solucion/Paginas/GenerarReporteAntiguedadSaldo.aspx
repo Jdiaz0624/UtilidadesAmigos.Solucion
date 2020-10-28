@@ -39,7 +39,9 @@
         function FuncionNoDisponible() {
             alert("Esta opción a un no esta disponible.";
         }
+
     </script>
+
     <div class="container-fluid">
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTitulo" runat="server" Text="Reporte de Antiguedad de Saldo"></asp:Label>
@@ -119,8 +121,8 @@
                 <asp:TextBox ID="txtMontoGuardado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="form-group col-md-3">
-                <asp:Label ID="lbClaveSeguridad" runat="server" Text="Monto Guardado" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="TextBox1" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                <asp:Label ID="lbClaveSeguridad" runat="server" Text="Clave de Seguridad" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtClaveSeguridad" TextMode="Password" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
         <br />
