@@ -1101,6 +1101,52 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                                          }).ToList();
             return AntigueadSaldoDetalle;
         }
+
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EReporteAntiguedadSaldoNeteadoDetalle> ReporteAntiguedadSaldoNeteadoDetalle(decimal? IdUsuario = null, decimal? TasaDollar = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_REPORTE_ANTIGUEDAD_SALDO_NETEADO_DETALLE(IdUsuario, TasaDollar)
+                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EReporteAntiguedadSaldoNeteadoDetalle
+                           {
+                               IdUsuario=n.IdUsuario,
+                               GeneradoPor=n.GeneradoPor,
+                               FechaCorte=n.FechaCorte,
+                               FechaCorteFormateado=n.FechaCorteFormateado,
+                               Asegurado=n.Asegurado,
+                               Asegurado1=n.Asegurado1,
+                               CodCliente=n.CodCliente,
+                               Intermediario=n.Intermediario,
+                               CodIntermediario=n.CodIntermediario,
+                               Poliza=n.Poliza,
+                               CodMoneda=n.CodMoneda,
+                               DescripcionMoneda=n.DescripcionMoneda,
+                               Estatus=n.Estatus,
+                               CodRamo=n.CodRamo,
+                               Ramo=n.Ramo,
+                               InicioVigencia=n.InicioVigencia,
+                               Inicio=n.Inicio,
+                               FinVigencia=n.FinVigencia,
+                               Fin=n.Fin,
+                               Facturado=n.Facturado,
+                               Cobrado=n.Cobrado,
+                               Balance=n.Balance,
+                               Impuesto=n.Impuesto,
+                               ValorComision=n.ValorComision,
+                               ComisionPendiente=n.ComisionPendiente,
+                               __0_30=n._0_30,
+                               __31_60=n._31_60,
+                               __61_90=n._61_90,
+                               __91_120=n._91_120,
+                               __121_150=n._121_150,
+                               __151_mas=n._151_mas,
+                               Total=n.Total,
+                               TotalPesos=n.TotalPesos,
+                               TasaDollar=n.TasaDollar,
+                               Diferencia=n.Diferencia
+
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
         #region SACAR LA TASA DE A MONEDA

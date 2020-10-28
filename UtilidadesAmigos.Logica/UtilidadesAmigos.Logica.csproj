@@ -256,6 +256,7 @@
     <Compile Include="Entidades\Mantenimientos\EProcesarSolicitudCheques.cs" />
     <Compile Include="Entidades\Mantenimientos\ERegistrosSolicitudChequeLote.cs" />
     <Compile Include="Entidades\Mantenimientos\EReporteAntiguedadSaldoDetalle.cs" />
+    <Compile Include="Entidades\Mantenimientos\EReporteAntiguedadSaldoNeteadoDetalle.cs" />
     <Compile Include="Entidades\Mantenimientos\EReporteAntiguedadSaldoResumido.cs" />
     <Compile Include="Entidades\Mantenimientos\ESacarCodigoMaximoIntermediaio.cs" />
     <Compile Include="Entidades\Mantenimientos\ESacarTasaMoneda.cs" />

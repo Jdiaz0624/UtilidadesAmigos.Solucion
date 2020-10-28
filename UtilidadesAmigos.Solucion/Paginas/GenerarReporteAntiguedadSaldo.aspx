@@ -77,6 +77,7 @@
                 <asp:Label ID="lbTIpoReporte" runat="server" Text="Tipo de Reporte" CssClass="LetrasNegrita"></asp:Label><br />
                 <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Reporte Resumido" ToolTip="Mostrar el reporte resumido" GroupName="TipoReporte" CssClass="form-check-input LetrasNegrita" />
                <asp:RadioButton ID="rbReporteSuperResumido" runat="server" Visible="false" Text="Reporte Super Resumido" ToolTip="Mostrar el reporte super resumido, vinculando los ramos y convirtiendo todo a pesos directamente" GroupName="GroupName" CssClass="form-check-input LetrasNegrita" />
+                <asp:RadioButton ID="rbReporteNeteado" runat="server" Text="Reporte Neteado" GroupName="TipoReporte" ToolTip="Mostrar el Reporte en detalle Neteado" CssClass="form-check-input LetrasNegrita" />
                 <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Reporte Detallado" ToolTip="Mostrar el reporte detallado" GroupName="TipoReporte" CssClass="form-check-input LetrasNegrita" />
             </div>
             <br />
@@ -94,13 +95,40 @@
                 <asp:RadioButton ID="rbFacturas" runat="server" Text="Facturas (FT)" GroupName="TipoMovimiento" ToolTip="Mostrar solo las facturas" CssClass="form-check-input LetrasNegrita" />
                  <asp:RadioButton ID="rbCreditos" runat="server" Text="Creditos (CR)" GroupName="TipoMovimiento" ToolTip="Mostrar solo los creditos" CssClass="form-check-input LetrasNegrita" />
                  <asp:RadioButton ID="rbPrimaDepositos" runat="server" Text="Prima a Depositos (PAD)" GroupName="TipoMovimiento" ToolTip="Mostrar solo las primas a depositos" CssClass="form-check-input LetrasNegrita" />
+                
+            </div>
+
+            <div class="form-group form-check">
+                <asp:Label ID="lbTipoConsultaReporte" runat="server" Text="Tipo de Consulta de Reporte" CssClass="LetrasNegrita"></asp:Label><br />
+                <asp:RadioButton ID="rbConsuntaSistema" runat="server" Text="Consulta del Sistema" CssClass="form-check-input LetrasNegrita" GroupName="TipoConsulta" OnCheckedChanged="rbConsuntaSistema_CheckedChanged" AutoPostBack="true" />
+                <asp:RadioButton ID="rbConsuntaHistorico" runat="server" Text="Consulta a Historico" CssClass="form-check-input LetrasNegrita" GroupName="TipoConsulta" OnCheckedChanged="rbConsuntaHistorico_CheckedChanged" AutoPostBack="true" />
             </div>
             
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbSeleccionarSecuenciaRegistro" runat="server" Text="Seleccionar Secuencia" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarSecuencia" runat="server" ToolTip="Seleccionar la secuencia del registro" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarSecuencia_SelectedIndexChanged"></asp:DropDownList>
+            </div>
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbFechaGuardado" runat="server" Text="Fecha Guardado" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaGuardado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbMontoGuardado" runat="server" Text="Monto Guardado" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtMontoGuardado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbClaveSeguridad" runat="server" Text="Monto Guardado" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="TextBox1" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
         </div>
         <br />
           <div align="Center">
          <asp:Button ID="btnExportarRegistros"  runat="server" CssClass="btn btn-outline-primary btn-sm Custom"  Text="Exportar" ToolTip="Exportar Registros" OnClick="btnExportarRegistros_Click" />
          <asp:Button ID="btnGenerarReporte"  runat="server" CssClass="btn btn-outline-primary btn-sm Custom"  Text="Reporte" ToolTip="Generar Reporte" OnClick="btnGenerarReporte_Click"/>
+         <asp:Button ID="btnConsultarHistorico" runat="server" CssClass="btn btn-outline-primary btn-sm Custom" Text="Consultar" ToolTip="Consultar Información del Historico" OnClick="btnConsultarHistorico_Click" />
+         <asp:Button ID="btnGuardarHistorico" runat="server" CssClass="btn btn-outline-primary btn-sm Custom" Text="Guardar" ToolTip="Guardar Información a Historico" OnClick="btnGuardarHistorico_Click" />
         </div>
     </div>
 </asp:Content>

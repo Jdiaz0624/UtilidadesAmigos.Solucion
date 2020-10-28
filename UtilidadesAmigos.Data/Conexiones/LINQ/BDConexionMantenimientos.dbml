@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionMantenimientosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=TECNOLOGIA;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString15" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=TECNOLOGIA;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString14" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_BUSCA_OFICINAS" Method="SP_BUSCA_OFICINAS">
     <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(18,0)" />
     <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Decimal" DbType="Decimal(20,0)" />
@@ -898,6 +898,47 @@
       <Column Name="CantidadProcesados" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CantidadDescartados" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_REPORTE_ANTIGUEDAD_SALDO_NETEADO_DETALLE" Method="SP_BUSCA_REPORTE_ANTIGUEDAD_SALDO_NETEADO_DETALLE">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Tasa" Parameter="tasa" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <ElementType Name="SP_BUSCA_REPORTE_ANTIGUEDAD_SALDO_NETEADO_DETALLEResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FechaCorte" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaCorteFormateado" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Asegurado" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Asegurado1" Type="System.String" DbType="VarChar(288) NOT NULL" CanBeNull="false" />
+      <Column Name="CodCliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodIntermediario" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DescripcionMoneda" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="CodRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Inicio" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Fin" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Impuesto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="ValorComision" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="ComisionPendiente" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="[_0_30]" Member="_0_30" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="[_31_60]" Member="_31_60" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="[_61_90]" Member="_61_90" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="[_91_120]" Member="_91_120" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="[_121_150]" Member="_121_150" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="[_151_mas]" Member="_151_mas" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TotalPesos" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TasaDollar" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Diferencia" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

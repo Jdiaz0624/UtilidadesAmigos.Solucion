@@ -94,6 +94,42 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 //MessageBox.Show("Error al generar la factura de venta, favor de contactar al administrador del sistema, codigo de error--> " + ex.Message, VariablesGlobales.NombreSistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        //REPORTE DE ANTIGUEDAD DE SALDO NETEADO
+        private void AntiguedadSaldoNeteado(decimal Idusuario, decimal TasaDollar, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo) {
+            try
+            {
+
+                ReportDocument Factura = new ReportDocument();
+
+                SqlCommand comando = new SqlCommand();
+                comando.CommandText = "EXEC [Utililades].[SP_BUSCA_REPORTE_ANTIGUEDAD_SALDO_NETEADO_DETALLE] @IdUsuario,@Tasa";
+                comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+
+                comando.Parameters.Add("@IdUsuario", System.Data.SqlDbType.Decimal);
+                comando.Parameters.Add("@Tasa", System.Data.SqlDbType.Decimal);
+
+                comando.Parameters["@IdUsuario"].Value = Idusuario;
+                comando.Parameters["@Tasa"].Value = TasaDollar;
+
+                Factura.Load(RutaReporte);
+                Factura.Refresh();
+                Factura.SetParameterValue("@IdUsuario", Idusuario);
+                Factura.SetParameterValue("@Tasa", TasaDollar);
+                Factura.SetDatabaseLogon(UsuarioBD, ClaveBD);
+                Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+
+                //  Factura.PrintToPrinter(1, false, 0, 1);
+                //  crystalReportViewer1.ReportSource = Factura;
+
+
+
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Error al generar la factura de venta, favor de contactar al administrador del sistema, codigo de error--> " + ex.Message, VariablesGlobales.NombreSistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #endregion
 
         private void ProcesarInformacion() {
@@ -185,6 +221,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 rbReporteResumido.Checked = true;
                // rbPorRamo.Checked = true;
                 rbTodosMovimientos.Checked = true;
+                rbConsuntaSistema.Checked = true;
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamoConsulta, ObjdataGeneral.Value.BuscaListas("RAMO", null, null), true);
 
                 //SACAMOS LA TASA DE LA MONEDA
@@ -208,90 +245,138 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
             }
             else {
-                if (Session["Idusuario"] != null) {
-                 
-                    //ELIMINAMOS LOS CAMPOS 
-                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo(
-                       (decimal)Session["Idusuario"], DateTime.Now, "", 0, 0, "", "", 0, "", "", 0, "", 0, "", "", 0, "", DateTime.Now, "", DateTime.Now, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "DELETE");
-                    Eliminar.ProcesarInformacion();
-                    ProcesarInformacion();
+                if (rbConsuntaSistema.Checked == true) {
+                    if (Session["Idusuario"] != null)
+                    {
 
-                    //EXPORTAMOS LA INFORMACION
-                    //RESUMIDA
-                    if (rbReporteResumido.Checked == true) {
-                        var ExportarReporteResumido = (from n in ObDataMantenimiento.Value.ReporteAntiguedadSaldoResumido(
-                            (decimal)Session["IdUsuario"],
-                            Convert.ToDecimal(txtTasaDollar.Text),
-                            0)
-                                                       select new {
-                                                           Moneda =n.DescripcionMoneda,
-                                                           Ramo=n.Ramo,
-                                                           Balance=n.Balance,
-                                                           _0_30=n.__0_30,
-                                                           _31_60=n.__31_60,
-                                                           _61_90=n.__61_90,
-                                                           _91_120=n.__91_120,
-                                                           _121_150=n.__121_150,
-                                                           _151_Mas=n.__151_Mas,
-                                                           Total=n.Total,
-                                                           TotalPesos=n.TotalPesos,
-                                                           Tasa=n.Tasa
+                        //ELIMINAMOS LOS CAMPOS 
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo(
+                           (decimal)Session["Idusuario"], DateTime.Now, "", 0, 0, "", "", 0, "", "", 0, "", 0, "", "", 0, "", DateTime.Now, "", DateTime.Now, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "DELETE");
+                        Eliminar.ProcesarInformacion();
+                        ProcesarInformacion();
 
-                                                       }).ToList();
-                        string FechaCorte = txtFechaCorteConsulta.Text;
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Antiguedad Saldo Resumido cortado al " + FechaCorte, ExportarReporteResumido);
-                    }
-                    //SUPER RESUMIDA
-                    else if (rbReporteSuperResumido.Checked == true) {
-                        ClientScript.RegisterStartupScript(GetType(), "FuncionNoDisponible()", "FuncionNoDisponible();", true);
-                    }
-                    //DETALLADA
-                    else if (rbReporteDetallado.Checked == true) {
-                        var ExportarReporteDetallado = (from n in ObDataMantenimiento.Value.ReporteAntiguedadSaldoDetalle(
-                            (decimal)Session["IdUsuario"],
-                            Convert.ToDecimal(txtTasaDollar.Text))
-                                                        select new {
-                                                            Numero_Factura=n.DocumentoFormateado,
-                                                            Tipo_Documento=n.DescripcionTipo,
-                                                            Fecha_Factura=n.FechaFactura,
-                                                            Asegurado=n.Asegurado,
-                                                            Intermediario=n.Intermediario,
-                                                            Poliza=n.Poliza,
-                                                            Moneda=n.DescripcionMoneda,
-                                                            Estatus=n.Estatus,
-                                                            Ramo=n.Ramo,
-                                                            Inicio_Vigencia=n.InicioVigencia,
-                                                            Fin_Vigencia=n.FinVigencia,
-                                                            Oficina=n.Oficina,
-                                                            CantidadDias=n.dias,
-                                                            Facturado=n.Facturado,
-                                                            Cobrado=n.Cobrado,
-                                                            Balance=n.Balance,
-                                                            Impuesto=n.Impuesto,
-                                                            PorcientoComision=n.PorcientoComision,
-                                                            ValorComision=n.ValorComision,
-                                                            ComisionPendiente=n.ComisionPendiente,
-                                                            _0_30=n.__0_30,
-                                                            _31_60=n.__31_60,
-                                                            _61_90=n.__61_90,
-                                                            _91_120=n.__91_120,
-                                                            _121_150=n.__121_150,
-                                                            _151_Mas=n.__151_mas,
-                                                            Total=n.Total,
-                                                            Diferencia=n.Diferencia,
-                                                            TotalPesos=n.TotalPesos,
-                                                            Tasa=n.Tasa
-                                                        }).ToList();
-                        DateTime FechaCorte = Convert.ToDateTime(txtFechaCorteConsulta.Text);
-                        string FechaCorteString = FechaCorte.ToShortDateString();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de Antiguedad de Saldo Detalle cortado al " + FechaCorteString, ExportarReporteDetallado);
+                        //EXPORTAMOS LA INFORMACION
+                        //RESUMIDA
+                        if (rbReporteResumido.Checked == true)
+                        {
+                            var ExportarReporteResumido = (from n in ObDataMantenimiento.Value.ReporteAntiguedadSaldoResumido(
+                                (decimal)Session["IdUsuario"],
+                                Convert.ToDecimal(txtTasaDollar.Text),
+                                0)
+                                                           select new
+                                                           {
+                                                               Moneda = n.DescripcionMoneda,
+                                                               Ramo = n.Ramo,
+                                                               Balance = n.Balance,
+                                                               _0_30 = n.__0_30,
+                                                               _31_60 = n.__31_60,
+                                                               _61_90 = n.__61_90,
+                                                               _91_120 = n.__91_120,
+                                                               _121_150 = n.__121_150,
+                                                               _151_Mas = n.__151_Mas,
+                                                               Total = n.Total,
+                                                               TotalPesos = n.TotalPesos,
+                                                               Tasa = n.Tasa
 
+                                                           }).ToList();
+                            string FechaCorte = txtFechaCorteConsulta.Text;
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Antiguedad Saldo Resumido cortado al " + FechaCorte, ExportarReporteResumido);
+                        }
+                        //SUPER RESUMIDA
+                        else if (rbReporteSuperResumido.Checked == true)
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "FuncionNoDisponible()", "FuncionNoDisponible();", true);
+                        }
+                        //DETALLADA
+                        else if (rbReporteDetallado.Checked == true)
+                        {
+                            var ExportarReporteDetallado = (from n in ObDataMantenimiento.Value.ReporteAntiguedadSaldoDetalle(
+                                (decimal)Session["IdUsuario"],
+                                Convert.ToDecimal(txtTasaDollar.Text))
+                                                            select new
+                                                            {
+                                                                Numero_Factura = n.DocumentoFormateado,
+                                                                Tipo_Documento = n.DescripcionTipo,
+                                                                Fecha_Factura = n.FechaFactura,
+                                                                Asegurado = n.Asegurado,
+                                                                Intermediario = n.Intermediario,
+                                                                Poliza = n.Poliza,
+                                                                Moneda = n.DescripcionMoneda,
+                                                                Estatus = n.Estatus,
+                                                                Ramo = n.Ramo,
+                                                                Inicio_Vigencia = n.InicioVigencia,
+                                                                Fin_Vigencia = n.FinVigencia,
+                                                                Oficina = n.Oficina,
+                                                                CantidadDias = n.dias,
+                                                                Facturado = n.Facturado,
+                                                                Cobrado = n.Cobrado,
+                                                                Balance = n.Balance,
+                                                                Impuesto = n.Impuesto,
+                                                                PorcientoComision = n.PorcientoComision,
+                                                                ValorComision = n.ValorComision,
+                                                                ComisionPendiente = n.ComisionPendiente,
+                                                                _0_30 = n.__0_30,
+                                                                _31_60 = n.__31_60,
+                                                                _61_90 = n.__61_90,
+                                                                _91_120 = n.__91_120,
+                                                                _121_150 = n.__121_150,
+                                                                _151_Mas = n.__151_mas,
+                                                                Total = n.Total,
+                                                                Diferencia = n.Diferencia,
+                                                                TotalPesos = n.TotalPesos,
+                                                                Tasa = n.Tasa
+                                                            }).ToList();
+                            DateTime FechaCorte = Convert.ToDateTime(txtFechaCorteConsulta.Text);
+                            string FechaCorteString = FechaCorte.ToShortDateString();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de Antiguedad de Saldo Detalle cortado al " + FechaCorteString, ExportarReporteDetallado);
+
+                        }
+
+                        else if (rbReporteNeteado.Checked == true)
+                        {
+                            var ExportarReporteNeteado = (from n in ObDataMantenimiento.Value.ReporteAntiguedadSaldoNeteadoDetalle(
+                                (decimal)Session["Idusuario"],
+                                Convert.ToDecimal(txtTasaDollar.Text))
+                                                          select new
+                                                          {
+                                                              FechaCorte = n.FechaCorteFormateado,
+                                                              Asegurado = n.Asegurado1,
+                                                              Intermediario = n.Intermediario,
+                                                              CodIntermediario = n.CodIntermediario,
+                                                              Poliza = n.Poliza,
+                                                              Moneda = n.DescripcionMoneda,
+                                                              Estatus = n.Estatus,
+                                                              Ramo = n.Ramo,
+                                                              InicioVigencia = n.InicioVigencia,
+                                                              FinVigencia = n.FinVigencia,
+                                                              Facturado = n.Facturado,
+                                                              Cobrado = n.Cobrado,
+                                                              Balance = n.Balance,
+                                                              Impuesto = n.Impuesto,
+                                                              _0_30 = n.__0_30,
+                                                              _31_61 = n.__31_60,
+                                                              _61_90 = n.__61_90,
+                                                              _91_120 = n.__91_120,
+                                                              _121_150 = n.__121_150,
+                                                              _151_Mas = n.__151_mas,
+                                                              Total = n.Total,
+                                                              TotalPesos = n.TotalPesos,
+                                                              Diferencia = n.Diferencia
+
+                                                          }).ToList();
+
+
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Antiguedad de Saldo Neteado cortado al " + txtFechaCorteConsulta.Text + " Tasa Dollar " + txtTasaDollar.Text, ExportarReporteNeteado);
+                        }
                     }
+                    else
+                    {
+                        FormsAuthentication.SignOut();
+                        FormsAuthentication.RedirectToLoginPage();
+                    }
+
                 }
-                else {
-                    FormsAuthentication.SignOut();
-                    FormsAuthentication.RedirectToLoginPage();
-                }
+                else if (rbConsuntaHistorico.Checked == true) { }
             }
         }
 
@@ -310,36 +395,81 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else
             {
-               
-                if (Session["Idusuario"] != null) {
-                    //ELIMINAMOS LOS CAMPOS 
-                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo(
-                       (decimal)Session["Idusuario"], DateTime.Now, "", 0, 0, "", "", 0, "", "", 0, "", 0, "", "", 0, "", DateTime.Now, "", DateTime.Now, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "DELETE");
-                    Eliminar.ProcesarInformacion();
-                    ProcesarInformacion();
 
-                    if (rbReporteResumido.Checked == true)
+                if (rbConsuntaSistema.Checked == true) {
+                    if (Session["Idusuario"] != null)
                     {
-                        DateTime FechaCorte = Convert.ToDateTime(txtFechaCorteConsulta.Text);
-                        string FechaCorteString = FechaCorte.ToShortDateString();
-                        string Tasa = txtTasaDollar.Text;
-                        string NombreReporte = "Antiguedad de Saldo Resumido Cortado al " + FechaCorteString + " a Tasa Dollar " + Tasa;
-                        AntiguedadSaldoResumido((decimal)Session["IdUsuario"], Convert.ToDecimal(txtTasaDollar.Text), 0, Server.MapPath("AntiguedadSaldoResumido.rpt"), "sa", "Pa$$W0rd", NombreReporte);
+                        //ELIMINAMOS LOS CAMPOS 
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo(
+                           (decimal)Session["Idusuario"], DateTime.Now, "", 0, 0, "", "", 0, "", "", 0, "", 0, "", "", 0, "", DateTime.Now, "", DateTime.Now, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "DELETE");
+                        Eliminar.ProcesarInformacion();
+                        ProcesarInformacion();
+
+                        if (rbReporteResumido.Checked == true)
+                        {
+                            DateTime FechaCorte = Convert.ToDateTime(txtFechaCorteConsulta.Text);
+                            string FechaCorteString = FechaCorte.ToShortDateString();
+                            string Tasa = txtTasaDollar.Text;
+                            string NombreReporte = "Antiguedad de Saldo Resumido Cortado al " + FechaCorteString + " a Tasa Dollar " + Tasa;
+                            AntiguedadSaldoResumido((decimal)Session["IdUsuario"], Convert.ToDecimal(txtTasaDollar.Text), 0, Server.MapPath("AntiguedadSaldoResumido.rpt"), "sa", "Pa$$W0rd", NombreReporte);
+                        }
+                        else if (rbReporteDetallado.Checked == true)
+                        {
+                            DateTime FechaCorte = Convert.ToDateTime(txtFechaCorteConsulta.Text);
+                            string FechaCorteString = FechaCorte.ToShortDateString();
+                            string Tasa = txtTasaDollar.Text;
+                            string NombreReporte = "Antiguedad de Saldo Detalle Cortado al " + FechaCorteString + " a Tasa Dollar " + Tasa;
+                            AntiguedadSaldoDetalle((decimal)Session["IdUsuario"], Convert.ToDecimal(txtTasaDollar.Text), Server.MapPath("AntiguedadSaldoDetalle.rpt"), "sa", "Pa$$W0rd", NombreReporte);
+                        }
+                        else if (rbReporteNeteado.Checked == true) {
+                            DateTime FechaCorte = Convert.ToDateTime(txtFechaCorteConsulta.Text);
+                            string FechaCorteString = FechaCorte.ToShortDateString();
+                            string Tasa = txtTasaDollar.Text;
+                            string NombreReporte = "Antiguedad de Saldo Detalle Neteado cortado al " + FechaCorteString + " a Tasa Dollar " + Tasa;
+                            AntiguedadSaldoNeteado((decimal)Session["Idusuario"], Convert.ToDecimal(txtTasaDollar.Text), Server.MapPath("ReporteAntiguedadSaldoNeteado.rpt"), "sa", "Pa$$W0rd", NombreReporte);
+                        }
                     }
-                    else if (rbReporteDetallado.Checked == true) {
-                        DateTime FechaCorte = Convert.ToDateTime(txtFechaCorteConsulta.Text);
-                        string FechaCorteString = FechaCorte.ToShortDateString();
-                        string Tasa = txtTasaDollar.Text;
-                        string NombreReporte = "Antiguedad de Saldo Detalle Cortado al " + FechaCorteString + " a Tasa Dollar " + Tasa;
-                        AntiguedadSaldoDetalle((decimal)Session["IdUsuario"],Convert.ToDecimal(txtTasaDollar.Text), Server.MapPath("AntiguedadSaldoDetalle.rpt"), "sa", "Pa$$W0rd", NombreReporte);
+                    else
+                    {
+                        FormsAuthentication.SignOut();
+                        FormsAuthentication.RedirectToLoginPage();
                     }
+
                 }
-                else
-                {
-                    FormsAuthentication.SignOut();
-                    FormsAuthentication.RedirectToLoginPage();
-                }
+                //-----------------------------------------------------------
+                //-----------------------------------------------------------
+                //-----------------------------------------------------------
+                //-----------------------------------------------------------
+                //-----------------------------------------------------------
+                else if (rbConsuntaHistorico.Checked == true) { }
             }
         }
+
+        protected void rbConsuntaSistema_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void rbConsuntaHistorico_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnConsultarHistorico_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardarHistorico_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlSeleccionarSecuencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }
