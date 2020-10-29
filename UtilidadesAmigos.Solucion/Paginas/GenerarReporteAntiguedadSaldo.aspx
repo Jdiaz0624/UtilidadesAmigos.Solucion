@@ -109,16 +109,16 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
-                <asp:Label ID="lbSeleccionarSecuenciaRegistro" runat="server" Text="Seleccionar Secuencia" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarSecuencia" runat="server" ToolTip="Seleccionar la secuencia del registro" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarSecuencia_SelectedIndexChanged"></asp:DropDownList>
+                <asp:Label ID="lbSeleccionarSecuenciaRegistro" runat="server" Text="Seleccionar Fecha" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarSecuencia" runat="server" ToolTip="Seleccionar la fecha del registro" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarSecuencia_SelectedIndexChanged"></asp:DropDownList>
             </div>
             <div class="form-group col-md-3">
                 <asp:Label ID="lbFechaGuardado" runat="server" Text="Fecha Guardado" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaGuardado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="form-group col-md-3">
-                <asp:Label ID="lbMontoGuardado" runat="server" Text="Monto Guardado" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtMontoGuardado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                <asp:Label ID="lbFechaCorte" runat="server" Text="Monto Guardado" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaCorte" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="form-group col-md-3">
                 <asp:Label ID="lbClaveSeguridad" runat="server" Text="Clave de Seguridad" CssClass="LetrasNegrita"></asp:Label>

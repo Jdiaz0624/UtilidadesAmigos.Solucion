@@ -944,6 +944,7 @@
   <Function Name="Utililades.SP_PROCESAR_INFORMACION_HISTORIAL_DATOS_ANTIGUEDAD_SALDO" Method="SP_PROCESAR_INFORMACION_HISTORIAL_DATOS_ANTIGUEDAD_SALDO">
     <Parameter Name="NoRegistro" Parameter="noRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Secuencia" Parameter="secuencia" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="FechaGuardado" Parameter="fechaGuardado" Type="System.DateTime" DbType="Date" />
     <Parameter Name="FechaCorte" Parameter="fechaCorte" Type="System.DateTime" DbType="Date" />
     <Parameter Name="DocumentoFormateado" Parameter="documentoFormateado" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="DocumentoFiltro" Parameter="documentoFiltro" Type="System.Decimal" DbType="Decimal(20,0)" />

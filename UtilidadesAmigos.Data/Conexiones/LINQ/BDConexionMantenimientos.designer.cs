@@ -393,6 +393,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		public ISingleResult<SP_PROCESAR_INFORMACION_HISTORIAL_DATOS_ANTIGUEDAD_SALDOResult> SP_PROCESAR_INFORMACION_HISTORIAL_DATOS_ANTIGUEDAD_SALDO(
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoRegistro", DbType="Decimal(20,0)")] System.Nullable<decimal> noRegistro, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Decimal(20,0)")] System.Nullable<decimal> secuencia, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaGuardado", DbType="Date")] System.Nullable<System.DateTime> fechaGuardado, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaCorte", DbType="Date")] System.Nullable<System.DateTime> fechaCorte, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DocumentoFormateado", DbType="VarChar(100)")] string documentoFormateado, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DocumentoFiltro", DbType="Decimal(20,0)")] System.Nullable<decimal> documentoFiltro, 
@@ -435,7 +436,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), noRegistro, secuencia, fechaCorte, documentoFormateado, documentoFiltro, tipo, documentoTipo, asegurado, codCliente, fechaFactura, intermediario, codIntermediario, poliza, codMoneda, descripcionMoneda, estatus, codRamo, inicioVigencia, inicio, finVigencia, fin, codOficina, oficina, dias, facturado, cobrado, balance, impuesto, porcientoComision, valorComision, comisionPendiente, _0_10, _0_30, _31_60, _61_90, _91_120, _121_150, _151_Mas, total, diferencia, origenTipo, idUsuario, accion);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), noRegistro, secuencia, fechaGuardado, fechaCorte, documentoFormateado, documentoFiltro, tipo, documentoTipo, asegurado, codCliente, fechaFactura, intermediario, codIntermediario, poliza, codMoneda, descripcionMoneda, estatus, codRamo, inicioVigencia, inicio, finVigencia, fin, codOficina, oficina, dias, facturado, cobrado, balance, impuesto, porcientoComision, valorComision, comisionPendiente, _0_10, _0_30, _31_60, _61_90, _91_120, _121_150, _151_Mas, total, diferencia, origenTipo, idUsuario, accion);
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_HISTORIAL_DATOS_ANTIGUEDAD_SALDOResult>)(result.ReturnValue));
 		}
 	}

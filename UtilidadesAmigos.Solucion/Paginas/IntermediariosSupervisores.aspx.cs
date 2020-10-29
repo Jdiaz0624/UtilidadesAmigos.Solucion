@@ -389,7 +389,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     txtNumeroIdentificacionMantenimiento.Text,
                     "",
                     0,
-                    0,
+                    Convert.ToInt32(txtCodigoSupervisor.Text),
                     Estatus,
                     Convert.ToDateTime(txtFechaEntradaMantenimiento.Text),
                     UsuarioProcesa,
@@ -438,7 +438,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 ClientScript.RegisterStartupScript(GetType(), "ErrorRealizarMantenimiento()", "ErrorRealizarMantenimiento();", true);
                 ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
             }

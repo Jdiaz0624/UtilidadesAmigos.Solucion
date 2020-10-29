@@ -150,7 +150,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos
 
         }
 
-        private void ProcesarInformacion() {
+        public void ProcesarInformacion() {
             UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionHistorialDatosAntiguedadSaldo Procesar = new Entidades.Mantenimientos.EProcesarInformacionHistorialDatosAntiguedadSaldo();
 
             Procesar.NoRegistro = NoRegistro;
@@ -167,6 +167,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos
             Procesar.Intermediario = Intermediario;
             Procesar.CodIntermediario = CodIntermediario;
             Procesar.Poliza = Poliza;
+            Procesar.CodMoneda = CodMoneda;
             Procesar.DescripcionMoneda = DescripcionMoneda;
             Procesar.Estatus = Estatus;
             Procesar.CodRamo = CodRamo;

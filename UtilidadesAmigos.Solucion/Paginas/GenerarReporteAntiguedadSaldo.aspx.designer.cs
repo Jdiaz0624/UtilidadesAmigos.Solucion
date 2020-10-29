@@ -265,22 +265,22 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtFechaGuardado;
         
         /// <summary>
-        /// lbMontoGuardado control.
+        /// lbFechaCorte control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMontoGuardado;
+        protected global::System.Web.UI.WebControls.Label lbFechaCorte;
         
         /// <summary>
-        /// txtMontoGuardado control.
+        /// txtFechaCorte control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMontoGuardado;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaCorte;
         
         /// <summary>
         /// lbClaveSeguridad control.

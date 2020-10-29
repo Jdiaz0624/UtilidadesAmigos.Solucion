@@ -1244,6 +1244,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             var HistorialDatosAntiguedadSaldo = Objdata.SP_PROCESAR_INFORMACION_HISTORIAL_DATOS_ANTIGUEDAD_SALDO(
                 Item.NoRegistro,
                 Item.Secuencia,
+                Item.FechaGuardado,
                 Item.FechaCorte,
                 Item.DocumentoFormateado,
                 Item.DocumentoFiltro,

@@ -137,8 +137,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             ddlSeleccionarSecuencia.Visible = false;
             lbFechaGuardado.Visible = false;
             txtFechaGuardado.Visible = false;
-            lbMontoGuardado.Visible = false;
-            txtMontoGuardado.Visible = false;
+            lbFechaCorte.Visible = false;
+            txtFechaCorte.Visible = false;
             lbClaveSeguridad.Visible = false;
             txtClaveSeguridad.Visible = false;
             btnConsultarHistorico.Visible = false;
@@ -150,15 +150,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
             ddlSeleccionarSecuencia.Visible = true;
             lbFechaGuardado.Visible = true;
             txtFechaGuardado.Visible = true;
-            lbMontoGuardado.Visible = true;
-            txtMontoGuardado.Visible = true;
+            lbFechaCorte.Visible = true;
+            txtFechaCorte.Visible = true;
             lbClaveSeguridad.Visible = true;
             txtClaveSeguridad.Visible = true;
             btnConsultarHistorico.Visible = true;
             btnGuardarHistorico.Visible = true;
         }
         #endregion
-
+        /// <summary>
+        /// Este metodo es para procesar y guardar la informacion en la tabla de Antiguedad de Saldo (Utililades.DatosReporteAntiguedadSaldo)
+        /// </summary>
         private void ProcesarInformacion() {
           //  try {
                 //BUSCAMOS LA INFORMACION MEDIANTE LOS FILTROS INGRESADOS
@@ -404,7 +406,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     }
 
                 }
-                else if (rbConsuntaHistorico.Checked == true) { }
+                else if (rbConsuntaHistorico.Checked == true) {
+                    txtFechaGuardado.Text = ddlSeleccionarSecuencia.SelectedValue.ToString();
+                }
             }
         }
 
@@ -485,33 +489,127 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void rbConsuntaHistorico_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbConsuntaHistorico.Checked == true) {
-                MostrarControles();
+            if (string.IsNullOrEmpty(txtFechaCorteConsulta.Text.Trim())) {
+                rbConsuntaHistorico.Checked = false;
+                rbConsuntaSistema.Checked = true;
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Favor de Ingresar la Fecha de corte');", true);
             }
             else {
-                OcularControles();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSecuencia, ObjdataGeneral.Value.BuscaListas("FECHAGUARDAOANTIGUEDAD", txtFechaCorteConsulta.Text, null));
+                if (rbConsuntaHistorico.Checked == true)
+                {
+                    MostrarControles();
+                }
+                else
+                {
+                    OcularControles();
+                }
             }
+            
         }
 
         protected void btnConsultarHistorico_Click(object sender, EventArgs e)
         {
 
+            txtFechaGuardado.Text = ddlSeleccionarSecuencia.SelectedValue.ToString();
+            txtFechaCorte.Text = txtFechaCorteConsulta.Text;
         }
 
         protected void btnGuardarHistorico_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtFechaCorteConsulta.Text.Trim()) || string.IsNullOrEmpty(txtTasaDollar.Text.Trim()) || string.IsNullOrEmpty(txtClaveSeguridad.Text.Trim()))
             {
-
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Has dejado campos vacios que son necesarios para realizar esta operación, favor de verificar');", true);
             }
             else {
-                txtMontoGuardado.Text = "hola";
+                //VALIDAMOS LA CLAVE DE SEGURIDAD
+                string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridad.Text.Trim()) ? null : txtClaveSeguridad.Text.Trim();
+
+                var ValidarClaveSeguridad = ObjdataGeneral.Value.BuscaClaveSeguridad(
+                    new Nullable<decimal>(),
+                    UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(_ClaveSeguridad));
+                if (ValidarClaveSeguridad.Count() < 1) {
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('La clave de seguridad ingresada no es valida, favor de verificar');", true);
+                }
+                else {
+                    if (Session["IdUsuario"] != null) {
+                        //PROCEDEMOS A GUARDAR EL REGISTRO
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionHistorialDatosAntiguedadSaldo EliminarHistorial = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionHistorialDatosAntiguedadSaldo(
+                            0, 0, DateTime.Now, Convert.ToDateTime(txtFechaCorteConsulta.Text), "", 0, 0, "", "", 0, "", "", 0, "", 0, "", "", 0, "", DateTime.Now, "", DateTime.Now, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "DELETE");
+                        EliminarHistorial.ProcesarInformacion();
+
+                        //BUSCAMOS LOS DATOS PARA ITERAR Y PROCEDER A GUAARDAR LOS REGISTROS
+                        //ELIMINAMOS LOS CAMPOS 
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo EliminarDatosAntiguedad = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo(
+                           (decimal)Session["Idusuario"], DateTime.Now, "", 0, 0, "", "", 0, "", "", 0, "", 0, "", "", 0, "", DateTime.Now, "", DateTime.Now, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "DELETE");
+                        EliminarDatosAntiguedad.ProcesarInformacion();
+                        ProcesarInformacion();
+                        //BUSCAMOS LA INFORMACION EN DETALLE
+                        var BuscarRegistrosetalle = ObDataMantenimiento.Value.ReporteAntiguedadSaldoDetalle(
+                            (decimal)Session["IdUsuario"],
+                            Convert.ToDecimal(txtTasaDollar.Text));
+                        foreach (var n in BuscarRegistrosetalle)
+                        {
+                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionHistorialDatosAntiguedadSaldo GuardarRegistrosHistorial = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionHistorialDatosAntiguedadSaldo(
+                                0,
+                                0,
+                                DateTime.Now,
+                                Convert.ToDateTime(txtFechaCorteConsulta.Text),
+                                n.DocumentoFormateado,
+                                Convert.ToDecimal(n.DocumentoFiltro),
+                                Convert.ToInt32(n.Tipo),
+                                n.DescripcionTipo,
+                                n.Asegurado,
+                                Convert.ToDecimal(n.CodCliente),
+                                n.FechaFactura,
+                                n.Intermediario,
+                                Convert.ToInt32(n.CodIntermediario),
+                                n.Poliza,
+                                Convert.ToInt32(n.CodMoneda),
+                                n.DescripcionMoneda,
+                                n.Estatus,
+                                Convert.ToInt32(n.CodRamo),
+                                n.InicioVigencia,
+                                Convert.ToDateTime(n.Inicio),
+                                n.FinVigencia,
+                                Convert.ToDateTime(n.Fin),
+                                Convert.ToInt32(n.CodOficina),
+                                n.Oficina,
+                                Convert.ToInt32(n.dias),
+                                Convert.ToDecimal(n.Facturado),
+                                Convert.ToDecimal(n.Cobrado),
+                                Convert.ToDecimal(n.Balance),
+                                Convert.ToDecimal(n.Impuesto),
+                                Convert.ToDecimal(n.PorcientoComision),
+                                Convert.ToDecimal(n.ValorComision),
+                                Convert.ToDecimal(n.ComisionPendiente),
+                                Convert.ToDecimal(n.__0_10),
+                                Convert.ToDecimal(n.__0_30),
+                                Convert.ToDecimal(n.__31_60),
+                                Convert.ToDecimal(n.__61_90),
+                                Convert.ToDecimal(n.__91_120),
+                                Convert.ToDecimal(n.__121_150),
+                                Convert.ToDecimal(n.__151_mas),
+                                Convert.ToDecimal(n.Total),
+                                Convert.ToDecimal(n.Diferencia),
+                                Convert.ToDecimal(n.OrigenTipo),
+                                Convert.ToDecimal(Session["IdUsuario"]),
+                                "INSERT");
+                            GuardarRegistrosHistorial.ProcesarInformacion();
+                        }
+                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Registros Guardados con exito');", true);
+                    }
+                    else {
+                        FormsAuthentication.SignOut();
+                        FormsAuthentication.RedirectToLoginPage();
+                    }
+                }
             }
         }
 
         protected void ddlSeleccionarSecuencia_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            txtFechaGuardado.Text = ddlSeleccionarSecuencia.SelectedValue.ToString();
         }
 
        
