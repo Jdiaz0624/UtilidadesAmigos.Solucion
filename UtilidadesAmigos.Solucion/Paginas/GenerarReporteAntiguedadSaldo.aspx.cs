@@ -403,6 +403,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     }
 
                 }
+
                 else if (rbConsuntaHistorico.Checked == true) {
                     txtFechaGuardado.Text = ddlSeleccionarSecuencia.SelectedValue.ToString();
                     txtFechaCorte.Text = txtFechaCorteConsulta.Text;
@@ -432,7 +433,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                              }).ToList();
                         UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Historial Antiguedad Saldo Cortado al " + txtFechaCorte.Text, BuscarResumen);
                     }
-                    else if (rbReporteNeteado.Checked == true) { }
+                    else if (rbReporteNeteado.Checked == true) {
+                
+                    }
                     else if (rbReporteDetallado.Checked == true) {
                         var ExportarHistorialDetalle = (from n in ObDataMantenimiento.Value.BuscaHistorialAntiguedadSaldoDetalle(
                             Convert.ToDecimal(Session["IdUsuario"]),
