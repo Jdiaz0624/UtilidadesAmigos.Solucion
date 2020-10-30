@@ -1447,6 +1447,14 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             return Listado;
         }
 
+        /// <summary>
+        /// Este metodo es para buscar los registros del historial de antiguedad de saldo de manera neteada.
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="Tasa"></param>
+        /// <param name="FechaCorte"></param>
+        /// <param name="FechaGuardado"></param>
+        /// <returns></returns>
         public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EHistorialAntiguedadSaldoNeteado> BuscaHistorialAntiguedadSaldoNeteado(decimal? IdUsuario = null, decimal? Tasa = null, DateTime? FechaCorte = null, DateTime? FechaGuardado = null) {
             Objdata.CommandTimeout = 999999999;
 
