@@ -392,10 +392,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                                               Total = n.Total,
                                                               TotalPesos = n.TotalPesos,
                                                               Diferencia = n.Diferencia
-
                                                           }).ToList();
-
-
                             UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Antiguedad de Saldo Neteado cortado al " + txtFechaCorteConsulta.Text + " Tasa Dollar " + txtTasaDollar.Text, ExportarReporteNeteado);
                         }
                     }
@@ -408,6 +405,72 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
                 else if (rbConsuntaHistorico.Checked == true) {
                     txtFechaGuardado.Text = ddlSeleccionarSecuencia.SelectedValue.ToString();
+                    txtFechaCorte.Text = txtFechaCorteConsulta.Text;
+
+                    if (rbReporteResumido.Checked == true) {
+                        //BUSCAMOS EL HISTORIAL DE MANERA RESUMIDA
+                        var BuscarResumen = (from n in ObDataMantenimiento.Value.BuscaHistorialAntiguedadSaldoResumida(
+                            Convert.ToDecimal(Session["IdUsuario"]),
+                            Convert.ToDecimal(txtTasaDollar.Text),
+                            Convert.ToDateTime(txtFechaCorte.Text),
+                            Convert.ToDateTime(txtFechaGuardado.Text),
+                            0)
+                                             select new
+                                             {
+                                                 Ramo = n.Ramo,
+                                                 Moneda = n.DescripcionMoneda,
+                                                 Balance = n.Balance,
+                                                 _0_30 = n.__0_30,
+                                                 _31_60 = n.__31_60,
+                                                 _61_90 = n.__61_90,
+                                                 _91_120 = n.__91_120,
+                                                 _121_150 = n.__121_150,
+                                                 _151_Mas = n.__151_Mas,
+                                                 Total = n.Total,
+                                                 TasaDollar = n.Tasa,
+                                                 TotalPesos = n.TotalPesos
+                                             }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Historial Antiguedad Saldo Cortado al " + txtFechaCorte.Text, BuscarResumen);
+                    }
+                    else if (rbReporteNeteado.Checked == true) { }
+                    else if (rbReporteDetallado.Checked == true) {
+                        var ExportarHistorialDetalle = (from n in ObDataMantenimiento.Value.BuscaHistorialAntiguedadSaldoDetalle(
+                            Convert.ToDecimal(Session["IdUsuario"]),
+                            Convert.ToDecimal(txtTasaDollar.Text),
+                            Convert.ToDateTime(txtFechaCorte.Text),
+                            Convert.ToDateTime(txtFechaGuardado.Text))
+                                                        select new
+                                                        {
+                                                            Documento =n.DocumentoFormateado,
+                                                            FechaDocumento=n.FechaFactura,
+                                                            Tipo=n.DocumentoTipo,
+                                                            Asegurado=n.Asegurado,
+                                                            Intermediario = n.Intermediario,
+                                                            Poliza=n.Poliza,
+                                                            Moneda=n.DescripcionMoneda,
+                                                            Ramo=n.Ramo,
+                                                            InicioVigencia=n.InicioVigencia,
+                                                            FinVigencia=n.FinVigencia,
+                                                            Oficina=n.Oficina,
+                                                            Dias=n.dias,
+                                                            Facturado=n.Facturado,
+                                                            Cobrado=n.Cobrado,
+                                                            Balance=n.Balance,
+                                                            Impuesto=n.Impuesto,
+                                                            PorcientoComision=n.PorcientoComision,
+                                                            _0_30=n.__0_30,
+                                                            _31_60=n.__31_60,
+                                                            _61_90=n.__61_90,
+                                                            _91_120=n.__91_120,
+                                                            _121_150=n.__121_150,
+                                                            _151_Mas=n.__151_mas,
+                                                            Total=n.Total,
+                                                            Diferencia=n.Diferencia,
+                                                            TasaDollar=n.Tasa,
+                                                            TotalPesos=n.TotalPesos
+                                                        }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Historial Antiguedad Saldo Cortado al " + txtFechaCorte.Text, ExportarHistorialDetalle);
+                    }
                 }
             }
         }
@@ -473,7 +536,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 //-----------------------------------------------------------
                 //-----------------------------------------------------------
                 //-----------------------------------------------------------
-                else if (rbConsuntaHistorico.Checked == true) { }
+                else if (rbConsuntaHistorico.Checked == true) {
+
+                    txtFechaGuardado.Text = ddlSeleccionarSecuencia.SelectedValue.ToString();
+                    txtFechaCorte.Text = txtFechaCorteConsulta.Text;
+                    if (rbReporteResumido.Checked == true) {
+                      
+
+                    }
+                    else if (rbReporteNeteado.Checked == true) { }
+                    else if (rbReporteDetallado.Checked == true) { }
+                }
             }
         }
 
@@ -610,6 +683,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void ddlSeleccionarSecuencia_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtFechaGuardado.Text = ddlSeleccionarSecuencia.SelectedValue.ToString();
+            txtFechaCorte.Text = txtFechaCorteConsulta.Text;
         }
 
        

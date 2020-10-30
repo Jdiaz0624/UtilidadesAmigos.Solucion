@@ -248,6 +248,9 @@
     <Compile Include="Entidades\Mantenimientos\EConsultarAntiguedadSaldos.cs" />
     <Compile Include="Entidades\Mantenimientos\EDepartamentos.cs" />
     <Compile Include="Entidades\Mantenimientos\EEmpleado.cs" />
+    <Compile Include="Entidades\Mantenimientos\EHistorialAntiguedadSaldoDetalle.cs" />
+    <Compile Include="Entidades\Mantenimientos\EHistorialAntiguedadSaldoNeteado.cs" />
+    <Compile Include="Entidades\Mantenimientos\EHistorialReporteAntiguedadSaldoResumido.cs" />
     <Compile Include="Entidades\Mantenimientos\EMantenimientoIntermediariosSupervisores.cs" />
     <Compile Include="Entidades\Mantenimientos\EMantenimientoProveedoresSolicitud.cs" />
     <Compile Include="Entidades\Mantenimientos\EMontosSolicitudCheques.cs" />

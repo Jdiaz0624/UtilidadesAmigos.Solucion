@@ -1339,6 +1339,159 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             }
             return Procesar;
         }
+        /// <summary>
+        /// Este metodo es para buscar los registros del historial antiguedad de saldo de manera resumida.
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="TasaDollar"></param>
+        /// <param name="FechaCorte"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="SuperResumido"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EHistorialReporteAntiguedadSaldoResumido> BuscaHistorialAntiguedadSaldoResumida(decimal? IdUsuario = null, decimal? TasaDollar = null, DateTime? FechaCorte = null, DateTime? FechaGuardado = null, int? SuperResumido = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_REPORTE_HISTORIAL_ANTIDAD_SALDO_RESUMIDO(IdUsuario, TasaDollar, FechaCorte, FechaGuardado, SuperResumido)
+                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EHistorialReporteAntiguedadSaldoResumido
+                           {
+                               CodMoneda=n.CodMoneda,
+                               FechaCorte=n.FechaCorte,
+                               FechaGuardado=n.FechaGuardado,
+                               FechaCorteFormateado=n.FechaCorteFormateado,
+                               FechaGuardadoFormateado=n.FechaGuardadoFormateado,
+                               DescripcionMoneda=n.DescripcionMoneda,
+                               Ramo=n.Ramo,
+                               CodRamo=n.CodRamo,
+                               CantidadFactura=n.CantidadFactura,
+                               CantidadCreditos=n.CantidadCreditos,
+                               CantidadPrimaDeposito=n.CantidadPrimaDeposito,
+                               CantidadRegistros=n.CantidadRegistros,
+                               Balance=n.Balance,
+                               __0_30=n._0_30,
+                               __31_60=n._31_60,
+                               __61_90=n._61_90,
+                               __91_120=n._91_120,
+                               __121_150=n._121_150,
+                               __151_Mas=n._151_Mas,
+                               Total=n.Total,
+                               GeneradoPor=n.GeneradoPor,
+                               TotalPesos=n.TotalPesos,
+                               Tasa=n.Tasa
+                           }).ToList();
+            return Listado;
+        }
+       
+        /// <summary>
+        /// Este metodo es para buscar los registros del historial de antiguedad de saldo de manera detallada.
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="Tasa"></param>
+        /// <param name="FechaCorte"></param>
+        /// <param name="FechaGuardado"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EHistorialAntiguedadSaldoDetalle> BuscaHistorialAntiguedadSaldoDetalle(decimal? IdUsuario = null, decimal? Tasa = null, DateTime? FechaCorte = null, DateTime? FechaGuardado = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_REPORTE_HISTORIAL_ANTIDAD_SALDO_DETALLE(IdUsuario, Tasa, FechaCorte, FechaGuardado)
+                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EHistorialAntiguedadSaldoDetalle
+                           {
+                               IdUsuario=n.IdUsuario,
+                               Persona=n.Persona,
+                               FechaCorte=n.FechaCorte,
+                               DocumentoFormateado=n.DocumentoFormateado,
+                               DocumentoFiltro=n.DocumentoFiltro,
+                               Tipo=n.Tipo,
+                               DocumentoTipo=n.DocumentoTipo,
+                               Asegurado=n.Asegurado,
+                               CodCliente=n.CodCliente,
+                               FechaFactura=n.FechaFactura,
+                               Intermediario=n.Intermediario,
+                               CodIntermediario=n.CodIntermediario,
+                               Poliza=n.Poliza,
+                               CodMoneda=n.CodMoneda,
+                               DescripcionMoneda=n.DescripcionMoneda,
+                               Estatus=n.Estatus,
+                               CodRamo=n.CodRamo,
+                               Ramo=n.Ramo,
+                               InicioVigencia=n.InicioVigencia,
+                               Inicio=n.Inicio,
+                               FinVigencia=n.FinVigencia,
+                               Fin=n.Fin,
+                               CodOficina=n.CodOficina,
+                               Oficina=n.Oficina,
+                               dias=n.dias,
+                               Facturado=n.Facturado,
+                               Cobrado=n.Cobrado,
+                               Balance=n.Balance,
+                               Impuesto=n.Impuesto,
+                               PorcientoComision=n.PorcientoComision,
+                               ValorComision=n.ValorComision,
+                               ComisionPendiente=n.ComisionPendiente,
+                               __0_10=n._0_10,
+                               __0_30=n._0_30,
+                               __31_60=n._31_60,
+                               __61_90=n._61_90,
+                               __91_120=n._91_120,
+                               __121_150=n._121_150,
+                               __151_mas=n._151_mas,
+                               Total=n.Total,
+                               Diferencia=n.Diferencia,
+                               OrigenTipo=n.OrigenTipo,
+                               TotalPesos=n.TotalPesos,
+                               CantidadFactura=n.CantidadFactura,
+                               CantidadCreditos=n.CantidadCreditos,
+                               CantidadPrimaDeposito=n.CantidadPrimaDeposito,
+                               CantidadRegistros=n.CantidadRegistros,
+                               Tasa=n.Tasa
+                           }).ToList();
+            return Listado;
+        }
+
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EHistorialAntiguedadSaldoNeteado> BuscaHistorialAntiguedadSaldoNeteado(decimal? IdUsuario = null, decimal? Tasa = null, DateTime? FechaCorte = null, DateTime? FechaGuardado = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_REPORTE_HISTORIAL_ANTIGUEDAD_SALDO_NETEADO_DETALLE(IdUsuario, Tasa, FechaCorte, FechaGuardado)
+                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EHistorialAntiguedadSaldoNeteado
+                           {
+                               IdUsuario=n.IdUsuario,
+                               GeneradoPor=n.GeneradoPor,
+                               FechaCorte=n.FechaCorte,
+                               FechaCorteFormateado=n.FechaCorteFormateado,
+                               Asegurado=n.Asegurado,
+                               Asegurado1=n.Asegurado1,
+                               CodCliente=n.CodCliente,
+                               Intermediario=n.Intermediario,
+                               CodIntermediario=n.CodIntermediario,
+                               Poliza=n.Poliza,
+                               CodMoneda=n.CodMoneda,
+                               DescripcionMoneda=n.DescripcionMoneda,
+                               Estatus=n.Estatus,
+                               CodRamo=n.CodRamo,
+                               Ramo=n.Ramo,
+                               InicioVigencia=n.InicioVigencia,
+                               Inicio=n.Inicio,
+                               FinVigencia=n.FinVigencia,
+                               Fin=n.Fin,
+                               Facturado=n.Facturado,
+                               Cobrado=n.Cobrado,
+                               Balance=n.Balance,
+                               Impuesto=n.Impuesto,
+                               ValorComision=n.ValorComision,
+                               ComisionPendiente=n.ComisionPendiente,
+                               __0_30=n._0_30,
+                               __31_60=n._31_60,
+                               __61_90=n._61_90,
+                               __91_120=n._91_120,
+                               __121_150=n._121_150,
+                               __151_mas=n._151_mas,
+                               Total=n.Total,
+                               TotalPesos=n.TotalPesos,
+                               TasaDollar=n.TasaDollar,
+                               Diferencia=n.Diferencia
+                             
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
     }
