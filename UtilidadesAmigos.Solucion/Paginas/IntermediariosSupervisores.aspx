@@ -314,6 +314,10 @@
              <asp:Label ID="lbEmailMantenimiento" runat="server" Visible="false" Text="Email" CssClass="Letranegrita"></asp:Label>
               <asp:TextBox ID="txtEnailMantenimiento" runat="server" AutoCompleteType="Disabled" Visible="false" TextMode="Email" CssClass="form-control"></asp:TextBox>
           </div>
+            <div class="form-group col-md-12">
+             <asp:Label ID="lbComentario" runat="server" Visible="false" Text="Comentario" CssClass="Letranegrita"></asp:Label>
+              <asp:TextBox ID="txtComentario" runat="server" AutoCompleteType="Disabled" Visible="false" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+          </div>
       </div>
         <div align="center">
              <asp:Button ID="btnGuardar" runat="server" Visible="false" Text="Guardar" ToolTip="Guardar Registros" OnClick="btnGuardar_Click" CssClass="btn btn-outline-primary btn-sm"/>

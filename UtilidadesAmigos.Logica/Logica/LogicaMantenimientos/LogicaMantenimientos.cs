@@ -406,6 +406,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                 Item.Fecha_Entrada,
                 Item.UsuarioAdiciona,
                 Item.PorcientoGastos,
+                Item.nota,
                 Item.tipo_Intermediario,
                 Item.Agencia,
                 Item.Fec_Nac,

@@ -87,7 +87,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtFaxMantenimiento.Visible = false;
             lbEmailMantenimiento.Visible = false;
             txtEnailMantenimiento.Visible = false;
-
+            lbComentario.Visible = false;
+            txtComentario.Visible = false;
 
 
 
@@ -185,7 +186,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtFaxMantenimiento.Visible = true;
             lbEmailMantenimiento.Visible = true;
             txtEnailMantenimiento.Visible = true;
-
+            lbComentario.Visible = true;
+            txtComentario.Visible = true;
 
 
 
@@ -397,7 +399,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     UsuarioProcesa,
                     DateTime.Now,
                     0,
-                    "",
+                    txtComentario.Text,
                     CanalDistribucion,
                     txtContactoIntermediarioMantenimiento.Text,
                     Convert.ToDateTime(txtFechaMAcimientoMantenimiento.Text),
