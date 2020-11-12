@@ -970,6 +970,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtCelularMantenimiento.Text = n.Celular;
                 txtFaxMantenimiento.Text = n.Fax;
                 txtEnailMantenimiento.Text = n.Email;
+                txtComentario.Text = n.nota;
             }
             ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
         }
