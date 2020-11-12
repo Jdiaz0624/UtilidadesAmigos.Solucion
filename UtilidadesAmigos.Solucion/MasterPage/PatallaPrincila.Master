@@ -66,6 +66,7 @@
                               Reportes
                             </a>
                             <div class="dropdown-menu">
+                                <asp:LinkButton ID="LinkProduccionIntermediarioSupervisor" runat="server" Text="Producción de Intermediario / Supervisor" ToolTip="Generar Reporte de Produccion de Intermediarios y Supervisores" OnClick="LinkProduccionIntermediarioSupervisor_Click" class="dropdown-item"></asp:LinkButton>
                                <asp:LinkButton ID="LinkGenerarMarbetesBehiculo" runat="server" ToolTip="Genera Marbetes" Text="Impresión de Marbetes" OnClick="LinkGenerarMarbetesBehiculo_Click" class="dropdown-item"></asp:LinkButton>
                                 <asp:LinkButton ID="LiniComisionesIntermediarios" runat="server" Text="Generar Comisiones de Intermediario" OnClick="LiniComisionesIntermediarios_Click" class="dropdown-item"></asp:LinkButton>
                                 <asp:LinkButton ID="LinkComisionesSupervisores" runat="server" Text="Generar Comisiones de Supervisores" OnClick="LinkComisionesSupervisores_Click" class="dropdown-item"></asp:LinkButton>

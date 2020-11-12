@@ -439,5 +439,10 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkProduccionIntermediarioSupervisor_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

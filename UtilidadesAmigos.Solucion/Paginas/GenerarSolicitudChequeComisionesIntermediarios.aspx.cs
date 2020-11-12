@@ -331,9 +331,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         Cuenta2.ProcesarInformacion();
 
                         //CUENTA 2706
-                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas Cuenta3 = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas(
+                        if (TipoRnc != 0) {
+                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas Cuenta3 = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas(
                             30, "N", 13, NumeroSolicitudGenerado, 0, "2706", 0, "", "2", SumaRetencion, 0, 0, FechaDesdeParametro, FechaHastaParametro, "INSERT");
-                        Cuenta3.ProcesarInformacion();
+                            Cuenta3.ProcesarInformacion();
+                        }
 
                         if (cbGenerarSolicidutLote.Checked == true) {
                             //GUARDAMOS EL REGISTRO 
