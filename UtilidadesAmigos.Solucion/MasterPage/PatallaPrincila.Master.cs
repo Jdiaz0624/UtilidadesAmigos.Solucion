@@ -442,7 +442,14 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkProduccionIntermediarioSupervisor_Click(object sender, EventArgs e)
         {
-
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("ReporteProduccionIntermediarioSupervisor.aspx");
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
     }
 }
