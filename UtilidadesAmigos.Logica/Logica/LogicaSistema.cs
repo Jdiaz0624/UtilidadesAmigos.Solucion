@@ -1832,11 +1832,11 @@ namespace UtilidadesAmigos.Logica.Logica
         }
 
         //GENERAR LAS COMISIONES DE LOS INTERMEDIARIOS
-        public List<UtilidadesAmigos.Logica.Entidades.EGenerarComisionIntermediario> GenerarComisionIntermediario(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string CodigoIntermediario = null, int? Oficina = null)
+        public List<UtilidadesAmigos.Logica.Entidades.EGenerarComisionIntermediario> GenerarComisionIntermediario(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string CodigoIntermediario = null, int? Oficina = null, decimal? Tasa = null)
         {
             Objdata.CommandTimeout = 99999999;
 
-            var Generar = (from n in Objdata.SP_SACAR_COMISIONES_INTERMEDIARIOS(FechaDesde, FechaHasta, CodigoIntermediario, Oficina)
+            var Generar = (from n in Objdata.SP_SACAR_COMISIONES_INTERMEDIARIOS(FechaDesde, FechaHasta, CodigoIntermediario, Oficina, Tasa)
                            select new UtilidadesAmigos.Logica.Entidades.EGenerarComisionIntermediario
                            {
                                Supervisor = n.Supervisor,

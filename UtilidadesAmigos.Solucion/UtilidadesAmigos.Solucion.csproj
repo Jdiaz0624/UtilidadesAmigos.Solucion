@@ -171,6 +171,7 @@
     <None Include="Properties\PublishProfiles\FolderProfile22.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile23.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile24.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile25.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile3.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile4.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile5.pubxml" />

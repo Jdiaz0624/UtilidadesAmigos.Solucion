@@ -112,6 +112,24 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionaroficinaComisiones;
         
         /// <summary>
+        /// lbTasa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTasa;
+        
+        /// <summary>
+        /// txtTasaDollar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTasaDollar;
+        
+        /// <summary>
         /// lbLeyrtero control.
         /// </summary>
         /// <remarks>

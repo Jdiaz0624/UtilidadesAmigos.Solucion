@@ -42,7 +42,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         Convert.ToDateTime(txtFechaDesdeComisiones.Text),
                         Convert.ToDateTime(txtFechaHastaComisiones.Text),
                         _CodigoIntermediario,
-                        _Oficina);
+                        _Oficina,
+                        Convert.ToDecimal(txtTasaDollar.Text));
                     gvComisionIntermediario.DataSource = GenerarComisiones;
                     gvComisionIntermediario.DataBind();
 
@@ -84,7 +85,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         Convert.ToDateTime(txtFechaDesdeComisiones.Text),
                         Convert.ToDateTime(txtFechaHastaComisiones.Text),
                         _CodigoIntermediario,
-                        _Oficina);
+                        _Oficina,
+                        Convert.ToDecimal(txtTasaDollar.Text));
                     foreach (var n in GenerarComisiones)
                     {
                         UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario Guardar = new Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario(
@@ -218,7 +220,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     Convert.ToDateTime(txtFechaDesdeComisiones.Text),
                     Convert.ToDateTime(txtFechaHastaComisiones.Text),
                     _CodigoIntermediario,
-                    _Oficina);
+                    _Oficina,
+                    Convert.ToDecimal(txtTasaDollar.Text)
+                    );
                 foreach (var n in GenerarComisiones) {
                     UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario Guardar = new Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario(
                         Convert.ToDecimal(Session["IdUsuario"]),
@@ -345,22 +349,40 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarSucursalesComisiones();
                 CargarOficinasComisiones();
                 rbGenerarReporteResumido.Checked = true;
+                txtTasaDollar.Text = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2).ToString();
             }
         }
 
         protected void btnConsultarComisiones_Click(object sender, EventArgs e)
         {
-            GenerarComisionesIntermediarios();
+            if (string.IsNullOrEmpty(txtTasaDollar.Text.Trim())) {
+                
+                    ClientScript.RegisterStartupScript(GetType(), "CampoTasaVacio", "CampoTasaVacio();", true);
+            }
+            else {
+                GenerarComisionesIntermediarios();
+            }
+            
         }
 
         protected void btnExortarComisiones_Click(object sender, EventArgs e)
         {
-            ExportarComisionesIntermediarios();
+            if (string.IsNullOrEmpty(txtTasaDollar.Text.Trim())) {
+                ClientScript.RegisterStartupScript(GetType(), "CampoTasaVacio", "CampoTasaVacio();", true);
+            }
+            else {
+                ExportarComisionesIntermediarios();
+            }
+            
         }
 
         protected void btnReporteCOmisiones_Click(object sender, EventArgs e)
         {
-            ProcesarInformacionComisiones();
+            if (string.IsNullOrEmpty(txtTasaDollar.Text.Trim())) { ClientScript.RegisterStartupScript(GetType(), "CampoTasaVacio", "CampoTasaVacio();", true); }
+            else {
+                ProcesarInformacionComisiones();
+            }
+           
         }
 
         protected void gvComisionIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
