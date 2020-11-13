@@ -170,6 +170,9 @@
     <None Include="Properties\PublishProfiles\FolderProfile21.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile22.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile23.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile24.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile25.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile26.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile3.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile4.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile5.pubxml" />
@@ -197,6 +200,7 @@
     <Content Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx" />
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
     <Content Include="Paginas\ProduccionDiariaContabilidad.aspx" />
+    <Content Include="Paginas\ReporteProduccionIntermediarioSupervisor.aspx" />
     <Content Include="Paginas\ReporteReclamos.aspx" />
     <Content Include="Paginas\SistemaTicket.aspx" />
     <Content Include="Paginas\SolicitudEmisionPoliza.aspx" />
@@ -587,6 +591,13 @@
     </Compile>
     <Compile Include="Paginas\ReporteOperacionesSospechosas.aspx.designer.cs">
       <DependentUpon>ReporteOperacionesSospechosas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\ReporteProduccionIntermediarioSupervisor.aspx.cs">
+      <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\ReporteProduccionIntermediarioSupervisor.aspx.designer.cs">
+      <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ReporteReclamos.aspx.cs">
       <DependentUpon>ReporteReclamos.aspx</DependentUpon>

@@ -207,7 +207,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         var SacarLosMontosProcesados = ObjData.Value.GenerarComisionIntermediario(
                             FechaDesdeParametro,
                             FechaHastaParametro,
-                            Codigo.ToString(), null);
+                            Codigo.ToString(), null,Convert.ToDecimal(txtTasaDollar.Text));
 
 
 
@@ -376,6 +376,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (!IsPostBack) {
                 rbChequeNoEndosable.Checked = true;
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarBanco, ObjData.Value.BuscaListas("LISTADOBANCOS", null, null));
+                txtTasaDollar.Text = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2).ToString();
             }
         }
 

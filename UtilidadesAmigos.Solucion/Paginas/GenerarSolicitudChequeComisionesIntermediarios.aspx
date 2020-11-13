@@ -91,12 +91,17 @@
                     <asp:Label ID="lbFechaHasta" runat="server" Text="Fecha Hasta" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtFechaHasta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </div>
+                 <div class="form-group col-md-1">
+                    <asp:Label ID="lbTasa" runat="server" Text="Tasa" CssClass="LetrasNegrita" Visible="false"></asp:Label>
+                   <asp:TextBox ID="txtTasaDollar" runat="server" CssClass="form-control" TextMode="Number" step="0.01"></asp:TextBox>
+                </div>
             </div>
         <div class="form-row">
              <div class="form-group col-md-3">
                     <asp:Label ID="lbMontoMinimoProceso" runat="server" Text="Monto Minimo" CssClass="LetrasNegrita" Visible="false"></asp:Label>
                    <asp:TextBox ID="txtMontoMinimoProceso" runat="server" CssClass="form-control" TextMode="Number" step="0.01" Visible="false"></asp:TextBox>
                 </div>
+            
         </div>
         <div class="form-row">
             <div class="form-group col-md-3" align="center">

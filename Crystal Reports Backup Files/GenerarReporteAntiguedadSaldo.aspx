@@ -82,7 +82,9 @@
                 <asp:RadioButton ID="rbReporteNeteado" runat="server" Text="Reporte Neteado" GroupName="TipoReporte" ToolTip="Mostrar el Reporte en detalle Neteado" CssClass="form-check-input LetrasNegrita" />
                 <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Reporte Detallado" ToolTip="Mostrar el reporte detallado" GroupName="TipoReporte" CssClass="form-check-input LetrasNegrita" />
             </div>
-            <br />
+            </div>
+        <hr />
+          
            <%--  <div class="form-group form-check">
                 <asp:Label ID="lbTipoOrganizacion" runat="server" Text="Tipo de Organizacion" CssClass="LetrasNegrita"></asp:Label><br />
                 <asp:RadioButton ID="rbPorRamo" runat="server" Text="Ramo" GroupName="TipoOrganizacion" ToolTip="Organizar reporte por ramo" CssClass="form-check-input LetrasNegrita" />
@@ -91,7 +93,8 @@
                  <asp:RadioButton ID="rbPorMoneda" runat="server" Text="Moneda" ToolTip="Organizar reporte por monedas" GroupName="TipoOrganizacion" CssClass="form-check-input LetrasNegrita" />
             </div>--%>
 
-            <div class="form-group form-check">
+         <div class="form-check-inline">
+                <div class="form-group form-check">
                 <asp:Label ID="lbMovimientosAMostrar" runat="server" Text="Movimientos a Mostrar" CssClass="LetrasNegrita"></asp:Label><br />
                 <asp:RadioButton ID="rbTodosMovimientos" runat="server" Text="Todos" ToolTip="Mostrar Todos los registros" GroupName="TipoMovimiento" CssClass="form-check-input LetrasNegrita" />
                 <asp:RadioButton ID="rbFacturas" runat="server" Text="Facturas (FT)" GroupName="TipoMovimiento" ToolTip="Mostrar solo las facturas" CssClass="form-check-input LetrasNegrita" />
@@ -99,14 +102,17 @@
                  <asp:RadioButton ID="rbPrimaDepositos" runat="server" Text="Prima a Depositos (PAD)" GroupName="TipoMovimiento" ToolTip="Mostrar solo las primas a depositos" CssClass="form-check-input LetrasNegrita" />
                 
             </div>
-
-            <div class="form-group form-check">
+         </div>
+        <hr  />
+            <div class="form-check-inline">
+                <div class="form-group form-check">
                 <asp:Label ID="lbTipoConsultaReporte" runat="server" Text="Tipo de Consulta de Reporte" CssClass="LetrasNegrita"></asp:Label><br />
                 <asp:RadioButton ID="rbConsuntaSistema" runat="server" Text="Consulta del Sistema" CssClass="form-check-input LetrasNegrita" GroupName="TipoConsulta" OnCheckedChanged="rbConsuntaSistema_CheckedChanged" AutoPostBack="true" />
                 <asp:RadioButton ID="rbConsuntaHistorico" runat="server" Text="Consulta a Historico" CssClass="form-check-input LetrasNegrita" GroupName="TipoConsulta" OnCheckedChanged="rbConsuntaHistorico_CheckedChanged" AutoPostBack="true" />
             </div>
+            </div>
             
-        </div>
+        
         <div class="form-row">
             <div class="form-group col-md-3">
                 <asp:Label ID="lbSeleccionarSecuenciaRegistro" runat="server" Text="Seleccionar Fecha" CssClass="LetrasNegrita"></asp:Label>
@@ -132,5 +138,6 @@
          <asp:Button ID="btnConsultarHistorico" runat="server" CssClass="btn btn-outline-primary btn-sm Custom" Text="Consultar" ToolTip="Consultar Información del Historico" OnClick="btnConsultarHistorico_Click" />
          <asp:Button ID="btnGuardarHistorico" runat="server" CssClass="btn btn-outline-primary btn-sm Custom" Text="Guardar" ToolTip="Guardar Información a Historico" OnClick="btnGuardarHistorico_Click" />
         </div>
+        <br />
     </div>
 </asp:Content>

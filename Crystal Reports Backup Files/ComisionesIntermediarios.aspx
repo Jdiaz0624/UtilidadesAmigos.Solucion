@@ -23,6 +23,10 @@
     </style>
 
     <script type="text/javascript">
+        function CampoTasaVacio() {
+            alert("El campo Tasa no puede estar vacio, favor de verificar");
+            $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
+        }
         function FechaDesdeComisionesVacio() {
             $("#<%=txtFechaDesdeComisiones.ClientID%>").css("border-color", "red");
         }
@@ -56,6 +60,10 @@
               <div class="form-group col-md-3">
                   <asp:Label ID="lbSeleccionarOficinaComisiones" runat="server" Text="Seleccionar Oficina" CssClass="LetrasNegrita"></asp:Label>
                   <asp:DropDownList ID="ddlSeleccionaroficinaComisiones" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
+              </div>
+              <div class="form-group col-md-1">
+                  <asp:Label ID="lbTasa" runat="server" Text="Tasa" CssClass="LetrasNegrita"></asp:Label>
+                  <asp:TextBox ID="txtTasaDollar" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
               </div>
           </div>
               <div align="center">
