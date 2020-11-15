@@ -107,6 +107,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosComisionesSupervisores.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosProduccion.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionHistorialDatosAntiguedadSaldo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionImpresionMarbetes.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionIntermediarioCadenaDetalle.cs" />
@@ -277,8 +278,10 @@
     <Compile Include="Entidades\Procesos\EProcesarHistoricoImprsionMarbete.cs" />
     <Compile Include="Entidades\Procesos\EProcesarInformacionMarbetes.cs" />
     <Compile Include="Entidades\ProduccionPorUsuario.cs" />
+    <Compile Include="Entidades\Reportes\EProcesarInformacionDatosProduccion.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorUsuarioDetalle.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorusuarioResumido.cs" />
+    <Compile Include="Entidades\Reportes\EReporteProduccionOrigen.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />

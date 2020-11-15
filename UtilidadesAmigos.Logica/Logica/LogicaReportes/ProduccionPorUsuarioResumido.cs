@@ -97,5 +97,161 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Guardar;
         }
         #endregion
+        #region REPORTE DE PRODUCCION
+        //MOSTRAR EL ORIGEN DE LOS DATOS DEL REPORTE DE PRODUCCION
+        /// <summary>
+        /// Este Metodo muestra el orien de los datos del reporte de producción, a partir de estos datos se puede generar cualquier tipo de reporte de este.
+        /// </summary>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Tasa"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EReporteProduccionOrigen> BuscaReporteProduccionOrigen(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? Tasa = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCAR_PRODUCCION_ORIGEN(FechaDesde, FechaHasta, Tasa)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EReporteProduccionOrigen
+                           {
+                               CodRamo=n.CodRamo,
+                               Ramo=n.Ramo,
+                               NumeroFactura=n.NumeroFactura,
+                               NumeroFacturaFormateado=n.NumeroFacturaFormateado,
+                               Poliza=n.Poliza,
+                               Asegurado=n.Asegurado,
+                               Items=n.Items,
+                               Supervisor=n.Supervisor,
+                               CodIntermediario=n.CodIntermediario,
+                               CodSupervisor=n.CodSupervisor,
+                               Intermediario=n.Intermediario,
+                               Fecha=n.Fecha,
+                               FechaFormateada=n.FechaFormateada,
+                               FechaInicioVigencia=n.FechaInicioVigencia,
+                               FechaFinVigencia=n.FechaFinVigencia,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               SumaAsegurada=n.SumaAsegurada,
+                               Estatus=n.Estatus,
+                               CodOficina=n.CodOficina,
+                               Oficina=n.Oficina,
+                               Concepto=n.Concepto,
+                               Ncf=n.Ncf,
+                               Tipo=n.Tipo,
+                               DescripcionTipo=n.DescripcionTipo,
+                               Bruto=n.Bruto,
+                               Impuesto=n.Impuesto,
+                               Neto=n.Neto,
+                               Tasa=n.Tasa,
+                               Cobrado=n.Cobrado,
+                               CodMoneda=n.CodMoneda,
+                               Moneda=n.Moneda,
+                               TasaUsada=n.TasaUsada,
+                               MontoPesos=n.MontoPesos,
+                               Mes=n.Mes,
+                               Usuario=n.Usuario,
+                               CantidadRegistros=n.CantidadRegistros,
+                               TotalFacturado=n.TotalFacturado,
+                               TotalFActuradoPesos=n.TotalFActuradoPesos,
+                               TotalFActuradoDollar=n.TotalFActuradoDollar,
+                               TotalFacturadoGeneral=n.TotalFacturadoGeneral
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo es para guardar los datos del reporte del origen para poder generar cualquier tipo de reporte de produccion
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDatosProduccion ProcesarInformacionDatosProduccion(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDatosProduccion Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDatosProduccion Procesar = null;
+
+            var InformacionDatosProduccin = ObjData.SP_PROCESAR_INFORMACION_DATOS_PRODUCCION(
+                Item.IdUsuario,
+                Item.CodRamo,
+                Item.Ramo,
+                Item.NumeroFactura,
+                Item.NumeroFacturaFormateado,
+                Item.Poliza,
+                Item.Asegurado,
+                Item.Items,
+                Item.Supervisor,
+                Item.CodIntermediario,
+                Item.CodSupervisor,
+                Item.Intermediario,
+                Item.Fecha,
+                Item.FechaFormateada,
+                Item.FechaInicioVigencia,
+                Item.FechaFinVigencia,
+                Item.InicioVigencia,
+                Item.FinVigencia,
+                Item.SumaAsegurada,
+                Item.Estatus,
+                Item.CodOficina,
+                Item.Oficina,
+                Item.Concepto,
+                Item.Ncf,
+                Item.Tipo,
+                Item.DescripcionTipo,
+                Item.Bruto,
+                Item.Impuesto,
+                Item.Neto,
+                Item.Tasa,
+                Item.Cobrado,
+                Item.CodMoneda,
+                Item.Moneda,
+                Item.TasaUsada,
+                Item.MontoPesos,
+                Item.Mes,
+                Item.Usuario,
+                Accion);
+            if (InformacionDatosProduccin != null) {
+                Procesar = (from n in InformacionDatosProduccin
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDatosProduccion
+                            {
+                                IdUsuario=n.IdUsuario,
+                                CodRamo=n.CodRamo,
+                                Ramo=n.Ramo,
+                                NumeroFactura=n.NumeroFactura,
+                                NumeroFacturaFormateado=n.NumeroFacturaFormateado,
+                                Poliza=n.Poliza,
+                                Asegurado=n.Asegurado,
+                                Items=n.Items,
+                                Supervisor=n.Supervisor,
+                                CodIntermediario=n.CodIntermediario,
+                                CodSupervisor=n.CodSupervisor,
+                                Intermediario=n.Intermediario,
+                                Fecha=n.Fecha,
+                                FechaFormateada=n.FechaFormateada,
+                                FechaInicioVigencia=n.FechaInicioVigencia,
+                                FechaFinVigencia=n.FechaFinVigencia,
+                                InicioVigencia=n.InicioVigencia,
+                                FinVigencia=n.FinVigencia,
+                                SumaAsegurada=n.SumaAsegurada,
+                                Estatus=n.Estatus,
+                                CodOficina=n.CodOficina,
+                                Oficina=n.Oficina,
+                                Concepto=n.Concepto,
+                                Ncf=n.Ncf,
+                                Tipo=n.Tipo,
+                                DescripcionTipo=n.DescripcionTipo,
+                                Bruto=n.Bruto,
+                                Impuesto=n.Impuesto,
+                                Neto=n.Neto,
+                                Tasa=n.Tasa,
+                                Cobrado=n.Cobrado,
+                                CodMoneda=n.CodMoneda,
+                                Moneda=n.Moneda,
+                                TasaUsada=n.TasaUsada,
+                                MontoPesos=n.MontoPesos,
+                                Mes=n.Mes,
+                                Usuario=n.Usuario
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }

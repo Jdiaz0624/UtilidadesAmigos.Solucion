@@ -21,21 +21,61 @@
         }
     </style>
 
+    <script type="text/javascript">
+        function CamposVacios() {
+            alert("Has dejado campos vacios que son necesarios para realizar esta consulta, favor de verificar");
+        }
+        function CampoTasaVAcio() {
+            alert("El campo tasa no puede estar vacio, favor de verificar");
+            $("#<%=txtTasa.ClientID%>").css("border-color", "red");
+        }
+
+        function CampoFechaDesdeVAcio() {
+            $("#<%=txtFechaDesde.ClientID%>").css("border-color", "red");
+        }
+        function CampoFechaHAstaVAcio() {
+            $("#<%=txtFechaHasta.ClientID%>").css("border-color", "red");
+        }
+        $(document).ready(function () {
+            //VALIDAMOS EL CAMPO TASA
+            $("#<%=btnConsultar.ClientID%>").click(function () {
+                var Tasa = $("#<%=txtTasa.ClientID%>").val().length;
+                if(Tasa < 1) {
+                    CampoTasaVAcio();
+                }
+            });
+
+            $("#<%=btnExportar.ClientID%>").click(function () {
+                var Tasa = $("#<%=txtTasa.ClientID%>").val().length;
+                if(Tasa < 1) {
+                    CampoTasaVAcio();
+                  }
+            });
+
+            $("#<%=btnReporte.ClientID%>").click(function () {
+                var Tasa = $("#<%=txtTasa.ClientID%>").val().length;
+                if(Tasa < 1) {
+                    CampoTasaVAcio();
+                  }
+              });
+        })
+    </script>
    <div class="container-fluid">
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTitulo" runat="server" Text="Reporte de Producción"></asp:Label>
     </div>
-   <%--    <div class="form-check-inline">
+       <div class="form-check-inline">
            <div class="form-group form-check">
-               <asp:Label ID="lbTipoFiltro" runat="server" Text="Seleccionar Tipo de Filtro" CssClass="Letranegrita"></asp:Label><br />
-               <asp:RadioButton ID="rbSupervisor" runat="server" Text="Supervisor" GroupName="FiltroPrincipal" CssClass="form-check-input Letranegrita" />
-               <asp:RadioButton ID="rbIntermediario" runat="server" Text="Intermediario" GroupName="FiltroPrincipal" CssClass="form-check-input Letranegrita" />
-               <asp:RadioButton ID="rbOficina" runat="server" Text="Oficina" GroupName="FiltroPrincipal" CssClass="form-check-input Letranegrita" />
-               <asp:RadioButton ID="rbRamo" runat="server" Text="Ramo" ToolTip="Consultar Por Ramo" GroupName="FiltroPrincipal" CssClass="form-check-input Letranegrita" />
+               <asp:Label ID="lbTipoAgrupacion" runat="server" Text="Agrupar Datos" CssClass="Letranegrita"></asp:Label><br />
+               <asp:RadioButton ID="rbNoAgrupar" runat="server" Text="No agrupar" GroupName="AgruparData" ToolTip="No Agrupar Informacion" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbAgruparConcepto" runat="server" Text="Concepto" GroupName="AgruparData" ToolTip="Agrupar Informacion por Concepto" CssClass="form-check-input Letranegrita" />
+                <asp:RadioButton ID="rbAgruparPorUsuarios" runat="server" Text="Usuario" GroupName="AgruparData" ToolTip="Agrupar Información por usuario" CssClass="form-check-input Letranegrita" />
+         <%--      <asp:RadioButton ID="rbOficina" runat="server" Text="Oficina" GroupName="AgruparData" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbRamo" runat="server" Text="Ramo" ToolTip="Consultar Por Ramo" GroupName="AgruparData" CssClass="form-check-input Letranegrita" />--%>
 
            </div>
        </div>
-       <hr />--%>
+       <hr />
        <div class="form-check-inline">
            <div class="form-group form-check">
                <asp:Label ID="lbEstatusPoliza" runat="server" Text="Seleccionar Estatus de Poliza" CssClass="Letranegrita"></asp:Label><br />
@@ -65,7 +105,7 @@
            </div>
            <div class="form-group col-md-2">
                <asp:Label ID="lbCodSupervisor" runat="server" Text="Codigo de Supervisor" CssClass="Letranegrita"></asp:Label>
-               <asp:TextBox ID="txtCodigoSupervisor" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
+               <asp:TextBox ID="txtCodigoSupervisor" runat="server" TextMode="Number" AutoPostBack="true" OnTextChanged="txtCodigoSupervisor_TextChanged" CssClass="form-control"></asp:TextBox>
            </div>
            <div class="form-group col-md-4">
                <asp:Label ID="lbNombreSupervisor" runat="server" Text="Nombre de Supervisor" CssClass="Letranegrita"></asp:Label>
@@ -73,7 +113,7 @@
            </div>
            <div class="form-group col-md-2">
                <asp:Label ID="lbCodigoIntermediario" runat="server" Text="Codigo de Intermediario" CssClass="Letranegrita"></asp:Label>
-               <asp:TextBox ID="txtCodigoIntermediario" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
+               <asp:TextBox ID="txtCodigoIntermediario" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoIntermediario_TextChanged" TextMode="Number" CssClass="form-control"></asp:TextBox>
            </div>
            <div class="form-group col-md-4">
                <asp:Label ID="lbNombreIntermediario" runat="server" Text="Nombre de Intermediario" CssClass="Letranegrita"></asp:Label>
@@ -98,12 +138,39 @@
        </div>
        <br />
        <div align="center">
-                     <asp:Button ID="btnConsultar" runat="server" Text="Consulta" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar por Pantalla"/>
-           <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar a excel" />
-           <asp:Button ID="btnReporte" runat="server" Text="Reporte" CssClass="btn btn-outline-primary btn-sm" ToolTip="Generar Reporte" />
+                     <asp:Button ID="btnConsultar" runat="server" Text="Consulta" CssClass="btn btn-outline-primary btn-sm" OnClick="btnConsultar_Click" ToolTip="Consultar por Pantalla"/>
+           <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportar_Click" ToolTip="Exportar a excel" />
+           <asp:Button ID="btnReporte" runat="server" Text="Reporte" CssClass="btn btn-outline-primary btn-sm" OnClick="btnReporte_Click" ToolTip="Generar Reporte" />
 
                  </div>
        <br />
+          <!--INICIO DEL GRID-->
+    <div class="container-fluid">
+            <asp:GridView ID="gvListdoProduccion" runat="server" AllowPaging="true" OnPageIndexChanging="gvListdoProduccion_PageIndexChanging" OnSelectedIndexChanged="gvListdoProduccion_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
+                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
+                    <asp:CommandField ButtonType="Button" HeaderText="Seleccionar"  ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Seleccionar" ShowSelectButton="True" />
+                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
+                    <asp:BoundField DataField="NumeroFacturaFormateado" HeaderText="Factura" />
+                    <asp:BoundField DataField="DescripcionTipo" HeaderText="DescripcionTipo" />
+                    <asp:BoundField DataField="Bruto" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Bruto" />
+                    <asp:BoundField DataField="Moneda" HeaderText="Moneda" />
+                    <asp:BoundField DataField="Concepto" HeaderText="Concepto" />
+                </Columns  >
+                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
+                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#000065" />
+            </asp:GridView>
+    </div>
+    <!--FIN DEL GRID-->
+
        
    </div>
 
