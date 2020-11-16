@@ -196,14 +196,16 @@
     </div>
     <!--FIN DEL GRID-->
        <br />
-       <asp:Chart ID="GraIntermediarios" runat="server">
+       <div align="center">
+           <asp:Chart ID="GraIntermediarios" Width="1500px" runat="server">
            <Series>
-               <asp:Series Name="Serie" ChartType="Doughnut"></asp:Series>
+               <asp:Series Name="Serie" ChartType="Bar"></asp:Series>
            </Series>
            <ChartAreas>
                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
            </ChartAreas>
        </asp:Chart>
+       </div>
        
    </div>
 

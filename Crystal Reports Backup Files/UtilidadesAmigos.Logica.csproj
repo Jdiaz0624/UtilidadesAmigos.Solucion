@@ -108,6 +108,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosComisionesSupervisores.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosProduccion.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionGrafico.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionHistorialDatosAntiguedadSaldo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionImpresionMarbetes.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionIntermediarioCadenaDetalle.cs" />
@@ -278,6 +279,7 @@
     <Compile Include="Entidades\Procesos\EProcesarHistoricoImprsionMarbete.cs" />
     <Compile Include="Entidades\Procesos\EProcesarInformacionMarbetes.cs" />
     <Compile Include="Entidades\ProduccionPorUsuario.cs" />
+    <Compile Include="Entidades\Reportes\EProcesarDatosGrafico.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionDatosProduccion.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorUsuarioDetalle.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorusuarioResumido.cs" />

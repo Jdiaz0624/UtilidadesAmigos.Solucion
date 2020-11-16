@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Data;
 
 
 namespace UtilidadesAmigos.Solucion.Paginas
@@ -13,6 +14,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
     public partial class ReporteProduccionIntermediarioSupervisor : System.Web.UI.Page
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido> ObjData = new Lazy<Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido>();
+        decimal[] Monto = new decimal[5];
+        string[] Nombre = new string[5];
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,6 +23,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
             rbTodas.Checked = true;
             rbDetalle.Checked = true;
             txtTasa.Text = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2).ToString();
+
+
+
+           
+         
         }
 
         protected void txtCodigoSupervisor_TextChanged(object sender, EventArgs e)
@@ -94,21 +102,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbFacturadoTotalVariable.Text = TotalFacturadoGeneral.ToString("N2");
 
                 if (cbGraficar.Checked == true) {
-                    int[] Monto = new int[0];
-                    string[] Nombre = new string[10];
                     int Contador = 0;
 
-                    SqlCommand comando = new SqlCommand();
-                    comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
-                    comando.CommandText = "SELECT TOP(10) Entidad,SUM(ValorDecimal) AS ValorDecimal FROM Utililades.DatosGraficos WHERE" + (decimal)Session["Idusuario"] + "AND Entidad NOT IN ('1 - COMISIONISTA DIRECTO') GROUP BY Entidad ORDER BY ValorDecimal DESC";
 
+                    SqlConnection conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+
+
+                    SqlCommand comando = new SqlCommand("SELECT TOP(5) SUM(ValorDecimal),Entidad FROM Utililades.DatosGraficos GROUP BY Entidad ORDER BY SUM(ValorDecimal) DESC ", conexion);
+                    conexion.Open();
                     SqlDataReader reader = comando.ExecuteReader();
-                    while (reader.Read()) {
-                        Monto[Contador] = Convert.ToInt32(reader.GetSqlString(0));
-                        Nombre[Contador] = reader.GetSqlString(1).ToString();
+                    while (reader.Read())
+                    {
+                        Monto[Contador] = Convert.ToDecimal(reader.GetDecimal(0));
+                        Nombre[Contador] = reader.GetString(1);
                         Contador++;
                     }
-                  // GraIntermediarios.Series["Serie"].Points.DataBindxy(Nombre, Monto);
+                    reader.Close();
+                    conexion.Close();
+                    GraIntermediarios.Series["Serie"].Points.DataBindXY(Nombre, Monto);
 
                 }
 
