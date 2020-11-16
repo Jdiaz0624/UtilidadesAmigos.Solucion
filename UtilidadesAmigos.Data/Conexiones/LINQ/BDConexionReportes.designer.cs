@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionReportesDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString16, mappingSource)
 		{
 			OnCreated();
 		}
@@ -126,6 +126,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, codRamo, ramo, numeroFactura, numeroFacturaFormateado, poliza, asegurado, items, supervisor, codIntermediario, codSupervisor, intermediario, fecha, fechaFormateada, fechaInicioVigencia, fechaFinVigencia, inicioVigencia, finVigencia, sumaAsegurada, estatus, codOficina, oficina, concepto, ncf, tipo, descripcionTipo, bruto, impuesto, neto, tasa, cobrado, codMoneda, moneda, tasaUsada, montoPesos, mes, usuario, accion);
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_DATOS_PRODUCCIONResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_DATOS_GRAFICO")]
+		public ISingleResult<SP_PROCESAR_DATOS_GRAFICOResult> SP_PROCESAR_DATOS_GRAFICO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Idusuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idusuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Entidad", DbType="VarChar(100)")] string entidad, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorDecimal", DbType="Decimal(20,2)")] System.Nullable<decimal> valorDecimal, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorEntero", DbType="Int")] System.Nullable<int> valorEntero, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idusuario, entidad, valorDecimal, valorEntero, accion);
+			return ((ISingleResult<SP_PROCESAR_DATOS_GRAFICOResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2010,6 +2017,86 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Usuario != value))
 				{
 					this._Usuario = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_DATOS_GRAFICOResult
+	{
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private string _Entidad;
+		
+		private System.Nullable<decimal> _ValorDecimal;
+		
+		private System.Nullable<int> _valorEntero;
+		
+		public SP_PROCESAR_DATOS_GRAFICOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Entidad", DbType="VarChar(100)")]
+		public string Entidad
+		{
+			get
+			{
+				return this._Entidad;
+			}
+			set
+			{
+				if ((this._Entidad != value))
+				{
+					this._Entidad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorDecimal", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ValorDecimal
+		{
+			get
+			{
+				return this._ValorDecimal;
+			}
+			set
+			{
+				if ((this._ValorDecimal != value))
+				{
+					this._ValorDecimal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_valorEntero", DbType="Int")]
+		public System.Nullable<int> valorEntero
+		{
+			get
+			{
+				return this._valorEntero;
+			}
+			set
+			{
+				if ((this._valorEntero != value))
+				{
+					this._valorEntero = value;
 				}
 			}
 		}

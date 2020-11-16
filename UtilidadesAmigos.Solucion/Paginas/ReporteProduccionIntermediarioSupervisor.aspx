@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/PatallaPrincila.Master" AutoEventWireup="true" CodeBehind="ReporteProduccionIntermediarioSupervisor.aspx.cs" Inherits="UtilidadesAmigos.Solucion.Paginas.ReporteProduccionIntermediarioSupervisor" %>
+
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -70,6 +72,7 @@
                <asp:RadioButton ID="rbNoAgrupar" runat="server" Text="No agrupar" GroupName="AgruparData" ToolTip="No Agrupar Informacion" CssClass="form-check-input Letranegrita" />
                <asp:RadioButton ID="rbAgruparConcepto" runat="server" Text="Concepto" GroupName="AgruparData" ToolTip="Agrupar Informacion por Concepto" CssClass="form-check-input Letranegrita" />
                 <asp:RadioButton ID="rbAgruparPorUsuarios" runat="server" Text="Usuario" GroupName="AgruparData" ToolTip="Agrupar Información por usuario" CssClass="form-check-input Letranegrita" />
+               <asp:CheckBox ID="cbGraficar" runat="server" Text="Graficar" ToolTip="Graficar Información" CssClass="form-check-input" />
          <%--      <asp:RadioButton ID="rbOficina" runat="server" Text="Oficina" GroupName="AgruparData" CssClass="form-check-input Letranegrita" />
                <asp:RadioButton ID="rbRamo" runat="server" Text="Ramo" ToolTip="Consultar Por Ramo" GroupName="AgruparData" CssClass="form-check-input Letranegrita" />--%>
 
@@ -143,23 +146,36 @@
            <asp:Button ID="btnReporte" runat="server" Text="Reporte" CssClass="btn btn-outline-primary btn-sm" OnClick="btnReporte_Click" ToolTip="Generar Reporte" />
 
                  </div>
-       <br />
+       <hr />
        <div align="center">
            <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" CssClass="Letranegrita" Text="Cantidad de Registros ( "></asp:Label>
            <asp:Label ID="lbcantidadRegistrosVariable" runat="server" CssClass="Letranegrita" Text="0"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" CssClass="Letranegrita" Text=" )"></asp:Label>
 
-           <asp:Label ID="lbTotalFacturadoTitulo" runat="server" CssClass="Letranegrita" Text="Total Facturado ( "></asp:Label>
+           <asp:Label ID="lbTotalFacturadoTitulo" runat="server" CssClass="Letranegrita" Text="Total F. ( "></asp:Label>
            <asp:Label ID="lbTotalFacturadoVariable" runat="server" CssClass="Letranegrita" Text="0"></asp:Label>
            <asp:Label ID="lbTotalFacturadoCerrar" runat="server" CssClass="Letranegrita" Text=" )"></asp:Label>
+
+           <asp:Label ID="lbFacturadoPesosTitulo" runat="server" CssClass="Letranegrita" Text="F. Pesos ( "></asp:Label>
+           <asp:Label ID="lbFacturadoPesosVariable" runat="server" CssClass="Letranegrita" Text="0"></asp:Label>
+           <asp:Label ID="lbFacturadoPesosCerrar" runat="server" CssClass="Letranegrita" Text=" )"></asp:Label>
+
+            <asp:Label ID="LbFacturadoDollarTitulo" runat="server" CssClass="Letranegrita" Text="F. Dollar ( "></asp:Label>
+           <asp:Label ID="LbFacturadoDollarVariable" runat="server" CssClass="Letranegrita" Text="0"></asp:Label>
+           <asp:Label ID="LbFacturadoDollarcerrar" runat="server" CssClass="Letranegrita" Text=" )"></asp:Label>
+
+            <asp:Label ID="lbFacturadoTotalTitulo" runat="server" CssClass="Letranegrita" Text="F. Total ( "></asp:Label>
+           <asp:Label ID="lbFacturadoTotalVariable" runat="server" CssClass="Letranegrita" Text="0"></asp:Label>
+           <asp:Label ID="lbFacturadoTotalCerrar" runat="server" CssClass="Letranegrita" Text=" )"></asp:Label>
        </div>
+       <br />
           <!--INICIO DEL GRID-->
     <div class="container-fluid">
             <asp:GridView ID="gvListdoProduccion" runat="server" AllowPaging="true" OnPageIndexChanging="gvListdoProduccion_PageIndexChanging" OnSelectedIndexChanged="gvListdoProduccion_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                    <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    <asp:CommandField ButtonType="Button" HeaderText="Seleccionar"  ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Seleccionar" ShowSelectButton="True" />
+                 <%--   <asp:CommandField ButtonType="Button" HeaderText="Seleccionar"  ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Seleccionar" ShowSelectButton="True" />--%>
                     <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
                     <asp:BoundField DataField="NumeroFacturaFormateado" HeaderText="Factura" />
                     <asp:BoundField DataField="DescripcionTipo" HeaderText="DescripcionTipo" />
@@ -179,7 +195,15 @@
             </asp:GridView>
     </div>
     <!--FIN DEL GRID-->
-
+       <br />
+       <asp:Chart ID="GraIntermediarios" runat="server">
+           <Series>
+               <asp:Series Name="Serie" ChartType="Doughnut"></asp:Series>
+           </Series>
+           <ChartAreas>
+               <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+           </ChartAreas>
+       </asp:Chart>
        
    </div>
 

@@ -58,6 +58,15 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.RadioButton rbAgruparPorUsuarios;
         
         /// <summary>
+        /// cbGraficar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbGraficar;
+        
+        /// <summary>
         /// lbEstatusPoliza control.
         /// </summary>
         /// <remarks>
@@ -382,6 +391,87 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.Label lbTotalFacturadoCerrar;
         
         /// <summary>
+        /// lbFacturadoPesosTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFacturadoPesosTitulo;
+        
+        /// <summary>
+        /// lbFacturadoPesosVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFacturadoPesosVariable;
+        
+        /// <summary>
+        /// lbFacturadoPesosCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFacturadoPesosCerrar;
+        
+        /// <summary>
+        /// LbFacturadoDollarTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbFacturadoDollarTitulo;
+        
+        /// <summary>
+        /// LbFacturadoDollarVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbFacturadoDollarVariable;
+        
+        /// <summary>
+        /// LbFacturadoDollarcerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbFacturadoDollarcerrar;
+        
+        /// <summary>
+        /// lbFacturadoTotalTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFacturadoTotalTitulo;
+        
+        /// <summary>
+        /// lbFacturadoTotalVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFacturadoTotalVariable;
+        
+        /// <summary>
+        /// lbFacturadoTotalCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFacturadoTotalCerrar;
+        
+        /// <summary>
         /// gvListdoProduccion control.
         /// </summary>
         /// <remarks>
@@ -389,5 +479,14 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvListdoProduccion;
+        
+        /// <summary>
+        /// GraIntermediarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart GraIntermediarios;
     }
 }

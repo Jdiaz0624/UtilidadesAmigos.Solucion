@@ -253,5 +253,30 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Procesar;
         }
         #endregion
+        #region PROCESAR INFORMACION GRAFICO
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarDatosGrafico ProcesarGrafico(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarDatosGrafico Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarDatosGrafico Procesar = null;
+
+            var InformacionGrafico = ObjData.SP_PROCESAR_DATOS_GRAFICO(
+                Item.IdUsuario,
+                Item.Entidad,
+                Item.ValorDecimal,
+                Item.valorEntero,
+                Accion);
+            if (InformacionGrafico != null) {
+                Procesar = (from n in InformacionGrafico
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarDatosGrafico
+                            {
+                                IdUsuario=n.IdUsuario,
+                                Entidad=n.Entidad,
+                                ValorDecimal=n.ValorDecimal,
+                                valorEntero=n.valorEntero
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }
