@@ -144,6 +144,15 @@
 
                  </div>
        <br />
+       <div align="center">
+           <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" CssClass="Letranegrita" Text="Cantidad de Registros ( "></asp:Label>
+           <asp:Label ID="lbcantidadRegistrosVariable" runat="server" CssClass="Letranegrita" Text="0"></asp:Label>
+           <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" CssClass="Letranegrita" Text=" )"></asp:Label>
+
+           <asp:Label ID="lbTotalFacturadoTitulo" runat="server" CssClass="Letranegrita" Text="Total Facturado ( "></asp:Label>
+           <asp:Label ID="lbTotalFacturadoVariable" runat="server" CssClass="Letranegrita" Text="0"></asp:Label>
+           <asp:Label ID="lbTotalFacturadoCerrar" runat="server" CssClass="Letranegrita" Text=" )"></asp:Label>
+       </div>
           <!--INICIO DEL GRID-->
     <div class="container-fluid">
             <asp:GridView ID="gvListdoProduccion" runat="server" AllowPaging="true" OnPageIndexChanging="gvListdoProduccion_PageIndexChanging" OnSelectedIndexChanged="gvListdoProduccion_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">

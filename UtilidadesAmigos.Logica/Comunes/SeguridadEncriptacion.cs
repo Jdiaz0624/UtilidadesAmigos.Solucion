@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 namespace UtilidadesAmigos.Logica.Comunes
 {
     public static class SeguridadEncriptacion
-    {/// Encripta una cadena
+    {
+        /// <summary>
+        /// Este metodo es para encriptar una cadena
+        /// </summary>
+        /// <param name="_cadenaAencriptar"></param>
+        /// <returns></returns>
         public static string Encriptar(this string _cadenaAencriptar)
         {
             string result = string.Empty;
@@ -16,7 +21,11 @@ namespace UtilidadesAmigos.Logica.Comunes
             return result;
         }
 
-        /// Esta función desencripta la cadena que le envíamos en el parámentro de entrada.
+        /// <summary>
+        /// Este metodo es para desifrar una cadena de texto.
+        /// </summary>
+        /// <param name="_cadenaAdesencriptar"></param>
+        /// <returns></returns>
         public static string DesEncriptar(this string _cadenaAdesencriptar)
         {
             string result = string.Empty;

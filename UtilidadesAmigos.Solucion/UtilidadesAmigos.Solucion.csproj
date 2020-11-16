@@ -173,6 +173,7 @@
     <None Include="Properties\PublishProfiles\FolderProfile24.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile25.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile26.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile27.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile3.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile4.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile5.pubxml" />
