@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/PatallaPrincila.Master" AutoEventWireup="true" CodeBehind="ReporteProduccionIntermediarioSupervisor.aspx.cs" Inherits="UtilidadesAmigos.Solucion.Paginas.ReporteProduccionIntermediarioSupervisor" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/PatallaPrincila.Master" Debug="true" AutoEventWireup="true" CodeBehind="ReporteProduccionIntermediarioSupervisor.aspx.cs" Inherits="UtilidadesAmigos.Solucion.Paginas.ReporteProduccionIntermediarioSupervisor" %>
 
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
