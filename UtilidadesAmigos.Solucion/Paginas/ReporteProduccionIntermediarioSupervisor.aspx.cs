@@ -14,8 +14,83 @@ namespace UtilidadesAmigos.Solucion.Paginas
     public partial class ReporteProduccionIntermediarioSupervisor : System.Web.UI.Page
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido> ObjData = new Lazy<Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido>();
-        decimal[] Monto = new decimal[5];
-        string[] Nombre = new string[5];
+
+
+        #region METODOS DE GRAFICOS
+        private void GraficoIntermediarios() {
+            decimal[] Monto = new decimal[10];
+            string[] Nombre = new string[10];
+            int Contador = 0;
+            SqlConnection conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand comando = new SqlCommand("SELECT TOP(10) SUM(ValorDecimal),Entidad FROM Utililades.DatosGraficos WHERE IdUsuario=" + (decimal)Session["IdUsuario"] + " AND Entidad not in ('COMISIONISTA DIRECTO') GROUP BY Entidad ORDER BY SUM(ValorDecimal) DESC ", conexion);
+            conexion.Open();
+            SqlDataReader reader = comando.ExecuteReader();
+            while (reader.Read())
+            {
+                Monto[Contador] = Convert.ToDecimal(reader.GetDecimal(0));
+                Nombre[Contador] = reader.GetString(1);
+                Contador++;
+            }
+            reader.Close();
+            conexion.Close();
+            //chart1.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}K";
+            GraIntermediarios.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+            GraIntermediarios.Series["Serie"].Points.DataBindXY(Nombre, Monto);
+            EliminarDatosGraficos();
+        }
+        private void GraficoSupervisores() {
+            decimal[] Monto = new decimal[10];
+            string[] Nombre = new string[10];
+            int Contador = 0;
+            SqlConnection conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand comando = new SqlCommand("SELECT TOP(10) SUM(ValorDecimal),Entidad FROM Utililades.DatosGraficos WHERE IdUsuario=" + (decimal)Session["IdUsuario"] + " AND Entidad not in ('COORDINADOR DIRECTO','COORDINADOR DIRECTO SANTIAGO','VENDEDOR DIRECTO SANTIAGO','COORDINADOR DIRECTO','COORDINADOR DIRECTO ZONA ORIENTAL') GROUP BY Entidad ORDER BY SUM(ValorDecimal) DESC ", conexion);
+            conexion.Open();
+            SqlDataReader reader = comando.ExecuteReader();
+            while (reader.Read())
+            {
+                Monto[Contador] = Convert.ToDecimal(reader.GetDecimal(0));
+                Nombre[Contador] = reader.GetString(1);
+                Contador++;
+            }
+            reader.Close();
+            conexion.Close();
+            //chart1.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}K";
+            GraSupervisores.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+            GraSupervisores.Series["Serie"].Points.DataBindXY(Nombre, Monto);
+            EliminarDatosGraficos();
+        }
+        private void GraficoOficinas() {
+            decimal[] Monto = new decimal[10];
+            string[] Nombre = new string[10];
+            int Contador = 0;
+            SqlConnection conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand comando = new SqlCommand("SELECT TOP(10) SUM(ValorDecimal),Entidad FROM Utililades.DatosGraficos WHERE IdUsuario=" + (decimal)Session["IdUsuario"] + "  GROUP BY Entidad ORDER BY SUM(ValorDecimal) DESC ", conexion);
+            conexion.Open();
+            SqlDataReader reader = comando.ExecuteReader();
+            while (reader.Read())
+            {
+                Monto[Contador] = Convert.ToDecimal(reader.GetDecimal(0));
+                Nombre[Contador] = reader.GetString(1);
+                Contador++;
+            }
+            reader.Close();
+            conexion.Close();
+            //chart1.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}K";
+            GraOficina.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+            GraOficina.Series["Serie"].Points.DataBindXY(Nombre, Monto);
+            EliminarDatosGraficos();
+
+
+        }
+        private void GraficosUsuarios() { }
+        private void GraficosConceptos() { }
+        private void EliminarDatosGraficos() {
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico(
+                    (decimal)(Session["IdUsuario"]), "", 0, 0, "DELETE");
+            Eliminar.ProcesarInformacion();
+        }
+        #endregion
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -67,9 +142,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 decimal ValorDecimal = 0;
                 int ValorEntero = 0;
 
-                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico(
-                    (decimal)(Session["IdUsuario"]), "", 0, 0, "DELETE");
-                Eliminar.ProcesarInformacion();
+                
+                EliminarDatosGraficos();
 
                 foreach (var n in MostrarConsultaGeneral) {
                     CantiadRegistros = (int)n.CantidadRegistros;
@@ -102,24 +176,45 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbFacturadoTotalVariable.Text = TotalFacturadoGeneral.ToString("N2");
 
                 if (cbGraficar.Checked == true) {
-                    int Contador = 0;
+                    GraficoIntermediarios();
+                    foreach (var nSupervisor in MostrarConsultaGeneral) {
+                        Entidad = nSupervisor.Supervisor;
+                        ValorDecimal = (decimal)nSupervisor.MontoPesos;
 
+                        if (cbGraficar.Checked == true)
+                        {
+                            //PROCESAMOS LA INFORMACION
+                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico(
+                               (decimal)(Session["IdUsuario"]),
+                               Entidad,
+                               ValorDecimal,
+                               ValorEntero,
+                               "INSERT");
+                            Guardar.ProcesarInformacion();
 
-                    SqlConnection conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
-
-
-                    SqlCommand comando = new SqlCommand("SELECT TOP(5) SUM(ValorDecimal),Entidad FROM Utililades.DatosGraficos GROUP BY Entidad ORDER BY SUM(ValorDecimal) DESC ", conexion);
-                    conexion.Open();
-                    SqlDataReader reader = comando.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        Monto[Contador] = Convert.ToDecimal(reader.GetDecimal(0));
-                        Nombre[Contador] = reader.GetString(1);
-                        Contador++;
+                        }
                     }
-                    reader.Close();
-                    conexion.Close();
-                    GraIntermediarios.Series["Serie"].Points.DataBindXY(Nombre, Monto);
+                    GraficoSupervisores();
+                    foreach (var nOficina in MostrarConsultaGeneral) {
+                        Entidad = nOficina.Oficina;
+                        ValorDecimal = (decimal)nOficina.MontoPesos;
+
+                        if (cbGraficar.Checked == true)
+                        {
+                            //PROCESAMOS LA INFORMACION
+                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico(
+                               (decimal)(Session["IdUsuario"]),
+                               Entidad,
+                               ValorDecimal,
+                               ValorEntero,
+                               "INSERT");
+                            Guardar.ProcesarInformacion();
+
+                        }
+                    }
+                    GraficoOficinas();
+                    GraficosUsuarios();
+                    GraficosConceptos();
 
                 }
 

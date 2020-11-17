@@ -196,10 +196,41 @@
     </div>
     <!--FIN DEL GRID-->
        <br />
+       
        <div align="center">
-           <asp:Chart ID="GraIntermediarios" Width="1500px" runat="server">
+           <asp:Label ID="lbGraficoIntermediario" runat="server" Text="Top 10 Produccion Intermediarios" CssClass="Letranegrita"></asp:Label>
+           <hr />
+           <asp:Chart ID="GraIntermediarios" Width="1100px" runat="server" Palette="Pastel">
            <Series>
-               <asp:Series Name="Serie" ChartType="Bar"></asp:Series>
+               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" ChartType="StackedColumn" Label="#VAL{N}"></asp:Series>
+           </Series>
+           <ChartAreas>
+               <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+           </ChartAreas>
+       </asp:Chart>
+           <br />
+
+
+
+
+           <asp:Label ID="lbGraficoSupervisores" runat="server" Text="Top 10 Produccion Supervisores" CssClass="Letranegrita"></asp:Label>
+           <hr />
+            <asp:Chart ID="GraSupervisores" Width="1100px" runat="server" Palette="Pastel">
+           <Series>
+               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" ChartType="StackedColumn" Label="#VAL{N}"></asp:Series>
+           </Series>
+           <ChartAreas>
+               <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+           </ChartAreas>
+       </asp:Chart>
+           <br />
+
+
+           <asp:Label ID="lbGraficoOficina" runat="server" Text="Produccion Por Oficinas" CssClass="Letranegrita"></asp:Label>
+           <hr />
+            <asp:Chart ID="GraOficina" Width="1012px" runat="server" Palette="Pastel">
+           <Series>
+               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" ChartType="StackedBar" Label="#VAL{N}" YValuesPerPoint="2"></asp:Series>
            </Series>
            <ChartAreas>
                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
