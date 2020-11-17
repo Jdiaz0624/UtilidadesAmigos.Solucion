@@ -36,24 +36,24 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                 Guardar = (from n in Produccion
                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProduccionPorusuarioResumido
                            {
-                               IdUsuario=n.IdUsuario,
-                               Sucursal=n.Sucursal,
-                               Oficina=n.Oficina,
-                               Departaemnto=n.Departaemnto,
-                               Usuario=n.Usuario,
-                               Concepto=n.Concepto,
-                               Cantidad=n.Cantidad,
-                               Total=n.Total,
-                               TipoMovimiento=n.TipoMovimiento,
-                               TotalRegistros=n.TotalRegistros,
-                               TotalPrima=n.TotalPrima,
-                               FechaDesde=n.FechaDesde,
-                               FechaHasta=n.FechaHasta
+                               IdUsuario = n.IdUsuario,
+                               Sucursal = n.Sucursal,
+                               Oficina = n.Oficina,
+                               Departaemnto = n.Departaemnto,
+                               Usuario = n.Usuario,
+                               Concepto = n.Concepto,
+                               Cantidad = n.Cantidad,
+                               Total = n.Total,
+                               TipoMovimiento = n.TipoMovimiento,
+                               TotalRegistros = n.TotalRegistros,
+                               TotalPrima = n.TotalPrima,
+                               FechaDesde = n.FechaDesde,
+                               FechaHasta = n.FechaHasta
                            }).FirstOrDefault();
             }
             return Guardar;
 
-     
+
         }
         #endregion
         #region GUARDAR DATOS REPORTE PRODUCCION POR USUARIOS DETALLE
@@ -80,18 +80,18 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                 Guardar = (from n in ProduccionUsuarioDetalle
                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProduccionPorUsuarioDetalle
                            {
-                               IdUsuario =n.IdUsuario,
-                               FechaDesde=n.FechaDesde,
-                               FechaHasta=n.FechaHasta,
-                               Sucursal=n.Sucursal,
-                               Oficina=n.Oficina,
-                               Departamento=n.Departamento,
-                               Usuario=n.Usuario,
-                               Concepto=n.Concepto,
-                               Poliza=n.Poliza,
-                               Monto=n.Monto,
-                               TotalRegistros=n.TotalRegistros,
-                               TotalValor=n.TotalValor
+                               IdUsuario = n.IdUsuario,
+                               FechaDesde = n.FechaDesde,
+                               FechaHasta = n.FechaHasta,
+                               Sucursal = n.Sucursal,
+                               Oficina = n.Oficina,
+                               Departamento = n.Departamento,
+                               Usuario = n.Usuario,
+                               Concepto = n.Concepto,
+                               Poliza = n.Poliza,
+                               Monto = n.Monto,
+                               TotalRegistros = n.TotalRegistros,
+                               TotalValor = n.TotalValor
                            }).FirstOrDefault();
             }
             return Guardar;
@@ -112,47 +112,47 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             var Listado = (from n in ObjData.SP_BUSCAR_PRODUCCION_ORIGEN(FechaDesde, FechaHasta, Tasa)
                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EReporteProduccionOrigen
                            {
-                               CodRamo=n.CodRamo,
-                               Ramo=n.Ramo,
-                               NumeroFactura=n.NumeroFactura,
-                               NumeroFacturaFormateado=n.NumeroFacturaFormateado,
-                               Poliza=n.Poliza,
-                               Asegurado=n.Asegurado,
-                               Items=n.Items,
-                               Supervisor=n.Supervisor,
-                               CodIntermediario=n.CodIntermediario,
-                               CodSupervisor=n.CodSupervisor,
-                               Intermediario=n.Intermediario,
-                               Fecha=n.Fecha,
-                               FechaFormateada=n.FechaFormateada,
-                               FechaInicioVigencia=n.FechaInicioVigencia,
-                               FechaFinVigencia=n.FechaFinVigencia,
-                               InicioVigencia=n.InicioVigencia,
-                               FinVigencia=n.FinVigencia,
-                               SumaAsegurada=n.SumaAsegurada,
-                               Estatus=n.Estatus,
-                               CodOficina=n.CodOficina,
-                               Oficina=n.Oficina,
-                               Concepto=n.Concepto,
-                               Ncf=n.Ncf,
-                               Tipo=n.Tipo,
-                               DescripcionTipo=n.DescripcionTipo,
-                               Bruto=n.Bruto,
-                               Impuesto=n.Impuesto,
-                               Neto=n.Neto,
-                               Tasa=n.Tasa,
-                               Cobrado=n.Cobrado,
-                               CodMoneda=n.CodMoneda,
-                               Moneda=n.Moneda,
-                               TasaUsada=n.TasaUsada,
-                               MontoPesos=n.MontoPesos,
-                               Mes=n.Mes,
-                               Usuario=n.Usuario,
-                               CantidadRegistros=n.CantidadRegistros,
-                               TotalFacturado=n.TotalFacturado,
-                               TotalFActuradoPesos=n.TotalFActuradoPesos,
-                               TotalFActuradoDollar=n.TotalFActuradoDollar,
-                               TotalFacturadoGeneral=n.TotalFacturadoGeneral
+                               CodRamo = n.CodRamo,
+                               Ramo = n.Ramo,
+                               NumeroFactura = n.NumeroFactura,
+                               NumeroFacturaFormateado = n.NumeroFacturaFormateado,
+                               Poliza = n.Poliza,
+                               Asegurado = n.Asegurado,
+                               Items = n.Items,
+                               Supervisor = n.Supervisor,
+                               CodIntermediario = n.CodIntermediario,
+                               CodSupervisor = n.CodSupervisor,
+                               Intermediario = n.Intermediario,
+                               Fecha = n.Fecha,
+                               FechaFormateada = n.FechaFormateada,
+                               FechaInicioVigencia = n.FechaInicioVigencia,
+                               FechaFinVigencia = n.FechaFinVigencia,
+                               InicioVigencia = n.InicioVigencia,
+                               FinVigencia = n.FinVigencia,
+                               SumaAsegurada = n.SumaAsegurada,
+                               Estatus = n.Estatus,
+                               CodOficina = n.CodOficina,
+                               Oficina = n.Oficina,
+                               Concepto = n.Concepto,
+                               Ncf = n.Ncf,
+                               Tipo = n.Tipo,
+                               DescripcionTipo = n.DescripcionTipo,
+                               Bruto = n.Bruto,
+                               Impuesto = n.Impuesto,
+                               Neto = n.Neto,
+                               Tasa = n.Tasa,
+                               Cobrado = n.Cobrado,
+                               CodMoneda = n.CodMoneda,
+                               Moneda = n.Moneda,
+                               TasaUsada = n.TasaUsada,
+                               MontoPesos = n.MontoPesos,
+                               Mes = n.Mes,
+                               Usuario = n.Usuario,
+                               CantidadRegistros = n.CantidadRegistros,
+                               TotalFacturado = n.TotalFacturado,
+                               TotalFActuradoPesos = n.TotalFActuradoPesos,
+                               TotalFActuradoDollar = n.TotalFActuradoDollar,
+                               TotalFacturadoGeneral = n.TotalFacturadoGeneral
                            }).ToList();
             return Listado;
         }
@@ -211,72 +211,122 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                 Procesar = (from n in InformacionDatosProduccin
                             select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDatosProduccion
                             {
-                                IdUsuario=n.IdUsuario,
-                                CodRamo=n.CodRamo,
-                                Ramo=n.Ramo,
-                                NumeroFactura=n.NumeroFactura,
-                                NumeroFacturaFormateado=n.NumeroFacturaFormateado,
-                                Poliza=n.Poliza,
-                                Asegurado=n.Asegurado,
-                                Items=n.Items,
-                                Supervisor=n.Supervisor,
-                                CodIntermediario=n.CodIntermediario,
-                                CodSupervisor=n.CodSupervisor,
-                                Intermediario=n.Intermediario,
-                                Fecha=n.Fecha,
-                                FechaFormateada=n.FechaFormateada,
-                                FechaInicioVigencia=n.FechaInicioVigencia,
-                                FechaFinVigencia=n.FechaFinVigencia,
-                                InicioVigencia=n.InicioVigencia,
-                                FinVigencia=n.FinVigencia,
-                                SumaAsegurada=n.SumaAsegurada,
-                                Estatus=n.Estatus,
-                                CodOficina=n.CodOficina,
-                                Oficina=n.Oficina,
-                                Concepto=n.Concepto,
-                                Ncf=n.Ncf,
-                                Tipo=n.Tipo,
-                                DescripcionTipo=n.DescripcionTipo,
-                                Bruto=n.Bruto,
-                                Impuesto=n.Impuesto,
-                                Neto=n.Neto,
-                                Tasa=n.Tasa,
-                                Cobrado=n.Cobrado,
-                                CodMoneda=n.CodMoneda,
-                                Moneda=n.Moneda,
-                                TasaUsada=n.TasaUsada,
-                                MontoPesos=n.MontoPesos,
-                                Mes=n.Mes,
-                                Usuario=n.Usuario
+                                IdUsuario = n.IdUsuario,
+                                CodRamo = n.CodRamo,
+                                Ramo = n.Ramo,
+                                NumeroFactura = n.NumeroFactura,
+                                NumeroFacturaFormateado = n.NumeroFacturaFormateado,
+                                Poliza = n.Poliza,
+                                Asegurado = n.Asegurado,
+                                Items = n.Items,
+                                Supervisor = n.Supervisor,
+                                CodIntermediario = n.CodIntermediario,
+                                CodSupervisor = n.CodSupervisor,
+                                Intermediario = n.Intermediario,
+                                Fecha = n.Fecha,
+                                FechaFormateada = n.FechaFormateada,
+                                FechaInicioVigencia = n.FechaInicioVigencia,
+                                FechaFinVigencia = n.FechaFinVigencia,
+                                InicioVigencia = n.InicioVigencia,
+                                FinVigencia = n.FinVigencia,
+                                SumaAsegurada = n.SumaAsegurada,
+                                Estatus = n.Estatus,
+                                CodOficina = n.CodOficina,
+                                Oficina = n.Oficina,
+                                Concepto = n.Concepto,
+                                Ncf = n.Ncf,
+                                Tipo = n.Tipo,
+                                DescripcionTipo = n.DescripcionTipo,
+                                Bruto = n.Bruto,
+                                Impuesto = n.Impuesto,
+                                Neto = n.Neto,
+                                Tasa = n.Tasa,
+                                Cobrado = n.Cobrado,
+                                CodMoneda = n.CodMoneda,
+                                Moneda = n.Moneda,
+                                TasaUsada = n.TasaUsada,
+                                MontoPesos = n.MontoPesos,
+                                Mes = n.Mes,
+                                Usuario = n.Usuario
                             }).FirstOrDefault();
             }
             return Procesar;
         }
         #endregion
         #region PROCESAR INFORMACION GRAFICO
-        public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarDatosGrafico ProcesarGrafico(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarDatosGrafico Item, string Accion) {
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDatosGraficos ProcesarInformacionDatoGrafico(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDatosGraficos Item, string Accion) {
+
             ObjData.CommandTimeout = 999999999;
 
-            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarDatosGrafico Procesar = null;
+            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDatosGraficos Procesar = null;
 
-            var InformacionGrafico = ObjData.SP_PROCESAR_DATOS_GRAFICO(
+            var InformacionDatosGraficos = ObjData.SP_PROCESAR_INFORMACION_DATOS_GRAFICOS(
                 Item.IdUsuario,
-                Item.Entidad,
-                Item.ValorDecimal,
-                Item.valorEntero,
+                Item.EntidadRamo,
+                Item.ValorEnteroRamo,
+                Item.ValorDecimalRamo,
+                Item.EntidadAsegurado,
+                Item.ValorEnteroAsegurado,
+                Item.ValorDecimalAsegurado,
+                Item.EntidadSupervisor,
+                Item.ValorEnteroSupervisor,
+                Item.ValorDecimalSupervisor,
+                Item.EntidadIntermediario,
+                Item.ValorEnteroIntermediario,
+                Item.ValorDecimalIntermediario,
+                Item.EntidadEstatus,
+                Item.ValorEnteroEstatus,
+                Item.ValorDecimalEstatus,
+                Item.EntidadOficina,
+                Item.ValorEnteroOficina,
+                Item.ValorDecimalOficina,
+                Item.EntidadConcepto,
+                Item.ValorEnteroConcepto,
+                Item.ValorDecimalConcepto,
+                Item.EntidadDescripcionTipo,
+                Item.ValorEnteroDescripcionTipo,
+                Item.ValorDecimalDescripcionTipo,
+                Item.EntidadMoneda,
+                Item.ValorEnteroMoneda,
+                Item.ValorDecimalMoneda,
                 Accion);
-            if (InformacionGrafico != null) {
-                Procesar = (from n in InformacionGrafico
-                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarDatosGrafico
+            if (InformacionDatosGraficos != null) {
+                Procesar = (from n in InformacionDatosGraficos
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDatosGraficos
                             {
-                                IdUsuario=n.IdUsuario,
-                                Entidad=n.Entidad,
-                                ValorDecimal=n.ValorDecimal,
-                                valorEntero=n.valorEntero
+                                IdUsuario = n.IdUsuario,
+                                EntidadRamo = n.EntidadRamo,
+                                ValorEnteroRamo = n.ValorEnteroRamo,
+                                ValorDecimalRamo = n.ValorDecimalRamo,
+                                EntidadAsegurado = n.EntidadAsegurado,
+                                ValorEnteroAsegurado = n.ValorEnteroAsegurado,
+                                ValorDecimalAsegurado = n.ValorDecimalAsegurado,
+                                EntidadSupervisor = n.EntidadSupervisor,
+                                ValorEnteroSupervisor = n.ValorEnteroSupervisor,
+                                ValorDecimalSupervisor = n.ValorDecimalSupervisor,
+                                EntidadIntermediario = n.EntidadIntermediario,
+                                ValorEnteroIntermediario = n.ValorEnteroIntermediario,
+                                ValorDecimalIntermediario = n.ValorDecimalIntermediario,
+                                EntidadEstatus = n.EntidadEstatus,
+                                ValorEnteroEstatus = n.ValorEnteroEstatus,
+                                ValorDecimalEstatus = n.ValorDecimalEstatus,
+                                EntidadOficina = n.EntidadOficina,
+                                ValorEnteroOficina = n.ValorEnteroOficina,
+                                ValorDecimalOficina = n.ValorDecimalOficina,
+                                EntidadConcepto = n.EntidadConcepto,
+                                ValorEnteroConcepto = n.ValorEnteroConcepto,
+                                ValorDecimalConcepto = n.ValorDecimalConcepto,
+                                EntidadDescripcionTipo = n.EntidadDescripcionTipo,
+                                ValorEnteroDescripcionTipo = n.ValorEnteroDescripcionTipo,
+                                ValorDecimalDescripcionTipo = n.ValorDecimalDescripcionTipo,
+                                EntidadMoneda = n.EntidadMoneda,
+                                ValorEnteroMoneda = n.ValorEnteroMoneda,
+                                ValorDecimalMoneda = n.ValorDecimalMoneda
                             }).FirstOrDefault();
             }
             return Procesar;
         }
+       
         #endregion
     }
 }

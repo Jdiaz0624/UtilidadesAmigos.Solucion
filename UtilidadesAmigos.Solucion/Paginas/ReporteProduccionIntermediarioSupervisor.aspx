@@ -124,11 +124,11 @@
            </div>
            <div class="form-group col-md-3">
                <asp:Label ID="lbSeleccionarSucursal" runat="server" Text="Seleccionar Sucursal" CssClass="Letranegrita"></asp:Label>
-               <asp:DropDownList ID="ddlSeleccionarSucursal" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
+               <asp:DropDownList ID="ddlSeleccionarSucursal" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarSucursal_SelectedIndexChanged" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
            </div>
             <div class="form-group col-md-4">
                <asp:Label ID="Label1" runat="server" Text="Seleccionar Sucursal" CssClass="Letranegrita"></asp:Label>
-               <asp:DropDownList ID="DropDownList1" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
+               <asp:DropDownList ID="ddlSeleccionaroficina" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
            </div>
             <div class="form-group col-md-4">
                <asp:Label ID="lbSeleccionarRamo" runat="server" Text="Seleccionar Ramo" CssClass="Letranegrita"></asp:Label>

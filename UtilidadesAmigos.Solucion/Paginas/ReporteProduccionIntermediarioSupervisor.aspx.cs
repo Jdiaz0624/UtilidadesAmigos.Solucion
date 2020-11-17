@@ -14,92 +14,127 @@ namespace UtilidadesAmigos.Solucion.Paginas
     public partial class ReporteProduccionIntermediarioSupervisor : System.Web.UI.Page
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido> ObjData = new Lazy<Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaMantenimientos.LogicaMantenimientos> ObjDataMantenimiento = new Lazy<Logica.Logica.LogicaMantenimientos.LogicaMantenimientos>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataGeneral = new Lazy<Logica.Logica.LogicaSistema>();
 
 
         #region METODOS DE GRAFICOS
         private void GraficoIntermediarios() {
-            decimal[] Monto = new decimal[10];
-            string[] Nombre = new string[10];
-            int Contador = 0;
-            SqlConnection conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
-            SqlCommand comando = new SqlCommand("SELECT TOP(10) SUM(ValorDecimal),Entidad FROM Utililades.DatosGraficos WHERE IdUsuario=" + (decimal)Session["IdUsuario"] + " AND Entidad not in ('COMISIONISTA DIRECTO') GROUP BY Entidad ORDER BY SUM(ValorDecimal) DESC ", conexion);
-            conexion.Open();
-            SqlDataReader reader = comando.ExecuteReader();
-            while (reader.Read())
-            {
-                Monto[Contador] = Convert.ToDecimal(reader.GetDecimal(0));
-                Nombre[Contador] = reader.GetString(1);
-                Contador++;
-            }
-            reader.Close();
-            conexion.Close();
-            //chart1.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}K";
-            GraIntermediarios.ChartAreas["ChartArea1"].AxisX.Interval = 1;
-            GraIntermediarios.Series["Serie"].Points.DataBindXY(Nombre, Monto);
-            EliminarDatosGraficos();
+            //decimal[] Monto = new decimal[10];
+            //string[] Nombre = new string[10];
+            //int Contador = 0;
+            //SqlConnection conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            //SqlCommand comando = new SqlCommand("SELECT TOP(10) SUM(ValorDecimal),Entidad FROM Utililades.DatosGraficos WHERE IdUsuario=" + (decimal)Session["IdUsuario"] + " AND Entidad not in ('COMISIONISTA DIRECTO') GROUP BY Entidad ORDER BY SUM(ValorDecimal) DESC ", conexion);
+            //conexion.Open();
+            //SqlDataReader reader = comando.ExecuteReader();
+            //while (reader.Read())
+            //{
+            //    Monto[Contador] = Convert.ToDecimal(reader.GetDecimal(0));
+            //    Nombre[Contador] = reader.GetString(1);
+            //    Contador++;
+            //}
+            //reader.Close();
+            //conexion.Close();
+            ////chart1.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}K";
+            //GraIntermediarios.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+            //GraIntermediarios.Series["Serie"].Points.DataBindXY(Nombre, Monto);
+            //EliminarDatosGraficos();
         }
-        private void GraficoSupervisores() {
-            decimal[] Monto = new decimal[10];
-            string[] Nombre = new string[10];
-            int Contador = 0;
-            SqlConnection conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
-            SqlCommand comando = new SqlCommand("SELECT TOP(10) SUM(ValorDecimal),Entidad FROM Utililades.DatosGraficos WHERE IdUsuario=" + (decimal)Session["IdUsuario"] + " AND Entidad not in ('COORDINADOR DIRECTO','COORDINADOR DIRECTO SANTIAGO','VENDEDOR DIRECTO SANTIAGO','COORDINADOR DIRECTO','COORDINADOR DIRECTO ZONA ORIENTAL') GROUP BY Entidad ORDER BY SUM(ValorDecimal) DESC ", conexion);
-            conexion.Open();
-            SqlDataReader reader = comando.ExecuteReader();
-            while (reader.Read())
-            {
-                Monto[Contador] = Convert.ToDecimal(reader.GetDecimal(0));
-                Nombre[Contador] = reader.GetString(1);
-                Contador++;
-            }
-            reader.Close();
-            conexion.Close();
-            //chart1.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}K";
-            GraSupervisores.ChartAreas["ChartArea1"].AxisX.Interval = 1;
-            GraSupervisores.Series["Serie"].Points.DataBindXY(Nombre, Monto);
-            EliminarDatosGraficos();
-        }
-        private void GraficoOficinas() {
-            decimal[] Monto = new decimal[10];
-            string[] Nombre = new string[10];
-            int Contador = 0;
-            SqlConnection conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
-            SqlCommand comando = new SqlCommand("SELECT TOP(10) SUM(ValorDecimal),Entidad FROM Utililades.DatosGraficos WHERE IdUsuario=" + (decimal)Session["IdUsuario"] + "  GROUP BY Entidad ORDER BY SUM(ValorDecimal) DESC ", conexion);
-            conexion.Open();
-            SqlDataReader reader = comando.ExecuteReader();
-            while (reader.Read())
-            {
-                Monto[Contador] = Convert.ToDecimal(reader.GetDecimal(0));
-                Nombre[Contador] = reader.GetString(1);
-                Contador++;
-            }
-            reader.Close();
-            conexion.Close();
-            //chart1.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}K";
-            GraOficina.ChartAreas["ChartArea1"].AxisX.Interval = 1;
-            GraOficina.Series["Serie"].Points.DataBindXY(Nombre, Monto);
-            EliminarDatosGraficos();
+        #endregion
 
+        #region COMPLETENTO DE CONSULTAS
+        private string SacarSupervisor(string CodigoSupervisor) {
 
+            string NombreSupervisor = "";
+            var Nombre = ObjDataMantenimiento.Value.BuscaListadoIntermediario(
+                null,
+                null,
+                CodigoSupervisor,
+                null,
+                null);
+            if (Nombre.Count() < 1) {
+                NombreSupervisor = "";
+            }
+            else {
+                foreach (var n in Nombre) {
+                    NombreSupervisor = n.NombreSupervisor;
+                }
+            }
+
+            return NombreSupervisor;
         }
-        private void GraficosUsuarios() { }
-        private void GraficosConceptos() { }
-        private void EliminarDatosGraficos() {
-            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico(
-                    (decimal)(Session["IdUsuario"]), "", 0, 0, "DELETE");
-            Eliminar.ProcesarInformacion();
+        private string SacarIntermediario(string CodigoIntermediario) {
+            string NombreIntermediario = "";
+
+            var Nombre = ObjDataMantenimiento.Value.BuscaListadoIntermediario(
+                CodigoIntermediario,
+                null, null, null, null);
+            if (Nombre.Count() < 1)
+            {
+                NombreIntermediario = "";
+            }
+            else {
+                foreach (var n in Nombre) {
+                    NombreIntermediario = n.NombreVendedor;
+                }
+            }
+            return NombreIntermediario;
+        }
+        private void CargarSucursales() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSucursal, ObjDataGeneral.Value.BuscaListas("SUCURSAL", null, null), true);
+        }
+        private void CargarOficinas() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionaroficina, ObjDataGeneral.Value.BuscaListas("OFICINA", ddlSeleccionarSucursal.SelectedValue.ToString(), null), true);
+        }
+        private void CargarRamos() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamo, ObjDataGeneral.Value.BuscaListas("RAMO", null, null), true);
+        }
+        #endregion
+
+        #region CONSULTAS
+        private void ConsultarPorPantalla() {
+            int CantidadRegistros = 0;
+            decimal TotalFacturado = 0, TotalFacturadoPesos = 0, TotalFacturadoDollar = 0, TotalFacturadoGeneral = 0;
+
+            var BuscarRegistros = ObjData.Value.BuscaReporteProduccionOrigen(
+                Convert.ToDateTime(txtFechaDesde.Text),
+                Convert.ToDateTime(txtFechaHasta.Text),
+                Convert.ToDecimal(txtTasa.Text));
+            gvListdoProduccion.DataSource = BuscarRegistros;
+            gvListdoProduccion.DataBind();
+            foreach (var n in BuscarRegistros) {
+                CantidadRegistros = Convert.ToInt32(n.CantidadRegistros);
+                TotalFacturado = Convert.ToDecimal(n.TotalFacturado);
+                TotalFacturadoPesos = Convert.ToDecimal(n.TotalFActuradoPesos);
+                TotalFacturadoDollar = Convert.ToDecimal(n.TotalFActuradoDollar);
+                TotalFacturadoGeneral = Convert.ToDecimal(n.TotalFacturadoGeneral);
+
+                lbcantidadRegistrosVariable.Text = CantidadRegistros.ToString("N0");
+                lbTotalFacturadoVariable.Text = TotalFacturado.ToString("N2");
+                lbFacturadoPesosVariable.Text = TotalFacturadoPesos.ToString("N2");
+                LbFacturadoDollarVariable.Text = TotalFacturadoDollar.ToString("N2");
+                lbFacturadoTotalVariable.Text= TotalFacturadoGeneral.ToString("N2");
+            }
+
         }
         #endregion
 
 
+
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            rbNoAgrupar.Checked = true;
-            rbTodas.Checked = true;
-            rbDetalle.Checked = true;
-            txtTasa.Text = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2).ToString();
-
-
+            if (!IsPostBack) {
+                rbNoAgrupar.Checked = true;
+                rbTodas.Checked = true;
+                rbDetalle.Checked = true;
+                txtTasa.Text = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2).ToString();
+                CargarSucursales();
+                CargarOficinas();
+                CargarRamos();
+            }
 
            
          
@@ -107,12 +142,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void txtCodigoSupervisor_TextChanged(object sender, EventArgs e)
         {
-            txtNombreSupervisor.Text = "Supervisor";
+            txtNombreSupervisor.Text = SacarSupervisor(txtCodigoSupervisor.Text);
         }
 
         protected void txtCodigoIntermediario_TextChanged(object sender, EventArgs e)
         {
-            txtNombreIntermediario.Text = "Intermediario";
+            txtNombreIntermediario.Text = SacarIntermediario(txtCodigoIntermediario.Text);
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
@@ -128,97 +163,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
             }
             else {
-                //REALIZAMOS LA COSULTA
-                var MostrarConsultaGeneral = ObjData.Value.BuscaReporteProduccionOrigen(
-                    Convert.ToDateTime(txtFechaDesde.Text),
-                    Convert.ToDateTime(txtFechaHasta.Text),
-                    Convert.ToDecimal(txtTasa.Text));
-                gvListdoProduccion.DataSource = MostrarConsultaGeneral;
-                gvListdoProduccion.DataBind();
-
-                int CantiadRegistros = 0;
-                decimal Totalfacturado = 0, FacturadoPesos = 0, FacturadoDollar = 0, TotalFacturadoGeneral = 0;
-                string Entidad = "";
-                decimal ValorDecimal = 0;
-                int ValorEntero = 0;
-
-                
-                EliminarDatosGraficos();
-
-                foreach (var n in MostrarConsultaGeneral) {
-                    CantiadRegistros = (int)n.CantidadRegistros;
-                    Totalfacturado = (decimal)n.TotalFacturado;
-                    FacturadoPesos = (decimal)n.TotalFActuradoPesos;
-                    FacturadoDollar = (decimal)n.TotalFActuradoDollar;
-                    TotalFacturadoGeneral = (decimal)n.TotalFacturadoGeneral;
-                    Entidad = n.Intermediario;
-                    ValorDecimal = (decimal)n.MontoPesos;
-
-                    if (cbGraficar.Checked == true)
-                    {
-                        //PROCESAMOS LA INFORMACION
-                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico(
-                           (decimal)(Session["IdUsuario"]),
-                           Entidad,
-                           ValorDecimal,
-                           ValorEntero,
-                           "INSERT");
-                        Guardar.ProcesarInformacion();
-                     
-                    }
-
-
-                }
-                lbcantidadRegistrosVariable.Text = CantiadRegistros.ToString("N0");
-                lbTotalFacturadoVariable.Text = Totalfacturado.ToString("N2");
-                lbFacturadoPesosVariable.Text = FacturadoPesos.ToString("N2");
-                LbFacturadoDollarVariable.Text = FacturadoDollar.ToString("N2");
-                lbFacturadoTotalVariable.Text = TotalFacturadoGeneral.ToString("N2");
-
-                if (cbGraficar.Checked == true) {
-                    GraficoIntermediarios();
-                    foreach (var nSupervisor in MostrarConsultaGeneral) {
-                        Entidad = nSupervisor.Supervisor;
-                        ValorDecimal = (decimal)nSupervisor.MontoPesos;
-
-                        if (cbGraficar.Checked == true)
-                        {
-                            //PROCESAMOS LA INFORMACION
-                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico(
-                               (decimal)(Session["IdUsuario"]),
-                               Entidad,
-                               ValorDecimal,
-                               ValorEntero,
-                               "INSERT");
-                            Guardar.ProcesarInformacion();
-
-                        }
-                    }
-                    GraficoSupervisores();
-                    foreach (var nOficina in MostrarConsultaGeneral) {
-                        Entidad = nOficina.Oficina;
-                        ValorDecimal = (decimal)nOficina.MontoPesos;
-
-                        if (cbGraficar.Checked == true)
-                        {
-                            //PROCESAMOS LA INFORMACION
-                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionGrafico(
-                               (decimal)(Session["IdUsuario"]),
-                               Entidad,
-                               ValorDecimal,
-                               ValorEntero,
-                               "INSERT");
-                            Guardar.ProcesarInformacion();
-
-                        }
-                    }
-                    GraficoOficinas();
-                    GraficosUsuarios();
-                    GraficosConceptos();
-
-                }
-
-               
+                ConsultarPorPantalla();
             }
         }
 
@@ -264,6 +209,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void gvListdoProduccion_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void ddlSeleccionarSucursal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarOficinas();
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionReportesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.26.24.199;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString16" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.26.24.8;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString17" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO" Method="SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Sucursal" Parameter="sucursal" Type="System.String" DbType="VarChar(100)" />
@@ -187,17 +187,65 @@
       <Column Name="Usuario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_PROCESAR_DATOS_GRAFICO" Method="SP_PROCESAR_DATOS_GRAFICO">
-    <Parameter Name="Idusuario" Parameter="idusuario" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Entidad" Parameter="entidad" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="ValorDecimal" Parameter="valorDecimal" Type="System.Decimal" DbType="Decimal(20,2)" />
-    <Parameter Name="ValorEntero" Parameter="valorEntero" Type="System.Int32" DbType="Int" />
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_DATOS_GRAFICOS" Method="SP_PROCESAR_INFORMACION_DATOS_GRAFICOS">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="EntidadRamo" Parameter="entidadRamo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ValorEnteroRamo" Parameter="valorEnteroRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ValorDecimalRamo" Parameter="valorDecimalRamo" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="EntidadAsegurado" Parameter="entidadAsegurado" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ValorEnteroAsegurado" Parameter="valorEnteroAsegurado" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ValorDecimalAsegurado" Parameter="valorDecimalAsegurado" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="EntidadSupervisor" Parameter="entidadSupervisor" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ValorEnteroSupervisor" Parameter="valorEnteroSupervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ValorDecimalSupervisor" Parameter="valorDecimalSupervisor" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="EntidadIntermediario" Parameter="entidadIntermediario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ValorEnteroIntermediario" Parameter="valorEnteroIntermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ValorDecimalIntermediario" Parameter="valorDecimalIntermediario" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="EntidadEstatus" Parameter="entidadEstatus" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ValorEnteroEstatus" Parameter="valorEnteroEstatus" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ValorDecimalEstatus" Parameter="valorDecimalEstatus" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="EntidadOficina" Parameter="entidadOficina" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ValorEnteroOficina" Parameter="valorEnteroOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ValorDecimalOficina" Parameter="valorDecimalOficina" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="EntidadConcepto" Parameter="entidadConcepto" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ValorEnteroConcepto" Parameter="valorEnteroConcepto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ValorDecimalConcepto" Parameter="valorDecimalConcepto" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="EntidadDescripcionTipo" Parameter="entidadDescripcionTipo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ValorEnteroDescripcionTipo" Parameter="valorEnteroDescripcionTipo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ValorDecimalDescripcionTipo" Parameter="valorDecimalDescripcionTipo" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="EntidadMoneda" Parameter="entidadMoneda" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ValorEnteroMoneda" Parameter="valorEnteroMoneda" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ValorDecimalMoneda" Parameter="valorDecimalMoneda" Type="System.Decimal" DbType="Decimal(20,2)" />
     <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
-    <ElementType Name="SP_PROCESAR_DATOS_GRAFICOResult">
+    <ElementType Name="SP_PROCESAR_INFORMACION_DATOS_GRAFICOSResult">
       <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Entidad" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ValorDecimal" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
-      <Column Name="valorEntero" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EntidadRamo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ValorEnteroRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValorDecimalRamo" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="EntidadAsegurado" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ValorEnteroAsegurado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValorDecimalAsegurado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="EntidadSupervisor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ValorEnteroSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValorDecimalSupervisor" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="EntidadIntermediario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ValorEnteroIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValorDecimalIntermediario" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="EntidadEstatus" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ValorEnteroEstatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValorDecimalEstatus" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="EntidadOficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ValorEnteroOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValorDecimalOficina" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="EntidadConcepto" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ValorEnteroConcepto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValorDecimalConcepto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="EntidadDescripcionTipo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ValorEnteroDescripcionTipo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValorDecimalDescripcionTipo" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="EntidadMoneda" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ValorEnteroMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValorDecimalMoneda" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

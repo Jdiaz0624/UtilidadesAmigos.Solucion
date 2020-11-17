@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionReportesDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString16, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString17, mappingSource)
 		{
 			OnCreated();
 		}
@@ -128,11 +128,40 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_DATOS_PRODUCCIONResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_DATOS_GRAFICO")]
-		public ISingleResult<SP_PROCESAR_DATOS_GRAFICOResult> SP_PROCESAR_DATOS_GRAFICO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Idusuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idusuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Entidad", DbType="VarChar(100)")] string entidad, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorDecimal", DbType="Decimal(20,2)")] System.Nullable<decimal> valorDecimal, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorEntero", DbType="Int")] System.Nullable<int> valorEntero, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_DATOS_GRAFICOS")]
+		public ISingleResult<SP_PROCESAR_INFORMACION_DATOS_GRAFICOSResult> SP_PROCESAR_INFORMACION_DATOS_GRAFICOS(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EntidadRamo", DbType="VarChar(100)")] string entidadRamo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorEnteroRamo", DbType="Int")] System.Nullable<int> valorEnteroRamo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorDecimalRamo", DbType="Decimal(20,2)")] System.Nullable<decimal> valorDecimalRamo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EntidadAsegurado", DbType="VarChar(100)")] string entidadAsegurado, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorEnteroAsegurado", DbType="Int")] System.Nullable<int> valorEnteroAsegurado, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorDecimalAsegurado", DbType="Decimal(20,2)")] System.Nullable<decimal> valorDecimalAsegurado, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EntidadSupervisor", DbType="VarChar(100)")] string entidadSupervisor, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorEnteroSupervisor", DbType="Int")] System.Nullable<int> valorEnteroSupervisor, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorDecimalSupervisor", DbType="Decimal(20,2)")] System.Nullable<decimal> valorDecimalSupervisor, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EntidadIntermediario", DbType="VarChar(100)")] string entidadIntermediario, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorEnteroIntermediario", DbType="Int")] System.Nullable<int> valorEnteroIntermediario, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorDecimalIntermediario", DbType="Decimal(20,2)")] System.Nullable<decimal> valorDecimalIntermediario, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EntidadEstatus", DbType="VarChar(100)")] string entidadEstatus, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorEnteroEstatus", DbType="Int")] System.Nullable<int> valorEnteroEstatus, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorDecimalEstatus", DbType="Decimal(20,2)")] System.Nullable<decimal> valorDecimalEstatus, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EntidadOficina", DbType="VarChar(100)")] string entidadOficina, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorEnteroOficina", DbType="Int")] System.Nullable<int> valorEnteroOficina, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorDecimalOficina", DbType="Decimal(20,2)")] System.Nullable<decimal> valorDecimalOficina, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EntidadConcepto", DbType="VarChar(100)")] string entidadConcepto, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorEnteroConcepto", DbType="Int")] System.Nullable<int> valorEnteroConcepto, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorDecimalConcepto", DbType="Decimal(20,2)")] System.Nullable<decimal> valorDecimalConcepto, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EntidadDescripcionTipo", DbType="VarChar(100)")] string entidadDescripcionTipo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorEnteroDescripcionTipo", DbType="Int")] System.Nullable<int> valorEnteroDescripcionTipo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorDecimalDescripcionTipo", DbType="Decimal(20,2)")] System.Nullable<decimal> valorDecimalDescripcionTipo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EntidadMoneda", DbType="VarChar(100)")] string entidadMoneda, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorEnteroMoneda", DbType="Int")] System.Nullable<int> valorEnteroMoneda, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorDecimalMoneda", DbType="Decimal(20,2)")] System.Nullable<decimal> valorDecimalMoneda, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idusuario, entidad, valorDecimal, valorEntero, accion);
-			return ((ISingleResult<SP_PROCESAR_DATOS_GRAFICOResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, entidadRamo, valorEnteroRamo, valorDecimalRamo, entidadAsegurado, valorEnteroAsegurado, valorDecimalAsegurado, entidadSupervisor, valorEnteroSupervisor, valorDecimalSupervisor, entidadIntermediario, valorEnteroIntermediario, valorDecimalIntermediario, entidadEstatus, valorEnteroEstatus, valorDecimalEstatus, entidadOficina, valorEnteroOficina, valorDecimalOficina, entidadConcepto, valorEnteroConcepto, valorDecimalConcepto, entidadDescripcionTipo, valorEnteroDescripcionTipo, valorDecimalDescripcionTipo, entidadMoneda, valorEnteroMoneda, valorDecimalMoneda, accion);
+			return ((ISingleResult<SP_PROCESAR_INFORMACION_DATOS_GRAFICOSResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2022,18 +2051,66 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_PROCESAR_DATOS_GRAFICOResult
+	public partial class SP_PROCESAR_INFORMACION_DATOS_GRAFICOSResult
 	{
 		
 		private System.Nullable<decimal> _IdUsuario;
 		
-		private string _Entidad;
+		private string _EntidadRamo;
 		
-		private System.Nullable<decimal> _ValorDecimal;
+		private System.Nullable<int> _ValorEnteroRamo;
 		
-		private System.Nullable<int> _valorEntero;
+		private System.Nullable<decimal> _ValorDecimalRamo;
 		
-		public SP_PROCESAR_DATOS_GRAFICOResult()
+		private string _EntidadAsegurado;
+		
+		private System.Nullable<int> _ValorEnteroAsegurado;
+		
+		private System.Nullable<decimal> _ValorDecimalAsegurado;
+		
+		private string _EntidadSupervisor;
+		
+		private System.Nullable<int> _ValorEnteroSupervisor;
+		
+		private System.Nullable<decimal> _ValorDecimalSupervisor;
+		
+		private string _EntidadIntermediario;
+		
+		private System.Nullable<int> _ValorEnteroIntermediario;
+		
+		private System.Nullable<decimal> _ValorDecimalIntermediario;
+		
+		private string _EntidadEstatus;
+		
+		private System.Nullable<int> _ValorEnteroEstatus;
+		
+		private System.Nullable<decimal> _ValorDecimalEstatus;
+		
+		private string _EntidadOficina;
+		
+		private System.Nullable<int> _ValorEnteroOficina;
+		
+		private System.Nullable<decimal> _ValorDecimalOficina;
+		
+		private string _EntidadConcepto;
+		
+		private System.Nullable<int> _ValorEnteroConcepto;
+		
+		private System.Nullable<decimal> _ValorDecimalConcepto;
+		
+		private string _EntidadDescripcionTipo;
+		
+		private System.Nullable<int> _ValorEnteroDescripcionTipo;
+		
+		private System.Nullable<decimal> _ValorDecimalDescripcionTipo;
+		
+		private string _EntidadMoneda;
+		
+		private System.Nullable<int> _ValorEnteroMoneda;
+		
+		private System.Nullable<decimal> _ValorDecimalMoneda;
+		
+		public SP_PROCESAR_INFORMACION_DATOS_GRAFICOSResult()
 		{
 		}
 		
@@ -2053,50 +2130,434 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Entidad", DbType="VarChar(100)")]
-		public string Entidad
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EntidadRamo", DbType="VarChar(100)")]
+		public string EntidadRamo
 		{
 			get
 			{
-				return this._Entidad;
+				return this._EntidadRamo;
 			}
 			set
 			{
-				if ((this._Entidad != value))
+				if ((this._EntidadRamo != value))
 				{
-					this._Entidad = value;
+					this._EntidadRamo = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorDecimal", DbType="Decimal(20,2)")]
-		public System.Nullable<decimal> ValorDecimal
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorEnteroRamo", DbType="Int")]
+		public System.Nullable<int> ValorEnteroRamo
 		{
 			get
 			{
-				return this._ValorDecimal;
+				return this._ValorEnteroRamo;
 			}
 			set
 			{
-				if ((this._ValorDecimal != value))
+				if ((this._ValorEnteroRamo != value))
 				{
-					this._ValorDecimal = value;
+					this._ValorEnteroRamo = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_valorEntero", DbType="Int")]
-		public System.Nullable<int> valorEntero
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorDecimalRamo", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ValorDecimalRamo
 		{
 			get
 			{
-				return this._valorEntero;
+				return this._ValorDecimalRamo;
 			}
 			set
 			{
-				if ((this._valorEntero != value))
+				if ((this._ValorDecimalRamo != value))
 				{
-					this._valorEntero = value;
+					this._ValorDecimalRamo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EntidadAsegurado", DbType="VarChar(100)")]
+		public string EntidadAsegurado
+		{
+			get
+			{
+				return this._EntidadAsegurado;
+			}
+			set
+			{
+				if ((this._EntidadAsegurado != value))
+				{
+					this._EntidadAsegurado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorEnteroAsegurado", DbType="Int")]
+		public System.Nullable<int> ValorEnteroAsegurado
+		{
+			get
+			{
+				return this._ValorEnteroAsegurado;
+			}
+			set
+			{
+				if ((this._ValorEnteroAsegurado != value))
+				{
+					this._ValorEnteroAsegurado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorDecimalAsegurado", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ValorDecimalAsegurado
+		{
+			get
+			{
+				return this._ValorDecimalAsegurado;
+			}
+			set
+			{
+				if ((this._ValorDecimalAsegurado != value))
+				{
+					this._ValorDecimalAsegurado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EntidadSupervisor", DbType="VarChar(100)")]
+		public string EntidadSupervisor
+		{
+			get
+			{
+				return this._EntidadSupervisor;
+			}
+			set
+			{
+				if ((this._EntidadSupervisor != value))
+				{
+					this._EntidadSupervisor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorEnteroSupervisor", DbType="Int")]
+		public System.Nullable<int> ValorEnteroSupervisor
+		{
+			get
+			{
+				return this._ValorEnteroSupervisor;
+			}
+			set
+			{
+				if ((this._ValorEnteroSupervisor != value))
+				{
+					this._ValorEnteroSupervisor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorDecimalSupervisor", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ValorDecimalSupervisor
+		{
+			get
+			{
+				return this._ValorDecimalSupervisor;
+			}
+			set
+			{
+				if ((this._ValorDecimalSupervisor != value))
+				{
+					this._ValorDecimalSupervisor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EntidadIntermediario", DbType="VarChar(100)")]
+		public string EntidadIntermediario
+		{
+			get
+			{
+				return this._EntidadIntermediario;
+			}
+			set
+			{
+				if ((this._EntidadIntermediario != value))
+				{
+					this._EntidadIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorEnteroIntermediario", DbType="Int")]
+		public System.Nullable<int> ValorEnteroIntermediario
+		{
+			get
+			{
+				return this._ValorEnteroIntermediario;
+			}
+			set
+			{
+				if ((this._ValorEnteroIntermediario != value))
+				{
+					this._ValorEnteroIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorDecimalIntermediario", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ValorDecimalIntermediario
+		{
+			get
+			{
+				return this._ValorDecimalIntermediario;
+			}
+			set
+			{
+				if ((this._ValorDecimalIntermediario != value))
+				{
+					this._ValorDecimalIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EntidadEstatus", DbType="VarChar(100)")]
+		public string EntidadEstatus
+		{
+			get
+			{
+				return this._EntidadEstatus;
+			}
+			set
+			{
+				if ((this._EntidadEstatus != value))
+				{
+					this._EntidadEstatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorEnteroEstatus", DbType="Int")]
+		public System.Nullable<int> ValorEnteroEstatus
+		{
+			get
+			{
+				return this._ValorEnteroEstatus;
+			}
+			set
+			{
+				if ((this._ValorEnteroEstatus != value))
+				{
+					this._ValorEnteroEstatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorDecimalEstatus", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ValorDecimalEstatus
+		{
+			get
+			{
+				return this._ValorDecimalEstatus;
+			}
+			set
+			{
+				if ((this._ValorDecimalEstatus != value))
+				{
+					this._ValorDecimalEstatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EntidadOficina", DbType="VarChar(100)")]
+		public string EntidadOficina
+		{
+			get
+			{
+				return this._EntidadOficina;
+			}
+			set
+			{
+				if ((this._EntidadOficina != value))
+				{
+					this._EntidadOficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorEnteroOficina", DbType="Int")]
+		public System.Nullable<int> ValorEnteroOficina
+		{
+			get
+			{
+				return this._ValorEnteroOficina;
+			}
+			set
+			{
+				if ((this._ValorEnteroOficina != value))
+				{
+					this._ValorEnteroOficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorDecimalOficina", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ValorDecimalOficina
+		{
+			get
+			{
+				return this._ValorDecimalOficina;
+			}
+			set
+			{
+				if ((this._ValorDecimalOficina != value))
+				{
+					this._ValorDecimalOficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EntidadConcepto", DbType="VarChar(100)")]
+		public string EntidadConcepto
+		{
+			get
+			{
+				return this._EntidadConcepto;
+			}
+			set
+			{
+				if ((this._EntidadConcepto != value))
+				{
+					this._EntidadConcepto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorEnteroConcepto", DbType="Int")]
+		public System.Nullable<int> ValorEnteroConcepto
+		{
+			get
+			{
+				return this._ValorEnteroConcepto;
+			}
+			set
+			{
+				if ((this._ValorEnteroConcepto != value))
+				{
+					this._ValorEnteroConcepto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorDecimalConcepto", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ValorDecimalConcepto
+		{
+			get
+			{
+				return this._ValorDecimalConcepto;
+			}
+			set
+			{
+				if ((this._ValorDecimalConcepto != value))
+				{
+					this._ValorDecimalConcepto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EntidadDescripcionTipo", DbType="VarChar(100)")]
+		public string EntidadDescripcionTipo
+		{
+			get
+			{
+				return this._EntidadDescripcionTipo;
+			}
+			set
+			{
+				if ((this._EntidadDescripcionTipo != value))
+				{
+					this._EntidadDescripcionTipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorEnteroDescripcionTipo", DbType="Int")]
+		public System.Nullable<int> ValorEnteroDescripcionTipo
+		{
+			get
+			{
+				return this._ValorEnteroDescripcionTipo;
+			}
+			set
+			{
+				if ((this._ValorEnteroDescripcionTipo != value))
+				{
+					this._ValorEnteroDescripcionTipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorDecimalDescripcionTipo", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ValorDecimalDescripcionTipo
+		{
+			get
+			{
+				return this._ValorDecimalDescripcionTipo;
+			}
+			set
+			{
+				if ((this._ValorDecimalDescripcionTipo != value))
+				{
+					this._ValorDecimalDescripcionTipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EntidadMoneda", DbType="VarChar(100)")]
+		public string EntidadMoneda
+		{
+			get
+			{
+				return this._EntidadMoneda;
+			}
+			set
+			{
+				if ((this._EntidadMoneda != value))
+				{
+					this._EntidadMoneda = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorEnteroMoneda", DbType="Int")]
+		public System.Nullable<int> ValorEnteroMoneda
+		{
+			get
+			{
+				return this._ValorEnteroMoneda;
+			}
+			set
+			{
+				if ((this._ValorEnteroMoneda != value))
+				{
+					this._ValorEnteroMoneda = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorDecimalMoneda", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ValorDecimalMoneda
+		{
+			get
+			{
+				return this._ValorDecimalMoneda;
+			}
+			set
+			{
+				if ((this._ValorDecimalMoneda != value))
+				{
+					this._ValorDecimalMoneda = value;
 				}
 			}
 		}
