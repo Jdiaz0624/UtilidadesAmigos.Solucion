@@ -91,8 +91,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
+        private void EliminarDatosProduccion(decimal IdUsuario) {
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosProduccion Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosProduccion(
+                IdUsuario, 0, "", 0, "", "", "", 0, "", 0, 0, "", DateTime.Now, "", DateTime.Now, DateTime.Now, "", "", "", "", 0, "", "", "", 0, "", 0, 0, 0, 0, 0, 0, "", 0, 0, "", "", "DELETE");
+            Eliminar.ProcesarInformacion();
+        }
         #region CONSULTAS
         private void ConsultarPorPantalla() {
+
+            EliminarDatosProduccion(Convert.ToDecimal(Session["IdUsuario"]));
+
+
             int CantidadRegistros = 0;
             decimal TotalFacturado = 0, TotalFacturadoPesos = 0, TotalFacturadoDollar = 0, TotalFacturadoGeneral = 0;
 
@@ -114,6 +123,50 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbFacturadoPesosVariable.Text = TotalFacturadoPesos.ToString("N2");
                 LbFacturadoDollarVariable.Text = TotalFacturadoDollar.ToString("N2");
                 lbFacturadoTotalVariable.Text= TotalFacturadoGeneral.ToString("N2");
+
+
+                //GUARDAMOS LOS DATOS 
+
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosProduccion Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosProduccion(
+                    Convert.ToDecimal(Session["IdUsuario"]),
+                    Convert.ToInt32(n.CodRamo),
+                    n.Ramo,
+                    Convert.ToDecimal(n.NumeroFactura),
+                    n.NumeroFacturaFormateado,
+                    n.Poliza,
+                    n.Asegurado,
+                    Convert.ToInt32(n.Items),
+                    n.Supervisor,
+                    Convert.ToInt32(n.CodIntermediario),
+                    Convert.ToInt32(n.CodSupervisor),
+                    n.Intermediario,
+                    Convert.ToDateTime(n.Fecha),
+                    n.FechaFormateada,
+                    Convert.ToDateTime(n.FechaInicioVigencia),
+                    Convert.ToDateTime(n.FechaFinVigencia),
+                    n.InicioVigencia,
+                    n.FinVigencia,
+                    n.SumaAsegurada.ToString(),
+                    n.Estatus,
+                    Convert.ToInt32(n.CodOficina),
+                    n.Oficina,
+                    n.Concepto,
+                    n.Ncf,
+                    Convert.ToInt32(n.Tipo),
+                    n.DescripcionTipo,
+                    Convert.ToDecimal(n.Bruto),
+                    Convert.ToDecimal(n.Impuesto),
+                    Convert.ToDecimal(n.Neto),
+                    Convert.ToDecimal(n.Tasa),
+                    Convert.ToDecimal(n.Cobrado),
+                    Convert.ToInt32(n.CodMoneda),
+                    n.Moneda,
+                    Convert.ToDecimal(n.TasaUsada),
+                    Convert.ToDecimal(n.MontoPesos),
+                    n.Mes,
+                    n.Usuario,
+                    "INSERT");
+                Guardar.ProcesarInformacion();
             }
 
         }

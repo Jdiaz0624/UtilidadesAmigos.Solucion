@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/PatallaPrincila.Master" AutoEventWireup="true" CodeBehind="ReporteProduccionIntermediarioSupervisor.aspx.cs" Inherits="UtilidadesAmigos.Solucion.Paginas.ReporteProduccionIntermediarioSupervisor" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/PatallaPrincila.Master" Debug="true" AutoEventWireup="true" CodeBehind="ReporteProduccionIntermediarioSupervisor.aspx.cs" Inherits="UtilidadesAmigos.Solucion.Paginas.ReporteProduccionIntermediarioSupervisor" %>
 
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -124,11 +124,11 @@
            </div>
            <div class="form-group col-md-3">
                <asp:Label ID="lbSeleccionarSucursal" runat="server" Text="Seleccionar Sucursal" CssClass="Letranegrita"></asp:Label>
-               <asp:DropDownList ID="ddlSeleccionarSucursal" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
+               <asp:DropDownList ID="ddlSeleccionarSucursal" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarSucursal_SelectedIndexChanged" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
            </div>
             <div class="form-group col-md-4">
                <asp:Label ID="Label1" runat="server" Text="Seleccionar Sucursal" CssClass="Letranegrita"></asp:Label>
-               <asp:DropDownList ID="DropDownList1" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
+               <asp:DropDownList ID="ddlSeleccionaroficina" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
            </div>
             <div class="form-group col-md-4">
                <asp:Label ID="lbSeleccionarRamo" runat="server" Text="Seleccionar Ramo" CssClass="Letranegrita"></asp:Label>
@@ -196,14 +196,47 @@
     </div>
     <!--FIN DEL GRID-->
        <br />
-       <asp:Chart ID="GraIntermediarios" runat="server">
+       
+       <div align="center">
+           <asp:Label ID="lbGraficoIntermediario" runat="server" Text="Top 10 Produccion Intermediarios" CssClass="Letranegrita"></asp:Label>
+           <hr />
+           <asp:Chart ID="GraIntermediarios" Width="1100px" runat="server" Palette="Pastel">
            <Series>
-               <asp:Series Name="Serie" ChartType="Doughnut"></asp:Series>
+               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" ChartType="StackedColumn" Label="#VAL{N}"></asp:Series>
            </Series>
            <ChartAreas>
                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
            </ChartAreas>
        </asp:Chart>
+           <br />
+
+
+
+
+           <asp:Label ID="lbGraficoSupervisores" runat="server" Text="Top 10 Produccion Supervisores" CssClass="Letranegrita"></asp:Label>
+           <hr />
+            <asp:Chart ID="GraSupervisores" Width="1100px" runat="server" Palette="Pastel">
+           <Series>
+               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" ChartType="StackedColumn" Label="#VAL{N}"></asp:Series>
+           </Series>
+           <ChartAreas>
+               <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+           </ChartAreas>
+       </asp:Chart>
+           <br />
+
+
+           <asp:Label ID="lbGraficoOficina" runat="server" Text="Produccion Por Oficinas" CssClass="Letranegrita"></asp:Label>
+           <hr />
+            <asp:Chart ID="GraOficina" Width="1012px" runat="server" Palette="Pastel">
+           <Series>
+               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" ChartType="StackedBar" Label="#VAL{N}" YValuesPerPoint="2"></asp:Series>
+           </Series>
+           <ChartAreas>
+               <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+           </ChartAreas>
+       </asp:Chart>
+       </div>
        
    </div>
 
