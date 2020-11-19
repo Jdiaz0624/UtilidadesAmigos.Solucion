@@ -200,13 +200,14 @@
     </div>
     <!--FIN DEL GRID-->
        <br />
-       <div class="form-check-inline">
+       <div align="center">
+            <div class="form-check-inline"  >
            <div class="form-group form-check">
-               <div align="center">
-                   <asp:CheckBox ID="cbGraficar" runat="server" Text="Graficar" AutoPostBack="true" OnCheckedChanged="cbGraficar_CheckedChanged" ToolTip="Graficar Información" CssClass="form-check-input" />
-               </div>
+               <asp:CheckBox ID="cbGraficar" runat="server" Text="Graficar" AutoPostBack="true" OnCheckedChanged="cbGraficar_CheckedChanged" ToolTip="Graficar Información" CssClass="form-check-input" />
            </div>
        </div>
+       </div>
+      
        <div align="center">
            <!--GRAFICO POR SUPERVISOR-->
             <asp:Label ID="lbGraficoSupervisores" runat="server" Visible="false" Text="Top 10 Produccion Supervisores" CssClass="Letranegrita"></asp:Label>
