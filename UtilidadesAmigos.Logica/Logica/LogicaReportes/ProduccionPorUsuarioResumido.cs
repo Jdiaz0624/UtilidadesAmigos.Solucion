@@ -252,6 +252,72 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             }
             return Procesar;
         }
+        /// <summary>
+        /// Este metodo es para busca la informacion no agrupada de la produccion
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="Estatus"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="CodigoSupervisor"></param>
+        /// <param name="CodigoIntermediario"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="CodMoneda"></param>
+        /// <param name="Concepto"></param>
+        /// <param name="Mes"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaDatosProducionNoAgrupadoDetalle> BuscaDatosProduccionNoAgrupadoDetalle(decimal? IdUsuario = null, string Estatus = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, string CodigoSupervisor = null, string CodigoIntermediario = null, int? Oficina = null, int? Ramo = null, int? CodMoneda = null, string Concepto = null, string Mes = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_DATOS_PRODUCCION_NO_AGRUPADO_DETALLE(IdUsuario, Estatus, FechaDesde, FechaHasta, CodigoSupervisor, CodigoIntermediario, Oficina, Ramo, CodMoneda, Concepto, Mes)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaDatosProducionNoAgrupadoDetalle
+                           {
+                               IdUsuario=n.IdUsuario,
+                               CodRamo=n.CodRamo,
+                               Ramo=n.Ramo,
+                               NumeroFactura=n.NumeroFactura,
+                               NumeroFacturaFormateado=n.NumeroFacturaFormateado,
+                               Poliza=n.Poliza,
+                               Asegurado=n.Asegurado,
+                               Items=n.Items,
+                               Supervisor=n.Supervisor,
+                               CodIntermediario=n.CodIntermediario,
+                               CodSupervisor=n.CodSupervisor,
+                               Intermediario=n.Intermediario,
+                               Fecha=n.Fecha,
+                               FechaFormateada=n.FechaFormateada,
+                               FechaInicioVigencia=n.FechaInicioVigencia,
+                               FechaFinVigencia=n.FechaFinVigencia,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               SumaAsegurada=n.SumaAsegurada,
+                               Estatus=n.Estatus,
+                               CodOficina=n.CodOficina,
+                               Oficina=n.Oficina,
+                               Concepto=n.Concepto,
+                               Ncf=n.Ncf,
+                               Tipo=n.Tipo,
+                               DescripcionTipo=n.DescripcionTipo,
+                               Bruto=n.Bruto,
+                               Impuesto=n.Impuesto,
+                               Neto=n.Neto,
+                               Tasa=n.Tasa,
+                               Cobrado=n.Cobrado,
+                               CodMoneda=n.CodMoneda,
+                               Moneda=n.Moneda,
+                               TasaUsada=n.TasaUsada,
+                               MontoPesos=n.MontoPesos,
+                               Mes=n.Mes,
+                               Usuario=n.Usuario,
+                               CantidadRegistros=n.CantidadRegistros,
+                               TotalFacturado=n.TotalFacturado,
+                               TotalFActuradoPesos=n.TotalFActuradoPesos,
+                               TotalDollar=n.TotalDollar,
+                               TotalFacturadoGeneral=n.TotalFacturadoGeneral
+                           }).ToList();
+            return Listado;
+        }
         #endregion
         #region PROCESAR INFORMACION GRAFICO
         public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDatosGraficos ProcesarInformacionDatoGrafico(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDatosGraficos Item, string Accion) {
