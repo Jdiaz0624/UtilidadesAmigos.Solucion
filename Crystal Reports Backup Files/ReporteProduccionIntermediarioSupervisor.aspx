@@ -65,7 +65,11 @@
    <div class="container-fluid">
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTitulo" runat="server" Text="Reporte de Producción"></asp:Label>
+            <asp:Label ID="lbFechaDesdeValidacion" runat="server" Visible="false" Text="Fecha Desde Validacion"></asp:Label>
+            <asp:Label ID="lbFechaHastaValidacion" runat="server" Visible="false" Text="Fecha Hasta Validacion"></asp:Label>
+            <asp:Label ID="lbTasaValidacion" runat="server" Visible="false" Text="Tasa Validacion"></asp:Label>
     </div>
+
        <div class="form-check-inline">
            <div class="form-group form-check">
                <asp:Label ID="lbTipoAgrupacion" runat="server" Text="Agrupar Datos" CssClass="Letranegrita"></asp:Label><br />
@@ -127,7 +131,7 @@
                <asp:DropDownList ID="ddlSeleccionarSucursal" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarSucursal_SelectedIndexChanged" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
            </div>
             <div class="form-group col-md-4">
-               <asp:Label ID="Label1" runat="server" Text="Seleccionar Sucursal" CssClass="Letranegrita"></asp:Label>
+               <asp:Label ID="lbSeleccionaroficina" runat="server" Text="Seleccionar Oficina" CssClass="Letranegrita"></asp:Label>
                <asp:DropDownList ID="ddlSeleccionaroficina" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
            </div>
             <div class="form-group col-md-4">
@@ -200,14 +204,20 @@
        <div align="center">
            <asp:Label ID="lbGraficoIntermediario" runat="server" Text="Top 10 Produccion Intermediarios" CssClass="Letranegrita"></asp:Label>
            <hr />
-           <asp:Chart ID="GraIntermediarios" Width="1100px" runat="server" Palette="Pastel">
+
+
+                      <asp:Chart ID="GraIntermediarios" Width="1100px" runat="server" Palette="Pastel">
            <Series>
-               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" ChartType="StackedColumn" Label="#VAL{N}"></asp:Series>
+               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" ChartType="StackedColumn" Label="#VAL{N}" Font="Century Gothic, 8.25pt"></asp:Series>
            </Series>
            <ChartAreas>
-               <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+               <asp:ChartArea Name="ChartArea1">
+               <AxisX2 IntervalAutoMode="VariableCount"></AxisX2>
+               </asp:ChartArea>
+               
            </ChartAreas>
        </asp:Chart>
+        
            <br />
 
 

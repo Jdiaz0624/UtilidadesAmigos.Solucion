@@ -19,91 +19,611 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
 
         #region METODOS DE GRAFICOS
-        private void GraficoIntermediarios() {
-            if (Session["IdUsuario"] != null)
+        
+        private void GraficoSupervisores() {
+            decimal[] MontoFacturado = new decimal[10];
+            string[] NombreSupervisor = new string[10];
+            int Contador = 0;
+
+            decimal IdUsuario = Convert.ToDecimal(Session["IdUsuario"]);
+
+            string Estatus = "";
+            if (rbTodas.Checked == true)
             {
-                decimal[] MontoFacturado = new decimal[10];
-                string[] NombreIntermediario = new string[10];
-                int Contador = 0;
-
-                decimal IdUsuario = Convert.ToDecimal(Session["IdUsuario"]);
-
-                string Estatus = "";
-                if (rbTodas.Checked == true) {
-                    Estatus = "NADA";
-                }
-                else if (rbActivas.Checked == true) {
-                    Estatus = "ACTIVO";
-                }
-                else if (rbCanceladas.Checked == true) {
-                    Estatus = "CANCELADA";
-                }
-
-                string _Supervisor = "";
-                if (string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()))
-                {
-                    _Supervisor = "0";
-                }
-                else {
-                    _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
-                }
-
-
-                string _Intermediario = "";
-                if (string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim())) {
-                    _Intermediario = "0";
-                }
-                else { 
-                    _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
-                }
-
-                int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
-                int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
-
-
-
-                SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
-                SqlCommand Query = new SqlCommand("EXEC [Utililades].[SP_GRAFICO_INTERMEDIARIO] @IdUsuario,@Estatus,@FechaDesde,@FechaHasta,@CodigoSupervisor,@CodigoIntermediario", Conexion);
-                Query.Parameters.AddWithValue("@IdUsuario", SqlDbType.Decimal);
-                Query.Parameters.AddWithValue("@Estatus", SqlDbType.VarChar);
-                Query.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date);
-                Query.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date);
-                Query.Parameters.AddWithValue("@CodigoSupervisor", SqlDbType.VarChar);
-                Query.Parameters.AddWithValue("@CodigoIntermediario", SqlDbType.VarChar);
-
-
-                Query.Parameters["@IdUsuario"].Value = (decimal)Session["IdUsuario"];
-                Query.Parameters["@Estatus"].Value = Estatus;
-                Query.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
-                Query.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
-                Query.Parameters["@CodigoSupervisor"].Value = _Supervisor;
-                Query.Parameters["@CodigoIntermediario"].Value = _Intermediario;
-
-                Conexion.Open();
-
-                SqlDataReader Reader = Query.ExecuteReader();
-                while (Reader.Read())
-                {
-                    MontoFacturado[Contador] = Convert.ToDecimal(Reader.GetDecimal(1));
-                    NombreIntermediario[Contador] = Reader.GetString(0);
-                    Contador++;
-                }
-                Reader.Close();
-                Conexion.Close();
-                GraIntermediarios.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}k";
-
-                GraIntermediarios.Series["Serie"].Points.DataBindXY(NombreIntermediario, MontoFacturado);
+                Estatus = "NADA";
             }
-            else {
-                FormsAuthentication.SignOut();
-                FormsAuthentication.RedirectToLoginPage();
+            else if (rbActivas.Checked == true)
+            {
+                Estatus = "ACTIVO";
             }
+            else if (rbCanceladas.Checked == true)
+            {
+                Estatus = "CANCELADA";
+            }
+
+            string _Supervisor = "";
+            if (string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()))
+            {
+                _Supervisor = "0";
+            }
+            else
+            {
+                _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            }
+
+
+            string _Intermediario = "";
+            if (string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()))
+            {
+                _Intermediario = "0";
+            }
+            else
+            {
+                _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            }
+
+
+
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+
+            if (_Oficina == null)
+            {
+                _Oficina = 0;
+            }
+
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            if (_Ramo == null)
+            {
+                _Ramo = 0;
+            }
+
+
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Query = new SqlCommand("EXEC [Utililades].[SP_GENERAR_GRAFICOS_PRODUCCION] @IdUsuario,@Estatus,@FechaDesde,@FechaHasta,@CodigoSupervisor,@CodigoIntermediario,@Oficina,@Ramo,@TipoGrafico", Conexion);
+            Query.Parameters.AddWithValue("@IdUsuario", SqlDbType.Decimal);
+            Query.Parameters.AddWithValue("@Estatus", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date);
+            Query.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date);
+            Query.Parameters.AddWithValue("@CodigoSupervisor", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@CodigoIntermediario", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@Oficina", SqlDbType.Int);
+            Query.Parameters.AddWithValue("@Ramo", SqlDbType.Int);
+            Query.Parameters.AddWithValue("@TipoGrafico", SqlDbType.Int);
+
+
+            Query.Parameters["@IdUsuario"].Value = (decimal)Session["IdUsuario"];
+            Query.Parameters["@Estatus"].Value = Estatus;
+            Query.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
+            Query.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
+            Query.Parameters["@CodigoSupervisor"].Value = _Supervisor;
+            Query.Parameters["@CodigoIntermediario"].Value = _Intermediario;
+            Query.Parameters["@Oficina"].Value = _Oficina;
+            Query.Parameters["@Ramo"].Value = _Ramo;
+            Query.Parameters["@TipoGrafico"].Value = 1;
+
+            Conexion.Open();
+
+            SqlDataReader Reader = Query.ExecuteReader();
+            while (Reader.Read())
+            {
+                MontoFacturado[Contador] = Convert.ToDecimal(Reader.GetDecimal(1));
+                NombreSupervisor[Contador] = Reader.GetString(0);
+                Contador++;
+            }
+            Reader.Close();
+            Conexion.Close();
+            GraSupervisores.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}k";
+            GraSupervisores.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraSupervisores.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraSupervisores.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+
+            GraSupervisores.Series["Serie"].Points.DataBindXY(NombreSupervisor, MontoFacturado);
+
         }
-        private void GraficoSupervisores() { }
-        private void GraficoOficinas() { }
-        private void GraficoConcepto() { }
-        private void GraficosRamos() { }
-        private void GraficoUsuarios() { }
+        private void GraficoIntermediarios()
+        {
+
+            decimal[] MontoFacturado = new decimal[10];
+            string[] NombreIntermediario = new string[10];
+            int Contador = 0;
+
+            decimal IdUsuario = Convert.ToDecimal(Session["IdUsuario"]);
+
+            string Estatus = "";
+            if (rbTodas.Checked == true)
+            {
+                Estatus = "NADA";
+            }
+            else if (rbActivas.Checked == true)
+            {
+                Estatus = "ACTIVO";
+            }
+            else if (rbCanceladas.Checked == true)
+            {
+                Estatus = "CANCELADA";
+            }
+
+            string _Supervisor = "";
+            if (string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()))
+            {
+                _Supervisor = "0";
+            }
+            else
+            {
+                _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            }
+
+
+            string _Intermediario = "";
+            if (string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()))
+            {
+                _Intermediario = "0";
+            }
+            else
+            {
+                _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            }
+
+
+
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+
+            if (_Oficina == null)
+            {
+                _Oficina = 0;
+            }
+
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            if (_Ramo == null)
+            {
+                _Ramo = 0;
+            }
+
+
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Query = new SqlCommand("EXEC [Utililades].[SP_GENERAR_GRAFICOS_PRODUCCION] @IdUsuario,@Estatus,@FechaDesde,@FechaHasta,@CodigoSupervisor,@CodigoIntermediario,@Oficina,@Ramo,@TipoGrafico", Conexion);
+            Query.Parameters.AddWithValue("@IdUsuario", SqlDbType.Decimal);
+            Query.Parameters.AddWithValue("@Estatus", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date);
+            Query.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date);
+            Query.Parameters.AddWithValue("@CodigoSupervisor", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@CodigoIntermediario", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@Oficina", SqlDbType.Int);
+            Query.Parameters.AddWithValue("@Ramo", SqlDbType.Int);
+            Query.Parameters.AddWithValue("@TipoGrafico", SqlDbType.Int);
+
+
+            Query.Parameters["@IdUsuario"].Value = (decimal)Session["IdUsuario"];
+            Query.Parameters["@Estatus"].Value = Estatus;
+            Query.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
+            Query.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
+            Query.Parameters["@CodigoSupervisor"].Value = _Supervisor;
+            Query.Parameters["@CodigoIntermediario"].Value = _Intermediario;
+            Query.Parameters["@Oficina"].Value = _Oficina;
+            Query.Parameters["@Ramo"].Value = _Ramo;
+            Query.Parameters["@TipoGrafico"].Value = 2;
+
+            Conexion.Open();
+
+            SqlDataReader Reader = Query.ExecuteReader();
+            while (Reader.Read())
+            {
+                MontoFacturado[Contador] = Convert.ToDecimal(Reader.GetDecimal(1));
+                NombreIntermediario[Contador] = Reader.GetString(0);
+                Contador++;
+            }
+            Reader.Close();
+            Conexion.Close();
+            GraIntermediarios.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}k";
+            GraIntermediarios.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraIntermediarios.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraIntermediarios.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+            GraIntermediarios.Series["Serie"].Points.DataBindXY(NombreIntermediario, MontoFacturado);
+
+        }
+        private void GraficoOficinas() {
+
+            decimal[] MontoFacturado = new decimal[10];
+            string[] Nombreoficina = new string[10];
+            int Contador = 0;
+
+            decimal IdUsuario = Convert.ToDecimal(Session["IdUsuario"]);
+
+            string Estatus = "";
+            if (rbTodas.Checked == true)
+            {
+                Estatus = "NADA";
+            }
+            else if (rbActivas.Checked == true)
+            {
+                Estatus = "ACTIVO";
+            }
+            else if (rbCanceladas.Checked == true)
+            {
+                Estatus = "CANCELADA";
+            }
+
+            string _Supervisor = "";
+            if (string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()))
+            {
+                _Supervisor = "0";
+            }
+            else
+            {
+                _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            }
+
+
+            string _Intermediario = "";
+            if (string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()))
+            {
+                _Intermediario = "0";
+            }
+            else
+            {
+                _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            }
+
+
+
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+
+            if (_Oficina == null)
+            {
+                _Oficina = 0;
+            }
+
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            if (_Ramo == null)
+            {
+                _Ramo = 0;
+            }
+
+
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Query = new SqlCommand("EXEC [Utililades].[SP_GENERAR_GRAFICOS_PRODUCCION] @IdUsuario,@Estatus,@FechaDesde,@FechaHasta,@CodigoSupervisor,@CodigoIntermediario,@Oficina,@Ramo,@TipoGrafico", Conexion);
+            Query.Parameters.AddWithValue("@IdUsuario", SqlDbType.Decimal);
+            Query.Parameters.AddWithValue("@Estatus", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date);
+            Query.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date);
+            Query.Parameters.AddWithValue("@CodigoSupervisor", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@CodigoIntermediario", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@Oficina", SqlDbType.Int);
+            Query.Parameters.AddWithValue("@Ramo", SqlDbType.Int);
+            Query.Parameters.AddWithValue("@TipoGrafico", SqlDbType.Int);
+
+
+            Query.Parameters["@IdUsuario"].Value = (decimal)Session["IdUsuario"];
+            Query.Parameters["@Estatus"].Value = Estatus;
+            Query.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
+            Query.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
+            Query.Parameters["@CodigoSupervisor"].Value = _Supervisor;
+            Query.Parameters["@CodigoIntermediario"].Value = _Intermediario;
+            Query.Parameters["@Oficina"].Value = _Oficina;
+            Query.Parameters["@Ramo"].Value = _Ramo;
+            Query.Parameters["@TipoGrafico"].Value = 3;
+
+            Conexion.Open();
+
+            SqlDataReader Reader = Query.ExecuteReader();
+            while (Reader.Read())
+            {
+                MontoFacturado[Contador] = Convert.ToDecimal(Reader.GetDecimal(1));
+                Nombreoficina[Contador] = Reader.GetString(0);
+                Contador++;
+            }
+            Reader.Close();
+            Conexion.Close();
+            GraOficina.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}k";
+            GraOficina.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraOficina.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraOficina.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+            GraOficina.Series["Serie"].Points.DataBindXY(Nombreoficina, MontoFacturado);
+
+        }
+        private void GraficosRamos() {
+            decimal[] MontoFacturado = new decimal[10];
+            string[] NombreRamo = new string[10];
+            int Contador = 0;
+
+            decimal IdUsuario = Convert.ToDecimal(Session["IdUsuario"]);
+
+            string Estatus = "";
+            if (rbTodas.Checked == true)
+            {
+                Estatus = "NADA";
+            }
+            else if (rbActivas.Checked == true)
+            {
+                Estatus = "ACTIVO";
+            }
+            else if (rbCanceladas.Checked == true)
+            {
+                Estatus = "CANCELADA";
+            }
+
+            string _Supervisor = "";
+            if (string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()))
+            {
+                _Supervisor = "0";
+            }
+            else
+            {
+                _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            }
+
+
+            string _Intermediario = "";
+            if (string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()))
+            {
+                _Intermediario = "0";
+            }
+            else
+            {
+                _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            }
+
+
+
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+
+            if (_Oficina == null)
+            {
+                _Oficina = 0;
+            }
+
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            if (_Ramo == null)
+            {
+                _Ramo = 0;
+            }
+
+
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Query = new SqlCommand("EXEC [Utililades].[SP_GENERAR_GRAFICOS_PRODUCCION] @IdUsuario,@Estatus,@FechaDesde,@FechaHasta,@CodigoSupervisor,@CodigoIntermediario,@Oficina,@Ramo,@TipoGrafico", Conexion);
+            Query.Parameters.AddWithValue("@IdUsuario", SqlDbType.Decimal);
+            Query.Parameters.AddWithValue("@Estatus", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date);
+            Query.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date);
+            Query.Parameters.AddWithValue("@CodigoSupervisor", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@CodigoIntermediario", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@Oficina", SqlDbType.Int);
+            Query.Parameters.AddWithValue("@Ramo", SqlDbType.Int);
+            Query.Parameters.AddWithValue("@TipoGrafico", SqlDbType.Int);
+
+
+            Query.Parameters["@IdUsuario"].Value = (decimal)Session["IdUsuario"];
+            Query.Parameters["@Estatus"].Value = Estatus;
+            Query.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
+            Query.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
+            Query.Parameters["@CodigoSupervisor"].Value = _Supervisor;
+            Query.Parameters["@CodigoIntermediario"].Value = _Intermediario;
+            Query.Parameters["@Oficina"].Value = _Oficina;
+            Query.Parameters["@Ramo"].Value = _Ramo;
+            Query.Parameters["@TipoGrafico"].Value = 4;
+
+            Conexion.Open();
+
+            SqlDataReader Reader = Query.ExecuteReader();
+            while (Reader.Read())
+            {
+                MontoFacturado[Contador] = Convert.ToDecimal(Reader.GetDecimal(1));
+                NombreRamo[Contador] = Reader.GetString(0);
+                Contador++;
+            }
+            Reader.Close();
+            Conexion.Close();
+            GraRamo.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}k";
+            GraRamo.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraRamo.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraRamo.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+            GraRamo.Series["Serie"].Points.DataBindXY(NombreRamo, MontoFacturado);
+        }
+        private void GraficoUsuarios() {
+            decimal[] MontoFacturado = new decimal[10];
+            string[] NombreUsuario = new string[10];
+            int Contador = 0;
+
+            decimal IdUsuario = Convert.ToDecimal(Session["IdUsuario"]);
+
+            string Estatus = "";
+            if (rbTodas.Checked == true)
+            {
+                Estatus = "NADA";
+            }
+            else if (rbActivas.Checked == true)
+            {
+                Estatus = "ACTIVO";
+            }
+            else if (rbCanceladas.Checked == true)
+            {
+                Estatus = "CANCELADA";
+            }
+
+            string _Supervisor = "";
+            if (string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()))
+            {
+                _Supervisor = "0";
+            }
+            else
+            {
+                _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            }
+
+
+            string _Intermediario = "";
+            if (string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()))
+            {
+                _Intermediario = "0";
+            }
+            else
+            {
+                _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            }
+
+
+
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+
+            if (_Oficina == null)
+            {
+                _Oficina = 0;
+            }
+
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            if (_Ramo == null)
+            {
+                _Ramo = 0;
+            }
+
+
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Query = new SqlCommand("EXEC [Utililades].[SP_GENERAR_GRAFICOS_PRODUCCION] @IdUsuario,@Estatus,@FechaDesde,@FechaHasta,@CodigoSupervisor,@CodigoIntermediario,@Oficina,@Ramo,@TipoGrafico", Conexion);
+            Query.Parameters.AddWithValue("@IdUsuario", SqlDbType.Decimal);
+            Query.Parameters.AddWithValue("@Estatus", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date);
+            Query.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date);
+            Query.Parameters.AddWithValue("@CodigoSupervisor", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@CodigoIntermediario", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@Oficina", SqlDbType.Int);
+            Query.Parameters.AddWithValue("@Ramo", SqlDbType.Int);
+            Query.Parameters.AddWithValue("@TipoGrafico", SqlDbType.Int);
+
+
+            Query.Parameters["@IdUsuario"].Value = (decimal)Session["IdUsuario"];
+            Query.Parameters["@Estatus"].Value = Estatus;
+            Query.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
+            Query.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
+            Query.Parameters["@CodigoSupervisor"].Value = _Supervisor;
+            Query.Parameters["@CodigoIntermediario"].Value = _Intermediario;
+            Query.Parameters["@Oficina"].Value = _Oficina;
+            Query.Parameters["@Ramo"].Value = _Ramo;
+            Query.Parameters["@TipoGrafico"].Value = 5;
+
+            Conexion.Open();
+
+            SqlDataReader Reader = Query.ExecuteReader();
+            while (Reader.Read())
+            {
+                MontoFacturado[Contador] = Convert.ToDecimal(Reader.GetDecimal(1));
+                NombreUsuario[Contador] = Reader.GetString(0);
+                Contador++;
+            }
+            Reader.Close();
+            Conexion.Close();
+            GraUsuario.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}k";
+            GraUsuario.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraUsuario.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraUsuario.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+            GraUsuario.Series["Serie"].Points.DataBindXY(NombreUsuario, MontoFacturado);
+
+        }
+        private void GraficoConcepto()
+        {
+            decimal[] MontoFacturado = new decimal[10];
+            string[] NombreCocepto = new string[10];
+            int Contador = 0;
+
+            decimal IdUsuario = Convert.ToDecimal(Session["IdUsuario"]);
+
+            string Estatus = "";
+            if (rbTodas.Checked == true)
+            {
+                Estatus = "NADA";
+            }
+            else if (rbActivas.Checked == true)
+            {
+                Estatus = "ACTIVO";
+            }
+            else if (rbCanceladas.Checked == true)
+            {
+                Estatus = "CANCELADA";
+            }
+
+            string _Supervisor = "";
+            if (string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()))
+            {
+                _Supervisor = "0";
+            }
+            else
+            {
+                _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            }
+
+
+            string _Intermediario = "";
+            if (string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()))
+            {
+                _Intermediario = "0";
+            }
+            else
+            {
+                _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            }
+
+
+
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+
+            if (_Oficina == null)
+            {
+                _Oficina = 0;
+            }
+
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            if (_Ramo == null)
+            {
+                _Ramo = 0;
+            }
+
+
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Query = new SqlCommand("EXEC [Utililades].[SP_GENERAR_GRAFICOS_PRODUCCION] @IdUsuario,@Estatus,@FechaDesde,@FechaHasta,@CodigoSupervisor,@CodigoIntermediario,@Oficina,@Ramo,@TipoGrafico", Conexion);
+            Query.Parameters.AddWithValue("@IdUsuario", SqlDbType.Decimal);
+            Query.Parameters.AddWithValue("@Estatus", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date);
+            Query.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date);
+            Query.Parameters.AddWithValue("@CodigoSupervisor", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@CodigoIntermediario", SqlDbType.VarChar);
+            Query.Parameters.AddWithValue("@Oficina", SqlDbType.Int);
+            Query.Parameters.AddWithValue("@Ramo", SqlDbType.Int);
+            Query.Parameters.AddWithValue("@TipoGrafico", SqlDbType.Int);
+
+
+            Query.Parameters["@IdUsuario"].Value = (decimal)Session["IdUsuario"];
+            Query.Parameters["@Estatus"].Value = Estatus;
+            Query.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
+            Query.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
+            Query.Parameters["@CodigoSupervisor"].Value = _Supervisor;
+            Query.Parameters["@CodigoIntermediario"].Value = _Intermediario;
+            Query.Parameters["@Oficina"].Value = _Oficina;
+            Query.Parameters["@Ramo"].Value = _Ramo;
+            Query.Parameters["@TipoGrafico"].Value = 6;
+
+            Conexion.Open();
+
+            SqlDataReader Reader = Query.ExecuteReader();
+            while (Reader.Read())
+            {
+                MontoFacturado[Contador] = Convert.ToDecimal(Reader.GetDecimal(1));
+                NombreCocepto[Contador] = Reader.GetString(0);
+                Contador++;
+            }
+            Reader.Close();
+            Conexion.Close();
+            GraConcepto.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}k";
+            GraConcepto.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraConcepto.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraConcepto.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+            GraConcepto.Series["Serie"].Points.DataBindXY(NombreCocepto, MontoFacturado);
+
+        }
         #endregion
         #region COMPLETENTO DE CONSULTAS
         private string SacarSupervisor(string CodigoSupervisor) {
@@ -264,6 +784,36 @@ namespace UtilidadesAmigos.Solucion.Paginas
         
         }
         #endregion
+        #region MOSTRAR Y OCULTAR CONTROLED E LOS GRAFICOS
+        private void MostrarControlesGraficos() {
+            lbGraficoSupervisores.Visible = true;
+            GraSupervisores.Visible = true;
+            lbGraficoIntermediario.Visible = true;
+            GraIntermediarios.Visible = true;
+            lbGraficoOficina.Visible = true;
+            GraOficina.Visible = true;
+            lbGraficoRamo.Visible = true;
+            GraRamo.Visible = true;
+            lbGraficoPorUsuario.Visible = true;
+            GraUsuario.Visible = true;
+            lbGraficoConcepto.Visible = true;
+            GraConcepto.Visible = true;
+        }
+        private void OcultarControlesGraficos() {
+            lbGraficoSupervisores.Visible = false;
+            GraSupervisores.Visible = false;
+            lbGraficoIntermediario.Visible = false;
+            GraIntermediarios.Visible = false;
+            lbGraficoOficina.Visible = false;
+            GraOficina.Visible = false;
+            lbGraficoRamo.Visible = false;
+            GraRamo.Visible = false;
+            lbGraficoPorUsuario.Visible = false;
+            GraUsuario.Visible = false;
+            lbGraficoConcepto.Visible = false;
+            GraConcepto.Visible = false;
+        }
+        #endregion
 
         private void EliminarDatosProduccion(decimal IdUsuario) {
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosProduccion Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosProduccion(
@@ -340,10 +890,23 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         Convert.ToDateTime(txtFechaDesde.Text),
                         Convert.ToDateTime(txtFechaHasta.Text),
                         Convert.ToDecimal(txtTasa.Text));
+                    cbGraficar.Enabled = true;
                 }
                 BuscarDatosNoAgrupados();
-                if (cbGraficar.Checked == true) { 
-                GraficoIntermediarios();
+                if (cbGraficar.Checked == true) {
+                    if (Session["IdUsuario"] != null) {
+                        GraficoSupervisores();
+                        GraficoIntermediarios();
+                        GraficoOficinas();
+                        GraficosRamos();
+                        GraficoUsuarios();
+                        GraficoConcepto();
+                    }
+                    else {
+                        FormsAuthentication.SignOut();
+                        FormsAuthentication.RedirectToLoginPage();
+                    }
+
                 }
             }
 
@@ -369,6 +932,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbFechaDesdeValidacion.Text = "0";
                 lbFechaHastaValidacion.Text = "0";
                 lbTasaValidacion.Text = "0";
+                cbGraficar.Checked = false;
+                cbGraficar.Enabled = false;
             }
 
            
@@ -400,6 +965,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             else {
 
                 ConsultarPorPantalla();
+                cbGraficar.Checked = false;
+                OcultarControlesGraficos();
             }
         }
 
@@ -450,6 +1017,23 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void ddlSeleccionarSucursal_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarOficinas();
+        }
+
+        protected void cbGraficar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbGraficar.Checked == true) {
+                MostrarControlesGraficos();
+
+                GraficoSupervisores();
+                GraficoIntermediarios();
+                GraficoOficinas();
+                GraficosRamos();
+                GraficoUsuarios();
+                GraficoConcepto();
+            }
+            else {
+                OcultarControlesGraficos();
+            }
         }
     }
 }

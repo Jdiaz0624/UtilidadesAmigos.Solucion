@@ -76,7 +76,7 @@
                <asp:RadioButton ID="rbNoAgrupar" runat="server" Text="No agrupar" GroupName="AgruparData" ToolTip="No Agrupar Informacion" CssClass="form-check-input Letranegrita" />
                <asp:RadioButton ID="rbAgruparConcepto" runat="server" Text="Concepto" GroupName="AgruparData" ToolTip="Agrupar Informacion por Concepto" CssClass="form-check-input Letranegrita" />
                 <asp:RadioButton ID="rbAgruparPorUsuarios" runat="server" Text="Usuario" GroupName="AgruparData" ToolTip="Agrupar Información por usuario" CssClass="form-check-input Letranegrita" />
-               <asp:CheckBox ID="cbGraficar" runat="server" Text="Graficar" ToolTip="Graficar Información" CssClass="form-check-input" />
+               
          <%--      <asp:RadioButton ID="rbOficina" runat="server" Text="Oficina" GroupName="AgruparData" CssClass="form-check-input Letranegrita" />
                <asp:RadioButton ID="rbRamo" runat="server" Text="Ramo" ToolTip="Consultar Por Ramo" GroupName="AgruparData" CssClass="form-check-input Letranegrita" />--%>
 
@@ -200,15 +200,34 @@
     </div>
     <!--FIN DEL GRID-->
        <br />
-       
+       <div class="form-check-inline">
+           <div class="form-group form-check">
+               <div align="center">
+                   <asp:CheckBox ID="cbGraficar" runat="server" Text="Graficar" AutoPostBack="true" OnCheckedChanged="cbGraficar_CheckedChanged" ToolTip="Graficar Información" CssClass="form-check-input" />
+               </div>
+           </div>
+       </div>
        <div align="center">
-           <asp:Label ID="lbGraficoIntermediario" runat="server" Text="Top 10 Produccion Intermediarios" CssClass="Letranegrita"></asp:Label>
-           <hr />
-
-
-                      <asp:Chart ID="GraIntermediarios" Width="1100px" runat="server" Palette="Pastel">
+           <!--GRAFICO POR SUPERVISOR-->
+            <asp:Label ID="lbGraficoSupervisores" runat="server" Visible="false" Text="Top 10 Produccion Supervisores" CssClass="Letranegrita"></asp:Label>
+<br />
+            <asp:Chart ID="GraSupervisores" Width="1100px" Visible="False" runat="server" Palette="Pastel">
            <Series>
-               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" ChartType="StackedColumn" Label="#VAL{N}" Font="Century Gothic, 8.25pt"></asp:Series>
+               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" Label="#VAL{N}"></asp:Series>
+           </Series>
+           <ChartAreas>
+               <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+           </ChartAreas>
+       </asp:Chart>
+           <br />
+
+
+           <asp:Label ID="lbGraficoIntermediario" runat="server" Visible="false" Text="Top 10 Produccion Intermediarios" CssClass="Letranegrita"></asp:Label>
+           <br />
+           <!--GRAFICO POR INTERMEDIARIO-->
+         <asp:Chart ID="GraIntermediarios" Width="1100px" Visible="False" runat="server" Palette="Pastel">
+           <Series>
+               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" Label="#VAL{N}" Font="Century Gothic, 8.25pt"></asp:Series>
            </Series>
            <ChartAreas>
                <asp:ChartArea Name="ChartArea1">
@@ -223,29 +242,62 @@
 
 
 
-           <asp:Label ID="lbGraficoSupervisores" runat="server" Text="Top 10 Produccion Supervisores" CssClass="Letranegrita"></asp:Label>
-           <hr />
-            <asp:Chart ID="GraSupervisores" Width="1100px" runat="server" Palette="Pastel">
-           <Series>
-               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" ChartType="StackedColumn" Label="#VAL{N}"></asp:Series>
-           </Series>
-           <ChartAreas>
-               <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-           </ChartAreas>
-       </asp:Chart>
+          
+
+           <!--GRAFICO POR OFICINA-->
+           <asp:Label ID="lbGraficoOficina" runat="server" Visible="false" Text="Produccion Por Oficinas" CssClass="Letranegrita"></asp:Label>
            <br />
-
-
-           <asp:Label ID="lbGraficoOficina" runat="server" Text="Produccion Por Oficinas" CssClass="Letranegrita"></asp:Label>
-           <hr />
-            <asp:Chart ID="GraOficina" Width="1012px" runat="server" Palette="Pastel">
+            <asp:Chart ID="GraOficina" Width="1012px" Visible="False" runat="server" Palette="Pastel">
            <Series>
-               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" ChartType="StackedBar" Label="#VAL{N}" YValuesPerPoint="2"></asp:Series>
+               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" Label="#VAL{N}" YValuesPerPoint="2"></asp:Series>
            </Series>
            <ChartAreas>
                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
            </ChartAreas>
        </asp:Chart>
+            <br />
+
+           <!--GRAFICO POR RAMO-->
+           <asp:Label ID="lbGraficoRamo" runat="server" Visible="false" Text="Produccion Por Ramos" CssClass="Letranegrita"></asp:Label>
+           <br />
+            <asp:Chart ID="GraRamo" Width="1012px" Visible="False" runat="server" Palette="Pastel">
+           <Series>
+               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" Label="#VAL{N}" YValuesPerPoint="2"></asp:Series>
+           </Series>
+           <ChartAreas>
+               <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+           </ChartAreas>
+       </asp:Chart>
+            <br />
+
+
+           <!--GRAFICO POR USUARIO-->
+            <asp:Label ID="lbGraficoPorUsuario" runat="server" Visible="false" Text="Produccion Por Usuario" CssClass="Letranegrita"></asp:Label>
+           <br />
+            <asp:Chart ID="GraUsuario" Width="1012px" Visible="False" runat="server" Palette="Pastel">
+           <Series>
+               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" Label="#VAL{N}" YValuesPerPoint="2"></asp:Series>
+           </Series>
+           <ChartAreas>
+               <asp:ChartArea Name="ChartArea1" BackSecondaryColor="Transparent"></asp:ChartArea>
+           </ChartAreas>
+       </asp:Chart>
+            <br />
+
+
+
+           <!--GRAFICO POR CONCEPTO-->
+            <asp:Label ID="lbGraficoConcepto" runat="server" Visible="false" Text="Produccion Por Concepto" CssClass="Letranegrita"></asp:Label>
+           <br />
+            <asp:Chart ID="GraConcepto" Width="1012px" Visible="False" runat="server" Palette="Pastel">
+           <Series>
+               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" Label="#VAL{N}" YValuesPerPoint="2"></asp:Series>
+           </Series>
+           <ChartAreas>
+               <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+           </ChartAreas>
+       </asp:Chart>
+            <br />
        </div>
        
    </div>
