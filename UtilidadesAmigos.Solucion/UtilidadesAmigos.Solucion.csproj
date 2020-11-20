@@ -95,6 +95,8 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Speech" />
     <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
@@ -188,6 +190,7 @@
     <None Include="Properties\PublishProfiles\Prueba.pubxml" />
     <Content Include="Paginas\ComisionesIntermediarios.aspx" />
     <Content Include="Paginas\ComisionesSupervisores.aspx" />
+    <Content Include="Paginas\ConsumoWS.aspx" />
     <Content Include="Paginas\DatosPoliza.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarBakupBD.aspx" />
@@ -410,6 +413,13 @@
     </Compile>
     <Compile Include="Paginas\ComprensivoIncendioRoboPoPup.aspx.designer.cs">
       <DependentUpon>ComprensivoIncendioRoboPoPup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\ConsumoWS.aspx.cs">
+      <DependentUpon>ConsumoWS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\ConsumoWS.aspx.designer.cs">
+      <DependentUpon>ConsumoWS.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\CotizadorAmigos.aspx.cs">
       <DependentUpon>CotizadorAmigos.aspx</DependentUpon>
@@ -762,6 +772,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Prueba\" />
+    <Folder Include="WS\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Paginas\GenerarFacturaPDF.rpt">
