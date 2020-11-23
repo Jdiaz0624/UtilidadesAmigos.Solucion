@@ -815,6 +815,65 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
+        #region SACAR INFORMACION DEL ORIGEN DE LA PRODUCCION PARA PASARLA A LA TABLA QUE SE VA A MANIPULAR
+        private void SacarInformacionOrigen() {
+            try {
+                EliminarDatosProduccion(Convert.ToDecimal(Session["Idusuario"]));
+
+                var SacarofigenDatos = ObjData.Value.BuscaReporteProduccionOrigen(
+                    Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHasta.Text),
+                    Convert.ToDecimal(txtTasa.Text));
+                foreach (var n in SacarofigenDatos)
+                {
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosProduccion GuardarRegistros = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosProduccion(
+                        Convert.ToDecimal(Session["IdUsuario"]),
+                        Convert.ToInt32(n.CodRamo),
+                        n.Ramo,
+                        Convert.ToDecimal(n.NumeroFactura),
+                        n.NumeroFacturaFormateado,
+                        n.Poliza,
+                        n.Asegurado,
+                        Convert.ToInt32(n.Items),
+                        n.Supervisor,
+                        Convert.ToInt32(n.CodIntermediario),
+                        Convert.ToInt32(n.CodSupervisor),
+                        n.Intermediario,
+                        Convert.ToDateTime(n.Fecha),
+                        n.FechaFormateada,
+                        Convert.ToDateTime(n.FechaInicioVigencia),
+                        Convert.ToDateTime(n.FechaFinVigencia),
+                        n.InicioVigencia,
+                        n.FinVigencia,
+                        n.SumaAsegurada.ToString(),
+                        n.Estatus,
+                        Convert.ToInt32(n.CodOficina),
+                        n.Oficina,
+                        n.Concepto,
+                        n.Ncf,
+                        Convert.ToInt32(n.Tipo),
+                        n.DescripcionTipo,
+                        Convert.ToDecimal(n.Bruto),
+                        Convert.ToDecimal(n.Impuesto),
+                        Convert.ToDecimal(n.Neto),
+                        Convert.ToDecimal(n.Tasa),
+                        Convert.ToDecimal(n.Cobrado),
+                        Convert.ToInt32(n.CodMoneda),
+                        n.Moneda,
+                        Convert.ToDecimal(n.TasaUsada),
+                        Convert.ToDecimal(n.MontoPesos),
+                        n.Mes,
+                        n.Usuario,
+                        "INSERT");
+                    GuardarRegistros.ProcesarInformacion();
+                }
+
+                PasarParametrosValidacion();
+            }
+            catch (Exception) { }
+        }
+        #endregion
+
         private void EliminarDatosProduccion(decimal IdUsuario) {
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosProduccion Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosProduccion(
                 IdUsuario, 0, "", 0, "", "", "", 0, "", 0, 0, "", DateTime.Now, "", DateTime.Now, DateTime.Now, "", "", "", "", 0, "", "", "", 0, "", 0, 0, 0, 0, 0, 0, "", 0, 0, "", "", "DELETE");
@@ -824,55 +883,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void CargarInformacionProduccionOrigen(DateTime FechaDesde, DateTime FechaHasta, decimal Tasa) {
             if (Session["IdUsuario"] != null)
             {
-                EliminarDatosProduccion(Convert.ToDecimal(Session["IdUsuario"]));
+                bool ValidarParametros = ValidacionControles(txtFechaDesde.Text, txtFechaHasta.Text, txtTasa.Text);
 
-                    var ConsultarDatosOrigen = ObjData.Value.BuscaReporteProduccionOrigen(FechaDesde, FechaHasta, Tasa);
-                    foreach (var n in ConsultarDatosOrigen)
-                    {
-                        //GUARDAMOS LOS DATOS 
-                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosProduccion Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosProduccion(
-                            Convert.ToDecimal(Session["IdUsuario"]),
-                            Convert.ToInt32(n.CodRamo),
-                            n.Ramo,
-                            Convert.ToDecimal(n.NumeroFactura),
-                            n.NumeroFacturaFormateado,
-                            n.Poliza,
-                            n.Asegurado,
-                            Convert.ToInt32(n.Items),
-                            n.Supervisor,
-                            Convert.ToInt32(n.CodIntermediario),
-                            Convert.ToInt32(n.CodSupervisor),
-                            n.Intermediario,
-                            Convert.ToDateTime(n.Fecha),
-                            n.FechaFormateada,
-                            Convert.ToDateTime(n.FechaInicioVigencia),
-                            Convert.ToDateTime(n.FechaFinVigencia),
-                            n.InicioVigencia,
-                            n.FinVigencia,
-                            n.SumaAsegurada.ToString(),
-                            n.Estatus,
-                            Convert.ToInt32(n.CodOficina),
-                            n.Oficina,
-                            n.Concepto,
-                            n.Ncf,
-                            Convert.ToInt32(n.Tipo),
-                            n.DescripcionTipo,
-                            Convert.ToDecimal(n.Bruto),
-                            Convert.ToDecimal(n.Impuesto),
-                            Convert.ToDecimal(n.Neto),
-                            Convert.ToDecimal(n.Tasa),
-                            Convert.ToDecimal(n.Cobrado),
-                            Convert.ToInt32(n.CodMoneda),
-                            n.Moneda,
-                            Convert.ToDecimal(n.TasaUsada),
-                            Convert.ToDecimal(n.MontoPesos),
-                            n.Mes,
-                            n.Usuario,
-                            "INSERT");
-                        Guardar.ProcesarInformacion();
-                    }
-                    PasarParametrosValidacion();
-                
+                if (ValidarParametros == false)
+                {
+                    SacarInformacionOrigen();
+                }
+
             }
             else {
                 FormsAuthentication.SignOut();
@@ -964,7 +981,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else {
 
-                ConsultarPorPantalla();
+                ConsultarPorPantalla(); 
                 cbGraficar.Checked = false;
                 OcultarControlesGraficos();
             }
@@ -984,7 +1001,137 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     ClientScript.RegisterStartupScript(GetType(), "CampoFechaHAstaVAcio", "CampoFechaHAstaVAcio();", true);
                 }
             }
-            else { }
+            else {
+
+                bool ValidarParametros = ValidacionControles(txtFechaDesde.Text, txtFechaHasta.Text, txtTasa.Text);
+
+                if (ValidarParametros == false) {
+                    SacarInformacionOrigen();
+                }
+                
+
+                //EXPORTAR INFORMACION SIN AGRUPAR NADA
+                if (rbNoAgrupar.Checked == true)
+                {
+
+                    //BUSCAR LA INFORMACION DE MANERA DETALLADA
+                    if (rbDetalle.Checked == true)
+                    {
+                        string Estatus = "";
+
+                        if (rbTodas.Checked == true)
+                        {
+                            Estatus = null;
+                        }
+                        else if (rbActivas.Checked == true)
+                        {
+                            Estatus = "ACTIVO";
+
+                        }
+                        else if (rbCanceladas.Checked == true)
+                        {
+                            Estatus = "CANCELADA";
+
+                        }
+                        string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+                        string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+                        int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+                        int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+
+                      
+                       
+
+                        var ExportarRegistrosNoagrupados = (from n in ObjData.Value.BuscaDatosProduccionNoAgrupadoDetalle(
+                            Convert.ToDecimal(Session["IdUsuario"]),
+                            Estatus,
+                            Convert.ToDateTime(txtFechaDesde.Text),
+                            Convert.ToDateTime(txtFechaHasta.Text),
+                            _CodigoSupervisor,
+                            _CodigoIntermediario,
+                            _Oficina,
+                            _Ramo,
+                            null,
+                            null,
+                            null)
+                                                            select new
+                                                            {
+                                                                Ramo =n.Ramo,
+                                                                NumeroFactura=n.NumeroFacturaFormateado,
+                                                                Poliza=n.Poliza,
+                                                                Asegurado=n.Asegurado,
+                                                                CodSupervisor=n.CodSupervisor,
+                                                                Supervisor=n.Supervisor,
+                                                                CodIntermediario=n.CodIntermediario,
+                                                                Intermediario=n.Intermediario,
+                                                                Fecha=n.FechaFormateada,
+                                                                InicioVigencia=n.InicioVigencia,
+                                                                FinVigencia=n.FinVigencia,
+                                                                SumaAsegurada=n.SumaAsegurada,
+                                                                Estatus=n.Estatus,
+                                                                Oficina=n.Oficina,
+                                                                Concepto=n.Concepto,
+                                                                NCF =n.Ncf,
+                                                                Tipo=n.DescripcionTipo,
+                                                                Bruto=n.Bruto,
+                                                                Impuesto=n.Impuesto,
+                                                                Neto=n.Neto,
+                                                                Tasa=n.TasaUsada,
+                                                                Cobrado=n.Cobrado,
+                                                                Moneda=n.Moneda,
+                                                                MontoPesos=n.MontoPesos,
+                                                                Mes=n.Mes,
+                                                                Usuario=n.Usuario
+
+
+                                                            }).ToList();
+
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de produccion de " + txtFechaDesde.Text + " Hasta " + txtFechaHasta.Text, ExportarRegistrosNoagrupados);
+
+                    }
+                    //BUSCAR LA INFORMACION DE MANERA RESUMIDA
+                    else if (rbResumido.Checked == true)
+                    {
+                     
+                    }
+
+                }
+                //AGRUPAR LA INFORMACION POR CONCEPTO
+                else if (rbAgruparConcepto.Checked == true)
+                {
+
+                    //BUSCAR LA INFORMACION DE MANERA DETALLADA
+                    if (rbDetalle.Checked == true)
+                    {
+
+                      
+                    }
+                    //BUSCAR LA INFORMACION DE MANERA RESUMIDA
+                    else if (rbResumido.Checked == true)
+                    {
+                   
+                    }
+                }
+                //AGRUPAR LA INFORMACION POR USUARIOS
+                else if (rbAgruparPorUsuarios.Checked == true)
+                {
+
+                    //BUSCAR LA INFORMACION DE MANERA DETALLADA
+                    if (rbDetalle.Checked == true)
+                    {
+                        //BUSCAR LA INFORMACION DE MANERA DETALLADA
+                        if (rbDetalle.Checked == true)
+                        {
+
+                        }
+                        //BUSCAR LA INFORMACION DE MANERA RESUMIDA
+                        else if (rbResumido.Checked == true)
+                        {
+    
+                        }
+                    }
+
+                }
+            }
         }
 
         protected void btnReporte_Click(object sender, EventArgs e)
@@ -1006,7 +1153,26 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gvListdoProduccion_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            gvListdoProduccion.PageIndex = e.NewPageIndex;
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CamposVacios", "CamposVacios();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVAcio", "CampoFechaDesdeVAcio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHAstaVAcio", "CampoFechaHAstaVAcio();", true);
+                }
+            }
+            else
+            {
 
+                ConsultarPorPantalla();
+                cbGraficar.Checked = false;
+                OcultarControlesGraficos();
+            }
         }
 
         protected void gvListdoProduccion_SelectedIndexChanged(object sender, EventArgs e)
