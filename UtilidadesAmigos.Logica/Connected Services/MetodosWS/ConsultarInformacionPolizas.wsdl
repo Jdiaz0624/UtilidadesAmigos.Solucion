@@ -1,0 +1,1367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Buscar_Ramo_Poliza">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Buscar_Ramo_PolizaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Buscar_Ramo_PolizaResult" type="tns:ArrayOfEBuscaRamoPoliza" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEBuscaRamoPoliza">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EBuscaRamoPoliza" nillable="true" type="tns:EBuscaRamoPoliza" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EBuscaRamoPoliza">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ramo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Buscar_Poliza_Responsabilidad_Civil">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nombreasegurado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentficacion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Buscar_Poliza_Responsabilidad_CivilResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Buscar_Poliza_Responsabilidad_CivilResult" type="tns:ArrayOfEResponsabilidadCivil" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEResponsabilidadCivil">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EResponsabilidadCivil" nillable="true" type="tns:EResponsabilidadCivil" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EResponsabilidadCivil">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Item" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ramo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Asegurado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicioVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo_Negocio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Actividad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ubicacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Provincia" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Interes_Asegurado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Valor_Asegurado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Profesion" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Predio_y_Operaciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Incendio_y_Explosión_Propiedades_Vecinas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="R_C_Propiedades_Alquiladas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gastos_Médicos_En_Los_Predios_Una_Persona" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gastos_Médicos_En_Los_Predios_Mas_De_Una_Persona" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Contratistas_Independientes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="R_C_Guardianes_Propios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Daños_Morales" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Equipos_Móviles_En_Los_Predios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Vehículos_Alquilados_y_No_Propios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Derrame_De_Líquidos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Vallas_y_Letreros" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Injuria_Personal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="R_C_Carga_y_Descarga" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="R_C_de_Parqueo_Excluye_Robo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="R_C_Antenas_Parabolas_Letrero_Fuera_de_los_Predios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Robo_y_Asalto_Dentro_Del_Local" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Robo_y_Asalt_Fuera_Del_Local" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="R_C_Remodelaciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="R_C_Cruzada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Total_Facturado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Total_Cobrado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Numero_Reclamo" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoReclamado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoAjustado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoSalvamento" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha_Apertura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha_Siniestro" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Busca_Datos_Fidelidad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NombreAsegurado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Busca_Datos_FidelidadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Busca_Datos_FidelidadResult" type="tns:ArrayOfEFidelidad" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEFidelidad">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EFidelidad" nillable="true" type="tns:EFidelidad" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EFidelidad">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Iten" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ramo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicioVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo_De_Negocios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Actividad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ubicacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Provincia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Formato" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Monto_Asegurado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fidelidad_de_Empleados" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Límite_de_Colusion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Robo_Dentro_Del_Local" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Robo_Fuera_Del_Local" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Falsificacion_Papel_Moneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Falsificacion_Depósitos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Falsificación_Cheques_Recibidos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Facturado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cobrado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroReclamo" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoReclamado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoAjustado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoSalvamento" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaApertura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaSiniestro" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Busca_Dato_Fianzas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NombreAsegurado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Busca_Dato_FianzasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Busca_Dato_FianzasResult" type="tns:ArrayOfEFianzas" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEFianzas">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EFianzas" nillable="true" type="tns:EFianzas" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EFianzas">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Item" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ramo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubRamo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicioVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Monto_Del_Contrato" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Monto_de_La_Obra" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Beneficiario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Actividad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Para_Garantizar" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo_De_Negocios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ubicacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo_Fianza" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Monto_Afianzar" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Porciento_Afianzar_Del_Monto_De_La_Obra" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Representante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cedula_Representante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Municipio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Provincia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_Fiscal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tribunal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_Magistrado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha_Sentencia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="No_Auto_Detencion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Funcion_Del_Fiscal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ley_Infración_Imputado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ubicacion_Juzgado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Garantia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fcturado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cobrado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroReclamacion" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoReclamado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoAjustado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoSalvamento" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaApertura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaSiniestro" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Busca_Datos_Ramos_Tecnicos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NombreAsegurado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Busca_Datos_Ramos_TecnicosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Busca_Datos_Ramos_TecnicosResult" type="tns:ArrayOfERamosTecnicos" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfERamosTecnicos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ERamosTecnicos" nillable="true" type="tns:ERamosTecnicos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ERamosTecnicos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Item" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ramo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubRamo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicioVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Monto_Del_Contrato" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Monto_de_La_Obra" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Beneficiario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Actividad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Para_Garantizar" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo_De_Negocios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ubicacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo_Fianza" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Monto_Afianzar" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Porciento_Afianzar_Del_Monto_De_La_Obra" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Representante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cedula_Representante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Municipio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Provincia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_Fiscal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tribunal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_Magistrado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha_Sentencia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="No_Auto_Detencion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Funcion_Del_Fiscal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ley_Infracion_Imputado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ubicacion_Juzgado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Maquinaria" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Danos_Materiales" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Perdida_de_Beneficio_Por_Averia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Danos_Materiales_Equipo_Elect" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gastos_Extras" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gastos_Flete_Aereo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gastos_de_Aceleración" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="R_C_Por_Averia_y_Maquinaria" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Todo_Riesgo_Danos_Materiables_Cob_A" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cobertura_B_Terremoto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Huelga_Motin_y_Conmoción_Civil" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Danos_Por_Agua_Accidental" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Inundacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cobertura_C_Huracan" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cobertura_D_Mantenimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Erro_En_Diseno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gastos_De_Acelaracion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Terremoto_Equipo_Elect" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Huracan_Equipo_Elect" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Riesgos_Del_Fabricante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Equipos_de_Contratista" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Traslado_Terrestre_Límitado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Almacenaje" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="R_C_Extracontractual" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="R_C_Cruzada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bienes_Existentes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Remoción_De_Escombros" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Honorarios_De_Arquitecto_e_Ingeniero" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mantenimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Equipos_De_Montaje" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Huelga_Motin_y_Conmoción_Civil_Equipo_Elect" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Robo_Equipo_Elect" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Hurto_Equipos_Moviles_y_Portatiles" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Danos_Materiales_Portadores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Terremoto_Portadores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Huracan_Portadores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Huelga_Motin_y_Conmocion_Civil_Portadores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Robo_Equipo_Portadores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Hurto_Portadores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Facturado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cobrado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroReclamacion" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoReclamado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoAjustado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoSalvamento" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaApertura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaSiniestro" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Busca_Datos_TransPorte_Carga">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroPoliza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroItem" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Busca_Datos_TransPorte_CargaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Busca_Datos_TransPorte_CargaResult" type="tns:ArrayOfETransporteCarga" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfETransporteCarga">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ETransporteCarga" nillable="true" type="tns:ETransporteCarga" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ETransporteCarga">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Item" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ramo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubRamo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Clausula_A_de_Carga_del_Instituto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Clausula_B_de_Carga_del_Instituto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Clausula_C_de_Carga_del_Instituto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Clausula_de_Guerra_Carga_Aerea" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Clausula_de_Guerra_Carga_Maritima" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Clausula_De_Guerra_Motin_Huelga_y_Conmocion_Civil" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Colision_Accidental_del_Vehiculo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Deslizamiento_y_o_Caida_de_Bultos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descarrilamiento_o_Volcadura_del_Vehiculo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Inundacion_y_Desbordamiento_de_Rios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Derrumbe_y_o_Hundimiento_de_Puentes_Tuneles_Alcantarillado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Embarcadero_Terraplenes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Terremoto_Temblor_de_Tierra" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Huracanes_Ciclon_Tormentas_Motin_y_Huelga" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Robo_a_Consecuencia_de_Uno_de_los_Riesgos_Cubiertos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Incendio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Motin_Huelga_y_Danos_Maliciosos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Facturado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cobrado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroReclamacion" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoReclamado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoAjustado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoSalvamento" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaApertura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaSiniestro" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Busca_Datos_Vehiculo_Motor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NombreAsegurado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Marca" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Modelo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Chasis" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Placa" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Busca_Datos_Vehiculo_MotorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Busca_Datos_Vehiculo_MotorResult" type="tns:ArrayOfEVehiculoMotor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEVehiculoMotor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EVehiculoMotor" nillable="true" type="tns:EVehiculoMotor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EVehiculoMotor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SumaAsegurada" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Item" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ramo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubRamo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RNC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicioVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo_Vehiculo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Marca" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Modelo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Capacidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ano" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Color" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Chasis" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Placa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Uso" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Valor_Vehiculo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Porciento_Cobertura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Coaseguro_Incendio_Porciento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Puertas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cantidad_Puertas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descuentos_Porciento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fianza_Judicial" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Numero_Financiamiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Monto_Financiamiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Deducible" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Deducible_incendio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Coaseguro_Porciento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Obsevacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_Asegurado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="A_que_Tiempo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha_Finaliza_Financiamiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza_Basica" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Danos_a_La_Propiedad_Ajena" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lesiones_o_Muerte_a_Una_Persona" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lesiones_o_Muerte_a_Mas_De_Una_Persona" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Responsabilidad_Civil_Un_Pasajero_Incluye_Pasajero" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Responsabilidad_Civil_a_Mas_De_Un_Pasajero_Incluye_Pasajero" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Colision_y_Vuelco" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Riesgo_Comprensivo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Incendio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fianza_Judicial_Al_Conductor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Vehiculo_Rentado_5_Dias_Compacto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rotura_de_Cristales" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Casa_Del_Conductor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Riesgo_Al_Conductor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Robo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tu_Asistencia_Premium" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tu_Asistencia_Superior" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Aero_Ambulancia_Auto_Alert_Plus_1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Futuro_exequial" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Facturado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cobrado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroReclamacion" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoReclamado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoAjustado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoSalvamento" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaApertura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaSiniestro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Oficina" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Busca_Datos_Incendio_aliadas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentiicacion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Busca_Datos_Incendio_aliadasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Busca_Datos_Incendio_aliadasResult" type="tns:ArrayOfEIncendioAliadas" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEIncendioAliadas">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EIncendioAliadas" nillable="true" type="tns:EIncendioAliadas" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EIncendioAliadas">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SumaAsegurada" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Item" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ramo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubRamo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RNC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicioVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo_De_Negocios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Actividad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Categoria_Construccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion_Del_Riesgo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Provincia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mejoras" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Edificacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Maquinarias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mobiliarios_Y_Equipos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Existencias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pais" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sector" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Uso_Principal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Distancia_De_500_Metros_Al_Mar_Lago_O_Rio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Norte" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sur" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Este" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Oeste" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Incendio_y_o_Rayo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Terremoto_y_o_Temblor_de_Tierra" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Huracan_Ciclon_Tornado_y_Manga_de_Viento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Inundacion_y_o_Ras_de_Mar" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Motin_Huelga_y_Dalos_Maliciosos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Explosion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Danos_por_Naves_Aereas_Vehiculos_Terrestres" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Danos_por_Humo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Danos_por_Agua_a_Consecuencia_de_Ciclon" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Danos_por_Agua_Accidental" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rotura_y_o_Colapso_de_Tanques_y_Silos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Combustion_Espontanea" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Derrumbe_de_Estibas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Remocion_de_Escombros" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Robo_con_Escalamiento_y_o_Violencia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mercancia_en_Transito" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Perdidas_Indirectas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Danos_por_Granizo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gastos_Extraordinario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gastos_Médicos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Responsabilidad_Cívil_Básica" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Equipos_Electronicos_hasta_RD_50000" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gastos_Extinción_RD_50000" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Colapso_y_o_Derrumbe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Facturado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cobrado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroReclamacion" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoReclamado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoAjustado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoSalvamento" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaApertura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaSiniestro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Oficina" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Busca_Datos_Naves_Maritimas_Aereas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Busca_Datos_Naves_Maritimas_AereasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Busca_Datos_Naves_Maritimas_AereasResult" type="tns:ArrayOfENavesMaritimasAereas" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfENavesMaritimasAereas">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ENavesMaritimasAereas" nillable="true" type="tns:ENavesMaritimasAereas" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ENavesMaritimasAereas">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SumaAsegurada" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Item" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ramo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubRamo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RNC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicioVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Matricula_Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Marca_Modelo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ANo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="No_Serie" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Motor_marca" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Material_Casco" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dimension_Puntal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dimension_Eslora" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dimension_Manga" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Limite_Navegacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Puerto_Base" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Deducible_Casco_Y_Maquinaria" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Deducible_Responsabilidad_Civil" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Deducible_Tormentas_Nombradas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Valor_Asegurado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Casco_Y_Maquinarias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Accidentes_Personales" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Responsabilidad_Civil_a_Terceros_P_I" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gastos_Medicos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Facturado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cobrado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroReclamacion" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoReclamado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoAjustado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoSalvamento" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaApertura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaSiniestro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Oficina" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Busca_Datos_Salud">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Busca_Datos_SaludResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Busca_Datos_SaludResult" type="tns:ArrayOfESalud" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfESalud">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ESalud" nillable="true" type="tns:ESalud" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ESalud">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SumaAsegurada" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Item" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ramo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubRamo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RNC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicioVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ubicacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_Asegurado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha_Nacimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Salario_Mensual" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cobertura_Generica" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Facturado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cobrado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroReclamacion" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoReclamado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoAjustado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoSalvamento" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaApertura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaSiniestro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Oficina" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Busca_Datos_Vida_Individual">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Busca_Datos_Vida_IndividualResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Busca_Datos_Vida_IndividualResult" type="tns:ArrayOfEVidaIndividual" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEVidaIndividual">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EVidaIndividual" nillable="true" type="tns:EVidaIndividual" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EVidaIndividual">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SumaAsegurada" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Item" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ramo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubRamo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RNC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicioVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ubicacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_Asegurado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ubicacion1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha_Nacimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Salario_Mensual" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Muerte_Natural" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Muerte_Accidental" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Incapacidad_Total_y_Permanente_por_accidente_o_enfermedad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Doble_Indemnizacion_por_muerte_accidental_o_enfermedad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cubre_VIH_SIDA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gastos_medicos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Incapacidad_Total_y_Permanente_por_enfermedad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Desmembramiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Accidentes_Personales" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ultimos_Gastos_Funerarios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Seguro_de_Vida" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Plan_Canasta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reembolso_Por_Fidelidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Paci" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Facturado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cobrado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroReclamacion" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoReclamado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoAjustado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoSalvamento" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaApertura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaSiniestro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Oficina" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Busca_Datos_Vida_Colectivo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Busca_Datos_Vida_ColectivoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Busca_Datos_Vida_ColectivoResult" type="tns:ArrayOfEVidaColectivo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEVidaColectivo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EVidaColectivo" nillable="true" type="tns:EVidaColectivo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EVidaColectivo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SumaAsegurada" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Item" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ramo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubRamo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RNC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicioVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ubicacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_Asegurado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha_Nacimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Salario_Mensual" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Monto_Otorgado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Monto_Adeudado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Monto_Ahorrado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha_Prestamo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Provincia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Muerte_Natural" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Muerte_Accidental" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Incapacidad_Total_y_Permanente_por_accidente_o_enfermedad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Doble_Indemnizacion_por_muerte_accidental_o_enfermedad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cubre_Vih_sida" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gastos_medicos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Incapacidad_Total_y_Permanente_por_enfermedad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Desmembramiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Accidentes_Personales" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ultimos_Gastos_Funerarios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Seguro_de_Vida" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Plan_Canasta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Renta_por_incapacidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Facturado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cobrado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroReclamacion" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoReclamado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoAjustado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoSalvamento" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaApertura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaSiniestro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Oficina" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Buscar_Datos_Ofontologogia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Buscar_Datos_OfontologogiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Buscar_Datos_OfontologogiaResult" type="tns:ArrayOfEOdontologico" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEOdontologico">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EOdontologico" nillable="true" type="tns:EOdontologico" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EOdontologico">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SumaAsegurada" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Item" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ramo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubRamo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RNC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicioVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFinVigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ubicacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_Asegurado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha_Nacimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Salario_Mensual" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Monto_Otorgado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Monto_Adeudado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Monto_Ahorrado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha_Prestamo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Provincia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Consulta_General_y_o_Especializada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Consulta_de_Emergencia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Aplicación_de_Sellantes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Topicación_de_Fluor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Aplicación_de_Resina_Preventiva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Profilaxis_Induccion_Higiene_Odontologica" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Control_de_Placa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Destartrajes_por_Cuadrante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Drenaje_de_Colección_Periodontal_c_Alisado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Alisado_Radicular_Campo_Cerrado_cuadrante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Recubrimientos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Apertura_de_Canal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reimplantacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Biopsias_paciente_Paga_Laboratorio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Radiografias_Intraorales_Panorámicas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Remoción_Cuerpo_Extrano_Tejidos_Blancos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Escisión_de_Lesion_de_Encia_Sod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Facturado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cobrado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroReclamacion" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoReclamado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoAjustado" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoSalvamento" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaApertura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaSiniestro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Oficina" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BuscaDependientes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NombreAsegurado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscaDependientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscaDependientesResult" type="tns:ArrayOfEBuscaDependientes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEBuscaDependientes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EBuscaDependientes" nillable="true" type="tns:EBuscaDependientes" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EBuscaDependientes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Poliza" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ramo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subramo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InicioVigencia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FinVigencia" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdAsegurado" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreAsegurado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parentezco" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumeroIdentificacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaNacimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sexo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PorcPrima" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CantidadRegistros" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Buscar_Ramo_PolizaSoapIn">
+    <wsdl:part name="parameters" element="tns:Buscar_Ramo_Poliza" />
+  </wsdl:message>
+  <wsdl:message name="Buscar_Ramo_PolizaSoapOut">
+    <wsdl:part name="parameters" element="tns:Buscar_Ramo_PolizaResponse" />
+  </wsdl:message>
+  <wsdl:message name="Buscar_Poliza_Responsabilidad_CivilSoapIn">
+    <wsdl:part name="parameters" element="tns:Buscar_Poliza_Responsabilidad_Civil" />
+  </wsdl:message>
+  <wsdl:message name="Buscar_Poliza_Responsabilidad_CivilSoapOut">
+    <wsdl:part name="parameters" element="tns:Buscar_Poliza_Responsabilidad_CivilResponse" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_FidelidadSoapIn">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_Fidelidad" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_FidelidadSoapOut">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_FidelidadResponse" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Dato_FianzasSoapIn">
+    <wsdl:part name="parameters" element="tns:Busca_Dato_Fianzas" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Dato_FianzasSoapOut">
+    <wsdl:part name="parameters" element="tns:Busca_Dato_FianzasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_Ramos_TecnicosSoapIn">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_Ramos_Tecnicos" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_Ramos_TecnicosSoapOut">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_Ramos_TecnicosResponse" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_TransPorte_CargaSoapIn">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_TransPorte_Carga" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_TransPorte_CargaSoapOut">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_TransPorte_CargaResponse" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_Vehiculo_MotorSoapIn">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_Vehiculo_Motor" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_Vehiculo_MotorSoapOut">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_Vehiculo_MotorResponse" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_Incendio_aliadasSoapIn">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_Incendio_aliadas" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_Incendio_aliadasSoapOut">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_Incendio_aliadasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_Naves_Maritimas_AereasSoapIn">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_Naves_Maritimas_Aereas" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_Naves_Maritimas_AereasSoapOut">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_Naves_Maritimas_AereasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_SaludSoapIn">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_Salud" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_SaludSoapOut">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_SaludResponse" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_Vida_IndividualSoapIn">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_Vida_Individual" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_Vida_IndividualSoapOut">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_Vida_IndividualResponse" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_Vida_ColectivoSoapIn">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_Vida_Colectivo" />
+  </wsdl:message>
+  <wsdl:message name="Busca_Datos_Vida_ColectivoSoapOut">
+    <wsdl:part name="parameters" element="tns:Busca_Datos_Vida_ColectivoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Buscar_Datos_OfontologogiaSoapIn">
+    <wsdl:part name="parameters" element="tns:Buscar_Datos_Ofontologogia" />
+  </wsdl:message>
+  <wsdl:message name="Buscar_Datos_OfontologogiaSoapOut">
+    <wsdl:part name="parameters" element="tns:Buscar_Datos_OfontologogiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscaDependientesSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscaDependientes" />
+  </wsdl:message>
+  <wsdl:message name="BuscaDependientesSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscaDependientesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ConsultarInformacionPolizasSoap">
+    <wsdl:operation name="Buscar_Ramo_Poliza">
+      <wsdl:input message="tns:Buscar_Ramo_PolizaSoapIn" />
+      <wsdl:output message="tns:Buscar_Ramo_PolizaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Poliza_Responsabilidad_Civil">
+      <wsdl:input message="tns:Buscar_Poliza_Responsabilidad_CivilSoapIn" />
+      <wsdl:output message="tns:Buscar_Poliza_Responsabilidad_CivilSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Fidelidad">
+      <wsdl:input message="tns:Busca_Datos_FidelidadSoapIn" />
+      <wsdl:output message="tns:Busca_Datos_FidelidadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Dato_Fianzas">
+      <wsdl:input message="tns:Busca_Dato_FianzasSoapIn" />
+      <wsdl:output message="tns:Busca_Dato_FianzasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Ramos_Tecnicos">
+      <wsdl:input message="tns:Busca_Datos_Ramos_TecnicosSoapIn" />
+      <wsdl:output message="tns:Busca_Datos_Ramos_TecnicosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_TransPorte_Carga">
+      <wsdl:input message="tns:Busca_Datos_TransPorte_CargaSoapIn" />
+      <wsdl:output message="tns:Busca_Datos_TransPorte_CargaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Vehiculo_Motor">
+      <wsdl:input message="tns:Busca_Datos_Vehiculo_MotorSoapIn" />
+      <wsdl:output message="tns:Busca_Datos_Vehiculo_MotorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Incendio_aliadas">
+      <wsdl:input message="tns:Busca_Datos_Incendio_aliadasSoapIn" />
+      <wsdl:output message="tns:Busca_Datos_Incendio_aliadasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Naves_Maritimas_Aereas">
+      <wsdl:input message="tns:Busca_Datos_Naves_Maritimas_AereasSoapIn" />
+      <wsdl:output message="tns:Busca_Datos_Naves_Maritimas_AereasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Salud">
+      <wsdl:input message="tns:Busca_Datos_SaludSoapIn" />
+      <wsdl:output message="tns:Busca_Datos_SaludSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Vida_Individual">
+      <wsdl:input message="tns:Busca_Datos_Vida_IndividualSoapIn" />
+      <wsdl:output message="tns:Busca_Datos_Vida_IndividualSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Vida_Colectivo">
+      <wsdl:input message="tns:Busca_Datos_Vida_ColectivoSoapIn" />
+      <wsdl:output message="tns:Busca_Datos_Vida_ColectivoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Datos_Ofontologogia">
+      <wsdl:input message="tns:Buscar_Datos_OfontologogiaSoapIn" />
+      <wsdl:output message="tns:Buscar_Datos_OfontologogiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscaDependientes">
+      <wsdl:input message="tns:BuscaDependientesSoapIn" />
+      <wsdl:output message="tns:BuscaDependientesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConsultarInformacionPolizasSoap" type="tns:ConsultarInformacionPolizasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Buscar_Ramo_Poliza">
+      <soap:operation soapAction="http://tempuri.org/Buscar_Ramo_Poliza" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Poliza_Responsabilidad_Civil">
+      <soap:operation soapAction="http://tempuri.org/Buscar_Poliza_Responsabilidad_Civil" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Fidelidad">
+      <soap:operation soapAction="http://tempuri.org/Busca_Datos_Fidelidad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Dato_Fianzas">
+      <soap:operation soapAction="http://tempuri.org/Busca_Dato_Fianzas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Ramos_Tecnicos">
+      <soap:operation soapAction="http://tempuri.org/Busca_Datos_Ramos_Tecnicos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_TransPorte_Carga">
+      <soap:operation soapAction="http://tempuri.org/Busca_Datos_TransPorte_Carga" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Vehiculo_Motor">
+      <soap:operation soapAction="http://tempuri.org/Busca_Datos_Vehiculo_Motor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Incendio_aliadas">
+      <soap:operation soapAction="http://tempuri.org/Busca_Datos_Incendio_aliadas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Naves_Maritimas_Aereas">
+      <soap:operation soapAction="http://tempuri.org/Busca_Datos_Naves_Maritimas_Aereas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Salud">
+      <soap:operation soapAction="http://tempuri.org/Busca_Datos_Salud" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Vida_Individual">
+      <soap:operation soapAction="http://tempuri.org/Busca_Datos_Vida_Individual" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Vida_Colectivo">
+      <soap:operation soapAction="http://tempuri.org/Busca_Datos_Vida_Colectivo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Datos_Ofontologogia">
+      <soap:operation soapAction="http://tempuri.org/Buscar_Datos_Ofontologogia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscaDependientes">
+      <soap:operation soapAction="http://tempuri.org/BuscaDependientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsultarInformacionPolizasSoap12" type="tns:ConsultarInformacionPolizasSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Buscar_Ramo_Poliza">
+      <soap12:operation soapAction="http://tempuri.org/Buscar_Ramo_Poliza" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Poliza_Responsabilidad_Civil">
+      <soap12:operation soapAction="http://tempuri.org/Buscar_Poliza_Responsabilidad_Civil" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Fidelidad">
+      <soap12:operation soapAction="http://tempuri.org/Busca_Datos_Fidelidad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Dato_Fianzas">
+      <soap12:operation soapAction="http://tempuri.org/Busca_Dato_Fianzas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Ramos_Tecnicos">
+      <soap12:operation soapAction="http://tempuri.org/Busca_Datos_Ramos_Tecnicos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_TransPorte_Carga">
+      <soap12:operation soapAction="http://tempuri.org/Busca_Datos_TransPorte_Carga" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Vehiculo_Motor">
+      <soap12:operation soapAction="http://tempuri.org/Busca_Datos_Vehiculo_Motor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Incendio_aliadas">
+      <soap12:operation soapAction="http://tempuri.org/Busca_Datos_Incendio_aliadas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Naves_Maritimas_Aereas">
+      <soap12:operation soapAction="http://tempuri.org/Busca_Datos_Naves_Maritimas_Aereas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Salud">
+      <soap12:operation soapAction="http://tempuri.org/Busca_Datos_Salud" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Vida_Individual">
+      <soap12:operation soapAction="http://tempuri.org/Busca_Datos_Vida_Individual" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busca_Datos_Vida_Colectivo">
+      <soap12:operation soapAction="http://tempuri.org/Busca_Datos_Vida_Colectivo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Datos_Ofontologogia">
+      <soap12:operation soapAction="http://tempuri.org/Buscar_Datos_Ofontologogia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscaDependientes">
+      <soap12:operation soapAction="http://tempuri.org/BuscaDependientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConsultarInformacionPolizas">
+    <wsdl:port name="ConsultarInformacionPolizasSoap" binding="tns:ConsultarInformacionPolizasSoap">
+      <soap:address location="http://172.26.24.199/wsdatopoliza/ConsultarInformacionPolizas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsultarInformacionPolizasSoap12" binding="tns:ConsultarInformacionPolizasSoap12">
+      <soap12:address location="http://172.26.24.199/wsdatopoliza/ConsultarInformacionPolizas.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
