@@ -22,67 +22,40 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// rbcolaborador control.
+        /// NombreEmpresa control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbcolaborador;
+        protected global::System.Web.UI.WebControls.Label NombreEmpresa;
         
         /// <summary>
-        /// rbSupervisor control.
+        /// lbContador control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbSupervisor;
+        protected global::System.Web.UI.WebControls.Label lbContador;
         
         /// <summary>
-        /// rbIntermediario control.
+        /// txtUsuarioLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbIntermediario;
+        protected global::System.Web.UI.WebControls.TextBox txtUsuarioLogin;
         
         /// <summary>
-        /// lbIngresarUsuarioClave control.
+        /// txtClaveLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbIngresarUsuarioClave;
-        
-        /// <summary>
-        /// txtUsuario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuario;
-        
-        /// <summary>
-        /// txtClave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtClave;
-        
-        /// <summary>
-        /// btnIngresarSistema control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIngresarSistema;
+        protected global::System.Web.UI.WebControls.TextBox txtClaveLogin;
         
         /// <summary>
         /// txtNuevaClave control.
@@ -103,21 +76,12 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.TextBox txtConfirmarClave;
         
         /// <summary>
-        /// btnCambiarClave control.
+        /// btnIngresarSistema control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCambiarClave;
-        
-        /// <summary>
-        /// lbContadorBloqueo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbContadorBloqueo;
+        protected global::System.Web.UI.WebControls.Button btnIngresarSistema;
     }
 }
