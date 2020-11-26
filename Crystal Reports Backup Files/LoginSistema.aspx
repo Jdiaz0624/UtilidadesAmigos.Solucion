@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>DSMarket</title>
+    <title>Utilidades Amigos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
     <link rel="icon" type="image/png" href="Recursos/Facturación-Electrónica-Icono-1024x1024.ico" />
     
@@ -16,6 +16,18 @@ body {
   margin: 0;
 }
 body { background-color: #465268; }
+
+#CentralizarLogin {
+       position:absolute;
+       top: 40%;
+       left: 50%;
+       width:30em;
+       height:18em;
+       margin-top: -9em; /*set to a negative number 1/2 of your height*/
+       margin-left: -15em; /*set to a negative number 1/2 of your width*/
+       /*border: 0px solid #ccc;
+       background-color: #f3f3f3;*/
+}
 
 .page-lock {
   margin: 90px auto 30px auto;
@@ -225,18 +237,37 @@ body { background-color: #465268; }
 </style>
 
         
+    <script type="text/javascript">
+        function CamposVacios() {
+            alert("No puedes dejar campos vacios para ingresar al sistema, favor de verificar.");
+        }
 
+        function UsuarioNovalido() {
+            alert("El nombre de usuario o la clave ingresada no es valida, favor de verificar.");
+        }
+        function CambiarClavevacio() {
+            alert("No puedes dejar campos vacios para cambiar la clave.");
+        }
+
+        function UsuarioBloqueado() {
+            alert("Este usuario se ha sido bloqueado por exeso de intentos fallidos, favor de contactar con el departamento de tecnologia para desbloquear la cuenta.");
+        }
+
+
+       
+    </script>
 
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="container">
-	<div class="page-lock">
+	<div class="page-lock" id="CentralizarLogin">
     	<div class="page-body">
     		<div class="lock-head">
-    			<asp:Label ID="NombreEmpresa" runat="server" Text="Tu Nombre Aqui"></asp:Label>
+    			<asp:Label ID="NombreEmpresa" runat="server" Text="Ingresar Datos de Acceso"></asp:Label>
+                <asp:Label ID="lbContador" Visible="false" runat="server" Text="0"></asp:Label>
     		</div>
-    		<div class="lock-body">
+    		<div class="lock-body" >
     			
 
     				<div class="form-group">
@@ -258,7 +289,7 @@ body { background-color: #465268; }
     				</div>
     				<div class="form-actions">
     					<div align="center">
-                            <asp:Button ID="btnIngresarSistema" runat="server" Text="Entrar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Ingrsar al Sistema" />
+                            <asp:Button ID="btnIngresarSistema" runat="server" Text="Entrar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnIngresarSistema_Click" ToolTip="Ingrsar al Sistema" />
     					</div>
     				</div>
     			

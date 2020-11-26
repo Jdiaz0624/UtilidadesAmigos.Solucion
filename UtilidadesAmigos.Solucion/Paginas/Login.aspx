@@ -252,6 +252,9 @@ body { background-color: #465268; }
         function UsuarioBloqueado() {
             alert("Este usuario se ha sido bloqueado por exeso de intentos fallidos, favor de contactar con el departamento de tecnologia para desbloquear la cuenta.");
         }
+        function ClavesNoConcuerdan() {
+            alert("Las claves ingresadas no concuerdan, favor de verificar");
+        }
 
 
 
@@ -274,22 +277,23 @@ body { background-color: #465268; }
                          <!--TEXBOX-->
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <asp:TextBox ID="txtUsuarioLogin" AutoCompleteType="Disabled" runat="server" Placeholder="Usuario" CssClass="form-control" MaxLength="20"></asp:TextBox>
+                                <asp:TextBox ID="txtUsuarioLogin"  runat="server" AutoCompleteType="Disabled" Placeholder="Usuario" CssClass="form-control" MaxLength="20"></asp:TextBox>
                             </div>
                             <div class="form-group col-md-12">
-                                <asp:TextBox ID="txtClaveLogin" runat="server" Placeholder="Clave" TextMode="Password" CssClass="form-control" MaxLength="40"></asp:TextBox>
+                                <asp:TextBox ID="txtClaveLogin" runat="server" Placeholder="Clave" TextMode="Password" AutoCompleteType="Disabled" CssClass="form-control" MaxLength="40"></asp:TextBox>
                             </div>
                              <div class="form-group col-md-12">
-                                <asp:TextBox ID="txtNuevaClave" Visible="false" runat="server" Placeholder="Nueva Clave" TextMode="Password" CssClass="form-control" MaxLength="40"></asp:TextBox>
+                                <asp:TextBox ID="txtNuevaClave" Visible="false" runat="server" AutoCompleteType="Disabled" Placeholder="Nueva Clave" TextMode="Password" CssClass="form-control" MaxLength="40"></asp:TextBox>
                             </div>
                              <div class="form-group col-md-12">
-                                <asp:TextBox ID="txtConfirmarClave" Visible="false" runat="server" Placeholder="Confirmar Clave" TextMode="Password" CssClass="form-control" MaxLength="40"></asp:TextBox>
+                                <asp:TextBox ID="txtConfirmarClave" Visible="false" runat="server"  Placeholder="Confirmar Clave" TextMode="Password" AutoCompleteType="Disabled" CssClass="form-control" MaxLength="40"></asp:TextBox>
                             </div>
                         </div>
     				</div>
     				<div class="form-actions">
     					<div align="center">
-                            <asp:Button ID="btnIngresarSistema" runat="server" Text="Entrar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Ingrsar al Sistema" />
+                            <asp:Button ID="btnIngresarSistema" runat="server" Text="Entrar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnIngresarSistema_Click" ToolTip="Ingrsar al Sistema" />
+                            <asp:Button ID="btnCambiarClave" runat="server" Text="Cambiar Clave" CssClass="btn btn-outline-secondary btn-sm" Visible="false" OnClick="btnCambiarClave_Click" ToolTip="Cambiar Clave de usuario" />
     					</div>
     				</div>
     			
