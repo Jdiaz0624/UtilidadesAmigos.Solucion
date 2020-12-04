@@ -91,7 +91,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Factura.Refresh();
                 Factura.SetParameterValue("@IdUsuario", IdUsuario);
                 Factura.SetDatabaseLogon(UsuaruoBD, ClaveBD);
-                Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+                Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, NombreArchivo);
 
                   //Factura.PrintToPrinter(1, false, 0, 1);
                 //  crystalReportViewer1.ReportSource = Factura;
@@ -335,7 +335,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     if (rbReporteResumido.Checked)
                     {
                         string Nombrearchivo = "Reporte de Comisiones Supervisores Resumido " + txtFechaDesdeConsulta.Text + " Hasta " + txtFechaHastaConsulta.Text;
-                        ImprimirReporteResumido(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionSupervisorResumido.rpt"), "sa", "Pa$$W0rd", Nombrearchivo);
+                        ImprimirReporteResumido(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionSupervisorResumidoCorregido.rpt"), "sa", "Pa$$W0rd", Nombrearchivo);
                     }
                     else
                     {
