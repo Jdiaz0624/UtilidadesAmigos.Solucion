@@ -1091,7 +1091,53 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     //BUSCAR LA INFORMACION DE MANERA RESUMIDA
                     else if (rbResumido.Checked == true)
                     {
-                     
+                        string Estatus = "";
+
+                        if (rbTodas.Checked == true)
+                        {
+                            Estatus = null;
+                        }
+                        else if (rbActivas.Checked == true)
+                        {
+                            Estatus = "ACTIVO";
+
+                        }
+                        else if (rbCanceladas.Checked == true)
+                        {
+                            Estatus = "CANCELADA";
+
+                        }
+                        string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+                        string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+                        int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+                        int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+
+                        var ExportarResumenProduccionNoAgrupado = (from n in ObjData.Value.BuscaDatosProduccionNoAgrupadoResumen(
+                            Convert.ToDecimal(Session["IdUsuario"]),
+                            Estatus,
+                            Convert.ToDateTime(txtFechaDesde.Text),
+                            Convert.ToDateTime(txtFechaHasta.Text),
+                            _CodigoSupervisor,
+                            _CodigoIntermediario,
+                            _Oficina,
+                            _Ramo,
+                            null, null, null)
+                                                                   select new {
+                                                                       Ramo=n.Ramo,
+                                                                       Supervisor=n.Supervisor,
+                                                                       Intermediario=n.Intermediario,
+                                                                       Oficina=n.Oficina,
+                                                                       Tipo=n.DescripcionTipo,
+                                                                       Bruto=n.Bruto,
+                                                                       Impuesto=n.Impuesto,
+                                                                       Neto=n.Neto,
+                                                                       Cobrado=n.Cobrado,
+                                                                       CodMoneda=n.CodMoneda,
+                                                                       Moneda=n.Moneda,
+                                                                       TasaUsada=n.TasaUsada,
+                                                                       MontoPesos=n.MontoPesos
+                                                                   }).ToList();
+                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte Producción Resumida " + txtFechaDesde.Text + " Hasta " + txtFechaHasta.Text, ExportarResumenProduccionNoAgrupado);
                     }
 
                 }

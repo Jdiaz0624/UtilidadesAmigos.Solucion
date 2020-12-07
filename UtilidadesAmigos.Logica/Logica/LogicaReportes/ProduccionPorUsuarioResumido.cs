@@ -318,6 +318,36 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                            }).ToList();
             return Listado;
         }
+
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaDatosProduccionNoAgrupadoResumen> BuscaDatosProduccionNoAgrupadoResumen(decimal? IdUsuario = null, string Estatus = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, string CodigoSupervisor = null, string CodigoIntermediario = null, int? Oficina = null, int? Ramo = null, int? CodMoneda = null, string Concepto = null, string Mes = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_DATOS_PRODUCCION_NO_AGRUPADO_RESUMEN(IdUsuario, Estatus, FechaDesde, FechaHasta, CodigoSupervisor, CodigoIntermediario, Oficina, Ramo, CodMoneda, Concepto, Mes)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaDatosProduccionNoAgrupadoResumen
+                           {
+                               IdUsuario=n.IdUsuario,
+                               CodRamo=n.CodRamo,
+                               Ramo=n.Ramo,
+                               Supervisor=n.Supervisor,
+                               CodIntermediario=n.CodIntermediario,
+                               CodSupervisor=n.CodSupervisor,
+                               Intermediario=n.Intermediario,
+                               CodOficina=n.CodOficina,
+                               Oficina=n.Oficina,
+                               Tipo=n.Tipo,
+                               DescripcionTipo=n.DescripcionTipo,
+                               Bruto=n.Bruto,
+                               Impuesto=n.Impuesto,
+                               Neto=n.Neto,
+                               Cobrado=n.Cobrado,
+                               CodMoneda=n.CodMoneda,
+                               Moneda=n.Moneda,
+                               TasaUsada=n.TasaUsada,
+                               MontoPesos=n.MontoPesos
+                           }).ToList();
+            return Listado;
+        
+        }
         #endregion
         #region PROCESAR INFORMACION GRAFICO
         public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDatosGraficos ProcesarInformacionDatoGrafico(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDatosGraficos Item, string Accion) {
@@ -392,7 +422,99 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             }
             return Procesar;
         }
-       
+
+        #endregion
+
+        #region PROCESAR INFORMACION PARA LOS DATOS DEL REPORTE
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EDatosProduccionReporte ProcesarInformacionDatosReporte(UtilidadesAmigos.Logica.Entidades.Reportes.EDatosProduccionReporte Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EDatosProduccionReporte Procesar = null;
+
+            var DatoPolizaReporte = ObjData.SP_BUSCA_DATO_POLIZA_PRODUCCION_REPORTE(
+                Item.IdUsuario,
+                Item.CodRamo,
+                Item.Ramo,
+                Item.NumeroFactura,
+                Item.NumeroFacturaFormateado,
+                Item.Poliza,
+                Item.Asegurado,
+                Item.Items,
+                Item.Supervisor,
+                Item.CodIntermediario,
+                Item.CodSupervisor,
+                Item.Intermediario,
+                Item.Fecha,
+                Item.FechaFormateada,
+                Item.FechaInicioVigencia,
+                Item.FechaFinVigencia,
+                Item.InicioVigencia,
+                Item.FinVigencia,
+                Item.SumaAsegurada,
+                Item.Estatus,
+                Item.CodOficina,
+                Item.Oficina,
+                Item.Concepto,
+                Item.Ncf,
+                Item.Tipo,
+                Item.DescripcionTipo,
+                Item.Bruto,
+                Item.Impuesto,
+                Item.Neto,
+                Item.Tasa,
+                Item.Cobrado,
+                Item.CodMoneda,
+                Item.Moneda,
+                Item.TasaUsada,
+                Item.MontoPesos,
+                Item.Mes,
+                Item.Usuario,
+                Accion);
+            if (DatoPolizaReporte != null) {
+                Procesar = (from n in DatoPolizaReporte
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EDatosProduccionReporte
+                            {
+                                IdUsuario = n.IdUsuario,
+                                CodRamo = n.CodRamo,
+                                Ramo = n.Ramo,
+                                NumeroFactura = n.NumeroFactura,
+                                NumeroFacturaFormateado = n.NumeroFacturaFormateado,
+                                Poliza = n.Poliza,
+                                Asegurado = n.Asegurado,
+                                Items = n.Items,
+                                Supervisor = n.Supervisor,
+                                CodIntermediario = n.CodIntermediario,
+                                CodSupervisor = n.CodSupervisor,
+                                Intermediario = n.Intermediario,
+                                Fecha = n.Fecha,
+                                FechaFormateada = n.FechaFormateada,
+                                FechaInicioVigencia = n.FechaInicioVigencia,
+                                FechaFinVigencia = n.FechaFinVigencia,
+                                InicioVigencia = n.InicioVigencia,
+                                FinVigencia = n.FinVigencia,
+                                SumaAsegurada = n.SumaAsegurada,
+                                Estatus = n.Estatus,
+                                CodOficina = n.CodOficina,
+                                Oficina = n.Oficina,
+                                Concepto = n.Concepto,
+                                Ncf = n.Ncf,
+                                Tipo = n.Tipo,
+                                DescripcionTipo = n.DescripcionTipo,
+                                Bruto = n.Bruto,
+                                Impuesto = n.Impuesto,
+                                Neto = n.Neto,
+                                Tasa = n.Tasa,
+                                Cobrado = n.Cobrado,
+                                CodMoneda = n.CodMoneda,
+                                Moneda = n.Moneda,
+                                TasaUsada = n.TasaUsada,
+                                MontoPesos = n.MontoPesos,
+                                Mes = n.Mes,
+                                Usuario = n.Usuario
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
         #endregion
     }
 }
