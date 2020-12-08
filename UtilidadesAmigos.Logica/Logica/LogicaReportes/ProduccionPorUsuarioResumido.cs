@@ -516,5 +516,57 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Procesar;
         }
         #endregion
+
+        #region PROCESAR INFORMACION DATOS DEL REPORTE DE INTERMEDIARIO INTERNO
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarDatosReporteIntermediairoInterno ProcesarInformacionDatosProduccionReporte(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarDatosReporteIntermediairoInterno Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarDatosReporteIntermediairoInterno Procesar = null;
+
+            var DatosComsionIntermediarioInterno = ObjData.SP_PROCESAR_DATOS_REPORTE_INTERMEDIARIO_INTERNO(
+                Item.IdUsuario,
+                Item.Ramo,
+                Item.Oficina,
+                Item.Intermediario,
+                Item.PorcientoComision,
+                Item.RNC,
+                Item.Cuenta,
+                Item.Tipo,
+                Item.Banco,
+                Item.Bruto,
+                Item.Neto,
+                Item.Comision,
+                Item.Retencion,
+                Item.Avance,
+                Item.APagar,
+                Item.FechaDesde,
+                Item.FechaHasta,
+                Accion);
+            if (DatosComsionIntermediarioInterno != null) {
+                Procesar = (from n in DatosComsionIntermediarioInterno
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarDatosReporteIntermediairoInterno
+                            {
+                                IdUsuario=n.IdUsuario,
+                                Ramo=n.Ramo,
+                                Oficina=n.Oficina,
+                                Intermediario=n.Intermediario,
+                                PorcientoComision=n.PorcientoComision,
+                                RNC=n.RNC,
+                                Cuenta=n.Cuenta,
+                                Tipo=n.Tipo,
+                                Banco=n.Banco,
+                                Bruto=n.Bruto,
+                                Neto=n.Neto,
+                                Comision=n.Comision,
+                                Retencion=n.Retencion,
+                                Avance=n.Avance,
+                                APagar=n.APagar,
+                                FechaDesde=n.FechaDesde,
+                                FechaHasta=n.FechaHasta
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }

@@ -72,12 +72,14 @@
                       <div class="form-group form-check">
                           <asp:RadioButton ID="rbGenerarReporteResumido" runat="server" Text="Resumido" ToolTip="Generar reporte de comisión resumido" GroupName="Reporte" CssClass="form-check-input LetrasNegrita" />
                           <asp:RadioButton ID="rbGenerarReporteDetalle" runat="server" Text="Detalle" ToolTip="Generar reporte de comsiion detalle" GroupName="Reporte" CssClass="form-check-input LetrasNegrita" />
+                          <asp:RadioButton ID="rbGenerarReporteInterno" runat="server" Text="Interno" ToolTip="Generar reporte de comisión de intermediario interno" GroupName="Reporte" CssClass="form-check-input LetrasNegrita" />
                       </div>
               </div>
           <div align="center">
               <asp:Button ID="btnConsultarComisiones" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultarComisiones_Click"  />
               <asp:Button ID="btnExortarComisiones" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExortarComisiones_Click" />
               <asp:Button ID="btnReporteCOmisiones" runat="server" Text="Reporte" CssClass="btn btn-outline-primary btn-sm" ToolTip="Reporte de Comisiones" OnClick="btnReporteCOmisiones_Click" />
+             
       
           </div>
           <br />

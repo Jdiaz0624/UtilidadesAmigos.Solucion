@@ -9,6 +9,7 @@ using CrystalDecisions.ReportSource;
 using CrystalDecisions.Shared;
 using System.Data.SqlClient;
 using System.Data;
+using System.Web.Security;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -380,7 +381,60 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (string.IsNullOrEmpty(txtTasaDollar.Text.Trim())) { ClientScript.RegisterStartupScript(GetType(), "CampoTasaVacio", "CampoTasaVacio();", true); }
             else {
-                ProcesarInformacionComisiones();
+                if (rbGenerarReporteInterno.Checked == true) {
+                    if (Session["IdUsuario"] != null) {
+                        //ELIMINAMOS LOS DATOS DE LA TABLA
+                        UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionDatosReporteIntermediarioInterno Eliminar = new Logica.Comunes.Reportes.ProcesarInformacionDatosReporteIntermediarioInterno(
+                            Convert.ToDecimal(Session["IdUsuario"]), "", "", "", 0, "", "", "", "", 0, 0, 0, 0, 0, 0, DateTime.Now, DateTime.Now, "DELETE");
+                        Eliminar.ProcesarInformacionReporteComisionInterno();
+
+                        //BUSCAMOS LA INFORMAICON A PROCESAR
+                        string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioComisiones.Text.Trim()) ? null : txtCodigoIntermediarioComisiones.Text.Trim();
+                        int? _Oficina = ddlSeleccionaroficinaComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaComisiones.SelectedValue) : new Nullable<int>();
+
+                        var GenerarInformacionComision = ObjDataConexion.Value.GenerarComisionIntermediario(
+                            Convert.ToDateTime(txtFechaDesdeComisiones.Text),
+                            Convert.ToDateTime(txtFechaHastaComisiones.Text),
+                            _CodigoIntermediario,
+                            _Oficina,
+                            Convert.ToDecimal(txtTasaDollar.Text));
+                        foreach (var n in GenerarInformacionComision)
+                        {
+                            //GUARDAMOS LOS REGISTROS
+                            UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionDatosReporteIntermediarioInterno Guardar = new Logica.Comunes.Reportes.ProcesarInformacionDatosReporteIntermediarioInterno(
+                                     Convert.ToDecimal(Session["IdUsuario"]),
+                                     n.Producto,
+                                     n.Oficina,
+                                     n.Intermediario,
+                                     Convert.ToDecimal(n.PorcientoComision),
+                                     n.NumeroIdentificacion,
+                                     n.CuentaBanco,
+                                     n.TipoCuenta,
+                                     n.Banco,
+                                     Convert.ToDecimal(n.Bruto),
+                                     Convert.ToDecimal(n.Neto),
+                                     Convert.ToDecimal(n.Comision),
+                                     Convert.ToDecimal(n.Retencion),
+                                     Convert.ToDecimal(n.AvanceComision),
+                                     Convert.ToDecimal(n.ALiquidar),
+                                     Convert.ToDateTime(txtFechaDesdeComisiones.Text),
+                                     Convert.ToDateTime(txtFechaHastaComisiones.Text),
+                                     "INSERT");
+                            Guardar.ProcesarInformacionReporteComisionInterno();
+
+                        }
+
+                        //GENERAMOS EL REPORTE
+                    }
+                    else {
+                        FormsAuthentication.SignOut();
+                        FormsAuthentication.RedirectToLoginPage();
+                    }
+
+                }
+                else{
+                    ProcesarInformacionComisiones();
+                }
             }
            
         }
