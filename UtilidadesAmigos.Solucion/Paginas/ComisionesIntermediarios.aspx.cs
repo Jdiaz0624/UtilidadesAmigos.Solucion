@@ -334,6 +334,28 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 //MessageBox.Show("Error al generar la factura de venta, favor de contactar al administrador del sistema, codigo de error--> " + ex.Message, VariablesGlobales.NombreSistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            
+        }
+        private void ImprimirReporteResumidoInterno(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo)
+        {
+            try {
+                ReportDocument Reporte = new ReportDocument();
+
+                SqlCommand comando = new SqlCommand();
+                comando.CommandText = "EXEC [Utililades].[SP_GENERAR_REPORTE_COMISION_INTERMEDIARIO_INTERNO] @IdUsuario";
+                comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+
+                comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
+                comando.Parameters["@IdUsuario"].Value = IdUsuario;
+
+                Reporte.Load(RutaReporte);
+                Reporte.Refresh();
+                Reporte.SetParameterValue("@IdUsuario", IdUsuario);
+                Reporte.SetDatabaseLogon(UsuaruoBD, ClaveBD);
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+            }
+            catch (Exception ex) { }
         }
         #endregion
         private void CargarSucursalesComisiones()
@@ -421,6 +443,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                      Convert.ToDateTime(txtFechaHastaComisiones.Text),
                                      "INSERT");
                             Guardar.ProcesarInformacionReporteComisionInterno();
+
+                            //ImprimirReporteResumido(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionIntermediarioResumido.rpt"), "sa", "Pa$$W0rd", "Listado de Comisiones Resumido");
+                          //  ImprimirReporteResumidoInterno(Convert.ToDecimal(s
 
                         }
 
