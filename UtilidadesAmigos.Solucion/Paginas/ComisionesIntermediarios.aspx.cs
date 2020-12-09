@@ -337,26 +337,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             
         }
-        private void ImprimirReporteResumidoInterno(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo)
-        {
+
+        private void ImprimirReporteInterno(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo) {
             try {
                 ReportDocument Reporte = new ReportDocument();
 
-                SqlCommand comando = new SqlCommand();
-                comando.CommandText = "EXEC [Utililades].[SP_GENERAR_REPORTE_COMISION_INTERMEDIARIO_INTERNO] @IdUsuario";
-                comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+                SqlCommand Comando = new SqlCommand();
+                Comando.CommandText = "EXEC [Utililades].[SP_GENERAR_REPORTE_COMISION_INTERMEDIARIO_INTERNO] @IdUsuario";
+                Comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
 
-                comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
-                comando.Parameters["@IdUsuario"].Value = IdUsuario;
+                Comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
+                Comando.Parameters["@IdUsuario"].Value = IdUsuario;
 
                 Reporte.Load(RutaReporte);
                 Reporte.Refresh();
                 Reporte.SetParameterValue("@IdUsuario", IdUsuario);
-                Reporte.SetDatabaseLogon(UsuaruoBD, ClaveBD);
+                Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
                 Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
             }
             catch (Exception ex) { }
         }
+
         #endregion
         private void CargarSucursalesComisiones()
         {
@@ -450,6 +451,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         }
 
                         //GENERAMOS EL REPORTE
+                        ImprimirReporteInterno(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionIntermediarioInterno.rpt"), "sa", "Pa$$W0rd", "Listado de Comisiones Interno");
+                        
                     }
                     else {
                         FormsAuthentication.SignOut();
