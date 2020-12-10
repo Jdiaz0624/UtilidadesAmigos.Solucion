@@ -8,6 +8,9 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Web.Security;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportSource;
+using CrystalDecisions.Shared;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -931,6 +934,117 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
+        private void GenerarReporteNoAgrupadoDetalle(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo) {
+
+            string Estatus = "";
+
+            if (rbTodas.Checked == true)
+            {
+                Estatus = null;
+            }
+            else if (rbActivas.Checked == true)
+            {
+                Estatus = "ACTIVO";
+
+            }
+            else if (rbCanceladas.Checked == true)
+            {
+                Estatus = "CANCELADA";
+
+            }
+
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _CodMoneda = null;
+            string _Concepto = null, _Mes = null;
+
+            ReportDocument Reporte = new ReportDocument();
+
+            SqlCommand comando = new SqlCommand();
+            comando.CommandText = "EXEC [Utililades].[SP_BUSCA_DATOS_PRODUCCION_NO_AGRUPADO_DETALLE] @IdUsuario,@Estatus,@FechaDesde,@FechaHasta,@CodigoSupervisor,@CodigoIntermediario,@Oficina,@Ramo,@CodMoneda,@Concepto,@Mes";
+            comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+
+            //DEFINIMOS EL TIPO DE DATO DE CARA PARAMETRO
+            comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
+            comando.Parameters.Add("@Estatus", SqlDbType.VarChar);
+            comando.Parameters.Add("@FechaDesde", SqlDbType.Date);
+            comando.Parameters.Add("@FechaHasta", SqlDbType.Date);
+            comando.Parameters.Add("@CodigoSupervisor", SqlDbType.VarChar);
+            comando.Parameters.Add("@CodigoIntermediario", SqlDbType.VarChar);
+            comando.Parameters.Add("@Oficina", SqlDbType.Int);
+            comando.Parameters.Add("@Ramo", SqlDbType.Int);
+            comando.Parameters.Add("@CodMoneda", SqlDbType.Int);
+            comando.Parameters.Add("@Concepto", SqlDbType.VarChar);
+            comando.Parameters.Add("@Mes", SqlDbType.VarChar);
+
+            //LE ASIGNAMOS UN VALOR A CADA PARAMETRO
+            comando.Parameters["@IdUsuario"].Value = IdUsuario;
+            comando.Parameters["@Estatus"].Value = Estatus;
+            comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
+            comando.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
+            comando.Parameters["@CodigoSupervisor"].Value = _CodigoSupervisor;
+            comando.Parameters["@CodigoIntermediario"].Value = _CodigoIntermediario;
+            comando.Parameters["@Oficina"].Value = _Oficina;
+            comando.Parameters["@Ramo"].Value = _Ramo;
+            comando.Parameters["@CodMoneda"].Value = _CodMoneda;
+            comando.Parameters["@Concepto"].Value = _Concepto;
+            comando.Parameters["@Mes"].Value = _Mes;
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+            Reporte.SetParameterValue("@IdUsuario", IdUsuario);
+            Reporte.SetParameterValue("@Estatus", Estatus);
+            Reporte.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
+            Reporte.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHasta.Text));
+            Reporte.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
+            Reporte.SetParameterValue("@CodigoIntermediario", _CodigoIntermediario);
+            Reporte.SetParameterValue("@Oficina", _Oficina);
+            Reporte.SetParameterValue("@Ramo", _Ramo);
+            Reporte.SetParameterValue("@CodMoneda", _CodMoneda);
+            Reporte.SetParameterValue("@Concepto", _Concepto);
+            Reporte.SetParameterValue("@Mes", _Mes);
+            Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+
+
+        }
+
+        #region GENERAR REPORTES A PDF
+        //private void ImprimirFactura(decimal IdUsuario, string RutaReporte, string UsuaruoBD, string ClaveBD, string NombreArchivo)
+        //{
+        //    try
+        //    {
+
+        //        ReportDocument Factura = new ReportDocument();
+
+        //        SqlCommand comando = new SqlCommand();
+        //        comando.CommandText = "EXEC [Utililades].[SP_GENERAR_REPORTE_COMISIONES_INTERMEDIARIO] @IdUsuario";
+        //        comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+
+        //        comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
+        //        comando.Parameters["@IdUsuario"].Value = IdUsuario;
+
+        //        Factura.Load(RutaReporte);
+        //        Factura.Refresh();
+        //        Factura.SetParameterValue("@IdUsuario", IdUsuario);
+        //        Factura.SetDatabaseLogon(UsuaruoBD, ClaveBD);
+        //        Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+
+        //        //  Factura.PrintToPrinter(1, false, 0, 1);
+        //        //  crystalReportViewer1.ReportSource = Factura;
+
+
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //MessageBox.Show("Error al generar la factura de venta, favor de contactar al administrador del sistema, codigo de error--> " + ex.Message, VariablesGlobales.NombreSistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
+        #endregion
+
 
 
 
@@ -1268,20 +1382,44 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnReporte_Click(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(GetType(), "OpcionNoDisponible()", "OpcionNoDisponible();", true);
-            //if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
-            //{
-            //    ClientScript.RegisterStartupScript(GetType(), "CamposVacios", "CamposVacios();", true);
-            //    if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
-            //    {
-            //        ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVAcio", "CampoFechaDesdeVAcio();", true);
-            //    }
-            //    if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
-            //    {
-            //        ClientScript.RegisterStartupScript(GetType(), "CampoFechaHAstaVAcio", "CampoFechaHAstaVAcio();", true);
-            //    }
-            //}
-            //else { }
+
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CamposVacios", "CamposVacios();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVAcio", "CampoFechaDesdeVAcio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHAstaVAcio", "CampoFechaHAstaVAcio();", true);
+                }
+            }
+            else {
+                bool ValidarParametros = ValidacionControles(txtFechaDesde.Text, txtFechaHasta.Text, txtTasa.Text);
+
+                if (ValidarParametros == false)
+                {
+                    SacarInformacionOrigen();
+                }
+
+                if (rbNoAgrupar.Checked == true) {
+                    if (rbResumido.Checked == true) {
+
+                    }
+                    else if (rbDetalle.Checked == true) {
+                        //ImprimirReporteInterno(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionIntermediarioInterno.rpt"), "sa", "Pa$$W0rd", "Listado de Comisiones Interno");
+                        GenerarReporteNoAgrupadoDetalle(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteProduccionNoAgrupadoDetalle.rpt"), "sa", "Pa$$W0rd", "Produccion Detalle");
+                    }
+                }
+                else if (rbAgruparConcepto.Checked == true) { }
+                else if (rbAgruparPorUsuarios.Checked == true) { }
+                else if (rbAgruparPorOficina.Checked == true) { }
+                else if (rbAgruparPorRamo.Checked == true) { }
+                else if (rbAgruparPorIntermediario.Checked == true) { }
+                else if (rbAgruparPorSupervisor.Checked == true) { }
+
+            }
         }
 
         protected void gvListdoProduccion_PageIndexChanging(object sender, GridViewPageEventArgs e)
