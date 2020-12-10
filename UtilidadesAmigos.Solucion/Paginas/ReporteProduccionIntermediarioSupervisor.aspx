@@ -24,6 +24,9 @@
     </style>
 
     <script type="text/javascript">
+        function OpcionNoDisponible() {
+            alert("Esta Opcion no esta disponible por el momento");
+        }
         function CamposVacios() {
             alert("Has dejado campos vacios que son necesarios para realizar esta consulta, favor de verificar");
         }
@@ -75,7 +78,11 @@
                <asp:Label ID="lbTipoAgrupacion" runat="server" Text="Agrupar Datos" CssClass="Letranegrita"></asp:Label><br />
                <asp:RadioButton ID="rbNoAgrupar" runat="server" Text="No agrupar" GroupName="AgruparData" ToolTip="No Agrupar Informacion" CssClass="form-check-input Letranegrita" />
                <asp:RadioButton ID="rbAgruparConcepto" runat="server" Text="Concepto" GroupName="AgruparData" ToolTip="Agrupar Informacion por Concepto" CssClass="form-check-input Letranegrita" />
-                <asp:RadioButton ID="rbAgruparPorUsuarios" runat="server" Text="Usuario" GroupName="AgruparData" ToolTip="Agrupar Información por usuario" CssClass="form-check-input Letranegrita" />
+                <asp:RadioButton ID="rbAgruparPorUsuarios" runat="server" Text="Usuario" GroupName="AgruparData" ToolTip="Agrupar Información por Usuario" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbAgruparPorOficina" runat="server" Text="Oficina" GroupName="AgruparData" ToolTip="Agrupar Información por Oficina" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbAgruparPorRamo" runat="server" Text="Ramo" GroupName="AgruparData" ToolTip="Agrupar Información por Ramo" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbAgruparPorIntermediario" runat="server" Text="Intermediario" GroupName="AgruparData" ToolTip="Agrupar Información por Intermediario" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbAgruparPorSupervisor" runat="server" Text="Supervisor" GroupName="AgruparData" ToolTip="Agrupar Información por Supervisor" CssClass="form-check-input Letranegrita" />
                
          <%--      <asp:RadioButton ID="rbOficina" runat="server" Text="Oficina" GroupName="AgruparData" CssClass="form-check-input Letranegrita" />
                <asp:RadioButton ID="rbRamo" runat="server" Text="Ramo" ToolTip="Consultar Por Ramo" GroupName="AgruparData" CssClass="form-check-input Letranegrita" />--%>

@@ -283,6 +283,12 @@
     <Compile Include="Entidades\ProduccionPorUsuario.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDatosProduccionNoAgrupadoResumen.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDatosProducionNoAgrupadoDetalle.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaReporteAgrupadoPorUsuario.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadaSupervisor.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoOficina.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoPorConcepto.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoPorIntermediario.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoRamo.cs" />
     <Compile Include="Entidades\Reportes\EDatosProduccionReporte.cs" />
     <Compile Include="Entidades\Reportes\EProcesarDatosReporteIntermediairoInterno.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionDatosGraficos.cs" />

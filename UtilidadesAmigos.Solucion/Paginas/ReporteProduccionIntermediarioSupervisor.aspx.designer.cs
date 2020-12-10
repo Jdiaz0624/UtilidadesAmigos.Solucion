@@ -85,6 +85,42 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         protected global::System.Web.UI.WebControls.RadioButton rbAgruparPorUsuarios;
         
         /// <summary>
+        /// rbAgruparPorOficina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbAgruparPorOficina;
+        
+        /// <summary>
+        /// rbAgruparPorRamo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbAgruparPorRamo;
+        
+        /// <summary>
+        /// rbAgruparPorIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbAgruparPorIntermediario;
+        
+        /// <summary>
+        /// rbAgruparPorSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbAgruparPorSupervisor;
+        
+        /// <summary>
         /// lbEstatusPoliza control.
         /// </summary>
         /// <remarks>

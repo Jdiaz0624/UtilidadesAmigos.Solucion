@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionReportesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO" Method="SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Sucursal" Parameter="sucursal" Type="System.String" DbType="VarChar(100)" />
@@ -455,6 +455,108 @@
       <Column Name="APagar" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
       <Column Name="FechaDesde" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="FechaHasta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_CONCEPTO" Method="SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_CONCEPTO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHAsta" Parameter="fechaHAsta" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_CONCEPTOResult">
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Bruto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Impuesto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Neto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TasaUsada" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="MontoPesos" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_USUARIO" Method="SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_USUARIO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHAsta" Parameter="fechaHAsta" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_USUARIOResult">
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Bruto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Impuesto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Neto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TasaUsada" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="MontoPesos" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_OFICINA" Method="SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_OFICINA">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHAsta" Parameter="fechaHAsta" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_OFICINAResult">
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Bruto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Impuesto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Neto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TasaUsada" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="MontoPesos" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_RAMO" Method="SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_RAMO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHAsta" Parameter="fechaHAsta" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_RAMOResult">
+      <Column Name="Ramo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Bruto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Impuesto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Neto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TasaUsada" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="MontoPesos" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_INTERMEDIARIO" Method="SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_INTERMEDIARIO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHAsta" Parameter="fechaHAsta" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_INTERMEDIARIOResult">
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Bruto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Impuesto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Neto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TasaUsada" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="MontoPesos" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_SUPERVISOR" Method="SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_SUPERVISOR">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHAsta" Parameter="fechaHAsta" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_SUPERVISORResult">
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Bruto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Impuesto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Neto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TasaUsada" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="MontoPesos" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

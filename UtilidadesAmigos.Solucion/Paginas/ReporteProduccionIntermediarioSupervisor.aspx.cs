@@ -1008,7 +1008,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 if (ValidarParametros == false) {
                     SacarInformacionOrigen();
                 }
-                
+
 
                 //EXPORTAR INFORMACION SIN AGRUPAR NADA
                 if (rbNoAgrupar.Checked == true)
@@ -1038,8 +1038,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
                         int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
 
-                      
-                       
+
+
 
                         var ExportarRegistrosNoagrupados = (from n in ObjData.Value.BuscaDatosProduccionNoAgrupadoDetalle(
                             Convert.ToDecimal(Session["IdUsuario"]),
@@ -1055,32 +1055,32 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             null)
                                                             select new
                                                             {
-                                                                Ramo =n.Ramo,
-                                                                NumeroFactura=n.NumeroFacturaFormateado,
-                                                                Poliza=n.Poliza,
-                                                                Asegurado=n.Asegurado,
-                                                                CodSupervisor=n.CodSupervisor,
-                                                                Supervisor=n.Supervisor,
-                                                                CodIntermediario=n.CodIntermediario,
-                                                                Intermediario=n.Intermediario,
-                                                                Fecha=n.FechaFormateada,
-                                                                InicioVigencia=n.InicioVigencia,
-                                                                FinVigencia=n.FinVigencia,
-                                                                SumaAsegurada=n.SumaAsegurada,
-                                                                Estatus=n.Estatus,
-                                                                Oficina=n.Oficina,
-                                                                Concepto=n.Concepto,
-                                                                NCF =n.Ncf,
-                                                                Tipo=n.DescripcionTipo,
-                                                                Bruto=n.Bruto,
-                                                                Impuesto=n.Impuesto,
-                                                                Neto=n.Neto,
-                                                                Tasa=n.TasaUsada,
-                                                                Cobrado=n.Cobrado,
-                                                                Moneda=n.Moneda,
-                                                                MontoPesos=n.MontoPesos,
-                                                                Mes=n.Mes,
-                                                                Usuario=n.Usuario
+                                                                Ramo = n.Ramo,
+                                                                NumeroFactura = n.NumeroFacturaFormateado,
+                                                                Poliza = n.Poliza,
+                                                                Asegurado = n.Asegurado,
+                                                                CodSupervisor = n.CodSupervisor,
+                                                                Supervisor = n.Supervisor,
+                                                                CodIntermediario = n.CodIntermediario,
+                                                                Intermediario = n.Intermediario,
+                                                                Fecha = n.FechaFormateada,
+                                                                InicioVigencia = n.InicioVigencia,
+                                                                FinVigencia = n.FinVigencia,
+                                                                SumaAsegurada = n.SumaAsegurada,
+                                                                Estatus = n.Estatus,
+                                                                Oficina = n.Oficina,
+                                                                Concepto = n.Concepto,
+                                                                NCF = n.Ncf,
+                                                                Tipo = n.DescripcionTipo,
+                                                                Bruto = n.Bruto,
+                                                                Impuesto = n.Impuesto,
+                                                                Neto = n.Neto,
+                                                                Tasa = n.TasaUsada,
+                                                                Cobrado = n.Cobrado,
+                                                                Moneda = n.Moneda,
+                                                                MontoPesos = n.MontoPesos,
+                                                                Mes = n.Mes,
+                                                                Usuario = n.Usuario
 
 
                                                             }).ToList();
@@ -1122,20 +1122,21 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             _Oficina,
                             _Ramo,
                             null, null, null)
-                                                                   select new {
-                                                                       Ramo=n.Ramo,
-                                                                       Supervisor=n.Supervisor,
-                                                                       Intermediario=n.Intermediario,
-                                                                       Oficina=n.Oficina,
-                                                                       Tipo=n.DescripcionTipo,
-                                                                       Bruto=n.Bruto,
-                                                                       Impuesto=n.Impuesto,
-                                                                       Neto=n.Neto,
-                                                                       Cobrado=n.Cobrado,
-                                                                       CodMoneda=n.CodMoneda,
-                                                                       Moneda=n.Moneda,
-                                                                       TasaUsada=n.TasaUsada,
-                                                                       MontoPesos=n.MontoPesos
+                                                                   select new
+                                                                   {
+                                                                       Ramo = n.Ramo,
+                                                                       Supervisor = n.Supervisor,
+                                                                       Intermediario = n.Intermediario,
+                                                                       Oficina = n.Oficina,
+                                                                       Tipo = n.DescripcionTipo,
+                                                                       Bruto = n.Bruto,
+                                                                       Impuesto = n.Impuesto,
+                                                                       Neto = n.Neto,
+                                                                       Cobrado = n.Cobrado,
+                                                                       CodMoneda = n.CodMoneda,
+                                                                       Moneda = n.Moneda,
+                                                                       TasaUsada = n.TasaUsada,
+                                                                       MontoPesos = n.MontoPesos
                                                                    }).ToList();
                         UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte Producción Resumida " + txtFechaDesde.Text + " Hasta " + txtFechaHasta.Text, ExportarResumenProduccionNoAgrupado);
                     }
@@ -1144,57 +1145,143 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 //AGRUPAR LA INFORMACION POR CONCEPTO
                 else if (rbAgruparConcepto.Checked == true)
                 {
+                    var ExportarPorConcepto = (from n in ObjData.Value.ReporreProduccionAgrupadoConcepto(
+                        Convert.ToDecimal(Session["IdUsuario"]),
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHasta.Text))
+                                               select new
+                                               {
+                                                   Concepto = n.Concepto,
+                                                   Bruto = n.Bruto,
+                                                   Impuesto = n.Impuesto,
+                                                   Neto = n.Neto,
+                                                   Cobrado = n.Cobrado,
+                                                   Moneda = n.Moneda,
+                                                   Tasa = n.TasaUsada,
+                                                   MontoPesos = n.MontoPesos
+                                               }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte Producción Agrupado Por Concepto", ExportarPorConcepto);
 
-                    //BUSCAR LA INFORMACION DE MANERA DETALLADA
-                    if (rbDetalle.Checked == true)
-                    {
 
-                      
-                    }
-                    //BUSCAR LA INFORMACION DE MANERA RESUMIDA
-                    else if (rbResumido.Checked == true)
-                    {
-                   
-                    }
                 }
                 //AGRUPAR LA INFORMACION POR USUARIOS
                 else if (rbAgruparPorUsuarios.Checked == true)
                 {
 
-                    //BUSCAR LA INFORMACION DE MANERA DETALLADA
-                    if (rbDetalle.Checked == true)
-                    {
-                        //BUSCAR LA INFORMACION DE MANERA DETALLADA
-                        if (rbDetalle.Checked == true)
-                        {
+                    var ExportarPorUsuario = (from n in ObjData.Value.ReporteProduccionAgrupadoPorUsuario(
+                        Convert.ToDecimal(Session["IdUsuario"]),
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHasta.Text))
+                                              select new
+                                              {
+                                                  Usuario = n.Usuario,
+                                                  Bruto = n.Bruto,
+                                                  Impuesto = n.Impuesto,
+                                                  Neto = n.Neto,
+                                                  Cobrado = n.Cobrado,
+                                                  Moneda = n.Moneda,
+                                                  Tasa = n.TasaUsada,
+                                                  MontoPesos = n.MontoPesos
+                                              }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte Producción Agrupado Por Usuario", ExportarPorUsuario);
 
-                        }
-                        //BUSCAR LA INFORMACION DE MANERA RESUMIDA
-                        else if (rbResumido.Checked == true)
-                        {
-    
-                        }
-                    }
+                }
+                else if (rbAgruparPorOficina.Checked == true)
+                {
 
+                    var ExportarPorOficina = (from n in ObjData.Value.ReporteProduccionAgeruadoPorOficina(
+                        Convert.ToDecimal(Session["IdUsuario"]),
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHasta.Text))
+                                              select new
+                                              {
+                                                  Oficina = n.Oficina,
+                                                  Bruto = n.Bruto,
+                                                  Impuesto = n.Impuesto,
+                                                  Neto = n.Neto,
+                                                  Cobrado = n.Cobrado,
+                                                  Moneda = n.Moneda,
+                                                  Tasa = n.TasaUsada,
+                                                  MontoPesos = n.MontoPesos
+                                              }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte Producción Agrupado Por Oficina", ExportarPorOficina);
+                }
+                else if (rbAgruparPorRamo.Checked == true) {
+
+                    var ExportarPorRamo = (from n in ObjData.Value.ReporteProduccionAgeruadoPorRamo(
+                        Convert.ToDecimal(Session["IdUsuario"]),
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHasta.Text))
+                                              select new
+                                              {
+                                                  Ramo = n.Ramo,
+                                                  Bruto = n.Bruto,
+                                                  Impuesto = n.Impuesto,
+                                                  Neto = n.Neto,
+                                                  Cobrado = n.Cobrado,
+                                                  Moneda = n.Moneda,
+                                                  Tasa = n.TasaUsada,
+                                                  MontoPesos = n.MontoPesos
+                                              }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte Producción Agrupado Por Ramo", ExportarPorRamo);
+                }
+                else if (rbAgruparPorIntermediario.Checked == true){
+
+                    var ExportarPorIntermediario = (from n in ObjData.Value.ReporteProduccionAgeruadoPorIntermediario(
+                       Convert.ToDecimal(Session["IdUsuario"]),
+                       Convert.ToDateTime(txtFechaDesde.Text),
+                       Convert.ToDateTime(txtFechaHasta.Text))
+                                           select new
+                                           {
+                                               Intermediario = n.Intermediario,
+                                               Bruto = n.Bruto,
+                                               Impuesto = n.Impuesto,
+                                               Neto = n.Neto,
+                                               Cobrado = n.Cobrado,
+                                               Moneda = n.Moneda,
+                                               Tasa = n.TasaUsada,
+                                               MontoPesos = n.MontoPesos
+                                           }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte Producción Agrupado Por Intermediario", ExportarPorIntermediario);
+                }
+                else if (rbAgruparPorSupervisor.Checked == true) {
+
+                    var ExportarPorSupervisor = (from n in ObjData.Value.ReporteProduccionAgeruadoPorSupervisor(
+                       Convert.ToDecimal(Session["IdUsuario"]),
+                       Convert.ToDateTime(txtFechaDesde.Text),
+                       Convert.ToDateTime(txtFechaHasta.Text))
+                                                    select new
+                                                    {
+                                                        Supervisor = n.Supervisor,
+                                                        Bruto = n.Bruto,
+                                                        Impuesto = n.Impuesto,
+                                                        Neto = n.Neto,
+                                                        Cobrado = n.Cobrado,
+                                                        Moneda = n.Moneda,
+                                                        Tasa = n.TasaUsada,
+                                                        MontoPesos = n.MontoPesos
+                                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte Producción Agrupado Por Supervisor", ExportarPorSupervisor);
                 }
             }
         }
 
         protected void btnReporte_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
-            {
-                ClientScript.RegisterStartupScript(GetType(), "CamposVacios", "CamposVacios();", true);
-                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVAcio", "CampoFechaDesdeVAcio();", true);
-                }
-                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHAstaVAcio", "CampoFechaHAstaVAcio();", true);
-                }
-            }
-            else { }
+            ClientScript.RegisterStartupScript(GetType(), "OpcionNoDisponible()", "OpcionNoDisponible();", true);
+            //if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            //{
+            //    ClientScript.RegisterStartupScript(GetType(), "CamposVacios", "CamposVacios();", true);
+            //    if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+            //    {
+            //        ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVAcio", "CampoFechaDesdeVAcio();", true);
+            //    }
+            //    if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            //    {
+            //        ClientScript.RegisterStartupScript(GetType(), "CampoFechaHAstaVAcio", "CampoFechaHAstaVAcio();", true);
+            //    }
+            //}
+            //else { }
         }
 
         protected void gvListdoProduccion_PageIndexChanging(object sender, GridViewPageEventArgs e)

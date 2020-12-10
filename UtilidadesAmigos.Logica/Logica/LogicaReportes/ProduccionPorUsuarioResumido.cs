@@ -568,5 +568,177 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Procesar;
         }
         #endregion
+
+        #region GENERAR REPORTE DE PRODUCCION AGRUPADOS 
+        /// <summary>
+        /// Este metodo es para mostrar el listado de produccion agrupado por concepto.
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadoPorConcepto> ReporreProduccionAgrupadoConcepto(decimal? IdUsuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Reporte = (from n in ObjData.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_CONCEPTO(
+                IdUsuario,
+                FechaDesde,
+                FechaHasta)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadoPorConcepto
+                           {
+                               Concepto=n.Concepto,
+                               Bruto=n.Bruto,
+                               Impuesto=n.Impuesto,
+                               Neto=n.Neto,
+                               Cobrado=n.Cobrado,
+                               Moneda=n.Moneda,
+                               TasaUsada=n.TasaUsada,
+                               MontoPesos=n.MontoPesos,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta
+                           }).ToList();
+            return Reporte;
+        }
+
+
+        /// <summary>
+        /// Este metodo es para mostrar el listado de produccion agrupado por usuario.
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteAgrupadoPorUsuario> ReporteProduccionAgrupadoPorUsuario(decimal? IdUsuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Reporte = (from n in ObjData.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_USUARIO(IdUsuario, FechaDesde, FechaHasta)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteAgrupadoPorUsuario
+                           {
+                               Usuario=n.Usuario,
+                               Bruto=n.Bruto,
+                               Impuesto=n.Impuesto,
+                               Neto=n.Neto,
+                               Cobrado=n.Cobrado,
+                               Moneda=n.Moneda,
+                               TasaUsada=n.TasaUsada,
+                               MontoPesos=n.MontoPesos,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta
+                           }).ToList();
+            return Reporte;
+
+        }
+
+        /// <summary>
+        /// Este metodo es para buscar el listado de produccion agrupado por oficina.
+        /// </summary>
+        /// <param name="Idusuario"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadoOficina> ReporteProduccionAgeruadoPorOficina(decimal? Idusuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Reporte = (from n in ObjData.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_OFICINA(Idusuario, FechaDesde, FechaHasta)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadoOficina
+                           {
+                               Oficina=n.Oficina,
+                               Bruto=n.Bruto,
+                               Impuesto=n.Impuesto,
+                               Neto=n.Neto,
+                               Cobrado=n.Cobrado,
+                               Moneda=n.Moneda,
+                               TasaUsada=n.TasaUsada,
+                               MontoPesos=n.MontoPesos,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta
+                           }).ToList();
+            return Reporte;
+        }
+
+        /// <summary>
+        /// Este reporte muestra el  listado de la produccion agrupada por ramo.
+        /// </summary>
+        /// <param name="Idusuario"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadoRamo> ReporteProduccionAgeruadoPorRamo(decimal? Idusuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Reporte = (from n in ObjData.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_RAMO(Idusuario, FechaDesde, FechaHasta)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadoRamo
+                           {
+                               Ramo = n.Ramo,
+                               Bruto = n.Bruto,
+                               Impuesto = n.Impuesto,
+                               Neto = n.Neto,
+                               Cobrado = n.Cobrado,
+                               Moneda = n.Moneda,
+                               TasaUsada = n.TasaUsada,
+                               MontoPesos = n.MontoPesos,
+                               ValidadoDesde = n.ValidadoDesde,
+                               ValidadoHasta = n.ValidadoHasta
+                           }).ToList();
+            return Reporte;
+        }
+
+        /// <summary>
+        /// Este metodo es para buscar la produccion agrupada por intermediario.
+        /// </summary>
+        /// <param name="Idusuario"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadoPorIntermediario> ReporteProduccionAgeruadoPorIntermediario(decimal? Idusuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Reporte = (from n in ObjData.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_INTERMEDIARIO(Idusuario, FechaDesde, FechaHasta)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadoPorIntermediario
+                           {
+                               Intermediario = n.Intermediario,
+                               Bruto = n.Bruto,
+                               Impuesto = n.Impuesto,
+                               Neto = n.Neto,
+                               Cobrado = n.Cobrado,
+                               Moneda = n.Moneda,
+                               TasaUsada = n.TasaUsada,
+                               MontoPesos = n.MontoPesos,
+                               ValidadoDesde = n.ValidadoDesde,
+                               ValidadoHasta = n.ValidadoHasta
+                           }).ToList();
+            return Reporte;
+        }
+
+        /// <summary>
+        /// Este metodo es para buscar la producción agrupada por supervisor.
+        /// </summary>
+        /// <param name="Idusuario"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadaSupervisor> ReporteProduccionAgeruadoPorSupervisor(decimal? Idusuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Reporte = (from n in ObjData.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_SUPERVISOR(Idusuario, FechaDesde, FechaHasta)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadaSupervisor
+                           {
+                               Supervisor = n.Supervisor,
+                               Bruto = n.Bruto,
+                               Impuesto = n.Impuesto,
+                               Neto = n.Neto,
+                               Cobrado = n.Cobrado,
+                               Moneda = n.Moneda,
+                               TasaUsada = n.TasaUsada,
+                               MontoPesos = n.MontoPesos,
+                               ValidadoDesde = n.ValidadoDesde,
+                               ValidadoHasta = n.ValidadoHasta
+                           }).ToList();
+            return Reporte;
+        }
+        #endregion
     }
 }
