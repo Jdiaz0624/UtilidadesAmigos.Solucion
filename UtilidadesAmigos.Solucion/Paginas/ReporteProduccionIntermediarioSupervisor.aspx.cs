@@ -950,7 +950,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             else if (rbCanceladas.Checked == true)
             {
                 Estatus = "CANCELADA";
-
             }
 
             string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
@@ -1007,42 +1006,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
             Reporte.SetParameterValue("@Mes", _Mes);
             Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
             Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
-
-
         }
 
         #region GENERAR REPORTES A PDF
-        //private void ImprimirFactura(decimal IdUsuario, string RutaReporte, string UsuaruoBD, string ClaveBD, string NombreArchivo)
-        //{
-        //    try
-        //    {
 
-        //        ReportDocument Factura = new ReportDocument();
-
-        //        SqlCommand comando = new SqlCommand();
-        //        comando.CommandText = "EXEC [Utililades].[SP_GENERAR_REPORTE_COMISIONES_INTERMEDIARIO] @IdUsuario";
-        //        comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
-
-        //        comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
-        //        comando.Parameters["@IdUsuario"].Value = IdUsuario;
-
-        //        Factura.Load(RutaReporte);
-        //        Factura.Refresh();
-        //        Factura.SetParameterValue("@IdUsuario", IdUsuario);
-        //        Factura.SetDatabaseLogon(UsuaruoBD, ClaveBD);
-        //        Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
-
-        //        //  Factura.PrintToPrinter(1, false, 0, 1);
-        //        //  crystalReportViewer1.ReportSource = Factura;
-
-
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //MessageBox.Show("Error al generar la factura de venta, favor de contactar al administrador del sistema, codigo de error--> " + ex.Message, VariablesGlobales.NombreSistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
         #endregion
 
 
