@@ -77,7 +77,7 @@
            <div class="form-group form-check">
                <asp:Label ID="lbTipoAgrupacion" runat="server" Text="Agrupar Datos" CssClass="Letranegrita"></asp:Label><br />
                <asp:RadioButton ID="rbNoAgrupar" runat="server" Text="No agrupar" GroupName="AgruparData" ToolTip="No Agrupar Informacion" CssClass="form-check-input Letranegrita" />
-               <asp:RadioButton ID="rbAgruparConcepto" runat="server" Text="Concepto" GroupName="AgruparData" ToolTip="Agrupar Informacion por Concepto" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbAgruparConcepto" runat="server" Text="Concepto"  GroupName="AgruparData" ToolTip="Agrupar Informacion por Concepto" CssClass="form-check-input Letranegrita" />
                 <asp:RadioButton ID="rbAgruparPorUsuarios" runat="server" Text="Usuario" GroupName="AgruparData" ToolTip="Agrupar Información por Usuario" CssClass="form-check-input Letranegrita" />
                <asp:RadioButton ID="rbAgruparPorOficina" runat="server" Text="Oficina" GroupName="AgruparData" ToolTip="Agrupar Información por Oficina" CssClass="form-check-input Letranegrita" />
                <asp:RadioButton ID="rbAgruparPorRamo" runat="server" Text="Ramo" GroupName="AgruparData" ToolTip="Agrupar Información por Ramo" CssClass="form-check-input Letranegrita" />
@@ -148,6 +148,10 @@
             <div class="form-group col-md-1">
                <asp:Label ID="lbTasa" runat="server" Text="Tasa" CssClass="Letranegrita"></asp:Label>
                <asp:TextBox ID="txtTasa" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
+           </div>
+           <div class="form-group col-md-6">
+               <asp:Label ID="lbSeleccionarCocepto" runat="server"  Text="Seleccionar Concepto" CssClass="Letranegrita"></asp:Label>
+               <asp:DropDownList ID="ddlSeleccionarConcepto" runat="server"  ToolTip="Seleccionar Concepto" CssClass="form-control"></asp:DropDownList>
            </div>
        </div>
        <br />

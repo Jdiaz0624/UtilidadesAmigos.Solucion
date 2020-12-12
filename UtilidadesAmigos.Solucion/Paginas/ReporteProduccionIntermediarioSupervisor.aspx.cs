@@ -747,6 +747,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
                 string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+                string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
 
                 int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
                 int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
@@ -760,7 +761,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     _CodigoIntermediario,
                     _Oficina,
                     _Ramo,
-                    null, null, null);
+                    null,
+                    _Concepto, null);
                 gvListdoProduccion.DataSource = BuscarInformacion;
                 gvListdoProduccion.DataBind();
 
@@ -817,7 +819,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             GraConcepto.Visible = false;
         }
         #endregion
-
         #region SACAR INFORMACION DEL ORIGEN DE LA PRODUCCION PARA PASARLA A LA TABLA QUE SE VA A MANIPULAR
         private void SacarInformacionOrigen() {
             try {
@@ -957,7 +958,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
             int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
             int? _CodMoneda = null;
-            string _Concepto = null, _Mes = null;
+            string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
+            string _Mes = null;
 
             ReportDocument Reporte = new ReportDocument();
 
@@ -1007,6 +1009,78 @@ namespace UtilidadesAmigos.Solucion.Paginas
             Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
             Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
         }
+        private void GenerarReporteNoAgrupadoResumen(decimal IdUaurio, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo) {
+            string Estatus = "";
+
+            if (rbTodas.Checked == true)
+            {
+                Estatus = null;
+            }
+            else if (rbActivas.Checked == true)
+            {
+                Estatus = "ACTIVO";
+
+            }
+            else if (rbCanceladas.Checked == true)
+            {
+                Estatus = "CANCELADA";
+            }
+
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _CodMoneda = null;
+            string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
+            string _Mes = null;
+
+            ReportDocument Reporte = new ReportDocument();
+
+            SqlCommand comando = new SqlCommand();
+            comando.CommandText = "EXEC [Utililades].[SP_BUSCA_DATOS_PRODUCCION_NO_AGRUPADO_RESUMEN] @IdUsuario,@Estatus,@FechaDesde,@FechaHasta,@CodigoSupervisor,@CodigoIntermediario,@Oficina,@Ramo,@CodMoneda,@Concepto,@Mes";
+            comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+
+            comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
+            comando.Parameters.Add("@Estatus", SqlDbType.VarChar);
+            comando.Parameters.Add("@FechaDesde", SqlDbType.Date);
+            comando.Parameters.Add("@FechaHasta", SqlDbType.Date);
+            comando.Parameters.Add("@CodigoSupervisor", SqlDbType.VarChar);
+            comando.Parameters.Add("@CodigoIntermediario", SqlDbType.VarChar);
+            comando.Parameters.Add("@Oficina", SqlDbType.Int);
+            comando.Parameters.Add("@Ramo", SqlDbType.Int);
+            comando.Parameters.Add("@CodMoneda", SqlDbType.Int);
+            comando.Parameters.Add("@Concepto", SqlDbType.VarChar);
+            comando.Parameters.Add("@Mes", SqlDbType.VarChar);
+
+            comando.Parameters["@IdUsuario"].Value = IdUaurio;
+            comando.Parameters["@Estatus"].Value = Estatus;
+            comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
+            comando.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
+            comando.Parameters["@CodigoSupervisor"].Value = _CodigoSupervisor;
+            comando.Parameters["@CodigoIntermediario"].Value = _CodigoIntermediario;
+            comando.Parameters["@Oficina"].Value = _Oficina;
+            comando.Parameters["@Ramo"].Value = _Ramo;
+            comando.Parameters["@CodMoneda"].Value = _CodMoneda;
+            comando.Parameters["@Concepto"].Value = _Concepto;
+            comando.Parameters["@Mes"].Value = _Mes;
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+            Reporte.SetParameterValue("@IdUsuario", IdUaurio);
+            Reporte.SetParameterValue("@Estatus", Estatus);
+            Reporte.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
+            Reporte.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHasta.Text));
+            Reporte.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
+            Reporte.SetParameterValue("@CodigoIntermediario", _CodigoIntermediario);
+            Reporte.SetParameterValue("@Oficina", _Oficina);
+            Reporte.SetParameterValue("@Ramo", _Ramo);
+            Reporte.SetParameterValue("@CodMoneda", _CodMoneda);
+            Reporte.SetParameterValue("@Concepto", _Concepto);
+            Reporte.SetParameterValue("@Mes", _Mes);
+            Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+
+        }
 
         #region GENERAR REPORTES A PDF
 
@@ -1032,6 +1106,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbTasaValidacion.Text = "0";
                 cbGraficar.Checked = false;
                 cbGraficar.Enabled = false;
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarConcepto, ObjDataGeneral.Value.BuscaListas("CONCEPTOS", null, null), true);
             }
 
            
@@ -1118,7 +1193,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
                         int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
                         int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
-
+                        string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
 
 
 
@@ -1132,7 +1207,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             _Oficina,
                             _Ramo,
                             null,
-                            null,
+                            _Concepto,
                             null)
                                                             select new
                                                             {
@@ -1192,6 +1267,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
                         int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
                         int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                        string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
 
                         var ExportarResumenProduccionNoAgrupado = (from n in ObjData.Value.BuscaDatosProduccionNoAgrupadoResumen(
                             Convert.ToDecimal(Session["IdUsuario"]),
@@ -1202,7 +1278,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             _CodigoIntermediario,
                             _Oficina,
                             _Ramo,
-                            null, null, null)
+                            null, _Concepto, null)
                                                                    select new
                                                                    {
                                                                        Ramo = n.Ramo,
@@ -1372,10 +1448,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 if (rbNoAgrupar.Checked == true) {
                     if (rbResumido.Checked == true) {
-
+                        GenerarReporteNoAgrupadoResumen(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteProduccionNoAgrupadoResumen.rpt"), "sa", "Pa$$W0rd", "Produccion Resumida");
                     }
                     else if (rbDetalle.Checked == true) {
-                        //ImprimirReporteInterno(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionIntermediarioInterno.rpt"), "sa", "Pa$$W0rd", "Listado de Comisiones Interno");
                         GenerarReporteNoAgrupadoDetalle(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteProduccionNoAgrupadoDetalle.rpt"), "sa", "Pa$$W0rd", "Produccion Detalle");
                     }
                 }
@@ -1439,5 +1514,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 OcultarControlesGraficos();
             }
         }
+
+     
     }
 }
