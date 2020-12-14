@@ -8,24 +8,30 @@ namespace UtilidadesAmigos.Logica.Entidades.Reportes
 {
     public class EBuscaReporteProduccionAgrupadoPorConcepto
     {
-        public string Concepto { get; set; }
+		public string Concepto { get; set; }
 
-        public System.Nullable<decimal> Bruto { get; set; }
+		public System.Nullable<int> Cantidad { get; set; }
 
-        public System.Nullable<decimal> Impuesto { get; set; }
+		public System.Nullable<decimal> Bruto { get; set; }
 
-        public System.Nullable<decimal> Neto { get; set; }
+		public System.Nullable<decimal> Impuesto { get; set; }
 
-        public System.Nullable<decimal> Cobrado { get; set; }
+		public System.Nullable<decimal> Neto { get; set; }
 
-        public string Moneda { get; set; }
+		public System.Nullable<decimal> Cobrado { get; set; }
 
-        public System.Nullable<decimal> TasaUsada { get; set; }
+		public string Moneda { get; set; }
 
-        public System.Nullable<decimal> MontoPesos { get; set; }
+		public System.Nullable<decimal> TasaUsada { get; set; }
 
-        public string ValidadoDesde { get; set; }
+		public System.Nullable<decimal> MontoPesos { get; set; }
 
-        public string ValidadoHasta { get; set; }
-    }
+		public string ValidadoDesde { get; set; }
+
+		public string ValidadoHasta { get; set; }
+
+		public System.Nullable<decimal> IdUsuario { get; set; }
+
+		public string GeneradoPor { get; set; }
+	}
 }

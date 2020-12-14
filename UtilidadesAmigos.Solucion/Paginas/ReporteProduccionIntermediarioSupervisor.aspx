@@ -57,12 +57,6 @@
                   }
             });
 
-            $("#<%=btnReporte.ClientID%>").click(function () {
-                var Tasa = $("#<%=txtTasa.ClientID%>").val().length;
-                if(Tasa < 1) {
-                    CampoTasaVAcio();
-                  }
-              });
         })
     </script>
    <div class="container-fluid">
@@ -155,10 +149,20 @@
            </div>
        </div>
        <br />
+       <asp:Label ID="lbFormatoExportacion" runat="server" Text="Exportar a" CssClass="Letranegrita"></asp:Label>
+       <div class="form-check-inline">
+           <div class="form-group form-check">
+               <asp:RadioButton ID="rbExportarPDF" runat="server" Text="PDF" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a PDF" GroupName="ExportarInformacion" />
+                <asp:RadioButton ID="rbExportarExel" runat="server" Text="Excel" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a Excel" GroupName="ExportarInformacion" />
+                <asp:RadioButton ID="rbExportarWord" runat="server" Text="Word" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a Word" GroupName="ExportarInformacion" />
+                <asp:RadioButton ID="rbExportartxt" runat="server" Text="TXT" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a TXT" GroupName="ExportarInformacion" />
+                <asp:RadioButton ID="rbExportarXML" runat="server" Text="XML" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a XML" GroupName="ExportarInformacion" />
+                <asp:RadioButton ID="rbExportarCSV" runat="server" Text="CSV" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a CSV" GroupName="ExportarInformacion" />
+           </div>
+       </div>
        <div align="center">
                      <asp:Button ID="btnConsultar" runat="server" Text="Consulta" CssClass="btn btn-outline-primary btn-sm" OnClick="btnConsultar_Click" ToolTip="Consultar por Pantalla"/>
            <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportar_Click" ToolTip="Exportar a excel" />
-           <asp:Button ID="btnReporte" runat="server" Text="Reporte" CssClass="btn btn-outline-primary btn-sm" OnClick="btnReporte_Click" ToolTip="Generar Reporte" />
 
                  </div>
        <hr />

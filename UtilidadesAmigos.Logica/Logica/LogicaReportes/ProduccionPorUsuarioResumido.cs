@@ -577,17 +577,19 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         /// <param name="FechaDesde"></param>
         /// <param name="FechaHasta"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadoPorConcepto> ReporreProduccionAgrupadoConcepto(decimal? IdUsuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadoPorConcepto> ReporreProduccionAgrupadoConcepto(decimal? IdUsuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Concepto = null) {
             ObjData.CommandTimeout = 999999999;
 
             var Reporte = (from n in ObjData.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_CONCEPTO(
                 IdUsuario,
                 FechaDesde,
-                FechaHasta)
+                FechaHasta,
+                Concepto)
                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadoPorConcepto
                            {
                                Concepto=n.Concepto,
-                               Bruto=n.Bruto,
+                               Cantidad=n.Cantidad,
+                               Bruto =n.Bruto,
                                Impuesto=n.Impuesto,
                                Neto=n.Neto,
                                Cobrado=n.Cobrado,
@@ -595,7 +597,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                TasaUsada=n.TasaUsada,
                                MontoPesos=n.MontoPesos,
                                ValidadoDesde=n.ValidadoDesde,
-                               ValidadoHasta=n.ValidadoHasta
+                               ValidadoHasta=n.ValidadoHasta,
+                               IdUsuario=n.IdUsuario,
+                               GeneradoPor=n.GeneradoPor 
                            }).ToList();
             return Reporte;
         }
@@ -608,13 +612,14 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         /// <param name="FechaDesde"></param>
         /// <param name="FechaHasta"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteAgrupadoPorUsuario> ReporteProduccionAgrupadoPorUsuario(decimal? IdUsuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteAgrupadoPorUsuario> ReporteProduccionAgrupadoPorUsuario(decimal? IdUsuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null,string Concepto = null) {
             ObjData.CommandTimeout = 999999999;
 
-            var Reporte = (from n in ObjData.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_USUARIO(IdUsuario, FechaDesde, FechaHasta)
+            var Reporte = (from n in ObjData.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_USUARIO(IdUsuario, FechaDesde, FechaHasta,Concepto)
                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteAgrupadoPorUsuario
                            {
                                Usuario=n.Usuario,
+                               Cantidad=n.Cantidad,
                                Bruto=n.Bruto,
                                Impuesto=n.Impuesto,
                                Neto=n.Neto,
@@ -623,7 +628,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                TasaUsada=n.TasaUsada,
                                MontoPesos=n.MontoPesos,
                                ValidadoDesde=n.ValidadoDesde,
-                               ValidadoHasta=n.ValidadoHasta
+                               ValidadoHasta=n.ValidadoHasta,
+                               IdUsuario=n.IdUsuario,
+                               GeneradoPor=n.GeneradoPor
                            }).ToList();
             return Reporte;
 
@@ -636,10 +643,10 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         /// <param name="FechaDesde"></param>
         /// <param name="FechaHasta"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadoOficina> ReporteProduccionAgeruadoPorOficina(decimal? Idusuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadoOficina> ReporteProduccionAgeruadoPorOficina(decimal? Idusuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null,string Concepto = null) {
             ObjData.CommandTimeout = 999999999;
 
-            var Reporte = (from n in ObjData.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_OFICINA(Idusuario, FechaDesde, FechaHasta)
+            var Reporte = (from n in ObjData.SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_OFICINA(Idusuario, FechaDesde, FechaHasta, Concepto)
                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaReporteProduccionAgrupadoOficina
                            {
                                Oficina=n.Oficina,
