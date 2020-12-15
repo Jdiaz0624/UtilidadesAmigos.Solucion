@@ -1173,7 +1173,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Reporte.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreArchivo);
             }
         }
-
         private void GenerarReporteAgrupadoUsuario(decimal IdUaurio, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo) {
             string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
 
@@ -1227,7 +1226,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Reporte.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreArchivo);
             }
         }
-
         private void GenerarReporteAgrupadoPorOficina(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBd, string NombreArchivo) {
             string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
 
@@ -1278,6 +1276,142 @@ namespace UtilidadesAmigos.Solucion.Paginas
             else if (rbExportarCSV.Checked == true)
             {
                 Reporte.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreArchivo);
+            }
+        }
+        private void GenerarReporteAgrupadoPorRamo(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClabeBD, string Nombrearchivo) {
+            string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
+
+            ReportDocument Reporte = new ReportDocument();
+
+            SqlCommand Comando = new SqlCommand();
+            Comando.CommandText = "EXEC [Utililades].[SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_RAMO] @IdUsuario,@FechaDesde,@FechaHAsta,@Concepto";
+            Comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+
+            Comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
+            Comando.Parameters.Add("@FechaDesde", SqlDbType.Date);
+            Comando.Parameters.Add("@FechaHAsta", SqlDbType.Date);
+            Comando.Parameters.Add("@Concepto", SqlDbType.VarChar);
+
+            Comando.Parameters["@IdUsuario"].Value = IdUsuario;
+            Comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
+            Comando.Parameters["@FechaHAsta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
+            Comando.Parameters["@Concepto"].Value = _Concepto;
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+            Reporte.SetParameterValue("@IdUsuario", IdUsuario);
+            Reporte.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
+            Reporte.SetParameterValue("@FechaHAsta", Convert.ToDateTime(txtFechaHasta.Text));
+            Reporte.SetParameterValue("@Concepto", _Concepto);
+            Reporte.SetDatabaseLogon(UsuarioBD, ClabeBD);
+            if (rbExportarPDF.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, Nombrearchivo);
+            }
+            else if (rbExportarExel.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, Nombrearchivo);
+            }
+            else if (rbExportarWord.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, Nombrearchivo);
+            }
+            else if (rbExportartxt.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Text, Response, true, Nombrearchivo);
+            }
+            else if (rbExportarXML.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Xml, Response, true, Nombrearchivo);
+            }
+            else if (rbExportarCSV.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, Nombrearchivo);
+            }
+        }
+        private void GenerarReporteAgrupadoPorIntermediario(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo) {
+            string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
+
+            ReportDocument ReporteIntermediario = new ReportDocument();
+
+            SqlCommand Comando = new SqlCommand();
+            Comando.CommandText = "EXEC [Utililades].[SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_INTERMEDIARIO] @IdUsuario,@FechaDesde,@FechaHAsta,@Concepto";
+            Comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+
+            Comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
+            Comando.Parameters.Add("@FechaDesde", SqlDbType.Date);
+            Comando.Parameters.Add("@FechaHAsta", SqlDbType.Date);
+            Comando.Parameters.Add("@Concepto", SqlDbType.VarChar);
+
+            Comando.Parameters["@IdUsuario"].Value = IdUsuario;
+            Comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
+            Comando.Parameters["@FechaHAsta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
+            Comando.Parameters["@Concepto"].Value = _Concepto;
+
+            ReporteIntermediario.Load(RutaReporte);
+            ReporteIntermediario.Refresh();
+            ReporteIntermediario.SetParameterValue("@IdUsuario", IdUsuario);
+            ReporteIntermediario.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
+            ReporteIntermediario.SetParameterValue("@FechaHAsta", Convert.ToDateTime(txtFechaHasta.Text));
+            ReporteIntermediario.SetParameterValue("@Concepto", _Concepto);
+            ReporteIntermediario.SetDatabaseLogon(UsuarioBD, ClaveBD);
+            if (rbExportarPDF.Checked == true) {
+                ReporteIntermediario.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+            }
+            else if (rbExportarExel.Checked == true) {
+                ReporteIntermediario.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreArchivo);
+            }
+            else if (rbExportarWord.Checked == true) {
+                ReporteIntermediario.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreArchivo);
+            }
+            else if (rbExportartxt.Checked == true) {
+                ReporteIntermediario.ExportToHttpResponse(ExportFormatType.Text, Response, true, NombreArchivo);
+            }
+            else if (rbExportarXML.Checked == true) {
+                ReporteIntermediario.ExportToHttpResponse(ExportFormatType.Xml, Response, true, NombreArchivo);
+            }
+            else if (rbExportarCSV.Checked == true) {
+                ReporteIntermediario.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreArchivo);
+            }
+        }
+
+        private void GenerarReporteAgrupadoPorSupervisor(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo) {
+            string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
+
+            ReportDocument ReporteSupervisor = new ReportDocument();
+
+            SqlCommand Comando = new SqlCommand();
+            Comando.CommandText = "EXEC [Utililades].[SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_SUPERVISOR] @IdUsuario,@FechaDesde,@FechaHAsta,@Concepto";
+            Comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+
+            Comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
+            Comando.Parameters.Add("@FechaDesde", SqlDbType.Date);
+            Comando.Parameters.Add("@FechaHAsta", SqlDbType.Date);
+            Comando.Parameters.Add("@Concepto", SqlDbType.VarChar);
+
+            Comando.Parameters["@IdUsuario"].Value = IdUsuario;
+            Comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
+            Comando.Parameters["@FechaHAsta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
+            Comando.Parameters["@Concepto"].Value = _Concepto;
+
+            ReporteSupervisor.Load(RutaReporte);
+            ReporteSupervisor.Refresh();
+            ReporteSupervisor.SetParameterValue("@IdUsuario", IdUsuario);
+            ReporteSupervisor.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
+            ReporteSupervisor.SetParameterValue("@FechaHAsta", Convert.ToDateTime(txtFechaHasta.Text));
+            ReporteSupervisor.SetParameterValue("@Concepto", _Concepto);
+            ReporteSupervisor.SetDatabaseLogon(UsuarioBD, ClaveBD);
+            if (rbExportarPDF.Checked == true) {
+                ReporteSupervisor.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+            }
+            else if (rbExportarExel.Checked == true) {
+                ReporteSupervisor.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreArchivo);
+            }
+            else if (rbExportarWord.Checked == true) {
+                ReporteSupervisor.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreArchivo);
+            }
+            else if (rbExportartxt.Checked == true) {
+                ReporteSupervisor.ExportToHttpResponse(ExportFormatType.Text, Response, true, NombreArchivo);
+            }
+            else if (rbExportarXML.Checked == true) {
+                ReporteSupervisor.ExportToHttpResponse(ExportFormatType.Xml, Response, true, NombreArchivo);
+            }
+            else if (rbExportarCSV.Checked == true) {
+                ReporteSupervisor.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreArchivo);
             }
         }
 
@@ -1386,26 +1520,26 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 //AGRUPAR LA INFORMACION POR CONCEPTO
                 else if (rbAgruparConcepto.Checked == true)
                 {
-                    GenerarReporteAgrupadoConcepto(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteProduccionAgrupadoConcepto.rpt"), "sa", "Pa$$W0rd", "Reporte Producción Agrupado Por Concepto");
+                    GenerarReporteAgrupadoConcepto(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteProduccionAgrupadoConcepto.rpt"), "sa", "Pa$$W0rd", "Reporte de Producción Agrupado Por Concepto");
                 }
                 //AGRUPAR LA INFORMACION POR USUARIOS
                 else if (rbAgruparPorUsuarios.Checked == true)
                 {
-                    GenerarReporteAgrupadoUsuario(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteAgrupadoPorUsuario.rpt"), "sa", "Pa$$W0rd", "Reporte Producción Agrupado Por Usuario");
+                    GenerarReporteAgrupadoUsuario(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteAgrupadoPorUsuario.rpt"), "sa", "Pa$$W0rd", "Reporte de Producción Agrupado Por Usuario");
                 }
                 else if (rbAgruparPorOficina.Checked == true)
                 {
-                    GenerarReporteAgrupadoPorOficina(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteAgrupadoPoroficina.rpt"), "sa", "Pa$$W0rd", "Reporte Produccion Agrupado por Oficina");
+                    GenerarReporteAgrupadoPorOficina(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteAgrupadoPoroficina.rpt"), "sa", "Pa$$W0rd", "Reporte de Produccion Agrupado Por Oficina");
                 }
                 else if (rbAgruparPorRamo.Checked == true) {
 
-
+                    GenerarReporteAgrupadoPorRamo(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteProduccionAgrupadaRamo.rpt"), "sa", "Pa$$W0rd", "Reporte de Producción Agrupado Por Ramo");
                 }
                 else if (rbAgruparPorIntermediario.Checked == true){
-
+                    GenerarReporteAgrupadoPorIntermediario(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteProduccionAgrupadoIntermediario.rpt"), "sa", "Pa$$W0rd", "Reporte de Producción Agrupado por Intermediario");
                 }
                 else if (rbAgruparPorSupervisor.Checked == true) {
-
+                    GenerarReporteAgrupadoPorSupervisor(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteProduccionAgrupadoSupervisor.rpt"), "sa", "Pa$$W0rd", "Reporte de Produccion Agrupado Por Supervisor");
 
                 }
             }
