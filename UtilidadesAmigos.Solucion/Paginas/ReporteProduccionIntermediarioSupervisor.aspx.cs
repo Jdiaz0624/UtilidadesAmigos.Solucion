@@ -935,7 +935,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
-        private void GenerarReporteNoAgrupadoDetalle(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo) {
+
+        #region GENERAR REPORTES 
+        /// <summary>
+        /// Este Metodo es para generar el reporte de la prodiccion sin agrupar.
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="RutaReporte"></param>
+        /// <param name="UsuarioBD"></param>
+        /// <param name="ClaveBD"></param>
+        /// <param name="NombreArchivo"></param>
+        private void GenerarReporteNoAgrupadoDetalle(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo)
+        {
 
             string Estatus = "";
 
@@ -962,36 +973,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             string _Mes = null;
 
             ReportDocument Reporte = new ReportDocument();
-
-            SqlCommand comando = new SqlCommand();
-            comando.CommandText = "EXEC [Utililades].[SP_BUSCA_DATOS_PRODUCCION_NO_AGRUPADO_DETALLE] @IdUsuario,@Estatus,@FechaDesde,@FechaHasta,@CodigoSupervisor,@CodigoIntermediario,@Oficina,@Ramo,@CodMoneda,@Concepto,@Mes";
-            comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
-
-            //DEFINIMOS EL TIPO DE DATO DE CARA PARAMETRO
-            comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
-            comando.Parameters.Add("@Estatus", SqlDbType.VarChar);
-            comando.Parameters.Add("@FechaDesde", SqlDbType.Date);
-            comando.Parameters.Add("@FechaHasta", SqlDbType.Date);
-            comando.Parameters.Add("@CodigoSupervisor", SqlDbType.VarChar);
-            comando.Parameters.Add("@CodigoIntermediario", SqlDbType.VarChar);
-            comando.Parameters.Add("@Oficina", SqlDbType.Int);
-            comando.Parameters.Add("@Ramo", SqlDbType.Int);
-            comando.Parameters.Add("@CodMoneda", SqlDbType.Int);
-            comando.Parameters.Add("@Concepto", SqlDbType.VarChar);
-            comando.Parameters.Add("@Mes", SqlDbType.VarChar);
-
-            //LE ASIGNAMOS UN VALOR A CADA PARAMETRO
-            comando.Parameters["@IdUsuario"].Value = IdUsuario;
-            comando.Parameters["@Estatus"].Value = Estatus;
-            comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
-            comando.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
-            comando.Parameters["@CodigoSupervisor"].Value = _CodigoSupervisor;
-            comando.Parameters["@CodigoIntermediario"].Value = _CodigoIntermediario;
-            comando.Parameters["@Oficina"].Value = _Oficina;
-            comando.Parameters["@Ramo"].Value = _Ramo;
-            comando.Parameters["@CodMoneda"].Value = _CodMoneda;
-            comando.Parameters["@Concepto"].Value = _Concepto;
-            comando.Parameters["@Mes"].Value = _Mes;
 
             Reporte.Load(RutaReporte);
             Reporte.Refresh();
@@ -1008,28 +989,43 @@ namespace UtilidadesAmigos.Solucion.Paginas
             Reporte.SetParameterValue("@Mes", _Mes);
             Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
             //VALIDAMOS LA FORMA EN LA QUE SE EXPORTARA LA INFORMACION
-            if (rbExportarPDF.Checked == true) {
+            if (rbExportarPDF.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
             }
-            else if (rbExportarExel.Checked == true) {
+            else if (rbExportarExel.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreArchivo);
             }
-            else if (rbExportarWord.Checked == true) {
+            else if (rbExportarWord.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreArchivo);
             }
-            else if (rbExportartxt.Checked == true) {
+            else if (rbExportartxt.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.Text, Response, true, NombreArchivo);
             }
-            else if (rbExportarXML.Checked == true) {
+            else if (rbExportarXML.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.Xml, Response, true, NombreArchivo);
             }
-            else if (rbExportarCSV.Checked == true) {
+            else if (rbExportarCSV.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreArchivo);
             }
 
-            
+
         }
-        private void GenerarReporteNoAgrupadoResumen(decimal IdUaurio, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo) {
+        /// <summary>
+        /// Este Metodo es para generar el reporte de produccion sin agrupar detallado.
+        /// </summary>
+        /// <param name="IdUaurio"></param>
+        /// <param name="RutaReporte"></param>
+        /// <param name="UsuarioBD"></param>
+        /// <param name="ClaveBD"></param>
+        /// <param name="NombreArchivo"></param>
+        private void GenerarReporteNoAgrupadoResumen(decimal IdUaurio, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo)
+        {
             string Estatus = "";
 
             if (rbTodas.Checked == true)
@@ -1056,34 +1052,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             ReportDocument Reporte = new ReportDocument();
 
-            SqlCommand comando = new SqlCommand();
-            comando.CommandText = "EXEC [Utililades].[SP_BUSCA_DATOS_PRODUCCION_NO_AGRUPADO_RESUMEN] @IdUsuario,@Estatus,@FechaDesde,@FechaHasta,@CodigoSupervisor,@CodigoIntermediario,@Oficina,@Ramo,@CodMoneda,@Concepto,@Mes";
-            comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
-
-            comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
-            comando.Parameters.Add("@Estatus", SqlDbType.VarChar);
-            comando.Parameters.Add("@FechaDesde", SqlDbType.Date);
-            comando.Parameters.Add("@FechaHasta", SqlDbType.Date);
-            comando.Parameters.Add("@CodigoSupervisor", SqlDbType.VarChar);
-            comando.Parameters.Add("@CodigoIntermediario", SqlDbType.VarChar);
-            comando.Parameters.Add("@Oficina", SqlDbType.Int);
-            comando.Parameters.Add("@Ramo", SqlDbType.Int);
-            comando.Parameters.Add("@CodMoneda", SqlDbType.Int);
-            comando.Parameters.Add("@Concepto", SqlDbType.VarChar);
-            comando.Parameters.Add("@Mes", SqlDbType.VarChar);
-
-            comando.Parameters["@IdUsuario"].Value = IdUaurio;
-            comando.Parameters["@Estatus"].Value = Estatus;
-            comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
-            comando.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
-            comando.Parameters["@CodigoSupervisor"].Value = _CodigoSupervisor;
-            comando.Parameters["@CodigoIntermediario"].Value = _CodigoIntermediario;
-            comando.Parameters["@Oficina"].Value = _Oficina;
-            comando.Parameters["@Ramo"].Value = _Ramo;
-            comando.Parameters["@CodMoneda"].Value = _CodMoneda;
-            comando.Parameters["@Concepto"].Value = _Concepto;
-            comando.Parameters["@Mes"].Value = _Mes;
-
             Reporte.Load(RutaReporte);
             Reporte.Refresh();
             Reporte.SetParameterValue("@IdUsuario", IdUaurio);
@@ -1099,53 +1067,80 @@ namespace UtilidadesAmigos.Solucion.Paginas
             Reporte.SetParameterValue("@Mes", _Mes);
             Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
-            if (rbExportarPDF.Checked == true) {
+            if (rbExportarPDF.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
             }
-            else if (rbExportarExel.Checked == true) {
+            else if (rbExportarExel.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreArchivo);
             }
-            else if (rbExportarWord.Checked == true) {
+            else if (rbExportarWord.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreArchivo);
             }
-            else if (rbExportartxt.Checked == true) {
+            else if (rbExportartxt.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.Text, Response, true, NombreArchivo);
             }
-            else if (rbExportarXML.Checked == true) {
+            else if (rbExportarXML.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.Xml, Response, true, NombreArchivo);
             }
-            else if (rbExportarCSV.Checked == true) {
+            else if (rbExportarCSV.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreArchivo);
             }
-            
+
 
         }
-        private void GenerarReporteAgrupadoConcepto(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo) {
+        /// <summary>
+        /// Este metodo es para generar el reporte de produccion agrupado por concepto.
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="RutaReporte"></param>
+        /// <param name="UsuarioBD"></param>
+        /// <param name="ClaveBD"></param>
+        /// <param name="NombreArchivo"></param>
+        private void GenerarReporteAgrupadoConcepto(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo)
+        {
+            string _Estatus = "";
+            if (rbTodas.Checked == true)
+            {
+                _Estatus = null;
+            }
+            else if (rbActivas.Checked == true)
+            {
+                _Estatus = "ACTIVO";
 
+            }
+            else if (rbCanceladas.Checked == true)
+            {
+                _Estatus = "CANCELADA";
+            }
+
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _CodMoneda = null;
             string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
-
+            string _Mes = null;
             ReportDocument Reporte = new ReportDocument();
-
-            SqlCommand comando = new SqlCommand();
-            comando.CommandText = "EXEC [Utililades].[SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_CONCEPTO] @IdUsuario,@FechaDesde,@FechaHAsta,@Concepto";
-            comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
-
-            comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
-            comando.Parameters.Add("@FechaDesde", SqlDbType.Date);
-            comando.Parameters.Add("@FechaHAsta", SqlDbType.Date);
-            comando.Parameters.Add("@Concepto", SqlDbType.VarChar);
-
-            comando.Parameters["@IdUsuario"].Value = IdUsuario;
-            comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
-            comando.Parameters["@FechaHAsta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
-            comando.Parameters["@Concepto"].Value = _Concepto;
 
             Reporte.Load(RutaReporte);
             Reporte.Refresh();
             Reporte.SetParameterValue("@IdUsuario", IdUsuario);
+            Reporte.SetParameterValue("@Estatus", _Estatus);
             Reporte.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
-            Reporte.SetParameterValue("@FechaHAsta", Convert.ToDateTime(txtFechaHasta.Text));
+            Reporte.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHasta.Text));
+            Reporte.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
+            Reporte.SetParameterValue("@CodigoIntermediario", _CodigoIntermediario);
+            Reporte.SetParameterValue("@Oficina", _Oficina);
+            Reporte.SetParameterValue("@Ramo", _Ramo);
+            Reporte.SetParameterValue("@CodMoneda", _CodMoneda);
             Reporte.SetParameterValue("@Concepto", _Concepto);
+            Reporte.SetParameterValue("@Mes", _Mes);
             Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
             if (rbExportarPDF.Checked == true)
@@ -1173,31 +1168,54 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Reporte.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreArchivo);
             }
         }
-        private void GenerarReporteAgrupadoUsuario(decimal IdUaurio, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo) {
+        /// <summary>
+        /// Este Metodo es para generar el reporte de produccion agrupado por usuario.
+        /// </summary>
+        /// <param name="IdUaurio"></param>
+        /// <param name="RutaReporte"></param>
+        /// <param name="UsuarioBD"></param>
+        /// <param name="ClaveBD"></param>
+        /// <param name="NombreArchivo"></param>
+        private void GenerarReporteAgrupadoUsuario(decimal IdUaurio, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo)
+        {
+            string _Estatus = "";
+            if (rbTodas.Checked == true)
+            {
+                _Estatus = null;
+            }
+            else if (rbActivas.Checked == true)
+            {
+                _Estatus = "ACTIVO";
+
+            }
+            else if (rbCanceladas.Checked == true)
+            {
+                _Estatus = "CANCELADA";
+            }
+
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _CodMoneda = null;
             string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
+            string _Mes = null;
 
             ReportDocument Reporte = new ReportDocument();
-
-            SqlCommand comando = new SqlCommand();
-            comando.CommandText = "EXEC [Utililades].[SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_USUARIO] @IdUsuario,@FechaDesde,@FechaHAsta,@Concepto";
-            comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
-
-            comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
-            comando.Parameters.Add("@FechaDesde", SqlDbType.Date);
-            comando.Parameters.Add("@FechaHAsta", SqlDbType.Date);
-            comando.Parameters.Add("@Concepto", SqlDbType.VarChar);
-
-            comando.Parameters["@IdUsuario"].Value = IdUaurio;
-            comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
-            comando.Parameters["@FechaHAsta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
-            comando.Parameters["@Concepto"].Value = _Concepto;
 
             Reporte.Load(RutaReporte);
             Reporte.Refresh();
             Reporte.SetParameterValue("@IdUsuario", IdUaurio);
+            Reporte.SetParameterValue("@Estatus", _Estatus);
             Reporte.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
-            Reporte.SetParameterValue("@FechaHAsta", Convert.ToDateTime(txtFechaHasta.Text));
+            Reporte.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHasta.Text));
+            Reporte.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
+            Reporte.SetParameterValue("@CodigoIntermediario", _CodigoIntermediario);
+            Reporte.SetParameterValue("@Oficina", _Oficina);
+            Reporte.SetParameterValue("@Ramo", _Ramo);
+            Reporte.SetParameterValue("@CodMoneda", _CodMoneda);
             Reporte.SetParameterValue("@Concepto", _Concepto);
+            Reporte.SetParameterValue("@Mes", _Mes);
 
             Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
@@ -1226,31 +1244,54 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Reporte.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreArchivo);
             }
         }
-        private void GenerarReporteAgrupadoPorOficina(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBd, string NombreArchivo) {
+        /// <summary>
+        /// Este metodo es para generar el reporte de produccion agrupado por Oficina.
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="RutaReporte"></param>
+        /// <param name="UsuarioBD"></param>
+        /// <param name="ClaveBd"></param>
+        /// <param name="NombreArchivo"></param>
+        private void GenerarReporteAgrupadoPorOficina(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBd, string NombreArchivo)
+        {
+            string _Estatus = "";
+            if (rbTodas.Checked == true)
+            {
+                _Estatus = null;
+            }
+            else if (rbActivas.Checked == true)
+            {
+                _Estatus = "ACTIVO";
+
+            }
+            else if (rbCanceladas.Checked == true)
+            {
+                _Estatus = "CANCELADA";
+            }
+
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _CodMoneda = null;
             string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
+            string _Mes = null;
 
             ReportDocument Reporte = new ReportDocument();
-
-            SqlCommand comando = new SqlCommand();
-            comando.CommandText = "EXEC [Utililades].[SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_OFICINA] @IdUsuario,@FechaDesde,@FechaHAsta,@Concepto";
-            comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
-
-            comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
-            comando.Parameters.Add("@FechaDesde", SqlDbType.Date);
-            comando.Parameters.Add("@FechaHAsta", SqlDbType.Date);
-            comando.Parameters.Add("@Concepto", SqlDbType.VarChar);
-
-            comando.Parameters["@IdUsuario"].Value = IdUsuario;
-            comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
-            comando.Parameters["@FechaHAsta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
-            comando.Parameters["@Concepto"].Value = _Concepto;
 
             Reporte.Load(RutaReporte);
             Reporte.Refresh();
             Reporte.SetParameterValue("@IdUsuario", IdUsuario);
+            Reporte.SetParameterValue("@Estatus", _Estatus);
             Reporte.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
-            Reporte.SetParameterValue("@FechaHAsta", Convert.ToDateTime(txtFechaHasta.Text));
+            Reporte.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHasta.Text));
+            Reporte.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
+            Reporte.SetParameterValue("@CodigoIntermediario", _CodigoIntermediario);
+            Reporte.SetParameterValue("@Oficina", _Oficina);
+            Reporte.SetParameterValue("@Ramo", _Ramo);
+            Reporte.SetParameterValue("@CodMoneda", _CodMoneda);
             Reporte.SetParameterValue("@Concepto", _Concepto);
+            Reporte.SetParameterValue("@Mes", _Mes);
             Reporte.SetDatabaseLogon(UsuarioBD, ClaveBd);
 
             if (rbExportarPDF.Checked == true)
@@ -1278,145 +1319,228 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Reporte.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreArchivo);
             }
         }
-        private void GenerarReporteAgrupadoPorRamo(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClabeBD, string Nombrearchivo) {
+        /// <summary>
+        /// Este metodo es para generar el reporte de produccion agrupado por ramo.
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="RutaReporte"></param>
+        /// <param name="UsuarioBD"></param>
+        /// <param name="ClabeBD"></param>
+        /// <param name="Nombrearchivo"></param>
+        private void GenerarReporteAgrupadoPorRamo(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClabeBD, string Nombrearchivo)
+        {
+            string _Estatus = "";
+            if (rbTodas.Checked == true)
+            {
+                _Estatus = null;
+            }
+            else if (rbActivas.Checked == true)
+            {
+                _Estatus = "ACTIVO";
+
+            }
+            else if (rbCanceladas.Checked == true)
+            {
+                _Estatus = "CANCELADA";
+            }
+
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _CodMoneda = null;
             string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
+            string _Mes = null;
 
             ReportDocument Reporte = new ReportDocument();
-
-            SqlCommand Comando = new SqlCommand();
-            Comando.CommandText = "EXEC [Utililades].[SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_RAMO] @IdUsuario,@FechaDesde,@FechaHAsta,@Concepto";
-            Comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
-
-            Comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
-            Comando.Parameters.Add("@FechaDesde", SqlDbType.Date);
-            Comando.Parameters.Add("@FechaHAsta", SqlDbType.Date);
-            Comando.Parameters.Add("@Concepto", SqlDbType.VarChar);
-
-            Comando.Parameters["@IdUsuario"].Value = IdUsuario;
-            Comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
-            Comando.Parameters["@FechaHAsta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
-            Comando.Parameters["@Concepto"].Value = _Concepto;
 
             Reporte.Load(RutaReporte);
             Reporte.Refresh();
             Reporte.SetParameterValue("@IdUsuario", IdUsuario);
+            Reporte.SetParameterValue("@Estatus", _Estatus);
             Reporte.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
-            Reporte.SetParameterValue("@FechaHAsta", Convert.ToDateTime(txtFechaHasta.Text));
+            Reporte.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHasta.Text));
+            Reporte.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
+            Reporte.SetParameterValue("@CodigoIntermediario", _CodigoIntermediario);
+            Reporte.SetParameterValue("@Oficina", _Oficina);
+            Reporte.SetParameterValue("@Ramo", _Ramo);
+            Reporte.SetParameterValue("@CodMoneda", _CodMoneda);
             Reporte.SetParameterValue("@Concepto", _Concepto);
+            Reporte.SetParameterValue("@Mes", _Mes);
             Reporte.SetDatabaseLogon(UsuarioBD, ClabeBD);
-            if (rbExportarPDF.Checked == true) {
+            if (rbExportarPDF.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, Nombrearchivo);
             }
-            else if (rbExportarExel.Checked == true) {
+            else if (rbExportarExel.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, Nombrearchivo);
             }
-            else if (rbExportarWord.Checked == true) {
+            else if (rbExportarWord.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, Nombrearchivo);
             }
-            else if (rbExportartxt.Checked == true) {
+            else if (rbExportartxt.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.Text, Response, true, Nombrearchivo);
             }
-            else if (rbExportarXML.Checked == true) {
+            else if (rbExportarXML.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.Xml, Response, true, Nombrearchivo);
             }
-            else if (rbExportarCSV.Checked == true) {
+            else if (rbExportarCSV.Checked == true)
+            {
                 Reporte.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, Nombrearchivo);
             }
         }
-        private void GenerarReporteAgrupadoPorIntermediario(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo) {
+        /// <summary>
+        /// Este metodo es para generar el reporte de produccion agrupado por intermediario.
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="RutaReporte"></param>
+        /// <param name="UsuarioBD"></param>
+        /// <param name="ClaveBD"></param>
+        /// <param name="NombreArchivo"></param>
+        private void GenerarReporteAgrupadoPorIntermediario(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo)
+        {
+            string _Estatus = "";
+            if (rbTodas.Checked == true)
+            {
+                _Estatus = null;
+            }
+            else if (rbActivas.Checked == true)
+            {
+                _Estatus = "ACTIVO";
+
+            }
+            else if (rbCanceladas.Checked == true)
+            {
+                _Estatus = "CANCELADA";
+            }
+
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _CodMoneda = null;
             string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
+            string _Mes = null;
 
             ReportDocument ReporteIntermediario = new ReportDocument();
-
-            SqlCommand Comando = new SqlCommand();
-            Comando.CommandText = "EXEC [Utililades].[SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_INTERMEDIARIO] @IdUsuario,@FechaDesde,@FechaHAsta,@Concepto";
-            Comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
-
-            Comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
-            Comando.Parameters.Add("@FechaDesde", SqlDbType.Date);
-            Comando.Parameters.Add("@FechaHAsta", SqlDbType.Date);
-            Comando.Parameters.Add("@Concepto", SqlDbType.VarChar);
-
-            Comando.Parameters["@IdUsuario"].Value = IdUsuario;
-            Comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
-            Comando.Parameters["@FechaHAsta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
-            Comando.Parameters["@Concepto"].Value = _Concepto;
 
             ReporteIntermediario.Load(RutaReporte);
             ReporteIntermediario.Refresh();
             ReporteIntermediario.SetParameterValue("@IdUsuario", IdUsuario);
+            ReporteIntermediario.SetParameterValue("@Estatus", _Estatus);
             ReporteIntermediario.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
-            ReporteIntermediario.SetParameterValue("@FechaHAsta", Convert.ToDateTime(txtFechaHasta.Text));
+            ReporteIntermediario.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHasta.Text));
+            ReporteIntermediario.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
+            ReporteIntermediario.SetParameterValue("@CodigoIntermediario", _CodigoIntermediario);
+            ReporteIntermediario.SetParameterValue("@Oficina", _Oficina);
+            ReporteIntermediario.SetParameterValue("@Ramo", _Ramo);
+            ReporteIntermediario.SetParameterValue("@CodMoneda", _CodMoneda);
             ReporteIntermediario.SetParameterValue("@Concepto", _Concepto);
+            ReporteIntermediario.SetParameterValue("@Mes", _Mes);
             ReporteIntermediario.SetDatabaseLogon(UsuarioBD, ClaveBD);
-            if (rbExportarPDF.Checked == true) {
+            if (rbExportarPDF.Checked == true)
+            {
                 ReporteIntermediario.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
             }
-            else if (rbExportarExel.Checked == true) {
+            else if (rbExportarExel.Checked == true)
+            {
                 ReporteIntermediario.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreArchivo);
             }
-            else if (rbExportarWord.Checked == true) {
+            else if (rbExportarWord.Checked == true)
+            {
                 ReporteIntermediario.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreArchivo);
             }
-            else if (rbExportartxt.Checked == true) {
+            else if (rbExportartxt.Checked == true)
+            {
                 ReporteIntermediario.ExportToHttpResponse(ExportFormatType.Text, Response, true, NombreArchivo);
             }
-            else if (rbExportarXML.Checked == true) {
+            else if (rbExportarXML.Checked == true)
+            {
                 ReporteIntermediario.ExportToHttpResponse(ExportFormatType.Xml, Response, true, NombreArchivo);
             }
-            else if (rbExportarCSV.Checked == true) {
+            else if (rbExportarCSV.Checked == true)
+            {
                 ReporteIntermediario.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreArchivo);
             }
         }
+        /// <summary>
+        /// Este metodo es para generar el reporte de produccionagrupado por supervisor.
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="RutaReporte"></param>
+        /// <param name="UsuarioBD"></param>
+        /// <param name="ClaveBD"></param>
+        /// <param name="NombreArchivo"></param>
+        private void GenerarReporteAgrupadoPorSupervisor(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo)
+        {
+            string _Estatus = "";
+            if (rbTodas.Checked == true)
+            {
+                _Estatus = null;
+            }
+            else if (rbActivas.Checked == true)
+            {
+                _Estatus = "ACTIVO";
 
-        private void GenerarReporteAgrupadoPorSupervisor(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo) {
+            }
+            else if (rbCanceladas.Checked == true)
+            {
+                _Estatus = "CANCELADA";
+            }
+
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _CodMoneda = null;
             string _Concepto = ddlSeleccionarConcepto.SelectedValue != "-1" ? ddlSeleccionarConcepto.SelectedItem.Text : null;
+            string _Mes = null;
 
             ReportDocument ReporteSupervisor = new ReportDocument();
-
-            SqlCommand Comando = new SqlCommand();
-            Comando.CommandText = "EXEC [Utililades].[SP_BUSCA_REPORTE_PRODUCCION_AGRUPADO_POR_SUPERVISOR] @IdUsuario,@FechaDesde,@FechaHAsta,@Concepto";
-            Comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
-
-            Comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
-            Comando.Parameters.Add("@FechaDesde", SqlDbType.Date);
-            Comando.Parameters.Add("@FechaHAsta", SqlDbType.Date);
-            Comando.Parameters.Add("@Concepto", SqlDbType.VarChar);
-
-            Comando.Parameters["@IdUsuario"].Value = IdUsuario;
-            Comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
-            Comando.Parameters["@FechaHAsta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
-            Comando.Parameters["@Concepto"].Value = _Concepto;
 
             ReporteSupervisor.Load(RutaReporte);
             ReporteSupervisor.Refresh();
             ReporteSupervisor.SetParameterValue("@IdUsuario", IdUsuario);
+            ReporteSupervisor.SetParameterValue("@Estatus", _Estatus);
             ReporteSupervisor.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
-            ReporteSupervisor.SetParameterValue("@FechaHAsta", Convert.ToDateTime(txtFechaHasta.Text));
+            ReporteSupervisor.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHasta.Text));
+            ReporteSupervisor.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
+            ReporteSupervisor.SetParameterValue("@CodigoIntermediario", _CodigoIntermediario);
+            ReporteSupervisor.SetParameterValue("@Oficina", _Oficina);
+            ReporteSupervisor.SetParameterValue("@Ramo", _Ramo);
+            ReporteSupervisor.SetParameterValue("@CodMoneda", _CodMoneda);
             ReporteSupervisor.SetParameterValue("@Concepto", _Concepto);
+            ReporteSupervisor.SetParameterValue("@Mes", _Mes);
             ReporteSupervisor.SetDatabaseLogon(UsuarioBD, ClaveBD);
-            if (rbExportarPDF.Checked == true) {
+            if (rbExportarPDF.Checked == true)
+            {
                 ReporteSupervisor.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
             }
-            else if (rbExportarExel.Checked == true) {
+            else if (rbExportarExel.Checked == true)
+            {
                 ReporteSupervisor.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreArchivo);
             }
-            else if (rbExportarWord.Checked == true) {
+            else if (rbExportarWord.Checked == true)
+            {
                 ReporteSupervisor.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreArchivo);
             }
-            else if (rbExportartxt.Checked == true) {
+            else if (rbExportartxt.Checked == true)
+            {
                 ReporteSupervisor.ExportToHttpResponse(ExportFormatType.Text, Response, true, NombreArchivo);
             }
-            else if (rbExportarXML.Checked == true) {
+            else if (rbExportarXML.Checked == true)
+            {
                 ReporteSupervisor.ExportToHttpResponse(ExportFormatType.Xml, Response, true, NombreArchivo);
             }
-            else if (rbExportarCSV.Checked == true) {
+            else if (rbExportarCSV.Checked == true)
+            {
                 ReporteSupervisor.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreArchivo);
             }
         }
-
-        #region GENERAR REPORTES A PDF
-
         #endregion
 
 
