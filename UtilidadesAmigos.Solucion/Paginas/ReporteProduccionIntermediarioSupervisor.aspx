@@ -156,7 +156,7 @@
                 <asp:RadioButton ID="rbExportarExel" runat="server" Text="Excel" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a Excel" GroupName="ExportarInformacion" />
                 <asp:RadioButton ID="rbExportarWord" runat="server" Text="Word" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a Word" GroupName="ExportarInformacion" />
                 <asp:RadioButton ID="rbExportartxt" runat="server" Text="TXT" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a TXT" GroupName="ExportarInformacion" />
-                <asp:RadioButton ID="rbExportarXML" runat="server" Text="XML" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a XML" GroupName="ExportarInformacion" />
+                <asp:RadioButton ID="rbExportarXML" runat="server" Text="XML" CssClass="form-check-input Letranegrita" Visible="false" ToolTip="Exportar Reporte a XML" GroupName="ExportarInformacion" />
                 <asp:RadioButton ID="rbExportarCSV" runat="server" Text="CSV" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a CSV" GroupName="ExportarInformacion" />
            </div>
        </div>

@@ -463,5 +463,16 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkReporteCobrado_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null) {
+                Response.Redirect("GenerarReporteCobros.aspx");
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }
