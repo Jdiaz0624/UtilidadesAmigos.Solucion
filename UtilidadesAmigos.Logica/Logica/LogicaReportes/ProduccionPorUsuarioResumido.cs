@@ -747,5 +747,47 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Reporte;
         }
         #endregion
+
+        #region REPORTE DE COBROS
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaDataCobradoDetalle> BuscarDataReporteCobrosDetalle(string Poliza = null, string Numero = null, string Anulado = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, string TipoPago = null, string CodigoCliente = null, string CodigoIntermediario = null, string CodigoSupervisor = null, int? CodigoOficina = null, int? CodigoRamo = null, string Usuario = null, int? CodigoMoneda = null, string Concepto = null, decimal? Tasa = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_DATA_COBRADO_DETALLE(Poliza, Numero, Anulado, FechaDesde, FechaHasta, TipoPago, CodigoCliente, CodigoIntermediario, CodigoSupervisor, CodigoOficina, CodigoRamo, Usuario, CodigoMoneda, Concepto, Tasa)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaDataCobradoDetalle
+                           {
+                               Poliza=n.Poliza,
+                               Numero=n.Numero,
+                               Concepto=n.Concepto,
+                               NumeroFormateado=n.NumeroFormateado,
+                               Anulado=n.Anulado,
+                               Fecha=n.Fecha,
+                               FechaFormateada=n.FechaFormateada,
+                               TipoPago=n.TipoPago,
+                               CodigoCliente=n.CodigoCliente,
+                               Cliente=n.Cliente,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               CodSupervisor=n.CodSupervisor,
+                               NombreSupervisor=n.NombreSupervisor,
+                               CodigoOficina=n.CodigoOficina,
+                               Oficina=n.Oficina,
+                               Usuario=n.Usuario,
+                               CodigoRamo=n.CodigoRamo,
+                               Ramo=n.Ramo,
+                               CodMoneda=n.CodMoneda,
+                               Moneda=n.Moneda,
+                               Bruto=n.Bruto,
+                               Impuesto=n.Impuesto,
+                               Neto=n.Neto,
+                               Tasa=n.Tasa,
+                               MontoPesos=n.MontoPesos,
+                               CantidadRegistros=n.CantidadRegistros,
+                               TotalCobradoPesos=n.TotalCobradoPesos,
+                               TotalCobradoDolar=n.TotalCobradoDolar
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }

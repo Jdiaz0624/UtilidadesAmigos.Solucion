@@ -114,6 +114,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbTipoReporte;
 
         /// <summary>
+        /// divTipoReporte control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTipoReporte;
+
+        /// <summary>
         /// rbReporteDetallado control.
         /// </summary>
         /// <remarks>
@@ -159,13 +168,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.RadioButton rbRecibosActivos;
 
         /// <summary>
-        /// RecibosAnulados control.
+        /// rbRecibosAnulados control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RecibosAnulados;
+        protected global::System.Web.UI.WebControls.RadioButton rbRecibosAnulados;
 
         /// <summary>
         /// lbfechadesdeConsulta control.
@@ -517,6 +526,33 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbTotalCobradoCerrarDollar;
+
+        /// <summary>
+        /// lbPesosDollarConvertidoTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPesosDollarConvertidoTitulo;
+
+        /// <summary>
+        /// lbPesosDollarConvertidoVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPesosDollarConvertidoVariable;
+
+        /// <summary>
+        /// lbPesosDollarConvertidoCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPesosDollarConvertidoCerrar;
 
         /// <summary>
         /// gvListadoCobros control.

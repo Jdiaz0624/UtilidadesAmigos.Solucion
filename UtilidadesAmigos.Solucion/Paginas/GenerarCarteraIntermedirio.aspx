@@ -84,6 +84,8 @@
             <asp:Label ID="lbCantidadRegistrosMostradosTitulo" runat="server" Text="Cantidad de Registros Mostrados ( " CssClass="=LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCantidadRegistrosMostradosVariable" runat="server" Text="0" CssClass="=LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" Text=" )" CssClass="=LetrasNegrita"></asp:Label>
+
+           
         </div>
            <div>
             <asp:GridView ID="gvListadoIntermediario" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoIntermediario_PageIndexChanging" OnSelectedIndexChanged="gvListadoIntermediario_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">

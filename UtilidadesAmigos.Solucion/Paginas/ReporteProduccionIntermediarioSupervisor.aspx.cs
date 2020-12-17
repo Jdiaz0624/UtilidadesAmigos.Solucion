@@ -629,43 +629,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
         #region COMPLETENTO DE CONSULTAS
-        private string SacarSupervisor(string CodigoSupervisor) {
-
-            string NombreSupervisor = "";
-            var Nombre = ObjDataMantenimiento.Value.BuscaListadoIntermediario(
-                null,
-                null,
-                CodigoSupervisor,
-                null,
-                null);
-            if (Nombre.Count() < 1) {
-                NombreSupervisor = "";
-            }
-            else {
-                foreach (var n in Nombre) {
-                    NombreSupervisor = n.NombreSupervisor;
-                }
-            }
-
-            return NombreSupervisor;
-        }
-        private string SacarIntermediario(string CodigoIntermediario) {
-            string NombreIntermediario = "";
-
-            var Nombre = ObjDataMantenimiento.Value.BuscaListadoIntermediario(
-                CodigoIntermediario,
-                null, null, null, null);
-            if (Nombre.Count() < 1)
-            {
-                NombreIntermediario = "";
-            }
-            else {
-                foreach (var n in Nombre) {
-                    NombreIntermediario = n.NombreVendedor;
-                }
-            }
-            return NombreIntermediario;
-        }
         private void CargarSucursales() {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSucursal, ObjDataGeneral.Value.BuscaListas("SUCURSAL", null, null), true);
         }
@@ -1573,12 +1536,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void txtCodigoSupervisor_TextChanged(object sender, EventArgs e)
         {
-            txtNombreSupervisor.Text = SacarSupervisor(txtCodigoSupervisor.Text);
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor SacarDato = new Logica.Comunes.SacarNombreIntermediarioSupervisor(_CodigoSupervisor);
+            txtNombreSupervisor.Text = SacarDato.SacarNombreSupervisor();
         }
 
         protected void txtCodigoIntermediario_TextChanged(object sender, EventArgs e)
         {
-            txtNombreIntermediario.Text = SacarIntermediario(txtCodigoIntermediario.Text);
+            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor SacarDato = new Logica.Comunes.SacarNombreIntermediarioSupervisor(_CodigoIntermediario);
+            txtNombreIntermediario.Text = SacarDato.SacarNombreIntermediario();
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)

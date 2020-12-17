@@ -571,4 +571,52 @@
       <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_DATA_COBRADO_DETALLE" Method="SP_BUSCA_DATA_COBRADO_DETALLE">
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Numero" Parameter="numero" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Anulado" Parameter="anulado" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="TipoPago" Parameter="tipoPago" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CodigoCliente" Parameter="codigoCliente" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CodigoOficina" Parameter="codigoOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoRamo" Parameter="codigoRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoMoneda" Parameter="codigoMoneda" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Concepto" Parameter="concepto" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Tasa" Parameter="tasa" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <ElementType Name="SP_BUSCA_DATA_COBRADO_DETALLEResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Numero" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Concepto" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NumeroFormateado" Type="System.String" DbType="VarChar(37) NOT NULL" CanBeNull="false" />
+      <Column Name="Anulado" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaFormateada" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="TipoPago" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CodMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Bruto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Impuesto" Type="System.Decimal" DbType="Decimal(21,2)" CanBeNull="true" />
+      <Column Name="Neto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Tasa" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="MontoPesos" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalCobradoPesos" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TotalCobradoDolar" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
