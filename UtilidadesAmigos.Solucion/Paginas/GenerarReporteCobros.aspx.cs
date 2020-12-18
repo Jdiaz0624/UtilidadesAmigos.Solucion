@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportSource;
+using CrystalDecisions.Shared;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -74,6 +77,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 int? _CodigoOficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
                 int? _CodigoRamo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
                 string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
+                decimal? _IdUsuario = 0;
+                if (Session["IdUsuario"] != null)
+                {
+                    _IdUsuario = Convert.ToDecimal(Session["Idusuario"]);
+                }
+                else
+                {
+                    _IdUsuario = 0;
+                }
 
                 var Buscarregistros = ObjDataReporte.Value.BuscarDataReporteCobrosDetalle(
                     null,
@@ -88,7 +100,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     _CodigoRamo,
                     null, null,
                     _Concepto,
-                    Convert.ToDecimal(txtTasaConsulta.Text));
+                    Convert.ToDecimal(txtTasaConsulta.Text),
+                    _IdUsuario);
                 if (Buscarregistros.Count() < 1) {
                     lbCantidadRegistrosVariable.Text = "0";
                     lbTotalCobradoPesosVariable.Text = "0";
@@ -943,6 +956,69 @@ namespace UtilidadesAmigos.Solucion.Paginas
             GraUsuario.Series["Serie"].Points.DataBindXY(NombreUsuario, MontoUsuario);
         }
         #endregion
+        #region GENERAR REPORTES DE COBROS
+        private void GenerarReporteCobrosNoAgrupadoDetallado(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreReporte) {
+            //ESTABLECEMOS LOS FILTROS QUE SE VAN A UTILIZAR
+            string _Poliza = null;
+            string _Numerorecibo = null;
+            string _Anulado = "";
+            if (rbTodosRecibos.Checked == true) {
+                _Anulado = null;
+            }
+            else if (rbRecibosActivos.Checked == true) {
+                _Anulado = "N";
+            }
+            else if (rbRecibosAnulados.Checked == true) {
+                _Anulado = "S";
+            }
+            string _TipoPago = null;
+            string _CodigoCliente = null;
+            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
+            string _Usuario = null;
+            int? _Moneda = null;
+            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
+
+            ReportDocument ReporteNoAgrupadoDetalle = new ReportDocument();
+
+            ReporteNoAgrupadoDetalle.Load(RutaReporte);
+            ReporteNoAgrupadoDetalle.Refresh();
+            ReporteNoAgrupadoDetalle.SetParameterValue("@Poliza", _Poliza);
+            ReporteNoAgrupadoDetalle.SetParameterValue("@Numero", _Numerorecibo);
+            ReporteNoAgrupadoDetalle.SetParameterValue("@Anulado", _Anulado);
+            ReporteNoAgrupadoDetalle.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesdeConsulta.Text));
+            ReporteNoAgrupadoDetalle.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHastaConsulta.Text));
+            ReporteNoAgrupadoDetalle.SetParameterValue("@TipoPago", _TipoPago);
+            ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoCliente", _CodigoCliente);
+            ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoIntermediario", _CodigoIntermediario);
+            ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
+            ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoOficina", _Oficina);
+            ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoRamo", _Ramo);
+            ReporteNoAgrupadoDetalle.SetParameterValue("@Usuario", _Usuario);
+            ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoMoneda", _Moneda);
+            ReporteNoAgrupadoDetalle.SetParameterValue("@Concepto", _Concepto);
+            ReporteNoAgrupadoDetalle.SetParameterValue("@Tasa", Convert.ToDecimal(txtTasaConsulta.Text));
+            ReporteNoAgrupadoDetalle.SetParameterValue("@IdUsuarioProcesa", IdUsuario);
+            ReporteNoAgrupadoDetalle.SetDatabaseLogon(UsuarioBD, ClaveBD);
+            if (rbExportarPDF.Checked == true) {
+                ReporteNoAgrupadoDetalle.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
+            else if (rbExportarExcel.Checked == true) {
+                ReporteNoAgrupadoDetalle.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+            }
+            else if (rbExportarWord.Checked == true) {
+                ReporteNoAgrupadoDetalle.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreReporte);
+            }
+            else if (rbExportarTXT.Checked == true) {
+                ReporteNoAgrupadoDetalle.ExportToHttpResponse(ExportFormatType.Text, Response, true, NombreReporte);
+            }
+            else if (rbExportarCSV.Checked == true) {
+                ReporteNoAgrupadoDetalle.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreReporte);
+            }
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -1109,7 +1185,47 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnExportarRegistros_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
 
+                if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdevacio()", "CampoFechaDesdevacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                }
+            }
+            else
+            {
+                if (rbNoAgruparDatos.Checked == true)
+                {
+                    if (rbReporteDetallado.Checked == true)
+                    {
+                        decimal IdUsuarioProcesa = 0;
+                        if (Session["IdUsuario"] != null)
+                        {
+                            IdUsuarioProcesa = Convert.ToDecimal(Session["IdUsuario"]);
+                        }
+                        else
+                        {
+                            IdUsuarioProcesa = 0;
+                        }
+
+                        GenerarReporteCobrosNoAgrupadoDetallado(IdUsuarioProcesa, Server.MapPath("ReporteCobradoNoAgrupadoDetalle.rpt"), "sa", "Pa$$W0rd", "Reporte de Cobros no Agrupado Detallado");
+                    }
+                    else if (rbReporteDetallado.Checked == true) { }
+                }
+                else if (rbAgruparPorConcepto.Checked == true) { }
+                else if (rbAgruparTipoPago.Checked == true) { }
+                else if (rbAgruparIntermediario.Checked == true) { }
+                else if (rbAgruparSupervisor.Checked == true) { }
+                else if (rbAgruparPorOficina.Checked == true) { }
+                else if (rbAgrupaRamo.Checked == true) { }
+                else if (rbAgruparUsuario.Checked == true) { }
+            }
         }
 
         protected void gvListadoCobros_PageIndexChanging(object sender, GridViewPageEventArgs e)

@@ -749,11 +749,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         #endregion
 
         #region REPORTE DE COBROS
-        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaDataCobradoDetalle> BuscarDataReporteCobrosDetalle(string Poliza = null, string Numero = null, string Anulado = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, string TipoPago = null, string CodigoCliente = null, string CodigoIntermediario = null, string CodigoSupervisor = null, int? CodigoOficina = null, int? CodigoRamo = null, string Usuario = null, int? CodigoMoneda = null, string Concepto = null, decimal? Tasa = null)
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaDataCobradoDetalle> BuscarDataReporteCobrosDetalle(string Poliza = null, string Numero = null, string Anulado = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, string TipoPago = null, string CodigoCliente = null, string CodigoIntermediario = null, string CodigoSupervisor = null, int? CodigoOficina = null, int? CodigoRamo = null, string Usuario = null, int? CodigoMoneda = null, string Concepto = null, decimal? Tasa = null,decimal? IdUsuarioProcesa = null)
         {
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_BUSCA_DATA_COBRADO_DETALLE(Poliza, Numero, Anulado, FechaDesde, FechaHasta, TipoPago, CodigoCliente, CodigoIntermediario, CodigoSupervisor, CodigoOficina, CodigoRamo, Usuario, CodigoMoneda, Concepto, Tasa)
+            var Listado = (from n in ObjData.SP_BUSCA_DATA_COBRADO_DETALLE(Poliza, Numero, Anulado, FechaDesde, FechaHasta, TipoPago, CodigoCliente, CodigoIntermediario, CodigoSupervisor, CodigoOficina, CodigoRamo, Usuario, CodigoMoneda, Concepto, Tasa,IdUsuarioProcesa)
                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaDataCobradoDetalle
                            {
                                Poliza=n.Poliza,
@@ -784,7 +784,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                MontoPesos=n.MontoPesos,
                                CantidadRegistros=n.CantidadRegistros,
                                TotalCobradoPesos=n.TotalCobradoPesos,
-                               TotalCobradoDolar=n.TotalCobradoDolar
+                               TotalCobradoDolar=n.TotalCobradoDolar,
+                               UsuarioGenera=n.UsuarioGenera
                            }).ToList();
             return Listado;
         }

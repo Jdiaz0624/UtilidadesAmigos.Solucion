@@ -291,9 +291,25 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_DATA_COBRADO_DETALLE")]
-		public ISingleResult<SP_BUSCA_DATA_COBRADO_DETALLEResult> SP_BUSCA_DATA_COBRADO_DETALLE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Numero", DbType="VarChar(30)")] string numero, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Anulado", DbType="VarChar(1)")] string anulado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoPago", DbType="VarChar(50)")] string tipoPago, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoCliente", DbType="VarChar(50)")] string codigoCliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="VarChar(50)")] string codigoIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="VarChar(50)")] string codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoOficina", DbType="Int")] System.Nullable<int> codigoOficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoRamo", DbType="Int")] System.Nullable<int> codigoRamo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(100)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoMoneda", DbType="Int")] System.Nullable<int> codigoMoneda, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Concepto", DbType="VarChar(100)")] string concepto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tasa", DbType="Decimal(20,2)")] System.Nullable<decimal> tasa)
+		public ISingleResult<SP_BUSCA_DATA_COBRADO_DETALLEResult> SP_BUSCA_DATA_COBRADO_DETALLE(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Numero", DbType="VarChar(30)")] string numero, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Anulado", DbType="VarChar(1)")] string anulado, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoPago", DbType="VarChar(50)")] string tipoPago, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoCliente", DbType="VarChar(50)")] string codigoCliente, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="VarChar(50)")] string codigoIntermediario, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="VarChar(50)")] string codigoSupervisor, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoOficina", DbType="Int")] System.Nullable<int> codigoOficina, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoRamo", DbType="Int")] System.Nullable<int> codigoRamo, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(100)")] string usuario, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoMoneda", DbType="Int")] System.Nullable<int> codigoMoneda, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Concepto", DbType="VarChar(100)")] string concepto, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tasa", DbType="Decimal(20,2)")] System.Nullable<decimal> tasa, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuarioProcesa", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuarioProcesa)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, numero, anulado, fechaDesde, fechaHasta, tipoPago, codigoCliente, codigoIntermediario, codigoSupervisor, codigoOficina, codigoRamo, usuario, codigoMoneda, concepto, tasa);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, numero, anulado, fechaDesde, fechaHasta, tipoPago, codigoCliente, codigoIntermediario, codigoSupervisor, codigoOficina, codigoRamo, usuario, codigoMoneda, concepto, tasa, idUsuarioProcesa);
 			return ((ISingleResult<SP_BUSCA_DATA_COBRADO_DETALLEResult>)(result.ReturnValue));
 		}
 	}
@@ -6149,6 +6165,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<decimal> _TotalCobradoDolar;
 		
+		private string _UsuarioGenera;
+		
 		public SP_BUSCA_DATA_COBRADO_DETALLEResult()
 		{
 		}
@@ -6613,6 +6631,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._TotalCobradoDolar != value))
 				{
 					this._TotalCobradoDolar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioGenera", DbType="VarChar(150)")]
+		public string UsuarioGenera
+		{
+			get
+			{
+				return this._UsuarioGenera;
+			}
+			set
+			{
+				if ((this._UsuarioGenera != value))
+				{
+					this._UsuarioGenera = value;
 				}
 			}
 		}

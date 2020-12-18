@@ -587,6 +587,7 @@
     <Parameter Name="CodigoMoneda" Parameter="codigoMoneda" Type="System.Int32" DbType="Int" />
     <Parameter Name="Concepto" Parameter="concepto" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="Tasa" Parameter="tasa" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="IdUsuarioProcesa" Parameter="idUsuarioProcesa" Type="System.Decimal" DbType="Decimal(20,0)" />
     <ElementType Name="SP_BUSCA_DATA_COBRADO_DETALLEResult">
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Numero" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
@@ -617,6 +618,7 @@
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TotalCobradoPesos" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="TotalCobradoDolar" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="UsuarioGenera" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

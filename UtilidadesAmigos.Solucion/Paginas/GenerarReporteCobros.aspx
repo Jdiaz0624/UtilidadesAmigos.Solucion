@@ -44,6 +44,15 @@
 
             });
 
+            $("#<%=btnExportarRegistros.ClientID%>").click(function () {
+                var Tasa = $("#<%=txtTasaConsulta.ClientID%>").val().length;
+                if (Tasa < 1) {
+                    alert("El campo tasa no puede estar vacio para exportar la información, favor de verificar");
+                    $("#<%=txtTasaConsulta.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
+
         })
 
     </script>
