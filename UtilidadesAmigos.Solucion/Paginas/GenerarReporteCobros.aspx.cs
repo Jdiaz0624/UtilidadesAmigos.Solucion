@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -37,7 +39,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region CARGAR LAS LISTAS DESPLEGABLES
         private void CargarSucursales() {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSucursalConsulta, ObjData.Value.BuscaListas("SUCURSAL", null, null), true);
-        
+
         }
         private void CargarOficinas() {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarOficinaConsulta, ObjData.Value.BuscaListas("OFICINA", ddlSeleccionarSucursalConsulta.SelectedValue.ToString(), null), true);
@@ -112,8 +114,833 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
                 gvListadoCobros.DataSource = Buscarregistros;
                 gvListadoCobros.DataBind();
-                    
+
+                if (cbGraficar.Checked == true) {
+                    GenerarGraficos();
+                }
             }
+        }
+        #endregion
+        #region GENERAR LOS GRAFICOS
+        private void GenerarGraficos() {
+            GraficarConcepto();
+            GraficarTipoPago();
+            GraficarIntermediario();
+            GraficarSupervisor();
+            GraficarOficina();
+            GraficarRamo();
+            Graficarusuario();
+        }
+        private void GraficarConcepto() {
+            decimal[] MontoConcepto = new decimal[10];
+            string[] NombreConcepto = new string[10];
+            int Contador = 0;
+
+            //VALIDAMOS LOS CAMPOS PARA PASARLOS COMO PARAMETROS
+            string _Poliza = "N/A";
+            string _NumeroRecibo = "N/A";
+            string _Anulado = "";
+            if (rbTodosRecibos.Checked == true) {
+                _Anulado = "P";
+            }
+            else if (rbRecibosActivos.Checked == true) {
+                _Anulado = "N";
+            }
+            else if (rbRecibosAnulados.Checked == true) {
+                _Anulado = "S";
+            }
+            string _TipoPago = "N/A";
+            string _CodigoCliente = "N/A";
+            string _CodigoIntermediario = "";
+            if (string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()))
+            {
+                _CodigoIntermediario = "N/A";
+            }
+            else {
+                _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
+            }
+            string _CodigoSupervisor = "";
+            if (string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim())) {
+                _CodigoSupervisor = "N/A";
+            }
+            else {
+                _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+            }
+            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
+            if (_Oficina == null) {
+                _Oficina = 0;
+            }
+            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
+            if (_Ramo == null) {
+                _Ramo = 0;
+            }
+            string _Usuario = "N/A";
+            int? _Moneda = 0;
+            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
+            if (_Concepto == null) {
+                _Concepto = "N/A";
+            }
+
+            //GENERAMOS EL GRAFICO CON LOS DATOS RECOLECTADOS
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Comando = new SqlCommand("EXEC [Utililades].[SP_GENERAR_GRAFICO_REPORTE_COBROS] @Poliza,@Numero,@Anulado,@FechaDesde,@FechaHasta,@TipoPago,@CodigoCliente,@CodigoIntermediario,@CodigoSupervisor,@CodigoOficina,@CodigoRamo,@Usuario,@CodigoMoneda,@Concepto,@Tasa,@TipoGrafico", Conexion);
+
+            Comando.Parameters.AddWithValue("@Poliza", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Numero", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Anulado", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date);
+            Comando.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date);
+            Comando.Parameters.AddWithValue("@TipoPago", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoCliente", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoIntermediario", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoSupervisor", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoOficina", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@CodigoRamo", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@Usuario", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoMoneda", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@Concepto", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Tasa", SqlDbType.Decimal);
+            Comando.Parameters.AddWithValue("@TipoGrafico", SqlDbType.Int);
+
+            Comando.Parameters["@Poliza"].Value = _Poliza;
+            Comando.Parameters["@Numero"].Value = _NumeroRecibo;
+            Comando.Parameters["@Anulado"].Value = _Anulado;
+            Comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesdeConsulta.Text);
+            Comando.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHastaConsulta.Text);
+            Comando.Parameters["@TipoPago"].Value = _TipoPago;
+            Comando.Parameters["@CodigoCliente"].Value = _CodigoCliente;
+            Comando.Parameters["@CodigoIntermediario"].Value = _CodigoIntermediario;
+            Comando.Parameters["@CodigoSupervisor"].Value = _CodigoSupervisor;
+            Comando.Parameters["@CodigoOficina"].Value = Convert.ToInt32(_Oficina);
+            Comando.Parameters["@CodigoRamo"].Value = Convert.ToInt32(_Ramo);
+            Comando.Parameters["@Usuario"].Value = _Usuario;
+            Comando.Parameters["@CodigoMoneda"].Value = Convert.ToInt32(_Moneda);
+            Comando.Parameters["@Concepto"].Value = _Concepto;
+            Comando.Parameters["@Tasa"].Value = Convert.ToDecimal(txtTasaConsulta.Text);
+            Comando.Parameters["@TipoGrafico"].Value = 1;
+
+            Conexion.Open();
+
+            SqlDataReader Reader = Comando.ExecuteReader();
+            while (Reader.Read()) {
+                MontoConcepto[Contador] = Convert.ToDecimal(Reader.GetDecimal(1));
+                NombreConcepto[Contador] = Reader.GetString(0);
+                Contador++;
+            }
+            Reader.Close();
+            Conexion.Close();
+
+            GraConcepto.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}k";
+            GraConcepto.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraConcepto.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraConcepto.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+
+            GraConcepto.Series["Serie"].Points.DataBindXY(NombreConcepto, MontoConcepto);
+
+
+        }
+        private void GraficarTipoPago() {
+            decimal[] MontoTipoPago = new decimal[10];
+            string[] NombreTipoPago = new string[10];
+            int Contador = 0;
+
+            //VALIDAMOS LOS CAMPOS PARA PASARLOS COMO PARAMETROS
+            string _Poliza = "N/A";
+            string _NumeroRecibo = "N/A";
+            string _Anulado = "";
+            if (rbTodosRecibos.Checked == true)
+            {
+                _Anulado = "P";
+            }
+            else if (rbRecibosActivos.Checked == true)
+            {
+                _Anulado = "N";
+            }
+            else if (rbRecibosAnulados.Checked == true)
+            {
+                _Anulado = "S";
+            }
+            string _TipoPago = "N/A";
+            string _CodigoCliente = "N/A";
+            string _CodigoIntermediario = "";
+            if (string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()))
+            {
+                _CodigoIntermediario = "N/A";
+            }
+            else
+            {
+                _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
+            }
+            string _CodigoSupervisor = "";
+            if (string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()))
+            {
+                _CodigoSupervisor = "N/A";
+            }
+            else
+            {
+                _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+            }
+            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
+            if (_Oficina == null)
+            {
+                _Oficina = 0;
+            }
+            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
+            if (_Ramo == null)
+            {
+                _Ramo = 0;
+            }
+            string _Usuario = "N/A";
+            int? _Moneda = 0;
+            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
+            if (_Concepto == null)
+            {
+                _Concepto = "N/A";
+            }
+
+            //GENERAMOS EL GRAFICO CON LOS DATOS RECOLECTADOS
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Comando = new SqlCommand("EXEC [Utililades].[SP_GENERAR_GRAFICO_REPORTE_COBROS] @Poliza,@Numero,@Anulado,@FechaDesde,@FechaHasta,@TipoPago,@CodigoCliente,@CodigoIntermediario,@CodigoSupervisor,@CodigoOficina,@CodigoRamo,@Usuario,@CodigoMoneda,@Concepto,@Tasa,@TipoGrafico", Conexion);
+
+            Comando.Parameters.AddWithValue("@Poliza", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Numero", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Anulado", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date);
+            Comando.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date);
+            Comando.Parameters.AddWithValue("@TipoPago", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoCliente", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoIntermediario", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoSupervisor", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoOficina", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@CodigoRamo", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@Usuario", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoMoneda", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@Concepto", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Tasa", SqlDbType.Decimal);
+            Comando.Parameters.AddWithValue("@TipoGrafico", SqlDbType.Int);
+
+            Comando.Parameters["@Poliza"].Value = _Poliza;
+            Comando.Parameters["@Numero"].Value = _NumeroRecibo;
+            Comando.Parameters["@Anulado"].Value = _Anulado;
+            Comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesdeConsulta.Text);
+            Comando.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHastaConsulta.Text);
+            Comando.Parameters["@TipoPago"].Value = _TipoPago;
+            Comando.Parameters["@CodigoCliente"].Value = _CodigoCliente;
+            Comando.Parameters["@CodigoIntermediario"].Value = _CodigoIntermediario;
+            Comando.Parameters["@CodigoSupervisor"].Value = _CodigoSupervisor;
+            Comando.Parameters["@CodigoOficina"].Value = Convert.ToInt32(_Oficina);
+            Comando.Parameters["@CodigoRamo"].Value = Convert.ToInt32(_Ramo);
+            Comando.Parameters["@Usuario"].Value = _Usuario;
+            Comando.Parameters["@CodigoMoneda"].Value = Convert.ToInt32(_Moneda);
+            Comando.Parameters["@Concepto"].Value = _Concepto;
+            Comando.Parameters["@Tasa"].Value = Convert.ToDecimal(txtTasaConsulta.Text);
+            Comando.Parameters["@TipoGrafico"].Value = 2;
+
+            Conexion.Open();
+
+            SqlDataReader Reader = Comando.ExecuteReader();
+            while (Reader.Read())
+            {
+                MontoTipoPago[Contador] = Convert.ToDecimal(Reader.GetDecimal(1));
+                NombreTipoPago[Contador] = Reader.GetString(0);
+                Contador++;
+            }
+            Reader.Close();
+            Conexion.Close();
+
+            GraTipoPago.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}k";
+            GraTipoPago.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraTipoPago.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraTipoPago.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+
+            GraTipoPago.Series["Serie"].Points.DataBindXY(NombreTipoPago, MontoTipoPago);
+        }
+        private void GraficarIntermediario() {
+            decimal[] MontoIntermediario = new decimal[10];
+            string[] NombreIntermediario = new string[10];
+            int Contador = 0;
+
+            //VALIDAMOS LOS CAMPOS PARA PASARLOS COMO PARAMETROS
+            string _Poliza = "N/A";
+            string _NumeroRecibo = "N/A";
+            string _Anulado = "";
+            if (rbTodosRecibos.Checked == true)
+            {
+                _Anulado = "P";
+            }
+            else if (rbRecibosActivos.Checked == true)
+            {
+                _Anulado = "N";
+            }
+            else if (rbRecibosAnulados.Checked == true)
+            {
+                _Anulado = "S";
+            }
+            string _TipoPago = "N/A";
+            string _CodigoCliente = "N/A";
+            string _CodigoIntermediario = "";
+            if (string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()))
+            {
+                _CodigoIntermediario = "N/A";
+            }
+            else
+            {
+                _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
+            }
+            string _CodigoSupervisor = "";
+            if (string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()))
+            {
+                _CodigoSupervisor = "N/A";
+            }
+            else
+            {
+                _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+            }
+            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
+            if (_Oficina == null)
+            {
+                _Oficina = 0;
+            }
+            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
+            if (_Ramo == null)
+            {
+                _Ramo = 0;
+            }
+            string _Usuario = "N/A";
+            int? _Moneda = 0;
+            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
+            if (_Concepto == null)
+            {
+                _Concepto = "N/A";
+            }
+
+            //GENERAMOS EL GRAFICO CON LOS DATOS RECOLECTADOS
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Comando = new SqlCommand("EXEC [Utililades].[SP_GENERAR_GRAFICO_REPORTE_COBROS] @Poliza,@Numero,@Anulado,@FechaDesde,@FechaHasta,@TipoPago,@CodigoCliente,@CodigoIntermediario,@CodigoSupervisor,@CodigoOficina,@CodigoRamo,@Usuario,@CodigoMoneda,@Concepto,@Tasa,@TipoGrafico", Conexion);
+
+            Comando.Parameters.AddWithValue("@Poliza", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Numero", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Anulado", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date);
+            Comando.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date);
+            Comando.Parameters.AddWithValue("@TipoPago", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoCliente", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoIntermediario", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoSupervisor", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoOficina", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@CodigoRamo", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@Usuario", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoMoneda", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@Concepto", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Tasa", SqlDbType.Decimal);
+            Comando.Parameters.AddWithValue("@TipoGrafico", SqlDbType.Int);
+
+            Comando.Parameters["@Poliza"].Value = _Poliza;
+            Comando.Parameters["@Numero"].Value = _NumeroRecibo;
+            Comando.Parameters["@Anulado"].Value = _Anulado;
+            Comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesdeConsulta.Text);
+            Comando.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHastaConsulta.Text);
+            Comando.Parameters["@TipoPago"].Value = _TipoPago;
+            Comando.Parameters["@CodigoCliente"].Value = _CodigoCliente;
+            Comando.Parameters["@CodigoIntermediario"].Value = _CodigoIntermediario;
+            Comando.Parameters["@CodigoSupervisor"].Value = _CodigoSupervisor;
+            Comando.Parameters["@CodigoOficina"].Value = Convert.ToInt32(_Oficina);
+            Comando.Parameters["@CodigoRamo"].Value = Convert.ToInt32(_Ramo);
+            Comando.Parameters["@Usuario"].Value = _Usuario;
+            Comando.Parameters["@CodigoMoneda"].Value = Convert.ToInt32(_Moneda);
+            Comando.Parameters["@Concepto"].Value = _Concepto;
+            Comando.Parameters["@Tasa"].Value = Convert.ToDecimal(txtTasaConsulta.Text);
+            Comando.Parameters["@TipoGrafico"].Value = 3;
+
+            Conexion.Open();
+
+            SqlDataReader Reader = Comando.ExecuteReader();
+            while (Reader.Read())
+            {
+                MontoIntermediario[Contador] = Convert.ToDecimal(Reader.GetDecimal(1));
+                NombreIntermediario[Contador] = Reader.GetString(0);
+                Contador++;
+            }
+            Reader.Close();
+            Conexion.Close();
+
+            GraIntermediarios.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}k";
+            GraIntermediarios.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraIntermediarios.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraIntermediarios.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+
+            GraIntermediarios.Series["Serie"].Points.DataBindXY(NombreIntermediario, MontoIntermediario);
+        }
+        private void GraficarSupervisor() {
+            decimal[] MontoSupervisor = new decimal[10];
+            string[] NombreSupervisor = new string[10];
+            int Contador = 0;
+
+            //VALIDAMOS LOS CAMPOS PARA PASARLOS COMO PARAMETROS
+            string _Poliza = "N/A";
+            string _NumeroRecibo = "N/A";
+            string _Anulado = "";
+            if (rbTodosRecibos.Checked == true)
+            {
+                _Anulado = "P";
+            }
+            else if (rbRecibosActivos.Checked == true)
+            {
+                _Anulado = "N";
+            }
+            else if (rbRecibosAnulados.Checked == true)
+            {
+                _Anulado = "S";
+            }
+            string _TipoPago = "N/A";
+            string _CodigoCliente = "N/A";
+            string _CodigoIntermediario = "";
+            if (string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()))
+            {
+                _CodigoIntermediario = "N/A";
+            }
+            else
+            {
+                _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
+            }
+            string _CodigoSupervisor = "";
+            if (string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()))
+            {
+                _CodigoSupervisor = "N/A";
+            }
+            else
+            {
+                _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+            }
+            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
+            if (_Oficina == null)
+            {
+                _Oficina = 0;
+            }
+            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
+            if (_Ramo == null)
+            {
+                _Ramo = 0;
+            }
+            string _Usuario = "N/A";
+            int? _Moneda = 0;
+            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
+            if (_Concepto == null)
+            {
+                _Concepto = "N/A";
+            }
+
+            //GENERAMOS EL GRAFICO CON LOS DATOS RECOLECTADOS
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Comando = new SqlCommand("EXEC [Utililades].[SP_GENERAR_GRAFICO_REPORTE_COBROS] @Poliza,@Numero,@Anulado,@FechaDesde,@FechaHasta,@TipoPago,@CodigoCliente,@CodigoIntermediario,@CodigoSupervisor,@CodigoOficina,@CodigoRamo,@Usuario,@CodigoMoneda,@Concepto,@Tasa,@TipoGrafico", Conexion);
+
+            Comando.Parameters.AddWithValue("@Poliza", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Numero", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Anulado", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date);
+            Comando.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date);
+            Comando.Parameters.AddWithValue("@TipoPago", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoCliente", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoIntermediario", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoSupervisor", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoOficina", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@CodigoRamo", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@Usuario", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoMoneda", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@Concepto", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Tasa", SqlDbType.Decimal);
+            Comando.Parameters.AddWithValue("@TipoGrafico", SqlDbType.Int);
+
+            Comando.Parameters["@Poliza"].Value = _Poliza;
+            Comando.Parameters["@Numero"].Value = _NumeroRecibo;
+            Comando.Parameters["@Anulado"].Value = _Anulado;
+            Comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesdeConsulta.Text);
+            Comando.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHastaConsulta.Text);
+            Comando.Parameters["@TipoPago"].Value = _TipoPago;
+            Comando.Parameters["@CodigoCliente"].Value = _CodigoCliente;
+            Comando.Parameters["@CodigoIntermediario"].Value = _CodigoIntermediario;
+            Comando.Parameters["@CodigoSupervisor"].Value = _CodigoSupervisor;
+            Comando.Parameters["@CodigoOficina"].Value = Convert.ToInt32(_Oficina);
+            Comando.Parameters["@CodigoRamo"].Value = Convert.ToInt32(_Ramo);
+            Comando.Parameters["@Usuario"].Value = _Usuario;
+            Comando.Parameters["@CodigoMoneda"].Value = Convert.ToInt32(_Moneda);
+            Comando.Parameters["@Concepto"].Value = _Concepto;
+            Comando.Parameters["@Tasa"].Value = Convert.ToDecimal(txtTasaConsulta.Text);
+            Comando.Parameters["@TipoGrafico"].Value = 4;
+
+            Conexion.Open();
+
+            SqlDataReader Reader = Comando.ExecuteReader();
+            while (Reader.Read())
+            {
+                MontoSupervisor[Contador] = Convert.ToDecimal(Reader.GetDecimal(1));
+                NombreSupervisor[Contador] = Reader.GetString(0);
+                Contador++;
+            }
+            Reader.Close();
+            Conexion.Close();
+
+            GraSupervisores.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}k";
+            GraSupervisores.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraSupervisores.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraSupervisores.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+
+            GraSupervisores.Series["Serie"].Points.DataBindXY(NombreSupervisor, MontoSupervisor);
+        }
+        private void GraficarOficina() {
+            decimal[] Montooficina = new decimal[10];
+            string[] NombreOficina = new string[10];
+            int Contador = 0;
+
+            //VALIDAMOS LOS CAMPOS PARA PASARLOS COMO PARAMETROS
+            string _Poliza = "N/A";
+            string _NumeroRecibo = "N/A";
+            string _Anulado = "";
+            if (rbTodosRecibos.Checked == true)
+            {
+                _Anulado = "P";
+            }
+            else if (rbRecibosActivos.Checked == true)
+            {
+                _Anulado = "N";
+            }
+            else if (rbRecibosAnulados.Checked == true)
+            {
+                _Anulado = "S";
+            }
+            string _TipoPago = "N/A";
+            string _CodigoCliente = "N/A";
+            string _CodigoIntermediario = "";
+            if (string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()))
+            {
+                _CodigoIntermediario = "N/A";
+            }
+            else
+            {
+                _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
+            }
+            string _CodigoSupervisor = "";
+            if (string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()))
+            {
+                _CodigoSupervisor = "N/A";
+            }
+            else
+            {
+                _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+            }
+            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
+            if (_Oficina == null)
+            {
+                _Oficina = 0;
+            }
+            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
+            if (_Ramo == null)
+            {
+                _Ramo = 0;
+            }
+            string _Usuario = "N/A";
+            int? _Moneda = 0;
+            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
+            if (_Concepto == null)
+            {
+                _Concepto = "N/A";
+            }
+
+            //GENERAMOS EL GRAFICO CON LOS DATOS RECOLECTADOS
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Comando = new SqlCommand("EXEC [Utililades].[SP_GENERAR_GRAFICO_REPORTE_COBROS] @Poliza,@Numero,@Anulado,@FechaDesde,@FechaHasta,@TipoPago,@CodigoCliente,@CodigoIntermediario,@CodigoSupervisor,@CodigoOficina,@CodigoRamo,@Usuario,@CodigoMoneda,@Concepto,@Tasa,@TipoGrafico", Conexion);
+
+            Comando.Parameters.AddWithValue("@Poliza", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Numero", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Anulado", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date);
+            Comando.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date);
+            Comando.Parameters.AddWithValue("@TipoPago", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoCliente", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoIntermediario", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoSupervisor", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoOficina", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@CodigoRamo", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@Usuario", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoMoneda", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@Concepto", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Tasa", SqlDbType.Decimal);
+            Comando.Parameters.AddWithValue("@TipoGrafico", SqlDbType.Int);
+
+            Comando.Parameters["@Poliza"].Value = _Poliza;
+            Comando.Parameters["@Numero"].Value = _NumeroRecibo;
+            Comando.Parameters["@Anulado"].Value = _Anulado;
+            Comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesdeConsulta.Text);
+            Comando.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHastaConsulta.Text);
+            Comando.Parameters["@TipoPago"].Value = _TipoPago;
+            Comando.Parameters["@CodigoCliente"].Value = _CodigoCliente;
+            Comando.Parameters["@CodigoIntermediario"].Value = _CodigoIntermediario;
+            Comando.Parameters["@CodigoSupervisor"].Value = _CodigoSupervisor;
+            Comando.Parameters["@CodigoOficina"].Value = Convert.ToInt32(_Oficina);
+            Comando.Parameters["@CodigoRamo"].Value = Convert.ToInt32(_Ramo);
+            Comando.Parameters["@Usuario"].Value = _Usuario;
+            Comando.Parameters["@CodigoMoneda"].Value = Convert.ToInt32(_Moneda);
+            Comando.Parameters["@Concepto"].Value = _Concepto;
+            Comando.Parameters["@Tasa"].Value = Convert.ToDecimal(txtTasaConsulta.Text);
+            Comando.Parameters["@TipoGrafico"].Value = 5;
+
+            Conexion.Open();
+
+            SqlDataReader Reader = Comando.ExecuteReader();
+            while (Reader.Read())
+            {
+                Montooficina[Contador] = Convert.ToDecimal(Reader.GetDecimal(1));
+                NombreOficina[Contador] = Reader.GetString(0);
+                Contador++;
+            }
+            Reader.Close();
+            Conexion.Close();
+
+            GraOficina.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}k";
+            GraOficina.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraOficina.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraOficina.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+
+            GraOficina.Series["Serie"].Points.DataBindXY(NombreOficina, Montooficina);
+        }
+        private void GraficarRamo() {
+            decimal[] MontoRamo = new decimal[10];
+            string[] NombreRamo = new string[10];
+            int Contador = 0;
+
+            //VALIDAMOS LOS CAMPOS PARA PASARLOS COMO PARAMETROS
+            string _Poliza = "N/A";
+            string _NumeroRecibo = "N/A";
+            string _Anulado = "";
+            if (rbTodosRecibos.Checked == true)
+            {
+                _Anulado = "P";
+            }
+            else if (rbRecibosActivos.Checked == true)
+            {
+                _Anulado = "N";
+            }
+            else if (rbRecibosAnulados.Checked == true)
+            {
+                _Anulado = "S";
+            }
+            string _TipoPago = "N/A";
+            string _CodigoCliente = "N/A";
+            string _CodigoIntermediario = "";
+            if (string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()))
+            {
+                _CodigoIntermediario = "N/A";
+            }
+            else
+            {
+                _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
+            }
+            string _CodigoSupervisor = "";
+            if (string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()))
+            {
+                _CodigoSupervisor = "N/A";
+            }
+            else
+            {
+                _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+            }
+            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
+            if (_Oficina == null)
+            {
+                _Oficina = 0;
+            }
+            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
+            if (_Ramo == null)
+            {
+                _Ramo = 0;
+            }
+            string _Usuario = "N/A";
+            int? _Moneda = 0;
+            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
+            if (_Concepto == null)
+            {
+                _Concepto = "N/A";
+            }
+
+            //GENERAMOS EL GRAFICO CON LOS DATOS RECOLECTADOS
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Comando = new SqlCommand("EXEC [Utililades].[SP_GENERAR_GRAFICO_REPORTE_COBROS] @Poliza,@Numero,@Anulado,@FechaDesde,@FechaHasta,@TipoPago,@CodigoCliente,@CodigoIntermediario,@CodigoSupervisor,@CodigoOficina,@CodigoRamo,@Usuario,@CodigoMoneda,@Concepto,@Tasa,@TipoGrafico", Conexion);
+
+            Comando.Parameters.AddWithValue("@Poliza", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Numero", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Anulado", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date);
+            Comando.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date);
+            Comando.Parameters.AddWithValue("@TipoPago", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoCliente", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoIntermediario", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoSupervisor", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoOficina", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@CodigoRamo", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@Usuario", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoMoneda", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@Concepto", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Tasa", SqlDbType.Decimal);
+            Comando.Parameters.AddWithValue("@TipoGrafico", SqlDbType.Int);
+
+            Comando.Parameters["@Poliza"].Value = _Poliza;
+            Comando.Parameters["@Numero"].Value = _NumeroRecibo;
+            Comando.Parameters["@Anulado"].Value = _Anulado;
+            Comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesdeConsulta.Text);
+            Comando.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHastaConsulta.Text);
+            Comando.Parameters["@TipoPago"].Value = _TipoPago;
+            Comando.Parameters["@CodigoCliente"].Value = _CodigoCliente;
+            Comando.Parameters["@CodigoIntermediario"].Value = _CodigoIntermediario;
+            Comando.Parameters["@CodigoSupervisor"].Value = _CodigoSupervisor;
+            Comando.Parameters["@CodigoOficina"].Value = Convert.ToInt32(_Oficina);
+            Comando.Parameters["@CodigoRamo"].Value = Convert.ToInt32(_Ramo);
+            Comando.Parameters["@Usuario"].Value = _Usuario;
+            Comando.Parameters["@CodigoMoneda"].Value = Convert.ToInt32(_Moneda);
+            Comando.Parameters["@Concepto"].Value = _Concepto;
+            Comando.Parameters["@Tasa"].Value = Convert.ToDecimal(txtTasaConsulta.Text);
+            Comando.Parameters["@TipoGrafico"].Value = 6;
+
+            Conexion.Open();
+
+            SqlDataReader Reader = Comando.ExecuteReader();
+            while (Reader.Read())
+            {
+                MontoRamo[Contador] = Convert.ToDecimal(Reader.GetDecimal(1));
+                NombreRamo[Contador] = Reader.GetString(0);
+                Contador++;
+            }
+            Reader.Close();
+            Conexion.Close();
+
+            GraRamo.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}k";
+            GraRamo.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraRamo.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraRamo.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+
+            GraRamo.Series["Serie"].Points.DataBindXY(NombreRamo, MontoRamo);
+        }
+        private void Graficarusuario() {
+            decimal[] MontoUsuario = new decimal[10];
+            string[] NombreUsuario = new string[10];
+            int Contador = 0;
+
+            //VALIDAMOS LOS CAMPOS PARA PASARLOS COMO PARAMETROS
+            string _Poliza = "N/A";
+            string _NumeroRecibo = "N/A";
+            string _Anulado = "";
+            if (rbTodosRecibos.Checked == true)
+            {
+                _Anulado = "P";
+            }
+            else if (rbRecibosActivos.Checked == true)
+            {
+                _Anulado = "N";
+            }
+            else if (rbRecibosAnulados.Checked == true)
+            {
+                _Anulado = "S";
+            }
+            string _TipoPago = "N/A";
+            string _CodigoCliente = "N/A";
+            string _CodigoIntermediario = "";
+            if (string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()))
+            {
+                _CodigoIntermediario = "N/A";
+            }
+            else
+            {
+                _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
+            }
+            string _CodigoSupervisor = "";
+            if (string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()))
+            {
+                _CodigoSupervisor = "N/A";
+            }
+            else
+            {
+                _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+            }
+            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
+            if (_Oficina == null)
+            {
+                _Oficina = 0;
+            }
+            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
+            if (_Ramo == null)
+            {
+                _Ramo = 0;
+            }
+            string _Usuario = "N/A";
+            int? _Moneda = 0;
+            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
+            if (_Concepto == null)
+            {
+                _Concepto = "N/A";
+            }
+
+            //GENERAMOS EL GRAFICO CON LOS DATOS RECOLECTADOS
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Comando = new SqlCommand("EXEC [Utililades].[SP_GENERAR_GRAFICO_REPORTE_COBROS] @Poliza,@Numero,@Anulado,@FechaDesde,@FechaHasta,@TipoPago,@CodigoCliente,@CodigoIntermediario,@CodigoSupervisor,@CodigoOficina,@CodigoRamo,@Usuario,@CodigoMoneda,@Concepto,@Tasa,@TipoGrafico", Conexion);
+
+            Comando.Parameters.AddWithValue("@Poliza", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Numero", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Anulado", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date);
+            Comando.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date);
+            Comando.Parameters.AddWithValue("@TipoPago", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoCliente", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoIntermediario", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoSupervisor", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoOficina", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@CodigoRamo", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@Usuario", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@CodigoMoneda", SqlDbType.Int);
+            Comando.Parameters.AddWithValue("@Concepto", SqlDbType.VarChar);
+            Comando.Parameters.AddWithValue("@Tasa", SqlDbType.Decimal);
+            Comando.Parameters.AddWithValue("@TipoGrafico", SqlDbType.Int);
+
+            Comando.Parameters["@Poliza"].Value = _Poliza;
+            Comando.Parameters["@Numero"].Value = _NumeroRecibo;
+            Comando.Parameters["@Anulado"].Value = _Anulado;
+            Comando.Parameters["@FechaDesde"].Value = Convert.ToDateTime(txtFechaDesdeConsulta.Text);
+            Comando.Parameters["@FechaHasta"].Value = Convert.ToDateTime(txtFechaHastaConsulta.Text);
+            Comando.Parameters["@TipoPago"].Value = _TipoPago;
+            Comando.Parameters["@CodigoCliente"].Value = _CodigoCliente;
+            Comando.Parameters["@CodigoIntermediario"].Value = _CodigoIntermediario;
+            Comando.Parameters["@CodigoSupervisor"].Value = _CodigoSupervisor;
+            Comando.Parameters["@CodigoOficina"].Value = Convert.ToInt32(_Oficina);
+            Comando.Parameters["@CodigoRamo"].Value = Convert.ToInt32(_Ramo);
+            Comando.Parameters["@Usuario"].Value = _Usuario;
+            Comando.Parameters["@CodigoMoneda"].Value = Convert.ToInt32(_Moneda);
+            Comando.Parameters["@Concepto"].Value = _Concepto;
+            Comando.Parameters["@Tasa"].Value = Convert.ToDecimal(txtTasaConsulta.Text);
+            Comando.Parameters["@TipoGrafico"].Value = 7;
+
+            Conexion.Open();
+
+            SqlDataReader Reader = Comando.ExecuteReader();
+            while (Reader.Read())
+            {
+                MontoUsuario[Contador] = Convert.ToDecimal(Reader.GetDecimal(1));
+                NombreUsuario[Contador] = Reader.GetString(0);
+                Contador++;
+            }
+            Reader.Close();
+            Conexion.Close();
+
+            GraUsuario.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,}k";
+            GraUsuario.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraUsuario.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraUsuario.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+
+            GraUsuario.Series["Serie"].Points.DataBindXY(NombreUsuario, MontoUsuario);
         }
         #endregion
         protected void Page_Load(object sender, EventArgs e)
@@ -299,6 +1126,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (cbGraficar.Checked == true) {
                 MostrarGraficos();
+               
             }
             else {
                 OcultarGraficos();

@@ -139,7 +139,15 @@
                 <asp:RadioButton ID="rbExportarCSV" runat="server" Text="CSV" ToolTip="Exportar Data a CSV" GroupName="ExportarData" CssClass="form-check-input Letranegrita" />
             </div>
         </div>
+         <div id="divGraficar" runat="server" align="center">
+            <div class="form-check-inline"  >
+           <div class="form-group form-check">
+               <asp:CheckBox ID="cbGraficar" runat="server" Text="Graficar" AutoPostBack="true" OnCheckedChanged="cbGraficar_CheckedChanged"  ToolTip="Graficar Información" CssClass="form-check-input" />
+           </div>
+       </div>
+       </div><br />
         <div align="center">
+
             <asp:Button ID="btnConsultarRegistros" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnConsultarRegistros_Click" />
             <asp:Button ID="btnExportarRegistros" runat="server" Text="Exportar" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportarRegistros_Click" />
        
@@ -189,13 +197,7 @@
         <br />
         <!--INICIO DE LOS GRAFICOS-->
 
-         <div id="divGraficar" runat="server" align="center">
-            <div class="form-check-inline"  >
-           <div class="form-group form-check">
-               <asp:CheckBox ID="cbGraficar" runat="server" Text="Graficar" AutoPostBack="true" OnCheckedChanged="cbGraficar_CheckedChanged"  ToolTip="Graficar Información" CssClass="form-check-input" />
-           </div>
-       </div>
-       </div>
+        
 
 
         <!--GRAFICO DE SUPERVISORES-->
