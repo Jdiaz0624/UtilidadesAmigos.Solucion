@@ -19,6 +19,7 @@
         .Letranegrita {
         font-weight:bold;
         }
+
     </style>
 
     <script type="text/javascript">
@@ -178,31 +179,129 @@
         <asp:Label ID="lbPesosDollarConvertidoCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
              </div>
         <br />
-        <!--INICIO DEL GRID-->
-         <asp:GridView ID="gvListadoCobros" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoCobros_PageIndexChanging" OnSelectedIndexChanged="gvListadoCobros_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                 <%--   <asp:CommandField ButtonType="Button" HeaderText="Seleccionar"  ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Seleccionar" ShowSelectButton="True" />--%>
-                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
-                    <asp:BoundField DataField="NumeroFormateado" HeaderText="Recibo" />
-                    <asp:BoundField DataField="Concepto" HeaderText="Concepto" />
-                    <asp:BoundField DataField="Bruto" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Valor" />
-                    <asp:BoundField DataField="Moneda" HeaderText="Moneda" />
-                    <asp:BoundField DataField="FechaFormateada" HeaderText="Fecha" />
-                    <asp:BoundField DataField="TipoPago" HeaderText="Tipo Pago" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-        <!--FIN DEL GRID-->
+        <!--INICIO DEL REPEATER-->
+        <div>
+            <div class="table-responsive mT20">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width:15%">
+                                <asp:Label ID="lbPolizaHeaderRepeater" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
+                            </th>
+
+                            <th style="width:15%">
+                                <asp:Label ID="lbReciboHeaderrepeater" runat="server" Text="Recibo" CssClass="Letranegrita"></asp:Label>
+                            </th>
+
+                            <th style="width:30%">
+                                <asp:Label ID="lbConceptoHeaderRepeater" runat="server" Text="Concepto" CssClass="Letranegrita"></asp:Label>
+                            </th>
+
+                            <th style="width:10%">
+                                <asp:Label ID="lbValorHaderRepeater" runat="server" Text="Valor" CssClass="Letranegrita"></asp:Label>
+                            </th>
+
+                            <th style="width:10%">
+                                <asp:Label ID="lbMonedaHeaderRepeater" runat="server" Text="Moneda" CssClass="Letranegrita"></asp:Label>
+                            </th>
+
+                            <th style="width:10%">
+                                <asp:Label ID="lbFechaHeaderRepeater" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label>
+                            </th>
+
+                            <th style="width:10%">
+                                <asp:Label ID="lbTipoPagoHeaderRepeater" runat="server" Text="Tipo Pago" CssClass="Letranegrita"></asp:Label>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Repeater ID="rpListadoCobro" runat="server">
+                            <ItemTemplate>
+                                <tr>
+                                    <td style="width:15%" >
+                                        <%#Eval("Poliza") %>
+                                    </td>
+
+                                    <td style="width:15%" >
+                                        <%#Eval("NumeroFormateado") %>
+                                    </td>
+
+                                    <td style="width:30%" >
+                                        <%#Eval("Concepto") %>
+                                    </td>
+
+                                    <td style="width:10%" >
+                                        <%# string.Format("{0:n2}", Eval("Bruto")) %>
+                                    </td>
+
+                                    <td style="width:10%" >
+                                        <%#Eval("Moneda") %>
+                                    </td>
+
+                                    <td style="width:10%" >
+                                        <%#Eval("FechaFormateada") %>
+                                    </td>
+
+                                    <td style="width:10%" >
+                                        <%#Eval("TipoPago") %>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--FIN DEL REPEATER-->
+
+         <div align="center">
+                    
+                    <asp:Label ID="lbDeTitulo" runat="server" CssClass="Letranegrita" Text="Total de Paginas "></asp:Label>
+                    <asp:Label ID="lbCantidadPaginasVariable" CssClass="Letranegrita" runat="server" Text=" 0 "></asp:Label>
+                </div>
+
+        <!--PAGINACION-->
+        <div id="divPaginacionrepeater" runat="server" align="center">
+            <div style="margin-top:20px;"></div>
+            <table style="width:600px;">
+                <tr>
+                    <td>
+                        <asp:LinkButton ID="lbPrimeraPagina" runat="server" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la Primera Pagina del listado" Text="Inicio" OnClick="lbPrimeraPagina_Click"></asp:LinkButton>
+                    </td>
+
+                    <td>
+                        <asp:LinkButton ID="lbPaginaAnterior" runat="server" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la Pagina anterior del listado" Text="Anterior" OnClick="lbPaginaAnterior_Click"></asp:LinkButton>
+                    </td>
+
+                    <td>
+                        <asp:DataList ID="rptPaging" runat="server"
+                                    OnItemCommand="rptPaging_ItemCommand"
+                                    OnItemDataBound="rptPaging_ItemDataBound" RepeatDirection="Horizontal">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbPaging" runat="server"
+                                            CommandArgument='<%# Eval("PageIndex") %>' CommandName="newPage"
+                                            Text='<%# Eval("PageText") %> ' Width="20px"></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:DataList>
+                    </td>
+
+                    <td>
+                        <asp:LinkButton ID="lbSiguientePagina" runat="server" Text="Siguiente" ToolTip="Ir a la Pagina Siguiente del listado" CssClass="btn btn-outline-success btn-sm" OnClick="lbSiguientePagina_Click"></asp:LinkButton>
+                    </td>
+
+                    <td>
+                         <asp:LinkButton ID="LinkUltimaPagina" runat="server" Text="Final" ToolTip="Ir a la Ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimaPagina_Click"></asp:LinkButton>
+                    </td>
+
+                    <td>
+                        <asp:Label ID="lbPaginaActual" runat="server" Text="0"></asp:Label>
+                    </td>
+
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <!--FIN DE PAGINACION-->
         <br />
         <!--INICIO DE LOS GRAFICOS-->
 
