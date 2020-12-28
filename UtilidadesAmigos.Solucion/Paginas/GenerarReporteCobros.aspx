@@ -19,7 +19,15 @@
         .Letranegrita {
         font-weight:bold;
         }
+          table {
+            border-collapse: collapse;
+        }
+        
 
+        th {
+            background-color: dodgerblue;
+            color: white;
+        }
     </style>
 
     <script type="text/javascript">
@@ -185,31 +193,31 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th style="width:15%">
+                            <th style="width:15%" align="left" >
                                 <asp:Label ID="lbPolizaHeaderRepeater" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
                             </th>
 
-                            <th style="width:15%">
+                            <th style="width:15%" align="left" >
                                 <asp:Label ID="lbReciboHeaderrepeater" runat="server" Text="Recibo" CssClass="Letranegrita"></asp:Label>
                             </th>
 
-                            <th style="width:30%">
+                            <th style="width:30%"  align="left" >
                                 <asp:Label ID="lbConceptoHeaderRepeater" runat="server" Text="Concepto" CssClass="Letranegrita"></asp:Label>
                             </th>
 
-                            <th style="width:10%">
+                            <th style="width:10%" align="left" >
                                 <asp:Label ID="lbValorHaderRepeater" runat="server" Text="Valor" CssClass="Letranegrita"></asp:Label>
                             </th>
 
-                            <th style="width:10%">
+                            <th style="width:10%" align="left" >
                                 <asp:Label ID="lbMonedaHeaderRepeater" runat="server" Text="Moneda" CssClass="Letranegrita"></asp:Label>
                             </th>
 
-                            <th style="width:10%">
+                            <th style="width:10%" align="left" >
                                 <asp:Label ID="lbFechaHeaderRepeater" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label>
                             </th>
 
-                            <th style="width:10%">
+                            <th style="width:10%" align="left" >
                                 <asp:Label ID="lbTipoPagoHeaderRepeater" runat="server" Text="Tipo Pago" CssClass="Letranegrita"></asp:Label>
                             </th>
                         </tr>
@@ -313,7 +321,7 @@
 
              <asp:Label ID="lbGraficosSupervisoresCobro" runat="server"  Text="Top 10 Cobrado Supervisores" CssClass="Letranegrita"></asp:Label>
              <br />
-            <asp:Chart ID="GraSupervisores" Width="1100px" runat="server" Palette="Pastel">
+            <asp:Chart ID="GraSupervisores" Width="1100px" runat="server" Palette="SeaGreen">
            <Series>
                <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" Label="#VAL{N}"></asp:Series>
            </Series>
@@ -327,7 +335,7 @@
         <div id="divGraficarIntermediarios" runat="server" align="center">
             <asp:Label ID="lbGraficarIntermediarios" runat="server"  Text="Top 10 Cobrado Intermediarios" CssClass="Letranegrita"></asp:Label>
              <br />
-            <asp:Chart ID="GraIntermediarios" Width="1100px" runat="server" Palette="Pastel">
+            <asp:Chart ID="GraIntermediarios" Width="1100px" runat="server" Palette="SeaGreen">
            <Series>
                <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" Label="#VAL{N}"></asp:Series>
            </Series>
@@ -341,7 +349,7 @@
         <div id="divGraficarTipoPago" runat="server" align="center">
             <asp:Label ID="lbGraficarTiposPagos" runat="server"  Text="Top 10 Cobrado Tipos de Pagos" CssClass="Letranegrita"></asp:Label>
              <br />
-            <asp:Chart ID="GraTipoPago" Width="1100px" runat="server" Palette="Pastel">
+            <asp:Chart ID="GraTipoPago" Width="1100px" runat="server" Palette="SeaGreen">
            <Series>
                <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" Label="#VAL{N}"></asp:Series>
            </Series>
@@ -355,7 +363,7 @@
         <div id="divGraficarConcepto" runat="server" align="center">
             <asp:Label ID="lbGraficarConcepto" runat="server"  Text="Top 10 Cobrado Por Concepto" CssClass="Letranegrita"></asp:Label>
              <br />
-            <asp:Chart ID="GraConcepto" Width="1100px" runat="server" Palette="Pastel">
+            <asp:Chart ID="GraConcepto" Width="1100px" runat="server" Palette="SeaGreen">
            <Series>
                <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" Label="#VAL{N}"></asp:Series>
            </Series>
@@ -369,7 +377,7 @@
         <div id="divGraficarRamo" runat="server" align="center">
             <asp:Label ID="lbGraficarRamo" runat="server"  Text="Top 10 Cobrado Por Ramo" CssClass="Letranegrita"></asp:Label>
              <br />
-            <asp:Chart ID="GraRamo" Width="1100px" runat="server" Palette="Pastel">
+            <asp:Chart ID="GraRamo" Width="1100px" runat="server" Palette="SeaGreen">
            <Series>
                <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" Label="#VAL{N}"></asp:Series>
            </Series>
@@ -383,7 +391,7 @@
         <div id="divGraficaroficina" runat="server" align="center">
             <asp:Label ID="lbGraficaroficina" runat="server"  Text="Top 10 Cobrado Por Oficina" CssClass="Letranegrita"></asp:Label>
              <br />
-            <asp:Chart ID="GraOficina" Width="1100px" runat="server" Palette="Pastel">
+            <asp:Chart ID="GraOficina" Width="1100px" runat="server" Palette="SeaGreen">
            <Series>
                <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" Label="#VAL{N}"></asp:Series>
            </Series>
@@ -397,7 +405,7 @@
         <div id="divGraficarusuario" runat="server" align="center">
             <asp:Label ID="lbGraficarUsuarios" runat="server"  Text="Top 10 Cobrado Por Usuarios" CssClass="Letranegrita"></asp:Label>
              <br />
-            <asp:Chart ID="GraUsuario" Width="1100px" runat="server" Palette="Pastel">
+            <asp:Chart ID="GraUsuario" Width="1100px" runat="server" Palette="SeaGreen">
            <Series>
                <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" Label="#VAL{N}"></asp:Series>
            </Series>
