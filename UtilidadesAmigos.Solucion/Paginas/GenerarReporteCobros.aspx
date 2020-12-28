@@ -91,7 +91,7 @@
             </div>
         </div>
         <hr />
-        <asp:Label ID="lbTipoRecibos" runat="server" Text="Tipo de Recibos a Moatrar" CssClass="Letranegrita"></asp:Label><br />
+        <asp:Label ID="lbTipoRecibos" runat="server" Text="Tipo de Recibos a Mostrar" CssClass="Letranegrita"></asp:Label><br />
         <div class="form-check-inline">
             <div class="form-group form-check">
                 <asp:RadioButton ID="rbTodosRecibos" runat="server" Text="Todos" ToolTip="Mostrar Todos los Recibos (Activos y Anulados)" CssClass="form-check-input Letranegrita" GroupName="Anulado"/>

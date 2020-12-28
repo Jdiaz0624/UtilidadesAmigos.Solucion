@@ -1099,7 +1099,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
         #region GENERAR REPORTES DE COBROS
-        private void GenerarReporteCobrosNoAgrupadoDetallado(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreReporte) {
+        private void GenerarReporteCobro(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreReporte) {
             //ESTABLECEMOS LOS FILTROS QUE SE VAN A UTILIZAR
             string _Poliza = null;
             string _Numerorecibo = null;
@@ -1161,303 +1161,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
 
-        private void GenerarReporteCobrosNoAgrupadoResumido(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreReporte) {
-            string _Poliza = null;
-            string _Numerorecibo = null;
-            string _Anulado = "";
-            if (rbTodosRecibos.Checked == true)
-            {
-                _Anulado = null;
-            }
-            else if (rbRecibosActivos.Checked == true)
-            {
-                _Anulado = "N";
-            }
-            else if (rbRecibosAnulados.Checked == true)
-            {
-                _Anulado = "S";
-            }
-            string _TipoPago = null;
-            string _CodigoCliente = null;
-            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
-            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
-            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
-            string _Usuario = null;
-            int? _Moneda = null;
-            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
-
-            ReportDocument ReporteResumido = new ReportDocument();
-
-            ReporteResumido.Load(RutaReporte);
-            ReporteResumido.Refresh();
-            ReporteResumido.SetParameterValue("@Poliza", _Poliza);
-            ReporteResumido.SetParameterValue("@Numero", _Numerorecibo);
-            ReporteResumido.SetParameterValue("@Anulado", _Anulado);
-            ReporteResumido.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesdeConsulta.Text));
-            ReporteResumido.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHastaConsulta.Text));
-            ReporteResumido.SetParameterValue("@TipoPago", _TipoPago);
-            ReporteResumido.SetParameterValue("@CodigoCliente", _CodigoCliente);
-            ReporteResumido.SetParameterValue("@CodigoIntermediario", _CodigoIntermediario);
-            ReporteResumido.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
-            ReporteResumido.SetParameterValue("@CodigoOficina", _CodigoSupervisor);
-            ReporteResumido.SetParameterValue("@CodigoRamo", _Ramo);
-            ReporteResumido.SetParameterValue("@Usuario", _Usuario);
-            ReporteResumido.SetParameterValue("@CodigoMoneda", _Moneda);
-            ReporteResumido.SetParameterValue("@Concepto", _Concepto);
-            ReporteResumido.SetParameterValue("@Tasa", Convert.ToDecimal(txtTasaConsulta.Text));
-            ReporteResumido.SetParameterValue("@IdUsuarioProcesa", IdUsuario);
-            ReporteResumido.SetDatabaseLogon(UsuarioBD, ClaveBD);
-            if (rbExportarPDF.Checked == true) {
-                ReporteResumido.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
-            }
-            else if (rbExportarExcel.Checked == true) {
-                ReporteResumido.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
-            }
-            else if (rbExportarWord.Checked == true) {
-                ReporteResumido.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreReporte);
-            }
-            else if (rbExportarTXT.Checked == true) {
-                ReporteResumido.ExportToHttpResponse(ExportFormatType.Text, Response, true, NombreReporte);
-            }
-            else if (rbExportarCSV.Checked == true) {
-                ReporteResumido.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreReporte);
-            }
-
-
-        }
-        private void GenerarReporteCobradoAgrupadoConcepto(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo) {
-            string _Poliza = null;
-            string _Numerorecibo = null;
-            string _Anulado = "";
-            if (rbTodosRecibos.Checked == true)
-            {
-                _Anulado = null;
-            }
-            else if (rbRecibosActivos.Checked == true)
-            {
-                _Anulado = "N";
-            }
-            else if (rbRecibosAnulados.Checked == true)
-            {
-                _Anulado = "S";
-            }
-            string _TipoPago = null;
-            string _CodigoCliente = null;
-            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
-            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
-            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
-            string _Usuario = null;
-            int? _Moneda = null;
-            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
-
-            ReportDocument AgrupadoConcepto = new ReportDocument();
-
-            AgrupadoConcepto.Load(RutaReporte);
-            AgrupadoConcepto.Refresh();
-            AgrupadoConcepto.SetParameterValue("@Poliza", _Poliza);
-            AgrupadoConcepto.SetParameterValue("@Numero", _Numerorecibo);
-            AgrupadoConcepto.SetParameterValue("@Anulado", _Anulado);
-            AgrupadoConcepto.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesdeConsulta.Text));
-            AgrupadoConcepto.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHastaConsulta.Text));
-            AgrupadoConcepto.SetParameterValue("@TipoPago", _TipoPago);
-            AgrupadoConcepto.SetParameterValue("@CodigoCliente", _CodigoCliente);
-            AgrupadoConcepto.SetParameterValue("@CodigoIntermediario", _CodigoCliente);
-            AgrupadoConcepto.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
-            AgrupadoConcepto.SetParameterValue("@CodigoOficina", _Oficina);
-            AgrupadoConcepto.SetParameterValue("@CodigoRamo", _Ramo);
-            AgrupadoConcepto.SetParameterValue("@Usuario", _Usuario);
-            AgrupadoConcepto.SetParameterValue("@CodigoMoneda", _Moneda);
-            AgrupadoConcepto.SetParameterValue("@Concepto", _Concepto);
-            AgrupadoConcepto.SetParameterValue("@Tasa", Convert.ToDecimal(txtTasaConsulta.Text));
-            AgrupadoConcepto.SetParameterValue("@IdUsuarioProcesa", IdUsuario);
-            AgrupadoConcepto.SetDatabaseLogon(UsuarioBD, ClaveBD);
-            if (rbExportarPDF.Checked == true) {
-
-                AgrupadoConcepto.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
-            }
-            else if (rbExportarExcel.Checked == true) {
-                AgrupadoConcepto.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreArchivo);
-            }
-            else if (rbExportarWord.Checked == true) {
-                AgrupadoConcepto.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreArchivo);
-            }
-            else if (rbExportarTXT.Checked == true) {
-                AgrupadoConcepto.ExportToHttpResponse(ExportFormatType.Text, Response, true, NombreArchivo);
-            }
-            else if (rbExportarCSV.Checked == true) {
-                AgrupadoConcepto.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreArchivo);
-            }
-        }
-
-        private void GenerarReporteCobradoAgrupadoTipoPago(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo)
-        {
-            string _Poliza = null;
-            string _Numerorecibo = null;
-            string _Anulado = "";
-            if (rbTodosRecibos.Checked == true)
-            {
-                _Anulado = null;
-            }
-            else if (rbRecibosActivos.Checked == true)
-            {
-                _Anulado = "N";
-            }
-            else if (rbRecibosAnulados.Checked == true)
-            {
-                _Anulado = "S";
-            }
-            string _TipoPago = null;
-            string _CodigoCliente = null;
-            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
-            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
-            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
-            string _Usuario = null;
-            int? _Moneda = null;
-            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
-        }
-
-        private void GenerarReporteCobradoAgrupadoIntermediario(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo)
-        {
-            string _Poliza = null;
-            string _Numerorecibo = null;
-            string _Anulado = "";
-            if (rbTodosRecibos.Checked == true)
-            {
-                _Anulado = null;
-            }
-            else if (rbRecibosActivos.Checked == true)
-            {
-                _Anulado = "N";
-            }
-            else if (rbRecibosAnulados.Checked == true)
-            {
-                _Anulado = "S";
-            }
-            string _TipoPago = null;
-            string _CodigoCliente = null;
-            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
-            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
-            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
-            string _Usuario = null;
-            int? _Moneda = null;
-            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
-        }
-
-        private void GenerarReporteCobradoAgrupadoSupervisor(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo)
-        {
-            string _Poliza = null;
-            string _Numerorecibo = null;
-            string _Anulado = "";
-            if (rbTodosRecibos.Checked == true)
-            {
-                _Anulado = null;
-            }
-            else if (rbRecibosActivos.Checked == true)
-            {
-                _Anulado = "N";
-            }
-            else if (rbRecibosAnulados.Checked == true)
-            {
-                _Anulado = "S";
-            }
-            string _TipoPago = null;
-            string _CodigoCliente = null;
-            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
-            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
-            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
-            string _Usuario = null;
-            int? _Moneda = null;
-            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
-        }
-
-        private void GenerarReporteCobradoAgrupadoOficina(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo)
-        {
-            string _Poliza = null;
-            string _Numerorecibo = null;
-            string _Anulado = "";
-            if (rbTodosRecibos.Checked == true)
-            {
-                _Anulado = null;
-            }
-            else if (rbRecibosActivos.Checked == true)
-            {
-                _Anulado = "N";
-            }
-            else if (rbRecibosAnulados.Checked == true)
-            {
-                _Anulado = "S";
-            }
-            string _TipoPago = null;
-            string _CodigoCliente = null;
-            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
-            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
-            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
-            string _Usuario = null;
-            int? _Moneda = null;
-            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
-        }
-
-        private void GenerarReporteCobradoAgrupadoRamo(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo)
-        {
-            string _Poliza = null;
-            string _Numerorecibo = null;
-            string _Anulado = "";
-            if (rbTodosRecibos.Checked == true)
-            {
-                _Anulado = null;
-            }
-            else if (rbRecibosActivos.Checked == true)
-            {
-                _Anulado = "N";
-            }
-            else if (rbRecibosAnulados.Checked == true)
-            {
-                _Anulado = "S";
-            }
-            string _TipoPago = null;
-            string _CodigoCliente = null;
-            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
-            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
-            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
-            string _Usuario = null;
-            int? _Moneda = null;
-            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
-        }
-
-        private void GenerarReporteCobradoAgrupadoUsuario(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreArchivo)
-        {
-            string _Poliza = null;
-            string _Numerorecibo = null;
-            string _Anulado = "";
-            if (rbTodosRecibos.Checked == true)
-            {
-                _Anulado = null;
-            }
-            else if (rbRecibosActivos.Checked == true)
-            {
-                _Anulado = "N";
-            }
-            else if (rbRecibosAnulados.Checked == true)
-            {
-                _Anulado = "S";
-            }
-            string _TipoPago = null;
-            string _CodigoCliente = null;
-            string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
-            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
-            int? _Ramo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
-            string _Usuario = null;
-            int? _Moneda = null;
-            string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
-        }
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -1657,26 +1360,38 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                     if (rbReporteDetallado.Checked == true)
                     {
-                        
 
-                        GenerarReporteCobrosNoAgrupadoDetallado(IdUsuarioProcesa, Server.MapPath("ReporteCobradoNoAgrupadoDetalle.rpt"), "sa", "Pa$$W0rd", "Reporte de Cobros no Agrupado Detallado");
+
+                        GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoNoAgrupadoDetalle.rpt"), "sa", "Pa$$W0rd", "Reporte de Cobros Detallado");
                     }
                     else if (rbReporteResumido.Checked == true) {
 
-                        GenerarReporteCobrosNoAgrupadoResumido(IdUsuarioProcesa, Server.MapPath("ReporteCobradoResumen.rpt"), "sa", "Pa$$W0rd", "Reporte de Cobros no Agrupado Resumido");
+                        GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoResumen.rpt"), "sa", "Pa$$W0rd", "Reporte de Cobros no Agrupado Resumido");
 
 
                     }
                 }
                 else if (rbAgruparPorConcepto.Checked == true) {
-                    GenerarReporteCobradoAgrupadoConcepto(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoConcepto.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado Por Concepto");
+                    GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoConcepto.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado Por Concepto");
                 }
-                else if (rbAgruparTipoPago.Checked == true) { }
-                else if (rbAgruparIntermediario.Checked == true) { }
-                else if (rbAgruparSupervisor.Checked == true) { }
-                else if (rbAgruparPorOficina.Checked == true) { }
-                else if (rbAgrupaRamo.Checked == true) { }
-                else if (rbAgruparUsuario.Checked == true) { }
+                else if (rbAgruparTipoPago.Checked == true) {
+                    GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoTipoPago.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado Por Tipo de Pago");
+                }
+                else if (rbAgruparIntermediario.Checked == true) {
+                    GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoIntermediario.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado Por Intermediario");
+                }
+                else if (rbAgruparSupervisor.Checked == true) {
+                    GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoSupervisor.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado Por Supervisor");
+                }
+                else if (rbAgruparPorOficina.Checked == true) {
+                    GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoOficina.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado por Oficina");
+                }
+                else if (rbAgrupaRamo.Checked == true) {
+                    GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoPorRamo.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado Por Ramo");
+                }
+                else if (rbAgruparUsuario.Checked == true) {
+                    GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoPorUsuario.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado por Usuaio");
+                }
             }
         }
 
