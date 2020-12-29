@@ -142,9 +142,17 @@
                 <asp:Label ID="lbTasaConsulta" runat="server" Text="Tasa" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtTasaConsulta" runat="server" TextMode="Number" Step="0.01" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <asp:Label ID="lbSeleccionarConceptoConsulta" runat="server" Text="Seleccionar Concepto" CssClass="Letranegrita"></asp:Label>
                  <asp:DropDownList ID="ddlSeleccionarConceptoConsulta" runat="server" ToolTip="Seleccionar Concepto" CssClass="form-control"></asp:DropDownList>
+            </div>
+            <div class="form-group col-md-4">
+                <asp:Label ID="lbNumeroReciboConsulta" runat="server" Text="Numero de Recibo" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtNumeroRecibo" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="form-group col-md-4">
+                <asp:Label ID="lbNumeroPolizaConsulta" runat="server" Text="Numero de Poliza" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtNumeroPolizaCOnsulta" runat="server"  CssClass="form-control"></asp:TextBox>
             </div>
         </div>
         <asp:Label ID="lbExportarA" runat="server" Text="Exportar A:" CssClass="Letranegrita"></asp:Label>
@@ -193,15 +201,19 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th style="width:15%" align="left" >
+                            <th style="width:10%" align="left" >
                                 <asp:Label ID="lbPolizaHeaderRepeater" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
+                            </th>
+
+                            <th style="width:20%" align="left" >
+                                <asp:Label ID="lbRamoHeaderRepeater" runat="server" Text="Ramo" CssClass="Letranegrita"></asp:Label>
                             </th>
 
                             <th style="width:15%" align="left" >
                                 <asp:Label ID="lbReciboHeaderrepeater" runat="server" Text="Recibo" CssClass="Letranegrita"></asp:Label>
                             </th>
 
-                            <th style="width:30%"  align="left" >
+                            <th style="width:15%"  align="left" >
                                 <asp:Label ID="lbConceptoHeaderRepeater" runat="server" Text="Concepto" CssClass="Letranegrita"></asp:Label>
                             </th>
 
@@ -226,15 +238,19 @@
                         <asp:Repeater ID="rpListadoCobro" runat="server">
                             <ItemTemplate>
                                 <tr>
-                                    <td style="width:15%" >
+                                    <td style="width:10%" >
                                         <%#Eval("Poliza") %>
+                                    </td>
+
+                                    <td style="width:20%">
+                                        <%# Eval("Ramo") %>
                                     </td>
 
                                     <td style="width:15%" >
                                         <%#Eval("NumeroFormateado") %>
                                     </td>
 
-                                    <td style="width:30%" >
+                                    <td style="width:15%" >
                                         <%#Eval("Concepto") %>
                                     </td>
 

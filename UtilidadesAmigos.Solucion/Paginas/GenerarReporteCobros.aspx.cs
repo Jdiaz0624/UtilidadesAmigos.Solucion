@@ -226,9 +226,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     _IdUsuario = 0;
                 }
 
+                string _Poliza = string.IsNullOrEmpty(txtNumeroPolizaCOnsulta.Text.Trim()) ? null : txtNumeroPolizaCOnsulta.Text.Trim();
+                string _NumeroRecibo = string.IsNullOrEmpty(txtNumeroRecibo.Text.Trim()) ? null : txtNumeroRecibo.Text.Trim();
                 var Buscarregistros = ObjDataReporte.Value.BuscarDataReporteCobrosDetalle(
-                    null,
-                    null,
+                    _Poliza,
+                    _NumeroRecibo,
                     _Anulado,
                     Convert.ToDateTime(txtFechaDesdeConsulta.Text),
                     Convert.ToDateTime(txtFechaHastaConsulta.Text),
@@ -1101,8 +1103,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region GENERAR REPORTES DE COBROS
         private void GenerarReporteCobro(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreReporte) {
             //ESTABLECEMOS LOS FILTROS QUE SE VAN A UTILIZAR
-            string _Poliza = null;
-            string _Numerorecibo = null;
+            string _Poliza = string.IsNullOrEmpty(txtNumeroPolizaCOnsulta.Text.Trim()) ? null : txtNumeroPolizaCOnsulta.Text.Trim();
+            string _Numerorecibo = string.IsNullOrEmpty(txtNumeroRecibo.Text.Trim()) ? null : txtNumeroRecibo.Text.Trim();
+
             string _Anulado = "";
             if (rbTodosRecibos.Checked == true) {
                 _Anulado = null;

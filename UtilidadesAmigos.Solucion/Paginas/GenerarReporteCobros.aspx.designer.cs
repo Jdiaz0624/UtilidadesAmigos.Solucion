@@ -375,6 +375,42 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarConceptoConsulta;
 
         /// <summary>
+        /// lbNumeroReciboConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNumeroReciboConsulta;
+
+        /// <summary>
+        /// txtNumeroRecibo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroRecibo;
+
+        /// <summary>
+        /// lbNumeroPolizaConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNumeroPolizaConsulta;
+
+        /// <summary>
+        /// txtNumeroPolizaCOnsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroPolizaCOnsulta;
+
+        /// <summary>
         /// lbExportarA control.
         /// </summary>
         /// <remarks>
@@ -580,6 +616,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPolizaHeaderRepeater;
+
+        /// <summary>
+        /// lbRamoHeaderRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbRamoHeaderRepeater;
 
         /// <summary>
         /// lbReciboHeaderrepeater control.
