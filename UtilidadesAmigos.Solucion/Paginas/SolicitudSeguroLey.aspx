@@ -271,6 +271,8 @@
                    </div>
                 </div>
                 <hr />
+
+
                 <button class="btn btn-outline-primary btn-sm" type="button" id="btnInformacionCobertura" data-toggle="collapse" data-target="#InformacionCoberturas" aria-expanded="false" aria-controls="collapseExample">
                      INFORMACION DE COBERTURAS
                      </button><br />

@@ -34,12 +34,12 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void llbProcesarDataGruas_Click1(object sender, EventArgs e)
         {
-            Response.Redirect("ProcesarDataGruas.aspx");
+            Response.Redirect("~/Paginas/ProcesarDataGruas.aspx");
         }
 
         protected void llbProcesarDataPowerBI_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ProcesarDataPowerBi.aspx");
+            Response.Redirect("~/Paginas/ProcesarDataPowerBi.aspx");
         }
 
    
@@ -58,7 +58,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void llbGenerarDataCoberturas_Click(object sender, EventArgs e)
         {
-            Response.Redirect("SacarDataCoberturas.aspx");
+            Response.Redirect("~/Paginas/SacarDataCoberturas.aspx");
         }
 
  
@@ -67,24 +67,24 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             FormsAuthentication.SignOut();
             FormsAuthentication.RedirectToLoginPage();
-            Response.Redirect("MenuPrincipal.aspx");
+            Response.Redirect("~/Paginas/MenuPrincipal.aspx");
         }
 
         protected void linkProduccionPorUsuarios_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ProduccionPorUsuarios.aspx");
+            Response.Redirect("~/Paginas/ProduccionPorUsuarios.aspx");
         }
 
         protected void LinkInicio_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MenuPrincipal.aspx");
+            Response.Redirect("~/Paginas/MenuPrincipal.aspx");
         }
 
         protected void linkTicket_Click(object sender, EventArgs e)
         {
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("SistemaTicket.aspx");
+                Response.Redirect("~/Paginas/SistemaTicket.aspx");
             }
             else
             {
@@ -101,17 +101,17 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkGenerarCartera_Click(object sender, EventArgs e)
         {
-            Response.Redirect("GenerarCartera.aspx");
+            Response.Redirect("~/Paginas/GenerarCartera.aspx");
         }
 
         protected void linkValidarCoberturas_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ValidarCoberturas.aspx");
+            Response.Redirect("~/Paginas/ValidarCoberturas.aspx");
         }
 
         protected void linkGenerarReporteUAF_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ReporteOperacionesSospechosas.aspx");
+            Response.Redirect("~/Paginas/ReporteOperacionesSospechosas.aspx");
         }
 
         protected void linkGenerarReporteCoberturas_Click(object sender, EventArgs e)
@@ -121,24 +121,24 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkOficinas_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Oficinas.aspx");
+            Response.Redirect("~/Paginas/Oficinas.aspx");
         }
 
         protected void linkDeprtamentos_Click(object sender, EventArgs e)
         {
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
-           Response.Redirect("Departamentos.aspx");
+           Response.Redirect("~/Paginas/Departamentos.aspx");
         }
 
         protected void linkEmpleados_Click(object sender, EventArgs e)
         {
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
-            Response.Redirect("Empleados.aspx");
+            Response.Redirect("~/Paginas/Empleados.aspx");
         }
 
         protected void linkInventario_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Inventario.aspx");
+            Response.Redirect("~/Paginas/Inventario.aspx");
            // ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
@@ -157,7 +157,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected void linkTarjetasAccesos_Click(object sender, EventArgs e)
         {
            // ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
-            Response.Redirect("AsignacionTarjetas.aspx");
+            Response.Redirect("~/Paginas/AsignacionTarjetas.aspx");
         }
 
         protected void linkMovimientoUsuarios_Click(object sender, EventArgs e)
@@ -173,28 +173,28 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkClaveSeguridad_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MantenimientoClaveSeguridad.aspx");
+            Response.Redirect("~/Paginas/MantenimientoClaveSeguridad.aspx");
         }
 
         protected void linkPerfilesUsuarios_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MantenimeintoPerfiles.aspx");
+            Response.Redirect("~/Paginas/MantenimeintoPerfiles.aspx");
         }
 
         protected void linkUsuarios_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MantenimientoUsuarios.aspx");
+            Response.Redirect("~/Paginas/MantenimientoUsuarios.aspx");
         }
 
         protected void linkCarteraIntermediarios_Click(object sender, EventArgs e)
         {
-            Response.Redirect("GenerarCarteraIntermedirio.aspx");
+            Response.Redirect("~/Paginas/GenerarCarteraIntermedirio.aspx");
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
         protected void linkComisionesCobrador_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ListadoRenovacion.aspx");
+            Response.Redirect("~/Paginas/ListadoRenovacion.aspx");
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
@@ -220,7 +220,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkDependientes_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MantenimientoDependientes.aspx");
+            Response.Redirect("~/Paginas/MantenimientoDependientes.aspx");
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
@@ -251,12 +251,12 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkEliminarBalance_Click(object sender, EventArgs e)
         {
-            Response.Redirect("EliminarBalancePoliza.aspx");
+            Response.Redirect("~/Paginas/EliminarBalancePoliza.aspx");
         }
 
         protected void LinkReporteFianzas_Click(object sender, EventArgs e)
         {
-            Response.Redirect("GenerarReporteFianzas.aspx");
+            Response.Redirect("~/Paginas/GenerarReporteFianzas.aspx");
         }
 
         protected void LinkReporteReclamos_Click(object sender, EventArgs e)
@@ -264,7 +264,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             //MOSTRAR EL REPORTE DE RECLAMOS
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("ReporteReclamos.aspx");
+                Response.Redirect("~/Paginas/ReporteReclamos.aspx");
             }
             else {
                 FormsAuthentication.SignOut();
@@ -279,7 +279,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkProduccionDiariaContabilidad_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ProduccionDiariaContabilidad.aspx");
+            Response.Redirect("~/Paginas/ProduccionDiariaContabilidad.aspx");
         }
 
   
@@ -288,7 +288,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("DatosPoliza.aspx");
+                Response.Redirect("~/Paginas/DatosPoliza.aspx");
             }
             else
             {
@@ -304,14 +304,14 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkSolicitudEmision_Click1(object sender, EventArgs e)
         {
-            Response.Redirect("SolicitudEmisionPoliza.aspx");
+            Response.Redirect("~/Paginas/SolicitudEmisionPoliza.aspx");
         }
 
         protected void LinkBakupBD_Click(object sender, EventArgs e)
         {
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("GenerarBakupBD.aspx");
+                Response.Redirect("~/Paginas/GenerarBakupBD.aspx");
             }
             else
             {
@@ -324,7 +324,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("GenerarFacturasPDF.aspx");
+                Response.Redirect("~/Paginas/GenerarFacturasPDF.aspx");
             }
             else
             {
@@ -337,7 +337,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("ProcesarDataAsegurado.aspx");
+                Response.Redirect("~/Paginas/ProcesarDataAsegurado.aspx");
             }
             else
             {
@@ -352,7 +352,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             //MOSTRAR EL REPORTE DE COMISIONES DE INTERMEDARIOS
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("ComisionesIntermediarios.aspx");
+                Response.Redirect("~/Paginas/ComisionesIntermediarios.aspx");
             }
             else
             {
@@ -366,7 +366,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             //MOSTRAR EL REPORTE DE COMISIONES DE LOS SUPERVISORES
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("ComisionesSupervisores.aspx");
+                Response.Redirect("~/Paginas/ComisionesSupervisores.aspx");
             }
             else {
                 FormsAuthentication.SignOut();
@@ -379,7 +379,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             //MOSTRAR EL REPORTE DE COMISIONES DE LOS SUPERVISORES
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("GenerarMarbetes.aspx");
+                Response.Redirect("~/Paginas/GenerarMarbetes.aspx");
             }
             else
             {
@@ -396,7 +396,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected void LinkIntermediariosSupervisores_Click(object sender, EventArgs e)
         {
             if (Session["IdUsuario"] != null) {
-                Response.Redirect("IntermediariosSupervisores.aspx");
+                Response.Redirect("~/Paginas/IntermediariosSupervisores.aspx");
             }
             else {
                 FormsAuthentication.SignOut();
@@ -408,7 +408,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("MantenimientoPorcientoComisionPorDefecto.aspx");
+                Response.Redirect("~/Paginas/MantenimientoPorcientoComisionPorDefecto.aspx");
             }
             else {
                 FormsAuthentication.SignOut();
@@ -419,7 +419,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected void LinkGenerarSOlicitudChequeComisiones_Click(object sender, EventArgs e)
         {
             if (Session["IdUsuario"] != null) {
-                Response.Redirect("GenerarSolicitudChequeComisionesIntermediarios.aspx");
+                Response.Redirect("~/Paginas/GenerarSolicitudChequeComisionesIntermediarios.aspx");
 
             }
             else {
@@ -432,7 +432,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             if (Session["Idusuario"] != null)
             {
-                Response.Redirect("GenerarReporteAntiguedadSaldo.aspx");
+                Response.Redirect("~/Paginas/GenerarReporteAntiguedadSaldo.aspx");
             }
             else {
                 FormsAuthentication.SignOut();
@@ -444,7 +444,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("ReporteProduccionIntermediarioSupervisor.aspx");
+                Response.Redirect("~/Paginas/ReporteProduccionIntermediarioSupervisor.aspx");
             }
             else {
                 FormsAuthentication.SignOut();
@@ -467,7 +467,18 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected void LinkReporteCobrado_Click(object sender, EventArgs e)
         {
             if (Session["IdUsuario"] != null) {
-                Response.Redirect("GenerarReporteCobros.aspx");
+                Response.Redirect("~/Paginas/GenerarReporteCobros.aspx");
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
+
+        protected void LinkConsultarPersonas_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null) {
+                Response.Redirect("~/Paginas/SuperIntendencia/ConsultaPersonas.aspx");
             }
             else {
                 FormsAuthentication.SignOut();

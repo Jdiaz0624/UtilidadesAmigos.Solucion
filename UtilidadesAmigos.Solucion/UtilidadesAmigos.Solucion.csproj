@@ -220,6 +220,7 @@
     <Content Include="Paginas\SistemaTicket.aspx" />
     <Content Include="Paginas\SolicitudEmisionPoliza.aspx" />
     <Content Include="Paginas\SolicitudSeguroLey.aspx" />
+    <Content Include="Paginas\SuperIntendencia\ConsultaPersonas.aspx" />
     <Content Include="scripts\bootstrap.bundle.js" />
     <Content Include="scripts\bootstrap.bundle.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -734,6 +735,13 @@
     </Compile>
     <Compile Include="Paginas\SolicitudSeguroLey.aspx.designer.cs">
       <DependentUpon>SolicitudSeguroLey.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\SuperIntendencia\ConsultaPersonas.aspx.cs">
+      <DependentUpon>ConsultaPersonas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\SuperIntendencia\ConsultaPersonas.aspx.designer.cs">
+      <DependentUpon>ConsultaPersonas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\TipoCotizador.aspx.cs">
       <DependentUpon>TipoCotizador.aspx</DependentUpon>
