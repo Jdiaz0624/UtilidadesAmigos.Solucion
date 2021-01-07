@@ -300,6 +300,7 @@
     <Compile Include="Entidades\Reportes\EReporteProduccionOrigen.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
+    <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendencia.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
     <Compile Include="Logica\LogicaOpcionesAdministrador\LogicaOpcionesdministrador.cs" />
@@ -307,6 +308,7 @@
     <Compile Include="Logica\LogicaReportes\ProduccionPorUsuarioResumido.cs" />
     <Compile Include="Logica\LogicaSeguridad\LogicaSeguridad.cs" />
     <Compile Include="Logica\LogicaSistema.cs" />
+    <Compile Include="Logica\LogicaSuperIntendencia\LogicaSuperIntendencia.cs" />
     <Compile Include="ProcesoInformacion\ProcesarInformacionModificarCoberturaPoliza.cs" />
     <Compile Include="ProcesoInformacion\ProcesarInformacionUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

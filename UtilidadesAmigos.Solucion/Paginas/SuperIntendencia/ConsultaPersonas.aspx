@@ -35,84 +35,257 @@
         }
     </style>
 
+    <script type="text/javascript">
+        function CamposBusquedaNormalVacio() {
+            alert("Los campos RNC y nombre no pueden estar ambos vacio, favor de verificar.");
+            $("#<%=txtRNCCedula.ClientID%>").css("border-color", "red");
+            $("#<%=txtNombre.ClientID%>").css("border-color", "red");
+        }
+        function CamposChasisPlacaVacios() {
+            alert("Los campos Placa y Chasis no pueden estar ambos vacio, favor de verificar.");
+            $("#<%=txtPlacaConsulta.ClientID%>").css("border-color", "red");
+            $("#<%=txtChasisConsulta.ClientID%>").css("border-color", "red");
+        }
+    </script>
+
    <div class="container-fluid">
        <div class="jumbotron" align="center">
            <asp:Label ID="lbTituloPantalla" runat="server" Text="CONSULTAR REGISTRO PERSONAS"></asp:Label>
        </div>
        <div class="form-check-inline">
+           <div class="form-group form-check">               
+               <asp:RadioButton ID="rbExportarPDF" runat="server" Text="Exportar a PDF" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a PDF" />
+               <asp:RadioButton ID="rbExportarWord" runat="server" Text="Exportar a Word" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Word" />
+               <br />
+                
+           </div>
+           
+      
+       </div>
+       <div class="form-check-inline">
            <div class="form-group form-check">
-               
-               <asp:RadioButton ID="rbExportarPDF" runat="server" Text="Exportar a PDF" CssClass="form-check-input" GroupName="Exportar" ToolTip="Exportar Informacion a PDF" />
-               <asp:RadioButton ID="rbExportarWord" runat="server" Text="Exportar a Word" CssClass="form-check-input" GroupName="Exportar" ToolTip="Exportar Informacion a Word" />
+               <asp:RadioButton ID="rbConsultaNormal" runat="server" Text="Consultar Por RNC o Nombre" CssClass="form-check-input Letranegrita" GroupName="TipoConsulta" ToolTip="Consultar mediante el rnc o el Nombre" />
+               <asp:RadioButton ID="rbConsultaChasisPlaca" runat="server" Text="Consultar por Placa o Chasis" CssClass="form-check-input Letranegrita " GroupName="TipoConsulta" ToolTip="Consultar mediante el chasis o la placa" />
            </div>
        </div>
        <div class="form-row">
-           <div class="form-group col-md-4">
+           <div class="form-group col-md-3">
                <asp:Label ID="lbConsuktarRNC" runat="server" Text="RNC / Cedula" CssClass="Letranegrita"></asp:Label>
                <asp:TextBox ID="txtRNCCedula" runat="server" CssClass="form-control"></asp:TextBox>
            </div>
-           <div class="form-group col-md-4">
+           <div class="form-group col-md-3">
                <asp:Label ID="lbNombre" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
            </div>
+           <div class="form-group col-md-3">
+               <asp:Label ID="lbPlacaConsulta" runat="server" Text="Placa" CssClass="Letranegrita"></asp:Label>
+               <asp:TextBox ID="txtPlacaConsulta" runat="server" CssClass="form-control"></asp:TextBox>
+           </div>
+           <div class="form-group col-md-3">
+               <asp:Label ID="lbChasisConsulta" runat="server" Text="Chasis" CssClass="Letranegrita"></asp:Label>
+               <asp:TextBox ID="txtChasisConsulta" runat="server" CssClass="form-control"></asp:TextBox>
+           </div>
+           <div class="form-group col-md-6">
+               <asp:Label ID="lbSeleccionarRamo" runat="server" Text="Seleccionar Ramo" CssClass="Letranegrita"></asp:Label>
+               <asp:DropDownList ID="ddlSeleccionarRamo" runat="server" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
+           </div>
        </div>
        <div align="center">
-           <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-secondary btn-sm" />
+           <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click" />
        </div>
 
        <br />
        <div align="center">
-           <asp:Label ID="lbCantidadRegistrosClienteTitulo" runat="server" Text="Cantidad de Registros (" CssClass="Letranegrita"></asp:Label>
-           <asp:Label ID="lbCantidadRegistrosClienteVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadRegistrosClienteTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadRegistrosClienteVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosClienteCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
        </div>
-        <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionCobertura" data-toggle="collapse" data-target="#InformacionCliente" aria-expanded="false" aria-controls="collapseExample">
-                     INFORMACION DE CLIENTE
+       <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionCobertura" data-toggle="collapse" data-target="#InformacionCliente" aria-expanded="false" aria-controls="collapseExample">
+                    INFORMACION DE CLIENTE
                      </button><br />
-                <div class="collapse" id="InformacionCliente">
+       <div class="collapse" id="InformacionCliente">
                 <div class="card card-body">
-                   INFORMACION DE CLIENTE
+                    <div class="table-responsive mT20">
+                         <table class="table table-hover">
+                            <thead>
+                                 <tr>
+                                 <th style="width:10%"> <asp:Label ID="lbSeleccionarRegistroHeaderRepeaterCliente" runat="server" Text="Seleccionar" CssClass="Letranegrita"></asp:Label> </th>
+                                 <th style="width:20%"> <asp:Label ID="lbNombreClienteHEaderRepeaterCliente" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label> </th>
+                                 <th style="width:10%"> <asp:Label ID="lbRNCHeaderRepeaterCliente" runat="server" Text="RNC" CssClass="Letranegrita"></asp:Label> </th>
+                                 <th style="width:20%"> <asp:Label ID="lbRamoHeaderRepeaterCliente" runat="server" Text="Ramo" CssClass="Letranegrita"></asp:Label> </th>
+                                 <th style="width:10%"> <asp:Label ID="lbPlacaHeaderRepeaterCliente" runat="server" Text="Placa" CssClass="Letranegrita"></asp:Label> </th>
+                                 <th style="width:10%"> <asp:Label ID="lbChasisHeaderRepeaterCliente" runat="server" Text="Chasis" CssClass="Letranegrita"></asp:Label> </th>
+                                 <th style="width:10%"> <asp:Label ID="lbinicioVigenciaheaderRepeaterCliente" runat="server" Text="Inicio" CssClass="Letranegrita"></asp:Label> </th>
+                                 <th style="width:10%"> <asp:Label ID="lbFinVigenciaHeaderRepeater" runat="server" Text="Fin" CssClass="Letranegrita"></asp:Label> </th>
+                             </tr>
+                            </thead>
+                             <tbody>
+                                 <asp:Repeater ID="rpListadoBusquedaCliente" runat="server">
+                                     <ItemTemplate>
+                                         <tr>
+                                             <asp:HiddenField ID="hfPolizaBusquedaCliente" runat="server" Value='<%# Eval("poliza") %>' />
+                                             <asp:HiddenField ID="hfCotizacionBusquedaCliente" runat="server" Value='<%# Eval("Cotizacion") %>' />
+                                             <asp:HiddenField ID="hfSecuenciaBusquedaCliente" runat="server" Value='<%# Eval("Secuencia") %>' />
+
+                                             <td style="width:10%"> <asp:Button ID="btnSeleccionarRegistrosBusquedaCliente" runat="server" Text="Seleccionar" ToolTip="Seleccionar Registro" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarRegistrosBusquedaCliente_Click" /> </td>
+                                             <td style="width:10%"> <%# Eval("Nombre") %> </td>
+                                             <td style="width:10%"> <%# Eval("NumeroIdentificacion") %> </td>
+                                             <td style="width:10%"> <%# Eval("Ramo") %> </td>
+                                             <td style="width:10%"> <%# Eval("Placa") %> </td>
+                                             <td style="width:10%"> <%# Eval("Chasis") %> </td>
+                                             <td style="width:10%"> <%# Eval("InicioVigencia") %> </td>
+                                             <td style="width:10%"> <%# Eval("FinVigencia") %> </td>
+                                         </tr>
+                                     </ItemTemplate>
+                                 </asp:Repeater>
+                             </tbody>
+                         </table>
+                     </div>
+                     <!--PAGINACION DEL REPEATER-->
+            <div align="center">
+                <asp:Label ID="lbPaginaActualTituloCliente" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavleCliente" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloCliente" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriableCliente" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="divPaginacionCliente" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeraPaginaCliente" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaCliente_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorCliente" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorCliente_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionCliente" runat="server" OnItemCommand="dtPaginacionCliente_ItemCommand" OnItemDataBound="dtPaginacionCliente_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralCliente" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteCliente" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteCliente_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoCliente" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoCliente_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
                    </div>
+
+           <div id="DivBloqueDetalleCliente" runat="server">
+               <div class="form-row">
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbNombreDetalleCliente" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtNombreDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbRNCDetalleCliente" runat="server" Text="RNC" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtENCDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbRamoDetalleCliente" runat="server" Text="Ramo" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtRamoDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbNombreVendedorDetalleCliente" runat="server" Text="Vendedor" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtNombreVendedorDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbRNCVendedorDetalleCliente" runat="server" Text="RNC Vendedor" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtRNCVendedorDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbLicenciaVenedirDetalleCliente" runat="server" Text="Licencia" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtLicenciaDetalleVendedor" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbTipoVehiculoDetalleCliente" runat="server" Text="Tipo de Vehiculo" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txttipoVehiculoDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbMarcaDetalleCliente" runat="server" Text="Marca" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtMarcaDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbModeloDetalleCliente" runat="server" Text="Modelo" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtModeloDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbAnoDetalleCliente" runat="server" Text="Año" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtAnoDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbPlacaDetalleCliente" runat="server" Text="Placa" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtPalcaDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbChasisDetalleCliente" runat="server" Text="Chasis" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtCiasusDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbCOlorDetalleCliente" runat="server" Text="Color" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtColorDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbMontoAseguradoDetalleCliente" runat="server" Text="Monto Asegurado" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtMontoAseguradoDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbPrimaDetalleCliente" runat="server" Text="Prima" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtPrimaDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbInicioVigenciaDetalleCliente" runat="server" Text="Inicio de vigencia" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtInicioVigenciaDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbFinVigenciaDetalleCliente" runat="server" Text="Fin de Vigencia" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtFinVigenciaDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+                   <div class="form-group col-md-4">
+                       <asp:Label ID="lbPolizaDetalleCliente" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtPolizaDetalleCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                   </div>
+               </div>
+           </div>
                 </div>
        <br />
         <div align="center">
-           <asp:Label ID="lbCantidadIntermediariosSupervisorTitulo" runat="server" Text="Cantidad de Registros (" CssClass="Letranegrita"></asp:Label>
-           <asp:Label ID="lbCantidadIntermediariosSupervisorVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadIntermediariosSupervisorTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadIntermediariosSupervisorVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadIntermediariosSupervisorCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
        </div>
         <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionIntermediarioSupervisor" data-toggle="collapse" data-target="#InformacionIntermediarioSupervisor" aria-expanded="false" aria-controls="collapseExample">
                      INFORMACION DE INTERMEDIARIO / SUPERVISOR
                      </button><br />
-                <div class="collapse" id="InformacionIntermediarioSupervisor">
+        <div class="collapse" id="InformacionIntermediarioSupervisor">
                 <div class="card card-body">
                    INFORMACION DE INTERMEDIARIO / SUPERVISOR
                    </div>
                 </div>
        <br />
        <div align="center">
-           <asp:Label ID="lbCantidadProveedorTitulo" runat="server" Text="Cantidad de Registros (" CssClass="Letranegrita"></asp:Label>
-           <asp:Label ID="lbCantidadProveedorVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadProveedorTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadProveedorVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadProveedorCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
        </div>
-        <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionproveedor" data-toggle="collapse" data-target="#InformacionProveedor" aria-expanded="false" aria-controls="collapseExample">
+       <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionproveedor" data-toggle="collapse" data-target="#InformacionProveedor" aria-expanded="false" aria-controls="collapseExample">
                      INFORMACION DE PROVEEDOR
                      </button><br />
-                <div class="collapse" id="InformacionProveedor">
+       <div class="collapse" id="InformacionProveedor">
                 <div class="card card-body">
                    INFORMACION DE PROVEEDOR
                    </div>
                 </div>
        <br />
 
-        <div align="center">
-           <asp:Label ID="lbCantidadRegistrosAseguradoBajoPolizaTitulo" runat="server" Text="Cantidad de Registros (" CssClass="Letranegrita"></asp:Label>
-           <asp:Label ID="lbCantidadRegistrosAseguradoBajoPolizaVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+       <div align="center">
+           <asp:Label ID="lbCantidadRegistrosAseguradoBajoPolizaTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadRegistrosAseguradoBajoPolizaVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosAseguradoBajoPolizaCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
        </div>
        <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnAseguradoBajoPoliza" data-toggle="collapse" data-target="#InformacionAsegurdoBajoPoliza" aria-expanded="false" aria-controls="collapseExample">
                      INFORMACION DE ASEGURADO BAJO POLIZA
                      </button><br />
-                <div class="collapse" id="InformacionAsegurdoBajoPoliza">
+       <div class="collapse" id="InformacionAsegurdoBajoPoliza">
                 <div class="card card-body">
                    INFORMACION DE ASEGURADO BAJO POLIZA
                    </div>
@@ -120,28 +293,28 @@
        <br />
 
        <div align="center">
-           <asp:Label ID="lbCantidadRegistrosAseguradoTitulo" runat="server" Text="Cantidad de Registros (" CssClass="Letranegrita"></asp:Label>
-           <asp:Label ID="lbCantidadRegistrosAseguradoVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadRegistrosAseguradoTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadRegistrosAseguradoVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosAseguradoCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
        </div>
        <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionAsegurado" data-toggle="collapse" data-target="#InformacionAsegurado" aria-expanded="false" aria-controls="collapseExample">
                      INFORMACION DE ASEGURADO 
                      </button><br />
-                <div class="collapse" id="InformacionAsegurado">
+       <div class="collapse" id="InformacionAsegurado">
                 <div class="card card-body">
                    INFORMACION DE ASEGURADO 
                    </div>
                 </div>
        <br />
         <div align="center">
-           <asp:Label ID="lbCantidadRegistrosDependienteTitulo" runat="server" Text="Cantidad de Registros (" CssClass="Letranegrita"></asp:Label>
-           <asp:Label ID="lbCantidadRegistrosDependienteVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadRegistrosDependienteTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadRegistrosDependienteVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosDependienteCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
        </div>
         <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionDependiente" data-toggle="collapse" data-target="#InformacionDependiente" aria-expanded="false" aria-controls="collapseExample">
                      INFORMACION DE DEPENDIENTE 
                      </button><br />
-                <div class="collapse" id="InformacionDependiente">
+        <div class="collapse" id="InformacionDependiente">
                 <div class="card card-body">
                    INFORMACION DE DEPENDIENTE 
                    </div>
