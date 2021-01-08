@@ -301,6 +301,7 @@
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendencia.cs" />
+    <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendenciaIntermediario.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
     <Compile Include="Logica\LogicaOpcionesAdministrador\LogicaOpcionesdministrador.cs" />

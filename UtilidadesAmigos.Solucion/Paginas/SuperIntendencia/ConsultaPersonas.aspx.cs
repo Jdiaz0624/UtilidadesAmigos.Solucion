@@ -95,6 +95,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 
 
             divPaginacionCliente.Visible = true;
+            DivPaginacionIntermediario.Visible = true;
+            OcultarDetalle();
         }
         enum OpcionesPaginacionValores
         {
@@ -146,6 +148,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 
         #endregion
 
+        private void OcultarDetalle() {
+            DivBloqueDetalleCliente.Visible = false;
+            DivDetalleInformacionIntermediarioSeleccionado.Visible = false;
+        }
+
         private void MostrarListadoClientes(int ReportePreciso)
         {
             string _Numeroidentificacion = string.IsNullOrEmpty(txtRNCCedula.Text.Trim()) ? null : txtRNCCedula.Text.Trim();
@@ -177,6 +184,28 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 Paginar(ref rpListadoBusquedaCliente, BuscarListado, 10, ref lbCantidadPaginaVAriableCliente, ref LinkPrimeraPaginaCliente, ref LinkAnteriorCliente, ref LinkSiguienteCliente, ref LinkUltimoCliente);
                 HandlePaging(ref dtPaginacionCliente, ref lbPaginaActualVariavleCliente);
                 divPaginacionCliente.Visible = true;
+            }
+        }
+
+        private void MostrarListadoIntermediarios() {
+            string _NumeroIdentificacion = string.IsNullOrEmpty(txtRNCCedula.Text.Trim()) ? null : txtRNCCedula.Text.Trim();
+            string _Nombre = string.IsNullOrEmpty(txtNombre.Text.Trim()) ? null : txtNombre.Text.Trim();
+
+            var Listado = ObjDataSuperIntendencia.Value.BuscaPersonasSuperIntendenciaIntermediario(
+                new Nullable<int>(),
+                _NumeroIdentificacion,
+                _Nombre);
+            if (Listado.Count() < 1)
+            {
+                lbCantidadIntermediariosSupervisorVariable.Text = "NO";
+                lbCantidadIntermediariosSupervisorVariable.ForeColor = System.Drawing.Color.Red;
+            }
+            else {
+                lbCantidadIntermediariosSupervisorVariable.ForeColor = System.Drawing.Color.Green;
+                lbCantidadIntermediariosSupervisorVariable.Text = "SI";
+                Paginar(ref rpListadoIntermediarios, Listado, 10, ref lbCantidadPaginaVAriableIntermedairaio, ref LinkPrimeroIntermediario, ref LinkAnteriorIntermediario, ref LinkSiguienteCliente, ref LinkUltimoIntermediario);
+                HandlePaging(ref dtIntermediario, ref lbPaginaActualVariavleIntermediario);
+                DivPaginacionIntermediario.Visible = true;
             }
         }
         private void SeleccionarRegistrosClientes(string Poliza, decimal Cotizacion, decimal Secuencia, int ReportePreciso) {
@@ -216,6 +245,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 txtInicioVigenciaDetalleCliente.Text = n.InicioVigencia;
                 txtFinVigenciaDetalleCliente.Text = n.FinVigencia;
                 txtPolizaDetalleCliente.Text = n.poliza;
+                DivBloqueDetalleCliente.Visible = true;
             }
             //MOSTRAR DETALLE
         }
@@ -228,6 +258,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 rbConsultaNormal.Checked = true;
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamo, ObjDataSistema.Value.BuscaListas("RAMO", null, null), true);
                 DivBloqueDetalleCliente.Visible = false;
+                DivPaginacionIntermediario.Visible = false;
+                DivDetalleInformacionIntermediarioSeleccionado.Visible = false;
+                DivPaginacionIntermediario.Visible = false;
             }
         }
 
@@ -248,27 +281,33 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 
         protected void LinkPrimeraPaginaCliente_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarListadoClientes(1);
         }
 
         protected void LinkAnteriorCliente_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarListadoClientes(1);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleCliente, ref lbCantidadPaginaVAriableCliente);
         }
 
         protected void dtPaginacionCliente_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoClientes(1);
         }
 
         protected void dtPaginacionCliente_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-
+           
         }
 
         protected void LinkSiguienteCliente_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += 1;
+            MostrarListadoClientes(1);
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
@@ -279,6 +318,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 }
                 else {
                     MostrarListadoClientes(1);
+                    MostrarListadoIntermediarios();
                 }
             }
             else if (rbConsultaChasisPlaca.Checked) {
@@ -287,13 +327,75 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 }
                 else {
                     MostrarListadoClientes(2);
+                    MostrarListadoIntermediarios();
                 }
             }
         }
 
-        protected void LinkUltimoCliente_Click(object sender, EventArgs e)
+        protected void btnSeleccionarIntermediarioRepeater_Click(object sender, EventArgs e)
+        {
+            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfCodigoIntermediario = ((HiddenField)ItemSeleccionado.FindControl("hfCodigointermediario")).Value.ToString();
+
+            var BuscarRegistroSeleccionado = ObjDataSuperIntendencia.Value.BuscaPersonasSuperIntendenciaIntermediario(Convert.ToInt32(hfCodigoIntermediario), null, null);
+            Paginar(ref rpListadoIntermediarios, BuscarRegistroSeleccionado, 10, ref lbCantidadPaginaVAriableIntermedairaio, ref LinkPrimeroIntermediario, ref LinkAnteriorIntermediario, ref LinkSiguienteCliente, ref LinkUltimoIntermediario);
+            HandlePaging(ref dtIntermediario, ref lbPaginaActualVariavleIntermediario);
+            DivPaginacionIntermediario.Visible = true;
+            foreach (var n in BuscarRegistroSeleccionado) {
+                txtBusquedaIntermediarioCodigoDetalle.Text = n.Codigo.ToString();
+                txtBusquedaIntermediarioTipoRNCDetalle.Text = n.TipoIdentificacion;
+                txtBusquedaIntermediarioNumeroIdentificacionDetalle.Text = n.Rnc;
+                txtBusquedaIntermediarioNombreDetalle.Text = n.Nombre;
+                txtBusquedaIntermediarioSupervisorDetalle.Text = n.Supervisor;
+                txtBusquedaIntermediarioFechaEntradaDetalle.Text = n.FechaEntrada;
+                txtBusquedaIntermediarioTelefonoResidenciaDetalle.Text = n.Telefono;
+                txtBusquedaIntermediarioTelefonoOficinaDetalle.Text = n.TelefonoOficina;
+                txtBusquedaIntermediarioCelularDetalle.Text = n.Celular;
+                txtBusquedaIntermediarioLicenciaSeguroDetalle.Text = n.LicenciaSeguro;
+                txtBusquedaIntermediarioOficinaDetalle.Text = n.NombreOficina;
+                txtBusquedaIntermediarioFechaNacimientoDetalle.Text = n.FechaNacimiento;
+                txtBusquedaIntermediarioCuentaBancoDetalle.Text = n.CtaBanco;
+                txtBusquedaIntermediarioBancoDetalle.Text = n.Banco;
+                txtBusquedaIntermediarioFormaPagoDetalle.Text = n.TipoPago;
+                DivDetalleInformacionIntermediarioSeleccionado.Visible = true;
+            }
+        }
+
+        protected void LinkPrimeroIntermediario_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void LinkAnteriorIntermediario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dtIntermediario_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void dtIntermediario_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguienteIntermediario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoIntermediario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoCliente_Click(object sender, EventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoClientes(1);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleCliente, ref lbCantidadPaginaVAriableCliente);
         }
     }
 }

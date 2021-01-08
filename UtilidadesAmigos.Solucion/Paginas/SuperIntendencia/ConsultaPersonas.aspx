@@ -248,6 +248,8 @@
            </div>
                 </div>
        <br />
+
+
         <div align="center">
            <asp:Label ID="lbCantidadIntermediariosSupervisorTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadIntermediariosSupervisorVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
@@ -258,9 +260,147 @@
                      </button><br />
         <div class="collapse" id="InformacionIntermediarioSupervisor">
                 <div class="card card-body">
-                   INFORMACION DE INTERMEDIARIO / SUPERVISOR
+                  <div class="table-responsive mT20">
+                      <table class="table table-hover">
+                          <thead>
+                              <tr>
+                                  <th style="width:10%" align="left"> <asp:Label ID="SeleccionadHeaderIntermediario" runat="server" Text="Seleccionar" CssClass="Letranegrita"></asp:Label> </th>
+                                  <th style="width:40%" align="left"> <asp:Label ID="lbNombreIntermediarioHeaderIntermediario" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label> </th>
+                                  <th style="width:10%" align="left"> <asp:Label ID="lbEstatusHEaderIntermediario" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
+                                  <th style="width:10%" align="left"> <asp:Label ID="lbRNCHeaderIntermediario" runat="server" Text="RNC" CssClass="Letranegrita"></asp:Label> </th>
+                                  <th style="width:10%" align="left"> <asp:Label ID="lbFechaEntradaHEaderIntermediario" runat="server" Text="Fecha de Entrada" CssClass="Letranegrita"></asp:Label> </th>
+                                  <th style="width:10%" align="left"> <asp:Label ID="lbLicenciaSeguroHeaderIntermediario" runat="server" Text="Licencia de Seguro" CssClass="Letranegrita"></asp:Label> </th>
+                                  <th style="width:10%" align="left"> <asp:Label ID="lbOficinaHeaderIntermediario" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label> </th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <asp:Repeater ID="rpListadoIntermediarios" runat="server">
+                                  <ItemTemplate>
+                                      <tr>
+                                          <asp:HiddenField ID="hfCodigointermediario" runat="server" Value='<%# Eval("Codigo") %>' />
+                                          <td style="width:10%"> <asp:Button ID="btnSeleccionarIntermediarioRepeater" runat="server" Text="Seleccionar" ToolTip="Seleccionar Registro" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarIntermediarioRepeater_Click" /> </td>
+                                          <td style="width:40%"> <%# Eval("Nombre") %> </td>
+                                          <td style="width:10%"> <%# Eval("Estatus") %> </td>
+                                          <td style="width:10%"> <%# Eval("Rnc") %> </td>
+                                          <td style="width:10%"> <%# Eval("FechaEntrada") %> </td>
+                                          <td style="width:10%"> <%# Eval("LicenciaSeguro") %> </td>
+                                          <td style="width:10%"> <%# Eval("NombreOficina") %> </td>
+                                      </tr>
+                                  </ItemTemplate>
+                              </asp:Repeater>
+                          </tbody>
+                      </table>
+                  </div>
+                      <!--PAGINACION DEL REPEATER-->
+            <div align="center">
+                <asp:Label ID="lbPaginaActualTituloIntermediario" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavleIntermediario" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloIntermediario" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriableIntermedairaio" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="DivPaginacionIntermediario" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeroIntermediario" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroIntermediario_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorIntermediario" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorIntermediario_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtIntermediario" runat="server" OnItemCommand="dtIntermediario_ItemCommand" OnItemDataBound="dtIntermediario_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionIntermediario" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteIntermediario" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteIntermediario_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoIntermediario" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoIntermediario_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
                    </div>
+            <div id="DivDetalleInformacionIntermediarioSeleccionado" runat="server">
+           <div class="form-row">
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioCodigoDetalle" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioCodigoDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioTipoRNCDetalle" runat="server" Text="Tipo de Identificación" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioTipoRNCDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioNumeroIdentificacionDetalle" runat="server" Text="Numero de Identificación" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioNumeroIdentificacionDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioNombreDetalle" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioNombreDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioSupervisorDetalle" runat="server" Text="Supervisor" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioSupervisorDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioFechaEntradaDetalle" runat="server" Text="Fecha de Entrada" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioFechaEntradaDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioTelefonoResidenciaDetalle" runat="server" Text="Telefono de Residencia" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioTelefonoResidenciaDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioTelefonoOficina" runat="server" Text="Telefono de oficina" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioTelefonoOficinaDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioCelularDetalle" runat="server" Text="Celular" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioCelularDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioLicenciaSeguroDetalle" runat="server" Text="Licencia de Seguro" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioLicenciaSeguroDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioOficinaDetalle" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioOficinaDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioFechaNacimientoDetalle" runat="server" Text="Fecha de nacimiento" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioFechaNacimientoDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioCuentaBancoDetalle" runat="server" Text="Cuenta de Banco" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioCuentaBancoDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioBancoDetalle" runat="server" Text="Banco" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioBancoDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+
+               <div class="form-group col-md-4">
+                   <asp:Label ID="lbBusquedaIntermediarioFormaPagoDetalle" runat="server" Text="Forma de Pago" CssClass="Letranegrita"></asp:Label>
+                   <asp:TextBox ID="txtBusquedaIntermediarioFormaPagoDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               </div>
+           </div>
+       </div>
                 </div>
+
+       
+
        <br />
        <div align="center">
            <asp:Label ID="lbCantidadProveedorTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>

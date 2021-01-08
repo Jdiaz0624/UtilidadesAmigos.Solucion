@@ -38,4 +38,33 @@
       <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_REGISTROS_SUPER_INTENDENCIA_INTERMEDIARIO" Method="SP_BUSCA_REGISTROS_SUPER_INTENDENCIA_INTERMEDIARIO">
+    <Parameter Name="Codigo" Parameter="codigo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NumeroIdentificacion" Parameter="numeroIdentificacion" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_BUSCA_REGISTROS_SUPER_INTENDENCIA_INTERMEDIARIOResult">
+      <Column Name="Codigo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Estatus0" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoRnc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Rnc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Fecha_Entrada" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaEntrada" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Fec_Nac" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaNacimiento" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Celular" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="LicenciaSeguro" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreOficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CtaBanco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Banco" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="TipoPago" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

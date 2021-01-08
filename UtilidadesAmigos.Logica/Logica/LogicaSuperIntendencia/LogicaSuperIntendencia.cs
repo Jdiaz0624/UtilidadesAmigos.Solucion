@@ -45,5 +45,40 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
                            }).ToList();
             return Listado;
         }
+
+        //BUSCAR REGISTROS INTERMEDIARIO
+        public List<UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EBuscaPersonasSuperIntendenciaIntermediario> BuscaPersonasSuperIntendenciaIntermediario(int? Codigo = null, string NumeroIdentificacion = null, string Nombre = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_REGISTROS_SUPER_INTENDENCIA_INTERMEDIARIO(Codigo, NumeroIdentificacion, Nombre)
+                           select new UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EBuscaPersonasSuperIntendenciaIntermediario
+                           {
+                               Codigo=n.Codigo,
+                               Estatus0=n.Estatus0,
+                               Estatus=n.Estatus,
+                               TipoRnc=n.TipoRnc,
+                               TipoIdentificacion=n.TipoIdentificacion,
+                               Rnc=n.Rnc,
+                               Supervisor=n.Supervisor,
+                               Nombre=n.Nombre,
+                               Fecha_Entrada=n.Fecha_Entrada,
+                               FechaEntrada=n.FechaEntrada,
+                               Fec_Nac=n.Fec_Nac,
+                               FechaNacimiento = n.FechaNacimiento,
+                               Direccion=n.Direccion,
+                               Telefono=n.Telefono,
+                               TelefonoOficina=n.TelefonoOficina,
+                               Celular=n.Celular,
+                               LicenciaSeguro=n.LicenciaSeguro,
+                               Oficina=n.Oficina,
+                               NombreOficina=n.NombreOficina,
+                               CtaBanco=n.CtaBanco,
+                               Banco=n.Banco,
+                               TipoPago=n.TipoPago,
+
+                           }).ToList();
+            return Listado;
+        }
     }
 }
