@@ -412,7 +412,65 @@
                      </button><br />
        <div class="collapse" id="InformacionProveedor">
                 <div class="card card-body">
-                   INFORMACION DE PROVEEDOR
+                   <div class="table-responsive mT20">
+                       <table class="table table-hover">
+                           <thead>
+                               <tr>
+                               <th style="width:10%"> <asp:Label ID="lbSeleccionarHeadeRepeaterProveedor" runat="server" Text="Seleccionar" CssClass="Letranegrita"></asp:Label> </th>
+                               <th style="width:50%"> <asp:Label ID="lbNombreHeadeRepeaterProveedor" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label> </th>
+                               <th style="width:10%"> <asp:Label ID="lbRNCHeadeRepeaterProveedor" runat="server" Text="RNC" CssClass="Letranegrita"></asp:Label> </th>
+                               <th style="width:10%"> <asp:Label ID="lbTipoClienteHeadeRepeaterProveedor" runat="server" Text="Tipo de Proveedor" CssClass="Letranegrita"></asp:Label> </th>
+                               <th style="width:10%"> <asp:Label ID="lbTipoRNCHeadeRepeaterProveedor" runat="server" Text="Tipo de RNC" CssClass="Letranegrita"></asp:Label> </th>
+                               <th style="width:10%"> <asp:Label ID="lbFechaCreadoHeadeRepeaterProveedor" runat="server" Text="Fecha Creado" CssClass="Letranegrita"></asp:Label> </th>
+                           </tr>
+                           </thead>
+                           <tbody>
+                               <asp:Repeater ID="rpListadoProveedores" runat="server">
+                                   <ItemTemplate>
+                                       <tr>
+                                           <asp:HiddenField ID="hfCodigoproveedor" runat="server" Value='<%# Eval("Codigo") %>' />
+
+                                           <td style="width:10%"> <asp:Button ID="btnSeleccionarRegistroProveedor" runat="server" Text="Seleccionar" ToolTip="Seleccionar Registro" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarRegistroProveedor_Click" /> </td>
+                                           <td style="width:50%"> <%# Eval("NombreCliente") %> </td>
+                                           <td style="width:10%"> <%# Eval("Rnc") %> </td>
+                                           <td style="width:10%"> <%# Eval("TipoCliente") %> </td>
+                                           <td style="width:10%"> <%# Eval("TipoIdentificacion") %> </td>
+                                           <td style="width:10%"> <%# Eval("FechaCreado") %> </td>
+                                       </tr>
+                                   </ItemTemplate>
+                               </asp:Repeater>
+                           </tbody>
+                       </table>
+
+                   </div>
+
+                              <!--PAGINACION DEL REPEATER-->
+            <div align="center">
+                <asp:Label ID="lbPaginaActualTituloProveedor" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavleProveedor" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloProveedor" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriableProveedor" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="Div1" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeroProveedor" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroProveedor_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorProveedor" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorProveedor_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtProveedor" runat="server" OnItemCommand="dtProveedor_ItemCommand" OnItemDataBound="dtProveedor_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionProveedor" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteProveedor" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteProveedor_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoProveedor" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoProveedor_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
                    </div>
                 </div>
        <br />

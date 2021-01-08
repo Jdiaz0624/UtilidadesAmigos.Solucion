@@ -1185,6 +1185,159 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.WebControls.Label lbCantidadProveedorCerrar;
 
         /// <summary>
+        /// lbSeleccionarHeadeRepeaterProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarHeadeRepeaterProveedor;
+
+        /// <summary>
+        /// lbNombreHeadeRepeaterProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNombreHeadeRepeaterProveedor;
+
+        /// <summary>
+        /// lbRNCHeadeRepeaterProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbRNCHeadeRepeaterProveedor;
+
+        /// <summary>
+        /// lbTipoClienteHeadeRepeaterProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTipoClienteHeadeRepeaterProveedor;
+
+        /// <summary>
+        /// lbTipoRNCHeadeRepeaterProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTipoRNCHeadeRepeaterProveedor;
+
+        /// <summary>
+        /// lbFechaCreadoHeadeRepeaterProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaCreadoHeadeRepeaterProveedor;
+
+        /// <summary>
+        /// rpListadoProveedores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpListadoProveedores;
+
+        /// <summary>
+        /// lbPaginaActualTituloProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloProveedor;
+
+        /// <summary>
+        /// lbPaginaActualVariavleProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualVariavleProveedor;
+
+        /// <summary>
+        /// lbCantidadPaginaTituloProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloProveedor;
+
+        /// <summary>
+        /// lbCantidadPaginaVAriableProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVAriableProveedor;
+
+        /// <summary>
+        /// Div1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+
+        /// <summary>
+        /// LinkPrimeroProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeroProveedor;
+
+        /// <summary>
+        /// LinkAnteriorProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorProveedor;
+
+        /// <summary>
+        /// dtProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dtProveedor;
+
+        /// <summary>
+        /// LinkSiguienteProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteProveedor;
+
+        /// <summary>
+        /// LinkUltimoProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoProveedor;
+
+        /// <summary>
         /// lbCantidadRegistrosAseguradoBajoPolizaTitulo control.
         /// </summary>
         /// <remarks>

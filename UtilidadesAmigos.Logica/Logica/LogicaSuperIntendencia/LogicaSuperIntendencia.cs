@@ -80,5 +80,36 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
                            }).ToList();
             return Listado;
         }
+
+        //BUSCAR REGISTROS PROBEEDORES
+        public List<UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EBuscaPersonaProveedor> BuscaPersonaSuperIntendenciaProveedor(int? Codigo = null, string Nombre = null, string NumeroIdentificacion = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Buscar = (from n in ObjData.SP_BUSCA_REGISTRO_SUPER_INTENDENCIA_PROVEEDOR(Codigo, Nombre, NumeroIdentificacion)
+                          select new UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EBuscaPersonaProveedor
+                          {
+                              Codigo=n.Codigo,
+                              TipoCliente0=n.TipoCliente0,
+                              TipoCliente=n.TipoCliente,
+                              TipoRnc=n.TipoRnc,
+                              TipoIdentificacion=n.TipoIdentificacion,
+                              Rnc=n.Rnc,
+                              NombreCliente=n.NombreCliente,
+                              Direccion=n.Direccion,
+                              FechaAdiciona=n.FechaAdiciona,
+                              FechaCreado=n.FechaCreado,
+                              TelefonoCasa=n.TelefonoCasa,
+                              TelefonoOficina=n.TelefonoOficina,
+                              Celular=n.Celular,
+                              CuentaBanco=n.CuentaBanco,
+                              Banco=n.Banco,
+                              TipoCuentaBanco=n.TipoCuentaBanco,
+                              ClaseProveedor=n.ClaseProveedor,
+                              FechaUltPago0=n.FechaUltPago0,
+                              FechaUltPago=n.FechaUltPago,
+                              LimiteCredito=n.LimiteCredito
+                          }).ToList();
+            return Buscar;
+        }
     }
 }

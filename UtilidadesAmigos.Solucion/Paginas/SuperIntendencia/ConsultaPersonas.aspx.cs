@@ -391,6 +391,41 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 
         }
 
+        protected void btnSeleccionarRegistroProveedor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkPrimeroProveedor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkAnteriorProveedor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dtProveedor_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void dtProveedor_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguienteProveedor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoProveedor_Click(object sender, EventArgs e)
+        {
+
+        }
+
         protected void LinkUltimoCliente_Click(object sender, EventArgs e)
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
