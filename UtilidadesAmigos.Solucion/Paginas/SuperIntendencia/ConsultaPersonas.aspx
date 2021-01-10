@@ -44,7 +44,7 @@
         function CamposChasisPlacaVacios() {
             alert("Los campos Placa y Chasis no pueden estar ambos vacio, favor de verificar.");
             $("#<%=txtPlacaConsulta.ClientID%>").css("border-color", "red");
-            $("#<%=txtChasisConsulta.ClientID%>").css("border-color", "red");
+            $("#<%=txtChasisConsulta.ClientID%>").css("border-color", "red");  
         }
     </script>
 
@@ -451,7 +451,7 @@
                 <asp:Label ID="lbCantidadPaginaTituloProveedor" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
                 <asp:Label ID="lbCantidadPaginaVAriableProveedor" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
             </div>
-             <div id="Div1" runat="server" align="center">
+             <div id="DivPaginacionProveedores" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
@@ -471,6 +471,89 @@
             </table>
         </div>
         </div>
+                    <div id="DivDetalleProveedores" runat="server">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorCodigo" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorCodigo" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorTipoProveedor" runat="server" Text="Tipo de Proveedor" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorTipoProveedor" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorNombre" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorNombre" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorTipoRNC" runat="server" Text="Tipo de RNC" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorTipoRNC" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorRNC" runat="server" Text="RNC" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorRNC" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedrFechaCreado" runat="server" Text="Fecha Creado" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorFechaCreado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorTelefonoCasa" runat="server" Text="Telefono" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorTelefonoCasa" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorTelefonoOficina" runat="server" Text="Telefono de Oficina" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorTelefonoOficina" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProvedorCelular" runat="server" Text="Celular" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorCelular" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorCuentaBanco" runat="server" Text="Cuenta de Banco" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorCuentaBanco" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorBAnco" runat="server" Text="Banco" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorBanco" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorTipoCuentaBAnco" runat="server" Text="Tipo de Cuenta" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProbeedorTipoCuentaBAnco" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorClaseProveedor" runat="server" Text="Clase de Proveedor" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorClaseProveedor" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorFechaUltimoPago" runat="server" Text="Ultimo Pago" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorFechaUltimoPago" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorLimiteCredito" runat="server" Text="Limite de Credito" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorLimiteCredito" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <asp:Label ID="lbDetalleProveedorDireccion" runat="server" Text="Dirección" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorDireccion" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+                        </div>
+                    </div>
                    </div>
                 </div>
        <br />

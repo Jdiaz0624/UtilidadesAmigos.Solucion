@@ -38,6 +38,9 @@ namespace UtilidadesAmigos.Logica.Entidades.SuperIntendencia
 
 		public System.Nullable<int> Banco { get; set; }
 
+		public string NombreBanco { get; set; }
+
+
 		public string TipoCuentaBanco { get; set; }
 
 		public string ClaseProveedor { get; set; }

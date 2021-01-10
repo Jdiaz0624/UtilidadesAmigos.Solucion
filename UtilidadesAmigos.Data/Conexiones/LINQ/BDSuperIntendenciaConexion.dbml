@@ -87,6 +87,7 @@
       <Column Name="Celular" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="CuentaBanco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Banco" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreBanco" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="TipoCuentaBanco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="ClaseProveedor" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
       <Column Name="FechaUltPago0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />

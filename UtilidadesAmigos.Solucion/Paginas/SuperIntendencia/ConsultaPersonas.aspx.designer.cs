@@ -1284,13 +1284,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVAriableProveedor;
 
         /// <summary>
-        /// Div1 control.
+        /// DivPaginacionProveedores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacionProveedores;
 
         /// <summary>
         /// LinkPrimeroProveedor control.
@@ -1336,6 +1336,303 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkUltimoProveedor;
+
+        /// <summary>
+        /// DivDetalleProveedores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivDetalleProveedores;
+
+        /// <summary>
+        /// lbDetalleProveedorCodigo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedorCodigo;
+
+        /// <summary>
+        /// txtDetalleProveedorCodigo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorCodigo;
+
+        /// <summary>
+        /// lbDetalleProveedorTipoProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedorTipoProveedor;
+
+        /// <summary>
+        /// txtDetalleProveedorTipoProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorTipoProveedor;
+
+        /// <summary>
+        /// lbDetalleProveedorNombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedorNombre;
+
+        /// <summary>
+        /// txtDetalleProveedorNombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorNombre;
+
+        /// <summary>
+        /// lbDetalleProveedorTipoRNC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedorTipoRNC;
+
+        /// <summary>
+        /// txtDetalleProveedorTipoRNC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorTipoRNC;
+
+        /// <summary>
+        /// lbDetalleProveedorRNC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedorRNC;
+
+        /// <summary>
+        /// txtDetalleProveedorRNC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorRNC;
+
+        /// <summary>
+        /// lbDetalleProveedrFechaCreado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedrFechaCreado;
+
+        /// <summary>
+        /// txtDetalleProveedorFechaCreado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorFechaCreado;
+
+        /// <summary>
+        /// lbDetalleProveedorTelefonoCasa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedorTelefonoCasa;
+
+        /// <summary>
+        /// txtDetalleProveedorTelefonoCasa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorTelefonoCasa;
+
+        /// <summary>
+        /// lbDetalleProveedorTelefonoOficina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedorTelefonoOficina;
+
+        /// <summary>
+        /// txtDetalleProveedorTelefonoOficina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorTelefonoOficina;
+
+        /// <summary>
+        /// lbDetalleProvedorCelular control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProvedorCelular;
+
+        /// <summary>
+        /// txtDetalleProveedorCelular control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorCelular;
+
+        /// <summary>
+        /// lbDetalleProveedorCuentaBanco control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedorCuentaBanco;
+
+        /// <summary>
+        /// txtDetalleProveedorCuentaBanco control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorCuentaBanco;
+
+        /// <summary>
+        /// lbDetalleProveedorBAnco control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedorBAnco;
+
+        /// <summary>
+        /// txtDetalleProveedorBanco control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorBanco;
+
+        /// <summary>
+        /// lbDetalleProveedorTipoCuentaBAnco control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedorTipoCuentaBAnco;
+
+        /// <summary>
+        /// txtDetalleProbeedorTipoCuentaBAnco control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProbeedorTipoCuentaBAnco;
+
+        /// <summary>
+        /// lbDetalleProveedorClaseProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedorClaseProveedor;
+
+        /// <summary>
+        /// txtDetalleProveedorClaseProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorClaseProveedor;
+
+        /// <summary>
+        /// lbDetalleProveedorFechaUltimoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedorFechaUltimoPago;
+
+        /// <summary>
+        /// txtDetalleProveedorFechaUltimoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorFechaUltimoPago;
+
+        /// <summary>
+        /// lbDetalleProveedorLimiteCredito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedorLimiteCredito;
+
+        /// <summary>
+        /// txtDetalleProveedorLimiteCredito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorLimiteCredito;
+
+        /// <summary>
+        /// lbDetalleProveedorDireccion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleProveedorDireccion;
+
+        /// <summary>
+        /// txtDetalleProveedorDireccion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetalleProveedorDireccion;
 
         /// <summary>
         /// lbCantidadRegistrosAseguradoBajoPolizaTitulo control.

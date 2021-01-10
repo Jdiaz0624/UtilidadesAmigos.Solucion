@@ -151,6 +151,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         private void OcultarDetalle() {
             DivBloqueDetalleCliente.Visible = false;
             DivDetalleInformacionIntermediarioSeleccionado.Visible = false;
+            DivDetalleProveedores.Visible = false;
         }
 
         private void MostrarListadoClientes(int ReportePreciso)
@@ -250,6 +251,27 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             //MOSTRAR DETALLE
         }
 
+        private void MostrarListadoProveedores() {
+            string _NombreProveedor = string.IsNullOrEmpty(txtNombre.Text.Trim()) ? null : txtNombre.Text.Trim();
+            string _RNC = string.IsNullOrEmpty(txtRNCCedula.Text.Trim()) ? null : txtRNCCedula.Text.Trim();
+
+            var Listado = ObjDataSuperIntendencia.Value.BuscaPersonaSuperIntendenciaProveedor(
+                new Nullable<int>(),
+                _NombreProveedor,
+                _RNC);
+            if (Listado.Count() < 1)
+            {
+                lbCantidadProveedorVariable.Text = "NO";
+                lbCantidadProveedorVariable.ForeColor = System.Drawing.Color.Red;
+            }
+            else {
+                lbCantidadProveedorVariable.Text = "SI";
+                lbCantidadProveedorVariable.ForeColor = System.Drawing.Color.Green;
+                Paginar(ref rpListadoProveedores, Listado, 10, ref lbCantidadPaginaVAriableProveedor, ref LinkPrimeroProveedor, ref LinkAnteriorProveedor, ref LinkSiguienteProveedor, ref LinkUltimoProveedor);
+                HandlePaging(ref dtProveedor, ref lbPaginaActualVariavleProveedor);
+                DivPaginacionProveedores.Visible = true;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -261,6 +283,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 DivPaginacionIntermediario.Visible = false;
                 DivDetalleInformacionIntermediarioSeleccionado.Visible = false;
                 DivPaginacionIntermediario.Visible = false;
+                DivPaginacionProveedores.Visible = false;
             }
         }
 
@@ -319,6 +342,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 else {
                     MostrarListadoClientes(1);
                     MostrarListadoIntermediarios();
+                    MostrarListadoProveedores();
                 }
             }
             else if (rbConsultaChasisPlaca.Checked) {
@@ -328,6 +352,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 else {
                     MostrarListadoClientes(2);
                     MostrarListadoIntermediarios();
+                    MostrarListadoProveedores();
                 }
             }
         }
@@ -393,7 +418,33 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 
         protected void btnSeleccionarRegistroProveedor_Click(object sender, EventArgs e)
         {
+            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfCodigoProveedor = ((HiddenField)ItemSeleccionado.FindControl("hfCodigoproveedor")).Value.ToString();
 
+            var BuscarRegistros = ObjDataSuperIntendencia.Value.BuscaPersonaSuperIntendenciaProveedor(
+                Convert.ToInt32(hfCodigoProveedor));
+            Paginar(ref rpListadoProveedores, BuscarRegistros, 1, ref lbCantidadPaginaVAriableProveedor, ref LinkPrimeroProveedor, ref LinkPrimeroProveedor, ref LinkSiguienteProveedor, ref LinkUltimoProveedor);
+            HandlePaging(ref dtProveedor, ref lbPaginaActualVariavleProveedor);
+            foreach (var n in BuscarRegistros) {
+                txtDetalleProveedorCodigo.Text = n.Codigo.ToString();
+                txtDetalleProveedorTipoProveedor.Text = n.TipoCliente;
+                txtDetalleProveedorNombre.Text = n.NombreCliente;
+                txtDetalleProveedorTipoRNC.Text = n.TipoIdentificacion;
+                txtDetalleProveedorRNC.Text = n.Rnc;
+                txtDetalleProveedorFechaCreado.Text = n.FechaCreado;
+                txtDetalleProveedorTelefonoCasa.Text = n.TelefonoCasa;
+                txtDetalleProveedorTelefonoOficina.Text = n.TelefonoOficina;
+                txtDetalleProveedorCelular.Text = n.Celular;
+                txtDetalleProveedorCuentaBanco.Text = n.CuentaBanco;
+                txtDetalleProveedorBanco.Text = n.NombreBanco;
+                txtDetalleProbeedorTipoCuentaBAnco.Text = n.TipoCuentaBanco;
+                txtDetalleProveedorClaseProveedor.Text = n.ClaseProveedor;
+                txtDetalleProveedorFechaUltimoPago.Text = n.FechaUltPago;
+                decimal LimiteCredito = (decimal)n.LimiteCredito;
+                txtDetalleProveedorLimiteCredito.Text = LimiteCredito.ToString("N2");
+                txtDetalleProveedorDireccion.Text = n.Direccion;
+            }
+            DivDetalleProveedores.Visible = true;
         }
 
         protected void LinkPrimeroProveedor_Click(object sender, EventArgs e)

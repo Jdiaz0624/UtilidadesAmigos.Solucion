@@ -979,6 +979,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<int> _Banco;
 		
+		private string _NombreBanco;
+		
 		private string _TipoCuentaBanco;
 		
 		private string _ClaseProveedor;
@@ -1229,6 +1231,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Banco != value))
 				{
 					this._Banco = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreBanco", DbType="VarChar(255)")]
+		public string NombreBanco
+		{
+			get
+			{
+				return this._NombreBanco;
+			}
+			set
+			{
+				if ((this._NombreBanco != value))
+				{
+					this._NombreBanco = value;
 				}
 			}
 		}
