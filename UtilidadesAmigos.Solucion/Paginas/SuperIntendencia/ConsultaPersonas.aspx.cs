@@ -299,7 +299,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             var hfSecuenciaSeleccionada = ((HiddenField)SecuenciaSeleccionada.FindControl("hfSecuenciaBusquedaCliente")).Value.ToString();
 
             SeleccionarRegistrosClientes(hfPolizaSeleccionada.ToString(), Convert.ToDecimal(hfCotizacionSeleccionada), Convert.ToDecimal(hfSecuenciaSeleccionada), 1);
-
+            DivBloqueDetalleCliente.Visible = true;
         }
 
         protected void LinkPrimeraPaginaCliente_Click(object sender, EventArgs e)
@@ -351,8 +351,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 }
                 else {
                     MostrarListadoClientes(2);
-                    MostrarListadoIntermediarios();
-                    MostrarListadoProveedores();
+                    //MostrarListadoIntermediarios();
+                    //MostrarListadoProveedores();
                 }
             }
         }
@@ -384,21 +384,27 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 txtBusquedaIntermediarioFormaPagoDetalle.Text = n.TipoPago;
                 DivDetalleInformacionIntermediarioSeleccionado.Visible = true;
             }
+            DivDetalleInformacionIntermediarioSeleccionado.Visible = true;
         }
 
         protected void LinkPrimeroIntermediario_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarListadoIntermediarios();
         }
 
         protected void LinkAnteriorIntermediario_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarListadoIntermediarios();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleIntermediario, ref lbCantidadPaginaVAriableIntermedairaio);
         }
 
         protected void dtIntermediario_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoIntermediarios();
         }
 
         protected void dtIntermediario_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -408,12 +414,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 
         protected void LinkSiguienteIntermediario_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += 1;
+            MostrarListadoIntermediarios();
         }
 
         protected void LinkUltimoIntermediario_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoIntermediarios();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleIntermediario, ref lbCantidadPaginaVAriableIntermedairaio);
         }
 
         protected void btnSeleccionarRegistroProveedor_Click(object sender, EventArgs e)
@@ -443,23 +452,44 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 decimal LimiteCredito = (decimal)n.LimiteCredito;
                 txtDetalleProveedorLimiteCredito.Text = LimiteCredito.ToString("N2");
                 txtDetalleProveedorDireccion.Text = n.Direccion;
+                decimal TotalPagado = (decimal)n.ToTalPagado;
+                txtDetalleProveedorTotalPagado.Text = TotalPagado.ToString("N2");
+                int CantidadSolicitud = (int)n.CantidadSolicitud;
+                int CantidadSolicitudCanceladas = (int)n.CantidadSolicitudCanceladas;
+                txtDetalleProveedorCantidadSolicitud.Text = CantidadSolicitud.ToString("N0");
+                txtDetalleProveedorCantidadSolicitudCanceadas.Text = CantidadSolicitudCanceladas.ToString("N0");
+                txtDetalleProveedorUltimaFechaSOlicitud.Text = n.UltimaFechaSolicitud;
+                txtDetalleProveedorNumeroSolicitud.Text = n.NoSolicitud.ToString();
+                txtDetalleProveedorDescripcionTipoSolciitid.Text = n.DescripcionTipoSolicitud;
+                decimal ValorSolicitud = (decimal)n.Valor;
+                txtDetalleProveedorValor.Text = ValorSolicitud.ToString("N2");
+                txtDetalleProveedorNumeroCheque.Text = n.NumeroCheque.ToString();
+                txtDetalleProveedorFechaCheque.Text = n.FechaCheque;
+                txtDetalleproveedorUsuario.Text = n.Usuario;
+                txtDetalleProveedorConcepto1.Text = n.Concepto1;
+                txtDetalleProveedorConcepto2.Text = n.Concepto2;
             }
             DivDetalleProveedores.Visible = true;
         }
 
         protected void LinkPrimeroProveedor_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarListadoProveedores();
         }
 
         protected void LinkAnteriorProveedor_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarListadoProveedores();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleProveedor, ref lbCantidadPaginaVAriableProveedor);
         }
 
         protected void dtProveedor_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoProveedores();
         }
 
         protected void dtProveedor_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -469,12 +499,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 
         protected void LinkSiguienteProveedor_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += 1;
+            MostrarListadoProveedores();
         }
 
         protected void LinkUltimoProveedor_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoProveedores();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleProveedor, ref lbCantidadPaginaVAriableProveedor);
         }
 
         protected void LinkUltimoCliente_Click(object sender, EventArgs e)

@@ -62,6 +62,9 @@
            
       
        </div>
+       <asp:ScriptManager ID="ScripMAnagerConsultaPersonas" runat="server"></asp:ScriptManager>
+
+
        <div class="form-check-inline">
            <div class="form-group form-check">
                <asp:RadioButton ID="rbConsultaNormal" runat="server" Text="Consultar Por RNC o Nombre" CssClass="form-check-input Letranegrita" GroupName="TipoConsulta" ToolTip="Consultar mediante el rnc o el Nombre" />
@@ -95,6 +98,7 @@
        </div>
 
        <br />
+       <!--DETALLE DE LOS CLIENTES ENCONTRADOS-->
        <div align="center">
            <asp:Label ID="lbCantidadRegistrosClienteTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosClienteVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
@@ -105,7 +109,9 @@
                      </button><br />
        <div class="collapse" id="InformacionCliente">
                 <div class="card card-body">
-                    <div class="table-responsive mT20">
+                   <asp:UpdatePanel ID="UpdatePanelCliente" runat="server">
+                       <ContentTemplate>
+                            <div class="table-responsive mT20">
                          <table class="table table-hover">
                             <thead>
                                  <tr>
@@ -168,9 +174,15 @@
             </table>
         </div>
         </div>
+                      
                    </div>
 
            <div id="DivBloqueDetalleCliente" runat="server">
+               <hr />
+               <div align="center">
+                   <asp:Label ID="lbTituloDetaleCliente" runat="server" Text="Detalle del Cliente Seleccionado" align="center" CssClass="Letranegrita"></asp:Label>
+               </div>
+               <br />
                <div class="form-row">
                    <div class="form-group col-md-4">
                        <asp:Label ID="lbNombreDetalleCliente" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
@@ -246,10 +258,13 @@
                    </div>
                </div>
            </div>
+            </ContentTemplate>
+                   </asp:UpdatePanel>
                 </div>
+            </div>
        <br />
 
-
+        <!--DETALLE DE LOS INTERMEDIARIOS / SUPERVISORES ENCONTRADOS-->
         <div align="center">
            <asp:Label ID="lbCantidadIntermediariosSupervisorTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadIntermediariosSupervisorVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
@@ -260,7 +275,9 @@
                      </button><br />
         <div class="collapse" id="InformacionIntermediarioSupervisor">
                 <div class="card card-body">
-                  <div class="table-responsive mT20">
+                  <asp:UpdatePanel ID="UpdatePanelIntermediario" runat="server">
+                      <ContentTemplate>
+                          <div class="table-responsive mT20">
                       <table class="table table-hover">
                           <thead>
                               <tr>
@@ -298,7 +315,7 @@
                 <asp:Label ID="lbCantidadPaginaTituloIntermediario" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
                 <asp:Label ID="lbCantidadPaginaVAriableIntermedairaio" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
             </div>
-             <div id="DivPaginacionIntermediario" runat="server" align="center">
+            <div id="DivPaginacionIntermediario" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
@@ -318,8 +335,12 @@
             </table>
         </div>
         </div>
-                   </div>
             <div id="DivDetalleInformacionIntermediarioSeleccionado" runat="server">
+                <hr />
+                <div align="center">
+                    <asp:Label ID="lbTituloDetalleIntermediarios" runat="server" Text="Detalle de Intermediarios / Supervisor" CssClass="Letranegrita"></asp:Label>
+                </div>
+                <br />
            <div class="form-row">
                <div class="form-group col-md-4">
                    <asp:Label ID="lbBusquedaIntermediarioCodigoDetalle" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label>
@@ -397,11 +418,16 @@
                </div>
            </div>
        </div>
+                      </ContentTemplate>
+                  </asp:UpdatePanel>
+                   </div>
+            
                 </div>
 
        
 
        <br />
+        <!--DETALLE DE LOS PROVEEDORES ENCONTRADOS-->
        <div align="center">
            <asp:Label ID="lbCantidadProveedorTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadProveedorVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
@@ -412,7 +438,9 @@
                      </button><br />
        <div class="collapse" id="InformacionProveedor">
                 <div class="card card-body">
-                   <div class="table-responsive mT20">
+                 <asp:UpdatePanel ID="UpdatePanelProveedores" runat="server">
+                     <ContentTemplate>
+                           <div class="table-responsive mT20">
                        <table class="table table-hover">
                            <thead>
                                <tr>
@@ -445,13 +473,13 @@
                    </div>
 
                               <!--PAGINACION DEL REPEATER-->
-            <div align="center">
+           <div align="center">
                 <asp:Label ID="lbPaginaActualTituloProveedor" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
                 <asp:Label ID="lbPaginaActualVariavleProveedor" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
                 <asp:Label ID="lbCantidadPaginaTituloProveedor" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
                 <asp:Label ID="lbCantidadPaginaVAriableProveedor" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
             </div>
-             <div id="DivPaginacionProveedores" runat="server" align="center">
+           <div id="DivPaginacionProveedores" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
@@ -471,7 +499,12 @@
             </table>
         </div>
         </div>
-                    <div id="DivDetalleProveedores" runat="server">
+           <div id="DivDetalleProveedores" runat="server">
+               <hr />
+               <div align="center">
+                   <asp:Label ID="lbTituloDetalleProveedor" runat="server" Text="Detalle del proveedor Seleccionado" CssClass="Letranegrita"></asp:Label>
+               </div>
+               <br />
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <asp:Label ID="lbDetalleProveedorCodigo" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label>
@@ -552,10 +585,83 @@
                                 <asp:Label ID="lbDetalleProveedorDireccion" runat="server" Text="Dirección" CssClass="Letranegrita"></asp:Label>
                                 <asp:TextBox id="txtDetalleProveedorDireccion" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                             </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorTotalPagado" runat="server" Text="Total Pagado" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorTotalPagado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProvvedorCantidadSolicitud" runat="server" Text="Cantidad de Solicitud Emitidas" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorCantidadSolicitud" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorCantidadSolicitudCanceladas" runat="server" Text="Cantidad de Solicitud Canceladas" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorCantidadSolicitudCanceadas" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorUltimaFechaSolicitud" runat="server" Text="Ultima Fecha de Solicitud" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorUltimaFechaSOlicitud" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedrNumeroSolicitud" runat="server" Text="Numero de Solicitud" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorNumeroSolicitud" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorDescripcionTipoSolicitud" runat="server" Text="Descripcion de Tipo de Solicitud" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorDescripcionTipoSolciitid" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleproveedrValor" runat="server" Text="Valor" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorValor" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleproveedorNumeroCheque" runat="server" Text="Numero de Cheque" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorNumeroCheque" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorFechaCheque" runat="server" Text="Fecha de Cheque" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorFechaCheque" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <asp:Label ID="lbDetalleProveedorUsuario" runat="server" Text="Usuario" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleproveedorUsuario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-4">
+
+                            </div>
+
+                            <div class="form-group col-md-4">
+
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <asp:Label ID="lbDetalleProveedorConcepto1" runat="server" Text="Concepto 1" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorConcepto1" runat="server" TextMode="MultiLine" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <asp:Label ID="lbDetalleProveedorConcepto2" runat="server" Text="Concepto 2" CssClass="Letranegrita"></asp:Label>
+                                <asp:TextBox id="txtDetalleProveedorConcepto2" runat="server" TextMode="MultiLine" Enabled="false" CssClass="form-control"></asp:TextBox>
+                            </div>
                         </div>
                     </div>
+                     </ContentTemplate>
+                 </asp:UpdatePanel>
                    </div>
                 </div>
+
+
+
+
        <br />
 
        <div align="center">
@@ -601,5 +707,5 @@
                    </div>
                 </div>
        <br />
-   </div>
+  
 </asp:Content>

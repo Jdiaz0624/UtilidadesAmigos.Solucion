@@ -93,6 +93,18 @@
       <Column Name="FechaUltPago0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="FechaUltPago" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="LimiteCredito" Type="System.Decimal" DbType="Decimal(19,2)" CanBeNull="true" />
+      <Column Name="ToTalPagado" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CantidadSolicitud" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadSolicitudCanceladas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UltimaFechaSolicitud" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="NoSolicitud" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DescripcionTipoSolicitud" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="NumeroCheque" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaCheque" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Concepto1" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Concepto2" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

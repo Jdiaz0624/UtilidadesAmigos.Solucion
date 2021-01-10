@@ -107,7 +107,19 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
                               ClaseProveedor=n.ClaseProveedor,
                               FechaUltPago0=n.FechaUltPago0,
                               FechaUltPago=n.FechaUltPago,
-                              LimiteCredito=n.LimiteCredito
+                              LimiteCredito=n.LimiteCredito,
+                              ToTalPagado=n.ToTalPagado,
+                              CantidadSolicitud=n.CantidadSolicitud,
+                              CantidadSolicitudCanceladas=n.CantidadSolicitudCanceladas,
+                              UltimaFechaSolicitud=n.UltimaFechaSolicitud,
+                              NoSolicitud=n.NoSolicitud,
+                              DescripcionTipoSolicitud=n.DescripcionTipoSolicitud,
+                              Valor=n.Valor,
+                              NumeroCheque=n.NumeroCheque,
+                              FechaCheque=n.FechaCheque,
+                              Usuario=n.Usuario,
+                              Concepto1=n.Concepto1,
+                              Concepto2=n.Concepto2
                           }).ToList();
             return Buscar;
         }

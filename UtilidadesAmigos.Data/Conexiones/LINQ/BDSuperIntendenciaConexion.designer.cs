@@ -991,6 +991,30 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<decimal> _LimiteCredito;
 		
+		private System.Nullable<decimal> _ToTalPagado;
+		
+		private System.Nullable<int> _CantidadSolicitud;
+		
+		private System.Nullable<int> _CantidadSolicitudCanceladas;
+		
+		private string _UltimaFechaSolicitud;
+		
+		private System.Nullable<int> _NoSolicitud;
+		
+		private string _DescripcionTipoSolicitud;
+		
+		private System.Nullable<decimal> _Valor;
+		
+		private System.Nullable<int> _NumeroCheque;
+		
+		private string _FechaCheque;
+		
+		private string _Usuario;
+		
+		private string _Concepto1;
+		
+		private string _Concepto2;
+		
 		public SP_BUSCA_REGISTRO_SUPER_INTENDENCIA_PROVEEDORResult()
 		{
 		}
@@ -1327,6 +1351,198 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._LimiteCredito != value))
 				{
 					this._LimiteCredito = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToTalPagado", DbType="Money")]
+		public System.Nullable<decimal> ToTalPagado
+		{
+			get
+			{
+				return this._ToTalPagado;
+			}
+			set
+			{
+				if ((this._ToTalPagado != value))
+				{
+					this._ToTalPagado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadSolicitud", DbType="Int")]
+		public System.Nullable<int> CantidadSolicitud
+		{
+			get
+			{
+				return this._CantidadSolicitud;
+			}
+			set
+			{
+				if ((this._CantidadSolicitud != value))
+				{
+					this._CantidadSolicitud = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadSolicitudCanceladas", DbType="Int")]
+		public System.Nullable<int> CantidadSolicitudCanceladas
+		{
+			get
+			{
+				return this._CantidadSolicitudCanceladas;
+			}
+			set
+			{
+				if ((this._CantidadSolicitudCanceladas != value))
+				{
+					this._CantidadSolicitudCanceladas = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimaFechaSolicitud", DbType="NVarChar(4000)")]
+		public string UltimaFechaSolicitud
+		{
+			get
+			{
+				return this._UltimaFechaSolicitud;
+			}
+			set
+			{
+				if ((this._UltimaFechaSolicitud != value))
+				{
+					this._UltimaFechaSolicitud = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoSolicitud", DbType="Int")]
+		public System.Nullable<int> NoSolicitud
+		{
+			get
+			{
+				return this._NoSolicitud;
+			}
+			set
+			{
+				if ((this._NoSolicitud != value))
+				{
+					this._NoSolicitud = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescripcionTipoSolicitud", DbType="VarChar(50)")]
+		public string DescripcionTipoSolicitud
+		{
+			get
+			{
+				return this._DescripcionTipoSolicitud;
+			}
+			set
+			{
+				if ((this._DescripcionTipoSolicitud != value))
+				{
+					this._DescripcionTipoSolicitud = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Valor", DbType="Money")]
+		public System.Nullable<decimal> Valor
+		{
+			get
+			{
+				return this._Valor;
+			}
+			set
+			{
+				if ((this._Valor != value))
+				{
+					this._Valor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroCheque", DbType="Int")]
+		public System.Nullable<int> NumeroCheque
+		{
+			get
+			{
+				return this._NumeroCheque;
+			}
+			set
+			{
+				if ((this._NumeroCheque != value))
+				{
+					this._NumeroCheque = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCheque", DbType="NVarChar(4000)")]
+		public string FechaCheque
+		{
+			get
+			{
+				return this._FechaCheque;
+			}
+			set
+			{
+				if ((this._FechaCheque != value))
+				{
+					this._FechaCheque = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(50)")]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this._Usuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Concepto1", DbType="VarChar(1000)")]
+		public string Concepto1
+		{
+			get
+			{
+				return this._Concepto1;
+			}
+			set
+			{
+				if ((this._Concepto1 != value))
+				{
+					this._Concepto1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Concepto2", DbType="VarChar(1000)")]
+		public string Concepto2
+		{
+			get
+			{
+				return this._Concepto2;
+			}
+			set
+			{
+				if ((this._Concepto2 != value))
+				{
+					this._Concepto2 = value;
 				}
 			}
 		}
