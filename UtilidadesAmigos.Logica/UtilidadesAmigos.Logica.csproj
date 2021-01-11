@@ -300,6 +300,7 @@
     <Compile Include="Entidades\Reportes\EReporteProduccionOrigen.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
+    <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaAseurados.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaProveedor.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendencia.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendenciaIntermediario.cs" />

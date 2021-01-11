@@ -81,7 +81,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
             return Listado;
         }
 
-        //BUSCAR REGISTROS PROBEEDORES
+        //BUSCAR REGISTROS PROVEEDORES
         public List<UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EBuscaPersonaProveedor> BuscaPersonaSuperIntendenciaProveedor(int? Codigo = null, string Nombre = null, string NumeroIdentificacion = null) {
             ObjData.CommandTimeout = 999999999;
 
@@ -122,6 +122,37 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
                               Concepto2=n.Concepto2
                           }).ToList();
             return Buscar;
+        }
+
+        //BUSCA REGISTROS ASEGURADOS
+        public List<UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EBuscaPersonaAseurados> BuscaPersonaSuperIntendenciaAsegurado(string Nombreasegurado = null, string Poliza = null, decimal? Cotizacion = null, int? secuencia = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_REGISTROS_SUPER_INTENDENCIA_ASEGURADOS(Nombreasegurado, Poliza, Cotizacion, secuencia)
+                           select new UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EBuscaPersonaAseurados
+                           {
+                               Nombre=n.Nombre,
+                               Item=n.Item,
+                               Intermediario=n.Intermediario,
+                               Licencia=n.Licencia,
+                               RNCIntermediario=n.RNCIntermediario,
+                               Poliza=n.Poliza,
+                               Estatus=n.Estatus,
+                               Prima=n.Prima,
+                               Cotizacion=n.Cotizacion,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               TipoVehiculo=n.TipoVehiculo,
+                               Marca=n.Marca,
+                               Modelo=n.Modelo,
+                               Chasis=n.Chasis,
+                               Placa=n.Placa,
+                               Ano=n.Ano,
+                               Color=n.Color,
+                               MontoAsegurado=n.MontoAsegurado
+                           }).ToList();
+            return Listado;
         }
     }
 }

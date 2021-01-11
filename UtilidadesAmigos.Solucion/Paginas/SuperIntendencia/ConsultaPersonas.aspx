@@ -674,7 +674,155 @@
                      </button><br />
        <div class="collapse" id="InformacionAsegurdoBajoPoliza">
                 <div class="card card-body">
-                   INFORMACION DE ASEGURADO BAJO POLIZA
+                 <asp:UpdatePanel ID="UpdatePanelAsegurado" runat="server">
+                     <ContentTemplate>
+                           <div class="table-responsive mT20">
+                       <table class="table table-hover">
+                           <thead>
+                               <tr>
+                                   <th style="width:10%" align="left" > <asp:Label ID="lbSeleccionarRegistros" runat="server" Text="Seleccionar" CssClass="Letranegrita"></asp:Label> </th>
+                                   <th style="width:40%" align="left" > <asp:Label ID="lbNombreHeaderRepeaterAsegurado" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label> </th>
+                                   <th style="width:10%" align="left" > <asp:Label ID="lbPolizaHeaderRepeaterAsegurado" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
+                                   <th style="width:10%" align="left" > <asp:Label ID="lbEstatusheaderRepeaterAsegurado" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
+                                   <th style="width:10%" align="left" > <asp:Label ID="lbItemHeaderRepeaterAsegurado" runat="server" Text="Item" CssClass="Letranegrita"></asp:Label> </th>
+                                   <th style="width:10%" align="left" > <asp:Label ID="lbInicioVigenciaHeaderRepeaterAsegurado" runat="server" Text="Inicio de Vigencia" CssClass="Letranegrita"></asp:Label> </th>
+                                   <th style="width:10%" align="left" > <asp:Label ID="lbFinVigenciaHeaderRepeaterAsegurado" runat="server" Text="Fin de Vigencia" CssClass="Letranegrita"></asp:Label> </th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <asp:Repeater ID="rpListadoRegistrosasegurado" runat="server">
+                                   <ItemTemplate>
+                                       <tr>
+                                           <asp:HiddenField ID="hfPolizaInformacionAsegurado" runat="server" Value='<%# Eval("Poliza") %>' />
+                                           <asp:HiddenField ID="hfCotizacionInformacionAsegurado" runat="server" Value='<%# Eval("Cotizacion") %>' />
+                                           <asp:HiddenField ID="hfSecuenciaInformacionAsegurado" runat="server" Value='<%# Eval("Item") %>' />
+
+                                           <td style="width:10%"> <asp:Button ID="btnSeleccionarRegistrosInformacionAsegurado" runat="server" Text="Seleccionar" ToolTip="Seleccionar registro" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarRegistrosInformacionAsegurado_Click" /> </td>
+                                           <td style="width:40%"> <%# Eval("Nombre") %> </td>
+                                           <td style="width:10%"> <%# Eval("Poliza") %> </td>
+                                           <td style="width:10%"> <%# Eval("Estatus") %> </td>
+                                           <td style="width:10%"> <%# Eval("Item") %> </td>
+                                           <td style="width:10%"> <%# Eval("InicioVigencia") %> </td>
+                                           <td style="width:10%"> <%# Eval("FinVigencia") %> </td>
+                                       </tr>
+                                   </ItemTemplate>
+                               </asp:Repeater>
+                           </tbody>
+                       </table>
+                   </div>
+
+                                        <!--PAGINACION DEL REPEATER-->
+           <div align="center">
+                <asp:Label ID="lbPaginaActualTituloAsegurado" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavleAsegurado" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloAsegurdo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriableAsegurado" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+           <div id="DivPaginacionInformacionAsegurado" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeroAsegurado" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroAsegurado_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorAsegurado" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorAsegurado_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtAsegurado" runat="server" OnItemCommand="dtAsegurado_ItemCommand" OnItemDataBound="dtAsegurado_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionProveedor" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteAsegurado" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteAsegurado_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimaAsegurado" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimaAsegurado_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+
+                         <div id="DivDetalleAsegurado" runat="server">
+                             <hr />
+                             <div align="center">
+                                 <asp:Label ID="lbTituloDetalleasegurado" runat="server" Text="Detalle de Asegurado" CssClass="Letranegrita"></asp:Label>
+                             </div>
+                             <br />
+                             <div class="form-row">
+                                 <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoNombre" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoNombre" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoPoliza" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoEstatus" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoEstatus" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoitem" runat="server" Text="Item" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoitem" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoInicioVigencia" runat="server" Text="Inicio de Vigencia" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoInicioVigencia" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoFinVigencia" runat="server" Text="Fin de Vigencia" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoFinVigencia" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoIntermediario" runat="server" Text="Intermediario" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoIntermediario" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoRNCIntermediario" runat="server" Text="RNC Intermediario" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoRNCIntermediario" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoLicenciaIntermediario" runat="server" Text="Licencia Intermediario" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoLicenciaIntermediario" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoprima" runat="server" Text="Prima" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoPrima" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoMontoAsegurado" runat="server" Text="Monto Asegurado" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoMontoasegurado" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoTipoVehiculo" runat="server" Text="Tipo de Vehiculo" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoTipoVehiculo" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoMarca" runat="server" Text="Marca" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoMarca" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoModelo" runat="server" Text="Modelo" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoModelo" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoChasis" runat="server" Text="Chasis" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoChasis" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoPlaca" runat="server" Text="Placa" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoPlaca" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoAno" runat="server" Text="Año" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoAno" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                                  <div class="form-group col-md-4">
+                                     <asp:Label ID="lbDetalleAseguradoColor" runat="server" Text="Color" CssClass="Letranegrita"></asp:Label>
+                                     <asp:TextBox ID="txtDetalleaseguradoColor" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                 </div>
+                             </div>
+                         </div>
+                     </ContentTemplate>
+                 </asp:UpdatePanel>
                    </div>
                 </div>
        <br />
