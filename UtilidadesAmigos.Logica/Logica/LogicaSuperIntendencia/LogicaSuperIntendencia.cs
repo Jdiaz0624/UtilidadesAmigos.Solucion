@@ -179,5 +179,29 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
             return Listado;
 
         }
+
+        //BUSCAR REGISTROS DEPENDIENTES
+        public List<UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EBuscarPersonasDependientes> BuscaPersonaSuperIntendenciaDependente(string Nombre = null, string NumeroRNC = null, decimal? Cotizacion = null, decimal? Secuencia = null, decimal? IdAsegurado = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_REGISTROS_SUPER_INTENDENCIA_DEPENDIENTE(Nombre, NumeroRNC, Cotizacion, Secuencia, IdAsegurado)
+                           select new UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EBuscarPersonasDependientes
+                           {
+                               Poliza=n.Poliza,
+                               Estatus=n.Estatus,
+                               Cotizacion=n.Cotizacion,
+                               Secuencia=n.Secuencia,
+                               IdAsegurado=n.IdAsegurado,
+                               Nombre=n.Nombre,
+                               Parentezco=n.Parentezco,
+                               RNC=n.RNC,
+                               FechaNacimiento=n.FechaNacimiento,
+                               Sexo=n.Sexo,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia
+                           }).ToList();
+            return Listado;
+        }
     }
 }

@@ -727,7 +727,7 @@
                     <td>
                         <asp:DataList ID="dtAsegurado" runat="server" OnItemCommand="dtAsegurado_ItemCommand" OnItemDataBound="dtAsegurado_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionProveedor" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                                <asp:LinkButton ID="LinkPaginacionAsegurado" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
                             </ItemTemplate>
                         </asp:DataList>
 
@@ -878,7 +878,7 @@
                                </table>
                            </div>
 
-                                                          <!--PAGINACION DEL REPEATER-->
+            <!--PAGINACION DEL REPEATER-->
            <div align="center">
                 <asp:Label ID="lbPaginaActualTituloAseguradoGeneral" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
                 <asp:Label ID="lbPaginaActualVariavleAseguradoGeneral" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
@@ -894,7 +894,7 @@
                     <td>
                         <asp:DataList ID="dtAseguradoGeneral" runat="server" OnItemCommand="dtAseguradoGeneral_ItemCommand" OnItemDataBound="dtAseguradoGeneral_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionProveedor" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                                <asp:LinkButton ID="LinkPaginacionAseguradoGeneral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
                             </ItemTemplate>
                         </asp:DataList>
 
@@ -985,11 +985,151 @@
            <asp:Label ID="lbCantidadRegistrosDependienteCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
        </div>
         <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionDependiente" data-toggle="collapse" data-target="#InformacionDependiente" aria-expanded="false" aria-controls="collapseExample">
-                     INFORMACION DE DEPENDIENTE 
+                     INFORMACION DE DEPENDIENTES 
                      </button><br />
         <div class="collapse" id="InformacionDependiente">
                 <div class="card card-body">
-                   INFORMACION DE DEPENDIENTE 
+                   <asp:UpdatePanel ID="UpdatePanelDependiente" runat="server">
+                       <ContentTemplate>
+                           <div class="table-responsive mT20">
+                               <table class="table table-hover">
+                                   <thead>
+                                       <tr>
+                                           <th style="width:10%" align="center" > <asp:Label ID="lbSeleccionarRegistroHeaderRepeaterDetependiente" runat="server" Text="Seleccionar" CssClass="Letranegrita"></asp:Label> </th>
+                                           <th style="width:30%" align="center" >  <asp:Label ID="lbNombreHeaderRepeaterDetependiente" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label> </th>
+                                           <th style="width:10%" align="center" >  <asp:Label ID="lbRNCHeaderRepeaterDetependiente" runat="server" Text="RNC" CssClass="Letranegrita"></asp:Label> </th>
+                                           <th style="width:10%" align="center" >  <asp:Label ID="lbPolizaHeaderRepeaterDetependiente" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
+                                           <th style="width:5%" align="center" >  <asp:Label ID="lbItemHeaderRepeaterDetependiente" runat="server" Text="Item" CssClass="Letranegrita"></asp:Label> </th>
+                                           <th style="width:5%" align="center" >  <asp:Label ID="lbIdAseguradoHeaderRepeaterDetependiente" runat="server" Text="No." CssClass="Letranegrita"></asp:Label> </th>
+                                           <th style="width:10%" align="center" >  <asp:Label ID="lbEstatusHeaderRepeaterDetependiente" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
+                                           <th style="width:10%" align="center" >  <asp:Label ID="lbInicioVigenciaHeaderRepeaterDetependiente" runat="server" Text="Inicio" CssClass="Letranegrita"></asp:Label> </th>
+                                           <th style="width:10%" align="center" >  <asp:Label ID="lbFinVigenciaHeaderRepeaterDetependiente" runat="server" Text="Fin" CssClass="Letranegrita"></asp:Label> </th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                              
+                                          <asp:Repeater ID="rpListadoDependientes" runat="server">
+                                              <ItemTemplate>
+                                                 <tr>
+                                                   <asp:HiddenField ID="hfCotizacionDependiente" runat="server" Value='<%# Eval("Cotizacion") %>' />
+                                                   <asp:HiddenField ID="hfSecuenciaDependiente" runat="server" Value='<%# Eval("Secuencia") %>' />
+                                                   <asp:HiddenField ID="hfIdAseguradoDependiente" runat="server" Value='<%# Eval("IdAsegurado") %>' />
+
+                                                      <td style="width:10%"> <asp:Button ID="btnSeleccionarregistroDependiente" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarregistroDependiente_Click" ToolTip="Seleccionar registro" /> </td>
+                                                      <td style="width:30%"> <%# Eval("Nombre") %> </td>
+                                                      <td style="width:10%"> <%# Eval("RNC") %> </td>
+                                                      <td style="width:10%"> <%# Eval("Poliza") %> </td>
+                                                      <td style="width:5%"> <%# Eval("Secuencia") %> </td>
+                                                      <td style="width:5%"> <%# Eval("IdAsegurado") %> </td>
+                                                      <td style="width:10%"> <%# Eval("Estatus") %> </td>
+                                                      <td style="width:10%"> <%# Eval("InicioVigencia") %> </td>
+                                                      <td style="width:10%"> <%# Eval("FinVigencia") %> </td>
+                                                 </tr>
+
+
+                                              </ItemTemplate>
+                                          </asp:Repeater>
+                                     
+                                   </tbody>
+                               </table>
+                           </div>
+
+                           <div align="center">
+                <asp:Label ID="lbPaginaActualTituloDependiente" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavleDependiente" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloDependiente" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriableDependiente" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+           <div id="DivPaginacionDependiente" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeroDependiente" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroDependiente_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorDependiente" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorDependiente_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtDependiente" runat="server" OnItemCommand="dtDependiente_ItemCommand" OnItemDataBound="dtDependiente_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionDependiente" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteDependiente" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteDependiente_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoDependiente" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoDependiente_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+
+                           <div id="DivDetalleDependientes" runat="server">
+                               <hr />
+                               <div align="center">
+                                   <asp:Label ID="lbTituloDetalleDependiente" runat="server" Text="Detalle del Registro Seleccionado" CssClass="Letranegrita"></asp:Label>
+                               </div>
+                               <div class="form-row">
+                                   <div class="form-group col-md-4">
+                                       <asp:Label ID="lbDetalleDependientePoliza" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtDetalleDependientePoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+
+                                    <div class="form-group col-md-4">
+                                       <asp:Label ID="lbDetalleDependienteEstatus" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtDetalleDependienteEstatus" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+
+                                   <div class="form-group col-md-4">
+                                       <asp:Label ID="lbDetalleDependienteCotizacion" runat="server" Text="Cotización" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtDetalleDependienteCotizacion" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+
+                                   <div class="form-group col-md-4">
+                                       <asp:Label ID="lbDetalleDependienteNombre" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtDetalleDependienteNombre" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+
+                                   <div class="form-group col-md-4">
+                                       <asp:Label ID="lbDetalleDependienteRNC" runat="server" Text="RNC" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtDetalleDependienteRNC" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+
+                                   <div class="form-group col-md-4">
+                                       <asp:Label ID="lbDetalleDependienteIdAsegurado" runat="server" Text="Id Asegurado" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtDetalleDependienteIdAsegurado" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+
+                                   <div class="form-group col-md-4">
+                                       <asp:Label ID="lbDetalleDependienteParentezco" runat="server" Text="Parentezco" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtDetalleDependienteParentezco" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+
+                                   <div class="form-group col-md-4">
+                                       <asp:Label ID="lbDetalleDependienteFechaNacimiento" runat="server" Text="Fecha de Nacimiento" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtDetalleDependienteFechaNacimiento" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+
+                                   <div class="form-group col-md-4">
+                                       <asp:Label ID="lbDetalleDependienteSexo" runat="server" Text="Sexo" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtDetalleDependienteSexo" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+
+                                   <div class="form-group col-md-4">
+                                       <asp:Label ID="lbDetalleDependienteSecuencia" runat="server" Text="Secuencia" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtDetalleDependienteSecuencia" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+
+                                   <div class="form-group col-md-4">
+                                       <asp:Label ID="lbDetalleDependienteinicio" runat="server" Text="inicio de Vigencia" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtDetalleDependienteinicio" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+
+                                   <div class="form-group col-md-4">
+                                       <asp:Label ID="lbDetalleDependienteFinVigencia" runat="server" Text="Fin de Vigencia" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtDetalleDependienteFinVigencia" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+                               </div>
+                           </div>
+                       </ContentTemplate>
+                   </asp:UpdatePanel> 
                    </div>
                 </div>
        <br />

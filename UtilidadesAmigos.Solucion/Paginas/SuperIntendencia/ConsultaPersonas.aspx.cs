@@ -154,6 +154,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             DivDetalleProveedores.Visible = false;
             DivDetalleAsegurado.Visible = false;
             DivDetalleAseguradoGeneral.Visible = false;
+            DivDetalleDependientes.Visible = false;
         }
 
         private void MostrarListadoClientes(int ReportePreciso)
@@ -319,6 +320,28 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 DivPaginacionAseguradoGeneral.Visible = true;
             }
         }
+
+        private void MostrarListadoDependientes() {
+            string _Nombre = string.IsNullOrEmpty(txtNombre.Text.Trim()) ? null : txtNombre.Text.Trim();
+            string _RNC = string.IsNullOrEmpty(txtRNCCedula.Text.Trim()) ? null : txtRNCCedula.Text.Trim();
+
+            var Buscar = ObjDataSuperIntendencia.Value.BuscaPersonaSuperIntendenciaDependente(
+                _Nombre,
+                _RNC,
+                null, null, null);
+            if (Buscar.Count() < 1) {
+                lbCantidadRegistrosDependienteVariable.Text = "NO";
+                lbCantidadRegistrosDependienteVariable.ForeColor = System.Drawing.Color.Red;
+            }
+            else {
+                lbCantidadRegistrosDependienteVariable.Text = "SI";
+                lbCantidadRegistrosDependienteVariable.ForeColor = System.Drawing.Color.Green;
+
+                Paginar(ref rpListadoDependientes, Buscar, 10, ref lbCantidadPaginaVAriableDependiente, ref LinkPrimeroDependiente, ref LinkAnteriorDependiente, ref LinkSiguienteDependiente, ref LinkUltimoDependiente);
+                HandlePaging(ref dtDependiente, ref lbPaginaActualVariavleDependiente);
+                DivPaginacionDependiente.Visible = true;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -333,6 +356,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 DivPaginacionProveedores.Visible = false;
                 DivPaginacionInformacionAsegurado.Visible = false;
                 DivPaginacionAseguradoGeneral.Visible = false;
+                DivPaginacionDependiente.Visible = false;
             }
         }
 
@@ -394,6 +418,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                     MostrarListadoProveedores();
                     MostrarListadoAsegurado();
                     MostrarListadoAseguradoGeneral();
+                    MostrarListadoDependientes();
                 }
             }
             else if (rbConsultaChasisPlaca.Checked) {
@@ -712,6 +737,79 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 txtDetalleAseguradoGeneralFinVigencia.Text = n.FinVigencia;
             }
             DivDetalleAseguradoGeneral.Visible = true;
+        }
+
+        protected void btnSeleccionarregistroDependiente_Click(object sender, EventArgs e)
+        {
+            var CotizacionSeleccionada = (RepeaterItem)((Button)sender).NamingContainer;
+            var HfCotizacionSeleccionada = ((HiddenField)CotizacionSeleccionada.FindControl("hfCotizacionDependiente")).Value.ToString();
+
+            var SecuenciaSeleccionada = (RepeaterItem)((Button)sender).NamingContainer;
+            var HfSecuenciaSeleccionada = ((HiddenField)SecuenciaSeleccionada.FindControl("hfSecuenciaDependiente")).Value.ToString();
+
+            var IdaseguradoSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfIdAseguradoSeleccionado = ((HiddenField)IdaseguradoSeleccionado.FindControl("hfIdAseguradoDependiente")).Value.ToString();
+
+            var RegistroSeleccionado = ObjDataSuperIntendencia.Value.BuscaPersonaSuperIntendenciaDependente(
+                null, null,
+                Convert.ToDecimal(HfCotizacionSeleccionada),
+                Convert.ToDecimal(HfSecuenciaSeleccionada),
+                Convert.ToDecimal(hfIdAseguradoSeleccionado));
+            Paginar(ref rpListadoDependientes, RegistroSeleccionado, 1, ref lbCantidadPaginaVAriableDependiente, ref LinkPrimeroDependiente, ref LinkAnteriorDependiente, ref LinkSiguienteDependiente, ref LinkUltimoDependiente);
+            HandlePaging(ref dtDependiente, ref lbPaginaActualVariavleDependiente);
+            foreach (var n in RegistroSeleccionado) {
+                txtDetalleDependientePoliza.Text = n.Poliza;
+                txtDetalleDependienteEstatus.Text = n.Estatus;
+                txtDetalleDependienteCotizacion.Text = n.Cotizacion.ToString();
+                txtDetalleDependienteNombre.Text = n.Nombre;
+                txtDetalleDependienteRNC.Text = n.RNC;
+                txtDetalleDependienteIdAsegurado.Text = n.IdAsegurado.ToString();
+                txtDetalleDependienteParentezco.Text = n.Parentezco;
+                txtDetalleDependienteFechaNacimiento.Text = n.FechaNacimiento;
+                txtDetalleDependienteSexo.Text = n.Sexo;
+                txtDetalleDependienteSecuencia.Text = n.Secuencia.ToString();
+                txtDetalleDependienteinicio.Text = n.InicioVigencia;
+                txtDetalleDependienteFinVigencia.Text = n.FinVigencia;
+            }
+            DivDetalleDependientes.Visible = true;
+        }
+
+        protected void LinkPrimeroDependiente_Click(object sender, EventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarListadoDependientes();
+        }
+
+        protected void LinkAnteriorDependiente_Click(object sender, EventArgs e)
+        {
+            CurrentPage += -1;
+            MostrarListadoDependientes();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleDependiente, ref lbCantidadPaginaVAriableDependiente);
+        }
+
+        protected void dtDependiente_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoDependientes();
+        }
+
+        protected void dtDependiente_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguienteDependiente_Click(object sender, EventArgs e)
+        {
+            CurrentPage += 1;
+            MostrarListadoDependientes();
+        }
+
+        protected void LinkUltimoDependiente_Click(object sender, EventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoDependientes();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleDependiente, ref lbCantidadPaginaVAriableDependiente);
         }
 
         protected void LinkUltimoCliente_Click(object sender, EventArgs e)
