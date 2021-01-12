@@ -303,6 +303,7 @@
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaAseurados.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaProveedor.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendencia.cs" />
+    <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendenciaAseguradoGeneral.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendenciaIntermediario.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />

@@ -134,4 +134,25 @@
       <Column Name="MontoAsegurado" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_REGISTROS_SUPER_INTENDENCIA_ASEGURADO_GENERAL" Method="SP_BUSCA_REGISTROS_SUPER_INTENDENCIA_ASEGURADO_GENERAL">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="NumeroRNC" Parameter="numeroRNC" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Cotizacion" Parameter="cotizacion" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Secuencia" Parameter="secuencia" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdAsegurado" Parameter="idAsegurado" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCA_REGISTROS_SUPER_INTENDENCIA_ASEGURADO_GENERALResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Secuencia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdAsegurado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Parentezco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RNC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaNacimiento" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Sexo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

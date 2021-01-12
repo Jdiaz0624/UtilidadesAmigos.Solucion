@@ -153,6 +153,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             DivDetalleInformacionIntermediarioSeleccionado.Visible = false;
             DivDetalleProveedores.Visible = false;
             DivDetalleAsegurado.Visible = false;
+            DivDetalleAseguradoGeneral.Visible = false;
         }
 
         private void MostrarListadoClientes(int ReportePreciso)
@@ -275,20 +276,47 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         }
 
         private void MostrarListadoAsegurado() {
-            string _NombreAsegurado = string.IsNullOrEmpty(txtNombre.Text.Trim()) ? null : txtNombre.Text.Trim();
+            if (string.IsNullOrEmpty(txtNombre.Text.Trim())) { }
+            else {
+                string _NombreAsegurado = string.IsNullOrEmpty(txtNombre.Text.Trim()) ? null : txtNombre.Text.Trim();
 
-            var Buscar = ObjDataSuperIntendencia.Value.BuscaPersonaSuperIntendenciaAsegurado(_NombreAsegurado, null, null, null);
-            if (Buscar.Count() < 1) {
-                lbCantidadRegistrosAseguradoBajoPolizaVariable.Text = "NO";
-                lbCantidadRegistrosAseguradoBajoPolizaVariable.ForeColor = System.Drawing.Color.Red;
+                var Buscar = ObjDataSuperIntendencia.Value.BuscaPersonaSuperIntendenciaAsegurado(_NombreAsegurado, null, null, null);
+                if (Buscar.Count() < 1)
+                {
+                    lbCantidadRegistrosAseguradoBajoPolizaVariable.Text = "NO";
+                    lbCantidadRegistrosAseguradoBajoPolizaVariable.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    lbCantidadRegistrosAseguradoBajoPolizaVariable.Text = "SI";
+                    lbCantidadRegistrosAseguradoBajoPolizaVariable.ForeColor = System.Drawing.Color.Green;
+
+                    Paginar(ref rpListadoRegistrosasegurado, Buscar, 10, ref lbCantidadPaginaVAriableAsegurado, ref LinkPrimeroAsegurado, ref LinkAnteriorAsegurado, ref LinkSiguienteAsegurado, ref LinkUltimaAsegurado);
+                    HandlePaging(ref dtAsegurado, ref lbPaginaActualVariavleAsegurado);
+                    DivPaginacionInformacionAsegurado.Visible = true;
+                }
+            }
+        }
+
+        private void MostrarListadoAseguradoGeneral() {
+            string _Nombre = string.IsNullOrEmpty(txtNombre.Text.Trim()) ? null : txtNombre.Text.Trim();
+            string _NumeroRNC = string.IsNullOrEmpty(txtRNCCedula.Text.Trim()) ? null : txtRNCCedula.Text.Trim();
+
+            var BuscarRegistro = ObjDataSuperIntendencia.Value.BuscaPersonaSuperIntendenciaAseguradoGeneral(
+                _Nombre,
+                _NumeroRNC,
+                null, null, null);
+            if (BuscarRegistro.Count() < 1) {
+                lbCantidadRegistrosAseguradoVariable.Text = "NO";
+                lbCantidadRegistrosAseguradoVariable.ForeColor = System.Drawing.Color.Red;
             }
             else {
-                lbCantidadRegistrosAseguradoBajoPolizaVariable.Text = "SI";
-                lbCantidadRegistrosAseguradoBajoPolizaVariable.ForeColor = System.Drawing.Color.Green;
+                lbCantidadRegistrosAseguradoVariable.Text = "SI";
+                lbCantidadRegistrosAseguradoVariable.ForeColor = System.Drawing.Color.Green;
 
-                Paginar(ref rpListadoRegistrosasegurado, Buscar, 10, ref lbCantidadPaginaVAriableAsegurado, ref LinkPrimeroAsegurado, ref LinkAnteriorAsegurado, ref LinkSiguienteAsegurado, ref LinkUltimaAsegurado);
-                HandlePaging(ref dtAsegurado, ref lbPaginaActualVariavleAsegurado);
-                DivPaginacionInformacionAsegurado.Visible = true;
+                Paginar(ref rpIDListadoAseguradoGeneral, BuscarRegistro, 10, ref lbCantidadPaginaVAriableAseguradoGeneral, ref LinkPrimeroAseguradoGeneral, ref LinkAnteriorAseguradoGeneral, ref LinkSiguienteAseguradoGeneral, ref LinkUltimoAseguradoGeneral);
+                HandlePaging(ref dtAseguradoGeneral, ref lbPaginaActualVariavleAseguradoGeneral);
+                DivPaginacionAseguradoGeneral.Visible = true;
             }
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -304,6 +332,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 DivPaginacionIntermediario.Visible = false;
                 DivPaginacionProveedores.Visible = false;
                 DivPaginacionInformacionAsegurado.Visible = false;
+                DivPaginacionAseguradoGeneral.Visible = false;
             }
         }
 
@@ -364,6 +393,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                     MostrarListadoIntermediarios();
                     MostrarListadoProveedores();
                     MostrarListadoAsegurado();
+                    MostrarListadoAseguradoGeneral();
                 }
             }
             else if (rbConsultaChasisPlaca.Checked) {
@@ -609,6 +639,79 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostrarListadoAsegurado();
             MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleAsegurado, ref lbCantidadPaginaVAriableAsegurado);
+        }
+
+        protected void LinkPrimeroAseguradoGeneral_Click(object sender, EventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarListadoAseguradoGeneral();
+        }
+
+        protected void LinkAnteriorAseguradoGeneral_Click(object sender, EventArgs e)
+        {
+            CurrentPage += -1;
+            MostrarListadoAseguradoGeneral();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleAseguradoGeneral, ref lbCantidadPaginaVAriableAseguradoGeneral);
+        }
+
+        protected void dtAseguradoGeneral_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoAseguradoGeneral();
+        }
+
+        protected void dtAseguradoGeneral_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguienteAseguradoGeneral_Click(object sender, EventArgs e)
+        {
+            CurrentPage += 1;
+            MostrarListadoAseguradoGeneral();
+        }
+
+        protected void LinkUltimoAseguradoGeneral_Click(object sender, EventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoAseguradoGeneral();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleAseguradoGeneral, ref lbCantidadPaginaVAriableAseguradoGeneral);
+        }
+
+        protected void btnSeleccionarRegistroAseguradoGeneral_Click(object sender, EventArgs e)
+        {
+            var CotizacionSeleccionada = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfControlCotiacionSeleccionada = ((HiddenField)CotizacionSeleccionada.FindControl("hfCotizacionAseguradoGeneral")).Value.ToString();
+
+            var SecuenciaSeleccionada = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfControlSecuenciaSeleccionada = ((HiddenField)SecuenciaSeleccionada.FindControl("hfItemAseguradoGeneral")).Value.ToString();
+
+            var NumeroAseguradoSeleccionada = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfControlNumeroAseguradoSeleccionada = ((HiddenField)NumeroAseguradoSeleccionada.FindControl("hfIdAseguradoAseguradoGeneral")).Value.ToString();
+
+            var Seleccionrregistro = ObjDataSuperIntendencia.Value.BuscaPersonaSuperIntendenciaAseguradoGeneral(
+                null, null,
+                Convert.ToDecimal(hfControlCotiacionSeleccionada),
+                Convert.ToDecimal(hfControlSecuenciaSeleccionada),
+                Convert.ToDecimal(hfControlNumeroAseguradoSeleccionada));
+            Paginar(ref rpIDListadoAseguradoGeneral, Seleccionrregistro, 1, ref lbCantidadPaginaVAriableAseguradoGeneral, ref LinkPrimeroAseguradoGeneral, ref LinkAnteriorAseguradoGeneral, ref LinkSiguienteAseguradoGeneral, ref LinkUltimoAseguradoGeneral);
+            HandlePaging(ref dtAseguradoGeneral, ref lbPaginaActualVariavleAseguradoGeneral);
+            foreach (var n in Seleccionrregistro) {
+                txtDetalleAseguradoGeneralPoliza.Text = n.Poliza;
+                txtDetalleAseguradoGeneralEstatus.Text = n.Estatus;
+                txtDetalleAseguradoGeneralCotizacion.Text = n.Cotizacion.ToString();
+                txtDetalleAseguradoGeneralSecuencia.Text = n.Secuencia.ToString();
+                txtDetalleAseguradoGeneralIdAsegurado.Text = n.IdAsegurado.ToString();
+                txtDetalleAseguradoGeneralNombre.Text = n.Nombre;
+                txtDetalleAseguradoGeneralParentezco.Text = n.Parentezco;
+                txtDetalleAseguradoGeneralRNC.Text = n.RNC;
+                txtDetalleAseguradoGeneralFechaNacimiento.Text = n.FechaNacimiento;
+                txtDetalleAseguradoGeneralSexo.Text = n.Sexo;
+                txtDetalleAseguradoGeneralInicioVigencia.Text = n.InicioVigencia;
+                txtDetalleAseguradoGeneralFinVigencia.Text = n.FinVigencia;
+            }
+            DivDetalleAseguradoGeneral.Visible = true;
         }
 
         protected void LinkUltimoCliente_Click(object sender, EventArgs e)
