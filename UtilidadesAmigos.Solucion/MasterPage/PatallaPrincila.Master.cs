@@ -194,7 +194,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkComisionesCobrador_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Paginas/ListadoRenovacion.aspx");
+            Response.Redirect("~/Paginas//Consulta/ListadoRenovacion.aspx");
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 
