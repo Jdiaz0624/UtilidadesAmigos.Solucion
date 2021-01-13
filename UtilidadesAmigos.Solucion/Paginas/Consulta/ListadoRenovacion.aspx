@@ -2,10 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-             <style type="text/css">
+           <style type="text/css">
         .jumbotron{
             color:#000000; 
-            background:#7BC5FF;
+            background:#1E90FF;
             font-size:30px;
             font-weight:bold;
             font-family:'Gill Sans';
@@ -13,13 +13,21 @@
         }
 
         .btn-sm{
-            width:100px;
+            width:90px;
         }
-          .LetrasNegrita {
-          font-weight:bold;
-          }
 
+        .Letranegrita {
+        font-weight:bold;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        
 
+        th {
+            background-color: dodgerblue;
+            color: white;
+        }
     </style>
     <script type="text/javascript">
         function ErrorConsulta() {
@@ -117,7 +125,7 @@
         <!--FINALIZAN LOS CONTROLES DE FILTROS-->
 
         <!--INGRESMAOS LOS BOTONES-->
-        <div>
+        <div align="center">
             <asp:Button ID="btnConsultar" runat="server" Text="Buscar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultar_Click" />
             <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportar_Click" />
             <button type="button" id="btnEstadistica" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".bd-example-modal-xl">Estadistica</button>
@@ -126,31 +134,63 @@
         <!--FINALIZAMOS LOS BOTONES-->
         <br />
         <!--INICIO DEL GRID-->
-        <div>
-            <asp:GridView ID="gvListadoCoberturas" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoCoberturas_PageIndexChanging" OnSelectedIndexChanged="gvListadoCoberturas_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    
-                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
-                    <asp:BoundField DataField="FechaInicioVigencia" HeaderText="Inicio" />
-                    <asp:BoundField DataField="FechaFinVigencia" HeaderText="Fin" />
-                    <asp:BoundField DataField="Prima" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Prima" />
-                    <asp:BoundField DataField="Facturado" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Facturado" />
-                    <asp:BoundField DataField="Cobrado" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Cobrado" />
-                    <asp:BoundField DataField="Balance" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Balance" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-    </div>
+        <div class="table-responsive mT20">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="width:10%" align="left"> <asp:Label ID="lbPolizaHeaderRepeater" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
+                        <th style="width:10%" align="left"> <asp:Label ID="lbInicioVigenciaHeaderRepeater" runat="server" Text="Inicio" CssClass="Letranegrita"></asp:Label> </th>
+                        <th style="width:10%" align="left"> <asp:Label ID="lbFinVigenciaHeaderRepeater" runat="server" Text="Fin" CssClass="Letranegrita"></asp:Label> </th>
+                        <th style="width:10%" align="left"> <asp:Label ID="lbPrimaHeaderRepeater" runat="server" Text="Prima" CssClass="Letranegrita"></asp:Label> </th>
+                        <th style="width:20%" align="left"> <asp:Label ID="lbFacturadoHeaderRepeater" runat="server" Text="Facturado" CssClass="Letranegrita"></asp:Label> </th>
+                        <th style="width:20%" align="left"> <asp:Label ID="lbCobradoHeaderRepeater" runat="server" Text="Cobrado" CssClass="Letranegrita"></asp:Label> </th>
+                        <th style="width:20%" align="left"> <asp:Label ID="lbBalanceHeaderRepeater" runat="server" Text="Balance" CssClass="Letranegrita"></asp:Label> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rpListadoRenovacion" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <td style="width:10%"> <%# Eval("Poliza") %> </td>
+                                <td style="width:10%"> <%# Eval("FechaInicioVigencia") %> </td>
+                                <td style="width:10%"> <%# Eval("FechaFinVigencia") %> </td>
+                                <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Prima")) %> </td>
+                                <td style="width:20%"> <%#string.Format("{0:n2}", Eval("Facturado")) %> </td>
+                                <td style="width:20%"> <%#string.Format("{0:n2}", Eval("Cobrado")) %> </td>
+                                <td style="width:20%"> <%#string.Format("{0:n2}", Eval("Balance")) %> </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
+            </table>
+        </div>
+
+        <div align="center">
+                <asp:Label ID="lbPaginaActualTitulo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavle" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTitulo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="divPaginacion" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeraPagina" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPagina_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnterior" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnterior_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacion" runat="server" OnItemCommand="dtPaginacion_ItemCommand" OnItemDataBound="dtPaginacion_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguiente" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguiente_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimo" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimo_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
         <!--FIN DEL GRID-->
     </div>
 
@@ -217,27 +257,55 @@
                   </div>
           <br />
                   <!--INICIO DEL GRID-->
-                     <div>
-            <asp:GridView ID="gvListadoEstadistica" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoEstadistica_PageIndexChanging" OnSelectedIndexChanged="gvListadoEstadistica_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    
-                    <asp:BoundField DataField="Persona" HeaderText="Persona" />
-                    <asp:BoundField DataField="CantidadPoliza" DataFormatString="{0:N0}" HtmlEncode="false" HeaderText="Cantidad" />
-                    <asp:BoundField DataField="Monto" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Monto" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-    </div>
+                  <div class="table-responsive mT20">
+                      <table class="table table-hover">
+                          <thead>
+                              <tr>
+                                  <th style="width:60%" align="left"> <asp:Label ID="lbPersonaHeaderRepeaterEstadistica" runat="server" Text="Persona" CssClass="Letranegrita"></asp:Label> </th>
+                                   <th style="width:20%" align="left"> <asp:Label ID="lbCantidadHeaderRepeaterEstadistica" runat="server" Text="Cantidad" CssClass="Letranegrita"></asp:Label> </th>
+                                   <th style="width:20%" align="left"> <asp:Label ID="lbMontoHeaderRepeaterEstadistica" runat="server" Text="Monto" CssClass="Letranegrita"></asp:Label> </th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <asp:Repeater ID="rpListadoEstadistica" runat="server">
+                                  <ItemTemplate>
+                                      <tr>
+                                          <td style="width:60%"> <%# Eval("Persona") %> </td>
+                                          <td style="width:20%"> <%#string.Format("{0:n0}", Eval("CantidadPoliza")) %> </td>
+                                          <td style="width:20%"> <%#string.Format("{0:n2}", Eval("Monto")) %> </td>
+                                      </tr>
+                                  </ItemTemplate>
+                              </asp:Repeater>
+                          </tbody>
+                      </table>
+                  </div>
+
+                  <div align="center">
+                <asp:Label ID="lbPaginaActualTituloEstadistica" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavleEstadistica" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloEstadistica" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriableEstadistica" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="DivPaginacionEstadistica" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="linkPrimerostadistica" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="linkPrimerostadistica_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteirorEstadistica" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteirorEstadistica_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtEstadistica" runat="server" OnItemCommand="dtEstadistica_ItemCommand" OnItemDataBound="dtEstadistica_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralEstadistica" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteEstadistica" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteEstadistica_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoEstadistica" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoEstadistica_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
                   <!--FIN DEL GRID-->
               </ContentTemplate>
           </asp:UpdatePanel>
