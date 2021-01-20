@@ -371,7 +371,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
                     foreach (var n in Contar)
                     {
-                        lbCantidadRegistros.Text = n.Total.ToString();
+                        lbCantidadRegistrosListadoGeneralVariable.Text = n.Total.ToString();
                     }
 
                 }
@@ -388,7 +388,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
                     foreach (var n in Contar)
                     {
-                        lbCantidadRegistros.Text = n.Total.ToString();
+                        lbCantidadRegistrosListadoGeneralVariable.Text = n.Total.ToString();
                     }
                 }
                 catch (Exception) { }
@@ -413,7 +413,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
                     foreach (var n in Contar)
                     {
-                        lbCantidadRegistros.Text = n.Total.ToString();
+                        lbCantidadRegistrosListadoGeneralVariable.Text = n.Total.ToString();
                     }
                 }
                 catch (Exception) { }
@@ -429,14 +429,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
                     foreach (var n in Contar)
                     {
-                        lbCantidadRegistros.Text = n.Total.ToString();
+                        lbCantidadRegistrosListadoGeneralVariable.Text = n.Total.ToString();
                     }
                 }
                 catch (Exception) { }
             }
             else
             {
-                lbCantidadRegistros.Text = "0";
+                lbCantidadRegistrosListadoGeneralVariable.Text = "0";
             }
         }
         #endregion
