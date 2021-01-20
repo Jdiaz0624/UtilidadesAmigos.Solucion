@@ -531,6 +531,100 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
         #endregion
+        #region EXPORTAR LA DATA PLANO
+        private void ExportarConsultaExcel(int Cobertura, int PlanCobertura) {
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                }
+            }
+            else {
+                string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+                int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+
+                if (Cobertura == (int)CodigosCoberturas.CasaConductor || Cobertura == (int)CodigosCoberturas.AeroAmbulancia) {
+                    var EscribirExcel = (from n in ObjData.Value.SacarDataCoberturasFinal(
+                       Convert.ToDateTime(txtFechaDesde.Text),
+                       Convert.ToDateTime(txtFechaHasta.Text),
+                       _Poliza,
+                       PlanCobertura,
+                       _Oficina)
+                                         select new
+                                         {
+                                             Poliza=n.Poliza,
+                                             Items=n.Items,
+                                             Estatus=n.Estatus,
+                                             Concepto=n.Concepto,
+                                             Cliente=n.Cliente,
+                                             TipoRNC=n.TipoIdentificacion,
+                                             RNC=n.NumeroIdentificacion,
+                                             Vendedor=n.Intermediario,
+                                             Inicio=n.InicioVigencia,
+                                             Fin=n.FinVigencia,
+                                             Proceso=n.FechaProceso,
+                                             Mes=n.MesValidado,
+                                             TipoVehiculo=n.Tipovehiculo,
+                                             Marca=n.Marca,
+                                             Modelo=n.Modelo,
+                                             Capacidad=n.Capacidad,
+                                             Ano=n.Ano,
+                                             Color=n.Color,
+                                             Chasis=n.Chasis,
+                                             Placa=n.Placa,
+                                             ValorAsegurado=n.ValorAsegurado,
+                                             Cobertura=n.Cobertura,
+                                             Movimiento=n.TipoMovimiento
+                                         }).ToList();
+                    string NombreArchivo = "";
+                    string NombreOficina = ddlSeleccionaroficina.SelectedValue != "-1" ? ddlSeleccionaroficina.SelectedItem.Text  : "Todas las Oficinas";
+                    NombreArchivo = ddlSeleccionarCpbertura.SelectedItem.Text + " - " + NombreOficina;
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(NombreArchivo, EscribirExcel);
+                }
+                else if (Cobertura == (int)CodigosCoberturas.TuAsistencia) {
+                    var EscribirExcel = (from n in ObjData.Value.SacarDataCoberturasFinal(
+                       Convert.ToDateTime(txtFechaDesde.Text),
+                       Convert.ToDateTime(txtFechaHasta.Text),
+                       _Poliza,
+                       PlanCobertura,
+                       _Oficina)
+                                         select new
+                                         {
+                                             Nombre=n.NombreCliente,
+                                             Apellido=n.ApellidoCliente,
+                                             Poliza=n.Poliza,
+                                             Ciudad=n.Ciudad,
+                                             Direccion=n.DireccionCliente,
+                                             Telefono=n.Telefono,
+                                             TipoRNC=n.TipoIdentificacion,
+                                             RNC=n.NumeroIdentificacion,
+                                             TipoVehiculo=n.Tipovehiculo,
+                                             Marca=n.Marca,
+                                             Modelo=n.Modelo,
+                                             Ano=n.Ano,
+                                             Color=n.Color,
+                                             Chasis=n.Chasis,
+                                             Placa=n.Placa,
+                                             Inicio=n.InicioVigencia,
+                                             Fin=n.FinVigencia,
+                                             Estatus=n.Estatus,
+                                             Cobertura=n.Cobertura,
+                                             Movimiento=n.TipoMovimiento
+                                         }).ToList();
+                    string NombreArchivo = "";
+                    string NombreOficina = ddlSeleccionaroficina.SelectedValue != "-1" ? ddlSeleccionaroficina.SelectedItem.Text : "Todas las Oficinas";
+                    NombreArchivo = ddlSeleccionarCpbertura.SelectedItem.Text + " - " + NombreOficina;
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(NombreArchivo, EscribirExcel);
+                }
+
+                
+            }
+        }
+        #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -554,229 +648,270 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
-            if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 1)
-            {
-                try {
-                    //EXPORTAMOS LA DATA DE TU ASISTENCIA
-                    //VERIFICAMOS QUE TIPO DE EXPORTACION SE VA A UTILIZAR
-                    if (rbExportarExel.Checked)
-                    {
-                        //EXPORTAMOS LA DATA A EXEL
-                        var ExportarExel = (from n in ObjData.Value.SacarDataTuAsistencia(
-                            Convert.ToDateTime(txtFechaDesde.Text),
-                            Convert.ToDateTime(txtFechaHasta.Text),
-                            txtPolizaFiltro.Text,
-                            Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue))
-                                            select new
-                                            {
-                                                Nombre=n.Nombre,
-                                                Apellido=n.Apellido,
-                                                Poliza=n.Poliza,
-                                                Ciudad=n.Ciudad,
-                                                Direccion=n.Direccion,
-                                                Telefono=n.Telefono,
-                                                TipoIdentificacion=n.TipoIdentificacion,
-                                                NoIdentificacion=n.NumeroIdentificacion,
-                                                TipoVehiculo=n.Tipovehiculo,
-                                                Marca=n.Marca,
-                                                Modelo=n.Modelo,
-                                                Ano=n.Ano,
-                                                Color=n.Color,
-                                                Chasis=n.Chasis,
-                                                Placa=n.Placa,
-                                                InicioVigencia=n.InicioVigencia,
-                                                FinVigencia=n.FinVigencia,
-                                                Estatus=n.Estatus,
-                                                Cobertura=n.Cobertura,
-                                                TipoMovimiento =n.TipoMovimiento
-                                            }).ToList();
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Tu Asistencia", ExportarExel);
-
-                    }
-                    else if (rbExportarcsv.Checked)
-                    {
-                        //EXPORTAMOS LA DATA A CSV
-
-                        var ExportarDataCSV = ObjData.Value.SacarDataTuAsistencia(
-                            Convert.ToDateTime(txtFechaDesde.Text),
-                            Convert.ToDateTime(txtFechaHasta.Text),
-                            txtPolizaFiltro.Text,
-                            Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
-                        string nombrea = "";
-                        int TipoPlan = Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue);
-                        string Ano = Convert.ToDateTime(txtFechaHasta.Text).Year.ToString();
-                        string Dia = Convert.ToDateTime(txtFechaHasta.Text).Day.ToString();
-                        string Mes = Convert.ToDateTime(txtFechaHasta.Text).Month.ToString();
-                        if (TipoPlan == 32)
-                        {
-                            nombrea = "S001-GrupoNobeFull-" + Ano + Dia + Mes;
-                        }
-                        else
-                        {
-                            nombrea = "S002-GrupoNobeLey-" + Ano + Dia + Mes;
-                        }
-                    //   UtilidadesAmigos.Logica.Comunes.ExportarDataExel.ExportarCSV(nombrea, ExportarDataCSV);UtilidadesAmigos.Logica.Entidades.EExportarDatatxtCSV Exportar = new Logica.Entidades.EExportarDatatxtCSV();
-                    UtilidadesAmigos.Logica.Entidades.EExportarDatatxtCSV Exportar = new Logica.Entidades.EExportarDatatxtCSV();
-
-                        foreach (var n in ExportarDataCSV)
-                        {
-                            Exportar.Nombre = n.Nombre;
-                                Exportar.Apellido = n.Apellido;
-                            Response.Clear();
-                            Response.ContentType = "text/csv";
-                            Response.AddHeader("Content-Disposition", "attachment;filename=Plantilla.csv");
-                            Response.Write(Exportar.ToString());
-                            Response.End();
-                        }
-                    
-                        
-                     
-                    }
-                }
-                catch (Exception) {
-                    ClientScript.RegisterStartupScript(GetType(), "Error", "ErrorExportar();", true);
-                }
-            }
-            else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 2)
-            {
-                try {
-                    //EXPORTAR DATA AEROAMBULANCIA
-                    var Exportar = (from n in ObjData.Value.SacarDataCasaConductor(
-                    Convert.ToDateTime(txtFechaDesde.Text),
-                    Convert.ToDateTime(txtFechaHasta.Text),
-                    txtPolizaFiltro.Text,
-                    Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue))
-                                    select new
-                                    {
-                                        Poliza = n.Poliza,
-                                        Items = n.Items,
-                                        Estatus = n.Estatus,
-                                        Concepto = n.Concepto,
-                                        Cliente = n.Cliente,
-                                        TipoIdentificacion = n.TipoIdentificacion,
-                                        NumeroIdentificacion = n.NumeroIdentificacion,
-                                        Intermediario = n.Intermediario,
-                                        InicioVigencia = n.InicioVigencia,
-                                        FinVigencia = n.FinVigencia,
-                                        FechaProceso = n.FechaProceso,
-                                        MesValidado = n.MesValidado,
-                                        TipoVehiculo = n.Tipovehiculo,
-                                        Marca = n.Marca,
-                                        Modelo = n.Modelo,
-                                        Capacidad = n.Capacidad,
-                                        Ano = n.Ano,
-                                        Color = n.Color,
-                                        Chasis = n.Chasis,
-                                        Placa = n.Placa,
-                                        ValorAsegurado = n.ValorAsegurado,
-                                        Cobertura = n.Cobertura,
-                                        TipoMovimiento = n.TipoMovimiento,
-
-                                    }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Registros Casa del Conductor", Exportar);
-                }
-                catch (Exception)
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "Error", "ErrorExportar();", true);
-                }
-                
-            }
-            else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 3)
-            {
-                try { }
-                catch (Exception)
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "Error", "ErrorExportar();", true);
-                }
-
-            }
-            else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 4)
-            {
-                try { }
-                catch (Exception)
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "Error", "ErrorExportar();", true);
-                }
-            }
-            else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 5)
-            {
-                try {
-                    //EXPORTAR CASA DEL CONDUCTOR
-                    var Exportar = (from n in ObjData.Value.SacarDataCasaConductor(
-                    Convert.ToDateTime(txtFechaDesde.Text),
-                    Convert.ToDateTime(txtFechaHasta.Text),
-                    txtPolizaFiltro.Text,
-                    17)
-                                    select new
-                                    {
-                                        Poliza = n.Poliza,
-                                        Items = n.Items,
-                                        Estatus = n.Estatus,
-                                        Concepto = n.Concepto,
-                                        Cliente = n.Cliente,
-                                        TipoIdentificacion = n.TipoIdentificacion,
-                                        NumeroIdentificacion = n.NumeroIdentificacion,
-                                        Intermediario = n.Intermediario,
-                                        InicioVigencia = n.InicioVigencia,
-                                        FinVigencia = n.FinVigencia,
-                                        FechaProceso = n.FechaProceso,
-                                        MesValidado = n.MesValidado,
-                                        TipoVehiculo = n.Tipovehiculo,
-                                        Marca = n.Marca,
-                                        Modelo = n.Modelo,
-                                        Capacidad = n.Capacidad,
-                                        Ano = n.Ano,
-                                        Color = n.Color,
-                                        Chasis = n.Chasis,
-                                        Placa = n.Placa,
-                                        ValorAsegurado = n.ValorAsegurado,
-                                        Cobertura = n.Cobertura,
-                                        TipoMovimiento = n.TipoMovimiento,
-
-                                    }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Registros Casa del Conductor", Exportar);
-                }
-                catch (Exception)
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "Error", "ErrorExportar();", true);
-                }
-                
-            }
-            else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 6)
-            {
-                try {
-                    //EXPORTAR CEDENSA
-                    var ExportarCedensa = (from n in ObjData.Value.GenerarDataCedensa()
-                                           select new
-                                           {
-                                               Poliza = n.Poliza,
-                                               Fecha_de_Adiciona = n.Fecha_de_Adiciona,
-                                               Inicio_de_Vigencia = n.Inicio_de_Vigencia,
-                                               Fin_de_Vigencia = n.Fin_de_Vigencia,
-                                               Tipo_de_Plan = n.Tipo_de_Plan,
-                                               Estatus = n.Estatus,
-                                               Parentezco = n.Parentezco,
-                                               Nombre = n.Nombre,
-                                               Provincia = n.Provincia,
-                                               Direccion = n.Direccion,
-                                               Telefono = n.Telefono,
-                                               Cedula = n.Cedula,
-                                               Fecha_de_Nacimiento = n.Fecha_de_Nacimiento,
-                                               Prima = n.Prima
-                                           }).ToList();
-
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Cedensa", ExportarCedensa);
-                }
-                catch (Exception)
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "Error", "ErrorExportar();", true);
-                }
             
+            int PlanCobertura = Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue);
+
+            switch (PlanCobertura)
+            {
+
+                case (int)CodigosPlanCoberturas.AeroAmbulancia:
+                    //EXPORTAMOS LA DATA DE AEROAMBULANCIA
+                    ExportarConsultaExcel(Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue), (int)CodigosPlanCoberturas.AeroAmbulancia);
+                    break;
+
+                case (int)CodigosPlanCoberturas.AeroAmbulancia2:
+                    //EXPORTAMOS LA DATA DE AEROAMBULANCIA 2
+                    ExportarConsultaExcel(Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue), (int)CodigosPlanCoberturas.AeroAmbulancia2);
+                    break;
+
+                case (int)CodigosPlanCoberturas.CasaConductor:
+                    //EXPORTAMOS LA DATA DE CASA DEL CONDUCTOR
+                    ExportarConsultaExcel(Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue), (int)CodigosPlanCoberturas.CasaConductor);
+                    break;
+
+                case (int)CodigosPlanCoberturas.TuAsistenciaPremium:
+                    //EXPORTAMOS LA DATA DE GRUPO NOBE PREMIUM
+                    ExportarConsultaExcel(Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue), (int)CodigosPlanCoberturas.TuAsistenciaPremium);
+                    break;
+
+                case (int)CodigosPlanCoberturas.TuAsistenciaSuperior:
+                    //EXPORTAR LA DATA DE GRUPO NOBE SUERIOR
+                    ExportarConsultaExcel(Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue), (int)CodigosPlanCoberturas.TuAsistenciaSuperior);
+                    break;
             }
-            
+
+
+
+            #region CODIGO ANTERIOR
+            //if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 1)
+            //{
+            //    try
+            //    {
+            //        //EXPORTAMOS LA DATA DE TU ASISTENCIA
+            //        //VERIFICAMOS QUE TIPO DE EXPORTACION SE VA A UTILIZAR
+            //        if (rbExportarExel.Checked)
+            //        {
+            //            //EXPORTAMOS LA DATA A EXEL
+            //            var ExportarExel = (from n in ObjData.Value.SacarDataTuAsistencia(
+            //                Convert.ToDateTime(txtFechaDesde.Text),
+            //                Convert.ToDateTime(txtFechaHasta.Text),
+            //                txtPolizaFiltro.Text,
+            //                Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue))
+            //                                select new
+            //                                {
+            //                                    Nombre = n.Nombre,
+            //                                    Apellido = n.Apellido,
+            //                                    Poliza = n.Poliza,
+            //                                    Ciudad = n.Ciudad,
+            //                                    Direccion = n.Direccion,
+            //                                    Telefono = n.Telefono,
+            //                                    TipoIdentificacion = n.TipoIdentificacion,
+            //                                    NoIdentificacion = n.NumeroIdentificacion,
+            //                                    TipoVehiculo = n.Tipovehiculo,
+            //                                    Marca = n.Marca,
+            //                                    Modelo = n.Modelo,
+            //                                    Ano = n.Ano,
+            //                                    Color = n.Color,
+            //                                    Chasis = n.Chasis,
+            //                                    Placa = n.Placa,
+            //                                    InicioVigencia = n.InicioVigencia,
+            //                                    FinVigencia = n.FinVigencia,
+            //                                    Estatus = n.Estatus,
+            //                                    Cobertura = n.Cobertura,
+            //                                    TipoMovimiento = n.TipoMovimiento
+            //                                }).ToList();
+            //            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Tu Asistencia", ExportarExel);
+
+            //        }
+            //        else if (rbExportarcsv.Checked)
+            //        {
+            //            //EXPORTAMOS LA DATA A CSV
+
+            //            var ExportarDataCSV = ObjData.Value.SacarDataTuAsistencia(
+            //                Convert.ToDateTime(txtFechaDesde.Text),
+            //                Convert.ToDateTime(txtFechaHasta.Text),
+            //                txtPolizaFiltro.Text,
+            //                Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
+            //            string nombrea = "";
+            //            int TipoPlan = Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue);
+            //            string Ano = Convert.ToDateTime(txtFechaHasta.Text).Year.ToString();
+            //            string Dia = Convert.ToDateTime(txtFechaHasta.Text).Day.ToString();
+            //            string Mes = Convert.ToDateTime(txtFechaHasta.Text).Month.ToString();
+            //            if (TipoPlan == 32)
+            //            {
+            //                nombrea = "S001-GrupoNobeFull-" + Ano + Dia + Mes;
+            //            }
+            //            else
+            //            {
+            //                nombrea = "S002-GrupoNobeLey-" + Ano + Dia + Mes;
+            //            }
+            //            //   UtilidadesAmigos.Logica.Comunes.ExportarDataExel.ExportarCSV(nombrea, ExportarDataCSV);UtilidadesAmigos.Logica.Entidades.EExportarDatatxtCSV Exportar = new Logica.Entidades.EExportarDatatxtCSV();
+            //            UtilidadesAmigos.Logica.Entidades.EExportarDatatxtCSV Exportar = new Logica.Entidades.EExportarDatatxtCSV();
+
+            //            foreach (var n in ExportarDataCSV)
+            //            {
+            //                Exportar.Nombre = n.Nombre;
+            //                Exportar.Apellido = n.Apellido;
+            //                Response.Clear();
+            //                Response.ContentType = "text/csv";
+            //                Response.AddHeader("Content-Disposition", "attachment;filename=Plantilla.csv");
+            //                Response.Write(Exportar.ToString());
+            //                Response.End();
+            //            }
+
+
+
+            //        }
+            //    }
+            //    catch (Exception)
+            //    {
+            //        ClientScript.RegisterStartupScript(GetType(), "Error", "ErrorExportar();", true);
+            //    }
+            //}
+            //else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 2)
+            //{
+            //    try
+            //    {
+            //        //EXPORTAR DATA AEROAMBULANCIA
+            //        var Exportar = (from n in ObjData.Value.SacarDataCasaConductor(
+            //        Convert.ToDateTime(txtFechaDesde.Text),
+            //        Convert.ToDateTime(txtFechaHasta.Text),
+            //        txtPolizaFiltro.Text,
+            //        Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue))
+            //                        select new
+            //                        {
+            //                            Poliza = n.Poliza,
+            //                            Items = n.Items,
+            //                            Estatus = n.Estatus,
+            //                            Concepto = n.Concepto,
+            //                            Cliente = n.Cliente,
+            //                            TipoIdentificacion = n.TipoIdentificacion,
+            //                            NumeroIdentificacion = n.NumeroIdentificacion,
+            //                            Intermediario = n.Intermediario,
+            //                            InicioVigencia = n.InicioVigencia,
+            //                            FinVigencia = n.FinVigencia,
+            //                            FechaProceso = n.FechaProceso,
+            //                            MesValidado = n.MesValidado,
+            //                            TipoVehiculo = n.Tipovehiculo,
+            //                            Marca = n.Marca,
+            //                            Modelo = n.Modelo,
+            //                            Capacidad = n.Capacidad,
+            //                            Ano = n.Ano,
+            //                            Color = n.Color,
+            //                            Chasis = n.Chasis,
+            //                            Placa = n.Placa,
+            //                            ValorAsegurado = n.ValorAsegurado,
+            //                            Cobertura = n.Cobertura,
+            //                            TipoMovimiento = n.TipoMovimiento,
+
+            //                        }).ToList();
+            //        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Registros Casa del Conductor", Exportar);
+            //    }
+            //    catch (Exception)
+            //    {
+            //        ClientScript.RegisterStartupScript(GetType(), "Error", "ErrorExportar();", true);
+            //    }
+
+            //}
+            //else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 3)
+            //{
+            //    try { }
+            //    catch (Exception)
+            //    {
+            //        ClientScript.RegisterStartupScript(GetType(), "Error", "ErrorExportar();", true);
+            //    }
+
+            //}
+            //else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 4)
+            //{
+            //    try { }
+            //    catch (Exception)
+            //    {
+            //        ClientScript.RegisterStartupScript(GetType(), "Error", "ErrorExportar();", true);
+            //    }
+            //}
+            //else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 5)
+            //{
+            //    try
+            //    {
+            //        //EXPORTAR CASA DEL CONDUCTOR
+            //        var Exportar = (from n in ObjData.Value.SacarDataCasaConductor(
+            //        Convert.ToDateTime(txtFechaDesde.Text),
+            //        Convert.ToDateTime(txtFechaHasta.Text),
+            //        txtPolizaFiltro.Text,
+            //        17)
+            //                        select new
+            //                        {
+            //                            Poliza = n.Poliza,
+            //                            Items = n.Items,
+            //                            Estatus = n.Estatus,
+            //                            Concepto = n.Concepto,
+            //                            Cliente = n.Cliente,
+            //                            TipoIdentificacion = n.TipoIdentificacion,
+            //                            NumeroIdentificacion = n.NumeroIdentificacion,
+            //                            Intermediario = n.Intermediario,
+            //                            InicioVigencia = n.InicioVigencia,
+            //                            FinVigencia = n.FinVigencia,
+            //                            FechaProceso = n.FechaProceso,
+            //                            MesValidado = n.MesValidado,
+            //                            TipoVehiculo = n.Tipovehiculo,
+            //                            Marca = n.Marca,
+            //                            Modelo = n.Modelo,
+            //                            Capacidad = n.Capacidad,
+            //                            Ano = n.Ano,
+            //                            Color = n.Color,
+            //                            Chasis = n.Chasis,
+            //                            Placa = n.Placa,
+            //                            ValorAsegurado = n.ValorAsegurado,
+            //                            Cobertura = n.Cobertura,
+            //                            TipoMovimiento = n.TipoMovimiento,
+
+            //                        }).ToList();
+            //        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Registros Casa del Conductor", Exportar);
+            //    }
+            //    catch (Exception)
+            //    {
+            //        ClientScript.RegisterStartupScript(GetType(), "Error", "ErrorExportar();", true);
+            //    }
+
+            //}
+            //else if (Convert.ToDecimal(ddlSeleccionarCpbertura.SelectedValue) == 6)
+            //{
+            //    try
+            //    {
+            //        //EXPORTAR CEDENSA
+            //        var ExportarCedensa = (from n in ObjData.Value.GenerarDataCedensa()
+            //                               select new
+            //                               {
+            //                                   Poliza = n.Poliza,
+            //                                   Fecha_de_Adiciona = n.Fecha_de_Adiciona,
+            //                                   Inicio_de_Vigencia = n.Inicio_de_Vigencia,
+            //                                   Fin_de_Vigencia = n.Fin_de_Vigencia,
+            //                                   Tipo_de_Plan = n.Tipo_de_Plan,
+            //                                   Estatus = n.Estatus,
+            //                                   Parentezco = n.Parentezco,
+            //                                   Nombre = n.Nombre,
+            //                                   Provincia = n.Provincia,
+            //                                   Direccion = n.Direccion,
+            //                                   Telefono = n.Telefono,
+            //                                   Cedula = n.Cedula,
+            //                                   Fecha_de_Nacimiento = n.Fecha_de_Nacimiento,
+            //                                   Prima = n.Prima
+            //                               }).ToList();
+
+            //        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Cedensa", ExportarCedensa);
+            //    }
+            //    catch (Exception)
+            //    {
+            //        ClientScript.RegisterStartupScript(GetType(), "Error", "ErrorExportar();", true);
+            //    }
+
+            //}
+            #endregion
+
         }
 
-  
+
 
         protected void rbGenerarDataRangoFecha_CheckedChanged(object sender, EventArgs e)
         {

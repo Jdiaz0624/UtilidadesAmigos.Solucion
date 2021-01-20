@@ -30538,6 +30538,12 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private string _ApellidoCliente;
 		
+		private string _Ciudad;
+		
+		private string _DireccionCliente;
+		
+		private string _Telefono;
+		
 		private string _TipoIdentificacion;
 		
 		private string _NumeroIdentificacion;
@@ -30694,6 +30700,54 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._ApellidoCliente != value))
 				{
 					this._ApellidoCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ciudad", DbType="VarChar(255)")]
+		public string Ciudad
+		{
+			get
+			{
+				return this._Ciudad;
+			}
+			set
+			{
+				if ((this._Ciudad != value))
+				{
+					this._Ciudad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DireccionCliente", DbType="VarChar(255)")]
+		public string DireccionCliente
+		{
+			get
+			{
+				return this._DireccionCliente;
+			}
+			set
+			{
+				if ((this._DireccionCliente != value))
+				{
+					this._DireccionCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(156)")]
+		public string Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this._Telefono = value;
 				}
 			}
 		}

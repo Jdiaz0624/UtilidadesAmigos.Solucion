@@ -21,6 +21,10 @@ namespace UtilidadesAmigos.Logica.Entidades
 		public string NombreCliente { get; set; }
 
 		public string ApellidoCliente { get; set; }
+		public string Ciudad { get; set; }
+		public string DireccionCliente { get; set; }
+
+		public string Telefono { get; set; }
 
 		public string TipoIdentificacion { get; set; }
 

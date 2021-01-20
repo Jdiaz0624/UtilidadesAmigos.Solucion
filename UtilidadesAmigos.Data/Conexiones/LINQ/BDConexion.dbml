@@ -2668,6 +2668,9 @@
       <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="NombreCliente" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="ApellidoCliente" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Ciudad" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="DireccionCliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(156)" CanBeNull="true" />
       <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="NumeroIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
