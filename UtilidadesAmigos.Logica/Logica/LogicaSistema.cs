@@ -1650,6 +1650,47 @@ namespace UtilidadesAmigos.Logica.Logica
 
         #endregion
 
+        #region SACAR LA DATA DE LAS COBERTURAS FINAL
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarDataCoberturasFinal> SacarDataCoberturasFinal(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null, int? Oficina = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_SACAR_DATA_COBERTURA_FINAL(FechaDesde, FechaHasta, Poliza, Cobertura, Oficina)
+                           select new UtilidadesAmigos.Logica.Entidades.ESacarDataCoberturasFinal
+                           {
+                               Poliza=n.Poliza,
+                               Items=n.Items,
+                               Estatus = n.Estatus,
+                               Concepto=n.Concepto,
+                               Cliente=n.Cliente,
+                               NombreCliente=n.NombreCliente,
+                               ApellidoCliente=n.ApellidoCliente,
+                               TipoIdentificacion=n.TipoIdentificacion,
+                               NumeroIdentificacion=n.NumeroIdentificacion,
+                               Intermediario=n.Intermediario,
+                               FechaInicioVigencia=n.FechaInicioVigencia,
+                               FechaFinVigencia=n.FechaFinVigencia,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               FechaProceso=n.FechaProceso,
+                               FechaProcesoBruto=n.FechaProcesoBruto,
+                               MesValidado=n.MesValidado,
+                               Tipovehiculo=n.Tipovehiculo,
+                               Marca=n.Marca,
+                               Modelo=n.Modelo,
+                               Capacidad=n.Capacidad,
+                               Ano=n.Ano,
+                               Color=n.Color,
+                               Chasis=n.Chasis,
+                               Placa=n.Placa,
+                               ValorAsegurado=n.ValorAsegurado,
+                               Cobertura=n.Cobertura,
+                               TipoMovimiento=n.TipoMovimiento,
+                               CantidadRegistros=n.CantidadRegistros
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
+
         #region CONTAR REGISTROS
         //CONTAR LOS REGISTROS DE TU ASISTENCIA
         public List<UtilidadesAmigos.Logica.Entidades.EContarRegistros> ContarRegistrosTuAsistencia(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null)

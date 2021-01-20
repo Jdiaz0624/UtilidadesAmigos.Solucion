@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UtilidadesAmigos.Solucion.Paginas {
-    
-    
-    public partial class ValidarCoberturas {
-        
+namespace UtilidadesAmigos.Solucion.Paginas
+{
+
+
+    public partial class ValidarCoberturas
+    {
+
         /// <summary>
         /// lbEncabezado control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEncabezado;
-        
+
         /// <summary>
         /// lbCantidadRegistrosTitulo control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosTitulo;
-        
+
         /// <summary>
         /// lbCantidadRegistros control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCantidadRegistros;
-        
+
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// lbSeleccionarCobertura control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbSeleccionarCobertura;
-        
+
         /// <summary>
         /// ddlSeleccionarCpbertura control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarCpbertura;
-        
+
         /// <summary>
         /// lbSeleccionarPlanCobertura control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbSeleccionarPlanCobertura;
-        
+
         /// <summary>
         /// ddlSeleccionarPlanCobertura control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarPlanCobertura;
-        
+
         /// <summary>
         /// lbPolizaFiltro control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPolizaFiltro;
-        
+
         /// <summary>
         /// txtPolizaFiltro control.
         /// </summary>
@@ -101,7 +103,43 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPolizaFiltro;
-        
+
+        /// <summary>
+        /// lbSeleccionarSucursal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarSucursal;
+
+        /// <summary>
+        /// ddlSeleccionarSucursal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarSucursal;
+
+        /// <summary>
+        /// lbSeleccionaroficina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionaroficina;
+
+        /// <summary>
+        /// ddlSeleccionaroficina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionaroficina;
+
         /// <summary>
         /// lbFechaDesde control.
         /// </summary>
@@ -110,7 +148,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbFechaDesde;
-        
+
         /// <summary>
         /// txtFechaDesde control.
         /// </summary>
@@ -119,7 +157,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFechaDesde;
-        
+
         /// <summary>
         /// lbFechaHasta control.
         /// </summary>
@@ -128,7 +166,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbFechaHasta;
-        
+
         /// <summary>
         /// txtFechaHasta control.
         /// </summary>
@@ -137,7 +175,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFechaHasta;
-        
+
         /// <summary>
         /// rbExportarExel control.
         /// </summary>
@@ -146,7 +184,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rbExportarExel;
-        
+
         /// <summary>
         /// rbExportarcsv control.
         /// </summary>
@@ -155,7 +193,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rbExportarcsv;
-        
+
         /// <summary>
         /// rbExportartxt control.
         /// </summary>
@@ -164,7 +202,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rbExportartxt;
-        
+
         /// <summary>
         /// btnConsultar control.
         /// </summary>
@@ -173,7 +211,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConsultar;
-        
+
         /// <summary>
         /// btnExportar control.
         /// </summary>
@@ -182,16 +220,232 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnExportar;
-        
+
         /// <summary>
-        /// gvListadoCobertura control.
+        /// btnReporte control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvListadoCobertura;
-        
+        protected global::System.Web.UI.WebControls.Button btnReporte;
+
+        /// <summary>
+        /// lbCantidadRegistrosListadoGeneralTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosListadoGeneralTitulo;
+
+        /// <summary>
+        /// lbCantidadRegistrosListadoGeneralVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosListadoGeneralVariable;
+
+        /// <summary>
+        /// lbCantidadRegistrosListadoGeneralCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosListadoGeneralCerrar;
+
+        /// <summary>
+        /// lbPolizaHeaderCoberturas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPolizaHeaderCoberturas;
+
+        /// <summary>
+        /// lbEstatusHeaderCoberturas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEstatusHeaderCoberturas;
+
+        /// <summary>
+        /// lbInicioVigenciaHeaderCoberturas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbInicioVigenciaHeaderCoberturas;
+
+        /// <summary>
+        /// lbFinVigenciaHeaderCoberturas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFinVigenciaHeaderCoberturas;
+
+        /// <summary>
+        /// lbFechaProcesoHeaderCoberturas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaProcesoHeaderCoberturas;
+
+        /// <summary>
+        /// lbCoberturaHeaderCobertutras control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCoberturaHeaderCobertutras;
+
+        /// <summary>
+        /// lbTipoMovimientoHeaderCoberturas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTipoMovimientoHeaderCoberturas;
+
+        /// <summary>
+        /// rpListadoCoberturasPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpListadoCoberturasPrincipal;
+
+        /// <summary>
+        /// lbPaginaActualTituloListadoPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloListadoPrincipal;
+
+        /// <summary>
+        /// lbPaginaActualVariableListadoPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualVariableListadoPrincipal;
+
+        /// <summary>
+        /// lbCantidadPaginaTituloListadoPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloListadoPrincipal;
+
+        /// <summary>
+        /// lbCantidadPaginaVariableListadoPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVariableListadoPrincipal;
+
+        /// <summary>
+        /// DivPaginacionListadoPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacionListadoPrincipal;
+
+        /// <summary>
+        /// LinkPrimeraListadoPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraListadoPrincipal;
+
+        /// <summary>
+        /// LinkAnteriorListadoPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorListadoPrincipal;
+
+        /// <summary>
+        /// dtPaginacionListadoPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dtPaginacionListadoPrincipal;
+
+        /// <summary>
+        /// LinkSiguienteListadoPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteListadoPrincipal;
+
+        /// <summary>
+        /// LinkUltimoListadoPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoListadoPrincipal;
+
+        /// <summary>
+        /// divGraficoEstatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGraficoEstatus;
+
+        /// <summary>
+        /// lbGraficoEstatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbGraficoEstatus;
+
+        /// <summary>
+        /// GraEstatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart GraEstatus;
+
         /// <summary>
         /// MantenimientoCoberturas control.
         /// </summary>
@@ -200,7 +454,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label MantenimientoCoberturas;
-        
+
         /// <summary>
         /// lbIdCobertura control.
         /// </summary>
@@ -209,7 +463,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbIdCobertura;
-        
+
         /// <summary>
         /// CoberturasScript control.
         /// </summary>
@@ -218,7 +472,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager CoberturasScript;
-        
+
         /// <summary>
         /// CoberturaUpdatePanel control.
         /// </summary>
@@ -227,7 +481,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel CoberturaUpdatePanel;
-        
+
         /// <summary>
         /// Cobertura control.
         /// </summary>
@@ -236,7 +490,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Cobertura;
-        
+
         /// <summary>
         /// txtCoberturaMantenimiento control.
         /// </summary>
@@ -245,7 +499,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCoberturaMantenimiento;
-        
+
         /// <summary>
         /// cbEstatus control.
         /// </summary>
@@ -254,7 +508,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbEstatus;
-        
+
         /// <summary>
         /// gbCoberturas control.
         /// </summary>
@@ -263,7 +517,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gbCoberturas;
-        
+
         /// <summary>
         /// btnGuardarCobertura control.
         /// </summary>
@@ -272,7 +526,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardarCobertura;
-        
+
         /// <summary>
         /// lbEncabezadoPlanCobertura control.
         /// </summary>
@@ -281,7 +535,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEncabezadoPlanCobertura;
-        
+
         /// <summary>
         /// lbIdMantenimientoPlanCobertura control.
         /// </summary>
@@ -290,7 +544,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbIdMantenimientoPlanCobertura;
-        
+
         /// <summary>
         /// PlanCoberturaUpdatePanel control.
         /// </summary>
@@ -299,7 +553,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel PlanCoberturaUpdatePanel;
-        
+
         /// <summary>
         /// lbCoberturaPlanCobertura control.
         /// </summary>
@@ -308,7 +562,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCoberturaPlanCobertura;
-        
+
         /// <summary>
         /// ddlCoberturaPlanCobertura control.
         /// </summary>
@@ -317,7 +571,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCoberturaPlanCobertura;
-        
+
         /// <summary>
         /// lbCodigoCobertura control.
         /// </summary>
@@ -326,7 +580,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCodigoCobertura;
-        
+
         /// <summary>
         /// txtCodigoCoberturaPlanCobertura control.
         /// </summary>
@@ -335,7 +589,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCodigoCoberturaPlanCobertura;
-        
+
         /// <summary>
         /// lbPlanCobertura control.
         /// </summary>
@@ -344,7 +598,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPlanCobertura;
-        
+
         /// <summary>
         /// txtPlanCobertura control.
         /// </summary>
@@ -353,7 +607,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPlanCobertura;
-        
+
         /// <summary>
         /// cbEstatusPlanCobertura control.
         /// </summary>
@@ -362,7 +616,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbEstatusPlanCobertura;
-        
+
         /// <summary>
         /// gbPlanCobertura control.
         /// </summary>
@@ -371,7 +625,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gbPlanCobertura;
-        
+
         /// <summary>
         /// btnGuardarPlanCobertura control.
         /// </summary>

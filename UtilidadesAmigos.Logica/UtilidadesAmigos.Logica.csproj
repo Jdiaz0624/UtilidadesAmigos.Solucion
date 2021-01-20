@@ -223,6 +223,7 @@
     <Compile Include="Entidades\ESacarDataCasaConductor.cs" />
     <Compile Include="Entidades\ESacarDataCedensa.cs" />
     <Compile Include="Entidades\ESacarDataCobertura.cs" />
+    <Compile Include="Entidades\ESacarDataCoberturasFinal.cs" />
     <Compile Include="Entidades\ESacarDataTuAsistencia.cs" />
     <Compile Include="Entidades\ESacarDatosDatosPoliza.cs" />
     <Compile Include="Entidades\ESacarDatosIntermediarios.cs" />

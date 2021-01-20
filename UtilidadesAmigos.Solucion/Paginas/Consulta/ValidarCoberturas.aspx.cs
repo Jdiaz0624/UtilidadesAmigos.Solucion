@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -12,6 +14,140 @@ namespace UtilidadesAmigos.Solucion.Paginas
     {
 
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
+        #region CONTROL PARA MOSTRAR LA PAGINACION
+        readonly PagedDataSource pagedDataSource = new PagedDataSource();
+        int _PrimeraPagina, _UltimaPagina;
+        private int _TamanioPagina = 10;
+        private int CurrentPage
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+
+        private void HandlePaging(ref DataList NombreDataList, ref Label lbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina = CurrentPage - 5;
+            if (CurrentPage > 5)
+                _UltimaPagina = CurrentPage + 5;
+            else
+                _UltimaPagina = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina = _UltimaPagina - 10;
+            }
+
+            if (_PrimeraPagina < 0)
+                _PrimeraPagina = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage;
+            lbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina; i < _UltimaPagina; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref LinkButton PrimeraPagina, ref LinkButton PaginaAnterior, ref LinkButton PaginaSiguiente, ref LinkButton UltimaPagina)
+        {
+            pagedDataSource.DataSource = Listado;
+            pagedDataSource.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina : _NumeroRegistros);
+            pagedDataSource.CurrentPageIndex = CurrentPage;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource.IsFirstPage;
+            PaginaSiguiente.Enabled = !pagedDataSource.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource;
+            RptGrid.DataBind();
+
+
+            //  divPaginacionBancos.Visible = true;
+        }
+        enum OpcionesPaginacionValores
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion(int Accion, ref Label lbPaginaActual, ref Label CantidadPagina)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = CantidadPagina.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+
+
 
         #region CARGAR LAS LISTAS DESPLEGABLES
         private void CargarCoberturas()
@@ -112,8 +248,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                       Convert.ToDateTime(txtFechaHasta.Text),
                       txtPolizaFiltro.Text,
                       Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
-                    gvListadoCobertura.DataSource = SacarDataTuAsistencia;
-                    gvListadoCobertura.DataBind();
+
                     ContarCantidadRegistrosMostrados();
                 }
                 catch (Exception)
@@ -131,8 +266,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                        Convert.ToDateTime(txtFechaHasta.Text),
                        txtPolizaFiltro.Text,
                        Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue));
-                    gvListadoCobertura.DataSource = SacarDataCasaConductor;
-                    gvListadoCobertura.DataBind();
+  
                     ContarCantidadRegistrosMostrados();
 
                 }
@@ -177,8 +311,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         Convert.ToDateTime(txtFechaHasta.Text),
                         txtPolizaFiltro.Text,
                         17);
-                    gvListadoCobertura.DataSource = SacarDataCasaConductor;
-                    gvListadoCobertura.DataBind();
+            
                     ContarCantidadRegistrosMostrados();
                 }
                 catch (Exception)
@@ -290,8 +423,97 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
+        //----------------------------------------------------------------------------------------------------------------------------------------
+        private void CargarSucursales() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSucursal, ObjData.Value.BuscaListas("SUCURSAL", null, null), true);
+        }
+        private void Cargaroficinas() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionaroficina, ObjData.Value.BuscaListas("OFICINA", ddlSeleccionarSucursal.SelectedValue.ToString(), null), true);
+        }
 
+        #region MOSTRAR EL LISTADO DE LAS COBERTURAS FINAL
+        private void MostrarListadoCoberturaFinal() {
 
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim())) {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
+
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                }
+                
+            }
+            else {
+                string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+                int? _Cobertura = ddlSeleccionarPlanCobertura.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue) : new Nullable<int>();
+                int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+
+                var BuscarListadoCoberturas = ObjData.Value.SacarDataCoberturasFinal(
+                    Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHasta.Text),
+                    _Poliza,
+                    _Cobertura,
+                    _Oficina);
+                if (BuscarListadoCoberturas.Count() < 1)
+                {
+                    lbCantidadRegistrosListadoGeneralVariable.Text = "0";
+                }
+                else
+                {
+                    int CantidadRegistros = 0;
+                    foreach (var n in BuscarListadoCoberturas)
+                    {
+                        CantidadRegistros = (int)n.CantidadRegistros;
+                    }
+                    lbCantidadRegistrosListadoGeneralVariable.Text = CantidadRegistros.ToString("N0");
+                    Paginar(ref rpListadoCoberturasPrincipal, BuscarListadoCoberturas, 10, ref lbCantidadPaginaVariableListadoPrincipal, ref LinkPrimeraListadoPrincipal, ref LinkAnteriorListadoPrincipal, ref LinkSiguienteListadoPrincipal, ref LinkUltimoListadoPrincipal);
+                    HandlePaging(ref dtPaginacionListadoPrincipal, ref lbPaginaActualVariableListadoPrincipal);
+                    DivPaginacionListadoPrincipal.Visible = true;
+
+                    GenerarGrafico();
+                }
+            }
+        }
+        #endregion
+        #region GENERAR GRAFICO
+        private void GenerarGrafico() {
+            int[] CantidadRegistros = new int[2];
+            string[] Nombre = new string[2];
+            int Contador = 0;
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Comando = new SqlCommand("EXEC [Utililades].[SP_GENERAR_GRAFICO_ESTATUS_COBERTURA_FINAL] @FechaDesde,@FechaHasta,@Poliza,@Cobertura,@Oficina", Conexion);
+
+            //FILTROS
+            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? "N/A" : txtPolizaFiltro.Text.Trim();
+            int? _oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : 0;
+
+            Comando.Parameters.AddWithValue("@FechaDesde", SqlDbType.Date).Value = Convert.ToDateTime(txtFechaDesde.Text);
+            Comando.Parameters.AddWithValue("@FechaHasta", SqlDbType.Date).Value = Convert.ToDateTime(txtFechaHasta.Text);
+            Comando.Parameters.AddWithValue("@Poliza", SqlDbType.VarChar).Value = _Poliza;
+            Comando.Parameters.AddWithValue("@Cobertura", SqlDbType.Int).Value = Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue);
+            Comando.Parameters.AddWithValue("@Oficina", SqlDbType.Int).Value = _oficina;
+
+            Conexion.Open();
+            SqlDataReader reader = Comando.ExecuteReader();
+            while (reader.Read()) {
+                CantidadRegistros[Contador] = Convert.ToInt32(reader.GetInt32(1));
+                Nombre[Contador] = reader.GetString(0);
+                Contador++;
+            }
+            reader.Close();
+            Conexion.Close();
+
+            GraEstatus.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraEstatus.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraEstatus.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+
+            GraEstatus.Series["Serie"].Points.DataBindXY(Nombre, CantidadRegistros);
+
+        }
+        #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -300,13 +522,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarCoberturas();
                 MostrarCoberturas();
                 ListadoPlanCoberturas();
+                CargarSucursales();
+                Cargaroficinas();
                 rbExportarExel.Checked = true;
             }
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            MostrarDataCoberturas();
+            // MostrarDataCoberturas();
+            CurrentPage = 0;
+            MostrarListadoCoberturaFinal();
         }
 
         protected void btnExportar_Click(object sender, EventArgs e)
@@ -520,8 +746,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                                Cedula = n.Cedula,
                                                Fecha_de_Nacimiento = n.Fecha_de_Nacimiento,
                                                Prima = n.Prima
-
-
                                            }).ToList();
 
                     UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Data Cedensa", ExportarCedensa);
@@ -535,16 +759,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             
         }
 
-        protected void gvListadoCobertura_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvListadoCobertura.PageIndex = e.NewPageIndex;
-            MostrarDataCoberturas();
-        }
-
-        protected void gvListadoCobertura_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+  
 
         protected void rbGenerarDataRangoFecha_CheckedChanged(object sender, EventArgs e)
         {
@@ -621,6 +836,54 @@ namespace UtilidadesAmigos.Solucion.Paginas
             MANPlanCoberturas();
             ListadoPlanCoberturas();
             CargarCoberturas();
+        }
+
+        protected void ddlSeleccionarSucursal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Cargaroficinas();
+        }
+
+        protected void btnReporte_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkPrimeraListadoPrincipal_Click(object sender, EventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarListadoCoberturaFinal();
+        }
+
+        protected void LinkAnteriorListadoPrincipal_Click(object sender, EventArgs e)
+        {
+            CurrentPage += -1;
+            MostrarListadoCoberturaFinal();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableListadoPrincipal, ref lbCantidadPaginaVariableListadoPrincipal);
+        }
+
+        protected void dtPaginacionListadoPrincipal_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionListadoPrincipal_CancelCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoCoberturaFinal();
+        }
+
+        protected void LinkSiguienteListadoPrincipal_Click(object sender, EventArgs e)
+        {
+            CurrentPage += 1;
+            MostrarListadoCoberturaFinal();
+        }
+
+        protected void LinkUltimoListadoPrincipal_Click(object sender, EventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoCoberturaFinal();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina,ref lbPaginaActualVariableListadoPrincipal,ref lbCantidadPaginaVariableListadoPrincipal);
         }
     }
 }
