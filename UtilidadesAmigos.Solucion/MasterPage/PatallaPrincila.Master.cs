@@ -106,7 +106,13 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkValidarCoberturas_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Paginas/ValidarCoberturas.aspx");
+            if (Session["IdUsuario"] != null) {
+                Response.Redirect("~/Paginas/Consulta/ValidarCoberturas.aspx");
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
 
         protected void linkGenerarReporteUAF_Click(object sender, EventArgs e)

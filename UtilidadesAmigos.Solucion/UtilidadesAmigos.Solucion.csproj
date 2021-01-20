@@ -196,6 +196,7 @@
     <Content Include="Paginas\ComisionesIntermediarios.aspx" />
     <Content Include="Paginas\ComisionesSupervisores.aspx" />
     <Content Include="Paginas\Consulta\ListadoRenovacion.aspx" />
+    <Content Include="Paginas\Consulta\ValidarCoberturas.aspx" />
     <Content Include="Paginas\ConsumoWS.aspx" />
     <Content Include="Paginas\DatosPoliza.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
@@ -360,7 +361,6 @@
     <Content Include="Paginas\SacarDataCoberturas.aspx" />
     <Content Include="Paginas\ServiciosFijos.aspx" />
     <Content Include="Paginas\TipoCotizador.aspx" />
-    <Content Include="Paginas\ValidarCoberturas.aspx" />
     <Content Include="Paginas\ValorVehiculo.aspx" />
     <Content Include="Paginas\ValorVehiculoCotizador.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -427,6 +427,12 @@
     </Compile>
     <Compile Include="Paginas\Consulta\ListadoRenovacion.aspx.designer.cs">
       <DependentUpon>ListadoRenovacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Consulta\ValidarCoberturas.aspx.cs">
+      <DependentUpon>ValidarCoberturas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Consulta\ValidarCoberturas.aspx.designer.cs">
+      <DependentUpon>ValidarCoberturas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ConsumoWS.aspx.cs">
       <DependentUpon>ConsumoWS.aspx</DependentUpon>
@@ -748,13 +754,6 @@
     </Compile>
     <Compile Include="Paginas\TipoCotizador.aspx.designer.cs">
       <DependentUpon>TipoCotizador.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\ValidarCoberturas.aspx.cs">
-      <DependentUpon>ValidarCoberturas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\ValidarCoberturas.aspx.designer.cs">
-      <DependentUpon>ValidarCoberturas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ValorVehiculo.aspx.cs">
       <DependentUpon>ValorVehiculo.aspx</DependentUpon>
