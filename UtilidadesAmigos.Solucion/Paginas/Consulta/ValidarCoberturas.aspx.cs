@@ -13,6 +13,23 @@ namespace UtilidadesAmigos.Solucion.Paginas
     public partial class ValidarCoberturas : System.Web.UI.Page
     {
 
+        enum CodigosCoberturas { 
+        TuAsistencia=1,
+        AeroAmbulancia=2,
+        ServiGrua=3,
+        CaribeAsistencia=4,
+        CasaConductor=5,
+        Cedensa=6
+        }
+
+        enum CodigosPlanCoberturas { 
+        AeroAmbulancia2=0,
+        CasaConductor=17,
+        TuAsistenciaPremium=32,
+        AeroAmbulancia=35,
+        TuAsistenciaSuperior=37
+        }
+
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
         #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
