@@ -148,12 +148,6 @@
             <asp:Label ID="lbEncabezado" runat="server" Text="Sacar Data de Coberturas"></asp:Label>
             
         </div>
-        <div align="center">
-            <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" CssClass="LetrasNegritas" Text="Cantidad de Registros: ("></asp:Label>
-            <asp:Label ID="lbCantidadRegistros" runat="server" CssClass="LetrasNegritas" Text="0"></asp:Label>
-            <asp:Label ID="Label1" runat="server" CssClass="LetrasNegritas" Text=")"></asp:Label>
-        </div>
-        <br />
     </div>
 <!--FIN DEL ENCABEZADO-->
 
@@ -201,13 +195,17 @@
         <!--INICIO DE LOS RADIOS PARA EXPORTAR-->
         <div class="form-check-inline">
                 <div class="form-group form-check">
-                    <asp:RadioButton ID="rbExportarExel" runat="server" Text="Exportar a Exel" CssClass="form-check-input" ToolTip="Exportar a Formato de exel" GroupName="Exportar" />
+                    <asp:Label ID="lbExportarA" runat="server" Text="Exportar A:" CssClass="Letranegrita"></asp:Label>
+                    <asp:RadioButton ID="rbExportarExel" runat="server" Text="Excel" CssClass="form-check-input" ToolTip="Exportar a Formato de Excel" GroupName="Exportar" />
+                    <asp:RadioButton ID="rbExportarcsv" runat="server" Text="CSV" CssClass="form-check-input"  ToolTip="Exportar a Formato CSV" GroupName="Exportar" />
+                    <asp:RadioButton ID="rbExportartxt" runat="server" Text="TXT" CssClass="form-check-input" ToolTip="Exportar a formato de texto" GroupName="Exportar" />
+                    <asp:RadioButton ID="rbExportarPDF" runat="server" Text="PDF" CssClass="form-check-input" ToolTip="Exportar a formato PDF" GroupName="Exportar" />
                 </div>
                 <div class="form-group form-check">
-                    <asp:RadioButton ID="rbExportarcsv" runat="server" Text="Exportar a CSV" CssClass="form-check-input"  ToolTip="Exportar a Formato CSV Delimitado por |" GroupName="Exportar" />
+                    
                 </div>
                 <div class="form-group form-check">
-                    <asp:RadioButton ID="rbExportartxt" runat="server" Text="Exportar a TXT" CssClass="form-check-input" Enabled="false" ToolTip="Exportar a formato de texto plano delimitado por |" GroupName="Exportar" />
+                    
                 </div>
             </div>
         <!--FIN DE LOS RADIOS PARA EXPORTAR-->
