@@ -188,8 +188,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             var Buscar = ObjData.Value.BuscaCoberturaMantenimiento(
                 new Nullable<decimal> (),
                 _Cobertura);
-            gbCoberturas.DataSource = Buscar;
-            gbCoberturas.DataBind();
+            Paginar(ref rpListadoCoberturas, Buscar, 10, ref lbCantidadPaginaVariableCoberturas, ref LinkPrimeroCoberturas, ref LinkAnteriorCoberturas, ref LinkSiguienteCoberturas, ref LinkUltimoCoberturas);
+            HandlePaging(ref dtPaginacionCoberturas, ref lbPaginaActualVariableCoberturas);
+           
         }
         #endregion
         #region MANTENIMIENTO DE COBERTURAS
@@ -933,27 +934,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             CargarPlanCoberturas();
         }
 
-        protected void gbCoberturas_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gbCoberturas.PageIndex = e.NewPageIndex;
-            MostrarCoberturas();
-        }
-
-        protected void gbCoberturas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GridViewRow gb = gbCoberturas.SelectedRow;
-
-            var Buscar = ObjData.Value.BuscaCoberturaMantenimiento(Convert.ToDecimal(gb.Cells[0].Text));
-            foreach (var n in Buscar)
-            {
-                txtCoberturaMantenimiento.Text = n.Descripcion;
-                lbIdCobertura.Text = n.IdCobertura.ToString();
-                cbEstatus.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
-         
-            }
-
-        }
-
         protected void btnGuardarCobertura_Click(object sender, EventArgs e)
         {
             MAnCoberturas(Convert.ToDecimal(lbIdCobertura.Text));
@@ -1029,6 +1009,57 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             CurrentPage += 1;
             MostrarListadoCoberturaFinal();
+        }
+
+        protected void btnSeleccionarCobertura_Click(object sender, EventArgs e)
+        {
+            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfIdCobertura = ((HiddenField)ItemSeleccionado.FindControl("IdCobertura")).Value.ToString();
+            lbIdCobertura.Text = hfIdCobertura.ToString();
+
+            var SeleccionarRegistro = ObjData.Value.BuscaCoberturaMantenimiento(Convert.ToDecimal(hfIdCobertura), null);
+            foreach (var n in SeleccionarRegistro) {
+                txtCoberturaMantenimiento.Text = n.Descripcion;
+                cbEstatus.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
+            }
+        }
+
+        protected void LinkPrimeroCoberturas_Click(object sender, EventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarCoberturas();
+        }
+
+        protected void LinkAnteriorCoberturas_Click(object sender, EventArgs e)
+        {
+            CurrentPage += -1;
+            MostrarCoberturas();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCoberturas, ref lbCantidadPaginaVariableCoberturas);
+        }
+
+        protected void dtPaginacionCoberturas_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionCoberturas_CancelCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarCoberturas();
+        }
+
+        protected void LinkSiguienteCoberturas_Click(object sender, EventArgs e)
+        {
+            CurrentPage += 1;
+            MostrarCoberturas();
+        }
+
+        protected void LinkUltimoCoberturas_Click(object sender, EventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarCoberturas();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCoberturas, ref lbCantidadPaginaVariableCoberturas);
         }
 
         protected void LinkUltimoListadoPrincipal_Click(object sender, EventArgs e)

@@ -318,7 +318,7 @@
 
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="container-fluid">
           <div class="jumbotron" align="center">
@@ -326,7 +326,7 @@
               <asp:Label ID="lbIdCobertura" Visible="false" runat="server" Text="Mantenimiento de Coberturas"></asp:Label>
           </div>
          <asp:ScriptManager ID="CoberturasScript" runat="server"></asp:ScriptManager>
-          <asp:UpdatePanel ID="CoberturaUpdatePanel" runat="server" Visible="true">
+          <asp:UpdatePanel ID="UpdatePanelCoberturas" runat="server" Visible="true">
               <ContentTemplate>
                    <div class="form-row">
               <div class="form-group col-md-12">
@@ -336,39 +336,75 @@
           </div>
           <div class="form-check-inline">
               <div class="form-group form-check">
-                  <asp:CheckBox ID="cbEstatus" runat="server" Text="Estatus" CssClass="form-check-input" />
+                  <asp:CheckBox ID="cbEstatus" runat="server" Text="Estatus" CssClass="form-check-input Letranegrita" />
               </div>
           </div>
                   <br />
                        <!--INICIO DEL GRID-->
-    <div class="container-fluid">
-            <asp:GridView ID="gbCoberturas" runat="server" AllowPaging="true" OnPageIndexChanging="gbCoberturas_PageIndexChanging" OnSelectedIndexChanged="gbCoberturas_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    
-                    <asp:BoundField DataField="IdCobertura" HeaderText="ID" />
-                    <asp:BoundField DataField="Descripcion" HeaderText="Cobertura" />
-                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
-                     <asp:CommandField ButtonType="Button" HeaderStyle-Width="11%" HeaderText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-    </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th style="width:10%" align="left"> <asp:Label ID="lbSeleccionarCoberturaHeaderCobertura" runat="server" Text="Seleccionar" CssClass="Letranegrita"></asp:Label> </th>
+                                        <th style="width:80%" align="left"> <asp:Label ID="lbCoberturaHeaderCobertura" runat="server" Text="Cobertura" CssClass="Letranegrita"></asp:Label> </th>
+                                        <th style="width:10%" align="left"> <asp:Label ID="lbEstatusHeaderCobertura" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <asp:Repeater ID="rpListadoCoberturas" runat="server">
+                                        <ItemTemplate>
+                                            <tr>
+                                                <asp:HiddenField ID="hfIdCobertura" runat="server" Value='<%# Eval("IdCobertura") %>' />
+                                                <td style="width:10%"> <asp:Button ID="btnSeleccionarCobertura" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm Letranegrita" ToolTip="Seleccionar Cobertura" OnClick="btnSeleccionarCobertura_Click" /> </td>
+                                                <td style="width:10%"> <%# Eval("Descripcion") %> </td>
+                                                <td style="width:10%"> <%# Eval("Estatus") %> </td>
+                                            </tr>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </tbody>
+                            </table>
+                        </div>
+                   <div align="center">
+                <asp:Label ID="lbPaginaActualTituloCoberturas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariableCoberturas" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloCoberturas" runat="server" Text="De " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariableCoberturas" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+
+             <div id="DivPaginacionCoberturas" runat="server" align="center" >
+                <div style="margin-top=20px;">
+                    <table style="width:600px;">
+                        <tr>
+                            <td> <asp:LinkButton ID="LinkPrimeroCoberturas" runat="server" Text="Primero" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroCoberturas_Click" CssClass="btn btn-outline-success btn-sm"  ></asp:LinkButton> </td>
+                            <td> <asp:LinkButton ID="LinkAnteriorCoberturas" runat="server" Text="Anterior" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorCoberturas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td>
+                                <asp:DataList ID="dtPaginacionCoberturas" runat="server" OnCancelCommand="dtPaginacionCoberturas_CancelCommand" OnItemDataBound="dtPaginacionCoberturas_ItemDataBound" RepeatDirection="Horizontal" >
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="LinkIndiceListadoCoberturas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="NuevaPagina" Text='<%# Eval("TextoPagina")%>' Width="20px"></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:DataList>
+
+                            </td>
+                            <td> <asp:LinkButton ID="LinkSiguienteCoberturas" runat="server" Text="Siguiente" ToolTip="Ir la Siguiente pagina del listado" OnClick="LinkSiguienteCoberturas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td> <asp:LinkButton ID="LinkUltimoCoberturas" runat="server" Text="Ultmo" ToolTip="Ir a la Ultima Pagina del listado" OnClick="LinkUltimoCoberturas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                           
+                        </tr>
+                    </table>
+                </div>
+            </div>
+          
+
     <!--FIN DEL GRID-->
+                  <br />
+                  
+
+                    <div align="center">
+              <asp:Button ID="btnGuardarCobertura" runat="server" Text="Guardar" CssClass="btn btn-outline-secondary btn-sm Letranegrita" OnClick="btnGuardarCobertura_Click" />
+          </div>
+                  <br />
               </ContentTemplate>
           </asp:UpdatePanel>
-          <div align="center">
-              <asp:Button ID="btnGuardarCobertura" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnGuardarCobertura_Click" />
-          </div><br />
+        
       </div>
     </div>
   </div>
