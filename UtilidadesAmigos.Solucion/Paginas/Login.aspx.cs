@@ -8,6 +8,7 @@ using System.Web.Security;
 using System.Speech.Synthesis;
 using System.Threading;
 
+
 namespace UtilidadesAmigos.Solucion.Paginas
 {
     public partial class Login : System.Web.UI.Page
@@ -19,6 +20,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// </summary>
         private void IngresarSistema()
         {
+          
+
+
             try
             {
                 //validamos los campos vacios
@@ -122,7 +126,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (!IsPostBack)
             {
-
+              
 
             }
         }

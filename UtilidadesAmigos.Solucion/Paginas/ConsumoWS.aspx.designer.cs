@@ -339,12 +339,264 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Button btnExportar;
 
         /// <summary>
-        /// gvListadoPantalla control.
+        /// lbTituloConsultaRamoPoliza control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvListadoPantalla;
+        protected global::System.Web.UI.WebControls.Label lbTituloConsultaRamoPoliza;
+
+        /// <summary>
+        /// DivBloqueIdentificarRamoPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueIdentificarRamoPoliza;
+
+        /// <summary>
+        /// lbPolizaHeaderConsultaRamo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPolizaHeaderConsultaRamo;
+
+        /// <summary>
+        /// lbRamoGeaderConsultaPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbRamoGeaderConsultaPoliza;
+
+        /// <summary>
+        /// rpConsultaRamoPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpConsultaRamoPoliza;
+
+        /// <summary>
+        /// DivBloqueConsultaVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueConsultaVehiculoMotor;
+
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// lbCantidadregistrosTituloVehiculomotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadregistrosTituloVehiculomotor;
+
+        /// <summary>
+        /// lbCantidadregistrosvariableVehiculomotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadregistrosvariableVehiculomotor;
+
+        /// <summary>
+        /// lbCantidadregistrosCerrarVehiculomotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadregistrosCerrarVehiculomotor;
+
+        /// <summary>
+        /// lbDetalleVehiculoMoor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDetalleVehiculoMoor;
+
+        /// <summary>
+        /// lbPolizaVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPolizaVehiculoMotor;
+
+        /// <summary>
+        /// lbClienteVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbClienteVehiculoMotor;
+
+        /// <summary>
+        /// lbInicioVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbInicioVehiculoMotor;
+
+        /// <summary>
+        /// lbFinVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFinVehiculoMotor;
+
+        /// <summary>
+        /// lbEstatusVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEstatusVehiculoMotor;
+
+        /// <summary>
+        /// lbChasisVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbChasisVehiculoMotor;
+
+        /// <summary>
+        /// lbPlacavehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPlacavehiculoMotor;
+
+        /// <summary>
+        /// rpListadoVehiculomotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpListadoVehiculomotor;
+
+        /// <summary>
+        /// lbPaginaActualTituloVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloVehiculoMotor;
+
+        /// <summary>
+        /// lbPaginaActualVariableVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualVariableVehiculoMotor;
+
+        /// <summary>
+        /// lbCantidadPaginaTituloVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloVehiculoMotor;
+
+        /// <summary>
+        /// lbCantidadPaginaVariableVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVariableVehiculoMotor;
+
+        /// <summary>
+        /// DivPaginacionVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacionVehiculoMotor;
+
+        /// <summary>
+        /// LinkPrimeraVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraVehiculoMotor;
+
+        /// <summary>
+        /// LinkAnteriorVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorVehiculoMotor;
+
+        /// <summary>
+        /// dtPaginacionVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dtPaginacionVehiculoMotor;
+
+        /// <summary>
+        /// LinkSiguienteVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteVehiculoMotor;
+
+        /// <summary>
+        /// LinkUltimoVehiculoMotor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoVehiculoMotor;
     }
 }

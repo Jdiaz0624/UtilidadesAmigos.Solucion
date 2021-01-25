@@ -57,7 +57,7 @@
                                <asp:LinkButton ID="linkGenerarReporteUAF" runat="server" Text="Generar Reporte para la UAF" OnClick="linkGenerarReporteUAF_Click" class="dropdown-item"></asp:LinkButton>
                                 <asp:LinkButton ID="LinkReporteFianzas" runat="server" Text="Reporte de Fianzas" OnClick="LinkReporteFianzas_Click" class="dropdown-item"></asp:LinkButton>
                                 <asp:LinkButton ID="LinkReporteReclamos" runat="server" Visible="false" Text="Reporte de Reclamos" OnClick="LinkReporteReclamos_Click" class="dropdown-item"></asp:LinkButton>
-                                 <asp:LinkButton ID="LinkConsumoWS" runat="server" Visible="false" Text="Consultar Dato Poliza" OnClick="LinkConsumoWS_Click" class="dropdown-item"></asp:LinkButton>
+                                 <asp:LinkButton ID="LinkConsumoWS" runat="server"  Text="Consultar Dato Poliza (WS)" OnClick="LinkConsumoWS_Click" class="dropdown-item"></asp:LinkButton>
                                 
                                 
                             </div>
