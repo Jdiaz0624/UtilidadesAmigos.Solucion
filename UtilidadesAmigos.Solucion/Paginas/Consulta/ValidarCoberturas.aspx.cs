@@ -222,8 +222,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void ListadoPlanCoberturas()
         {
             var Buscar = ObjData.Value.BuscaPlanCoberturas();
-            gbPlanCobertura.DataSource = Buscar;
-            gbPlanCobertura.DataBind();
+            Paginar(ref rpListadoPlanCobertura, Buscar, 10, ref lbCantidadPaginaVariablePlanCoberturas, ref LinkPrimeroPlanCobertura, ref LinkAnteriorPlanCobertura, ref LinkSiguientePlanCobertura, ref LinkUltimoPlanCobertura);
+            HandlePaging(ref dlPlanCobertura, ref lbPaginaActualVariablePlanCoberturas);
         }
         #endregion
         #region MANTENIMIENTO DE PLAN DE COBERTURAS
@@ -941,27 +941,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             CargarCoberturas();
         }
 
-        protected void gbPlanCobertura_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gbPlanCobertura.PageIndex = e.NewPageIndex;
-            ListadoPlanCoberturas();
-        }
-
-        protected void gbPlanCobertura_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GridViewRow gb = gbPlanCobertura.SelectedRow;
-
-            var Buscar = ObjData.Value.BuscaPlanCoberturas(Convert.ToDecimal(gb.Cells[0].Text));
-            foreach (var n in Buscar)
-            {
-                ClientScript.RegisterStartupScript(GetType(), "Activar", "ActivarControlesPlanCobertura();", true);
-                lbIdMantenimientoPlanCobertura.Text = n.IdPlanCobertura.ToString();
-                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlCoberturaPlanCobertura, n.IdCobertura.ToString());
-                txtCodigoCoberturaPlanCobertura.Text = n.CodigoCobertura.ToString();
-                txtPlanCobertura.Text = n.PlanCobertura;
-                cbEstatusPlanCobertura.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
-            }
-        }
 
         protected void btnGuardarPlanCobertura_Click(object sender, EventArgs e)
         {
@@ -1060,6 +1039,41 @@ namespace UtilidadesAmigos.Solucion.Paginas
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostrarCoberturas();
             MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCoberturas, ref lbCantidadPaginaVariableCoberturas);
+        }
+
+        protected void btnSeleccionarPlanCobertura_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkPrimeroPlanCobertura_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkAnteriorPlanCobertura_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dlPlanCobertura_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dlPlanCobertura_CancelCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguientePlanCobertura_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoPlanCobertura_Click(object sender, EventArgs e)
+        {
+
         }
 
         protected void LinkUltimoListadoPrincipal_Click(object sender, EventArgs e)

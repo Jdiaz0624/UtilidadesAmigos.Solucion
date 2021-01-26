@@ -364,6 +364,7 @@
                                 </tbody>
                             </table>
                         </div>
+
                    <div align="center">
                 <asp:Label ID="lbPaginaActualTituloCoberturas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
                 <asp:Label ID="lbPaginaActualVariableCoberturas" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
@@ -415,8 +416,8 @@
            <!--INICIO DEL POPO DE LAS COBERTURAS-->
 
 
-<div class="modal fade bd-example-modal-lg PlanCobertura" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade bd-example-modal-xl PlanCobertura" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="container-fluid">
           <div class="jumbotron" align="center">
@@ -447,30 +448,64 @@
               </div>
           </div>
           <br />
-           <div>
-                <asp:GridView ID="gbPlanCobertura" runat="server" AllowPaging="true" OnPageIndexChanging="gbPlanCobertura_PageIndexChanging" OnSelectedIndexChanged="gbPlanCobertura_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    
-                    <asp:BoundField DataField="IdPlanCobertura" HeaderText="ID" />
-                    <asp:BoundField DataField="Cobertura" HeaderText="Cobertura" />
-                    <asp:BoundField DataField="CodigoCobertura" HeaderText="Codigo Plan" />
-                    <asp:BoundField DataField="PlanCobertura" HeaderText="Plan" />
-                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
-                     <asp:CommandField ButtonType="Button" HeaderStyle-Width="11%" HeaderText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-           </div>
+          <div class="table-responsive">
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th style="width:10%" align="left"> <asp:Label ID="lbSeleccionarHeaderPlanCobertura" runat="server" Text="Seleccionar" CssClass="Letranegrita"></asp:Label> </th>
+                          <th style="width:30%" align="left"> <asp:Label ID="lbCoberturaHeaderPlanCobertura" runat="server" Text="Cobertura" CssClass="Letranegrita"></asp:Label> </th>
+                          <th style="width:10%" align="left"> <asp:Label ID="lbCodigoCobertutaHeaderPlanCobertura" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label> </th>
+                          <th style="width:40%" align="left"> <asp:Label ID="lbPlanCoberturaHeaderPlanCobertura" runat="server" Text="Plan" CssClass="Letranegrita"></asp:Label> </th>
+                          <th style="width:10%" align="left"> <asp:Label ID="lbEstatusHeaderPlanCobertura" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <asp:Repeater ID="rpListadoPlanCobertura" runat="server">
+                          <ItemTemplate>
+                              <tr>
+                                  <asp:HiddenField ID="hfIdPlanCobertura" runat="server" Value='<%# Eval("IdPlanCobertura") %>' />
+
+                                  <td style="width:10%"> <asp:Button ID="btnSeleccionarPlanCobertura" runat="server" Text="Seleccionar" ToolTip="Seleccionar Plan Cobertura" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarPlanCobertura_Click" /> </td>
+                                  <td style="width:30%"> <%# Eval("Cobertura") %> </td>
+                                  <td style="width:10%"> <%# Eval("CodigoCobertura") %> </td>
+                                  <td style="width:40%"> <%# Eval("PlanCobertura") %> </td>
+                                  <td style="width:10%"> <%# Eval("Estatus") %> </td>
+                              </tr>
+                          </ItemTemplate>
+                      </asp:Repeater>
+                  </tbody>
+              </table>
+          </div>
+
+                      <div align="center">
+                <asp:Label ID="lbPaginaActualTituloPlanCoberturas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariablePlanCoberturas" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloPlanCoberturas" runat="server" Text="De " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariablePlanCoberturas" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+
+             <div id="DivPaginacionPlanCobertura" runat="server" align="center" >
+                <div style="margin-top=20px;">
+                    <table style="width:600px;">
+                        <tr>
+                            <td> <asp:LinkButton ID="LinkPrimeroPlanCobertura" runat="server" Text="Primero" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroPlanCobertura_Click" CssClass="btn btn-outline-success btn-sm"  ></asp:LinkButton> </td>
+                            <td> <asp:LinkButton ID="LinkAnteriorPlanCobertura" runat="server" Text="Anterior" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorPlanCobertura_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td>
+                                <asp:DataList ID="dlPlanCobertura" runat="server" OnCancelCommand="dlPlanCobertura_CancelCommand" OnItemDataBound="dlPlanCobertura_ItemDataBound" RepeatDirection="Horizontal" >
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="LinkIndiceListadoCoberturas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="NuevaPagina" Text='<%# Eval("TextoPagina")%>' Width="20px"></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:DataList>
+
+                            </td>
+                            <td> <asp:LinkButton ID="LinkSiguientePlanCobertura" runat="server" Text="Siguiente" ToolTip="Ir la Siguiente pagina del listado" OnClick="LinkSiguientePlanCobertura_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td> <asp:LinkButton ID="LinkUltimoPlanCobertura" runat="server" Text="Ultmo" ToolTip="Ir a la Ultima Pagina del listado" OnClick="LinkUltimoPlanCobertura_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                           
+                        </tr>
+                    </table>
+                </div>
+            </div>
+                  <br />
               </ContentTemplate>
           </asp:UpdatePanel>
           <div align="center">

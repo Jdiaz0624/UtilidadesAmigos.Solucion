@@ -38,7 +38,7 @@
                             <asp:LinkButton ID="LinkInicio" runat="server"  class="nav-link active" OnClick="LinkInicio_Click">   <img width="90px" src="/Imagenes/Logo.png" /></asp:LinkButton>
                           </li>
                           <li class="nav-item">
-                            <asp:LinkButton ID="linkTicket" runat="server" ForeColor="Red" Text="Ticket" OnClick="linkTicket_Click" class="nav-link active"></asp:LinkButton>
+                            <asp:LinkButton ID="linkTicket" runat="server" Visible="false" ForeColor="Red" Text="Ticket" OnClick="linkTicket_Click" class="nav-link active"></asp:LinkButton>
                           </li>
                       
                           <!-- Dropdown -->
