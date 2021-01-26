@@ -1651,10 +1651,10 @@ namespace UtilidadesAmigos.Logica.Logica
         #endregion
 
         #region SACAR LA DATA DE LAS COBERTURAS FINAL
-        public List<UtilidadesAmigos.Logica.Entidades.ESacarDataCoberturasFinal> SacarDataCoberturasFinal(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null, int? Oficina = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarDataCoberturasFinal> SacarDataCoberturasFinal(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string Poliza = null, int? Cobertura = null, int? Oficina = null, decimal? UsuarioGenera = null) {
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_SACAR_DATA_COBERTURA_FINAL(FechaDesde, FechaHasta, Poliza, Cobertura, Oficina)
+            var Listado = (from n in Objdata.SP_SACAR_DATA_COBERTURA_FINAL(FechaDesde, FechaHasta, Poliza, Cobertura, Oficina, UsuarioGenera)
                            select new UtilidadesAmigos.Logica.Entidades.ESacarDataCoberturasFinal
                            {
                                Poliza=n.Poliza,
@@ -1688,7 +1688,11 @@ namespace UtilidadesAmigos.Logica.Logica
                                ValorAsegurado=n.ValorAsegurado,
                                Cobertura=n.Cobertura,
                                TipoMovimiento=n.TipoMovimiento,
-                               CantidadRegistros=n.CantidadRegistros
+                               CantidadRegistros=n.CantidadRegistros,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta,
+                               GeneradoPor=n.GeneradoPor,
+                               Oficina=n.Oficina
                            }).ToList();
             return Listado;
         }

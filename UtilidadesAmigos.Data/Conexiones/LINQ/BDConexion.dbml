@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.26.24.199;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString12" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_LISTA_CARGAR_RAMOS" Method="SP_LISTA_CARGAR_RAMOS">
     <Parameter Name="IdRamo" Parameter="idRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
@@ -2660,6 +2660,7 @@
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="Cobertura" Parameter="cobertura" Type="System.Int32" DbType="Int" />
     <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UsuarioGenera" Parameter="usuarioGenera" Type="System.Decimal" DbType="Decimal(18,0)" />
     <ElementType Name="SP_SACAR_DATA_COBERTURA_FINALResult">
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Items" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -2693,6 +2694,10 @@
       <Column Name="Cobertura" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
       <Column Name="TipoMovimiento" Type="System.String" DbType="VarChar(9)" CanBeNull="true" />
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

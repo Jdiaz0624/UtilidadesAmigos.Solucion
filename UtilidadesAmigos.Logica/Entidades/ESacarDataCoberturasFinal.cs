@@ -69,5 +69,11 @@ namespace UtilidadesAmigos.Logica.Entidades
 		public string TipoMovimiento { get; set; }
 
 		public System.Nullable<int> CantidadRegistros { get; set; }
+		public string ValidadoDesde { get; set; }
+
+		public string ValidadoHasta { get; set; }
+
+		public string GeneradoPor { get; set; }
+		public string Oficina { get; set; }
 	}
 }

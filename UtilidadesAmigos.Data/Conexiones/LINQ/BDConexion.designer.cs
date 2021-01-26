@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString12, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1094,9 +1094,9 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_DATA_COBERTURA_FINAL")]
-		public ISingleResult<SP_SACAR_DATA_COBERTURA_FINALResult> SP_SACAR_DATA_COBERTURA_FINAL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cobertura", DbType="Int")] System.Nullable<int> cobertura, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina)
+		public ISingleResult<SP_SACAR_DATA_COBERTURA_FINALResult> SP_SACAR_DATA_COBERTURA_FINAL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cobertura", DbType="Int")] System.Nullable<int> cobertura, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioGenera", DbType="Decimal(18,0)")] System.Nullable<decimal> usuarioGenera)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, poliza, cobertura, oficina);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, poliza, cobertura, oficina, usuarioGenera);
 			return ((ISingleResult<SP_SACAR_DATA_COBERTURA_FINALResult>)(result.ReturnValue));
 		}
 	}
@@ -30588,6 +30588,14 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<int> _CantidadRegistros;
 		
+		private string _ValidadoDesde;
+		
+		private string _ValidadoHasta;
+		
+		private string _GeneradoPor;
+		
+		private string _Oficina;
+		
 		public SP_SACAR_DATA_COBERTURA_FINALResult()
 		{
 		}
@@ -31100,6 +31108,70 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadRegistros != value))
 				{
 					this._CantidadRegistros = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidadoDesde", DbType="NVarChar(4000)")]
+		public string ValidadoDesde
+		{
+			get
+			{
+				return this._ValidadoDesde;
+			}
+			set
+			{
+				if ((this._ValidadoDesde != value))
+				{
+					this._ValidadoDesde = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidadoHasta", DbType="NVarChar(4000)")]
+		public string ValidadoHasta
+		{
+			get
+			{
+				return this._ValidadoHasta;
+			}
+			set
+			{
+				if ((this._ValidadoHasta != value))
+				{
+					this._ValidadoHasta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GeneradoPor", DbType="VarChar(150)")]
+		public string GeneradoPor
+		{
+			get
+			{
+				return this._GeneradoPor;
+			}
+			set
+			{
+				if ((this._GeneradoPor != value))
+				{
+					this._GeneradoPor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="VarChar(100)")]
+		public string Oficina
+		{
+			get
+			{
+				return this._Oficina;
+			}
+			set
+			{
+				if ((this._Oficina != value))
+				{
+					this._Oficina = value;
 				}
 			}
 		}

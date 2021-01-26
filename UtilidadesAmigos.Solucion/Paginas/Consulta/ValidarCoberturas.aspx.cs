@@ -7,11 +7,15 @@ using System.Web.UI.WebControls;
 using System.Web.Security;
 using System.Data;
 using System.Data.SqlClient;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
     public partial class ValidarCoberturas : System.Web.UI.Page
     {
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSeguridad.LogicaSeguridad> ObjDataSeguridad = new Lazy<Logica.Logica.LogicaSeguridad.LogicaSeguridad>();
 
         enum CodigosCoberturas { 
         TuAsistencia=1,
@@ -30,7 +34,44 @@ namespace UtilidadesAmigos.Solucion.Paginas
         TuAsistenciaSuperior=37
         }
 
-        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
+
+
+        #region GENERAR REPORTE DE COBERTURAS
+        private void GenerarReporteCoberturas(string RutaReporte, string NombreReporte) {
+            string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            int? _PlanCobertura = ddlSeleccionarPlanCobertura.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue) : new Nullable<int>();
+            decimal? _UsuarioGenera = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0 ;
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+            Reporte.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
+            Reporte.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHasta.Text));
+            Reporte.SetParameterValue("@Poliza", _Poliza);
+            Reporte.SetParameterValue("@Cobertura", _PlanCobertura);
+            Reporte.SetParameterValue("@Oficina", _Oficina);
+            Reporte.SetParameterValue("@UsuarioGenera", _UsuarioGenera);
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+            if (rbExportarPDF.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
+            else if (rbExportarExel.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+            }
+            else if (rbExportartxt.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Text, Response, true, NombreReporte);
+            }
+            else if (rbExportarcsv.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreReporte);
+            }
+
+
+        }
+        #endregion
+
+
         #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
         int _PrimeraPagina, _UltimaPagina;
@@ -473,7 +514,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     Convert.ToDateTime(txtFechaHasta.Text),
                     _Poliza,
                     _Cobertura,
-                    _Oficina);
+                    _Oficina,
+                    null);
                 if (BuscarListadoCoberturas.Count() < 1)
                 {
                     lbCantidadRegistrosListadoGeneralVariable.Text = "0";
@@ -513,6 +555,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             Comando.Parameters.AddWithValue("@Poliza", SqlDbType.VarChar).Value = _Poliza;
             Comando.Parameters.AddWithValue("@Cobertura", SqlDbType.Int).Value = Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue);
             Comando.Parameters.AddWithValue("@Oficina", SqlDbType.Int).Value = _oficina;
+            //Comando.Parameters.AddWithValue("@UsuarioGenera", SqlDbType.Int).Value = _UsuarioGenera;
 
             Conexion.Open();
             SqlDataReader reader = Comando.ExecuteReader();
@@ -554,7 +597,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                        Convert.ToDateTime(txtFechaHasta.Text),
                        _Poliza,
                        PlanCobertura,
-                       _Oficina)
+                       _Oficina,
+                       null)
                                          select new
                                          {
                                              Poliza=n.Poliza,
@@ -592,7 +636,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                        Convert.ToDateTime(txtFechaHasta.Text),
                        _Poliza,
                        PlanCobertura,
-                       _Oficina)
+                       _Oficina,null)
                                          select new
                                          {
                                              Nombre=n.NombreCliente,
@@ -956,7 +1000,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnReporte_Click(object sender, EventArgs e)
         {
+            int CoberturaSeleccionada = Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue);
 
+            if (CoberturaSeleccionada == (int)CodigosCoberturas.CasaConductor || CoberturaSeleccionada == (int)CodigosCoberturas.AeroAmbulancia) {
+                string NombreReporte = "";
+                if (CoberturaSeleccionada == (int)CodigosCoberturas.CasaConductor) {
+                    NombreReporte = "Reporte de Casa del Conductor";
+                }
+                else if (CoberturaSeleccionada == (int)CodigosCoberturas.AeroAmbulancia) {
+                    NombreReporte = "Reporte de Aero Ambulancia";
+                }
+                GenerarReporteCoberturas(Server.MapPath("ReporteCoberturaCasaConductor.rpt"), NombreReporte);
+            }
         }
 
         protected void LinkPrimeraListadoPrincipal_Click(object sender, EventArgs e)
