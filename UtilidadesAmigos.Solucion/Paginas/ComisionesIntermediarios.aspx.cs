@@ -271,6 +271,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
+
+
         #region IMPRIMIR REPORTE
         private void ImprimirFactura(decimal IdUsuario, string RutaReporte, string UsuaruoBD, string ClaveBD, string NombreArchivo)
         {

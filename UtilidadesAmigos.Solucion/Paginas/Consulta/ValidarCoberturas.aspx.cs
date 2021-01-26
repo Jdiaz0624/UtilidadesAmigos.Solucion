@@ -993,7 +993,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnSeleccionarCobertura_Click(object sender, EventArgs e)
         {
             var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfIdCobertura = ((HiddenField)ItemSeleccionado.FindControl("IdCobertura")).Value.ToString();
+            var hfIdCobertura = ((HiddenField)ItemSeleccionado.FindControl("hfIdCobertura")).Value.ToString();
             lbIdCobertura.Text = hfIdCobertura.ToString();
 
             var SeleccionarRegistro = ObjData.Value.BuscaCoberturaMantenimiento(Convert.ToDecimal(hfIdCobertura), null);
@@ -1043,6 +1043,23 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnSeleccionarPlanCobertura_Click(object sender, EventArgs e)
         {
+            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfIdPlanCobertura = ((HiddenField)ItemSeleccionado.FindControl("hfIdPlanCobertura")).Value.ToString();
+
+            var MostrarPlanCoberturaSeleccionado = ObjData.Value.BuscaPlanCoberturas(Convert.ToDecimal(hfIdPlanCobertura));
+            Paginar(ref rpListadoPlanCobertura, MostrarPlanCoberturaSeleccionado, 1, ref lbCantidadPaginaVariablePlanCoberturas, ref LinkPrimeroPlanCobertura, ref LinkAnteriorPlanCobertura, ref LinkSiguientePlanCobertura, ref LinkUltimoPlanCobertura);
+            HandlePaging(ref dlPlanCobertura, ref lbPaginaActualVariablePlanCoberturas);
+            lbIdMantenimientoPlanCobertura.Text = hfIdPlanCobertura.ToString();
+
+            foreach (var n in MostrarPlanCoberturaSeleccionado) {
+                CargarPlanCoberturas();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlCoberturaPlanCobertura, n.IdCobertura.ToString());
+                txtCodigoCoberturaPlanCobertura.Text = n.CodigoCobertura.ToString();
+                txtPlanCobertura.Text = n.PlanCobertura;
+                cbEstatusPlanCobertura.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
+            }
+
+            txtCodigoCoberturaPlanCobertura.Enabled = false;
 
         }
 

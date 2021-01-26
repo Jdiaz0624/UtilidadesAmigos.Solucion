@@ -393,7 +393,7 @@
                     </table>
                 </div>
             </div>
-          
+          <br />
 
     <!--FIN DEL GRID-->
                   <br />
@@ -506,11 +506,12 @@
                 </div>
             </div>
                   <br />
-              </ContentTemplate>
-          </asp:UpdatePanel>
-          <div align="center">
+                  <div align="center">
               <asp:Button ID="btnGuardarPlanCobertura" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnGuardarPlanCobertura_Click" ToolTip="Guardar Registro" />
     </div>
+              </ContentTemplate>
+          </asp:UpdatePanel>
+          
           <br />
       </div>
     </div>
