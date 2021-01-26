@@ -1000,18 +1000,45 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnReporte_Click(object sender, EventArgs e)
         {
-            int CoberturaSeleccionada = Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue);
-
-            if (CoberturaSeleccionada == (int)CodigosCoberturas.CasaConductor || CoberturaSeleccionada == (int)CodigosCoberturas.AeroAmbulancia) {
-                string NombreReporte = "";
-                if (CoberturaSeleccionada == (int)CodigosCoberturas.CasaConductor) {
-                    NombreReporte = "Reporte de Casa del Conductor";
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim())) {
+                ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim())){
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
                 }
-                else if (CoberturaSeleccionada == (int)CodigosCoberturas.AeroAmbulancia) {
-                    NombreReporte = "Reporte de Aero Ambulancia";
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim())){
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
                 }
-                GenerarReporteCoberturas(Server.MapPath("ReporteCoberturaCasaConductor.rpt"), NombreReporte);
             }
+            else {
+                int CoberturaSeleccionada = Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue);
+
+                if (CoberturaSeleccionada == (int)CodigosCoberturas.CasaConductor || CoberturaSeleccionada == (int)CodigosCoberturas.AeroAmbulancia)
+                {
+                    string NombreReporte = "";
+                    if (CoberturaSeleccionada == (int)CodigosCoberturas.CasaConductor)
+                    {
+                        NombreReporte = "Reporte de Casa del Conductor";
+                    }
+                    else if (CoberturaSeleccionada == (int)CodigosCoberturas.AeroAmbulancia)
+                    {
+                        NombreReporte = "Reporte de Aero Ambulancia";
+                    }
+                    GenerarReporteCoberturas(Server.MapPath("ReporteCoberturaCasaConductor.rpt"), NombreReporte);
+                }
+                else if (CoberturaSeleccionada == (int)CodigosCoberturas.TuAsistencia)
+                {
+                    if (rbExportarcsv.Checked == true || rbExportartxt.Checked == true)
+                    {
+                        GenerarReporteCoberturas(Server.MapPath("ReporteCoberturaTuAsistenciaArchivoPlano.rpt"), "Reporte de Tu Asistencia");
+                    }
+                    else
+                    {
+                        GenerarReporteCoberturas(Server.MapPath("ReporteCoberturaTuAsistencia.rpt"), "Reporte de Tu Asistencia");
+                    }
+
+                }
+            }
+          
         }
 
         protected void LinkPrimeraListadoPrincipal_Click(object sender, EventArgs e)
