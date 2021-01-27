@@ -10,7 +10,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 {
     public partial class ConsumoWS : System.Web.UI.Page
     {
-        UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.ConsultarInformacionPolizasSoapClient WSSuperIntenedencia = new WSConsultaSuperIntendencia.ConsultarInformacionPolizasSoapClient();
+      //  UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.ConsultarInformacionPolizasSoapClient WSSuperIntenedencia = new WSConsultaSuperIntendencia.ConsultarInformacionPolizasSoapClient();
         #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
         int _PrimeraPagina, _UltimaPagina;
@@ -198,34 +198,34 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (Operacion == (int)OpcionesConsulta.RamoPoliza)
             {
 
-                var Buscar = WSSuperIntenedencia.Buscar_Ramo_Poliza(_Poliza);
-                rpConsultaRamoPoliza.DataSource = Buscar;
-                rpConsultaRamoPoliza.DataBind();
+                //var Buscar = WSSuperIntenedencia.Buscar_Ramo_Poliza(_Poliza);
+                //rpConsultaRamoPoliza.DataSource = Buscar;
+                //rpConsultaRamoPoliza.DataBind();
             }
             else if (Operacion == (int)OpcionesConsulta.Vehiculo) {
-                var Buscar = WSSuperIntenedencia.Busca_Datos_Vehiculo_Motor(
-                    _Poliza,
-                    _Item,
-                    _NombreCliente,
-                    _Numeroidentificacion,
-                    _NombreAsegurado,
-                    _Chasis,
-                    _Placa);
-                if (Buscar.Count() < 1)
-                {
-                    lbCantidadregistrosvariableVehiculomotor.Text = "0";
-                    rpListadoVehiculomotor.DataSource = null;
-                    rpListadoVehiculomotor.DataBind();
-                }
-                else {
-                    int CantidadRegistros = 0;
-                    foreach (var n in Buscar) {
-                        CantidadRegistros = (int)n.CantidadRegistros;
-                    }
-                    lbCantidadregistrosvariableVehiculomotor.Text = CantidadRegistros.ToString("N0");
-                    Paginar(ref rpListadoVehiculomotor, Buscar, 10, ref lbCantidadPaginaVariableVehiculoMotor, ref LinkPrimeraVehiculoMotor, ref LinkAnteriorVehiculoMotor, ref LinkSiguienteVehiculoMotor, ref LinkUltimoVehiculoMotor);
-                    HandlePaging(ref dtPaginacionVehiculoMotor, ref lbPaginaActualVariableVehiculoMotor);
-                }
+                //var Buscar = WSSuperIntenedencia.Busca_Datos_Vehiculo_Motor(
+                //    _Poliza,
+                //    _Item,
+                //    _NombreCliente,
+                //    _Numeroidentificacion,
+                //    _NombreAsegurado,
+                //    _Chasis,
+                //    _Placa);
+                //if (Buscar.Count() < 1)
+                //{
+                //    lbCantidadregistrosvariableVehiculomotor.Text = "0";
+                //    rpListadoVehiculomotor.DataSource = null;
+                //    rpListadoVehiculomotor.DataBind();
+                //}
+                //else {
+                //    int CantidadRegistros = 0;
+                //    foreach (var n in Buscar) {
+                //        CantidadRegistros = (int)n.CantidadRegistros;
+                //    }
+                //    lbCantidadregistrosvariableVehiculomotor.Text = CantidadRegistros.ToString("N0");
+                //    Paginar(ref rpListadoVehiculomotor, Buscar, 10, ref lbCantidadPaginaVariableVehiculoMotor, ref LinkPrimeraVehiculoMotor, ref LinkAnteriorVehiculoMotor, ref LinkSiguienteVehiculoMotor, ref LinkUltimoVehiculoMotor);
+                //    HandlePaging(ref dtPaginacionVehiculoMotor, ref lbPaginaActualVariableVehiculoMotor);
+                //}
             }
 
 
