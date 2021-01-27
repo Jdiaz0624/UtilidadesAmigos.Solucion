@@ -166,6 +166,7 @@
     <Content Include="Paginas\ComisionesIntermediarios.aspx" />
     <Content Include="Paginas\ComisionesSupervisores.aspx" />
     <Content Include="Paginas\Consulta\ListadoRenovacion.aspx" />
+    <Content Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx" />
     <Content Include="Paginas\Consulta\ValidarCoberturas.aspx" />
     <Content Include="Paginas\ConsumoWS.aspx" />
     <Content Include="Paginas\DatosPoliza.aspx" />
@@ -327,7 +328,6 @@
     <Content Include="Paginas\ProduccionDiaria.aspx" />
     <Content Include="Paginas\ProduccionPorUsuarios.aspx" />
     <Content Include="Paginas\prueba.aspx" />
-    <Content Include="Paginas\ReporteOperacionesSospechosas.aspx" />
     <Content Include="Paginas\SacarDataCoberturas.aspx" />
     <Content Include="Paginas\ServiciosFijos.aspx" />
     <Content Include="Paginas\TipoCotizador.aspx" />
@@ -398,6 +398,13 @@
     </Compile>
     <Compile Include="Paginas\Consulta\ListadoRenovacion.aspx.designer.cs">
       <DependentUpon>ListadoRenovacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx.cs">
+      <DependentUpon>ReporteOperacionesSospechosas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx.designer.cs">
+      <DependentUpon>ReporteOperacionesSospechosas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Consulta\ValidarCoberturas.aspx.cs">
       <DependentUpon>ValidarCoberturas.aspx</DependentUpon>
@@ -656,13 +663,6 @@
     </Compile>
     <Compile Include="Paginas\prueba.aspx.designer.cs">
       <DependentUpon>prueba.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\ReporteOperacionesSospechosas.aspx.cs">
-      <DependentUpon>ReporteOperacionesSospechosas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\ReporteOperacionesSospechosas.aspx.designer.cs">
-      <DependentUpon>ReporteOperacionesSospechosas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ReporteProduccionIntermediarioSupervisor.aspx.cs">
       <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>

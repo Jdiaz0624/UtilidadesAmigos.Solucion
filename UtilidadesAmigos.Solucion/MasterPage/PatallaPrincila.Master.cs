@@ -117,7 +117,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkGenerarReporteUAF_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Paginas/ReporteOperacionesSospechosas.aspx");
+            Response.Redirect("~/Paginas/Consulta/ReporteOperacionesSospechosas.aspx");
         }
 
         protected void linkGenerarReporteCoberturas_Click(object sender, EventArgs e)
