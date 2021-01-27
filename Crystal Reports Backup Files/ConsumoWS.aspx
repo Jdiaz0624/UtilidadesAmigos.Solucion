@@ -3,9 +3,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <style type="text/css">
-        .jumbotron{
+         .jumbotron{
             color:#000000; 
-            background:#7BC5FF;
+            background:#1E90FF;
             font-size:30px;
             font-weight:bold;
             font-family:'Gill Sans';
@@ -13,11 +13,21 @@
         }
 
         .btn-sm{
-            width:100px;
+            width:90px;
         }
-          .LetrasNegrita {
-          font-weight:bold;
-          }
+
+        .Letranegrita {
+        font-weight:bold;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        
+
+        th {
+            background-color: dodgerblue;
+            color: white;
+        }
     </style>
 
 
@@ -96,26 +106,113 @@
         <br />
 
           <!--INICIO DEL GRID-->
-    <div class="container-fluid">
-            <asp:GridView ID="gvListadoPantalla" runat="server" AllowPaging="true" OnPageIndexChanging="gvListadoPantalla_PageIndexChanging" OnSelectedIndexChanged="gvListadoPantalla_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    <asp:BoundField DataField="Poliza" HeaderText="ID" />
-                    <asp:BoundField DataField="Item" HeaderText="Sucursal" />
-                    <asp:BoundField DataField="Cliente" HeaderText="Oficina" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
+        <div align="center">
+            <asp:Label ID="lbTituloConsultaRamoPoliza" runat="server" Text="CONSULTAR EL RAMO DE UNA POLIZA" CssClass="Letranegrita"></asp:Label>
+        </div>
+    <div id="DivBloqueIdentificarRamoPoliza" runat="server">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="width:50%"> <asp:Label ID="lbPolizaHeaderConsultaRamo" runat="server" Text="Poliza" CssClass="Letranegrita"  ></asp:Label> </th>
+                        <th style="width:50%"> <asp:Label ID="lbRamoGeaderConsultaPoliza" runat="server" Text="Ramo" CssClass="Letranegrita"></asp:Label> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rpConsultaRamoPoliza" runat="server">
+                        <ItemTemplate>
+                            <tr class="Letranegrita">
+                                <td style="width:50%"> <%# Eval("Poliza") %> </td>
+                                <td style="width:50%"> <%# Eval("Ramo") %> </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+        <div id="DivBloqueConsultaVehiculoMotor" runat="server">
+             <div align="center">
+            <asp:Label ID="Label1" runat="server" Text="CONSULTAR DATOS EN VEHICULO DE MOTOR" CssClass="Letranegrita"></asp:Label>
+                 <br />
+                 <asp:Label ID="lbCantidadregistrosTituloVehiculomotor" runat="server" Text="Cantidad de registros ( " CssClass="Letranegrita"></asp:Label>
+                 <asp:Label ID="lbCantidadregistrosvariableVehiculomotor" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                 <asp:Label ID="lbCantidadregistrosCerrarVehiculomotor" runat="server" Text=" ) " CssClass="Letranegrita"></asp:Label>
+                 <br />
+        </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th align="center" style="width:10%"> <asp:Label ID="lbDetalleVehiculoMoor" runat="server" Text="Detalle" CssClass="Letranegrita"></asp:Label> </th>
+                            <th align="center" style="width:10%"> <asp:Label ID="lbPolizaVehiculoMotor" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
+                            <th align="center" style="width:35%"> <asp:Label ID="lbClienteVehiculoMotor" runat="server" Text="Cliente" CssClass="Letranegrita"></asp:Label> </th>
+                            <th align="center" style="width:10%"> <asp:Label ID="lbInicioVehiculoMotor" runat="server" Text="Inicio" CssClass="Letranegrita"></asp:Label> </th>
+                            <th align="center" style="width:10%"> <asp:Label ID="lbFinVehiculoMotor" runat="server" Text="Fin" CssClass="Letranegrita"></asp:Label> </th>
+                            <th align="center" style="width:5%"> <asp:Label ID="lbEstatusVehiculoMotor" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
+                            <th align="center" style="width:10%"> <asp:Label ID="lbChasisVehiculoMotor" runat="server" Text="Chasis" CssClass="Letranegrita"></asp:Label> </th>
+                            <th align="center" style="width:10%"> <asp:Label ID="lbPlacavehiculoMotor" runat="server" Text="Placa" CssClass="Letranegrita"></asp:Label> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Repeater ID="rpListadoVehiculomotor" runat="server">
+                            <ItemTemplate>
+                                <tr>
+                                    <asp:HiddenField ID="hfPolizaVehiculoMotor" runat="server" Value='<%# Eval("Poliza") %>' />
+                                    <asp:HiddenField ID="hfItenVehiculoMotor" runat="server" Value='<%# Eval("Item") %>' />
+                                    <asp:HiddenField ID="hfNombreClienteVehiculoMotor" runat="server" Value='<%# Eval("Cliente") %>' />
+                                    <asp:HiddenField ID="hfNumeroIdentificacionVehiculomotor" runat="server" Value='<%# Eval("RNC") %>' />
+                                    <asp:HiddenField ID="hfNombreAseguradoVehiculoMotor" runat="server" Value='<%# Eval("Nombre_Asegurado") %>' />
+                                    <asp:HiddenField ID="hfChasisVehiculoMotor" runat="server" Value='<%# Eval("Chasis") %>' />
+                                    <asp:HiddenField ID="hfPlacaVehiculoMotor" runat="server" Value='<%# Eval("Placa") %>' />
+
+                                     <td style="width:10%"> <asp:Button ID="btnDetalleVehiculoMotor" runat="server" Text="Detalle" ToolTip="Mostrar el Detalle de Vehiculo de Motor" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnDetalleVehiculoMotor_Click" />  </td>
+                                     <td style="width:10%"> <%# Eval("Poliza") %> </td>
+                                     <td style="width:35%"> <%# Eval("Cliente") %> </td>
+                                     <td style="width:10%"> <%# Eval("Inicio") %> </td>
+                                     <td style="width:10%"> <%# Eval("Fin") %> </td>
+                                     <td style="width:5%"> <%# Eval("Estatus") %>  </td>
+                                     <td style="width:10%"> <%# Eval("Chasis") %> </td>
+                                     <td style="width:10%"> <%# Eval("Placa") %> </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+            </div>
+
+             <div align="center">
+                <asp:Label ID="lbPaginaActualTituloVehiculoMotor" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariableVehiculoMotor" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloVehiculoMotor" runat="server" Text="De " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariableVehiculoMotor" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+
+             <div id="DivPaginacionVehiculoMotor" runat="server" align="center" >
+                <div style="margin-top=20px;">
+                    <table style="width:600px;">
+                        <tr>
+                            <td> <asp:LinkButton ID="LinkPrimeraVehiculoMotor" runat="server" Text="Primero" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraVehiculoMotor_Click" CssClass="btn btn-outline-success btn-sm"  ></asp:LinkButton> </td>
+                            <td> <asp:LinkButton ID="LinkAnteriorVehiculoMotor" runat="server" Text="Anterior" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorVehiculoMotor_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td>
+                                <asp:DataList ID="dtPaginacionVehiculoMotor" runat="server" OnCancelCommand="dtPaginacionVehiculoMotor_CancelCommand" OnItemDataBound="dtPaginacionVehiculoMotor_ItemDataBound" RepeatDirection="Horizontal" >
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="LinkIndiceVehiculoMotor" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="NuevaPagina" Text='<%# Eval("TextoPagina")%>' Width="20px"></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:DataList>
+
+                            </td>
+                            <td> <asp:LinkButton ID="LinkSiguienteVehiculoMotor" runat="server" Text="Siguiente" ToolTip="Ir la Siguiente pagina del listado" OnClick="LinkSiguienteVehiculoMotor_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td> <asp:LinkButton ID="LinkUltimoVehiculoMotor" runat="server" Text="Ultmo" ToolTip="Ir a la Ultima Pagina del listado" OnClick="LinkUltimoVehiculoMotor_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                           
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br />
+        </div>
+        <br /><br />
     <!--FIN DEL GRID-->
     </div>
 </asp:Content>

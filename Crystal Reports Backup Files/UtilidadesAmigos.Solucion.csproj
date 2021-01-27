@@ -40,7 +40,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -120,6 +120,13 @@
   <ItemGroup>
     <Content Include="Cargando.gif" />
     <Content Include="cargando2.gif" />
+    <None Include="Connected Services\WSConsultaSuperIntendencia\consultarinformacionpolizas.disco" />
+    <None Include="Connected Services\WSConsultaSuperIntendencia\configuration91.svcinfo" />
+    <None Include="Connected Services\WSConsultaSuperIntendencia\configuration.svcinfo" />
+    <None Include="Connected Services\WSConsultaSuperIntendencia\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -156,6 +163,97 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Connected Services\WSConsultaSuperIntendencia\consultarinformacionpolizas.wsdl" />
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.BuscaDependientesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.BuscaNumeroItemsPolizaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.Buscar_Datos_OdontologogiaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.Buscar_Poliza_Responsabilidad_CivilResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.Buscar_Ramo_PolizaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.Busca_Datos_FidelidadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.Busca_Datos_Incendio_aliadasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.Busca_Datos_Naves_Maritimas_AereasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.Busca_Datos_Ramos_TecnicosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.Busca_Datos_SaludResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.Busca_Datos_TransPorte_CargaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.Busca_Datos_Vehiculo_MotorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.Busca_Datos_Vida_ColectivoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.Busca_Datos_Vida_IndividualResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.Busca_Dato_FianzasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.EBuscaDependientes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.EBuscaItemsPoliza.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.EBuscaRamoPoliza.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.EFianzas.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.EFidelidad.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.EIncendioAliadas.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.ENavesMaritimasAereas.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.EOdontologico.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.ERamosTecnicos.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.EResponsabilidadCivil.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.ESalud.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.ETransporteCarga.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.EVehiculoMotor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.EVidaColectivo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSConsultaSuperIntendencia\UtilidadesAmigos.Solucion.WSConsultaSuperIntendencia.EVidaIndividual.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile10.pubxml" />
@@ -184,6 +282,8 @@
     <None Include="Properties\PublishProfiles\FolderProfile31.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile32.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile33.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile34.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile35.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile4.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile5.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile6.pubxml" />
@@ -193,6 +293,8 @@
     <None Include="Properties\PublishProfiles\Prueba.pubxml" />
     <Content Include="Paginas\ComisionesIntermediarios.aspx" />
     <Content Include="Paginas\ComisionesSupervisores.aspx" />
+    <Content Include="Paginas\Consulta\ListadoRenovacion.aspx" />
+    <Content Include="Paginas\Consulta\ValidarCoberturas.aspx" />
     <Content Include="Paginas\ConsumoWS.aspx" />
     <Content Include="Paginas\DatosPoliza.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
@@ -200,11 +302,11 @@
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
     <Content Include="Paginas\GenerarMarbetes.aspx" />
     <Content Include="Paginas\GenerarReporteAntiguedadSaldo.aspx" />
+    <Content Include="Paginas\GenerarReporteCobros.aspx" />
     <Content Include="Paginas\GenerarReporteFianzas.aspx" />
     <Content Include="Paginas\GenerarSolicitudChequeComisionesIntermediarios.aspx" />
     <Content Include="Paginas\IntermediariosSupervisores.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
-    <Content Include="Paginas\ListadoRenovacion.aspx" />
     <Content Include="Paginas\LoginSistema.aspx" />
     <Content Include="Paginas\MantenimeintoPerfiles.aspx" />
     <Content Include="Paginas\MantenimientoClaveSeguridad.aspx" />
@@ -217,6 +319,7 @@
     <Content Include="Paginas\SistemaTicket.aspx" />
     <Content Include="Paginas\SolicitudEmisionPoliza.aspx" />
     <Content Include="Paginas\SolicitudSeguroLey.aspx" />
+    <Content Include="Paginas\SuperIntendencia\ConsultaPersonas.aspx" />
     <Content Include="scripts\bootstrap.bundle.js" />
     <Content Include="scripts\bootstrap.bundle.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -356,7 +459,6 @@
     <Content Include="Paginas\SacarDataCoberturas.aspx" />
     <Content Include="Paginas\ServiciosFijos.aspx" />
     <Content Include="Paginas\TipoCotizador.aspx" />
-    <Content Include="Paginas\ValidarCoberturas.aspx" />
     <Content Include="Paginas\ValorVehiculo.aspx" />
     <Content Include="Paginas\ValorVehiculoCotizador.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -375,6 +477,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Traducciones.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\WSConsultaSuperIntendencia\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="MasterPage\PatallaPrincila.Master.cs">
       <DependentUpon>PatallaPrincila.Master</DependentUpon>
@@ -417,6 +524,20 @@
     </Compile>
     <Compile Include="Paginas\ComprensivoIncendioRoboPoPup.aspx.designer.cs">
       <DependentUpon>ComprensivoIncendioRoboPoPup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Consulta\ListadoRenovacion.aspx.cs">
+      <DependentUpon>ListadoRenovacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Consulta\ListadoRenovacion.aspx.designer.cs">
+      <DependentUpon>ListadoRenovacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Consulta\ValidarCoberturas.aspx.cs">
+      <DependentUpon>ValidarCoberturas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Consulta\ValidarCoberturas.aspx.designer.cs">
+      <DependentUpon>ValidarCoberturas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ConsumoWS.aspx.cs">
       <DependentUpon>ConsumoWS.aspx</DependentUpon>
@@ -508,6 +629,13 @@
     <Compile Include="Paginas\GenerarReporteAntiguedadSaldo.aspx.designer.cs">
       <DependentUpon>GenerarReporteAntiguedadSaldo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\GenerarReporteCobros.aspx.cs">
+      <DependentUpon>GenerarReporteCobros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\GenerarReporteCobros.aspx.designer.cs">
+      <DependentUpon>GenerarReporteCobros.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\GenerarReporteFianzas.aspx.cs">
       <DependentUpon>GenerarReporteFianzas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -535,13 +663,6 @@
     </Compile>
     <Compile Include="Paginas\Inventario.aspx.designer.cs">
       <DependentUpon>Inventario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\ListadoRenovacion.aspx.cs">
-      <DependentUpon>ListadoRenovacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\ListadoRenovacion.aspx.designer.cs">
-      <DependentUpon>ListadoRenovacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -725,19 +846,19 @@
     <Compile Include="Paginas\SolicitudSeguroLey.aspx.designer.cs">
       <DependentUpon>SolicitudSeguroLey.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\SuperIntendencia\ConsultaPersonas.aspx.cs">
+      <DependentUpon>ConsultaPersonas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\SuperIntendencia\ConsultaPersonas.aspx.designer.cs">
+      <DependentUpon>ConsultaPersonas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\TipoCotizador.aspx.cs">
       <DependentUpon>TipoCotizador.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\TipoCotizador.aspx.designer.cs">
       <DependentUpon>TipoCotizador.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\ValidarCoberturas.aspx.cs">
-      <DependentUpon>ValidarCoberturas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\ValidarCoberturas.aspx.designer.cs">
-      <DependentUpon>ValidarCoberturas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ValorVehiculo.aspx.cs">
       <DependentUpon>ValorVehiculo.aspx</DependentUpon>
@@ -793,6 +914,12 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\WSConsultaSuperIntendencia\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

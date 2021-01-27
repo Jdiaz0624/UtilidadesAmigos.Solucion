@@ -127,6 +127,7 @@
     <Compile Include="Comunes\Reportes\ProcesarInformacionProduccuinPorUsuarioDetalle.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionReporteComisionIntermediario.cs" />
     <Compile Include="Comunes\Reportes\ProcesarProduccionPorUsuarioResumido.cs" />
+    <Compile Include="Comunes\SacarNombreIntermediarioSupervisor.cs" />
     <Compile Include="Comunes\SacarNumeroCotizacionPoliza.cs" />
     <Compile Include="Comunes\SacartasaMoneda.cs" />
     <Compile Include="Comunes\SeguridadEncriptacion.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="Entidades\ESacarDataCasaConductor.cs" />
     <Compile Include="Entidades\ESacarDataCedensa.cs" />
     <Compile Include="Entidades\ESacarDataCobertura.cs" />
+    <Compile Include="Entidades\ESacarDataCoberturasFinal.cs" />
     <Compile Include="Entidades\ESacarDataTuAsistencia.cs" />
     <Compile Include="Entidades\ESacarDatosDatosPoliza.cs" />
     <Compile Include="Entidades\ESacarDatosIntermediarios.cs" />
@@ -281,8 +283,15 @@
     <Compile Include="Entidades\Procesos\EProcesarHistoricoImprsionMarbete.cs" />
     <Compile Include="Entidades\Procesos\EProcesarInformacionMarbetes.cs" />
     <Compile Include="Entidades\ProduccionPorUsuario.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaDataCobradoDetalle.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDatosProduccionNoAgrupadoResumen.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDatosProducionNoAgrupadoDetalle.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaReporteAgrupadoPorUsuario.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadaSupervisor.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoOficina.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoPorConcepto.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoPorIntermediario.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoRamo.cs" />
     <Compile Include="Entidades\Reportes\EDatosProduccionReporte.cs" />
     <Compile Include="Entidades\Reportes\EProcesarDatosReporteIntermediairoInterno.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionDatosGraficos.cs" />
@@ -292,6 +301,12 @@
     <Compile Include="Entidades\Reportes\EReporteProduccionOrigen.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
+    <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaAseurados.cs" />
+    <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaProveedor.cs" />
+    <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendencia.cs" />
+    <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendenciaAseguradoGeneral.cs" />
+    <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendenciaIntermediario.cs" />
+    <Compile Include="Entidades\SuperIntendencia\EBuscarPersonasDependientes.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
     <Compile Include="Logica\LogicaOpcionesAdministrador\LogicaOpcionesdministrador.cs" />
@@ -299,6 +314,7 @@
     <Compile Include="Logica\LogicaReportes\ProduccionPorUsuarioResumido.cs" />
     <Compile Include="Logica\LogicaSeguridad\LogicaSeguridad.cs" />
     <Compile Include="Logica\LogicaSistema.cs" />
+    <Compile Include="Logica\LogicaSuperIntendencia\LogicaSuperIntendencia.cs" />
     <Compile Include="ProcesoInformacion\ProcesarInformacionModificarCoberturaPoliza.cs" />
     <Compile Include="ProcesoInformacion\ProcesarInformacionUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -24,6 +24,9 @@
     </style>
 
     <script type="text/javascript">
+        function OpcionNoDisponible() {
+            alert("Esta Opcion no esta disponible por el momento");
+        }
         function CamposVacios() {
             alert("Has dejado campos vacios que son necesarios para realizar esta consulta, favor de verificar");
         }
@@ -54,12 +57,6 @@
                   }
             });
 
-            $("#<%=btnReporte.ClientID%>").click(function () {
-                var Tasa = $("#<%=txtTasa.ClientID%>").val().length;
-                if(Tasa < 1) {
-                    CampoTasaVAcio();
-                  }
-              });
         })
     </script>
    <div class="container-fluid">
@@ -74,8 +71,12 @@
            <div class="form-group form-check">
                <asp:Label ID="lbTipoAgrupacion" runat="server" Text="Agrupar Datos" CssClass="Letranegrita"></asp:Label><br />
                <asp:RadioButton ID="rbNoAgrupar" runat="server" Text="No agrupar" GroupName="AgruparData" ToolTip="No Agrupar Informacion" CssClass="form-check-input Letranegrita" />
-               <asp:RadioButton ID="rbAgruparConcepto" runat="server" Text="Concepto" GroupName="AgruparData" ToolTip="Agrupar Informacion por Concepto" CssClass="form-check-input Letranegrita" />
-                <asp:RadioButton ID="rbAgruparPorUsuarios" runat="server" Text="Usuario" GroupName="AgruparData" ToolTip="Agrupar Información por usuario" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbAgruparConcepto" runat="server" Text="Concepto"  GroupName="AgruparData" ToolTip="Agrupar Informacion por Concepto" CssClass="form-check-input Letranegrita" />
+                <asp:RadioButton ID="rbAgruparPorUsuarios" runat="server" Text="Usuario" GroupName="AgruparData" ToolTip="Agrupar Información por Usuario" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbAgruparPorOficina" runat="server" Text="Oficina" GroupName="AgruparData" ToolTip="Agrupar Información por Oficina" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbAgruparPorRamo" runat="server" Text="Ramo" GroupName="AgruparData" ToolTip="Agrupar Información por Ramo" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbAgruparPorIntermediario" runat="server" Text="Intermediario" GroupName="AgruparData" ToolTip="Agrupar Información por Intermediario" CssClass="form-check-input Letranegrita" />
+               <asp:RadioButton ID="rbAgruparPorSupervisor" runat="server" Text="Supervisor" GroupName="AgruparData" ToolTip="Agrupar Información por Supervisor" CssClass="form-check-input Letranegrita" />
                
          <%--      <asp:RadioButton ID="rbOficina" runat="server" Text="Oficina" GroupName="AgruparData" CssClass="form-check-input Letranegrita" />
                <asp:RadioButton ID="rbRamo" runat="server" Text="Ramo" ToolTip="Consultar Por Ramo" GroupName="AgruparData" CssClass="form-check-input Letranegrita" />--%>
@@ -142,12 +143,26 @@
                <asp:Label ID="lbTasa" runat="server" Text="Tasa" CssClass="Letranegrita"></asp:Label>
                <asp:TextBox ID="txtTasa" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
            </div>
+           <div class="form-group col-md-6">
+               <asp:Label ID="lbSeleccionarCocepto" runat="server"  Text="Seleccionar Concepto" CssClass="Letranegrita"></asp:Label>
+               <asp:DropDownList ID="ddlSeleccionarConcepto" runat="server"  ToolTip="Seleccionar Concepto" CssClass="form-control"></asp:DropDownList>
+           </div>
        </div>
        <br />
+       <asp:Label ID="lbFormatoExportacion" runat="server" Text="Exportar a" CssClass="Letranegrita"></asp:Label>
+       <div class="form-check-inline">
+           <div class="form-group form-check">
+               <asp:RadioButton ID="rbExportarPDF" runat="server" Text="PDF" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a PDF" GroupName="ExportarInformacion" />
+                <asp:RadioButton ID="rbExportarExel" runat="server" Text="Excel" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a Excel" GroupName="ExportarInformacion" />
+                <asp:RadioButton ID="rbExportarWord" runat="server" Text="Word" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a Word" GroupName="ExportarInformacion" />
+                <asp:RadioButton ID="rbExportartxt" runat="server" Text="TXT" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a TXT" GroupName="ExportarInformacion" />
+                <asp:RadioButton ID="rbExportarXML" runat="server" Text="XML" CssClass="form-check-input Letranegrita" Visible="false" ToolTip="Exportar Reporte a XML" GroupName="ExportarInformacion" />
+                <asp:RadioButton ID="rbExportarCSV" runat="server" Text="CSV" CssClass="form-check-input Letranegrita" ToolTip="Exportar Reporte a CSV" GroupName="ExportarInformacion" />
+           </div>
+       </div>
        <div align="center">
                      <asp:Button ID="btnConsultar" runat="server" Text="Consulta" CssClass="btn btn-outline-primary btn-sm" OnClick="btnConsultar_Click" ToolTip="Consultar por Pantalla"/>
            <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportar_Click" ToolTip="Exportar a excel" />
-           <asp:Button ID="btnReporte" runat="server" Text="Reporte" CssClass="btn btn-outline-primary btn-sm" OnClick="btnReporte_Click" ToolTip="Generar Reporte" />
 
                  </div>
        <hr />
