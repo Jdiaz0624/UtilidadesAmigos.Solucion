@@ -30,6 +30,68 @@
         }
     </style>
 
+    <script type="text/javascript">
+        function CamposFechaVacios() {
+            alert("Los campos fecha no pueden estar vacios para realizar esta operación, favor de verificar.");
+        }
+        function CampoFechaDesdeVacio() {
+            $("#<%=txtFechaDesde.ClientID%>").css("border-color", "red");
+        }
+        function CampoFechaHastaVacio() {
+            $("#<%=txtFechaHasta.ClientID%>").css("border-color", "red");
+        }
+        $(document).ready(function () {
+            $("#<%=btnConsultarRegistros.ClientID%>").click(function () {
+                var TipoOperacion = $("#<%=ddlSeleccionarTipoOperacion.ClientID%>").val();
+                if (TipoOperacion < 1) {
+                    alert("El campo tipo de operación no puede estar vacio, favor de verificar.");
+                    $("#<%=ddlSeleccionarTipoOperacion.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+                    var MontoOperacion = $("#<%=txtMontoCondicion.ClientID%>").val().length;
+                    if (MontoOperacion < 1) {
+                        alert("El camo Monto de Condición no puede estar vacio, favor de verificar.");
+                        $("#<%=txtMontoCondicion.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else {
+                        var Tasa = $("#<%=txtTasa.ClientID%>").val().length;
+                        if (Tasa < 1) {
+                            alert("El campo tasa no puede estar vacio, favoe de verificar.");
+                            $("#<%=txtTasa.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
+                    }
+                }
+            });
+
+            $("#<%=btnExportarRegistros.ClientID%>").click(function () {
+                var TipoOperacion = $("#<%=ddlSeleccionarTipoOperacion.ClientID%>").val();
+                 if (TipoOperacion < 1) {
+                     alert("El campo tipo de operación no puede estar vacio, favor de verificar.");
+                     $("#<%=ddlSeleccionarTipoOperacion.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+                    var MontoOperacion = $("#<%=txtMontoCondicion.ClientID%>").val().length;
+                    if (MontoOperacion < 1) {
+                        alert("El camo Monto de Condición no puede estar vacio, favor de verificar.");
+                        $("#<%=txtMontoCondicion.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else {
+                        var Tasa = $("#<%=txtTasa.ClientID%>").val().length;
+                        if (Tasa < 1) {
+                            alert("El campo tasa no puede estar vacio, favoe de verificar.");
+                             $("#<%=txtTasa.ClientID%>").css("border-color", "red");
+                             return false;
+                         }
+                     }
+                 }
+             });
+        })
+    </script>
       <!--INICIO DE ENCABEZADO-->
       <div class="container-fluid">
           <div class="jumbotron" align="center">
@@ -103,7 +165,7 @@
                                   <td style="width:15%"> <%#string.Format("{0:n2}", Eval("MontoOriginal")) %> </td>
                                   <td style="width:15%"> <%#string.Format("{0:n2}", Eval("PagoAcumuladoPesos")) %> </td>
                                   <td style="width:15%"> <%#string.Format("{0:n2}", Eval("PagoAcumuladoDollar")) %> </td>
-                                  <td style="width:5%"> <%# Eval("Tasa") %> </td>
+                                  <td style="width:5%"> <%# Eval("TasaCambio") %> </td>
                               </tr>
                           </ItemTemplate>
                       </asp:Repeater>
@@ -145,508 +207,436 @@
 
 
 
-
+          <br />
           <div id="DivBloqueDetalle" runat="server">
               <div class="form-row">
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label1" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="Texbox1" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNumeroReporte" runat="server" Text="Numero Reporte" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNumeroReporteDetalle" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label2" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox1" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbPoliza" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtPolizaDetalle" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label3" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox2" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbCodigoRegistroEntidad" runat="server" Text="Codigo Registro Entidad" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtCodigoRegistroEntidadDetalle" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label4" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox3" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbUsuario" runat="server" Text="Usuario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtUsuario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label5" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox4" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbOficina" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtOficina" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label6" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox5" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbFechaEnvio" runat="server" Text="Fecha Envio" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtFechaEnvio" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label7" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox6" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbHoraEnvio" runat="server" Text="Hora Envio" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtHoraEnvio" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label8" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox7" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbTipoPersonaCliente" runat="server" Text="Tipo Persona Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtTipoPersonaCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label9" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox8" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbPEPCliente" runat="server" Text="PEP Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtPEPCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label10" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox9" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbPEPClienteTipo" runat="server" Text="PEP Cliente Tipo" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtPEPClienteTipo" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label11" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox10" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbSexoCliente" runat="server" Text="Sexo Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtSexoCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label12" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox11" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
-
-                    <div class="form-group col-md-3">
-                      <asp:Label ID="Label13" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox12" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
-
-                  <div class="form-group col-md-3">
-                      <asp:Label ID="Label14" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox13" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
-
-                  <div class="form-group col-md-3">
-                      <asp:Label ID="Label15" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox14" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
-
-                  <div class="form-group col-md-3">
-                      <asp:Label ID="Label16" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox15" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNombreRazonSocialCliente" runat="server" Text="Nombre Razon Social Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNombreRazonSocialCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label17" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox16" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbApellidoRazonSocialCliente" runat="server" Text="Apellido Razon Social Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtApellidoRazonSocialCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label18" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox17" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNacionalidadorigenCliente" runat="server" Text="Nacionalidad origen Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNacionalidadorigenCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label19" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox18" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNacionalidadAdquiridaCliente" runat="server" Text="Nacionalidad Adquirida Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNacionalidadAdquiridaCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label20" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox19" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbTipoDocumentoCliente" runat="server" Text="Tipo Documento Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtTipoDocumentoCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label21" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox20" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNoDocumentoIdentidadCliente" runat="server" Text="No Documento Identidad Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNoDocumentoIdentidadCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label22" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox21" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbSiTipoDocumentoIgualOtroEspesificar" runat="server" Text="Tipo Documento Igual Otro Espesificar" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtSiTipoDocumentoIgualOtroEspesificar" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label23" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox22" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbActividadEconomicaCliente" runat="server" Text="Actividad Economica Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtActividadEconomicaCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label24" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox23" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbTipoProductoCliente" runat="server" Text="Tipo Producto Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtTipoProductoCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label25" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox24" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNoCuenta1" runat="server" Text="NoCuenta 1" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNoCuenta1" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label26" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox25" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNoCuenta2" runat="server" Text="NoCuenta 2" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNoCuenta2" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label27" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox26" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNoCuenta3" runat="server" Text="NoCuenta 3" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNoCuenta3" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label28" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox27" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbProvinciaCliente" runat="server" Text="Provincia Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtProvinciaCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label29" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox28" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbMunicipioCliente" runat="server" Text="Municipio Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtMunicipioCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label30" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox29" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbSectorCliente" runat="server" Text="Sector Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtSectorCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label31" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox30" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbDireccionCliente" runat="server" Text="Direccion Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtDireccionCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label32" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox31" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbTelefonoCasaCliente" runat="server" Text="Telefono Casa Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtTelefonoCasaCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label33" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox32" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbTelefonoOficinaCliente" runat="server" Text="Telefono Oficina Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtTelefonoOficinaCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label34" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox33" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbCelular1Cliente" runat="server" Text="Celular1 Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtCelular1Cliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label35" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox34" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbCelular2Cliente" runat="server" Text="Celular 2 Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtCelular2Cliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label36" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox35" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbTipoTransaccion" runat="server" Text="Tipo Transaccion" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtTipoTransaccion" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label37" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox36" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbDescripcionTransaccion" runat="server" Text="Descripcion Transaccion" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtDescripcionTransaccion" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label38" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox37" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbTipoMoneda" runat="server" Text="Tipo Moneda" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtTipoMoneda" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label39" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox38" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNumeroRecibo" runat="server" Text="Numero Recibo" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNumeroRecibo" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label40" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox39" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbFechaRecibo" runat="server" Text="Fecha Recibo" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtFechaRecibo" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label41" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox40" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbMontoOriginal" runat="server" Text="Monto Original" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtMontoOriginal" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label42" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox41" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbPagoAcumuladoPesos" runat="server" Text="Pago Acumulado Pesos" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtPagoAcumuladoPesos" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label43" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox42" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbPagoAcumuladoDollar" runat="server" Text="Pago Acumulado Dollar" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtPagoAcumuladoDollar" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label44" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox43" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbTasaCambio" runat="server" Text="Tasa Cambio" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtTasaCambio" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label45" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox44" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbTipoInstrumento" runat="server" Text="Tipo Instrumento" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtTipoInstrumento" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label46" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox45" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbFechaTransaccion" runat="server" Text="Fecha Transaccion" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtFechaTransaccion" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label47" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox46" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbHoraTransaccion" runat="server" Text="Hora Transaccion" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtHoraTransaccion" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label48" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox47" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbFechaEnvioDetalle" runat="server" Text="Fecha Envio" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtFechaEnvioDetalle" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label49" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox48" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbHoraTransaccion2" runat="server" Text="Hora Transaccion" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtHoraTransaccion2" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label50" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox49" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbOrigenFondos" runat="server" Text="Origen Fondos" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtOrigenFondos" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label51" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox50" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbTransaccionRealizada" runat="server" Text="Transaccion Realizada" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtTransaccionRealizada" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label52" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox51" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbMotivoTransaccion" runat="server" Text="Motivo Transaccion" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtMotivoTransaccion" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label53" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox52" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbPaisOrigen" runat="server" Text="Pais Origen" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtPaisOrigen" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label54" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox53" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbPaisDestino" runat="server" Text="Pais Destino" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtPaisDestino" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label55" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox54" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbEntidadCorresponsal" runat="server" Text="Entidad Corresponsal" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtEntidadCorresponsal" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label56" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox55" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbRemesador" runat="server" Text="Remesador" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtRemesador" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label57" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox56" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbIntermediarioIgualCliente" runat="server" Text="Intermediario Igual Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtIntermediarioIgualCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label58" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox57" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbSexoIntermediario" runat="server" Text="Sexo Intermediario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtSexoIntermediario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label59" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox58" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNombreRazonIntermediario" runat="server" Text="Nombre Razon Intermediario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNombreRazonIntermediario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label60" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox59" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbApellidoRazonIntermediario" runat="server" Text="Apellido Razon Intermediario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtApellidoRazonIntermediario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label61" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox60" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNacionalidadOrigenIntermediario" runat="server" Text="Nacionalidad Origen Intermediario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNacionalidadOrigenIntermediario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label62" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox61" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNacionalidadAdquiridaIntermediario" runat="server" Text="Nacionalidad Adquirida Intermediario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNacionalidadAdquiridaIntermediario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label63" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox62" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbTipoRncIntermediario" runat="server" Text="Tipo Rnc Intermediario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtTipoRncIntermediario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label64" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox63" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNoDocumentoIntermediario" runat="server" Text="No Documento Intermediario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNoDocumentoIntermediario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label65" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox64" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbSiTipoDocumentoIgualOtroEspesificarIntermdiario" runat="server" Text="TipoDocumento Igual Otro Intermdiario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtSiTipoDocumentoIgualOtroEspesificarIntermdiario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label66" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox65" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbProvinciaIntermediario" runat="server" Text="Provincia Intermediario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtProvinciaIntermediario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label67" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox66" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbMunicipioIntermediario" runat="server" Text="Municipio Intermediario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtMunicipioIntermediario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label68" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox67" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbSectorIntermediario" runat="server" Text="Sector Intermediario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtSectorIntermediario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label69" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox68" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbDireccionIntermediario" runat="server" Text="Direccion Intermediario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtDireccionIntermediario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label70" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox69" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbBeneficiarioIgualCliente" runat="server" Text="Beneficiario Igual Cliente" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtBeneficiarioIgualCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label71" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox70" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbSexoBeneficiario" runat="server" Text="Sexo Beneficiario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtSexoBeneficiario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label72" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox71" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNombreRazonSocialBeneficiario" runat="server" Text="Nombre RazonSocial Beneficiario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNombreRazonSocialBeneficiario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label73" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox72" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbApellidoRazonSocialBeneficiario" runat="server" Text="Apellido Razon Social Beneficiario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtApellidoRazonSocialBeneficiario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label74" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox73" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNacionalidadBeneficiario" runat="server" Text="Nacionalidad Beneficiario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNacionalidadBeneficiario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label75" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox74" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNacionalidadAdquiridaBeneficiario" runat="server" Text="Nacionalid adAdquirida Beneficiario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNacionalidadAdquiridaBeneficiario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label76" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox75" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbTipoIdentificacionBeneficiario" runat="server" Text="Tipo Identificacion Beneficiario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtTipoIdentificacionBeneficiario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label77" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox76" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbNoDocumentoIdentidadBeneficiario" runat="server" Text="No Documento Identidad Beneficiario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtNoDocumentoIdentidadBeneficiario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label78" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox77" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbSiTipoDocumentoIgualOtroEspesificarBeneficiario" runat="server" Text="Tipo Documento Igual Otro Beneficiario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtSiTipoDocumentoIgualOtroEspesificarBeneficiario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label79" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox78" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbProvinciaBeneficiario" runat="server" Text="Provincia Beneficiario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtProvinciaBeneficiario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label80" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox79" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbMunicipioBeneficiario" runat="server" Text="Municipio Beneficiario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtMunicipioBeneficiario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label81" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox80" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbSectorBeneficiario" runat="server" Text="Sector Beneficiario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtSectorBeneficiario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label82" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox81" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbDireccionBeneficiario" runat="server" Text="Direccion Beneficiario" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtDireccionBeneficiario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label83" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox82" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbMotivoReporte" runat="server" Text="Motivo Reporte" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtMotivoReporte" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label84" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox83" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbEspesifiquePrioridadReporte" runat="server" Text="Espesifique Prioridad Reporte" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtEspesifiquePrioridadReporte" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label85" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox84" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbAnexo" runat="server" Text="Anexo" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtAnexo" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label86" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox85" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbValidadoDesde" runat="server" Text="Validado Desde" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtValidadoDesde" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label87" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox86" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbValidadoHasta" runat="server" Text="Validado Hasta" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtValidadoHasta" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                   <div class="form-group col-md-3">
-                      <asp:Label ID="Label88" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox87" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbMontoCondicion2" runat="server" Text="Monto Condicion" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtMontoCondicion2" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
                     <div class="form-group col-md-3">
-                      <asp:Label ID="Label89" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox88" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                      <asp:Label ID="lbGeneradoPor" runat="server" Text="Generado Por" CssClass="Letranegrita"></asp:Label>
+                      <asp:TextBox ID="txtGeneradoPor" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                   </div>
 
-                  <div class="form-group col-md-3">
-                      <asp:Label ID="Label90" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox89" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
+  
 
-                  <div class="form-group col-md-3">
-                      <asp:Label ID="Label91" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox90" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
-
-                  <div class="form-group col-md-3">
-                      <asp:Label ID="Label92" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox91" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
-
-                    <div class="form-group col-md-3">
-                      <asp:Label ID="Label93" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox92" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
-
-                  <div class="form-group col-md-3">
-                      <asp:Label ID="Label94" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox93" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
-
-                  <div class="form-group col-md-3">
-                      <asp:Label ID="Label95" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox94" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
-
-                  <div class="form-group col-md-3">
-                      <asp:Label ID="Label96" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox95" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
-
-                    <div class="form-group col-md-3">
-                      <asp:Label ID="Label97" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox96" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
-
-                  <div class="form-group col-md-3">
-                      <asp:Label ID="Label98" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox97" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
-
-                  <div class="form-group col-md-3">
-                      <asp:Label ID="Label99" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox98" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
-
-                  <div class="form-group col-md-3">
-                      <asp:Label ID="Label100" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox99" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                  </div>
               </div>
               <br />
               <div class="form-check-inline">

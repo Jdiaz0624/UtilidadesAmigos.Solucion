@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString12, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1098,6 +1098,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, poliza, cobertura, oficina, usuarioGenera);
 			return ((ISingleResult<SP_SACAR_DATA_COBERTURA_FINALResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_GENERAR_REPORTE_DE_TRANSACCIONES_EFECTIVO")]
+		public ISingleResult<SP_GENERAR_REPORTE_DE_TRANSACCIONES_EFECTIVOResult> SP_GENERAR_REPORTE_DE_TRANSACCIONES_EFECTIVO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tasa", DbType="Decimal(20,2)")] System.Nullable<decimal> tasa, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioGenera", DbType="Decimal(20,0)")] System.Nullable<decimal> usuarioGenera, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MontoCondicion", DbType="Decimal(20,2)")] System.Nullable<decimal> montoCondicion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRecibo", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRecibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(30)")] string poliza)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, tasa, usuarioGenera, montoCondicion, numeroRecibo, poliza);
+			return ((ISingleResult<SP_GENERAR_REPORTE_DE_TRANSACCIONES_EFECTIVOResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -31172,6 +31179,1544 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Oficina != value))
 				{
 					this._Oficina = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_GENERAR_REPORTE_DE_TRANSACCIONES_EFECTIVOResult
+	{
+		
+		private int _NumeroReporte;
+		
+		private string _Poliza;
+		
+		private string _CodigoRegistroEntidad;
+		
+		private string _Usuario;
+		
+		private string _Oficina;
+		
+		private string _FechaEnvio;
+		
+		private string _HoraEnvio;
+		
+		private string _TipoPersonaCliente;
+		
+		private string _PEPCliente;
+		
+		private string _PEPClienteTipo;
+		
+		private string _SexoCliente;
+		
+		private string _NombreRazonSocialCliente;
+		
+		private string _ApellidoRazonSocialCliente;
+		
+		private string _NacionalidadorigenCliente;
+		
+		private string _NacionalidadAdquiridaCliente;
+		
+		private string _TipoDocumentoCliente;
+		
+		private string _NoDocumentoIdentidadCliente;
+		
+		private string _SiTipoDocumentoIgualOtroEspesificar;
+		
+		private string _ActividadEconomicaCliente;
+		
+		private string _TipoProductoCliente;
+		
+		private string _NoCuenta1;
+		
+		private string _NoCuenta2;
+		
+		private string _NoCuenta3;
+		
+		private string _ProvinciaCliente;
+		
+		private string _MunicipioCliente;
+		
+		private string _SectorCliente;
+		
+		private string _DireccionCliente;
+		
+		private string _TelefonoCasaCliente;
+		
+		private string _TelefonoOficinaCliente;
+		
+		private string _Celular1Cliente;
+		
+		private string _Celular2Cliente;
+		
+		private string _TipoTransaccion;
+		
+		private string _DescripcionTransaccion;
+		
+		private string _TipoMoneda;
+		
+		private decimal _NumeroRecibo;
+		
+		private string _FechaRecibo;
+		
+		private System.Nullable<decimal> _MontoOriginal;
+		
+		private System.Nullable<decimal> _PagoAcumuladoPesos;
+		
+		private System.Nullable<decimal> _PagoAcumuladoDollar;
+		
+		private System.Nullable<decimal> _TasaCambio;
+		
+		private string _TipoInstrumento;
+		
+		private string _FechaTransaccion;
+		
+		private string _HoraTransaccion;
+		
+		private string _FechaEnvio1;
+		
+		private string _HoraTransaccion1;
+		
+		private string _OrigenFondos;
+		
+		private string _TransaccionRealizada;
+		
+		private string _MotivoTransaccion;
+		
+		private string _PaisOrigen;
+		
+		private string _PaisDestino;
+		
+		private string _EntidadCorresponsal;
+		
+		private string _Remesador;
+		
+		private string _IntermediarioIgualCliente;
+		
+		private string _SexoIntermediario;
+		
+		private string _NombreRazonIntermediario;
+		
+		private string _ApellidoRazonIntermediario;
+		
+		private string _NacionalidadOrigenIntermediario;
+		
+		private string _NacionalidadAdquiridaIntermediario;
+		
+		private string _TipoRncIntermediario;
+		
+		private string _NoDocumentoIntermediario;
+		
+		private string _SiTipoDocumentoIgualOtroEspesificarIntermdiario;
+		
+		private string _ProvinciaIntermediario;
+		
+		private string _MunicipioIntermediario;
+		
+		private string _SectorIntermediario;
+		
+		private string _DireccionIntermediario;
+		
+		private string _BeneficiarioIgualCliente;
+		
+		private string _SexoBeneficiario;
+		
+		private string _NombreRazonSocialBeneficiario;
+		
+		private string _ApellidoRazonSocialBeneficiario;
+		
+		private string _NacionalidadBeneficiario;
+		
+		private string _NacionalidadAdquiridaBeneficiario;
+		
+		private string _TipoIdentificacionBeneficiario;
+		
+		private string _NoDocumentoIdentidadBeneficiario;
+		
+		private string _SiTipoDocumentoIgualOtroEspesificar1;
+		
+		private string _ProvinciaBeneficiario;
+		
+		private string _MunicipioBeneficiario;
+		
+		private string _SectorBeneficiario;
+		
+		private string _DireccionBeneficiario;
+		
+		private string _MotivoReporte;
+		
+		private string _EspesifiquePrioridadReporte;
+		
+		private string _Anexo;
+		
+		private string _ValidadoDesde;
+		
+		private string _ValidadoHasta;
+		
+		private System.Nullable<decimal> _MontoCondicion;
+		
+		private string _GeneradoPor;
+		
+		public SP_GENERAR_REPORTE_DE_TRANSACCIONES_EFECTIVOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroReporte", DbType="Int NOT NULL")]
+		public int NumeroReporte
+		{
+			get
+			{
+				return this._NumeroReporte;
+			}
+			set
+			{
+				if ((this._NumeroReporte != value))
+				{
+					this._NumeroReporte = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoRegistroEntidad", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string CodigoRegistroEntidad
+		{
+			get
+			{
+				return this._CodigoRegistroEntidad;
+			}
+			set
+			{
+				if ((this._CodigoRegistroEntidad != value))
+				{
+					this._CodigoRegistroEntidad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this._Usuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="VarChar(100)")]
+		public string Oficina
+		{
+			get
+			{
+				return this._Oficina;
+			}
+			set
+			{
+				if ((this._Oficina != value))
+				{
+					this._Oficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaEnvio", DbType="NVarChar(4000)")]
+		public string FechaEnvio
+		{
+			get
+			{
+				return this._FechaEnvio;
+			}
+			set
+			{
+				if ((this._FechaEnvio != value))
+				{
+					this._FechaEnvio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoraEnvio", DbType="NVarChar(4000)")]
+		public string HoraEnvio
+		{
+			get
+			{
+				return this._HoraEnvio;
+			}
+			set
+			{
+				if ((this._HoraEnvio != value))
+				{
+					this._HoraEnvio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoPersonaCliente", DbType="VarChar(33)")]
+		public string TipoPersonaCliente
+		{
+			get
+			{
+				return this._TipoPersonaCliente;
+			}
+			set
+			{
+				if ((this._TipoPersonaCliente != value))
+				{
+					this._TipoPersonaCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PEPCliente", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string PEPCliente
+		{
+			get
+			{
+				return this._PEPCliente;
+			}
+			set
+			{
+				if ((this._PEPCliente != value))
+				{
+					this._PEPCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PEPClienteTipo", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string PEPClienteTipo
+		{
+			get
+			{
+				return this._PEPClienteTipo;
+			}
+			set
+			{
+				if ((this._PEPClienteTipo != value))
+				{
+					this._PEPClienteTipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SexoCliente", DbType="VarChar(6) NOT NULL", CanBeNull=false)]
+		public string SexoCliente
+		{
+			get
+			{
+				return this._SexoCliente;
+			}
+			set
+			{
+				if ((this._SexoCliente != value))
+				{
+					this._SexoCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreRazonSocialCliente", DbType="VarChar(100)")]
+		public string NombreRazonSocialCliente
+		{
+			get
+			{
+				return this._NombreRazonSocialCliente;
+			}
+			set
+			{
+				if ((this._NombreRazonSocialCliente != value))
+				{
+					this._NombreRazonSocialCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApellidoRazonSocialCliente", DbType="VarChar(100)")]
+		public string ApellidoRazonSocialCliente
+		{
+			get
+			{
+				return this._ApellidoRazonSocialCliente;
+			}
+			set
+			{
+				if ((this._ApellidoRazonSocialCliente != value))
+				{
+					this._ApellidoRazonSocialCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NacionalidadorigenCliente", DbType="VarChar(50)")]
+		public string NacionalidadorigenCliente
+		{
+			get
+			{
+				return this._NacionalidadorigenCliente;
+			}
+			set
+			{
+				if ((this._NacionalidadorigenCliente != value))
+				{
+					this._NacionalidadorigenCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NacionalidadAdquiridaCliente", DbType="VarChar(50)")]
+		public string NacionalidadAdquiridaCliente
+		{
+			get
+			{
+				return this._NacionalidadAdquiridaCliente;
+			}
+			set
+			{
+				if ((this._NacionalidadAdquiridaCliente != value))
+				{
+					this._NacionalidadAdquiridaCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoDocumentoCliente", DbType="VarChar(50)")]
+		public string TipoDocumentoCliente
+		{
+			get
+			{
+				return this._TipoDocumentoCliente;
+			}
+			set
+			{
+				if ((this._TipoDocumentoCliente != value))
+				{
+					this._TipoDocumentoCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoDocumentoIdentidadCliente", DbType="VarChar(50)")]
+		public string NoDocumentoIdentidadCliente
+		{
+			get
+			{
+				return this._NoDocumentoIdentidadCliente;
+			}
+			set
+			{
+				if ((this._NoDocumentoIdentidadCliente != value))
+				{
+					this._NoDocumentoIdentidadCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SiTipoDocumentoIgualOtroEspesificar", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string SiTipoDocumentoIgualOtroEspesificar
+		{
+			get
+			{
+				return this._SiTipoDocumentoIgualOtroEspesificar;
+			}
+			set
+			{
+				if ((this._SiTipoDocumentoIgualOtroEspesificar != value))
+				{
+					this._SiTipoDocumentoIgualOtroEspesificar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActividadEconomicaCliente", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string ActividadEconomicaCliente
+		{
+			get
+			{
+				return this._ActividadEconomicaCliente;
+			}
+			set
+			{
+				if ((this._ActividadEconomicaCliente != value))
+				{
+					this._ActividadEconomicaCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoProductoCliente", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string TipoProductoCliente
+		{
+			get
+			{
+				return this._TipoProductoCliente;
+			}
+			set
+			{
+				if ((this._TipoProductoCliente != value))
+				{
+					this._TipoProductoCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoCuenta1", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string NoCuenta1
+		{
+			get
+			{
+				return this._NoCuenta1;
+			}
+			set
+			{
+				if ((this._NoCuenta1 != value))
+				{
+					this._NoCuenta1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoCuenta2", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string NoCuenta2
+		{
+			get
+			{
+				return this._NoCuenta2;
+			}
+			set
+			{
+				if ((this._NoCuenta2 != value))
+				{
+					this._NoCuenta2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoCuenta3", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string NoCuenta3
+		{
+			get
+			{
+				return this._NoCuenta3;
+			}
+			set
+			{
+				if ((this._NoCuenta3 != value))
+				{
+					this._NoCuenta3 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaCliente", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string ProvinciaCliente
+		{
+			get
+			{
+				return this._ProvinciaCliente;
+			}
+			set
+			{
+				if ((this._ProvinciaCliente != value))
+				{
+					this._ProvinciaCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MunicipioCliente", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string MunicipioCliente
+		{
+			get
+			{
+				return this._MunicipioCliente;
+			}
+			set
+			{
+				if ((this._MunicipioCliente != value))
+				{
+					this._MunicipioCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectorCliente", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string SectorCliente
+		{
+			get
+			{
+				return this._SectorCliente;
+			}
+			set
+			{
+				if ((this._SectorCliente != value))
+				{
+					this._SectorCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DireccionCliente", DbType="VarChar(255)")]
+		public string DireccionCliente
+		{
+			get
+			{
+				return this._DireccionCliente;
+			}
+			set
+			{
+				if ((this._DireccionCliente != value))
+				{
+					this._DireccionCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TelefonoCasaCliente", DbType="VarChar(50)")]
+		public string TelefonoCasaCliente
+		{
+			get
+			{
+				return this._TelefonoCasaCliente;
+			}
+			set
+			{
+				if ((this._TelefonoCasaCliente != value))
+				{
+					this._TelefonoCasaCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TelefonoOficinaCliente", DbType="VarChar(50)")]
+		public string TelefonoOficinaCliente
+		{
+			get
+			{
+				return this._TelefonoOficinaCliente;
+			}
+			set
+			{
+				if ((this._TelefonoOficinaCliente != value))
+				{
+					this._TelefonoOficinaCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Celular1Cliente", DbType="Char(50)")]
+		public string Celular1Cliente
+		{
+			get
+			{
+				return this._Celular1Cliente;
+			}
+			set
+			{
+				if ((this._Celular1Cliente != value))
+				{
+					this._Celular1Cliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Celular2Cliente", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string Celular2Cliente
+		{
+			get
+			{
+				return this._Celular2Cliente;
+			}
+			set
+			{
+				if ((this._Celular2Cliente != value))
+				{
+					this._Celular2Cliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoTransaccion", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string TipoTransaccion
+		{
+			get
+			{
+				return this._TipoTransaccion;
+			}
+			set
+			{
+				if ((this._TipoTransaccion != value))
+				{
+					this._TipoTransaccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescripcionTransaccion", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string DescripcionTransaccion
+		{
+			get
+			{
+				return this._DescripcionTransaccion;
+			}
+			set
+			{
+				if ((this._DescripcionTransaccion != value))
+				{
+					this._DescripcionTransaccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoMoneda", DbType="VarChar(50)")]
+		public string TipoMoneda
+		{
+			get
+			{
+				return this._TipoMoneda;
+			}
+			set
+			{
+				if ((this._TipoMoneda != value))
+				{
+					this._TipoMoneda = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroRecibo", DbType="Decimal(18,0) NOT NULL")]
+		public decimal NumeroRecibo
+		{
+			get
+			{
+				return this._NumeroRecibo;
+			}
+			set
+			{
+				if ((this._NumeroRecibo != value))
+				{
+					this._NumeroRecibo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaRecibo", DbType="NVarChar(4000)")]
+		public string FechaRecibo
+		{
+			get
+			{
+				return this._FechaRecibo;
+			}
+			set
+			{
+				if ((this._FechaRecibo != value))
+				{
+					this._FechaRecibo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoOriginal", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> MontoOriginal
+		{
+			get
+			{
+				return this._MontoOriginal;
+			}
+			set
+			{
+				if ((this._MontoOriginal != value))
+				{
+					this._MontoOriginal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PagoAcumuladoPesos", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> PagoAcumuladoPesos
+		{
+			get
+			{
+				return this._PagoAcumuladoPesos;
+			}
+			set
+			{
+				if ((this._PagoAcumuladoPesos != value))
+				{
+					this._PagoAcumuladoPesos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PagoAcumuladoDollar", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> PagoAcumuladoDollar
+		{
+			get
+			{
+				return this._PagoAcumuladoDollar;
+			}
+			set
+			{
+				if ((this._PagoAcumuladoDollar != value))
+				{
+					this._PagoAcumuladoDollar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TasaCambio", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> TasaCambio
+		{
+			get
+			{
+				return this._TasaCambio;
+			}
+			set
+			{
+				if ((this._TasaCambio != value))
+				{
+					this._TasaCambio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoInstrumento", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string TipoInstrumento
+		{
+			get
+			{
+				return this._TipoInstrumento;
+			}
+			set
+			{
+				if ((this._TipoInstrumento != value))
+				{
+					this._TipoInstrumento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaTransaccion", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string FechaTransaccion
+		{
+			get
+			{
+				return this._FechaTransaccion;
+			}
+			set
+			{
+				if ((this._FechaTransaccion != value))
+				{
+					this._FechaTransaccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoraTransaccion", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string HoraTransaccion
+		{
+			get
+			{
+				return this._HoraTransaccion;
+			}
+			set
+			{
+				if ((this._HoraTransaccion != value))
+				{
+					this._HoraTransaccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaEnvio1", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string FechaEnvio1
+		{
+			get
+			{
+				return this._FechaEnvio1;
+			}
+			set
+			{
+				if ((this._FechaEnvio1 != value))
+				{
+					this._FechaEnvio1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoraTransaccion1", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string HoraTransaccion1
+		{
+			get
+			{
+				return this._HoraTransaccion1;
+			}
+			set
+			{
+				if ((this._HoraTransaccion1 != value))
+				{
+					this._HoraTransaccion1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrigenFondos", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string OrigenFondos
+		{
+			get
+			{
+				return this._OrigenFondos;
+			}
+			set
+			{
+				if ((this._OrigenFondos != value))
+				{
+					this._OrigenFondos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransaccionRealizada", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string TransaccionRealizada
+		{
+			get
+			{
+				return this._TransaccionRealizada;
+			}
+			set
+			{
+				if ((this._TransaccionRealizada != value))
+				{
+					this._TransaccionRealizada = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MotivoTransaccion", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string MotivoTransaccion
+		{
+			get
+			{
+				return this._MotivoTransaccion;
+			}
+			set
+			{
+				if ((this._MotivoTransaccion != value))
+				{
+					this._MotivoTransaccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaisOrigen", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string PaisOrigen
+		{
+			get
+			{
+				return this._PaisOrigen;
+			}
+			set
+			{
+				if ((this._PaisOrigen != value))
+				{
+					this._PaisOrigen = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaisDestino", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string PaisDestino
+		{
+			get
+			{
+				return this._PaisDestino;
+			}
+			set
+			{
+				if ((this._PaisDestino != value))
+				{
+					this._PaisDestino = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EntidadCorresponsal", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string EntidadCorresponsal
+		{
+			get
+			{
+				return this._EntidadCorresponsal;
+			}
+			set
+			{
+				if ((this._EntidadCorresponsal != value))
+				{
+					this._EntidadCorresponsal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remesador", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string Remesador
+		{
+			get
+			{
+				return this._Remesador;
+			}
+			set
+			{
+				if ((this._Remesador != value))
+				{
+					this._Remesador = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IntermediarioIgualCliente", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string IntermediarioIgualCliente
+		{
+			get
+			{
+				return this._IntermediarioIgualCliente;
+			}
+			set
+			{
+				if ((this._IntermediarioIgualCliente != value))
+				{
+					this._IntermediarioIgualCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SexoIntermediario", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string SexoIntermediario
+		{
+			get
+			{
+				return this._SexoIntermediario;
+			}
+			set
+			{
+				if ((this._SexoIntermediario != value))
+				{
+					this._SexoIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreRazonIntermediario", DbType="VarChar(100)")]
+		public string NombreRazonIntermediario
+		{
+			get
+			{
+				return this._NombreRazonIntermediario;
+			}
+			set
+			{
+				if ((this._NombreRazonIntermediario != value))
+				{
+					this._NombreRazonIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApellidoRazonIntermediario", DbType="VarChar(100)")]
+		public string ApellidoRazonIntermediario
+		{
+			get
+			{
+				return this._ApellidoRazonIntermediario;
+			}
+			set
+			{
+				if ((this._ApellidoRazonIntermediario != value))
+				{
+					this._ApellidoRazonIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NacionalidadOrigenIntermediario", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string NacionalidadOrigenIntermediario
+		{
+			get
+			{
+				return this._NacionalidadOrigenIntermediario;
+			}
+			set
+			{
+				if ((this._NacionalidadOrigenIntermediario != value))
+				{
+					this._NacionalidadOrigenIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NacionalidadAdquiridaIntermediario", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string NacionalidadAdquiridaIntermediario
+		{
+			get
+			{
+				return this._NacionalidadAdquiridaIntermediario;
+			}
+			set
+			{
+				if ((this._NacionalidadAdquiridaIntermediario != value))
+				{
+					this._NacionalidadAdquiridaIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoRncIntermediario", DbType="VarChar(50)")]
+		public string TipoRncIntermediario
+		{
+			get
+			{
+				return this._TipoRncIntermediario;
+			}
+			set
+			{
+				if ((this._TipoRncIntermediario != value))
+				{
+					this._TipoRncIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoDocumentoIntermediario", DbType="VarChar(50)")]
+		public string NoDocumentoIntermediario
+		{
+			get
+			{
+				return this._NoDocumentoIntermediario;
+			}
+			set
+			{
+				if ((this._NoDocumentoIntermediario != value))
+				{
+					this._NoDocumentoIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SiTipoDocumentoIgualOtroEspesificarIntermdiario", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string SiTipoDocumentoIgualOtroEspesificarIntermdiario
+		{
+			get
+			{
+				return this._SiTipoDocumentoIgualOtroEspesificarIntermdiario;
+			}
+			set
+			{
+				if ((this._SiTipoDocumentoIgualOtroEspesificarIntermdiario != value))
+				{
+					this._SiTipoDocumentoIgualOtroEspesificarIntermdiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaIntermediario", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string ProvinciaIntermediario
+		{
+			get
+			{
+				return this._ProvinciaIntermediario;
+			}
+			set
+			{
+				if ((this._ProvinciaIntermediario != value))
+				{
+					this._ProvinciaIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MunicipioIntermediario", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string MunicipioIntermediario
+		{
+			get
+			{
+				return this._MunicipioIntermediario;
+			}
+			set
+			{
+				if ((this._MunicipioIntermediario != value))
+				{
+					this._MunicipioIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectorIntermediario", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string SectorIntermediario
+		{
+			get
+			{
+				return this._SectorIntermediario;
+			}
+			set
+			{
+				if ((this._SectorIntermediario != value))
+				{
+					this._SectorIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DireccionIntermediario", DbType="VarChar(255)")]
+		public string DireccionIntermediario
+		{
+			get
+			{
+				return this._DireccionIntermediario;
+			}
+			set
+			{
+				if ((this._DireccionIntermediario != value))
+				{
+					this._DireccionIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BeneficiarioIgualCliente", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string BeneficiarioIgualCliente
+		{
+			get
+			{
+				return this._BeneficiarioIgualCliente;
+			}
+			set
+			{
+				if ((this._BeneficiarioIgualCliente != value))
+				{
+					this._BeneficiarioIgualCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SexoBeneficiario", DbType="VarChar(6) NOT NULL", CanBeNull=false)]
+		public string SexoBeneficiario
+		{
+			get
+			{
+				return this._SexoBeneficiario;
+			}
+			set
+			{
+				if ((this._SexoBeneficiario != value))
+				{
+					this._SexoBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreRazonSocialBeneficiario", DbType="VarChar(100)")]
+		public string NombreRazonSocialBeneficiario
+		{
+			get
+			{
+				return this._NombreRazonSocialBeneficiario;
+			}
+			set
+			{
+				if ((this._NombreRazonSocialBeneficiario != value))
+				{
+					this._NombreRazonSocialBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApellidoRazonSocialBeneficiario", DbType="VarChar(100)")]
+		public string ApellidoRazonSocialBeneficiario
+		{
+			get
+			{
+				return this._ApellidoRazonSocialBeneficiario;
+			}
+			set
+			{
+				if ((this._ApellidoRazonSocialBeneficiario != value))
+				{
+					this._ApellidoRazonSocialBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NacionalidadBeneficiario", DbType="VarChar(50)")]
+		public string NacionalidadBeneficiario
+		{
+			get
+			{
+				return this._NacionalidadBeneficiario;
+			}
+			set
+			{
+				if ((this._NacionalidadBeneficiario != value))
+				{
+					this._NacionalidadBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NacionalidadAdquiridaBeneficiario", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string NacionalidadAdquiridaBeneficiario
+		{
+			get
+			{
+				return this._NacionalidadAdquiridaBeneficiario;
+			}
+			set
+			{
+				if ((this._NacionalidadAdquiridaBeneficiario != value))
+				{
+					this._NacionalidadAdquiridaBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoIdentificacionBeneficiario", DbType="VarChar(50)")]
+		public string TipoIdentificacionBeneficiario
+		{
+			get
+			{
+				return this._TipoIdentificacionBeneficiario;
+			}
+			set
+			{
+				if ((this._TipoIdentificacionBeneficiario != value))
+				{
+					this._TipoIdentificacionBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoDocumentoIdentidadBeneficiario", DbType="VarChar(50)")]
+		public string NoDocumentoIdentidadBeneficiario
+		{
+			get
+			{
+				return this._NoDocumentoIdentidadBeneficiario;
+			}
+			set
+			{
+				if ((this._NoDocumentoIdentidadBeneficiario != value))
+				{
+					this._NoDocumentoIdentidadBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SiTipoDocumentoIgualOtroEspesificar1", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string SiTipoDocumentoIgualOtroEspesificar1
+		{
+			get
+			{
+				return this._SiTipoDocumentoIgualOtroEspesificar1;
+			}
+			set
+			{
+				if ((this._SiTipoDocumentoIgualOtroEspesificar1 != value))
+				{
+					this._SiTipoDocumentoIgualOtroEspesificar1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProvinciaBeneficiario", DbType="VarChar(255)")]
+		public string ProvinciaBeneficiario
+		{
+			get
+			{
+				return this._ProvinciaBeneficiario;
+			}
+			set
+			{
+				if ((this._ProvinciaBeneficiario != value))
+				{
+					this._ProvinciaBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MunicipioBeneficiario", DbType="VarChar(255)")]
+		public string MunicipioBeneficiario
+		{
+			get
+			{
+				return this._MunicipioBeneficiario;
+			}
+			set
+			{
+				if ((this._MunicipioBeneficiario != value))
+				{
+					this._MunicipioBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SectorBeneficiario", DbType="VarChar(255)")]
+		public string SectorBeneficiario
+		{
+			get
+			{
+				return this._SectorBeneficiario;
+			}
+			set
+			{
+				if ((this._SectorBeneficiario != value))
+				{
+					this._SectorBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DireccionBeneficiario", DbType="VarChar(255)")]
+		public string DireccionBeneficiario
+		{
+			get
+			{
+				return this._DireccionBeneficiario;
+			}
+			set
+			{
+				if ((this._DireccionBeneficiario != value))
+				{
+					this._DireccionBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MotivoReporte", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string MotivoReporte
+		{
+			get
+			{
+				return this._MotivoReporte;
+			}
+			set
+			{
+				if ((this._MotivoReporte != value))
+				{
+					this._MotivoReporte = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EspesifiquePrioridadReporte", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string EspesifiquePrioridadReporte
+		{
+			get
+			{
+				return this._EspesifiquePrioridadReporte;
+			}
+			set
+			{
+				if ((this._EspesifiquePrioridadReporte != value))
+				{
+					this._EspesifiquePrioridadReporte = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Anexo", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string Anexo
+		{
+			get
+			{
+				return this._Anexo;
+			}
+			set
+			{
+				if ((this._Anexo != value))
+				{
+					this._Anexo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidadoDesde", DbType="VarChar(42) NOT NULL", CanBeNull=false)]
+		public string ValidadoDesde
+		{
+			get
+			{
+				return this._ValidadoDesde;
+			}
+			set
+			{
+				if ((this._ValidadoDesde != value))
+				{
+					this._ValidadoDesde = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidadoHasta", DbType="VarChar(42) NOT NULL", CanBeNull=false)]
+		public string ValidadoHasta
+		{
+			get
+			{
+				return this._ValidadoHasta;
+			}
+			set
+			{
+				if ((this._ValidadoHasta != value))
+				{
+					this._ValidadoHasta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoCondicion", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> MontoCondicion
+		{
+			get
+			{
+				return this._MontoCondicion;
+			}
+			set
+			{
+				if ((this._MontoCondicion != value))
+				{
+					this._MontoCondicion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GeneradoPor", DbType="VarChar(150)")]
+		public string GeneradoPor
+		{
+			get
+			{
+				return this._GeneradoPor;
+			}
+			set
+			{
+				if ((this._GeneradoPor != value))
+				{
+					this._GeneradoPor = value;
 				}
 			}
 		}

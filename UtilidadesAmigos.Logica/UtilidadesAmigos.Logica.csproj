@@ -189,6 +189,7 @@
     <Compile Include="Entidades\EGenerarDataGruaAeroAmbulancia.cs" />
     <Compile Include="Entidades\EGenerarDatosFacturasPDF.cs" />
     <Compile Include="Entidades\EGenerarProduccionFianza.cs" />
+    <Compile Include="Entidades\EGenerarReporteTransaccionesEfectivo.cs" />
     <Compile Include="Entidades\EGuardarDatosComisionIntermediario.cs" />
     <Compile Include="Entidades\EGuardarRegistrosProduccionIntermediario.cs" />
     <Compile Include="Entidades\EListaDepartamentos.cs" />
