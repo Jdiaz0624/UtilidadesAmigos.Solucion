@@ -177,5 +177,6 @@ namespace UtilidadesAmigos.Logica.Entidades
 		public System.Nullable<decimal> MontoCondicion {get;set;}
 
 		public string GeneradoPor {get;set;}
+		public System.Nullable<decimal> MontoAcumulado { get; set; }
 	}
 }

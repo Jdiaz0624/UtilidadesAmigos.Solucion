@@ -204,15 +204,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbFechaHEaderRepeater;
 
         /// <summary>
-        /// lbMonedaHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMonedaHeaderRepeater;
-
-        /// <summary>
         /// lbValorHeaderRepeater control.
         /// </summary>
         /// <remarks>
@@ -240,13 +231,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbValorDollarHeaderRepeater;
 
         /// <summary>
-        /// lbTasaHeaderRepeater control.
+        /// lbMonedaHeaderRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTasaHeaderRepeater;
+        protected global::System.Web.UI.WebControls.Label lbMonedaHeaderRepeater;
 
         /// <summary>
         /// rpListado control.

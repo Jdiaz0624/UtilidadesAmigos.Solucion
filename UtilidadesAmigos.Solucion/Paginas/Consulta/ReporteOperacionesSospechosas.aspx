@@ -143,11 +143,10 @@
                           <th style="width:10%" align="left"> <asp:Label ID="lbPoliaHeaderDetalleRepeater" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
                           <th style="width:10%" align="left"> <asp:Label ID="lbReciboHEaderRepeater" runat="server" Text="Recibo" CssClass="Letranegrita"></asp:Label> </th>
                           <th style="width:10%" align="left"> <asp:Label ID="lbFechaHEaderRepeater" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label> </th>
-                          <th style="width:10%" align="left"> <asp:Label ID="lbMonedaHeaderRepeater" runat="server" Text="Moneda" CssClass="Letranegrita"></asp:Label> </th>
                           <th style="width:15%" align="left"> <asp:Label ID="lbValorHeaderRepeater" runat="server" Text="Valor" CssClass="Letranegrita"></asp:Label> </th>
                           <th style="width:15%" align="left"> <asp:Label ID="lbValorPesosHeaderRepeater" runat="server" Text="V. Pesos" CssClass="Letranegrita"></asp:Label> </th>
                           <th style="width:15%" align="left"> <asp:Label ID="lbValorDollarHeaderRepeater" runat="server" Text="V. Dollar" CssClass="Letranegrita"></asp:Label> </th>
-                          <th style="width:5%" align="left"> <asp:Label ID="lbTasaHeaderRepeater" runat="server" Text="Tasa" CssClass="Letranegrita"></asp:Label> </th>
+                          <th style="width:15%" align="left"> <asp:Label ID="lbMonedaHeaderRepeater" runat="server" Text="Acumulado" CssClass="Letranegrita"></asp:Label> </th>
                       </tr>
                   </thead>
                   <tbody>
@@ -161,11 +160,10 @@
                                   <td style="width:10%"> <%# Eval("Poliza") %>  </td>
                                   <td style="width:10%"> <%# Eval("NumeroRecibo") %> </td>
                                   <td style="width:10%"> <%# Eval("FechaRecibo") %> </td>
-                                  <td style="width:10%"> <%# Eval("TipoMoneda") %> </td>
                                   <td style="width:15%"> <%#string.Format("{0:n2}", Eval("MontoOriginal")) %> </td>
                                   <td style="width:15%"> <%#string.Format("{0:n2}", Eval("PagoAcumuladoPesos")) %> </td>
                                   <td style="width:15%"> <%#string.Format("{0:n2}", Eval("PagoAcumuladoDollar")) %> </td>
-                                  <td style="width:5%"> <%# Eval("TasaCambio") %> </td>
+                                  <td style="width:15%"> <%#string.Format("{0:n2}", Eval("MontoAcumulado")) %> </td>
                               </tr>
                           </ItemTemplate>
                       </asp:Repeater>
