@@ -285,7 +285,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkProduccionDiariaContabilidad_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Paginas/ProduccionDiariaContabilidad.aspx");
+            Response.Redirect("~/Paginas/Reportes/ProduccionDiariaContabilidad.aspx");
         }
 
   
@@ -358,7 +358,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             //MOSTRAR EL REPORTE DE COMISIONES DE INTERMEDARIOS
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("~/Paginas/ComisionesIntermediarios.aspx");
+                Response.Redirect("~/Paginas/Reportes/ComisionesIntermediarios.aspx");
             }
             else
             {
@@ -372,7 +372,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             //MOSTRAR EL REPORTE DE COMISIONES DE LOS SUPERVISORES
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("~/Paginas/ComisionesSupervisores.aspx");
+                Response.Redirect("~/Paginas/Reportes/ComisionesSupervisores.aspx");
             }
             else {
                 FormsAuthentication.SignOut();
@@ -385,7 +385,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             //MOSTRAR EL REPORTE DE COMISIONES DE LOS SUPERVISORES
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("~/Paginas/GenerarMarbetes.aspx");
+                Response.Redirect("~/Paginas/Reportes/GenerarMarbetes.aspx");
             }
             else
             {
@@ -438,7 +438,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             if (Session["Idusuario"] != null)
             {
-                Response.Redirect("~/Paginas/GenerarReporteAntiguedadSaldo.aspx");
+                Response.Redirect("~/Paginas/Reportes/GenerarReporteAntiguedadSaldo.aspx");
             }
             else {
                 FormsAuthentication.SignOut();
@@ -473,7 +473,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected void LinkReporteCobrado_Click(object sender, EventArgs e)
         {
             if (Session["IdUsuario"] != null) {
-                Response.Redirect("~/Paginas/GenerarReporteCobros.aspx");
+                Response.Redirect("~/Paginas/Reportes/GenerarReporteCobros.aspx");
             }
             else {
                 FormsAuthentication.SignOut();
