@@ -262,7 +262,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkReporteFianzas_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Paginas/GenerarReporteFianzas.aspx");
+            Response.Redirect("~/Paginas/Consulta/GenerarReporteFianzas.aspx");
         }
 
         protected void LinkReporteReclamos_Click(object sender, EventArgs e)
