@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
             <style type="text/css">
-        .jumbotron{
+           .jumbotron{
             color:#000000; 
             background:#7BC5FF;
             font-size:30px;
@@ -20,6 +20,15 @@
 
         .Letranegrita {
         font-weight:bold;
+        }
+          table {
+            border-collapse: collapse;
+        }
+        
+
+        th {
+            background-color: dodgerblue;
+            color: white;
         }
     </style>
 

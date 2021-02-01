@@ -450,7 +450,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("~/Paginas/ReporteProduccionIntermediarioSupervisor.aspx");
+                Response.Redirect("~/Paginas/Reportes/ReporteProduccionIntermediarioSupervisor.aspx");
             }
             else {
                 FormsAuthentication.SignOut();

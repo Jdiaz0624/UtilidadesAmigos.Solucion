@@ -187,8 +187,8 @@
     <Content Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx" />
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
     <Content Include="Paginas\ProduccionDiariaContabilidad.aspx" />
-    <Content Include="Paginas\ReporteProduccionIntermediarioSupervisor.aspx" />
     <Content Include="Paginas\ReporteReclamos.aspx" />
+    <Content Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx" />
     <Content Include="Paginas\SistemaTicket.aspx" />
     <Content Include="Paginas\SolicitudEmisionPoliza.aspx" />
     <Content Include="Paginas\SolicitudSeguroLey.aspx" />
@@ -663,19 +663,18 @@
     <Compile Include="Paginas\prueba.aspx.designer.cs">
       <DependentUpon>prueba.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\ReporteProduccionIntermediarioSupervisor.aspx.cs">
-      <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\ReporteProduccionIntermediarioSupervisor.aspx.designer.cs">
-      <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paginas\ReporteReclamos.aspx.cs">
       <DependentUpon>ReporteReclamos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\ReporteReclamos.aspx.designer.cs">
       <DependentUpon>ReporteReclamos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx.cs">
+      <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx.designer.cs">
+      <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\SacarDataCoberturas.aspx.cs">
       <DependentUpon>SacarDataCoberturas.aspx</DependentUpon>
