@@ -16,7 +16,7 @@
             width:90px;
         }
 
-        .Letranegrita {
+        .LetrasNegrita {
         font-weight:bold;
         }
         table {
@@ -83,31 +83,65 @@
             <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExportar_Click" />
         </div>
         <br />
-           <div>
-            <asp:GridView ID="gvInventario" runat="server" AllowPaging="true" OnPageIndexChanging="gvInventario_PageIndexChanging" OnSelectedIndexChanged="gvInventario_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    
-                    <asp:BoundField DataField="NoFactura" HeaderText="NoFactura" />
-                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
-                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
-                    <asp:BoundField DataField="SubRamo" HeaderText="SubRamo" />
-                    <asp:BoundField DataField="Cliente" HeaderText="Cliente" />
-                    <asp:BoundField DataField="Intermediario" HeaderText="Intermediario" />
-                    <asp:BoundField DataField="FechaFacturacion" HeaderText="Fecha Facturacion" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-    </div>
+           <div class="table-responsive">
+               <table class="table table-hover">
+                   <thead>
+                       <tr>
+                           <th style="width:10%" align="left"> <asp:Label ID="lbNumeroFacturaHeaderRepeater" runat="server" Text="No. Factura" CssClass="Letranegrita"></asp:Label> </th>
+                           <th style="width:10%" align="left"> <asp:Label ID="lbPolizaHeaderRepeater" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
+                           <th style="width:10%" align="left"> <asp:Label ID="lbEstatusHeaderRepeater" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
+                           <th style="width:20%" align="left"> <asp:Label ID="lbSubRamoHeaderRepeater" runat="server" Text="SubRamo" CssClass="Letranegrita"></asp:Label> </th>
+                           <th style="width:20%" align="left"> <asp:Label ID="lbClienteHeaderRepeater" runat="server" Text="Cliente" CssClass="Letranegrita"></asp:Label> </th>
+                           <th style="width:20%" align="left"> <asp:Label ID="lbIntermediarioHeaderRepeater" runat="server" Text="Intermediario" CssClass="Letranegrita"></asp:Label> </th>
+                           <th style="width:10%" align="left"> <asp:Label ID="lbFechaHeaderRepeater" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label> </th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <asp:Repeater ID="rpListadoFianzas" runat="server">
+                           <ItemTemplate>
+                               <tr>
+                                   <td style="width:10%"> <%# Eval("NoFactura") %> </td>
+                                   <td style="width:10%"> <%# Eval("Poliza") %> </td>
+                                   <td style="width:10%"> <%# Eval("Estatus") %> </td>
+                                   <td style="width:20%"> <%# Eval("SubRamo") %> </td>
+                                   <td style="width:20%"> <%# Eval("Cliente") %> </td>
+                                   <td style="width:20%"> <%# Eval("Intermediario") %> </td>
+                                   <td style="width:10%"> <%# Eval("FechaFacturacion") %> </td>
+                               </tr>
+                           </ItemTemplate>
+                       </asp:Repeater>
+                   </tbody>
+               </table>
+           </div>
+
+         <div align="center">
+                <asp:Label ID="lbPaginaActualTituloFianzas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariableFianzas" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloFianzas" runat="server" Text="De " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariableFianzas" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+
+             <div id="DivPaginacionListadoPrincipalFianzas" runat="server" align="center" >
+                <div style="margin-top=20px;">
+                    <table style="width:600px;">
+                        <tr>
+                            <td> <asp:LinkButton ID="LinkPrimeraPaginaFianzas" runat="server" Text="Primero" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaFianzas_Click" CssClass="btn btn-outline-success btn-sm"  ></asp:LinkButton> </td>
+                            <td> <asp:LinkButton ID="LinkPaginaAnteriorFianzas" runat="server" Text="Anterior" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkPaginaAnteriorFianzas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td>
+                                <asp:DataList ID="dtPaginacionFianzas" runat="server" OnCancelCommand="dtPaginacionFianzas_CancelCommand" OnItemDataBound="dtPaginacionFianzas_ItemDataBound" RepeatDirection="Horizontal" >
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="LinkIndiceFianzas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="NuevaPagina" Text='<%# Eval("TextoPagina")%>' Width="20px"></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:DataList>
+
+                            </td>
+                            <td> <asp:LinkButton ID="LinkSiguientePaginaFianzas" runat="server" Text="Siguiente" ToolTip="Ir la Siguiente pagina del listado" OnClick="LinkSiguientePaginaFianzas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td> <asp:LinkButton ID="LinkUltimaPaginaFianzas" runat="server" Text="Ultmo" ToolTip="Ir a la Ultima Pagina del listado" OnClick="LinkUltimaPaginaFianzas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                           
+                        </tr>
+                    </table>
+                </div>
+            </div>
     </div>
 
     <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -155,31 +189,62 @@
                  </div>
                  <!--BOTONES-->
                  <br />
-                 <div>
-            <asp:GridView ID="gvHistoricoPolizaFianza" runat="server" AllowPaging="true" OnPageIndexChanging="gvHistoricoPolizaFianza_PageIndexChanging" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    
-                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
-                    <asp:BoundField DataField="Cliente" HeaderText="Cliente" />
-                    <asp:BoundField DataField="SubRamo" HeaderText="SubRamo" />
-                    <asp:BoundField DataField="Concepto" HeaderText="Concepto" />
-                    <asp:BoundField DataField="Valor" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Valor" />
-                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-    </div>
+                   <div class="table-responsive">
+                       <table class="table table-hover">
+                           <thead>
+                               <tr>
+                                   <th style="width:10%" align="left"> <asp:Label ID="lbPolizaHeaderHistoricoFianzas" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
+                                   <th style="width:20%" align="left"> <asp:Label ID="lbClienteHeaderHistoricoFianza" runat="server" Text="Cliente" CssClass="Letranegrita"></asp:Label> </th>
+                                   <th style="width:20%" align="left"> <asp:Label ID="lbSubRamoHeaderHistoricoFianzas" runat="server" Text="SubRamo" CssClass="Letranegrita"></asp:Label> </th>
+                                   <th style="width:30%" align="left"> <asp:Label ID="lbConceptoHeaderHistoricoFianzas" runat="server" Text="Concepto" CssClass="Letranegrita"></asp:Label> </th>
+                                   <th style="width:10%" align="left"> <asp:Label ID="lbValorHeaderHistoricoFianzas" runat="server" Text="Valor" CssClass="Letranegrita"></asp:Label> </th>
+                                   <th style="width:10%" align="left"> <asp:Label ID="lbFechaHeaderHistoricoFianzas" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label> </th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <asp:Repeater ID="rpListadoHistoricoFianzas" runat="server">
+                                   <ItemTemplate>
+                                       <tr>
+                                           <td style="width:10%"> <%# Eval("Poliza") %> </td>
+                                           <td style="width:20%"> <%# Eval("Cliente") %> </td>
+                                           <td style="width:20%"> <%# Eval("SubRamo") %> </td>
+                                           <td style="width:30%"> <%# Eval("Concepto") %> </td>
+                                           <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Valor")) %> </td>
+                                           <td style="width:10%"> <%# Eval("Fecha") %> </td>
+                                       </tr>
+                                   </ItemTemplate>
+                               </asp:Repeater>
+                           </tbody>
+                       </table>
+                   </div>
+                  <div align="center">
+                <asp:Label ID="lbPaginaActualTituloHistoricoFianzas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariableHistoricoFianzas" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloHistoricoFianzas" runat="server" Text="De " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariableHistoricoFianzas" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
 
+             <div id="DivPaginacionListadoPrincipalHistoricoFianzas" runat="server" align="center" >
+                <div style="margin-top=20px;">
+                    <table style="width:600px;">
+                        <tr>
+                            <td> <asp:LinkButton ID="LinkPrimeraPaginaHistoricoFianzas" runat="server" Text="Primero" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaHistoricoFianzas_Click" CssClass="btn btn-outline-success btn-sm"  ></asp:LinkButton> </td>
+                            <td> <asp:LinkButton ID="LinkPaginaAnteriorHistoricoFianzas" runat="server" Text="Anterior" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkPaginaAnteriorHistoricoFianzas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td>
+                                <asp:DataList ID="dtPaginacionHistoricoFianzas" runat="server" OnCancelCommand="dtPaginacionHistoricoFianzas_CancelCommand" OnItemDataBound="dtPaginacionHistoricoFianzas_ItemDataBound" RepeatDirection="Horizontal" >
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="LinkIndiceHistoricoFianzas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="NuevaPagina" Text='<%# Eval("TextoPagina")%>' Width="20px"></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:DataList>
+
+                            </td>
+                            <td> <asp:LinkButton ID="LinkSiguientePaginaHistoricoFianzas" runat="server" Text="Siguiente" ToolTip="Ir la Siguiente pagina del listado" OnClick="LinkSiguientePaginaHistoricoFianzas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td> <asp:LinkButton ID="LinkUltimaPaginaHistoricoFianzas" runat="server" Text="Ultmo" ToolTip="Ir a la Ultima Pagina del listado" OnClick="LinkUltimaPaginaHistoricoFianzas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                           
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
                
              </ContentTemplate>
