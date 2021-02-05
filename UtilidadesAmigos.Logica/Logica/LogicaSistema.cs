@@ -1392,11 +1392,11 @@ namespace UtilidadesAmigos.Logica.Logica
         }
 
         //SACAR LAS COMISIONES DE LOS SUPERVISORES
-        public List<UtilidadesAmigos.Logica.Entidades.EComisionesSupervisores> ComisionesSupervisores(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string CodigoSupervisor = null, int? Oficina = null)
+        public List<UtilidadesAmigos.Logica.Entidades.EComisionesSupervisores> ComisionesSupervisores(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string CodigoSupervisor = null, int? Oficina = null,decimal? UsuarioGenera = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_SACAR_COMISIONES_SUPERVISORES(FechaDesde, FechaHasta, CodigoSupervisor, Oficina)
+            var Listado = (from n in Objdata.SP_SACAR_COMISIONES_SUPERVISORES(FechaDesde, FechaHasta, CodigoSupervisor, Oficina, UsuarioGenera)
                            select new UtilidadesAmigos.Logica.Entidades.EComisionesSupervisores
                            {
                             CodigoSupervisor=n.CodigoSupervisor,
@@ -1412,7 +1412,10 @@ namespace UtilidadesAmigos.Logica.Logica
                                Oficina=n.Oficina,
                                Concepto=n.Concepto,
                                PorcuentoComision=n.PorcuentoComision,
-                               ComisionPagar=n.ComisionPagar
+                               ComisionPagar=n.ComisionPagar,
+                               GeneradoPor=n.GeneradoPor,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta
                            }).ToList();
             return Listado;
         }

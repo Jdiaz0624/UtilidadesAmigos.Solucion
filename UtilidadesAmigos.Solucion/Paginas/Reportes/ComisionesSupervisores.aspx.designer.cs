@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UtilidadesAmigos.Solucion.Paginas {
-    
-    
-    public partial class ComisionesSupervisores {
-        
+namespace UtilidadesAmigos.Solucion.Paginas
+{
+
+
+    public partial class ComisionesSupervisores
+    {
+
         /// <summary>
         /// lbComisionSupervisorsTitulo control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbComisionSupervisorsTitulo;
-        
+
         /// <summary>
         /// lbFechaDesdeConsulta control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbFechaDesdeConsulta;
-        
+
         /// <summary>
         /// txtFechaDesdeConsulta control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFechaDesdeConsulta;
-        
+
         /// <summary>
         /// lbFechaHastaConsulta control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbFechaHastaConsulta;
-        
+
         /// <summary>
         /// txtFechaHastaConsulta control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFechaHastaConsulta;
-        
+
         /// <summary>
         /// lbCodigoSupervisorConsulta control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCodigoSupervisorConsulta;
-        
+
         /// <summary>
         /// txtCodigoSupervisorConsulta control.
         /// </summary>
@@ -74,7 +76,25 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCodigoSupervisorConsulta;
-        
+
+        /// <summary>
+        /// lbNombreSupervisorConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNombreSupervisorConsulta;
+
+        /// <summary>
+        /// txtNombreSupervisorConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombreSupervisorConsulta;
+
         /// <summary>
         /// ldSeleccionarSucursalConsulta control.
         /// </summary>
@@ -83,7 +103,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ldSeleccionarSucursalConsulta;
-        
+
         /// <summary>
         /// ddlSeleccionarSucursalConsulta control.
         /// </summary>
@@ -92,7 +112,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarSucursalConsulta;
-        
+
         /// <summary>
         /// lbSeleccionarOficinaConsulta control.
         /// </summary>
@@ -101,7 +121,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbSeleccionarOficinaConsulta;
-        
+
         /// <summary>
         /// ddlSeleccionaroficinaConsulta control.
         /// </summary>
@@ -110,7 +130,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionaroficinaConsulta;
-        
+
         /// <summary>
         /// lbSeleccionarTipoReporte control.
         /// </summary>
@@ -119,7 +139,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbSeleccionarTipoReporte;
-        
+
         /// <summary>
         /// rbReporteResumido control.
         /// </summary>
@@ -128,7 +148,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rbReporteResumido;
-        
+
         /// <summary>
         /// rbReporteDetalle control.
         /// </summary>
@@ -137,7 +157,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rbReporteDetalle;
-        
+
         /// <summary>
         /// btnConsultarComisiones control.
         /// </summary>
@@ -146,7 +166,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConsultarComisiones;
-        
+
         /// <summary>
         /// btnExortarComisiones control.
         /// </summary>
@@ -155,7 +175,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnExortarComisiones;
-        
+
         /// <summary>
         /// btnReporteCOmisiones control.
         /// </summary>
@@ -164,16 +184,205 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnReporteCOmisiones;
-        
+
         /// <summary>
-        /// gvComisionSupervisor control.
+        /// lbCantidadRegistrosTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvComisionSupervisor;
-        
+        protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosTitulo;
+
+        /// <summary>
+        /// lbCantidadregistrosVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadregistrosVariable;
+
+        /// <summary>
+        /// lbCantidadRegistrosCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosCerrar;
+
+        /// <summary>
+        /// lbSupervisorHeaderRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSupervisorHeaderRepeater;
+
+        /// <summary>
+        /// lbPolizaHeaderRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPolizaHeaderRepeater;
+
+        /// <summary>
+        /// lbNumeroReciboHeaderRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNumeroReciboHeaderRepeater;
+
+        /// <summary>
+        /// lbFechaReciboHeaderRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaReciboHeaderRepeater;
+
+        /// <summary>
+        /// lbValorHeaderRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbValorHeaderRepeater;
+
+        /// <summary>
+        /// lbPorcientoComisionHeaderRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPorcientoComisionHeaderRepeater;
+
+        /// <summary>
+        /// lbComisionPagarHeaderRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbComisionPagarHeaderRepeater;
+
+        /// <summary>
+        /// lbOficinaHeaderRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbOficinaHeaderRepeater;
+
+        /// <summary>
+        /// rpListadoComisionSupervisores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpListadoComisionSupervisores;
+
+        /// <summary>
+        /// lbPaginaActualTituloComisionSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloComisionSupervisor;
+
+        /// <summary>
+        /// lbPaginaActualVariavleComisionSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualVariavleComisionSupervisor;
+
+        /// <summary>
+        /// lbCantidadPaginaTituloComisionSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloComisionSupervisor;
+
+        /// <summary>
+        /// lbCantidadPaginaVAriableComisionSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVAriableComisionSupervisor;
+
+        /// <summary>
+        /// divPaginacionComisionSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionComisionSupervisor;
+
+        /// <summary>
+        /// LinkPrimeraPaginaComisionSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPaginaComisionSupervisor;
+
+        /// <summary>
+        /// LinkAnteriorComisionSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorComisionSupervisor;
+
+        /// <summary>
+        /// dtPaginacionComisionSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dtPaginacionComisionSupervisor;
+
+        /// <summary>
+        /// LinkSiguienteComisionSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteComisionSupervisor;
+
+        /// <summary>
+        /// LinkUltimoComisionSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoComisionSupervisor;
+
         /// <summary>
         /// lbTituloCodigosPermitidos control.
         /// </summary>
@@ -182,7 +391,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbTituloCodigosPermitidos;
-        
+
         /// <summary>
         /// ScripManagerCodigosPermitidos control.
         /// </summary>
@@ -191,7 +400,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScripManagerCodigosPermitidos;
-        
+
         /// <summary>
         /// UpdatePanelCodigosPermitidos control.
         /// </summary>
@@ -200,7 +409,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanelCodigosPermitidos;
-        
+
         /// <summary>
         /// lbClaveSeguridad control.
         /// </summary>
@@ -209,7 +418,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbClaveSeguridad;
-        
+
         /// <summary>
         /// txtClaveSeguridad control.
         /// </summary>
@@ -218,7 +427,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtClaveSeguridad;
-        
+
         /// <summary>
         /// btnValidarClaveSeguridad control.
         /// </summary>
@@ -227,7 +436,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnValidarClaveSeguridad;
-        
+
         /// <summary>
         /// lbCodigoSupervisor control.
         /// </summary>
@@ -236,7 +445,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCodigoSupervisor;
-        
+
         /// <summary>
         /// txtCodigoSupervisor control.
         /// </summary>
@@ -245,7 +454,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCodigoSupervisor;
-        
+
         /// <summary>
         /// lbNombreSupervisor control.
         /// </summary>
@@ -254,7 +463,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbNombreSupervisor;
-        
+
         /// <summary>
         /// txtNombreSupervisor control.
         /// </summary>
@@ -263,7 +472,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombreSupervisor;
-        
+
         /// <summary>
         /// btnBuscarRegistros control.
         /// </summary>
@@ -272,7 +481,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBuscarRegistros;
-        
+
         /// <summary>
         /// gvInformacionSupervisor control.
         /// </summary>
@@ -281,7 +490,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvInformacionSupervisor;
-        
+
         /// <summary>
         /// lbCodigoSupervisorMantenimientio control.
         /// </summary>
@@ -290,7 +499,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCodigoSupervisorMantenimientio;
-        
+
         /// <summary>
         /// txtCodigoSupervisorMantenimiento control.
         /// </summary>
@@ -299,7 +508,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCodigoSupervisorMantenimiento;
-        
+
         /// <summary>
         /// lbNombreSupervisorMantenimiento control.
         /// </summary>
@@ -308,7 +517,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbNombreSupervisorMantenimiento;
-        
+
         /// <summary>
         /// txtNombreSupervisorMantenimientio control.
         /// </summary>
@@ -317,7 +526,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombreSupervisorMantenimientio;
-        
+
         /// <summary>
         /// lbOficinaSupervisorMantenimiento control.
         /// </summary>
@@ -326,7 +535,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbOficinaSupervisorMantenimiento;
-        
+
         /// <summary>
         /// txtOficinaSupervisorMantenimienti control.
         /// </summary>
@@ -335,7 +544,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtOficinaSupervisorMantenimienti;
-        
+
         /// <summary>
         /// lbEstatusSupervisorMantenimiento control.
         /// </summary>
@@ -344,7 +553,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEstatusSupervisorMantenimiento;
-        
+
         /// <summary>
         /// txtEstatusSupervisirMantenimiento control.
         /// </summary>
@@ -353,7 +562,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEstatusSupervisirMantenimiento;
-        
+
         /// <summary>
         /// btnGuardarDato control.
         /// </summary>
@@ -362,7 +571,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardarDato;
-        
+
         /// <summary>
         /// btnEliminarDato control.
         /// </summary>
@@ -371,7 +580,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEliminarDato;
-        
+
         /// <summary>
         /// btnRestablecer control.
         /// </summary>
@@ -380,7 +589,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRestablecer;
-        
+
         /// <summary>
         /// lbTituloGrid control.
         /// </summary>
@@ -389,7 +598,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbTituloGrid;
-        
+
         /// <summary>
         /// gvCodigosPermitidos control.
         /// </summary>

@@ -3,9 +3,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <style type="text/css">
-        .jumbotron{
+       .jumbotron{
             color:#000000; 
-            background:#7BC5FF;
+            background:#1E90FF;
             font-size:30px;
             font-weight:bold;
             font-family:'Gill Sans';
@@ -15,11 +15,19 @@
         .btn-sm{
             width:90px;
         }
-          .LetrasNegrita {
-          font-weight:bold;
-          }
 
+        .Letranegrita {
+        font-weight:bold;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        
 
+        th {
+            background-color: dodgerblue;
+            color: white;
+        }
     </style>
     <script>
         function ClaveSeguridadVacia() {
@@ -31,6 +39,16 @@
         function ClaveIngresadanoValida() {
             alert("La clave de seguridad ingresada no es valida, favor de verificar");
 
+        }
+
+        function CamposFechaVacions() {
+            alert("Has dejado campos fechas vacios, que son necesarios para realizar esta consulta, favor de verificar.");
+        }
+        function CampoFechaDesdeVacio() {
+            $("#<%=txtFechaDesdeConsulta.ClientID%>").css("border-color", "red");
+        }
+        function CampoFechaHastaVacio() {
+            $("#<%=txtFechaHastaConsulta.ClientID%>").css("border-color", "red");
         }
     </script>
 
@@ -49,7 +67,11 @@
             </div>
             <div class="form-group col-md-3">
                 <asp:Label ID="lbCodigoSupervisorConsulta" runat="server" Text="Codigo de Supervisor" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtCodigoSupervisorConsulta" runat="server" CssClass="form-control" TextMode="Number" MaxLength="4"></asp:TextBox>
+                <asp:TextBox ID="txtCodigoSupervisorConsulta" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoSupervisorConsulta_TextChanged" CssClass="form-control" TextMode="Number" MaxLength="4"></asp:TextBox>
+            </div>
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbNombreSupervisorConsulta" runat="server" Text="Nombre de Supervisor" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtNombreSupervisorConsulta" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="form-group col-md-3">
                 <asp:Label ID="ldSeleccionarSucursalConsulta" runat="server" Text="Seleccionar Sucursal" CssClass="LetrasNegrita"></asp:Label>
@@ -78,37 +100,75 @@
               <asp:Button ID="btnExortarComisiones" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExortarComisiones_Click" />
               <asp:Button ID="btnReporteCOmisiones" runat="server" Text="Reporte" CssClass="btn btn-outline-primary btn-sm" ToolTip="Reporte de Comisiones" OnClick="btnReporteCOmisiones_Click" />
                     <button type="button" id="btnCodigosPermitidos" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".CodigosPermitodos">Codigos</button>
+            <br />
+            <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCantidadregistrosVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" Text=" ) " CssClass="Letranegrita"></asp:Label>
           </div>
           <br />
-                      <asp:GridView ID="gvComisionSupervisor" runat="server" AllowPaging="true" OnPageIndexChanging="gvComisionSupervisor_PageIndexChanging" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    
-                    <asp:BoundField DataField="Supervisor" HeaderText="Supervisor" />
-                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
-                    <asp:BoundField DataField="NumeroFactura" HeaderText="Factura" />
-                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
-                    <asp:BoundField DataField="Valor" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Valor" />
-                    <asp:BoundField DataField="PorcuentoComision" HeaderText="%" />
-                       <asp:BoundField DataField="ComisionPagar" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="A Pagar" />                     
-                       <asp:BoundField DataField="Oficina" HeaderText="Oficina" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
+                   
     </div>
 
           <br />
-
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th style="width:25%" align="left"> <asp:Label ID="lbSupervisorHeaderRepeater" runat="server" Text="Supervisor" CssClass="Letranegrita"></asp:Label> </th>
+                    <th style="width:10%" align="left"> <asp:Label ID="lbPolizaHeaderRepeater" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
+                    <th style="width:10%" align="left"> <asp:Label ID="lbNumeroReciboHeaderRepeater" runat="server" Text="Recibo" CssClass="Letranegrita"></asp:Label> </th>
+                    <th style="width:10%" align="left"> <asp:Label ID="lbFechaReciboHeaderRepeater" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label> </th>
+                    <th style="width:10%" align="left"> <asp:Label ID="lbValorHeaderRepeater" runat="server" Text="Valor" CssClass="Letranegrita"></asp:Label> </th>
+                    <th style="width:5%" align="left"> <asp:Label ID="lbPorcientoComisionHeaderRepeater" runat="server" Text="%" CssClass="Letranegrita"></asp:Label> </th>
+                    <th style="width:10%" align="left"> <asp:Label ID="lbComisionPagarHeaderRepeater" runat="server" Text="Comisión" CssClass="Letranegrita"></asp:Label> </th>
+                    <th style="width:20%" align="left"> <asp:Label ID="lbOficinaHeaderRepeater" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <asp:Repeater ID="rpListadoComisionSupervisores" runat="server">
+                    <ItemTemplate>
+                        <tr>
+                            <td style="width:25%"> <%# Eval("Supervisor") %> </td>
+                            <td style="width:10%"> <%# Eval("Poliza") %> </td>
+                            <td style="width:10%"> <%# Eval("NumeroFactura") %> </td>
+                            <td style="width:10%"> <%# Eval("Fecha") %> </td>
+                            <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Valor")) %> </td>
+                            <td style="width:5%"> <%#string.Format("{0:n2}", Eval("PorcuentoComision")) %> </td>
+                            <td style="width:10%"> <%#string.Format("{0:n2}", Eval("ComisionPagar")) %> </td>
+                            <td style="width:10%"> <%# Eval("Oficina") %> </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </tbody>
+        </table>
     </div>
+      <div align="center">
+                <asp:Label ID="lbPaginaActualTituloComisionSupervisor" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavleComisionSupervisor" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloComisionSupervisor" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriableComisionSupervisor" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="divPaginacionComisionSupervisor" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeraPaginaComisionSupervisor" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaComisionSupervisor_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorComisionSupervisor" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorComisionSupervisor_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionComisionSupervisor" runat="server" OnItemCommand="dtPaginacionComisionSupervisor_ItemCommand" OnItemDataBound="dtPaginacionComisionSupervisor_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralComisionSupervisor" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteComisionSupervisor" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteComisionSupervisor_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoComisionSupervisor" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoComisionSupervisor_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+   
 
 
              <div class="modal fade bd-example-modal-xl CodigosPermitodos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

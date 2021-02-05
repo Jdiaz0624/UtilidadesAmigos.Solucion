@@ -2364,28 +2364,6 @@
       <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_SACAR_COMISIONES_SUPERVISORES" Method="SP_SACAR_COMISIONES_SUPERVISORES">
-    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.String" DbType="VarChar(10)" />
-    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_SACAR_COMISIONES_SUPERVISORESResult">
-      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
-      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="NumeroFactura" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="Fecha0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="PorcuentoComision" Type="System.Decimal" DbType="Decimal(2,1)" CanBeNull="true" />
-      <Column Name="ComisionPagar" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_PROCESAR_DATOS_COMISIONES_SUPERVISORES" Method="SP_PROCESAR_DATOS_COMISIONES_SUPERVISORES">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
@@ -2897,6 +2875,32 @@
       <Column Name="ALiquidar" Type="System.Decimal" DbType="Decimal(22,2)" CanBeNull="true" />
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_COMISIONES_SUPERVISORES" Method="SP_SACAR_COMISIONES_SUPERVISORES">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UsuarioGenera" Parameter="usuarioGenera" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_SACAR_COMISIONES_SUPERVISORESResult">
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NumeroFactura" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Fecha0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PorcuentoComision" Type="System.Decimal" DbType="Decimal(3,2)" CanBeNull="true" />
+      <Column Name="ComisionPagar" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
       <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </ElementType>

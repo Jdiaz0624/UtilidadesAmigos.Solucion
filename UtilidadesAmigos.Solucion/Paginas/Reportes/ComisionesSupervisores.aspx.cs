@@ -16,6 +16,136 @@ namespace UtilidadesAmigos.Solucion.Paginas
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
 
+        #region CONTROL PARA MOSTRAR LA PAGINACION
+        readonly PagedDataSource pagedDataSource = new PagedDataSource();
+        int _PrimeraPagina, _UltimaPagina;
+        private int _TamanioPagina = 10;
+        private int CurrentPage
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+        private void HandlePaging(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina = CurrentPage - 5;
+            if (CurrentPage > 5)
+                _UltimaPagina = CurrentPage + 5;
+            else
+                _UltimaPagina = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina = _UltimaPagina - 10;
+            }
+
+            if (_PrimeraPagina < 0)
+                _PrimeraPagina = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina; i < _UltimaPagina; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref LinkButton PrimeraPagina, ref LinkButton PaginaAnterior, ref LinkButton SiguientePagina, ref LinkButton UltimaPagina)
+        {
+            pagedDataSource.DataSource = Listado;
+            pagedDataSource.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina : _NumeroRegistros);
+            pagedDataSource.CurrentPageIndex = CurrentPage;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource;
+            RptGrid.DataBind();
+
+
+            divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
         #region BUSCAR LOS DATOS DEL INTERMEDIARIO
         private void BuscarDatosSupervisor() {
             string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
@@ -58,7 +188,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void ConsultarComisionesSupervisores() {
             if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
             {
-                //CAMPOS VACIOS
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacions()", "CamposFechaVacions();", true);
+                if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                }
             }
             else
             {
@@ -70,8 +206,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     Convert.ToDateTime(txtFechaHastaConsulta.Text),
                     _CodigoSupervisor,
                     _Oficina);
-                gvComisionSupervisor.DataSource = Consultar;
-                gvComisionSupervisor.DataBind();
+                Paginar(ref rpListadoComisionSupervisores, Consultar, 10, ref lbCantidadPaginaVAriableComisionSupervisor, ref LinkPrimeraPaginaComisionSupervisor, ref LinkAnteriorComisionSupervisor, ref LinkSiguienteComisionSupervisor, ref LinkUltimoComisionSupervisor);
+                HandlePaging(ref dtPaginacionComisionSupervisor, ref lbPaginaActualVariavleComisionSupervisor);
+
+                int CantidadRegistros = Consultar.Count;
+                lbCantidadregistrosVariable.Text = CantidadRegistros.ToString("N0");
             }
         }
         #endregion
@@ -170,7 +309,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
             {
-
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacions()", "CamposFechaVacions();", true);
+                if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                }
             }
             else
             {
@@ -350,11 +497,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
 
-        protected void gvComisionSupervisor_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvComisionSupervisor.PageIndex = e.NewPageIndex;
-            ConsultarComisionesSupervisores();
-        }
+     
 
         protected void btnValidarClaveSeguridad_Click(object sender, EventArgs e)
         {
@@ -509,6 +652,51 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void ddlSeleccionarSucursalConsulta_SelectedIndexChanged(object sender, EventArgs e)
         {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionaroficinaConsulta, ObjData.Value.BuscaListas("OFICINA", ddlSeleccionarSucursalConsulta.SelectedValue, null), true);
+        }
+
+        protected void txtCodigoSupervisorConsulta_TextChanged(object sender, EventArgs e)
+        {
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(_CodigoSupervisor);
+            txtNombreSupervisorConsulta.Text = Nombre.SacarNombreSupervisor();
+        }
+
+        protected void LinkPrimeraPaginaComisionSupervisor_Click(object sender, EventArgs e)
+        {
+            CurrentPage = 0;
+            ConsultarComisionesSupervisores();
+        }
+
+        protected void LinkAnteriorComisionSupervisor_Click(object sender, EventArgs e)
+        {
+            CurrentPage += -1;
+            ConsultarComisionesSupervisores();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleComisionSupervisor, ref lbCantidadPaginaVAriableComisionSupervisor);
+        }
+
+        protected void dtPaginacionComisionSupervisor_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionComisionSupervisor_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            ConsultarComisionesSupervisores();
+        }
+
+        protected void LinkSiguienteComisionSupervisor_Click(object sender, EventArgs e)
+        {
+            CurrentPage += 1;
+            ConsultarComisionesSupervisores();
+        }
+
+        protected void LinkUltimoComisionSupervisor_Click(object sender, EventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            ConsultarComisionesSupervisores();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleComisionSupervisor, ref lbCantidadPaginaVAriableComisionSupervisor);
         }
     }
 }
