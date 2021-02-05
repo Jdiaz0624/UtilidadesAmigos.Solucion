@@ -484,6 +484,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarOficinasComisiones();
                 rbGenerarReporteResumido.Checked = true;
                 txtTasaDollar.Text = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2).ToString();
+                rbPDF.Checked = true;
             }
         }
 
@@ -561,8 +562,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     ProcesoComisionesIntermediario();
                 }
                 GenerarReporteComisiones(UsuarioGenera, Server.MapPath(RutaReporte), NombreReporte);
-
-
             }
         }
 
@@ -581,12 +580,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void LinkPrimeraPagina_Click(object sender, EventArgs e)
         {
+            CurrentPage = 0;
+            GenerarComisionesIntermediarios();
 
         }
 
         protected void LinkAnterior_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            GenerarComisionesIntermediarios();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavle, ref lbCantidadPaginaVariable);
         }
 
         protected void dtPaginacion_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -596,17 +599,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void dtPaginacion_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            GenerarComisionesIntermediarios();
         }
 
         protected void LinkSiguiente_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += 1;
+            GenerarComisionesIntermediarios();
         }
 
         protected void LinkUltimo_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            GenerarComisionesIntermediarios();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavle, ref lbCantidadPaginaVariable);
         }
     }
 }
