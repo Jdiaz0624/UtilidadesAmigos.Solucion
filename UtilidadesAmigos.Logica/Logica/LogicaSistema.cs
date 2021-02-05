@@ -2073,16 +2073,18 @@ namespace UtilidadesAmigos.Logica.Logica
         }
 
         //GENERAR LAS COMISIONES DE LOS INTERMEDIARIOS
-        public List<UtilidadesAmigos.Logica.Entidades.EGenerarComisionIntermediario> GenerarComisionIntermediario(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string CodigoIntermediario = null, int? Oficina = null, decimal? Tasa = null)
+        public List<UtilidadesAmigos.Logica.Entidades.EGenerarComisionIntermediario> GenerarComisionIntermediario(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string CodigoIntermediario = null, int? Oficina = null, decimal? Tasa = null, decimal? Usuario = null)
         {
             Objdata.CommandTimeout = 99999999;
 
-            var Generar = (from n in Objdata.SP_SACAR_COMISIONES_INTERMEDIARIOS(FechaDesde, FechaHasta, CodigoIntermediario, Oficina, Tasa)
+            var Generar = (from n in Objdata.SP_SACAR_COMISIONES_INTERMEDIARIOS(FechaDesde, FechaHasta, CodigoIntermediario, Oficina, Tasa, Usuario)
                            select new UtilidadesAmigos.Logica.Entidades.EGenerarComisionIntermediario
                            {
                                Supervisor = n.Supervisor,
+                               CodigoSupervisor=n.CodigoSupervisor,
                                Codigo = n.Codigo,
                                Intermediario = n.Intermediario,
+                               CodigoOficina=n.CodigoOficina,
                                Oficina = n.Oficina,
                                NumeroIdentificacion = n.NumeroIdentificacion,
                                CuentaBanco = n.CuentaBanco,
@@ -2095,6 +2097,7 @@ namespace UtilidadesAmigos.Logica.Logica
                                FechaFactura = n.FechaFactura,
                                Moneda = n.Moneda,
                                Poliza = n.Poliza,
+                               Ramo=n.Ramo,
                                Producto = n.Producto,
                                Bruto=n.Bruto,
                                Neto=n.Neto,
@@ -2103,7 +2106,10 @@ namespace UtilidadesAmigos.Logica.Logica
                                Retencion=n.Retencion,
                                AvanceComision=n.AvanceComision,
                                ALiquidar=n.ALiquidar,
-                               CantidadRegistros=n.CantidadRegistros
+                               CantidadRegistros=n.CantidadRegistros,
+                               Usuario=n.Usuario,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta
                            }).ToList();
             return Generar;
         }

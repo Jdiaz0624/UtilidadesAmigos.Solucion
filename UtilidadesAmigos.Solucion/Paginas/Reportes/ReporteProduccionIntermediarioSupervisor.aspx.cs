@@ -20,9 +20,138 @@ namespace UtilidadesAmigos.Solucion.Paginas
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaMantenimientos.LogicaMantenimientos> ObjDataMantenimiento = new Lazy<Logica.Logica.LogicaMantenimientos.LogicaMantenimientos>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataGeneral = new Lazy<Logica.Logica.LogicaSistema>();
 
+        #region CONTROL PARA MOSTRAR LA PAGINACION
+        readonly PagedDataSource pagedDataSource = new PagedDataSource();
+        int _PrimeraPagina, _UltimaPagina;
+        private int _TamanioPagina = 10;
+        private int CurrentPage
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
 
+        }
+        private void HandlePaging(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina = CurrentPage - 5;
+            if (CurrentPage > 5)
+                _UltimaPagina = CurrentPage + 5;
+            else
+                _UltimaPagina = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina = _UltimaPagina - 10;
+            }
+
+            if (_PrimeraPagina < 0)
+                _PrimeraPagina = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina; i < _UltimaPagina; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref LinkButton PrimeraPagina, ref LinkButton PaginaAnterior, ref LinkButton SiguientePagina, ref LinkButton UltimaPagina)
+        {
+            pagedDataSource.DataSource = Listado;
+            pagedDataSource.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina : _NumeroRegistros);
+            pagedDataSource.CurrentPageIndex = CurrentPage;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource;
+            RptGrid.DataBind();
+
+
+            divPaginacion.Visible = true;
+        }
+        enum OpcionesPaginacionValores
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
         #region METODOS DE GRAFICOS
-        
+
         private void GraficoSupervisores() {
             decimal[] MontoFacturado = new decimal[10];
             string[] NombreSupervisor = new string[10];
@@ -726,8 +855,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     _Ramo,
                     null,
                     _Concepto, null);
-                gvListdoProduccion.DataSource = BuscarInformacion;
-                gvListdoProduccion.DataBind();
+              
 
                 int CantidadRegistros = 0;
                 decimal TotalFActurado = 0, TotalFActuradoPesos = 0, TotalFacturadoDollar = 0, FacturadoGeneral = 0;
@@ -744,6 +872,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbFacturadoPesosVariable.Text = TotalFActuradoPesos.ToString("N2");
                 LbFacturadoDollarVariable.Text = TotalFacturadoDollar.ToString("N2");
                 lbFacturadoTotalVariable.Text = FacturadoGeneral.ToString("N2");
+
+                Paginar(ref rpListadoProduccion, BuscarInformacion, 10, ref lbCantidadPaginaVAriable, ref LinkPrimeraPagina, ref LinkAnterior, ref LinkSiguiente, ref LinkUltimo);
+                HandlePaging(ref dtPaginacion, ref lbPaginaActualVariavle);
             }
             else {
                 FormsAuthentication.SignOut();
@@ -1636,38 +1767,49 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
 
-        protected void gvListdoProduccion_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvListdoProduccion.PageIndex = e.NewPageIndex;
-            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
-            {
-                ClientScript.RegisterStartupScript(GetType(), "CamposVacios", "CamposVacios();", true);
-                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVAcio", "CampoFechaDesdeVAcio();", true);
-                }
-                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHAstaVAcio", "CampoFechaHAstaVAcio();", true);
-                }
-            }
-            else
-            {
-
-                ConsultarPorPantalla();
-                cbGraficar.Checked = false;
-                OcultarControlesGraficos();
-            }
-        }
-
-        protected void gvListdoProduccion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         protected void ddlSeleccionarSucursal_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarOficinas();
+        }
+
+        protected void LinkPrimeraPagina_Click(object sender, EventArgs e)
+        {
+            CurrentPage = 0;
+            BuscarDatosNoAgrupados();
+        }
+
+        protected void LinkAnterior_Click(object sender, EventArgs e)
+        {
+            CurrentPage += -1;
+            BuscarDatosNoAgrupados();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavle, ref lbCantidadPaginaVAriable);
+        }
+
+        protected void dtPaginacion_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            BuscarDatosNoAgrupados();
+        }
+
+        protected void LinkSiguiente_Click(object sender, EventArgs e)
+        {
+            CurrentPage += 1;
+            BuscarDatosNoAgrupados();
+        }
+
+        protected void LinkUltimo_Click(object sender, EventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            BuscarDatosNoAgrupados();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavle, ref lbCantidadPaginaVAriable);
         }
 
         protected void cbGraficar_CheckedChanged(object sender, EventArgs e)
