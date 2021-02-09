@@ -97,7 +97,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             RptGrid.DataBind();
 
 
-            divPaginacionComisionSupervisor.Visible = true;
+            //divPaginacionComisionSupervisor.Visible = true;
         }
         enum OpcionesPaginacionValores
         {
@@ -146,49 +146,164 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
         #endregion
-        #region BUSCAR LOS DATOS DEL INTERMEDIARIO
-        private void BuscarDatosSupervisor() {
-            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
-            string _NombreVendedor = string.IsNullOrEmpty(txtNombreSupervisor.Text.Trim()) ? null : txtNombreSupervisor.Text.Trim();
-
-            var BuscarRegistros = ObjData.Value.BuscaInformacionSUperisor(
-                _CodigoSupervisor,
-                _NombreVendedor);
-            gvInformacionSupervisor.DataSource = BuscarRegistros;
-            gvInformacionSupervisor.DataBind();
-        }
-        #endregion
-        #region MOSTRAR LOS CODIGOS PERMITIDOS
-        private void MostrarCodigospermitidos() {
-            var MostrarCodigospermitidos = ObjData.Value.BuscarCodigosSupervisoresPermitidos(
-                new Nullable<decimal>(),
-                null, null, null, null);
-            gvCodigosPermitidos.DataSource = MostrarCodigospermitidos;
-            gvCodigosPermitidos.DataBind();
-        }
-        #endregion
-        #region MANTENIMIENTO CODIGOS PERMITIDOS
-        private void MANCodigoPermitidos(decimal IdRegistro, decimal CodigoSupervisor, string Accion) {
-            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionCodigosSupervisoresPermitidos Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionCodigosSupervisoresPermitidos(
-                IdRegistro, CodigoSupervisor, Convert.ToDecimal(Session["IdUsuario"]), Accion);
-            Procesar.ProcesarInformacion();
-            MostrarCodigospermitidos();
-            btnGuardarDato.Enabled = true;
-            btnEliminarDato.Enabled = false;
-            Restablecer();
-        }
-        #endregion
         #region CARGAR LAS LISTAS DESPLEGABLES
-        private void CargarListasDesplegables() {
+        private void CargarListasDesplegables()
+        {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSucursalConsulta, ObjData.Value.BuscaListas("SUCURSAL", null, null), true);
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionaroficinaConsulta, ObjData.Value.BuscaListas("OFICINA", ddlSeleccionarSucursalConsulta.SelectedValue, null), true);
         }
         #endregion
-        #region MOSTRAR EL LISTADO DE LAS COMISIONES DE LOS SUPERVISORES
-        private void ConsultarComisionesSupervisores() {
-            if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
-            {
-                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacions()", "CamposFechaVacions();", true);
+        #region MOSTRAR LAS COMISIONES POR PANTALLA
+        /// <summary>
+        /// Este metodo muestra el listado de las comisiones por pantalla.
+        /// </summary>
+        private void MostrarComisionesPantalla() {
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+            int? _Oficina = ddlSeleccionaroficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaConsulta.SelectedValue) : new Nullable<int>();
+
+            var Consultar = ObjData.Value.ComisionesSupervisores(
+                Convert.ToDateTime(txtFechaDesdeConsulta.Text),
+                Convert.ToDateTime(txtFechaHastaConsulta.Text),
+                _CodigoSupervisor,
+                _Oficina,
+                null);
+            int CantidadRegistros = Consultar.Count;
+            lbCantidadRegistrosEncontradosVariable.Text = CantidadRegistros.ToString("N0");
+            Paginar(ref rpListadoComisionesSupervisores, Consultar, 10, ref lbCantidadPaginaVariablePrincipal, ref LinkPrimeraPaginaPrincipal, ref LinkAnteriorPrincipal, ref LinkSiguientePrincipal, ref LinkUltimoPrincipal);
+            HandlePaging(ref dtPaginacionPrincipal, ref lbPaginaActualVariavlePrincipal);
+        }
+        #endregion
+        #region EXPORTAR LA CONSULTA A EXCEL
+        private void ExportarConsultaExcel() {
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+            int? _Oficina = ddlSeleccionaroficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaConsulta.SelectedValue) : new Nullable<int>();
+
+            if (rbReporteResumido.Checked == true) {
+                //EXPORTAR LA DATA DE MANERA RESUMIDA
+                //ELIMINAMOS LOS REGISTROS REGISTRADOS BAJO EL USUARIO A PROCESAR
+
+                decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores(
+                    IdUsuario, DateTime.Now, DateTime.Now, 0, "", 0, "", "", 0, 0, "", DateTime.Now, 0, "", "", 0, 0, "DELETE");
+                Eliminar.ProcesarInformacion();
+
+                //BUSCAMOS LA INFORMAICON NUEVA Y PROCEDEMOS A GUARDARLAR
+
+                var Buscarregistros = ObjData.Value.ComisionesSupervisores(
+                    Convert.ToDateTime(txtFechaDesdeConsulta.Text),
+                    Convert.ToDateTime(txtFechaHastaConsulta.Text),
+                    _CodigoSupervisor,
+                    _Oficina, null);
+                if (Buscarregistros.Count() < 1) { }
+                else {
+                    foreach (var n in Buscarregistros) {
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores(
+                            IdUsuario,
+                            Convert.ToDateTime(txtFechaDesdeConsulta.Text),
+                            Convert.ToDateTime(txtFechaHastaConsulta.Text),
+                            (int)n.CodigoSupervisor,
+                            n.Supervisor,
+                            (int)n.CodigoIntermediario,
+                            n.Intermediario,
+                            n.Poliza,
+                            (decimal)n.NumeroFactura,
+                            (decimal)n.Valor,
+                            n.Fecha,
+                            Convert.ToDateTime(n.Fecha0),
+                            (int)n.CodigoOficina,
+                            n.Oficina,
+                            n.Concepto,
+                            (decimal)n.PorcuentoComision,
+                            (decimal)n.ComisionPagar,
+                            "INSERT");
+                        Guardar.ProcesarInformacion();
+                    }
+
+                    var DataResumida = (from n in ObjData.Value.ReporteComisionesSupervisorResumido(IdUsuario)
+                                        select new { 
+                                        Supervisor=n.Supervisor,
+                                        Oficina=n.Oficina,
+                                        APagar=n.ComisionPagar
+                                        }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comision Resumida", DataResumida);
+                }
+            }
+            else if (rbReporteDetallado.Checked == true) {
+                var DataDetallada = (from n in ObjData.Value.ComisionesSupervisores(
+                    Convert.ToDateTime(txtFechaDesdeConsulta.Text),
+                    Convert.ToDateTime(txtFechaHastaConsulta.Text),
+                    _CodigoSupervisor,
+                    _Oficina,
+                    null)
+                                     select new {
+                                         CodigoSupervisor = n.CodigoSupervisor,
+                                         Supervisor = n.Supervisor,
+                                         CodigoIntermediario = n.CodigoIntermediario,
+                                         Intermediario = n.Intermediario,
+                                         Poliza = n.Poliza,
+                                         NumeroFactura = n.NumeroFactura,
+                                         Valor = n.Valor,
+                                         Fecha = n.Fecha,
+                                         Oficina = n.Oficina,
+                                         Concepto = n.Concepto,
+                                         PorcuentoComision = n.PorcuentoComision,
+                                         ComisionPagar = n.ComisionPagar
+                                     }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comisiones Detalle", DataDetallada);
+            }
+        }
+        #endregion
+        #region GENERAR REPORTE DE COMISIONES DE SUPERVISORES
+        private void GenerarReporteComisionesSupervisores(string RutaReporte, string NombreArchivo) {
+            decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+            int? _Oficina = ddlSeleccionaroficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaConsulta.SelectedValue) : new Nullable<int>();
+
+            ReportDocument Reporte = new ReportDocument();
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            if (rbReporteResumido.Checked == true) {
+                Reporte.SetParameterValue("@IdUsuario", IdUsuario);
+            }
+            else if (rbReporteDetallado.Checked == true) {
+                Reporte.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesdeConsulta.Text));
+                Reporte.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHastaConsulta.Text));
+                Reporte.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
+                Reporte.SetParameterValue("@Oficina", _Oficina);
+                Reporte.SetParameterValue("@UsuarioGenera", IdUsuario);
+            }
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+            if (rbGenerarReportePDF.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+            }
+            else if (rbGenerarReporteExcel.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreArchivo);
+            }
+            else if (rbGenerarReporteWord.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreArchivo);
+            }
+        
+        }
+        #endregion
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack) {
+                CargarListasDesplegables();
+                rbGenerarReportePDF.Checked = true;
+                rbCodigosPermitidos.Checked = true;
+                DivBloqueCodigosPermitidos.Visible = true;
+                DivBloqueBuscarCodigos.Visible = false;
+                rbReporteResumido.Checked = true;
+            }
+        }
+
+        protected void btnConsultar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim())) {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
+
                 if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim())) {
                     ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
                 }
@@ -196,120 +311,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
                 }
             }
-            else
-            {
-                string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-                int? _Oficina = ddlSeleccionaroficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaConsulta.SelectedValue) : new Nullable<int>();
-
-                var Consultar = ObjData.Value.ComisionesSupervisores(
-                    Convert.ToDateTime(txtFechaDesdeConsulta.Text),
-                    Convert.ToDateTime(txtFechaHastaConsulta.Text),
-                    _CodigoSupervisor,
-                    _Oficina);
-                Paginar(ref rpListadoComisionSupervisores, Consultar, 10, ref lbCantidadPaginaVAriableComisionSupervisor, ref LinkPrimeraPaginaComisionSupervisor, ref LinkAnteriorComisionSupervisor, ref LinkSiguienteComisionSupervisor, ref LinkUltimoComisionSupervisor);
-                HandlePaging(ref dtPaginacionComisionSupervisor, ref lbPaginaActualVariavleComisionSupervisor);
-
-                int CantidadRegistros = Consultar.Count;
-                lbCantidadregistrosVariable.Text = CantidadRegistros.ToString("N0");
-            }
-        }
-        #endregion
-        #region IMPRIMIR REPORTE
-        private void ImprimirReporteResumido(decimal IdUsuario, string RutaReporte, string UsuaruoBD, string ClaveBD, string NombreArchivo) {
-            try {
-                ReportDocument Factura = new ReportDocument();
-
-                SqlCommand comando = new SqlCommand();
-                comando.CommandText = "EXEC [Utililades].[SP_REPORTE_DETALLE_COMISION_RESUMIDO] @IdUsuario";
-                comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
-
-                comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
-                comando.Parameters["@IdUsuario"].Value = IdUsuario;
-
-                Factura.Load(RutaReporte);
-                Factura.Refresh();
-                Factura.SetParameterValue("@IdUsuario", IdUsuario);
-                Factura.SetDatabaseLogon(UsuaruoBD, ClaveBD);
-                Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, NombreArchivo);
-
-                  //Factura.PrintToPrinter(1, false, 0, 1);
-                //  crystalReportViewer1.ReportSource = Factura;
-            }
-            catch (Exception) { }
-
-        }
-        private void ImprimirReporteDetalle(decimal IdUsuario, string RutaReporte, string UsuaruoBD, string ClaveBD, string NombreArchivo) {
-            try {
-                ReportDocument Factura = new ReportDocument();
-
-                SqlCommand comando = new SqlCommand();
-                comando.CommandText = "EXEC [Utililades].[SP_REPORTE_DETALLE_COMISION_SUPERVISORES] @IdUsuario";
-                comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
-
-                comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
-                comando.Parameters["@IdUsuario"].Value = IdUsuario;
-
-                Factura.Load(RutaReporte);
-                Factura.Refresh();
-                Factura.SetParameterValue("@IdUsuario", IdUsuario);
-                Factura.SetDatabaseLogon(UsuaruoBD, ClaveBD);
-                Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
-
-                //  Factura.PrintToPrinter(1, false, 0, 1);
-                //  crystalReportViewer1.ReportSource = Factura;
-            }
-            catch (Exception) { }
-        }
-        #endregion
-
-        private void Restablecer() {
-            //MOSTRAMOS LOS CONTROLES
-            lbCodigoSupervisorMantenimientio.Visible = false;
-            txtCodigoSupervisorMantenimiento.Visible = false;
-            lbNombreSupervisorMantenimiento.Visible = false;
-            txtNombreSupervisorMantenimientio.Visible = false;
-            lbOficinaSupervisorMantenimiento.Visible = false;
-            txtOficinaSupervisorMantenimienti.Visible = false;
-            lbEstatusSupervisorMantenimiento.Visible = false;
-            txtEstatusSupervisirMantenimiento.Visible = false;
-            btnGuardarDato.Visible = false;
-            btnEliminarDato.Visible = false;
-            btnRestablecer.Visible = false;
-            txtCodigoSupervisor.Text = string.Empty;
-            txtNombreSupervisor.Text = string.Empty;
-
-            //LIMPIAMOS LOS CTROLES
-            txtCodigoSupervisorMantenimiento.Text = string.Empty;
-            txtNombreSupervisorMantenimientio.Text = string.Empty;
-            txtOficinaSupervisorMantenimienti.Text = string.Empty;
-            txtEstatusSupervisirMantenimiento.Text = string.Empty;
-            MostrarCodigospermitidos();
-            gvInformacionSupervisor.DataSource = null;
-        }
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack) {
-                MostrarCodigospermitidos();
-                CargarListasDesplegables();
-                rbReporteResumido.Checked = true;
+            else {
+                MostrarComisionesPantalla();
             }
         }
 
-        protected void btnConsultar_Click(object sender, EventArgs e)
+        protected void btnExportar_Click(object sender, EventArgs e)
         {
-          
-        }
 
-        protected void btnConsultarComisiones_Click(object sender, EventArgs e)
-        {
-            ConsultarComisionesSupervisores();
-        }
-
-        protected void btnExortarComisiones_Click(object sender, EventArgs e)
-        {
             if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
             {
-                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacions()", "CamposFechaVacions();", true);
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
+
                 if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()))
                 {
                     ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
@@ -319,333 +332,215 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
                 }
             }
-            else
-            {
-                if (Session["IdUsuario"] != null)
-                {
-                    //ELIMINAKMOS LOS REGISTROS BAJO EL USUARIO INGRESADO
-                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores(
-                        Convert.ToDecimal(Session["IdUsuario"]),
-                        DateTime.Now,
-                        DateTime.Now,
-                        0, "", 0, "", "", 0, 0, "", DateTime.Now, 0, "", "", 0, 0, "DELETE");
-                    Eliminar.ProcesarInformacion();
-
-                    //GUARDAMOS LOS DATOS PARA EXPORTAR LOS DATOS
-                    string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-                    int? _oficina = ddlSeleccionaroficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaConsulta.SelectedValue) : new Nullable<int>();
-
-                    var BuscarRegistros = ObjData.Value.ComisionesSupervisores(
-                        Convert.ToDateTime(txtFechaDesdeConsulta.Text),
-                        Convert.ToDateTime(txtFechaHastaConsulta.Text),
-                        _CodigoSupervisor,
-                        _oficina);
-                    if (BuscarRegistros.Count() < 1)
-                    {
-
-                    }
-                    else
-                    {
-                        foreach (var n in BuscarRegistros)
-                        {
-                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores(
-                                Convert.ToDecimal(Session["IdUsuario"]),
-                                Convert.ToDateTime(txtFechaDesdeConsulta.Text),
-                                Convert.ToDateTime(txtFechaHastaConsulta.Text),
-                                Convert.ToInt32(n.CodigoSupervisor),
-                                n.Supervisor,
-                                Convert.ToInt32(n.CodigoIntermediario),
-                                n.Intermediario,
-                                n.Poliza,
-                                Convert.ToDecimal(n.NumeroFactura),
-                                Convert.ToDecimal(n.Valor),
-                                n.Fecha,
-                                Convert.ToDateTime(n.Fecha0),
-                                Convert.ToInt32(n.CodigoOficina),
-                                n.Oficina,
-                                n.Concepto,
-                                Convert.ToDecimal(n.PorcuentoComision),
-                                Convert.ToDecimal(n.ComisionPagar),
-                                "INSERT");
-                            Procesar.ProcesarInformacion();
-                        }
-                    }
-
-                    //GENERAMOS
-                    if (rbReporteResumido.Checked)
-                    {
-                        var Resumido = (from n in ObjData.Value.ReporteComisionesSupervisorResumido(Convert.ToDecimal(Session["IdUsuario"]))
-                                        select new
-                                        {
-                                            Supervisor = n.Supervisor,
-                                            Oficina=n.Oficina,
-                                            ValidadoDesde = n.ValidadoDesde,
-                                            ValidadoHasta=n.ValidadoHasta,
-                                            APagar=n.ComisionPagar
-                                        }).ToList();
-                        string Nombrearchivo = "Reporte de Comisiones Supervisores Resumido " + txtFechaDesdeConsulta.Text + " Hasta " + txtFechaHastaConsulta.Text;
-
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(Nombrearchivo, Resumido);
-                    }
-                    else
-                    {
-                        var Detalle = (from n in ObjData.Value.ReporteComisionesSupervisoresDetalle(Convert.ToDecimal(Session["IdUsuario"]))
-                                        select new
-                                        {
-                                            Supervisor = n.Supervisor,
-                                            Intermediairo =n.Intermediario,
-                                            ValidadoDesde = n.ValidadoDesde,
-                                            ValidadoHasta =n.ValidadoHasta,
-                                            Poliza=n.Poliza,
-                                            NumeroFactura=n.NumeroFactura,
-                                            FechaFactura =n.Fecha,
-                                            ValorFactura=n.Valor,
-                                            Concepto =n.Conepto,
-                                            Oficina=n.Oficina,
-                                            PorcientoComision=n.PorcientoComision,
-                                            APagar=n.ComisionPagar
-
-                                        }).ToList();
-                        string Nombrearchivo = "Reporte de Comisiones Supervisores Detalle " + txtFechaDesdeConsulta.Text + " Hasta " + txtFechaHastaConsulta.Text;
-
-                        UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(Nombrearchivo, Detalle);
-                    }
-                }
-
-
-
-
+            else {
+                ExportarConsultaExcel();
             }
-
-
         }
 
-        protected void btnReporteCOmisiones_Click(object sender, EventArgs e)
+        protected void btnReporte_Click(object sender, EventArgs e)
         {
+
             if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
             {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
 
-            }
-            else
-            {
-                if (Session["IdUsuario"] != null)
+                if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()))
                 {
-                    //ELIMINAKMOS LOS REGISTROS BAJO EL USUARIO INGRESADO
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                }
+            }
+            else {
+
+                if (rbReporteDetallado.Checked == true) {
+                    GenerarReporteComisionesSupervisores(Server.MapPath("ComisionesSupervisoresDetalleFinal.rpt"), "Comisiones Supervisores Detalle");
+                }
+                else {
+                    decimal _IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+                    string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+                    int? _Oficina = ddlSeleccionaroficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaConsulta.SelectedValue) : new Nullable<int>();
+
                     UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores(
-                        Convert.ToDecimal(Session["IdUsuario"]),
-                        DateTime.Now,
-                        DateTime.Now,
-                        0, "", 0, "", "", 0, 0, "", DateTime.Now, 0, "", "", 0, 0, "DELETE");
+                        _IdUsuario, DateTime.Now, DateTime.Now, 0, "", 0, "", "", 0, 0, "", DateTime.Now, 0, "", "", 0, 0, "DELETE");
                     Eliminar.ProcesarInformacion();
 
-                    //GUARDAMOS LOS DATOS PARA EXPORTAR LOS DATOS
-                    string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-                    int? _oficina = ddlSeleccionaroficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaConsulta.SelectedValue) : new Nullable<int>();
-
-                    var BuscarRegistros = ObjData.Value.ComisionesSupervisores(
+                    var Buscarregistros = ObjData.Value.ComisionesSupervisores(
                         Convert.ToDateTime(txtFechaDesdeConsulta.Text),
                         Convert.ToDateTime(txtFechaHastaConsulta.Text),
                         _CodigoSupervisor,
-                        _oficina);
-                    if (BuscarRegistros.Count() < 1)
-                    {
-
-                    }
-                    else
-                    {
-                        foreach (var n in BuscarRegistros)
-                        {
-                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores(
-                                Convert.ToDecimal(Session["IdUsuario"]),
-                                Convert.ToDateTime(txtFechaDesdeConsulta.Text),
-                                Convert.ToDateTime(txtFechaHastaConsulta.Text),
-                                Convert.ToInt32(n.CodigoSupervisor),
-                                n.Supervisor,
-                                Convert.ToInt32(n.CodigoIntermediario),
-                                n.Intermediario,
-                                n.Poliza,
-                                Convert.ToDecimal(n.NumeroFactura),
-                                Convert.ToDecimal(n.Valor),
-                                n.Fecha,
-                                Convert.ToDateTime(n.Fecha0),
-                                Convert.ToInt32(n.CodigoOficina),
-                                n.Oficina,
-                                n.Concepto,
-                                Convert.ToDecimal(n.PorcuentoComision),
-                                Convert.ToDecimal(n.ComisionPagar),
-                                "INSERT");
-                            Procesar.ProcesarInformacion();
+                        _Oficina,
+                        _IdUsuario);
+                    if (Buscarregistros.Count() < 1) { }
+                    else {
+                        foreach (var n in Buscarregistros) {
+                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores(
+                               _IdUsuario,
+                               Convert.ToDateTime(txtFechaDesdeConsulta.Text),
+                               Convert.ToDateTime(txtFechaHastaConsulta.Text),
+                               (int)n.CodigoSupervisor,
+                               n.Supervisor,
+                               (int)n.CodigoIntermediario,
+                               n.Intermediario,
+                               n.Poliza,
+                               (decimal)n.NumeroFactura,
+                               (decimal)n.Valor,
+                               n.Fecha,
+                               Convert.ToDateTime(n.Fecha0),
+                               (int)n.CodigoOficina,
+                               n.Oficina,
+                               n.Concepto,
+                               (decimal)n.PorcuentoComision,
+                               (decimal)n.ComisionPagar,
+                               "INSERT");
+                            Guardar.ProcesarInformacion();
                         }
-                    }
 
-                    //GENERAMOS
-                    if (rbReporteResumido.Checked)
-                    {
-                        string Nombrearchivo = "Reporte de Comisiones Supervisores Resumido " + txtFechaDesdeConsulta.Text + " Hasta " + txtFechaHastaConsulta.Text;
-                        ImprimirReporteResumido(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionSupervisorResumidoCorregido.rpt"), "sa", "Pa$$W0rd", Nombrearchivo);
+
+                        GenerarReporteComisionesSupervisores(Server.MapPath("ReporteComisionSupervisorResumidoFinal.rpt"), "Comisiones Supervisores Resumido");
                     }
-                    else
-                    {
-                        string Nombrearchivo = "Reporte de Comisiones Supervisores Detalle " + txtFechaDesdeConsulta.Text + " Hasta " + txtFechaHastaConsulta.Text;
-                        ImprimirReporteDetalle(Convert.ToDecimal(Session["IdUsuario"]), Server.MapPath("ReporteComisionesSupervisoresDetalle.rpt"), "sa", "Pa$$W0rd", Nombrearchivo);
-                    }
+                        
+
+
+
+                    
                 }
-
-
-
-
             }
         }
 
-     
-
-        protected void btnValidarClaveSeguridad_Click(object sender, EventArgs e)
+        protected void LinkPrimeraPaginaPrincipal_Click(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnBuscarRegistros_Click(object sender, EventArgs e)
+        protected void LinkAnteriorPrincipal_Click(object sender, EventArgs e)
         {
-            BuscarDatosSupervisor();
+
         }
 
-        protected void gvInformacionSupervisor_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void dtPaginacionPrincipal_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-            gvCodigosPermitidos.PageIndex = e.NewPageIndex;
-            BuscarDatosSupervisor();
+
         }
 
-        protected void gvInformacionSupervisor_SelectedIndexChanged(object sender, EventArgs e)
+        protected void dtPaginacionPrincipal_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtClaveSeguridad.Text.Trim()))
-            {
-                ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadVacia()", "ClaveSeguridadVacia();", true);
+
+        }
+
+        protected void LinkSiguientePrincipal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoPrincipal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void rbCodigosPermitidos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbCodigosPermitidos.Checked == true) {
+                DivBloqueCodigosPermitidos.Visible = true;
+                DivBloqueBuscarCodigos.Visible = false;
             }
             else {
-                //VALIDAMOS LA CLAVE
-                string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridad.Text.Trim()) ? null : txtClaveSeguridad.Text.Trim();
-
-                var ValidarClave = ObjData.Value.BuscaClaveSeguridad(
-                    new Nullable<decimal>(),
-                    UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(_ClaveSeguridad));
-                if (ValidarClave.Count() < 1)
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "ClaveIngresadanoValida()", "ClaveIngresadanoValida();", true);
-                }
-                else {
-                    GridViewRow gb = gvInformacionSupervisor.SelectedRow;
-
-
-                    var SeleccionarRegistros = ObjData.Value.BuscaInformacionSUperisor(gb.Cells[0].Text);
-                    if (SeleccionarRegistros.Count() < 1) { }
-                    else
-                    {
-
-                        //MOSTRAMOS LOS CONTROLES
-                        lbCodigoSupervisorMantenimientio.Visible = true;
-                        txtCodigoSupervisorMantenimiento.Visible = true;
-                        lbNombreSupervisorMantenimiento.Visible = true;
-                        txtNombreSupervisorMantenimientio.Visible = true;
-                        lbOficinaSupervisorMantenimiento.Visible = true;
-                        txtOficinaSupervisorMantenimienti.Visible = true;
-                        lbEstatusSupervisorMantenimiento.Visible = true;
-                        txtEstatusSupervisirMantenimiento.Visible = true;
-                        btnGuardarDato.Visible = true;
-                        btnEliminarDato.Visible = true;
-                        btnRestablecer.Visible = true;
-
-                        //LIMPIAMOS LOS CTROLES
-                        txtCodigoSupervisorMantenimiento.Text = String.Empty;
-                        txtNombreSupervisorMantenimientio.Text = String.Empty;
-                        txtOficinaSupervisorMantenimienti.Text = String.Empty;
-                        txtEstatusSupervisirMantenimiento.Text = String.Empty;
-                        btnGuardarDato.Enabled = true;
-                        btnEliminarDato.Enabled = false;
-                        foreach (var n in SeleccionarRegistros)
-                        {
-                            txtCodigoSupervisorMantenimiento.Text = n.Codigo.ToString();
-                            txtNombreSupervisorMantenimientio.Text = n.Nombre;
-                            txtOficinaSupervisorMantenimienti.Text = n.Oficina;
-                            txtEstatusSupervisirMantenimiento.Text = n.Estatus;
-                        }
-                    }
-                }
+                DivBloqueCodigosPermitidos.Visible = false;
+                DivBloqueBuscarCodigos.Visible = false;
             }
-          
         }
 
-        protected void gvCodigosPermitidos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void rbBuscarCodigos_CheckedChanged(object sender, EventArgs e)
         {
-            gvCodigosPermitidos.PageIndex = e.NewPageIndex;
-            MostrarCodigospermitidos();
-        }
-
-        protected void gvCodigosPermitidos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //MOSTRAMOS LOS CONTROLES
-            lbCodigoSupervisorMantenimientio.Visible = true;
-            txtCodigoSupervisorMantenimiento.Visible = true;
-            lbNombreSupervisorMantenimiento.Visible = true;
-            txtNombreSupervisorMantenimientio.Visible = true;
-            lbOficinaSupervisorMantenimiento.Visible = true;
-            txtOficinaSupervisorMantenimienti.Visible = true;
-            lbEstatusSupervisorMantenimiento.Visible = true;
-            txtEstatusSupervisirMantenimiento.Visible = true;
-            btnGuardarDato.Visible = true;
-            btnEliminarDato.Visible = true;
-            btnRestablecer.Visible = true;
-
-            //LIMPIAMOS LOS CTROLES
-            txtCodigoSupervisorMantenimiento.Text = String.Empty;
-            txtNombreSupervisorMantenimientio.Text = String.Empty;
-            txtOficinaSupervisorMantenimienti.Text = String.Empty;
-            txtEstatusSupervisirMantenimiento.Text = String.Empty;
-            btnGuardarDato.Enabled = true;
-            btnEliminarDato.Enabled = false;
-
-            GridViewRow Gb = gvCodigosPermitidos.SelectedRow;
-
-            var SeleccionarRegistro = ObjData.Value.BuscarCodigosSupervisoresPermitidos(
-                Convert.ToDecimal(Gb.Cells[0].Text), null, null, null, null);
-            gvCodigosPermitidos.DataSource = SeleccionarRegistro;
-            gvCodigosPermitidos.DataBind();
-            foreach (var n in SeleccionarRegistro) {
-                Session["IdMantenimiento"] = n.IdRegistro;
-                txtCodigoSupervisorMantenimiento.Text = n.CodigoSupervisor.ToString();
-                txtNombreSupervisorMantenimientio.Text = n.Nombre;
+            if (rbBuscarCodigos.Checked == true) {
+                DivBloqueCodigosPermitidos.Visible = false;
+                DivBloqueBuscarCodigos.Visible = true;
             }
-            btnGuardarDato.Enabled = false;
-            btnEliminarDato.Enabled = true;
-
-            btnGuardarDato.Visible = true;
-            btnEliminarDato.Visible = true;
-            btnRestablecer.Visible = true;
-
-
-        }
-
-        protected void btnGuardarDato_Click(object sender, EventArgs e)
-        {
-            var ValidarCodigo = ObjData.Value.BuscarCodigosSupervisoresPermitidos(
-                new Nullable<decimal>(),
-                Convert.ToDecimal(txtCodigoSupervisorMantenimiento.Text), null, null, null);
-            if (ValidarCodigo.Count() < 1) {
-                MANCodigoPermitidos(0, Convert.ToDecimal(txtCodigoSupervisorMantenimiento.Text), "INSERT");
+            else {
+                DivBloqueCodigosPermitidos.Visible = false;
+                DivBloqueBuscarCodigos.Visible = false;
             }
-           
         }
 
-        protected void btnEliminarDato_Click(object sender, EventArgs e)
+        protected void btnBuscarPOPOP_Click(object sender, EventArgs e)
         {
-            MANCodigoPermitidos(Convert.ToDecimal(Session["IdMantenimiento"]), Convert.ToDecimal(txtCodigoSupervisorMantenimiento.Text), "DELETE");
-            Session["IdMantenimiento"] = null;
 
         }
 
-
-        protected void btnRestablecer_Click(object sender, EventArgs e)
+        protected void btnSeleccionarregistroAgregadoHEaderRpeaterPOPOP_Click(object sender, EventArgs e)
         {
-            Restablecer();
+
+        }
+
+        protected void LinkPrimeraPaginaCodigosPermitidos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkAnteriorCodigosPermitidos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionCodigosPermitidos_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionCodigosPermitidos_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguienteCodigosPermitidos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoCodigosPermitidos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEliminarSupervisorAgregado_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnVolverAtras_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardarBuscarCodigo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkPrimeraPaginaBuscarCodigos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkAnteriorBuscarCodigos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionBuscarCodigos_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionBuscarCodigos_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguienteBuscarCodigos_Click(object sender, EventArgs e)
+        {
 
         }
 
@@ -657,46 +552,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void txtCodigoSupervisorConsulta_TextChanged(object sender, EventArgs e)
         {
             string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(_CodigoSupervisor);
-            txtNombreSupervisorConsulta.Text = Nombre.SacarNombreSupervisor();
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor SacarNombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(_CodigoSupervisor);
+            txtNombreSupervisorConsulta.Text = SacarNombre.SacarNombreSupervisor();
         }
 
-        protected void LinkPrimeraPaginaComisionSupervisor_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            ConsultarComisionesSupervisores();
-        }
-
-        protected void LinkAnteriorComisionSupervisor_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            ConsultarComisionesSupervisores();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleComisionSupervisor, ref lbCantidadPaginaVAriableComisionSupervisor);
-        }
-
-        protected void dtPaginacionComisionSupervisor_ItemDataBound(object sender, DataListItemEventArgs e)
+        protected void LinkUltimoBuscarCodigos_Click(object sender, EventArgs e)
         {
 
-        }
-
-        protected void dtPaginacionComisionSupervisor_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-            ConsultarComisionesSupervisores();
-        }
-
-        protected void LinkSiguienteComisionSupervisor_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            ConsultarComisionesSupervisores();
-        }
-
-        protected void LinkUltimoComisionSupervisor_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            ConsultarComisionesSupervisores();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleComisionSupervisor, ref lbCantidadPaginaVAriableComisionSupervisor);
         }
     }
 }
