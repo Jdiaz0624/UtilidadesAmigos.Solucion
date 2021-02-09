@@ -86,8 +86,8 @@
                 <asp:RadioButton ID="rbGenerarReporteExcel" runat="server" CssClass="form-check-input" Text="Excel" ToolTip="Generar Reporte a Excel" GroupName="Reporte" />
                 <asp:RadioButton ID="rbGenerarReporteWord" runat="server" CssClass="form-check-input" Text="Word" ToolTip="Generar Reporte a Word" GroupName="Reporte" /><br />
                 <asp:Label ID="lbTipoReporteGenerar" runat="server" Text="Tipo de Reporte: " CssClass="Letranegrita"></asp:Label>
-                <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" CssClass="form-check-input" GroupName="TipoReporteGenerar" ToolTip="Generar el reporte resumido" />
-                <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Detalle" CssClass="form-check-input" GroupName="TipoReporteGenerar" ToolTip="Generar el reporte detallado" />
+                <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" CssClass="form-check-input" AutoPostBack="true" OnCheckedChanged="rbReporteResumido_CheckedChanged" GroupName="TipoReporteGenerar" ToolTip="Generar el reporte resumido" />
+                <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Detalle" CssClass="form-check-input" GroupName="TipoReporteGenerar" AutoPostBack="true" OnCheckedChanged="rbReporteDetallado_CheckedChanged" ToolTip="Generar el reporte detallado" />
             </div>
         </div>
 

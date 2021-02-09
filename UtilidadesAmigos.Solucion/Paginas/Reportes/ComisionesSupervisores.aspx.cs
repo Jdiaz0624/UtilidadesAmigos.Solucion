@@ -296,6 +296,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 DivBloqueCodigosPermitidos.Visible = true;
                 DivBloqueBuscarCodigos.Visible = false;
                 rbReporteResumido.Checked = true;
+
+                rbGenerarReportePDF.Enabled = false;
+                rbGenerarReporteExcel.Enabled = false;
+                rbGenerarReporteWord.Enabled = false;
+                rbGenerarReporteExcel.Checked = true;
             }
         }
 
@@ -556,9 +561,45 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtNombreSupervisorConsulta.Text = SacarNombre.SacarNombreSupervisor();
         }
 
+        protected void rbReporteResumido_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbReporteDetallado.Checked == true)
+            {
+                rbGenerarReportePDF.Enabled = false;
+                rbGenerarReporteExcel.Enabled = true;
+                rbGenerarReporteWord.Enabled = false;
+                rbGenerarReporteExcel.Checked = true;
+            }
+            else if (rbReporteResumido.Checked == true)
+            {
+                rbGenerarReportePDF.Enabled = false;
+                rbGenerarReporteExcel.Enabled = false;
+                rbGenerarReporteWord.Enabled = false;
+
+
+            }
+        }
+
+        protected void rbReporteDetallado_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbReporteDetallado.Checked == true) {
+                rbGenerarReportePDF.Enabled = true;
+                rbGenerarReporteExcel.Enabled = true;
+                rbGenerarReporteWord.Enabled = true;
+                rbGenerarReportePDF.Checked = true;
+            }
+            else if (rbReporteResumido.Checked == true) {
+                rbGenerarReportePDF.Enabled = false;
+                rbGenerarReporteExcel.Enabled = false;
+                rbGenerarReportePDF.Enabled = false;
+               
+            }
+        }
+
         protected void LinkUltimoBuscarCodigos_Click(object sender, EventArgs e)
         {
-
+            if (rbReporteDetallado.Checked == true) { }
+            else if (rbReporteResumido.Checked == true) { }
         }
     }
 }
