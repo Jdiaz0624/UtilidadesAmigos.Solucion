@@ -41,6 +41,23 @@
         function CampoFechaHastaVacio() {
             $("#<%=txtFechaHastaConsulta.ClientID%>").css("border-color", "red");
         }
+
+        function ClaveSeguridadVacioaBuscarCodigo() {
+            $("#<%=txtClaveSeguridadBuscarCodigo.ClientID%>").css("border-color", "red");
+        }
+
+
+        $(document).ready(function () {
+            $("#<%=btnEliminarSupervisorAgregado.ClientID%>").click(function () {
+                var ClaveSeguridad = $("#<%=txtClaveSeguridadControlesPermitidos.ClientID%>").val().length;
+
+                if (ClaveSeguridad < 1) {
+                    $("#<%=txtClaveSeguridadControlesPermitidos.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
+
+        })
     </script>
     <div class="container-fluid">
         <div class="jumbotron" align="center">
@@ -162,54 +179,8 @@
             </table>
         </div>
         </div>
+        <br />
            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -264,8 +235,7 @@
                                           <th style="width:10%" align="left"> <asp:Label ID="lbCodigoSupervisorHeaderRepeaterPOPOP" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label> </th>
                                           <th style="width:50%" align="left"> <asp:Label ID="lbNombreSupervisorHeaderRepeaterPOPOP" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label> </th>
                                           <th style="width:10%" align="left"> <asp:Label ID="lbFechaAgregadoHeaderRepeaterPOPOP" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label> </th>
-                                          <th style="width:20%" align="left"> <asp:Label ID="lbOficinaHEaderRepeaterPOPOP" runat="server" CssClass="Letranegrita"></asp:Label> </th>
-
+                                          <th style="width:20%" align="left"> <asp:Label ID="lbOficinaHEaderRepeaterPOPOP" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label> </th>
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -316,6 +286,7 @@
 
                            <div id="DivControlesCodigoPermitidos" runat="server">
                                <div class="form-row">
+                                   <asp:Label ID="IdRegistroSeleccionadoCodigoPermitidos" runat="server" Text="IdRegistroSeleccionado" Visible="false"></asp:Label>
                                    <div class="form-group col-md-4">
                                        <asp:Label ID="lbCodigoSupervisorControlesPermitido" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label>
                                        <asp:TextBox ID="txtCodigoSupervisorControlesPermitidos" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>

@@ -132,6 +132,7 @@
     <Compile Include="Comunes\SacartasaMoneda.cs" />
     <Compile Include="Comunes\SeguridadEncriptacion.cs" />
     <Compile Include="Comunes\UtilidadDrop.cs" />
+    <Compile Include="Comunes\Validaciones\ValidarClaveSeguridad.cs" />
     <Compile Include="Comunes\ValidarControles.cs" />
     <Compile Include="Comunes\VariablesGlobales.cs" />
     <Compile Include="Comunes\VariablesPowerBi.cs" />

@@ -967,13 +967,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_REPORTE_COMISIONES_INTERMEDIARIOResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOS")]
-		public ISingleResult<SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOSResult> SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Decimal(20,0)")] System.Nullable<decimal> idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, codigoSupervisor, idUsuario, fechaDesde, fechaHasta);
-			return ((ISingleResult<SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOSResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MANTENIMEINTO_CODIGOS_PERMITIDOS")]
 		public ISingleResult<SP_MANTENIMEINTO_CODIGOS_PERMITIDOSResult> SP_MANTENIMEINTO_CODIGOS_PERMITIDOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Decimal(20,0)")] System.Nullable<decimal> idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
 		{
@@ -1112,6 +1105,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
 			return ((ISingleResult<SP_REPORTE_DETALLE_COMISION_RESUMIDOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOS")]
+		public ISingleResult<SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOSResult> SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Decimal(20,0)")] System.Nullable<decimal> idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="VarChar(4)")] string codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreSupervisor", DbType="VarChar(100)")] string nombreSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, codigoSupervisor, nombreSupervisor, idUsuario, fechaDesde, fechaHasta);
+			return ((ISingleResult<SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOSResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -26741,176 +26741,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOSResult
-	{
-		
-		private decimal _IdRegistro;
-		
-		private System.Nullable<decimal> _CodigoSupervisor;
-		
-		private string _Nombre;
-		
-		private System.Nullable<int> _CodigoOficina;
-		
-		private string _Oficina;
-		
-		private System.Nullable<System.DateTime> _FechaAgregado0;
-		
-		private string _FechaAgregado;
-		
-		private System.Nullable<decimal> _IdUsuario;
-		
-		private string _CreadoPor;
-		
-		public SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOSResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Decimal(20,0) NOT NULL")]
-		public decimal IdRegistro
-		{
-			get
-			{
-				return this._IdRegistro;
-			}
-			set
-			{
-				if ((this._IdRegistro != value))
-				{
-					this._IdRegistro = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoSupervisor", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> CodigoSupervisor
-		{
-			get
-			{
-				return this._CodigoSupervisor;
-			}
-			set
-			{
-				if ((this._CodigoSupervisor != value))
-				{
-					this._CodigoSupervisor = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(200)")]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoOficina", DbType="Int")]
-		public System.Nullable<int> CodigoOficina
-		{
-			get
-			{
-				return this._CodigoOficina;
-			}
-			set
-			{
-				if ((this._CodigoOficina != value))
-				{
-					this._CodigoOficina = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="VarChar(100)")]
-		public string Oficina
-		{
-			get
-			{
-				return this._Oficina;
-			}
-			set
-			{
-				if ((this._Oficina != value))
-				{
-					this._Oficina = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAgregado0", DbType="Date")]
-		public System.Nullable<System.DateTime> FechaAgregado0
-		{
-			get
-			{
-				return this._FechaAgregado0;
-			}
-			set
-			{
-				if ((this._FechaAgregado0 != value))
-				{
-					this._FechaAgregado0 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAgregado", DbType="NVarChar(4000)")]
-		public string FechaAgregado
-		{
-			get
-			{
-				return this._FechaAgregado;
-			}
-			set
-			{
-				if ((this._FechaAgregado != value))
-				{
-					this._FechaAgregado = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> IdUsuario
-		{
-			get
-			{
-				return this._IdUsuario;
-			}
-			set
-			{
-				if ((this._IdUsuario != value))
-				{
-					this._IdUsuario = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreadoPor", DbType="VarChar(150)")]
-		public string CreadoPor
-		{
-			get
-			{
-				return this._CreadoPor;
-			}
-			set
-			{
-				if ((this._CreadoPor != value))
-				{
-					this._CreadoPor = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_MANTENIMEINTO_CODIGOS_PERMITIDOSResult
 	{
 		
@@ -34532,6 +34362,176 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._ComisionPagar != value))
 				{
 					this._ComisionPagar = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOSResult
+	{
+		
+		private decimal _IdRegistro;
+		
+		private System.Nullable<decimal> _CodigoSupervisor;
+		
+		private string _Nombre;
+		
+		private System.Nullable<int> _CodigoOficina;
+		
+		private string _Oficina;
+		
+		private System.Nullable<System.DateTime> _FechaAgregado0;
+		
+		private string _FechaAgregado;
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private string _CreadoPor;
+		
+		public SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Decimal(20,0) NOT NULL")]
+		public decimal IdRegistro
+		{
+			get
+			{
+				return this._IdRegistro;
+			}
+			set
+			{
+				if ((this._IdRegistro != value))
+				{
+					this._IdRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoSupervisor", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> CodigoSupervisor
+		{
+			get
+			{
+				return this._CodigoSupervisor;
+			}
+			set
+			{
+				if ((this._CodigoSupervisor != value))
+				{
+					this._CodigoSupervisor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(200)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoOficina", DbType="Int")]
+		public System.Nullable<int> CodigoOficina
+		{
+			get
+			{
+				return this._CodigoOficina;
+			}
+			set
+			{
+				if ((this._CodigoOficina != value))
+				{
+					this._CodigoOficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="VarChar(100)")]
+		public string Oficina
+		{
+			get
+			{
+				return this._Oficina;
+			}
+			set
+			{
+				if ((this._Oficina != value))
+				{
+					this._Oficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAgregado0", DbType="Date")]
+		public System.Nullable<System.DateTime> FechaAgregado0
+		{
+			get
+			{
+				return this._FechaAgregado0;
+			}
+			set
+			{
+				if ((this._FechaAgregado0 != value))
+				{
+					this._FechaAgregado0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAgregado", DbType="NVarChar(4000)")]
+		public string FechaAgregado
+		{
+			get
+			{
+				return this._FechaAgregado;
+			}
+			set
+			{
+				if ((this._FechaAgregado != value))
+				{
+					this._FechaAgregado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreadoPor", DbType="VarChar(150)")]
+		public string CreadoPor
+		{
+			get
+			{
+				return this._CreadoPor;
+			}
+			set
+			{
+				if ((this._CreadoPor != value))
+				{
+					this._CreadoPor = value;
 				}
 			}
 		}

@@ -287,6 +287,46 @@ namespace UtilidadesAmigos.Solucion.Paginas
         
         }
         #endregion
+
+        #region MOSTRAR EL LISTADO DE LOS CODIGOS PERMITIDOS PARA MOSTRAR LA COMISION
+        private void MostrarListadoCodigospermitidos() {
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoCodigospermitidos.Text.Trim()) ? null : txtCodigoCodigospermitidos.Text.Trim();
+            string _NombreSupervisor = string.IsNullOrEmpty(txtNombreSupervisorPopop.Text.Trim()) ? null : txtNombreSupervisorPopop.Text.Trim();
+
+            var BuscarDatos = ObjData.Value.BuscarCodigosSupervisoresPermitidos(
+                new Nullable<decimal>(),
+                _CodigoSupervisor,
+                _NombreSupervisor,
+                null, null, null);
+            int CantidadRegistros = BuscarDatos.Count;
+            lbCantidadRegistrosVariablePOPOP.Text = CantidadRegistros.ToString("N0");
+            Paginar(ref rpListadoSupervisoresAgregados, BuscarDatos, 10, ref lbCantidadPaginaVariableCodigosPermitidos, ref LinkPrimeraPaginaCodigosPermitidos, ref LinkAnteriorCodigosPermitidos, ref LinkSiguienteCodigosPermitidos, ref LinkUltimoCodigosPermitidos);
+            HandlePaging(ref dtPaginacionCodigosPermitidos, ref lbPaginaActualVariavleCodigosPermitidos);
+        }
+        #endregion
+
+        #region BUSCAR SUPERVISORES PARA AGREGAR
+        private void BuscarSupervisoresParaAgregar() {
+            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoCodigospermitidos.Text.Trim()) ? null : txtCodigoCodigospermitidos.Text.Trim();
+            string _NombreSupervisor = string.IsNullOrEmpty(txtNombreSupervisorPopop.Text.Trim()) ? null : txtNombreSupervisorPopop.Text.Trim();
+
+            var Buscar = ObjData.Value.BuscaInformacionSUperisor(_CodigoSupervisor, _NombreSupervisor);
+            int CantidadRegistros = Buscar.Count;
+            lbCantidadRegistrosVariablePOPOP.Text = CantidadRegistros.ToString("N0");
+            Paginar(ref rpListadoSupervisoresBuscar, Buscar, 10, ref lbCantidadPaginaVariableBuscarCodigos, ref LinkPrimeraPaginaBuscarCodigos, ref LinkAnteriorBuscarCodigos, ref LinkSiguienteBuscarCodigos, ref LinkUltimoBuscarCodigos);
+            HandlePaging(ref dtPaginacionBuscarCodigos, ref lbPaginaActualVariavleBuscarCodigos);
+        }
+        #endregion
+        private void LimpiarControlesCodigosPermitidos() {
+            IdRegistroSeleccionadoCodigoPermitidos.Text = "0";
+            txtCodigoSupervisorControlesPermitidos.Text = string.Empty;
+            txtNombreSupervisorControlesPermitidos.Text = string.Empty;
+            txtFechaAgregadosControlesPermitidos.Text = string.Empty;
+            txtOficinaSupervisorCOntrolesPermitidos.Text = string.Empty;
+            txtClaveSeguridadControlesPermitidos.Text = string.Empty;
+            txtCodigoSupervisorConsulta.Text = string.Empty;
+            txtNombreSupervisorPopop.Text = string.Empty;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
@@ -417,12 +457,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void LinkPrimeraPaginaPrincipal_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarComisionesPantalla();
         }
 
         protected void LinkAnteriorPrincipal_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarComisionesPantalla();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavlePrincipal, ref lbCantidadPaginaVariablePrincipal);
         }
 
         protected void dtPaginacionPrincipal_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -432,17 +475,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void dtPaginacionPrincipal_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarComisionesPantalla();
         }
 
         protected void LinkSiguientePrincipal_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += 1;
+            MostrarComisionesPantalla();
         }
 
         protected void LinkUltimoPrincipal_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarComisionesPantalla();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavlePrincipal, ref lbCantidadPaginaVariablePrincipal);
         }
 
         protected void rbCodigosPermitidos_CheckedChanged(object sender, EventArgs e)
@@ -450,6 +498,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (rbCodigosPermitidos.Checked == true) {
                 DivBloqueCodigosPermitidos.Visible = true;
                 DivBloqueBuscarCodigos.Visible = false;
+                lbCantidadRegistrosVariablePOPOP.Text = "0";
+                rpListadoSupervisoresAgregados.DataSource = null;
+                rpListadoSupervisoresBuscar.DataSource = null;
             }
             else {
                 DivBloqueCodigosPermitidos.Visible = false;
@@ -462,6 +513,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (rbBuscarCodigos.Checked == true) {
                 DivBloqueCodigosPermitidos.Visible = false;
                 DivBloqueBuscarCodigos.Visible = true;
+                lbCantidadRegistrosVariablePOPOP.Text = "0";
+                rpListadoSupervisoresAgregados.DataSource = null;
+                rpListadoSupervisoresBuscar.DataSource = null;
             }
             else {
                 DivBloqueCodigosPermitidos.Visible = false;
@@ -471,22 +525,42 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnBuscarPOPOP_Click(object sender, EventArgs e)
         {
-
+            if (rbCodigosPermitidos.Checked == true) {
+                MostrarListadoCodigospermitidos();
+            }
+            else if (rbBuscarCodigos.Checked == true) {
+                BuscarSupervisoresParaAgregar();
+            }
         }
 
         protected void btnSeleccionarregistroAgregadoHEaderRpeaterPOPOP_Click(object sender, EventArgs e)
         {
+            var RegistroSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfRegistroSeleccionado = ((HiddenField)RegistroSeleccionado.FindControl("hfIdRegistroSeleccionado")).Value.ToString();
 
+            IdRegistroSeleccionadoCodigoPermitidos.Text = hfRegistroSeleccionado.ToString();
+
+            var BuscarSacarInformacion = ObjData.Value.BuscarCodigosSupervisoresPermitidos(
+                Convert.ToDecimal(IdRegistroSeleccionadoCodigoPermitidos.Text), null, null, null, null, null);
+            foreach (var n in BuscarSacarInformacion) {
+                txtCodigoSupervisorControlesPermitidos.Text = n.CodigoSupervisor.ToString();
+                txtNombreSupervisorControlesPermitidos.Text = n.Nombre;
+                txtFechaAgregadosControlesPermitidos.Text = n.FechaAgregado;
+                txtOficinaSupervisorCOntrolesPermitidos.Text = n.Oficina;
+            }
         }
 
         protected void LinkPrimeraPaginaCodigosPermitidos_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarListadoCodigospermitidos();
         }
 
         protected void LinkAnteriorCodigosPermitidos_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarListadoCodigospermitidos();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleCodigosPermitidos, ref lbCantidadPaginaVariableCodigosPermitidos);
         }
 
         protected void dtPaginacionCodigosPermitidos_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -496,42 +570,88 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void dtPaginacionCodigosPermitidos_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoCodigospermitidos();
         }
 
         protected void LinkSiguienteCodigosPermitidos_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += 1;
+            MostrarListadoCodigospermitidos();
         }
 
         protected void LinkUltimoCodigosPermitidos_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoCodigospermitidos();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleCodigosPermitidos, ref lbCantidadPaginaVariableCodigosPermitidos);
         }
 
         protected void btnEliminarSupervisorAgregado_Click(object sender, EventArgs e)
         {
+            //VALIDAMOS LA CLAVE DE SEGURIDAD
+            string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridadControlesPermitidos.Text.Trim()) ? null : txtClaveSeguridadControlesPermitidos.Text.Trim();
+            bool ResultadoValidacion = false;
+            UtilidadesAmigos.Logica.Comunes.Validaciones.ValidarClaveSeguridad ValidarClave = new Logica.Comunes.Validaciones.ValidarClaveSeguridad(_ClaveSeguridad);
+            ResultadoValidacion = ValidarClave.ValidacionClave();
+            if (ResultadoValidacion == true) {
 
+                //ELIMINAMOS EL REGISTRO
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionCodigosSupervisoresPermitidos Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionCodigosSupervisoresPermitidos(
+                    Convert.ToDecimal(IdRegistroSeleccionadoCodigoPermitidos.Text),
+                    Convert.ToDecimal(txtCodigoSupervisorControlesPermitidos.Text),
+                    (decimal)Session["IdUsuario"],
+                    "DELETE");
+                Procesar.ProcesarInformacion();
+
+                LimpiarControlesCodigosPermitidos();
+                MostrarListadoCodigospermitidos();
+            }
         }
 
         protected void btnVolverAtras_Click(object sender, EventArgs e)
         {
-
+            LimpiarControlesCodigosPermitidos();
         }
 
         protected void btnGuardarBuscarCodigo_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtClaveSeguridadBuscarCodigo.Text.Trim())) {
+                ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadVacioaBuscarCodigo()", "ClaveSeguridadVacioaBuscarCodigo();", true);
+            }
+            else {
+                //VALIDAMOS LA CLAVE DE SEGURIDAD
+                string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridadBuscarCodigo.Text.Trim()) ? null : txtClaveSeguridadBuscarCodigo.Text.Trim();
+                UtilidadesAmigos.Logica.Comunes.Validaciones.ValidarClaveSeguridad ValidarClave = new Logica.Comunes.Validaciones.ValidarClaveSeguridad(_ClaveSeguridad);
+                bool Resultado = ValidarClave.ValidacionClave();
+                if (Resultado == true) {
+                    var ItemSeleciconado = (RepeaterItem)((Button)sender).NamingContainer;
+                    var hfItemSeleccionado = ((HiddenField)ItemSeleciconado.FindControl("hfCodigoSupervisor")).Value.ToString();
 
+                    //guardamos
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionCodigosSupervisoresPermitidos Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionCodigosSupervisoresPermitidos(
+                        0, Convert.ToDecimal(hfItemSeleccionado), (decimal)Session["IdUsuario"], "INSERT");
+                    Guardar.ProcesarInformacion();
+                    CurrentPage = 0;
+                    BuscarSupervisoresParaAgregar();
+
+
+                }
+            }
         }
 
         protected void LinkPrimeraPaginaBuscarCodigos_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = 0;
+            BuscarSupervisoresParaAgregar();
         }
 
         protected void LinkAnteriorBuscarCodigos_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            BuscarSupervisoresParaAgregar();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleBuscarCodigos, ref lbCantidadPaginaVariableBuscarCodigos);
         }
 
         protected void dtPaginacionBuscarCodigos_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -541,12 +661,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void dtPaginacionBuscarCodigos_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            BuscarSupervisoresParaAgregar();
         }
 
         protected void LinkSiguienteBuscarCodigos_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += 1;
+            BuscarSupervisoresParaAgregar();
         }
 
         protected void ddlSeleccionarSucursalConsulta_SelectedIndexChanged(object sender, EventArgs e)
@@ -598,8 +721,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void LinkUltimoBuscarCodigos_Click(object sender, EventArgs e)
         {
-            if (rbReporteDetallado.Checked == true) { }
-            else if (rbReporteResumido.Checked == true) { }
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            BuscarSupervisoresParaAgregar();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleBuscarCodigos, ref lbCantidadPaginaVariableBuscarCodigos);
         }
     }
 }

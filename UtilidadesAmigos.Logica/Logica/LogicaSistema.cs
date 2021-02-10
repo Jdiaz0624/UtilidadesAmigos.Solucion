@@ -3482,10 +3482,10 @@ namespace UtilidadesAmigos.Logica.Logica
         #region MANTENIMIENTO DE CODIGOS DE SUPERVISORES PERMITIDOS
         //BUSCAR LOS CODIGOS DE SUPERVISORES PERMITIDOS
 
-        public List<UtilidadesAmigos.Logica.Entidades.EBuscarCodigosSupervisoresPermitidos> BuscarCodigosSupervisoresPermitidos(decimal? IdRegistro = null, decimal? CodigoSupervisor = null, decimal? IdUsuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscarCodigosSupervisoresPermitidos> BuscarCodigosSupervisoresPermitidos(decimal? IdRegistro = null, string CodigoSupervisor = null, string NombreSupervisor = null, decimal? IdUsuario = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null) {
             Objdata.CommandTimeout = 999999999;
 
-            var Buscar = (from n in Objdata.SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOS(IdRegistro, CodigoSupervisor, IdUsuario, FechaDesde, FechaHasta)
+            var Buscar = (from n in Objdata.SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOS(IdRegistro, CodigoSupervisor, NombreSupervisor, IdUsuario, FechaDesde, FechaHasta)
                           select new UtilidadesAmigos.Logica.Entidades.EBuscarCodigosSupervisoresPermitidos
                           {
                               IdRegistro=n.IdRegistro,
