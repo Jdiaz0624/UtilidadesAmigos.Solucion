@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comunes\Conversiones.cs" />
+    <Compile Include="Comunes\ConvertirNumeroLetras.cs" />
     <Compile Include="Comunes\EliminarFacturaPDF.cs" />
     <Compile Include="Comunes\ExportarDataExel.cs" />
     <Compile Include="Comunes\ExportarReportePDF.cs" />
