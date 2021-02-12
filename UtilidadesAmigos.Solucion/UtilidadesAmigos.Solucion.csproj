@@ -187,6 +187,7 @@
     <Content Include="Paginas\Reportes\GenerarMarbetes.aspx" />
     <Content Include="Paginas\Reportes\GenerarReporteAntiguedadSaldo.aspx" />
     <Content Include="Paginas\Reportes\GenerarReporteCobros.aspx" />
+    <Content Include="Paginas\Reportes\ImpresionCheques.aspx" />
     <Content Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx" />
     <Content Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx" />
     <Content Include="Paginas\SistemaTicket.aspx" />
@@ -657,6 +658,13 @@
     </Compile>
     <Compile Include="Paginas\Reportes\GenerarReporteCobros.aspx.designer.cs">
       <DependentUpon>GenerarReporteCobros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ImpresionCheques.aspx.cs">
+      <DependentUpon>ImpresionCheques.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ImpresionCheques.aspx.designer.cs">
+      <DependentUpon>ImpresionCheques.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx.cs">
       <DependentUpon>ProduccionDiariaContabilidad.aspx</DependentUpon>

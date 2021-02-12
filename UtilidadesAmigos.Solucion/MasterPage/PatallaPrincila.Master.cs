@@ -491,5 +491,17 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkImpresionCheques_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null) { 
+            
+                    Response.Redirect("~/Paginas/Reportes/ImpresionCheques.aspx");
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }
