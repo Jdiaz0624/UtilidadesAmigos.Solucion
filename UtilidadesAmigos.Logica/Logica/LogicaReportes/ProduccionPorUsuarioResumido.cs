@@ -790,5 +790,67 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Listado;
         }
         #endregion
+
+        #region MOSTRAR EL LISTADO DE LOS CHEQUES
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscarInformacionCheque> GenerarInformacionCheque(string NumeroCheque = null, string Beneficiario = null, DateTime? FechaChqeueDesde = null, DateTime? FechaChequeHasta = null, decimal? NumeroChequeDesde = null, decimal? NumeroChequeHasta = null, decimal? RangoValorDesde = null, decimal? RangoValorHasta = null, int? Banco = null, string Anulado = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCAR_INFORMACION_CHEQUE(NumeroCheque, Beneficiario, FechaChqeueDesde, FechaChequeHasta, NumeroChequeDesde, NumeroChequeHasta, RangoValorDesde, RangoValorHasta, Banco, Anulado)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscarInformacionCheque
+                           {
+                               Compania=n.Compania,
+                               Anulado0=n.Anulado0,
+                               Anulado=n.Anulado,
+                               Sistema=n.Sistema,
+                               Sistema1=n.Sistema1,
+                               Solicitud=n.Solicitud,
+                               TipoSolicitud=n.TipoSolicitud,
+                               DescTipoSolicitud=n.DescTipoSolicitud,
+                               FechaSolicitud0=n.FechaSolicitud0,
+                               FechaSolicitud=n.FechaSolicitud,
+                               Sucursal=n.Sucursal,
+                               DescSucursal=n.DescSucursal,
+                               Departamento=n.Departamento,
+                               DescDepto=n.DescDepto,
+                               Seccion=n.Seccion,
+                               DescSeccion=n.DescSeccion,
+                               RNCTipo=n.RNCTipo,
+                               RNC=n.RNC,
+                               CodigoBeneficiario=n.CodigoBeneficiario,
+                               Beneficiario1=n.Beneficiario1,
+                               Beneficiario2=n.Beneficiario2,
+                               Endosable=n.Endosable,
+                               CtaBanco=n.CtaBanco,
+                               Banco=n.Banco,
+                               CuentaBanco=n.CuentaBanco,
+                               Valor=n.Valor,
+                               Concepto1=n.Concepto1,
+                               Concepto2=n.Concepto2,
+                               NumeroCheque=n.NumeroCheque,
+                               FechaCheque0=n.FechaCheque0,
+                               FechaCheque=n.FechaCheque,
+                               AnoMesConciliado=n.AnoMesConciliado,
+                               FechaConciliado0=n.FechaConciliado0,
+                               FechaConciliado=n.FechaConciliado,
+                               UsuarioDigita=n.UsuarioDigita,
+                               UsuarioModifica=n.UsuarioModifica,
+                               FechaDigita0=n.FechaDigita0,
+                               FechaDigita=n.FechaDigita,
+                               FechaModifica0=n.FechaModifica0,
+                               FechaModifica=n.FechaModifica,
+                               Aprobado=n.Aprobado,
+                               FechaAprobado0=n.FechaAprobado0,
+                               FechaAprobado=n.FechaAprobado,
+                               UsuarioCheque=n.UsuarioCheque,
+                               PrimeraFirma=n.PrimeraFirma,
+                               SegundaFirma=n.SegundaFirma,
+                               UsuarioCancel=n.UsuarioCancel,
+                               Estatus=n.Estatus,
+                               Impresion=n.Impresion,
+                               TipoDoc=n.TipoDoc
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }
