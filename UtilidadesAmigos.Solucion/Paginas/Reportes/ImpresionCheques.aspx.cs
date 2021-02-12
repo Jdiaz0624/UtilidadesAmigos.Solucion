@@ -337,7 +337,38 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
         protected void btnGenerarCheque_Click(object sender, EventArgs e)
         {
+            decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
 
+            UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionChequesImprimir Eliminar = new Logica.Comunes.Reportes.ProcesarInformacionChequesImprimir(
+                IdUsuario, 0, DateTime.Now, "", 0, "", "", "", "", "", "DELETE");
+            Eliminar.ProcesarInformacion();
+
+            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfNumeroChequeSeleccionado = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroChqeue")).Value.ToString();
+
+            var BuscarRegistros = ObjDataReportes.Value.GenerarInformacionCheque(
+                hfNumeroChequeSeleccionado,
+                null, null, null, null, null, null, null, null, null);
+          
+            string ValorLetras = "";
+            foreach (var n in BuscarRegistros) {
+                ValorLetras = UtilidadesAmigos.Logica.Comunes.ConvertirNumeroLetras.NumeroALetras(Convert.ToDecimal(n.Valor));
+
+                UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionChequesImprimir Procesar = new Logica.Comunes.Reportes.ProcesarInformacionChequesImprimir(
+                    IdUsuario,
+                    (Decimal)n.NumeroCheque,
+                    (DateTime)n.FechaCheque0,
+                    n.Concepto1,
+                    (decimal)n.Valor,
+                    n.Beneficiario1,
+                    ValorLetras,
+                    n.DiaCheque,
+                    n.MesCheque,
+                    n.AnoCheque.ToString(),
+                    "INSERT");
+                Procesar.ProcesarInformacion();
+
+            }
         }
 
         protected void LinkUltimo_Click(object sender, EventArgs e)

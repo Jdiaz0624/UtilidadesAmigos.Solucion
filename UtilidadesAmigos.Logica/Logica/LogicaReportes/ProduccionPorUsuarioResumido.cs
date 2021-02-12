@@ -847,9 +847,49 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                UsuarioCancel=n.UsuarioCancel,
                                Estatus=n.Estatus,
                                Impresion=n.Impresion,
-                               TipoDoc=n.TipoDoc
+                               TipoDoc=n.TipoDoc,
+                               DiaCheque=n.DiaCheque,
+                               MesCheque=n.MesCheque,
+                               AnoCheque=n.AnoCheque
                            }).ToList();
             return Listado;
+        }
+
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarChequesInformacionImprimir ProcesarDatosCheques(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarChequesInformacionImprimir Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarChequesInformacionImprimir Procesar = null;
+
+            var InformacionCheque = ObjData.SP_PROCESAR_INFORMACION_CHEQUES_IMPRIMIR(
+                Item.IdUsuarioProcesa,
+                Item.NumeroCheque,
+                Item.FechaCheque,
+                Item.ConceptoCheque,
+                Item.ValorCheque,
+                Item.Beneficiario,
+                Item.MontoChqeueLetras,
+                Item.DiaCheque,
+                Item.MesCheque,
+                Item.AnoCheque,
+                Accion);
+            if (InformacionCheque != null) {
+                Procesar = (from n in InformacionCheque
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarChequesInformacionImprimir
+                            {
+                                IdUsuarioProcesa=n.IdUsuarioProcesa,
+                                NumeroCheque=n.NumeroCheque,
+                                FechaCheque=n.FechaCheque,
+                                ConceptoCheque=n.ConceptoCheque,
+                                ValorCheque=n.ValorCheque,
+                                Beneficiario=n.Beneficiario,
+                                MontoChqeueLetras=n.MontoChqeueLetras,
+                                DiaCheque=n.DiaCheque,
+                                MesCheque=n.MesCheque,
+                                AnoCheque=n.AnoCheque
+                            }).FirstOrDefault();
+                
+            }
+            return Procesar;
         }
         #endregion
     }

@@ -107,5 +107,11 @@ namespace UtilidadesAmigos.Logica.Entidades.Reportes
 		public System.Nullable<char> Impresion { get; set; }
 
 		public System.Nullable<int> TipoDoc { get; set; }
+
+		public string DiaCheque { get; set; }
+
+		public string MesCheque { get; set; }
+
+		public System.Nullable<int> AnoCheque { get; set; }
 	}
 }

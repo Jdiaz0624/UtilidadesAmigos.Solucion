@@ -621,6 +621,31 @@
       <Column Name="UsuarioGenera" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_CHEQUES_IMPRIMIR" Method="SP_PROCESAR_INFORMACION_CHEQUES_IMPRIMIR">
+    <Parameter Name="IdUsuarioProcesa" Parameter="idUsuarioProcesa" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="NumeroCheque" Parameter="numeroCheque" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="FechaCheque" Parameter="fechaCheque" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ConceptoCheque" Parameter="conceptoCheque" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="ValorCheque" Parameter="valorCheque" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Beneficiario" Parameter="beneficiario" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="MontoChqeueLetras" Parameter="montoChqeueLetras" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="DiaCheque" Parameter="diaCheque" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="MesCheque" Parameter="mesCheque" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="AnoCheque" Parameter="anoCheque" Type="System.String" DbType="VarChar(4)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_CHEQUES_IMPRIMIRResult">
+      <Column Name="IdUsuarioProcesa" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NumeroCheque" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="FechaCheque" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ConceptoCheque" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="ValorCheque" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Beneficiario" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="MontoChqeueLetras" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="DiaCheque" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="MesCheque" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="AnoCheque" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="Utililades.SP_BUSCAR_INFORMACION_CHEQUE" Method="SP_BUSCAR_INFORMACION_CHEQUE">
     <Parameter Name="NumeroCheque" Parameter="numeroCheque" Type="System.String" DbType="VarChar(20)" />
     <Parameter Name="Beneficiario" Parameter="beneficiario" Type="System.String" DbType="VarChar(20)" />
@@ -683,6 +708,9 @@
       <Column Name="Estatus" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
       <Column Name="Impresion" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
       <Column Name="TipoDoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DiaCheque" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="MesCheque" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="AnoCheque" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
