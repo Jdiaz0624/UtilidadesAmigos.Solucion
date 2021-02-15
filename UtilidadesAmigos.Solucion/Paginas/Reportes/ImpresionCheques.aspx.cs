@@ -229,6 +229,34 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         }
         //GenerarInformacionCheque
         #endregion
+        #region GENERAR CHEQUE
+        private void GenerarCheque(decimal NumeroCheque, string RutaCheque, string NombreCheque) {
+
+            decimal Idusuario = Session["IdUsuario"] != null ? Convert.ToDecimal(Session["IdUsuario"]) : 0;
+            
+            ReportDocument Cheque = new ReportDocument();
+
+            Cheque.Load(RutaCheque);
+            Cheque.Refresh();
+
+            Cheque.SetParameterValue("@IdUsuario", Idusuario);
+            Cheque.SetParameterValue("@NumeroCheque", NumeroCheque);
+            Cheque.SetDatabaseLogon("sa", "Pa$$W0rd");
+            if (rbPDF.Checked == true) {
+                Cheque.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreCheque);
+            }
+            else if (rbExcel.Checked == true) {
+                Cheque.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreCheque);
+            }
+            else if (rbWord.Checked == true) {
+                Cheque.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreCheque);
+            }
+
+
+
+
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -349,7 +377,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             var BuscarRegistros = ObjDataReportes.Value.GenerarInformacionCheque(
                 hfNumeroChequeSeleccionado,
                 null, null, null, null, null, null, null, null, null);
-          
+            string NombreCheque = "";
             string ValorLetras = "";
             foreach (var n in BuscarRegistros) {
                 ValorLetras = UtilidadesAmigos.Logica.Comunes.ConvertirNumeroLetras.NumeroALetras(Convert.ToDecimal(n.Valor));
@@ -367,6 +395,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                     n.AnoCheque.ToString(),
                     "INSERT");
                 Procesar.ProcesarInformacion();
+
+                NombreCheque = n.Beneficiario1 + " - " + n.Valor.ToString();
+
+                GenerarCheque((decimal)n.NumeroCheque, Server.MapPath("Cheque.rpt"), NombreCheque);
 
             }
         }
