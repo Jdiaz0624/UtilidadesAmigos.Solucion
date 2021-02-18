@@ -58,6 +58,7 @@
                                 <asp:LinkButton ID="LinkReporteFianzas" runat="server" Text="Reporte de Fianzas" OnClick="LinkReporteFianzas_Click" class="dropdown-item"></asp:LinkButton>
                                 <asp:LinkButton ID="LinkReporteReclamos" runat="server" Visible="false" Text="Reporte de Reclamos" OnClick="LinkReporteReclamos_Click" class="dropdown-item"></asp:LinkButton>
                                  <asp:LinkButton ID="LinkConsumoWS" runat="server"  Text="Consultar Dato Poliza (WS)" OnClick="LinkConsumoWS_Click" class="dropdown-item"></asp:LinkButton>
+                                <asp:LinkButton ID="LinkConsultarInformacionAsegurado" runat="server" Text="Información Asegura.do" OnClick="LinkConsultarInformacionAsegurado_Click" CssClass="dropdown-item" ToolTip="Mostrar y procesar data del proceso de Asegua.do"></asp:LinkButton>
                                 
                                 
                             </div>
