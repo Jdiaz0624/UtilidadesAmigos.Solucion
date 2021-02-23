@@ -3673,5 +3673,20 @@ namespace UtilidadesAmigos.Logica.Logica
             return Listado;
         }
         #endregion
+
+        #region SACAR NOMBRE DE CLIENTE
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarNombreCliente> SacarNombreCliente(string CodigoCliente = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Buscar = (from n in Objdata.SP_SACAR_NOMBRE_CLIENTE(CodigoCliente)
+                          select new UtilidadesAmigos.Logica.Entidades.ESacarNombreCliente
+                          {
+                              Cliente=n.Cliente
+                          }).ToList();
+            return Buscar;
+        }
+        #endregion
+
+       
     }
 }

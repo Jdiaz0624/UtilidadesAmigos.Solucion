@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1112,6 +1112,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, codigoSupervisor, nombreSupervisor, idUsuario, fechaDesde, fechaHasta);
 			return ((ISingleResult<SP_BUSCAR_CODIGOS_SUPERVISORES_PERMITIDOSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_NOMBRE_CLIENTE")]
+		public ISingleResult<SP_SACAR_NOMBRE_CLIENTEResult> SP_SACAR_NOMBRE_CLIENTE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoCliente", DbType="VarChar(100)")] string codigoCliente)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoCliente);
+			return ((ISingleResult<SP_SACAR_NOMBRE_CLIENTEResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -34532,6 +34539,32 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CreadoPor != value))
 				{
 					this._CreadoPor = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_NOMBRE_CLIENTEResult
+	{
+		
+		private string _Cliente;
+		
+		public SP_SACAR_NOMBRE_CLIENTEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cliente", DbType="VarChar(255)")]
+		public string Cliente
+		{
+			get
+			{
+				return this._Cliente;
+			}
+			set
+			{
+				if ((this._Cliente != value))
+				{
+					this._Cliente = value;
 				}
 			}
 		}

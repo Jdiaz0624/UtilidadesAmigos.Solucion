@@ -101,6 +101,7 @@
     <Compile Include="Comunes\Conversiones.cs" />
     <Compile Include="Comunes\ConvertirNumeroLetras.cs" />
     <Compile Include="Comunes\EliminarFacturaPDF.cs" />
+    <Compile Include="Comunes\ESacarNombreCliente.cs" />
     <Compile Include="Comunes\ExportarDataExel.cs" />
     <Compile Include="Comunes\ExportarReportePDF.cs" />
     <Compile Include="Comunes\GuardarRegistrosReporteIntermediario.cs" />
@@ -237,6 +238,7 @@
     <Compile Include="Entidades\ESacarDetalleCobradoUsuario.cs" />
     <Compile Include="Entidades\ESacarItemPoliza.cs" />
     <Compile Include="Entidades\ESacarMontoComisionesSupervisores.cs" />
+    <Compile Include="Entidades\ESacarNombreCliente.cs" />
     <Compile Include="Entidades\ESacarNumeroCotizacionPoliza.cs" />
     <Compile Include="Entidades\ESacarProduccionContabilidad.cs" />
     <Compile Include="Entidades\ESacarProduccionDiariaDetalle.cs" />
