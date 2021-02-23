@@ -163,6 +163,7 @@
     <None Include="Properties\PublishProfiles\FolderProfile8.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile9.pubxml" />
     <None Include="Properties\PublishProfiles\Prueba.pubxml" />
+    <Content Include="Paginas\Consulta\ConsultarDataAsegurado.aspx" />
     <Content Include="Paginas\Consulta\GenerarReporteFianzas.aspx" />
     <Content Include="Paginas\Consulta\ListadoRenovacion.aspx" />
     <Content Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx" />
@@ -378,6 +379,13 @@
     </Compile>
     <Compile Include="Paginas\ComprensivoIncendioRoboPoPup.aspx.designer.cs">
       <DependentUpon>ComprensivoIncendioRoboPoPup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Consulta\ConsultarDataAsegurado.aspx.cs">
+      <DependentUpon>ConsultarDataAsegurado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Consulta\ConsultarDataAsegurado.aspx.designer.cs">
+      <DependentUpon>ConsultarDataAsegurado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Consulta\GenerarReporteFianzas.aspx.cs">
       <DependentUpon>GenerarReporteFianzas.aspx</DependentUpon>
