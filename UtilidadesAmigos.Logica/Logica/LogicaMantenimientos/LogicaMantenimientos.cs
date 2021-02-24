@@ -856,10 +856,10 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
 
         #region REPORTE DE ANTIGUEDAD DE SALDO
         //BUSCAR LOS DATOS DEL REPORTE
-        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EConsultarAntiguedadSaldos> BuscarDatosAntiguedadSaldo(DateTime? FechaCorte = null, string NumeroFactura = null, string Poliza = "", int? Ramo = null, int? Tipo = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EConsultarAntiguedadSaldos> BuscarDatosAntiguedadSaldo(DateTime? FechaCorte = null, string NumeroFactura = null, string Poliza = null, int? Ramo = null, decimal? Tasa = null,int? Tipo = null, string CodigoCliente = null,  string CodigoVendedor = null, int? Oficina = null,decimal? UsuarioGenera = null) {
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_CONSULTAR_DATOS_ANTIGUEDAD_SALDO(FechaCorte, NumeroFactura, Poliza, Ramo, Tipo)
+            var Listado = (from n in Objdata.SP_CONSULTAR_DATOS_ANTIGUEDAD_SALDO(FechaCorte, NumeroFactura, Poliza, Ramo, Tasa, Tipo, CodigoCliente, CodigoVendedor, Oficina, UsuarioGenera)
                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EConsultarAntiguedadSaldos
                            {
                                Documento = n.Documento,

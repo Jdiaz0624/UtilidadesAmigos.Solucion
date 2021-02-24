@@ -30,6 +30,35 @@
         }
     </style>
 
+    <script type="text/javascript">
+        function CampoFechaCorteVacio() {
+            alert("El campo Fecha de corte no puede estar vacio para realziar esta operación, favor de verificar.");
+            $("#<%=txtFechaCorte.ClientID%>").css("border-color", "red");
+        }
+
+        $(document).ready(function () {
+            $("#<%=btnConsultar.ClientID%>").click(function () {
+                var Tasa = $("#<%=txtTasaDollar.ClientID%>").val().length;
+                if (Tasa < 1) {
+                    alert("El campo tasa no puede estar vacio para realizar esta consulta, favor de verificar.");
+                    $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+
+            });
+
+            $("#<%=btnExportar.ClientID%>").click(function () {
+                var Tasa = $("#<%=txtTasaDollar.ClientID%>").val().length;
+                if (Tasa < 1) {
+                    alert("El campo tasa no puede estar vacio para exportar esta información, favor de verificar.");
+                    $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+
+            });
+        })
+    </script>
+
     <div class="container-fluid">
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTituloPantalla" runat="server" Text="Reporte de Antiguedad de Saldo" CssClass="Letranegrita"></asp:Label>
@@ -109,6 +138,85 @@
                 <asp:RadioButton ID="rbHistorico" runat="server" Text="Historico" CssClass="form-check-input" GroupName="TipoConsulta" ToolTip="Consultar en el historico" AutoPostBack="true" OnCheckedChanged="rbHistorico_CheckedChanged" />
             </div>
         </div>
+
+        <div align="center">
+            <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar Registros a Excel de manera directa" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnExportar_Click" />
+            <asp:Button ID="btnReporte" runat="server" Text="Reporte" ToolTip="Generar Reporte de Antiguedad de Saldo" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnReporte_Click"/>
+            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros por pantalla" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click"/>
+            <asp:Button ID="btnGuardar" runat="server" Text="Guardar" ToolTip="Guardar Registro para Historico" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnGuardar_Click"/>
+            <br /><br />
+
+
+               <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Total ( " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCantidadRegistrosVariable" runat="server" Text="0 " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+        </div>
+        <br />
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th style="width:10%" align="left"> <asp:Label ID="lbPolizaHeaderRepeater" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
+                    <th style="width:10%" align="left"> <asp:Label ID="lbNumeroHeaderRepeater" runat="server" Text="Numero" CssClass="Letranegrita"></asp:Label>  </th>
+                    <th style="width:10%" align="left"> <asp:Label ID="lbMonedaHEaderRepeater" runat="server" Text="Balance" CssClass="Letranegrita"></asp:Label>  </th>
+                    <th style="width:10%" align="left"> <asp:Label ID="lbDiasHeaderRepeater" runat="server" Text="Dias" CssClass="Letranegrita"></asp:Label>  </th>
+                    <th style="width:10%" align="left"> <asp:Label ID="lb030HEaderRepeater" runat="server" Text="0-30" CssClass="Letranegrita"></asp:Label> </th>
+                    <th style="width:10%" align="left"> <asp:Label ID="lb3160HeaderRepeater" runat="server" Text="31-60" CssClass="Letranegrita"></asp:Label>  </th>
+                    <th style="width:10%" align="left"> <asp:Label ID="lb6190HeaderRepeater" runat="server" Text="61-90" CssClass="Letranegrita"></asp:Label>  </th>
+                    <th style="width:10%" align="left"> <asp:Label ID="lb91120HEaderRepeater" runat="server" Text="91-120" CssClass="Letranegrita"></asp:Label>  </th>
+                    <th style="width:10%" align="left"> <asp:Label ID="lb121150HeaderRepeater" runat="server" Text="121-150" CssClass="Letranegrita"></asp:Label> </th>
+                    <th style="width:10%" align="left"> <asp:Label ID="lb151MasHEaderRepeater" runat="server" Text="151 o Mas" CssClass="Letranegrita"></asp:Label>  </th>                    
+                </tr>
+                </thead>
+                <tbody>
+                    
+                        <asp:Repeater ID="rpListadoAntiguedaSando" runat="server">
+                            <ItemTemplate>
+                                <tr>
+                                <td style="width:10%"><%# Eval("Poliza") %></td>
+                                <td style="width:10%"><%# Eval("Documento") %></td>
+                                <td style="width:10%"><%#string.Format("{0:n2}", Eval("Balance")) %></td>
+                                <td style="width:10%"><%#string.Format("{0:n0}", Eval("Dias")) %></td>
+                                <td style="width:10%"><%#string.Format("{0:n2}", Eval("__0_30")) %></td>
+                                <td style="width:10%"><%#string.Format("{0:n2}", Eval("__31_60")) %></td>
+                                <td style="width:10%"><%#string.Format("{0:n2}", Eval("__61_90")) %></td>
+                                <td style="width:10%"><%#string.Format("{0:n2}", Eval("__91_120")) %></td>
+                                <td style="width:10%"><%#string.Format("{0:n2}", Eval("__121_150")) %></td>
+                                <td style="width:10%"><%#string.Format("{0:n2}", Eval("__151_MAS")) %></td>
+                                    </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    
+                </tbody>
+            </table>
+        </div>
+          <div align="center">
+                <asp:Label ID="lbPaginaActualTitulo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavle" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTitulo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="divPaginacion" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeraPagina" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPagina_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnterior" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnterior_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacion" runat="server" OnItemCommand="dtPaginacion_ItemCommand" OnItemDataBound="dtPaginacion_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguiente" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguiente_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimo" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimo_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
     </div>
+        </div>
  
 </asp:Content>
