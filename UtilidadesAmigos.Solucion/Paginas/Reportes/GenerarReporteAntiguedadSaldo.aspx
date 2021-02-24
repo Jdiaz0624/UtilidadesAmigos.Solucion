@@ -91,7 +91,7 @@
                 <asp:DropDownList ID="ddlSeleccionarTipoMovimiento" runat="server" ToolTip="Seleccionar el Tipo de Movimiento" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="form-group col-md-1">
-                <asp:Label ID="lbCodigoCliente" runat="server" Text="Codigo Cliente" CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCodigoCliente" runat="server" Text="Cliente" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoCliente" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoCliente_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
              <div class="form-group col-md-2">
@@ -100,7 +100,7 @@
             </div>
 
             <div class="form-group col-md-1">
-                <asp:Label ID="lbCodigoVendedor" runat="server" Text="Codigo Vendedor" CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCodigoVendedor" runat="server" Text="Vendedor" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoVendedor" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoVendedor_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
              <div class="form-group col-md-2">
