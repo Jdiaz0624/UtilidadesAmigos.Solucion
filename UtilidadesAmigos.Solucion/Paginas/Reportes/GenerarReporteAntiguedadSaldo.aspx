@@ -111,6 +111,10 @@
                 <asp:Label ID="lbOficina" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarOficina" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
             </div>
+            <div class="form-group col-md-2">
+                <asp:Label ID="lbSeleccionarMoneda" runat="server" Text="Moneda" CssClass="Letranegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarMoneda" runat="server" ToolTip="Seleccionar Moneda" CssClass="form-control"></asp:DropDownList>
+            </div>
         </div>
 
         <div class="form-check-inline">

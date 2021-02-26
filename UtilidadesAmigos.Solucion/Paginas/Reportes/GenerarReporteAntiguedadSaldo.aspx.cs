@@ -166,6 +166,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void CargarOficinas() {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarOficina, ObjdataGeneral.Value.BuscaListas("OFICINAS", null, null), true);
         }
+        private void CargarMonedas() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarMoneda, ObjdataGeneral.Value.BuscaListas("MONEDA", null, null), true);
+        }
         #endregion
 
         private void MostrarListadoPorPantalla() {
@@ -176,7 +179,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             string _Cliente = string.IsNullOrEmpty(txtCodigoCliente.Text.Trim()) ? null : txtCodigoCliente.Text.Trim();
             string _Vendedor = string.IsNullOrEmpty(txtCodigoVendedor.Text.Trim()) ? null : txtCodigoVendedor.Text.Trim();
             int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
-
+            int? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarMoneda.SelectedValue) : new Nullable<int>();
             var Buscar = ObDataMantenimiento.Value.BuscarDatosAntiguedadSaldo(
                 Convert.ToDateTime(txtFechaCorte.Text),
                 _NumeroFactura,
@@ -186,7 +189,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 _Tipo,
                 _Cliente,
                 _Vendedor,
-                _Oficina);
+                _Oficina,
+                null,
+                _Moneda);
             int CantidadRegistros = Buscar.Count;
             lbCantidadRegistrosVariable.Text = CantidadRegistros.ToString("N0");
 
@@ -204,6 +209,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             string _Cliente = string.IsNullOrEmpty(txtCodigoCliente.Text.Trim()) ? null : txtCodigoCliente.Text.Trim();
             string _Vendedor = string.IsNullOrEmpty(txtCodigoVendedor.Text.Trim()) ? null : txtCodigoVendedor.Text.Trim();
             int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+            int? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarMoneda.SelectedValue) : new Nullable<int>();
 
 
             if (rbReporteDetallado.Checked == true) {
@@ -216,7 +222,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     _Tipo,
                     _Cliente,
                     _Vendedor,
-                    _Oficina)
+                    _Oficina,
+                    null,
+                    _Moneda)
                                        select new {
                                            NumeroDocumento = n.Documento,
                                            DescripcionTipo = n.DescripcionTipo,
@@ -266,6 +274,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             string _Cliente = string.IsNullOrEmpty(txtCodigoCliente.Text.Trim()) ? null : txtCodigoCliente.Text.Trim();
             string _Vendedor = string.IsNullOrEmpty(txtCodigoVendedor.Text.Trim()) ? null : txtCodigoVendedor.Text.Trim();
             int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+            int? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarMoneda.SelectedValue) : new Nullable<int>();
 
             decimal UsuarioGenera = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
 
@@ -284,6 +293,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             Antiguedad.SetParameterValue("@CodigoVendedor", _Vendedor);
             Antiguedad.SetParameterValue("@Oficina", _Oficina);
             Antiguedad.SetParameterValue("@UsuarioGenera", UsuarioGenera);
+            Antiguedad.SetParameterValue("@Moneda", _Moneda);
 
             Antiguedad.SetDatabaseLogon("sa", "Pa$$W0rd");
 
@@ -309,6 +319,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarRamos();
                 CargarTipoMovimientos();
                 CargarOficinas();
+                CargarMonedas();
 
                 //SACAMOS LA TASA POR DEFECTO DEL SISTEMA
                 decimal? Tasa = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda((int)TipoMonedas.Dollar);

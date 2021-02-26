@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionMantenimientosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_BUSCA_OFICINAS" Method="SP_BUSCA_OFICINAS">
     <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(18,0)" />
     <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Decimal" DbType="Decimal(20,0)" />
@@ -1127,6 +1127,7 @@
     <Parameter Name="CodigoVendedor" Parameter="codigoVendedor" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
     <Parameter Name="UsuarioGenera" Parameter="usuarioGenera" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Moneda" Parameter="moneda" Type="System.Int32" DbType="Int" />
     <ElementType Name="SP_CONSULTAR_DATOS_ANTIGUEDAD_SALDOResult">
       <Column Name="Documento" Type="System.String" DbType="VarChar(37) NOT NULL" CanBeNull="false" />
       <Column Name="NumeroFacturaFiltro" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />

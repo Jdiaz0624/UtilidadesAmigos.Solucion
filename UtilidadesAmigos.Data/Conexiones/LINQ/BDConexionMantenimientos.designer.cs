@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionMantenimientosDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -456,9 +456,9 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_CONSULTAR_DATOS_ANTIGUEDAD_SALDO")]
-		public ISingleResult<SP_CONSULTAR_DATOS_ANTIGUEDAD_SALDOResult> SP_CONSULTAR_DATOS_ANTIGUEDAD_SALDO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaCorte", DbType="Date")] System.Nullable<System.DateTime> fechaCorte, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroFactura", DbType="VarChar(100)")] string numeroFactura, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tasa", DbType="Decimal(20,2)")] System.Nullable<decimal> tasa, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="Int")] System.Nullable<int> tipo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoCliente", DbType="VarChar(100)")] string codigoCliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoVendedor", DbType="VarChar(100)")] string codigoVendedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioGenera", DbType="Decimal(20,0)")] System.Nullable<decimal> usuarioGenera)
+		public ISingleResult<SP_CONSULTAR_DATOS_ANTIGUEDAD_SALDOResult> SP_CONSULTAR_DATOS_ANTIGUEDAD_SALDO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaCorte", DbType="Date")] System.Nullable<System.DateTime> fechaCorte, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroFactura", DbType="VarChar(100)")] string numeroFactura, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tasa", DbType="Decimal(20,2)")] System.Nullable<decimal> tasa, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="Int")] System.Nullable<int> tipo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoCliente", DbType="VarChar(100)")] string codigoCliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoVendedor", DbType="VarChar(100)")] string codigoVendedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioGenera", DbType="Decimal(20,0)")] System.Nullable<decimal> usuarioGenera, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Moneda", DbType="Int")] System.Nullable<int> moneda)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaCorte, numeroFactura, poliza, ramo, tasa, tipo, codigoCliente, codigoVendedor, oficina, usuarioGenera);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaCorte, numeroFactura, poliza, ramo, tasa, tipo, codigoCliente, codigoVendedor, oficina, usuarioGenera, moneda);
 			return ((ISingleResult<SP_CONSULTAR_DATOS_ANTIGUEDAD_SALDOResult>)(result.ReturnValue));
 		}
 	}
