@@ -900,7 +900,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                                __151_MAS = n._151_MAS,
                                Total = n.Total,
                                Diferencia = n.Diferencia,
-                               OrdenTipo = n.OrdenTipo
+                               OrdenTipo = n.OrdenTipo,
+                               CortadoAL=n.CortadoAL,
+                               GeneradoPor=n.GeneradoPor
                            }).ToList();
             return Listado;
         }

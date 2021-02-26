@@ -210,6 +210,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             string _Vendedor = string.IsNullOrEmpty(txtCodigoVendedor.Text.Trim()) ? null : txtCodigoVendedor.Text.Trim();
             int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
             int? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarMoneda.SelectedValue) : new Nullable<int>();
+            decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
 
 
             if (rbReporteDetallado.Checked == true) {
@@ -260,8 +261,195 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Antiguedad de Saldo al " + txtFechaCorte.Text + " Detalle", ExportarDetalle);
 
             }
-            else if (rbReporteNeteado.Checked == true) { }
-            else if (rbReporteResumido.Checked == true) { }
+            else if (rbReporteResumido.Checked == true) {
+                //ELIMINAMOS TODOS LOS DATOS DE LA TABLA DatosReporteAntiguedadSaldo CON EL USUAIRIO QUE ESTA PROCESANDO LA INFORMACION
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo Delete = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo(
+                    IdUsuario, DateTime.Now, "", 0, 0, "", "", 0, "", "", 0, "", 0, "", "", 0, "", DateTime.Now, "", DateTime.Now, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "DELETE");
+                Delete.ProcesarInformacion();
+
+                //PROCEDEMOS A BUSCAR LA INFORMACION Y GUARDAR EN LA TABLA LOS NUEVOS DATOS A PROCESAR
+                var BuscarInformacion = ObDataMantenimiento.Value.BuscarDatosAntiguedadSaldo(
+                    Convert.ToDateTime(txtFechaCorte.Text),
+                    _NumeroFactura,
+                    _Poliza,
+                    _Ramo,
+                    Convert.ToDecimal(txtTasaDollar.Text),
+                    _Tipo,
+                    _Cliente,
+                    _Vendedor,
+                    _Oficina,
+                    IdUsuario,
+                    _Moneda);
+                foreach (var n in BuscarInformacion) {
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo Save = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo(
+                        IdUsuario,
+                        Convert.ToDateTime(txtFechaCorte.Text),
+                        n.Documento,
+                        (decimal)n.NumeroFacturaFiltro,
+                        (int)n.Tipo,
+                        n.DescripcionTipo,
+                        n.Asegurado,
+                        (decimal)n.ClienteFiltro,
+                        n.Fecha,
+                        n.Intermediario,
+                        (int)n.VendedorFiltro,
+                        n.Poliza,
+                        (int)n.CodMoneda,
+                        n.DescripcionMoneda,
+                        n.Estatus,
+                        (int)n.CodRamo,
+                        n.InicioVigencia,
+                        (DateTime)n.Inicio,
+                        n.FinVigencia,
+                        (DateTime)n.Fin,
+                        (int)n.CodOficina,
+                        n.Oficina,
+                        (int)n.Dias,
+                        (decimal)n.Facturado,
+                        (decimal)n.Cobrado,
+                        (decimal)n.Balance,
+                        (decimal)n.Impuesto,
+                        (decimal)n.PorcComision,
+                        (decimal)n.ValorComision,
+                        (decimal)n.ComisionPendiente,
+                        (decimal)n.__0_10,
+                        (decimal)n.__0_30,
+                        (decimal)n.__31_60,
+                        (decimal)n.__61_90,
+                        (decimal)n.__91_120,
+                        (decimal)n.__121_150,
+                        (decimal)n.__151_MAS,
+                        (decimal)n.Total,
+                        (decimal)n.Diferencia,
+                        (int)n.OrdenTipo,
+                        "INSERT");
+                    Save.ProcesarInformacion();
+                }
+                var ExportarReporteResumido = (from n in ObDataMantenimiento.Value.ReporteAntiguedadSaldoResumido(
+                        IdUsuario,
+                        Convert.ToDecimal(txtTasaDollar.Text),
+                        0)
+                                               select new
+                                               {
+                                                   FechaCorte = n.FechaCorte,
+                                                   DescripcionMoneda = n.DescripcionMoneda,
+                                                   Ramo = n.Ramo,
+                                                   CantidadFactura = n.CantidadFactura,
+                                                   CantidadCreditos = n.CantidadCreditos,
+                                                   CantidadPrimaDeposito = n.CantidadPrimaDeposito,
+                                                   CantidadRegistros = n.CantidadRegistros,
+                                                   Balance = n.Balance,
+                                                   __0_30 = n.__0_30,
+                                                   __31_60 = n.__31_60,
+                                                   __61_90 = n.__61_90,
+                                                   __91_120 = n.__91_120,
+                                                   __121_150 = n.__121_150,
+                                                   __151_Mas = n.__151_Mas,
+                                                   Total = n.Total,
+                                                   GeneradoPor = n.GeneradoPor,
+                                                   TotalPesos = n.TotalPesos,
+                                                   Tasa = n.Tasa
+                                               }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Antiguedad de Saldo Resumido", ExportarReporteResumido);
+            }
+            else if (rbReporteNeteado.Checked == true) {
+                //ELIMINAMOS TODOS LOS DATOS DE LA TABLA DatosReporteAntiguedadSaldo CON EL USUAIRIO QUE ESTA PROCESANDO LA INFORMACION
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo Delete = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo(
+                    IdUsuario, DateTime.Now, "", 0, 0, "", "", 0, "", "", 0, "", 0, "", "", 0, "", DateTime.Now, "", DateTime.Now, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "DELETE");
+                Delete.ProcesarInformacion();
+
+                //PROCEDEMOS A BUSCAR LA INFORMACION Y GUARDAR EN LA TABLA LOS NUEVOS DATOS A PROCESAR
+                var BuscarInformacion = ObDataMantenimiento.Value.BuscarDatosAntiguedadSaldo(
+                    Convert.ToDateTime(txtFechaCorte.Text),
+                    _NumeroFactura,
+                    _Poliza,
+                    _Ramo,
+                    Convert.ToDecimal(txtTasaDollar.Text),
+                    _Tipo,
+                    _Cliente,
+                    _Vendedor,
+                    _Oficina,
+                    IdUsuario,
+                    _Moneda);
+                foreach (var n in BuscarInformacion)
+                {
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo Save = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteAntiguedadSaldo(
+                        IdUsuario,
+                        Convert.ToDateTime(txtFechaCorte.Text),
+                        n.Documento,
+                        (decimal)n.NumeroFacturaFiltro,
+                        (int)n.Tipo,
+                        n.DescripcionTipo,
+                        n.Asegurado,
+                        (decimal)n.ClienteFiltro,
+                        n.Fecha,
+                        n.Intermediario,
+                        (int)n.VendedorFiltro,
+                        n.Poliza,
+                        (int)n.CodMoneda,
+                        n.DescripcionMoneda,
+                        n.Estatus,
+                        (int)n.CodRamo,
+                        n.InicioVigencia,
+                        (DateTime)n.Inicio,
+                        n.FinVigencia,
+                        (DateTime)n.Fin,
+                        (int)n.CodOficina,
+                        n.Oficina,
+                        (int)n.Dias,
+                        (decimal)n.Facturado,
+                        (decimal)n.Cobrado,
+                        (decimal)n.Balance,
+                        (decimal)n.Impuesto,
+                        (decimal)n.PorcComision,
+                        (decimal)n.ValorComision,
+                        (decimal)n.ComisionPendiente,
+                        (decimal)n.__0_10,
+                        (decimal)n.__0_30,
+                        (decimal)n.__31_60,
+                        (decimal)n.__61_90,
+                        (decimal)n.__91_120,
+                        (decimal)n.__121_150,
+                        (decimal)n.__151_MAS,
+                        (decimal)n.Total,
+                        (decimal)n.Diferencia,
+                        (int)n.OrdenTipo,
+                        "INSERT");
+                    Save.ProcesarInformacion();
+                }
+                var ExportarReporteNeteado = (from n in ObDataMantenimiento.Value.ReporteAntiguedadSaldoNeteadoDetalle(
+                    IdUsuario,
+                    Convert.ToDecimal(txtTasaDollar.Text))
+                                              select new {
+                                                  FechaCorte = n.FechaCorteFormateado,
+                                                  Asegurado = n.Asegurado,
+                                                  Intermediario = n.Intermediario,
+                                                  Poliza = n.Poliza,
+                                                  DescripcionMoneda = n.DescripcionMoneda,
+                                                  Estatus = n.Estatus,
+                                                  Ramo = n.Ramo,
+                                                  InicioVigencia = n.InicioVigencia,
+                                                  FinVigencia = n.FinVigencia,
+                                                  Facturado = n.Facturado,
+                                                  Cobrado = n.Cobrado,
+                                                  Balance = n.Balance,
+                                                  Impuesto = n.Impuesto,
+                                                  ValorComision = n.ValorComision,
+                                                  ComisionPendiente = n.ComisionPendiente,
+                                                  __0_30 = n.__0_30,
+                                                  __31_60 = n.__31_60,
+                                                  __61_90 = n.__61_90,
+                                                  __91_120 = n.__91_120,
+                                                  __121_150 = n.__121_150,
+                                                  __151_mas = n.__151_mas,
+                                                  Total = n.Total,
+                                                  TotalPesos = n.TotalPesos,
+                                                  TasaDollar = n.TasaDollar,
+                                                  Diferencia = n.Diferencia
+                                              }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Antiguedad Saldo Neteado", ExportarReporteNeteado);
+            }
+            
         }
 
         #region GENERAR REPORTE DE ANTIGUEDAD DE SALDO

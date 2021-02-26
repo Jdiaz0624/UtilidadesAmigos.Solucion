@@ -53,7 +53,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos
         private string Accion = "";
 
         public ProcesarInformacionReporteAntiguedadSaldo(
-            decimal IdUsuarioCON,
+        decimal IdUsuarioCON,
         DateTime FechaCorteCON,
         string DocumentoFormateadoCON,
         decimal DocumentoFiltroCON,
