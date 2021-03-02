@@ -42,15 +42,6 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkInicio;
 
         /// <summary>
-        /// linkTicket control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkTicket;
-
-        /// <summary>
         /// LinkConsultarPersonas control.
         /// </summary>
         /// <remarks>

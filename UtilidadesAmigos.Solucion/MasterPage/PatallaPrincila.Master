@@ -6,6 +6,7 @@
 <head runat="server">
     <title>Utilidades Seguros Amigos</title>
     <link href="../Estilos/EstilosMaster.css" rel="stylesheet" type="text/css" />
+    <link href="../Estilos/EstiloMenuPrincipal.css" rel="stylesheet" type="text/css" />
     <link type="text/css" href="../Content/bootstrap.min.css" rel="stylesheet" />
     <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="../scripts/jquery-3.4.1.slim.min.js"></script>
@@ -15,19 +16,24 @@
     <script type="text/javascript" src="../scripts/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../scripts/jquery.maskedinput.min.js"></script>
     <script type="text/javascript" src="../JS/Utililades.js"></script>
-      <script type="text/javascript" src="../JS/Mask.js"></script>
+    <script type="text/javascript" src="../JS/Mask.js"></script>
+
 
     <link rel="shortcut icon" href="../Imagenes/Iniciales.ico" />
 
-    <asp:ContentPlaceHolder ID="head" runat="server">
-          
+    <asp:ContentPlaceHolder ID="head" runat="server">    
     </asp:ContentPlaceHolder>
  
+
+    <style type="text/css">
+        .dropdown-toggle {
+        color: #ffffff;
+        }
+    </style>
 </head>
 <body>
       <form id="form1" runat="server">   
-          <br />
-          <div class="container-fluid">
+         <%-- <div class="container-fluid">
                 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
                         <!-- Brand -->
                         
@@ -136,11 +142,177 @@
             
                       </nav>
                <hr class="hr" />
-        </div>
+        </div>--%>
          
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
+       <div class="d-flex" id="wrapper">
+           <div class="bg-dark  border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading">Menu Principal </div>
+
+               <div class="list-group  list-group-flush">
+                   <asp:LinkButton ID="LinkInicio" runat="server" Text="Inicio"  ForeColor="White" CssClass="list-group-item bg-dark list-group-item-action bg-light" OnClick="LinkInicio_Click"></asp:LinkButton>
+
+                    <%--MODULO DE CONSULTA--%>
+          <ul class="nav nav-item bg-dark list-group-item list-group-item-action">
+  <li class="nav-item dropdown">
+    <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%" role="button" aria-haspopup="true" aria-expanded="false">Consultas</a>
+    <div class="dropdown-menu">
+          <asp:LinkButton ID="LinkConsultarPersonas" runat="server" ToolTip="Consultar Pesonas Super Intendencia" Text="Consultar Personas" OnClick="LinkConsultarPersonas_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkProduccionPorUsuarios" runat="server" Visible="false" ToolTip="Muestra la Producción por usuarios con movimientos en Cobros, Producción y Reclamaciones" Text="Produccion Por Usuario" OnClick="linkProduccionPorUsuarios_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkProduccionDiaria" runat="server" Visible="false" ToolTip="Mostrar la Producción, lo Cobrado y lo reclamado" Text="Produccion - Cobrado - Reclamado" OnClick="linkProduccionDiaria_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkGenerarCartera" runat="server" Visible="false" ToolTip="Generar Cartera de Supervisores" Text="Generar Cartera Supervisores" OnClick="linkGenerarCartera_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkCarteraIntermediarios" runat="server" Visible="false" Text="Generar Cartera Intermediario" OnClick="linkCarteraIntermediarios_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+           <asp:LinkButton ID="linkComisionesCobrador" runat="server" Text="Listado de Renovacion" OnClick="linkComisionesCobrador_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkValidarCoberturas" runat="server" Text="Sacar Data Coberturas" OnClick="linkValidarCoberturas_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkGenerarReporteUAF" runat="server" Text="Generar Reporte para la UAF" OnClick="linkGenerarReporteUAF_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+           <asp:LinkButton ID="LinkReporteFianzas" runat="server" Text="Reporte de Fianzas" OnClick="LinkReporteFianzas_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+           <asp:LinkButton ID="LinkReporteReclamos" runat="server" Visible="false" Text="Reporte de Reclamos" OnClick="LinkReporteReclamos_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+            <asp:LinkButton ID="LinkConsumoWS" runat="server"  Text="Consultar Dato Poliza (WS)" OnClick="LinkConsumoWS_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+           <asp:LinkButton ID="LinkConsultarInformacionAsegurado" runat="server" Text="Información Asegura.do" OnClick="LinkConsultarInformacionAsegurado_Click" CssClass="list-group-item list-group-item-action bg-light" ToolTip="Mostrar y procesar data del proceso de Asegua.do"></asp:LinkButton>
+    </div>
+  </li>
+</ul>
+
+<%--MODULO DE REPORTES--%>
+<ul class="nav nav-item bg-dark list-group-item list-group-item-action">
+  <li class="nav-item dropdown">
+    <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%" role="button" aria-haspopup="true" aria-expanded="false">Reportes</a>
+    <div class="dropdown-menu">
+         <asp:LinkButton ID="LinkProduccionIntermediarioSupervisor" runat="server" Text="Reporte de Producción" ToolTip="Generar Reporte de Produccion de Intermediarios y Supervisores" OnClick="LinkProduccionIntermediarioSupervisor_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkReporteCobrado" runat="server" Text="Reporte de Cobro" ToolTip="Generar Reporte de Cobros" OnClick="LinkReporteCobrado_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkGenerarMarbetesBehiculo" runat="server" ToolTip="Genera Marbetes" Text="Impresión de Marbetes" OnClick="LinkGenerarMarbetesBehiculo_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LiniComisionesIntermediarios" runat="server" Text="Generar Comisiones de Intermediario" OnClick="LiniComisionesIntermediarios_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkComisionesSupervisores" runat="server" Text="Generar Comisiones de Supervisores" OnClick="LinkComisionesSupervisores_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkProduccionDiariaContabilidad" runat="server" Text="Producción diaria Contabilidad" ToolTip="Mostrar la Producción diaria para contablidad" OnClick="LinkProduccionDiariaContabilidad_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkAntiguedadSaldo" runat="server" Text="Antiguedad de Saldo" ToolTip="Generar Reporte de antiguedad de saldo" OnClick="LinkAntiguedadSaldo_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkImpresionCheques" runat="server" Text="Impresión de Cheques" ToolTip="Imprimir Cheques" OnClick="LinkImpresionCheques_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+    </div>
+  </li>
+</ul>
+
+                   <ul class="nav nav-item bg-dark list-group-item list-group-item-action">
+  <li class="nav-item dropdown">
+    <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%" role="button" aria-haspopup="true" aria-expanded="false">Procesos</a>
+    <div class="dropdown-menu">
+         <asp:LinkButton ID="LinkBakupBD" runat="server" Text="Generar Bakup de BD" OnClick="LinkBakupBD_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkGenerarSOlicitudChequeComisiones" runat="server" Text="Solicitud de Cheques Intermediario" OnClick="LinkGenerarSOlicitudChequeComisiones_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkProcesarDataAsegurado" runat="server" Text="Procesar Data Asegura.do" OnClick="LinkProcesarDataAsegurado_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkCorregirValorDeclarativa" runat="server" Text="Dato Poliza" OnClick="LinkCorregirValorDeclarativa_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkCorregirLimites" runat="server" Visible="false" ForeColor="Red" Text="Corregir Limites" OnClick="LinkCorregirLimites_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkEnvioCorreo" runat="server" Visible="false" ForeColor="Red" Text="Envio de Correo" OnClick="LinkEnvioCorreo_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkEliminarBalance" runat="server"  ForeColor="Red" Visible="false" Text="Eliminar Balance" OnClick="LinkEliminarBalance_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkGenerarFacturasPDF" runat="server" Visible="false" Text="Generar Facturas PDF" OnClick="LinkGenerarFacturasPDF_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+    </div>
+  </li>
+</ul>
+
+                   <ul class="nav nav-item bg-dark list-group-item list-group-item-action">
+  <li class="nav-item dropdown">
+    <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%" role="button" aria-haspopup="true" aria-expanded="false">Mantenimientos</a>
+    <div class="dropdown-menu">
+          <asp:LinkButton ID="LinkClientes" runat="server" Text="Clientes" OnClick="LinkClientes_Click1" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="LinkIntermediariosSupervisores" runat="server" Text="Intermediarios / Supervisores" OnClick="LinkIntermediariosSupervisores_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkOficinas" runat="server" Text="Oficinas" OnClick="linkOficinas_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkDeprtamentos" runat="server" Text="Departamentos" OnClick="linkDeprtamentos_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkEmpleados" runat="server" Text="Empleados" OnClick="linkEmpleados_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkInventario" runat="server" ForeColor="Red" Text="Inventario" OnClick="linkInventario_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="LinkDependientes" runat="server" Text="Dependientes" OnClick="LinkDependientes_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="LinkCorreoElectronicos" runat="server" Visible="false" ForeColor="Red" Text="Correo Electronico" OnClick="LinkCorreoElectronicos_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="LinkMantenimientoPorcientoComisionPorDefecto" runat="server" Text="Porciento Comisión" OnClick="LinkMantenimientoPorcientoComisionPorDefecto_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+    </div>
+  </li>
+</ul>
+
+                   <asp:LinkButton ID="LinkSolicitudEmision" runat="server" ForeColor="Red" Text="Solicitud" OnClick="LinkSolicitudEmision_Click1"  CssClass="list-group-item bg-dark list-group-item-action bg-light"></asp:LinkButton>
+
+                   <ul class="nav nav-item bg-dark list-group-item list-group-item-action">
+  <li class="nav-item dropdown">
+    <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%" role="button" aria-haspopup="true" aria-expanded="false">Consultas</a>
+    <div class="dropdown-menu">
+          <asp:LinkButton ID="linkUsuarios" runat="server" ToolTip="Mantenimiento de Usuarios" Text="Usuarios" OnClick="linkUsuarios_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkPerfilesUsuarios" runat="server" Text="Perfiles de Usuarios" ToolTip="Mantenimiento de Perfiles de Usuarios" OnClick="linkPerfilesUsuarios_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkClaveSeguridad" runat="server" Text="Clave de Seguridad" OnClick="linkClaveSeguridad_Click" ToolTip="Mantenimiento de clave de seguridad" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkMovimientoUsuarios" runat="server" ForeColor="Red" Text="Movimiento Usuario" OnClick="linkMovimientoUsuarios_Click" ToolTip="Movimiento de Usuarios" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkTarjetasAccesos" runat="server" Text="Tarjetas de Accesos" OnClick="linkTarjetasAccesos_Click" ToolTip="Mantenimiento de tarjetas de Acceso" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkOpcionMenu" runat="server" ForeColor="Red" Text="Opcion Menu" OnClick="linkOpcionMenu_Click" ToolTip="Mantenimiento de Opciones de Menu" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkOpcion" runat="server" ForeColor="Red" Text="Opciones" OnClick="linkOpcion_Click" ToolTip="Mantenimiento de Opciones" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkBotones" runat="server" ForeColor="Red" Text="Botones" OnClick="linkBotones_Click" ToolTip="Mantenimiento de Botones" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="linkPermisoUsuarios" runat="server" ForeColor="Red" Text="Permisos Usuarios" OnClick="linkPermisoUsuarios_Click" ToolTip="Mantenimiento de Permiso de usuarios" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+    </div>
+  </li>
+</ul>
+
+   <asp:LinkButton ID="linkCerrarCesion" runat="server" ToolTip="Cerrar Sesión" Text="Cerrar Sesión" OnClick="linkCerrarCesion_Click" ForeColor="White"  CssClass="list-group-item bg-dark list-group-item-action bg-light" OnClientClick="return confirm('¿Quieres Cerrar Sesión?');"></asp:LinkButton>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+         <%--
+             <ul class="nav nav-item bg-dark list-group-item list-group-item-action">
+  <li class="nav-item dropdown">
+    <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%" role="button" aria-haspopup="true" aria-expanded="false">Consultas</a>
+    <div class="dropdown-menu">
+         
+    </div>
+  </li>
+</ul>
+             --%>
+
+             
+               </div>
+           </div>
+
+           <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+        <button class="btn btn-outline-secondary" id="menu-toggle">...</button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>  
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <%--  <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>--%>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
+       
+      </div>
+    </div>
+       </div>
+            <script>
+      $("#menu-toggle").click(function (e) {
+          e.preventDefault();
+          $("#wrapper").toggleClass("toggled");
+      });
+            </script>
+
+
+
+          
+          
+       
     </form>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" type="text/javascript"></script>
