@@ -144,15 +144,12 @@
     </script>
 <!--INICIO DEL ENCABEZADO-->
     <div class="container-fluid">
-        <div class="jumbotron" align="Center">
-            <asp:Label ID="lbEncabezado" runat="server" Text="Sacar Data de Coberturas"></asp:Label>
-            
-        </div>
     </div>
 <!--FIN DEL ENCABEZADO-->
 
 <!--INICIO DE LOS MENUS DESPLEGABLES Y CONTROLES DE BUSQUEDA-->
     <div class="container-fluid">
+        <br /><br />
         <div class="form-row">
             <div class="form-group col-md-4">
                 <asp:Label ID="lbSeleccionarCobertura" runat="server" CssClass="Letranegrita" Text="Seleccionar Cobertura"></asp:Label>

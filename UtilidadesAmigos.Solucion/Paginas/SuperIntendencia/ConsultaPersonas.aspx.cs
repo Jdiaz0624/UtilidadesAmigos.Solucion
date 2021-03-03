@@ -346,6 +346,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         {
             MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack) {
+                Label lbNombreUsuarioCOnectado = (Label)Master.FindControl("lbUsuarioConectado");
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario NombreUsuario = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                lbNombreUsuarioCOnectado.Text = NombreUsuario.SacarNombreUsuarioConectado();
+
+                Label lbNombrePantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbNombrePantalla.Text = "CONSULTA DE REGISTRO DE PERSONAS";
+
+
+
                 rbExportarPDF.Checked = true;
                 rbConsultaNormal.Checked = true;
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamo, ObjDataSistema.Value.BuscaListas("RAMO", null, null), true);

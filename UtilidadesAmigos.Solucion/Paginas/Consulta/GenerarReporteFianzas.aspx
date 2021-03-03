@@ -47,9 +47,7 @@
    
     </script>
     <div class="container-fluid">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="lbTitulo" runat="server" Text="Reporte de Fianzas"></asp:Label>
-        </div>
+        <br /><br />
         <div align="center">
             <asp:Label ID="lbCantidadEncontradaTitulo" runat="server" Text="Cantidad de registros encontrados ( " CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCantidadRegistros" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>

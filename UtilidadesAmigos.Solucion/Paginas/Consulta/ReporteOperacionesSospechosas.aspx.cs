@@ -550,7 +550,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (!IsPostBack)
             {
-                  UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarTipoOperacion, ObjData.Value.BuscaListas("TIPOREPORTEUAF", null, null));
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Nombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
+                lbNombreUsuario.Text = Nombre.SacarNombreUsuarioConectado();
+
+                Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbPantalla.Text = "REPORTE DE OPERACIONES SOSPECHOSAS";
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarTipoOperacion, ObjData.Value.BuscaListas("TIPOREPORTEUAF", null, null));
                 DivBloqueDetalle.Visible = false;
                 SacarTasaSistema();
             }

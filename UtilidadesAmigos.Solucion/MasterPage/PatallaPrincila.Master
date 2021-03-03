@@ -278,7 +278,7 @@
               <asp:Label ID="lbUsuarioConectado" runat="server" Text="Usuario Cnectado" ForeColor="White"  CssClass="list-group-item bg-dark list-group-item-action bg-light"></asp:Label>
             </li>
             <li class="nav-item">
-              <asp:Label ID="lbOficinaUsuairo" runat="server" Text="Oficina" ForeColor="White"  CssClass="list-group-item bg-dark list-group-item-action bg-light"></asp:Label>
+              <asp:Label ID="lbOficinaUsuairoPantalla" runat="server" Text="Oficina" ForeColor="White"  CssClass="list-group-item bg-dark list-group-item-action bg-light"></asp:Label>
             </li>
              
 

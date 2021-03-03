@@ -492,13 +492,13 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.Label lbUsuarioConectado;
 
         /// <summary>
-        /// lbOficinaUsuairo control.
+        /// lbOficinaUsuairoPantalla control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbOficinaUsuairo;
+        protected global::System.Web.UI.WebControls.Label lbOficinaUsuairoPantalla;
 
         /// <summary>
         /// ContentPlaceHolder1 control.

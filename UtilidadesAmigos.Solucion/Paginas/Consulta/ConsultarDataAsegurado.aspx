@@ -31,9 +31,7 @@
     </style>
 
     <div class="container-fluid">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="lbBuscarProcesarInformacionAsegurado" runat="server" Text="Buscar / Procesar Información Asegurado"></asp:Label>
-        </div>
+        <br /><br />
         <div class="form-check-inline">
            
             <div class="form-group form-check">

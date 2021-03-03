@@ -15,15 +15,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
     {
 
         /// <summary>
-        /// lbBuscarProcesarInformacionAsegurado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbBuscarProcesarInformacionAsegurado;
-
-        /// <summary>
         /// lbTipoOperacion control.
         /// </summary>
         /// <remarks>

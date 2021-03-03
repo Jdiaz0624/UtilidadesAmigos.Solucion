@@ -131,6 +131,7 @@
     <Compile Include="Comunes\Reportes\ProcesarInformacionReporteComisionIntermediario.cs" />
     <Compile Include="Comunes\Reportes\ProcesarProduccionPorUsuarioResumido.cs" />
     <Compile Include="Comunes\SacarNombreIntermediarioSupervisor.cs" />
+    <Compile Include="Comunes\SacarNombreUsuario.cs" />
     <Compile Include="Comunes\SacarNumeroCotizacionPoliza.cs" />
     <Compile Include="Comunes\SacartasaMoneda.cs" />
     <Compile Include="Comunes\SeguridadEncriptacion.cs" />

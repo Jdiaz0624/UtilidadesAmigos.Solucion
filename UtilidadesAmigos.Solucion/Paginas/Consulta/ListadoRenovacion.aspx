@@ -48,11 +48,9 @@
                   $("#<%=txtFechaHAsta.ClientID%>").css("border-color", "red");
 }
     </script>
-    <div class="container-fluid">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="lbEncabezado" runat="server" Text="Listado de Renovación"></asp:Label>
-            <asp:Label ID="lbCotizacionPoliza" runat="server" Text="Cotizacion" Visible="false" ></asp:Label>
-        </div>
+       <div class="container-fluid">
+       <br /><br />
+        <asp:Label ID="lbCotizacionPoliza" runat="server" Text="Cotizacion" Visible="false" ></asp:Label>
         <div align="center">
             <asp:Label ID="Label2" runat="server" Text=" Desde " CssClass="LetrasNegrita"></asp:Label>
              <asp:Label ID="lbMesDesde" runat="server" Text=" Mes " CssClass="LetrasNegrita"></asp:Label>

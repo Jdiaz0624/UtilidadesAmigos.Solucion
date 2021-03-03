@@ -332,6 +332,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (!IsPostBack)
             {
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario NombreUsuario = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
+                lbNombreUsuario.Text = NombreUsuario.SacarNombreUsuarioConectado();
+
+                Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbPantalla.Text = "LISTADO DE RENOVACION";
+
                 divPaginacion.Visible = false;
                 DivPaginacionEstadistica.Visible = false;
                 CargarRamos();

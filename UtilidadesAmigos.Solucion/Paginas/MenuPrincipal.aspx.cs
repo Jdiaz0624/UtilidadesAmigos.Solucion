@@ -67,15 +67,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         private void SacarDatosUsuario(decimal IdUsuario)
         {
-
             Label lbControlUsuarioConectado = (Label)Master.FindControl("lbUsuarioConectado");
             lbControlUsuarioConectado.Text = "";
 
-            Label lbControlOficinaUsuario = (Label)Master.FindControl("lbOficinaUsuairo");
+            Label lbControlOficinaUsuario = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
             lbControlOficinaUsuario.Text = "";
-
-       
-
 
             var SacarDatos = Objtata.Value.BuscaUsuarios(IdUsuario,
                 null,
