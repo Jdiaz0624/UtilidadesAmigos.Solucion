@@ -33,6 +33,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// LogoSistema control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image LogoSistema;
+
+        /// <summary>
         /// LinkInicio control.
         /// </summary>
         /// <remarks>
@@ -472,6 +481,24 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkCerrarCesion;
+
+        /// <summary>
+        /// lbUsuarioConectado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbUsuarioConectado;
+
+        /// <summary>
+        /// lbOficinaUsuairo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbOficinaUsuairo;
 
         /// <summary>
         /// ContentPlaceHolder1 control.

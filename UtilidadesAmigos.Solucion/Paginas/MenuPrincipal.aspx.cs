@@ -67,6 +67,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         private void SacarDatosUsuario(decimal IdUsuario)
         {
+
+            Label lbControlUsuarioConectado = (Label)Master.FindControl("lbUsuarioConectado");
+            lbControlUsuarioConectado.Text = "";
+
+            Label lbControlOficinaUsuario = (Label)Master.FindControl("lbOficinaUsuairo");
+            lbControlOficinaUsuario.Text = "";
+
+       
+
+
             var SacarDatos = Objtata.Value.BuscaUsuarios(IdUsuario,
                 null,
                 null,
@@ -76,10 +86,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 null);
             foreach (var n in SacarDatos)
             {
-                lbUsuarioConectado.Text = n.Persona;
-                lbDepartamento.Text = n.Departamento;
-                lbSucursal.Text = n.Sucursal;
-                lbOficina.Text = n.Oficina;
+                lbControlUsuarioConectado.Text = n.Persona;
+                lbControlOficinaUsuario.Text = n.Departamento + " - " + n.Sucursal + " - " + n.Oficina;
+                //lbDepartamento.Text = n.Departamento;
+                //lbSucursal.Text = n.Sucursal;
+                //lbOficina.Text = n.Oficina;
                 lbIdPerfil.Text = n.IdPerfil.ToString();
             }
 
@@ -146,6 +157,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void gbSugerencia_SelectedIndexChanged(object sender, EventArgs e)
         {
+        
+
             lbAccion.Text = "UPDATE";
             GridViewRow gb = gbSugerencia.SelectedRow;
             var SacarDatos = Objtata.Value.BuscaSugerencias(
@@ -171,6 +184,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnAccion_Click(object sender, EventArgs e)
         {
+     
+
+
             if (lbAccion.Text == "UPDATE")
             {
                 lbAccion.Text = "UPDATE";
@@ -194,6 +210,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else
             {
+
+
                 lbAccion.Text = "INSERT";
                 lbIdMantenimiento.Text = "0";
                 MAnSugerencias(lbAccion.Text, Convert.ToDecimal(lbIdMantenimiento.Text));
@@ -216,6 +234,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
+
+
             lbAccion.Text = "INSERT";
             txtRespuesta.Text = string.Empty;
             txtSugerencia.Text = string.Empty;
@@ -225,6 +245,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
+         
+
+        
+
+         
+
             lbAccion.Text = "DELETE";
             MAnSugerencias(lbAccion.Text, Convert.ToDecimal(lbIdMantenimiento.Text));
             btnEliminar.Visible = false;
