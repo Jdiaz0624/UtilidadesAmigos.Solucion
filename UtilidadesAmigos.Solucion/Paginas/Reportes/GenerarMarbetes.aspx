@@ -52,10 +52,8 @@
     </script>
 
     <div class="container-fluid">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="lbTituloGenerarMarbetes" runat="server" Text="GENERAR MARBETES"></asp:Label>
-            <asp:Label ID="lbIdusuario" Visible="false" runat="server" Text="GENERAR MARBETES"></asp:Label>
-        </div>
+        <br /><br />
+          <asp:Label ID="lbIdusuario" Visible="false" runat="server" Text="GENERAR MARBETES"></asp:Label>
         <div align="center">
             <asp:Label ID="lbSeleccionarFiltros" runat="server" Text="Seleccionar Filtros" CssClass="Letranegrita"></asp:Label><br />
             <div class="form-check-inline">

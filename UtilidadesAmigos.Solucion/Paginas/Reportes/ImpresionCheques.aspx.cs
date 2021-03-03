@@ -261,6 +261,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         {
             MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack) {
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Nombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
+                lbNombreUsuario.Text = Nombre.SacarNombreUsuarioConectado();
+
+                Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbPantalla.Text = "IMPRESION DE CHEQUES";
+
                 rbActivos.Checked = true;
                 rbPDF.Checked = true;
                 rbSinParametros.Checked = true;

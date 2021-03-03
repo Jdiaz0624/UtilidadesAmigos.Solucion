@@ -78,9 +78,7 @@
     </script>
 
     <div class="container-fluid">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="lbTitulo" runat="server" Text="Producción Diaria (Contabilidad)"></asp:Label>
-        </div>
+        <br /><br />
         <div class="form-row">
             <div class="form-group col-md-3">
                 <asp:Label ID="lbTipoReporte" runat="server" Text="Tipo de Reporte" CssClass="LetrasNegrita"></asp:Label>

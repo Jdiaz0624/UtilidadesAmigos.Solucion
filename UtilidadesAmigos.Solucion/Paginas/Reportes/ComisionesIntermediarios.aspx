@@ -73,10 +73,7 @@
         })
     </script>
           <div class="container-fluid">
-          <div class="jumbotron" align="center">
-           
-              <asp:Label ID="lbNombreIntermediarioComision" runat="server" Text="COMISIONES DE INTERMEDIARIOS"></asp:Label>
-          </div>
+          <br /><br />
           <br />
           <div class="form-row">
               <div class="form-group col-md-3">
@@ -144,7 +141,7 @@
                               <th style="width:10%" align="left"> <asp:Label ID="lbFechaHeaderRepeater" runat="server" Text="Fecha" CssClass="LetrasNegrita"></asp:Label> </th>
                               <th style="width:10%" align="left"> <asp:Label ID="lbBrutoHeaderRepeater" runat="server" Text="Bruto" CssClass="LetrasNegrita"></asp:Label> </th>
                               <th style="width:10%" align="left"> <asp:Label ID="lbNetoHeaderRepeater" runat="server" Text="Neto" CssClass="LetrasNegrita"></asp:Label> </th>
-                              <th style="width:10%" align="left"> <asp:Label ID="lbPorcientoComisionHeaderRepeater" runat="server" Text="% de Comisión" CssClass="LetrasNegrita"></asp:Label> </th>
+                              <th style="width:10%" align="left"> <asp:Label ID="lbPorcientoComisionHeaderRepeater" runat="server" Text="%" CssClass="LetrasNegrita"></asp:Label> </th>
                               <th style="width:10%" align="left"> <asp:Label ID="lbComisionHeaderRepeater" runat="server" Text="Comisión" CssClass="LetrasNegrita"></asp:Label> </th>
                               <th style="width:10%" align="left"> <asp:Label ID="lbRetencionHeaderRepeater" runat="server" Text="Retención" CssClass="LetrasNegrita"></asp:Label> </th>
                               <th style="width:10%" align="left"> <asp:Label ID="lbAvanceHeaderRepeater" runat="server" Text="Avance" CssClass="LetrasNegrita"></asp:Label> </th>

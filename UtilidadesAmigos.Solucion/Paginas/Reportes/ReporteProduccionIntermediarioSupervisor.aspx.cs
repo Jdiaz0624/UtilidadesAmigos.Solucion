@@ -1644,7 +1644,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack) {
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Nombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
+                lbNombreUsuario.Text = Nombre.SacarNombreUsuarioConectado();
+
+                Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbPantalla.Text = "GENERAR REPORTE DE PRODUCCION";
+
                 rbExportarPDF.Checked = true;
                 rbNoAgrupar.Checked = true;
                 rbTodas.Checked = true;

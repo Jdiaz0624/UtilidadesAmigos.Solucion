@@ -379,6 +379,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Nombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
+                lbNombreUsuario.Text = Nombre.SacarNombreUsuarioConectado();
+
+                Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbPantalla.Text = "GENERAR MARBETES";
+
                 cbOtrosFiltros.Checked = false;
                 rbMarbetePVC.Checked = true;
                 lbIdusuario.Text = Session["IdUsuario"].ToString();

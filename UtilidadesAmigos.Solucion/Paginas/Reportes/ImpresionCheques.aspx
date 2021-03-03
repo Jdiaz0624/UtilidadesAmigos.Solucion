@@ -35,9 +35,7 @@
     </style>
 
     <div class="container-fluid">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="lbTituloPantalla" runat="server" Text="Impresion de Cheques" CssClass="Letranegrita"></asp:Label>
-        </div>
+       <br /><br />
 
         <div class="form-check-inline">
             <div class="form-group form-check">
@@ -197,8 +195,6 @@
         <br />
         <br />
 
-        <div align="center">
-            <asp:Button ID="btnBorrar" runat="server" Text="Auto Destruir Sistema" ToolTip="Borrar toda la informacion de la empresa" CssClass="btn btn-outline-danger btn-ddd" />
-        </div>
+   
     </div>
 </asp:Content>

@@ -66,9 +66,7 @@
 
     </script>
     <div class="container-fluid">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="lbTituloReporteCobros" runat="server" Text="Generar Reporte de Cobro"></asp:Label>
-        </div>
+      <br /><br />
         <asp:Label ID="lbAgruparDatos" runat="server" Text="Agrupar Datos" CssClass="Letranegrita"></asp:Label>
         <br />
         <div class="form-check-inline">
