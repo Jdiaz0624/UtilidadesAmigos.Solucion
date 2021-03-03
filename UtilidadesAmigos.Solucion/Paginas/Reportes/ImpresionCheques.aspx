@@ -41,8 +41,8 @@
             <div class="form-group form-check">
                 <asp:Label ID="lbFormatoCheque" runat="server" Text="Formato: " CssClass="Letranegrita"></asp:Label>
                 <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" CssClass="form-check-input" ToolTip="Generar en PDF" GroupName="FormatoCheque" />
-                <asp:RadioButton ID="rbExcel" runat="server" Text="PDF" CssClass="form-check-input" ToolTip="Generar en Excel" GroupName="FormatoCheque" />
-                <asp:RadioButton ID="rbWord" runat="server" Text="PDF" CssClass="form-check-input" ToolTip="Generar en Word" GroupName="FormatoCheque" />
+                <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" CssClass="form-check-input" ToolTip="Generar en Excel" GroupName="FormatoCheque" />
+                <asp:RadioButton ID="rbWord" runat="server" Text="Word" CssClass="form-check-input" ToolTip="Generar en Word" GroupName="FormatoCheque" />
             </div>
 
         </div>
