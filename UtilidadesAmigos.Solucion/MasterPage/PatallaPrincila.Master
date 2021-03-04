@@ -146,7 +146,7 @@
          
        <div class="d-flex" id="wrapper">
            <div class="bg-dark  border-right" id="sidebar-wrapper">
-               <asp:Image ID="LogoSistema" runat="server" Height="65px" Width="240px" ImageUrl="~/Imagenes/Logo.jpg" />
+               <asp:Image ID="LogoSistema" runat="server" Height="65px" Width="240px" ImageUrl="~/Imagenes/Logo.png" />
                 <div class="sidebar-heading">Menu Principal </div>
 
                <div class="list-group  list-group-flush">
