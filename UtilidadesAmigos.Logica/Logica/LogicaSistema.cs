@@ -2301,6 +2301,7 @@ namespace UtilidadesAmigos.Logica.Logica
                               Ramo=n.Ramo,
                               SubRamo=n.SubRamo,
                               Cliente=n.Cliente,
+                              Deudor=n.Deudor,
                               TelefonoResidencia=n.TelefonoResidencia,
                               TelefonoOficina=n.TelefonoOficina,
                               Celular=n.Celular,

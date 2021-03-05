@@ -265,6 +265,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                         Ramo = n.Ramo,
                                         SubRamo = n.SubRamo,
                                         Cliente = n.Cliente,
+                                        Deudor = n.Deudor,
                                         TelefonoResidencia = n.TelefonoResidencia,
                                         TelefonoOficina = n.TelefonoOficina,
                                         Celular = n.Celular,

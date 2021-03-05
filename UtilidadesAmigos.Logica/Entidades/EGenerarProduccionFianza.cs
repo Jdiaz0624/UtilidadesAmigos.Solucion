@@ -25,6 +25,7 @@ namespace UtilidadesAmigos.Logica.Entidades
         public string SubRamo {get;set;}
 
         public string Cliente {get;set;}
+        public string Deudor { get; set; }
 
         public string TelefonoResidencia {get;set;}
 
