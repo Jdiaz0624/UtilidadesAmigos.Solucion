@@ -395,6 +395,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioComisiones.Text.Trim()) ? null : txtCodigoIntermediarioComisiones.Text.Trim();
             int? _Oficina = ddlSeleccionaroficinaComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaComisiones.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            decimal? _MontoMinimo = string.IsNullOrEmpty(txtMontoMinimo.Text.Trim()) ? 0 : Convert.ToDecimal(txtMontoMinimo.Text);
+            string _NumeroPoliza = string.IsNullOrEmpty(txtNumeroPoliza.Text.Trim()) ? null : txtNumeroPoliza.Text.Trim();
+            string _NumeroRecibo = string.IsNullOrEmpty(txtNumeroRecibo.Text.Trim()) ? null : txtNumeroRecibo.Text.Trim();
+            string _NumeroFactura = string.IsNullOrEmpty(txtNumeroFactura.Text.Trim()) ? null : txtNumeroFactura.Text.Trim();
+
             ReportDocument Reporte = new ReportDocument();
 
             Reporte.Load(RutaReporte);
@@ -405,6 +411,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Reporte.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHastaComisiones.Text));
                 Reporte.SetParameterValue("@CodigoIntermediario", _CodigoIntermediario);
                 Reporte.SetParameterValue("@Oficina", _Oficina);
+                Reporte.SetParameterValue("@Ramo", _Ramo);
+                Reporte.SetParameterValue("@MontoMinimo", _MontoMinimo);
+                Reporte.SetParameterValue("@Poliza", _NumeroPoliza);
+                Reporte.SetParameterValue("@NumeroRecibo", _NumeroRecibo);
+                Reporte.SetParameterValue("@NumeroFactura", _NumeroFactura);
                 Reporte.SetParameterValue("@Tasa", Convert.ToDecimal(txtTasaDollar.Text));
                 Reporte.SetParameterValue("@Usuario", UsuarioGenera);
             }
