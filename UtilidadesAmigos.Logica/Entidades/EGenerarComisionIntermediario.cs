@@ -29,6 +29,7 @@ namespace UtilidadesAmigos.Logica.Entidades
 		public string Banco { get; set; }
 
 		public string Cliente { get; set; }
+		public decimal? NumeroRecibo { get; set; }
 
 		public string Recibo { get; set; }
 

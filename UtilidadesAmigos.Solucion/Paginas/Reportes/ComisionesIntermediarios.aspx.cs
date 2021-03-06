@@ -21,12 +21,21 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioComisiones.Text.Trim()) ? null : txtCodigoIntermediarioComisiones.Text.Trim();
             int? _Oficina = ddlSeleccionaroficinaComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaComisiones.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            string _NumeroPoliza = string.IsNullOrEmpty(txtNumeroPoliza.Text.Trim()) ? null : txtNumeroPoliza.Text.Trim();
+            string _Numerorecibo = string.IsNullOrEmpty(txtNumeroRecibo.Text.Trim()) ? null : txtNumeroRecibo.Text.Trim();
+            string _NumeroFactura = string.IsNullOrEmpty(txtNumeroFactura.Text.Trim()) ? null : txtNumeroFactura.Text.Trim();
 
             var BuscarRegistros = ObjDataConexion.Value.GenerarComisionIntermediario(
                 Convert.ToDateTime(txtFechaDesdeComisiones.Text),
                 Convert.ToDateTime(txtFechaHastaComisiones.Text),
                 _CodigoIntermediario,
                 _Oficina,
+                _Ramo,
+                Convert.ToDecimal(txtMontoMinimo.Text),
+                _NumeroPoliza,
+                _Numerorecibo,
+                _NumeroFactura,
                 Convert.ToDecimal(txtTasaDollar.Text));
             Paginar(ref rpListadoComision, BuscarRegistros, 10, ref lbCantidadPaginaVariable, ref LinkPrimeraPagina, ref LinkAnterior, ref LinkSiguiente, ref LinkUltimo);
             HandlePaging(ref dtPaginacion, ref lbPaginaActualVariavle);
@@ -36,12 +45,21 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void ExportarConsultaExcel() {
             string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioComisiones.Text.Trim()) ? null : txtCodigoIntermediarioComisiones.Text.Trim();
             int? _Oficina = ddlSeleccionaroficinaComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaComisiones.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            string _NumeroPoliza = string.IsNullOrEmpty(txtNumeroPoliza.Text.Trim()) ? null : txtNumeroPoliza.Text.Trim();
+            string _Numerorecibo = string.IsNullOrEmpty(txtNumeroRecibo.Text.Trim()) ? null : txtNumeroRecibo.Text.Trim();
+            string _NumeroFactura = string.IsNullOrEmpty(txtNumeroFactura.Text.Trim()) ? null : txtNumeroFactura.Text.Trim();
 
             var ExportarInformacion = (from n in ObjDataConexion.Value.GenerarComisionIntermediario(
                 Convert.ToDateTime(txtFechaDesdeComisiones.Text),
                 Convert.ToDateTime(txtFechaHastaComisiones.Text),
                 _CodigoIntermediario,
                 _Oficina,
+                _Ramo,
+                Convert.ToDecimal(txtMontoMinimo.Text),
+               _NumeroPoliza,
+               _Numerorecibo,
+               _NumeroFactura,
                 Convert.ToDecimal(txtTasaDollar.Text))
                                        select new
                                        {
@@ -100,13 +118,21 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                     string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioComisiones.Text.Trim()) ? null : txtCodigoIntermediarioComisiones.Text.Trim();
                     int? _Oficina = ddlSeleccionaroficinaComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaComisiones.SelectedValue) : new Nullable<int>();
-                   
+                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                    string _NumeroPoliza = string.IsNullOrEmpty(txtNumeroPoliza.Text.Trim()) ? null : txtNumeroPoliza.Text.Trim();
+                    string _Numerorecibo = string.IsNullOrEmpty(txtNumeroRecibo.Text.Trim()) ? null : txtNumeroRecibo.Text.Trim();
+                    string _NumeroFactura = string.IsNullOrEmpty(txtNumeroFactura.Text.Trim()) ? null : txtNumeroFactura.Text.Trim();
 
                     var GenerarComisiones = ObjDataConexion.Value.GenerarComisionIntermediario(
                         Convert.ToDateTime(txtFechaDesdeComisiones.Text),
                         Convert.ToDateTime(txtFechaHastaComisiones.Text),
                         _CodigoIntermediario,
                         _Oficina,
+                        _Ramo,
+                        Convert.ToDecimal(txtMontoMinimo.Text),
+                        _NumeroPoliza,
+                        _Numerorecibo,
+                        _NumeroFactura,
                         Convert.ToDecimal(txtTasaDollar.Text));
                     foreach (var n in GenerarComisiones)
                     {
@@ -364,6 +390,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
         #endregion
+
         private void GenerarReporteComisiones(decimal UsuarioGenera, string RutaReporte, string Nombrearchivo) {
 
             string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioComisiones.Text.Trim()) ? null : txtCodigoIntermediarioComisiones.Text.Trim();
@@ -415,12 +442,21 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioComisiones.Text.Trim()) ? null : txtCodigoIntermediarioComisiones.Text.Trim();
             int? _Oficina = ddlSeleccionaroficinaComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaComisiones.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            string _NumeroPoliza = string.IsNullOrEmpty(txtNumeroPoliza.Text.Trim()) ? null : txtNumeroPoliza.Text.Trim();
+            string _Numerorecibo = string.IsNullOrEmpty(txtNumeroRecibo.Text.Trim()) ? null : txtNumeroRecibo.Text.Trim();
+            string _NumeroFactura = string.IsNullOrEmpty(txtNumeroFactura.Text.Trim()) ? null : txtNumeroFactura.Text.Trim();
 
             var BuscarRegistros = ObjDataConexion.Value.GenerarComisionIntermediario(
                 Convert.ToDateTime(txtFechaDesdeComisiones.Text),
                 Convert.ToDateTime(txtFechaHastaComisiones.Text),
                 _CodigoIntermediario,
                 _Oficina,
+                _Ramo,
+                Convert.ToDecimal(txtMontoMinimo.Text),
+                _NumeroPoliza,
+                _Numerorecibo,
+                _NumeroFactura,
                 Convert.ToDecimal(txtTasaDollar.Text));
 
             foreach (var n in BuscarRegistros) {
@@ -477,6 +513,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionaroficinaComisiones, ObjDataConexion.Value.BuscaListas("OFICINA", ddlSeleccionarSucursalComisiones.SelectedValue, null), true);
         }
+        private void CargarListadoRamos() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamo, ObjDataConexion.Value.BuscaListas("RAMO", null, null), true);
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
@@ -489,6 +528,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 CargarSucursalesComisiones();
                 CargarOficinasComisiones();
+                CargarListadoRamos();
                 rbGenerarReporteResumido.Checked = true;
                 txtTasaDollar.Text = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2).ToString();
                 rbPDF.Checked = true;

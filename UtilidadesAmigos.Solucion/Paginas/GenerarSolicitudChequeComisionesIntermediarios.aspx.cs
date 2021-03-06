@@ -207,7 +207,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         var SacarLosMontosProcesados = ObjData.Value.GenerarComisionIntermediario(
                             FechaDesdeParametro,
                             FechaHastaParametro,
-                            Codigo.ToString(), null,Convert.ToDecimal(txtTasaDollar.Text));
+                            Codigo.ToString(), null,null,null,null,null,null,Convert.ToDecimal(txtTasaDollar.Text));
 
 
 

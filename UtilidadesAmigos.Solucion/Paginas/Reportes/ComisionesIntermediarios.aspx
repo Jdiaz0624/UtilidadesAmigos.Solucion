@@ -100,10 +100,31 @@
                   <asp:Label ID="lbSeleccionarOficinaComisiones" runat="server" Text="Seleccionar Oficina" CssClass="LetrasNegrita"></asp:Label>
                   <asp:DropDownList ID="ddlSeleccionaroficinaComisiones" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
               </div>
+              <div class="form-group col-md-3">
+                  <asp:Label ID="lbSeleccionarRamo" runat="server" Text="Seleccionar Ramo" CssClass="LetrasNegrita"></asp:Label>
+                  <asp:DropDownList ID="ddlSeleccionarRamo" runat="server" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
+              </div>
+               <div class="form-group col-md-3">
+                  <asp:Label ID="lbMontoMinimo" runat="server" Text="Monto Minimo" CssClass="LetrasNegrita"></asp:Label>
+                  <asp:TextBox ID="txtMontoMinimo" runat="server" Enabled="false" Text="500" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
+              </div>
+              <div class="form-group col-md-3">
+                  <asp:Label ID="lbNumeroPolizaConsulta" runat="server" Text="Poliza" CssClass="LetrasNegrita"></asp:Label>
+                  <asp:TextBox ID="txtNumeroPoliza" runat="server" AutoCompleteType="Disabled"  CssClass="form-control"></asp:TextBox>
+              </div>
+              <div class="form-group col-md-3">
+                  <asp:Label ID="lbNumeroRecibo" runat="server" Text="No. Recibo" CssClass="LetrasNegrita"></asp:Label>
+                  <asp:TextBox ID="txtNumeroRecibo" runat="server" AutoCompleteType="Disabled" TextMode="Number" CssClass="form-control"></asp:TextBox>
+              </div>
+              <div class="form-group col-md-3">
+                  <asp:Label ID="lbNumeroFactura" runat="server" Text="No. Factura" CssClass="LetrasNegrita"></asp:Label>
+                  <asp:TextBox ID="txtNumeroFactura" runat="server" AutoCompleteType="Disabled" TextMode="Number" CssClass="form-control"></asp:TextBox>
+              </div>
               <div class="form-group col-md-1">
                   <asp:Label ID="lbTasa" runat="server" Text="Tasa" CssClass="LetrasNegrita"></asp:Label>
                   <asp:TextBox ID="txtTasaDollar" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
               </div>
+             
           </div>
               <div align="center">
                   <asp:Label ID="lbLeyrtero" runat="server" Text="Seleccionar Tipo de Reporte a Mostrar:" CssClass="LetrasNegrita"></asp:Label>
