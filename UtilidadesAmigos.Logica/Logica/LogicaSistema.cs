@@ -2226,6 +2226,171 @@ namespace UtilidadesAmigos.Logica.Logica
                            }).ToList();
             return Listado;
         }
+
+        //BUSCAR ACUMULADOS DE COMISIONES POR PAGAR DE LOS INTERMEDIARIOS
+        /// <summary>
+        /// Este metodo es para mostrar el listado de los intermediarios que aplican y los que no aplcian para pararle al comision.
+        /// </summary>
+        /// <param name="Intermediario"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="MontoMinimo"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.EComisionesAcumuladosIntermediario> ComisionesAcumuladasIntermediarios(int? Intermediario = null, int? Oficina = null, int? Ramo = null, decimal? MontoMinimo = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONES(Intermediario, Oficina, Ramo, MontoMinimo)
+                           select new UtilidadesAmigos.Logica.Entidades.EComisionesAcumuladosIntermediario
+                           {
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               Oficina=n.Oficina,
+                               ValorReciboBruto=n.ValorReciboBruto,
+                               ValorReciboNeto=n.ValorReciboNeto,
+                               ComisionGenerada=n.ComisionGenerada,
+                               Retencion=n.Retencion,
+                               AvanceComision=n.AvanceComision,
+                               Aliquidar=n.Aliquidar,
+                               GeneraCheque=n.GeneraCheque,
+                               CantiadRegistros=n.CantiadRegistros
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo es para sacar todas las comisiones que esten por dejajo del monto minimo para poder procesarlas
+        /// </summary>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="CodigoIntermediario"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="NumeroRecibo"></param>
+        /// <param name="NumeroFactura"></param>
+        /// <param name="Tasa"></param>
+        /// <param name="Usuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.ESacarComisionesIntermediariosMontoMinimo> SacarComisionesIntermediariosMontoMinimo(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string CodigoIntermediario = null, int? Oficina = null, int? Ramo = null, string Poliza = null, string NumeroRecibo = null, string NumeroFactura = null, decimal? Tasa = null, decimal? Usuario = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_SACAR_COMISIONES_INTERMEDIARIOS_MENOR_MONTO_MINIMO(FechaDesde, FechaHasta, CodigoIntermediario, Oficina, Ramo, Poliza, NumeroRecibo, NumeroFactura, Tasa, Usuario)
+                           select new UtilidadesAmigos.Logica.Entidades.ESacarComisionesIntermediariosMontoMinimo
+                           {
+                               Supervisor=n.Supervisor,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Codigo=n.Codigo,
+                               Intermediario=n.Intermediario,
+                               CodigoOficina=n.CodigoOficina,
+                               Oficina=n.Oficina,
+                               NumeroIdentificacion=n.NumeroIdentificacion,
+                               CuentaBanco=n.CuentaBanco,
+                               TipoCuenta=n.TipoCuenta,
+                               Banco=n.Banco,
+                               Cliente=n.Cliente,
+                               NumeroRecibo=n.NumeroRecibo,
+                               Recibo=n.Recibo,
+                               Fecha=n.Fecha,
+                               Factura=n.Factura,
+                               FechaFactura=n.FechaFactura,
+                               Moneda=n.Moneda,
+                               Poliza=n.Poliza,
+                               Ramo=n.Ramo,
+                               Producto=n.Producto,
+                               Bruto=n.Bruto,
+                               Neto=n.Neto,
+                               PorcientoComision=n.PorcientoComision,
+                               Comision=n.Comision,
+                               Retencion=n.Retencion,
+                               AvanceComision=n.AvanceComision,
+                               ALiquidar=n.ALiquidar,
+                               CantidadRegistros=n.CantidadRegistros,
+                               Usuario=n.Usuario,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo es para procesar la informacion de los montos acmulados de los intermediarios
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.EProcesarInformacionComisionesIntermediariosMontosAcumulados ProcesarInformacionInformacionMontosAcumuladosIntermediario(UtilidadesAmigos.Logica.Entidades.EProcesarInformacionComisionesIntermediariosMontosAcumulados Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EProcesarInformacionComisionesIntermediariosMontosAcumulados Procesar = null;
+
+            var ComisionesMontosAcumuladas = Objdata.SP_PROCESAR_INFORMACION_COMISIONES_INTERMEDIARIOS_MONTOS_ACUMULADOS(
+                Item.CodigoIntermediario,
+                Item.NumeroRecibo,
+                Item.FechaRecibo,
+                Item.NumeroFacturaAfecta,
+                Item.Poliza,
+                Item.Ramo,
+                Item.ValorReciboBruto,
+                Item.ValorReciboNeto,
+                Item.PorcientoComision,
+                Item.ComisionGenerada,
+                Item.Retencion,
+                Item.AvanceComision,
+                Item.ALiquidar,
+                Item.Estatus,
+                Item.Oficina,
+                Accion);
+            if (ComisionesMontosAcumuladas != null) {
+                Procesar = (from n in ComisionesMontosAcumuladas
+                            select new UtilidadesAmigos.Logica.Entidades.EProcesarInformacionComisionesIntermediariosMontosAcumulados
+                            {
+                                CodigoIntermediario=n.CodigoIntermediario,
+                                NumeroRecibo=n.NumeroRecibo,
+                                FechaRecibo=n.FechaRecibo,
+                                NumeroFacturaAfecta=n.NumeroFacturaAfecta,
+                                Poliza=n.Poliza,
+                                Ramo=n.Ramo,
+                                ValorReciboBruto=n.ValorReciboBruto,
+                                ValorReciboNeto=n.ValorReciboNeto,
+                                PorcientoComision=n.PorcientoComision,
+                                ComisionGenerada=n.ComisionGenerada,
+                                Retencion=n.Retencion,
+                                AvanceComision=n.AvanceComision,
+                                ALiquidar=n.ALiquidar,
+                                Estatus=n.Estatus,
+                                Oficina=n.Oficina
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscarDetalleIntermediarioComisiones> ValidarDetalleIntermediarioComisiones(int? Intermediario = null, int? Oficina = null, int? Ramo = null, decimal? Numerorecibo = null, decimal? NumeroFactura=null, string Poliza = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCAR_DETALLE_INTERMEDIARIO_COMISIONES(Intermediario, Oficina, Ramo, Numerorecibo, NumeroFactura, Poliza)
+                           select new UtilidadesAmigos.Logica.Entidades.EBuscarDetalleIntermediarioComisiones
+                           {
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               NumeroRecibo=n.NumeroRecibo,
+                               FechaRecibo=n.FechaRecibo,
+                               NumeroFacturaAfecta=n.NumeroFacturaAfecta,
+                               Poliza=n.Poliza,
+                               Ramo=n.Ramo,
+                               NombreRamo=n.NombreRamo,
+                               ValorReciboBruto=n.ValorReciboBruto,
+                               ValorReciboNeto=n.ValorReciboNeto,
+                               PorcientoComision=n.PorcientoComision,
+                               ComisionGenerada=n.ComisionGenerada,
+                               Retencion=n.Retencion,
+                               AvanceComision=n.AvanceComision,
+                               ALiquidar=n.ALiquidar,
+                               Estatus0=n.Estatus0,
+                               Estatus=n.Estatus,
+                               Oficina=n.Oficina,
+                               NombreOficina=n.NombreOficina
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
         #region REPORTE DE RENOVACION DE POLIZAS

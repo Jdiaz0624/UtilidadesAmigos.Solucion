@@ -390,6 +390,89 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
         #endregion
+        #region MOSTRAR EL LISTADO DE LAS COMISIONES
+        private void MostrarListadoComisioneAcumulados() {
+            int? _oficina = ddlSeleccionaroficinaComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaComisiones.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+
+            var BuscarRegistros = ObjDataConexion.Value.ComisionesAcumuladasIntermediarios(
+                new Nullable<int>(),
+                _oficina,
+                _Ramo,
+                Convert.ToDecimal(txtMontoMinimo.Text));
+            int CantidadRegistros = BuscarRegistros.Count;
+            lbcantidadRegistrosEncontradosAcumulativosVariable.Text = CantidadRegistros.ToString("N0");
+            Paginar(ref rpListadoMontosIntermediariosAcumulados, BuscarRegistros, 10, ref lbCantidadPaginaVariableDetalle, ref LinkPrimeraPaginaDetalle, ref LinkAnteriorDetalle, ref LinkSiguienteDetalle, ref LinkUltimoDetalle);
+            HandlePaging(ref dtPaginacionDetalle, ref LinkBlbPaginaActualVariavleDetalleutton2);
+        }
+        #endregion
+        #region ACTUALIZAR MONTOS COMISIONES INTERMEDIARIOS
+        private void ActualizarComisionesAcumuladas() {
+
+            string _CodigoIntermeiario = string.IsNullOrEmpty(txtCodigoIntermediarioComisiones.Text.Trim()) ? null : txtCodigoIntermediarioComisiones.Text.Trim();
+            int? _oficina = ddlSeleccionaroficinaComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaComisiones.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            string _Poliza = string.IsNullOrEmpty(txtNumeroPoliza.Text.Trim()) ? null : txtNumeroPoliza.Text.Trim();
+            string _Numerorecibo = string.IsNullOrEmpty(txtNumeroRecibo.Text.Trim()) ? null : txtNumeroRecibo.Text.Trim();
+            string _Numerofactura = string.IsNullOrEmpty(txtNumeroFactura.Text.Trim()) ? null : txtNumeroFactura.Text.Trim();
+
+            var BuscarInformacion = ObjDataConexion.Value.SacarComisionesIntermediariosMontoMinimo(
+                Convert.ToDateTime(txtFechaDesdeComisiones.Text),
+                Convert.ToDateTime(txtFechaHastaComisiones.Text),
+                _CodigoIntermeiario,
+                _oficina,
+                _Ramo,
+                _Poliza,
+                _Numerorecibo,
+                _Numerofactura,
+                Convert.ToDecimal(txtTasaDollar.Text),
+                null);
+            foreach (var n in BuscarInformacion) {
+
+                bool ResultadoValidacion = false;
+
+                UtilidadesAmigos.Logica.Comunes.Validaciones.ValidarMontosAcumuladosIntermediarios ValidarInformacion = new Logica.Comunes.Validaciones.ValidarMontosAcumuladosIntermediarios(
+                    (int)n.Codigo,
+                    (int)n.CodigoOficina,
+                    (int)n.Ramo,
+                    (decimal)n.NumeroRecibo,
+                    (decimal)n.Factura,
+                    n.Poliza);
+                ResultadoValidacion = ValidarInformacion.ValidarIntermediario();
+                if (ResultadoValidacion == false)
+                {
+                    //GUARDAMOS EL REGISTRO
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesMontosAcumulados Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesMontosAcumulados(
+                        (int)n.Codigo,
+                        (decimal)n.NumeroRecibo,
+                        Convert.ToDateTime(n.Fecha),
+                        (decimal)n.Factura,
+                        n.Poliza,
+                        (int)n.Ramo,
+                        (decimal)n.Bruto,
+                        (decimal)n.Neto,
+                        (decimal)n.PorcientoComision,
+                        (decimal)n.Comision,
+                        (decimal)n.Retencion,
+                        (decimal)n.AvanceComision,
+                        (decimal)n.ALiquidar,
+                        false,
+                        (int)n.CodigoOficina,
+                        "INSERT");
+                    Guardar.ProcesarInformacion();
+
+
+                }
+                else { 
+                
+                }
+
+            }
+            MostrarListadoComisioneAcumulados();
+
+
+        }
+        #endregion
 
         private void GenerarReporteComisiones(decimal UsuarioGenera, string RutaReporte, string Nombrearchivo) {
 
@@ -457,6 +540,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             string _NumeroPoliza = string.IsNullOrEmpty(txtNumeroPoliza.Text.Trim()) ? null : txtNumeroPoliza.Text.Trim();
             string _Numerorecibo = string.IsNullOrEmpty(txtNumeroRecibo.Text.Trim()) ? null : txtNumeroRecibo.Text.Trim();
             string _NumeroFactura = string.IsNullOrEmpty(txtNumeroFactura.Text.Trim()) ? null : txtNumeroFactura.Text.Trim();
+            decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
 
             var BuscarRegistros = ObjDataConexion.Value.GenerarComisionIntermediario(
                 Convert.ToDateTime(txtFechaDesdeComisiones.Text),
@@ -468,7 +552,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 _NumeroPoliza,
                 _Numerorecibo,
                 _NumeroFactura,
-                Convert.ToDecimal(txtTasaDollar.Text));
+                Convert.ToDecimal(txtTasaDollar.Text),
+                IdUsuario);
 
             foreach (var n in BuscarRegistros) {
                 UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario Guardar = new Logica.Comunes.Reportes.ProcesarInformacionReporteComisionIntermediario(
@@ -548,18 +633,28 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultarComisiones_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
-            {
-                ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
-                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim())) {
-                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeComisionesVacio()", "FechaDesdeComisionesVacio()", true);
-                }
-                if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim())) {
-                    ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
-                }
+           
+
+            if (cbMostrarIntermediariosAcumulativos.Checked == true) {
+                MostrarListadoComisioneAcumulados();
             }
-            else {
-                GenerarComisionesIntermediarios();
+            else if (cbMostrarIntermediariosAcumulativos.Checked == false) {
+                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
+                    if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "FechaDesdeComisionesVacio()", "FechaDesdeComisionesVacio();", true);
+                    }
+                    if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "FechaHastaComisionesVAcio()", "FechaHastaComisionesVAcio();", true);
+                    }
+                }
+                else
+                {
+                    GenerarComisionesIntermediarios();
+                }
             }
             
         }
@@ -571,11 +666,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
                 if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()))
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeComisionesVacio()", "FechaDesdeComisionesVacio()", true);
+                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeComisionesVacio()", "FechaDesdeComisionesVacio();", true);
                 }
                 if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
+                    ClientScript.RegisterStartupScript(GetType(), "FechaHastaComisionesVAcio()", "FechaHastaComisionesVAcio();", true);
                 }
             }
             else
@@ -592,11 +687,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
                 if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()))
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeComisionesVacio()", "FechaDesdeComisionesVacio()", true);
+                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeComisionesVacio()", "FechaDesdeComisionesVacio();", true);
                 }
                 if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
+                    ClientScript.RegisterStartupScript(GetType(), "FechaHastaComisionesVAcio()", "FechaHastaComisionesVAcio();", true);
                 }
             }
             else
@@ -666,6 +761,92 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             CurrentPage += 1;
             GenerarComisionesIntermediarios();
+        }
+
+        protected void cbMostrarIntermediariosAcumulativos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbMostrarIntermediariosAcumulativos.Checked == true) {
+                DivRepeaterNormal.Visible = false;
+                DivBloqueRepeaterAcumulativo.Visible = true;
+                btnActualizarListado.Visible = true;
+            }
+            else if (cbMostrarIntermediariosAcumulativos.Checked == false) {
+                DivRepeaterNormal.Visible = true;
+                DivBloqueRepeaterAcumulativo.Visible = false;
+                btnActualizarListado.Visible = false;
+            }
+        }
+
+        protected void btnDetalleMontoAcumulado_Click(object sender, EventArgs e)
+        {
+            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfCodigoIntermediario = ((HiddenField)ItemSeleccionado.FindControl("hfCodigoIntermediario")).Value.ToString();
+
+            var ExportarInformacion = (from n in ObjDataConexion.Value.ValidarDetalleIntermediarioComisiones(Convert.ToInt32(hfCodigoIntermediario), null, null, null, null, null)
+                                       select new {
+                                           CodigoIntermediario = n.CodigoIntermediario,
+                                           NumeroRecibo = n.NumeroRecibo,
+                                           FechaRecibo = n.FechaRecibo,
+                                           NumeroFacturaAfecta = n.NumeroFacturaAfecta,
+                                           Poliza = n.Poliza,
+                                           NombreRamo = n.NombreRamo,
+                                           ValorReciboBruto = n.ValorReciboBruto,
+                                           ValorReciboNeto = n.ValorReciboNeto,
+                                           PorcientoComision = n.PorcientoComision,
+                                           ComisionGenerada = n.ComisionGenerada,
+                                           Retencion = n.Retencion,
+                                           AvanceComision = n.AvanceComision,
+                                           ALiquidar = n.ALiquidar,
+                                           Estatus = n.Estatus,
+                                           NombreOficina = n.NombreOficina
+                                       }).ToList();
+            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Detalle Comisiones Acumuladas", ExportarInformacion);
+        }
+
+        protected void LinkPrimeraPaginaDetalle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkAnteriorDetalle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionDetalle_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionDetalle_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguienteDetalle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoDetalle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnActualizarListado_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim())) {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
+                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeComisionesVacio()", "FechaDesdeComisionesVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaHastaComisionesVAcio()", "FechaHastaComisionesVAcio();", true);
+                }
+            }
+            else {
+                ActualizarComisionesAcumuladas();
+            }
         }
 
         protected void LinkUltimo_Click(object sender, EventArgs e)

@@ -108,6 +108,7 @@
     <Compile Include="Comunes\Mail.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesMontosAcumulados.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosComisionesSupervisores.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosGrafico.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosProduccion.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Comunes\SeguridadEncriptacion.cs" />
     <Compile Include="Comunes\UtilidadDrop.cs" />
     <Compile Include="Comunes\Validaciones\ValidarClaveSeguridad.cs" />
+    <Compile Include="Comunes\Validaciones\ValidarMontosAcumuladosIntermediarios.cs" />
     <Compile Include="Comunes\ValidarControles.cs" />
     <Compile Include="Comunes\VariablesGlobales.cs" />
     <Compile Include="Comunes\VariablesPowerBi.cs" />
@@ -164,6 +166,7 @@
     <Compile Include="Entidades\EBuscaOtrosTiposBusqurdaPolizas.cs" />
     <Compile Include="Entidades\EBuscarCoberturasPoliza.cs" />
     <Compile Include="Entidades\EBuscarCodigosSupervisoresPermitidos.cs" />
+    <Compile Include="Entidades\EBuscarDetalleIntermediarioComisiones.cs" />
     <Compile Include="Entidades\EBuscarEmpleados.cs" />
     <Compile Include="Entidades\ECambiaValorPolizaCondiciones.cs" />
     <Compile Include="Entidades\ECargarDataproduccionPowerBi.cs" />
@@ -175,6 +178,7 @@
     <Compile Include="Entidades\ECargarTablaReclamacionPowerBi.cs" />
     <Compile Include="Entidades\ECarteraSupervisor.cs" />
     <Compile Include="Entidades\EClaveSeguridad.cs" />
+    <Compile Include="Entidades\EComisionesAcumuladosIntermediario.cs" />
     <Compile Include="Entidades\EComisionesSupervisores.cs" />
     <Compile Include="Entidades\EComisionIntermediarioResumido.cs" />
     <Compile Include="Entidades\ECondicionReclamacion.cs" />
@@ -214,6 +218,7 @@
     <Compile Include="Entidades\EPolizaEliminarBalanceCreditos.cs" />
     <Compile Include="Entidades\EProcesarComisionesIntermediario.cs" />
     <Compile Include="Entidades\EProcesarDatosComisionesSupervisores.cs" />
+    <Compile Include="Entidades\EProcesarInformacionComisionesIntermediariosMontosAcumulados.cs" />
     <Compile Include="Entidades\EProduccionDiariaConsulta.cs" />
     <Compile Include="Entidades\EProduccionDiariaDetalle.cs" />
     <Compile Include="Entidades\EProduccionReclamos.cs" />
@@ -227,6 +232,7 @@
     <Compile Include="Entidades\ESacarCarteraIntermediario.cs" />
     <Compile Include="Entidades\ESacarCobrado.cs" />
     <Compile Include="Entidades\ESacarCodigoIntermediarios.cs" />
+    <Compile Include="Entidades\ESacarComisionesIntermediariosMontoMinimo.cs" />
     <Compile Include="Entidades\ESacarDataCasaConductor.cs" />
     <Compile Include="Entidades\ESacarDataCedensa.cs" />
     <Compile Include="Entidades\ESacarDataCobertura.cs" />
