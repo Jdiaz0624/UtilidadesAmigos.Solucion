@@ -2459,6 +2459,7 @@ namespace UtilidadesAmigos.Logica.Logica
                           {
                               NoFactura=n.NoFactura,
                               Poliza=n.Poliza,
+                              Item=n.Item,
                               Estatus=n.Estatus,
                               NoFormulario=n.NoFormulario,
                               CodRamo=n.CodRamo,
@@ -2485,6 +2486,7 @@ namespace UtilidadesAmigos.Logica.Logica
                               SectorIntermediario=n.SectorIntermediario,
                               Fecha=n.Fecha,
                               FechaFacturacion=n.FechaFacturacion,
+                              SecuenciaFactura=n.SecuenciaFactura,
                               InicioVigencia=n.InicioVigencia,
                               FinVigencia=n.FinVigencia,
                               SumaAsegurada=n.SumaAsegurada,

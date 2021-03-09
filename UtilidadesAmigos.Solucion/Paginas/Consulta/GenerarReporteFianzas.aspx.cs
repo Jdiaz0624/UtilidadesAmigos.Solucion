@@ -260,6 +260,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                     {
                                         NoFactura = n.NoFactura,
                                         Poliza = n.Poliza,
+                                        NumeroItem=n.Item,
                                         Estatus = n.Estatus,
                                         NoFormulario=n.NoFormulario,
                                         Ramo = n.Ramo,
@@ -283,6 +284,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                         MunicipioIntermediario = n.MunicipioIntermediario,
                                         SectorIntermediario = n.SectorIntermediario,
                                         FechaFacturacion = n.FechaFacturacion,
+                                        SecuenciaFactura=n.SecuenciaFactura,
                                         InicioVigencia = n.InicioVigencia,
                                         FinVigencia = n.FinVigencia,
                                         SumaAsegurada = n.SumaAsegurada,
