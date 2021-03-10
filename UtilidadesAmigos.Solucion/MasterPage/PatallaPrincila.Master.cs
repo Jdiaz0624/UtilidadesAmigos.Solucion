@@ -425,7 +425,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected void LinkGenerarSOlicitudChequeComisiones_Click(object sender, EventArgs e)
         {
             if (Session["IdUsuario"] != null) {
-                Response.Redirect("~/Paginas/GenerarSolicitudChequeComisionesIntermediarios.aspx");
+                Response.Redirect("~/Paginas/Procesos/GenerarSolicitudChequeComisionesIntermediarios.aspx");
 
             }
             else {

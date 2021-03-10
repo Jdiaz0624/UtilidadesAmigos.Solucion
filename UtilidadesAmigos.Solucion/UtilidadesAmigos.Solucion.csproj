@@ -174,7 +174,6 @@
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarBakupBD.aspx" />
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
-    <Content Include="Paginas\GenerarSolicitudChequeComisionesIntermediarios.aspx" />
     <Content Include="Paginas\IntermediariosSupervisores.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
     <Content Include="Paginas\LoginSistema.aspx" />
@@ -183,6 +182,7 @@
     <Content Include="Paginas\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx" />
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
+    <Content Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx" />
     <Content Include="Paginas\ReporteReclamos.aspx" />
     <Content Include="Paginas\Reportes\ComisionesIntermediarios.aspx" />
     <Content Include="Paginas\Reportes\ComisionesSupervisores.aspx" />
@@ -491,13 +491,6 @@
     <Compile Include="Paginas\GenerarFacturasPDF.aspx.designer.cs">
       <DependentUpon>GenerarFacturasPDF.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\GenerarSolicitudChequeComisionesIntermediarios.aspx.cs">
-      <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\GenerarSolicitudChequeComisionesIntermediarios.aspx.designer.cs">
-      <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paginas\IntermediariosSupervisores.aspx.cs">
       <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -609,6 +602,12 @@
     </Compile>
     <Compile Include="Paginas\ProcesarDataPowerBi.aspx.designer.cs">
       <DependentUpon>ProcesarDataPowerBi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx.cs">
+      <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx.designer.cs">
+      <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ProduccionDiaria.aspx.cs">
       <DependentUpon>ProduccionDiaria.aspx</DependentUpon>
