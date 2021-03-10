@@ -53,6 +53,12 @@
                     $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
                     return false;
                 }
+                else {
+                    var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
+                    alert("El campo Monto Minimo no puede estar vacio para realizar esta consulta, favor de verificar");
+                    $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
+                    return false;
+                }
             });
             $("#<%=btnExortarComisiones.ClientID%>").click(function () {
                 var Tasa = $("#<%=txtTasaDollar.ClientID%>").val().length;
@@ -61,12 +67,24 @@
                     $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
                     return false;
                 }
+                else {
+                    var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
+                    alert("El campo Monto Minimo no puede estar vacio para exportar esta información, favor de verificar");
+                    $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
+                    return false;
+                }
             });
             $("#<%=btnReporteCOmisiones.ClientID%>").click(function () {
                 var Tasa = $("#<%=txtTasaDollar.ClientID%>").val().length;
                 if (Tasa < 1) {
                     alert("El campo tasa no puede estar vacio para realizar esta operación, favor de verificar.");
                     $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+                    var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
+                    alert("El campo Monto Minimo no puede estar vacio para generar este reporte, favor de verificar");
+                    $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
                     return false;
                 }
             });
