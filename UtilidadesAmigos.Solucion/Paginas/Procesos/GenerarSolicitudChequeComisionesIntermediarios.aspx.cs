@@ -323,7 +323,189 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// Este metodo es para exportar la informacion a excel dependiendo de los filtros colocados
         /// </summary>
         private void ExportarInformacionExcel() {
+            //ELIMINAMOS LOS REGISTROS MEDIANTE EL CODIGO DEL USUARIO CONECTADO
+            decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["Idusuario"] : 0;
 
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
+                IdUsuario, 0, 0, 0, 0, "DELETE");
+            Eliminar.ProcesarInformacion();
+
+            int CodigoIntermediario = 0, CodigoBAnco = 0;
+            decimal Monto = 0, Acumulado = 0;
+
+
+
+            if (cbGenerarSolicitudPorLote.Checked == true) {
+                if (cbTomarCuentaMontosAcmulativos.Checked == true) {
+                    var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
+                         Convert.ToDateTime(txtFechaDesde.Text),
+                         Convert.ToDateTime(txtFechaHasta.Text),
+                         null, null, null, 500, null, null, null, null, IdUsuario);
+                    foreach (var n in BuscarInformacionComisiones)
+                    {
+                        CodigoIntermediario = (int)n.Codigo;
+                        CodigoBAnco = (int)n.CodigoBanco;
+                        Monto = (decimal)n.ALiquidar;
+
+                        var BuscarAcumulado = ObjDataGeneral.Value.ComisionesAcumuladasIntermediarios(CodigoIntermediario, null, null, null);
+                        if (BuscarAcumulado.Count() < 1)
+                        {
+                            Acumulado = 0;
+                        }
+                        else
+                        {
+                            foreach (var n2 in BuscarAcumulado)
+                            {
+                                Acumulado = (decimal)n2.Aliquidar;
+                            }
+                        }
+
+                        //guardamos
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
+                            IdUsuario,
+                            CodigoIntermediario,
+                            CodigoBAnco,
+                            Monto,
+                            Acumulado,
+                            "INSERT");
+                        Guardar.ProcesarInformacion();
+                    }
+
+                    var Exportar = (from n in ObjDataMantenimientos.Value.ConsultarSolicitudesPorPanalla(IdUsuario, null)
+                                    select new
+                                    {
+                                        Codigo = n.CodigoIntermediario,
+                                        Nombre = n.NombreIntermediario,
+                                        Banco = n.Banco,
+                                        ALiquidar = n.Monto,
+                                        MontoAcumulado = n.Acumulado,
+                                        Total = n.Total
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Informacion de Solicitud de cheque", Exportar);
+
+                }
+                else if (cbTomarCuentaMontosAcmulativos.Checked == false) {
+                    var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
+                          Convert.ToDateTime(txtFechaDesde.Text),
+                          Convert.ToDateTime(txtFechaHasta.Text),
+                          null, null, null, 500, null, null, null, null, IdUsuario);
+                    foreach (var n in BuscarInformacionComisiones)
+                    {
+                        CodigoIntermediario = (int)n.Codigo;
+                        CodigoBAnco = (int)n.CodigoBanco;
+                        Monto = (decimal)n.ALiquidar;
+
+                        Acumulado = 0;
+
+                        //guardamos
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
+                            IdUsuario,
+                            CodigoIntermediario,
+                            CodigoBAnco,
+                            Monto,
+                            Acumulado,
+                            "INSERT");
+                        Guardar.ProcesarInformacion();
+                    }
+
+                    var Exportar = (from n in ObjDataMantenimientos.Value.ConsultarSolicitudesPorPanalla(IdUsuario, null)
+                                    select new
+                                    {
+                                        Codigo = n.CodigoIntermediario,
+                                        Nombre = n.NombreIntermediario,
+                                        Banco = n.Banco,
+                                        ALiquidar = n.Monto,
+                                        MontoAcumulado = n.Acumulado,
+                                        Total = n.Total
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Informacion de Solicitud de cheque", Exportar);
+
+                }
+            }
+            else if (cbGenerarSolicitudPorLote.Checked == false) {
+                if (cbTomarCuentaMontosAcmulativos.Checked == true) {
+                    var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
+                           Convert.ToDateTime(txtFechaDesde.Text),
+                           Convert.ToDateTime(txtFechaHasta.Text),
+                           txtCodigoIntermediario.Text, null, null, 500, null, null, null, null, IdUsuario);
+                    foreach (var n in BuscarInformacionComisiones)
+                    {
+                        CodigoIntermediario = (int)n.Codigo;
+                        CodigoBAnco = (int)n.CodigoBanco;
+                        Monto = (decimal)n.ALiquidar;
+
+                        var BuscarAcumulado = ObjDataGeneral.Value.ComisionesAcumuladasIntermediarios(CodigoIntermediario, null, null, null);
+                        if (BuscarAcumulado.Count() < 1)
+                        {
+                            Acumulado = 0;
+                        }
+                        else
+                        {
+                            foreach (var n2 in BuscarAcumulado)
+                            {
+                                Acumulado = (decimal)n2.Aliquidar;
+                            }
+                        }
+
+                        //guardamos
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
+                            IdUsuario,
+                            CodigoIntermediario,
+                            CodigoBAnco,
+                            Monto,
+                            Acumulado,
+                            "INSERT");
+                        Guardar.ProcesarInformacion();
+                    }
+
+                    var Exportar = (from n in ObjDataMantenimientos.Value.ConsultarSolicitudesPorPanalla(IdUsuario, null)
+                                    select new
+                                    {
+                                        Codigo = n.CodigoIntermediario,
+                                        Nombre = n.NombreIntermediario,
+                                        Banco = n.Banco,
+                                        ALiquidar = n.Monto,
+                                        MontoAcumulado = n.Acumulado,
+                                        Total = n.Total
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Informacion de Solicitud de cheque", Exportar);
+                }
+                else if (cbTomarCuentaMontosAcmulativos.Checked == false) {
+                    var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
+                             Convert.ToDateTime(txtFechaDesde.Text),
+                             Convert.ToDateTime(txtFechaHasta.Text),
+                             txtCodigoIntermediario.Text, null, null, 500, null, null, null, null, IdUsuario);
+                    foreach (var n in BuscarInformacionComisiones)
+                    {
+                        CodigoIntermediario = (int)n.Codigo;
+                        CodigoBAnco = (int)n.CodigoBanco;
+                        Monto = (decimal)n.ALiquidar;
+                        Acumulado = 0;
+
+                        //guardamos
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
+                            IdUsuario,
+                            CodigoIntermediario,
+                            CodigoBAnco,
+                            Monto,
+                            Acumulado,
+                            "INSERT");
+                        Guardar.ProcesarInformacion();
+                    }
+
+                    var Exportar = (from n in ObjDataMantenimientos.Value.ConsultarSolicitudesPorPanalla(IdUsuario, null)
+                                    select new
+                                    {
+                                        Codigo = n.CodigoIntermediario,
+                                        Nombre = n.NombreIntermediario,
+                                        Banco = n.Banco,
+                                        ALiquidar = n.Monto,
+                                        MontoAcumulado = n.Acumulado,
+                                        Total = n.Total
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Informacion de Solicitud de cheque", Exportar);
+                }
+            }
         }
 
         /// <summary>
