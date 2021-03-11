@@ -331,12 +331,13 @@
                     <asp:Repeater ID="rpListadoRegistrosComisiones" runat="server">
                         <ItemTemplate>
                             <tr>
+                                <asp:HiddenField ID="hfCodigoIntermediario" runat="server" Value='<%# "CodigoIntermediario" %>' />
                                 <td style="width:10%"> <asp:Button ID="btnSeleccionarSeleccionarRegistro" runat="server" Text="Generar" ToolTip="Generar solicitud de chqeue" OnClick="btnSeleccionarSeleccionarRegistro_Click" CssClass="btn btn-outline-secondary btn-sm" /> </td>
-                                <td style="width:40%"> <%# Eval("") %> </td>
-                                <td style="width:20%"> <%# Eval("") %> </td>
-                                <td style="width:10%"> <%#string.Format("{0:n2}", Eval("")) %> </td>
-                                <td style="width:10%"> <%#string.Format("{0:n2}", Eval("")) %> </td>
-                                <td style="width:10%"> <%#string.Format("{0:n2}", Eval("")) %> </td>
+                                <td style="width:40%"> <%# Eval("NombreIntermediario") %> </td>
+                                <td style="width:20%"> <%# Eval("Banco") %> </td>
+                                <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Monto")) %> </td>
+                                <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Acumulado")) %> </td>
+                                <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Total")) %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
