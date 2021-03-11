@@ -8,12 +8,57 @@ using System.Web.Security;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
+    
     public partial class GenerarSolicitudChequeComisionesIntermediarios : System.Web.UI.Page
     {
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataGeneral = new Lazy<Logica.Logica.LogicaSistema>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaMantenimientos.LogicaMantenimientos> ObjDataMantenimientos = new Lazy<Logica.Logica.LogicaMantenimientos.LogicaMantenimientos>();
+
+        #region CARGAR LAS LISTAS DESPLEGABLES
+        private void CargarListasDesplegables() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarBanco, ObjDataGeneral.Value.BuscaListas("LISTADOBANCOS", null, null), true);
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionaroficina, ObjDataGeneral.Value.BuscaListas("OFICINANORMAL", null, null), true);
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamo, ObjDataGeneral.Value.BuscaListas("RAMO", null, null), true);
+        }
+        #endregion
+
         /// <summary>
         /// Este metodo es para consultar los registros y mostrarlo en pantalla dependiendo de ls filtros colocados
         /// </summary>
-        private void ConsultarInformacionPantalla() { }
+        private void ConsultarInformacionPantalla() {
+
+            //ELIMINAMOS LOS REGISTROS MEDIANTE EL CODIGO DEL USUARIO CONECTADO
+            decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["Idusuario"] : 0;
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
+                IdUsuario, 0, 0, 0, 0, "DELETE");
+            Eliminar.ProcesarInformacion();
+
+            int CodigoIntermediario = 0, CodigoBAnco = 0;
+            decimal Monto = 0, Acumulado = 0;
+            //BUSCAMOS LA INFORMACION Y LA GUARDAMOS DEPENDIENDO SI ES EN LOTE O NORMAL
+            if (cbGenerarSolicitudPorLote.Checked == false) {
+
+                if (cbTomarCuentaMontosAcmulativos.Checked == false) {
+                    var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHasta.Text),
+                        null, null, null, null, null, null, null, null, IdUsuario);
+                    foreach (var n in BuscarInformacionComisiones) {
+                        CodigoIntermediario = (int)n.Codigo;
+                        //   CodigoBAnco = (int)n.codi
+                        Monto = (decimal)n.ALiquidar;
+                    }
+                }
+                else if(cbTomarCuentaMontosAcmulativos.Checked==true) { 
+                
+                }
+            }
+            else if(cbGenerarSolicitudPorLote.Checked==true) { }
+
+
+
+        }
         /// <summary>
         /// Este metodo es para exportar la informacion a excel dependiendo de los filtros colocados
         /// </summary>
@@ -34,6 +79,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbNombreUsuarioConectado.Text = Nombre.SacarNombreUsuarioConectado();
                 Label lbNombrePantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbNombrePantallaActual.Text = "GENERAR SOLICITUD DE CHEQUES";
+
+                CargarListasDesplegables();
+                rbNoEndosable.Checked = true;
+                txttasa.Text = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2).ToString();
+                txtMontoMinimo.Text = "500";
             }
         }
 

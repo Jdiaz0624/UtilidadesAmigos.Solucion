@@ -256,13 +256,6 @@
                 <asp:CheckBox ID="cbTomarCuentaMontosAcmulativos" runat="server" Text="Tomar en cuenta montos acumulativos" CssClass="form-check-input LetrasNegrita" ToolTip="Tomar en cuenta los montos acumulados de las comisiones pasadas." />
             </div>
         </div>
-        <br />
-
-        <div class="form-check-inline">
-            <div class="form-group form-check">
-                <asp:CheckBox ID="cbVistaPrevia" runat="server" Text="Vista Previa" CssClass="form-check-input LetrasNegrita" ToolTip="Mostrar una Vista previa de las solicitudes a Generar" />
-            </div>
-        </div>
         <br /><br />
         <div class="form-row">
             <div class="form-group col-md-6">

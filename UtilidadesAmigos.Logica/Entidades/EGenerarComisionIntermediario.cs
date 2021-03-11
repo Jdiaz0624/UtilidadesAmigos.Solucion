@@ -27,6 +27,7 @@ namespace UtilidadesAmigos.Logica.Entidades
 		public string TipoCuenta { get; set; }
 
 		public string Banco { get; set; }
+		public System.Nullable<int> CodigoBanco { get; set; }
 
 		public string Cliente { get; set; }
 		public decimal? NumeroRecibo { get; set; }

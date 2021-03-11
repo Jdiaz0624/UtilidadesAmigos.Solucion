@@ -55,9 +55,11 @@
                 }
                 else {
                     var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
-                    alert("El campo Monto Minimo no puede estar vacio para realizar esta consulta, favor de verificar");
-                    $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
-                    return false;
+                    if (MontoMinimo < 1) {
+                        alert("El campo Monto Minimo no puede estar vacio para realizar esta consulta, favor de verificar");
+                        $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
                 }
             });
             $("#<%=btnExortarComisiones.ClientID%>").click(function () {
@@ -83,9 +85,11 @@
                 }
                 else {
                     var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
-                    alert("El campo Monto Minimo no puede estar vacio para generar este reporte, favor de verificar");
-                    $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
-                    return false;
+                    if (MontoMinimo < 1) {
+                        alert("El campo Monto Minimo no puede estar vacio para generar este reporte, favor de verificar");
+                        $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
                 }
             });
         })

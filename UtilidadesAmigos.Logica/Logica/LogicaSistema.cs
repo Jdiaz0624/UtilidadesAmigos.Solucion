@@ -2093,6 +2093,8 @@ namespace UtilidadesAmigos.Logica.Logica
                                CuentaBanco = n.CuentaBanco,
                                TipoCuenta = n.TipoCuenta,
                                Banco = n.Banco,
+                               CodigoBanco=n.CodigoBanco,
+                               NumeroRecibo=n.NumeroRecibo,
                                Cliente = n.Cliente,
                                Recibo = n.Recibo,
                                Fecha = n.Fecha,

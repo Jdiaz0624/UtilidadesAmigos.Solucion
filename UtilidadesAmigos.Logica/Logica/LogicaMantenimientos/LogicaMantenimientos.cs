@@ -1505,5 +1505,57 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
         }
         #endregion
 
+        #region CONSULTA INFORMACION SOLICITUD DE CHQEUES POR PANTALLA
+        /// <summary>
+        /// Este metodo es para consultar los registros de las solicitudes de cheques por pantalla o exportar
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="CodigoIntermediario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EConsultaInformacionSolicitudChequePantalla> ConsultarSolicitudesPorPanalla(decimal? IdUsuario = null, decimal? CodigoIntermediario = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_CONSULTA_PANTALLA_SOLICITUD_CHEQUE(IdUsuario, CodigoIntermediario)
+                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EConsultaInformacionSolicitudChequePantalla
+                           {
+                               IdUsuario=n.IdUsuario,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               NombreIntermediario=n.NombreIntermediario,
+                               CodigoBanco=n.CodigoBanco,
+                               Banco=n.Banco,
+                               Monto=n.Monto,
+                               Acumulado=n.Acumulado,
+                               Total=n.Total
+                           }).ToList();
+            return Listado;
+        }
+
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EConsultaInformacionSolicitudChequePantalla ProcesarInformacionSolicitudChequePanalla(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EConsultaInformacionSolicitudChequePantalla Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EConsultaInformacionSolicitudChequePantalla Procesar = null;
+
+            var ConsultaInformacionSOliciutdCheque = Objdata.SP_PROCESAR_INFORMACION_CONSULTA_PANTALLA_SOLICITUD_CHEQUE(
+                Item.IdUsuario,
+                Item.CodigoIntermediario,
+                Item.CodigoBanco,
+                Item.Monto,
+                Item.Acumulado,
+                Accion);
+            if (ConsultaInformacionSOliciutdCheque != null) {
+                Procesar = (from n in ConsultaInformacionSOliciutdCheque
+                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EConsultaInformacionSolicitudChequePantalla
+                            {
+                                IdUsuario=n.IdUsuario,
+                                CodigoIntermediario=n.CodigoIntermediario,
+                                CodigoBanco=n.CodigoBanco,
+                                Monto=n.Monto,
+                                Acumulado=n.Acumulado
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
+
     }
 }

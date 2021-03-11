@@ -109,6 +109,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesMontosAcumulados.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionConsultaInformacionPrPantalla.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosComisionesSupervisores.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosGrafico.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosProduccion.cs" />
@@ -265,6 +266,7 @@
     <Compile Include="Entidades\Mantenimientos\EBuscarProveedoresSolicitudCheques.cs" />
     <Compile Include="Entidades\Mantenimientos\ECadenaIntermediarioDetalle.cs" />
     <Compile Include="Entidades\Mantenimientos\EComisionesPorDefecto.cs" />
+    <Compile Include="Entidades\Mantenimientos\EConsultaInformacionSolicitudChequePantalla.cs" />
     <Compile Include="Entidades\Mantenimientos\EConsultarAntiguedadSaldos.cs" />
     <Compile Include="Entidades\Mantenimientos\EDepartamentos.cs" />
     <Compile Include="Entidades\Mantenimientos\EEmpleado.cs" />

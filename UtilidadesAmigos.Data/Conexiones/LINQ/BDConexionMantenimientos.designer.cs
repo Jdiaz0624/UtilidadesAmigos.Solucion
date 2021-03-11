@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionMantenimientosDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString7, mappingSource)
 		{
 			OnCreated();
 		}
@@ -460,6 +460,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaCorte, numeroFactura, poliza, ramo, tasa, tipo, codigoCliente, codigoVendedor, oficina, usuarioGenera, moneda);
 			return ((ISingleResult<SP_CONSULTAR_DATOS_ANTIGUEDAD_SALDOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_CONSULTA_PANTALLA_SOLICITUD_CHEQUE")]
+		public ISingleResult<SP_BUSCA_CONSULTA_PANTALLA_SOLICITUD_CHEQUEResult> SP_BUSCA_CONSULTA_PANTALLA_SOLICITUD_CHEQUE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoIntermediario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, codigoIntermediario);
+			return ((ISingleResult<SP_BUSCA_CONSULTA_PANTALLA_SOLICITUD_CHEQUEResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_CONSULTA_PANTALLA_SOLICITUD_CHEQUE")]
+		public ISingleResult<SP_PROCESAR_INFORMACION_CONSULTA_PANTALLA_SOLICITUD_CHEQUEResult> SP_PROCESAR_INFORMACION_CONSULTA_PANTALLA_SOLICITUD_CHEQUE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoBanco", DbType="Int")] System.Nullable<int> codigoBanco, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Monto", DbType="Decimal(20,2)")] System.Nullable<decimal> monto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Acumulado", DbType="Decimal(20,2)")] System.Nullable<decimal> acumulado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, codigoIntermediario, codigoBanco, monto, acumulado, accion);
+			return ((ISingleResult<SP_PROCESAR_INFORMACION_CONSULTA_PANTALLA_SOLICITUD_CHEQUEResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -13754,6 +13768,256 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._GeneradoPor != value))
 				{
 					this._GeneradoPor = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_CONSULTA_PANTALLA_SOLICITUD_CHEQUEResult
+	{
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private System.Nullable<int> _CodigoIntermediario;
+		
+		private string _NombreIntermediario;
+		
+		private System.Nullable<int> _CodigoBanco;
+		
+		private string _Banco;
+		
+		private System.Nullable<decimal> _Monto;
+		
+		private System.Nullable<decimal> _Acumulado;
+		
+		private System.Nullable<decimal> _Total;
+		
+		public SP_BUSCA_CONSULTA_PANTALLA_SOLICITUD_CHEQUEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoIntermediario", DbType="Int")]
+		public System.Nullable<int> CodigoIntermediario
+		{
+			get
+			{
+				return this._CodigoIntermediario;
+			}
+			set
+			{
+				if ((this._CodigoIntermediario != value))
+				{
+					this._CodigoIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreIntermediario", DbType="VarChar(200)")]
+		public string NombreIntermediario
+		{
+			get
+			{
+				return this._NombreIntermediario;
+			}
+			set
+			{
+				if ((this._NombreIntermediario != value))
+				{
+					this._NombreIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoBanco", DbType="Int")]
+		public System.Nullable<int> CodigoBanco
+		{
+			get
+			{
+				return this._CodigoBanco;
+			}
+			set
+			{
+				if ((this._CodigoBanco != value))
+				{
+					this._CodigoBanco = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Banco", DbType="VarChar(255)")]
+		public string Banco
+		{
+			get
+			{
+				return this._Banco;
+			}
+			set
+			{
+				if ((this._Banco != value))
+				{
+					this._Banco = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Monto", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Monto
+		{
+			get
+			{
+				return this._Monto;
+			}
+			set
+			{
+				if ((this._Monto != value))
+				{
+					this._Monto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Acumulado", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Acumulado
+		{
+			get
+			{
+				return this._Acumulado;
+			}
+			set
+			{
+				if ((this._Acumulado != value))
+				{
+					this._Acumulado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Decimal(21,2)")]
+		public System.Nullable<decimal> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_INFORMACION_CONSULTA_PANTALLA_SOLICITUD_CHEQUEResult
+	{
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private System.Nullable<int> _CodigoIntermediario;
+		
+		private System.Nullable<int> _CodigoBanco;
+		
+		private System.Nullable<decimal> _Monto;
+		
+		private System.Nullable<decimal> _Acumulado;
+		
+		public SP_PROCESAR_INFORMACION_CONSULTA_PANTALLA_SOLICITUD_CHEQUEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoIntermediario", DbType="Int")]
+		public System.Nullable<int> CodigoIntermediario
+		{
+			get
+			{
+				return this._CodigoIntermediario;
+			}
+			set
+			{
+				if ((this._CodigoIntermediario != value))
+				{
+					this._CodigoIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoBanco", DbType="Int")]
+		public System.Nullable<int> CodigoBanco
+		{
+			get
+			{
+				return this._CodigoBanco;
+			}
+			set
+			{
+				if ((this._CodigoBanco != value))
+				{
+					this._CodigoBanco = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Monto", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Monto
+		{
+			get
+			{
+				return this._Monto;
+			}
+			set
+			{
+				if ((this._Monto != value))
+				{
+					this._Monto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Acumulado", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Acumulado
+		{
+			get
+			{
+				return this._Acumulado;
+			}
+			set
+			{
+				if ((this._Acumulado != value))
+				{
+					this._Acumulado = value;
 				}
 			}
 		}
