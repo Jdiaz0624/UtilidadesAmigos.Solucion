@@ -71,9 +71,11 @@
                 }
                 else {
                     var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
-                    alert("El campo Monto Minimo no puede estar vacio para exportar esta información, favor de verificar");
-                    $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
-                    return false;
+                    if (MontoMinimo < 1) {
+                        alert("El campo Monto Minimo no puede estar vacio para exportar esta información, favor de verificar");
+                        $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
                 }
             });
             $("#<%=btnReporteCOmisiones.ClientID%>").click(function () {

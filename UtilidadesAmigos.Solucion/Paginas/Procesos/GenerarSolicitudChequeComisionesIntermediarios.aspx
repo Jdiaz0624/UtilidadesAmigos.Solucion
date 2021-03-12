@@ -23,6 +23,12 @@
             $("#<%=txtFechaHasta.ClientID%>").css("border-color", "red");
         }
 
+        function CodigoIntermediarioIngresadoNoValido() {
+            var CodigoIntermediario = $("#<%=txtCodigoIntermediario.ClientID%>").val();
+            alert("El codigo " + CodigoIntermediario + " ingresado no es valido para realizar esta operación favor de verificar.");
+        }
+       
+
         $(document).ready(function () {
             //VALIDAMOS EL BOTON CONSULTA
             $("#<%=btnConsultar.ClientID%>").click(function () {
@@ -245,7 +251,7 @@
         <br />
          <div class="form-check-inline">
             <div class="form-group form-check">
-              <asp:CheckBox ID="cbGenerarSolicitudPorLote" runat="server" Text="Generar Solicitudes por Lote" CssClass="form-check-input LetrasNegrita" AutoPostBack="true" OnCheckedChanged="cbGenerarSolicitudPorLote_CheckedChanged" ToolTip="Generar las solicitudes de cheques por lotes" />
+              <asp:CheckBox ID="cbGenerarSolicitudPorLote" runat="server" Enabled="false" Text="Generar Solicitudes por Lote" CssClass="form-check-input LetrasNegrita" AutoPostBack="true" OnCheckedChanged="cbGenerarSolicitudPorLote_CheckedChanged" ToolTip="Generar las solicitudes de cheques por lotes" />
              <asp:Label ID="lbLetreroRojo" runat="server" Text="Este proceso puede tardar 5 Minutos o mas dependiendo de la cantidad de registros a procesar" Visible="false" CssClass="LetrasNegrita" ForeColor="Red"></asp:Label>
             </div>
         </div>
@@ -290,7 +296,7 @@
 
              <div class="form-group col-md-2">
                 <asp:Label ID="lbMontoMinimo" runat="server" Text="Monto Minimo" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtMontoMinimo" runat="server" CssClass="form-control" TextMode="Number" step="0.01"></asp:TextBox>
+                <asp:TextBox ID="txtMontoMinimo" runat="server" Enabled="false" CssClass="form-control" TextMode="Number" step="0.01"></asp:TextBox>
             </div>
 
             <div class="form-group col-md-4">
