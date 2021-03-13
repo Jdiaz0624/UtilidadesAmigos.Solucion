@@ -27,6 +27,15 @@
             var CodigoIntermediario = $("#<%=txtCodigoIntermediario.ClientID%>").val();
             alert("El codigo " + CodigoIntermediario + " ingresado no es valido para realizar esta operación favor de verificar.");
         }
+
+        function OpcionDesarrollo() {
+            alert("Esta Opción esta en desarrollo por el momento, favor de contactar a Tecnologia para saber el estatus de esta.");
+        }
+
+        function SeleccionarBanco() {
+            alert("Favor de seleccionar un banco para realizar este proceso.");
+            $("#<%=ddlSeleccionarBanco.ClientID%>").css("border-color", "red");
+        }
        
 
         $(document).ready(function () {
@@ -251,7 +260,7 @@
         <br />
          <div class="form-check-inline">
             <div class="form-group form-check">
-              <asp:CheckBox ID="cbGenerarSolicitudPorLote" runat="server" Enabled="false" Text="Generar Solicitudes por Lote" CssClass="form-check-input LetrasNegrita" AutoPostBack="true" OnCheckedChanged="cbGenerarSolicitudPorLote_CheckedChanged" ToolTip="Generar las solicitudes de cheques por lotes" />
+              <asp:CheckBox ID="cbGenerarSolicitudPorLote" runat="server" Text="Generar Solicitudes por Lote" CssClass="form-check-input LetrasNegrita" AutoPostBack="true" OnCheckedChanged="cbGenerarSolicitudPorLote_CheckedChanged" ToolTip="Generar las solicitudes de cheques por lotes" />
              <asp:Label ID="lbLetreroRojo" runat="server" Text="Este proceso puede tardar 5 Minutos o mas dependiendo de la cantidad de registros a procesar" Visible="false" CssClass="LetrasNegrita" ForeColor="Red"></asp:Label>
             </div>
         </div>
@@ -259,14 +268,14 @@
 
         <div class="form-check-inline">
             <div class="form-group form-check">
-                <asp:CheckBox ID="cbTomarCuentaMontosAcmulativos" runat="server" Text="Tomar en cuenta montos acumulativos" CssClass="form-check-input LetrasNegrita" ToolTip="Tomar en cuenta los montos acumulados de las comisiones pasadas." />
+                <asp:CheckBox ID="cbTomarCuentaMontosAcmulativos" runat="server" AutoPostBack="true" OnCheckedChanged="cbTomarCuentaMontosAcmulativos_CheckedChanged" Text="Tomar en cuenta montos acumulativos" CssClass="form-check-input LetrasNegrita" ToolTip="Tomar en cuenta los montos acumulados de las comisiones pasadas." />
             </div>
         </div>
         <br /><br />
         <div class="form-row">
             <div class="form-group col-md-6">
                 <asp:Label ID="lbCodigoIntermediario" runat="server" Text="Codigo de Intermediario" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtCodigoIntermediario" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtCodigoIntermediario" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoIntermediario_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
 
             <div class="form-group col-md-6">
