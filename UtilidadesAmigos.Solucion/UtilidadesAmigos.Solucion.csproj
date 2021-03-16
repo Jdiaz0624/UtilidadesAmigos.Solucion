@@ -172,7 +172,6 @@
     <Content Include="Paginas\ConsumoWS.aspx" />
     <Content Include="Paginas\DatosPoliza.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
-    <Content Include="Paginas\GenerarBakupBD.aspx" />
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
     <Content Include="Paginas\IntermediariosSupervisores.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
@@ -182,6 +181,7 @@
     <Content Include="Paginas\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx" />
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
+    <Content Include="Paginas\Procesos\GenerarBakupBD.aspx" />
     <Content Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx" />
     <Content Include="Paginas\ReporteReclamos.aspx" />
     <Content Include="Paginas\Reportes\ComisionesIntermediarios.aspx" />
@@ -450,13 +450,6 @@
     <Compile Include="Paginas\Empleados.aspx.designer.cs">
       <DependentUpon>Empleados.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\GenerarBakupBD.aspx.cs">
-      <DependentUpon>GenerarBakupBD.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\GenerarBakupBD.aspx.designer.cs">
-      <DependentUpon>GenerarBakupBD.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paginas\GenerarCartera.aspx.cs">
       <DependentUpon>GenerarCartera.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -602,6 +595,12 @@
     </Compile>
     <Compile Include="Paginas\ProcesarDataPowerBi.aspx.designer.cs">
       <DependentUpon>ProcesarDataPowerBi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\GenerarBakupBD.aspx.cs">
+      <DependentUpon>GenerarBakupBD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\GenerarBakupBD.aspx.designer.cs">
+      <DependentUpon>GenerarBakupBD.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx.cs">
       <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>

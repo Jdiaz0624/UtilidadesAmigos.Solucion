@@ -317,7 +317,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("~/Paginas/GenerarBakupBD.aspx");
+                Response.Redirect("~/Paginas/Procesos/GenerarBakupBD.aspx");
             }
             else
             {
