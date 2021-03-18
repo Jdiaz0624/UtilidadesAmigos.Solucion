@@ -23,5 +23,8 @@ namespace UtilidadesAmigos.Logica.Entidades.Mantenimientos
         public System.Nullable<decimal> Avance { get; set; }
 
         public System.Nullable<decimal> ALiquidar { get; set; }
+        public System.Nullable<decimal> Acumulado { get; set; }
+
+        public System.Nullable<decimal> Total { get; set; }
     }
 }

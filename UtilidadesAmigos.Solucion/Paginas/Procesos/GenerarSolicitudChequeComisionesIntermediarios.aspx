@@ -65,32 +65,6 @@
                 }
             });
 
-            //VALIDAMOS EL BOTON EXPORTAR
-            $("#<%=btnExportar.ClientID%>").click(function () {
-                var CodigoIntermediario = $("#<%=txtCodigoIntermediario.ClientID%>").val().length;
-                if (CodigoIntermediario < 1) {
-                    alert("El campo codigo de intermediario no puede estar vacio para exportar esta informción, favor de verificar.");
-                    $("#<%=txtCodigoIntermediario.ClientID%>").css("border-color", "red");
-                    return false;
-                }
-                else {
-                    var Tasa = $("#<%=txttasa.ClientID%>").val().length;
-                    if (Tasa < 1) {
-                        alert("El campo tasa no puede estar vacio para exportar esta información, favor de verificar.");
-                        $("#<%=txttasa.ClientID%>").css("border-color", "red");
-                        return false;
-                    }
-                    else {
-                        var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
-                        if (MontoMinimo < 1) {
-                            alert("El campo monto minimo no puede estar vacio para exportar esta información, favor de verificar.");
-                            $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
-                            return false;
-                        }
-                    }
-                }
-            });
-
             //VALIDAMOS EL BOTON PROCESAR
             $("#<%=btnProcesar.ClientID%>").click(function () {
                 var CodigoIntermediario = $("#<%=txtCodigoIntermediario.ClientID%>").val().length;
@@ -259,18 +233,12 @@
         </div>
         <br />
          <div class="form-check-inline">
-            <div class="form-group form-check">
+            <div class="form-group form-check" id="DivSolicitudChequeLote" runat="server" visible="false">
               <asp:CheckBox ID="cbGenerarSolicitudPorLote" runat="server" Text="Generar Solicitudes por Lote" CssClass="form-check-input LetrasNegrita" AutoPostBack="true" OnCheckedChanged="cbGenerarSolicitudPorLote_CheckedChanged" ToolTip="Generar las solicitudes de cheques por lotes" />
              <asp:Label ID="lbLetreroRojo" runat="server" Text="Este proceso puede tardar 5 Minutos o mas dependiendo de la cantidad de registros a procesar" Visible="false" CssClass="LetrasNegrita" ForeColor="Red"></asp:Label>
             </div>
         </div>
         <br />
-
-        <div class="form-check-inline">
-            <div class="form-group form-check">
-                <asp:CheckBox ID="cbTomarCuentaMontosAcmulativos" runat="server" AutoPostBack="true" OnCheckedChanged="cbTomarCuentaMontosAcmulativos_CheckedChanged" Text="Tomar en cuenta montos acumulativos" CssClass="form-check-input LetrasNegrita" ToolTip="Tomar en cuenta los montos acumulados de las comisiones pasadas." />
-            </div>
-        </div>
         <br /><br />
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -321,7 +289,6 @@
 
         <div align="center">
             <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click" ToolTip="Consultar Información por pantalla." />
-             <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnExportar_Click" ToolTip="Exportar Información a Excel." />
              <asp:Button ID="btnProcesar" runat="server" Text="Procesar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnProcesar_Click" ToolTip="Realizar Proceso de Solicitud de cheques." />
             <br />
             <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="LetrasNegrita"></asp:Label>

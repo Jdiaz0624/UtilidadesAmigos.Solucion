@@ -16,7 +16,7 @@
             width:90px;
         }
 
-        .Letranegrita {
+        .LetrasNegrita {
         font-weight:bold;
         }
         table {
@@ -130,7 +130,7 @@
               </div>
                <div class="form-group col-md-3">
                   <asp:Label ID="lbMontoMinimo" runat="server" Text="Monto Minimo" CssClass="LetrasNegrita"></asp:Label>
-                  <asp:TextBox ID="txtMontoMinimo" runat="server"  Text="500" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
+                  <asp:TextBox ID="txtMontoMinimo" runat="server" Enabled="false" Text="500" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
               </div>
               <div class="form-group col-md-3">
                   <asp:Label ID="lbNumeroPolizaConsulta" runat="server" Text="Poliza" CssClass="LetrasNegrita"></asp:Label>
@@ -144,7 +144,7 @@
                   <asp:Label ID="lbNumeroFactura" runat="server" Text="No. Factura" CssClass="LetrasNegrita"></asp:Label>
                   <asp:TextBox ID="txtNumeroFactura" runat="server" AutoCompleteType="Disabled" TextMode="Number" CssClass="form-control"></asp:TextBox>
               </div>
-              <div class="form-group col-md-1">
+              <div class="form-group col-md-2">
                   <asp:Label ID="lbTasa" runat="server" Text="Tasa" CssClass="LetrasNegrita"></asp:Label>
                   <asp:TextBox ID="txtTasaDollar" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
               </div>

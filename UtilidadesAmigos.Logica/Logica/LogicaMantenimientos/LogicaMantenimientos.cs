@@ -683,7 +683,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
             Objdata.CommandTimeout = 999999999;
 
             var Listado = (from n in Objdata.SP_BUSCA_MONTOS_SOLICITUD_CHEQUES(Idusuario, CodigoIntermediario)
-                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMontosSolicitudCheques
+                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMontosSolicitudCheques 
                            {
                                IdUsuario = n.IdUsuario,
                                CodigoIntermediario = n.CodigoIntermediario,
@@ -692,7 +692,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
                                Comision = n.Comision,
                                Retencion = n.Retencion,
                                Avance = n.Avance,
-                               ALiquidar = n.ALiquidar
+                               ALiquidar = n.ALiquidar,
+                               Acumulado=n.Acumulado,
+                               Total=n.Total
                            }).ToList();
             return Listado;
         }

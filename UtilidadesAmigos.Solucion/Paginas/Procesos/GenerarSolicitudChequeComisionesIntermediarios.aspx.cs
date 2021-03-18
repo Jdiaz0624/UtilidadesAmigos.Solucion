@@ -384,18 +384,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         }
 
                         //SACAMOS LA SUMA DE LOS MONTOS GUARDADOS ANTERIORMENTE
-                        decimal SumaBruto = 0, SumaNeto = 0, SumaComision = 0, SumaRetencion = 0, SumaAvance = 0, SumaALiquidar = 0;
+                        decimal SumaBruto = 0, SumaNeto = 0, SumaComision = 0, SumaRetencion = 0, SumaAvance = 0, SumaALiquidar = 0, Acumulado = 0, Total = 0;
 
                         var SacarSumaMontos = ObjDataMantenimientos.Value.BuscaMontos(
                             Convert.ToDecimal(Session["IdUsuario"]), Codigo);
                         foreach (var nSumaMontos in SacarSumaMontos)
                         {
-                            SumaBruto = Convert.ToDecimal(nSumaMontos.Bruto);
-                            SumaNeto = Convert.ToDecimal(nSumaMontos.Neto);
-                            SumaComision = Convert.ToDecimal(nSumaMontos.Comision);
-                            SumaRetencion = Convert.ToDecimal(nSumaMontos.Retencion);
-                            SumaAvance = Convert.ToDecimal(nSumaMontos.Avance);
-                            SumaALiquidar = Convert.ToDecimal(nSumaMontos.ALiquidar);
+                            SumaBruto = (decimal)nSumaMontos.Bruto;
+                            SumaNeto = (decimal)nSumaMontos.Neto;
+                            SumaComision = (decimal)nSumaMontos.Comision;
+                            SumaRetencion = (decimal)nSumaMontos.Retencion;
+                            SumaAvance = (decimal)nSumaMontos.Avance;
+                            SumaALiquidar = (decimal)nSumaMontos.ALiquidar;
+                            Acumulado = (decimal)nSumaMontos.Acumulado;
+                            Total = (decimal)nSumaMontos.Total;
                         }
 
                         //GUARDAMOS LOS DATOS DE LA SOLICITUD DE CHEQUE
@@ -430,7 +432,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             TipoChequeParametro,
                             CodigoBancoParametro,
                             CuentaBanco,
-                            SumaALiquidar,
+                            Total,
                             "",
                             "",
                             0,
@@ -467,7 +469,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         //GUARDAMOS LOS DATOS DE LAS CUENTAS CONTABLES
                         //CUENTA 1203
                         UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas Cuenta1 = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionSolicitudCuentas(
-                            30, "N", 13, NumeroSolicitudGenerado, 0, "1203", 1, "", "2", SumaALiquidar, 0, 0, FechaDesdeParametro, FechaHastaParametro, "INSERT");
+                            30, "N", 13, NumeroSolicitudGenerado, 0, "1203", 1, "", "2", Total, 0, 0, FechaDesdeParametro, FechaHastaParametro, "INSERT");
                         Cuenta1.ProcesarInformacion();
 
                         //CUENTA 2503
@@ -482,6 +484,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             30, "N", 13, NumeroSolicitudGenerado, 0, "2706", 0, "", "2", SumaRetencion, 0, 0, FechaDesdeParametro, FechaHastaParametro, "INSERT");
                             Cuenta3.ProcesarInformacion();
                         }
+                        int CodigoIntermediarioActualizar = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? 0 : Convert.ToInt32(txtCodigoIntermediario.Text);
+                        CambioStatusMontoAcumulado(CodigoIntermediarioActualizar);
 
                         if (cbGenerarSolicitudPorLote.Checked == true)
                         {
@@ -519,6 +523,21 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
+        #region CAMBIO DE ESTATUS EN MONTO ACUMULADO
+        /// <summary>
+        /// Cambiar el estatus en el monto acumulado
+        /// </summary>
+        private void CambioStatusMontoAcumulado(int CodigoIntermediario) {
+            try {
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesMontosAcumulados CambiarEstatus = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesMontosAcumulados(
+                    CodigoIntermediario, 0, DateTime.Now, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, true, 0, "CHANGESTATUS");
+                CambiarEstatus.ProcesarInformacion();
+
+
+            }
+            catch (Exception) { }
+        }
+        #endregion
         /// <summary>
         /// Este metodo es para consultar los registros y mostrarlo en pantalla dependiendo de ls filtros colocados
         /// </summary>
@@ -534,342 +553,37 @@ namespace UtilidadesAmigos.Solucion.Paginas
             int CodigoIntermediario = 0, CodigoBAnco = 0;
             decimal Monto = 0, Acumulado = 0;
             //BUSCAMOS LA INFORMACION Y LA GUARDAMOS DEPENDIENDO SI ES EN LOTE O NORMAL
-            if (cbGenerarSolicitudPorLote.Checked == true) {
 
-                if (cbTomarCuentaMontosAcmulativos.Checked == true) {
-                    var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
-                        Convert.ToDateTime(txtFechaDesde.Text),
-                        Convert.ToDateTime(txtFechaHasta.Text),
-                        null, null, null, 500, null, null, null, null, IdUsuario);
-                    foreach (var n in BuscarInformacionComisiones) {
-                        CodigoIntermediario = (int)n.Codigo;
-                        CodigoBAnco = (int)n.CodigoBanco;
-                        Monto = (decimal)n.ALiquidar;
-
-                        var BuscarAcumulado = ObjDataGeneral.Value.ComisionesAcumuladasIntermediarios(CodigoIntermediario, null, null, null);
-                        if (BuscarAcumulado.Count() < 1)
-                        {
-                            Acumulado = 0;
-                        }
-                        else {
-                            foreach (var n2 in BuscarAcumulado) {
-                                Acumulado = (decimal)n2.Aliquidar;
-                            }
-                        }
-
-                        //guardamos
-                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
-                            IdUsuario,
-                            CodigoIntermediario,
-                            CodigoBAnco,
-                            Monto,
-                            Acumulado,
-                            "INSERT");
-                        Guardar.ProcesarInformacion();
-                    }
-
-                    var MostrarPorPantalla = ObjDataMantenimientos.Value.ConsultarSolicitudesPorPanalla(IdUsuario, null);
-                    int CantidadRegistros = MostrarPorPantalla.Count;
-                    lbCantidadRegistrosVariable.Text = CantidadRegistros.ToString("N0");
-                    Paginar(ref rpListadoRegistrosComisiones, MostrarPorPantalla, 10, ref lbCantidadPaginaVariable, ref LinkPrimeraPagina, ref LinkAnterior, ref LinkSiguiente, ref LinkUltimo);
-                    HandlePaging(ref dtPaginacion, ref lbPaginaActualVariavle);
-
-                }
-                else if(cbTomarCuentaMontosAcmulativos.Checked==false) {
-                    var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
-                           Convert.ToDateTime(txtFechaDesde.Text),
-                           Convert.ToDateTime(txtFechaHasta.Text),
-                           null, null, null, 500, null, null, null, null, IdUsuario);
-                    foreach (var n in BuscarInformacionComisiones)
-                    {
-                        CodigoIntermediario = (int)n.Codigo;
-                        CodigoBAnco = (int)n.CodigoBanco;
-                        Monto = (decimal)n.ALiquidar;
-                        Acumulado = 0;
-                      
-
-                        //GUARDAMOS
-                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
-                            IdUsuario,
-                            CodigoIntermediario,
-                            CodigoBAnco,
-                            Monto,
-                            Acumulado,
-                            "INSERT");
-                        Guardar.ProcesarInformacion();
-                    }
-
-                    var MostrarPorPantalla = ObjDataMantenimientos.Value.ConsultarSolicitudesPorPanalla(IdUsuario, null);
-                    int CantidadRegistros = MostrarPorPantalla.Count;
-                    lbCantidadRegistrosVariable.Text = CantidadRegistros.ToString("N0");
-                    Paginar(ref rpListadoRegistrosComisiones, MostrarPorPantalla, 10, ref lbCantidadPaginaVariable, ref LinkPrimeraPagina, ref LinkAnterior, ref LinkSiguiente, ref LinkUltimo);
-                    HandlePaging(ref dtPaginacion, ref lbPaginaActualVariavle);
-                }
-            }
-            else if(cbGenerarSolicitudPorLote.Checked==false) {
-                if (cbTomarCuentaMontosAcmulativos.Checked == true) {
-                    var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
-                           Convert.ToDateTime(txtFechaDesde.Text),
-                           Convert.ToDateTime(txtFechaHasta.Text),
-                           txtCodigoIntermediario.Text, null, null, 500, null, null, null, null, IdUsuario);
-                    foreach (var n in BuscarInformacionComisiones)
-                    {
-                        CodigoIntermediario = (int)n.Codigo;
-                        CodigoBAnco = (int)n.CodigoBanco;
-                        Monto = (decimal)n.ALiquidar;
-
-                        var BuscarAcumulado = ObjDataGeneral.Value.ComisionesAcumuladasIntermediarios(CodigoIntermediario, null, null, null);
-                        if (BuscarAcumulado.Count() < 1)
-                        {
-                            Acumulado = 0;
-                        }
-                        else
-                        {
-                            foreach (var n2 in BuscarAcumulado)
-                            {
-                                Acumulado = (decimal)n2.Aliquidar;
-                            }
-                        }
-
-                        //guardamos
-                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
-                            IdUsuario,
-                            CodigoIntermediario,
-                            CodigoBAnco,
-                            Monto,
-                            Acumulado,
-                            "INSERT");
-                        Guardar.ProcesarInformacion();
-                    }
-
-                    var MostrarPorPantalla = ObjDataMantenimientos.Value.ConsultarSolicitudesPorPanalla(IdUsuario, null);
-                    int CantidadRegistros = MostrarPorPantalla.Count;
-                    lbCantidadRegistrosVariable.Text = CantidadRegistros.ToString("N0");
-                    Paginar(ref rpListadoRegistrosComisiones, MostrarPorPantalla, 10, ref lbCantidadPaginaVariable, ref LinkPrimeraPagina, ref LinkAnterior, ref LinkSiguiente, ref LinkUltimo);
-                    HandlePaging(ref dtPaginacion, ref lbPaginaActualVariavle);
-                }
-                else if (cbTomarCuentaMontosAcmulativos.Checked == false) {
-                    var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
+            var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
                               Convert.ToDateTime(txtFechaDesde.Text),
                               Convert.ToDateTime(txtFechaHasta.Text),
                               txtCodigoIntermediario.Text, null, null, 500, null, null, null, null, IdUsuario);
-                    foreach (var n in BuscarInformacionComisiones)
-                    {
-                        CodigoIntermediario = (int)n.Codigo;
-                        CodigoBAnco = (int)n.CodigoBanco;
-                        Monto = (decimal)n.ALiquidar;
+            foreach (var n in BuscarInformacionComisiones)
+            {
+                CodigoIntermediario = (int)n.Codigo;
+                CodigoBAnco = (int)n.CodigoBanco;
+                Monto = (decimal)n.ALiquidar;
 
-                        Acumulado = 0;
+                Acumulado = 0;
 
-                        //guardamos
-                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
-                            IdUsuario,
-                            CodigoIntermediario,
-                            CodigoBAnco,
-                            Monto,
-                            Acumulado,
-                            "INSERT");
-                        Guardar.ProcesarInformacion();
-                    }
-
-                    var MostrarPorPantalla = ObjDataMantenimientos.Value.ConsultarSolicitudesPorPanalla(IdUsuario, null);
-                    int CantidadRegistros = MostrarPorPantalla.Count;
-                    lbCantidadRegistrosVariable.Text = CantidadRegistros.ToString("N0");
-                    Paginar(ref rpListadoRegistrosComisiones, MostrarPorPantalla, 10, ref lbCantidadPaginaVariable, ref LinkPrimeraPagina, ref LinkAnterior, ref LinkSiguiente, ref LinkUltimo);
-                    HandlePaging(ref dtPaginacion, ref lbPaginaActualVariavle);
-                }
+                //guardamos
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
+                    IdUsuario,
+                    CodigoIntermediario,
+                    CodigoBAnco,
+                    Monto,
+                    Acumulado,
+                    "INSERT");
+                Guardar.ProcesarInformacion();
             }
 
+            var MostrarPorPantalla = ObjDataMantenimientos.Value.ConsultarSolicitudesPorPanalla(IdUsuario, null);
+            int CantidadRegistros = MostrarPorPantalla.Count;
+            lbCantidadRegistrosVariable.Text = CantidadRegistros.ToString("N0");
+            Paginar(ref rpListadoRegistrosComisiones, MostrarPorPantalla, 10, ref lbCantidadPaginaVariable, ref LinkPrimeraPagina, ref LinkAnterior, ref LinkSiguiente, ref LinkUltimo);
+            HandlePaging(ref dtPaginacion, ref lbPaginaActualVariavle);
 
 
-        }
-        /// <summary>
-        /// Este metodo es para exportar la informacion a excel dependiendo de los filtros colocados
-        /// </summary>
-        private void ExportarInformacionExcel() {
-            //ELIMINAMOS LOS REGISTROS MEDIANTE EL CODIGO DEL USUARIO CONECTADO
-            decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["Idusuario"] : 0;
-
-            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
-                IdUsuario, 0, 0, 0, 0, "DELETE");
-            Eliminar.ProcesarInformacion();
-
-            int CodigoIntermediario = 0, CodigoBAnco = 0;
-            decimal Monto = 0, Acumulado = 0;
-
-
-
-            if (cbGenerarSolicitudPorLote.Checked == true) {
-                if (cbTomarCuentaMontosAcmulativos.Checked == true) {
-                    var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
-                         Convert.ToDateTime(txtFechaDesde.Text),
-                         Convert.ToDateTime(txtFechaHasta.Text),
-                         null, null, null, 500, null, null, null, null, IdUsuario);
-                    foreach (var n in BuscarInformacionComisiones)
-                    {
-                        CodigoIntermediario = (int)n.Codigo;
-                        CodigoBAnco = (int)n.CodigoBanco;
-                        Monto = (decimal)n.ALiquidar;
-
-                        var BuscarAcumulado = ObjDataGeneral.Value.ComisionesAcumuladasIntermediarios(CodigoIntermediario, null, null, null);
-                        if (BuscarAcumulado.Count() < 1)
-                        {
-                            Acumulado = 0;
-                        }
-                        else
-                        {
-                            foreach (var n2 in BuscarAcumulado)
-                            {
-                                Acumulado = (decimal)n2.Aliquidar;
-                            }
-                        }
-
-                        //guardamos
-                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
-                            IdUsuario,
-                            CodigoIntermediario,
-                            CodigoBAnco,
-                            Monto,
-                            Acumulado,
-                            "INSERT");
-                        Guardar.ProcesarInformacion();
-                    }
-
-                    var Exportar = (from n in ObjDataMantenimientos.Value.ConsultarSolicitudesPorPanalla(IdUsuario, null)
-                                    select new
-                                    {
-                                        Codigo = n.CodigoIntermediario,
-                                        Nombre = n.NombreIntermediario,
-                                        Banco = n.Banco,
-                                        ALiquidar = n.Monto,
-                                        MontoAcumulado = n.Acumulado,
-                                        Total = n.Total
-                                    }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Informacion de Solicitud de cheque", Exportar);
-
-                }
-                else if (cbTomarCuentaMontosAcmulativos.Checked == false) {
-                    var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
-                          Convert.ToDateTime(txtFechaDesde.Text),
-                          Convert.ToDateTime(txtFechaHasta.Text),
-                          null, null, null, 500, null, null, null, null, IdUsuario);
-                    foreach (var n in BuscarInformacionComisiones)
-                    {
-                        CodigoIntermediario = (int)n.Codigo;
-                        CodigoBAnco = (int)n.CodigoBanco;
-                        Monto = (decimal)n.ALiquidar;
-
-                        Acumulado = 0;
-
-                        //guardamos
-                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
-                            IdUsuario,
-                            CodigoIntermediario,
-                            CodigoBAnco,
-                            Monto,
-                            Acumulado,
-                            "INSERT");
-                        Guardar.ProcesarInformacion();
-                    }
-
-                    var Exportar = (from n in ObjDataMantenimientos.Value.ConsultarSolicitudesPorPanalla(IdUsuario, null)
-                                    select new
-                                    {
-                                        Codigo = n.CodigoIntermediario,
-                                        Nombre = n.NombreIntermediario,
-                                        Banco = n.Banco,
-                                        ALiquidar = n.Monto,
-                                        MontoAcumulado = n.Acumulado,
-                                        Total = n.Total
-                                    }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Informacion de Solicitud de cheque", Exportar);
-
-                }
-            }
-            else if (cbGenerarSolicitudPorLote.Checked == false) {
-                if (cbTomarCuentaMontosAcmulativos.Checked == true) {
-                    var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
-                           Convert.ToDateTime(txtFechaDesde.Text),
-                           Convert.ToDateTime(txtFechaHasta.Text),
-                           txtCodigoIntermediario.Text, null, null, 500, null, null, null, null, IdUsuario);
-                    foreach (var n in BuscarInformacionComisiones)
-                    {
-                        CodigoIntermediario = (int)n.Codigo;
-                        CodigoBAnco = (int)n.CodigoBanco;
-                        Monto = (decimal)n.ALiquidar;
-
-                        var BuscarAcumulado = ObjDataGeneral.Value.ComisionesAcumuladasIntermediarios(CodigoIntermediario, null, null, null);
-                        if (BuscarAcumulado.Count() < 1)
-                        {
-                            Acumulado = 0;
-                        }
-                        else
-                        {
-                            foreach (var n2 in BuscarAcumulado)
-                            {
-                                Acumulado = (decimal)n2.Aliquidar;
-                            }
-                        }
-
-                        //guardamos
-                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
-                            IdUsuario,
-                            CodigoIntermediario,
-                            CodigoBAnco,
-                            Monto,
-                            Acumulado,
-                            "INSERT");
-                        Guardar.ProcesarInformacion();
-                    }
-
-                    var Exportar = (from n in ObjDataMantenimientos.Value.ConsultarSolicitudesPorPanalla(IdUsuario, null)
-                                    select new
-                                    {
-                                        Codigo = n.CodigoIntermediario,
-                                        Nombre = n.NombreIntermediario,
-                                        Banco = n.Banco,
-                                        ALiquidar = n.Monto,
-                                        MontoAcumulado = n.Acumulado,
-                                        Total = n.Total
-                                    }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Informacion de Solicitud de cheque", Exportar);
-                }
-                else if (cbTomarCuentaMontosAcmulativos.Checked == false) {
-                    var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
-                             Convert.ToDateTime(txtFechaDesde.Text),
-                             Convert.ToDateTime(txtFechaHasta.Text),
-                             txtCodigoIntermediario.Text, null, null, 500, null, null, null, null, IdUsuario);
-                    foreach (var n in BuscarInformacionComisiones)
-                    {
-                        CodigoIntermediario = (int)n.Codigo;
-                        CodigoBAnco = (int)n.CodigoBanco;
-                        Monto = (decimal)n.ALiquidar;
-                        Acumulado = 0;
-
-                        //guardamos
-                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
-                            IdUsuario,
-                            CodigoIntermediario,
-                            CodigoBAnco,
-                            Monto,
-                            Acumulado,
-                            "INSERT");
-                        Guardar.ProcesarInformacion();
-                    }
-
-                    var Exportar = (from n in ObjDataMantenimientos.Value.ConsultarSolicitudesPorPanalla(IdUsuario, null)
-                                    select new
-                                    {
-                                        Codigo = n.CodigoIntermediario,
-                                        Nombre = n.NombreIntermediario,
-                                        Banco = n.Banco,
-                                        ALiquidar = n.Monto,
-                                        MontoAcumulado = n.Acumulado,
-                                        Total = n.Total
-                                    }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Informacion de Solicitud de cheque", Exportar);
-                }
-            }
         }
 
         /// <summary>
@@ -1064,23 +778,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
 
-        protected void btnExportar_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim())) {
-                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
-                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
-                }
-                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
-                }
-            }
-            else {
-                ExportarInformacionExcel();
-            }
-        }
+
 
         protected void btnProcesar_Click(object sender, EventArgs e)
         {
@@ -1208,10 +906,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void cbTomarCuentaMontosAcmulativos_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbTomarCuentaMontosAcmulativos.Checked == true) {
-                cbTomarCuentaMontosAcmulativos.Checked = false;
-                ClientScript.RegisterStartupScript(GetType(), "OpcionDesarrollo()", "OpcionDesarrollo();", true);
-            }
+          
         }
 
         protected void txtCodigoIntermediario_TextChanged(object sender, EventArgs e)
