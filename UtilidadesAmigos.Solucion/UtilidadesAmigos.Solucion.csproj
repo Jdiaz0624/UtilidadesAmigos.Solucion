@@ -391,6 +391,7 @@
     </Compile>
     <Compile Include="Paginas\Consulta\GenerarReporteFianzas.aspx.cs">
       <DependentUpon>GenerarReporteFianzas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Consulta\GenerarReporteFianzas.aspx.designer.cs">
       <DependentUpon>GenerarReporteFianzas.aspx</DependentUpon>
@@ -606,12 +607,14 @@
     </Compile>
     <Compile Include="Paginas\Procesos\GenerarBakupBD.aspx.cs">
       <DependentUpon>GenerarBakupBD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Procesos\GenerarBakupBD.aspx.designer.cs">
       <DependentUpon>GenerarBakupBD.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx.cs">
       <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx.designer.cs">
       <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
@@ -646,30 +649,35 @@
     </Compile>
     <Compile Include="Paginas\Reportes\ComisionesIntermediarios.aspx.cs">
       <DependentUpon>ComisionesIntermediarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Reportes\ComisionesIntermediarios.aspx.designer.cs">
       <DependentUpon>ComisionesIntermediarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Reportes\ComisionesSupervisores.aspx.cs">
       <DependentUpon>ComisionesSupervisores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Reportes\ComisionesSupervisores.aspx.designer.cs">
       <DependentUpon>ComisionesSupervisores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Reportes\GenerarMarbetes.aspx.cs">
       <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Reportes\GenerarMarbetes.aspx.designer.cs">
       <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Reportes\GenerarReporteAntiguedadSaldo.aspx.cs">
       <DependentUpon>GenerarReporteAntiguedadSaldo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Reportes\GenerarReporteAntiguedadSaldo.aspx.designer.cs">
       <DependentUpon>GenerarReporteAntiguedadSaldo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Reportes\GenerarReporteCobros.aspx.cs">
       <DependentUpon>GenerarReporteCobros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Reportes\GenerarReporteCobros.aspx.designer.cs">
       <DependentUpon>GenerarReporteCobros.aspx</DependentUpon>
@@ -683,12 +691,14 @@
     </Compile>
     <Compile Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx.cs">
       <DependentUpon>ProduccionDiariaContabilidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx.designer.cs">
       <DependentUpon>ProduccionDiariaContabilidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx.cs">
       <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx.designer.cs">
       <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
@@ -803,6 +813,9 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Imagenes\Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
