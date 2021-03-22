@@ -151,7 +151,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             }
         }
         #endregion
-
         #region ENVIO DE CORREO
         private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP,string Cuerpo) {
            
@@ -185,6 +184,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             }
         }
         #endregion
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
