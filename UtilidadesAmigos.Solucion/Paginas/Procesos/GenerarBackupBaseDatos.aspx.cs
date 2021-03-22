@@ -42,18 +42,17 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     Extencion = n.ExtencionBackup;
                 }
                 string _RutaBackup = RutaArchivo + txtNombreArchivo.Text;
-                //  GenerarBAckup(_RutaBackup);
+
+                string _Numerobackup = "";
+                Random NumeroAleatorio = new Random();
+                _Numerobackup = NumeroAleatorio.Next(0, 999999999).ToString();
+
+                decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
 
 
+                GenerarBAckup(_RutaBackup, _Numerobackup, IdUsuario);
 
-                string CorreoEmisor = "ing.juanmarcelinom.diaz@hotmail.com";
-                string Alias = "Utilidades Amigos";
-                string Asunto = "Backup de Base de Datos";
-                string Clave = "!@Pa$$W0rd!@0624";
-                int Puerto = 587;
-                string SMTP = "smtp.live.com";
-                string Cuerpo = "";
-                EnvioCorreo(CorreoEmisor, Alias, Asunto, Clave, Puerto, SMTP, Cuerpo);
+                
 
 
 
@@ -65,11 +64,91 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         }
         #endregion
         #region GENERAR BACKUP
-        private void GenerarBAckup(string Ruta)
+        private void GenerarBAckup(string Ruta, string NumeroBackup,decimal Idusuario)
         {
-            UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.GenerarBakupBD Generar = new Logica.Entidades.OpcionesAdministrador.GenerarBakupBD();
-            Generar.RutaArchivo = Ruta;
-            var MAn = ObjDataAdministrador.Value.GenerarBackupDatabase(Generar, "PROCESAR");
+            try
+            {
+                UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.GenerarBakupBD Generar = new Logica.Entidades.OpcionesAdministrador.GenerarBakupBD();
+                Generar.RutaArchivo = Ruta;
+                var MAn = ObjDataAdministrador.Value.GenerarBackupDatabase(Generar, "PROCESAR");
+
+                //GUARDAMOS EL REGISTRO PARA EL HISTORIAL
+
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionAdministrador.ProcesarInformacionBackupBD ProcesarHistorialBackup = new Logica.Comunes.ProcesarMantenimientos.InformacionAdministrador.ProcesarInformacionBackupBD(
+                    0,
+                    NumeroBackup,
+                    Idusuario,
+                    txtNombreArchivo.Text,
+                    "Backup de Base de Datos",
+                    DateTime.Now,
+                    DateTime.Now,
+                    false,
+                    "Registro Guardado con Exito.",
+                    "INSERT");
+                ProcesarHistorialBackup.ProcesarInformacion();
+
+                //SACAMOS EL REGISTRO GUARDADO
+                var SacarRegistroGuardado = ObjDataAdministrador.Value.BuscaHistorialBakupDatabase(
+                    new Nullable<decimal>(),
+                    NumeroBackup,
+                    null, null, null);
+
+                string DatoNombreArchivo = "", DatoDescripcion = "", DatoUsuario = "", DatoFecha = "", DatoHora = "", DatoEstatus = "", DatoComentario = "", CuerpoMensaje = "";
+                foreach (var Datos in SacarRegistroGuardado)
+                {
+                    DatoNombreArchivo = Datos.NombreArchivo;
+                    DatoDescripcion = Datos.Descripcion;
+                    DatoUsuario = Datos.Usuario;
+                    DatoFecha = Datos.Fecha;
+                    DatoHora = Datos.Hora;
+                    DatoEstatus = Datos.Estatus;
+                    DatoComentario = Datos.Comentario;
+                }
+                CuerpoMensaje = "Nombre de archivo: " + DatoNombreArchivo + " | Descripción: " + DatoDescripcion + " | Generado Por: " + DatoUsuario + " | En Fecha: " + DatoFecha + " | En Hora: " + DatoHora + " | Estatus: " + DatoEstatus + " | Comentario: " + DatoComentario;
+
+                string CorreoEmisor = "ing.juanmarcelinom.diaz@hotmail.com";
+                string Alias = "Utilidades Amigos";
+                string Asunto = "Backup de Base de Datos";
+                string Clave = "!@Pa$$W0rd!@0624";
+                int Puerto = 587;
+                string SMTP = "smtp.live.com";
+                string Cuerpo = CuerpoMensaje;
+                EnvioCorreo(CorreoEmisor, Alias, Asunto, Clave, Puerto, SMTP, Cuerpo);
+            }
+
+            catch (Exception ex) {
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionAdministrador.ProcesarInformacionBackupBD GuardarError = new Logica.Comunes.ProcesarMantenimientos.InformacionAdministrador.ProcesarInformacionBackupBD(
+                    0, NumeroBackup, Idusuario, "N/A", "ERROR", DateTime.Now, DateTime.Now, true, "El proceso no se pudo completar debido al siguiente error: " + ex.Message, "INSERT");
+                GuardarError.ProcesarInformacion();
+
+                //SACAMOS EL REGISTRO GUARDADO
+                var SacarRegistroGuardado = ObjDataAdministrador.Value.BuscaHistorialBakupDatabase(
+                    new Nullable<decimal>(),
+                    NumeroBackup,
+                    null, null, null);
+
+                string DatoNombreArchivo = "", DatoDescripcion = "", DatoUsuario = "", DatoFecha = "", DatoHora = "", DatoEstatus = "", DatoComentario = "", CuerpoMensaje = "";
+                foreach (var Datos in SacarRegistroGuardado)
+                {
+                    DatoNombreArchivo = Datos.NombreArchivo;
+                    DatoDescripcion = Datos.Descripcion;
+                    DatoUsuario = Datos.Usuario;
+                    DatoFecha = Datos.Fecha;
+                    DatoHora = Datos.Hora;
+                    DatoEstatus = Datos.Estatus;
+                    DatoComentario = Datos.Comentario;
+                }
+                CuerpoMensaje = "Nombre de archivo: " + DatoNombreArchivo + " | Descripción: " + DatoDescripcion + " | Generado Por: " + DatoUsuario + " | En Fecha: " + DatoFecha + " | En Hora: " + DatoHora + " | Estatus: " + DatoEstatus + " | Comentario: " + DatoComentario;
+
+                string CorreoEmisor = "ing.juanmarcelinom.diaz@hotmail.com";
+                string Alias = "Utilidades Amigos";
+                string Asunto = "Backup de Base de Datos";
+                string Clave = "!@Pa$$W0rd!@0624";
+                int Puerto = 587;
+                string SMTP = "smtp.live.com";
+                string Cuerpo = CuerpoMensaje;
+                EnvioCorreo(CorreoEmisor, Alias, Asunto, Clave, Puerto, SMTP, Cuerpo);
+            }
         }
         #endregion
 
@@ -91,14 +170,18 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 Adjuntos = new List<string>()
             };
 
-            Mail.Destinatarios.Add("ing.juanmarcelinom.diaz@gmail.com");
-            Mail.Destinatarios.Add("juanmarcelinoo0624@gmail.com");
-            Mail.Destinatarios.Add("Angela.diaz.reyes@gmail.com");
-            Mail.Destinatarios.Add("jmdiaz@amigosseguros.com");
+
+            var MandarCorreos = ObjDataAdministrador.Value.BuscaCorreosEnviar(
+                        new Nullable<decimal>(),
+                        1, null, true);
+            foreach (var n in MandarCorreos) {
+                Mail.Destinatarios.Add(n.Correo);
+            }
+
+         
 
             if (Mail.Enviar(Mail)) {
-                txtNombreArchivo.Text = string.Empty;
-                txtNombreArchivo.Text = "Solobelys";
+
             }
         }
         #endregion
