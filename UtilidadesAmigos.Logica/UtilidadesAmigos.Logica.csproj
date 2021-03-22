@@ -101,11 +101,13 @@
     <Compile Include="Comunes\Conversiones.cs" />
     <Compile Include="Comunes\ConvertirNumeroLetras.cs" />
     <Compile Include="Comunes\EliminarFacturaPDF.cs" />
+    <Compile Include="Comunes\EnvioCorreos.cs" />
     <Compile Include="Comunes\ESacarNombreCliente.cs" />
     <Compile Include="Comunes\ExportarDataExel.cs" />
     <Compile Include="Comunes\ExportarReportePDF.cs" />
     <Compile Include="Comunes\GuardarRegistrosReporteIntermediario.cs" />
     <Compile Include="Comunes\Mail.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionBackupBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesMontosAcumulados.cs" />
@@ -140,6 +142,7 @@
     <Compile Include="Comunes\UtilidadDrop.cs" />
     <Compile Include="Comunes\Validaciones\ValidarClaveSeguridad.cs" />
     <Compile Include="Comunes\Validaciones\ValidarMontosAcumuladosIntermediarios.cs" />
+    <Compile Include="Comunes\ValidarClaveSeguridad.cs" />
     <Compile Include="Comunes\ValidarControles.cs" />
     <Compile Include="Comunes\VariablesGlobales.cs" />
     <Compile Include="Comunes\VariablesPowerBi.cs" />

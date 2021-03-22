@@ -39,7 +39,7 @@
             $("#<%=btnGenerarBackup.ClientID%>").click(function () {
                 var ClaveSeguridad = $("#<%=txtClaveSeguridadGenerarBackup.ClientID%>").val().length;
                 if (ClaveSeguridad < 1) {
-                    alert("El campo clave de seguriadd no puede estar vacio para generar el backup, favor de verificar.");
+                    alert("El campo clave de seguriad no puede estar vacio para generar el backup, favor de verificar.");
                     $("#<%=txtClaveSeguridadGenerarBackup.ClientID%>").css("border-color", "red");
                     return false;
                 }

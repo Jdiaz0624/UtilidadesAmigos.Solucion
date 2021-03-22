@@ -18,7 +18,7 @@ namespace UtilidadesAmigos.Logica.Comunes
             try {
                 Mensaje.From = new MailAddress(CorreoOrigen);
                 Mensaje.Bcc.Add(new MailAddress(CorreoDestino));
-                Mensaje.Subject = "Veronica - Utilidades (" + Notificacion + ")";
+                Mensaje.Subject = "Utilidades Amigos (" + Notificacion + ")";
              //   string filename = @"C:\Users\Ing.Juan Marcelino\Pictures\Parte de Alante.jpg";
              //   Mensaje.Attachments.Add(new Attachment(filename));
                 Mensaje.Body = Cuerpo;
