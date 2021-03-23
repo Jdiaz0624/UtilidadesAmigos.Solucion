@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDOpcionesAdministradorDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString7" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.26.24.199;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString16" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_BUSCA_RUTA_ARCHIVO_BAKUP" Method="SP_BUSCA_RUTA_ARCHIVO_BAKUP">
     <Parameter Name="IdRutaArchivoBakup" Parameter="idRutaArchivoBakup" Type="System.Int32" DbType="Int" />
     <ElementType Name="SP_BUSCA_RUTA_ARCHIVO_BAKUPResult">
@@ -24,29 +24,6 @@
     <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
     <ElementType Name="SP_GENERARBAKUP_DATABASEResult">
       <Column Name="RutaArchivo" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_BUSCA_HISTORIAL_BAKUP_DATABASE" Method="SP_BUSCA_HISTORIAL_BAKUP_DATABASE">
-    <Parameter Name="IdHistorialBakup" Parameter="idHistorialBakup" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="NumeroBackup" Parameter="numeroBackup" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Fechadesde" Parameter="fechadesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="IdEstatus" Parameter="idEstatus" Type="System.Boolean" DbType="Bit" />
-    <ElementType Name="SP_BUSCA_HISTORIAL_BAKUP_DATABASEResult">
-      <Column Name="IdHistorialBakupDatabase" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
-      <Column Name="NumeroBackup" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="NombreArchivo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="FechaCreado" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="Hora0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="IdEstatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
-      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="Utililades.SP_MANTENIMIENTO_HISTORIAL_BACKUP_DATABASE" Method="SP_MANTENIMIENTO_HISTORIAL_BACKUP_DATABASE">
@@ -96,6 +73,29 @@
       <Column Name="IdProceso" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
       <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_HISTORIAL_BAKUP_DATABASE" Method="SP_BUSCA_HISTORIAL_BAKUP_DATABASE">
+    <Parameter Name="IdHistorialBakup" Parameter="idHistorialBakup" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="NumeroBackup" Parameter="numeroBackup" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Fechadesde" Parameter="fechadesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="IdEstatus" Parameter="idEstatus" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NombreUsuario" Parameter="nombreUsuario" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_BUSCA_HISTORIAL_BAKUP_DATABASEResult">
+      <Column Name="IdHistorialBakupDatabase" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="NumeroBackup" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="NombreArchivo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FechaCreado" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Hora0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="IdEstatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

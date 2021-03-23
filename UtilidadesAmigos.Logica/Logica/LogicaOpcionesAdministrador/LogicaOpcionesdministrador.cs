@@ -77,11 +77,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaOpcionesAdministrador
 
         #region MANTENIMEINTO DE HISTORIAL DE BAKUP DE DATABASE
         //LISTADO DE BAKUPDATABASE
-        public List<UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.EMantenimientoBackupDatabase> BuscaHistorialBakupDatabase(decimal? IdHistorialBakup = null, string NumeroBackup = null, DateTime? Fechadesde = null, DateTime? FechaHasta = null, bool? IdEstatus = null)
+        public List<UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.EMantenimientoBackupDatabase> BuscaHistorialBakupDatabase(decimal? IdHistorialBakup = null, string NumeroBackup = null, DateTime? Fechadesde = null, DateTime? FechaHasta = null, bool? IdEstatus = null, string NombreUsuario = null)
         {
             ObdataConexion.CommandTimeout = 999999999;
 
-            var Historial = (from n in ObdataConexion.SP_BUSCA_HISTORIAL_BAKUP_DATABASE(IdHistorialBakup, NumeroBackup, Fechadesde, FechaHasta, IdEstatus)
+            var Historial = (from n in ObdataConexion.SP_BUSCA_HISTORIAL_BAKUP_DATABASE(IdHistorialBakup, NumeroBackup, Fechadesde, FechaHasta, IdEstatus, NombreUsuario)
                              select new UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.EMantenimientoBackupDatabase
                              {
                                  IdHistorialBakupDatabase=n.IdHistorialBakupDatabase,
@@ -96,8 +96,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaOpcionesAdministrador
                                  Hora=n.Hora,
                                  IdEstatus=n.IdEstatus,
                                  Estatus=n.Estatus,
-                                 Comentario=n.Comentario,
-                                 CantidadRegistros=n.CantidadRegistros
+                                 Comentario=n.Comentario
                              }).ToList();
             return Historial;
         }

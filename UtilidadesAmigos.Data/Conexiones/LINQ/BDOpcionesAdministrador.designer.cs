@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDOpcionesAdministradorDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString7, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString16, mappingSource)
 		{
 			OnCreated();
 		}
@@ -83,13 +83,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_GENERARBAKUP_DATABASEResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_HISTORIAL_BAKUP_DATABASE")]
-		public ISingleResult<SP_BUSCA_HISTORIAL_BAKUP_DATABASEResult> SP_BUSCA_HISTORIAL_BAKUP_DATABASE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdHistorialBakup", DbType="Decimal(20,0)")] System.Nullable<decimal> idHistorialBakup, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroBackup", DbType="VarChar(100)")] string numeroBackup, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fechadesde", DbType="Date")] System.Nullable<System.DateTime> fechadesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstatus", DbType="Bit")] System.Nullable<bool> idEstatus)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idHistorialBakup, numeroBackup, fechadesde, fechaHasta, idEstatus);
-			return ((ISingleResult<SP_BUSCA_HISTORIAL_BAKUP_DATABASEResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MANTENIMIENTO_HISTORIAL_BACKUP_DATABASE")]
 		public ISingleResult<SP_MANTENIMIENTO_HISTORIAL_BACKUP_DATABASEResult> SP_MANTENIMIENTO_HISTORIAL_BACKUP_DATABASE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdHistorialBakupDatabase", DbType="Decimal(20,0)")] System.Nullable<decimal> idHistorialBakupDatabase, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroBackup", DbType="VarChar(100)")] string numeroBackup, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreArchivo", DbType="VarChar(100)")] string nombreArchivo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(100)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Hora", DbType="DateTime")] System.Nullable<System.DateTime> hora, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstatus", DbType="Bit")] System.Nullable<bool> idEstatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Comentario", DbType="VarChar(8000)")] string comentario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
 		{
@@ -109,6 +102,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCorreoEnviar, idProceso, correo, estatus, accion);
 			return ((ISingleResult<SP_MANTENIMIENTO_CORREOS_ENVIARResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_HISTORIAL_BAKUP_DATABASE")]
+		public ISingleResult<SP_BUSCA_HISTORIAL_BAKUP_DATABASEResult> SP_BUSCA_HISTORIAL_BAKUP_DATABASE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdHistorialBakup", DbType="Decimal(20,0)")] System.Nullable<decimal> idHistorialBakup, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroBackup", DbType="VarChar(100)")] string numeroBackup, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fechadesde", DbType="Date")] System.Nullable<System.DateTime> fechadesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstatus", DbType="Bit")] System.Nullable<bool> idEstatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreUsuario", DbType="VarChar(100)")] string nombreUsuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idHistorialBakup, numeroBackup, fechadesde, fechaHasta, idEstatus, nombreUsuario);
+			return ((ISingleResult<SP_BUSCA_HISTORIAL_BAKUP_DATABASEResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -257,266 +257,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._RutaArchivo != value))
 				{
 					this._RutaArchivo = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_BUSCA_HISTORIAL_BAKUP_DATABASEResult
-	{
-		
-		private decimal _IdHistorialBakupDatabase;
-		
-		private string _NumeroBackup;
-		
-		private System.Nullable<decimal> _IdUsuario;
-		
-		private string _Usuario;
-		
-		private string _NombreArchivo;
-		
-		private string _Descripcion;
-		
-		private System.Nullable<System.DateTime> _FechaCreado;
-		
-		private string _Fecha;
-		
-		private System.Nullable<System.DateTime> _Hora0;
-		
-		private string _Hora;
-		
-		private System.Nullable<bool> _IdEstatus;
-		
-		private string _Estatus;
-		
-		private string _Comentario;
-		
-		private System.Nullable<int> _CantidadRegistros;
-		
-		public SP_BUSCA_HISTORIAL_BAKUP_DATABASEResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdHistorialBakupDatabase", DbType="Decimal(20,0) NOT NULL")]
-		public decimal IdHistorialBakupDatabase
-		{
-			get
-			{
-				return this._IdHistorialBakupDatabase;
-			}
-			set
-			{
-				if ((this._IdHistorialBakupDatabase != value))
-				{
-					this._IdHistorialBakupDatabase = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroBackup", DbType="VarChar(100)")]
-		public string NumeroBackup
-		{
-			get
-			{
-				return this._NumeroBackup;
-			}
-			set
-			{
-				if ((this._NumeroBackup != value))
-				{
-					this._NumeroBackup = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> IdUsuario
-		{
-			get
-			{
-				return this._IdUsuario;
-			}
-			set
-			{
-				if ((this._IdUsuario != value))
-				{
-					this._IdUsuario = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(150)")]
-		public string Usuario
-		{
-			get
-			{
-				return this._Usuario;
-			}
-			set
-			{
-				if ((this._Usuario != value))
-				{
-					this._Usuario = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreArchivo", DbType="VarChar(100)")]
-		public string NombreArchivo
-		{
-			get
-			{
-				return this._NombreArchivo;
-			}
-			set
-			{
-				if ((this._NombreArchivo != value))
-				{
-					this._NombreArchivo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(100)")]
-		public string Descripcion
-		{
-			get
-			{
-				return this._Descripcion;
-			}
-			set
-			{
-				if ((this._Descripcion != value))
-				{
-					this._Descripcion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCreado", DbType="Date")]
-		public System.Nullable<System.DateTime> FechaCreado
-		{
-			get
-			{
-				return this._FechaCreado;
-			}
-			set
-			{
-				if ((this._FechaCreado != value))
-				{
-					this._FechaCreado = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="NVarChar(4000)")]
-		public string Fecha
-		{
-			get
-			{
-				return this._Fecha;
-			}
-			set
-			{
-				if ((this._Fecha != value))
-				{
-					this._Fecha = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hora0", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Hora0
-		{
-			get
-			{
-				return this._Hora0;
-			}
-			set
-			{
-				if ((this._Hora0 != value))
-				{
-					this._Hora0 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hora", DbType="NVarChar(4000)")]
-		public string Hora
-		{
-			get
-			{
-				return this._Hora;
-			}
-			set
-			{
-				if ((this._Hora != value))
-				{
-					this._Hora = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdEstatus", DbType="Bit")]
-		public System.Nullable<bool> IdEstatus
-		{
-			get
-			{
-				return this._IdEstatus;
-			}
-			set
-			{
-				if ((this._IdEstatus != value))
-				{
-					this._IdEstatus = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
-		public string Estatus
-		{
-			get
-			{
-				return this._Estatus;
-			}
-			set
-			{
-				if ((this._Estatus != value))
-				{
-					this._Estatus = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comentario", DbType="VarChar(8000)")]
-		public string Comentario
-		{
-			get
-			{
-				return this._Comentario;
-			}
-			set
-			{
-				if ((this._Comentario != value))
-				{
-					this._Comentario = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadRegistros", DbType="Int")]
-		public System.Nullable<int> CantidadRegistros
-		{
-			get
-			{
-				return this._CantidadRegistros;
-			}
-			set
-			{
-				if ((this._CantidadRegistros != value))
-				{
-					this._CantidadRegistros = value;
 				}
 			}
 		}
@@ -883,6 +623,248 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Estatus != value))
 				{
 					this._Estatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_HISTORIAL_BAKUP_DATABASEResult
+	{
+		
+		private decimal _IdHistorialBakupDatabase;
+		
+		private string _NumeroBackup;
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private string _Usuario;
+		
+		private string _NombreArchivo;
+		
+		private string _Descripcion;
+		
+		private System.Nullable<System.DateTime> _FechaCreado;
+		
+		private string _Fecha;
+		
+		private System.Nullable<System.DateTime> _Hora0;
+		
+		private string _Hora;
+		
+		private System.Nullable<bool> _IdEstatus;
+		
+		private string _Estatus;
+		
+		private string _Comentario;
+		
+		public SP_BUSCA_HISTORIAL_BAKUP_DATABASEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdHistorialBakupDatabase", DbType="Decimal(20,0) NOT NULL")]
+		public decimal IdHistorialBakupDatabase
+		{
+			get
+			{
+				return this._IdHistorialBakupDatabase;
+			}
+			set
+			{
+				if ((this._IdHistorialBakupDatabase != value))
+				{
+					this._IdHistorialBakupDatabase = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroBackup", DbType="VarChar(100)")]
+		public string NumeroBackup
+		{
+			get
+			{
+				return this._NumeroBackup;
+			}
+			set
+			{
+				if ((this._NumeroBackup != value))
+				{
+					this._NumeroBackup = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(150)")]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this._Usuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreArchivo", DbType="VarChar(100)")]
+		public string NombreArchivo
+		{
+			get
+			{
+				return this._NombreArchivo;
+			}
+			set
+			{
+				if ((this._NombreArchivo != value))
+				{
+					this._NombreArchivo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(100)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCreado", DbType="Date")]
+		public System.Nullable<System.DateTime> FechaCreado
+		{
+			get
+			{
+				return this._FechaCreado;
+			}
+			set
+			{
+				if ((this._FechaCreado != value))
+				{
+					this._FechaCreado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="NVarChar(4000)")]
+		public string Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this._Fecha = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hora0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Hora0
+		{
+			get
+			{
+				return this._Hora0;
+			}
+			set
+			{
+				if ((this._Hora0 != value))
+				{
+					this._Hora0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hora", DbType="NVarChar(4000)")]
+		public string Hora
+		{
+			get
+			{
+				return this._Hora;
+			}
+			set
+			{
+				if ((this._Hora != value))
+				{
+					this._Hora = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdEstatus", DbType="Bit")]
+		public System.Nullable<bool> IdEstatus
+		{
+			get
+			{
+				return this._IdEstatus;
+			}
+			set
+			{
+				if ((this._IdEstatus != value))
+				{
+					this._IdEstatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		public string Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comentario", DbType="VarChar(8000)")]
+		public string Comentario
+		{
+			get
+			{
+				return this._Comentario;
+			}
+			set
+			{
+				if ((this._Comentario != value))
+				{
+					this._Comentario = value;
 				}
 			}
 		}

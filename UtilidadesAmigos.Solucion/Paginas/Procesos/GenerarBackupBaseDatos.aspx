@@ -86,6 +86,7 @@
         </div>
    
     </div>
+       <br />
     <!--FIN DEL BLOQUE DE BACKUP DE BASE DE DATOS-->
 
     <!--INICIO DEL BLOQUE DE HISTORIAL DE BACKUP DE BASE DE DATOS-->
@@ -143,13 +144,13 @@
                     <asp:Repeater ID="rpListado" runat="server">
                         <ItemTemplate>
                             <tr>
-                                 <td style="width:10%"> <%# Eval("") %> </td>
-                                 <td style="width:22%"> <%# Eval("") %> </td>
-                                 <td style="width:16%"> <%# Eval("") %> </td>
-                                 <td style="width:10%"> <%# Eval("") %> </td>
-                                 <td style="width:10%"> <%# Eval("") %> </td>
-                                 <td style="width:10%"> <%# Eval("") %> </td>
-                                 <td style="width:22%"> <%# Eval("") %> </td>
+                                 <td style="width:10%"> <%# Eval("NombreArchivo") %> </td>
+                                 <td style="width:22%"> <%# Eval("Descripcion") %> </td>
+                                 <td style="width:16%"> <%# Eval("Usuario") %> </td>
+                                 <td style="width:10%"> <%# Eval("Fecha") %> </td>
+                                 <td style="width:10%"> <%# Eval("Hora") %> </td>
+                                 <td style="width:10%"> <%# Eval("Estatus") %> </td>
+                                 <td style="width:22%"> <%# Eval("Comentario") %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
