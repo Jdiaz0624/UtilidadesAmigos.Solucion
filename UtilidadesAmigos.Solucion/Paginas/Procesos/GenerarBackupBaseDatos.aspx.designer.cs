@@ -411,6 +411,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueConfiguracionBaseDatos;
 
         /// <summary>
+        /// rbConfigurarRutaBackup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbConfigurarRutaBackup;
+
+        /// <summary>
+        /// rbConfigurarCorreosBackup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbConfigurarCorreosBackup;
+
+        /// <summary>
         /// lbClaveSeguridadConfiguracion control.
         /// </summary>
         /// <remarks>
@@ -447,6 +465,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.TextBox txtRutaArchivoConfiguracion;
 
         /// <summary>
+        /// lbCorreoElectronico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCorreoElectronico;
+
+        /// <summary>
+        /// txtCorreoElectronico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCorreoElectronico;
+
+        /// <summary>
         /// btnGuardar control.
         /// </summary>
         /// <remarks>
@@ -454,5 +490,131 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardar;
+
+        /// <summary>
+        /// lbCantidadCorreosregistradostitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadCorreosregistradostitulo;
+
+        /// <summary>
+        /// lbCantidadCorreosregistradosVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadCorreosregistradosVariable;
+
+        /// <summary>
+        /// lbCantidadCorreosregistradosCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadCorreosregistradosCerrar;
+
+        /// <summary>
+        /// rpListadoCorreos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpListadoCorreos;
+
+        /// <summary>
+        /// lbPaginaActualConfiguracionTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualConfiguracionTitulo;
+
+        /// <summary>
+        /// LinkBlbPaginaActualConfiguracionVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LinkBlbPaginaActualConfiguracionVariable;
+
+        /// <summary>
+        /// lbCantidadPaginaConfiguracionTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaConfiguracionTitulo;
+
+        /// <summary>
+        /// lbCantidadPaginaConfiguracionVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaConfiguracionVariable;
+
+        /// <summary>
+        /// divPaginacionConfiguracion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionConfiguracion;
+
+        /// <summary>
+        /// LinkPrimeraPaginaConfiguracion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPaginaConfiguracion;
+
+        /// <summary>
+        /// LinkAnteriorConfiguracion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorConfiguracion;
+
+        /// <summary>
+        /// dtPaginacionConfiguracion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dtPaginacionConfiguracion;
+
+        /// <summary>
+        /// LinkSiguienteConfiguracion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteConfiguracion;
+
+        /// <summary>
+        /// LinkUltimoConfiguracion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoConfiguracion;
     }
 }

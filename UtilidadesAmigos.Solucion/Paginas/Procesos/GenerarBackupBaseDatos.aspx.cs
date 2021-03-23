@@ -396,6 +396,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
                 rbGenerarBackuup.Checked = true;
                 rbPDF.Checked = true;
+                rbConfigurarRutaBackup.Checked = true;
+
+                txtRutaArchivoConfiguracion.Text = string.Empty;
+                txtCorreoElectronico.Text = string.Empty;
+                txtRutaArchivoConfiguracion.Enabled = true;
+                txtCorreoElectronico.Enabled = false;
+
+
                 DivBloqueBackup.Visible = true;
             }
         }
@@ -495,9 +503,94 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref LinkBlbPaginaActualVariavle, ref lbCantidadPaginaVariable);
         }
 
-        protected void btnGuardar_Click(object sender, EventArgs e)
+        protected void rbConfigurarRutaBackup_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbConfigurarRutaBackup.Checked == true) {
+                txtRutaArchivoConfiguracion.Text = string.Empty;
+                txtCorreoElectronico.Text = string.Empty;
+                txtRutaArchivoConfiguracion.Enabled = true;
+                txtCorreoElectronico.Enabled = false;
+            }
+            else {
+                txtRutaArchivoConfiguracion.Text = string.Empty;
+                txtCorreoElectronico.Text = string.Empty;
+                txtRutaArchivoConfiguracion.Enabled = false;
+                txtCorreoElectronico.Enabled = false;
+            }
+        }
+
+        protected void rbConfigurarCorreosBackup_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbConfigurarCorreosBackup.Checked == true) {
+
+                txtRutaArchivoConfiguracion.Text = string.Empty;
+                txtCorreoElectronico.Text = string.Empty;
+                txtRutaArchivoConfiguracion.Enabled = false;
+                txtCorreoElectronico.Enabled = true;
+            }
+            else {
+                txtRutaArchivoConfiguracion.Text = string.Empty;
+                txtCorreoElectronico.Text = string.Empty;
+                txtRutaArchivoConfiguracion.Enabled = false;
+                txtCorreoElectronico.Enabled = false;
+            }
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void LinkPrimeraPaginaConfiguracion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkAnteriorConfiguracion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionConfiguracion_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionConfiguracion_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguienteConfiguracion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoConfiguracion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (rbConfigurarRutaBackup.Checked == true) {
+                if (string.IsNullOrEmpty(txtRutaArchivoConfiguracion.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoRutaVacio()", "CampoRutaVacio();", true);
+                }
+                else { 
+                
+                }
+            }
+            else if (rbConfigurarCorreosBackup.Checked == true) {
+                if (string.IsNullOrEmpty(txtCorreoElectronico.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoCorreoVacio()", "CampoCorreoVacio();", true);
+                }
+                else {
+                
+                }
+            }
         }
     }
 }

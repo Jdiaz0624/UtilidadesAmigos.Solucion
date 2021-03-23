@@ -34,6 +34,18 @@
         function ClaveSeguridadErronea() {
             alert("La clave de seguridad ingresada no es valida, favor de verificar.");
         }
+
+        function CampoRutaVacio() {
+            alert("El campo Ruta de Archivo no puede estar vacio para guardar este registro, favor de verificar.");
+            $("#<%=txtRutaArchivoConfiguracion.ClientID%>").css("border-color", "red");
+        }
+        function CorreoEncontrado() {
+            alert("El correo ingresado ya esta registrada para recibir notificación, favor de vericicar.");
+        }
+        function CampoCorreoVacio() {
+            alert("El campo correo no puede estar vacio para guardar este registro, favor de verificar.");
+            $("#<%=txtCorreoElectronico.ClientID%>").css("border-color", "red");
+        }
         $(document).ready(function () {
             //VALIDACION DEL BOTON GENERAR BACKUP DE BASE DE DATOS
             $("#<%=btnGenerarBackup.ClientID%>").click(function () {
@@ -190,7 +202,15 @@
 
     <!--INICIO DEL BLOQUE DE CONFIGURACION DE BACKUP DE BASE DE DATOS-->
     <div id="DivBloqueConfiguracionBaseDatos"  runat="server" visible="false">
+        <div class="form-check-inline">
+                <div class="form-group form-check">
+                    <asp:RadioButton ID="rbConfigurarRutaBackup" runat="server" AutoPostBack="true" OnCheckedChanged="rbConfigurarRutaBackup_CheckedChanged" Text="Configurar Ruta" ToolTip="Configurar la Ruta donde se va a guardar el backup." GroupName="Tipo" CssClass="form-check-input LetrasNegrita " />
+                    <asp:RadioButton ID="rbConfigurarCorreosBackup" runat="server" AutoPostBack="true" OnCheckedChanged="rbConfigurarCorreosBackup_CheckedChanged" Text="Configurar Correos" ToolTip="Configurar los correos a los que el sistema enviara notificación una vez realizado el backup." GroupName="Tipo" CssClass="form-check-input LetrasNegrita" />
+                </div>
+            </div>
+            <br />
         <div class="form-row" >
+            
              <div class="form-group col-md-6">
                 <asp:Label ID="lbClaveSeguridadConfiguracion" runat="server" Text="Clave de Seguridad" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtClaveSeguridadConfiguracion" runat="server" CssClass="form-control" TextMode="Password" AutoCompleteType="Disabled"></asp:TextBox>
@@ -199,10 +219,71 @@
                 <asp:Label ID="lbRutaArchivoConfiguracion" runat="server" Text="Ruta de Archivo" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtRutaArchivoConfiguracion" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
+            <div class="form-group col-md-6">
+                <asp:Label ID="lbCorreoElectronico" runat="server" Text="Correo Electronico" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="form-control" TextMode="Email" AutoCompleteType="Disabled"></asp:TextBox>
+            </div>
         </div>
         <br />
         <div align="center">
             <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Guardar Registro" OnClick="btnGuardar_Click" />
+            <br />
+            <asp:Label ID="lbCantidadCorreosregistradostitulo" runat="server" Text="Cantidad de Correos ( " CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadCorreosregistradosVariable" runat="server" Text=" 0 " CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadCorreosregistradosCerrar" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+
+        </div>
+        <br />
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="width:10%" align="center"> Eliminar </th>
+                        <th style="width:80%" align="center"> Correo </th>
+                        <th style="width:10%" align="center"> Estatus </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rpListadoCorreos" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <asp:HiddenField ID="hfIdCorreo" runat="server" Value='<%# Eval("IdCorreoEnviar") %>' />
+                                <asp:HiddenField ID="hfIdProceso" runat="server" Value='<%# Eval("IdProceso") %>'/>
+
+                                <td style="width:10%"> <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Eliminar registro" OnClick="btnEliminar_Click" /> </td>
+                                <td style="width:80%"> <%# Eval("Proceso") %> </td>
+                                <td style="width:10%"> <%# Eval("Estatus") %> </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
+            </table>
+        </div>
+        <div align="center">
+                <asp:Label ID="lbPaginaActualConfiguracionTitulo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="LinkBlbPaginaActualConfiguracionVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaConfiguracionTitulo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaConfiguracionVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="divPaginacionConfiguracion" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeraPaginaConfiguracion" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaConfiguracion_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorConfiguracion" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorConfiguracion_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionConfiguracion" runat="server" OnItemCommand="dtPaginacionConfiguracion_ItemCommand" OnItemDataBound="dtPaginacionConfiguracion_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralConfiguracion" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteConfiguracion" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteConfiguracion_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoConfiguracion" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoConfiguracion_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
         </div>
     </div>
     <!--FIN DEL BLOQUE DE CONFIGURACION DE BACKUP DE BASE DE DATOS-->
