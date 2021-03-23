@@ -180,7 +180,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 Mail.Destinatarios.Add(n.Correo);
             }
 
+            //List<string> Logo = new List<string>();
+            //Logo.Add(Server.MapPath("Logo.jpg"));
 
+            //foreach (var n2 in Logo) {
+            //    Mail.Adjuntos.Add(n2);
+            //}
 
            
 

@@ -184,6 +184,7 @@
     <Content Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx" />
     <Content Include="Paginas\Procesos\GenerarBakupBD.aspx" />
     <Content Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx" />
+    <Content Include="Paginas\Procesos\Logo.jpg" />
     <Content Include="Paginas\ReporteReclamos.aspx" />
     <Content Include="Paginas\Reportes\ComisionesIntermediarios.aspx" />
     <Content Include="Paginas\Reportes\ComisionesSupervisores.aspx" />
