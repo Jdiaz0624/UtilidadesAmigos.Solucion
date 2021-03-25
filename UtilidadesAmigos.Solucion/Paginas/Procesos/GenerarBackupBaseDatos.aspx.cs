@@ -55,7 +55,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
                 GenerarBAckup(_RutaBackup, _Numerobackup, IdUsuario);
 
-                
+
 
 
 
@@ -67,7 +67,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         }
         #endregion
         #region GENERAR BACKUP
-        private void GenerarBAckup(string Ruta, string NumeroBackup,decimal Idusuario)
+        private void GenerarBAckup(string Ruta, string NumeroBackup, decimal Idusuario)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 var SacarRegistroGuardado = ObjDataAdministrador.Value.BuscaHistorialBakupDatabase(
                     new Nullable<decimal>(),
                     NumeroBackup,
-                    null, null, null,null);
+                    null, null, null, null);
 
                 string DatoNombreArchivo = "", DatoDescripcion = "", DatoUsuario = "", DatoFecha = "", DatoHora = "", DatoEstatus = "", DatoComentario = "", CuerpoMensaje = "";
                 foreach (var Datos in SacarRegistroGuardado)
@@ -155,8 +155,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         }
         #endregion
         #region ENVIO DE CORREO
-        private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP,string Cuerpo) {
-           
+        private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP, string Cuerpo) {
+
 
             UtilidadesAmigos.Logica.Comunes.EnvioCorreos Mail = new Logica.Comunes.EnvioCorreos
             {
@@ -187,7 +187,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             //    Mail.Adjuntos.Add(n2);
             //}
 
-           
+
 
             if (Mail.Enviar(Mail)) {
 
@@ -385,6 +385,77 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         }
         #endregion
 
+
+        #region MOSTRAR EL LISTADO DE LOS CORREOS 
+        private void MostrarListadoCorreos() {
+
+            int IdProceso = 1;
+            int CantidadCorreos = 0;
+
+            var ListadoCorreos = ObjDataAdministrador.Value.BuscaCorreosEnviar(
+                new Nullable<decimal>(),
+                IdProceso,
+                null, null);
+            CantidadCorreos = ListadoCorreos.Count;
+            lbCantidadCorreosregistradosVariable.Text = CantidadCorreos.ToString("N0");
+            Paginar(ref rpListadoCorreos, ListadoCorreos, 10, ref lbCantidadPaginaConfiguracionVariable, ref LinkPrimeraPaginaConfiguracion, ref LinkAnteriorConfiguracion, ref LinkSiguienteConfiguracion, ref LinkUltimoConfiguracion);
+            HandlePaging(ref dtPaginacionConfiguracion, ref LinkBlbPaginaActualConfiguracionVariable);
+
+        }
+        #endregion
+        #region MANUPULAR CORREOS
+        private void ManipularCorreosEnviar(decimal IdCorreoEnviar, decimal IdProceso, string Correo, bool Estatus, string Accion) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionAdministrador.ProcesarInformacionCorreosENviar Manupular = new Logica.Comunes.ProcesarMantenimientos.InformacionAdministrador.ProcesarInformacionCorreosENviar(
+                IdCorreoEnviar,
+                IdProceso,
+                Correo,
+                Estatus,
+                Accion);
+            Manupular.ProcesarInformacion();
+
+
+        }
+        #endregion
+        #region RESTABLECER LA PANTALLA DE CONFIGURACION
+        private void RestablecerPantallaConfiguracion() {
+            rbConfigurarRutaBackup.Enabled = true;
+            rbConfigurarCorreosBackup.Enabled = true;
+            txtClaveSeguridadConfiguracion.Text = string.Empty;
+            txtRutaArchivoConfiguracion.Text = string.Empty;
+            txtCorreoElectronico.Text = string.Empty;
+            txtCorreoElectronico.Enabled = false;
+            rbConfigurarRutaBackup.Checked = true;
+            btnGuardar.Enabled = false;
+            cbEstatusCorreo.Visible = false;
+            btnModificar.Visible = false;
+            btnEliminar.Visible = false;
+            btnRestablecer.Visible = false;
+            MostrarListadoCorreos();
+
+        }
+        #endregion
+        #region SACAR LA RUTA DONDE SE GUARDA EL BACKUP DE BASE DE DATOS
+        private string SacarRutaBackup() {
+            string Ruta = "";
+            var sacarTuta = ObjDataAdministrador.Value.BuscaRutaArchivoBakup(1);
+            foreach (var n in sacarTuta)
+            {
+                Ruta = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(n.RutaBackup);
+            }
+            return Ruta;
+        }
+        #endregion
+        #region PROCESAR LA INFORMACION DE LA RUTA DEL ARCHIVO
+        private void ProcesarInformacionRutaBackupBaseDatos(string RutaBackup, string Accion) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionAdministrador.ProcesarInformacionRutaBackupBD Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionAdministrador.ProcesarInformacionRutaBackupBD(
+                1, UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(RutaBackup), ".bak", Accion);
+            Procesar.ProcesarInformacion();
+            txtRutaArchivoConfiguracion.Text = SacarRutaBackup();
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
@@ -442,6 +513,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 DivBloqueBackup.Visible = false;
                 DivBloqueHistorialBaseDatos.Visible = false;
                 DivBloqueConfiguracionBaseDatos.Visible = true;
+                MostrarListadoCorreos();
+
+                btnModificar.Visible = false;
+                btnEliminar.Visible = false;
+                btnRestablecer.Visible = false;
+                cbEstatusCorreo.Visible = false;
+                txtCorreoElectronico.Text = string.Empty;
+                txtRutaArchivoConfiguracion.Text = SacarRutaBackup();
             }
             else {
                 DivBloqueBackup.Visible = false;
@@ -510,6 +589,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 txtCorreoElectronico.Text = string.Empty;
                 txtRutaArchivoConfiguracion.Enabled = true;
                 txtCorreoElectronico.Enabled = false;
+                txtRutaArchivoConfiguracion.Text = SacarRutaBackup();
             }
             else {
                 txtRutaArchivoConfiguracion.Text = string.Empty;
@@ -527,6 +607,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 txtCorreoElectronico.Text = string.Empty;
                 txtRutaArchivoConfiguracion.Enabled = false;
                 txtCorreoElectronico.Enabled = true;
+
+               
             }
             else {
                 txtRutaArchivoConfiguracion.Text = string.Empty;
@@ -536,19 +618,19 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             }
         }
 
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         protected void LinkPrimeraPaginaConfiguracion_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarListadoCorreos();
         }
 
         protected void LinkAnteriorConfiguracion_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarListadoCorreos();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref LinkBlbPaginaActualConfiguracionVariable, ref lbCantidadPaginaConfiguracionVariable);
         }
 
         protected void dtPaginacionConfiguracion_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -558,17 +640,111 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         protected void dtPaginacionConfiguracion_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoCorreos();
         }
 
         protected void LinkSiguienteConfiguracion_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += 1;
+            MostrarListadoCorreos();
         }
 
         protected void LinkUltimoConfiguracion_Click(object sender, EventArgs e)
         {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoCorreos();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref LinkBlbPaginaActualConfiguracionVariable, ref lbCantidadPaginaConfiguracionVariable);
 
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            bool RespuestaValidacion = false;
+            string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridadConfiguracion.Text.Trim()) ? null : txtClaveSeguridadConfiguracion.Text.Trim();
+            string _Correo = string.IsNullOrEmpty(txtCorreoElectronico.Text.Trim()) ? null : txtCorreoElectronico.Text.Trim();
+
+            UtilidadesAmigos.Logica.Comunes.ValidarClaveSeguridad Validar = new Logica.Comunes.ValidarClaveSeguridad(_ClaveSeguridad);
+            RespuestaValidacion = Validar.ValidarClave();
+
+            if (RespuestaValidacion == true) {
+                ManipularCorreosEnviar(
+                    Convert.ToDecimal(lbIdCorreoEnviarConfiguracion.Text),
+                    Convert.ToDecimal(lbIdProcesoConfiguracion.Text),
+                    _Correo,
+                    cbEstatusCorreo.Checked,
+                    "UPDATE");
+                RestablecerPantallaConfiguracion();
+            }
+            else {
+                ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadErronea()", "ClaveSeguridadErronea();", true);
+            }
+        }
+
+      
+
+        protected void btnRestablecer_Click(object sender, EventArgs e)
+        {
+            RestablecerPantallaConfiguracion();
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            bool RespuestaValidacion = false;
+            string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridadConfiguracion.Text.Trim()) ? null : txtClaveSeguridadConfiguracion.Text.Trim();
+            string _Correo = string.IsNullOrEmpty(txtCorreoElectronico.Text.Trim()) ? null : txtCorreoElectronico.Text.Trim();
+
+            UtilidadesAmigos.Logica.Comunes.ValidarClaveSeguridad Validar = new Logica.Comunes.ValidarClaveSeguridad(_ClaveSeguridad);
+            RespuestaValidacion = Validar.ValidarClave();
+
+            if (RespuestaValidacion == true)
+            {
+                ManipularCorreosEnviar(
+                    Convert.ToDecimal(lbIdCorreoEnviarConfiguracion.Text),
+                    Convert.ToDecimal(lbIdProcesoConfiguracion.Text),
+                    _Correo,
+                    cbEstatusCorreo.Checked,
+                    "DELETE");
+                RestablecerPantallaConfiguracion();
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadErronea()", "ClaveSeguridadErronea();", true);
+            }
+        }
+
+        protected void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            var IdCorreoSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfIdCorreoSeleccionado = ((HiddenField)IdCorreoSeleccionado.FindControl("hfIdCorreo")).Value.ToString();
+
+            var IdProcesoSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfIdProcesoSeleccionado = ((HiddenField)IdProcesoSeleccionado.FindControl("hfIdProceso")).Value.ToString();
+
+            lbIdCorreoEnviarConfiguracion.Text = hfIdCorreoSeleccionado;
+            lbIdProcesoConfiguracion.Text = hfIdProcesoSeleccionado;
+            rbConfigurarRutaBackup.Enabled = false;
+            rbConfigurarCorreosBackup.Enabled = false;
+            txtCorreoElectronico.Enabled = false;
+            btnGuardar.Enabled = false;
+
+            cbEstatusCorreo.Visible = true;
+            btnModificar.Visible = true;
+            btnEliminar.Visible = true;
+            btnRestablecer.Visible = true;
+            lbCantidadCorreosregistradosVariable.Text = "1";
+
+            var BuscarCorreoSeleccionado = ObjDataAdministrador.Value.BuscaCorreosEnviar(
+                Convert.ToDecimal(hfIdCorreoSeleccionado),
+                Convert.ToDecimal(hfIdProcesoSeleccionado),
+                null, null);
+            foreach (var n in BuscarCorreoSeleccionado) {
+                txtCorreoElectronico.Text = n.Correo;
+                cbEstatusCorreo.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
+            }
+            Paginar(ref rpListadoCorreos, BuscarCorreoSeleccionado, 1, ref lbCantidadPaginaConfiguracionVariable, ref LinkPrimeraPaginaConfiguracion, ref LinkAnteriorConfiguracion, ref LinkSiguienteConfiguracion, ref LinkUltimoConfiguracion);
+            HandlePaging(ref dtPaginacionConfiguracion, ref LinkBlbPaginaActualConfiguracionVariable);
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -578,8 +754,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 {
                     ClientScript.RegisterStartupScript(GetType(), "CampoRutaVacio()", "CampoRutaVacio();", true);
                 }
-                else { 
-                
+                else {
+                    //VALIDAMOS LA CLAVE DE SEGURIDAD
+                    bool ResultadoValidacion = false;
+                    string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridadConfiguracion.Text.Trim()) ? null : txtClaveSeguridadConfiguracion.Text.Trim();
+
+                    UtilidadesAmigos.Logica.Comunes.ValidarClaveSeguridad Validar = new Logica.Comunes.ValidarClaveSeguridad(_ClaveSeguridad);
+                    ResultadoValidacion = Validar.ValidarClave();
+
+                    if (ResultadoValidacion == true) {
+                        string _RutaArchivo = string.IsNullOrEmpty(txtRutaArchivoConfiguracion.Text.Trim()) ? null : txtRutaArchivoConfiguracion.Text.Trim();
+                        ProcesarInformacionRutaBackupBaseDatos(_RutaArchivo, "UPDATE");
+
+                    }
+                    else {
+                        ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadErronea()", "ClaveSeguridadErronea();", true);
+                    }
                 }
             }
             else if (rbConfigurarCorreosBackup.Checked == true) {
@@ -588,7 +778,37 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     ClientScript.RegisterStartupScript(GetType(), "CampoCorreoVacio()", "CampoCorreoVacio();", true);
                 }
                 else {
-                
+
+                    bool RespuestaValidacion = false;
+                    string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridadConfiguracion.Text.Trim()) ? null : txtClaveSeguridadConfiguracion.Text.Trim();
+
+                    UtilidadesAmigos.Logica.Comunes.ValidarClaveSeguridad ValidarClave = new Logica.Comunes.ValidarClaveSeguridad(_ClaveSeguridad);
+                    RespuestaValidacion = ValidarClave.ValidarClave();
+                    if (RespuestaValidacion == true) {
+
+                        //VALIDAMOS QUE EL CORREO INGRESADO NO EXISTA EN LA BASE DE DATOS BAJO ESTE PROCESO
+                        decimal IdProceso = 1;
+                        string _Correo = string.IsNullOrEmpty(txtCorreoElectronico.Text.Trim()) ? null : txtCorreoElectronico.Text.Trim();
+
+                        var ValidarCorreo = ObjDataAdministrador.Value.ListadoCorreosEnviar(
+                            new Nullable<decimal>(),
+                            IdProceso,
+                            null,
+                            _Correo,
+                            null);
+                        if (ValidarCorreo.Count() < 1)
+                        {
+                            ManipularCorreosEnviar(0, 1, _Correo, true, "INSERT");
+                            MostrarListadoCorreos();
+                            txtCorreoElectronico.Text = string.Empty;
+                        }
+                        else {
+                            ClientScript.RegisterStartupScript(GetType(), "CorreoEncontrado()", "CorreoEncontrado();", true);
+                        }
+                    }
+                    else {
+                        ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadErronea()", "ClaveSeguridadErronea();", true);
+                    }
                 }
             }
         }

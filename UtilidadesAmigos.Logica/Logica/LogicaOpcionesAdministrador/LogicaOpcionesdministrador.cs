@@ -183,5 +183,49 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaOpcionesAdministrador
             return Mantenimiento;
         }
         #endregion
+
+        #region MANTENIMIENTO DE CORREOS A ENVIAR
+        //LISTADO DE CORREOS A ENVIAR
+        public List<UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.EBuscaListadoCorreosEnviar> ListadoCorreosEnviar(decimal? IdCorreoEnviar = null, decimal? IdProceso = null, string Correo = null, string CorreoValidar = null, bool? Estatus = null) {
+            ObdataConexion.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObdataConexion.SP_BUSCA_LISTADO_CORREOS_PROCESOS(IdCorreoEnviar, IdProceso, Correo, CorreoValidar, Estatus)
+                           select new UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.EBuscaListadoCorreosEnviar
+                           {
+                               IdCorreoEnviar=n.IdCorreoEnviar,
+                               IdProceso=n.IdProceso,
+                               Proceso=n.Proceso,
+                               Correo=n.Correo,
+                               Estatus0=n.Estatus0,
+                               Estatus=n.Estatus
+                           }).ToList();
+            return Listado;
+        }
+
+        //MANTENIMIENTO DE CORREOS A ENVIAR
+        public UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.EBuscaListadoCorreosEnviar ManupularCOrreosEnviar(UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.EBuscaListadoCorreosEnviar Item, string Accion) {
+            ObdataConexion.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.EBuscaListadoCorreosEnviar Manipular = null;
+
+            var COrreosEnviar = ObdataConexion.SP_MANIPULAR_CORREOS_ENVIAR(
+                Item.IdCorreoEnviar,
+                Item.IdProceso,
+                Item.Correo,
+                Item.Estatus0,
+                Accion);
+            if (COrreosEnviar != null) {
+                Manipular = (from n in COrreosEnviar
+                             select new UtilidadesAmigos.Logica.Entidades.OpcionesAdministrador.EBuscaListadoCorreosEnviar
+                             {
+                                 IdCorreoEnviar=n.IdCorreoEnviar,
+                                 IdProceso=n.IdProceso,
+                                 Correo=n.Correo,
+                                 Estatus0=n.Estatus
+                             }).FirstOrDefault();
+            }
+            return Manipular;
+        }
+        #endregion
     }
 }

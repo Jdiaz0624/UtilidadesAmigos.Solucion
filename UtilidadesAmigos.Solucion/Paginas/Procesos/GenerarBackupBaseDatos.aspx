@@ -40,7 +40,8 @@
             $("#<%=txtRutaArchivoConfiguracion.ClientID%>").css("border-color", "red");
         }
         function CorreoEncontrado() {
-            alert("El correo ingresado ya esta registrada para recibir notificación, favor de vericicar.");
+            alert("El correo ingresado ya esta registrado para recibir notificación, favor de verificar.");
+            $("#<%=txtCorreoElectronico.ClientID%>").css("border-color", "Blue");
         }
         function CampoCorreoVacio() {
             alert("El campo correo no puede estar vacio para guardar este registro, favor de verificar.");
@@ -61,11 +62,29 @@
             $("#<%=btnGuardar.ClientID%>").click(function () {
                 var ClaveSeguridadConfiguracion = $("#<%=txtClaveSeguridadConfiguracion.ClientID%>").val().length;
                 if (ClaveSeguridadConfiguracion < 1) {
-                    alert("El campo clave de seguridad no puede estar vacio, favor de verificar.");
+                    alert("El campo clave de seguridad no puede estar vacio para guardar este registro, favor de verificar.");
                     $("#<%=txtClaveSeguridadConfiguracion.ClientID%>").css("border-color", "red");
                     return false;
                 }
             });
+
+            $("#<%=btnModificar.ClientID%>").click(function () {
+                var ClaveSeguridadConfiguracion = $("#<%=txtClaveSeguridadConfiguracion.ClientID%>").val().length;
+                if (ClaveSeguridadConfiguracion < 1) {
+                    alert("El campo clave de seguridad no puede estar vacio para modificar este registro, favor de verificar.");
+                     $("#<%=txtClaveSeguridadConfiguracion.ClientID%>").css("border-color", "red");
+                     return false;
+                 }
+            });
+
+            $("#<%=btnEliminar.ClientID%>").click(function () {
+                var ClaveSeguridadConfiguracion = $("#<%=txtClaveSeguridadConfiguracion.ClientID%>").val().length;
+                if (ClaveSeguridadConfiguracion < 1) {
+                    alert("El campo clave de seguridad no puede estar vacio para eliminar, favor de verificar.");
+                     $("#<%=txtClaveSeguridadConfiguracion.ClientID%>").css("border-color", "red");
+                     return false;
+                 }
+             });
 
         })
     </script>
@@ -210,7 +229,10 @@
             </div>
             <br />
         <div class="form-row" >
-            
+            <asp:Label ID="lbIdCorreoEnviarConfiguracion" runat="server" Text="IdCorreoEnviar" Visible="false"></asp:Label>
+            <asp:Label ID="lbIdProcesoConfiguracion" runat="server" Text="IdProceso" Visible="false"></asp:Label>
+
+
              <div class="form-group col-md-6">
                 <asp:Label ID="lbClaveSeguridadConfiguracion" runat="server" Text="Clave de Seguridad" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtClaveSeguridadConfiguracion" runat="server" CssClass="form-control" TextMode="Password" AutoCompleteType="Disabled"></asp:TextBox>
@@ -224,9 +246,17 @@
                 <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="form-control" TextMode="Email" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
         </div>
+        <div class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:CheckBox ID="cbEstatusCorreo" runat="server" Text="Estatus" CssClass="form-check-input LetrasNegrita" ToolTip="Estatus de Correo" />
+            </div>
+        </div>
         <br />
         <div align="center">
             <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Guardar Registro" OnClick="btnGuardar_Click" />
+             <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Modificar Registro" OnClick="btnModificar_Click" />
+             <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Eliminar Registro" OnClick="btnEliminar_Click" />
+             <asp:Button ID="btnRestablecer" runat="server" Text="Restablecer" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Restablecer Pantalla" OnClick="btnRestablecer_Click" />
             <br />
             <asp:Label ID="lbCantidadCorreosregistradostitulo" runat="server" Text="Cantidad de Correos ( " CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCantidadCorreosregistradosVariable" runat="server" Text=" 0 " CssClass="LetrasNegrita"></asp:Label>
@@ -250,8 +280,8 @@
                                 <asp:HiddenField ID="hfIdCorreo" runat="server" Value='<%# Eval("IdCorreoEnviar") %>' />
                                 <asp:HiddenField ID="hfIdProceso" runat="server" Value='<%# Eval("IdProceso") %>'/>
 
-                                <td style="width:10%"> <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Eliminar registro" OnClick="btnEliminar_Click" /> </td>
-                                <td style="width:80%"> <%# Eval("Proceso") %> </td>
+                                <td style="width:10%"> <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Eliminar registro" OnClick="btnSeleccionar_Click" /> </td>
+                                <td style="width:80%"> <%# Eval("Correo") %> </td>
                                 <td style="width:10%"> <%# Eval("Estatus") %> </td>
                             </tr>
                         </ItemTemplate>

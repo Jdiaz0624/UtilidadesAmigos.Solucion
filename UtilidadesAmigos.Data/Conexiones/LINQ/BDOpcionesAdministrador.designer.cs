@@ -110,6 +110,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idHistorialBakup, numeroBackup, fechadesde, fechaHasta, idEstatus, nombreUsuario);
 			return ((ISingleResult<SP_BUSCA_HISTORIAL_BAKUP_DATABASEResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_LISTADO_CORREOS_PROCESOS")]
+		public ISingleResult<SP_BUSCA_LISTADO_CORREOS_PROCESOSResult> SP_BUSCA_LISTADO_CORREOS_PROCESOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCorreoEnviar", DbType="Decimal(20,0)")] System.Nullable<decimal> idCorreoEnviar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProceso", DbType="Decimal(20,0)")] System.Nullable<decimal> idProceso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(100)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CorreoValidar", DbType="VarChar(100)")] string correoValidar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="Bit")] System.Nullable<bool> estatus)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCorreoEnviar, idProceso, correo, correoValidar, estatus);
+			return ((ISingleResult<SP_BUSCA_LISTADO_CORREOS_PROCESOSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MANIPULAR_CORREOS_ENVIAR")]
+		public ISingleResult<SP_MANIPULAR_CORREOS_ENVIARResult> SP_MANIPULAR_CORREOS_ENVIAR([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCorreoEnviar", DbType="Decimal(20,0)")] System.Nullable<decimal> idCorreoEnviar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProceso", DbType="Decimal(20,0)")] System.Nullable<decimal> idProceso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(100)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="Bit")] System.Nullable<bool> estatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCorreoEnviar, idProceso, correo, estatus, accion);
+			return ((ISingleResult<SP_MANIPULAR_CORREOS_ENVIARResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_BUSCA_RUTA_ARCHIVO_BAKUPResult
@@ -865,6 +879,202 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Comentario != value))
 				{
 					this._Comentario = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_LISTADO_CORREOS_PROCESOSResult
+	{
+		
+		private System.Nullable<decimal> _IdCorreoEnviar;
+		
+		private System.Nullable<decimal> _IdProceso;
+		
+		private string _Proceso;
+		
+		private string _Correo;
+		
+		private System.Nullable<bool> _Estatus0;
+		
+		private string _Estatus;
+		
+		public SP_BUSCA_LISTADO_CORREOS_PROCESOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCorreoEnviar", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdCorreoEnviar
+		{
+			get
+			{
+				return this._IdCorreoEnviar;
+			}
+			set
+			{
+				if ((this._IdCorreoEnviar != value))
+				{
+					this._IdCorreoEnviar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProceso", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdProceso
+		{
+			get
+			{
+				return this._IdProceso;
+			}
+			set
+			{
+				if ((this._IdProceso != value))
+				{
+					this._IdProceso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Proceso", DbType="VarChar(100)")]
+		public string Proceso
+		{
+			get
+			{
+				return this._Proceso;
+			}
+			set
+			{
+				if ((this._Proceso != value))
+				{
+					this._Proceso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(100)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus0", DbType="Bit")]
+		public System.Nullable<bool> Estatus0
+		{
+			get
+			{
+				return this._Estatus0;
+			}
+			set
+			{
+				if ((this._Estatus0 != value))
+				{
+					this._Estatus0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		public string Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MANIPULAR_CORREOS_ENVIARResult
+	{
+		
+		private System.Nullable<decimal> _IdCorreoEnviar;
+		
+		private System.Nullable<decimal> _IdProceso;
+		
+		private string _Correo;
+		
+		private System.Nullable<bool> _Estatus;
+		
+		public SP_MANIPULAR_CORREOS_ENVIARResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCorreoEnviar", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdCorreoEnviar
+		{
+			get
+			{
+				return this._IdCorreoEnviar;
+			}
+			set
+			{
+				if ((this._IdCorreoEnviar != value))
+				{
+					this._IdCorreoEnviar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProceso", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdProceso
+		{
+			get
+			{
+				return this._IdProceso;
+			}
+			set
+			{
+				if ((this._IdProceso != value))
+				{
+					this._IdProceso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(100)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Bit")]
+		public System.Nullable<bool> Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
 				}
 			}
 		}

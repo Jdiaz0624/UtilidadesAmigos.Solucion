@@ -10,7 +10,7 @@ namespace UtilidadesAmigos.Logica.Comunes
     {
         readonly UtilidadesAmigos.Logica.Logica.LogicaSistema ObjData = new Logica.LogicaSistema();
 
-        public string ClaveSeguridad { get; set; }
+        private string ClaveSeguridad { get; set; }
 
         public ValidarClaveSeguridad(string ClaveSeguridadCON) {
             ClaveSeguridad = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(ClaveSeguridadCON);

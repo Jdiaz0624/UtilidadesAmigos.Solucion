@@ -108,6 +108,8 @@
     <Compile Include="Comunes\GuardarRegistrosReporteIntermediario.cs" />
     <Compile Include="Comunes\Mail.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionBackupBD.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionCorreosENviar.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionRutaBackupBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesMontosAcumulados.cs" />
@@ -292,6 +294,7 @@
     <Compile Include="Entidades\Mantenimientos\ESacarTasaMoneda.cs" />
     <Compile Include="Entidades\Mantenimientos\ESacarUltimoNumeroSolicitudGenerado.cs" />
     <Compile Include="Entidades\Mantenimientos\MantenimientoComisionesIntermediarios.cs" />
+    <Compile Include="Entidades\OpcionesAdministrador\EBuscaListadoCorreosEnviar.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\ECorreosEnviar.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\EMantenimientoBackupDatabase.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\ERutaArchivoBakup.cs" />

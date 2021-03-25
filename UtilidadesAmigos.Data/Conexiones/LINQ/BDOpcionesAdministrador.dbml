@@ -98,4 +98,32 @@
       <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_LISTADO_CORREOS_PROCESOS" Method="SP_BUSCA_LISTADO_CORREOS_PROCESOS">
+    <Parameter Name="IdCorreoEnviar" Parameter="idCorreoEnviar" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdProceso" Parameter="idProceso" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CorreoValidar" Parameter="correoValidar" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="SP_BUSCA_LISTADO_CORREOS_PROCESOSResult">
+      <Column Name="IdCorreoEnviar" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdProceso" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Proceso" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MANIPULAR_CORREOS_ENVIAR" Method="SP_MANIPULAR_CORREOS_ENVIAR">
+    <Parameter Name="IdCorreoEnviar" Parameter="idCorreoEnviar" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdProceso" Parameter="idProceso" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MANIPULAR_CORREOS_ENVIARResult">
+      <Column Name="IdCorreoEnviar" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdProceso" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
