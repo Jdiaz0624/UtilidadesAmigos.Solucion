@@ -294,7 +294,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("~/Paginas/DatosPoliza.aspx");
+                Response.Redirect("~/Paginas/Procesos/DatosPoliza.aspx");
             }
             else
             {

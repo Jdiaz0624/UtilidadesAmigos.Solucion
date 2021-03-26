@@ -170,7 +170,6 @@
     <Content Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx" />
     <Content Include="Paginas\Consulta\ValidarCoberturas.aspx" />
     <Content Include="Paginas\ConsumoWS.aspx" />
-    <Content Include="Paginas\DatosPoliza.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
     <Content Include="Paginas\IntermediariosSupervisores.aspx" />
@@ -181,6 +180,7 @@
     <Content Include="Paginas\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx" />
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
+    <Content Include="Paginas\Procesos\DatosPoliza.aspx" />
     <Content Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx" />
     <Content Include="Paginas\Procesos\GenerarBakupBD.aspx" />
     <Content Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx" />
@@ -432,13 +432,6 @@
     <Compile Include="Paginas\CotizadorAmigos.aspx.designer.cs">
       <DependentUpon>CotizadorAmigos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\DatosPoliza.aspx.cs">
-      <DependentUpon>DatosPoliza.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\DatosPoliza.aspx.designer.cs">
-      <DependentUpon>DatosPoliza.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paginas\EliminarBalancePoliza.aspx.cs">
       <DependentUpon>EliminarBalancePoliza.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -598,6 +591,12 @@
     </Compile>
     <Compile Include="Paginas\ProcesarDataPowerBi.aspx.designer.cs">
       <DependentUpon>ProcesarDataPowerBi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\DatosPoliza.aspx.cs">
+      <DependentUpon>DatosPoliza.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\DatosPoliza.aspx.designer.cs">
+      <DependentUpon>DatosPoliza.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx.cs">
       <DependentUpon>GenerarBackupBaseDatos.aspx</DependentUpon>
