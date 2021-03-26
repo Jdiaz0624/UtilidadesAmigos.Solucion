@@ -22,6 +22,23 @@
 
 
     </style>
+
+    <script type="text/javascript">
+        function RegistronoEncontrado() {
+            alert("No se encontraron registros con el numero de poliza ingresado, favor de verificar.");
+        }
+        $(document).ready(function () {
+            $("#<%=btnConsultarRegistros.ClientID%>").click(function () {
+                var ValidarCampoPoliza = $("#<%=txtIngresarPolizaConsulta.ClientID%>").val().length;
+                if (ValidarCampoPoliza < 1) {
+                    alert("El campo poliza no puede estar vacio, favor de verificar.");
+                    $("#<%=txtIngresarPolizaConsulta.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
+
+        })
+    </script>
     <br /><br />
     <div class="container-fluid">
         <div id="DivBloquePrincipal" runat="server">
@@ -62,15 +79,15 @@
                         <asp:Repeater ID="rpListadoPrincipal" runat="server">
                             <ItemTemplate>
                                 <tr>
-                                    <asp:HiddenField ID="hfPolizaListadoPrncipal" runat="server" Value='<%# Eval("") %>' />
-                                     <asp:HiddenField ID="hfNumeroItemPrincipal" runat="server" Value='<%# Eval("") %>' />
+                                    <asp:HiddenField ID="hfPolizaListadoPrncipal" runat="server" Value='<%# Eval("Poliza") %>' />
+                                     <asp:HiddenField ID="hfNumeroItemPrincipal" runat="server" Value='<%# Eval("Item") %>' />
 
                                     <td style="width:10%"> <asp:Button ID="btnDetallePrincipal" runat="server" Text="Detalle" ToolTip="Mostrar el Detalle del registro" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnDetallePrincipal_Click" /> </td>
-                                    <td style="width:10%"> <%# Eval("") %> </td>
-                                    <td style="width:10%"> <%# Eval("") %> </td>
-                                    <td style="width:20%"> <%# Eval("") %> </td>
-                                    <td style="width:20%"> <%# Eval("") %> </td>
-                                    <td style="width:30%"> <%# Eval("") %> </td>
+                                    <td style="width:10%"> <%# Eval("Poliza") %> </td>
+                                    <td style="width:10%"> <%# Eval("Item") %> </td>
+                                    <td style="width:20%"> <%# Eval("Ramo") %> </td>
+                                    <td style="width:20%"> <%# Eval("SubRamo") %> </td>
+                                    <td style="width:30%"> <%# Eval("Cliente") %> </td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
