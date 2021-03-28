@@ -27,12 +27,99 @@
         function RegistronoEncontrado() {
             alert("No se encontraron registros con el numero de poliza ingresado, favor de verificar.");
         }
+
+        function SeleccionarOpcionDetalle() {
+            alert("Favor de marcar una opción para realizar esta operació.");
+            $("#<%=cbModificarValor.ClientID%>").css("border-color", "blue");
+            $("#<%=cbModificarVigencia.ClientID%>").css("border-color", "blue");
+        }
+
+        function ErrorAlCambiarPrima() {
+
+            alert("Error al Modificar la prima del registro, favor de verificar.");
+        }
+
+        function ErrorCambioVigencia() {
+
+            alert("Error al Modificar la vigencia del registro, favor de verificar.");
+        }
+
+        function CampoPrimaVacio() {
+            alert("El campo prima no puede estar vacio, para guardar este registro, favor de verificar.");
+            $("#<%=txtDetallePrimaNuevaPrincipal.ClientID%>").css("border-color", "red");
+        }
+
+        function CamposVigenciaVacios() {
+            alert("Los campos vigencia no pueden estar vacio, para cambiar esta información.");
+        }
+        function CampoInicioVigenciaVacio() {
+            $("#<%=txtDetalleInicioVigencia.ClientID%>").css("border-color", "red");
+        }
+
+        function CampoFINVigenciaVacio() {
+            $("#<%=txtDetalleFechaFinVigencia.ClientID%>").css("border-color", "red");
+         }
+
         $(document).ready(function () {
             $("#<%=btnConsultarRegistros.ClientID%>").click(function () {
                 var ValidarCampoPoliza = $("#<%=txtIngresarPolizaConsulta.ClientID%>").val().length;
                 if (ValidarCampoPoliza < 1) {
                     alert("El campo poliza no puede estar vacio, favor de verificar.");
                     $("#<%=txtIngresarPolizaConsulta.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
+
+
+            //BOTON MODIFICAR COBERTURAS
+            $("#<%=btnModificarCoberturas.ClientID%>").click(function () {
+
+                var NombreCobertura = $("#<%=txtNombreCoberturaSeleccionada.ClientID%>").val().length;
+                if (NombreCobertura < 1) {
+                    alert("El campo Nombre de cobertura no puede estar vacio para modificar este registro, favor de verificar.");
+                    $("#<%=txtNombreCoberturaSeleccionada.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+                    var Limite = $("#<%=txtLimiteCoberturaSeleccionada.ClientID%>").val().length;
+                    if (Limite < 1) {
+                        alert("El campo Limite no puede estar vacio para modificar este registro, favor de verificar.");
+                        $("#<%=txtLimiteCoberturaSeleccionada.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else {
+                        var PorcientoDeducible = $("#<%=txtPorcientoDeducibleCoberturaSeleccionada.ClientID%>").val().length;
+                        if (PorcientoDeducible < 1) {
+                            alert("El campo % deducible no puede estar vacio para modificar este registro, favor de verificar.");
+                            $("#<%=txtPorcientoDeducibleCoberturaSeleccionada.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
+                        else {
+                            var MinimoDeducible = $("#<%=txtMinimoDeducibleCoberturaSeleccionada.ClientID%>").val().length;
+                            if (MinimoDeducible < 1) {
+                                alert("El campo minimo deducible no puede estar vacio para modificar este registro, favor de verificar.");
+                                $("#<%=txtMinimoDeducibleCoberturaSeleccionada.ClientID%>").css("border-color", "red");
+                                return false;
+                            }
+                            else {
+                                var PorcientoCobertura = $("#<%=txtPorcientoCoberturaCoberturaSeleccionada.ClientID%>").val().length;
+                                if (PorcientoCobertura < 1) {
+                                    alert("El campo % de Cobertura no puede estar vacio para modificar este registro, favr de verificar.");
+                                    $("#<%=txtPorcientoCoberturaCoberturaSeleccionada.ClientID%>").css("border-color", "red");
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            //BOTON PARA BUSCAR EN OTROS FILTROS
+            $("#<%=btnBuscarotrosFiltros.ClientID%>").click(function () {
+                var DatoBusqueda = $("#<%=txtCampoOtroFiltro.ClientID%>").val().length;
+                if (DatoBusqueda < 1) {
+                    alert("El campo Dato Busqueda no puede estar vacio para buscar esta información, favor de verificar.");
+                    $("#<%=txtCampoOtroFiltro.ClientID%>").css("border-color", "red");
                     return false;
                 }
             });
@@ -121,6 +208,7 @@
             </table>
         </div>
         </div>
+              <br />
             <div id="DIVBloqueDecision" visible="false" runat="server">
                 <div class="form-check-inline">
                     <div class="form-group form-check">
@@ -131,6 +219,10 @@
             </div>
             <!--DETALLE DE LA PANTALLA PRINCIPAL-->
             <div id="BloqueControlesPrincipales" visible="false" runat="server">
+                <asp:Label ID="lbCotizacion" runat="server" Text="Cotizacion" Visible="false"></asp:Label>
+                 <asp:Label ID="txtIngresarItem" runat="server" Text="Item" Visible="false"></asp:Label>
+                
+
                 <div class="form-check-inline">
                     <div class="form-group form-check">
                         <asp:CheckBox ID="cbModificarValor" runat="server" Text="Modificar Valor" CssClass="form-check-input LetrasNegrita" ToolTip="Modificar el valor del registro" AutoPostBack="true" OnCheckedChanged="cbModificarValor_CheckedChanged" />
@@ -251,6 +343,8 @@
 
 
         <div id="DivBloqieCoberturas" visible="false" runat="server">
+            <asp:Label ID="lbPolizaCoberturas" runat="server" Text="Poliza Coberturas" Visible="false"></asp:Label>
+            <asp:Label ID="lbItemPoliza" runat="server" Text="Item" Visible="false"></asp:Label>
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -267,15 +361,17 @@
                         <asp:Repeater ID="rpListadoCoberturasItem" runat="server">
                             <ItemTemplate>
                                 <tr>
-                                    <asp:HiddenField ID="hfNumeroCotizacionCobertura" runat="server" Value='<%# Eval("") %>' />
-                                     <asp:HiddenField ID="hfNumeroItemCobertura" runat="server" Value='<%# Eval("") %>' />
+
+                                     <asp:HiddenField ID="hfNumeroPolizaCobertura" runat="server" Value='<%# Eval("Poliza") %>' />
+                                     <asp:HiddenField ID="hfNumeroItemCobertura" runat="server" Value='<%# Eval("SecuenciaCot") %>' />
+                                    <asp:HiddenField ID="hfCodigoCobertura" runat="server" Value='<%# Eval("Secuencia") %>' />
 
                                     <td style="width:10%"> <asp:Button ID="btnseleccionarCoberturas" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Seleccionar Coberturas" OnClick="btnseleccionarCoberturas_Click" /> </td>
-                                    <td style="width:40%"> <%# Eval("") %> </td>
-                                    <td style="width:20%"> <%#string.Format("{0:n2}", Eval("")) %> </td>
-                                    <td style="width:10%"> <%#string.Format("{0:n2}", Eval("")) %> </td>
-                                    <td style="width:10%"> <%#string.Format("{0:n2}", Eval("")) %> </td>
-                                    <td style="width:10%"> <%#string.Format("{0:n2}", Eval("")) %> </td>
+                                    <td style="width:40%"> <%# Eval("Descripcion") %> </td>
+                                    <td style="width:20%"> <%# Eval("MontoInformativo") %> </td>
+                                    <td style="width:10%"> <%# Eval("PorcDeducible") %> </td>
+                                    <td style="width:10%"> <%#string.Format("{0:n2}", Eval("MinimoDeducible")) %> </td>
+                                    <td style="width:10%"> <%#string.Format("{0:n2}", Eval("PorcCobertura")) %> </td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
@@ -311,6 +407,45 @@
             </table>
         </div>
         </div>
+
+          
+            <br />
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                    <asp:Label ID="lbNombreCoberturaSeleccionaa" runat="server" Text="Nombre de Cobertura" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtNombreCoberturaSeleccionada" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                 <div class="form-group col-md-6">
+                    <asp:Label ID="lbLimiteCoberturaSeleccionada" runat="server" Text="Limite" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtLimiteCoberturaSeleccionada" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+
+                 <div class="form-group col-md-6">
+                    <asp:Label ID="lbPorcientoDeducibleCoberturaSeleccionada" runat="server" Text="% Deducible" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtPorcientoDeducibleCoberturaSeleccionada" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                </div>
+
+                 <div class="form-group col-md-6">
+                    <asp:Label ID="lbMinimoDeducibleCoberturaSeleccionada" runat="server" Text="Minimo Deducible" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtMinimoDeducibleCoberturaSeleccionada" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                </div>
+
+                 <div class="form-group col-md-6">
+                    <asp:Label ID="lbPorcientoCoberturaCoberturaSeleccionada" runat="server" Text="% de Cobertura" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtPorcientoCoberturaCoberturaSeleccionada" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                </div>
+            </div>
+          <br />
+            <div align="center">
+                <asp:Label ID="lbPolizaModificarCobertura" runat="server" Text="Cotizacion" Visible="false"></asp:Label>
+                 <asp:Label ID="lbsecuenciaCotModificarCobertura" runat="server" Text="Secuencia Cot" Visible="false"></asp:Label>
+                 <asp:Label ID="lbSecuenciaModificarCobertura" runat="server" Text="Secuencia" Visible="false"></asp:Label>
+
+                <asp:Button ID="btnModificarCoberturas" runat="server" Text="Modificar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Modificar la cobertura seleccionada" OnClick="btnModificarCoberturas_Click" />
+                <asp:Button ID="btnVolverAtrasCobertura" runat="server" Text="Volver" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Volver Atras" OnClick="btnVolverAtrasCobertura_Click" />
+            </div>
+            <br />
             </div>
     </div>
 
@@ -385,15 +520,15 @@
                               <asp:Repeater ID="rpListadoOtrosFiltros" runat="server">
                                   <ItemTemplate>
                                       <tr>
-                                          <asp:HiddenField ID="hfPolizaOtrosFiltros" runat="server" Value='<%# Eval("") %>' />
-                                          <asp:HiddenField ID="hfItemOtrosFiltros" runat="server" Value='<%# Eval("") %>' />
+                                          <asp:HiddenField ID="hfPolizaOtrosFiltros" runat="server" Value='<%# Eval("Poliza") %>' />
+                                          <asp:HiddenField ID="hfItemOtrosFiltros" runat="server" Value='<%# Eval("Item") %>' />
 
                                           <td style="width:10%"> <asp:Button ID="btnDetalleOtrosFiltros" runat="server" Text="Detalle" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Mostrar el Detalle del Registro" OnClick="btnDetalleOtrosFiltros_Click" /> </td>
-                                          <td style="width:10%"> <%# Eval("") %> </td>
-                                          <td style="width:10%"> <%# Eval("") %> </td>
-                                          <td style="width:20%"> <%# Eval("") %> </td>
-                                          <td style="width:20%"> <%# Eval("") %> </td>
-                                          <td style="width:30%"> <%# Eval("") %> </td>
+                                          <td style="width:10%"> <%# Eval("Poliza") %> </td>
+                                          <td style="width:10%"> <%# Eval("Item") %> </td>
+                                          <td style="width:20%"> <%# Eval("Ramo") %> </td>
+                                          <td style="width:20%"> <%# Eval("Subramo") %> </td>
+                                          <td style="width:30%"> <%# Eval("Cliente") %> </td>
                                       </tr>
                                   </ItemTemplate>
                               </asp:Repeater>
