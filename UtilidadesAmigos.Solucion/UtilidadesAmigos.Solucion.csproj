@@ -194,6 +194,7 @@
     <Content Include="Paginas\Reportes\ImpresionCheques.aspx" />
     <Content Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx" />
     <Content Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx" />
+    <Content Include="Paginas\Seguridad\MantenimientoUsuarios.aspx" />
     <Content Include="Paginas\SistemaTicket.aspx" />
     <Content Include="Paginas\SolicitudEmisionPoliza.aspx" />
     <Content Include="Paginas\SolicitudSeguroLey.aspx" />
@@ -325,7 +326,6 @@
     <Content Include="Paginas\Login.aspx" />
     <Content Include="Paginas\Departamentos.aspx" />
     <Content Include="Paginas\Oficinas.aspx" />
-    <Content Include="Paginas\MantenimientoUsuarios.aspx" />
     <Content Include="Paginas\MenuPrincipal.aspx" />
     <Content Include="Paginas\PermisoUsuarios.aspx" />
     <Content Include="Paginas\ProcesarDataGruas.aspx" />
@@ -550,13 +550,6 @@
     <Compile Include="Paginas\Oficinas.aspx.designer.cs">
       <DependentUpon>Oficinas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\MantenimientoUsuarios.aspx.cs">
-      <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\MantenimientoUsuarios.aspx.designer.cs">
-      <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paginas\MenuPrincipal.aspx.cs">
       <DependentUpon>MenuPrincipal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -709,6 +702,12 @@
     </Compile>
     <Compile Include="Paginas\SacarDataCoberturas.aspx.designer.cs">
       <DependentUpon>SacarDataCoberturas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\MantenimientoUsuarios.aspx.cs">
+      <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\MantenimientoUsuarios.aspx.designer.cs">
+      <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ServiciosFijos.aspx.cs">
       <DependentUpon>ServiciosFijos.aspx</DependentUpon>

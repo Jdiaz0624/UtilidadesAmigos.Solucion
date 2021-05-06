@@ -227,7 +227,7 @@
 
                    <ul class="nav nav-item bg-dark list-group-item list-group-item-action">
   <li class="nav-item dropdown">
-    <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%" role="button" aria-haspopup="true" aria-expanded="false">Consultas</a>
+    <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%" role="button" aria-haspopup="true" aria-expanded="false">Seguridad</a>
     <div class="dropdown-menu">
           <asp:LinkButton ID="linkUsuarios" runat="server" ToolTip="Mantenimiento de Usuarios" Text="Usuarios" OnClick="linkUsuarios_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkPerfilesUsuarios" runat="server" Text="Perfiles de Usuarios" ToolTip="Mantenimiento de Perfiles de Usuarios" OnClick="linkPerfilesUsuarios_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
