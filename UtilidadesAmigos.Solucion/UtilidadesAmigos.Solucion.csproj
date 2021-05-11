@@ -172,13 +172,13 @@
     <Content Include="Paginas\ConsumoWS.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
-    <Content Include="Paginas\IntermediariosSupervisores.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
     <Content Include="Paginas\LoginSistema.aspx" />
     <Content Include="Paginas\MantenimeintoPerfiles.aspx" />
     <Content Include="Paginas\MantenimientoClaveSeguridad.aspx" />
     <Content Include="Paginas\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx" />
+    <Content Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx" />
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
     <Content Include="Paginas\Procesos\DatosPoliza.aspx" />
     <Content Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx" />
@@ -480,13 +480,6 @@
     <Compile Include="Paginas\GenerarFacturasPDF.aspx.designer.cs">
       <DependentUpon>GenerarFacturasPDF.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\IntermediariosSupervisores.aspx.cs">
-      <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\IntermediariosSupervisores.aspx.designer.cs">
-      <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paginas\Inventario.aspx.cs">
       <DependentUpon>Inventario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -542,6 +535,12 @@
     </Compile>
     <Compile Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx.designer.cs">
       <DependentUpon>MantenimientoPorcientoComisionPorDefecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx.cs">
+      <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx.designer.cs">
+      <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Oficinas.aspx.cs">
       <DependentUpon>Oficinas.aspx</DependentUpon>

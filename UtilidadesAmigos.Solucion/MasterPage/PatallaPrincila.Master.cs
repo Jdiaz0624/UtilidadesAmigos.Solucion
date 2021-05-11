@@ -402,7 +402,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected void LinkIntermediariosSupervisores_Click(object sender, EventArgs e)
         {
             if (Session["IdUsuario"] != null) {
-                Response.Redirect("~/Paginas/IntermediariosSupervisores.aspx");
+                Response.Redirect("~/Paginas/Mantenimientos/IntermediariosSupervisores.aspx");
             }
             else {
                 FormsAuthentication.SignOut();
