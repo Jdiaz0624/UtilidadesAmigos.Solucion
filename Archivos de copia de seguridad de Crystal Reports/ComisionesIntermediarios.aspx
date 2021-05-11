@@ -16,7 +16,7 @@
             width:90px;
         }
 
-        .Letranegrita {
+        .LetrasNegrita {
         font-weight:bold;
         }
         table {
@@ -53,6 +53,14 @@
                     $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
                     return false;
                 }
+                else {
+                    var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
+                    if (MontoMinimo < 1) {
+                        alert("El campo Monto Minimo no puede estar vacio para realizar esta consulta, favor de verificar");
+                        $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                }
             });
             $("#<%=btnExortarComisiones.ClientID%>").click(function () {
                 var Tasa = $("#<%=txtTasaDollar.ClientID%>").val().length;
@@ -61,6 +69,14 @@
                     $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
                     return false;
                 }
+                else {
+                    var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
+                    if (MontoMinimo < 1) {
+                        alert("El campo Monto Minimo no puede estar vacio para exportar esta información, favor de verificar");
+                        $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                }
             });
             $("#<%=btnReporteCOmisiones.ClientID%>").click(function () {
                 var Tasa = $("#<%=txtTasaDollar.ClientID%>").val().length;
@@ -68,6 +84,14 @@
                     alert("El campo tasa no puede estar vacio para realizar esta operación, favor de verificar.");
                     $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
                     return false;
+                }
+                else {
+                    var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
+                    if (MontoMinimo < 1) {
+                        alert("El campo Monto Minimo no puede estar vacio para generar este reporte, favor de verificar");
+                        $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
                 }
             });
         })
@@ -106,7 +130,7 @@
               </div>
                <div class="form-group col-md-3">
                   <asp:Label ID="lbMontoMinimo" runat="server" Text="Monto Minimo" CssClass="LetrasNegrita"></asp:Label>
-                  <asp:TextBox ID="txtMontoMinimo" runat="server"  Text="500" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
+                  <asp:TextBox ID="txtMontoMinimo" runat="server" Text="500" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
               </div>
               <div class="form-group col-md-3">
                   <asp:Label ID="lbNumeroPolizaConsulta" runat="server" Text="Poliza" CssClass="LetrasNegrita"></asp:Label>
@@ -120,7 +144,7 @@
                   <asp:Label ID="lbNumeroFactura" runat="server" Text="No. Factura" CssClass="LetrasNegrita"></asp:Label>
                   <asp:TextBox ID="txtNumeroFactura" runat="server" AutoCompleteType="Disabled" TextMode="Number" CssClass="form-control"></asp:TextBox>
               </div>
-              <div class="form-group col-md-1">
+              <div class="form-group col-md-2">
                   <asp:Label ID="lbTasa" runat="server" Text="Tasa" CssClass="LetrasNegrita"></asp:Label>
                   <asp:TextBox ID="txtTasaDollar" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
               </div>

@@ -101,14 +101,19 @@
     <Compile Include="Comunes\Conversiones.cs" />
     <Compile Include="Comunes\ConvertirNumeroLetras.cs" />
     <Compile Include="Comunes\EliminarFacturaPDF.cs" />
+    <Compile Include="Comunes\EnvioCorreos.cs" />
     <Compile Include="Comunes\ESacarNombreCliente.cs" />
     <Compile Include="Comunes\ExportarDataExel.cs" />
     <Compile Include="Comunes\ExportarReportePDF.cs" />
     <Compile Include="Comunes\GuardarRegistrosReporteIntermediario.cs" />
     <Compile Include="Comunes\Mail.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionBackupBD.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionCorreosENviar.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionRutaBackupBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesMontosAcumulados.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionConsultaInformacionPrPantalla.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosComisionesSupervisores.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosGrafico.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosProduccion.cs" />
@@ -139,6 +144,7 @@
     <Compile Include="Comunes\UtilidadDrop.cs" />
     <Compile Include="Comunes\Validaciones\ValidarClaveSeguridad.cs" />
     <Compile Include="Comunes\Validaciones\ValidarMontosAcumuladosIntermediarios.cs" />
+    <Compile Include="Comunes\ValidarClaveSeguridad.cs" />
     <Compile Include="Comunes\ValidarControles.cs" />
     <Compile Include="Comunes\VariablesGlobales.cs" />
     <Compile Include="Comunes\VariablesPowerBi.cs" />
@@ -265,6 +271,7 @@
     <Compile Include="Entidades\Mantenimientos\EBuscarProveedoresSolicitudCheques.cs" />
     <Compile Include="Entidades\Mantenimientos\ECadenaIntermediarioDetalle.cs" />
     <Compile Include="Entidades\Mantenimientos\EComisionesPorDefecto.cs" />
+    <Compile Include="Entidades\Mantenimientos\EConsultaInformacionSolicitudChequePantalla.cs" />
     <Compile Include="Entidades\Mantenimientos\EConsultarAntiguedadSaldos.cs" />
     <Compile Include="Entidades\Mantenimientos\EDepartamentos.cs" />
     <Compile Include="Entidades\Mantenimientos\EEmpleado.cs" />
@@ -287,6 +294,7 @@
     <Compile Include="Entidades\Mantenimientos\ESacarTasaMoneda.cs" />
     <Compile Include="Entidades\Mantenimientos\ESacarUltimoNumeroSolicitudGenerado.cs" />
     <Compile Include="Entidades\Mantenimientos\MantenimientoComisionesIntermediarios.cs" />
+    <Compile Include="Entidades\OpcionesAdministrador\EBuscaListadoCorreosEnviar.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\ECorreosEnviar.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\EMantenimientoBackupDatabase.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\ERutaArchivoBakup.cs" />

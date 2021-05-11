@@ -3,133 +3,110 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
        <style type="text/css">
-        .jumbotron{
-            color:#000000; 
-            background:#7BC5FF;
-            font-size:30px;
-            font-weight:bold;
-            font-family:'Gill Sans';
-            padding:25px;
-        }
 
         .btn-sm{
             width:100px;
         }
-          .LetrasNegrita {
-          font-weight:bold;
-          }
+           .LetrasNegrita {
+        font-weight:bold;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        
+
+        th {
+            background-color: dodgerblue;
+            color: white;
+        }
 
 
     </style>
+
     <script type="text/javascript">
-        function CamposVacios() {
-            alert("Has dejado campos vacios que son necesarios para realizar esta operación");
+        function RegistronoEncontrado() {
+            alert("No se encontraron registros con el numero de poliza ingresado, favor de verificar.");
         }
-        function RegistroNoEncontrado() {
-            alert("El registro ingresado no se encuentra registrado");
-        }
-        function PrimaVacia() {
-            $("#<%=txtPrimaNueva.ClientID%>").css("border-color", "red");
-        }
-        function InciioVigencia() {
-            $("#<%=txtInicioVigencia.ClientID%>").css("border-color", "red");
-        }
-        function FInVigenciaVacio() {
-            $("#<%=txtFInVigencia.ClientID%>").css("border-color", "red");
-        }
-        function SeleccionaOpcion() {
-            alert("Favor de seleccionar una opcion a realziar");
-            $("#<%=cbModificarPrima.ClientID%>").css("border-color", "red");
-            $("#<%=cbModificarVigencia.ClientID%>").css("border-color", "red");
-        }
-        function RegistroNoEncontrado() {
-            alert("Registro no encontrado, favor de verificar los parametros ingresados");
-        }
-        function ErrorCambio() {
-            alert("Error al realizar el cambio, favor de verificar los parametros ingresados o comuniquese con tecnologia");
-        }
-   
 
-        function LimpiarControlesCoberturas() {
-            $("#<%=txtCoberturaSeleccionada.ClientID%>").val("");
-            $("#<%=txtMontoInformativo.ClientID%>").val("");
-            $("#<%=txtPorciendoDeducible.ClientID%>").val("");
-            $("#<%=txtMinimoDeducible.ClientID%>").val("");
-            $("#<%=txtPorcientoCobertura.ClientID%>").val("");
-
-            $("#btnCoberturas").attr("disabled", "disabled");
+        function SeleccionarOpcionDetalle() {
+            alert("Favor de marcar una opción para realizar esta operació.");
+            $("#<%=cbModificarValor.ClientID%>").css("border-color", "blue");
+            $("#<%=cbModificarVigencia.ClientID%>").css("border-color", "blue");
         }
-   
+
+        function ErrorAlCambiarPrima() {
+
+            alert("Error al Modificar la prima del registro, favor de verificar.");
+        }
+
+        function ErrorCambioVigencia() {
+
+            alert("Error al Modificar la vigencia del registro, favor de verificar.");
+        }
+
+        function CampoPrimaVacio() {
+            alert("El campo prima no puede estar vacio, para guardar este registro, favor de verificar.");
+            $("#<%=txtDetallePrimaNuevaPrincipal.ClientID%>").css("border-color", "red");
+        }
+
+        function CamposVigenciaVacios() {
+            alert("Los campos vigencia no pueden estar vacio, para cambiar esta información.");
+        }
+        function CampoInicioVigenciaVacio() {
+            $("#<%=txtDetalleInicioVigencia.ClientID%>").css("border-color", "red");
+        }
+
+        function CampoFINVigenciaVacio() {
+            $("#<%=txtDetalleFechaFinVigencia.ClientID%>").css("border-color", "red");
+         }
+
         $(document).ready(function () {
-            $("#<%=btnConsultar.ClientID%>").click(function () {
-                var ValidarCampoPoliza = $("#<%=txtIngresarPoliza.ClientID%>").val().length;
+            $("#<%=btnConsultarRegistros.ClientID%>").click(function () {
+                var ValidarCampoPoliza = $("#<%=txtIngresarPolizaConsulta.ClientID%>").val().length;
                 if (ValidarCampoPoliza < 1) {
-                    alert("Favor ingresar la poliza para buscar un registro");
-                    $("#<%=txtIngresarPoliza.ClientID%>").css("border-color", "red");
+                    alert("El campo poliza no puede estar vacio, favor de verificar.");
+                    $("#<%=txtIngresarPolizaConsulta.ClientID%>").css("border-color", "red");
                     return false;
                 }
-                else {
-                    var ValidarItem = $("#<%=txtIngresarItem.ClientID%>").val().length;
-                    if (ValidarItem < 1) {
-                        alert("Favor ingresar el numero de Item para buscar un registro");
-                        $("#<%=txtIngresarItem.ClientID%>").css("border-color", "red");
-                        return false;
-                    }
-                }
-
             });
 
-            //EVENTO DEL BOTON MODIFICAR
-            $("#<%=btnModificar.ClientID%>").click(function () {
-                var Cobertura = $("#<%=txtCoberturaSeleccionada.ClientID%>").val().length;
-                if (Cobertura < 1) {
-                    alert("El campo cobertura no puede estar vacio para modificar este registro, favor de verificar");
-                    $("#<%=txtCoberturaSeleccionada.ClientID%>").css("border-color", "red");
+
+            //BOTON MODIFICAR COBERTURAS
+            $("#<%=btnModificarCoberturas.ClientID%>").click(function () {
+
+                var NombreCobertura = $("#<%=txtNombreCoberturaSeleccionada.ClientID%>").val().length;
+                if (NombreCobertura < 1) {
+                    alert("El campo Nombre de cobertura no puede estar vacio para modificar este registro, favor de verificar.");
+                    $("#<%=txtNombreCoberturaSeleccionada.ClientID%>").css("border-color", "red");
                     return false;
                 }
                 else {
-                    var MontoInformativo = $("#<%=txtMontoInformativo.ClientID%>").val().length;
-                    if (MontoInformativo < 1) {
-                        alert("El campo monto informativo no puede estar vacio para modificar este registro, favor de verificar");
-                        $("#<%=txtMontoInformativo.ClientID%>").css("border-color", "red");
+                    var Limite = $("#<%=txtLimiteCoberturaSeleccionada.ClientID%>").val().length;
+                    if (Limite < 1) {
+                        alert("El campo Limite no puede estar vacio para modificar este registro, favor de verificar.");
+                        $("#<%=txtLimiteCoberturaSeleccionada.ClientID%>").css("border-color", "red");
                         return false;
                     }
                     else {
-                        var PorcientoDeducible = $("#<%=txtPorciendoDeducible.ClientID%>").val().length;
+                        var PorcientoDeducible = $("#<%=txtPorcientoDeducibleCoberturaSeleccionada.ClientID%>").val().length;
                         if (PorcientoDeducible < 1) {
-                            alert("El campo % deducible no puede estar vacio para modificar este registro, favor de verificar");
-                            $("#<%=txtPorciendoDeducible.ClientID%>").css("border-color", "red");
+                            alert("El campo % deducible no puede estar vacio para modificar este registro, favor de verificar.");
+                            $("#<%=txtPorcientoDeducibleCoberturaSeleccionada.ClientID%>").css("border-color", "red");
                             return false;
                         }
                         else {
-                            var MinimoDeducible = $("#<%=txtMinimoDeducible.ClientID%>").val().length;
+                            var MinimoDeducible = $("#<%=txtMinimoDeducibleCoberturaSeleccionada.ClientID%>").val().length;
                             if (MinimoDeducible < 1) {
-                                alert("El campo Minimo Deducible no puede estar vacio para modificar este registro, favor de verificar");
-                                $("#<%=txtMinimoDeducible.ClientID%>").css("border-color", "red");
+                                alert("El campo minimo deducible no puede estar vacio para modificar este registro, favor de verificar.");
+                                $("#<%=txtMinimoDeducibleCoberturaSeleccionada.ClientID%>").css("border-color", "red");
                                 return false;
                             }
                             else {
-                                var PorcientoCobertura = $("#<%=txtPorcientoCobertura.ClientID%>").val().length;
+                                var PorcientoCobertura = $("#<%=txtPorcientoCoberturaCoberturaSeleccionada.ClientID%>").val().length;
                                 if (PorcientoCobertura < 1) {
-                                    alert("El campo % de cobertura no puede estar vacio para modificar este registro, favor de verificar");
-                                    $("#<%=txtPorcientoCobertura.ClientID%>").css("border-color", "red");
+                                    alert("El campo % de Cobertura no puede estar vacio para modificar este registro, favr de verificar.");
+                                    $("#<%=txtPorcientoCoberturaCoberturaSeleccionada.ClientID%>").css("border-color", "red");
                                     return false;
-                                }
-                                else {
-                                    var ValorPorcientoDeducible = $("#<%=txtPorciendoDeducible.ClientID%>").val();
-                                    if (ValorPorcientoDeducible > 100) {
-                                        alert("El % de deducible no puede ser mayor a 100, favor de verificar");
-                                        $("#<%=txtPorciendoDeducible.ClientID%>").css("border-color", "blue");
-                                        return false;
-                                    }
-                                    else {
-                                        var ValorPorcientoCobertura = $("#<%=txtPorcientoCobertura.ClientID%>").val();
-                                        if (ValorPorcientoCobertura > 100) {
-                                            alert("El % de cobertura no puede ser mayor a 100, favor de verificar");
-                                            $("#<%=txtPorcientoCobertura.ClientID%>").css("border-color", "blue");
-                                            return false;
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -137,400 +114,550 @@
                 }
             });
 
-            //EVENTO DEL BOTON CONSULTAR OTROS FILTROS
-            $("#<%=btnCFonsultarOtrosRegistros.ClientID%>").click(function () {
-                var ValidarCampo = $("#<%=txtDatoOtrosFiltros.ClientID%>").val().length;
-                if (ValidarCampo < 1) {
-                    alert("Favor de ingresar el dato a buscar");
-                    $("#<%=txtDatoOtrosFiltros.ClientID%>").css("border-color", "red");
+            //BOTON PARA BUSCAR EN OTROS FILTROS
+            $("#<%=btnBuscarotrosFiltros.ClientID%>").click(function () {
+                var DatoBusqueda = $("#<%=txtCampoOtroFiltro.ClientID%>").val().length;
+                if (DatoBusqueda < 1) {
+                    alert("El campo Dato Busqueda no puede estar vacio para buscar esta información, favor de verificar.");
+                    $("#<%=txtCampoOtroFiltro.ClientID%>").css("border-color", "red");
                     return false;
                 }
             });
-        });
+
+        })
     </script>
+    <br /><br />
     <div class="container-fluid">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="lbDatoPoliza" runat="server" Text="Datos Poliza"></asp:Label>
-            <asp:Label ID="lbIdRamo" runat="server" Visible="false" Text="Datos Poliza"></asp:Label>
-             <asp:Label ID="lbCotizacion" runat="server" Visible="false" Text="Cotizacion"></asp:Label>
+        <div id="DivBloquePrincipal" runat="server">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <asp:Label ID="lbIngresarPolizaConsulta" runat="server" Text="Ingresar Poliza" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtIngresarPolizaConsulta" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                   <div class="form-group col-md-6">
+                    <asp:Label ID="lbIngresaNumeroItemConsulta" runat="server" Text="Ingresar Item" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtIngresarItemConsulta" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                </div>
+            </div>
+            <div align="center">
+                <asp:Button ID="btnConsultarRegistros" runat="server" Text="Consultar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultarRegistros_Click" />
+                <button type="button" id="btnOtrosFiltros" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target=".OtrosFiltros">Otros Filtros</button>
+
+                <br /><br />
+                <asp:Label ID="lbCantidadRegistrosBloquePrincipalTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="LetrasNegrita"></asp:Label>
+                <asp:Label ID="lbCantidadRegistrosBloquePrincipalVariable" runat="server" Text=" 0 " CssClass="LetrasNegrita"></asp:Label>
+                 <asp:Label ID="lbCantidadRegistrosBloquePrincipalCerrar" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+            </div>
+            <br /><br />
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                             <th style="width:10%" align="left"> Detalle </th>
+                             <th style="width:10%" align="left"> Poliza </th>
+                             <th style="width:10%" align="left"> Item </th>
+                             <th style="width:20%" align="left"> Ramo </th>
+                             <th style="width:20%" align="left"> SubRamo </th>
+                             <th style="width:30%" align="left"> Cliente </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Repeater ID="rpListadoPrincipal" runat="server">
+                            <ItemTemplate>
+                                <tr>
+                                    <asp:HiddenField ID="hfPolizaListadoPrncipal" runat="server" Value='<%# Eval("Poliza") %>' />
+                                     <asp:HiddenField ID="hfNumeroItemPrincipal" runat="server" Value='<%# Eval("Item") %>' />
+
+                                    <td style="width:10%"> <asp:Button ID="btnDetallePrincipal" runat="server" Text="Detalle" ToolTip="Mostrar el Detalle del registro" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnDetallePrincipal_Click" /> </td>
+                                    <td style="width:10%"> <%# Eval("Poliza") %> </td>
+                                    <td style="width:10%"> <%# Eval("Item") %> </td>
+                                    <td style="width:20%"> <%# Eval("Ramo") %> </td>
+                                    <td style="width:20%"> <%# Eval("SubRamo") %> </td>
+                                    <td style="width:30%"> <%# Eval("Cliente") %> </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+            </div>
+
+               <div align="center">
+                <asp:Label ID="lbPaginaActualTituloBloquePrincipal" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="LinkBlbPaginaActualVariableBloquePrincipal" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloBloquePrincipal" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariableBloquePrincipal" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="divPaginacionDetalleBloquePrincipal" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeraPaginaBloquePrincipal" runat="server" Text="Inicio" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaBloquePrincipal_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorBloquePrincipal" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorBloquePrincipal_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionBloquePrincipal" runat="server" OnItemCommand="dtPaginacionBloquePrincipal_ItemCommand" OnItemDataBound="dtPaginacionBloquePrincipal_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralBloquePrincipal" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteBloquePrincipal" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteBloquePrincipal_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoBloquePrincipal" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoBloquePrincipal_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <asp:Label ID="lbIngresaPoliza" runat="server" Text="Ingresar Poliza" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtIngresarPoliza" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
-            </div>
-              <div class="form-group col-md-6">
-                <asp:Label ID="lbIngresarItem" runat="server" Text="Ingresar Item" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtIngresarItem" runat="server" CssClass="form-control" TextMode="Number" MaxLength="20"></asp:TextBox>
-            </div>
         </div>
-        <br />
-        <div align="center">
-             <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
-            <button type="button" id="btnCoberturas" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".ModificarCoberturas">Coberturas</button>
-            <button type="button" id="btnOtrosFiltros" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".OtrosFiltros">Otros Filtros</button>
-        </div>
-        <br />
-        <div class="form-check-inline">
-            <div class="form-group form-check">
-                <asp:CheckBox ID="cbModificarPrima" runat="server" AutoPostBack="true" Text="Cambio de Valor" OnCheckedChanged="cbModificarPrima_CheckedChanged" CssClass="form-check-input" ToolTip="Cambiar el valor a un item de una poliza" />
-            </div>
-             <div class="form-group form-check">
-                <asp:CheckBox ID="cbModificarVigencia" runat="server" AutoPostBack="true" OnCheckedChanged="cbModificarVigencia_CheckedChanged" Text="Cambio de Vigencia" CssClass="form-check-input" ToolTip="Cambiar la Vigencia de Una poliza" />
-            </div>
-        </div>
-        <br />
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <asp:Label ID="lbRamo" runat="server" Text="Ramo" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtRamo" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-            </div>
-             <div class="form-group col-md-6">
-                <asp:Label ID="lbSubramo" runat="server" Text="Sub Ramo" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtSubramo" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-            </div>
-             <div class="form-group col-md-6">
-                <asp:Label ID="lbTipoVegiculo" runat="server" Text="Tipo de Vehiculo" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtTipoVehiculo" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-            </div>
-             <div class="form-group col-md-6">
-                <asp:Label ID="lbMarca" runat="server" Text="Marca" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtMarca" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-            </div>
-             <div class="form-group col-md-6">
-                <asp:Label ID="lbModelo" runat="server" Text="Modelo" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtModelo" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-            </div>
-             <div class="form-group col-md-6">
-                <asp:Label ID="lbColor" runat="server" Text="Color" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtColor" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-            </div>
-             <div class="form-group col-md-6">
-                <asp:Label ID="lbChasis" runat="server" Text="Chasis" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtChasis" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-            </div>
-             <div class="form-group col-md-6">
-                <asp:Label ID="lbPlaca" runat="server" Text="Placa" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtPlaca" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-            </div>
-             <div class="form-group col-md-6">
-                <asp:Label ID="lbValorAsegurado" runat="server" Text="Valor Asegurado" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtValorAsegurado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-            </div>
-             <div class="form-group col-md-6">
-                <asp:Label ID="lbFianza" runat="server" Text="Fianza" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtFianza" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-            </div>
-             <div class="form-group col-md-6">
-                <asp:Label ID="lbAsegurado" runat="server" Text="Asegurado" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtAsegurado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group col-md-6">
-                <asp:Label ID="lbCliente" runat="server" Text="Cliente" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group col-md-6">
-                <asp:Label ID="lbPrimaActual" runat="server" Text="Prima Actual" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtPromaActual" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group col-md-6">
-                <asp:Label ID="lbPrimaNueva" runat="server" Text="Prima Nueva" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtPrimaNueva" runat="server" TextMode="Number" step="any" CssClass="form-control"></asp:TextBox>
-            </div>
-             <div class="form-group col-md-6">
-                <asp:Label ID="lbInicioVigencia" runat="server" Text="Inicio de Vigencia" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtInicioVigencia" runat="server"  TextMode="Date" CssClass="form-control"></asp:TextBox>
-            </div>
-              <div class="form-group col-md-6">
-                <asp:Label ID="lbFinVigencia" runat="server" Text="Fin de Vigencia" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtFInVigencia" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
-            </div>
-        </div>
-         <div align="center">
-             <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Guardar Registro" OnClick="btnGuardar_Click" />
-              <asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Regresar" OnClick="btnRegresar_Click" />
-        </div>
-        <br />
-    </div>
-
-     <div class="modal fade bd-example-modal-xl ModificarCoberturas" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="lbEncabezadoMantenimiento" runat="server" Text="Modificar Coberturas"></asp:Label>
-        </div>
-       <asp:ScriptManager ID="ScripManagerDatoPoliza" runat="server"></asp:ScriptManager>
-        <asp:UpdatePanel ID="UpdatePanelDatoPoliza" runat="server">
-            <ContentTemplate>
-                 <div align="center">
-            <asp:Label ID="lbPolizaConsultadaTitulo" runat="server" Text="Poliza: " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbPolizaConsultaVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
-
-              <asp:Label ID="Label1" runat="server" Text=" - " CssClass="LetrasNegrita"></asp:Label>
-
-            <asp:Label ID="lbItemSeleccionadoTitulo" runat="server" Text="Item Seleccionado: " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbItemSeleccionadoVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
-
-              <asp:Label ID="Label2" runat="server" Text=" - " CssClass="LetrasNegrita"></asp:Label>
-
-            <asp:Label ID="lbEstatusPolizaTitulo" runat="server" Text="Estatus: " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbEstatusPolizaVariableVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
-            <br />
-
-                <asp:Label ID="lbInicioVigenciaTitulo" runat="server" Text="Inicio de Vigencia: " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbInicioVigenciaVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
-
-            <asp:Label ID="Label3" runat="server" Text=" - " CssClass="LetrasNegrita"></asp:Label>
-
-            <asp:Label ID="lbFinVigenciaTitulo" runat="server" Text="Fin de Vigencia: " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbFinVigenciaVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
-        </div>
-
-                <asp:Label ID="lbCodigoCobertura" runat="server" Text="Dato" Visible="false" CssClass="LetrasNegrita"></asp:Label>
-        <br />
-        <div align="center">
-            <asp:Label ID="lbSeleccionarCobertura" runat="server" Text="Seleccionar Cobertura" CssClass="LetrasNegrita"></asp:Label>
-        </div>
-
-            <!--INICIO DEL GRID-->
-    <div class="container-fluid">
-            <asp:GridView ID="gvCoberturasPoliza" runat="server" AllowPaging="true" OnPageIndexChanging="gvCoberturasPoliza_PageIndexChanging" OnSelectedIndexChanged="gvCoberturasPoliza_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    <asp:CommandField ButtonType="Button" HeaderText="Seleccionar"  ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Seleccionar" ShowSelectButton="True" />
-                    <asp:BoundField DataField="Secuencia" HeaderText="ID" />
-                    <asp:BoundField DataField="Descripcion" HeaderText="Cobertura" />
-                    <asp:BoundField DataField="MontoInformativo" HeaderText="Limite" />
-                    <asp:BoundField DataField="PorcDeducible" HeaderText="% Deducible" />
-                    <asp:BoundField DataField="MinimoDeducible" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Minimo"  />
-                    <asp:BoundField DataField="PorcCobertura" HeaderText="% Cobertura" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-    </div>
-    <!--FIN DEL GRID-->
-                <br />
-                <!-- MOSTRAMOS LOS CONTROLES PARA MODIFICAR EL REGISTRO SELECCIONADO-->
-
-                <div class="container-fluid">
-                    <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <asp:Label ID="lbCoberturaSeleccionada" runat="server" Text="Cobertura" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtCoberturaSeleccionada" runat="server" Enabled="false" CssClass="form-control" MaxLength="100"></asp:TextBox>
+              <br />
+            <div id="DIVBloqueDecision" visible="false" runat="server">
+                <div class="form-check-inline">
+                    <div class="form-group form-check">
+                        <asp:RadioButton ID="rbDetallePoliza" runat="server" Text="Detalle de Registro" CssClass="form-check-input LetrasNegrita" ToolTip="Mostrar el detalle del Registro seleccionado" GroupName="Decision" AutoPostBack="true" OnCheckedChanged="rbDetallePoliza_CheckedChanged" />
+                         <asp:RadioButton ID="rbCoberturasPolizas" runat="server" Text="Cobertura de Registro" CssClass="form-check-input LetrasNegrita" ToolTip="Mostrar las coberturas del registro seleccionado" GroupName="Decision" AutoPostBack="true" OnCheckedChanged="rbCoberturasPolizas_CheckedChanged" />
                     </div>
+                </div>
+            </div>
+            <!--DETALLE DE LA PANTALLA PRINCIPAL-->
+            <div id="BloqueControlesPrincipales" visible="false" runat="server">
+                <asp:Label ID="lbCotizacion" runat="server" Text="Cotizacion" Visible="false"></asp:Label>
+                 <asp:Label ID="txtIngresarItem" runat="server" Text="Item" Visible="false"></asp:Label>
+                
 
+                <div class="form-check-inline">
+                    <div class="form-group form-check">
+                        <asp:CheckBox ID="cbModificarValor" runat="server" Text="Modificar Valor" CssClass="form-check-input LetrasNegrita" ToolTip="Modificar el valor del registro" AutoPostBack="true" OnCheckedChanged="cbModificarValor_CheckedChanged" />
+                        <asp:CheckBox ID="cbModificarVigencia" runat="server" Text="Modificar Vigencia" CssClass="form-check-input LetrasNegrita" ToolTip="Modificar la vigencia del registro" AutoPostBack="true" OnCheckedChanged="cbModificarVigencia_CheckedChanged" />
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <asp:Label ID="lbMontoInformativoSeleccionado" runat="server" Text="Limite" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtMontoInformativo" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:Label ID="lbDetalleRamoPrincipal" runat="server" Text="Ramo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleRamoPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
                     <div class="form-group col-md-6">
-                        <asp:Label ID="lbPorcientoDeducibleSeleccionado" runat="server" Text="% Deducible" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtPorciendoDeducible" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
+                        <asp:Label ID="lbDetalleSubramoPrincipal" runat="server" Text="SubRamo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleSubramoPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
-                    <div class="form-group col-md-6">
-                          <asp:Label ID="lbMinimoDeducibleSeleccionado" runat="server" Text="Minimo Deducible" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtMinimoDeducible" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <asp:Label ID="lbPorcientoCobertura" runat="server" Text="% Cobertura" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtPorcientoCobertura" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
-                    </div>
-                </div>
-                </div>
 
-                  <div align="center">
-             <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Modificar Registro" OnClick="btnModificar_Click" />
+                     <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleInicioVigencia" runat="server" Text="Inicio Vigencia Actual" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleInicioVigenciaPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                     <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleFinVigenciaPrincipal" runat="server" Text="Fin Vigencia Actual" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleFinVigenciaPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleTipoVehiculoPrincipal" runat="server" Text="Tipo de Vehiculo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleTipoVehiculoPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleMarcaPrincipal" runat="server" Text="Marca" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleMarcaPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleModeloPrincipal" runat="server" Text="Modelo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleModeloPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleColorPrincipal" runat="server" Text="Color" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleColorPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleChasisPrincipal" runat="server" Text="Chasis" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleChasisPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetallePlacaPrincipal" runat="server" Text="Placa" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetallePlacaprincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleValorAseguradoPrincipal" runat="server" Text="Valor Asegurado" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleValorAseguradoPrinncipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleFianzaPrincipal" runat="server" Text="Fianza" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleFianzaPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleAseguradoPrincipal" runat="server" Text="Asegurado" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleAseguradoPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleClientePrincipal" runat="server" Text="Cliente" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleClientePrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetallePrimaActualPrincipal" runat="server" Text="Prima Actual" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetallePrimaActualPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6" id="DivPrimaNueva" runat="server">
+                        <asp:Label ID="lbDetallePrimaNuevaPrincipal" runat="server" Text="Prima Nueva" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetallePrimaNuevaPrincipal" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6" id="DivFechaInicioVigencia" runat="server">
+                        <asp:Label ID="lbInicioVigencia" runat="server" Text="Inicio de Vigencia" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleInicioVigencia" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6" id="DivFechaFinVigencia" runat="server">
+                        <asp:Label ID="lbDetalleFechaFinVigencia" runat="server" Text="Fin de Vigencia" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleFechaFinVigencia" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+                <br />
+                <div align="center">
+                    <asp:Button ID="btnGuardarDetalle" runat="server" Text="Guardar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Guardar Registro" OnClick="btnGuardarDetalle_Click" /> 
+                     <asp:Button ID="btnVolverAtras" runat="server" Text="Volver" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Volver Atras" OnClick="btnVolverAtras_Click" /> 
+                </div>
+                <br />
+            </div>
+
         </div>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-      
-        <br />
+
+
+
+
+
+
+
+
+
+
+
+
+        <div id="DivBloqieCoberturas" visible="false" runat="server">
+            <asp:Label ID="lbPolizaCoberturas" runat="server" Text="Poliza Coberturas" Visible="false"></asp:Label>
+            <asp:Label ID="lbItemPoliza" runat="server" Text="Item" Visible="false"></asp:Label>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width:10%" align="left"> Seleccionar </th>
+                            <th style="width:40%" align="left"> Cobertura </th>
+                            <th style="width:20%" align="left"> Limite </th>
+                            <th style="width:10%" align="left"> % Deducible </th>
+                            <th style="width:10%" align="left"> Minimo </th>
+                            <th style="width:10%" align="left"> % Cobertura </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Repeater ID="rpListadoCoberturasItem" runat="server">
+                            <ItemTemplate>
+                                <tr>
+
+                                     <asp:HiddenField ID="hfNumeroPolizaCobertura" runat="server" Value='<%# Eval("Poliza") %>' />
+                                     <asp:HiddenField ID="hfNumeroItemCobertura" runat="server" Value='<%# Eval("SecuenciaCot") %>' />
+                                    <asp:HiddenField ID="hfCodigoCobertura" runat="server" Value='<%# Eval("Secuencia") %>' />
+
+                                    <td style="width:10%"> <asp:Button ID="btnseleccionarCoberturas" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Seleccionar Coberturas" OnClick="btnseleccionarCoberturas_Click" /> </td>
+                                    <td style="width:40%"> <%# Eval("Descripcion") %> </td>
+                                    <td style="width:20%"> <%# Eval("MontoInformativo") %> </td>
+                                    <td style="width:10%"> <%# Eval("PorcDeducible") %> </td>
+                                    <td style="width:10%"> <%#string.Format("{0:n2}", Eval("MinimoDeducible")) %> </td>
+                                    <td style="width:10%"> <%#string.Format("{0:n2}", Eval("PorcCobertura")) %> </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+            </div>
+
+        
+
+         <div align="center">
+                <asp:Label ID="lbPaginaActualTituloCoberturas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="LinkBlbPaginaActualVariableCoberturas" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloCoberturas" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariableCoberturas" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="divPaginacionDetalleCoberturas" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeraPaginaCoberturas" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaCoberturas_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorCoberturas" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorCoberturas_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionCoberturas" runat="server" OnItemCommand="dtPaginacionCoberturas_ItemCommand" OnItemDataBound="dtPaginacionCoberturas_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralCoberturas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteCoberturas" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteCoberturas_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoCoberturas" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoCoberturas_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+
+          
+            <br />
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                    <asp:Label ID="lbNombreCoberturaSeleccionaa" runat="server" Text="Nombre de Cobertura" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtNombreCoberturaSeleccionada" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                 <div class="form-group col-md-6">
+                    <asp:Label ID="lbLimiteCoberturaSeleccionada" runat="server" Text="Limite" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtLimiteCoberturaSeleccionada" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+
+                 <div class="form-group col-md-6">
+                    <asp:Label ID="lbPorcientoDeducibleCoberturaSeleccionada" runat="server" Text="% Deducible" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtPorcientoDeducibleCoberturaSeleccionada" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                </div>
+
+                 <div class="form-group col-md-6">
+                    <asp:Label ID="lbMinimoDeducibleCoberturaSeleccionada" runat="server" Text="Minimo Deducible" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtMinimoDeducibleCoberturaSeleccionada" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                </div>
+
+                 <div class="form-group col-md-6">
+                    <asp:Label ID="lbPorcientoCoberturaCoberturaSeleccionada" runat="server" Text="% de Cobertura" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtPorcientoCoberturaCoberturaSeleccionada" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                </div>
+            </div>
+          <br />
+            <div align="center">
+                <asp:Label ID="lbPolizaModificarCobertura" runat="server" Text="Cotizacion" Visible="false"></asp:Label>
+                 <asp:Label ID="lbsecuenciaCotModificarCobertura" runat="server" Text="Secuencia Cot" Visible="false"></asp:Label>
+                 <asp:Label ID="lbSecuenciaModificarCobertura" runat="server" Text="Secuencia" Visible="false"></asp:Label>
+
+                <asp:Button ID="btnModificarCoberturas" runat="server" Text="Modificar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Modificar la cobertura seleccionada" OnClick="btnModificarCoberturas_Click" />
+                <asp:Button ID="btnVolverAtrasCobertura" runat="server" Text="Volver" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Volver Atras" OnClick="btnVolverAtrasCobertura_Click" />
+            </div>
+            <br />
+            </div>
     </div>
-  </div>
-</div>
 
 
 
 
 
 
-         <div class="modal fade bd-example-modal-xl OtrosFiltros" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           <div class="modal fade bd-example-modal-xl OtrosFiltros" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="Label4" runat="server" Text="Otros Filtros Poliza"></asp:Label>
-        </div>
+
+        <asp:ScriptManager ID="ScripManagerOtrosFiltros" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanelOtrosFiltros" runat="server">
             <ContentTemplate>
-               <div class="container-fluid">
-                    <div align="center">
-                    <asp:Label ID="lbSeleccionarTipoOpcion" runat="server" Text="Seleccionar Tipo de Consulta" CssClass="LetrasNegrita"></asp:Label>
-                </div>
-                <div  align="center">
-                     <div class="form-check-inline">
+              <div class="container-fluid">
+                  <div id="DivBloqueConsultaOtrosFiltros" runat="server">
+                        <div class="form-check-inline">
                     <div class="form-group form-check">
-                        <asp:RadioButton ID="rbBuscarChasis" runat="server" GroupName="OtrosFiltros" Text="Buscar por Chasis" ToolTip="Seleccionar para buscar mediante el chasis" CssClass="form-check-input" />
-                        <asp:RadioButton ID="rbBuscarPorPlaca" runat="server" GroupName="OtrosFiltros" Text="Buscar por Placa" ToolTip="Seleccionar para buscar mediante la placa" CssClass="form-check-input" />
+                        <asp:RadioButton ID="rbBuscarPorPlaca" runat="server" Text="Buscar Por Placa" CssClass="form-check-input LetrasNegrita" ToolTip="Buscar mediante la placa" AutoPostBack="true" OnCheckedChanged="rbBuscarPorPlaca_CheckedChanged" GroupName="TipoBusqueda" />
+                         <asp:RadioButton ID="rbBuscarPorChasis" runat="server" Text="Buscar Por Chasis" CssClass="form-check-input LetrasNegrita" ToolTip="Buscar mediante el Chasis" AutoPostBack="true" OnCheckedChanged="rbBuscarPorChasis_CheckedChanged" GroupName="TipoBusqueda" />
                     </div>
                 </div>
-
-                    
-                </div>
-                <div class="form-row">
-                        <div class="form-group col-md-3">
-                            <asp:Label ID="lbIngresarOtroFiltro" runat="server" Text="Ingresar Dato" CssClass="LetrasNegrita"></asp:Label>
-                            <asp:TextBox ID="txtDatoOtrosFiltros" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
-                          
-                        </div>
-                    </div>
-                     <asp:Button ID="btnCFonsultarOtrosRegistros" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnCFonsultarOtrosRegistros_Click" ToolTip="Consultar"/>
-                   <asp:Button ID="btnRestablecerOtrosFiltros" runat="server" Text="Restablecer" CssClass="btn btn-outline-primary btn-sm" OnClick="btnRestablecerOtrosFiltros_Click" ToolTip="Restablecer Pantalla"/>
-               </div>
-               <br />
-                  <!--INICIO DEL GRID-->
-    <div class="container-fluid">
-            <asp:GridView ID="gvOtrosFiltros" runat="server" AllowPaging="true" OnPageIndexChanging="gvOtrosFiltros_PageIndexChanging" OnSelectedIndexChanged="gvOtrosFiltros_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    <asp:CommandField ButtonType="Button" HeaderText="Ver"  ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />
-                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
-                    <asp:BoundField DataField="Item" HeaderText="Item" />
-                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
-                    <asp:BoundField DataField="Cotizacion" HeaderText="Cotizacion" />
-                    <asp:BoundField DataField="Ramo" HeaderText="Ramo" />
-                    <asp:BoundField DataField="Subramo" HeaderText="% Cobertura" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-    
-    <!--FIN DEL GRID-->
                 <br />
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <asp:Label ID="lbPolizaOtrosFiltros" runat="server"  Visible="false" Text="Poliza" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtPolizaOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <asp:Label ID="lbItemOtrosFiltros" runat="server" Visible="false" Text="Item" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtNumeroItemOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <asp:Label ID="lbEstatusOtrosFiltros" runat="server" Visible="false" Text="Estatus" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtEstatusOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <asp:Label ID="lbSumaAseguradaOtrosFiltros" runat="server" Visible="false" Text="Suma Asegurada" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtSumaAseguradaOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <asp:Label ID="lbClienteOtrosFiltros" runat="server" Visible="false" Text="Cliente" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtClienteOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <asp:Label ID="lbAseguradoOtrosFiltros" runat="server" Visible="false" Text="Asegurado" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtAseguradoOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                     <div class="form-group col-md-6">
-                        <asp:Label ID="lbIntermediarioOtrosFiltros" Visible="false" runat="server" Text="Intermediario" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtIntermediarioOtrosFiltros" Visible="false" runat="server" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                     <div class="form-group col-md-6">
-                        <asp:Label ID="lbPrimaOtrosFiltros" runat="server" Visible="false" Text="Prima" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtPrimaOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                     <div class="form-group col-md-6">
-                        <asp:Label ID="lbCotizacionOtrosFiltros" runat="server" Visible="false" Text="Cotizacion" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtCotizacionotrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                      <div class="form-group col-md-6">
-                        <asp:Label ID="lbValorVehiculoOtrosFiltros" runat="server" Visible="false" Text="Valor de Vehiculo" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtValorVehiculoOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                      <div class="form-group col-md-6">
-                        <asp:Label ID="lbRamoOtrosFiltros" runat="server" Visible="false" Text="Ramo" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtRamoOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                      <div class="form-group col-md-6">
-                        <asp:Label ID="lbSubramoOtrosFiltros" runat="server" Visible="false" Text="Sub Ramo" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtSubramoOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                      <div class="form-group col-md-6">
-                        <asp:Label ID="lbTipoVehiculoOtrosFiltros" runat="server" Visible="false" Text="Tipo de Vehiculo" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtTipoVehiculoOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                      <div class="form-group col-md-6">
-                        <asp:Label ID="lbMarcaOtrosFiltros" runat="server" Visible="false" Text="Marca" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtMarcaOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                      <div class="form-group col-md-6">
-                        <asp:Label ID="lbModeloOtrosFiltros" runat="server" Visible="false" Text="Modelo" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtModelosOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                     <div class="form-group col-md-6">
-                        <asp:Label ID="lbCapacidadOtrosFiltros" runat="server" Visible="false" Text="Capacidad" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtCapacidadOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                     <div class="form-group col-md-6">
-                        <asp:Label ID="lbAnoOtrosFiltros" runat="server" Visible="false" Text="Año" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtAnoOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <asp:Label ID="lbColorOtrosFiltros" runat="server" Text="Color" Visible="false"   CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtColorOtrosFiltros" runat="server" MaxLength="100" Visible="false"  Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <asp:Label ID="lbChasisOtrosFiltros" runat="server" Text="Chasis" Visible="false" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtChasisOtrosFiltros" runat="server" MaxLength="100" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <asp:Label ID="lbPlacaOtrosFiltros" runat="server" Text="Placa" Visible="false" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtPlacaOtrosFiltros" runat="server" MaxLength="100" Visible="false" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <asp:Label ID="lbUsoOtrosFiltros" runat="server" Text="Uso" Visible="false" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtUsoOtrosFiltros" runat="server" Visible="false" MaxLength="100" Enabled="false" CssClass="form-control"></asp:TextBox>
+                        <asp:Label ID="lbLetreroOtroFiltro" runat="server" Text="Ingresar Dato" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtCampoOtroFiltro" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                     </div>
                 </div>
+                <div align="center">
+                    <asp:Button ID="btnBuscarotrosFiltros" runat="server" Text="Buscar" ToolTip="Buscar Registro" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnBuscarotrosFiltros_Click" />
+                    <br />
+                    <br />
+                    <asp:Label ID="lbCantidadRegistrosTituloOtrosFiltros" runat="server" Text="Cantidad de Registros ( " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbCantidadRegistrosVariableOtrosFiltros" runat="server" Text=" 0 " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbCantidadRegistrosCerrarOtrosFiltros" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
+                </div>
+                <br />
+
+                  <div class="table-responsive">
+                      <table class="table table-hover">
+                          <thead>
+                              <tr>
+                              <th style="width:10%" align="left"> Detalle </th>
+                              <th style="width:10%" align="left"> Poliza </th>
+                              <th style="width:10%" align="left"> Item </th>
+                              <th style="width:20%" align="left"> Ramo </th>
+                              <th style="width:20%" align="left"> SubRamo </th>
+                              <th style="width:30%" align="left"> Cliente </th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                              <asp:Repeater ID="rpListadoOtrosFiltros" runat="server">
+                                  <ItemTemplate>
+                                      <tr>
+                                          <asp:HiddenField ID="hfPolizaOtrosFiltros" runat="server" Value='<%# Eval("Poliza") %>' />
+                                          <asp:HiddenField ID="hfItemOtrosFiltros" runat="server" Value='<%# Eval("Item") %>' />
+
+                                          <td style="width:10%"> <asp:Button ID="btnDetalleOtrosFiltros" runat="server" Text="Detalle" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Mostrar el Detalle del Registro" OnClick="btnDetalleOtrosFiltros_Click" /> </td>
+                                          <td style="width:10%"> <%# Eval("Poliza") %> </td>
+                                          <td style="width:10%"> <%# Eval("Item") %> </td>
+                                          <td style="width:20%"> <%# Eval("Ramo") %> </td>
+                                          <td style="width:20%"> <%# Eval("Subramo") %> </td>
+                                          <td style="width:30%"> <%# Eval("Cliente") %> </td>
+                                      </tr>
+                                  </ItemTemplate>
+                              </asp:Repeater>
+                          </tbody>
+                      </table>
+                  </div>
+                   <div align="center">
+                <asp:Label ID="lbPaginaActualTituloOtrosFiltros" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="LinkBlbPaginaActualVariableOtrosFiltros" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloOtrosFiltros" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariableOtrosFiltros" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="divPaginacionDetalleOtrosFiltros" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeraPaginaOtrosFiltros" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaOtrosFiltros_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorOtrosFiltros" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorOtrosFiltros_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionOtrosFiltros" runat="server" OnItemCommand="dtPaginacionOtrosFiltros_ItemCommand" OnItemDataBound="dtPaginacionOtrosFiltros_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralOtrosFiltros" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteOtrosFiltros" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteOtrosFiltros_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoOtrosFiltros" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoOtrosFiltros_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
         </div>
+        </div>
+                  </div>
+
+
+
+
+
+
+
+                  <div id="DivBloqueDetalleOtrosFiltros" visible="false" runat="server">
+
+                      <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleRamoOtrosFiltros" runat="server" Text="Ramo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleRamoOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleSubramoOtrosFiltros" runat="server" Text="SubRamo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleSubramoOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                     <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleInicioOtrosFiltros" runat="server" Text="Inicio Vigencia Actual" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleInicioVigenciaOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                     <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleFinVigenciaOtrosFiltros" runat="server" Text="Fin Vigencia Actual" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleFinVigenciaOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleTipoVehiculoOtrosFiltros" runat="server" Text="Tipo de Vehiculo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleTipoVehiculoOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleMarcaOtrosFiltros" runat="server" Text="Marca" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleMarcaOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleModeloOtrosFiltros" runat="server" Text="Modelo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleModeloOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleColorOtrosFiltros" runat="server" Text="Color" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleColorOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleChasisOtrosFiltros" runat="server" Text="Chasis" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleChasisOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetallePlacaOtrosFiltros" runat="server" Text="Placa" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetallePlacaOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleValorAseguradoOtrosFiltros" runat="server" Text="Valor Asegurado" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleValorAseguradoOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleFianzaOtrosFiltros" runat="server" Text="Fianza" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleFianzaOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleAseguradoOtrosFiltros" runat="server" Text="Asegurado" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleAseguradoOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetalleClienteOtrosFiltros" runat="server" Text="Cliente" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetalleClienteOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbDetallePrimaActualOtrosFiltros" runat="server" Text="Prima Actual" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDetallePrimaActualOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+  
+                </div>
+
+                      <div align="center">
+                          <asp:Button ID="btnVolverAtrasOtrosFiltros" runat="server" Text="Volver" ToolTip="Volver Atras" OnClick="btnVolverAtrasOtrosFiltros_Click" CssClass="btn btn-outline-secondary btn-sm" />
+                      </div>
+                      <br />
+                  </div>
+              </div>
+
             </ContentTemplate>
         </asp:UpdatePanel>
       
@@ -538,5 +665,4 @@
     </div>
   </div>
 </div>
-
 </asp:Content>
