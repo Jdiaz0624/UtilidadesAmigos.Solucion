@@ -189,7 +189,17 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkUsuarios_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Paginas/MantenimientoUsuarios.aspx");
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Seguridad/MantenimientoUsuarios.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+            
+            
         }
 
         protected void linkCarteraIntermediarios_Click(object sender, EventArgs e)
