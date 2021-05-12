@@ -176,12 +176,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantallaActual.Text = "MANTENIMIENTO INTERMEDIARIOS / SUPERVISORES";
                 CargaroficinaConsulta();
+                CurrentPage = 0;
                 MostrarIntermediariosSupervisores();
+                DivBloqueConsulta.Visible = true;
+                DivBloqueMantenimiento.Visible = false;
+                DivBloqueComisiones.Visible = false;
+                DivBloqueInternoComision.Visible = false;
             }
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
+            CurrentPage = 0;
             MostrarIntermediariosSupervisores();
         }
 
@@ -212,12 +218,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void LinkPrimeraPaginaIntermediariosSupervisores_Click(object sender, EventArgs e)
         {
+            CurrentPage = 0;
+            MostrarIntermediariosSupervisores();
 
         }
 
         protected void LinkAnteriorIntermediariosSupervisores_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarIntermediariosSupervisores();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleIntermediariosSupervisores, ref lbCantidadPaginaVariableIntermediariosSupervisores);
         }
 
         protected void dtPaginacionIntermediariosSupervisores_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -227,17 +237,92 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void dtPaginacionIntermediariosSupervisores_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarIntermediariosSupervisores();
         }
 
         protected void LinkSiguienteIntermediariosSupervisores_Click(object sender, EventArgs e)
+        {
+            CurrentPage += 1;
+            MostrarIntermediariosSupervisores();
+        }
+
+        protected void btnGuardarMantenimiento_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnVolverAtrasMantenimiento_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnConsultarComisiones_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnValidarClaveSeguridad_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSeleccionarComision_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkPrimeraPaginaIntermediariosSupervisoresComisiones_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkAnteriorIntermediariosSupervisoresComisiones_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionIntermediariosSupervisoresComisiones_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionIntermediariosSupervisoresComisiones_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguienteIntermediariosSupervisoresComisiones_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoIntermediariosSupervisoresComisiones_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnModificarComision_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCancearProceso_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnVolverAtrasComisiones_Click(object sender, EventArgs e)
         {
 
         }
 
         protected void LinkUltimoIntermediariosSupervisores_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarIntermediariosSupervisores();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleIntermediariosSupervisores, ref lbCantidadPaginaVariableIntermediariosSupervisores);
         }
     }
 }
