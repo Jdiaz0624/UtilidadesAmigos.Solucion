@@ -22,6 +22,140 @@
         }
     </style>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#<%=btnGuardarMantenimiento.ClientID%>").click(function () {
+                var TipoIdentificacion = $("#<%=ddlSeleccionarTipoIdentificacionMantenimiento.ClientID%>").val();
+                if (TipoIdentificacion < 1) {
+                    alert("El campo tipo de identificación no puede estar vacio para realizar esta operación, favor de verificar.");
+                    $("#<%=ddlSeleccionarTipoIdentificacionMantenimiento.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+                    var NumeroIdentificacion = $("#<%=txtNumeroIdentificacionMantenimiento.ClientID%>").val().length;
+                    if (NumeroIdentificacion < 1) {
+                        alert("El campo numero de identificación no puede estar vacio para realizar esta operación, favor de verificar.");
+                        $("#<%=txtNumeroIdentificacionMantenimiento.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else {
+                        var Apellido = $("#<%=txtApellidoMantenimiento.ClientID%>").val().length;
+                        if (Apellido < 1) {
+                            alert("El campo Apellido no puede estar vacio para realizar esta operación, favor de verificar.");
+                            $("#<%=txtApellidoMantenimiento.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
+                        else {
+                            var Nombre = $("#<%=txtNombreMantenimiento.ClientID%>").val().length;
+                            if (Nombre < 1) {
+                                alert("El campo Nombre no puede estar vacio para realizar esta operación, favor de verificar.");
+                                $("#<%=txtNombreMantenimiento.ClientID%>").css("border-color", "red");
+                                return false;
+                            }
+                            else {
+                                var Direccion = $("#<%=txtDireccion.ClientID%>").val().length;
+                                if (Direccion < 1) {
+                                    alert("El campo Dirección no puede estar vacio para realizar esta operación, favor de verificar.");
+                                    $("#<%=txtDireccion.ClientID%>").css("border-color", "red");
+                                    return false;
+                                }
+                                else {
+                                    var Pais = $("#<%=ddlPaisMantenimiento.ClientID%>").val();
+                                    if (Pais < 1) {
+                                        alert("El campo Pais no puede estar vacio para realizar esta operación, favor de verificar.");
+                                        $("#<%=ddlPaisMantenimiento.ClientID%>").css("border-color", "red");
+                                        return false;
+                                    }
+                                    else {
+                                        var Zona = $("#<%=ddlZonaMantenimiento.ClientID%>").val();
+                                        if (Zona < 1) {
+                                            alert("El campo Zona no puede estar vacio para realizar esta operación, favor de verificar.");
+                                            $("#<%=ddlZonaMantenimiento.ClientID%>").css("border-color", "red");
+                                            return false;
+                                        }
+                                        else {
+                                            var Provincia = $("#<%=ddlProvinciaMantenimiento.ClientID%>").val();
+                                            if (Provincia < 1) {
+                                                alert("El campo Provincia no puede estar vacio para realizar esta operación, favor de verificar.");
+                                                $("#<%=ddlProvinciaMantenimiento.ClientID%>").css("border-color", "red");
+                                                return false;
+                                            }
+                                            else {
+                                                var Municipio = $("#<%=ddlMunicipioMAntenimiento.ClientID%>").val();
+                                                if (Municipio < 1) {
+                                                    alert("El campo Municipio no puede estar vacio para realizar esta operación, favor de verificar.");
+                                                    $("#<%=ddlMunicipioMAntenimiento.ClientID%>").css("border-color", "red");
+                                                    return false;
+                                                }
+                                                else {
+                                                    var Sector = $("#<%=ddlSectorMantenimiento.ClientID%>").val();
+                                                    if (Sector < 1) {
+                                                        alert("El campo Sector no puede estar vacio para realizar esta operación, favor de verificar.");
+                                                        $("#<%=ddlSectorMantenimiento.ClientID%>").css("border-color", "red");
+                                                        return false;
+                                                    }
+                                                    else {
+                                                        var Ubicacion = $("#<%=ddlUbicacionMantenimiento.ClientID%>").val();
+                                                        if (Ubicacion < 1) {
+                                                            alert("El campo Ubicación no puede estar vacio para realizar esta operación, favor de verificar.");
+                                                            $("#<%=ddlUbicacionMantenimiento.ClientID%>").css("border-color", "red");
+                                                            return false;
+                                                        }
+                                                        else {
+                                                            var CodigoSupervisor = $("#<%=txtCodigoSupervisorMantenimiento.ClientID%>").val().length;
+                                                            if (CodigoSupervisor < 1) {
+                                                                alert("El campo Codigo de Supervisor no puede estar vacio para realizar esta operación, favor de verificar.");
+                                                                $("#<%=txtCodigoSupervisorMantenimiento.ClientID%>").css("border-color", "red");
+                                                                return false;
+                                                            }
+                                                            else {
+                                                                var ValorCodigoSupervisor = $("#<%=txtCodigoSupervisorMantenimiento.ClientID%>").val();
+                                                                if (ValorCodigoSupervisor == 0) {
+                                                                    alert("El codigo de supervisor no puede tener el valor de cero, favor de verificar.");
+                                                                    $("#<%=txtCodigoSupervisorMantenimiento.ClientID%>").css("border-color", "blue");
+                                                                    return false;
+                                                                }
+                                                                else {
+                                                                    var Oficina = $("#<%=ddlOficinaMAntenimiento.ClientID%>").val();
+                                                                    if (Oficina < 1) {
+                                                                        alert("El campo Oficina no puede estar vacio para realizar esta operación, favor de verificar.");
+                                                                        $("#<%=ddlOficinaMAntenimiento.ClientID%>").css("border-color", "red");
+                                                                        return false;
+                                                                    }
+                                                                    else {
+                                                                        var Banco = $("#<%=ddlBancoMantenimiento.ClientID%>").val();
+                                                                        if (Banco < 1) {
+                                                                            alert("El campo Banco no puede estar vacio para realizar esta operación, favor de verificar.");
+                                                                            $("#<%=ddlBancoMantenimiento.ClientID%>").css("border-color", "red");
+                                                                            return false;
+                                                                        }
+                                                                        else {
+                                                                            var CanalDistribucion = $("#<%=ddlCanalDistribucionMantenimiento.ClientID%>").val();
+                                                                            if (CanalDistribucion < 1) {
+                                                                                alert("El campo Canal de Distribución no puede estar vacio para realizar esta operación, favor de verificar.");
+                                                                                $("#<%=ddlCanalDistribucionMantenimiento.ClientID%>").css("border-color", "red");
+                                                                                return false;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+        })
+    </script>
+
   <div class="container-fluid">
         <div id="DivBloqueConsulta"  runat="server">
             <br />
@@ -125,8 +259,8 @@
                 <asp:RadioButton ID="rbActivoMantenimiento" runat="server" Text="Activo" CssClass="form-check-input LetrasNegrita" ToolTip="Marcar el estatus activo el intermediario" GroupName="EstatusIntermediario" />
                 <asp:RadioButton ID="rbInactivoMantenimiento" runat="server" Text="Inactivo" CssClass="form-check-input LetrasNegrita" ToolTip="Marcar el estatus inactivo el intermediario" GroupName="EstatusIntermediario" />
                 <asp:Label ID="lbSeparador2" runat="server" Text=" | " CssClass="LetrasNegrita"></asp:Label>
-                <asp:RadioButton ID="rbIntermediarioDirectoMantenimiento" runat="server" Text="Directo" CssClass="form-check-input LetrasNegrita" ToolTip="Intermediario Directo" GroupName="RetencionIntermediario" />
-                <asp:RadioButton ID="rbIntermediarioNoDirectoMantenimiento" runat="server" Text="No Directo" CssClass="form-check-input LetrasNegrita" ToolTip="Intermediario No Directo" GroupName="RetencionIntermediario" />
+                <asp:RadioButton ID="rbIntermediarioDirectoMantenimiento" runat="server" Text="Directo" CssClass="form-check-input LetrasNegrita" ToolTip="Intermediario Directo" GroupName="IntermediarioDirecto" />
+                <asp:RadioButton ID="rbIntermediarioNoDirectoMantenimiento" runat="server" Text="No Directo" CssClass="form-check-input LetrasNegrita" ToolTip="Intermediario No Directo" GroupName="IntermediarioDirecto" />
             </div>
         </div>
         <br />
@@ -183,29 +317,29 @@
 
              <div class="form-group col-md-4">
                 <asp:Label ID="lbPaisMantenimiento" runat="server" Text="Pais" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlPaisMantenimiento" runat="server" ToolTip="Seleccionar el Pais" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="ddlPaisMantenimiento" runat="server" ToolTip="Seleccionar el Pais" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPaisMantenimiento_SelectedIndexChanged" ></asp:DropDownList>
             </div>
 
              <div class="form-group col-md-4">
                 <asp:Label ID="lbZonaMAntenimiento" runat="server" Text="Zona" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlZonaMantenimiento" runat="server" ToolTip="Seleccionar la Zona" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="ddlZonaMantenimiento" runat="server" ToolTip="Seleccionar la Zona" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlZonaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
             </div>
 
              <div class="form-group col-md-4">
                 <asp:Label ID="lbProvinciaMantenimiento" runat="server" Text="Provincia" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlProvinciaMantenimiento" runat="server" ToolTip="Seleccionar la Provincia" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="ddlProvinciaMantenimiento" runat="server" ToolTip="Seleccionar la Provincia" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlProvinciaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
             </div>
 
             <!----------------------------------------------------------------SEPTIMA FILA-------------------------------------------------------------------------------------->
 
             <div class="form-group col-md-4">
                 <asp:Label ID="lbMunicipioMantenimiento" runat="server" Text="Municipio" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlMunicipioMAntenimiento" runat="server" ToolTip="Seleccionar el Municipio" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="ddlMunicipioMAntenimiento" runat="server" ToolTip="Seleccionar el Municipio" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlMunicipioMAntenimiento_SelectedIndexChanged"></asp:DropDownList>
             </div>
 
              <div class="form-group col-md-4">
                 <asp:Label ID="lbSectorMantenimiento" runat="server" Text="Sector" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSectorMantenimiento" runat="server" ToolTip="Seleccionar el Sector" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="ddlSectorMantenimiento" runat="server" ToolTip="Seleccionar el Sector" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSectorMantenimiento_SelectedIndexChanged"></asp:DropDownList>
             </div>
 
              <div class="form-group col-md-4">
@@ -217,7 +351,7 @@
 
             <div class="form-group col-md-3">
                 <asp:Label ID="lbCodigoSupervisorMantenimiento" runat="server" Text="Codigo Supervisor" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtCodigoSupervisorMantenimiento" runat="server" TextMode="Number" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                <asp:TextBox ID="txtCodigoSupervisorMantenimiento" runat="server" TextMode="Number" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtCodigoSupervisorMantenimiento_TextChanged" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
             <div class="form-group col-md-9">

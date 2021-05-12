@@ -166,6 +166,60 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
+        #region LISTAS DEL BLOQUE DE MANTENIMIENTO
+        private void ListaTipoIdentificacionMAntenimiento() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarTipoIdentificacionMantenimiento, ObjData.BuscaListas("TIPOIDENTIFICACION", null, null));
+        }
+        private void ListaPaisMantenimiento() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlPaisMantenimiento, ObjData.BuscaListas("LISTADOPAIS", null, null));
+        }
+        private void ListaZonaMantenimiento() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlZonaMantenimiento, ObjData.BuscaListas("LISTADOZONAS", ddlPaisMantenimiento.SelectedValue, null));
+        }
+        private void ListaProvinciaMantenimiento() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlProvinciaMantenimiento, ObjData.BuscaListas("LISTADOPROVINCIAS", ddlPaisMantenimiento.SelectedValue, ddlZonaMantenimiento.SelectedValue));
+        }
+        private void ListaMunicipioMantenimiento() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlMunicipioMAntenimiento, ObjData.BuscaListas("LISTADOMUNICIPIO", ddlPaisMantenimiento.SelectedValue, ddlZonaMantenimiento.SelectedValue, ddlProvinciaMantenimiento.SelectedValue));
+        }
+        private void ListaSectorMantenimiento() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSectorMantenimiento, ObjData.BuscaListas("LISTADOSECTOR", ddlPaisMantenimiento.SelectedValue, ddlZonaMantenimiento.SelectedValue, ddlProvinciaMantenimiento.SelectedValue, ddlMunicipioMAntenimiento.SelectedValue));
+        }
+        private void ListaUbicacionMantenimiento() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlUbicacionMantenimiento, ObjData.BuscaListas("LISTADOBARRIO", ddlPaisMantenimiento.SelectedValue, ddlZonaMantenimiento.SelectedValue, ddlProvinciaMantenimiento.SelectedValue, ddlMunicipioMAntenimiento.SelectedValue, ddlSectorMantenimiento.SelectedValue));
+        }
+        private void ListaOficinaMantenimiento() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaMAntenimiento, ObjData.BuscaListas("OFICINAS", null, null));
+        }
+        private void ListaBancoMantenimiento() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlBancoMantenimiento, ObjData.BuscaListas("LISTADOBANCOS", null, null));
+        }
+        private void ListaCanalDistribucion() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlCanalDistribucionMantenimiento, ObjData.BuscaListas("LISTADOCANALESDISTRIBUCION", null, null));
+        }
+
+        #endregion
+
+        #region CONFIGURACIONES INICIALES PANTALLA DE MANTENIMIENTO
+        private void CargarConfiguracionesInicialesBloqueMantenimiento() {
+            rbRetencionNoMantenimiento.Checked = true;
+            rbActivoMantenimiento.Checked = true;
+            rbIntermediarioNoDirectoMantenimiento.Checked = true;
+            ListaTipoIdentificacionMAntenimiento();
+            ListaPaisMantenimiento();
+            ListaZonaMantenimiento();
+            ListaProvinciaMantenimiento();
+            ListaMunicipioMantenimiento();
+            ListaSectorMantenimiento();
+            ListaUbicacionMantenimiento();
+            ListaOficinaMantenimiento();
+            ListaBancoMantenimiento();
+            ListaCanalDistribucion();
+            rbCuentaCorrienteMantenimiento.Checked = true;
+            rbChequeMantenimiento.Checked = true;
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -182,6 +236,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 DivBloqueMantenimiento.Visible = false;
                 DivBloqueComisiones.Visible = false;
                 DivBloqueInternoComision.Visible = false;
+                btnModificar.Enabled = false;
+                btnComisiones.Enabled = false;
             }
         }
 
@@ -193,7 +249,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-
+            DivBloqueConsulta.Visible = false;
+            DivBloqueComisiones.Visible = false;
+            DivBloqueInternoComision.Visible = false;
+            DivBloqueMantenimiento.Visible = true;
+            CargarConfiguracionesInicialesBloqueMantenimiento();
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
@@ -316,6 +376,53 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnVolverAtrasComisiones_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void ddlPaisMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListaZonaMantenimiento();
+            ListaProvinciaMantenimiento();
+            ListaMunicipioMantenimiento();
+            ListaSectorMantenimiento();
+            ListaUbicacionMantenimiento();
+        }
+
+        protected void ddlZonaMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListaProvinciaMantenimiento();
+            ListaMunicipioMantenimiento();
+            ListaSectorMantenimiento();
+            ListaUbicacionMantenimiento();
+        }
+
+        protected void ddlProvinciaMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListaMunicipioMantenimiento();
+            ListaSectorMantenimiento();
+            ListaUbicacionMantenimiento();
+        }
+
+        protected void ddlMunicipioMAntenimiento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListaSectorMantenimiento();
+            ListaUbicacionMantenimiento();
+        }
+
+        protected void ddlSectorMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListaUbicacionMantenimiento();
+        }
+
+        protected void txtCodigoSupervisorMantenimiento_TextChanged(object sender, EventArgs e)
+        {
+            try {
+                string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorMantenimiento.Text.Trim()) ? null : txtCodigoSupervisorMantenimiento.Text.Trim();
+                UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(_CodigoSupervisor);
+                txtNombreSupervisorMantenimiento.Text = Nombre.SacarNombreSupervisor();
+            }
+            catch (Exception) {
+                txtNombreSupervisorMantenimiento.Text = "";
+            }
         }
 
         protected void LinkUltimoIntermediariosSupervisores_Click(object sender, EventArgs e)
