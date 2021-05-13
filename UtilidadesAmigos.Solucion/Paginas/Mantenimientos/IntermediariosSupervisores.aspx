@@ -23,6 +23,30 @@
     </style>
 
     <script type="text/javascript">
+
+        function CamposComunicacionVacios() {
+            alert("Tienes que ingresar al menos un numero de telefono para realizar esta operación.");
+            $("#<%=txtTelefono1Mantenimiento.ClientID%>").css("border-color", "blue");
+            $("#<%=txtTelefono2Mantenimiento.ClientID%>").css("border-color", "blue");
+            $("#<%=txtTelefono3Mantenimiento.ClientID%>").css("border-color", "blue");
+            $("#<%=txtCelularMantenimiento.ClientID%>").css("border-color", "blue");
+
+        }
+        function ErrorRealizarMantenimiento() {
+            alert("Error al realizar el mantenimiento");
+        }
+
+        function CampoFechaNAcimientoVacio() {
+            alert("El campo Fecha de Nacimiento no puede estar vacio para realizar esta operación, favor de verificar.");
+            $("#<%=txtFechaNacimientoMantenimiento.ClientID%>").css("border-color", "red");
+        }
+
+        function CampoFechaEntradaVacio() {
+            alert("El campo fecha de Entrada no puede estar vacio para realizar esta operación favor de verificar.");
+            $("#<%=txtFechaEntradaMantenimiento.ClientID%>").css("border-color", "red");
+        }
+
+
         $(document).ready(function () {
             $("#<%=btnGuardarMantenimiento.ClientID%>").click(function () {
                 var TipoIdentificacion = $("#<%=ddlSeleccionarTipoIdentificacionMantenimiento.ClientID%>").val();
@@ -123,20 +147,12 @@
                                                                         return false;
                                                                     }
                                                                     else {
-                                                                        var Banco = $("#<%=ddlBancoMantenimiento.ClientID%>").val();
-                                                                        if (Banco < 1) {
-                                                                            alert("El campo Banco no puede estar vacio para realizar esta operación, favor de verificar.");
-                                                                            $("#<%=ddlBancoMantenimiento.ClientID%>").css("border-color", "red");
-                                                                            return false;
-                                                                        }
-                                                                        else {
-                                                                            var CanalDistribucion = $("#<%=ddlCanalDistribucionMantenimiento.ClientID%>").val();
+                                                                        var CanalDistribucion = $("#<%=ddlCanalDistribucionMantenimiento.ClientID%>").val();
                                                                             if (CanalDistribucion < 1) {
                                                                                 alert("El campo Canal de Distribución no puede estar vacio para realizar esta operación, favor de verificar.");
                                                                                 $("#<%=ddlCanalDistribucionMantenimiento.ClientID%>").css("border-color", "red");
                                                                                 return false;
                                                                             }
-                                                                        }
                                                                     }
                                                                 }
                                                             }
@@ -248,6 +264,8 @@
     </div>
 
     <div id="DivBloqueMantenimiento" runat="server">
+        <asp:Label ID="lbAccionTomar" runat="server" Text="0" Visible="false"></asp:Label>
+        <asp:Label ID="lbCodigoSeleccionadoVariable" runat="server" Text="0" Visible="false"></asp:Label>
         <br />
         <!----------------------------------------------------------------PRIMERA FILA------------------------------------------------------------------------------------->
 
