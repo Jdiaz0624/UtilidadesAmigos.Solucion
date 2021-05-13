@@ -513,6 +513,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnConsultar.Enabled = true;
             btnNuevo.Enabled = true;
             btnModificar.Enabled = false;
+            btnComisiones.Enabled = false;
             btnRestabelcer.Enabled = false;
 
         }
@@ -769,69 +770,130 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
-        protected void Page_Load(object sender, EventArgs e)
+        #region MOSTRAR LOS RAMOS Y LOS SUB RAMOS
+        private void CargarRamos()
         {
-            MaintainScrollPositionOnPostBack = true;
-            if (!IsPostBack)
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamoComisiones, ObjData.BuscaListas("RAMO", null, null), true);
+        }
+        private void CargarSubramos()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSubRamoComisiones, ObjData.BuscaListas("SUBRAMO", ddlSeleccionarRamoComisiones.SelectedValue, null), true);
+        }
+        #endregion
+
+        #region BUSCAR COMISIONES INTERMEDIARIOS
+        private void MostrarComisionesIntermediario(int CodigoIntermediario)
+        {
+
+            int? _Ramo = ddlSeleccionarRamoComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoComisiones.SelectedValue) : new Nullable<int>();
+            int? _Subramo = ddlSeleccionarSubRamoComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamoComisiones.SelectedValue) : new Nullable<int>();
+
+            var Listado = Objdatamantenimientos.BuscaComisionesIntermediario(
+                CodigoIntermediario,
+                _Ramo,
+                _Subramo);
+            Paginar(ref rpListadoComisiones, Listado, 10, ref lbCantidadPaginaVariableIntermediariosSupervisoresComisiones, ref LinkPrimeraPaginaIntermediariosSupervisoresComisiones, ref LinkAnteriorIntermediariosSupervisoresComisiones, ref LinkSiguienteIntermediariosSupervisoresComisiones, ref LinkUltimoIntermediariosSupervisoresComisiones);
+            HandlePaging(ref dtPaginacionIntermediariosSupervisoresComisiones, ref lbPaginaActualVariavleIntermediariosSupervisoresComisiones);
+        }
+        #endregion
+
+        #region MODIFICAR LAS COMISIONES DE UN INTERMEDIARIO SELECCIONADO
+        private void ModificarComisionesIntermediario() {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesIntermediarioSeleccionado ProcesarComisiones = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesIntermediarioSeleccionado(
+                0,
+                Convert.ToInt32(lbCodigoIntermediario.Text),
+                Convert.ToInt32(lbCodigoRamo.Text),
+                Convert.ToInt32(lbCodigoSubRamo.Text),
+                Convert.ToDecimal(txtPorcientoComisionSeleccionadoComisiones.Text),
+                0, 0, 0,
+                Guid.NewGuid(), "", "UPDATE");
+            ProcesarComisiones.ProcesarInformacion();
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoIntermediario.Text));
+            txtRamoSeleccionadoComisionesComisiones.Text = string.Empty;
+            txtSubRamoSeleccionadoComisiones.Text = string.Empty;
+            txtPorcientoComisionSeleccionadoComisiones.Text = string.Empty;
+            }
+            #endregion
+
+            protected void Page_Load(object sender, EventArgs e)
             {
-                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario SacarNombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
-                Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
-                lbNombreUsuario.Text = SacarNombre.SacarNombreUsuarioConectado();
-                Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
-                lbPantallaActual.Text = "MANTENIMIENTO INTERMEDIARIOS / SUPERVISORES";
-                CargaroficinaConsulta();
+                MaintainScrollPositionOnPostBack = true;
+                if (!IsPostBack)
+                {
+                    UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario SacarNombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                    Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
+                    lbNombreUsuario.Text = SacarNombre.SacarNombreUsuarioConectado();
+                    Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                    lbPantallaActual.Text = "MANTENIMIENTO INTERMEDIARIOS / SUPERVISORES";
+                    CargaroficinaConsulta();
+                    CurrentPage = 0;
+                    MostrarIntermediariosSupervisores();
+                    DivBloqueConsulta.Visible = true;
+                    DivBloqueMantenimiento.Visible = false;
+                    DivBloqueComisiones.Visible = false;
+                    DivBloqueInternoComision.Visible = false;
+                    btnModificar.Enabled = false;
+                    btnComisiones.Enabled = false;
+                }
+            }
+
+            protected void btnConsultar_Click(object sender, EventArgs e)
+            {
                 CurrentPage = 0;
                 MostrarIntermediariosSupervisores();
-                DivBloqueConsulta.Visible = true;
-                DivBloqueMantenimiento.Visible = false;
+            }
+
+            protected void btnNuevo_Click(object sender, EventArgs e)
+            {
+                lbAccionTomar.Text = "INSERT";
+                DivBloqueConsulta.Visible = false;
                 DivBloqueComisiones.Visible = false;
                 DivBloqueInternoComision.Visible = false;
-                btnModificar.Enabled = false;
-                btnComisiones.Enabled = false;
+                DivBloqueMantenimiento.Visible = true;
+                CargarConfiguracionesInicialesBloqueMantenimiento();
             }
-        }
 
-        protected void btnConsultar_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarIntermediariosSupervisores();
-        }
+            protected void btnModificar_Click(object sender, EventArgs e)
+            {
+                lbAccionTomar.Text = "UPDATE";
+                DivBloqueConsulta.Visible = false;
+                DivBloqueComisiones.Visible = false;
+                DivBloqueInternoComision.Visible = false;
+                DivBloqueMantenimiento.Visible = true;
+                CargarConfiguracionesInicialesBloqueMantenimiento();
+                SacarDatosIntermediario(lbCodigoSeleccionadoVariable.Text);
 
-        protected void btnNuevo_Click(object sender, EventArgs e)
-        {
-            lbAccionTomar.Text = "INSERT";
-            DivBloqueConsulta.Visible = false;
-            DivBloqueComisiones.Visible = false;
-            DivBloqueInternoComision.Visible = false;
-            DivBloqueMantenimiento.Visible = true;
-            CargarConfiguracionesInicialesBloqueMantenimiento();
-        }
+            }
 
-        protected void btnModificar_Click(object sender, EventArgs e)
-        {
-            lbAccionTomar.Text = "UPDATE";
-            DivBloqueConsulta.Visible = false;
-            DivBloqueComisiones.Visible = false;
-            DivBloqueInternoComision.Visible = false;
-            DivBloqueMantenimiento.Visible = true;
-            CargarConfiguracionesInicialesBloqueMantenimiento();
-            SacarDatosIntermediario(lbCodigoSeleccionadoVariable.Text);
-        }
+            protected void btnComisiones_Click(object sender, EventArgs e)
+            {
+                DivBloqueConsulta.Visible = false;
+                DivBloqueMantenimiento.Visible = false;
+                DivBloqueComisiones.Visible = true;
+                DivBloqueInternoComision.Visible = false;
 
-        protected void btnComisiones_Click(object sender, EventArgs e)
-        {
+                UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(lbCodigoSeleccionadoVariable.Text);
+                lbEncabezadoComisionesVariable.Text = Nombre.SacarNombreIntermediario();
+                rbConsultarComisiones.Checked = true;
+                CargarRamos();
+                CargarSubramos();
+                MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
+                lbClaveSeguridad.Visible = false;
+                txtClaveSeguridadComisiones.Visible = false;
+                txtClaveSeguridadComisiones.Text = string.Empty;
+                btnValidarClaveSeguridad.Visible = false;
+            }
 
-        }
+            protected void btnRestabelcer_Click(object sender, EventArgs e)
+            {
+                RestablecerPantalla();
+            }
 
-        protected void btnRestabelcer_Click(object sender, EventArgs e)
-        {
-            RestablecerPantalla();
-        }
-
-        protected void btnSeleccionarRegistro_Click(object sender, EventArgs e)
-        {
-            /*var RegistroSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfRegistroSeleccionado = ((HiddenField)RegistroSeleccionado.FindControl("hfIdRegistroSeleccionado")).Value.ToString();*/
+            protected void btnSeleccionarRegistro_Click(object sender, EventArgs e)
+            {
+                /*var RegistroSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+                var hfRegistroSeleccionado = ((HiddenField)RegistroSeleccionado.FindControl("hfIdRegistroSeleccionado")).Value.ToString();*/
 
             var RegistroSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
             var hfIdRegistroSeleccionado = ((HiddenField)RegistroSeleccionado.FindControl("hfIdRegistroSeleccionado")).Value.ToString();
@@ -843,6 +905,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnConsultar.Enabled = false;
             btnNuevo.Enabled = false;
             btnModificar.Enabled = true;
+            btnComisiones.Enabled = true;
             btnRestabelcer.Enabled = true;
 
 
@@ -915,17 +978,53 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultarComisiones_Click(object sender, EventArgs e)
         {
-
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
         }
 
         protected void btnValidarClaveSeguridad_Click(object sender, EventArgs e)
         {
+            bool Resultado = false;
+            string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridadComisiones.Text.Trim()) ? null : txtClaveSeguridadComisiones.Text.Trim();
+            UtilidadesAmigos.Logica.Comunes.ValidarClaveSeguridad ValidarClave = new Logica.Comunes.ValidarClaveSeguridad(_ClaveSeguridad);
+            Resultado = ValidarClave.ValidarClave();
+            switch (Resultado) {
+                case true:
+                    DivBloqueInternoComision.Visible = true;
+                    break;
 
+                case false:
+                    ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadInvalida()", "ClaveSeguridadInvalida();", true);
+                    break;
+            }
         }
 
         protected void btnSeleccionarComision_Click(object sender, EventArgs e)
         {
 
+            if (DivBloqueInternoComision.Visible == true) {
+                var RamoSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+                var hfRamoSeleccionado = ((HiddenField)RamoSeleccionado.FindControl("hfRamoComsiones")).Value.ToString();
+
+                var SubRamoSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+                var hfSubRamoSeleccionado = ((HiddenField)SubRamoSeleccionado.FindControl("hfSubRamoComisiones")).Value.ToString();
+
+                lbCodigoIntermediario.Text = lbCodigoSeleccionadoVariable.Text;
+                lbCodigoRamo.Text = hfRamoSeleccionado.ToString();
+                lbCodigoSubRamo.Text = hfSubRamoSeleccionado.ToString();
+
+
+                var Listado = Objdatamantenimientos.BuscaComisionesIntermediario(
+                    Convert.ToInt32(lbCodigoSeleccionadoVariable.Text),
+                    Convert.ToInt32(hfRamoSeleccionado.ToString()),
+                    Convert.ToInt32(hfSubRamoSeleccionado.ToString()));
+                foreach (var n in Listado)
+                {
+                    txtRamoSeleccionadoComisionesComisiones.Text = n.Ramo;
+                    txtSubRamoSeleccionadoComisiones.Text = n.Subramo;
+                    txtPorcientoComisionSeleccionadoComisiones.Text = n.PorcientoComision.ToString();
+                    txtPorcientoComisionSeleccionadoComisiones.Enabled = true;
+                }
+            }
         }
 
         protected void LinkPrimeraPaginaIntermediariosSupervisoresComisiones_Click(object sender, EventArgs e)
@@ -960,12 +1059,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnModificarComision_Click(object sender, EventArgs e)
         {
-
+            ModificarComisionesIntermediario();
         }
 
         protected void btnCancearProceso_Click(object sender, EventArgs e)
         {
-
+            txtRamoSeleccionadoComisionesComisiones.Text = string.Empty;
+            txtSubRamoSeleccionadoComisiones.Text = string.Empty;
+            txtPorcientoComisionSeleccionadoComisiones.Text = string.Empty;
+            rbConsultarComisiones.Checked = false;
+            DivBloqueInternoComision.Visible = false;
         }
 
         protected void btnVolverAtrasComisiones_Click(object sender, EventArgs e)
@@ -1018,6 +1121,46 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             catch (Exception) {
                 txtNombreSupervisorMantenimiento.Text = "";
+            }
+        }
+
+        protected void ddlSeleccionarRamoComisiones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarSubramos();
+        }
+
+        protected void rbConsultarComisiones_CheckedChanged(object sender, EventArgs e)
+        {
+            switch (rbConsultarComisiones.Checked) {
+                case true:
+                    lbClaveSeguridad.Visible = false;
+                    txtClaveSeguridadComisiones.Visible = false;
+                    btnValidarClaveSeguridad.Visible = false;
+                    break;
+
+                case false:
+                    lbClaveSeguridad.Visible = true;
+                    txtClaveSeguridadComisiones.Visible = true;
+                    btnValidarClaveSeguridad.Visible = true;
+                    break;
+            }
+        }
+
+        protected void rbModificarComisiones_CheckedChanged(object sender, EventArgs e)
+        {
+            switch (rbModificarComisiones.Checked) {
+                case true:
+                    lbClaveSeguridad.Visible = true;
+                    txtClaveSeguridadComisiones.Visible = true;
+                    txtClaveSeguridadComisiones.Text = string.Empty;
+                    btnValidarClaveSeguridad.Visible = true;
+                    break;
+
+                case false:
+                    lbClaveSeguridad.Visible = false;
+                    txtClaveSeguridadComisiones.Visible = false;
+                    btnValidarClaveSeguridad.Visible = false;
+                    break;
             }
         }
 

@@ -46,8 +46,57 @@
             $("#<%=txtFechaEntradaMantenimiento.ClientID%>").css("border-color", "red");
         }
 
+        function SeleccionarOpcionComision() {
+            alert("Favor de marcar la opción de modificar comisiones para realizar este paso.");
+            $("#<%=rbModificarComisiones.ClientID%>").css("border-color", "blue");
+        }
+        function ClaveSeguridadInvalida() {
+            alert("La clave de seguridad ingresada no es valida, favor de verificar.");
+        }
 
         $(document).ready(function () {
+            $("#<%=btnModificarComision.ClientID%>").click(function () {
+                var RamoSeleccionado = $("#<%=txtRamoSeleccionadoComisionesComisiones.ClientID%>").val().length;
+                if (RamoSeleccionado < 1) {
+                    alert("Favor de seleccionar un registro para proceder con este paso.");
+                    return false;
+                }
+                else {
+                    var SubRamoSeleccionado = $("#<%=txtSubRamoSeleccionadoComisiones.ClientID%>").val().length;
+                    if (SubRamoSeleccionado < 1) {
+                        alert("Favor de seleccionar un registro para proceder con este paso.");
+                        return false;
+                    }
+                    else {
+                        var PorcientoCOmisionVAcio = $("#<%=txtPorcientoComisionSeleccionadoComisiones.ClientID%>").val().length;
+                        if (PorcientoCOmisionVAcio < 1) {
+                            alert("El campo de Porciento de Comision no puede estar vacio para modificar este registro, favor de verificar.");
+                            $("#<%=txtPorcientoComisionSeleccionadoComisiones.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
+                        else {
+                            var ValorPorcientoCOmision = $("#<%=txtPorcientoComisionSeleccionadoComisiones.ClientID%>").val();
+                            if (ValorPorcientoCOmision > 100) {
+                                alert("El valor ingresado para el Porciento de comisión no es valido, favor de verificar.");
+                                $("#<%=txtPorcientoComisionSeleccionadoComisiones.ClientID%>").css("border-color", "blue");
+                                return false;
+                            }
+                        }
+                    }
+                }
+            });
+
+
+            $("#<%=btnValidarClaveSeguridad.ClientID%>").click(function () {
+                var ClaveSeguridad = $("#<%=txtClaveSeguridadComisiones.ClientID%>").val().length;
+                if (ClaveSeguridad < 1) {
+                    alert("El campo clave de seguridad no puede estar vacio, favor de verificar.");
+                    $("#<%=txtClaveSeguridadComisiones.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
+
+
             $("#<%=btnGuardarMantenimiento.ClientID%>").click(function () {
                 var TipoIdentificacion = $("#<%=ddlSeleccionarTipoIdentificacionMantenimiento.ClientID%>").val();
                 if (TipoIdentificacion < 1) {
@@ -490,15 +539,15 @@
           <br />
           <div class="form-check-inline">
               <div class="form-group form-check">
-                  <asp:RadioButton ID="rbConsultarComisiones" runat="server" Text="Consultar Comisiones" CssClass="form-check-input LetrasNegrita" ToolTip="Consultar las comisiones del Intermediario seleccionado" GroupName="Comisiones" />
-                  <asp:RadioButton ID="rbModificarComisiones" runat="server" Text="Modificar Comisiones" CssClass="form-check-input LetrasNegrita" ToolTip="Modificar las comisiones del Intermediario seleccionado" GroupName="Comisiones" />
+                  <asp:RadioButton ID="rbConsultarComisiones" runat="server" Text="Consultar Comisiones" CssClass="form-check-input LetrasNegrita" ToolTip="Consultar las comisiones del Intermediario seleccionado" AutoPostBack="true" OnCheckedChanged="rbConsultarComisiones_CheckedChanged" GroupName="Comisiones" />
+                  <asp:RadioButton ID="rbModificarComisiones" runat="server" Text="Modificar Comisiones" CssClass="form-check-input LetrasNegrita" ToolTip="Modificar las comisiones del Intermediario seleccionado" AutoPostBack="true" OnCheckedChanged="rbModificarComisiones_CheckedChanged" GroupName="Comisiones" />
               </div>
           </div>
           <br />
           <div class="form-row">
               <div class="form-group col-md-4">
                   <asp:Label ID="lbSeleccionarRamoComisiones" runat="server" Text="Ramo" CssClass="LetrasNegrita"></asp:Label>
-                  <asp:DropDownList ID="ddlSeleccionarRamoComisiones" runat="server" ToolTip="Seleccionar el Ramo para consulta" CssClass="form-control"></asp:DropDownList>
+                  <asp:DropDownList ID="ddlSeleccionarRamoComisiones" runat="server" ToolTip="Seleccionar el Ramo para consulta" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarRamoComisiones_SelectedIndexChanged"></asp:DropDownList>
               </div>
 
               <div class="form-group col-md-4">
@@ -535,15 +584,15 @@
                   <asp:Repeater ID="rpListadoComisiones" runat="server">
                       <ItemTemplate>
                           <tr>
-                              <asp:HiddenField ID="hfRamoComsiones" runat="server" Value='<%# Eval("") %>' />
-                              <asp:HiddenField ID="hfSubRamoComisiones" runat="server" Value='<%# Eval("") %>' />
+                              <asp:HiddenField ID="hfRamoComsiones" runat="server" Value='<%# Eval("IdRamo") %>' />
+                              <asp:HiddenField ID="hfSubRamoComisiones" runat="server" Value='<%# Eval("IdSubRamo") %>' />
 
                               <td style="width:10%" align="left"> <asp:Button ID="btnSeleccionarComision" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Seleccionar Registro" OnClick="btnSeleccionarComision_Click" /> </td>
-                              <td style="width:5%" align="left"> <%# Eval("") %> </td>
-                              <td style="width:35%" align="left"> <%# Eval("") %> </td>
-                              <td style="width:5%" align="left"> <%# Eval("") %> </td>
-                              <td style="width:35%" align="left"> <%# Eval("") %> </td>
-                              <td style="width:10%" align="left"> <%# Eval("") %> </td>
+                              <td style="width:5%" align="left"> <%# Eval("IdRamo") %> </td>
+                              <td style="width:35%" align="left"> <%# Eval("Ramo") %> </td>
+                              <td style="width:5%" align="left"> <%# Eval("IdSubRamo") %> </td>
+                              <td style="width:35%" align="left"> <%# Eval("Subramo") %> </td>
+                              <td style="width:10%" align="left"> <%#string.Format("{0:n2}", Eval("PorcientoComision")) %> </td>
                           </tr>
                       </ItemTemplate>
                   </asp:Repeater>
@@ -592,7 +641,7 @@
 
                <div class="form-group col-md-6">
                   <asp:Label ID="lbPorcientoComisionSeleccionadoComisiones" runat="server" Text="% de Comisión" CssClass="LetrasNegrita"></asp:Label>
-                  <asp:TextBox ID="txtPorcientoComisionSeleccionadoComisiones" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                  <asp:TextBox ID="txtPorcientoComisionSeleccionadoComisiones" runat="server" TextMode="Number" step="0.01" CssClass="form-control" Enabled="false"></asp:TextBox>
               </div>
 
             
