@@ -200,7 +200,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         private void ListaDepartamentoMantenimiento()
         {
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamentoMantenimiento, ObjDataLogica.Value.BuscaListas("DEPARTAMENTO", ddlSucursalMantenimiento.SelectedValue.ToString(), ddlOficinaMantenimiento.SelectedValue.ToString()));
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamentoMantenimiento, ObjDataLogica.Value.BuscaListas("DEPARTAMENTO", ddlSucursalMantenimiento.SelectedValue.ToString(), ddlOficinaMantenimiento.SelectedValue.ToString())); 
         }
         private void ListaPersilMantenimiento()
         {
