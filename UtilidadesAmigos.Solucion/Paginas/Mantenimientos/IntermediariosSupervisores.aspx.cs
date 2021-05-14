@@ -1029,12 +1029,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void LinkPrimeraPaginaIntermediariosSupervisoresComisiones_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
         }
 
         protected void LinkAnteriorIntermediariosSupervisoresComisiones_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleIntermediariosSupervisoresComisiones, ref lbCantidadPaginaVariableIntermediariosSupervisoresComisiones);
         }
 
         protected void dtPaginacionIntermediariosSupervisoresComisiones_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -1044,17 +1047,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void dtPaginacionIntermediariosSupervisoresComisiones_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
         }
 
         protected void LinkSiguienteIntermediariosSupervisoresComisiones_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += 1;
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
         }
 
         protected void LinkUltimoIntermediariosSupervisoresComisiones_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleIntermediariosSupervisoresComisiones, ref lbCantidadPaginaVariableIntermediariosSupervisoresComisiones);
         }
 
         protected void btnModificarComision_Click(object sender, EventArgs e)

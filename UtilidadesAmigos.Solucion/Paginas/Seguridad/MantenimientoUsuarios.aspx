@@ -133,12 +133,12 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <asp:Label ID="lbSucursalMantenimiento" runat="server" Text="Sucursal" CssClass="LetrasNegrita"></asp:Label>
-                    <asp:DropDownList ID="ddlSucursalMantenimiento" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlSucursalMantenimiento" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSucursalMantenimiento_SelectedIndexChanged"></asp:DropDownList>
                 </div>
 
                  <div class="form-group col-md-3">
                     <asp:Label ID="lbOficinaMAntenimiento" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
-                    <asp:DropDownList ID="ddlOficinaMantenimiento" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlOficinaMantenimiento" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
                 </div>
 
                  <div class="form-group col-md-3">
