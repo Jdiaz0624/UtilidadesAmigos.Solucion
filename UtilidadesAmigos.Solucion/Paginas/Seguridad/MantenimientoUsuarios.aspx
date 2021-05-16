@@ -120,7 +120,7 @@
                <div class="form-group col-md-3">
                    <asp:Label ID="lbUsuarioConsulta" runat="server" Text="Usuario" CssClass="LetrasNegrita"></asp:Label>
                    <asp:TextBox ID="txtUsuarioConsulta" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
-               </div>
+               </div> 
            </div>
             <br />
             <div align="center">
