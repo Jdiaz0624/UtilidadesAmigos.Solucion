@@ -212,6 +212,31 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #endregion
 
 
+        #region MANTENIMIENTO DE USUARIOS
+        private void MANUsuarios(decimal IdUsuario, string Accion) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSeguridad.ProcesarInformacionSeguridad Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionSeguridad.ProcesarInformacionSeguridad(
+                IdUsuario,
+                Convert.ToDecimal(ddlSucursalMantenimiento.SelectedValue),
+                Convert.ToDecimal(ddlOficinaMantenimiento.SelectedValue),
+                Convert.ToDecimal(ddlDepartamentoMantenimiento.SelectedValue),
+                Convert.ToDecimal(ddlPerfilMantenimiento.SelectedValue),
+                txtUsuarioMantenimiento.Text,
+                txtClaveMantenimiento.Text,
+                txtPersonaMantenimiento.Text,
+                cbEstatusMantenimiento.Checked,
+                cbLLevaEmail.Checked,
+                txtEmailMantenimiento.Text,
+                0,
+                cbCambiaClave.Checked,
+                "",
+                Convert.ToDecimal(ddlTipoPersonaMantenimiento.Text),
+                cbImpresionMarbete.Checked,
+                Accion);
+            Procesar.ProcesarInformacion();
+        }
+        #endregion
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -244,6 +269,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             ListaDepartamentoMantenimiento();
             ListaPersilMantenimiento();
             ListaTipoPersona();
+            lbAccion.Text = "INSERT";
+            lbIdUsuario.Text = "0";
         }
 
         protected void btnReporte_Click(object sender, EventArgs e)

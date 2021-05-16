@@ -23,8 +23,77 @@
         }
     </style>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
 
+            //VALIDAMOS LOS DATOS DEL BOTON GUARDAR
+            $("#<%=btnGuardar.ClientID%>").click(function () {
+                var Sucursal = $("#<%=ddlSucursalMantenimiento.ClientID%>").val();
+                if (Sucursal < 1) {
+                    alert("El campo Sucursal no puede estar vacio para realizar esta operación.");
+                    $("#<%=ddlSucursalMantenimiento.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+                    var Oficina = $("#<%=ddlOficinaMantenimiento.ClientID %>").val();
+                    if (Oficina < 1) {
+                        alert("El campo de Oficina no puede estar vacio para realizar esta operación.");
+                        $("#<%=ddlOficinaMantenimiento.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else {
+                        var Departamento = $("#<%=ddlDepartamentoMantenimiento.ClientID%>").val();
+                        if (Departamento < 1) {
+                            alert("El campo Departamento no puede estar vacio para realizar esta operación.");
+                            $("#<%=ddlDepartamentoMantenimiento.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
+                        else {
+                            var Perfil = $("#<%=ddlPerfilMantenimiento.ClientID%>").val();
+                            if (Perfil < 1) {
+                                alert("El campo Perfil no puede estar vacio para realizar esta operación.");
+                                $("#<%=ddlPerfilMantenimiento.ClientID%>").css("border-color", "red");
+                                return false;
+                            }
+                            else {
+                                var Usuario = $("#<%=txtUsuarioMantenimiento.ClientID%>").val().length;
+                                if (Usuario < 1) {
+                                    alert("El campo Usuario no puede estar vacio para realizar esta operación.");
+                                    $("#<%=txtUsuarioMantenimiento.ClientID%>").css("border-color", "Red");
+                                    return false;
+                                }
+                                else {
+                                    var Persona = $("#<%=txtPersonaMantenimiento.ClientID%>").val().length;
+                                    if (Persona < 1) {
+                                        alert("El campo Persona no puede estar vacio para realizar esta operación.");
+                                        $("#<%=txtPersonaMantenimiento.ClientID%>").css("border-color", "red");
+                                        return false;
+                                    }
+                                    else {
+                                        var TipoPersona = $("#<%=ddlTipoPersonaMantenimiento.ClientID%>").val();
+                                        if (TipoPersona < 1) {
+                                            alert("El campo Tipo de Persona no puede esta vacio para realizar esta operación.");
+                                            $("#<%=ddlTipoPersonaMantenimiento.ClientID%>").css("border-color", "red");
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+
+            });
+
+
+
+
+        })
+    </script>
     <br />
+    <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
+    <asp:Label ID="lbIdUsuario" runat="server" Text="0" Visible="false"></asp:Label>
     <div class="container-fluid">
         <div id="DivBloqueConsulta" runat="server">
            <div class="form-row">
