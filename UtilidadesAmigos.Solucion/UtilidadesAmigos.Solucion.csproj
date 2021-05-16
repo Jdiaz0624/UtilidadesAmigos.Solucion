@@ -212,6 +212,11 @@
     <Content Include="scripts\inputmask\inputmask.min.js" />
     <Content Include="scripts\inputmask\jquery.inputmask.js" />
     <Content Include="scripts\inputmask\jquery.inputmask.min.js" />
+    <None Include="scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="scripts\jquery-3.6.0.js" />
+    <Content Include="scripts\jquery-3.6.0.min.js" />
+    <Content Include="scripts\jquery-3.6.0.slim.js" />
+    <Content Include="scripts\jquery-3.6.0.slim.min.js" />
     <Content Include="scripts\jquery.maskedinput.js" />
     <Content Include="scripts\jquery.maskedinput.min.js" />
     <Content Include="scripts\MensajesPagina.js" />
@@ -305,6 +310,8 @@
     <Content Include="scripts\bootstrap.js.map" />
     <Content Include="scripts\bootstrap.bundle.min.js.map" />
     <Content Include="scripts\bootstrap.bundle.js.map" />
+    <Content Include="scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="scripts\jquery-3.6.0.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -538,6 +545,7 @@
     </Compile>
     <Compile Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx.cs">
       <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx.designer.cs">
       <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
@@ -586,6 +594,7 @@
     </Compile>
     <Compile Include="Paginas\Procesos\DatosPoliza.aspx.cs">
       <DependentUpon>DatosPoliza.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Procesos\DatosPoliza.aspx.designer.cs">
       <DependentUpon>DatosPoliza.aspx</DependentUpon>
@@ -704,6 +713,7 @@
     </Compile>
     <Compile Include="Paginas\Seguridad\MantenimientoUsuarios.aspx.cs">
       <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Seguridad\MantenimientoUsuarios.aspx.designer.cs">
       <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
