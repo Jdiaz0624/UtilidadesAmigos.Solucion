@@ -237,20 +237,35 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
+        private void IniciarPantalla() {
+            DivBloqueConsulta.Visible = true;
+            DivBloqueMantenimiento.Visible = false;
+            ListaSucursalesConsulta();
+            ListaOficinasConsulta();
+            ListaDepartamentoConsulta();
+            ListaPersilConsulta();
+            CurrentPage = 0;
+            ListadoUsuarios();
+            btnConsultar.Enabled = true;
+            btnNuevo.Enabled = true;
+            btnReporte.Enabled = true;
+            btnModificar.Enabled = false;
+            btnRestablecer.Enabled = false;
+        }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack)
             {
-                DivBloqueConsulta.Visible = true;
-                DivBloqueMantenimiento.Visible = false;
-                ListaSucursalesConsulta();
-                ListaOficinasConsulta();
-                ListaDepartamentoConsulta();
-                ListaPersilConsulta();
-                CurrentPage = 0;
-                ListadoUsuarios();
+                IniciarPantalla();
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Nombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
+                lbNombreUsuario.Text = Nombre.SacarNombreUsuarioConectado();
+
+                Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbPantalla.Text = "MANTENIMIENTO DE USUARIOS";
             }
         }
 
