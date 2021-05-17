@@ -450,11 +450,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         null, null, null, null, null,
                         txtUsuarioMantenimiento.Text, null, null);
                     if (ValidarUsuario.Count() < 1) {
-                        ClientScript.RegisterStartupScript(GetType(), "UsuarioNoValido()", "UsuarioNoValido();", true);
-                    }
-                    else {
                         MANUsuarios(0, AccionTomar);
                         IniciarPantalla();
+                       
+                    }
+                    else {
+                        ClientScript.RegisterStartupScript(GetType(), "UsuarioNoValido()", "UsuarioNoValido();", true);
                     }
                 
                     break;
