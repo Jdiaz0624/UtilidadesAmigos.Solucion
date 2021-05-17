@@ -231,16 +231,6 @@
                 </div>
 
                 <div class="form-group col-md-3">
-                    <asp:Label ID="lbClaveMantenimiento" runat="server" Text="Clave" CssClass="LetrasNegrita"></asp:Label>
-                    <asp:TextBox ID="txtClaveMantenimiento" runat="server" CssClass="form-control" TextMode="Password" AutoCompleteType="Disabled"></asp:TextBox>
-                </div>
-
-                 <div class="form-group col-md-3">
-                    <asp:Label ID="lbConfirmarClaveMantenimiento" runat="server" Text="Confirmar Clave" CssClass="LetrasNegrita"></asp:Label>
-                    <asp:TextBox ID="txtConfirmarClaveMantenimiento" runat="server" CssClass="form-control" TextMode="Password" AutoCompleteType="Disabled"></asp:TextBox>
-                </div>
-
-                <div class="form-group col-md-3">
                     <asp:Label ID="lbEmailMantenimiento" runat="server" Text="Email" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtEmailMantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>

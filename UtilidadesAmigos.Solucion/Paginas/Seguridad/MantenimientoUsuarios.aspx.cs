@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
 using System.Data;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -215,6 +217,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region MANTENIMIENTO DE USUARIOS
         private void MANUsuarios(decimal IdUsuario, string Accion) {
 
+            string Clave = "RgB1AHQAdQByAG8AUwBlAGcAdQByAG8AcwAxADIAMwA=";
+
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSeguridad.ProcesarInformacionSeguridad Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionSeguridad.ProcesarInformacionSeguridad(
                 IdUsuario,
                 Convert.ToDecimal(ddlSucursalMantenimiento.SelectedValue),
@@ -222,7 +226,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Convert.ToDecimal(ddlDepartamentoMantenimiento.SelectedValue),
                 Convert.ToDecimal(ddlPerfilMantenimiento.SelectedValue),
                 txtUsuarioMantenimiento.Text,
-                txtClaveMantenimiento.Text,
+                Clave,
                 txtPersonaMantenimiento.Text,
                 cbEstatusMantenimiento.Checked,
                 cbLLevaEmail.Checked,
@@ -235,6 +239,40 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Accion);
             Procesar.ProcesarInformacion();
         }
+        #endregion
+
+        #region REPORTE DE USUARIOS
+        private void ReporteUsuarios(string RutaReporte, string NombreReporte) {
+
+            decimal? _CodigoUsuario = new Nullable<decimal>();
+            decimal? _Sucursal = ddlSucursalCOnsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlSucursalCOnsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _departamento = ddlSucursalCOnsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlSucursalCOnsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _Perfil = ddlPerfilCOnsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlPerfilCOnsulta.SelectedValue) : new Nullable<decimal>();
+            string _Usuario = string.IsNullOrEmpty(txtUsuarioConsulta.Text.Trim()) ? null : txtUsuarioConsulta.Text.Trim();
+            string _UsuarioLogin = null;
+            string _ClaveLogin = null;
+            bool? _Estatus = new Nullable<bool>();
+
+            ReportDocument Reporte = new ReportDocument();
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@IdUsuario", _CodigoUsuario);
+            Reporte.SetParameterValue("@IdSucursal", _Sucursal);
+            Reporte.SetParameterValue("@IdOficina", _Oficina);
+            Reporte.SetParameterValue("@IdDepartamento", _departamento);
+            Reporte.SetParameterValue("@IdPerfil", _Perfil);
+            Reporte.SetParameterValue("@UsuarioConsulta", _Usuario);
+            Reporte.SetParameterValue("@Usuario", _UsuarioLogin);
+            Reporte.SetParameterValue("@Clave", _ClaveLogin);
+            Reporte.SetParameterValue("@Estatus", _Estatus);
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+
+        }
+
         #endregion
 
         private void IniciarPantalla() {
@@ -286,11 +324,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
             ListaTipoPersona();
             lbAccion.Text = "INSERT";
             lbIdUsuario.Text = "0";
+            lbClaveSeguridadMAntenimiento.Visible = false;
+            txtClaveSeguridadMAntenimiento.Visible = false;
+            cbEstatusMantenimiento.Checked = true;
+            cbCambiaClave.Checked = true;
+            cbCambiaClave.Enabled = false;
         }
 
         protected void btnReporte_Click(object sender, EventArgs e)
         {
-
+            ReporteUsuarios(Server.MapPath("ReporteUsuarios.rpt"), "Reporte de Usuarios");
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
