@@ -202,6 +202,7 @@
          <asp:LinkButton ID="LinkEnvioCorreo" runat="server" Visible="false" ForeColor="Red" Text="Envio de Correo" OnClick="LinkEnvioCorreo_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
          <asp:LinkButton ID="LinkEliminarBalance" runat="server"  ForeColor="Red" Visible="false" Text="Eliminar Balance" OnClick="LinkEliminarBalance_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
          <asp:LinkButton ID="LinkGenerarFacturasPDF" runat="server" Visible="false" Text="Generar Facturas PDF" OnClick="LinkGenerarFacturasPDF_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkVolantePago" runat="server" Text="Volante de Pagos" OnClick="LinkVolantePago_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
     </div>
   </li>
 </ul>

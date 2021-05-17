@@ -99,7 +99,7 @@
 
             $("#<%=btnGuardarMantenimiento.ClientID%>").click(function () {
                 var TipoIdentificacion = $("#<%=ddlSeleccionarTipoIdentificacionMantenimiento.ClientID%>").val();
-                if (TipoIdentificacion < 1) {
+                if (TipoIdentificacion < 0) {
                     alert("El campo tipo de identificación no puede estar vacio para realizar esta operación, favor de verificar.");
                     $("#<%=ddlSeleccionarTipoIdentificacionMantenimiento.ClientID%>").css("border-color", "red");
                     return false;

@@ -185,6 +185,7 @@
     <Content Include="Paginas\Procesos\GenerarBakupBD.aspx" />
     <Content Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx" />
     <Content Include="Paginas\Procesos\Logo.jpg" />
+    <Content Include="Paginas\Procesos\VolantesDePagos.aspx" />
     <Content Include="Paginas\ReporteReclamos.aspx" />
     <Content Include="Paginas\Reportes\ComisionesIntermediarios.aspx" />
     <Content Include="Paginas\Reportes\ComisionesSupervisores.aspx" />
@@ -619,6 +620,13 @@
     </Compile>
     <Compile Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx.designer.cs">
       <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\VolantesDePagos.aspx.cs">
+      <DependentUpon>VolantesDePagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\VolantesDePagos.aspx.designer.cs">
+      <DependentUpon>VolantesDePagos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ProduccionDiaria.aspx.cs">
       <DependentUpon>ProduccionDiaria.aspx</DependentUpon>
