@@ -166,7 +166,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void ListadoUsuarios() {
             decimal? _Sucursal = ddlSucursalCOnsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlSucursalCOnsulta.SelectedValue) : new Nullable<decimal>();
             decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
-            decimal? _departamento = ddlSucursalCOnsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlSucursalCOnsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _departamento = ddlDepartamentoConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlDepartamentoConsulta.SelectedValue) : new Nullable<decimal>();
             decimal? _Perfil = ddlPerfilCOnsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlPerfilCOnsulta.SelectedValue) : new Nullable<decimal>();
             string _Usuario = string.IsNullOrEmpty(txtUsuarioConsulta.Text.Trim()) ? null : txtUsuarioConsulta.Text.Trim();
 
@@ -247,7 +247,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             decimal? _CodigoUsuario = new Nullable<decimal>();
             decimal? _Sucursal = ddlSucursalCOnsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlSucursalCOnsulta.SelectedValue) : new Nullable<decimal>();
             decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
-            decimal? _departamento = ddlSucursalCOnsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlSucursalCOnsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _departamento = ddlDepartamentoConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlDepartamentoConsulta.SelectedValue) : new Nullable<decimal>();
             decimal? _Perfil = ddlPerfilCOnsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlPerfilCOnsulta.SelectedValue) : new Nullable<decimal>();
             string _Usuario = string.IsNullOrEmpty(txtUsuarioConsulta.Text.Trim()) ? null : txtUsuarioConsulta.Text.Trim();
             string _UsuarioLogin = null;
@@ -274,6 +274,30 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
 
         #endregion
+
+        private void SacarInformacionUsuarioSeleccionado(decimal IdUsuario) {
+
+            var SacrInformacion = ObjDataLogica.Value.BuscaUsuarios(IdUsuario);
+            foreach (var n in SacrInformacion) {
+                ListaSucursalesMantenimiento();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSucursalMantenimiento, n.IdSucursal.ToString());
+                ListaOficinasMantenimiento();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlOficinaMantenimiento, n.IdOficina.ToString());
+                ListaDepartamentoMantenimiento();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlDepartamentoMantenimiento, n.IdDepartamento.ToString());
+                ListaPersilMantenimiento();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlPerfilMantenimiento, n.IdPerfil.ToString());
+                txtUsuarioMantenimiento.Text = n.Usuario;
+                txtPersonaMantenimiento.Text = n.Persona;
+                txtEmailMantenimiento.Text = n.Email;
+                ListaTipoPersona();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlTipoPersonaMantenimiento, n.IdTipoPersona.ToString());
+                cbEstatusMantenimiento.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
+                cbLLevaEmail.Checked = (n.LlevaEmail0.HasValue ? n.LlevaEmail0.Value : false);
+                cbCambiaClave.Checked = (n.CambiaClave0.HasValue ? n.CambiaClave0.Value : false);
+                cbImpresionMarbete.Checked = (n.PermisoImpresionMarbete0.HasValue ? n.PermisoImpresionMarbete0.Value : false);
+            }
+        }
 
         private void IniciarPantalla() {
             DivBloqueConsulta.Visible = true;
@@ -338,17 +362,35 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-
+            DivBloqueConsulta.Visible = false;
+            DivBloqueMantenimiento.Visible = true;
+            lbAccion.Text = "UPDATE";
+            lbClaveSeguridadMAntenimiento.Visible = true;
+            txtClaveSeguridadMAntenimiento.Visible = true;
+            cbCambiaClave.Enabled = true;
+            SacarInformacionUsuarioSeleccionado(Convert.ToDecimal(lbIdUsuario.Text));
         }
 
         protected void btnRestablecer_Click(object sender, EventArgs e)
         {
-
+            IniciarPantalla();
         }
 
         protected void btnSeleccionarUsuario_Click(object sender, EventArgs e)
         {
+            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfIdUsuario = ((HiddenField)ItemSeleccionado.FindControl("hfIdUsuario")).Value.ToString();
+            lbIdUsuario.Text = hfIdUsuario.ToString();
 
+            var BuscarRegistroSeleccionado = ObjDataLogica.Value.BuscaUsuarios(Convert.ToDecimal(hfIdUsuario.ToString()));
+            Paginar(ref rpListadoUsuarios, BuscarRegistroSeleccionado, 1, ref lbCantidadPaginaVariableUsuarios, ref LinkPrimeraPaginaUsuarios, ref LinkAnteriorUsuarios, ref LinkSiguienteUsuarios, ref LinkUltimoUsuarios);
+            HandlePaging(ref dtPaginacionUsuarios, ref lbPaginaActualVariavleUsuarios);
+
+            btnConsultar.Enabled = false;
+            btnNuevo.Enabled = false;
+            btnReporte.Enabled = false;
+            btnModificar.Enabled = true;
+            btnRestablecer.Enabled = true;
         }
 
         protected void LinkPrimeraPaginaUsuarios_Click(object sender, EventArgs e)
@@ -391,7 +433,28 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            string AccionTomar = lbAccion.Text;
+            //MANUsuarios
+            switch (AccionTomar) {
+                case "INSERT":
+                    var ValidarUsuario = ObjDataLogica.Value.BuscaUsuarios(
+                        new Nullable<decimal>(),
+                        null, null, null, null, null,
+                        txtUsuarioMantenimiento.Text, null, null);
+                    if (ValidarUsuario.Count() < 1) {
+                    
+                    }
+                    else {
+                        MANUsuarios(0, AccionTomar);
+                        IniciarPantalla();
+                    }
+                
+                    break;
 
+                case "UPDATE":
+
+                    break;
+            }
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
