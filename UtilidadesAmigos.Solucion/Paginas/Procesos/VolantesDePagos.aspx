@@ -28,12 +28,12 @@
         <div class="form-row">
             <div class="form-group col-md-2">
                 <asp:Label ID="lbCodigoEmpleado" runat="server" Text="Codigo de Empleado" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtCodigoEmpleado" runat="server" CssClass="form-control" Placeholder="Opcional" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtCodigoEmpleado" runat="server" AutoCompleteType="Disabled" CssClass="form-control" Placeholder="Opcional" AutoPostBack="true" OnTextChanged="txtCodigoEmpleado_TextChanged" TextMode="Number"></asp:TextBox>
             </div>
 
              <div class="form-group col-md-6">
                 <asp:Label ID="lbNombreEmpleado" runat="server" Text="Nombre de Empleado" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtNombreEmpleado" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                <asp:TextBox ID="txtNombreEmpleado" runat="server" AutoCompleteType="Disabled" CssClass="form-control" Enabled="false"></asp:TextBox>
             </div>
 
             <div class="form-group col-md-4">
@@ -48,12 +48,12 @@
 
             <div class="form-group col-md-2">
                 <asp:Label ID="lbAno" runat="server" Text="Año" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtAno" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtAno" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
 
              <div class="form-group col-md-2">
                 <asp:Label ID="lbMes" runat="server" Text="Mes" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtMes" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtMes" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
         </div>
         <br />
@@ -66,7 +66,83 @@
             </div>
            
         </div>
+            <br />
+            <div align="center">
+                <asp:Button ID="btnProcesar" runat="server" Text="Procesar"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Generar Volantes de Pagos" OnClick="btnProcesar_Click" />
+                <asp:Button ID="btnCodigos" runat="server" Text="Codigos"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Buscar Codigos de Empleados" OnClick="btnCodigos_Click" />
+                <asp:Button ID="btnConfigurar" runat="server" Text="Configurar"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Configurar Correo" OnClick="btnConfigurar_Click" />
+            </div>
+            <br />
     </div>
+
+        <div id="DivBloqueBuscarCodigo" runat="server">
+            <br />
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <asp:Label ID="lbNombreEmpleadoConsulta" runat="server" Text="Nombre de Empleado" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtNombreEmpleadoConsulta" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+            </div>
+            <br />
+             <div align="center">
+                <asp:Button ID="btnBuscarCodigo" runat="server" Text="Buscar"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Buscar Codigos" OnClick="btnBuscarCodigo_Click" />
+                 <asp:Button ID="btnVolverVolantePago" runat="server" Text="Volver"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Volver Atras" OnClick="btnVolverVolantePago_Click" />
+            </div>
+            <br />
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width:10%" align="left"> SELECCIONAR </th>
+                             <th style="width:10%" align="left"> CODIGO </th>
+                             <th style="width:60%" align="left"> NOMBRE </th>
+                             <th style="width:20%" align="left"> OFICINA </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Repeater ID="rpListadoCodigos" runat="server">
+                            <ItemTemplate>
+                                <tr>
+                                    <asp:HiddenField ID="hfCodigoEmpleado" runat="server" Value='<%# Eval("") %>' />
+                                    <td style="width:10%" align="left"> <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Seleccionar el Codigo" OnClick="btnSeleccionar_Click" /> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("") %> </td>
+                                    <td style="width:60%" align="left"> <%# Eval("") %> </td>
+                                    <td style="width:40%" align="left"> <%# Eval("") %> </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+            </div>
+
+             <div align="center">
+               <asp:Label ID="lbPaginaActualTituloVolantePago" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavleVolantePago" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloVolantePago" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariableVolantePago" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="DivPaginacionVolantePago" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeraPaginaVolantePago" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaVolantePago_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorVolantePago" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorVolantePago_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionVolantePago" runat="server" OnItemCommand="dtPaginacionVolantePago_ItemCommand" OnItemDataBound="dtPaginacionVolantePago_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralVolantePago" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteVolantePago" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteVolantePago_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoVolantePago" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoVolantePago_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+            <br />
+        </div>
     </div>
 
 </asp:Content>
