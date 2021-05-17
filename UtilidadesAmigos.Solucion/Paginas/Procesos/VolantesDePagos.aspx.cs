@@ -11,7 +11,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
+            //lbNombreUsuario.Text = SacarNombre.SacarNombreUsuarioConectado();
+            //Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+            //lbPantallaActual.Text = "GENERAR VOLANTES DE PAGOS";
         }
     }
 }
