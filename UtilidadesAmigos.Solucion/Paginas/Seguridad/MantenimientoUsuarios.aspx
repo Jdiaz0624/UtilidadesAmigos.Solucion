@@ -24,7 +24,17 @@
     </style>
 
     <script type="text/javascript"> 
-                
+
+        function UsuarioNoValido() {
+            alert("El usuario ingresado ya existe, favor de verificar.");
+        }
+        function ClaveSeguridadVacia() {
+            alert("El campo clave de seguridad no puede estar vacio para modificar este registro.");
+            $("#<%=txtClaveSeguridadMAntenimiento.ClientID%>").css("border-color", "blue");
+        }
+        function ClaveSeguridadErronea() {
+            alert("La clave de seguridad ingresada no es valida.");
+        }
         
         $(document).ready(function () {
 

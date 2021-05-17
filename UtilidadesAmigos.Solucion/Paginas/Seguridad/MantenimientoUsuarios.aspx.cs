@@ -313,6 +313,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnReporte.Enabled = true;
             btnModificar.Enabled = false;
             btnRestablecer.Enabled = false;
+
+            txtUsuarioMantenimiento.Text = string.Empty;
+            txtUsuarioConsulta.Text = string.Empty;
+            txtPersonaMantenimiento.Text = string.Empty;
+            txtEmailMantenimiento.Text = string.Empty;
+            txtClaveSeguridadMAntenimiento.Text = string.Empty;
         }
 
 
@@ -353,6 +359,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             cbEstatusMantenimiento.Checked = true;
             cbCambiaClave.Checked = true;
             cbCambiaClave.Enabled = false;
+            txtUsuarioMantenimiento.Enabled = true;
         }
 
         protected void btnReporte_Click(object sender, EventArgs e)
@@ -369,6 +376,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtClaveSeguridadMAntenimiento.Visible = true;
             cbCambiaClave.Enabled = true;
             SacarInformacionUsuarioSeleccionado(Convert.ToDecimal(lbIdUsuario.Text));
+            txtUsuarioMantenimiento.Enabled = false;
         }
 
         protected void btnRestablecer_Click(object sender, EventArgs e)
@@ -442,7 +450,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         null, null, null, null, null,
                         txtUsuarioMantenimiento.Text, null, null);
                     if (ValidarUsuario.Count() < 1) {
-                    
+                        ClientScript.RegisterStartupScript(GetType(), "UsuarioNoValido()", "UsuarioNoValido();", true);
                     }
                     else {
                         MANUsuarios(0, AccionTomar);
@@ -452,7 +460,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     break;
 
                 case "UPDATE":
-
+                    if (string.IsNullOrEmpty(txtClaveSeguridadMAntenimiento.Text.Trim())) {
+                        ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadVacia()", "ClaveSeguridadVacia();", true);
+                    }
+                    else {
+                        bool Resultado = false;
+                        UtilidadesAmigos.Logica.Comunes.ValidarClaveSeguridad Validacion = new Logica.Comunes.ValidarClaveSeguridad(txtClaveSeguridadMAntenimiento.Text);
+                        Resultado = Validacion.ValidarClave();
+                        if (Resultado == true) {
+                            MANUsuarios(Convert.ToDecimal(lbIdUsuario.Text), AccionTomar);
+                            if (cbCambiaClave.Checked == true) {
+                                MANUsuarios(Convert.ToDecimal(lbIdUsuario.Text), "STARTCHANGEPASSWORD");
+                                IniciarPantalla();
+                            }
+                            else {
+                                IniciarPantalla();
+                            }
+                        }
+                        else {
+                            ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadErronea()", "ClaveSeguridadErronea();", true);
+                        }
+                    }
                     break;
             }
         }
