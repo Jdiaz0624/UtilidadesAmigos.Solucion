@@ -151,6 +151,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MasterPage\PatallaPrincila.Master" />
+    <Content Include="libman.json" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-reboot.min.css.map" />
@@ -195,6 +196,7 @@
     <Content Include="Paginas\Reportes\ImpresionCheques.aspx" />
     <Content Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx" />
     <Content Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx" />
+    <Content Include="Paginas\Seguridad\ConfiguracionCorreosEmisorProcesos.aspx" />
     <Content Include="Paginas\Seguridad\MantenimientoUsuarios.aspx" />
     <Content Include="Paginas\SistemaTicket.aspx" />
     <Content Include="Paginas\SolicitudEmisionPoliza.aspx" />
@@ -213,6 +215,10 @@
     <Content Include="scripts\inputmask\inputmask.min.js" />
     <Content Include="scripts\inputmask\jquery.inputmask.js" />
     <Content Include="scripts\inputmask\jquery.inputmask.min.js" />
+    <Content Include="scripts\bootstrap.min.js.map" />
+    <Content Include="scripts\bootstrap.js.map" />
+    <Content Include="scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="scripts\bootstrap.bundle.js.map" />
     <None Include="scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="scripts\jquery-3.6.0.js" />
     <Content Include="scripts\jquery-3.6.0.min.js" />
@@ -307,10 +313,6 @@
     <Content Include="scripts\esm\popper.js.map" />
     <Content Include="scripts\esm\popper-utils.min.js.map" />
     <Content Include="scripts\esm\popper-utils.js.map" />
-    <Content Include="scripts\bootstrap.min.js.map" />
-    <Content Include="scripts\bootstrap.js.map" />
-    <Content Include="scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="scripts\bootstrap.bundle.js.map" />
     <Content Include="scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="scripts\jquery-3.6.0.min.map" />
     <None Include="Web.Debug.config">
@@ -718,6 +720,13 @@
     </Compile>
     <Compile Include="Paginas\SacarDataCoberturas.aspx.designer.cs">
       <DependentUpon>SacarDataCoberturas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\ConfiguracionCorreosEmisorProcesos.aspx.cs">
+      <DependentUpon>ConfiguracionCorreosEmisorProcesos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\ConfiguracionCorreosEmisorProcesos.aspx.designer.cs">
+      <DependentUpon>ConfiguracionCorreosEmisorProcesos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Seguridad\MantenimientoUsuarios.aspx.cs">
       <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
