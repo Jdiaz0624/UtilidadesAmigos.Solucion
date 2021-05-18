@@ -285,5 +285,53 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
             return Mantenimiento;
         }
         #endregion
+        #region MANTENIMIENTO DE CORREOS EMISORES DE SISTEMA
+        //LISTADO DE CORREOS EMISORES DEL SISTEMA
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ECorreosEmisonesSistema> ListadoCorreosEmisores(int? IdCorreo = null, int? IdProceso = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_CORREOS_EMISORES_SISTEMA(IdCorreo, IdProceso)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.ECorreosEmisonesSistema
+                           {
+                               IdCorreo=n.IdCorreo,
+                               IdProceso=n.IdProceso,
+                               Proceso=n.Proceso,
+                               Correo=n.Correo,
+                               Clave=n.Clave,
+                               Puerto=n.Puerto,
+                               SMTP=n.SMTP
+                           }).ToList();
+            return Listado;
+        }
+
+        //MANTENIMIENTO DE CORREOS EMISIONES DEL SISTEMA
+        public UtilidadesAmigos.Logica.Entidades.Procesos.ECorreosEmisonesSistema ProcesarCorreosEmisiones(UtilidadesAmigos.Logica.Entidades.Procesos.ECorreosEmisonesSistema Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.ECorreosEmisonesSistema Procesar = null;
+
+            var CorreosEmisores = ObjData.SP_MODIFICAR_CORREOS_EMISORES_SISTEMA(
+                Item.IdCorreo,
+                Item.IdProceso,
+                Item.Correo,
+                Item.Clave,
+                Item.Puerto,
+                Item.SMTP,
+                Accion);
+            if (CorreosEmisores != null) {
+                Procesar = (from n in CorreosEmisores
+                            select new UtilidadesAmigos.Logica.Entidades.Procesos.ECorreosEmisonesSistema
+                            {
+                                IdCorreo=n.IdCorreo,
+                                IdProceso=n.IdProceso,
+                                Correo=n.Correo,
+                                Clave=n.Clave,
+                                Puerto=n.Puerto,
+                                SMTP=n.SMTP
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }

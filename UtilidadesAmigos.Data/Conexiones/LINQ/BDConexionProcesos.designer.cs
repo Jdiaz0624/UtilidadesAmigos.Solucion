@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionProcesosDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString1, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
 		{
 			OnCreated();
 		}
@@ -175,6 +175,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, idRegistro, usuarioImprime, tipoImprecion, cantidadImpresion, cantidadPVC, cantidadHoja, totalImpresiones, cantidadMovimientos, accion);
 			return ((ISingleResult<SP_MANTENIMIENTO_HISTORICO_IMPRESION_MARBETE_RESUMIDOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_INFORMACION_CORREOS_EMISORES_SISTEMA")]
+		public ISingleResult<SP_BUSCA_INFORMACION_CORREOS_EMISORES_SISTEMAResult> SP_BUSCA_INFORMACION_CORREOS_EMISORES_SISTEMA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCorreo", DbType="Int")] System.Nullable<int> idCorreo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProceso", DbType="Int")] System.Nullable<int> idProceso)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCorreo, idProceso);
+			return ((ISingleResult<SP_BUSCA_INFORMACION_CORREOS_EMISORES_SISTEMAResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MODIFICAR_CORREOS_EMISORES_SISTEMA")]
+		public ISingleResult<SP_MODIFICAR_CORREOS_EMISORES_SISTEMAResult> SP_MODIFICAR_CORREOS_EMISORES_SISTEMA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCorreo", DbType="Int")] System.Nullable<int> idCorreo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProceso", DbType="Int")] System.Nullable<int> idProceso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Clave", DbType="VarChar(8000)")] string clave, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Puerto", DbType="Int")] System.Nullable<int> puerto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SMTP", DbType="VarChar(30)")] string sMTP, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCorreo, idProceso, correo, clave, puerto, sMTP, accion);
+			return ((ISingleResult<SP_MODIFICAR_CORREOS_EMISORES_SISTEMAResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2525,6 +2539,256 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadMovimientos != value))
 				{
 					this._CantidadMovimientos = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_INFORMACION_CORREOS_EMISORES_SISTEMAResult
+	{
+		
+		private int _IdCorreo;
+		
+		private int _IdProceso;
+		
+		private string _Proceso;
+		
+		private string _Correo;
+		
+		private string _Clave;
+		
+		private System.Nullable<int> _Puerto;
+		
+		private string _SMTP;
+		
+		public SP_BUSCA_INFORMACION_CORREOS_EMISORES_SISTEMAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCorreo", DbType="Int NOT NULL")]
+		public int IdCorreo
+		{
+			get
+			{
+				return this._IdCorreo;
+			}
+			set
+			{
+				if ((this._IdCorreo != value))
+				{
+					this._IdCorreo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProceso", DbType="Int NOT NULL")]
+		public int IdProceso
+		{
+			get
+			{
+				return this._IdProceso;
+			}
+			set
+			{
+				if ((this._IdProceso != value))
+				{
+					this._IdProceso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Proceso", DbType="VarChar(100)")]
+		public string Proceso
+		{
+			get
+			{
+				return this._Proceso;
+			}
+			set
+			{
+				if ((this._Proceso != value))
+				{
+					this._Proceso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(50)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clave", DbType="VarChar(8000)")]
+		public string Clave
+		{
+			get
+			{
+				return this._Clave;
+			}
+			set
+			{
+				if ((this._Clave != value))
+				{
+					this._Clave = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Puerto", DbType="Int")]
+		public System.Nullable<int> Puerto
+		{
+			get
+			{
+				return this._Puerto;
+			}
+			set
+			{
+				if ((this._Puerto != value))
+				{
+					this._Puerto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SMTP", DbType="VarChar(30)")]
+		public string SMTP
+		{
+			get
+			{
+				return this._SMTP;
+			}
+			set
+			{
+				if ((this._SMTP != value))
+				{
+					this._SMTP = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MODIFICAR_CORREOS_EMISORES_SISTEMAResult
+	{
+		
+		private System.Nullable<int> _IdCorreo;
+		
+		private System.Nullable<int> _IdProceso;
+		
+		private string _Correo;
+		
+		private string _Clave;
+		
+		private System.Nullable<int> _Puerto;
+		
+		private string _SMTP;
+		
+		public SP_MODIFICAR_CORREOS_EMISORES_SISTEMAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCorreo", DbType="Int")]
+		public System.Nullable<int> IdCorreo
+		{
+			get
+			{
+				return this._IdCorreo;
+			}
+			set
+			{
+				if ((this._IdCorreo != value))
+				{
+					this._IdCorreo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProceso", DbType="Int")]
+		public System.Nullable<int> IdProceso
+		{
+			get
+			{
+				return this._IdProceso;
+			}
+			set
+			{
+				if ((this._IdProceso != value))
+				{
+					this._IdProceso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(50)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clave", DbType="VarChar(8000)")]
+		public string Clave
+		{
+			get
+			{
+				return this._Clave;
+			}
+			set
+			{
+				if ((this._Clave != value))
+				{
+					this._Clave = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Puerto", DbType="Int")]
+		public System.Nullable<int> Puerto
+		{
+			get
+			{
+				return this._Puerto;
+			}
+			set
+			{
+				if ((this._Puerto != value))
+				{
+					this._Puerto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SMTP", DbType="VarChar(30)")]
+		public string SMTP
+		{
+			get
+			{
+				return this._SMTP;
+			}
+			set
+			{
+				if ((this._SMTP != value))
+				{
+					this._SMTP = value;
 				}
 			}
 		}

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionProcesosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_GENERAR_DATOS_PARA_MARBETE_VEHICULO" Method="SP_GENERAR_DATOS_PARA_MARBETE_VEHICULO">
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="Item" Parameter="item" Type="System.String" DbType="VarChar(50)" />
@@ -238,6 +238,36 @@
       <Column Name="CantidadHoja" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TotalImpresiones" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CantidadMovimientos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_INFORMACION_CORREOS_EMISORES_SISTEMA" Method="SP_BUSCA_INFORMACION_CORREOS_EMISORES_SISTEMA">
+    <Parameter Name="IdCorreo" Parameter="idCorreo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdProceso" Parameter="idProceso" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_INFORMACION_CORREOS_EMISORES_SISTEMAResult">
+      <Column Name="IdCorreo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdProceso" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Proceso" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="Puerto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SMTP" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MODIFICAR_CORREOS_EMISORES_SISTEMA" Method="SP_MODIFICAR_CORREOS_EMISORES_SISTEMA">
+    <Parameter Name="IdCorreo" Parameter="idCorreo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdProceso" Parameter="idProceso" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Clave" Parameter="clave" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="Puerto" Parameter="puerto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SMTP" Parameter="sMTP" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MODIFICAR_CORREOS_EMISORES_SISTEMAResult">
+      <Column Name="IdCorreo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdProceso" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="Puerto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SMTP" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
