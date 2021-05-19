@@ -175,14 +175,30 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
             Procesar.ProcesarInfrmacion();
         }
         #endregion
+        private void IniciarPantalla() {
+            DivBloqueConsulta.Visible = true;
+            DivBloqueModificar.Visible = false;
+            btnConsultarRegistros.Enabled = true;
+            btnModificar.Enabled = false;
+            btnRestablecer.Enabled = true;
+            ddlProcesoConsulta.Enabled = true;
+            txtClaveModificar.Text = string.Empty;
+            txtClaveSeguridad.Text = string.Empty;
+            txtCorreoModificar.Text = string.Empty;
+            txtpuertoMantenimiento.Text = string.Empty;
+            txtSMTPMantenimiento.Text = string.Empty;
+
+            CargarProcesos();
+            CurrentPage = 0;
+            ListadoCorreos();
+            btnModificar.Enabled = false;
+            DivBloqueModificar.Visible = false;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack) {
-                CargarProcesos();
-                CurrentPage = 0;
-                ListadoCorreos();
-                btnModificar.Enabled = false;
+                IniciarPantalla();
             }
         }
 
@@ -194,7 +210,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
 
         protected void btnSeleccionarRegistro_Click(object sender, EventArgs e)
         {
+            var IdCorreoSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfIdCorreoSeleccionado = ((HiddenField)IdCorreoSeleccionado.FindControl("hfIdCorreo")).Value.ToString();
 
+            var IdProcesoSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfIdProcesoSeleccionado = ((HiddenField)IdProcesoSeleccionado.FindControl("hfIdProceso")).Value.ToString();
+
+            lbIdCorreoSeleccionado.Text = hfIdCorreoSeleccionado.ToString();
+            lbIdProcesoSeleccionado.Text = hfIdProcesoSeleccionado.ToString();
+
+            var BuscarRegistro = ObjDataProceso.Value.ListadoCorreosEmisores(Convert.ToInt32(lbIdCorreoSeleccionado.Text), Convert.ToInt32(lbIdProcesoSeleccionado.Text));
+            Paginar(ref rpListadoCorreos, BuscarRegistro, 1, ref lbCantidadPaginaVariableCorreos, ref LinkPrimeraPaginaCorreos, ref LinkAnteriorCorreos, ref LinkSiguienteCorreos, ref LinkUltimoCorreos);
+            HandlePaging(ref dtPaginacionCorreos, ref lbPaginaActualVariavleCorreos);
+            btnConsultarRegistros.Enabled = false;
+            btnModificar.Enabled = true;
+            btnRestablecer.Enabled = true;
+            ddlProcesoConsulta.Enabled = false;
         }
 
         protected void LinkPrimeraPaginaCorreos_Click(object sender, EventArgs e)
@@ -230,22 +261,31 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            
+            DivBloqueConsulta.Visible = false;
+            DivBloqueModificar.Visible = true;
+            var BuscarRegistro = ObjDataProceso.Value.ListadoCorreosEmisores(Convert.ToInt32(lbIdCorreoSeleccionado.Text), Convert.ToInt32(lbIdProcesoSeleccionado.Text));
+            foreach (var n in BuscarRegistro) {
+                txtCorreoModificar.Text = n.Correo;
+                txtClaveModificar.Text = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(n.Clave);
+                txtpuertoMantenimiento.Text = n.Puerto.ToString();
+                txtSMTPMantenimiento.Text = n.SMTP;
+            }
         }
 
         protected void btnRestablecer_Click(object sender, EventArgs e)
         {
-
+            IniciarPantalla();
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-
+            MAnCorreos();
+            IniciarPantalla();
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-
+            IniciarPantalla();
         }
 
         protected void LinkUltimoCorreos_Click(object sender, EventArgs e)
