@@ -70,7 +70,7 @@
             <div align="center">
                 <asp:Button ID="btnProcesar" runat="server" Text="Procesar"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Generar Volantes de Pagos" OnClick="btnProcesar_Click" />
                 <asp:Button ID="btnCodigos" runat="server" Text="Codigos"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Buscar Codigos de Empleados" OnClick="btnCodigos_Click" />
-                <asp:Button ID="btnConfigurar" runat="server" Text="Configurar"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Configurar Correo" OnClick="btnConfigurar_Click" />
+                
             </div>
             <br />
     </div>
@@ -95,19 +95,23 @@
                         <tr>
                             <th style="width:10%" align="left"> SELECCIONAR </th>
                              <th style="width:10%" align="left"> CODIGO </th>
-                             <th style="width:60%" align="left"> NOMBRE </th>
+                             <th style="width:30%" align="left"> NOMBRE </th>
                              <th style="width:20%" align="left"> OFICINA </th>
+                            <th style="width:20%" align="left"> DEPARTAMENTO </th>
+                            <th style="width:10%" align="left"> ESTATUS </th>
                         </tr>
                     </thead>
                     <tbody>
                         <asp:Repeater ID="rpListadoCodigos" runat="server">
                             <ItemTemplate>
                                 <tr>
-                                    <asp:HiddenField ID="hfCodigoEmpleado" runat="server" Value='<%# Eval("") %>' />
+                                    <asp:HiddenField ID="hfCodigoEmpleado" runat="server" Value='<%# Eval("CodigoEmpleado") %>' />
                                     <td style="width:10%" align="left"> <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Seleccionar el Codigo" OnClick="btnSeleccionar_Click" /> </td>
-                                    <td style="width:10%" align="left"> <%# Eval("") %> </td>
-                                    <td style="width:60%" align="left"> <%# Eval("") %> </td>
-                                    <td style="width:40%" align="left"> <%# Eval("") %> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("CodigoEmpleado") %> </td>
+                                    <td style="width:30%" align="left"> <%# Eval("Nombre") %> </td>
+                                    <td style="width:20%" align="left"> <%# Eval("DescSucursal") %> </td>
+                                    <td style="width:20%" align="left"> <%# Eval("DescDepto") %> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("Estatus") %> </td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>

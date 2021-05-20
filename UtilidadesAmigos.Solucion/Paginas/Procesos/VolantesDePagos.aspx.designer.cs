@@ -177,15 +177,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.Button btnCodigos;
 
         /// <summary>
-        /// btnConfigurar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfigurar;
-
-        /// <summary>
         /// DivBloqueBuscarCodigo control.
         /// </summary>
         /// <remarks>

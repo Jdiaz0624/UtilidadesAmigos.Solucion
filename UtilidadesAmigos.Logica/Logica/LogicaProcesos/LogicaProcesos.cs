@@ -333,5 +333,67 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
             return Procesar;
         }
         #endregion
+        #region VOLANTES DE PAGOS
+        //BUSCAR INFORMACION PARA LOS VOLANTES DE PAGOS
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EBuscarInformacionVolantesPagos> BuscaInformacionVolantesPagos(int? CodigoEmpleado = null, int? Ano = null, byte? Mes = null, int? TipoMovimiento = null, byte? TipoNomina = null, int? NoPago = null, int? CodigoSucursal = null, int? CodigoDepartamento = null,string NombreEmpleado = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCAR_INFORMACION_VOLANTES_PAGOS(CodigoEmpleado, Ano, Mes, TipoMovimiento, TipoNomina, NoPago, CodigoSucursal, CodigoDepartamento, NombreEmpleado)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.EBuscarInformacionVolantesPagos
+                           {
+                               CodEmpleado=n.CodEmpleado,
+                               Ano=n.Ano,
+                               Mes=n.Mes,
+                               NombreMes=n.NombreMes,
+                               TipoMovimiento=n.TipoMovimiento,
+                               DescTipoMovimiento=n.DescTipoMovimiento,
+                               TipoNomina=n.TipoNomina,
+                               DescTipoNomina=n.DescTipoNomina,
+                               NoPago=n.NoPago,
+                               Sucursal=n.Sucursal,
+                               DescSucursal=n.DescSucursal,
+                               Departamento=n.Departamento,
+                               DescDepto=n.DescDepto,
+                               NombreEmpleado=n.NombreEmpleado,
+                               Origen=n.Origen,
+                               Valor=n.Valor,
+                               Ingresos=n.Ingresos,
+                               Deducciones=n.Deducciones,
+                               TotalIngreso=n.TotalIngreso,
+                               TotalDeducciones=n.TotalDeducciones,
+                               Total=n.Total
+                           }).ToList();
+            return Listado;
+        }
+
+
+        //BUSCAR INFORMACION DE LOS EMPLEADOS
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EEMpleados> BuscaInformacionEmpleados(int? CodigoEmpleado = null, string NombreEmpleado = null, int? Sucursar = null, int? Departamento = null, int? Cargo = null, DateTime? FechaIngresoDesde = null, DateTime? FechaIngresoHasta = null, string Estatus = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_EMPLEADOS(CodigoEmpleado, NombreEmpleado, Sucursar, Departamento, Cargo, FechaIngresoDesde, FechaIngresoHasta, Estatus)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.EEMpleados
+                           {
+                               CodigoEmpleado=n.CodigoEmpleado,
+                               Nombre=n.Nombre,
+                               Sucursal=n.Sucursal,
+                               DescSucursal=n.DescSucursal,
+                               Departamento=n.Departamento,
+                               DescDepto=n.DescDepto,
+                               Cargo=n.Cargo,
+                               DescCargo=n.DescCargo,
+                               Cedula=n.Cedula,
+                               Direccion=n.Direccion,
+                               FechaIngreso0=n.FechaIngreso0,
+                               FechaIngreso=n.FechaIngreso,
+                               Email=n.Email,
+                               Email1=n.Email1,
+                               Email2=n.Email2,
+                               Estatus0=n.Estatus0,
+                               Estatus=n.Estatus
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }
