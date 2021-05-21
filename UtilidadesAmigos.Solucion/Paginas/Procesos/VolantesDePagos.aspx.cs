@@ -256,9 +256,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             };
 
             MAil.Destinatarios.Add("jmdiaz@amigosseguros.com");
-            MAil.Destinatarios.Add("gfeliz@amigosseguros.com");
-
-            // MAil.Destinatarios.Add("icolon@amigosseguros.com");
             MAil.Adjuntos.Add(VolantePagoPDF);
 
             if (MAil.Enviar(MAil))
