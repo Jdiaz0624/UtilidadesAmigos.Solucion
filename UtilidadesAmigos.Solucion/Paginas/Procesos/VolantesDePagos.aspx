@@ -22,6 +22,29 @@
         }
     </style>
 
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#<%=btnProcesar.ClientID%>").click(function () {
+                var Year = $("#<%=txtAno.ClientID%>").val().length;
+                if (Year < 1) {
+                    alert("El campo año no puede estar vacio para realizar esta operación, favor de verificar.");
+                    $("#<%=txtAno.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+                    var Month = $("#<%=txtMes.ClientID%>").val().length;
+                    if (Month < 1) {
+                        alert("El campo mes no puede estar vacio para realizar esta operación, favor de verificar.");
+                        $("#<%=txtMes.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                }
+            });
+
+        })
+    </script>
+
     <br />
     <div class="container-fluid">
         <div id="DivBloqueProceso" runat="server">
@@ -36,11 +59,6 @@
                 <asp:TextBox ID="txtNombreEmpleado" runat="server" AutoCompleteType="Disabled" CssClass="form-control" Enabled="false"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
-                <asp:Label ID="lbSeleccionaroficina" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionaroficina" runat="server" CssClass="form-control" ToolTip="Seleccionar la Oficina correspondiente para el filtro"></asp:DropDownList>
-            </div>
-
               <div class="form-group col-md-4">
                 <asp:Label ID="lbSeleccionarTipoNomina" runat="server" Text="Tipo de Nomina" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlTipoNomina" runat="server" CssClass="form-control" Enabled="false" ToolTip="Seleccionar El tipo de Nomina"></asp:DropDownList>
@@ -48,12 +66,12 @@
 
             <div class="form-group col-md-2">
                 <asp:Label ID="lbAno" runat="server" Text="Año" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtAno" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtAno" runat="server" AutoCompleteType="Disabled"  CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
 
              <div class="form-group col-md-2">
                 <asp:Label ID="lbMes" runat="server" Text="Mes" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtMes" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtMes" runat="server" AutoCompleteType="Disabled" MaxLength="2" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
         </div>
         <br />

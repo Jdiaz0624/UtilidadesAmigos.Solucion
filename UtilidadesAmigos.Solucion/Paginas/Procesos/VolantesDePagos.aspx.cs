@@ -5,12 +5,33 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 {
     public partial class VolantesDePagos : System.Web.UI.Page
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaProcesos.LogicaProcesos> ObjDataProceso = new Lazy<Logica.Logica.LogicaProcesos.LogicaProcesos>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
+
+
+        private string GenerarNombreArchivo(string NombreEmpleado) {
+            string Intervalo = "";
+            Random Numero = new Random();
+            string PrimerIntervalo = Numero.Next(0, 999999999).ToString();
+            string SegundoIntervalo = Numero.Next(0, 999999999).ToString();
+            string Year = DateTime.Now.Year.ToString();
+            string Month = DateTime.Now.Year.ToString();
+            string Day = DateTime.Now.Year.ToString();
+
+            Intervalo = PrimerIntervalo + Year + Month + Day + SegundoIntervalo + " - " + NombreEmpleado;
+            return Intervalo;
+
+        }
+        
+        string NombreArchivo="JUAN MARCELINO MEDINA DIAZ";
+        string VolantePagoPDF = "";
 
         #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
@@ -156,99 +177,262 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         }
         #endregion
 
-        private void IniciarPantalla() {
-            DivBloqueProceso.Visible = true;
-            DivBloqueBuscarCodigo.Visible = false;
-            CurrentPage = 0;
-            BuscarCodigosEmpleados();
+   
+
+        #region CARGAR LOS TIPOS DE NOMINA
+        private void CargarTipoNomina() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlTipoNomina, ObjData.Value.BuscaListas("TIPONOMINA", null, null));
         }
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            MaintainScrollPositionOnPostBack = true;
-            if (!IsPostBack) {
-                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario SacarNombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
-                Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
-                lbNombreUsuario.Text = SacarNombre.SacarNombreUsuarioConectado();
-                Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
-                lbPantallaActual.Text = "GENERAR VOLANTES DE PAGOS";
-                IniciarPantalla();
+        #endregion
+
+        #region SACAR EL MES Y EL AÑO ACTUAL
+        private void SacarMesAnoActual() {
+            DateTime Year = DateTime.Now;
+            DateTime Month = DateTime.Now;
+
+            txtAno.Text = Year.Year.ToString();
+            txtMes.Text = Month.Month.ToString();
+        }
+        #endregion
+
+        #region GENERAR VOLANTE DE PAGO
+        private void GenerarVolantePago(string RutaReporte, string NombreArchivo,string UsuarioBD, string ClaveBD) {
+            //DECLARAMOS LOS PARAMETROS NECESARIOS PARA ESTA PROCESO
+            int? _CodigoEmpleado = string.IsNullOrEmpty(txtCodigoEmpleado.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoEmpleado.Text.Trim());
+            int? _Oficina =  new Nullable<int>();
+            int? _Ano = string.IsNullOrEmpty(txtAno.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtAno.Text.Trim());
+            byte? _Mes = string.IsNullOrEmpty(txtMes.Text.Trim()) ? new Nullable<byte>() : Convert.ToByte(txtMes.Text.Trim());
+            int _NoPago = 0;
+
+            if (rbPrimeraQuincena.Checked == true) { _NoPago = 1; }
+            else if (rbSegundaQuincena.Checked == true) { _NoPago = 2; }
+
+            int? _TipoMovimiento = new Nullable<int>();
+            byte? _TipoNomina = ddlTipoNomina.SelectedValue != "-1" ? Convert.ToByte(ddlTipoNomina.SelectedValue) : new Nullable<byte>();
+            int? _CodigoDepartamento = new Nullable<int>();
+            string _NombreEmpleado = string.IsNullOrEmpty(txtNombreEmpleado.Text.Trim()) ? null : txtNombreEmpleado.Text.Trim();
+
+
+            ReportDocument Volante = new ReportDocument();
+
+            Volante.Load(RutaReporte);
+            Volante.Refresh();
+
+            Volante.SetParameterValue("@CodigoEmpleado", _CodigoEmpleado);
+            Volante.SetParameterValue("@Ano", _Ano);
+            Volante.SetParameterValue("@Mes", _Mes);
+            Volante.SetParameterValue("@TipoMovimiento", _TipoMovimiento);
+            Volante.SetParameterValue("@TipoNomina", _TipoNomina);
+            Volante.SetParameterValue("@NoPago", _NoPago);
+            Volante.SetParameterValue("@CodigoSucursal", _Oficina);
+            Volante.SetParameterValue("@CodigoDepartamento", _CodigoDepartamento);
+            Volante.SetParameterValue("@NombreEmpleado", _NombreEmpleado);
+
+            Volante.SetDatabaseLogon(UsuarioBD, ClaveBD);
+            //Volante.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Prueba");
+            NombreArchivo = GenerarNombreArchivo("GRACY LINETTE FELIZ SANCHEZ");
+            VolantePagoPDF = "C:\\Users\\Ing. Juan Marcelino\\Desktop\\Prueba\\" + NombreArchivo + ".PDF";
+            Volante.ExportToDisk(ExportFormatType.PortableDocFormat, VolantePagoPDF);
+
+
+
+        }
+        #endregion
+
+        #region ENVIO DE CORREO
+        private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP, string Cuerpo) {
+            UtilidadesAmigos.Logica.Comunes.EnvioCorreos MAil = new Logica.Comunes.EnvioCorreos
+            {
+                Mail = CorreoEmisor,
+                Alias = Alias,
+                Asunto = Asunto,
+                Clave = ClaveCorreo,
+                Puerto = Puerto,
+                smtp = SMTP,
+                RutaImagen = Server.MapPath("LogoReducido.jpg"),
+                Cuerpo=Cuerpo,
+                Destinatarios=new List<string>(),
+                Adjuntos=new List<string>()
+            };
+
+            MAil.Destinatarios.Add("jmdiaz@amigosseguros.com");
+            MAil.Destinatarios.Add("gfeliz@amigosseguros.com");
+
+            // MAil.Destinatarios.Add("icolon@amigosseguros.com");
+            MAil.Adjuntos.Add(VolantePagoPDF);
+
+            if (MAil.Enviar(MAil))
+            {
+
             }
+        }
+/* private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP, string Cuerpo) {
 
+
+    UtilidadesAmigos.Logica.Comunes.EnvioCorreos Mail = new Logica.Comunes.EnvioCorreos
+    {
+        Mail = CorreoEmisor,
+        Alias = Alias,
+        Asunto = Asunto,
+        Clave = ClaveCorreo,
+        Puerto = Puerto,
+        smtp = SMTP,
+        RutaImagen = Server.MapPath("LogoReducido.jpg"),
+        Cuerpo = Cuerpo,
+        Destinatarios = new List<string>(),
+        Adjuntos = new List<string>()
+    };
+
+
+    var MandarCorreos = ObjDataAdministrador.Value.BuscaCorreosEnviar(
+                new Nullable<decimal>(),
+                1, null, true);
+    foreach (var n in MandarCorreos) {
+        Mail.Destinatarios.Add(n.Correo);
+    }
+
+    //List<string> Logo = new List<string>();
+    //Logo.Add(Server.MapPath("Logo.jpg"));
+
+    //foreach (var n2 in Logo) {
+    //    Mail.Adjuntos.Add(n2);
+    //}
+
+
+
+    if (Mail.Enviar(Mail)) {
+
+    }
+}*/
+            #endregion
+
+            private void IniciarPantalla() {
+    DivBloqueProceso.Visible = true;
+    DivBloqueBuscarCodigo.Visible = false;
+    CurrentPage = 0;
+    BuscarCodigosEmpleados();
+
+    CargarTipoNomina();
+    rbPrimeraQuincena.Checked = true;
+    SacarMesAnoActual();
+}
+protected void Page_Load(object sender, EventArgs e)
+{
+    MaintainScrollPositionOnPostBack = true;
+    if (!IsPostBack) {
+        UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario SacarNombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+        Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
+        lbNombreUsuario.Text = SacarNombre.SacarNombreUsuarioConectado();
+        Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+        lbPantallaActual.Text = "GENERAR VOLANTES DE PAGOS";
+        IniciarPantalla();
+
+    }
+
+}
+
+protected void txtCodigoEmpleado_TextChanged(object sender, EventArgs e)
+{
+    try {
+        int CodigoEmpleado = Convert.ToInt32(txtCodigoEmpleado.Text);
+
+        var SacarNombreEmpleado = ObjDataProceso.Value.BuscaInformacionEmpleados(CodigoEmpleado, null, null, null, null, null, null, "A");
+        if (SacarNombreEmpleado.Count() < 1)
+        {
+            txtNombreEmpleado.Text = "EL CODIGO DE EMPLEADO INGRSADO NO ES VALIDO O ESTA CANCELADO";
+        }
+        else {
+            foreach (var n in SacarNombreEmpleado)
+            {
+                txtNombreEmpleado.Text = n.Nombre;
+            }
         }
 
-        protected void txtCodigoEmpleado_TextChanged(object sender, EventArgs e)
-        {
+    }
+    catch (Exception) {
+        txtNombreEmpleado.Text = "";
+    }
+}
 
-        }
-
-        protected void btnProcesar_Click(object sender, EventArgs e)
-        {
-
+protected void btnProcesar_Click(object sender, EventArgs e)
+{
+            
+            GenerarVolantePago(Server.MapPath("VolantePagos.rpt"), "d", "sa", "!@Pa$$W0rd!@0624");
+            EnvioCorreo(
+                "ing.juanmarcelinom.diaz@hotmail.com",
+                "Utilidades Amigos",
+                "Volante de Pago",
+                "!@Pa$$W0rd!@0624",
+                587,
+                "smtp.live.com",
+                "Plantilla de Prueba de Volante de Pago");
         }
 
         protected void btnCodigos_Click(object sender, EventArgs e)
-        {
-            DivBloqueProceso.Visible = false;
-            DivBloqueBuscarCodigo.Visible = true;
-            txtNombreEmpleadoConsulta.Text = string.Empty;
-            CurrentPage = 0;
-            BuscarCodigosEmpleados();
-        }
+{
+    DivBloqueProceso.Visible = false;
+    DivBloqueBuscarCodigo.Visible = true;
+    txtNombreEmpleadoConsulta.Text = string.Empty;
+    CurrentPage = 0;
+    BuscarCodigosEmpleados();
+}
 
- 
 
-        protected void btnBuscarCodigo_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            BuscarCodigosEmpleados();
-        }
 
-        protected void btnSeleccionar_Click(object sender, EventArgs e)
-        {
+protected void btnBuscarCodigo_Click(object sender, EventArgs e)
+{
+    CurrentPage = 0;
+    BuscarCodigosEmpleados();
+}
 
-        }
+protected void btnSeleccionar_Click(object sender, EventArgs e)
+{
 
-        protected void LinkPrimeraPaginaVolantePago_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            BuscarCodigosEmpleados();
-        }
+}
 
-        protected void LinkAnteriorVolantePago_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            BuscarCodigosEmpleados();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleVolantePago, ref lbCantidadPaginaVariableVolantePago);
-        }
+protected void LinkPrimeraPaginaVolantePago_Click(object sender, EventArgs e)
+{
+    CurrentPage = 0;
+    BuscarCodigosEmpleados();
+}
 
-        protected void dtPaginacionVolantePago_ItemDataBound(object sender, DataListItemEventArgs e)
-        {
+protected void LinkAnteriorVolantePago_Click(object sender, EventArgs e)
+{
+    CurrentPage += -1;
+    BuscarCodigosEmpleados();
+    MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleVolantePago, ref lbCantidadPaginaVariableVolantePago);
+}
 
-        }
+protected void dtPaginacionVolantePago_ItemDataBound(object sender, DataListItemEventArgs e)
+{
 
-        protected void dtPaginacionVolantePago_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-            BuscarCodigosEmpleados();
-        }
+}
 
-        protected void LinkSiguienteVolantePago_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            BuscarCodigosEmpleados();
-        }
+protected void dtPaginacionVolantePago_ItemCommand(object source, DataListCommandEventArgs e)
+{
+    if (!e.CommandName.Equals("newPage")) return;
+    CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+    BuscarCodigosEmpleados();
+}
 
-        protected void LinkUltimoVolantePago_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            BuscarCodigosEmpleados();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleVolantePago, ref lbCantidadPaginaVariableVolantePago);
-        }
+protected void LinkSiguienteVolantePago_Click(object sender, EventArgs e)
+{
+    CurrentPage += 1;
+    BuscarCodigosEmpleados();
+}
 
-        protected void btnVolverVolantePago_Click(object sender, EventArgs e)
-        {
-            IniciarPantalla();
-        }
-    }
+protected void LinkUltimoVolantePago_Click(object sender, EventArgs e)
+{
+    CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+    BuscarCodigosEmpleados();
+    MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleVolantePago, ref lbCantidadPaginaVariableVolantePago);
+}
+
+
+
+protected void btnVolverVolantePago_Click(object sender, EventArgs e)
+{
+    IniciarPantalla();
+}
+}
 }

@@ -60,24 +60,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.TextBox txtNombreEmpleado;
 
         /// <summary>
-        /// lbSeleccionaroficina control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSeleccionaroficina;
-
-        /// <summary>
-        /// ddlSeleccionaroficina control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionaroficina;
-
-        /// <summary>
         /// lbSeleccionarTipoNomina control.
         /// </summary>
         /// <remarks>
