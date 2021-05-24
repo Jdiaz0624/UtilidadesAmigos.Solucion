@@ -204,6 +204,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoEmpleado, nombreEmpleado, sucursar, departamento, cargo, fechaIngresoDesde, fechaIngresoHasta, estatus);
 			return ((ISingleResult<SP_BUSCA_EMPLEADOSResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_RUTA_ARCHIVO_GUARDADO")]
+		public ISingleResult<SP_SACAR_RUTA_ARCHIVO_GUARDADOResult> SP_SACAR_RUTA_ARCHIVO_GUARDADO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdArchivo", DbType="Decimal(20,0)")] System.Nullable<decimal> idArchivo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idArchivo);
+			return ((ISingleResult<SP_SACAR_RUTA_ARCHIVO_GUARDADOResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_GENERAR_DATOS_PARA_MARBETE_VEHICULOResult
@@ -3503,6 +3510,68 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Estatus != value))
 				{
 					this._Estatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_RUTA_ARCHIVO_GUARDADOResult
+	{
+		
+		private decimal _IdRutaGuardado;
+		
+		private string _Descripcion;
+		
+		private string _Ruta;
+		
+		public SP_SACAR_RUTA_ARCHIVO_GUARDADOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRutaGuardado", DbType="Decimal(20,0) NOT NULL")]
+		public decimal IdRutaGuardado
+		{
+			get
+			{
+				return this._IdRutaGuardado;
+			}
+			set
+			{
+				if ((this._IdRutaGuardado != value))
+				{
+					this._IdRutaGuardado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(100)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ruta", DbType="VarChar(8000)")]
+		public string Ruta
+		{
+			get
+			{
+				return this._Ruta;
+			}
+			set
+			{
+				if ((this._Ruta != value))
+				{
+					this._Ruta = value;
 				}
 			}
 		}

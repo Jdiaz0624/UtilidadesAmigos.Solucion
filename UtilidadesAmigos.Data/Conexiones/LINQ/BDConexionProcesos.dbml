@@ -333,4 +333,12 @@
       <Column Name="Estatus" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_SACAR_RUTA_ARCHIVO_GUARDADO" Method="SP_SACAR_RUTA_ARCHIVO_GUARDADO">
+    <Parameter Name="IdArchivo" Parameter="idArchivo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_SACAR_RUTA_ARCHIVO_GUARDADOResult">
+      <Column Name="IdRutaGuardado" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Ruta" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

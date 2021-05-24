@@ -309,6 +309,7 @@
     <Compile Include="Entidades\Procesos\EHistoricoImpresionResumido.cs" />
     <Compile Include="Entidades\Procesos\EProcesarHistoricoImprsionMarbete.cs" />
     <Compile Include="Entidades\Procesos\EProcesarInformacionMarbetes.cs" />
+    <Compile Include="Entidades\Procesos\ESacarRutaArchivoGaurdado.cs" />
     <Compile Include="Entidades\ProduccionPorUsuario.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDataCobradoDetalle.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDatosProduccionNoAgrupadoResumen.cs" />

@@ -24,6 +24,9 @@
 
 
     <script type="text/javascript">
+        function CodigoEmpleadoNoValido() {
+            alert("El codigo de empleado ingresado no es valido o esta cancelado, favor de verificar.");
+        }
         $(document).ready(function () {
             $("#<%=btnProcesar.ClientID%>").click(function () {
                 var Year = $("#<%=txtAno.ClientID%>").val().length;

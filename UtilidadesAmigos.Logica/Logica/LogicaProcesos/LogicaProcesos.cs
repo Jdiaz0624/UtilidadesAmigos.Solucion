@@ -394,6 +394,20 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
                            }).ToList();
             return Listado;
         }
+
+        //BUSCAR LA RUTA DE LOS ACHIVOS GUARDADOS
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ESacarRutaArchivoGaurdado> SacarRutaArchivosGuardados(decimal? IdArchivo = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var SacarRutaArchivoGuardado = (from n in ObjData.SP_SACAR_RUTA_ARCHIVO_GUARDADO(IdArchivo)
+                                            select new UtilidadesAmigos.Logica.Entidades.Procesos.ESacarRutaArchivoGaurdado
+                                            {
+                                                IdRutaGuardado=n.IdRutaGuardado,
+                                                Descripcion=n.Descripcion,
+                                                Ruta=n.Ruta
+                                            }).ToList();
+            return SacarRutaArchivoGuardado;
+        }
         #endregion
     }
 }

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
+using System.IO;
 
 namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 {
@@ -196,7 +197,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         #endregion
 
         #region GENERAR VOLANTE DE PAGO
-        private void GenerarVolantePago(string RutaReporte, string NombreArchivo,string UsuarioBD, string ClaveBD) {
+        private void GenerarVolantePago(string RutaReporte, string NombreArchivo,string UsuarioBD, string ClaveBD, string Rutaarchivo) {
             //DECLARAMOS LOS PARAMETROS NECESARIOS PARA ESTA PROCESO
             int? _CodigoEmpleado = string.IsNullOrEmpty(txtCodigoEmpleado.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoEmpleado.Text.Trim());
             int? _Oficina =  new Nullable<int>();
@@ -230,9 +231,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             Volante.SetDatabaseLogon(UsuarioBD, ClaveBD);
             //Volante.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Prueba");
-            NombreArchivo = GenerarNombreArchivo("GRACY LINETTE FELIZ SANCHEZ");
-            VolantePagoPDF = "C:\\Users\\Ing. Juan Marcelino\\Desktop\\Prueba\\" + NombreArchivo + ".PDF";
+             
+            VolantePagoPDF = Rutaarchivo + NombreArchivo + ".PDF";
             Volante.ExportToDisk(ExportFormatType.PortableDocFormat, VolantePagoPDF);
+            Volante.Close();
 
 
 
@@ -353,16 +355,80 @@ protected void txtCodigoEmpleado_TextChanged(object sender, EventArgs e)
 
 protected void btnProcesar_Click(object sender, EventArgs e)
 {
+            if (string.IsNullOrEmpty(txtCodigoEmpleado.Text.Trim())) {
             
-            GenerarVolantePago(Server.MapPath("VolantePagos.rpt"), "d", "sa", "!@Pa$$W0rd!@0624");
-            EnvioCorreo(
-                "ing.juanmarcelinom.diaz@hotmail.com",
-                "Utilidades Amigos",
-                "Volante de Pago",
-                "!@Pa$$W0rd!@0624",
-                587,
-                "smtp.live.com",
-                "Plantilla de Prueba de Volante de Pago");
+                //ESTE BLOQUE DE CODIGO ES PARA CUANDO NO SE ESPESIFICA UN CODIGO
+            }
+            else {
+                //ESTE BLOQUE ES CUANDO SE ESPESIFICA UN CODIGO
+
+                //VALIDAMOS EL CODIGO INGRESADO
+                int _CodigoIngresado = Convert.ToInt32(txtCodigoEmpleado.Text);
+
+                var ValidarCodigoEmpleado = ObjDataProceso.Value.BuscaInformacionEmpleados(_CodigoIngresado);
+                if (ValidarCodigoEmpleado.Count() < 1) {
+                    ClientScript.RegisterStartupScript(GetType(), "CodigoEmpleadoNoValido()", "CodigoEmpleadoNoValido();", true);
+                }
+                else {
+                    string RutaGuardado = "";
+                    var SacarRutaArchivo = ObjDataProceso.Value.SacarRutaArchivosGuardados(1);
+                    foreach (var n in SacarRutaArchivo)
+                    {
+                        RutaGuardado = n.Ruta;
+                    }
+
+                    try
+                    {                       
+                        List<string> strFiles = Directory.GetFiles(RutaGuardado, "*", SearchOption.AllDirectories).ToList();
+                        foreach (string fichero in strFiles)
+                        {
+                            File.Delete(fichero);
+                        }
+                    }
+                    catch (Exception) { }
+
+                    string NombreVolante = "", NombreEmpleado = "", UsuarioBD = "sa", ClaveBD = "!@Pa$$W0rd!@0624";
+                    //SACAR EL NOMBRE DE EMPLEADO
+                    var SacarNombreEmpleado = ObjDataProceso.Value.BuscaInformacionEmpleados(Convert.ToInt32(txtCodigoEmpleado.Text));
+                    foreach (var n in SacarNombreEmpleado) {
+                        NombreEmpleado = n.Nombre;
+                    }
+                    
+                    NombreVolante = GenerarNombreArchivo(NombreEmpleado);
+                    GenerarVolantePago(Server.MapPath("VolantePagos.rpt"), NombreVolante, UsuarioBD, ClaveBD, RutaGuardado);
+
+
+                    EnvioCorreo(
+                        "ing.juanmarcelinom.diaz@hotmail.com",
+                        "Utilidades Amigos",
+                        "Volante de Pago",
+                        "!@Pa$$W0rd!@0624",
+                        587,
+                        "smtp.live.com",
+                        "Plantilla de Prueba de Volante de Pago");
+
+                }
+            }
+
+
+            //try {
+            //    List<string> strFiles = Directory.GetFiles("C:\\Users\\Ing. Juan Marcelino\\Desktop\\Prueba\\", "*", SearchOption.AllDirectories).ToList();
+
+            //    foreach (string fichero in strFiles)
+            //    {
+            //        File.Delete(fichero);
+            //    }
+            //}
+            //catch (Exception) { }
+            //GenerarVolantePago(Server.MapPath("VolantePagos.rpt"), "d", "sa", "!@Pa$$W0rd!@0624");
+            //EnvioCorreo(
+            //    "ing.juanmarcelinom.diaz@hotmail.com",
+            //    "Utilidades Amigos",
+            //    "Volante de Pago",
+            //    "!@Pa$$W0rd!@0624",
+            //    587,
+            //    "smtp.live.com",
+            //    "Plantilla de Prueba de Volante de Pago"); 
         }
 
         protected void btnCodigos_Click(object sender, EventArgs e)
