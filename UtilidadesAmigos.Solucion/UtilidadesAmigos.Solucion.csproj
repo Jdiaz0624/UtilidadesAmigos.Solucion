@@ -197,6 +197,7 @@
     <Content Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx" />
     <Content Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx" />
     <Content Include="Paginas\Seguridad\ConfiguracionCorreosEmisorProcesos.aspx" />
+    <Content Include="Paginas\Seguridad\CredencialesBD.aspx" />
     <Content Include="Paginas\Seguridad\MantenimientoUsuarios.aspx" />
     <Content Include="Paginas\SistemaTicket.aspx" />
     <Content Include="Paginas\SolicitudEmisionPoliza.aspx" />
@@ -727,6 +728,13 @@
     </Compile>
     <Compile Include="Paginas\Seguridad\ConfiguracionCorreosEmisorProcesos.aspx.designer.cs">
       <DependentUpon>ConfiguracionCorreosEmisorProcesos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\CredencialesBD.aspx.cs">
+      <DependentUpon>CredencialesBD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\CredencialesBD.aspx.designer.cs">
+      <DependentUpon>CredencialesBD.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Seguridad\MantenimientoUsuarios.aspx.cs">
       <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>

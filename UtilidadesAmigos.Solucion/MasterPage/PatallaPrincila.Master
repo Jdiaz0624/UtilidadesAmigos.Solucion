@@ -240,6 +240,7 @@
           <asp:LinkButton ID="linkOpcion" runat="server" ForeColor="Red" Text="Opciones" OnClick="linkOpcion_Click" ToolTip="Mantenimiento de Opciones" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkBotones" runat="server" ForeColor="Red" Text="Botones" OnClick="linkBotones_Click" ToolTip="Mantenimiento de Botones" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkPermisoUsuarios" runat="server" ForeColor="Red" Text="Permisos Usuarios" OnClick="linkPermisoUsuarios_Click" ToolTip="Mantenimiento de Permiso de usuarios" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+        <asp:LinkButton ID="LinkCredencialesBD" runat="server" Text="Credenciales de BD" OnClick="LinkCredencialesBD_Click" ToolTip="Modificar las credenciales de base de datos" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
     </div>
   </li>
 </ul>

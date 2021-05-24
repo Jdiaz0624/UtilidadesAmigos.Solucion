@@ -425,6 +425,27 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
 
 
         //MODIFICAR LAS CREDENCIALES LAS CREDENCIALES DE BASE DE DATOS
+        public UtilidadesAmigos.Logica.Entidades.Procesos.ECredencialesBD ModificarCredenciales(UtilidadesAmigos.Logica.Entidades.Procesos.ECredencialesBD Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.ECredencialesBD Modificar = null;
+
+            var Credenciales = ObjData.SP_MODIFICAR_REDENCIALES_BD(
+                (int)Item.IdCredencial,
+                Item.Usuario,
+                Item.Clave,
+                Accion);
+            if (Credenciales != null) {
+                Modificar = (from n in Credenciales
+                             select new UtilidadesAmigos.Logica.Entidades.Procesos.ECredencialesBD
+                             {
+                                 IdCredencial=n.IdCredencial,
+                                 Usuario=n.Usuario,
+                                 Clave=n.Clave
+                             }).FirstOrDefault();
+            }
+            return Modificar;
+        }
         
         #endregion
     }
