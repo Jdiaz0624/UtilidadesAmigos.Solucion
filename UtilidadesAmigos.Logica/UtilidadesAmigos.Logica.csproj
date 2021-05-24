@@ -304,6 +304,7 @@
     <Compile Include="Entidades\Procesos\EBuscaHistoricoImpresionMarbetes.cs" />
     <Compile Include="Entidades\Procesos\EBuscarInformacionVolantesPagos.cs" />
     <Compile Include="Entidades\Procesos\ECorreosEmisonesSistema.cs" />
+    <Compile Include="Entidades\Procesos\ECredencialesBD.cs" />
     <Compile Include="Entidades\Procesos\EEMpleados.cs" />
     <Compile Include="Entidades\Procesos\EGenerarDatosMarbeteVehiculo.cs" />
     <Compile Include="Entidades\Procesos\EHistoricoImpresionResumido.cs" />

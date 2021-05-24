@@ -408,6 +408,24 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
                                             }).ToList();
             return SacarRutaArchivoGuardado;
         }
+
+        //SACAR LAS CREDENCIALES DE BASE DE DATOS
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ECredencialesBD> SacarCredencialesBD(decimal? IdCredencial = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var SacarInformacion = (from n in ObjData.SP_SACAR_CREDENCIALES_BD(IdCredencial)
+                                    select new UtilidadesAmigos.Logica.Entidades.Procesos.ECredencialesBD
+                                    {
+                                        IdCredencial=n.IdCredencial,
+                                        Usuario=n.Usuario,
+                                        Clave=n.Clave
+                                    }).ToList();
+            return SacarInformacion;
+        }
+
+
+        //MODIFICAR LAS CREDENCIALES LAS CREDENCIALES DE BASE DE DATOS
+        
         #endregion
     }
 }

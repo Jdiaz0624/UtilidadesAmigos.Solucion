@@ -211,6 +211,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idArchivo);
 			return ((ISingleResult<SP_SACAR_RUTA_ARCHIVO_GUARDADOResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_CREDENCIALES_BD")]
+		public ISingleResult<SP_SACAR_CREDENCIALES_BDResult> SP_SACAR_CREDENCIALES_BD([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCredencial", DbType="Decimal(20,0)")] System.Nullable<decimal> idCredencial)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCredencial);
+			return ((ISingleResult<SP_SACAR_CREDENCIALES_BDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MODIFICAR_REDENCIALES_BD")]
+		public ISingleResult<SP_MODIFICAR_REDENCIALES_BDResult> SP_MODIFICAR_REDENCIALES_BD([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCredencial", DbType="Int")] System.Nullable<int> idCredencial, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(100)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Clave", DbType="VarChar(8000)")] string clave, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCredencial, usuario, clave, accion);
+			return ((ISingleResult<SP_MODIFICAR_REDENCIALES_BDResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_GENERAR_DATOS_PARA_MARBETE_VEHICULOResult
@@ -3572,6 +3586,130 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Ruta != value))
 				{
 					this._Ruta = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_CREDENCIALES_BDResult
+	{
+		
+		private decimal _IdCredencial;
+		
+		private string _Usuario;
+		
+		private string _Clave;
+		
+		public SP_SACAR_CREDENCIALES_BDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCredencial", DbType="Decimal(20,0) NOT NULL")]
+		public decimal IdCredencial
+		{
+			get
+			{
+				return this._IdCredencial;
+			}
+			set
+			{
+				if ((this._IdCredencial != value))
+				{
+					this._IdCredencial = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(20)")]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this._Usuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clave", DbType="VarChar(8000)")]
+		public string Clave
+		{
+			get
+			{
+				return this._Clave;
+			}
+			set
+			{
+				if ((this._Clave != value))
+				{
+					this._Clave = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MODIFICAR_REDENCIALES_BDResult
+	{
+		
+		private System.Nullable<int> _IdCredencial;
+		
+		private string _Usuario;
+		
+		private string _Clave;
+		
+		public SP_MODIFICAR_REDENCIALES_BDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCredencial", DbType="Int")]
+		public System.Nullable<int> IdCredencial
+		{
+			get
+			{
+				return this._IdCredencial;
+			}
+			set
+			{
+				if ((this._IdCredencial != value))
+				{
+					this._IdCredencial = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(100)")]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this._Usuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clave", DbType="VarChar(8000)")]
+		public string Clave
+		{
+			get
+			{
+				return this._Clave;
+			}
+			set
+			{
+				if ((this._Clave != value))
+				{
+					this._Clave = value;
 				}
 			}
 		}

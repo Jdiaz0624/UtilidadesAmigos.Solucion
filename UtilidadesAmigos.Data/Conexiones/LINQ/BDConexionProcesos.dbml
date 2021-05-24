@@ -341,4 +341,23 @@
       <Column Name="Ruta" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_SACAR_CREDENCIALES_BD" Method="SP_SACAR_CREDENCIALES_BD">
+    <Parameter Name="IdCredencial" Parameter="idCredencial" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_SACAR_CREDENCIALES_BDResult">
+      <Column Name="IdCredencial" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MODIFICAR_REDENCIALES_BD" Method="SP_MODIFICAR_REDENCIALES_BD">
+    <Parameter Name="IdCredencial" Parameter="idCredencial" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Clave" Parameter="clave" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MODIFICAR_REDENCIALES_BDResult">
+      <Column Name="IdCredencial" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
