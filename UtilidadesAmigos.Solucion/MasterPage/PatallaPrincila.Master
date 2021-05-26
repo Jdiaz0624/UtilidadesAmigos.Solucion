@@ -233,12 +233,14 @@
           <asp:LinkButton ID="linkUsuarios" runat="server" ToolTip="Mantenimiento de Usuarios" Text="Usuarios" OnClick="linkUsuarios_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkPerfilesUsuarios" runat="server" Text="Perfiles de Usuarios" ToolTip="Mantenimiento de Perfiles de Usuarios" OnClick="linkPerfilesUsuarios_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkClaveSeguridad" runat="server" Text="Clave de Seguridad" OnClick="linkClaveSeguridad_Click" ToolTip="Mantenimiento de clave de seguridad" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+        <asp:LinkButton ID="LinkCorreosEmisoresProcesos" runat="server" Text="Configuración de Correos" OnClick="LinkCorreosEmisoresProcesos_Click" ToolTip="Configuración de los corres de los procesos" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkMovimientoUsuarios" runat="server" ForeColor="Red" Text="Movimiento Usuario" OnClick="linkMovimientoUsuarios_Click" ToolTip="Movimiento de Usuarios" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkTarjetasAccesos" runat="server" Text="Tarjetas de Accesos" OnClick="linkTarjetasAccesos_Click" ToolTip="Mantenimiento de tarjetas de Acceso" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkOpcionMenu" runat="server" ForeColor="Red" Text="Opcion Menu" OnClick="linkOpcionMenu_Click" ToolTip="Mantenimiento de Opciones de Menu" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkOpcion" runat="server" ForeColor="Red" Text="Opciones" OnClick="linkOpcion_Click" ToolTip="Mantenimiento de Opciones" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkBotones" runat="server" ForeColor="Red" Text="Botones" OnClick="linkBotones_Click" ToolTip="Mantenimiento de Botones" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkPermisoUsuarios" runat="server" ForeColor="Red" Text="Permisos Usuarios" OnClick="linkPermisoUsuarios_Click" ToolTip="Mantenimiento de Permiso de usuarios" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+        <asp:LinkButton ID="LinkCredencialesBD" runat="server" Text="Credenciales de BD" OnClick="LinkCredencialesBD_Click" ToolTip="Modificar las credenciales de base de datos" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
     </div>
   </li>
 </ul>

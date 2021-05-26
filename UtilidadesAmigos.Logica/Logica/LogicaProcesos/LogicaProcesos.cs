@@ -285,5 +285,213 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
             return Mantenimiento;
         }
         #endregion
+        #region MANTENIMIENTO DE CORREOS EMISORES DE SISTEMA
+        //LISTADO DE CORREOS EMISORES DEL SISTEMA
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ECorreosEmisonesSistema> ListadoCorreosEmisores(int? IdCorreo = null, int? IdProceso = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_CORREOS_EMISORES_SISTEMA(IdCorreo, IdProceso)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.ECorreosEmisonesSistema
+                           {
+                               IdCorreo=n.IdCorreo,
+                               IdProceso=n.IdProceso,
+                               Proceso=n.Proceso,
+                               Correo=n.Correo,
+                               Clave=n.Clave,
+                               Puerto=n.Puerto,
+                               SMTP=n.SMTP
+                           }).ToList();
+            return Listado;
+        }
+
+        //MANTENIMIENTO DE CORREOS EMISIONES DEL SISTEMA
+        public UtilidadesAmigos.Logica.Entidades.Procesos.ECorreosEmisonesSistema ProcesarCorreosEmisiones(UtilidadesAmigos.Logica.Entidades.Procesos.ECorreosEmisonesSistema Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.ECorreosEmisonesSistema Procesar = null;
+
+            var CorreosEmisores = ObjData.SP_MODIFICAR_CORREOS_EMISORES_SISTEMA(
+                Item.IdCorreo,
+                Item.IdProceso,
+                Item.Correo,
+                Item.Clave,
+                Item.Puerto,
+                Item.SMTP,
+                Accion);
+            if (CorreosEmisores != null) {
+                Procesar = (from n in CorreosEmisores
+                            select new UtilidadesAmigos.Logica.Entidades.Procesos.ECorreosEmisonesSistema
+                            {
+                                IdCorreo=n.IdCorreo,
+                                IdProceso=n.IdProceso,
+                                Correo=n.Correo,
+                                Clave=n.Clave,
+                                Puerto=n.Puerto,
+                                SMTP=n.SMTP
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
+        #region VOLANTES DE PAGOS
+        //BUSCAR INFORMACION PARA LOS VOLANTES DE PAGOS
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EBuscarInformacionVolantesPagos> BuscaInformacionVolantesPagos(int? CodigoEmpleado = null, int? Ano = null, byte? Mes = null, int? TipoMovimiento = null, byte? TipoNomina = null, int? NoPago = null, int? CodigoSucursal = null, int? CodigoDepartamento = null,string NombreEmpleado = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCAR_INFORMACION_VOLANTES_PAGOS(CodigoEmpleado, Ano, Mes, TipoMovimiento, TipoNomina, NoPago, CodigoSucursal, CodigoDepartamento, NombreEmpleado)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.EBuscarInformacionVolantesPagos
+                           {
+                               CodEmpleado=n.CodEmpleado,
+                               Ano=n.Ano,
+                               Mes=n.Mes,
+                               NombreMes=n.NombreMes,
+                               TipoMovimiento=n.TipoMovimiento,
+                               DescTipoMovimiento=n.DescTipoMovimiento,
+                               TipoNomina=n.TipoNomina,
+                               DescTipoNomina=n.DescTipoNomina,
+                               NoPago=n.NoPago,
+                               Sucursal=n.Sucursal,
+                               DescSucursal=n.DescSucursal,
+                               Departamento=n.Departamento,
+                               DescDepto=n.DescDepto,
+                               NombreEmpleado=n.NombreEmpleado,
+                               Origen=n.Origen,
+                               Valor=n.Valor,
+                               Ingresos=n.Ingresos,
+                               Deducciones=n.Deducciones,
+                               TotalIngreso=n.TotalIngreso,
+                               TotalDeducciones=n.TotalDeducciones,
+                               Total=n.Total
+                           }).ToList();
+            return Listado;
+        }
+
+
+        //BUSCAR INFORMACION DE LOS EMPLEADOS
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EEMpleados> BuscaInformacionEmpleados(int? CodigoEmpleado = null, string NombreEmpleado = null, int? Sucursar = null, int? Departamento = null, int? Cargo = null, DateTime? FechaIngresoDesde = null, DateTime? FechaIngresoHasta = null, string Estatus = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_EMPLEADOS(CodigoEmpleado, NombreEmpleado, Sucursar, Departamento, Cargo, FechaIngresoDesde, FechaIngresoHasta, Estatus)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.EEMpleados
+                           {
+                               CodigoEmpleado=n.CodigoEmpleado,
+                               Nombre=n.Nombre,
+                               Sucursal=n.Sucursal,
+                               DescSucursal=n.DescSucursal,
+                               Departamento=n.Departamento,
+                               DescDepto=n.DescDepto,
+                               Cargo=n.Cargo,
+                               DescCargo=n.DescCargo,
+                               Cedula=n.Cedula,
+                               Direccion=n.Direccion,
+                               FechaIngreso0=n.FechaIngreso0,
+                               FechaIngreso=n.FechaIngreso,
+                               Email=n.Email,
+                               Email1=n.Email1,
+                               Email2=n.Email2,
+                               Estatus0=n.Estatus0,
+                               Estatus=n.Estatus
+                           }).ToList();
+            return Listado;
+        }
+
+        //BUSCAR LA RUTA DE LOS ACHIVOS GUARDADOS
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ESacarRutaArchivoGaurdado> SacarRutaArchivosGuardados(decimal? IdArchivo = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var SacarRutaArchivoGuardado = (from n in ObjData.SP_SACAR_RUTA_ARCHIVO_GUARDADO(IdArchivo)
+                                            select new UtilidadesAmigos.Logica.Entidades.Procesos.ESacarRutaArchivoGaurdado
+                                            {
+                                                IdRutaGuardado=n.IdRutaGuardado,
+                                                Descripcion=n.Descripcion,
+                                                Ruta=n.Ruta
+                                            }).ToList();
+            return SacarRutaArchivoGuardado;
+        }
+
+        //SACAR LAS CREDENCIALES DE BASE DE DATOS
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ECredencialesBD> SacarCredencialesBD(decimal? IdCredencial = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var SacarInformacion = (from n in ObjData.SP_SACAR_CREDENCIALES_BD(IdCredencial)
+                                    select new UtilidadesAmigos.Logica.Entidades.Procesos.ECredencialesBD
+                                    {
+                                        IdCredencial=n.IdCredencial,
+                                        Usuario=n.Usuario,
+                                        Clave=n.Clave
+                                    }).ToList();
+            return SacarInformacion;
+        }
+
+
+        //MODIFICAR LAS CREDENCIALES LAS CREDENCIALES DE BASE DE DATOS
+        public UtilidadesAmigos.Logica.Entidades.Procesos.ECredencialesBD ModificarCredenciales(UtilidadesAmigos.Logica.Entidades.Procesos.ECredencialesBD Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.ECredencialesBD Modificar = null;
+
+            var Credenciales = ObjData.SP_MODIFICAR_REDENCIALES_BD(
+                (int)Item.IdCredencial,
+                Item.Usuario,
+                Item.Clave,
+                Accion);
+            if (Credenciales != null) {
+                Modificar = (from n in Credenciales
+                             select new UtilidadesAmigos.Logica.Entidades.Procesos.ECredencialesBD
+                             {
+                                 IdCredencial=n.IdCredencial,
+                                 Usuario=n.Usuario,
+                                 Clave=n.Clave
+                             }).FirstOrDefault();
+            }
+            return Modificar;
+        }
+
+        //VALIDAR CODIGOS DE EMPLEADOS PARA ENVIAR VOLANTES DE PAGOS
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ECodigoEmpleadosVolantePagos> ValidarCodigosEmpleadosVolantePagos(int? CodigoEmpleado = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_VALIDAR_CODIGO_EMPLEADO_VOLANTE_PAGO(CodigoEmpleado)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.ECodigoEmpleadosVolantePagos
+                           {
+                               IdRegistro = n.IdRegistro,
+                               CodigoEmpleado = CodigoEmpleado,
+                               Nombre = n.Nombre,
+                               Correo = n.Correo,
+                               EnvioCorreo0 = n.EnvioCorreo0,
+                               EnvioCorreo = n.EnvioCorreo
+                           }).ToList();
+            return Listado;
+        }
+
+        //MODIFICAR LOS CODIGOS DE LOS EMPLEADOS PARA ENVIAR LOS VOLANTES DE PAGOS
+        public UtilidadesAmigos.Logica.Entidades.Procesos.ECodigoEmpleadosVolantePagos ModificarCodigosEmpleadosVolantePagos(UtilidadesAmigos.Logica.Entidades.Procesos.ECodigoEmpleadosVolantePagos Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.ECodigoEmpleadosVolantePagos Modificar = null;
+
+            var CodigosEmpleadosVolantePagos = ObjData.SP_MODIFICAR_CODIGOS_EMPLEADOS_VOLANTE_PAGOS(
+                Item.IdRegistro,
+                Item.CodigoEmpleado,
+                Item.Nombre,
+                Item.Correo,
+                Item.EnvioCorreo0,
+                Accion);
+            if (CodigosEmpleadosVolantePagos != null) {
+                Modificar = (from n in CodigosEmpleadosVolantePagos
+                             select new UtilidadesAmigos.Logica.Entidades.Procesos.ECodigoEmpleadosVolantePagos
+                             {
+                                 IdRegistro=n.IdRegistro,
+                                 CodigoEmpleado=n.CodigoEmpleado,
+                                 Nombre=n.Nombre,
+                                 Correo=n.Correo,
+                                 EnvioCorreo0=n.EnvioCorreo
+                             }).FirstOrDefault();
+
+            }
+            return Modificar;
+        }
+
+        #endregion
     }
 }

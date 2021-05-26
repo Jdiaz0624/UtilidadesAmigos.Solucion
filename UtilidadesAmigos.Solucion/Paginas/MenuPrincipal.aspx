@@ -50,7 +50,7 @@
 
     <div class="container-fluid">
    <br /><br />
-        <div align="center">
+        <div id="DivPrimero" runat="server" visible="false" align="center">
             <asp:Label ID="lbCantidadTicketTitulo" runat="server" Text="Cantidad de Ticket Abiertos (" CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCantidadTicketVariable" runat="server" ForeColor="Blue" Text=" 0 " CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCantidadTicketCerrar" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
@@ -73,7 +73,7 @@
         </div>
     </div>
     <br /><br />
-     <div align="center">
+     <div id="DivSegundo" runat="server" visible="false" align="center">
         <button type="button" id="btnSugerencia" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-xl">Sugerencias</button>
     </div>
     <br />

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionProcesosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_GENERAR_DATOS_PARA_MARBETE_VEHICULO" Method="SP_GENERAR_DATOS_PARA_MARBETE_VEHICULO">
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="Item" Parameter="item" Type="System.String" DbType="VarChar(50)" />
@@ -238,6 +238,152 @@
       <Column Name="CantidadHoja" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TotalImpresiones" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CantidadMovimientos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_INFORMACION_CORREOS_EMISORES_SISTEMA" Method="SP_BUSCA_INFORMACION_CORREOS_EMISORES_SISTEMA">
+    <Parameter Name="IdCorreo" Parameter="idCorreo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdProceso" Parameter="idProceso" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_INFORMACION_CORREOS_EMISORES_SISTEMAResult">
+      <Column Name="IdCorreo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdProceso" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Proceso" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="Puerto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SMTP" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MODIFICAR_CORREOS_EMISORES_SISTEMA" Method="SP_MODIFICAR_CORREOS_EMISORES_SISTEMA">
+    <Parameter Name="IdCorreo" Parameter="idCorreo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdProceso" Parameter="idProceso" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Clave" Parameter="clave" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="Puerto" Parameter="puerto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SMTP" Parameter="sMTP" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MODIFICAR_CORREOS_EMISORES_SISTEMAResult">
+      <Column Name="IdCorreo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdProceso" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="Puerto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SMTP" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCAR_INFORMACION_VOLANTES_PAGOS" Method="SP_BUSCAR_INFORMACION_VOLANTES_PAGOS">
+    <Parameter Name="CodigoEmpleado" Parameter="codigoEmpleado" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ano" Parameter="ano" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Mes" Parameter="mes" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="TipoMovimiento" Parameter="tipoMovimiento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TipoNomina" Parameter="tipoNomina" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="NoPago" Parameter="noPago" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoSucursal" Parameter="codigoSucursal" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoDepartamento" Parameter="codigoDepartamento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreEmpleado" Parameter="nombreEmpleado" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_BUSCAR_INFORMACION_VOLANTES_PAGOSResult">
+      <Column Name="CodEmpleado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ano" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mes" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="NombreMes" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoMovimiento" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DescTipoMovimiento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TipoNomina" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="DescTipoNomina" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NoPago" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Sucursal" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="DescSucursal" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Departamento" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="DescDepto" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NombreEmpleado" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="Origen" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Ingresos" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Deducciones" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="TotalIngreso" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TotalDeducciones" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_EMPLEADOS" Method="SP_BUSCA_EMPLEADOS">
+    <Parameter Name="CodigoEmpleado" Parameter="codigoEmpleado" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreEmpleado" Parameter="nombreEmpleado" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Sucursar" Parameter="sucursar" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Departamento" Parameter="departamento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cargo" Parameter="cargo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaIngresoDesde" Parameter="fechaIngresoDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaIngresoHasta" Parameter="fechaIngresoHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.String" DbType="VarChar(1)" />
+    <ElementType Name="SP_BUSCA_EMPLEADOSResult">
+      <Column Name="CodigoEmpleado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="Sucursal" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="DescSucursal" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Departamento" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="DescDepto" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Cargo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DescCargo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cedula" Type="System.String" DbType="NVarChar(13)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="FechaIngreso0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaIngreso" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estatus0" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_RUTA_ARCHIVO_GUARDADO" Method="SP_SACAR_RUTA_ARCHIVO_GUARDADO">
+    <Parameter Name="IdArchivo" Parameter="idArchivo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_SACAR_RUTA_ARCHIVO_GUARDADOResult">
+      <Column Name="IdRutaGuardado" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Ruta" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_CREDENCIALES_BD" Method="SP_SACAR_CREDENCIALES_BD">
+    <Parameter Name="IdCredencial" Parameter="idCredencial" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_SACAR_CREDENCIALES_BDResult">
+      <Column Name="IdCredencial" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MODIFICAR_REDENCIALES_BD" Method="SP_MODIFICAR_REDENCIALES_BD">
+    <Parameter Name="IdCredencial" Parameter="idCredencial" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Clave" Parameter="clave" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MODIFICAR_REDENCIALES_BDResult">
+      <Column Name="IdCredencial" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_VALIDAR_CODIGO_EMPLEADO_VOLANTE_PAGO" Method="SP_VALIDAR_CODIGO_EMPLEADO_VOLANTE_PAGO">
+    <Parameter Name="CodigoEmpleado" Parameter="codigoEmpleado" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_VALIDAR_CODIGO_EMPLEADO_VOLANTE_PAGOResult">
+      <Column Name="IdRegistro" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoEmpleado" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="EnvioCorreo0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnvioCorreo" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MODIFICAR_CODIGOS_EMPLEADOS_VOLANTE_PAGOS" Method="SP_MODIFICAR_CODIGOS_EMPLEADOS_VOLANTE_PAGOS">
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoEmpleado" Parameter="codigoEmpleado" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="EnvioCorreo" Parameter="envioCorreo" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MODIFICAR_CODIGOS_EMPLEADOS_VOLANTE_PAGOSResult">
+      <Column Name="IdRegistro" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CodigoEmpleado" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="EnvioCorreo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
