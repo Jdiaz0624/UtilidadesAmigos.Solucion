@@ -27,7 +27,14 @@
         function CodigoEmpleadoNoValido() {
             alert("El codigo de empleado ingresado no es valido o esta cancelado, favor de verificar.");
         }
+
+
+        function CorreoNoActivo() {
+            alert("Esta persona no tiene la opción de envio de correo activo.");
+        }
         $(document).ready(function () {
+
+       
             $("#<%=btnProcesar.ClientID%>").click(function () {
                 var Year = $("#<%=txtAno.ClientID%>").val().length;
                 if (Year < 1) {
@@ -97,6 +104,7 @@
     </div>
 
         <div id="DivBloqueBuscarCodigo" runat="server">
+            <asp:Label ID="lbCodigoEmpleadoSeleccionadoModificar" runat="server" Text="0" Visible="false"></asp:Label>
             <br />
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -196,9 +204,15 @@
                         <asp:TextBox ID="txtCorreoEmpleadoSelecciondo" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Email"></asp:TextBox>
                     </div>
                 </div>
+                <div class="form-check-inline">
+                    <div class="form-group form-check">
+                        <asp:CheckBox ID="cbEnvioCorreo" runat="server" Text="Envio de Correo" ToolTip="Habilitar si se le puede enviar volante de pagos al empleado seleccionado" CssClass="form-check-input" />
+                    </div>
+                </div>
                 <br />
                 <div align="center">
                 <asp:Button ID="btnModificarCorreo" runat="server" Text="Modificar"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Modificar Correo" OnClick="btnModificarCorreo_Click" />
+                    <asp:Button ID="btnVolverModificarCorreo" runat="server" Text="Volver"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Volver Atras" OnClick="btnVolverModificarCorreo_Click" />
             </div>
                 <br />
             </div>

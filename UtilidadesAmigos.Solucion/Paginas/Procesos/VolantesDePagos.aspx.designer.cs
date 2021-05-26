@@ -168,6 +168,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueBuscarCodigo;
 
         /// <summary>
+        /// lbCodigoEmpleadoSeleccionadoModificar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoEmpleadoSeleccionadoModificar;
+
+        /// <summary>
         /// lbNombreEmpleadoConsulta control.
         /// </summary>
         /// <remarks>
@@ -402,6 +411,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.TextBox txtCorreoEmpleadoSelecciondo;
 
         /// <summary>
+        /// cbEnvioCorreo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbEnvioCorreo;
+
+        /// <summary>
         /// btnModificarCorreo control.
         /// </summary>
         /// <remarks>
@@ -409,5 +427,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnModificarCorreo;
+
+        /// <summary>
+        /// btnVolverModificarCorreo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVolverModificarCorreo;
     }
 }
