@@ -207,6 +207,7 @@
                 <br />
                 <div align="center">
                 <asp:Button ID="btnModificarCorreo" runat="server" Text="Modificar"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Modificar Correo" OnClick="btnModificarCorreo_Click" />
+                    <asp:Button ID="btnVolverModificarCorreo" runat="server" Text="Volver"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Volver Atras" OnClick="btnVolverModificarCorreo_Click" />
             </div>
                 <br />
             </div>

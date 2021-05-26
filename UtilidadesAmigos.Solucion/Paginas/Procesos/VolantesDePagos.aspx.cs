@@ -174,7 +174,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             var BuscarEmpleado = ObjDataProceso.Value.BuscaInformacionEmpleados(
                 new Nullable<int>(),
                 _NombreEmpleado,
-                null, null, null, null, null, null);
+                null, null, null, null, null, "a");
             Paginar(ref rpListadoCodigos, BuscarEmpleado, 10, ref lbCantidadPaginaVariableVolantePago, ref LinkPrimeraPaginaVolantePago, ref LinkAnteriorVolantePago, ref LinkSiguienteVolantePago, ref LinkUltimoVolantePago);
             HandlePaging(ref dtPaginacionVolantePago, ref lbPaginaActualVariavleVolantePago);
         }
@@ -581,6 +581,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 txtDepartamentoEmpleadoSeleccionado.Text = n.DescDepto;
             }
 
+            //SACAMOS LOS DATOS DEL CORREO Y EL ESTATUS
+            var SacarEstatusCorreo = ObjDataProceso.Value.ValidarCodigosEmpleadosVolantePagos(Convert.ToInt32(txtCodigoEmpleadoSeleccionado.Text));
+            foreach (var nestatus in SacarEstatusCorreo) {
+                txtCorreoEmpleadoSelecciondo.Text = nestatus.Correo;
+                cbEnvioCorreo.Checked = (nestatus.EnvioCorreo0.HasValue ? nestatus.EnvioCorreo0.Value : false);
+            }
+
             BloqueModificarCorreo.Visible = true;
         }
 
@@ -624,6 +631,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         protected void btnModificarCorreo_Click(object sender, EventArgs e)
         {
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionCodigosEmpleadosVolantesPagos Modificar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionCodigosEmpleadosVolantesPagos(
+                0,
+                Convert.ToDecimal(txtCodigoEmpleadoSeleccionado.Text),
+                txtNombreEmpleadoSeleccionado.Text,
+                txtCorreoEmpleadoSelecciondo.Text,
+                cbEnvioCorreo.Checked,
+                "UPDATE");
+            Modificar.ProcesarInformacion();
+            BloqueModificarCorreo.Visible = false;
+            txtNombreEmpleadoConsulta.Text = string.Empty;
+            BuscarCodigosEmpleados();
+        }
+
+        protected void btnVolverModificarCorreo_Click(object sender, EventArgs e)
+        {
+            BloqueModificarCorreo.Visible = false;
+            txtNombreEmpleadoConsulta.Text = string.Empty;
+            BuscarCodigosEmpleados();
 
         }
 
