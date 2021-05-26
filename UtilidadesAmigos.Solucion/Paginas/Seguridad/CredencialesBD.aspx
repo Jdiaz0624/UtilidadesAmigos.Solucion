@@ -27,6 +27,10 @@
             alert("La clave de seguridad ingresada no es valida, favor de verificar.");
         }
 
+        function ClaveModificada() {
+            alert("Credenciales modificadas con exito.");
+        }
+
         $(document).ready(function () {
             $("#<%=btnValidar.ClientID%>").click(function () {
                 var ClaveSeguridad = $("#<%=txtClaveSeguridad.ClientID%>").val().length;

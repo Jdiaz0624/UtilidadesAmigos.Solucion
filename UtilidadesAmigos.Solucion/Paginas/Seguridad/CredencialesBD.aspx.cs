@@ -12,6 +12,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaProcesos.LogicaProcesos> ObjDataProceso = new Lazy<Logica.Logica.LogicaProcesos.LogicaProcesos>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
 
+
+        private void ModificarCredenciales(string Accion) {
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionCredencialesBD Modificar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionCredencialesBD(
+                1,
+                txtUsuarioBD.Text,
+                UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.Encriptar(txtClaveBD.Text),
+                Accion);
+            Modificar.ProcesarInformacion();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -38,6 +48,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
                 case true:
                     DivBloqueClaveSeguridad.Visible = false;
                     DivBloqueModificarCredencial.Visible = true;
+                    var SacarCredenciales = ObjDataProceso.Value.SacarCredencialesBD(1);
+                    foreach (var n in SacarCredenciales) {
+                        txtUsuarioBD.Text = n.Usuario;
+                        txtClaveBD.Text = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(n.Clave);
+                    }
                     break;
 
                 case false:
@@ -50,7 +65,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-
+            ModificarCredenciales("UPDATE");
+            ClientScript.RegisterStartupScript(GetType(), "ClaveModificada()", "ClaveModificada();", true);
+            DivBloqueClaveSeguridad.Visible = true;
+            DivBloqueModificarCredencial.Visible = false;
+            txtClaveSeguridad.Text = string.Empty;
+            txtUsuarioBD.Text = string.Empty;
+            txtClaveBD.Text = string.Empty;
         }
     }
 }
