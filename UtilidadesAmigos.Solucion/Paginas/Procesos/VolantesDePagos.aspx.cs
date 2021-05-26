@@ -17,7 +17,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
 
 
-        private string GenerarNombreArchivo(string NombreEmpleado) {
+        private string GenerarNombreArchivo(string NombreEmpleado)
+        {
             string Intervalo = "";
             Random Numero = new Random();
             string PrimerIntervalo = Numero.Next(0, 999999999).ToString();
@@ -30,8 +31,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             return Intervalo;
 
         }
-        
-        string NombreArchivo="JUAN MARCELINO MEDINA DIAZ";
+
+        string NombreArchivo = "JUAN MARCELINO MEDINA DIAZ";
         string VolantePagoPDF = "";
 
         #region CONTROL PARA MOSTRAR LA PAGINACION
@@ -166,7 +167,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         #endregion
 
         #region BUSCAR EL LISTADO DE LOS CODIGOS
-        private void BuscarCodigosEmpleados() {
+        private void BuscarCodigosEmpleados()
+        {
             string _NombreEmpleado = string.IsNullOrEmpty(txtNombreEmpleadoConsulta.Text.Trim()) ? null : txtNombreEmpleadoConsulta.Text.Trim();
 
             var BuscarEmpleado = ObjDataProceso.Value.BuscaInformacionEmpleados(
@@ -178,16 +180,18 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         }
         #endregion
 
-   
+
 
         #region CARGAR LOS TIPOS DE NOMINA
-        private void CargarTipoNomina() {
+        private void CargarTipoNomina()
+        {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlTipoNomina, ObjData.Value.BuscaListas("TIPONOMINA", null, null));
         }
         #endregion
 
         #region SACAR EL MES Y EL AÑO ACTUAL
-        private void SacarMesAnoActual() {
+        private void SacarMesAnoActual()
+        {
             DateTime Year = DateTime.Now;
             DateTime Month = DateTime.Now;
 
@@ -197,10 +201,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         #endregion
 
         #region GENERAR VOLANTE DE PAGO
-        private void GenerarVolantePago(string RutaReporte, string NombreArchivo,string UsuarioBD, string ClaveBD, string Rutaarchivo) {
+        private void GenerarVolantePago(string RutaReporte, string NombreArchivo, string UsuarioBD, string ClaveBD, string Rutaarchivo)
+        {
             //DECLARAMOS LOS PARAMETROS NECESARIOS PARA ESTA PROCESO
             int? _CodigoEmpleado = string.IsNullOrEmpty(txtCodigoEmpleado.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoEmpleado.Text.Trim());
-            int? _Oficina =  new Nullable<int>();
+            int? _Oficina = new Nullable<int>();
             int? _Ano = string.IsNullOrEmpty(txtAno.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtAno.Text.Trim());
             byte? _Mes = string.IsNullOrEmpty(txtMes.Text.Trim()) ? new Nullable<byte>() : Convert.ToByte(txtMes.Text.Trim());
             int _NoPago = 0;
@@ -231,7 +236,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             Volante.SetDatabaseLogon(UsuarioBD, ClaveBD);
             //Volante.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Prueba");
-             
+
             VolantePagoPDF = Rutaarchivo + NombreArchivo + ".PDF";
             Volante.ExportToDisk(ExportFormatType.PortableDocFormat, VolantePagoPDF);
             Volante.Close();
@@ -242,7 +247,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         #endregion
 
         #region ENVIO DE CORREO
-        private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP, string Cuerpo,string CorreoEmpleado) {
+        private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP, string Cuerpo, string CorreoEmpleado)
+        {
             UtilidadesAmigos.Logica.Comunes.EnvioCorreos MAil = new Logica.Comunes.EnvioCorreos
             {
                 Mail = CorreoEmisor,
@@ -252,9 +258,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 Puerto = Puerto,
                 smtp = SMTP,
                 RutaImagen = Server.MapPath("LogoReducido.jpg"),
-                Cuerpo=Cuerpo,
-                Destinatarios=new List<string>(),
-                Adjuntos=new List<string>()
+                Cuerpo = Cuerpo,
+                Destinatarios = new List<string>(),
+                Adjuntos = new List<string>()
             };
 
             MAil.Destinatarios.Add(CorreoEmpleado);
@@ -306,18 +312,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         #endregion
 
         #region GENERAR EL CUERPO DEL CORREO
-        private string GenerarCuerpoCorreo(int Mes, string Ano, string Empleado, string Oficina) {
+        private string GenerarCuerpoCorreo(int Mes, string Ano, string Empleado, string Oficina)
+        {
             string Cuerpo = "";
             string Quincena = "";
             string MesLetra = "";
-            if (rbPrimeraQuincena.Checked == true) {
+            if (rbPrimeraQuincena.Checked == true)
+            {
                 Quincena = "PRIMERA QUINCENA";
             }
-            else if (rbSegundaQuincena.Checked == true) {
+            else if (rbSegundaQuincena.Checked == true)
+            {
                 Quincena = "SEGUNDA QUINCENA";
             }
 
-            switch (Mes) {
+            switch (Mes)
+            {
                 case 1:
                     MesLetra = "ENERO";
                     break;
@@ -377,71 +387,81 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         }
         #endregion
 
-        private void IniciarPantalla() {
-    DivBloqueProceso.Visible = true;
-    DivBloqueBuscarCodigo.Visible = false;
-    CurrentPage = 0;
-    BuscarCodigosEmpleados();
-
-    CargarTipoNomina();
-    rbPrimeraQuincena.Checked = true;
-    SacarMesAnoActual();
-}
-protected void Page_Load(object sender, EventArgs e)
-{
-    MaintainScrollPositionOnPostBack = true;
-    if (!IsPostBack) {
-        UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario SacarNombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
-        Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
-        lbNombreUsuario.Text = SacarNombre.SacarNombreUsuarioConectado();
-        Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
-        lbPantallaActual.Text = "GENERAR VOLANTES DE PAGOS";
-        IniciarPantalla();
-
-    }
-
-}
-
-protected void txtCodigoEmpleado_TextChanged(object sender, EventArgs e)
-{
-    try {
-        int CodigoEmpleado = Convert.ToInt32(txtCodigoEmpleado.Text);
-
-        var SacarNombreEmpleado = ObjDataProceso.Value.BuscaInformacionEmpleados(CodigoEmpleado, null, null, null, null, null, null, "A");
-        if (SacarNombreEmpleado.Count() < 1)
+        private void IniciarPantalla()
         {
-            txtNombreEmpleado.Text = "EL CODIGO DE EMPLEADO INGRSADO NO ES VALIDO O ESTA CANCELADO";
+            DivBloqueProceso.Visible = true;
+            DivBloqueBuscarCodigo.Visible = false;
+            BloqueModificarCorreo.Visible = false;
+            CurrentPage = 0;
+            BuscarCodigosEmpleados();
+
+            CargarTipoNomina();
+            rbPrimeraQuincena.Checked = true;
+            SacarMesAnoActual();
         }
-        else {
-            foreach (var n in SacarNombreEmpleado)
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            MaintainScrollPositionOnPostBack = true;
+            if (!IsPostBack)
             {
-                txtNombreEmpleado.Text = n.Nombre;
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario SacarNombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
+                lbNombreUsuario.Text = SacarNombre.SacarNombreUsuarioConectado();
+                Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbPantallaActual.Text = "GENERAR VOLANTES DE PAGOS";
+                IniciarPantalla();
+
+            }
+
+        }
+
+        protected void txtCodigoEmpleado_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int CodigoEmpleado = Convert.ToInt32(txtCodigoEmpleado.Text);
+
+                var SacarNombreEmpleado = ObjDataProceso.Value.BuscaInformacionEmpleados(CodigoEmpleado, null, null, null, null, null, null, "A");
+                if (SacarNombreEmpleado.Count() < 1)
+                {
+                    txtNombreEmpleado.Text = "EL CODIGO DE EMPLEADO INGRSADO NO ES VALIDO O ESTA CANCELADO";
+                }
+                else
+                {
+                    foreach (var n in SacarNombreEmpleado)
+                    {
+                        txtNombreEmpleado.Text = n.Nombre;
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                txtNombreEmpleado.Text = "";
             }
         }
 
-    }
-    catch (Exception) {
-        txtNombreEmpleado.Text = "";
-    }
-}
+        protected void btnProcesar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtCodigoEmpleado.Text.Trim()))
+            {
 
-protected void btnProcesar_Click(object sender, EventArgs e)
-{
-            if (string.IsNullOrEmpty(txtCodigoEmpleado.Text.Trim())) {
-            
                 //ESTE BLOQUE DE CODIGO ES PARA CUANDO NO SE ESPESIFICA UN CODIGO
             }
-            else {
+            else
+            {
                 //ESTE BLOQUE ES CUANDO SE ESPESIFICA UN CODIGO
 
                 //VALIDAMOS EL CODIGO INGRESADO
                 int _CodigoIngresado = Convert.ToInt32(txtCodigoEmpleado.Text);
 
                 var ValidarCodigoEmpleado = ObjDataProceso.Value.BuscaInformacionEmpleados(_CodigoIngresado);
-                if (ValidarCodigoEmpleado.Count() < 1) {
+                if (ValidarCodigoEmpleado.Count() < 1)
+                {
                     ClientScript.RegisterStartupScript(GetType(), "CodigoEmpleadoNoValido()", "CodigoEmpleadoNoValido();", true);
                 }
-                else {
+                else
+                {
                     string RutaGuardado = "";
                     var SacarRutaArchivo = ObjDataProceso.Value.SacarRutaArchivosGuardados(1);
                     foreach (var n in SacarRutaArchivo)
@@ -450,7 +470,7 @@ protected void btnProcesar_Click(object sender, EventArgs e)
                     }
 
                     try
-                    {                       
+                    {
                         List<string> strFiles = Directory.GetFiles(RutaGuardado, "*", SearchOption.AllDirectories).ToList();
                         foreach (string fichero in strFiles)
                         {
@@ -463,17 +483,19 @@ protected void btnProcesar_Click(object sender, EventArgs e)
 
                     //SACAMOS LAS CREDENCIALES DE BASE DE DATOS
                     var SacarCredenciales = ObjDataProceso.Value.SacarCredencialesBD(1);
-                    foreach (var nCredenciales in SacarCredenciales) {
+                    foreach (var nCredenciales in SacarCredenciales)
+                    {
                         UsuarioBD = nCredenciales.Usuario;
                         ClaveBD = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(nCredenciales.Clave);
                     }
                     //SACAR EL NOMBRE DE EMPLEADO
                     var SacarNombreEmpleado = ObjDataProceso.Value.BuscaInformacionEmpleados(Convert.ToInt32(txtCodigoEmpleado.Text));
-                    foreach (var n in SacarNombreEmpleado) {
+                    foreach (var n in SacarNombreEmpleado)
+                    {
                         NombreEmpleado = n.Nombre;
                         OficinaEmpleado = n.DescSucursal;
                     }
-                    
+
                     NombreVolante = GenerarNombreArchivo(NombreEmpleado);
                     GenerarVolantePago(Server.MapPath("VolantePagos.rpt"), NombreVolante, UsuarioBD, ClaveBD, RutaGuardado);
 
@@ -482,7 +504,8 @@ protected void btnProcesar_Click(object sender, EventArgs e)
 
                     //SACAMOS LA INFORMACION DEL CORREO 
                     var SacarInformacionCorreos = ObjDataProceso.Value.ListadoCorreosEmisores(1, 2);
-                    foreach (var nCorreo in SacarInformacionCorreos) {
+                    foreach (var nCorreo in SacarInformacionCorreos)
+                    {
                         CorreoEmisor = nCorreo.Correo;
                         ClaveCorreo = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(nCorreo.Clave);
                         SMTP = nCorreo.SMTP;
@@ -525,64 +548,79 @@ protected void btnProcesar_Click(object sender, EventArgs e)
         }
 
         protected void btnCodigos_Click(object sender, EventArgs e)
-{
-    DivBloqueProceso.Visible = false;
-    DivBloqueBuscarCodigo.Visible = true;
-    txtNombreEmpleadoConsulta.Text = string.Empty;
-    CurrentPage = 0;
-    BuscarCodigosEmpleados();
-}
+        {
+            DivBloqueProceso.Visible = false;
+            DivBloqueBuscarCodigo.Visible = true;
+            txtNombreEmpleadoConsulta.Text = string.Empty;
+            CurrentPage = 0;
+            BuscarCodigosEmpleados();
+        }
 
 
 
-protected void btnBuscarCodigo_Click(object sender, EventArgs e)
-{
-    CurrentPage = 0;
-    BuscarCodigosEmpleados();
-}
+        protected void btnBuscarCodigo_Click(object sender, EventArgs e)
+        {
+            CurrentPage = 0;
+            BuscarCodigosEmpleados();
+        }
 
-protected void btnSeleccionar_Click(object sender, EventArgs e)
-{
+        protected void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfCodigoEmpleado = ((HiddenField)ItemSeleccionado.FindControl("hfCodigoEmpleado")).Value.ToString();
+            lbCodigoEmpleadoSeleccionadoModificar.Text = hfCodigoEmpleado.ToString();
 
-}
+            var BuscarInformacion = ObjDataProceso.Value.BuscaInformacionEmpleados(Convert.ToInt32(hfCodigoEmpleado.ToString()));
+            Paginar(ref rpListadoCodigos, BuscarInformacion, 1, ref lbCantidadPaginaVariableVolantePago, ref LinkPrimeraPaginaVolantePago, ref LinkAnteriorVolantePago, ref LinkSiguienteVolantePago, ref LinkUltimoVolantePago);
+            HandlePaging(ref dtPaginacionVolantePago, ref lbPaginaActualVariavleVolantePago);
 
-protected void LinkPrimeraPaginaVolantePago_Click(object sender, EventArgs e)
-{
-    CurrentPage = 0;
-    BuscarCodigosEmpleados();
-}
+            foreach (var n in BuscarInformacion) {
+                txtCodigoEmpleadoSeleccionado.Text = n.CodigoEmpleado.ToString();
+                txtNombreEmpleadoSeleccionado.Text = n.Nombre;
+                txtOficinaEmpleadoSeleccionado.Text = n.DescSucursal;
+                txtDepartamentoEmpleadoSeleccionado.Text = n.DescDepto;
+            }
 
-protected void LinkAnteriorVolantePago_Click(object sender, EventArgs e)
-{
-    CurrentPage += -1;
-    BuscarCodigosEmpleados();
-    MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleVolantePago, ref lbCantidadPaginaVariableVolantePago);
-}
+            BloqueModificarCorreo.Visible = true;
+        }
 
-protected void dtPaginacionVolantePago_ItemDataBound(object sender, DataListItemEventArgs e)
-{
+        protected void LinkPrimeraPaginaVolantePago_Click(object sender, EventArgs e)
+        {
+            CurrentPage = 0;
+            BuscarCodigosEmpleados();
+        }
 
-}
+        protected void LinkAnteriorVolantePago_Click(object sender, EventArgs e)
+        {
+            CurrentPage += -1;
+            BuscarCodigosEmpleados();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleVolantePago, ref lbCantidadPaginaVariableVolantePago);
+        }
 
-protected void dtPaginacionVolantePago_ItemCommand(object source, DataListCommandEventArgs e)
-{
-    if (!e.CommandName.Equals("newPage")) return;
-    CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-    BuscarCodigosEmpleados();
-}
+        protected void dtPaginacionVolantePago_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
 
-protected void LinkSiguienteVolantePago_Click(object sender, EventArgs e)
-{
-    CurrentPage += 1;
-    BuscarCodigosEmpleados();
-}
+        }
 
-protected void LinkUltimoVolantePago_Click(object sender, EventArgs e)
-{
-    CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-    BuscarCodigosEmpleados();
-    MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleVolantePago, ref lbCantidadPaginaVariableVolantePago);
-}
+        protected void dtPaginacionVolantePago_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            BuscarCodigosEmpleados();
+        }
+
+        protected void LinkSiguienteVolantePago_Click(object sender, EventArgs e)
+        {
+            CurrentPage += 1;
+            BuscarCodigosEmpleados();
+        }
+
+        protected void LinkUltimoVolantePago_Click(object sender, EventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            BuscarCodigosEmpleados();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleVolantePago, ref lbCantidadPaginaVariableVolantePago);
+        }
 
         protected void btnModificarCorreo_Click(object sender, EventArgs e)
         {
@@ -590,8 +628,8 @@ protected void LinkUltimoVolantePago_Click(object sender, EventArgs e)
         }
 
         protected void btnVolverVolantePago_Click(object sender, EventArgs e)
-{
-    IniciarPantalla();
-}
-}
+        {
+            IniciarPantalla();
+        }
+    }
 }

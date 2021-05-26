@@ -28,6 +28,8 @@
             alert("El codigo de empleado ingresado no es valido o esta cancelado, favor de verificar.");
         }
         $(document).ready(function () {
+
+       
             $("#<%=btnProcesar.ClientID%>").click(function () {
                 var Year = $("#<%=txtAno.ClientID%>").val().length;
                 if (Year < 1) {
@@ -97,6 +99,7 @@
     </div>
 
         <div id="DivBloqueBuscarCodigo" runat="server">
+            <asp:Label ID="lbCodigoEmpleadoSeleccionadoModificar" runat="server" Text="0" Visible="false"></asp:Label>
             <br />
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -194,6 +197,11 @@
                      <div class="form-group col-md-3">
                         <asp:Label ID="lbCorreo" runat="server" Text="Correo" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtCorreoEmpleadoSelecciondo" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Email"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="form-check-inline">
+                    <div class="form-group form-check">
+                        <asp:CheckBox ID="cbEnvioCorreo" runat="server" Text="Envio de Correo" ToolTip="Habilitar si se le puede enviar volante de pagos al empleado seleccionado" CssClass="form-check-input" />
                     </div>
                 </div>
                 <br />
