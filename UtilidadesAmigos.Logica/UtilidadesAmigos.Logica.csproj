@@ -123,6 +123,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionIntermediarioCadenaDetalle.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionMantenimientoIntermediariosSupervisores.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionPorcientoComisionesPorDefecto.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCodigosEmpleadosVolantesPagos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCorreosEmisoresSistema.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCredencialesBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProveedoresSolicitud.cs" />
@@ -304,6 +305,7 @@
     <Compile Include="Entidades\OpcionesAdministrador\GenerarBakupBD.cs" />
     <Compile Include="Entidades\Procesos\EBuscaHistoricoImpresionMarbetes.cs" />
     <Compile Include="Entidades\Procesos\EBuscarInformacionVolantesPagos.cs" />
+    <Compile Include="Entidades\Procesos\ECodigoEmpleadosVolantePagos.cs" />
     <Compile Include="Entidades\Procesos\ECorreosEmisonesSistema.cs" />
     <Compile Include="Entidades\Procesos\ECredencialesBD.cs" />
     <Compile Include="Entidades\Procesos\EEMpleados.cs" />

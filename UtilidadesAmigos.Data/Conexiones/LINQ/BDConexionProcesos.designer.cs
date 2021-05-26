@@ -225,6 +225,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCredencial, usuario, clave, accion);
 			return ((ISingleResult<SP_MODIFICAR_REDENCIALES_BDResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_VALIDAR_CODIGO_EMPLEADO_VOLANTE_PAGO")]
+		public ISingleResult<SP_VALIDAR_CODIGO_EMPLEADO_VOLANTE_PAGOResult> SP_VALIDAR_CODIGO_EMPLEADO_VOLANTE_PAGO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoEmpleado", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoEmpleado)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoEmpleado);
+			return ((ISingleResult<SP_VALIDAR_CODIGO_EMPLEADO_VOLANTE_PAGOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MODIFICAR_CODIGOS_EMPLEADOS_VOLANTE_PAGOS")]
+		public ISingleResult<SP_MODIFICAR_CODIGOS_EMPLEADOS_VOLANTE_PAGOSResult> SP_MODIFICAR_CODIGOS_EMPLEADOS_VOLANTE_PAGOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Decimal(20,0)")] System.Nullable<decimal> idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoEmpleado", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoEmpleado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(100)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EnvioCorreo", DbType="Bit")] System.Nullable<bool> envioCorreo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, codigoEmpleado, nombre, correo, envioCorreo, accion);
+			return ((ISingleResult<SP_MODIFICAR_CODIGOS_EMPLEADOS_VOLANTE_PAGOSResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_GENERAR_DATOS_PARA_MARBETE_VEHICULOResult
@@ -3710,6 +3724,220 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Clave != value))
 				{
 					this._Clave = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_VALIDAR_CODIGO_EMPLEADO_VOLANTE_PAGOResult
+	{
+		
+		private decimal _IdRegistro;
+		
+		private System.Nullable<decimal> _CodigoEmpleado;
+		
+		private string _Nombre;
+		
+		private string _Correo;
+		
+		private System.Nullable<bool> _EnvioCorreo0;
+		
+		private string _EnvioCorreo;
+		
+		public SP_VALIDAR_CODIGO_EMPLEADO_VOLANTE_PAGOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Decimal(20,0) NOT NULL")]
+		public decimal IdRegistro
+		{
+			get
+			{
+				return this._IdRegistro;
+			}
+			set
+			{
+				if ((this._IdRegistro != value))
+				{
+					this._IdRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoEmpleado", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> CodigoEmpleado
+		{
+			get
+			{
+				return this._CodigoEmpleado;
+			}
+			set
+			{
+				if ((this._CodigoEmpleado != value))
+				{
+					this._CodigoEmpleado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(100)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnvioCorreo0", DbType="Bit")]
+		public System.Nullable<bool> EnvioCorreo0
+		{
+			get
+			{
+				return this._EnvioCorreo0;
+			}
+			set
+			{
+				if ((this._EnvioCorreo0 != value))
+				{
+					this._EnvioCorreo0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnvioCorreo", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string EnvioCorreo
+		{
+			get
+			{
+				return this._EnvioCorreo;
+			}
+			set
+			{
+				if ((this._EnvioCorreo != value))
+				{
+					this._EnvioCorreo = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MODIFICAR_CODIGOS_EMPLEADOS_VOLANTE_PAGOSResult
+	{
+		
+		private System.Nullable<decimal> _IdRegistro;
+		
+		private System.Nullable<decimal> _CodigoEmpleado;
+		
+		private string _Nombre;
+		
+		private string _Correo;
+		
+		private System.Nullable<bool> _EnvioCorreo;
+		
+		public SP_MODIFICAR_CODIGOS_EMPLEADOS_VOLANTE_PAGOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdRegistro
+		{
+			get
+			{
+				return this._IdRegistro;
+			}
+			set
+			{
+				if ((this._IdRegistro != value))
+				{
+					this._IdRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoEmpleado", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> CodigoEmpleado
+		{
+			get
+			{
+				return this._CodigoEmpleado;
+			}
+			set
+			{
+				if ((this._CodigoEmpleado != value))
+				{
+					this._CodigoEmpleado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(100)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnvioCorreo", DbType="Bit")]
+		public System.Nullable<bool> EnvioCorreo
+		{
+			get
+			{
+				return this._EnvioCorreo;
+			}
+			set
+			{
+				if ((this._EnvioCorreo != value))
+				{
+					this._EnvioCorreo = value;
 				}
 			}
 		}

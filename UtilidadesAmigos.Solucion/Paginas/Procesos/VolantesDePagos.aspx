@@ -167,6 +167,41 @@
         </div>
         </div>
             <br />
+
+            <div id="BloqueModificarCorreo" runat="server">
+                <br />
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <asp:Label ID="lbCodigoEmpleadoSeleccionado" runat="server" Text="Codigo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtCodigoEmpleadoSeleccionado" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <asp:Label ID="lbNombreEmpleadoSeleccionado" runat="server" Text="Nombre de Empleado" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtNombreEmpleadoSeleccionado" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <asp:Label ID="lbOficinaEmpleadoSeleccionado" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtOficinaEmpleadoSeleccionado" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                     <div class="form-group col-md-3">
+                        <asp:Label ID="lbDepartamentoEmpleadoSeleccionado" runat="server" Text="Departamento" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDepartamentoEmpleadoSeleccionado" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                     <div class="form-group col-md-3">
+                        <asp:Label ID="lbCorreo" runat="server" Text="Correo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtCorreoEmpleadoSelecciondo" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Email"></asp:TextBox>
+                    </div>
+                </div>
+                <br />
+                <div align="center">
+                <asp:Button ID="btnModificarCorreo" runat="server" Text="Modificar"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Modificar Correo" OnClick="btnModificarCorreo_Click" />
+            </div>
+                <br />
+            </div>
         </div>
     </div>
 

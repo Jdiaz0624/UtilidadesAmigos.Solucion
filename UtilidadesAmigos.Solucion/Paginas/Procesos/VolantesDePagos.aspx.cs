@@ -242,7 +242,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         #endregion
 
         #region ENVIO DE CORREO
-        private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP, string Cuerpo) {
+        private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP, string Cuerpo,string CorreoEmpleado) {
             UtilidadesAmigos.Logica.Comunes.EnvioCorreos MAil = new Logica.Comunes.EnvioCorreos
             {
                 Mail = CorreoEmisor,
@@ -257,7 +257,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 Adjuntos=new List<string>()
             };
 
-            MAil.Destinatarios.Add("jmdiaz@amigosseguros.com");
+            MAil.Destinatarios.Add(CorreoEmpleado);
             MAil.Adjuntos.Add(VolantePagoPDF);
 
             if (MAil.Enviar(MAil))
@@ -265,47 +265,119 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             }
         }
-/* private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP, string Cuerpo) {
+        /* private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP, string Cuerpo) {
 
 
-    UtilidadesAmigos.Logica.Comunes.EnvioCorreos Mail = new Logica.Comunes.EnvioCorreos
-    {
-        Mail = CorreoEmisor,
-        Alias = Alias,
-        Asunto = Asunto,
-        Clave = ClaveCorreo,
-        Puerto = Puerto,
-        smtp = SMTP,
-        RutaImagen = Server.MapPath("LogoReducido.jpg"),
-        Cuerpo = Cuerpo,
-        Destinatarios = new List<string>(),
-        Adjuntos = new List<string>()
-    };
+            UtilidadesAmigos.Logica.Comunes.EnvioCorreos Mail = new Logica.Comunes.EnvioCorreos
+            {
+                Mail = CorreoEmisor,
+                Alias = Alias,
+                Asunto = Asunto,
+                Clave = ClaveCorreo,
+                Puerto = Puerto,
+                smtp = SMTP,
+                RutaImagen = Server.MapPath("LogoReducido.jpg"),
+                Cuerpo = Cuerpo,
+                Destinatarios = new List<string>(),
+                Adjuntos = new List<string>()
+            };
 
 
-    var MandarCorreos = ObjDataAdministrador.Value.BuscaCorreosEnviar(
-                new Nullable<decimal>(),
-                1, null, true);
-    foreach (var n in MandarCorreos) {
-        Mail.Destinatarios.Add(n.Correo);
-    }
+            var MandarCorreos = ObjDataAdministrador.Value.BuscaCorreosEnviar(
+                        new Nullable<decimal>(),
+                        1, null, true);
+            foreach (var n in MandarCorreos) {
+                Mail.Destinatarios.Add(n.Correo);
+            }
 
-    //List<string> Logo = new List<string>();
-    //Logo.Add(Server.MapPath("Logo.jpg"));
+            //List<string> Logo = new List<string>();
+            //Logo.Add(Server.MapPath("Logo.jpg"));
 
-    //foreach (var n2 in Logo) {
-    //    Mail.Adjuntos.Add(n2);
-    //}
+            //foreach (var n2 in Logo) {
+            //    Mail.Adjuntos.Add(n2);
+            //}
 
 
 
-    if (Mail.Enviar(Mail)) {
+            if (Mail.Enviar(Mail)) {
 
-    }
-}*/
-            #endregion
+            }
+        }*/
+        #endregion
 
-            private void IniciarPantalla() {
+        #region GENERAR EL CUERPO DEL CORREO
+        private string GenerarCuerpoCorreo(int Mes, string Ano, string Empleado, string Oficina) {
+            string Cuerpo = "";
+            string Quincena = "";
+            string MesLetra = "";
+            if (rbPrimeraQuincena.Checked == true) {
+                Quincena = "PRIMERA QUINCENA";
+            }
+            else if (rbSegundaQuincena.Checked == true) {
+                Quincena = "SEGUNDA QUINCENA";
+            }
+
+            switch (Mes) {
+                case 1:
+                    MesLetra = "ENERO";
+                    break;
+
+                case 2:
+                    MesLetra = "FEBRERO";
+                    break;
+
+                case 3:
+                    MesLetra = "MARZO";
+                    break;
+
+                case 4:
+                    MesLetra = "ABRIL";
+                    break;
+
+                case 5:
+                    MesLetra = "MAYO";
+                    break;
+
+                case 6:
+                    MesLetra = "JUNIO";
+                    break;
+
+                case 7:
+                    MesLetra = "JULIO";
+                    break;
+
+                case 8:
+                    MesLetra = "AGOSTO";
+                    break;
+
+                case 9:
+                    MesLetra = "SEPTIEMBRE";
+                    break;
+
+                case 10:
+                    MesLetra = "OCTUBRE";
+                    break;
+
+                case 11:
+                    MesLetra = "NOVIEMBRE";
+                    break;
+
+                case 12:
+                    MesLetra = "DICIEMBRE";
+                    break;
+
+                default:
+                    MesLetra = "";
+                    break;
+            }
+
+            Cuerpo = "VOLANTE DE PAGO DE LA " + Quincena + " CORRESPONDIENTE AL MES DE " + MesLetra + " DEL AÑO " + Ano + " DE " + Empleado + " DE LA " + Oficina;
+
+            return Cuerpo;
+        }
+        #endregion
+
+        private void IniciarPantalla() {
     DivBloqueProceso.Visible = true;
     DivBloqueBuscarCodigo.Visible = false;
     CurrentPage = 0;
@@ -387,26 +459,47 @@ protected void btnProcesar_Click(object sender, EventArgs e)
                     }
                     catch (Exception) { }
 
-                    string NombreVolante = "", NombreEmpleado = "", UsuarioBD = "sa", ClaveBD = "!@Pa$$W0rd!@0624";
+                    string NombreVolante = "", NombreEmpleado = "", OficinaEmpleado = "", UsuarioBD = "", ClaveBD = "";
+
+                    //SACAMOS LAS CREDENCIALES DE BASE DE DATOS
+                    var SacarCredenciales = ObjDataProceso.Value.SacarCredencialesBD(1);
+                    foreach (var nCredenciales in SacarCredenciales) {
+                        UsuarioBD = nCredenciales.Usuario;
+                        ClaveBD = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(nCredenciales.Clave);
+                    }
                     //SACAR EL NOMBRE DE EMPLEADO
                     var SacarNombreEmpleado = ObjDataProceso.Value.BuscaInformacionEmpleados(Convert.ToInt32(txtCodigoEmpleado.Text));
                     foreach (var n in SacarNombreEmpleado) {
                         NombreEmpleado = n.Nombre;
+                        OficinaEmpleado = n.DescSucursal;
                     }
                     
                     NombreVolante = GenerarNombreArchivo(NombreEmpleado);
                     GenerarVolantePago(Server.MapPath("VolantePagos.rpt"), NombreVolante, UsuarioBD, ClaveBD, RutaGuardado);
 
+                    string CorreoEmisor = "", Alias = "Utilidades Futuro Seguros", Asunto = "Volante de Pago", ClaveCorreo = "", SMTP = "", Cuerpo = "";
+                    int Puerto = 0;
 
+                    //SACAMOS LA INFORMACION DEL CORREO 
+                    var SacarInformacionCorreos = ObjDataProceso.Value.ListadoCorreosEmisores(1, 2);
+                    foreach (var nCorreo in SacarInformacionCorreos) {
+                        CorreoEmisor = nCorreo.Correo;
+                        ClaveCorreo = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(nCorreo.Clave);
+                        SMTP = nCorreo.SMTP;
+                        Puerto = (int)nCorreo.Puerto;
+                    }
+
+                    Cuerpo = GenerarCuerpoCorreo(Convert.ToInt32(txtMes.Text), txtAno.Text, NombreEmpleado, OficinaEmpleado);
+                    string CorreoEmpleado = "";
                     EnvioCorreo(
-                        "ing.juanmarcelinom.diaz@hotmail.com",
-                        "Utilidades Amigos",
-                        "Volante de Pago",
-                        "!@Pa$$W0rd!@0624",
-                        587,
-                        "smtp.live.com",
-                        "Plantilla de Prueba de Volante de Pago");
-
+                        CorreoEmisor,
+                        Alias,
+                        Asunto,
+                        ClaveCorreo,
+                        Puerto,
+                        SMTP,
+                        Cuerpo,
+                        CorreoEmpleado);
                 }
             }
 
@@ -491,9 +584,12 @@ protected void LinkUltimoVolantePago_Click(object sender, EventArgs e)
     MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleVolantePago, ref lbCantidadPaginaVariableVolantePago);
 }
 
+        protected void btnModificarCorreo_Click(object sender, EventArgs e)
+        {
 
+        }
 
-protected void btnVolverVolantePago_Click(object sender, EventArgs e)
+        protected void btnVolverVolantePago_Click(object sender, EventArgs e)
 {
     IniciarPantalla();
 }

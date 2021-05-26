@@ -446,7 +446,52 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
             }
             return Modificar;
         }
-        
+
+        //VALIDAR CODIGOS DE EMPLEADOS PARA ENVIAR VOLANTES DE PAGOS
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ECodigoEmpleadosVolantePagos> ValidarCodigosEmpleadosVolantePagos(int? CodigoEmpleado = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_VALIDAR_CODIGO_EMPLEADO_VOLANTE_PAGO(CodigoEmpleado)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.ECodigoEmpleadosVolantePagos
+                           {
+                               IdRegistro = n.IdRegistro,
+                               CodigoEmpleado = CodigoEmpleado,
+                               Nombre = n.Nombre,
+                               Correo = n.Correo,
+                               EnvioCorreo0 = n.EnvioCorreo0,
+                               EnvioCorreo = n.EnvioCorreo
+                           }).ToList();
+            return Listado;
+        }
+
+        //MODIFICAR LOS CODIGOS DE LOS EMPLEADOS PARA ENVIAR LOS VOLANTES DE PAGOS
+        public UtilidadesAmigos.Logica.Entidades.Procesos.ECodigoEmpleadosVolantePagos ModificarCodigosEmpleadosVolantePagos(UtilidadesAmigos.Logica.Entidades.Procesos.ECodigoEmpleadosVolantePagos Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.ECodigoEmpleadosVolantePagos Modificar = null;
+
+            var CodigosEmpleadosVolantePagos = ObjData.SP_MODIFICAR_CODIGOS_EMPLEADOS_VOLANTE_PAGOS(
+                Item.IdRegistro,
+                Item.CodigoEmpleado,
+                Item.Nombre,
+                Item.Correo,
+                Item.EnvioCorreo0,
+                Accion);
+            if (CodigosEmpleadosVolantePagos != null) {
+                Modificar = (from n in CodigosEmpleadosVolantePagos
+                             select new UtilidadesAmigos.Logica.Entidades.Procesos.ECodigoEmpleadosVolantePagos
+                             {
+                                 IdRegistro=n.IdRegistro,
+                                 CodigoEmpleado=n.CodigoEmpleado,
+                                 Nombre=n.Nombre,
+                                 Correo=n.Correo,
+                                 EnvioCorreo0=n.EnvioCorreo
+                             }).FirstOrDefault();
+
+            }
+            return Modificar;
+        }
+
         #endregion
     }
 }
