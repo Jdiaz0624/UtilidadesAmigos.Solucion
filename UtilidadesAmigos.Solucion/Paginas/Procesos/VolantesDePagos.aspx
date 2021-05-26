@@ -27,6 +27,11 @@
         function CodigoEmpleadoNoValido() {
             alert("El codigo de empleado ingresado no es valido o esta cancelado, favor de verificar.");
         }
+
+
+        function CorreoNoActivo() {
+            alert("Esta persona no tiene la opción de envio de correo activo.");
+        }
         $(document).ready(function () {
 
        

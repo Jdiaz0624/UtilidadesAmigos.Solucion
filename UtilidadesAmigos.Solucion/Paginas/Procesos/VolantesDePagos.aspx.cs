@@ -514,15 +514,29 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
                     Cuerpo = GenerarCuerpoCorreo(Convert.ToInt32(txtMes.Text), txtAno.Text, NombreEmpleado, OficinaEmpleado);
                     string CorreoEmpleado = "";
-                    EnvioCorreo(
-                        CorreoEmisor,
-                        Alias,
-                        Asunto,
-                        ClaveCorreo,
-                        Puerto,
-                        SMTP,
-                        Cuerpo,
-                        CorreoEmpleado);
+                    bool EnvioMail = false;
+                    var SacarCorreoEmpleado = ObjDataProceso.Value.ValidarCodigosEmpleadosVolantePagos(_CodigoIngresado);
+                    foreach (var ncorreoestatus in SacarCorreoEmpleado) {
+                        CorreoEmpleado = ncorreoestatus.Correo;
+                        EnvioMail = (bool)ncorreoestatus.EnvioCorreo0;
+                    }
+
+                    if (EnvioMail == true)
+                    {
+                        EnvioCorreo(
+                          CorreoEmisor,
+                          Alias,
+                          Asunto,
+                          ClaveCorreo,
+                          Puerto,
+                          SMTP,
+                          Cuerpo,
+                          CorreoEmpleado);
+                    }
+                    else {
+                        ClientScript.RegisterStartupScript(GetType(), "CorreoNoActivo()", "CorreoNoActivo();", true);
+                    }
+                  
                 }
             }
 
