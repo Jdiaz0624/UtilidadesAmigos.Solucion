@@ -510,7 +510,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                         ClaveCorreo = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(nCorreo.Clave);
                         SMTP = nCorreo.SMTP;
                         Puerto = (int)nCorreo.Puerto;
-                    }
+                    } 
 
                     Cuerpo = GenerarCuerpoCorreo(Convert.ToInt32(txtMes.Text), txtAno.Text, NombreEmpleado, OficinaEmpleado);
                     string CorreoEmpleado = "";
