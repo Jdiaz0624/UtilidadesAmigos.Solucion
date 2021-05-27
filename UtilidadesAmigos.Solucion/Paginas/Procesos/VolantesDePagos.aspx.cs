@@ -237,7 +237,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Volante.SetDatabaseLogon(UsuarioBD, ClaveBD);
             //Volante.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Prueba");
 
-            VolantePagoPDF = Rutaarchivo + NombreArchivo + ".PDF";
+            VolantePagoPDF =@""+ Rutaarchivo + NombreArchivo + ".PDF";
             Volante.ExportToDisk(ExportFormatType.PortableDocFormat, VolantePagoPDF);
             Volante.Close();
 
