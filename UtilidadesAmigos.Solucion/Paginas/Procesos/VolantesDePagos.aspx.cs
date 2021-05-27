@@ -241,7 +241,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Volante.ExportToDisk(ExportFormatType.PortableDocFormat, VolantePagoPDF);
             Volante.Close();
 
-
+              
 
         }
         #endregion
