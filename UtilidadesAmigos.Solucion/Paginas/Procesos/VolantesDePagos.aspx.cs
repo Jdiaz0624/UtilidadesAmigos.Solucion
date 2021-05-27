@@ -201,7 +201,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         #endregion
 
         #region GENERAR VOLANTE DE PAGO
-        private void GenerarVolantePago(int CodigoEmpleadoProceso,string RutaReporte, string NombreArchivo, string UsuarioBD, string ClaveBD, string Rutaarchivo)
+        private void GenerarVolantePago(int CodigoEmpleadoProceso, string RutaReporte, string NombreArchivo, string UsuarioBD, string ClaveBD, string Rutaarchivo)
         {
             //DECLARAMOS LOS PARAMETROS NECESARIOS PARA ESTA PROCESO
             int? _CodigoEmpleado = CodigoEmpleadoProceso; //string.IsNullOrEmpty(txtCodigoEmpleado.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoEmpleado.Text.Trim());
@@ -237,11 +237,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Volante.SetDatabaseLogon(UsuarioBD, ClaveBD);
             //Volante.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Prueba"); 
 
-            VolantePagoPDF =@""+ Rutaarchivo + NombreArchivo + ".PDF";
+            VolantePagoPDF = @"" + Rutaarchivo + NombreArchivo + ".PDF";
             Volante.ExportToDisk(ExportFormatType.PortableDocFormat, VolantePagoPDF);
             Volante.Close();
 
-              
+
 
         }
         #endregion
@@ -482,7 +482,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             if (string.IsNullOrEmpty(txtCodigoEmpleado.Text.Trim()))
             {
-                try {
+                try
+                {
                     //ESTE BLOQUE DE CODIGO ES PARA CUANDO NO SE ESPESIFICA UN CODIGO
                     int _CodigoEmpleadoLote = 0;
                     string _NombreEmpleadoLote = "", _CorrreoLote = "", _OficinaLote = "", _NombreVolanteLote = "";
@@ -502,7 +503,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                             _CorrreoLote = nInformacionCorreo.Correo;
                             _EnvioCorreoLote = (bool)nInformacionCorreo.EnvioCorreo0;
 
-                            
+
                         }
 
                         if (_EnvioCorreoLote == true)
@@ -527,7 +528,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     }
                 }
                 catch (Exception) { }
-                
+
             }
             else
             {
@@ -543,7 +544,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 }
                 else
                 {
-                  
+
 
                     try
                     {
@@ -568,13 +569,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     NombreVolante = GenerarNombreArchivo(NombreEmpleado);
                     GenerarVolantePago(Convert.ToInt32(txtCodigoEmpleado.Text), Server.MapPath("VolantePagos.rpt"), NombreVolante, UsuarioBD, ClaveBD, RutaGuardado);
 
-                    
+
 
                     Cuerpo = GenerarCuerpoCorreo(Convert.ToInt32(txtMes.Text), txtAno.Text, NombreEmpleado, OficinaEmpleado);
                     string CorreoEmpleado = "";
                     bool EnvioMail = false;
                     var SacarCorreoEmpleado = ObjDataProceso.Value.ValidarCodigosEmpleadosVolantePagos(_CodigoIngresado);
-                    foreach (var ncorreoestatus in SacarCorreoEmpleado) {
+                    foreach (var ncorreoestatus in SacarCorreoEmpleado)
+                    {
                         CorreoEmpleado = ncorreoestatus.Correo;
                         EnvioMail = (bool)ncorreoestatus.EnvioCorreo0;
                     }
@@ -591,10 +593,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                           Cuerpo,
                           CorreoEmpleado);
                     }
-                    else {
+                    else
+                    {
                         ClientScript.RegisterStartupScript(GetType(), "CorreoNoActivo()", "CorreoNoActivo();", true);
                     }
-                  
+
                 }
             }
 
@@ -646,7 +649,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Paginar(ref rpListadoCodigos, BuscarInformacion, 1, ref lbCantidadPaginaVariableVolantePago, ref LinkPrimeraPaginaVolantePago, ref LinkAnteriorVolantePago, ref LinkSiguienteVolantePago, ref LinkUltimoVolantePago);
             HandlePaging(ref dtPaginacionVolantePago, ref lbPaginaActualVariavleVolantePago);
 
-            foreach (var n in BuscarInformacion) {
+            foreach (var n in BuscarInformacion)
+            {
                 txtCodigoEmpleadoSeleccionado.Text = n.CodigoEmpleado.ToString();
                 txtNombreEmpleadoSeleccionado.Text = n.Nombre;
                 txtOficinaEmpleadoSeleccionado.Text = n.DescSucursal;
@@ -655,7 +659,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             //SACAMOS LOS DATOS DEL CORREO Y EL ESTATUS
             var SacarEstatusCorreo = ObjDataProceso.Value.ValidarCodigosEmpleadosVolantePagos(Convert.ToInt32(txtCodigoEmpleadoSeleccionado.Text));
-            foreach (var nestatus in SacarEstatusCorreo) {
+            foreach (var nestatus in SacarEstatusCorreo)
+            {
                 txtCorreoEmpleadoSelecciondo.Text = nestatus.Correo;
                 cbEnvioCorreo.Checked = (nestatus.EnvioCorreo0.HasValue ? nestatus.EnvioCorreo0.Value : false);
             }
