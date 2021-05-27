@@ -201,10 +201,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         #endregion
 
         #region GENERAR VOLANTE DE PAGO
-        private void GenerarVolantePago(string RutaReporte, string NombreArchivo, string UsuarioBD, string ClaveBD, string Rutaarchivo)
+        private void GenerarVolantePago(int CodigoEmpleadoProceso,string RutaReporte, string NombreArchivo, string UsuarioBD, string ClaveBD, string Rutaarchivo)
         {
             //DECLARAMOS LOS PARAMETROS NECESARIOS PARA ESTA PROCESO
-            int? _CodigoEmpleado = string.IsNullOrEmpty(txtCodigoEmpleado.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoEmpleado.Text.Trim());
+            int? _CodigoEmpleado = CodigoEmpleadoProceso; //string.IsNullOrEmpty(txtCodigoEmpleado.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoEmpleado.Text.Trim());
             int? _Oficina = new Nullable<int>();
             int? _Ano = string.IsNullOrEmpty(txtAno.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtAno.Text.Trim());
             byte? _Mes = string.IsNullOrEmpty(txtMes.Text.Trim()) ? new Nullable<byte>() : Convert.ToByte(txtMes.Text.Trim());
@@ -443,10 +443,91 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         protected void btnProcesar_Click(object sender, EventArgs e)
         {
+            //SACAMOS TODA LA INFORMACION DEL CORREO EMISOR DESDE DONDE SE ENVIARAN LOS VOLANTES DE PAGOS.
+            string CorreoEmisor = "", Alias = "Utilidades Futuro Seguros", Asunto = "Volante de Pago", ClaveCorreo = "", SMTP = "", Cuerpo = "";
+            int Puerto = 0;
+            var SacarInformacionCorreos = ObjDataProceso.Value.ListadoCorreosEmisores(1, 2);
+            foreach (var nCorreo in SacarInformacionCorreos)
+            {
+                CorreoEmisor = nCorreo.Correo;
+                ClaveCorreo = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(nCorreo.Clave);
+                SMTP = nCorreo.SMTP;
+                Puerto = (int)nCorreo.Puerto;
+            }
+
+            //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+            //SACAMOS LAS CREDENCIALES DE LA BASE DE DATOS, EL USUARIO Y LA CLAVE DEL SERVIDOR
+            string UsuarioBD = "", ClaveBD = "";
+            var SacarCredenciales = ObjDataProceso.Value.SacarCredencialesBD(1);
+            foreach (var nCredenciales in SacarCredenciales)
+            {
+                UsuarioBD = nCredenciales.Usuario;
+                ClaveBD = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(nCredenciales.Clave);
+            }
+
+            //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+            //OBTENEMOS LA RUTA EN DONDE SE VAN A GUARDAR TODOS LOS VOLANTES DE PAGOS
+            string RutaGuardado = "";
+            var SacarRutaArchivo = ObjDataProceso.Value.SacarRutaArchivosGuardados(1);
+            foreach (var n in SacarRutaArchivo)
+            {
+                RutaGuardado = n.Ruta;
+            }
+
+            //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+            //VALIDAMOS QUE PROCESO SE VA A REALIZAR SEGUN EL CAMPO CODIGO CODIGO DE EMPLEADO (VACIO PARA PROCESO EN LOTE Y CON VALOR PARA PROCESO UNICO).
+
             if (string.IsNullOrEmpty(txtCodigoEmpleado.Text.Trim()))
             {
+                try {
+                    //ESTE BLOQUE DE CODIGO ES PARA CUANDO NO SE ESPESIFICA UN CODIGO
+                    int _CodigoEmpleadoLote = 0;
+                    string _NombreEmpleadoLote = "", _CorrreoLote = "", _OficinaLote = "", _NombreVolanteLote = "";
+                    bool _EnvioCorreoLote = false;
+                    var InformacionEmpleados = ObjDataProceso.Value.BuscaInformacionEmpleados(
+                        new Nullable<int>(),
+                        null, null, null, null, null, null, "a");
+                    foreach (var nInformacion in InformacionEmpleados)
+                    {
+                        _CodigoEmpleadoLote = (int)nInformacion.CodigoEmpleado;
+                        _NombreEmpleadoLote = nInformacion.Nombre;
+                        _OficinaLote = nInformacion.DescSucursal;
 
-                //ESTE BLOQUE DE CODIGO ES PARA CUANDO NO SE ESPESIFICA UN CODIGO
+                        var SacarInformacionCorreoProcesoLote = ObjDataProceso.Value.ValidarCodigosEmpleadosVolantePagos(_CodigoEmpleadoLote);
+                        foreach (var nInformacionCorreo in SacarInformacionCorreoProcesoLote)
+                        {
+                            _CorrreoLote = nInformacionCorreo.Correo;
+                            _EnvioCorreoLote = (bool)nInformacionCorreo.EnvioCorreo0;
+
+                            
+                        }
+
+                        if (_EnvioCorreoLote == true)
+                        {
+                            _NombreVolanteLote = GenerarNombreArchivo(_NombreEmpleadoLote);
+                            GenerarVolantePago(_CodigoEmpleadoLote, Server.MapPath("VolantePagos.rpt"), _NombreVolanteLote, UsuarioBD, ClaveBD, RutaGuardado);
+                            Cuerpo = GenerarCuerpoCorreo(Convert.ToInt32(txtMes.Text), txtAno.Text, _NombreEmpleadoLote, _OficinaLote);
+
+
+                            EnvioCorreo(
+                              CorreoEmisor,
+                              Alias,
+                              Asunto,
+                              ClaveCorreo,
+                              Puerto,
+                              SMTP,
+                              Cuerpo,
+                              _CorrreoLote);
+                        }
+
+
+                    }
+                }
+                catch (Exception) { }
+                
             }
             else
             {
@@ -462,12 +543,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 }
                 else
                 {
-                    string RutaGuardado = "";
-                    var SacarRutaArchivo = ObjDataProceso.Value.SacarRutaArchivosGuardados(1);
-                    foreach (var n in SacarRutaArchivo)
-                    {
-                        RutaGuardado = n.Ruta;
-                    }
+                  
 
                     try
                     {
@@ -479,15 +555,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     }
                     catch (Exception) { }
 
-                    string NombreVolante = "", NombreEmpleado = "", OficinaEmpleado = "", UsuarioBD = "", ClaveBD = "";
+                    string NombreVolante = "", NombreEmpleado = "", OficinaEmpleado = "";
 
-                    //SACAMOS LAS CREDENCIALES DE BASE DE DATOS
-                    var SacarCredenciales = ObjDataProceso.Value.SacarCredencialesBD(1);
-                    foreach (var nCredenciales in SacarCredenciales)
-                    {
-                        UsuarioBD = nCredenciales.Usuario;
-                        ClaveBD = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(nCredenciales.Clave);
-                    }
                     //SACAR EL NOMBRE DE EMPLEADO
                     var SacarNombreEmpleado = ObjDataProceso.Value.BuscaInformacionEmpleados(Convert.ToInt32(txtCodigoEmpleado.Text));
                     foreach (var n in SacarNombreEmpleado)
@@ -497,20 +566,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     }
 
                     NombreVolante = GenerarNombreArchivo(NombreEmpleado);
-                    GenerarVolantePago(Server.MapPath("VolantePagos.rpt"), NombreVolante, UsuarioBD, ClaveBD, RutaGuardado);
+                    GenerarVolantePago(Convert.ToInt32(txtCodigoEmpleado.Text), Server.MapPath("VolantePagos.rpt"), NombreVolante, UsuarioBD, ClaveBD, RutaGuardado);
 
-                    string CorreoEmisor = "", Alias = "Utilidades Futuro Seguros", Asunto = "Volante de Pago", ClaveCorreo = "", SMTP = "", Cuerpo = "";
-                    int Puerto = 0;
-
-                    //SACAMOS LA INFORMACION DEL CORREO 
-                    var SacarInformacionCorreos = ObjDataProceso.Value.ListadoCorreosEmisores(1, 2);
-                    foreach (var nCorreo in SacarInformacionCorreos)
-                    {
-                        CorreoEmisor = nCorreo.Correo;
-                        ClaveCorreo = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(nCorreo.Clave);
-                        SMTP = nCorreo.SMTP;
-                        Puerto = (int)nCorreo.Puerto;
-                    } 
+                    
 
                     Cuerpo = GenerarCuerpoCorreo(Convert.ToInt32(txtMes.Text), txtAno.Text, NombreEmpleado, OficinaEmpleado);
                     string CorreoEmpleado = "";
