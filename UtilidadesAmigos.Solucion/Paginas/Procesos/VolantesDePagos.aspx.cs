@@ -260,7 +260,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 Clave = ClaveCorreo,
                 Puerto = Puerto,
                 smtp = SMTP,
-                RutaImagen = Server.MapPath("LogoReducido.jpg"),
+                RutaImagen = Server.MapPath("LogoReducido.jpg"),    
                 Cuerpo = Cuerpo,
                 Destinatarios = new List<string>(),
                 Adjuntos = new List<string>()
