@@ -32,8 +32,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         }
 
-        string NombreArchivo = "JUAN MARCELINO MEDINA DIAZ";
-        string VolantePagoPDF = "";
+        //string NombreArchivo = "JUAN MARCELINO MEDINA DIAZ";
+        string VolantePagoDOC = "";
+        //string VolantePagoPDF = "";
+        //string VolantePagoTXT = "";
 
         #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
@@ -235,8 +237,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Volante.SetDatabaseLogon(UsuarioBD, ClaveBD);
             //Volante.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Prueba"); 
 
-            VolantePagoPDF = @"" + Rutaarchivo + NombreArchivo + ".PDF";
-            Volante.ExportToDisk(ExportFormatType.PortableDocFormat, VolantePagoPDF);
+            VolantePagoDOC = @"" + Rutaarchivo + NombreArchivo + ".doc";
+            Volante.ExportToDisk(ExportFormatType.WordForWindows, VolantePagoDOC);
+
+            //VolantePagoTXT = @"" + Rutaarchivo + NombreArchivo + ".txt";
+            //Volante.ExportToDisk(ExportFormatType.Text, VolantePagoTXT);
             Volante.Close();
 
 
@@ -262,14 +267,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             };
 
             MAil.Destinatarios.Add(CorreoEmpleado);
-            MAil.Adjuntos.Add(VolantePagoPDF);
+            MAil.Adjuntos.Add(VolantePagoDOC);
+           // MAil.Adjuntos.Add(VolantePagoTXT);
 
-            MAil.Enviar(MAil);
+            // MAil.Enviar(MAil);
 
-            //if (MAil.Enviar(MAil))
-            //{
+            if (MAil.Enviar(MAil))
+            {
 
-            //}
+            }
         }
         /* private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP, string Cuerpo) {
 
