@@ -240,7 +240,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             //VolantePagoDOC = @"" + Rutaarchivo + NombreArchivo + ".doc";
             //Volante.ExportToDisk(ExportFormatType.WordForWindows, VolantePagoDOC);
 
-            VolantePagoTXT = @"" + Rutaarchivo + NombreArchivo + ".txt";
+            VolantePagoTXT = @"" + Rutaarchivo + NombreArchivo + ".pdf";
             Volante.ExportToDisk(ExportFormatType.PortableDocFormat, VolantePagoTXT);
             Volante.Close();
 
