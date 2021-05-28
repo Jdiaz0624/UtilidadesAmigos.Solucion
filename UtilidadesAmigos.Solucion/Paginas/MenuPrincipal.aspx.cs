@@ -169,7 +169,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         LinkButton linkOpcion = (LinkButton)Master.FindControl("linkOpcion");
                         linkOpcion.Visible = false;
 
-                        LinkButton linkBotones = (LinkButton)Master.FindControl("linkBotones");
+                        LinkButton linkBotones = (LinkButton)Master.FindControl("linkBotones");  
                         linkBotones.Visible = false;
 
                         LinkButton linkPermisoUsuarios = (LinkButton)Master.FindControl("linkPermisoUsuarios");
