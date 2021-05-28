@@ -180,8 +180,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         }
         #endregion
 
-
-
         #region CARGAR LOS TIPOS DE NOMINA
         private void CargarTipoNomina()
         {
