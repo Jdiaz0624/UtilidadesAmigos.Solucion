@@ -25,60 +25,60 @@ namespace UtilidadesAmigos.Logica.Comunes
 
         public bool Enviar(EnvioCorreos correo)
         {
+            SmtpClient Cliente = new SmtpClient(correo.smtp, correo.Puerto);
+            MailMessage Mail = new MailMessage();
+            Mail.From = new MailAddress(correo.Mail, correo.Alias);
 
-            try
+            Mail.BodyEncoding = System.Text.Encoding.UTF8;
+            Mail.IsBodyHtml = true;
+
+            if (!string.IsNullOrEmpty(correo.RutaImagen))
             {
-                SmtpClient Cliente = new SmtpClient(correo.smtp, correo.Puerto);
-                MailMessage Mail = new MailMessage();
-                Mail.From = new MailAddress(correo.Mail, correo.Alias);
-
-                Mail.BodyEncoding = System.Text.Encoding.UTF8;
-                Mail.IsBodyHtml = true;
-
-                if (!string.IsNullOrEmpty(correo.RutaImagen))
-                {
-                    AlternateView avHTML = AlternateView.CreateAlternateViewFromString(correo.Cuerpo + "<br/><img src=cid:Imagen1>", null, "text/html");
-                    LinkedResource lr = new LinkedResource(correo.RutaImagen, MediaTypeNames.Image.Jpeg);
-                    lr.ContentId = "Imagen1";
-                    avHTML.LinkedResources.Add(lr);
-                    Mail.AlternateViews.Add(avHTML);
-                    Mail.Body = lr.ContentId;
-                }
-                else
-                {
-                    Mail.Body = correo.Cuerpo;
-                }
-
-                Mail.Subject = correo.Asunto;
-                Mail.SubjectEncoding = System.Text.Encoding.UTF8;
-
-                //AGREGAMOS LOS DESTINATARIOS
-                foreach (var Destinos in correo.Destinatarios)
-                {
-                    if (!string.IsNullOrEmpty(Destinos))
-                    {
-                        Mail.Bcc.Add(Destinos);
-                    }
-                }
-
-                //ADJUNTOS
-                foreach (var Adjuntos in correo.Adjuntos)
-                {
-                    if (!string.IsNullOrEmpty(Adjuntos))
-                    {
-                        Mail.Attachments.Add(new Attachment(Adjuntos));
-                    }
-                }
-                Cliente.Credentials = new NetworkCredential(correo.Mail, correo.Clave);
-                Cliente.EnableSsl = true;
-                Cliente.Send(Mail);
-                return true;
+                AlternateView avHTML = AlternateView.CreateAlternateViewFromString(correo.Cuerpo + "<br/><img src=cid:Imagen1>", null, "text/html");
+                LinkedResource lr = new LinkedResource(correo.RutaImagen, MediaTypeNames.Image.Jpeg);
+                lr.ContentId = "Imagen1";
+                avHTML.LinkedResources.Add(lr);
+                Mail.AlternateViews.Add(avHTML);
+                Mail.Body = lr.ContentId;
             }
-            catch (Exception ex)
+            else
             {
-              //  MessageBox.Show("Error al enviar el correo, codigo de error: " + ex.Message, "Error de envio de correo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                Mail.Body = correo.Cuerpo;
             }
+
+            Mail.Subject = correo.Asunto;
+            Mail.SubjectEncoding = System.Text.Encoding.UTF8;
+
+            //AGREGAMOS LOS DESTINATARIOS
+            foreach (var Destinos in correo.Destinatarios)
+            {
+                if (!string.IsNullOrEmpty(Destinos))
+                {
+                    Mail.Bcc.Add(Destinos);
+                }
+            }
+
+            //ADJUNTOS
+            foreach (var Adjuntos in correo.Adjuntos)
+            {
+                if (!string.IsNullOrEmpty(Adjuntos))
+                {
+                    Mail.Attachments.Add(new Attachment(Adjuntos));
+                }
+            }
+            Cliente.Credentials = new NetworkCredential(correo.Mail, correo.Clave);
+            Cliente.EnableSsl = true;
+            Cliente.Send(Mail);
+            return true;
+            //try
+            //{
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error al enviar el correo, codigo de error: " + ex.Message, "Error de envio de correo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
         }
     }
 }
