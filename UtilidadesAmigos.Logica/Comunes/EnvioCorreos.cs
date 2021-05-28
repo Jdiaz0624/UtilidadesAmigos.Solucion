@@ -76,7 +76,7 @@ namespace UtilidadesAmigos.Logica.Comunes
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al enviar el correo, codigo de error: " + ex.Message, "Error de envio de correo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              //  MessageBox.Show("Error al enviar el correo, codigo de error: " + ex.Message, "Error de envio de correo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
