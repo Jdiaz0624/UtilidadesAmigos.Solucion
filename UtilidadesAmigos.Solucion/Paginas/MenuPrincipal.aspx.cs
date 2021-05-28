@@ -130,7 +130,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     {
                         // this.Master.FindControl("lbTiket").Visible = false;
                     }
-               //     lbHablar.Text = Session["Veronica"].ToString();
+                    //     lbHablar.Text = Session["Veronica"].ToString();
                     //if (Session["Veronica"] != null)
                     //{
                     //    Thread tarea = new Thread(new ParameterizedThreadStart(UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar));
@@ -138,7 +138,52 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     //    Session["Veronica"] = null;
 
                     //}
-                    
+                    int IdPerfil = Convert.ToInt32(lbIdPerfil.Text);
+                    if (IdPerfil > 2) {
+                        LinkButton LinkVolantePago = (LinkButton)Master.FindControl("LinkVolantePago");
+                        LinkVolantePago.Visible = false;
+                    }
+
+                    if (IdPerfil > 1) {
+                        LinkButton linkUsuarios = (LinkButton)Master.FindControl("linkUsuarios");
+                        linkUsuarios.Visible = false;
+
+                        LinkButton linkPerfilesUsuarios = (LinkButton)Master.FindControl("linkPerfilesUsuarios");
+                        linkPerfilesUsuarios.Visible = false;
+
+                        LinkButton linkClaveSeguridad = (LinkButton)Master.FindControl("linkClaveSeguridad");
+                        linkClaveSeguridad.Visible = false;
+
+                        LinkButton LinkCorreosEmisoresProcesos = (LinkButton)Master.FindControl("LinkCorreosEmisoresProcesos");
+                        LinkCorreosEmisoresProcesos.Visible = false;
+
+                        LinkButton linkMovimientoUsuarios = (LinkButton)Master.FindControl("linkMovimientoUsuarios");
+                        linkMovimientoUsuarios.Visible = false;
+
+                        LinkButton linkTarjetasAccesos = (LinkButton)Master.FindControl("linkTarjetasAccesos");
+                        linkTarjetasAccesos.Visible = false;
+
+                        LinkButton linkOpcionMenu = (LinkButton)Master.FindControl("linkOpcionMenu");
+                        linkOpcionMenu.Visible = false;
+
+                        LinkButton linkOpcion = (LinkButton)Master.FindControl("linkOpcion");
+                        linkOpcion.Visible = false;
+
+                        LinkButton linkBotones = (LinkButton)Master.FindControl("linkBotones");
+                        linkBotones.Visible = false;
+
+                        LinkButton linkPermisoUsuarios = (LinkButton)Master.FindControl("linkPermisoUsuarios");
+                        linkPermisoUsuarios.Visible = false;
+
+                        LinkButton LinkCredencialesBD = (LinkButton)Master.FindControl("LinkCredencialesBD");
+                        LinkCredencialesBD.Visible = false;
+
+                        LinkButton LinkSolicitudEmision = (LinkButton)Master.FindControl("LinkSolicitudEmision");
+                        LinkSolicitudEmision.Visible = false;
+
+                        LinkButton LinkBakupBD = (LinkButton)Master.FindControl("LinkBakupBD");
+                        LinkBakupBD.Visible = false;
+                    }
 
                 }
             }
