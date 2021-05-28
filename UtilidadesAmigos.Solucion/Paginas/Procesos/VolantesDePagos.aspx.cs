@@ -266,10 +266,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             MAil.Destinatarios.Add(CorreoEmpleado);
             MAil.Adjuntos.Add(VolantePagoPDF);
 
-            if (MAil.Enviar(MAil))
-            {
+            try {
+                if (MAil.Enviar(MAil))
+                {
 
+                }
             }
+            catch (Exception) {  }
         }
         /* private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP, string Cuerpo) {
 
