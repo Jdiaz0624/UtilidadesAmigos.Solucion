@@ -142,6 +142,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     if (IdPerfil > 2) {
                         LinkButton LinkVolantePago = (LinkButton)Master.FindControl("LinkVolantePago");
                         LinkVolantePago.Visible = false;
+
+                        LinkButton LinkGenerarSOlicitudChequeComisiones = (LinkButton)Master.FindControl("LinkGenerarSOlicitudChequeComisiones");
+                        LinkGenerarSOlicitudChequeComisiones.Visible = false;
+
+                        
                     }
 
                     if (IdPerfil > 1) {
