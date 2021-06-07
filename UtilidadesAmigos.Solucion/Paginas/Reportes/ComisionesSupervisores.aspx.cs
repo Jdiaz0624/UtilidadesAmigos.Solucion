@@ -287,7 +287,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         
         }
         #endregion
-
         #region MOSTRAR EL LISTADO DE LOS CODIGOS PERMITIDOS PARA MOSTRAR LA COMISION
         private void MostrarListadoCodigospermitidos() {
             string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoCodigospermitidos.Text.Trim()) ? null : txtCodigoCodigospermitidos.Text.Trim();
@@ -304,7 +303,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             HandlePaging(ref dtPaginacionCodigosPermitidos, ref lbPaginaActualVariavleCodigosPermitidos);
         }
         #endregion
-
         #region BUSCAR SUPERVISORES PARA AGREGAR
         private void BuscarSupervisoresParaAgregar() {
             string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoCodigospermitidos.Text.Trim()) ? null : txtCodigoCodigospermitidos.Text.Trim();
@@ -317,6 +315,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             HandlePaging(ref dtPaginacionBuscarCodigos, ref lbPaginaActualVariavleBuscarCodigos);
         }
         #endregion
+
+
         private void LimpiarControlesCodigosPermitidos() {
             IdRegistroSeleccionadoCodigoPermitidos.Text = "0";
             txtCodigoSupervisorControlesPermitidos.Text = string.Empty;
