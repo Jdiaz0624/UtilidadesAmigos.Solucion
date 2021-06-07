@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionReportesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO" Method="SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Sucursal" Parameter="sucursal" Type="System.String" DbType="VarChar(100)" />
@@ -711,6 +711,73 @@
       <Column Name="DiaCheque" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
       <Column Name="MesCheque" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
       <Column Name="AnoCheque" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_COMISIONES_SUPERVISORES" Method="SP_PROCESAR_INFORMACION_COMISIONES_SUPERVISORES">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Recibo" Parameter="recibo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="ConceptoPago" Parameter="conceptoPago" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="ReciboFormateado" Parameter="reciboFormateado" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Anulado" Parameter="anulado" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="FechaPago" Parameter="fechaPago" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaPagoFormateado" Parameter="fechaPagoFormateado" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="TipoPago" Parameter="tipoPago" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoCliente" Parameter="codigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="NombreCliente" Parameter="nombreCliente" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="NombreIntermediario" Parameter="nombreIntermediario" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="NombreSupervisor" Parameter="nombreSupervisor" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="CodigoOficina" Parameter="codigoOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreOficina" Parameter="nombreOficina" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoRamo" Parameter="codigoRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DescripcionRamo" Parameter="descripcionRamo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoMoneda" Parameter="codigoMoneda" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DescripcionMoneda" Parameter="descripcionMoneda" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Bruto" Parameter="bruto" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Impuesto" Parameter="impuesto" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Neto" Parameter="neto" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Tasa" Parameter="tasa" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Pesos" Parameter="pesos" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="ConceptoFactura" Parameter="conceptoFactura" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="PorcientoComisionIntermediario" Parameter="porcientoComisionIntermediario" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="ValidadoDesde" Parameter="validadoDesde" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="ValidadoHasta" Parameter="validadoHasta" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_COMISIONES_SUPERVISORESResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Recibo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="ConceptoPago" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ReciboFormateado" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Anulado" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="FechaPago" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaPagoFormateado" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TipoPago" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NombreCliente" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NombreIntermediario" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreOficina" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DescripcionRamo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DescripcionMoneda" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Bruto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Impuesto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Neto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Tasa" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Pesos" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ConceptoFactura" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="PorcientoComisionIntermediario" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

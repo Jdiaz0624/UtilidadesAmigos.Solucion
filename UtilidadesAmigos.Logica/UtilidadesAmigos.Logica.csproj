@@ -135,6 +135,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\SacarUltimoNumeroSolicitudGenerada.cs" />
     <Compile Include="Comunes\Reportes\ProcesarHistoricoImpresionMarbetes.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionChequesImprimir.cs" />
+    <Compile Include="Comunes\Reportes\ProcesarInformacionComisionesSupervisores.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionDatosProduccionReporte.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionDatosReporteIntermediarioInterno.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionProduccuinPorUsuarioDetalle.cs" />
@@ -328,6 +329,7 @@
     <Compile Include="Entidades\Reportes\EDatosProduccionReporte.cs" />
     <Compile Include="Entidades\Reportes\EProcesarChequesInformacionImprimir.cs" />
     <Compile Include="Entidades\Reportes\EProcesarDatosReporteIntermediairoInterno.cs" />
+    <Compile Include="Entidades\Reportes\EProcesarInformacionComisionesSupervisores.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionDatosGraficos.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionDatosProduccion.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorUsuarioDetalle.cs" />

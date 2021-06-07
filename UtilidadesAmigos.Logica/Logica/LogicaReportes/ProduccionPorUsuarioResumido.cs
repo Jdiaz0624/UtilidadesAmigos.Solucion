@@ -892,5 +892,86 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Procesar;
         }
         #endregion
+
+
+        #region COMISIONES DE SUPERVISORES
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionComisionesSupervisores ProcesaComisionesSupervisores(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionComisionesSupervisores Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionComisionesSupervisores Procesar = null;
+
+            var ComisionesSupervisores = ObjData.SP_PROCESAR_INFORMACION_COMISIONES_SUPERVISORES(
+                Item.IdUsuario,
+                Item.Poliza,
+                Item.Recibo,
+                Item.ConceptoPago,
+                Item.ReciboFormateado,
+                Item.Anulado,
+                Item.FechaPago,
+                Item.FechaPagoFormateado,
+                Item.TipoPago,
+                Item.CodigoCliente,
+                Item.NombreCliente,
+                Item.CodigoIntermediario,
+                Item.NombreIntermediario,
+                Item.CodigoSupervisor,
+                Item.NombreSupervisor,
+                Item.CodigoOficina,
+                Item.NombreOficina,
+                Item.Usuario,
+                Item.CodigoRamo,
+                Item.DescripcionRamo,
+                Item.CodigoMoneda,
+                Item.DescripcionMoneda,
+                Item.Bruto,
+                Item.Impuesto,
+                Item.Neto,
+                Item.Tasa,
+                Item.Pesos,
+                Item.ConceptoFactura,
+                Item.PorcientoComisionIntermediario,
+                Item.ValidadoDesde,
+                Item.ValidadoHasta,
+                Accion);
+            if (ComisionesSupervisores != null) {
+                Procesar = (from n in ComisionesSupervisores
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionComisionesSupervisores
+                            {
+                                IdUsuario = n.IdUsuario,
+                                Poliza = n.Poliza,
+                                Recibo = n.Recibo,
+                                ConceptoPago = n.ConceptoPago,
+                                ReciboFormateado = n.ReciboFormateado,
+                                Anulado = n.Anulado,
+                                FechaPago = n.FechaPago,
+                                FechaPagoFormateado = n.FechaPagoFormateado,
+                                TipoPago = n.TipoPago,
+                                CodigoCliente = n.CodigoCliente,
+                                NombreCliente = n.NombreCliente,
+                                CodigoIntermediario = n.CodigoIntermediario,
+                                NombreIntermediario = n.NombreIntermediario,
+                                CodigoSupervisor = n.CodigoSupervisor,
+                                NombreSupervisor = n.NombreSupervisor,
+                                CodigoOficina = n.CodigoOficina,
+                                NombreOficina = n.NombreOficina,
+                                Usuario = n.Usuario,
+                                CodigoRamo = n.CodigoRamo,
+                                DescripcionRamo = n.DescripcionRamo,
+                                CodigoMoneda = n.CodigoMoneda,
+                                DescripcionMoneda = n.DescripcionMoneda,
+                                Bruto = n.Bruto,
+                                Impuesto = n.Impuesto,
+                                Neto = n.Neto,
+                                Tasa = n.Tasa,
+                                Pesos = n.Pesos,
+                                ConceptoFactura=n.ConceptoFactura,
+                                PorcientoComisionIntermediario=n.PorcientoComisionIntermediario,
+                                ValidadoDesde=n.ValidadoDesde,
+                                ValidadoHasta=n.ValidadoHasta
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }
