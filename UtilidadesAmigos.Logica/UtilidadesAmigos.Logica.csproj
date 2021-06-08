@@ -335,6 +335,8 @@
     <Compile Include="Entidades\Reportes\EProduccionPorUsuarioDetalle.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorusuarioResumido.cs" />
     <Compile Include="Entidades\Reportes\EReporteProduccionOrigen.cs" />
+    <Compile Include="Entidades\Reportes\ESacarConceptoMediantePAgo.cs" />
+    <Compile Include="Entidades\Reportes\ESacarPorcientoComisionesSupervisores.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaAseurados.cs" />

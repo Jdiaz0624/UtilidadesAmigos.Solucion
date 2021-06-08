@@ -365,6 +365,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, poliza, recibo, conceptoPago, reciboFormateado, anulado, fechaPago, fechaPagoFormateado, tipoPago, codigoCliente, nombreCliente, codigoIntermediario, nombreIntermediario, codigoSupervisor, nombreSupervisor, codigoOficina, nombreOficina, usuario, codigoRamo, descripcionRamo, codigoMoneda, descripcionMoneda, bruto, impuesto, neto, tasa, pesos, conceptoFactura, porcientoComisionIntermediario, validadoDesde, validadoHasta, accion);
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_COMISIONES_SUPERVISORESResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_CONCEPTO_FACTURA_MEDIANTE_PAGO")]
+		public ISingleResult<SP_SACAR_CONCEPTO_FACTURA_MEDIANTE_PAGOResult> SP_SACAR_CONCEPTO_FACTURA_MEDIANTE_PAGO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRecibo", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRecibo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, numeroRecibo);
+			return ((ISingleResult<SP_SACAR_CONCEPTO_FACTURA_MEDIANTE_PAGOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_PORCIENTO_COMISION_SUPERVISORES")]
+		public ISingleResult<SP_SACAR_PORCIENTO_COMISION_SUPERVISORESResult> SP_SACAR_PORCIENTO_COMISION_SUPERVISORES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Concepto", DbType="VarChar(30)")] string concepto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoSupervisor)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), concepto, codigoSupervisor);
+			return ((ISingleResult<SP_SACAR_PORCIENTO_COMISION_SUPERVISORESResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDOResult
@@ -8416,6 +8430,58 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._ValidadoHasta != value))
 				{
 					this._ValidadoHasta = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_CONCEPTO_FACTURA_MEDIANTE_PAGOResult
+	{
+		
+		private string _CONCEPTO;
+		
+		public SP_SACAR_CONCEPTO_FACTURA_MEDIANTE_PAGOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONCEPTO", DbType="VarChar(200)")]
+		public string CONCEPTO
+		{
+			get
+			{
+				return this._CONCEPTO;
+			}
+			set
+			{
+				if ((this._CONCEPTO != value))
+				{
+					this._CONCEPTO = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_PORCIENTO_COMISION_SUPERVISORESResult
+	{
+		
+		private System.Nullable<decimal> _PorcientoComision;
+		
+		public SP_SACAR_PORCIENTO_COMISION_SUPERVISORESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PorcientoComision", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> PorcientoComision
+		{
+			get
+			{
+				return this._PorcientoComision;
+			}
+			set
+			{
+				if ((this._PorcientoComision != value))
+				{
+					this._PorcientoComision = value;
 				}
 			}
 		}

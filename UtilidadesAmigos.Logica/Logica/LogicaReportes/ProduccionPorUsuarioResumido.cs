@@ -895,6 +895,12 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
 
 
         #region COMISIONES DE SUPERVISORES
+        /// <summary>
+        /// Este metodo es para procesar la informacion correspondiente a los pagos de cada supervisor
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
         public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionComisionesSupervisores ProcesaComisionesSupervisores(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionComisionesSupervisores Item, string Accion) {
             ObjData.CommandTimeout = 999999999;
 
@@ -972,6 +978,43 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             }
             return Procesar;
         }
+
+        /// <summary>
+        /// Este metodo es para sacar el concepto del pago realizado
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="NumeroRecibo"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.ESacarConceptoMediantePAgo> SacarConceptoMediantePago(string Poliza = null, decimal? NumeroRecibo = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Concepto = (from n in ObjData.SP_SACAR_CONCEPTO_FACTURA_MEDIANTE_PAGO(Poliza, NumeroRecibo)
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.ESacarConceptoMediantePAgo
+                            {
+                                CONCEPTO=n.CONCEPTO
+                            }).ToList();
+            return Concepto;
+
+        }
+
+        /// <summary>
+        /// Este metodo es para sacar el porciento de comision que tiene el supervisor mediante el concepto consultado
+        /// </summary>
+        /// <param name="Concepto"></param>
+        /// <param name="CodigoSupervisor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.ESacarPorcientoComisionesSupervisores> SacarPorcientoComisionSupervisor(string Concepto = null, decimal? CodigoSupervisor = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Porciento = (from n in ObjData.SP_SACAR_PORCIENTO_COMISION_SUPERVISORES(Concepto, CodigoSupervisor)
+                             select new UtilidadesAmigos.Logica.Entidades.Reportes.ESacarPorcientoComisionesSupervisores
+                             {
+                                 PorcientoComision=n.PorcientoComision
+                             }).ToList();
+            return Porciento;
+        }
+
         #endregion
     }
 }
