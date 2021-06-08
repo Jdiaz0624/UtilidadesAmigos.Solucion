@@ -555,7 +555,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 if (string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
                 {
                     ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
-                }
+                } 
             }
             else {
                 ProcesarComisiones();
