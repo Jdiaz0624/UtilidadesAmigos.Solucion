@@ -1015,6 +1015,57 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Porciento;
         }
 
+        /// <summary>
+        /// Este metodo es para buscar la información de las comisiones generadas por los supervisores.
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EGenerarInformacionSupervisoresDetalle> BuscarInformacionComisionSupervisorDetalle(decimal? IdUsuario = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_GENERAR_INFORMACION_COMISIONES_SUPERVISORES_DETALLE(IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EGenerarInformacionSupervisoresDetalle
+                           {
+                               IdUsuario=n.IdUsuario,
+                               GeneradoPor=n.GeneradoPor,
+                               Poliza=n.Poliza,
+                               Recibo=n.Recibo,
+                               ConceptoPago=n.ConceptoPago,
+                               ReciboFormateado=n.ReciboFormateado,
+                               Anulado=n.Anulado,
+                               FechaPago=n.FechaPago,
+                               FechaPagoFormateado=n.FechaPagoFormateado,
+                               TipoPago=n.TipoPago,
+                               CodigoCliente=n.CodigoCliente,
+                               NombreCliente=n.NombreCliente,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               NombreIntermediario=n.NombreIntermediario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               NombreSupervisor=n.NombreSupervisor,
+                               CodigoOficina=n.CodigoOficina,
+                               NombreOficina=n.NombreOficina,
+                               Usuario=n.Usuario,
+                               CodigoRamo=n.CodigoRamo,
+                               DescripcionRamo=n.DescripcionRamo,
+                               CodigoMoneda=n.CodigoMoneda,
+                               DescripcionMoneda=n.DescripcionMoneda,
+                               Bruto=n.Bruto,
+                               Impuesto=n.Impuesto,
+                               Neto=n.Neto,
+                               ComisionPagar=n.ComisionPagar,
+                               Tasa=n.Tasa,
+                               Pesos=n.Pesos,
+                               ConceptoFactura=n.ConceptoFactura,
+                               PorcientoComisionIntermediario=n.PorcientoComisionIntermediario,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta,
+                               TotalBruto=n.TotalBruto,
+                               TotalImpuesto=n.TotalImpuesto,
+                               TotalNeto=n.TotalNeto,
+                               CantidadRegistros=n.CantidadRegistros
+                           }).ToList();
+            return Listado;
+        }
         #endregion
     }
 }

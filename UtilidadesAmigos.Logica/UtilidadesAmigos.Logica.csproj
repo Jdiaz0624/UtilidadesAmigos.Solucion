@@ -327,6 +327,7 @@
     <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoRamo.cs" />
     <Compile Include="Entidades\Reportes\EBuscarInformacionCheque.cs" />
     <Compile Include="Entidades\Reportes\EDatosProduccionReporte.cs" />
+    <Compile Include="Entidades\Reportes\EGenerarInformacionSupervisoresDetalle.cs" />
     <Compile Include="Entidades\Reportes\EProcesarChequesInformacionImprimir.cs" />
     <Compile Include="Entidades\Reportes\EProcesarDatosReporteIntermediairoInterno.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionComisionesSupervisores.cs" />

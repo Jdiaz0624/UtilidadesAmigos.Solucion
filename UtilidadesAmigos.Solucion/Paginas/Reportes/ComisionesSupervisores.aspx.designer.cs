@@ -240,76 +240,58 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosEncontradosCerrar;
 
         /// <summary>
-        /// lbSupervisorHeaderRepeater control.
+        /// lbCobradoBrutoTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSupervisorHeaderRepeater;
+        protected global::System.Web.UI.WebControls.Label lbCobradoBrutoTitulo;
 
         /// <summary>
-        /// lbPolizaHeaderRepeater control.
+        /// lbCobradBrutoVariable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPolizaHeaderRepeater;
+        protected global::System.Web.UI.WebControls.Label lbCobradBrutoVariable;
 
         /// <summary>
-        /// lbNumeroFacturaHeaderRepeater control.
+        /// lbCobradoBrutoCerrer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNumeroFacturaHeaderRepeater;
+        protected global::System.Web.UI.WebControls.Label lbCobradoBrutoCerrer;
 
         /// <summary>
-        /// lbfechaHeaderRepeater control.
+        /// lbCobradoNetoTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbfechaHeaderRepeater;
+        protected global::System.Web.UI.WebControls.Label lbCobradoNetoTitulo;
 
         /// <summary>
-        /// lbValorHeaderRepeater control.
+        /// lbCobradoNetoVariable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbValorHeaderRepeater;
+        protected global::System.Web.UI.WebControls.Label lbCobradoNetoVariable;
 
         /// <summary>
-        /// lbPorcientoComisionHeaderRepeater control.
+        /// lbCobradoNetoCerrar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPorcientoComisionHeaderRepeater;
-
-        /// <summary>
-        /// lbComisionPagarHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbComisionPagarHeaderRepeater;
-
-        /// <summary>
-        /// lbOficinaHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbOficinaHeaderRepeater;
+        protected global::System.Web.UI.WebControls.Label lbCobradoNetoCerrar;
 
         /// <summary>
         /// rpListadoComisionesSupervisores control.

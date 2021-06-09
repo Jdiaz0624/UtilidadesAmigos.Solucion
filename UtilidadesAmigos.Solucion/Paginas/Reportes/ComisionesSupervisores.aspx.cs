@@ -159,19 +159,30 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// Este metodo muestra el listado de las comisiones por pantalla.
         /// </summary>
         private void MostrarComisionesPantalla() {
-            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-            int? _Oficina = ddlSeleccionaroficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaConsulta.SelectedValue) : new Nullable<int>();
+            var BuscarInformacion = ObjDataReporte.Value.BuscarInformacionComisionSupervisorDetalle((decimal)Session["IdUsuario"]);
+            if (BuscarInformacion.Count() < 1) {
+                lbCantidadRegistrosEncontradosVariable.Text = "0";
+                lbCobradBrutoVariable.Text = "0";
+                lbCobradoNetoVariable.Text = "0";
+                rpListadoComisionesSupervisores.DataSource = null;
+                rpListadoComisionesSupervisores.DataBind();
+            }
+            else {
+                Paginar(ref rpListadoComisionesSupervisores, BuscarInformacion, 10, ref lbCantidadPaginaVariablePrincipal, ref LinkPrimeraPaginaPrincipal, ref LinkAnteriorPrincipal, ref LinkSiguientePrincipal, ref LinkUltimoPrincipal);
+                HandlePaging(ref dtPaginacionPrincipal, ref lbPaginaActualTituloPrincipal);
+                int CantidadRegistros = 0;
+                decimal Cobradobruto = 0, CobradoNeto = 0;
 
-            var Consultar = ObjData.Value.ComisionesSupervisores(
-                Convert.ToDateTime(txtFechaDesdeConsulta.Text),
-                Convert.ToDateTime(txtFechaHastaConsulta.Text),
-                _CodigoSupervisor,
-                _Oficina,
-                null);
-            int CantidadRegistros = Consultar.Count;
-            lbCantidadRegistrosEncontradosVariable.Text = CantidadRegistros.ToString("N0");
-            Paginar(ref rpListadoComisionesSupervisores, Consultar, 10, ref lbCantidadPaginaVariablePrincipal, ref LinkPrimeraPaginaPrincipal, ref LinkAnteriorPrincipal, ref LinkSiguientePrincipal, ref LinkUltimoPrincipal);
-            HandlePaging(ref dtPaginacionPrincipal, ref lbPaginaActualVariavlePrincipal);
+                foreach (var n in BuscarInformacion) {
+                    CantidadRegistros = (int)n.CantidadRegistros;
+                    Cobradobruto = (decimal)n.TotalBruto;
+                    CobradoNeto = (decimal)n.TotalNeto;
+                }
+                lbCantidadRegistrosEncontradosVariable.Text = CantidadRegistros.ToString("N0");
+                lbCobradBrutoVariable.Text = Cobradobruto.ToString("N2");
+                lbCobradoNetoVariable.Text = CobradoNeto.ToString("N2");
+
+            }
         }
         #endregion
         #region EXPORTAR LA CONSULTA A EXCEL
@@ -516,6 +527,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
             }
             else {
+                ProcesarComisiones();
                 MostrarComisionesPantalla();
             }
         }
@@ -537,7 +549,83 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
             }
             else {
-              //  ExportarConsultaExcel();
+                ProcesarComisiones();
+                decimal IdUsuario = (decimal)Session["IdUsuario"];
+                var BuscarInformacion = ObjDataReporte.Value.BuscarInformacionComisionSupervisorDetalle(IdUsuario);
+                if (BuscarInformacion.Count() < 1)
+                {
+                    var ExportarInformacion = (from n in "Informacion"
+                                               select new
+                                               {
+                                                   Poliza = "",
+                                                   Recibo = "",
+                                                   ConceptoPago = "",
+                                                   ReciboFormateado = "",
+                                                   Anulado = "",
+                                                   FechaPago = "",
+                                                   FechaPagoFormateado = "",
+                                                   TipoPago = "",
+                                                   CodigoCliente = "",
+                                                   NombreCliente = "",
+                                                   CodigoIntermediario = "",
+                                                   NombreIntermediario = "",
+                                                   CodigoSupervisor = "",
+                                                   NombreSupervisor = "",
+                                                   CodigoOficina = "",
+                                                   NombreOficina = "",
+                                                   Usuario = "",
+                                                   CodigoRamo = "",
+                                                   DescripcionRamo = "",
+                                                   CodigoMoneda = "",
+                                                   DescripcionMoneda = "",
+                                                   Bruto = "",
+                                                   Impuesto = "",
+                                                   Neto = "",
+                                                   ComisionPagar = "",
+                                                   Tasa = "",
+                                                   Pesos = "",
+                                                   ConceptoFactura = "",
+                                                   PorcientoComisionIntermediario = "",
+                                               }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Comisiones", ExportarInformacion);
+                }
+                else
+                {
+                    var ExportarInformacion = (from n in ObjDataReporte.Value.BuscarInformacionComisionSupervisorDetalle(IdUsuario)
+                                               select new
+                                               {
+                                                   Poliza = n.Poliza,
+                                                   Recibo = n.Recibo,
+                                                   ConceptoPago = n.ConceptoPago,
+                                                   ReciboFormateado = n.ReciboFormateado,
+                                                   Anulado = n.Anulado,
+                                                   FechaPago = n.FechaPago,
+                                                   FechaPagoFormateado = n.FechaPagoFormateado,
+                                                   TipoPago = n.TipoPago,
+                                                   CodigoCliente = n.CodigoCliente,
+                                                   NombreCliente = n.NombreCliente,
+                                                   CodigoIntermediario = n.CodigoIntermediario,
+                                                   NombreIntermediario = n.NombreIntermediario,
+                                                   CodigoSupervisor = n.CodigoSupervisor,
+                                                   NombreSupervisor = n.NombreSupervisor,
+                                                   CodigoOficina = n.CodigoOficina,
+                                                   NombreOficina = n.NombreOficina,
+                                                   Usuario = n.Usuario,
+                                                   CodigoRamo = n.CodigoRamo,
+                                                   DescripcionRamo = n.DescripcionRamo,
+                                                   CodigoMoneda = n.CodigoMoneda,
+                                                   DescripcionMoneda = n.DescripcionMoneda,
+                                                   Bruto = n.Bruto,
+                                                   Impuesto = n.Impuesto,
+                                                   Neto = n.Neto,
+                                                   ComisionPagar = n.ComisionPagar,
+                                                   Tasa = n.Tasa,
+                                                   Pesos = n.Pesos,
+                                                   ConceptoFactura = n.ConceptoFactura,
+                                                   PorcientoComisionIntermediario = n.PorcientoComisionIntermediario,
+                                               }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Comisiones", ExportarInformacion);
+                }
             }
         }
 
@@ -558,73 +646,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 } 
             }
             else {
-                ProcesarComisiones();
-                //if (rbReporteDetallado.Checked == true) {
-                //    GenerarReporteComisionesSupervisores(Server.MapPath("ComisionesSupervisoresDetalleFinal.rpt"), "Comisiones Supervisores Detalle");
-                //}
-                //else {
-                //    decimal _IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
-                //    string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-                //    int? _Oficina = ddlSeleccionaroficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaConsulta.SelectedValue) : new Nullable<int>();
-
-                //    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores(
-                //        _IdUsuario, DateTime.Now, DateTime.Now, 0, "", 0, "", "", 0, 0, "", DateTime.Now, 0, "", "", 0, 0, "DELETE");
-                //    Eliminar.ProcesarInformacion();
-
-                //    var Buscarregistros = ObjData.Value.ComisionesSupervisores(
-                //        Convert.ToDateTime(txtFechaDesdeConsulta.Text),
-                //        Convert.ToDateTime(txtFechaHastaConsulta.Text),
-                //        _CodigoSupervisor,
-                //        _Oficina,
-                //        _IdUsuario);
-                //    if (Buscarregistros.Count() < 1) { }
-                //    else {
-                //        foreach (var n in Buscarregistros) {
-                //            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionDatosComisionesSupervisores(
-                //               _IdUsuario,
-                //               Convert.ToDateTime(txtFechaDesdeConsulta.Text),
-                //               Convert.ToDateTime(txtFechaHastaConsulta.Text),
-                //               (int)n.CodigoSupervisor,
-                //               n.Supervisor,
-                //               (int)n.CodigoIntermediario,
-                //               n.Intermediario,
-                //               n.Poliza,
-                //               (decimal)n.NumeroFactura,
-                //               (decimal)n.Valor,
-                //               n.Fecha,
-                //               Convert.ToDateTime(n.Fecha0),
-                //               (int)n.CodigoOficina,
-                //               n.Oficina,
-                //               n.Concepto,
-                //               (decimal)n.PorcuentoComision,
-                //               (decimal)n.ComisionPagar,
-                //               "INSERT");
-                //            Guardar.ProcesarInformacion();
-                //        }
-
-
-                //        GenerarReporteComisionesSupervisores(Server.MapPath("ReporteComisionSupervisorResumidoFinal.rpt"), "Comisiones Supervisores Resumido");
-                //    }
-
-
-
-
-
-                //}
+               
+                
             }
         }
 
         protected void LinkPrimeraPaginaPrincipal_Click(object sender, EventArgs e)
         {
             CurrentPage = 0;
-        //    MostrarComisionesPantalla();
+           MostrarComisionesPantalla();
         }
 
         protected void LinkAnteriorPrincipal_Click(object sender, EventArgs e)
         {
             CurrentPage += -1;
-          //  MostrarComisionesPantalla();
-          //  MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavlePrincipal, ref lbCantidadPaginaVariablePrincipal);
+           MostrarComisionesPantalla();
+           MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavlePrincipal, ref lbCantidadPaginaVariablePrincipal);
         }
 
         protected void dtPaginacionPrincipal_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -636,20 +673,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (!e.CommandName.Equals("newPage")) return;
             CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-          //  MostrarComisionesPantalla();
+           MostrarComisionesPantalla();
         }
 
         protected void LinkSiguientePrincipal_Click(object sender, EventArgs e)
         {
             CurrentPage += 1;
-          //  MostrarComisionesPantalla();
+            MostrarComisionesPantalla();
         }
 
         protected void LinkUltimoPrincipal_Click(object sender, EventArgs e)
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-           // MostrarComisionesPantalla();
-           // MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavlePrincipal, ref lbCantidadPaginaVariablePrincipal);
+           MostrarComisionesPantalla();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavlePrincipal, ref lbCantidadPaginaVariablePrincipal);
         }
 
         protected void rbCodigosPermitidos_CheckedChanged(object sender, EventArgs e)
@@ -685,10 +722,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnBuscarPOPOP_Click(object sender, EventArgs e)
         {
             if (rbCodigosPermitidos.Checked == true) {
-              //  MostrarListadoCodigospermitidos();
+                MostrarListadoCodigospermitidos();
             }
             else if (rbBuscarCodigos.Checked == true) {
-              //  BuscarSupervisoresParaAgregar();
+               BuscarSupervisoresParaAgregar();
             }
         }
 

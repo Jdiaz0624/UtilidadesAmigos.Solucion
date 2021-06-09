@@ -794,4 +794,46 @@
       <Column Name="PorcientoComision" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_GENERAR_INFORMACION_COMISIONES_SUPERVISORES_DETALLE" Method="SP_GENERAR_INFORMACION_COMISIONES_SUPERVISORES_DETALLE">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_GENERAR_INFORMACION_COMISIONES_SUPERVISORES_DETALLEResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Recibo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="ConceptoPago" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ReciboFormateado" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Anulado" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="FechaPago" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaPagoFormateado" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TipoPago" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NombreCliente" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NombreIntermediario" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreOficina" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DescripcionRamo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DescripcionMoneda" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Bruto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Impuesto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Neto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ComisionPagar" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Tasa" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Pesos" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ConceptoFactura" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="PorcientoComisionIntermediario" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TotalBruto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TotalImpuesto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TotalNeto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
