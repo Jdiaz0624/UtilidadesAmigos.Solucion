@@ -268,25 +268,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region GENERAR REPORTE DE COMISIONES DE SUPERVISORES
         private void GenerarReporteComisionesSupervisores(string RutaReporte, string NombreArchivo) {
             decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
-            string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
-            int? _Oficina = ddlSeleccionaroficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaConsulta.SelectedValue) : new Nullable<int>();
-
+            
             ReportDocument Reporte = new ReportDocument();
             Reporte.Load(RutaReporte);
             Reporte.Refresh();
 
-            if (rbReporteResumido.Checked == true) {
-                Reporte.SetParameterValue("@IdUsuario", IdUsuario);
-            }
-            else if (rbReporteDetallado.Checked == true) {
-                Reporte.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesdeConsulta.Text));
-                Reporte.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHastaConsulta.Text));
-                Reporte.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
-                Reporte.SetParameterValue("@Oficina", _Oficina);
-                Reporte.SetParameterValue("@UsuarioGenera", IdUsuario);
-            }
-
+            Reporte.SetParameterValue("@IdUsuario", IdUsuario);
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+           
             if (rbGenerarReportePDF.Checked == true) {
                 Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
             }
@@ -646,8 +635,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 } 
             }
             else {
-               
-                
+                ProcesarComisiones();
+                if (rbReporteDetallado.Checked == true) {
+                    GenerarReporteComisionesSupervisores(Server.MapPath("ReporteComisionSupervisorDetalleNuevo.rpt"), "Comisiones Supervisores Detalle");
+                }
+                else if (rbReporteResumido.Checked == true) { }
+
             }
         }
 
