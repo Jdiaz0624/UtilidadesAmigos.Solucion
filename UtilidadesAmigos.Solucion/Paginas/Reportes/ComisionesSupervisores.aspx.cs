@@ -427,8 +427,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Pesos = (decimal)nCobrado.MontoPesos;
                 ConceptoFactura = SacarConcepto(Poliza, Recibo);
                 PorcientoComisionIntermediario = SacarPorcientoComisionSupervisor(ConceptoFactura, CodigoSupervisor);
-                ValidadoDesde = _FechaDesdeFiltro.ToString();
-                ValidadoHasta = _FechaHastaFiltro.ToString();
+                ValidadoDesde = Convert.ToDateTime(_FechaDesdeFiltro).ToString("dd/MM/yyyy");
+                ValidadoHasta = Convert.ToDateTime(_FechaHastaFiltro).ToString("dd/MM/yyyy");
 
                 UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionComisionesSupervisores Guardar = new Logica.Comunes.Reportes.ProcesarInformacionComisionesSupervisores(
                      IdUsuario,
