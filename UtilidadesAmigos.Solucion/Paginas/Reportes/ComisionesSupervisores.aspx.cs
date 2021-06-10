@@ -490,8 +490,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbPantalla.Text = "COMISIONES DE SUPERVISORES";
 
                 CargarListasDesplegables();
+                rbGenerarReportePDF.Checked = true;
+                rbReporteDetallado.Checked = true;
                 //rbGenerarReportePDF.Checked = true;
-                //rbCodigosPermitidos.Checked = true;
+                rbCodigosPermitidos.Checked = true;
                 DivBloqueCodigosPermitidos.Visible = true;
                 DivBloqueBuscarCodigos.Visible = false;
                // rbReporteResumido.Checked = true;
@@ -637,9 +639,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
             else {
                 ProcesarComisiones();
                 if (rbReporteDetallado.Checked == true) {
-                    GenerarReporteComisionesSupervisores(Server.MapPath("ReporteComisionSupervisorDetalleNuevo.rpt"), "Comisiones Supervisores Detalle");
+                    GenerarReporteComisionesSupervisores(Server.MapPath("ReporteComisionSupervisorDetalleNuevo.rpt"), "Comisiones Supervisores Detallado");
                 }
-                else if (rbReporteResumido.Checked == true) { }
+                else if (rbReporteResumido.Checked == true) {
+                    GenerarReporteComisionesSupervisores(Server.MapPath("ReporteComisionesSupervisoresResumidoNuevo.rpt"), "Comisiones Supervisores Resumido");
+                }
 
             }
         }
