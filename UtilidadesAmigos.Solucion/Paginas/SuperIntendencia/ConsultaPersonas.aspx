@@ -261,17 +261,16 @@
                 </div>
             </div>
        <br />
-
         <!--DETALLE DE LOS INTERMEDIARIOS / SUPERVISORES ENCONTRADOS-->
-        <div align="center">
+       <div align="center">
            <asp:Label ID="lbCantidadIntermediariosSupervisorTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadIntermediariosSupervisorVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadIntermediariosSupervisorCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
        </div>
-        <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionIntermediarioSupervisor" data-toggle="collapse" data-target="#InformacionIntermediarioSupervisor" aria-expanded="false" aria-controls="collapseExample">
+       <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionIntermediarioSupervisor" data-toggle="collapse" data-target="#InformacionIntermediarioSupervisor" aria-expanded="false" aria-controls="collapseExample">
                      INFORMACION DE INTERMEDIARIO / SUPERVISOR
                      </button><br />
-        <div class="collapse" id="InformacionIntermediarioSupervisor">
+       <div class="collapse" id="InformacionIntermediarioSupervisor">
                 <div class="card card-body">
                   <asp:UpdatePanel ID="UpdatePanelIntermediario" runat="server">
                       <ContentTemplate>
@@ -421,9 +420,6 @@
                    </div>
             
                 </div>
-
-       
-
        <br />
         <!--DETALLE DE LOS PROVEEDORES ENCONTRADOS-->
        <div align="center">
@@ -656,12 +652,7 @@
                  </asp:UpdatePanel>
                    </div>
                 </div>
-
-
-
-
        <br />
-
        <div align="center">
            <asp:Label ID="lbCantidadRegistrosAseguradoBajoPolizaTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosAseguradoBajoPolizaVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
@@ -824,7 +815,6 @@
                    </div>
                 </div>
        <br />
-
        <div align="center">
            <asp:Label ID="lbCantidadRegistrosAseguradoTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosAseguradoVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
@@ -977,15 +967,15 @@
                    </div>
                 </div>
        <br />
-        <div align="center">
+       <div align="center">
            <asp:Label ID="lbCantidadRegistrosDependienteTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosDependienteVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosDependienteCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
        </div>
-        <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionDependiente" data-toggle="collapse" data-target="#InformacionDependiente" aria-expanded="false" aria-controls="collapseExample">
+       <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionDependiente" data-toggle="collapse" data-target="#InformacionDependiente" aria-expanded="false" aria-controls="collapseExample">
                      INFORMACION DE DEPENDIENTES 
                      </button><br />
-        <div class="collapse" id="InformacionDependiente">
+       <div class="collapse" id="InformacionDependiente">
                 <div class="card card-body">
                    <asp:UpdatePanel ID="UpdatePanelDependiente" runat="server">
                        <ContentTemplate>
