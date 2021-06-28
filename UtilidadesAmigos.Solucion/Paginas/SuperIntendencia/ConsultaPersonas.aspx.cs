@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.IO;
 
 namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 {
@@ -352,7 +353,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 
                 Label lbNombrePantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbNombrePantalla.Text = "CONSULTA DE REGISTRO DE PERSONAS";
-
+                DivBuscarArchivoExcel.Visible = false;
 
 
                 rbExportarPDF.Checked = true;
@@ -417,27 +418,48 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            if (rbConsultaNormal.Checked) {
-                if (string.IsNullOrEmpty(txtRNCCedula.Text.Trim()) && string.IsNullOrEmpty(txtNombre.Text.Trim())) {
-                    ClientScript.RegisterStartupScript(GetType(), "CamposBusquedaNormalVacio()", "CamposBusquedaNormalVacio();", true);
+            if (cbBusquedaPorLote.Checked == true) {
+                //BUSCAMOS Y LEEMOS LA RUTA DEL ARCHIVO SELECCIONADO
+                string ruta_carpeta = HttpContext.Current.Server.MapPath("~/Temporal");
+
+                if (!Directory.Exists(ruta_carpeta))
+                {
+                    Directory.CreateDirectory(ruta_carpeta);
                 }
-                else {
-                    MostrarListadoClientes(1);
-                    MostrarListadoIntermediarios();
-                    MostrarListadoProveedores();
-                    MostrarListadoAsegurado();
-                    MostrarListadoAseguradoGeneral();
-                    MostrarListadoDependientes();
-                }
+
+                var ruta_guardado = Path.Combine(ruta_carpeta, FileUpload1.FileName);
+                FileUpload1.SaveAs(ruta_guardado);
+                string RutaArchivoSeleccionado = ruta_guardado;
             }
-            else if (rbConsultaChasisPlaca.Checked) {
-                if (string.IsNullOrEmpty(txtPlacaConsulta.Text.Trim()) && string.IsNullOrEmpty(txtChasisConsulta.Text.Trim())) {
-                    ClientScript.RegisterStartupScript(GetType(), "CamposChasisPlacaVacios()", "CamposChasisPlacaVacios();", true);
+            else if (cbBusquedaPorLote.Checked == false) {
+                if (rbConsultaNormal.Checked)
+                {
+                    if (string.IsNullOrEmpty(txtRNCCedula.Text.Trim()) && string.IsNullOrEmpty(txtNombre.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CamposBusquedaNormalVacio()", "CamposBusquedaNormalVacio();", true);
+                    }
+                    else
+                    {
+                        MostrarListadoClientes(1);
+                        MostrarListadoIntermediarios();
+                        MostrarListadoProveedores();
+                        MostrarListadoAsegurado();
+                        MostrarListadoAseguradoGeneral();
+                        MostrarListadoDependientes();
+                    }
                 }
-                else {
-                    MostrarListadoClientes(2);
-                    //MostrarListadoIntermediarios();
-                    //MostrarListadoProveedores();
+                else if (rbConsultaChasisPlaca.Checked)
+                {
+                    if (string.IsNullOrEmpty(txtPlacaConsulta.Text.Trim()) && string.IsNullOrEmpty(txtChasisConsulta.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CamposChasisPlacaVacios()", "CamposChasisPlacaVacios();", true);
+                    }
+                    else
+                    {
+                        MostrarListadoClientes(2);
+                        //MostrarListadoIntermediarios();
+                        //MostrarListadoProveedores();
+                    }
                 }
             }
         }
@@ -819,6 +841,17 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostrarListadoDependientes();
             MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleDependiente, ref lbCantidadPaginaVAriableDependiente);
+        }
+
+        protected void cbBusquedaPorLote_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbBusquedaPorLote.Checked == true)
+            {
+                DivBuscarArchivoExcel.Visible = true;
+            }
+            else {
+                DivBuscarArchivoExcel.Visible = false;
+            }
         }
 
         protected void LinkUltimoCliente_Click(object sender, EventArgs e)
