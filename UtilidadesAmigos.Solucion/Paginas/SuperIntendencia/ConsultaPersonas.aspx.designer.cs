@@ -186,6 +186,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.WebControls.Button btnConsultar;
 
         /// <summary>
+        /// DivBloqueConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueConsulta;
+
+        /// <summary>
         /// lbCantidadRegistrosClienteTitulo control.
         /// </summary>
         /// <remarks>
@@ -3370,5 +3379,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDetalleDependienteFinVigencia;
+
+        /// <summary>
+        /// DivBloqueProcesoLote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueProcesoLote;
     }
 }

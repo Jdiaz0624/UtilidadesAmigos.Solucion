@@ -109,7 +109,8 @@
        </div>
 
        <br />
-       <!--DETALLE DE LOS CLIENTES ENCONTRADOS-->
+       <div id="DivBloqueConsulta" runat="server">
+           <!--DETALLE DE LOS CLIENTES ENCONTRADOS-->
        <div align="center">
            <asp:Label ID="lbCantidadRegistrosClienteTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosClienteVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
@@ -1134,5 +1135,12 @@
                    </div>
                 </div>
        <br />
-  
+       </div>
+
+
+
+
+
+       <div id="DivBloqueProcesoLote" runat="server"></div>
+  </div>
 </asp:Content>

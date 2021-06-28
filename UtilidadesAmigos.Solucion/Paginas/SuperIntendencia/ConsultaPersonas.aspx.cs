@@ -848,9 +848,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             if (cbBusquedaPorLote.Checked == true)
             {
                 DivBuscarArchivoExcel.Visible = true;
+                DivBloqueConsulta.Visible = false;
+                DivBloqueProcesoLote.Visible = true;
             }
             else {
                 DivBuscarArchivoExcel.Visible = false;
+                DivBloqueConsulta.Visible = true;
+                DivBloqueProcesoLote.Visible = false;
             }
         }
 
