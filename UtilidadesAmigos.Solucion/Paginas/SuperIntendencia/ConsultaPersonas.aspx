@@ -1141,6 +1141,9 @@
 
 
 
-       <div id="DivBloqueProcesoLote" runat="server"></div>
+       <div id="DivBloqueProcesoLote" runat="server">
+           <asp:GridView ID="gbListadoExcel" runat="server"></asp:GridView>
+
+       </div>
   </div>
 </asp:Content>

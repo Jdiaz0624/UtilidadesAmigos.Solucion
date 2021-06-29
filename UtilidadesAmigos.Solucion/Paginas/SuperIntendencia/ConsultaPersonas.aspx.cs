@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.IO;
+using System.Data.OleDb;
 
 namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 {
@@ -430,6 +431,27 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 var ruta_guardado = Path.Combine(ruta_carpeta, FileUpload1.FileName);
                 FileUpload1.SaveAs(ruta_guardado);
                 string RutaArchivoSeleccionado = ruta_guardado;
+
+          
+
+                //string Conexion = "Provider=Microsoft.ACE.OLEDB.4.0;Data Source=" + RutaArchivoSeleccionado + ";Extended Properties=Excel 8.0;";
+
+                //OleDbConnection Origen = default(OleDbConnection);
+                //Origen = new OleDbConnection(Conexion);
+
+                //OleDbCommand Seleccion = default(OleDbCommand);
+                //Seleccion = new OleDbCommand("Select * From[Data$]", Origen);
+
+                //OleDbDataAdapter Adaptar = new OleDbDataAdapter();
+                //Adaptar.SelectCommand = Seleccion;
+
+                //DataSet ds = new DataSet();
+
+                //Adaptar.Fill(ds);
+                //gbListadoExcel.DataSource = ds.Tables[0];
+                //Origen.Close();
+
+
             }
             else if (cbBusquedaPorLote.Checked == false) {
                 if (rbConsultaNormal.Checked)
