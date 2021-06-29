@@ -49,9 +49,7 @@
     </script>
 
    <div class="container-fluid">
-       <div class="jumbotron" align="center">
-           <asp:Label ID="lbTituloPantalla" runat="server" Text="CONSULTAR REGISTRO PERSONAS"></asp:Label>
-       </div>
+    <br /><br />
        <div class="form-check-inline">
            <div class="form-group form-check">               
                <asp:RadioButton ID="rbExportarPDF" runat="server" Text="Exportar a PDF" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a PDF" />
@@ -68,8 +66,16 @@
        <div class="form-check-inline">
            <div class="form-group form-check">
                <asp:RadioButton ID="rbConsultaNormal" runat="server" Text="Consultar Por RNC o Nombre" CssClass="form-check-input Letranegrita" GroupName="TipoConsulta" ToolTip="Consultar mediante el rnc o el Nombre" />
-               <asp:RadioButton ID="rbConsultaChasisPlaca" runat="server" Text="Consultar por Placa o Chasis" CssClass="form-check-input Letranegrita " GroupName="TipoConsulta" ToolTip="Consultar mediante el chasis o la placa" />
+               <asp:RadioButton ID="rbConsultaChasisPlaca" runat="server" Text="Consultar por Placa o Chasis" CssClass="form-check-input Letranegrita " GroupName="TipoConsulta" ToolTip="Consultar mediante el chasis o la placa" /><br />
+               
            </div>
+     
+       </div>
+       <br />
+       <div class="form-check-inline">
+            <div class="form-group form-check">
+          <asp:CheckBox ID="cbBusquedaPorLote" runat="server" CssClass="form-check-input Letranegrita" ToolTip="Buscar informacion de Personas mediante un archio de excel seleccionado del equipo" Text="Buscar Mediante Archivo" AutoPostBack="true" OnCheckedChanged="cbBusquedaPorLote_CheckedChanged" />
+      </div>
        </div>
        <div class="form-row">
            <div class="form-group col-md-3">
@@ -92,13 +98,19 @@
                <asp:Label ID="lbSeleccionarRamo" runat="server" Text="Seleccionar Ramo" CssClass="Letranegrita"></asp:Label>
                <asp:DropDownList ID="ddlSeleccionarRamo" runat="server" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
            </div>
+
+            <div id="DivBuscarArchivoExcel" runat="server" class="form-group col-sm-6">
+                                  <label for="FileUpload1">Buscar Archivo en el equipo</label>
+                                    <asp:FileUpload ID="FileUpload1" CssClass="form-control-file" runat="server" />
+                                </div>
        </div>
        <div align="center">
            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click" />
        </div>
 
        <br />
-       <!--DETALLE DE LOS CLIENTES ENCONTRADOS-->
+       <div id="DivBloqueConsulta" runat="server">
+           <!--DETALLE DE LOS CLIENTES ENCONTRADOS-->
        <div align="center">
            <asp:Label ID="lbCantidadRegistrosClienteTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosClienteVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
@@ -263,17 +275,16 @@
                 </div>
             </div>
        <br />
-
         <!--DETALLE DE LOS INTERMEDIARIOS / SUPERVISORES ENCONTRADOS-->
-        <div align="center">
+       <div align="center">
            <asp:Label ID="lbCantidadIntermediariosSupervisorTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadIntermediariosSupervisorVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadIntermediariosSupervisorCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
        </div>
-        <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionIntermediarioSupervisor" data-toggle="collapse" data-target="#InformacionIntermediarioSupervisor" aria-expanded="false" aria-controls="collapseExample">
+       <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionIntermediarioSupervisor" data-toggle="collapse" data-target="#InformacionIntermediarioSupervisor" aria-expanded="false" aria-controls="collapseExample">
                      INFORMACION DE INTERMEDIARIO / SUPERVISOR
                      </button><br />
-        <div class="collapse" id="InformacionIntermediarioSupervisor">
+       <div class="collapse" id="InformacionIntermediarioSupervisor">
                 <div class="card card-body">
                   <asp:UpdatePanel ID="UpdatePanelIntermediario" runat="server">
                       <ContentTemplate>
@@ -423,9 +434,6 @@
                    </div>
             
                 </div>
-
-       
-
        <br />
         <!--DETALLE DE LOS PROVEEDORES ENCONTRADOS-->
        <div align="center">
@@ -658,12 +666,7 @@
                  </asp:UpdatePanel>
                    </div>
                 </div>
-
-
-
-
        <br />
-
        <div align="center">
            <asp:Label ID="lbCantidadRegistrosAseguradoBajoPolizaTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosAseguradoBajoPolizaVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
@@ -826,7 +829,6 @@
                    </div>
                 </div>
        <br />
-
        <div align="center">
            <asp:Label ID="lbCantidadRegistrosAseguradoTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosAseguradoVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
@@ -979,15 +981,15 @@
                    </div>
                 </div>
        <br />
-        <div align="center">
+       <div align="center">
            <asp:Label ID="lbCantidadRegistrosDependienteTitulo" runat="server" Text="Registros Encontrados ( " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosDependienteVariable" runat="server" Text=" NO " CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadRegistrosDependienteCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
        </div>
-        <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionDependiente" data-toggle="collapse" data-target="#InformacionDependiente" aria-expanded="false" aria-controls="collapseExample">
+       <button class="btn btn-outline-primary btn-sm BotonEspecoal" type="button" id="btnInformacionDependiente" data-toggle="collapse" data-target="#InformacionDependiente" aria-expanded="false" aria-controls="collapseExample">
                      INFORMACION DE DEPENDIENTES 
                      </button><br />
-        <div class="collapse" id="InformacionDependiente">
+       <div class="collapse" id="InformacionDependiente">
                 <div class="card card-body">
                    <asp:UpdatePanel ID="UpdatePanelDependiente" runat="server">
                        <ContentTemplate>
@@ -1133,5 +1135,15 @@
                    </div>
                 </div>
        <br />
-  
+       </div>
+
+
+
+
+
+       <div id="DivBloqueProcesoLote" runat="server">
+           <asp:GridView ID="gbListadoExcel" runat="server"></asp:GridView>
+
+       </div>
+  </div>
 </asp:Content>

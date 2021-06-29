@@ -94,9 +94,7 @@
     </script>
       <!--INICIO DE ENCABEZADO-->
       <div class="container-fluid">
-          <div class="jumbotron" align="center">
-              <asp:Label ID="lbEncabezado" runat="server" Text="Reporte de Operaciones Sospechosas"></asp:Label>
-          </div>
+     <br /><br />
 
           <div class="form-row">
               <div class="form-group col-md-3">
