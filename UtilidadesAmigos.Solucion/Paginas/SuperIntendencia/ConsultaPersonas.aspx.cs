@@ -156,7 +156,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             DivDetalleProveedores.Visible = false;
             DivDetalleAsegurado.Visible = false;
             DivDetalleAseguradoGeneral.Visible = false;
-            DivDetalleDependientes.Visible = false;
+            DivDetalleDependientes.Visible = false;              
         }
 
         private void MostrarListadoClientes(int ReportePreciso)
