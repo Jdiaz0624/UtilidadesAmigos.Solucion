@@ -6,7 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.IO;
-using System.Data.OleDb;
+using ExcelDataReader;
+
+
 
 namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 {
@@ -149,6 +151,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 
 
         #endregion
+
+        public void LeerExcel(string RUta)
+        {
+          
+
+            var Stream = File.Open(RUta, FileMode.Open, FileAccess.Read);
+            var Reader = ExcelReaderFactory.CreateReader(Stream);
+            var Resultado = Reader.AsDataSet();
+            var Tables = Resultado.Tables.Cast<DataTable>();
+            foreach (DataTable table in Tables)
+            {
+                //dataGridView1.DataSource = table;
+                gbListadoExcel.DataSource = table;
+                gbListadoExcel.DataBind();
+            }
+        }
 
         private void OcultarDetalle() {
             DivBloqueDetalleCliente.Visible = false;
@@ -432,7 +450,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 FileUpload1.SaveAs(ruta_guardado);
                 string RutaArchivoSeleccionado = ruta_guardado;
 
-          
+                LeerExcel(RutaArchivoSeleccionado);
 
                 //string Conexion = "Provider=Microsoft.ACE.OLEDB.4.0;Data Source=" + RutaArchivoSeleccionado + ";Extended Properties=Excel 8.0;";
 
