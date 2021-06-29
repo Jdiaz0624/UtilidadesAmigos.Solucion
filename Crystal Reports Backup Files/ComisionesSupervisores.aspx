@@ -3,9 +3,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <style type="text/css">
-        .jumbotron{
+       .jumbotron{
             color:#000000; 
-            background:#7BC5FF;
+            background:#1E90FF;
             font-size:30px;
             font-weight:bold;
             font-family:'Gill Sans';
@@ -15,219 +15,394 @@
         .btn-sm{
             width:90px;
         }
-          .LetrasNegrita {
-          font-weight:bold;
-          }
 
+        .Letranegrita {
+        font-weight:bold;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        
 
+        th {
+            background-color: dodgerblue;
+            color: white;
+        }
     </style>
-    <script>
-        function ClaveSeguridadVacia() {
-            alert("El campo clave de seguridad no puede estar vacio para realizar esta operación, favor de verificar");
-            $("#<%=txtClaveSeguridad.ClientID%>").css("border-color", "red");
-            return false;
+
+    <script type="text/javascript">
+        function CamposFechasVacios() {
+            alert("Los campos fechas no pueden estar vacios para realizar esta operación, favor de verificar.");
+        }
+        function CampoFechaDesdeVacio() {
+            $("#<%=txtFechaDesdeConsulta.ClientID%>").css("border-color", "red");
         }
 
-        function ClaveIngresadanoValida() {
-            alert("La clave de seguridad ingresada no es valida, favor de verificar");
-
+        function CampoFechaHastaVacio() {
+            $("#<%=txtFechaHastaConsulta.ClientID%>").css("border-color", "red");
         }
+
+        function ClaveSeguridadVacioaBuscarCodigo() {
+            $("#<%=txtClaveSeguridadBuscarCodigo.ClientID%>").css("border-color", "red");
+        }
+
+
+        $(document).ready(function () {
+            $("#<%=btnEliminarSupervisorAgregado.ClientID%>").click(function () {
+                var ClaveSeguridad = $("#<%=txtClaveSeguridadControlesPermitidos.ClientID%>").val().length;
+
+                if (ClaveSeguridad < 1) {
+                    $("#<%=txtClaveSeguridadControlesPermitidos.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
+
+        })
     </script>
-
     <div class="container-fluid">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="lbComisionSupervisorsTitulo" runat="server" Text="Generar Comisiones de Supervisores"></asp:Label>
-        </div>
+        <br /><br />
+
         <div class="form-row">
             <div class="form-group col-md-3">
-                <asp:Label ID="lbFechaDesdeConsulta" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
+                <asp:Label ID="lbFechaDesdeConsulta" runat="server" Text="Fecha Desde" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaDesdeConsulta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
+
             <div class="form-group col-md-3">
-                <asp:Label ID="lbFechaHastaConsulta" runat="server" Text="Fecha Hasta" CssClass="LetrasNegrita"></asp:Label>
+                <asp:Label ID="lbFechaHastaConsulta" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaHastaConsulta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
+
             <div class="form-group col-md-3">
-                <asp:Label ID="lbCodigoSupervisorConsulta" runat="server" Text="Codigo de Supervisor" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtCodigoSupervisorConsulta" runat="server" CssClass="form-control" TextMode="Number" MaxLength="4"></asp:TextBox>
+                <asp:Label ID="lbCodigoSupervisorConsulta" runat="server" Text="Codigo de Supervisor" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtCodigoSupervisorConsulta" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoSupervisorConsulta_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
+
             <div class="form-group col-md-3">
-                <asp:Label ID="ldSeleccionarSucursalConsulta" runat="server" Text="Seleccionar Sucursal" CssClass="LetrasNegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarSucursalConsulta" runat="server" OnSelectedIndexChanged="ddlSeleccionarSucursalConsulta_SelectedIndexChanged" AutoPostBack="true" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
+                <asp:Label ID="lbNombreSupervisorConsulta" runat="server" Text="Nombre de Supervisor" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtNombreSupervisorConsulta" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
             </div>
-             <div class="form-group col-md-3">
-                <asp:Label ID="lbSeleccionarOficinaConsulta" runat="server" Text="Seleccionar Oficina" CssClass="LetrasNegrita"></asp:Label>
+
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbSeleccionarSucursalConsulta" runat="server" Text="Sucursal" CssClass="Letranegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarSucursalConsulta" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarSucursalConsulta_SelectedIndexChanged" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
+            </div>
+
+            <div class="form-group col-md-3">
+                <asp:Label ID="lbSeleccionarOficinaConsulta" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionaroficinaConsulta" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
             </div>
         </div>
-        <div align="center">
-            <div class="form-check-inline">
-                <div class="form-group form-check">
-                    <asp:Label ID="lbSeleccionarTipoReporte" runat="server" Text="Seleccionar Tipo de Reporte" CssClass="LetrasNegrita"></asp:Label>
-                    <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" CssClass="form-check-input LetrasNegrita" GroupName="Supervisor" />
-                    <asp:RadioButton ID="rbReporteDetalle" runat="server" Text="Detalle" CssClass="form-check-input LetrasNegrita" GroupName="Supervisor" />
-                </div>
+
+        <div class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:Label ID="lbGenerarReporteA" runat="server" Text="Generar Reporte A: " CssClass="Letranegrita"></asp:Label>
+                <asp:RadioButton ID="rbGenerarReportePDF" runat="server" CssClass="form-check-input" Text="PDF" ToolTip="Generar Reporte a PDF" GroupName="Reporte" />
+                <asp:RadioButton ID="rbGenerarReporteExcel" runat="server" CssClass="form-check-input" Text="Excel" ToolTip="Generar Reporte a Excel" GroupName="Reporte" />
+                <asp:RadioButton ID="rbGenerarReporteWord" runat="server" CssClass="form-check-input" Text="Word" ToolTip="Generar Reporte a Word" GroupName="Reporte" /><br />
+                <asp:Label ID="lbTipoReporteGenerar" runat="server" Text="Tipo de Reporte: " CssClass="Letranegrita"></asp:Label>
+                <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" CssClass="form-check-input" GroupName="TipoReporteGenerar" ToolTip="Generar el reporte resumido" />
+                <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Detalle" CssClass="form-check-input" GroupName="TipoReporteGenerar" ToolTip="Generar el reporte detallado" />
             </div>
-            <br />
-            
-            
-            
         </div>
+
         <div align="center">
-              <asp:Button ID="btnConsultarComisiones" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultarComisiones_Click"  />
-              <asp:Button ID="btnExortarComisiones" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExortarComisiones_Click" />
-              <asp:Button ID="btnReporteCOmisiones" runat="server" Text="Reporte" CssClass="btn btn-outline-primary btn-sm" ToolTip="Reporte de Comisiones" OnClick="btnReporteCOmisiones_Click" />
-                    <button type="button" id="btnCodigosPermitidos" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".CodigosPermitodos">Codigos</button>
-          </div>
-          <br />
-                      <asp:GridView ID="gvComisionSupervisor" runat="server" AllowPaging="true" OnPageIndexChanging="gvComisionSupervisor_PageIndexChanging" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    
-                    <asp:BoundField DataField="Supervisor" HeaderText="Supervisor" />
-                    <asp:BoundField DataField="Poliza" HeaderText="Poliza" />
-                    <asp:BoundField DataField="NumeroFactura" HeaderText="Factura" />
-                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
-                    <asp:BoundField DataField="Valor" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="Valor" />
-                    <asp:BoundField DataField="PorcuentoComision" HeaderText="%" />
-                       <asp:BoundField DataField="ComisionPagar" DataFormatString="{0:N2}" HtmlEncode="false" HeaderText="A Pagar" />                     
-                       <asp:BoundField DataField="Oficina" HeaderText="Oficina" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-    </div>
+            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros Por Pantalla" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click" />
+             <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar Listado a Excel" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnExportar_Click" />
+             <asp:Button ID="btnReporte" runat="server" Text="Reporte" ToolTip="Generar Reporte de Comisiones" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnReporte_Click" />
+            <button type="button" id="btnCodigosPermitidos" class="btn btn-outline-secondary btn-sm Custom" data-toggle="modal" data-target=".CodigosPermitidos">Codigos</button>
+            <br />
+            <asp:Label ID="lbCantidadRegistrosEncontradosTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCantidadRegistrosEncontradosVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCantidadRegistrosEncontradosCerrar" runat="server" Text=" ) " CssClass="Letranegrita"></asp:Label>
 
-          <br />
+             <asp:Label ID="lbCobradoBrutoTitulo" runat="server" Text="Cobrado Bruto ( " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCobradBrutoVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCobradoBrutoCerrer" runat="server" Text=" ) " CssClass="Letranegrita"></asp:Label>
 
-    </div>
+             <asp:Label ID="lbCobradoNetoTitulo" runat="server" Text="Cobrado Neto ( " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCobradoNetoVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCobradoNetoCerrar" runat="server" Text=" ) " CssClass="Letranegrita"></asp:Label>
+        </div>
+        <br />
+
+        <div class="table-responsive">
+           <table class="table table-hover">
+               <thead>
+                   <tr>
+                   <th style="width:30%" align="left">SUPERVISOR</th>
+                   <th style="width:20%" align="left">RECIBO</th>
+                   <th style="width:10%" align="left">FECHA</th>
+                   <th style="width:10%" align="left">NETO</th>
+                   <th style="width:10%" align="left">CONCEPTO</th>
+                   <th style="width:10%" align="left">%</th>
+                   <th style="width:10%" align="left">A PAGAR</th>
+               </tr>
+               </thead>
+               <tbody>
+                   <asp:Repeater ID="rpListadoComisionesSupervisores" runat="server">
+                       <ItemTemplate>
+                           <tr>
+                               <td style="width:30%"> <%# Eval("NombreSupervisor") %> </td>
+                               <td style="width:20%"> <%# Eval("ReciboFormateado") %> </td>
+                               <td style="width:10%"> <%# Eval("FechaPagoFormateado") %> </td>                               
+                               <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Neto")) %> </td>
+                               <td style="width:10%"> <%# Eval("ConceptoFactura") %> </td>
+                               <td style="width:10%"> <%#string.Format("{0:n2}", Eval("PorcientoComisionIntermediario")) %> </td>
+                               <td style="width:10%"> <%#string.Format("{0:n2}", Eval("ComisionPagar")) %> </td>
+                           </tr>
+                       </ItemTemplate>
+                   </asp:Repeater>
+               </tbody>
+           </table>
+        </div>
+
+        <div align="center">
+                <asp:Label ID="lbPaginaActualTituloPrincipal" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavlePrincipal" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloPrincipal" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariablePrincipal" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="divPaginacion" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeraPaginaPrincipal" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaPrincipal_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorPrincipal" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorPrincipal_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionPrincipal" runat="server" OnItemCommand="dtPaginacionPrincipal_ItemCommand" OnItemDataBound="dtPaginacionPrincipal_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralPrincipal" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguientePrincipal" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguientePrincipal_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoPrincipal" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoPrincipal_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+        <br />
+           </div>
 
 
-             <div class="modal fade bd-example-modal-xl CodigosPermitodos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+             <div class="modal fade bd-example-modal-xl CodigosPermitidos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="lbTituloCodigosPermitidos" runat="server" Text="Codigos de Supervisores Permitidos"></asp:Label>
+       <div class="container-fluid">
+            <div class="jumbotron" align="center">
+            <asp:Label ID="lbProcesarCodigos" runat="server" Text="Procesar Codigos" CssClass="Letranegrita"></asp:Label>
         </div>
-        <asp:ScriptManager ID="ScripManagerCodigosPermitidos" runat="server"></asp:ScriptManager>
-        <asp:UpdatePanel ID="UpdatePanelCodigosPermitidos" runat="server">
-            <ContentTemplate>
-<div class="container-fluid">
-                    <!--CAMPO PARA LA VALIDAR LA CLAVE DE SEGURIDAD-->
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <asp:Label ID="lbClaveSeguridad" runat="server" Text="Ingresar Clave de Seguridad" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtClaveSeguridad" runat="server" CssClass="form-control" TextMode="Password" MaxLength="20"></asp:TextBox>
-                        <asp:Button ID="btnValidarClaveSeguridad" runat="server" OnClick="btnValidarClaveSeguridad_Click" CssClass="btn btn-outline-primary btn-sm" ToolTip="Validar la Clave de Seguridad" Text="Validar" />
-                    </div>
-                </div>
-                <div class="form-row">
-                     <div class="form-group col-md-3">
-                        <asp:Label ID="lbCodigoSupervisor" runat="server" Text="Codigo de Supervisor" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtCodigoSupervisor" runat="server" CssClass="form-control" TextMode="Number" MaxLength="4"></asp:TextBox>
-                    </div>
-        
-                     <div class="form-group col-md-3">
-                        <asp:Label ID="lbNombreSupervisor" runat="server" Text="Nombre de Supervisor" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtNombreSupervisor" runat="server" CssClass="form-control"  MaxLength="100"></asp:TextBox>
-                    </div>
-                </div>
-                <br />
-                  <div align="center">
-                        <asp:Button ID="btnBuscarRegistros" runat="server" OnClick="btnBuscarRegistros_Click" CssClass="btn btn-outline-primary btn-sm" ToolTip="Buscar registros" Text="Buscar" />
-                    </div>
-                <br />
-                   <div>
-            <asp:GridView ID="gvInformacionSupervisor" runat="server" AllowPaging="true" OnPageIndexChanging="gvInformacionSupervisor_PageIndexChanging" OnSelectedIndexChanged="gvInformacionSupervisor_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    
-                    <asp:BoundField DataField="Codigo" HeaderText="Codigo" />
-                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                    <asp:BoundField DataField="Oficina" HeaderText="Oficina" />
-                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
-                     <asp:CommandField ButtonType="Button" HeaderStyle-Width="11%" HeaderText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-    </div>
-                <br />
-                <!--DATOS DEL SUPERVISOR A PROCESAR-->
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <asp:Label ID="lbCodigoSupervisorMantenimientio" runat="server" Visible="false" Text="Codigo de Supervisor"></asp:Label>
-                        <asp:TextBox ID="txtCodigoSupervisorMantenimiento" runat="server" Enabled="false" Visible="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <asp:Label ID="lbNombreSupervisorMantenimiento" runat="server" Visible="false" Text="Nombre de Supervisor"></asp:Label>
-                        <asp:TextBox ID="txtNombreSupervisorMantenimientio" runat="server" CssClass="form-control" Enabled="false" Visible="false"></asp:TextBox>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <asp:Label ID="lbOficinaSupervisorMantenimiento" runat="server" Visible="false" Text="Oficina de Supervisor"></asp:Label>
-                        <asp:TextBox ID="txtOficinaSupervisorMantenimienti" runat="server" Enabled="false" Visible="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <asp:Label ID="lbEstatusSupervisorMantenimiento" runat="server" Visible="false" Text="Estatus de Supervisor"></asp:Label>
-                        <asp:TextBox ID="txtEstatusSupervisirMantenimiento" runat="server" Enabled="false" Visible="false" CssClass="form-control"></asp:TextBox>
-                    </div>
-                </div>
-                
-                    <div align="center">
-                        <asp:Button ID="btnGuardarDato" runat="server" OnClick="btnGuardarDato_Click" CssClass="btn btn-outline-primary btn-sm" Visible="false" ToolTip="Guardar registros" Text="Guardar" />
-                         <asp:Button ID="btnEliminarDato" runat="server" OnClick="btnEliminarDato_Click" CssClass="btn btn-outline-primary btn-sm" Visible="false" Enabled="false" ToolTip="Eliminar registros" Text="Eliminar" />
-                        <asp:Button ID="btnRestablecer" runat="server" OnClick="btnRestablecer_Click" CssClass="btn btn-outline-primary btn-sm" Visible="false" ToolTip="Restablecer Pantalla" Text="Restablecer" />
-                    </div>
-                <br />
-    <div align="center">
-        <asp:Label ID="lbTituloGrid" runat="server" Text="Listado de Supervisores Permitidos para generar comisión" CssClass="LetrasNegrita"></asp:Label>
-    </div>
-                        <div>
-            <asp:GridView ID="gvCodigosPermitidos" runat="server" AllowPaging="true" OnPageIndexChanging="gvCodigosPermitidos_PageIndexChanging" OnSelectedIndexChanged="gvCodigosPermitidos_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    
-                    <asp:BoundField DataField="IdRegistro" HeaderText="IdRegistro" />
-                    <asp:BoundField DataField="CodigoSupervisor" HeaderText="Codigo" />
-                    <asp:BoundField DataField="Nombre" HeaderText="Supervisor" />
-                    <asp:BoundField DataField="Oficina" HeaderText="Oficina" />
-                     <asp:CommandField ButtonType="Button" HeaderStyle-Width="11%" HeaderText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-    </div>
-    <br />
-</div>
-                   
-            </ContentTemplate>
-        </asp:UpdatePanel>
+
+         <asp:ScriptManager ID="ScripManagerCodigos" runat="server"></asp:ScriptManager>
+           <asp:UpdatePanel ID="UpdatePanelCodigos" runat="server">
+               <ContentTemplate>
+                     <div class="form-check-inline">
+               <div class="form-group form-check">
+                   <asp:Label ID="lbTipoInformacionMostrar" runat="server" Text="Tipo de Información: " CssClass="Letranegrita"></asp:Label>
+                   <asp:RadioButton ID="rbCodigosPermitidos" runat="server" Text="Codigos Permitidos" ToolTip="Mostrar los codigos permitidos para generar comisión" CssClass="form-check-input" AutoPostBack="true" OnCheckedChanged="rbCodigosPermitidos_CheckedChanged" GroupName="TipoInformacion" />
+                   <asp:RadioButton ID="rbBuscarCodigos" runat="server" Text="Buscar Codigos" ToolTip="Buscar Codigos de supervisores para agregar" CssClass="form-check-input" AutoPostBack="true" OnCheckedChanged="rbBuscarCodigos_CheckedChanged" GroupName="TipoInformacion" />
+               </div>
+                     
+           </div>
+
+                   <div class="form-row">
+                       <div class="form-group col-md-6">
+                           <asp:Label ID="lbIdCodigoCodigospermitidos" runat="server" Text="Codigo de Supervisor" CssClass="Letranegrita"></asp:Label>
+                           <asp:TextBox ID="txtCodigoCodigospermitidos" runat="server" CssClass="form-control" TextMode="Number" MaxLength="4" AutoCompleteType="Disabled"></asp:TextBox>
+                           
+                       </div>
+
+                       <div class="form-group col-md-6">
+                           <asp:Label ID="lbNombreSupervisorCodigosPermitidos" runat="server" Text="Nombre de Supervisor" CssClass="Letranegrita"></asp:Label>
+                            <asp:TextBox ID="txtNombreSupervisorPopop" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                       </div>
+                   </div>
+
+                   <div align="center">
+                       <asp:Button ID="btnBuscarPOPOP" runat="server" Text="Buscar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Buscar Registros" OnClick="btnBuscarPOPOP_Click" />
+                       <br />
+                       <asp:Label ID="lbCantidadRegistrosTituloPOPOP" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
+                       <asp:Label ID="lbCantidadRegistrosVariablePOPOP" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                       <asp:Label ID="lbCantidadRegistrosCerrarPOPOP" runat="server" Text=" ) " CssClass="Letranegrita"></asp:Label>
+                   </div>
+                   <br />
+
+                       <div id="DivBloqueCodigosPermitidos" runat="server">
+                          <div class="table-responsive">
+                              <table class="table table-hover">
+                                  <thead>
+                                      <tr>
+                                          <th style="width:10%" align="left"> <asp:Label ID="lbSeleccionarSupervisoresHeaderrepeaterPOPOP" runat="server" Text="Seleccionar" CssClass="Letranegrita"></asp:Label> </th>
+                                          <th style="width:10%" align="left"> <asp:Label ID="lbCodigoSupervisorHeaderRepeaterPOPOP" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label> </th>
+                                          <th style="width:50%" align="left"> <asp:Label ID="lbNombreSupervisorHeaderRepeaterPOPOP" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label> </th>
+                                          <th style="width:10%" align="left"> <asp:Label ID="lbFechaAgregadoHeaderRepeaterPOPOP" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label> </th>
+                                          <th style="width:20%" align="left"> <asp:Label ID="lbOficinaHEaderRepeaterPOPOP" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label> </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <asp:Repeater ID="rpListadoSupervisoresAgregados" runat="server">
+                                          <ItemTemplate>
+                                              <tr>
+                                                  <asp:HiddenField ID="hfIdRegistroSeleccionado" runat="server" Value='<%# Eval("IdRegistro") %>' />
+
+                                                  <td style="width:10%"> <asp:Button ID="btnSeleccionarregistroAgregadoHEaderRpeaterPOPOP" runat="server" Text="Seleccionar" ToolTip="Seleccionar registro" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarregistroAgregadoHEaderRpeaterPOPOP_Click" /> </td>
+                                                  <td style="width:10%"> <%# Eval("CodigoSupervisor") %> </td>
+                                                  <td style="width:50%"> <%# Eval("Nombre") %> </td>
+                                                  <td style="width:10%"> <%# Eval("FechaAgregado") %> </td>
+                                                  <td style="width:20%"> <%# Eval("Oficina") %> </td>
+                                              </tr>
+                                          </ItemTemplate>
+                                      </asp:Repeater>
+                                  </tbody>
+                              </table>
+                          </div>
+
+                             <div align="center">
+                <asp:Label ID="lbPaginaActualTituloCodigosPermitidos" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavleCodigosPermitidos" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloCodigosPermitidos" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariableCodigosPermitidos" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="DivPaginacionCodigosPermitidos" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeraPaginaCodigosPermitidos" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaCodigosPermitidos_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorCodigosPermitidos" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorCodigosPermitidos_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionCodigosPermitidos" runat="server" OnItemCommand="dtPaginacionCodigosPermitidos_ItemCommand" OnItemDataBound="dtPaginacionCodigosPermitidos_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralCodigosPermitidos" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteCodigosPermitidos" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteCodigosPermitidos_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoCodigosPermitidos" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoCodigosPermitidos_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+                           <br />
+
+                           <div id="DivControlesCodigoPermitidos" runat="server">
+                               <div class="form-row">
+                                   <asp:Label ID="IdRegistroSeleccionadoCodigoPermitidos" runat="server" Text="IdRegistroSeleccionado" Visible="false"></asp:Label>
+                                   <div class="form-group col-md-4">
+                                       <asp:Label ID="lbCodigoSupervisorControlesPermitido" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtCodigoSupervisorControlesPermitidos" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+
+                                    <div class="form-group col-md-4">
+                                       <asp:Label ID="lbNombreSupervisorControlesPermitidos" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtNombreSupervisorControlesPermitidos" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+
+                                    <div class="form-group col-md-4">
+                                       <asp:Label ID="lbFechaAgregadoCOntrolesPermitidos" runat="server" Text="Fecha Agregado" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtFechaAgregadosControlesPermitidos" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+
+                                    <div class="form-group col-md-4">
+                                       <asp:Label ID="lboficinaSupervisorControlesPermitidos" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtOficinaSupervisorCOntrolesPermitidos" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                   </div>
+                                    <div class="form-group col-md-4">
+                                       <asp:Label ID="lbClaveSeguridadControlesPermitifdosd" runat="server" Text="Clave de Seguridad" CssClass="Letranegrita"></asp:Label>
+                                       <asp:TextBox ID="txtClaveSeguridadControlesPermitidos" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                                   </div>
+                               </div>
+                               <div align="center">
+                                   <asp:Button ID="btnEliminarSupervisorAgregado" runat="server" Text="Eliminar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Eliminar Registro" OnClick="btnEliminarSupervisorAgregado_Click" />
+                                   <asp:Button ID="btnVolverAtras" runat="server" Text="Volver" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Volver Atras" OnClick="btnVolverAtras_Click" />
+                               </div>
+                               <br />
+                           </div>
+
+                         </div>
+
+
+                         <div id="DivBloqueBuscarCodigos" runat="server">
+
+                             <div align="center">
+                                 <div class="form-row">
+                                     <div class="form-group col-md-6">
+                                         <asp:Label ID="lbClaveSeguridadBuscarCodigo" runat="server" Text="Clave de Seguridad" CssClass="Letranegrita"></asp:Label>
+                                         <asp:TextBox ID="txtClaveSeguridadBuscarCodigo" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
+                                     </div>
+                                 </div>
+                             </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                   <thead>
+                                        <tr>
+                                        <th style="width:10%" align="left"> <asp:Label ID="lbGuardarBuscarCodigo" runat="server" Text="Guardar" CssClass="Letranegrita"></asp:Label> </th>
+                                        <th style="width:10%" align="left"> <asp:Label ID="lbCodigoSupervisorBuscarCodigo" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label> </th>
+                                        <th style="width:50%" align="left"> <asp:Label ID="lbNombreSupervisorBuscarCodigo" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label> </th>
+                                        <th style="width:10%" align="left"> <asp:Label ID="lbEstatusSupervisorBuscarCodigo" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
+                                        <th style="width:20%" align="left"> <asp:Label ID="lbOficinaSupervisorBuscarCodigo" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label> </th>
+                                    </tr>
+                                   </thead>
+                                    <tbody>
+                                        <asp:Repeater ID="rpListadoSupervisoresBuscar" runat="server">
+                                            <ItemTemplate>
+                                                <tr>
+                                                    <asp:HiddenField ID="hfCodigoSupervisor" runat="server" Value='<%# Eval("Codigo") %>' />
+                                                <td style="width:10%"> <asp:Button ID="btnGuardarBuscarCodigo" runat="server" Text="Guardar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Guardar Registro" OnClick="btnGuardarBuscarCodigo_Click" /> </td>
+                                                <td style="width:10%"> <%# Eval("Codigo") %> </td>
+                                                <td style="width:50%"> <%# Eval("Nombre") %> </td>
+                                                <td style="width:10%"> <%# Eval("Estatus") %> </td>
+                                                <td style="width:20%"> <%# Eval("Oficina") %> </td>
+                                                </tr>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                               <div align="center">
+                <asp:Label ID="lbPaginaActualTituloBuscarCodigos" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavleBuscarCodigos" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloBuscarCodigos" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariableBuscarCodigos" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="DivPaginacionBuscarCodigos" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeraPaginaBuscarCodigos" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaBuscarCodigos_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorBuscarCodigos" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorBuscarCodigos_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionBuscarCodigos" runat="server" OnItemCommand="dtPaginacionBuscarCodigos_ItemCommand" OnItemDataBound="dtPaginacionBuscarCodigos_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralBuscarCodigos" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteBuscarCodigos" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteBuscarCodigos_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoBuscarCodigos" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoBuscarCodigos_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+<br />
+                         </div>
+               </ContentTemplate>
+           </asp:UpdatePanel>
+
+
+
+
+       </div>
 
     </div>
   </div>
 </div>
+         
 </asp:Content>

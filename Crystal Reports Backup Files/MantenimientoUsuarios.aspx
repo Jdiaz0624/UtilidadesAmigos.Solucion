@@ -3,439 +3,279 @@
   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-       <style type="text/css">
-        .jumbotron{
-            color:#000000; 
-            background:#7BC5FF;
-            font-size:30px;
-            font-weight:bold;
-            font-family:'Gill Sans';
-            padding:25px;
-        }
+      <style type="text/css">
 
         .btn-sm{
             width:90px;
         }
+
+        .LetrasNegrita {
+        font-weight:bold;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        
+
+        th {
+            background-color: dodgerblue;
+            color: white;
+        }
     </style>
-    <script type="text/javascript">
-        function BloquearControles() {
-            $("#btnModificarConsulta").attr("disabled", "disabled");
-            $("#<%=btnDeshabilitar.ClientID%>").attr("disabled", "disabled");
-            $("#<%=btnRestablecerPantalla.ClientID%>").attr("disabled", "disabled");
 
-            $("#btnNuevo").removeAttr("disabled", true);
-            $("#<%=btnConsultar.ClientID%>").removeAttr("disabled", true);
-            $("#<%=btnExportar.ClientID%>").removeAttr("disabled", true);
+    <script type="text/javascript"> 
+
+        function UsuarioNoValido() {
+            alert("El usuario ingresado ya existe, favor de verificar.");
         }
-
-       
-        function ErrorGuardarRegistro() {
-            alert("Error al guardar el registro, favor de verificar los parametros ingresados o comunicarse con el departamento de tecnologia")
+        function ClaveSeguridadVacia() {
+            alert("El campo clave de seguridad no puede estar vacio para modificar este registro.");
+            $("#<%=txtClaveSeguridadMAntenimiento.ClientID%>").css("border-color", "blue");
         }
-
-        function LimpiarControles() {
-            $("#<%=txtClaveMantenimiento.ClientID%>").val("");
-            $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val("");
-            $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val("");
-            $("#<%=txtEmailMantenimiento.ClientID%>").val("");
-            $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val("");
-            $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val("");
-            $("#<%=txtUsuarioConsulta.ClientID%>").val("");
-
-            $("#btnModificarConsulta").attr("disabled", "disabled");
-            $("#<%=btnDeshabilitar.ClientID%>").attr("disabled", "disabled");
-            $("#<%=btnRestablecerPantalla.ClientID%>").attr("disabled", "disabled");
-
-            $("#btnNuevo").removeAttr("disabled", true);
-            $("#<%=btnConsultar.ClientID%>").removeAttr("disabled", true);
-            $("#<%=btnExportar.ClientID%>").removeAttr("disabled", true);
+        function ClaveSeguridadErronea() {
+            alert("La clave de seguridad ingresada no es valida.");
         }
-        function ClaveSeguridadNoValida() {
-            alert("La Clave de seguridad ingresada no es valida, favor de verificar");
-            $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val("");
-            return false;
-        }
-        function DesbloquearControles() {
-            $("#btnNuevo").attr("disabled", "disabled");
-            $("#<%=btnConsultar.ClientID%>").attr("disabled", "disabled");
-            $("#<%=btnExportar.ClientID%>").attr("disabled", "disabled");
-
-            $("#btnModificarConsulta").removeAttr("disabled", true);
-            $("#<%=btnDeshabilitar.ClientID%>").removeAttr("disabled", true);
-            $("#<%=btnRestablecerPantalla.ClientID%>").removeAttr("disabled", true);
-        }
-
+        
         $(document).ready(function () {
-            //EVENTO PARA EL BOTON NUEVO
-            $("#btnNuevo").click(function () {
-                $("#<%=btnModificar.ClientID%>").hide();
-                $("#<%=btnGuardar.ClientID%>").show();
-            })
 
-            //EVENTO PARA EL BOTON MODIFICAR
-            $("#btnModificarConsulta").click(function () {
-                $("#<%=btnModificar.ClientID%>").show();
-                $("#<%=btnGuardar.ClientID%>").hide();
-            })
-
-            //EVENTO DEL BOTON GUARDAR
+            //VALIDAMOS LOS DATOS DEL BOTON GUARDAR
             $("#<%=btnGuardar.ClientID%>").click(function () {
-                //VERIFICAMOS QUE EL CAMPO SUCURSAL NO ESTE VACIO
-                var ValidarSucursal = $("#<%=ddlSeleccionarSucursalMantenimeinto.ClientID%>").val();
-                if (ValidarSucursal < 1) {
-                    alert("El campo sucursal no puede estar vacio para guardar este registro, favor de verificar");
-                    $("#<%=ddlSeleccionarSucursalMantenimeinto.ClientID%>").css("Border-color", "red");
+                var Sucursal = $("#<%=ddlSucursalMantenimiento.ClientID%>").val();
+                if (Sucursal < 1) {
+                    alert("El campo Sucursal no puede estar vacio para realizar esta operación.");
+                    $("#<%=ddlSucursalMantenimiento.ClientID%>").css("border-color", "red");
                     return false;
                 }
                 else {
-                    //VALIDAMOS EL CAMPO OFICINA
-                    var ValidarOficina = $("#<%=ddlSeleccionarOficinaMantenimiento.ClientID%>").val();
-                    if (ValidarOficina < 1) {
-                        alert("El campo oficina no puede estar vacio para guardar este registro, favor de verificar");
-                        $("#<%=ddlSeleccionarOficinaMantenimiento.ClientID%>").css("border-color", "red");
+                    var Oficina = $("#<%=ddlOficinaMantenimiento.ClientID %>").val();
+                    if (Oficina < 1) {
+                        alert("El campo de Oficina no puede estar vacio para realizar esta operación.");
+                        $("#<%=ddlOficinaMantenimiento.ClientID%>").css("border-color", "red");
                         return false;
                     }
                     else {
-                        //VALIDAMOS EL CAMPO DEPARTAMENTO
-                        var ValidarDepartamento = $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").val();
-                        if (ValidarDepartamento < 1) {
-                            alert("El campo departamento no puede estar vacio para guardar este registro, favor de verificar");
-                            $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").css("border-color", "red");
+                        var Departamento = $("#<%=ddlDepartamentoMantenimiento.ClientID%>").val();
+                        if (Departamento < 1) {
+                            alert("El campo Departamento no puede estar vacio para realizar esta operación.");
+                            $("#<%=ddlDepartamentoMantenimiento.ClientID%>").css("border-color", "red");
                             return false;
                         }
                         else {
-                            //VALIDAMOS EL CAMPO PERFIL
-                            var ValidarPerfil = $("#<%=ddlSeleccionarPerfilMantenimiento.ClientID%>").val();
-                            if (ValidarPerfil < 1) {
-                                alert("El campo perfil no puede estar vacio para guardar este registro, favor de verificar");
-                                $("#<%=ddlSeleccionarPerfilMantenimiento.ClientID%>").css("border-color", "red");
+                            var Perfil = $("#<%=ddlPerfilMantenimiento.ClientID%>").val();
+                            if (Perfil < 1) {
+                                alert("El campo Perfil no puede estar vacio para realizar esta operación.");
+                                $("#<%=ddlPerfilMantenimiento.ClientID%>").css("border-color", "red");
                                 return false;
                             }
                             else {
-                                //VALIDAMOS EL CAMPO USUARIO
-                                var ValidarUsuario = $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val().length;
-                                if (ValidarUsuario < 1) {
-                                    alert("El campo usuario no puede estar vacio para guardar este registro, favor de verificar");
-                                    $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").css("border-color", "red");
+                                var Usuario = $("#<%=txtUsuarioMantenimiento.ClientID%>").val().length;
+                                if (Usuario < 1) {
+                                    alert("El campo Usuario no puede estar vacio para realizar esta operación.");
+                                    $("#<%=txtUsuarioMantenimiento.ClientID%>").css("border-color", "Red");
                                     return false;
                                 }
                                 else {
-                                    //VALIDAMOS EL CAMPO NOMBRE DE USUARIO
-                                    var ValidarNombrePersona = $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val().length;
-                                    if (ValidarNombrePersona < 1) {
-                                        alert("El campo Nombre no puede estar vacio para guardar este registro, favor de verificar.");
-                                        $("#<%=txtNombrePersonaMantenimiento.ClientID%>").css("border-color", "red");
+                                    var Persona = $("#<%=txtPersonaMantenimiento.ClientID%>").val().length;
+                                    if (Persona < 1) {
+                                        alert("El campo Persona no puede estar vacio para realizar esta operación.");
+                                        $("#<%=txtPersonaMantenimiento.ClientID%>").css("border-color", "red");
                                         return false;
                                     }
                                     else {
-                                        //VALIDAMOS EL CAMPO CLAVE
-                                        var ValidarCampoClave = $("#<%=txtClaveMantenimiento.ClientID%>").val().length;
-                                        if (ValidarCampoClave < 1) {
-                                            alert("El campo clave no puede estar vacio para guardar este registro, favor de verificar.");
-                                            $("#<%=txtClaveMantenimiento.ClientID%>").css("border-color", "red");
+                                        var TipoPersona = $("#<%=ddlTipoPersonaMantenimiento.ClientID%>").val();
+                                        if (TipoPersona < 1) {
+                                            alert("El campo Tipo de Persona no puede esta vacio para realizar esta operación.");
+                                            $("#<%=ddlTipoPersonaMantenimiento.ClientID%>").css("border-color", "red");
                                             return false;
                                         }
-                                        else {
-                                            //VALIDAMOS EL CAMPO CONFIRMAR CLAVE
-                                            var ValidarCampoConfirmarClave = $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val().length;
-                                            if (ValidarCampoConfirmarClave < 1) {
-                                                alert("El campo confirmar clave no puede estar vacio para guardar este registro, favor de verificar.");
-                                                $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").css("border-color", "red");
-                                                return false;
-                                            }
-                                            else {
-                                                //VALIDAMOS EL CAMPO TIPO DE PERSONA
-                                                var ValidarTipoPersona = $("#<%=ddlSeleccionarTipoPersona.ClientID%>").val();
-                                                if (ValidarTipoPersona < 1) {
-                                                    alert("El campo tipo de persona no puede estar vacio para guardar este registro, favor de verificar.");
-                                                    $("#<%=ddlSeleccionarTipoPersona.ClientID%>").css("border-color", "red");
-                                                    return false;
-                                                }
-                                                else {
-                                                    //VALIDAMOS EL CAMPO CLAVE DE SEGURIDAD
-                                                    var ValidarClaveSeguridad = $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val().length;
-                                                    if (ValidarClaveSeguridad < 1) {
-                                                        alert("El campo clave de seguridad no puede estar vacio para guardar este registro, favor de verificar.");
-                                                        $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").css("border-color", "red");
-                                                        return false;
-                                                    }
-                                                    else {
-                                                        if (ValidarCampoClave != ValidarCampoConfirmarClave) {
-                                                            alert("Las claves ingresada no con cuerdan favor de verificar.");
-                                                            $("#<%=txtClaveMantenimiento.ClientID%>").css("border-color", "red");
-                                                            $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").css("border-color", "red");
-                                                            $("#<%=txtClaveMantenimiento.ClientID%>").val("");
-                                                            $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val("");
-                                                            return false;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
                                     }
-
                                 }
                             }
                         }
                     }
+                    
                 }
 
-            })
+            });
 
-            //EVENTO DEL BOTON MODIFICAR
-            $("#<%=btnModificar.ClientID%>").click(function () {
-                //VERIFICAMOS QUE EL CAMPO SUCURSAL NO ESTE VACIO
-                var ValidarSucursal = $("#<%=ddlSeleccionarSucursalMantenimeinto.ClientID%>").val();
-                if (ValidarSucursal < 1) {
-                    alert("El campo sucursal no puede estar vacio para guardar este registro, favor de verificar");
-                    $("#<%=ddlSeleccionarSucursalMantenimeinto.ClientID%>").css("Border-color", "red");
-                    return false;
-                }
-                else {
-                    //VALIDAMOS EL CAMPO OFICINA
-                    var ValidarOficina = $("#<%=ddlSeleccionarOficinaMantenimiento.ClientID%>").val();
-                    if (ValidarOficina < 1) {
-                        alert("El campo oficina no puede estar vacio para guardar este registro, favor de verificar");
-                        $("#<%=ddlSeleccionarOficinaMantenimiento.ClientID%>").css("border-color", "red");
-                        return false;
-                    }
-                    else {
-                        //VALIDAMOS EL CAMPO DEPARTAMENTO
-                        var ValidarDepartamento = $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").val();
-                        if (ValidarDepartamento < 1) {
-                            alert("El campo departamento no puede estar vacio para guardar este registro, favor de verificar");
-                            $("#<%=ddlSeleccionarDepartamentoMantenimiento.ClientID%>").css("border-color", "red");
-                            return false;
-                        }
-                        else {
-                            //VALIDAMOS EL CAMPO PERFIL
-                            var ValidarPerfil = $("#<%=ddlSeleccionarPerfilMantenimiento.ClientID%>").val();
-                            if (ValidarPerfil < 1) {
-                                alert("El campo perfil no puede estar vacio para guardar este registro, favor de verificar");
-                                $("#<%=ddlSeleccionarPerfilMantenimiento.ClientID%>").css("border-color", "red");
-                                return false;
-                            }
-                            else {
-                                //VALIDAMOS EL CAMPO USUARIO
-                                var ValidarUsuario = $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").val().length;
-                                if (ValidarUsuario < 1) {
-                                    alert("El campo usuario no puede estar vacio para guardar este registro, favor de verificar");
-                                    $("#<%=txtNombreUsuarioMantenimiento.ClientID%>").css("border-color", "red");
-                                    return false;
-                                }
-                                else {
-                                    //VALIDAMOS EL CAMPO NOMBRE DE USUARIO
-                                    var ValidarNombrePersona = $("#<%=txtNombrePersonaMantenimiento.ClientID%>").val().length;
-                                    if (ValidarNombrePersona < 1) {
-                                        alert("El campo Nombre no puede estar vacio para guardar este registro, favor de verificar.");
-                                        $("#<%=txtNombrePersonaMantenimiento.ClientID%>").css("border-color", "red");
-                                        return false;
-                                    }
-                                    
-                                            else {
-                                                //VALIDAMOS EL CAMPO TIPO DE PERSONA
-                                                var ValidarTipoPersona = $("#<%=ddlSeleccionarTipoPersona.ClientID%>").val();
-                                                if (ValidarTipoPersona < 1) {
-                                                    alert("El campo tipo de persona no puede estar vacio para guardar este registro, favor de verificar.");
-                                                    $("#<%=ddlSeleccionarTipoPersona.ClientID%>").css("border-color", "red");
-                                                    return false;
-                                                }
-                                                else {
-                                                    //VALIDAMOS EL CAMPO CLAVE DE SEGURIDAD
-                                                    var ValidarClaveSeguridad = $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").val().length;
-                                                    if (ValidarClaveSeguridad < 1) {
-                                                        alert("El campo clave de seguridad no puede estar vacio para guardar este registro, favor de verificar.");
-                                                        $("#<%=txtClaveSeguridadMantenimiento.ClientID%>").css("border-color", "red");
-                                                        return false;
-                                                    }
-                                                    else {
-                                                        if (ValidarCampoClave != ValidarCampoConfirmarClave) {
-                                                            alert("Las claves ingresada no con cuerdan favor de verificar.");
-                                                            $("#<%=txtClaveMantenimiento.ClientID%>").css("border-color", "red");
-                                                            $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").css("border-color", "red");
-                                                            $("#<%=txtClaveMantenimiento.ClientID%>").val("");
-                                                            $("#<%=txtConfirmarClaveMantenimiento.ClientID%>").val("");
-                                                            return false;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        
-                                    
 
-                                }
-                            }
-                        }
-                    }
-                }
-            })
 
-        });
+
+        })
     </script>
-
+    <br />
+    <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
+    <asp:Label ID="lbIdUsuario" runat="server" Text="0" Visible="false"></asp:Label>
     <div class="container-fluid">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="lbTituloConsulta" runat="server" Text="Consulta de Usuario"></asp:Label>
-            <asp:Label ID="lbMantenimientoUsuario" runat="server" Text="IdMantenimiento" Visible="false"></asp:Label>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <asp:Label ID="lbSeleccionarSucursal" runat="server" Text="Sucursal"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarSucursalConsulta" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarSucursalConsulta_SelectedIndexChanged"  runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
+        <div id="DivBloqueConsulta" runat="server">
+           <div class="form-row">
+               <div class="form-group col-md-3">
+                   <asp:Label ID="lbSucursalConsulta" runat="server" Text="Sucursal" CssClass="LetrasNegrita"></asp:Label>
+                   <asp:DropDownList ID="ddlSucursalCOnsulta" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSucursalCOnsulta_SelectedIndexChanged"></asp:DropDownList>
+               </div>
+
+               <div class="form-group col-md-3">
+                   <asp:Label ID="lbOficinaConsulta" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
+                   <asp:DropDownList ID="ddlOficinaConsulta" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlOficinaConsulta_SelectedIndexChanged"></asp:DropDownList>
+               </div>
+
+               <div class="form-group col-md-3">
+                   <asp:Label ID="lbDepartamentoConsulta" runat="server" Text="Departamento" CssClass="LetrasNegrita"></asp:Label>
+                   <asp:DropDownList ID="ddlDepartamentoConsulta" runat="server" ToolTip="Seleccionar Departamento" CssClass="form-control"></asp:DropDownList>
+               </div>
+
+               <div class="form-group col-md-3">
+                   <asp:Label ID="lbPerfilConsulta" runat="server" Text="Perfil" CssClass="LetrasNegrita"></asp:Label>
+                   <asp:DropDownList ID="ddlPerfilCOnsulta" runat="server" ToolTip="Seleccionar Perfil" CssClass="form-control"></asp:DropDownList>
+               </div>
+
+               <div class="form-group col-md-3">
+                   <asp:Label ID="lbUsuarioConsulta" runat="server" Text="Usuario" CssClass="LetrasNegrita"></asp:Label>
+                   <asp:TextBox ID="txtUsuarioConsulta" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+               </div> 
+           </div>
+            <br />
+            <div align="center">
+                <asp:Button ID="btnConsultar" runat="server" Text="Consultar"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
+                <asp:Button ID="btnNuevo" runat="server" Text="Nuevo"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Crear Nuevo Registro" OnClick="btnNuevo_Click" />
+                <asp:Button ID="btnReporte" runat="server" Text="Reporte"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Reporte de Usuarios" OnClick="btnReporte_Click" />
+                <asp:Button ID="btnModificar" runat="server" Text="Modificar"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Modificar Registro Seleccionado" OnClick="btnModificar_Click" />
+                <asp:Button ID="btnRestablecer" runat="server" Text="Restablecer"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Restablecer Pantalla" OnClick="btnRestablecer_Click" />
+
             </div>
+            <br />
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width:10%" align="left"> SELECCIONAR </th>
+                            <th style="width:10%" align="left"> USUARIO </th>
+                            <th style="width:20%" align="left"> PERSONA </th>
+                            <th style="width:10%" align="left"> SUCURSAL </th>
+                            <th style="width:10%" align="left"> OFICINA </th>
+                            <th style="width:10%" align="left"> DEPARTAMENTO </th>
+                            <th style="width:10%" align="left"> PERFIL </th>
+                            <th style="width:10%" align="left"> ESTATUS </th>
+                            <th style="width:10%" align="left"> CAMBIA CLAVE </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Repeater ID="rpListadoUsuarios" runat="server">
+                            <ItemTemplate>
+                                <tr>
+                                    <asp:HiddenField ID="hfIdUsuario" runat="server" Value='<%# Eval("IdUsuario") %>' />
+                                    <td style="width:10%" align="left"> <asp:Button ID="btnSeleccionarUsuario" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarUsuario_Click" /> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("Usuario") %> </td>
+                                    <td style="width:20%" align="left"> <%# Eval("Persona") %> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("Sucursal") %> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("Oficina") %> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("Departamento") %> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("Perfil") %> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("Estatus") %> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("CambiaClave") %> </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+            </div>
+
+             <div align="center">
+               <asp:Label ID="lbPaginaActualTituloUsuarios" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavleUsuarios" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloUsuarios" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariableUsuarios" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="DivPaginacionUsuarios" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeraPaginaUsuarios" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaUsuarios_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorUsuarios" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorUsuarios_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionUsuarios" runat="server" OnItemCommand="dtPaginacionUsuarios_ItemCommand" OnItemDataBound="dtPaginacionUsuarios_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralUsuarios" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteUsuarios" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteUsuarios_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoUsuarios" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoUsuarios_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+            <br />
+        </div>
+
+        <div id="DivBloqueMantenimiento" runat="server">
+            <br />
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <asp:Label ID="lbSucursalMantenimiento" runat="server" Text="Sucursal" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlSucursalMantenimiento" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSucursalMantenimiento_SelectedIndexChanged"></asp:DropDownList>
+                </div>
+
+                 <div class="form-group col-md-3">
+                    <asp:Label ID="lbOficinaMAntenimiento" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlOficinaMantenimiento" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
+                </div>
+
+                 <div class="form-group col-md-3">
+                    <asp:Label ID="lbDepartamentoMantenimiento" runat="server" Text="Departamento" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlDepartamentoMantenimiento" runat="server" ToolTip="Seleccionar Departamento" CssClass="form-control"></asp:DropDownList>
+                </div>
+
+                 <div class="form-group col-md-3">
+                    <asp:Label ID="lbPerfilMantenimiento" runat="server" Text="Perfil" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlPerfilMantenimiento" runat="server" ToolTip="Seleccionar Perfil" CssClass="form-control"></asp:DropDownList>
+                </div>
+
+                 <div class="form-group col-md-3">
+                    <asp:Label ID="lbUsuarioMantenimiento" runat="server" Text="Usuario" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtUsuarioMantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
 
                 <div class="form-group col-md-3">
-                <asp:Label ID="lbSeleccionaroficinaConsulta" runat="server" Text="Oficina"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionaroficinaConsulta" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionaroficinaConsulta_SelectedIndexChanged" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
+                    <asp:Label ID="lbPersonaMantenimiento" runat="server" Text="Persona" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtPersonaMantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <asp:Label ID="lbEmailMantenimiento" runat="server" Text="Email" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtEmailMantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <asp:Label ID="lbTipoPersonaMantenimiento" runat="server" Text="Tipo de Persona" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlTipoPersonaMantenimiento" runat="server" ToolTip="Seleccionar Tipo de Persona" CssClass="form-control"></asp:DropDownList>
+                </div>
+
+                 <div class="form-group col-md-3">
+                    <asp:Label ID="lbClaveSeguridadMAntenimiento" runat="server" Text="Clave de Seguridad" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtClaveSeguridadMAntenimiento" runat="server" CssClass="form-control" TextMode="Password" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+
             </div>
 
-            <div class="form-group col-md-3">
-                <asp:Label ID="lbSeleccionarDepartamentoConsulta" runat="server" Text="Departamento"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarDepartamentoConsulta" runat="server" ToolTip="Seleccionar Departamento" CssClass="form-control"></asp:DropDownList>
+            <div class="form-check-inline">
+                <div class="form-group form-check">
+                    <asp:CheckBox ID="cbEstatusMantenimiento" runat="server" Text="Estatus" ToolTip="Estatus de Usuario" CssClass="form-check-input" />
+                    <asp:CheckBox ID="cbLLevaEmail" runat="server" Text="Lleva Email" ToolTip="Validar si lleva envio de correo" CssClass="form-check-input" />
+                    <asp:CheckBox ID="cbCambiaClave" runat="server" Text="Cambia Clave" ToolTip="Validar si el usuario cambia clave en el proximo login" CssClass="form-check-input" />
+                    <asp:CheckBox ID="cbImpresionMarbete" runat="server" Text="Impresión de Marbete" ToolTip="Dar permiso para impresión de marbetes" CssClass="form-check-input" />
+                </div>
             </div>
+            <br />
+             <div align="center">
+                <asp:Button ID="btnGuardar" runat="server" Text="Guardar"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Guardar Registro" OnClick="btnGuardar_Click" />
+                <asp:Button ID="btnVolver" runat="server" Text="Volver"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Volver Atras" OnClick="btnVolver_Click" />
 
-              <div class="form-group col-md-3">
-                     <asp:Label ID="lbSeleccionarPerfilConsulta" runat="server" Text="Perfil"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarPerfilConsulta" runat="server" ToolTip="Seleccionar Perfil" CssClass="form-control"></asp:DropDownList>
             </div>
-
-              <div class="form-group col-md-3">
-                      <asp:Label ID="lbUsuarioConsulta" runat="server" Text="Consulta"></asp:Label>
-               <asp:TextBox ID="txtUsuarioConsulta" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
-            </div>
+            <br />
         </div>
-        <br />
-         <div>
-              <button type="button" id="btnNuevo" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">Nuevo</button>
-            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
-            <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExportar_Click" /><br /><br />
-                <button type="button" id="btnModificarConsulta" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">Modificar</button>
-              <asp:Button ID="btnDeshabilitar" runat="server" Text="Deshabilitar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Deshabilitar Registro Seleccionado" OnClick="btnDeshabilitar_Click"/>
-             <asp:Button ID="btnRestablecerPantalla" runat="server" Text="Restablecer" CssClass="btn btn-outline-primary btn-sm" ToolTip="Restablecer la pantalla" OnClick="btnRestablecerPantalla_Click" />
-        </div>
-        <br />
-          <div>
-            <asp:GridView ID="gvUsuario" runat="server" AllowPaging="true" OnPageIndexChanging="gvUsuario_PageIndexChanging" OnSelectedIndexChanged="gvUsuario_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    
-                    <asp:BoundField DataField="IdUsuario" HeaderText="ID" />
-                    <asp:BoundField DataField="Departamento" HeaderText="Departamento" />
-                    <asp:BoundField DataField="Perfil" HeaderText="Perfil" />
-                    <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
-                    <asp:BoundField DataField="Persona" HeaderText="Persona" />
-                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
-                    <asp:BoundField DataField="CambiaClave" HeaderText="CambiaClave" />
-                     <asp:CommandField ButtonType="Button" HeaderStyle-Width="11%" HeaderText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />
-                </Columns  >
-                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-    </div>
     </div>
 
-        <!--PANTALLA DE MANTENIMIENTO DE INVENTARIO-->
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="container-fluid">
-          <div class="jumbotron" align="center">
-              <asp:Label ID="lbMantenimientoUsuarios" runat="server" Text="Mantenimiento de Usuarios"></asp:Label>
-          </div>
-          <asp:ScriptManager ID="UsuarioScripManaher" runat="server"></asp:ScriptManager>
-          <asp:UpdatePanel ID="UsuarioUpdatePanel" runat="server" Visible="true">
-              <ContentTemplate>
-                  <div class="form-row">
-                       <div class="form-group col-md-4">
-                          <asp:Label ID="lbSeleccionarSucursalMantenimiento" runat="server" Text="Sucursal"></asp:Label>
-                           <asp:DropDownList ID="ddlSeleccionarSucursalMantenimeinto" runat="server" CssClass="form-control" AutoPostBack="true" ToolTip="Seleccionar Sucursal" OnSelectedIndexChanged="ddlSeleccionarSucursalMantenimeinto_SelectedIndexChanged"></asp:DropDownList>
-                         
-                      </div>
-
-                       <div class="form-group col-md-4">
-                          <asp:Label ID="lbSeleccionarOficinaMantenimiento" runat="server" Text="Oficina"></asp:Label>
-                           <asp:DropDownList ID="ddlSeleccionarOficinaMantenimiento" runat="server" CssClass="form-control" AutoPostBack="true" ToolTip="Seleccionar Oficina" OnSelectedIndexChanged="ddlSeleccionarOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
-                      </div>
-
-                      <div class="form-group col-md-4">
-                          <asp:Label ID="lbSeleccionarDepartamentoMantenimiento" runat="server" Text="Departamento"></asp:Label>
-                          <asp:DropDownList ID="ddlSeleccionarDepartamentoMantenimiento" runat="server" ToolTip="Seleccionar Departamento" CssClass="form-control"></asp:DropDownList>
-                      </div>
-
-                      <div class="form-group col-md-4">
-                          <asp:Label ID="lbSeleccionarPerfilMantenimiento" runat="server" Text="Perfil"></asp:Label>
-                          <asp:DropDownList ID="ddlSeleccionarPerfilMantenimiento" runat="server" ToolTip="Seleccionar Perfil" CssClass="form-control"></asp:DropDownList>
-                      </div>
-
-                      <div class="form-group col-md-4">
-                          <asp:Label ID="lbNombreUsuarioMantenimiento" runat="server" Text="Usuario"></asp:Label>
-                          <asp:TextBox ID="txtNombreUsuarioMantenimiento" AutoCompleteType="Disabled" runat="server" MaxLength="20" CssClass="form-control"></asp:TextBox>
-                      </div>
-
-                      <div class="form-group col-md-4">
-                          <asp:Label ID="lbNombrePersonaMantenimeinto" runat="server" Text="Nombre"></asp:Label>
-                          <asp:TextBox ID="txtNombrePersonaMantenimiento" AutoCompleteType="Disabled" runat="server" MaxLength="150" CssClass="form-control"></asp:TextBox>
-                      </div>
-
-                      <div class="form-group col-md-4">
-                          <asp:Label ID="lbClaveMantenimiento" runat="server" Text="Clave"></asp:Label>
-                          <asp:TextBox ID="txtClaveMantenimiento" TextMode="Password" runat="server" MaxLength="20" CssClass="form-control"></asp:TextBox>
-                      </div>
-
-                      <div class="form-group col-md-4">
-                          <asp:Label ID="lbConfirmarClaveMantenimiento" runat="server" Text="Confirmar Clave"></asp:Label>
-                          <asp:TextBox ID="txtConfirmarClaveMantenimiento" runat="server" TextMode="Password" MaxLength="20" CssClass="form-control"></asp:TextBox>
-                      </div>
-
-                      <div class="form-group col-md-4">
-                          <asp:Label ID="lbEmailMantenimiento" runat="server" Text="Email"></asp:Label>
-                          <asp:TextBox ID="txtEmailMantenimiento" AutoCompleteType="Disabled" TextMode="Email" runat="server" MaxLength="100" CssClass="form-control"></asp:TextBox>
-                      </div>
-
-                      <div class="form-group col-md-4">
-                          <asp:Label ID="lbTipoPersonaMantenimiento" runat="server" Text="Tipo de Persona"></asp:Label>
-                         <asp:DropDownList ID="ddlSeleccionarTipoPersona" runat="server" ToolTip="Seleccionar el Tipo de Persona" CssClass="form-control"></asp:DropDownList>
-                      </div>
-                          <div class="form-group col-md-4">
-                          <asp:Label ID="lbClaveSeguridad" runat="server" Text="Clave de Seguridad"></asp:Label>
-                          <asp:TextBox ID="txtClaveSeguridadMantenimiento" runat="server" TextMode="Password" MaxLength="20" CssClass="form-control"></asp:TextBox>
-                      </div>
-                  </div>
-                  <div class="form-check-inline">
-                      <div class="form-group form-check">
-                          <asp:CheckBox ID="cbEstatusMantenimiento" runat="server" Text="Estatus" CssClass="form-check-input" />
-                      </div>
-                      
-                      <div class="form-group form-check">
-                          <asp:CheckBox ID="cbLlevaEmailMantenimiento"  runat="server" Text="¿Lleva Email?" CssClass="form-check-input" />
-                      </div>
-
-                      <div class="form-group form-check">
-                          <asp:CheckBox ID="cbCambiaClave" runat="server" Text="Cambia Clave" ToolTip="Permitirle al usuario cambiar su clave al momento de ingresar al sistema" CssClass="form-check-input" />
-                      </div>
-                      <div class="form-group form-check">
-                          <asp:CheckBox ID="cbPermisoImpresionmarbete" runat="server" Text="Impresión de Marbete" ToolTip="Asignarle permiso al usuario para que pueda imprimir marbetes" CssClass="form-check-input" />
-                      </div>
-                  </div>
-              </ContentTemplate>
-          </asp:UpdatePanel>
-          <!--BOTONES-->
-          <div align="center">
-               <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Guardar Registro" OnClick="btnGuardar_Click" />
-           <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Modificar Registro" OnClick="btnModificar_Click" />
-          </div>
-          <br />
-      </div>
-    </div>
-  </div>
-</div>
+   
 </asp:Content>

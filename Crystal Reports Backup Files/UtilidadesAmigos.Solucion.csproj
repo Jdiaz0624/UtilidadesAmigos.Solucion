@@ -126,6 +126,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Estilos\EstiloMenuPrincipal.css" />
     <Content Include="Estilos\EstilosPaginas.css" />
     <Content Include="Imagenes\01.jpg" />
     <Content Include="Imagenes\02.gif" />
@@ -150,6 +151,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MasterPage\PatallaPrincila.Master" />
+    <Content Include="libman.json" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-reboot.min.css.map" />
@@ -163,32 +165,40 @@
     <None Include="Properties\PublishProfiles\FolderProfile8.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile9.pubxml" />
     <None Include="Properties\PublishProfiles\Prueba.pubxml" />
-    <Content Include="Paginas\ComisionesIntermediarios.aspx" />
-    <Content Include="Paginas\ComisionesSupervisores.aspx" />
+    <Content Include="Paginas\Consulta\ConsultarDataAsegurado.aspx" />
     <Content Include="Paginas\Consulta\GenerarReporteFianzas.aspx" />
     <Content Include="Paginas\Consulta\ListadoRenovacion.aspx" />
     <Content Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx" />
     <Content Include="Paginas\Consulta\ValidarCoberturas.aspx" />
     <Content Include="Paginas\ConsumoWS.aspx" />
-    <Content Include="Paginas\DatosPoliza.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
-    <Content Include="Paginas\GenerarBakupBD.aspx" />
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
-    <Content Include="Paginas\GenerarMarbetes.aspx" />
-    <Content Include="Paginas\GenerarReporteAntiguedadSaldo.aspx" />
-    <Content Include="Paginas\GenerarReporteCobros.aspx" />
-    <Content Include="Paginas\GenerarSolicitudChequeComisionesIntermediarios.aspx" />
-    <Content Include="Paginas\IntermediariosSupervisores.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
     <Content Include="Paginas\LoginSistema.aspx" />
     <Content Include="Paginas\MantenimeintoPerfiles.aspx" />
     <Content Include="Paginas\MantenimientoClaveSeguridad.aspx" />
     <Content Include="Paginas\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx" />
+    <Content Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx" />
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
-    <Content Include="Paginas\ProduccionDiariaContabilidad.aspx" />
-    <Content Include="Paginas\ReporteProduccionIntermediarioSupervisor.aspx" />
+    <Content Include="Paginas\Procesos\DatosPoliza.aspx" />
+    <Content Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx" />
+    <Content Include="Paginas\Procesos\GenerarBakupBD.aspx" />
+    <Content Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx" />
+    <Content Include="Paginas\Procesos\Logo.jpg" />
+    <Content Include="Paginas\Procesos\VolantesDePagos.aspx" />
     <Content Include="Paginas\ReporteReclamos.aspx" />
+    <Content Include="Paginas\Reportes\ComisionesIntermediarios.aspx" />
+    <Content Include="Paginas\Reportes\ComisionesSupervisores.aspx" />
+    <Content Include="Paginas\Reportes\GenerarMarbetes.aspx" />
+    <Content Include="Paginas\Reportes\GenerarReporteAntiguedadSaldo.aspx" />
+    <Content Include="Paginas\Reportes\GenerarReporteCobros.aspx" />
+    <Content Include="Paginas\Reportes\ImpresionCheques.aspx" />
+    <Content Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx" />
+    <Content Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx" />
+    <Content Include="Paginas\Seguridad\ConfiguracionCorreosEmisorProcesos.aspx" />
+    <Content Include="Paginas\Seguridad\CredencialesBD.aspx" />
+    <Content Include="Paginas\Seguridad\MantenimientoUsuarios.aspx" />
     <Content Include="Paginas\SistemaTicket.aspx" />
     <Content Include="Paginas\SolicitudEmisionPoliza.aspx" />
     <Content Include="Paginas\SolicitudSeguroLey.aspx" />
@@ -206,6 +216,15 @@
     <Content Include="scripts\inputmask\inputmask.min.js" />
     <Content Include="scripts\inputmask\jquery.inputmask.js" />
     <Content Include="scripts\inputmask\jquery.inputmask.min.js" />
+    <Content Include="scripts\bootstrap.min.js.map" />
+    <Content Include="scripts\bootstrap.js.map" />
+    <Content Include="scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="scripts\bootstrap.bundle.js.map" />
+    <None Include="scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="scripts\jquery-3.6.0.js" />
+    <Content Include="scripts\jquery-3.6.0.min.js" />
+    <Content Include="scripts\jquery-3.6.0.slim.js" />
+    <Content Include="scripts\jquery-3.6.0.slim.min.js" />
     <Content Include="scripts\jquery.maskedinput.js" />
     <Content Include="scripts\jquery.maskedinput.min.js" />
     <Content Include="scripts\MensajesPagina.js" />
@@ -295,10 +314,8 @@
     <Content Include="scripts\esm\popper.js.map" />
     <Content Include="scripts\esm\popper-utils.min.js.map" />
     <Content Include="scripts\esm\popper-utils.js.map" />
-    <Content Include="scripts\bootstrap.min.js.map" />
-    <Content Include="scripts\bootstrap.js.map" />
-    <Content Include="scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="scripts\bootstrap.bundle.js.map" />
+    <Content Include="scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="scripts\jquery-3.6.0.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -320,7 +337,6 @@
     <Content Include="Paginas\Login.aspx" />
     <Content Include="Paginas\Departamentos.aspx" />
     <Content Include="Paginas\Oficinas.aspx" />
-    <Content Include="Paginas\MantenimientoUsuarios.aspx" />
     <Content Include="Paginas\MenuPrincipal.aspx" />
     <Content Include="Paginas\PermisoUsuarios.aspx" />
     <Content Include="Paginas\ProcesarDataGruas.aspx" />
@@ -371,20 +387,6 @@
     <Compile Include="Paginas\AsignacionTarjetas.aspx.designer.cs">
       <DependentUpon>AsignacionTarjetas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\ComisionesIntermediarios.aspx.cs">
-      <DependentUpon>ComisionesIntermediarios.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\ComisionesIntermediarios.aspx.designer.cs">
-      <DependentUpon>ComisionesIntermediarios.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\ComisionesSupervisores.aspx.cs">
-      <DependentUpon>ComisionesSupervisores.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\ComisionesSupervisores.aspx.designer.cs">
-      <DependentUpon>ComisionesSupervisores.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paginas\ComprensivoIncendioRoboPoPup.aspx.cs">
       <DependentUpon>ComprensivoIncendioRoboPoPup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -392,8 +394,16 @@
     <Compile Include="Paginas\ComprensivoIncendioRoboPoPup.aspx.designer.cs">
       <DependentUpon>ComprensivoIncendioRoboPoPup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Consulta\ConsultarDataAsegurado.aspx.cs">
+      <DependentUpon>ConsultarDataAsegurado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Consulta\ConsultarDataAsegurado.aspx.designer.cs">
+      <DependentUpon>ConsultarDataAsegurado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Consulta\GenerarReporteFianzas.aspx.cs">
       <DependentUpon>GenerarReporteFianzas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Consulta\GenerarReporteFianzas.aspx.designer.cs">
       <DependentUpon>GenerarReporteFianzas.aspx</DependentUpon>
@@ -433,13 +443,6 @@
     <Compile Include="Paginas\CotizadorAmigos.aspx.designer.cs">
       <DependentUpon>CotizadorAmigos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\DatosPoliza.aspx.cs">
-      <DependentUpon>DatosPoliza.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\DatosPoliza.aspx.designer.cs">
-      <DependentUpon>DatosPoliza.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paginas\EliminarBalancePoliza.aspx.cs">
       <DependentUpon>EliminarBalancePoliza.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -453,13 +456,6 @@
     </Compile>
     <Compile Include="Paginas\Empleados.aspx.designer.cs">
       <DependentUpon>Empleados.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\GenerarBakupBD.aspx.cs">
-      <DependentUpon>GenerarBakupBD.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\GenerarBakupBD.aspx.designer.cs">
-      <DependentUpon>GenerarBakupBD.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\GenerarCartera.aspx.cs">
       <DependentUpon>GenerarCartera.aspx</DependentUpon>
@@ -494,41 +490,6 @@
     </Compile>
     <Compile Include="Paginas\GenerarFacturasPDF.aspx.designer.cs">
       <DependentUpon>GenerarFacturasPDF.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\GenerarMarbetes.aspx.cs">
-      <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\GenerarMarbetes.aspx.designer.cs">
-      <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\GenerarReporteAntiguedadSaldo.aspx.cs">
-      <DependentUpon>GenerarReporteAntiguedadSaldo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\GenerarReporteAntiguedadSaldo.aspx.designer.cs">
-      <DependentUpon>GenerarReporteAntiguedadSaldo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\GenerarReporteCobros.aspx.cs">
-      <DependentUpon>GenerarReporteCobros.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\GenerarReporteCobros.aspx.designer.cs">
-      <DependentUpon>GenerarReporteCobros.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\GenerarSolicitudChequeComisionesIntermediarios.aspx.cs">
-      <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\GenerarSolicitudChequeComisionesIntermediarios.aspx.designer.cs">
-      <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\IntermediariosSupervisores.aspx.cs">
-      <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\IntermediariosSupervisores.aspx.designer.cs">
-      <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Inventario.aspx.cs">
       <DependentUpon>Inventario.aspx</DependentUpon>
@@ -586,19 +547,19 @@
     <Compile Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx.designer.cs">
       <DependentUpon>MantenimientoPorcientoComisionPorDefecto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx.cs">
+      <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx.designer.cs">
+      <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Oficinas.aspx.cs">
       <DependentUpon>Oficinas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Oficinas.aspx.designer.cs">
       <DependentUpon>Oficinas.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\MantenimientoUsuarios.aspx.cs">
-      <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\MantenimientoUsuarios.aspx.designer.cs">
-      <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\MenuPrincipal.aspx.cs">
       <DependentUpon>MenuPrincipal.aspx</DependentUpon>
@@ -635,19 +596,47 @@
     <Compile Include="Paginas\ProcesarDataPowerBi.aspx.designer.cs">
       <DependentUpon>ProcesarDataPowerBi.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Procesos\DatosPoliza.aspx.cs">
+      <DependentUpon>DatosPoliza.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\DatosPoliza.aspx.designer.cs">
+      <DependentUpon>DatosPoliza.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx.cs">
+      <DependentUpon>GenerarBackupBaseDatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx.designer.cs">
+      <DependentUpon>GenerarBackupBaseDatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\GenerarBakupBD.aspx.cs">
+      <DependentUpon>GenerarBakupBD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\GenerarBakupBD.aspx.designer.cs">
+      <DependentUpon>GenerarBakupBD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx.cs">
+      <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx.designer.cs">
+      <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\VolantesDePagos.aspx.cs">
+      <DependentUpon>VolantesDePagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\VolantesDePagos.aspx.designer.cs">
+      <DependentUpon>VolantesDePagos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\ProduccionDiaria.aspx.cs">
       <DependentUpon>ProduccionDiaria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\ProduccionDiaria.aspx.designer.cs">
       <DependentUpon>ProduccionDiaria.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\ProduccionDiariaContabilidad.aspx.cs">
-      <DependentUpon>ProduccionDiariaContabilidad.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\ProduccionDiariaContabilidad.aspx.designer.cs">
-      <DependentUpon>ProduccionDiariaContabilidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ProduccionPorUsuarios.aspx.cs">
       <DependentUpon>ProduccionPorUsuarios.aspx</DependentUpon>
@@ -663,13 +652,6 @@
     <Compile Include="Paginas\prueba.aspx.designer.cs">
       <DependentUpon>prueba.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\ReporteProduccionIntermediarioSupervisor.aspx.cs">
-      <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\ReporteProduccionIntermediarioSupervisor.aspx.designer.cs">
-      <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paginas\ReporteReclamos.aspx.cs">
       <DependentUpon>ReporteReclamos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -677,12 +659,91 @@
     <Compile Include="Paginas\ReporteReclamos.aspx.designer.cs">
       <DependentUpon>ReporteReclamos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Reportes\ComisionesIntermediarios.aspx.cs">
+      <DependentUpon>ComisionesIntermediarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ComisionesIntermediarios.aspx.designer.cs">
+      <DependentUpon>ComisionesIntermediarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ComisionesSupervisores.aspx.cs">
+      <DependentUpon>ComisionesSupervisores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ComisionesSupervisores.aspx.designer.cs">
+      <DependentUpon>ComisionesSupervisores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ExcelData.cs" />
+    <Compile Include="Paginas\Reportes\GenerarMarbetes.aspx.cs">
+      <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\GenerarMarbetes.aspx.designer.cs">
+      <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\GenerarReporteAntiguedadSaldo.aspx.cs">
+      <DependentUpon>GenerarReporteAntiguedadSaldo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\GenerarReporteAntiguedadSaldo.aspx.designer.cs">
+      <DependentUpon>GenerarReporteAntiguedadSaldo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\GenerarReporteCobros.aspx.cs">
+      <DependentUpon>GenerarReporteCobros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\GenerarReporteCobros.aspx.designer.cs">
+      <DependentUpon>GenerarReporteCobros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ImpresionCheques.aspx.cs">
+      <DependentUpon>ImpresionCheques.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ImpresionCheques.aspx.designer.cs">
+      <DependentUpon>ImpresionCheques.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\List.cs" />
+    <Compile Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx.cs">
+      <DependentUpon>ProduccionDiariaContabilidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx.designer.cs">
+      <DependentUpon>ProduccionDiariaContabilidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx.cs">
+      <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx.designer.cs">
+      <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\SacarDataCoberturas.aspx.cs">
       <DependentUpon>SacarDataCoberturas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\SacarDataCoberturas.aspx.designer.cs">
       <DependentUpon>SacarDataCoberturas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\ConfiguracionCorreosEmisorProcesos.aspx.cs">
+      <DependentUpon>ConfiguracionCorreosEmisorProcesos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\ConfiguracionCorreosEmisorProcesos.aspx.designer.cs">
+      <DependentUpon>ConfiguracionCorreosEmisorProcesos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\CredencialesBD.aspx.cs">
+      <DependentUpon>CredencialesBD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\CredencialesBD.aspx.designer.cs">
+      <DependentUpon>CredencialesBD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\MantenimientoUsuarios.aspx.cs">
+      <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\MantenimientoUsuarios.aspx.designer.cs">
+      <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ServiciosFijos.aspx.cs">
       <DependentUpon>ServiciosFijos.aspx</DependentUpon>
@@ -787,6 +848,9 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Imagenes\Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
