@@ -673,6 +673,7 @@
     <Compile Include="Paginas\Reportes\ComisionesSupervisores.aspx.designer.cs">
       <DependentUpon>ComisionesSupervisores.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Reportes\ExcelData.cs" />
     <Compile Include="Paginas\Reportes\GenerarMarbetes.aspx.cs">
       <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -701,6 +702,7 @@
     <Compile Include="Paginas\Reportes\ImpresionCheques.aspx.designer.cs">
       <DependentUpon>ImpresionCheques.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Reportes\List.cs" />
     <Compile Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx.cs">
       <DependentUpon>ProduccionDiariaContabilidad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
