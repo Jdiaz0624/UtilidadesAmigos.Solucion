@@ -162,6 +162,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             var Tables = Resultado.Tables.Cast<DataTable>();
             foreach (DataTable table in Tables)
             {
+                //var Nombre = table.Rows[
+                //var Poliza = table.Columns[1];
                 //dataGridView1.DataSource = table;
                 gbListadoExcel.DataSource = table;
                 gbListadoExcel.DataBind();
