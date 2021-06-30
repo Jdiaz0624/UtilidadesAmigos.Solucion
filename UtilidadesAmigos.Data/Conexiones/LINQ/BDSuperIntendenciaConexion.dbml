@@ -187,4 +187,37 @@
       <Column Name="NumeroIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_PROCESAR_DATA_RESULTADO_BUSQUEDA_PERSONA_SUPER_INTENDENCIA" Method="SP_PROCESAR_DATA_RESULTADO_BUSQUEDA_PERSONA_SUPER_INTENDENCIA">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="NumeroIdentificacion" Parameter="numeroIdentificacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Reclamacion" Parameter="reclamacion" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MontoAsegurado" Parameter="montoAsegurado" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Prima" Parameter="prima" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="InicioVigencia" Parameter="inicioVigencia" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FinVigencia" Parameter="finVigencia" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="TipoBusqueda" Parameter="tipoBusqueda" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="EncontradoComo" Parameter="encontradoComo" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Comentario" Parameter="comentario" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_DATA_RESULTADO_BUSQUEDA_PERSONA_SUPER_INTENDENCIAResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NumeroIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Reclamacion" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MontoAsegurado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Prima" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TipoBusqueda" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="EncontradoComo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

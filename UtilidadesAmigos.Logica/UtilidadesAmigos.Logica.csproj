@@ -348,6 +348,7 @@
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendenciaIntermediario.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscarPersonasDependientes.cs" />
     <Compile Include="Entidades\SuperIntendencia\EProcesarArchivoSuperIntendencia.cs" />
+    <Compile Include="Entidades\SuperIntendencia\EProcesarDataResultadoBusquedaPersonaSuperIntendencia.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
     <Compile Include="Logica\LogicaOpcionesAdministrador\LogicaOpcionesdministrador.cs" />
