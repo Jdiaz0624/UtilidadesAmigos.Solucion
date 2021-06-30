@@ -227,5 +227,52 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
             }
             return Procesar;
         }
+
+
+        //PROCESAR INFORMACION DE LA DATA CONSULTADA DE LA BUSQUEDA DE EL ARCHIVO DE EXCEL
+        public UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EProcesarDataResultadoBusquedaPersonaSuperIntendencia ProcesarResultadoBusquedaSuperIntendencia(UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EProcesarDataResultadoBusquedaPersonaSuperIntendencia Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EProcesarDataResultadoBusquedaPersonaSuperIntendencia Procesar = null;
+
+            var ResultadoBusquedaArchivo = ObjData.SP_PROCESAR_DATA_RESULTADO_BUSQUEDA_PERSONA_SUPER_INTENDENCIA(
+                Item.IdUsuario,
+                Item.Nombre,
+                Item.NumeroIdentificacion,
+                Item.Poliza,
+                Item.Reclamacion,
+                Item.Estatus,
+                Item.Ramo,
+                Item.MontoAsegurado,
+                Item.Prima,
+                Item.InicioVigencia,
+                Item.FinVigencia,
+                Item.TipoBusqueda,
+                Item.EncontradoComo,
+                Item.Comentario,
+                Accion);
+            if (ResultadoBusquedaArchivo != null) {
+                Procesar = (from n in ResultadoBusquedaArchivo
+                            select new UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EProcesarDataResultadoBusquedaPersonaSuperIntendencia
+                            {
+                                IdUsuario=n.IdUsuario,
+                                Nombre=n.Nombre,
+                                NumeroIdentificacion=n.NumeroIdentificacion,
+                                Poliza=n.Poliza,
+                                Reclamacion=n.Reclamacion,
+                                Estatus=n.Estatus,
+                                Ramo=n.Ramo,
+                                MontoAsegurado=n.MontoAsegurado,
+                                Prima=n.Prima,
+                                InicioVigencia=n.InicioVigencia,
+                                FinVigencia=n.FinVigencia,
+                                TipoBusqueda=n.TipoBusqueda,
+                                EncontradoComo=n.EncontradoComo,
+                                Comentario=n.Comentario
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
     }
 }
