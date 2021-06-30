@@ -203,5 +203,29 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
                            }).ToList();
             return Listado;
         }
+
+
+        //PROCESAR INFORMACION DE PERSONAS PARA LA SUPER INTENDENCIA
+        public UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EProcesarArchivoSuperIntendencia ProcesarArchivo(UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EProcesarArchivoSuperIntendencia Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EProcesarArchivoSuperIntendencia Procesar = null;
+
+            var ArchivoSuperIntenedencia = ObjData.SP_PROCESAR_INFORMACION_PERSONAS_ARCHIVO_SUPER_INTENDENCIA(
+                Item.IdUsuario,
+                Item.Nombre,
+                Item.NumeroIdentificacion,
+                Accion);
+            if (ArchivoSuperIntenedencia != null) {
+                Procesar = (from n in ArchivoSuperIntenedencia
+                            select new UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EProcesarArchivoSuperIntendencia
+                            {
+                                IdUsuario=n.IdUsuario,
+                                Nombre=n.Nombre,
+                                NumeroIdentificacion=n.NumeroIdentificacion
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
     }
 }

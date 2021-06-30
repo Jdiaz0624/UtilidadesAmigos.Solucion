@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDSuperIntendenciaConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -102,6 +102,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre, numeroRNC, cotizacion, secuencia, idAsegurado);
 			return ((ISingleResult<SP_BUSCA_REGISTROS_SUPER_INTENDENCIA_DEPENDIENTEResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_PERSONAS_ARCHIVO_SUPER_INTENDENCIA")]
+		public ISingleResult<SP_PROCESAR_INFORMACION_PERSONAS_ARCHIVO_SUPER_INTENDENCIAResult> SP_PROCESAR_INFORMACION_PERSONAS_ARCHIVO_SUPER_INTENDENCIA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroIdentificacion", DbType="VarChar(100)")] string numeroIdentificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, nombre, numeroIdentificacion, accion);
+			return ((ISingleResult<SP_PROCESAR_INFORMACION_PERSONAS_ARCHIVO_SUPER_INTENDENCIAResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2362,6 +2369,68 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._FinVigencia != value))
 				{
 					this._FinVigencia = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_INFORMACION_PERSONAS_ARCHIVO_SUPER_INTENDENCIAResult
+	{
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private string _Nombre;
+		
+		private string _NumeroIdentificacion;
+		
+		public SP_PROCESAR_INFORMACION_PERSONAS_ARCHIVO_SUPER_INTENDENCIAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroIdentificacion", DbType="VarChar(50)")]
+		public string NumeroIdentificacion
+		{
+			get
+			{
+				return this._NumeroIdentificacion;
+			}
+			set
+			{
+				if ((this._NumeroIdentificacion != value))
+				{
+					this._NumeroIdentificacion = value;
 				}
 			}
 		}
