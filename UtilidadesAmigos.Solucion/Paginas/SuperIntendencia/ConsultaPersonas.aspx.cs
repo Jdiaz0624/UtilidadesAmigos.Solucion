@@ -6,8 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.IO;
-using ExcelDataReader;
-
+using SpreadsheetLight;
 
 
 namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
@@ -152,24 +151,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 
         #endregion
 
-        public void LeerExcel(string RUta)
-        {
-          
-
-            var Stream = File.Open(RUta, FileMode.Open, FileAccess.Read);
-            var Reader = ExcelReaderFactory.CreateReader(Stream);
-            var Resultado = Reader.AsDataSet();
-            var Tables = Resultado.Tables.Cast<DataTable>();
-            foreach (DataTable table in Tables)
-            {
-                //var Nombre = table.Rows[
-                //var Poliza = table.Columns[1];
-                //dataGridView1.DataSource = table;
-                gbListadoExcel.DataSource = table;
-                gbListadoExcel.DataBind();
-            }
-        }
-
+        
         private void OcultarDetalle() {
             DivBloqueDetalleCliente.Visible = false;
             DivDetalleInformacionIntermediarioSeleccionado.Visible = false;
@@ -452,26 +434,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 FileUpload1.SaveAs(ruta_guardado);
                 string RutaArchivoSeleccionado = ruta_guardado;
 
-                LeerExcel(RutaArchivoSeleccionado);
-
-                //string Conexion = "Provider=Microsoft.ACE.OLEDB.4.0;Data Source=" + RutaArchivoSeleccionado + ";Extended Properties=Excel 8.0;";
-
-                //OleDbConnection Origen = default(OleDbConnection);
-                //Origen = new OleDbConnection(Conexion);
-
-                //OleDbCommand Seleccion = default(OleDbCommand);
-                //Seleccion = new OleDbCommand("Select * From[Data$]", Origen);
-
-                //OleDbDataAdapter Adaptar = new OleDbDataAdapter();
-                //Adaptar.SelectCommand = Seleccion;
-
-                //DataSet ds = new DataSet();
-
-                //Adaptar.Fill(ds);
-                //gbListadoExcel.DataSource = ds.Tables[0];
-                //Origen.Close();
-
-
+                SLDocument sl = new SLDocument(RutaArchivoSeleccionado);
+                int Row = 2;
+                while (!string.IsNullOrEmpty(sl.GetCellValueAsString(Row, 1))) {
+                    string Nombre = sl.GetCellValueAsString(Row, 1);
+                    string Cedula = sl.GetCellValueAsString(Row, 2);
+                    Row++;
+                
+                }
+              
             }
             else if (cbBusquedaPorLote.Checked == false) {
                 if (rbConsultaNormal.Checked)
