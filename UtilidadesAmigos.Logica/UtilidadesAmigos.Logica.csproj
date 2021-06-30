@@ -133,6 +133,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionSolicitudCuentas.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarMontosSolicitudCheques.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\SacarUltimoNumeroSolicitudGenerada.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\SuperIntendencia\ProcesarInformacionPersonasArchivoSuperIntenedencia.cs" />
     <Compile Include="Comunes\Reportes\ProcesarHistoricoImpresionMarbetes.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionChequesImprimir.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionComisionesSupervisores.cs" />

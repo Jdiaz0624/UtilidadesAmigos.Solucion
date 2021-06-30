@@ -151,7 +151,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 
         #endregion
 
-        
+
         private void OcultarDetalle() {
             DivBloqueDetalleCliente.Visible = false;
             DivDetalleInformacionIntermediarioSeleccionado.Visible = false;
@@ -159,6 +159,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             DivDetalleAsegurado.Visible = false;
             DivDetalleAseguradoGeneral.Visible = false;
             DivDetalleDependientes.Visible = false;              
+        }
+
+        private void ProcesarInformacionArchivo(string Nombre, string NumeroIdentificacion, string Accion) {
+
+            decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.SuperIntendencia.ProcesarInformacionPersonasArchivoSuperIntenedencia Procesar = new Logica.Comunes.ProcesarMantenimientos.SuperIntendencia.ProcesarInformacionPersonasArchivoSuperIntenedencia(
+                IdUsuario, Nombre, NumeroIdentificacion, Accion);
+            Procesar.ProcesarInformacion();
         }
 
         private void MostrarListadoClientes(int ReportePreciso)
@@ -422,6 +431,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
             if (cbBusquedaPorLote.Checked == true) {
+                ProcesarInformacionArchivo("", "", "DELETE");
                 //BUSCAMOS Y LEEMOS LA RUTA DEL ARCHIVO SELECCIONADO
                 string ruta_carpeta = HttpContext.Current.Server.MapPath("~/Temporal");
 
@@ -439,6 +449,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 while (!string.IsNullOrEmpty(sl.GetCellValueAsString(Row, 1))) {
                     string Nombre = sl.GetCellValueAsString(Row, 1);
                     string Cedula = sl.GetCellValueAsString(Row, 2);
+                    ProcesarInformacionArchivo(Nombre, Cedula, "INSERT");
                     Row++;
                 
                 }
