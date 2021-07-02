@@ -235,7 +235,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                                 (decimal)nNombre.Prima,
                                 (DateTime)nNombre.FechaInicioVigencia,
                                 (DateTime)nNombre.FechaFinVigencia,
-                                "Por Nombre",
+                                "Por Cedula/RNC",
                                 "Cliente",
                                 "",
                                 "INSERT");
@@ -633,11 +633,52 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                     string Nombre = sl.GetCellValueAsString(Row, 1);
                     string Cedula = sl.GetCellValueAsString(Row, 2);
                     ProcesarInformacionArchivo(Nombre, Cedula, "INSERT");
-                    //BuscarInformacionClientesLote(2, "", Cedula);
+                    
                     Row++;
                 
                 }
-                
+                decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+                var BuscaInformacionRegistrada = ObjDataSuperIntendencia.Value.BuscarInformacionRegistrada(
+                    IdUsuario, null, null);
+                string NombreRegistrado = "";
+                string NumeroIdentificacionRegistrado = "";
+                foreach (var n in BuscaInformacionRegistrada) {
+                    NombreRegistrado = n.Nombre;
+                    NumeroIdentificacionRegistrado = n.NumeroIdentificacion;
+
+                    //CLIENTES
+                    BuscarInformacionClientesLote(1, NombreRegistrado, "");
+                    BuscarInformacionClientesLote(2, "", NumeroIdentificacionRegistrado);
+
+                    //INTERMEDIARIOS
+                    BuscarInformacionIntermediarioLote(1, NombreRegistrado, "");
+                    BuscarInformacionIntermediarioLote(2, "", NumeroIdentificacionRegistrado);
+
+                    //PROVEEDOR
+                    BuscarInformacionProveedorLote(1, NombreRegistrado, "");
+                    BuscarInformacionProveedorLote(2, "", NumeroIdentificacionRegistrado);
+
+                    //ASEGURADO
+                    BuscarInformacionAseguradoLote(1, NombreRegistrado, "");
+                    BuscarInformacionAseguradoLote(2, "", NumeroIdentificacionRegistrado);
+
+                    //ASEGURADO BAJO POLIZA
+                    BuscarInformacionAseguradoBajoPolizaLote(1, NombreRegistrado, "");
+                    BuscarInformacionAseguradoBajoPolizaLote(2, "", NumeroIdentificacionRegistrado);
+
+                    //DEPENDIENTES
+                    BuscarInformacionDependienteLote(1, NombreRegistrado, "");
+                    BuscarInformacionDependienteLote(2, "", NumeroIdentificacionRegistrado);
+
+                    //RECLAMACION
+                    BuscarInformacionReclamoLote(1, NombreRegistrado, "");
+                    BuscarInformacionReclamoLote(2, "", NumeroIdentificacionRegistrado);
+
+                    //DOCUMENTOS AMIGOS
+                    BuscarInformacionDocumentosAmigosLote(1, NombreRegistrado, "");
+                    BuscarInformacionDocumentosAmigosLote(2, "", NumeroIdentificacionRegistrado);
+                }
+
 
 
             }

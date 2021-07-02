@@ -342,6 +342,7 @@
     <Compile Include="Entidades\Reportes\ESacarPorcientoComisionesSupervisores.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
+    <Compile Include="Entidades\SuperIntendencia\EBuscaInformacionPersonasRegistradasArchivo.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaAseurados.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaProveedor.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendencia.cs" />

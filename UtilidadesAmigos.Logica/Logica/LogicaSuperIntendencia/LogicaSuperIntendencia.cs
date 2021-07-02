@@ -274,5 +274,20 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
             }
             return Procesar;
         }
+
+
+        //BUSCAR INFORMACION REGISTRADA ACHIVO EXCEL
+        public List<UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EBuscaInformacionPersonasRegistradasArchivo> BuscarInformacionRegistrada(decimal? IdUsuario = null, string Nombre = null, string NumeroIdentificacion = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_PERSONAS_REGISTRADAS_ARCHIVO(IdUsuario, Nombre, NumeroIdentificacion)
+                           select new UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EBuscaInformacionPersonasRegistradasArchivo
+                           {
+                               IdUsuario=n.IdUsuario,
+                               Nombre=n.Nombre,
+                               NumeroIdentificacion=n.NumeroIdentificacion
+                           }).ToList();
+            return Listado;
+        }
     }
 }

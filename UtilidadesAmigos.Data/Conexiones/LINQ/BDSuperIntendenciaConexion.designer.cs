@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDSuperIntendenciaConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString1, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -116,6 +116,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, nombre, numeroIdentificacion, poliza, reclamacion, estatus, ramo, montoAsegurado, prima, inicioVigencia, finVigencia, tipoBusqueda, encontradoComo, comentario, accion);
 			return ((ISingleResult<SP_PROCESAR_DATA_RESULTADO_BUSQUEDA_PERSONA_SUPER_INTENDENCIAResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_INFORMACION_PERSONAS_REGISTRADAS_ARCHIVO")]
+		public ISingleResult<SP_BUSCA_INFORMACION_PERSONAS_REGISTRADAS_ARCHIVOResult> SP_BUSCA_INFORMACION_PERSONAS_REGISTRADAS_ARCHIVO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUSuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUSuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroIdentificacion", DbType="VarChar(30)")] string numeroIdentificacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUSuario, nombre, numeroIdentificacion);
+			return ((ISingleResult<SP_BUSCA_INFORMACION_PERSONAS_REGISTRADAS_ARCHIVOResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2698,6 +2705,68 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Comentario != value))
 				{
 					this._Comentario = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_INFORMACION_PERSONAS_REGISTRADAS_ARCHIVOResult
+	{
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private string _Nombre;
+		
+		private string _NumeroIdentificacion;
+		
+		public SP_BUSCA_INFORMACION_PERSONAS_REGISTRADAS_ARCHIVOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroIdentificacion", DbType="VarChar(50)")]
+		public string NumeroIdentificacion
+		{
+			get
+			{
+				return this._NumeroIdentificacion;
+			}
+			set
+			{
+				if ((this._NumeroIdentificacion != value))
+				{
+					this._NumeroIdentificacion = value;
 				}
 			}
 		}
