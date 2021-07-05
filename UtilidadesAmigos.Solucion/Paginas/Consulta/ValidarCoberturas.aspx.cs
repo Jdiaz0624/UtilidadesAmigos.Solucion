@@ -31,7 +31,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         CasaConductor=17,
         TuAsistenciaPremium=32,
         AeroAmbulancia=35,
-        TuAsistenciaSuperior=37
+        TuAsistenciaSuperior=37,
+        TuAsistenciaBasica=38
         }
 
 
@@ -728,6 +729,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 case (int)CodigosPlanCoberturas.TuAsistenciaSuperior:
                     //EXPORTAR LA DATA DE GRUPO NOBE SUERIOR
                     ExportarConsultaExcel(Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue), (int)CodigosPlanCoberturas.TuAsistenciaSuperior);
+                    break;
+
+                case (int)CodigosPlanCoberturas.TuAsistenciaBasica:
+                    //EXPORTAR LA DATA DE GRUPO NOBE SUPERIOR
+                    ExportarConsultaExcel(Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue), (int)CodigosPlanCoberturas.TuAsistenciaBasica);
                     break;
             }
 
