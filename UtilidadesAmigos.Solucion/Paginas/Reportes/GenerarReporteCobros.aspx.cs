@@ -1462,6 +1462,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
             ConsultarInformacionPantalla();
         }
 
+        protected void rbAgrupadoPorDia_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
         protected void rptPaging_ItemDataBound(object sender, DataListItemEventArgs e)
         {
             var lnkPage = (LinkButton)e.Item.FindControl("lbPaging");

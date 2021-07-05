@@ -79,6 +79,7 @@
                 <asp:RadioButton ID="rbAgruparPorOficina" runat="server" Text="Oficina" ToolTip="Generar Reporte Agrupado Por Oficina" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparPorOficina_CheckedChanged" />
                 <asp:RadioButton ID="rbAgrupaRamo" runat="server" Text="Ramo" ToolTip="Generar Reporte Agrupado Por Ramo" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgrupaRamo_CheckedChanged" />
                 <asp:RadioButton ID="rbAgruparUsuario" runat="server" Text="Usuario" ToolTip="Generar Reporte Agrupado Por Usuario" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparUsuario_CheckedChanged" />
+                <asp:RadioButton  ID="rbAgrupadoPorDia" runat="server" Text="Por Dia" ToolTip="Generar Reporte Agrupado Por Dia" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgrupadoPorDia_CheckedChanged" />
             </div>
         </div><br />
         <asp:Label ID="lbTipoReporte" runat="server" Text="Tipo de Reporte a Generar" CssClass="Letranegrita"></asp:Label><br />
