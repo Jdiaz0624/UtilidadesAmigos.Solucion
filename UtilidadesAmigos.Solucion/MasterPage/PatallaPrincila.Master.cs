@@ -560,5 +560,17 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkSobreComision_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Reportes/ReporteSobreComision.aspx");
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }

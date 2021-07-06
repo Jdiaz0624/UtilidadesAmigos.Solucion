@@ -1067,5 +1067,23 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Listado;
         }
         #endregion
+
+
+        #region REPORTE DE SOBRE COMISIONES
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaBeneficiariosSobreComisiones> BuscaBeneficiariosSobreComisiones() {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCAR_BENEFICIARIOS_SOBRE_COMISION()
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaBeneficiariosSobreComisiones
+                           {
+                               IdBeneficiarioSobreComision=n.IdBeneficiarioSobreComision,
+                               CodigoBeneficiario=n.CodigoBeneficiario,
+                               NombreVendedor=n.NombreVendedor,
+                               Ingreso=n.Ingreso,
+                               Estatus=n.Estatus
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }

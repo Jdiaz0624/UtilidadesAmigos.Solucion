@@ -386,6 +386,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
 			return ((ISingleResult<SP_GENERAR_INFORMACION_COMISIONES_SUPERVISORES_DETALLEResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_BENEFICIARIOS_SOBRE_COMISION")]
+		public ISingleResult<SP_BUSCAR_BENEFICIARIOS_SOBRE_COMISIONResult> SP_BUSCAR_BENEFICIARIOS_SOBRE_COMISION()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_BUSCAR_BENEFICIARIOS_SOBRE_COMISIONResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDOResult
@@ -9163,6 +9170,104 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadRegistros != value))
 				{
 					this._CantidadRegistros = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCAR_BENEFICIARIOS_SOBRE_COMISIONResult
+	{
+		
+		private decimal _IdBeneficiarioSobreComision;
+		
+		private System.Nullable<decimal> _CodigoBeneficiario;
+		
+		private string _NombreVendedor;
+		
+		private string _Ingreso;
+		
+		private string _Estatus;
+		
+		public SP_BUSCAR_BENEFICIARIOS_SOBRE_COMISIONResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBeneficiarioSobreComision", DbType="Decimal(20,0) NOT NULL")]
+		public decimal IdBeneficiarioSobreComision
+		{
+			get
+			{
+				return this._IdBeneficiarioSobreComision;
+			}
+			set
+			{
+				if ((this._IdBeneficiarioSobreComision != value))
+				{
+					this._IdBeneficiarioSobreComision = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoBeneficiario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> CodigoBeneficiario
+		{
+			get
+			{
+				return this._CodigoBeneficiario;
+			}
+			set
+			{
+				if ((this._CodigoBeneficiario != value))
+				{
+					this._CodigoBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreVendedor", DbType="VarChar(200)")]
+		public string NombreVendedor
+		{
+			get
+			{
+				return this._NombreVendedor;
+			}
+			set
+			{
+				if ((this._NombreVendedor != value))
+				{
+					this._NombreVendedor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ingreso", DbType="NVarChar(4000)")]
+		public string Ingreso
+		{
+			get
+			{
+				return this._Ingreso;
+			}
+			set
+			{
+				if ((this._Ingreso != value))
+				{
+					this._Ingreso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		public string Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
 				}
 			}
 		}

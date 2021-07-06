@@ -215,6 +215,7 @@
     <Content Include="Paginas\Reportes\ImpresionCheques.aspx" />
     <Content Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx" />
     <Content Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx" />
+    <Content Include="Paginas\Reportes\ReporteSobreComision.aspx" />
     <Content Include="Paginas\Seguridad\ConfiguracionCorreosEmisorProcesos.aspx" />
     <Content Include="Paginas\Seguridad\CredencialesBD.aspx" />
     <Content Include="Paginas\Seguridad\MantenimientoUsuarios.aspx" />
@@ -735,6 +736,13 @@
     </Compile>
     <Compile Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx.designer.cs">
       <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteSobreComision.aspx.cs">
+      <DependentUpon>ReporteSobreComision.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteSobreComision.aspx.designer.cs">
+      <DependentUpon>ReporteSobreComision.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\SacarDataCoberturas.aspx.cs">
       <DependentUpon>SacarDataCoberturas.aspx</DependentUpon>

@@ -836,4 +836,13 @@
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCAR_BENEFICIARIOS_SOBRE_COMISION" Method="SP_BUSCAR_BENEFICIARIOS_SOBRE_COMISION">
+    <ElementType Name="SP_BUSCAR_BENEFICIARIOS_SOBRE_COMISIONResult">
+      <Column Name="IdBeneficiarioSobreComision" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoBeneficiario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NombreVendedor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Ingreso" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>
