@@ -1070,6 +1070,10 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
 
 
         #region REPORTE DE SOBRE COMISIONES
+        /// <summary>
+        /// Este metodo es para sacar o mostrar los beneficiarios a los cuales se les genera sobre comisión
+        /// </summary>
+        /// <returns></returns>
         public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaBeneficiariosSobreComisiones> BuscaBeneficiariosSobreComisiones() {
             ObjData.CommandTimeout = 999999999;
 
@@ -1079,10 +1083,92 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                IdBeneficiarioSobreComision=n.IdBeneficiarioSobreComision,
                                CodigoBeneficiario=n.CodigoBeneficiario,
                                NombreVendedor=n.NombreVendedor,
+                               PorcientoComision=n.PorcientoComision,
+                               Comision=n.Comision,
                                Ingreso=n.Ingreso,
                                Estatus=n.Estatus
                            }).ToList();
             return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo es para procesar la data cobrada de los supervisores bajo el codigo del beneficiario
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDataCobrado ProcesarDataCobradoSobreComision(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDataCobrado Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDataCobrado Procesar = null;
+
+            var InformacionDataCobrada = ObjData.SP_PROCESAR_INFORMACION_DATA_COBRADO_SOBRE_COMISION(
+                Item.CodigoBeneficiario,
+                Item.PorcientoComisionBeneficiario,
+                Item.IdUsuarioProcesa,
+                Item.FechaValidadoDesde,
+                Item.FechaValidadoHasta,
+                Item.Poliza,
+                Item.NumeroRecibo,
+                Item.Concepto,
+                Item.NumeroReciboFormateado,
+                Item.TipoPago,
+                Item.CodigoCliente,
+                Item.NombreCliente,
+                Item.CodigoIntermediario,
+                Item.NombreIntermediario,
+                Item.CodigoSupervisor,
+                Item.NombreSupervisor,
+                Item.CodigoOficina,
+                Item.NombreOficina,
+                Item.CodigoRamo,
+                Item.NombreRamo,
+                Item.CodigoMoneda,
+                Item.NombreMoneda,
+                Item.Bruto,
+                Item.Impuesto,
+                Item.Neto,
+                Item.Tasa,
+                Item.MontoPesos,
+                Accion);
+            if (InformacionDataCobrada != null) {
+
+                Procesar = (from n in InformacionDataCobrada
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDataCobrado
+                            {
+    
+                                CodigoBeneficiario = n.CodigoBeneficiario,
+                                PorcientoComisionBeneficiario = n.PorcientoComisionBeneficiario,
+                                IdUsuarioProcesa = n.IdUsuarioProcesa,
+                                FechaValidadoDesde = n.FechaValidadoDesde,
+                                FechaValidadoHasta = n.FechaValidadoHasta,
+                                Poliza = n.Poliza,
+                                NumeroRecibo = n.NumeroRecibo,
+                                Concepto = n.Concepto,
+                                NumeroReciboFormateado = n.NumeroReciboFormateado,
+                                TipoPago = n.TipoPago,
+                                CodigoCliente = n.CodigoCliente,
+                                NombreCliente = n.NombreCliente,
+                                CodigoIntermediario = n.CodigoIntermediario,
+                                NombreIntermediario = n.NombreIntermediario,
+                                CodigoSupervisor = n.CodigoSupervisor,
+                                NombreSupervisor = n.NombreSupervisor,
+                                CodigoOficina = n.CodigoOficina,
+                                NombreOficina = n.NombreOficina,
+                                CodigoRamo = n.CodigoRamo,
+                                NombreRamo = n.NombreRamo,
+                                CodigoMoneda = n.CodigoMoneda,
+                                NombreMoneda = n.NombreMoneda,
+                                Bruto = n.Bruto,
+                                Impuesto = n.Impuesto,
+                                Neto = n.Neto,
+                                Tasa = n.Tasa,
+                                MontoPesos = n.MontoPesos
+
+                            }).FirstOrDefault();
+            }
+            return Procesar;
         }
         #endregion
     }

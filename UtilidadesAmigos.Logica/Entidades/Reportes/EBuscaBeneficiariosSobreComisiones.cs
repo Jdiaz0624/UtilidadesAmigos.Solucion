@@ -14,6 +14,10 @@ namespace UtilidadesAmigos.Logica.Entidades.Reportes
 
 		public string NombreVendedor { get; set; }
 
+		public System.Nullable<decimal> PorcientoComision { get; set; }
+
+		public string Comision { get; set; }
+
 		public string Ingreso { get; set; }
 
 		public string Estatus { get; set; }

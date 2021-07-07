@@ -334,6 +334,7 @@
     <Compile Include="Entidades\Reportes\EProcesarChequesInformacionImprimir.cs" />
     <Compile Include="Entidades\Reportes\EProcesarDatosReporteIntermediairoInterno.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionComisionesSupervisores.cs" />
+    <Compile Include="Entidades\Reportes\EProcesarInformacionDataCobrado.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionDatosGraficos.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionDatosProduccion.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorUsuarioDetalle.cs" />

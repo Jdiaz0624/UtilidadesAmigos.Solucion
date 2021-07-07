@@ -48,10 +48,49 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                     ClientScript.RegisterStartupScript(GetType(), "FechaHastaVacio()", "FechaHastaVacio();", true);
                 }
             }
-            else { }
+            else {
+                var CodigoBeneficiarioSeleccionado = ((Button)sender).NamingContainer;
+                var hfCodigoseleccionado = ((HiddenField)CodigoBeneficiarioSeleccionado.FindControl("hfCodigoBeneficiario")).Value.ToString();
+
+                var PorcientoComisionBeneficiario = ((Button)sender).NamingContainer;
+                var hfPorcientoComisionBeneficiario = ((HiddenField)PorcientoComisionBeneficiario.FindControl("hfPorcientoComisionBeneficiario")).Value.ToString();
+
+                lbCodigobeneficiarioSeleccionado.Text = hfCodigoseleccionado;
+                lbPorcientoComisionBeneficiario.Text = hfPorcientoComisionBeneficiario;
+            }
         }
 
- 
+        protected void LinkPrimeraPaginaCobradoSupervisores_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkAnteriorCobradoSupervisores_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionCobradoSupervisores_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionCobradoSupervisores_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguienteCobradoSupervisores_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoCobradoSupervisores_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
 
         //protected void btnSeleccionarIntermediarioRepeater_Click(object sender, EventArgs e)
         //{
