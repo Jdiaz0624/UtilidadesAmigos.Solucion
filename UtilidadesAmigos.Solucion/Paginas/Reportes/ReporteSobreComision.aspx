@@ -43,8 +43,8 @@
     <div class="container-fluid">
 
       <div id="DivBloqueConsulta" runat="server">
-          <asp:Label ID="lbCodigobeneficiarioSeleccionado" Text="0" runat="server"></asp:Label>
-           <asp:Label ID="lbPorcientoComisionBeneficiario" Text="0" runat="server"></asp:Label>
+          <asp:Label ID="lbCodigobeneficiarioSeleccionado" Text="0" Visible="false" runat="server"></asp:Label>
+           <asp:Label ID="lbPorcientoComisionBeneficiario" Text="0" Visible="false" runat="server"></asp:Label>
 
             <div class="form-row">
             <div class="form-group col-md-6">
@@ -58,7 +58,7 @@
             </div>
         </div>
           <br />
-        <div align="center">
+        <div align="center" runat="server" id="DivCodigosPermitidos" visible="false">
             <asp:Button ID="btnCodigosPermitidos" runat="server" Text="Codigos" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnCodigosPermitidos_Click" />
         </div>
           <br />
@@ -126,13 +126,13 @@
                       <asp:Repeater ID="rpCobradoSupervisores" runat="server">
                           <ItemTemplate>
                               <tr>
-                                  <td style="width:25%" align="left"> <%# Eval("#") %> </td>
-                                  <td style="width:10%" align="left"> <%# Eval("#") %> </td>
-                                  <td style="width:10%" align="left"> <%# string.Format("{0:n0}", Eval("#")) %> </td>
-                                  <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("#")) %> </td>
-                                  <td style="width:10%" align="left"> <%# string.Format("{0:n2}", Eval("#")) %> </td>
-                                  <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("#")) %> </td>
-                                  <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("#")) %> </td>
+                                  <td style="width:25%" align="left"> <%# Eval("NombreSupervisor") %> </td>
+                                  <td style="width:10%" align="left"> <%# Eval("NombreMoneda") %> </td>
+                                  <td style="width:10%" align="left"> <%# string.Format("{0:n0}", Eval("Cantidad")) %> </td>
+                                  <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("Bruto")) %> </td>
+                                  <td style="width:10%" align="left"> <%# string.Format("{0:n2}", Eval("Impuesto")) %> </td>
+                                  <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("Neto")) %> </td>
+                                  <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("MontoPesos")) %> </td>
                               </tr>
                           </ItemTemplate>
                       </asp:Repeater>
@@ -165,6 +165,10 @@
                 </tr>
             </table>
         </div>
+        </div>
+          <br />
+          <div align="center">
+            <asp:Button ID="btnGenerarReporte" runat="server" Text="Reporte" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnGenerarReporte_Click" />
         </div>
           <br />
 

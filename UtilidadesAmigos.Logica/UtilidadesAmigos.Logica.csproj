@@ -138,6 +138,7 @@
     <Compile Include="Comunes\Reportes\ProcesarHistoricoImpresionMarbetes.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionChequesImprimir.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionComisionesSupervisores.cs" />
+    <Compile Include="Comunes\Reportes\ProcesarInformacionDataCobrosSobreComision.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionDatosProduccionReporte.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionDatosReporteIntermediarioInterno.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionProduccuinPorUsuarioDetalle.cs" />
@@ -329,6 +330,7 @@
     <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoPorIntermediario.cs" />
     <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoRamo.cs" />
     <Compile Include="Entidades\Reportes\EBuscarInformacionCheque.cs" />
+    <Compile Include="Entidades\Reportes\ECodigosPermitidosSobreComision.cs" />
     <Compile Include="Entidades\Reportes\EDatosProduccionReporte.cs" />
     <Compile Include="Entidades\Reportes\EGenerarInformacionSupervisoresDetalle.cs" />
     <Compile Include="Entidades\Reportes\EProcesarChequesInformacionImprimir.cs" />
@@ -340,6 +342,7 @@
     <Compile Include="Entidades\Reportes\EProduccionPorUsuarioDetalle.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorusuarioResumido.cs" />
     <Compile Include="Entidades\Reportes\EReporteProduccionOrigen.cs" />
+    <Compile Include="Entidades\Reportes\EReporteSobreComision.cs" />
     <Compile Include="Entidades\Reportes\ESacarConceptoMediantePAgo.cs" />
     <Compile Include="Entidades\Reportes\ESacarPorcientoComisionesSupervisores.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />

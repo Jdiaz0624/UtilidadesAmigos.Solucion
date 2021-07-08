@@ -1170,6 +1170,34 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             }
             return Procesar;
         }
+
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EReporteSobreComision> ReporteSobreComision(decimal? CodigoBeneficiario = null, decimal? IdUsuario = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_REPORTE_SOBRE_COMISION(CodigoBeneficiario, IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EReporteSobreComision
+                           {
+                               NombreSupervisor=n.NombreSupervisor,
+                               NombreMoneda=n.NombreMoneda,
+                               CodigoBeneficiario=n.CodigoBeneficiario,
+                               Beneficiario=n.Beneficiario,
+                               PorcientoComisionBeneficiario=n.PorcientoComisionBeneficiario,
+                               IdUsuarioProcesa=n.IdUsuarioProcesa,
+                               GeneradoPor=n.GeneradoPor,
+                               Cantidad=n.Cantidad,
+                               Bruto=n.Bruto,
+                               Impuesto=n.Impuesto,
+                               Neto=n.Neto,
+                               MontoPesos=n.MontoPesos,
+                               ComisionPagar=n.ComisionPagar,
+                               TotalCobradoNeto=n.TotalCobradoNeto,
+                               TotalPagar=n.TotalPagar,
+                               FechaValidadoDesde=n.FechaValidadoDesde,
+                               FechaValidadoHasta=n.FechaValidadoHasta
+                           }).ToList();
+            return Listado;
+        }
         #endregion
     }
 }
