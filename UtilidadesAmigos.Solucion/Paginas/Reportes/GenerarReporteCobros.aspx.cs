@@ -1181,6 +1181,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 rbReporteDetallado.Checked = true;
                 rbTodosRecibos.Checked = true;
                 rbExportarPDF.Checked = true;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
                 OcultarGraficos();
                 CargarSucursales();
                 CargarOficinas();
@@ -1196,11 +1199,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 lbTipoReporte.Visible = true;
                 divTipoReporte.Visible = true;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
             }
             else
             {
                 lbTipoReporte.Visible = false;
                 divTipoReporte.Visible = false;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
             }
         }
 
@@ -1210,11 +1219,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 lbTipoReporte.Visible = false;
                 divTipoReporte.Visible = false;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
             }
             else
             {
                 lbTipoReporte.Visible = true;
                 divTipoReporte.Visible = true;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
             }
         }
 
@@ -1224,11 +1239,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 lbTipoReporte.Visible = false;
                 divTipoReporte.Visible = false;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
             }
             else
             {
                 lbTipoReporte.Visible = true;
                 divTipoReporte.Visible = true;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
             }
         }
 
@@ -1238,11 +1259,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 lbTipoReporte.Visible = false;
                 divTipoReporte.Visible = false;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
             }
             else
             {
                 lbTipoReporte.Visible = true;
                 divTipoReporte.Visible = true;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
             }
         }
 
@@ -1252,11 +1279,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 lbTipoReporte.Visible = false;
                 divTipoReporte.Visible = false;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
             }
             else
             {
                 lbTipoReporte.Visible = true;
                 divTipoReporte.Visible = true;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
             }
         }
 
@@ -1266,11 +1299,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 lbTipoReporte.Visible = false;
                 divTipoReporte.Visible = false;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
             }
             else
             {
                 lbTipoReporte.Visible = true;
                 divTipoReporte.Visible = true;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
             }
         }
 
@@ -1280,12 +1319,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 {
                 lbTipoReporte.Visible = false;
                 divTipoReporte.Visible = false;
-                }
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
+            }
             else
                 {
                 lbTipoReporte.Visible = true;
                 divTipoReporte.Visible = true;
-                }
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
+            }
             }
 
         protected void rbAgruparUsuario_CheckedChanged(object sender, EventArgs e)
@@ -1293,10 +1338,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (rbAgruparUsuario.Checked == true) {
                 lbTipoReporte.Visible = false;
                 divTipoReporte.Visible = false;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
             }
             else {
                 lbTipoReporte.Visible = true;
                 divTipoReporte.Visible = true;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
             }
         }
 
@@ -1464,7 +1515,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void rbAgrupadoPorDia_CheckedChanged(object sender, EventArgs e)
         {
+            if (rbAgrupadoPorDia.Checked == true) {
+                lbTipoReporte.Visible = false;
+                divTipoReporte.Visible = false;
 
+                lbTipoReportePorDia.Visible = true;
+                DivTipoReportePorDia.Visible = true;
+                rbReporteResumidoPorDia.Checked = true;
+            }
+            else if (rbAgrupadoPorDia.Checked == false) {
+
+                lbTipoReporte.Visible = false;
+                divTipoReporte.Visible = false;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
+            }
         }
 
         protected void rptPaging_ItemDataBound(object sender, DataListItemEventArgs e)

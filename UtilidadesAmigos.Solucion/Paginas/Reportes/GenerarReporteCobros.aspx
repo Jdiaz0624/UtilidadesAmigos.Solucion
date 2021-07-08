@@ -89,6 +89,16 @@
                 <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" ToolTip="Generar Reporte Resumido" CssClass="form-check-input Letranegrita" GroupName="TipoReporte"/>
             </div>
         </div>
+        <br />
+        <asp:Label ID="lbTipoReportePorDia" runat="server" Text="Tipo de Reporte Por Dia a Generar" CssClass="Letranegrita"></asp:Label><br />
+        <div id="DivTipoReportePorDia" runat="server" class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:RadioButton ID="rbReporteResumidoPorDia" runat="server" Text="Resumido" ToolTip="Generar Reporte Resumido Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
+                <asp:RadioButton ID="rbReporteDetalladoPorDia" runat="server" Text="Detallado" ToolTip="Generar Reporte Detallado Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
+                <asp:RadioButton ID="rbReportePorSupervisorPorDia" runat="server" Text="Por Supervisor" ToolTip="Generar Reporte Por Supervisor Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
+                <asp:RadioButton ID="rbReportePorIntermediarioPorDia" runat="server" Text="Por Intermediario" ToolTip="Generar Reporte Por Intermediario Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
+            </div>
+        </div>
         <hr />
         <asp:Label ID="lbTipoRecibos" runat="server" Text="Tipo de Recibos a Mostrar" CssClass="Letranegrita"></asp:Label><br />
         <div class="form-check-inline">

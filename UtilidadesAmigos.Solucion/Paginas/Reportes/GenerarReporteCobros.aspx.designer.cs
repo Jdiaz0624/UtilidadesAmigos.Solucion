@@ -141,6 +141,60 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.RadioButton rbReporteResumido;
 
         /// <summary>
+        /// lbTipoReportePorDia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTipoReportePorDia;
+
+        /// <summary>
+        /// DivTipoReportePorDia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivTipoReportePorDia;
+
+        /// <summary>
+        /// rbReporteResumidoPorDia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbReporteResumidoPorDia;
+
+        /// <summary>
+        /// rbReporteDetalladoPorDia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbReporteDetalladoPorDia;
+
+        /// <summary>
+        /// rbReportePorSupervisorPorDia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbReportePorSupervisorPorDia;
+
+        /// <summary>
+        /// rbReportePorIntermediarioPorDia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbReportePorIntermediarioPorDia;
+
+        /// <summary>
         /// lbTipoRecibos control.
         /// </summary>
         /// <remarks>
