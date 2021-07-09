@@ -1417,7 +1417,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 if (rbNoAgruparDatos.Checked == true)
                 {
-                  
+
 
                     if (rbReporteDetallado.Checked == true)
                     {
@@ -1425,33 +1425,49 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                         GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoNoAgrupadoDetalle.rpt"), "sa", "Pa$$W0rd", "Reporte de Cobros Detallado");
                     }
-                    else if (rbReporteResumido.Checked == true) {
+                    else if (rbReporteResumido.Checked == true)
+                    {
 
                         GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoResumen.rpt"), "sa", "Pa$$W0rd", "Reporte de Cobros no Agrupado Resumido");
 
 
                     }
                 }
-                else if (rbAgruparPorConcepto.Checked == true) {
+                else if (rbAgruparPorConcepto.Checked == true)
+                {
                     GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoConcepto.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado Por Concepto");
                 }
-                else if (rbAgruparTipoPago.Checked == true) {
+                else if (rbAgruparTipoPago.Checked == true)
+                {
                     GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoTipoPago.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado Por Tipo de Pago");
                 }
-                else if (rbAgruparIntermediario.Checked == true) {
+                else if (rbAgruparIntermediario.Checked == true)
+                {
                     GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoIntermediario.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado Por Intermediario");
                 }
-                else if (rbAgruparSupervisor.Checked == true) {
+                else if (rbAgruparSupervisor.Checked == true)
+                {
                     GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoSupervisor.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado Por Supervisor");
                 }
-                else if (rbAgruparPorOficina.Checked == true) {
+                else if (rbAgruparPorOficina.Checked == true)
+                {
                     GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoOficina.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado por Oficina");
                 }
-                else if (rbAgrupaRamo.Checked == true) {
+                else if (rbAgrupaRamo.Checked == true)
+                {
                     GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoPorRamo.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado Por Ramo");
                 }
-                else if (rbAgruparUsuario.Checked == true) {
+                else if (rbAgruparUsuario.Checked == true)
+                {
                     GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoPorUsuario.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado por Usuaio");
+                }
+                else if (rbAgrupadoPorDia.Checked == true) {
+                    if (rbReporteResumidoPorDia.Checked == true) { }
+                    else if (rbReporteDetalladoPorDia.Checked == true) {
+                        GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoPorDiaDetalle.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Por Dia Detallado");
+                    }
+                    else if (rbReportePorSupervisorPorDia.Checked == true) { }
+                    else if (rbReportePorIntermediarioPorDia.Checked == true) { }
                 }
             }
         }

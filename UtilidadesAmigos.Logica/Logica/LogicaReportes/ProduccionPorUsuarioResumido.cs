@@ -424,7 +424,6 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         }
 
         #endregion
-
         #region PROCESAR INFORMACION PARA LOS DATOS DEL REPORTE
         public UtilidadesAmigos.Logica.Entidades.Reportes.EDatosProduccionReporte ProcesarInformacionDatosReporte(UtilidadesAmigos.Logica.Entidades.Reportes.EDatosProduccionReporte Item, string Accion) {
             ObjData.CommandTimeout = 999999999;
@@ -516,7 +515,6 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Procesar;
         }
         #endregion
-
         #region PROCESAR INFORMACION DATOS DEL REPORTE DE INTERMEDIARIO INTERNO
         public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarDatosReporteIntermediairoInterno ProcesarInformacionDatosProduccionReporte(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarDatosReporteIntermediairoInterno Item, string Accion) {
             ObjData.CommandTimeout = 999999999;
@@ -568,7 +566,6 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Procesar;
         }
         #endregion
-
         #region GENERAR REPORTE DE PRODUCCION AGRUPADOS 
         /// <summary>
         /// Este metodo es para mostrar el listado de produccion agrupado por concepto.
@@ -747,7 +744,6 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Reporte;
         }
         #endregion
-
         #region REPORTE DE COBROS
         public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaDataCobradoDetalle> BuscarDataReporteCobrosDetalle(string Poliza = null, string Numero = null, string Anulado = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, string TipoPago = null, string CodigoCliente = null, string CodigoIntermediario = null, string CodigoSupervisor = null, int? CodigoOficina = null, int? CodigoRamo = null, string Usuario = null, int? CodigoMoneda = null, string Concepto = null, decimal? Tasa = null,decimal? IdUsuarioProcesa = null)
         {
@@ -789,8 +785,10 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                            }).ToList();
             return Listado;
         }
-        #endregion
 
+
+       
+        #endregion
         #region MOSTRAR EL LISTADO DE LOS CHEQUES
         public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscarInformacionCheque> GenerarInformacionCheque(string NumeroCheque = null, string Beneficiario = null, DateTime? FechaChqeueDesde = null, DateTime? FechaChequeHasta = null, decimal? NumeroChequeDesde = null, decimal? NumeroChequeHasta = null, decimal? RangoValorDesde = null, decimal? RangoValorHasta = null, int? Banco = null, string Anulado = null) {
             ObjData.CommandTimeout = 999999999;
@@ -892,8 +890,6 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Procesar;
         }
         #endregion
-
-
         #region COMISIONES DE SUPERVISORES
         /// <summary>
         /// Este metodo es para procesar la informacion correspondiente a los pagos de cada supervisor
@@ -1067,8 +1063,6 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Listado;
         }
         #endregion
-
-
         #region REPORTE DE SOBRE COMISIONES
         /// <summary>
         /// Este metodo es para sacar o mostrar los beneficiarios a los cuales se les genera sobre comisión

@@ -187,21 +187,21 @@
             <asp:Button ID="btnExportarRegistros" runat="server" Text="Exportar" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportarRegistros_Click" />
        
         <hr />
-        <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbCantidadRegistrosVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbCantidadRegistroscerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbCantidadRegistrosTitulo" Visible="false" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbCantidadRegistrosVariable" Visible="false" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbCantidadRegistroscerrar" Visible="false" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
 
-        <asp:Label ID="lbTotalCobradopesosTitulo" runat="server" Text="Cobrado en Pesos ( " CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbTotalCobradoPesosVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbTotalCobradoCerrarPesos" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbTotalCobradopesosTitulo" Visible="false" runat="server" Text="Cobrado en Pesos ( " CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbTotalCobradoPesosVariable" Visible="false" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbTotalCobradoCerrarPesos" Visible="false" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
 
-        <asp:Label ID="lbTotalCobradoDollarTitulo" runat="server" Text="Cobrado en Dollar ( " CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbTotalCobradoDollarVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbTotalCobradoCerrarDollar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbTotalCobradoDollarTitulo" Visible="false" runat="server" Text="Cobrado en Dollar ( " CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbTotalCobradoDollarVariable" Visible="false" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbTotalCobradoCerrarDollar" Visible="false" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
 
-        <asp:Label ID="lbPesosDollarConvertidoTitulo" runat="server" Text="RD$ ( " CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbPesosDollarConvertidoVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbPesosDollarConvertidoCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbPesosDollarConvertidoTitulo" Visible="false" runat="server" Text="RD$ ( " CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbPesosDollarConvertidoVariable" Visible="false" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbPesosDollarConvertidoCerrar" Visible="false" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
              </div>
         <br />
         <!--INICIO DEL REPEATER-->
