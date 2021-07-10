@@ -781,12 +781,94 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                CantidadRegistros=n.CantidadRegistros,
                                TotalCobradoPesos=n.TotalCobradoPesos,
                                TotalCobradoDolar=n.TotalCobradoDolar,
-                               UsuarioGenera=n.UsuarioGenera
+                               UsuarioGenera=n.UsuarioGenera,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta
+                               
                            }).ToList();
             return Listado;
         }
 
+        /// <summary>
+        /// Procesar Data de lo cobrado por dia
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDataCobradoPorDia ProcesarDataCobradoPorDia(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDataCobradoPorDia Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
 
+            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDataCobradoPorDia Procesar = null;
+
+            var DataCobradoPorDia = ObjData.SP_PROCESAR_INFORMACION_DATA_COBRADO_POR_DIA(
+                Item.IdUsuario,
+                Item.Poliza,
+                Item.Numero,
+                Item.Concepto,
+                Item.NumeroFormateado,
+                Item.Anulado,
+                Item.Fecha,
+                Item.FechaFormateada,
+                Item.TipoPago,
+                Item.CodigoCliente,
+                Item.Cliente,
+                Item.CodigoIntermediario,
+                Item.Intermediario,
+                Item.CodigoSupervisor,
+                Item.NombreSupervisor,
+                Item.CodigoOficina,
+                Item.Oficina,
+                Item.Usuario,
+                Item.CodigoRamo,
+                Item.NombreRamo,
+                Item.CodigoMoneda,
+                Item.NombreMoneda,
+                Item.Bruto,
+                Item.Impuesto,
+                Item.Neto,
+                Item.Tasa,
+                Item.MontoPesos,
+                Item.ValidadoDesde,
+                Item.ValidadoHasta,
+                Accion);
+            if (DataCobradoPorDia != null) {
+                Procesar = (from n in DataCobradoPorDia
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionDataCobradoPorDia
+                            {
+                                IdUsuario = n.IdUsuario,
+                                Poliza = n.Poliza,
+                                Numero = n.Numero,
+                                Concepto = n.Concepto,
+                                NumeroFormateado = n.NumeroFormateado,
+                                Anulado = n.Anulado,
+                                Fecha = n.Fecha,
+                                FechaFormateada = n.FechaFormateada,
+                                TipoPago = n.TipoPago,
+                                CodigoCliente = n.CodigoCliente,
+                                Cliente = n.Cliente,
+                                CodigoIntermediario = n.CodigoIntermediario,
+                                Intermediario = n.Intermediario,
+                                CodigoSupervisor = n.CodigoSupervisor,
+                                NombreSupervisor = n.NombreSupervisor,
+                                CodigoOficina = n.CodigoOficina,
+                                Oficina = n.Oficina,
+                                Usuario = n.Usuario,
+                                CodigoRamo = n.CodigoRamo,
+                                NombreRamo = n.NombreRamo,
+                                CodigoMoneda = n.CodigoMoneda,
+                                NombreMoneda = n.NombreMoneda,
+                                Bruto = n.Bruto,
+                                Impuesto = n.Impuesto,
+                                Neto = n.Neto,
+                                Tasa = n.Tasa,
+                                MontoPesos = n.MontoPesos,
+                                ValidadoDesde = n.ValidadoDesde,
+                                ValidadoHasta = n.ValidadoHasta
+
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
        
         #endregion
         #region MOSTRAR EL LISTADO DE LOS CHEQUES

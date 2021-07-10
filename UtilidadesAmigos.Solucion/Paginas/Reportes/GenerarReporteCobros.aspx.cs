@@ -1462,6 +1462,79 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoPorUsuario.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado por Usuaio");
                 }
                 else if (rbAgrupadoPorDia.Checked == true) {
+                    decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+
+                    UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarDataCobradaPorDia EliminarRegistrosCobradoPorDia = new Logica.Comunes.Reportes.ProcesarDataCobradaPorDia(
+                        IdUsuario, "", 0, "", "", "", DateTime.Now, "", "", "", "", 0, "", 0, "", 0, "", "", 0, "", 0, "", 0, 0, 0, 0, 0, "", "", "DELETE");
+                    EliminarRegistrosCobradoPorDia.ProcesarInformacion();
+
+                    string _Anulado = "";
+                    if (rbTodosRecibos.Checked == true) { _Anulado = null; }
+                    else if (rbRecibosActivos.Checked == true) { _Anulado = "N"; }
+                    else if (rbRecibosAnulados.Checked == true) { _Anulado = "S"; }
+
+
+                    string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisorConsulta.Text.Trim()) ? null : txtCodigoSupervisorConsulta.Text.Trim();
+                    string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
+                    int? _CodigoOficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
+                    int? _CodigoRamo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
+                    string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
+                   
+
+                    string _Poliza = string.IsNullOrEmpty(txtNumeroPolizaCOnsulta.Text.Trim()) ? null : txtNumeroPolizaCOnsulta.Text.Trim();
+                    string _NumeroRecibo = string.IsNullOrEmpty(txtNumeroRecibo.Text.Trim()) ? null : txtNumeroRecibo.Text.Trim();
+
+                    var SacarDataCobrado = ObjDataReporte.Value.BuscarDataReporteCobrosDetalle(
+                           _Poliza,
+                    _NumeroRecibo,
+                    _Anulado,
+                    Convert.ToDateTime(txtFechaDesdeConsulta.Text),
+                    Convert.ToDateTime(txtFechaHastaConsulta.Text),
+                    null, null,
+                    _CodigoIntermediario,
+                    _CodigoSupervisor,
+                    _CodigoOficina,
+                    _CodigoRamo,
+                    null, null,
+                    _Concepto,
+                    Convert.ToDecimal(txtTasaConsulta.Text),
+                    IdUsuario);
+                    foreach (var nCobrado in SacarDataCobrado) {
+
+                        UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarDataCobradaPorDia GuardarInformacion = new Logica.Comunes.Reportes.ProcesarDataCobradaPorDia(
+                            IdUsuario,
+                            nCobrado.Poliza,
+                            (decimal)nCobrado.Numero,
+                            nCobrado.Concepto,
+                            nCobrado.NumeroFormateado,
+                            nCobrado.Anulado,
+                            (DateTime)nCobrado.Fecha,
+                            nCobrado.FechaFormateada,
+                            nCobrado.TipoPago,
+                            nCobrado.CodigoCliente.ToString(),
+                            nCobrado.Cliente,
+                            (decimal)nCobrado.CodigoIntermediario,
+                            nCobrado.Intermediario,
+                            (decimal)nCobrado.CodSupervisor,
+                            nCobrado.NombreSupervisor,
+                            (decimal)nCobrado.CodigoOficina,
+                            nCobrado.Oficina,
+                            nCobrado.Usuario,
+                            (decimal)nCobrado.CodigoRamo,
+                            nCobrado.Ramo,
+                            (decimal)nCobrado.CodMoneda,
+                            nCobrado.Moneda,
+                            (decimal)nCobrado.Bruto,
+                            (decimal)nCobrado.Impuesto,
+                            (decimal)nCobrado.Neto,
+                            (decimal)nCobrado.Tasa,
+                            (decimal)nCobrado.MontoPesos,
+                            nCobrado.ValidadoDesde,
+                            nCobrado.ValidadoHasta,
+                            "INSERT");
+                        GuardarInformacion.ProcesarInformacion();
+                    }
+
                     if (rbReporteResumidoPorDia.Checked == true) { }
                     else if (rbReporteDetalladoPorDia.Checked == true) {
                         GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoPorDiaDetalle.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Por Dia Detallado");

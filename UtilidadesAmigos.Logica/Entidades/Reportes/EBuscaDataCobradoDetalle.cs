@@ -66,5 +66,9 @@ namespace UtilidadesAmigos.Logica.Entidades.Reportes
 
 		public System.Nullable<decimal> TotalCobradoDolar { get; set; }
 		public string UsuarioGenera { get; set; }
+
+		public string ValidadoDesde { get; set; }
+
+		public string ValidadoHasta { get; set; }
 	}
 }
