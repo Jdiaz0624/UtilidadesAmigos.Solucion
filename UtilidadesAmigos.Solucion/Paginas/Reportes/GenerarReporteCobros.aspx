@@ -184,8 +184,8 @@
         <div align="center">
 
             <asp:Button ID="btnConsultarRegistros" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnConsultarRegistros_Click" />
-            <asp:Button ID="btnExportarRegistros" runat="server" Text="Exportar" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportarRegistros_Click" />
-       
+            <asp:Button ID="btnExportarRegistros" runat="server" Text="Reporte" ToolTip="Generar Reporte de Cobros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportarRegistros_Click" />
+     
         <hr />
         <asp:Label ID="lbCantidadRegistrosTitulo" Visible="false" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
         <asp:Label ID="lbCantidadRegistrosVariable" Visible="false" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>

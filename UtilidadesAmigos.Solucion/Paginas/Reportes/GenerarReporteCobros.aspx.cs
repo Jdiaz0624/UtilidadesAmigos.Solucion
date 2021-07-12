@@ -1127,25 +1127,33 @@ namespace UtilidadesAmigos.Solucion.Paginas
             string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
 
             ReportDocument ReporteNoAgrupadoDetalle = new ReportDocument();
-
             ReporteNoAgrupadoDetalle.Load(RutaReporte);
             ReporteNoAgrupadoDetalle.Refresh();
-            ReporteNoAgrupadoDetalle.SetParameterValue("@Poliza", _Poliza);
-            ReporteNoAgrupadoDetalle.SetParameterValue("@Numero", _Numerorecibo);
-            ReporteNoAgrupadoDetalle.SetParameterValue("@Anulado", _Anulado);
-            ReporteNoAgrupadoDetalle.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesdeConsulta.Text));
-            ReporteNoAgrupadoDetalle.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHastaConsulta.Text));
-            ReporteNoAgrupadoDetalle.SetParameterValue("@TipoPago", _TipoPago);
-            ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoCliente", _CodigoCliente);
-            ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoIntermediario", _CodigoIntermediario);
-            ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
-            ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoOficina", _Oficina);
-            ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoRamo", _Ramo);
-            ReporteNoAgrupadoDetalle.SetParameterValue("@Usuario", _Usuario);
-            ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoMoneda", _Moneda);
-            ReporteNoAgrupadoDetalle.SetParameterValue("@Concepto", _Concepto);
-            ReporteNoAgrupadoDetalle.SetParameterValue("@Tasa", Convert.ToDecimal(txtTasaConsulta.Text));
-            ReporteNoAgrupadoDetalle.SetParameterValue("@IdUsuarioProcesa", IdUsuario);
+
+            if (rbAgrupadoPorDia.Checked == true) {
+                ReporteNoAgrupadoDetalle.SetParameterValue("@IdUsuario", IdUsuario);
+            }
+            else {
+                
+                ReporteNoAgrupadoDetalle.SetParameterValue("@Poliza", _Poliza);
+                ReporteNoAgrupadoDetalle.SetParameterValue("@Numero", _Numerorecibo);
+                ReporteNoAgrupadoDetalle.SetParameterValue("@Anulado", _Anulado);
+                ReporteNoAgrupadoDetalle.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesdeConsulta.Text));
+                ReporteNoAgrupadoDetalle.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHastaConsulta.Text));
+                ReporteNoAgrupadoDetalle.SetParameterValue("@TipoPago", _TipoPago);
+                ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoCliente", _CodigoCliente);
+                ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoIntermediario", _CodigoIntermediario);
+                ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoSupervisor", _CodigoSupervisor);
+                ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoOficina", _Oficina);
+                ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoRamo", _Ramo);
+                ReporteNoAgrupadoDetalle.SetParameterValue("@Usuario", _Usuario);
+                ReporteNoAgrupadoDetalle.SetParameterValue("@CodigoMoneda", _Moneda);
+                ReporteNoAgrupadoDetalle.SetParameterValue("@Concepto", _Concepto);
+                ReporteNoAgrupadoDetalle.SetParameterValue("@Tasa", Convert.ToDecimal(txtTasaConsulta.Text));
+                ReporteNoAgrupadoDetalle.SetParameterValue("@IdUsuarioProcesa", IdUsuario);
+            }
+
+
             ReporteNoAgrupadoDetalle.SetDatabaseLogon(UsuarioBD, ClaveBD);
             if (rbExportarPDF.Checked == true) {
                 ReporteNoAgrupadoDetalle.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
@@ -1535,12 +1543,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         GuardarInformacion.ProcesarInformacion();
                     }
 
-                    if (rbReporteResumidoPorDia.Checked == true) { }
-                    else if (rbReporteDetalladoPorDia.Checked == true) {
-                        GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoPorDiaDetalle.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Por Dia Detallado");
+                    if (rbReporteResumidoPorDia.Checked == true) {
+                        GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoPorDiaResumido.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Por Dia Resumido");
                     }
-                    else if (rbReportePorSupervisorPorDia.Checked == true) { }
-                    else if (rbReportePorIntermediarioPorDia.Checked == true) { }
+                    else if (rbReporteDetalladoPorDia.Checked == true) {
+                        GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoPorDiaDetallado.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Por Dia Detallado");
+                    }
+                    else if (rbReportePorSupervisorPorDia.Checked == true) {
+                        GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoPorDiaPorSupervisor.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Por Dia Por Supervisor");
+                    }
+                    else if (rbReportePorIntermediarioPorDia.Checked == true) {
+                        GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoPorDiaPorIntermediario.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Por Dia Por Intermediario");
+                    }
                 }
             }
         }
