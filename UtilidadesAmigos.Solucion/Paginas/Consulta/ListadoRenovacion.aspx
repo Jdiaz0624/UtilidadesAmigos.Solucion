@@ -40,7 +40,10 @@
               function CamposVaciosEstadistica(){
                   alert("Has dejado campos vacios que son necesarios para realizar esta operación, favor de verificar");
                   return false;
-}
+        }
+        function CamposFechaVacios() {
+            alert("Los campos fecha son necesarios para realizar este proceso, favor de verificar.");
+        }
               function FechaDesdeVacio() {
                   $("#<%=txtFechaDesde.ClientID%>").css("border-color", "red");
          }
@@ -71,6 +74,11 @@
             <asp:Label ID="Label13" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
         </div>
         <!--AGREGAMOS LOS FILTROS-->
+           <div class="form-check-inline">
+               <div class="form-group form-check">
+                   <asp:CheckBox ID="cbProcesarRegistros" runat="server" Text="Procesar Registros" CssClass="form-check-input Letranegrita" AutoPostBack="true" OnCheckedChanged="cbProcesarRegistros_CheckedChanged" ToolTip="Procesar Registros de las renovaciones" />
+               </div>
+           </div>
         <div class="form-row">
             <div class="form-group col-md-2">
                 <asp:Label ID="lbFechaDesde" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
@@ -119,10 +127,19 @@
                   <asp:Label ID="lbExcluirMotores" runat="server" Visible="false" Text="Excluir Motores" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlExcluirMotorew" runat="server" Visible="false" ToolTip="Excluir Motores" CssClass="form-control"></asp:DropDownList>
             </div>
+             <div class="form-group col-md-3" id="DivMes" runat="server" visible="false">
+                  <asp:Label ID="lbSeleccionarMes" runat="server" Text="Mes" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarMes" runat="server" ToolTip="Seleccionar Mes" CssClass="form-control"></asp:DropDownList>
+            </div>
+            <div class="form-group col-md-3" id="DivAno" runat="server" visible="false">
+                  <asp:Label ID="lbSeleccionarAno" runat="server" Text="Año" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtAno" runat="server" CssClass="form-control" TextMode="Number" MaxLength="4" Enabled="false"></asp:TextBox>
+            </div>
         </div>
         <!--FINALIZAN LOS CONTROLES DE FILTROS-->
 
-        <!--INGRESMAOS LOS BOTONES-->
+        <div id="DivBloqueConsultaNormal" runat="server">
+            <!--INGRESMAOS LOS BOTONES-->
         <div align="center">
             <asp:Button ID="btnConsultar" runat="server" Text="Buscar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultar_Click" />
             <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportar_Click" />
@@ -190,6 +207,70 @@
         </div>
         </div>
         <!--FIN DEL GRID-->
+        </div>
+
+
+
+
+
+           <div id="DivBloqueProcesarRegistros" runat="server" visible="false">
+               <div align="center">
+            <asp:Button ID="btnProcesar" runat="server" Text="Procesar" ToolTip="Procesar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnProcesar_Click" />
+            <asp:Button ID="btnConsultarRegistrosProcesados" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultarRegistrosProcesados_Click" />
+            <asp:Button ID="btnReporteRegistrosProcesados" runat="server" Text="Reporte" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnReporteRegistrosProcesados_Click" />
+        </div>
+               <br />
+               <div class="table-responsive">
+                   <table class="table table-hover">
+                       <thead>
+                           <tr>
+                               <th style="width:40%" align="left"> SUPERVISOR </th>
+                               <th style="width:5%" align="left"> RENOVAR </th>
+                               <th style="width:15%" align="left"> MONTO </th>
+                               <th style="width:5%" align="left"> RENOVADAS </th>
+                               <th style="width:15%" align="left"> MONTO R </th>
+                               <th style="width:15%" align="left"> COBRADO </th>
+                               <th style="width:5%" align="left"> % </th>
+                           </tr>
+                       </thead>
+
+                       <tbody>
+                           <tr>
+                               <td style="width:40%" align="left"> <%# Eval("") %> </td>
+                               <td style="width:5%" align="left"> <%#string.Format("{0:n0}", Eval("")) %>  </td>
+                               <td style="width:15%" align="left"> <%#string.Format("{0:n2}", Eval("")) %>  </td>
+                               <td style="width:5%" align="left"> <%#string.Format("{0:n0}", Eval("")) %>  </td>
+                               <td style="width:15%" align="left"> <%#string.Format("{0:n2}", Eval("")) %>  </td>
+                               <td style="width:15%" align="left"> <%#string.Format("{0:n2}", Eval("")) %>  </td>
+                               <td style="width:5%" align="left"> <%# Eval("") %>  </td>
+                           </tr>
+                       </tbody>
+                   </table>
+               </div>
+
+               <div id="divPaginacionProceso" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeroProceso" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroProceso_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorProceso" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorProceso_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionProceso" runat="server" OnItemCommand="dtPaginacionProceso_ItemCommand" OnItemDataBound="dtPaginacionProceso_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralProceso" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteProceso" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteProceso_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoProceso" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoProceso_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+               <br />
+
+           </div>
     </div>
 
 

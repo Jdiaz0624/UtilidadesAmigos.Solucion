@@ -1008,4 +1008,53 @@
       <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_VALIDAR_INFORMACION_POLIZAS_A_RENOVAR" Method="SP_VALIDAR_INFORMACION_POLIZAS_A_RENOVAR">
+    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="InicioVigencia" Parameter="inicioVigencia" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FinVigencia" Parameter="finVigencia" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Mes" Parameter="mes" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ano" Parameter="ano" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_VALIDAR_INFORMACION_POLIZAS_A_RENOVARResult">
+      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_POLIZAS_A_RENOVAR" Method="SP_PROCESAR_INFORMACION_POLIZAS_A_RENOVAR">
+    <Parameter Name="IdIntermediario" Parameter="idIntermediario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdSupervisor" Parameter="idSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Prima" Parameter="prima" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="InicioVigencia" Parameter="inicioVigencia" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FinVigencia" Parameter="finVigencia" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="CodigoMes" Parameter="codigoMes" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoAno" Parameter="codigoAno" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Facturado" Parameter="facturado" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Cobrado" Parameter="cobrado" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Balance" Parameter="balance" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="FechaDesdeFiltro" Parameter="fechaDesdeFiltro" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHastaFiltro" Parameter="fechaHastaFiltro" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_POLIZAS_A_RENOVARResult">
+      <Column Name="IdIntermediario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Prima" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CodigoMes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodigoAno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="FechaDesdeFiltro" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaHastaFiltro" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

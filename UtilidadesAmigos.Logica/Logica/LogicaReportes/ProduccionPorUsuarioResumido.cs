@@ -1275,5 +1275,80 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Listado;
         }
         #endregion
+
+        #region LISTADO DE RENOVACION
+        /// <summary>
+        /// Este metodo es para validar los registros de las polizas a renovar
+        /// </summary>
+        /// <param name="CodigoIntermediario"></param>
+        /// <param name="CodigoSupervisor"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="SubRamo"></param>
+        /// <param name="InicioVigencia"></param>
+        /// <param name="FinVigencia"></param>
+        /// <param name="Mes"></param>
+        /// <param name="Ano"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EValidarInformacionPolizasRenovar> ValidarInformacionPolizaARenovar(decimal? CodigoIntermediario = null, decimal? CodigoSupervisor = null, string Poliza = null, int? Ramo = null, int? SubRamo = null, DateTime? InicioVigencia = null, DateTime? FinVigencia = null, int? Mes = null, int? Ano = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Validar = (from n in ObjData.SP_VALIDAR_INFORMACION_POLIZAS_A_RENOVAR(CodigoIntermediario, CodigoSupervisor, Poliza, Ramo, SubRamo, InicioVigencia, FinVigencia, Mes, Ano)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EValidarInformacionPolizasRenovar
+                           {
+                               CantidadRegistros=n.CantidadRegistros
+                           }).ToList();
+            return Validar;
+        }
+
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionPolizasARenovar ProcesarDataPolizasARenovar(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionPolizasARenovar Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionPolizasARenovar Procesar = null;
+
+            var InformacionPolizasARenovar = ObjData.SP_PROCESAR_INFORMACION_POLIZAS_A_RENOVAR(
+                Item.IdIntermediario,
+                Item.IdSupervisor,
+                Item.Poliza,
+                Item.Ramo,
+                Item.SubRamo,
+                Item.Prima,
+                Item.InicioVigencia,
+                Item.FinVigencia,
+                Item.CodigoMes,
+                Item.CodigoAno,
+                Item.Facturado,
+                Item.Cobrado,
+                Item.Balance,
+                Item.FechaDesdeFiltro,
+                Item.FechaHastaFiltro,
+                Accion);
+            if (InformacionPolizasARenovar != null) {
+                Procesar = (from n in InformacionPolizasARenovar
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionPolizasARenovar
+                            {
+                                IdIntermediario = n.IdIntermediario,
+                                IdSupervisor = n.IdSupervisor,
+                                Poliza = n.Poliza,
+                                Ramo = n.Ramo,
+                                SubRamo = n.SubRamo,
+                                Prima = n.Prima,
+                                InicioVigencia = n.InicioVigencia,
+                                FinVigencia = n.FinVigencia,
+                                CodigoMes = n.CodigoMes,
+                                CodigoAno = n.CodigoAno,
+                                Facturado = n.Facturado,
+                                Cobrado = n.Cobrado,
+                                Balance = n.Balance,
+                                FechaDesdeFiltro = n.FechaDesdeFiltro,
+                                FechaHastaFiltro = n.FechaHastaFiltro
+
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }

@@ -35,6 +35,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlExcluirMotorew, Objdata.Value.BuscaListas("EXCLUIR", null, null));
         }
+        private void CargarMesesAño() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarMes, Objdata.Value.BuscaListas("MESES", null, null));
+            int Mes = 0, Ano = 0;
+
+            Mes = (int)DateTime.Now.Month;
+            Ano = (int)DateTime.Now.Year;
+
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarMes, Mes.ToString());
+            txtAno.Text = Ano.ToString();
+
+        }
         #endregion
         #region CARGAR LAS LISTAS DESPLEGABLES PARA LA ESTADISTICA
         private void CargarRamosEstadistica()
@@ -742,6 +753,147 @@ namespace UtilidadesAmigos.Solucion.Paginas
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             CargarListadoEstadistica();
             MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleEstadistica, ref lbCantidadPaginaVAriableEstadistica);
+        }
+
+        protected void cbProcesarRegistros_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbProcesarRegistros.Checked == true) {
+                DivBloqueConsultaNormal.Visible = false;
+                DivBloqueProcesarRegistros.Visible = true;
+                DivMes.Visible = true;
+                DivAno.Visible = true;
+                CargarMesesAño();
+            }
+            else if (cbProcesarRegistros.Checked == false) {
+                DivBloqueConsultaNormal.Visible = true;
+                DivBloqueProcesarRegistros.Visible = false;
+                DivMes.Visible = false;
+                DivAno.Visible = false;
+            }
+        }
+
+        protected void btnProcesar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHAsta.Text.Trim())) {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeVacio()", "FechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHAsta.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaHastaVacio()", "FechaHastaVacio();", true);
+                }
+            }
+            else {
+
+                //1-BUSCAMOS TODA LA INFORMACION MEDIANTE LOS FILTROS INGRESADOS
+                int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                int? _SubRamo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+                string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+                int? _oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                string _CodigoSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+                string _CodigoIntermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? null : txtFCodIntermediario.Text.Trim();
+                int? _ValidarBalance = ddlValidarBalance.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalance.SelectedValue) : new Nullable<int>();
+
+                var BuscarInformacion = Objdata.Value.ReporteRenovacionPoliza(
+                    Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHAsta.Text),
+                    _Ramo,
+                    _SubRamo,
+                    _Poliza,
+                    null,
+                    _oficina,
+                    _CodigoSupervisor,
+                    _CodigoIntermediario,
+                    _ValidarBalance,
+                    1);
+                if (BuscarInformacion.Count() < 1) { }
+                else
+                {
+                    //VALIDAMOS LA INFORMACION
+                    decimal CodigoIntermediario = 0;
+                    decimal CodigoSupervisor = 0;
+                    string Poliza = "";
+                    int Ramo = 0;
+                    int SubRamo = 0;
+                    DateTime InicioVigencia = DateTime.Now;
+                    DateTime FinVigencia = DateTime.Now;
+                    bool ResultadoValidacion = false;
+
+                    foreach (var n in BuscarInformacion) {
+                        CodigoIntermediario = (decimal)n.CodIntermediario;
+                        CodigoSupervisor = (decimal)n.CodSupervisor;
+                        Poliza = n.Poliza;
+                        Ramo = (int)n.CodRamo;
+                        SubRamo = (int)n.CodSubramo;
+                        InicioVigencia = (DateTime)n.FechaInicioVigencia0;
+                        FinVigencia = (DateTime)n.FechaFinVigencia0;
+
+                        UtilidadesAmigos.Logica.Comunes.ValidarPolizasARenovar ValidarRegistros = new Logica.Comunes.ValidarPolizasARenovar(
+                            CodigoIntermediario,
+                            CodigoSupervisor,
+                            Poliza,
+                            Ramo,
+                            SubRamo,
+                            InicioVigencia,
+                            FinVigencia,
+                            Convert.ToInt32(ddlSeleccionarMes.SelectedValue),
+                            Convert.ToInt32(txtAno.Text));
+                        ResultadoValidacion = ValidarRegistros.ValidacionPolizasRenovar();
+                        switch (ResultadoValidacion) {
+                            case true:
+
+                                break;
+
+                            case false:
+
+                                break;
+                        }
+                    }
+                }
+
+            }
+
+         
+        }
+
+        protected void btnConsultarRegistrosProcesados_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnReporteRegistrosProcesados_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkPrimeroProceso_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkAnteriorProceso_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionProceso_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionProceso_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguienteProceso_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoProceso_Click(object sender, EventArgs e)
+        {
+
         }
 
         protected void LinkUltimo_Click(object sender, EventArgs e)
