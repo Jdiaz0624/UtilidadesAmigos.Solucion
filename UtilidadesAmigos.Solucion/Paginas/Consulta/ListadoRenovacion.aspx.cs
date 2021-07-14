@@ -11,6 +11,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
     public partial class ListadoRenovacion : System.Web.UI.Page
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> Objdata = new Lazy<Logica.Logica.LogicaSistema>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido> ObjDataReportes = new Lazy<Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido>();
 
         #region CARGAR LAS LISTAS DESPLEGABLES
         private void CargarRamos()
@@ -810,44 +811,58 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 else
                 {
                     //VALIDAMOS LA INFORMACION
-                    decimal CodigoIntermediario = 0;
-                    decimal CodigoSupervisor = 0;
-                    string Poliza = "";
-                    int Ramo = 0;
-                    int SubRamo = 0;
-                    DateTime InicioVigencia = DateTime.Now;
-                    DateTime FinVigencia = DateTime.Now;
-                    bool ResultadoValidacion = false;
+                    decimal __CodigoIntermediario = 0;
+                    decimal __CodigoSupervisor = 0;
+                    string __Poliza = "";
+                    int __Ramo = 0;
+                    int __SubRamo = 0;
+                    DateTime __InicioVigencia = DateTime.Now;
+                    DateTime __FinVigencia = DateTime.Now;
+
 
                     foreach (var n in BuscarInformacion) {
-                        CodigoIntermediario = (decimal)n.CodIntermediario;
-                        CodigoSupervisor = (decimal)n.CodSupervisor;
-                        Poliza = n.Poliza;
-                        Ramo = (int)n.CodRamo;
-                        SubRamo = (int)n.CodSubramo;
-                        InicioVigencia = (DateTime)n.FechaInicioVigencia0;
-                        FinVigencia = (DateTime)n.FechaFinVigencia0;
-
-                        UtilidadesAmigos.Logica.Comunes.ValidarPolizasARenovar ValidarRegistros = new Logica.Comunes.ValidarPolizasARenovar(
-                            CodigoIntermediario,
-                            CodigoSupervisor,
-                            Poliza,
-                            Ramo,
-                            SubRamo,
-                            InicioVigencia,
-                            FinVigencia,
+                        __CodigoIntermediario = (decimal)n.CodIntermediario;
+                        __CodigoSupervisor = (decimal)n.CodSupervisor;
+                        __Poliza = n.Poliza;
+                        __Ramo = (int)n.CodRamo;
+                        __SubRamo = (int)n.CodSubramo;
+                        __InicioVigencia = (DateTime)n.FechaInicioVigencia0;
+                        __FinVigencia = (DateTime)n.FechaFinVigencia0;
+                        int ResultadoValidacion = 0;
+                        UtilidadesAmigos.Logica.Comunes.ValidarPolizasARenovar ValidacionPolizasRenovar = new Logica.Comunes.ValidarPolizasARenovar(
+                            __CodigoIntermediario,
+                            __CodigoSupervisor,
+                            __Poliza,
+                            __Ramo,
+                            __SubRamo,
+                            __InicioVigencia,
+                            __FinVigencia,
                             Convert.ToInt32(ddlSeleccionarMes.SelectedValue),
                             Convert.ToInt32(txtAno.Text));
-                        ResultadoValidacion = ValidarRegistros.ValidacionPolizasRenovar();
+                        ResultadoValidacion = ValidacionPolizasRenovar.ValidacionPolizasRenovar();
                         switch (ResultadoValidacion) {
-                            case true:
-
-                                break;
-
-                            case false:
-
+                            case 0:
+                                UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionPolizasARenovar Guardar = new Logica.Comunes.Reportes.ProcesarInformacionPolizasARenovar(
+                                 __CodigoIntermediario,
+                                 __CodigoSupervisor,
+                                 __Poliza,
+                                 __Ramo,
+                                 __SubRamo,
+                                 (decimal)n.Prima,
+                                 __InicioVigencia,
+                                 __FinVigencia,
+                                 Convert.ToInt32(ddlSeleccionarMes.SelectedValue),
+                                 Convert.ToInt32(txtAno.Text),
+                                 (decimal)n.Facturado,
+                                 (decimal)n.Cobrado,
+                                 (decimal)n.Balance,
+                                 Convert.ToDateTime(txtFechaDesde.Text),
+                                 Convert.ToDateTime(txtFechaHAsta.Text),
+                                 "INSERT");
+                                Guardar.ProcesarInformacion();
                                 break;
                         }
+                      
                     }
                 }
 
@@ -894,6 +909,62 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void LinkUltimoProceso_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnActualizar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHAsta.Text.Trim())) {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeVacio()", "FechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHAsta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaHastaVacio()", "FechaHastaVacio();", true);
+                }
+            }
+            else {
+
+                var BuscarInformacion = ObjDataReportes.Value.BuscaPolizasRenovadas(
+                    null,
+                    Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHAsta.Text));
+
+                decimal IdIntermediario = 0;
+                decimal IdSupervisor = 0;
+                string Poliza = "";
+                int Ramo = 0;
+                int SubRamo = 0;
+
+                foreach (var n in BuscarInformacion) {
+                    IdIntermediario = (decimal)n.CodigoIntermediario;
+                    IdSupervisor = (decimal)n.CodigoSupervisor;
+                    Poliza = n.Poliza;
+                    Ramo = (int)n.Ramo;
+                    SubRamo = (int)n.SubRamo;
+                    int CantidadRegistros = 1;
+
+                    var ValidarInformacion = ObjDataReportes.Value.ValidarPolizasRenovadas(
+                        IdIntermediario,
+                        IdSupervisor,
+                        Poliza,
+                        Ramo,
+                        SubRamo);
+                    foreach (var nn in ValidarInformacion) {
+                        CantidadRegistros = (int)nn.CantidadRegistros;
+                    }
+                    if (CantidadRegistros == 0) { 
+                    //GUARDAMOS
+                    }
+                    else if (CantidadRegistros != 0) { 
+                    //MODIFICAMOS
+                    }
+                }
+
+
+
+            }
         }
 
         protected void LinkUltimo_Click(object sender, EventArgs e)

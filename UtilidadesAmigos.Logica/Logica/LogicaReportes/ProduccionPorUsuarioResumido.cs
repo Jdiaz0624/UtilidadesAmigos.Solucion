@@ -1302,6 +1302,12 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Validar;
         }
 
+        /// <summary>
+        /// Este metodo es para procesar las polizas del listado de polizas a renovar
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
         public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionPolizasARenovar ProcesarDataPolizasARenovar(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionPolizasARenovar Item, string Accion) {
 
             ObjData.CommandTimeout = 999999999;
@@ -1345,6 +1351,96 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                 FechaDesdeFiltro = n.FechaDesdeFiltro,
                                 FechaHastaFiltro = n.FechaHastaFiltro
 
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+
+        /// <summary>
+        /// Este metodo es para buscar las polizas ya renovadas
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscarPolizasRenovadas> BuscaPolizasRenovadas(string Poliza = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCAR_POLIZAS_RENOVADAS(Poliza, FechaDesde, FechaHasta)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscarPolizasRenovadas
+                           {
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Poliza=n.Poliza,
+                               Ramo=n.Ramo,
+                               SubRamo=n.SubRamo,
+                               Prima=n.Prima,
+                               FechaInicioVigencia=n.FechaInicioVigencia,
+                               FechaFinVigencia=n.FechaFinVigencia,
+                               Fecha=n.Fecha,
+                               Mes=n.Mes,
+                               Ano=n.Ano,
+                               Cobrado=n.Cobrado,
+                               FacturadoTotal=n.FacturadoTotal,
+                               CobradoTotal=n.CobradoTotal,
+                               BalanceTotal=n.BalanceTotal
+                           }).ToList();
+            return Listado;
+        }
+
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EValidarPolizasRenovadas> ValidarPolizasRenovadas(decimal? IdIntermediario = null, decimal? IdSupervisor = null, string Poliza = null, int? Ramo = null, int? SubRamo = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Registro = (from n in ObjData.SP_VALIDAR_POLIZAS_RENOVADAS(IdIntermediario, IdSupervisor, Poliza, Ramo, SubRamo)
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EValidarPolizasRenovadas
+                            {
+                                CantidadRegistros=n.CantidadRegistros
+                            }).ToList();
+            return Registro;
+        }
+
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionPolizasRenovadas ProcesarDataPolizasRenovadas(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionPolizasRenovadas Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionPolizasRenovadas Procesar = null;
+
+            var PolizasRenovadas = ObjData.SP_PROCESAR_INFORMACION_POLIZAS_RENOVADAS(
+                Item.IdIntermediario,
+                Item.IdSupervisor,
+                Item.Poliza,
+                Item.Ramo,
+                Item.SubRamo,
+                Item.Prima,
+                Item.InicioVigencia,
+                Item.FinVigencia,
+                Item.FechaProceso,
+                Item.CodigoMes,
+                Item.CodigoAno,
+                Item.CobradoMes,
+                Item.FacturadoTotal,
+                Item.CobradoTotal,
+                Item.BalanceTotal,
+                Accion);
+            if (PolizasRenovadas != null) {
+                Procesar = (from n in PolizasRenovadas
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionPolizasRenovadas
+                            {
+                                IdIntermediario = n.IdIntermediario,
+                                IdSupervisor = n.IdSupervisor,
+                                Poliza = n.Poliza,
+                                Ramo = n.Ramo,
+                                SubRamo = n.SubRamo,
+                                Prima = n.Prima,
+                                InicioVigencia = n.InicioVigencia,
+                                FinVigencia = n.FinVigencia,
+                                FechaProceso = n.FechaProceso,
+                                CodigoMes = n.CodigoMes,
+                                CodigoAno = n.CodigoAno,
+                                CobradoMes = n.CobradoMes,
+                                FacturadoTotal = n.FacturadoTotal,
+                                CobradoTotal = n.CobradoTotal,
+                                BalanceTotal = n.BalanceTotal
                             }).FirstOrDefault();
             }
             return Procesar;

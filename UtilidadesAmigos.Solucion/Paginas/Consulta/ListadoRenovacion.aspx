@@ -216,6 +216,7 @@
            <div id="DivBloqueProcesarRegistros" runat="server" visible="false">
                <div align="center">
             <asp:Button ID="btnProcesar" runat="server" Text="Procesar" ToolTip="Procesar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnProcesar_Click" />
+            <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" ToolTip="Actualizar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnActualizar_Click" />
             <asp:Button ID="btnConsultarRegistrosProcesados" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultarRegistrosProcesados_Click" />
             <asp:Button ID="btnReporteRegistrosProcesados" runat="server" Text="Reporte" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnReporteRegistrosProcesados_Click" />
         </div>

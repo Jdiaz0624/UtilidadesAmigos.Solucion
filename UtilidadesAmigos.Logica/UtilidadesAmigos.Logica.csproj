@@ -143,6 +143,7 @@
     <Compile Include="Comunes\Reportes\ProcesarInformacionDatosProduccionReporte.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionDatosReporteIntermediarioInterno.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionPolizasARenovar.cs" />
+    <Compile Include="Comunes\Reportes\ProcesarInformacionPolizasRenovadas.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionProduccuinPorUsuarioDetalle.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionReporteComisionIntermediario.cs" />
     <Compile Include="Comunes\Reportes\ProcesarProduccionPorUsuarioResumido.cs" />
@@ -333,6 +334,7 @@
     <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoPorIntermediario.cs" />
     <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoRamo.cs" />
     <Compile Include="Entidades\Reportes\EBuscarInformacionCheque.cs" />
+    <Compile Include="Entidades\Reportes\EBuscarPolizasRenovadas.cs" />
     <Compile Include="Entidades\Reportes\ECodigosPermitidosSobreComision.cs" />
     <Compile Include="Entidades\Reportes\EDatosProduccionReporte.cs" />
     <Compile Include="Entidades\Reportes\EGenerarInformacionSupervisoresDetalle.cs" />
@@ -344,6 +346,7 @@
     <Compile Include="Entidades\Reportes\EProcesarInformacionDatosGraficos.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionDatosProduccion.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionPolizasARenovar.cs" />
+    <Compile Include="Entidades\Reportes\EProcesarInformacionPolizasRenovadas.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorUsuarioDetalle.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorusuarioResumido.cs" />
     <Compile Include="Entidades\Reportes\EReporteProduccionOrigen.cs" />
@@ -351,6 +354,7 @@
     <Compile Include="Entidades\Reportes\ESacarConceptoMediantePAgo.cs" />
     <Compile Include="Entidades\Reportes\ESacarPorcientoComisionesSupervisores.cs" />
     <Compile Include="Entidades\Reportes\EValidarInformacionPolizasRenovar.cs" />
+    <Compile Include="Entidades\Reportes\EValidarPolizasRenovadas.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaInformacionPersonasRegistradasArchivo.cs" />

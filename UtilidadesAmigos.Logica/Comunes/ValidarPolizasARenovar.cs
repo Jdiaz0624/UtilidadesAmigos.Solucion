@@ -42,8 +42,8 @@ namespace UtilidadesAmigos.Logica.Comunes
             Ano = AnoCON;
         }
 
-        public bool ValidacionPolizasRenovar() {
-            bool ResultadoValidacion = false;
+        public int ValidacionPolizasRenovar() {
+            int ResultadoValidacion = 1;
 
             var Validar = ObjData.ValidarInformacionPolizaARenovar(
                 CodigoIntermediario,
@@ -55,14 +55,12 @@ namespace UtilidadesAmigos.Logica.Comunes
                 FinVigencia,
                 Mes,
                 Ano);
-            if (Validar.Count() < 1)
-            {
-                ResultadoValidacion = false;
-            }
-            else {
-                ResultadoValidacion = true;
+            foreach (var n in Validar) {
+                ResultadoValidacion = (int)n.CantidadRegistros;
             }
             return ResultadoValidacion;
+
+
         }
     }
 }
