@@ -214,6 +214,11 @@
 
 
            <div id="DivBloqueProcesarRegistros" runat="server" visible="false">
+               <div class="form-check-inline">
+                   <div class="form-group form-check">
+                       <asp:CheckBox ID="cbExclirMotoresMachado" runat="server" Text="Excluir Motores" CssClass="form-check-input Letranegrita" />
+                   </div>
+               </div>
                <div align="center">
             <asp:Button ID="btnProcesar" runat="server" Text="Procesar" ToolTip="Procesar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnProcesar_Click" />
             <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" ToolTip="Actualizar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnActualizar_Click" />
@@ -225,30 +230,39 @@
                    <table class="table table-hover">
                        <thead>
                            <tr>
-                               <th style="width:40%" align="left"> SUPERVISOR </th>
+                               <th style="width:35%" align="left"> SUPERVISOR </th>
                                <th style="width:5%" align="left"> RENOVAR </th>
                                <th style="width:15%" align="left"> MONTO </th>
                                <th style="width:5%" align="left"> RENOVADAS </th>
                                <th style="width:15%" align="left"> MONTO R </th>
                                <th style="width:15%" align="left"> COBRADO </th>
-                               <th style="width:5%" align="left"> % </th>
+                               <th style="width:10%" align="left"> % </th>
                            </tr>
                        </thead>
 
                        <tbody>
-                           <tr>
-                               <td style="width:40%" align="left"> <%# Eval("") %> </td>
-                               <td style="width:5%" align="left"> <%#string.Format("{0:n0}", Eval("")) %>  </td>
-                               <td style="width:15%" align="left"> <%#string.Format("{0:n2}", Eval("")) %>  </td>
-                               <td style="width:5%" align="left"> <%#string.Format("{0:n0}", Eval("")) %>  </td>
-                               <td style="width:15%" align="left"> <%#string.Format("{0:n2}", Eval("")) %>  </td>
-                               <td style="width:15%" align="left"> <%#string.Format("{0:n2}", Eval("")) %>  </td>
-                               <td style="width:5%" align="left"> <%# Eval("") %>  </td>
+                           <asp:Repeater ID="rpListadoRenovacionMachado" runat="server">
+                               <ItemTemplate>
+                                   <tr>
+                               <td style="width:35%" align="left"> <%# Eval("Supervisor") %> </td>
+                               <td style="width:5%" align="left"> <%#string.Format("{0:n0}", Eval("CantidadRenovar")) %>  </td>
+                               <td style="width:15%" align="left"> <%#string.Format("{0:n2}", Eval("MontoRenovar")) %>  </td>
+                               <td style="width:5%" align="left"> <%#string.Format("{0:n0}", Eval("CantidadRenovada")) %>  </td>
+                               <td style="width:15%" align="left"> <%#string.Format("{0:n2}", Eval("MontoRenovado")) %>  </td>
+                               <td style="width:15%" align="left"> <%#string.Format("{0:n2}", Eval("Cobrado")) %>  </td>
+                               <td style="width:10%" align="left"> <%# Eval("Porcentaje") %>  </td>
                            </tr>
+                               </ItemTemplate>
+                           </asp:Repeater>
                        </tbody>
                    </table>
                </div>
-
+               <div align="center">
+                <asp:Label ID="lbPaginaActualTituloMachado" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavleMachado" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloMachado" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriableMachado" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
                <div id="divPaginacionProceso" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">

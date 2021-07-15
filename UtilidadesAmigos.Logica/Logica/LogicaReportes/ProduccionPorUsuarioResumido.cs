@@ -1445,6 +1445,29 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             }
             return Procesar;
         }
+
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EReporteRenovacionMachado> ReporteRenovacionMachado(int? Ramo = null, int? SubRamo = null, int? Oficina = null, string Poliza = null, decimal? CodSupervisor = null, decimal? CodIntermediario = null, int? ExcluirMotores = null, int? Mes = null, int? Ano = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+
+            var Listado = (from n in ObjData.SP_REPORTE_RENOVACION_MACHADO(Ramo, SubRamo, Oficina, Poliza, CodSupervisor, CodIntermediario, ExcluirMotores, Mes, Ano)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EReporteRenovacionMachado
+                           {
+                               IdSupervisor=n.IdSupervisor,
+                               Supervisor=n.Supervisor,
+                               Oficina=n.Oficina,
+                               CantidadRenovar=n.CantidadRenovar,
+                               MontoRenovar=n.MontoRenovar,
+                               CantidadRenovada=n.CantidadRenovada,
+                               MontoRenovado=n.MontoRenovado,
+                               Cobrado=n.Cobrado,
+                               Porcentaje = Math.Round(((decimal)n.CantidadRenovada / (decimal)n.CantidadRenovar) * 100,2).ToString() + " " + "%"
+
+
+                           }).ToList();
+            return Listado;
+        }
         #endregion
     }
 }

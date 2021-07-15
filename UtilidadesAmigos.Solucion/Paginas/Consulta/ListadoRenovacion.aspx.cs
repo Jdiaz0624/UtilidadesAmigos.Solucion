@@ -340,6 +340,32 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
+        private void MostrarInformacionReporteMacjado() {
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _SubRamo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+            int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+            string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+            decimal? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtCodigoSupervisor.Text);
+            decimal? _Intermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtFCodIntermediario.Text);
+            int? ExcluirMotores = cbExclirMotoresMachado.Checked == true ? 2 : 1;
+
+
+            var Listado = ObjDataReportes.Value.ReporteRenovacionMachado(
+                _Ramo,
+                _SubRamo,
+                _Oficina,
+                _Poliza,
+                _Supervisor,
+                _Intermediario,
+                ExcluirMotores,
+                Convert.ToInt32(ddlSeleccionarMes.SelectedValue),
+                Convert.ToInt32(txtAno.Text));
+            Paginar(ref rpListadoRenovacionMachado, Listado, 10, ref lbCantidadPaginaVAriableMachado, ref LinkPrimeroProceso, ref LinkAnteriorProceso, ref LinkSiguienteProceso, ref LinkUltimoProceso);
+            HandlePaging(ref dtPaginacionProceso, ref lbPaginaActualVariavle);
+
+
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -873,7 +899,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultarRegistrosProcesados_Click(object sender, EventArgs e)
         {
-
+            MostrarInformacionReporteMacjado();
         }
 
         protected void btnReporteRegistrosProcesados_Click(object sender, EventArgs e)
@@ -913,7 +939,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnActualizar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHAsta.Text.Trim())) {
+            MostrarInformacionReporteMacjado();
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHAsta.Text.Trim()))
+            {
                 ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
                 if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
                 {
@@ -924,7 +952,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     ClientScript.RegisterStartupScript(GetType(), "FechaHastaVacio()", "FechaHastaVacio();", true);
                 }
             }
-            else {
+            else
+            {
 
                 var BuscarInformacion = ObjDataReportes.Value.BuscaPolizasRenovadas(
                     null,
@@ -937,13 +966,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 int Ramo = 0;
                 int SubRamo = 0;
 
-                foreach (var n in BuscarInformacion) {
+                foreach (var n in BuscarInformacion)
+                {
                     IdIntermediario = (decimal)n.CodigoIntermediario;
                     IdSupervisor = (decimal)n.CodigoSupervisor;
                     Poliza = n.Poliza;
                     Ramo = (int)n.Ramo;
                     SubRamo = (int)n.SubRamo;
                     int CantidadRegistros = 1;
+                    string AccionTomar = "";
 
                     var ValidarInformacion = ObjDataReportes.Value.ValidarPolizasRenovadas(
                         IdIntermediario,
@@ -951,15 +982,41 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         Poliza,
                         Ramo,
                         SubRamo);
-                    foreach (var nn in ValidarInformacion) {
+                    foreach (var nn in ValidarInformacion)
+                    {
                         CantidadRegistros = (int)nn.CantidadRegistros;
                     }
-                    if (CantidadRegistros == 0) { 
-                    //GUARDAMOS
+                    if (CantidadRegistros == 0)
+                    {
+                        //GUARDAMOS
+                        AccionTomar = "INSERT";
                     }
-                    else if (CantidadRegistros != 0) { 
-                    //MODIFICAMOS
+                    else if (CantidadRegistros != 0)
+                    {
+                        //MODIFICAMOS
+                        AccionTomar = "UPDATE";
                     }
+
+                    //PROCESAMOS LA INFORMACION
+                    UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionPolizasRenovadas Procesar = new Logica.Comunes.Reportes.ProcesarInformacionPolizasRenovadas(
+                        IdIntermediario,
+                        IdSupervisor,
+                        Poliza,
+                        Ramo,
+                        SubRamo,
+                        (decimal)n.Prima,
+                        (DateTime)n.FechaInicioVigencia,
+                        (DateTime)n.FechaFinVigencia,
+                        (DateTime)n.Fecha,
+                        (int)n.Mes,
+                        (int)n.Ano,
+                        (decimal)n.Cobrado,
+                        (decimal)n.FacturadoTotal,
+                        (decimal)n.CobradoTotal,
+                        (decimal)n.BalanceTotal,
+                        AccionTomar);
+                    Procesar.ProcesarInformacion();
+                    
                 }
 
 

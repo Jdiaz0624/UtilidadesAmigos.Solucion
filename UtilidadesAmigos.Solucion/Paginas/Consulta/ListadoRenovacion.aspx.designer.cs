@@ -627,6 +627,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueProcesarRegistros;
 
         /// <summary>
+        /// cbExclirMotoresMachado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbExclirMotoresMachado;
+
+        /// <summary>
         /// btnProcesar control.
         /// </summary>
         /// <remarks>
@@ -661,6 +670,51 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnReporteRegistrosProcesados;
+
+        /// <summary>
+        /// rpListadoRenovacionMachado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpListadoRenovacionMachado;
+
+        /// <summary>
+        /// lbPaginaActualTituloMachado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloMachado;
+
+        /// <summary>
+        /// lbPaginaActualVariavleMachado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualVariavleMachado;
+
+        /// <summary>
+        /// lbCantidadPaginaTituloMachado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloMachado;
+
+        /// <summary>
+        /// lbCantidadPaginaVAriableMachado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVAriableMachado;
 
         /// <summary>
         /// divPaginacionProceso control.

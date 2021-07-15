@@ -546,6 +546,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idIntermediario, idSupervisor, poliza, ramo, subRamo, prima, inicioVigencia, finVigencia, fechaProceso, codigoMes, codigoAno, cobradoMes, facturadoTotal, cobradoTotal, balanceTotal, accion);
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_POLIZAS_RENOVADASResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_REPORTE_RENOVACION_MACHADO")]
+		public ISingleResult<SP_REPORTE_RENOVACION_MACHADOResult> SP_REPORTE_RENOVACION_MACHADO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubRamo", DbType="Int")] System.Nullable<int> subRamo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodSupervisor", DbType="Decimal(20,0)")] System.Nullable<decimal> codSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodIntermediario", DbType="Decimal(20,0)")] System.Nullable<decimal> codIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExcluirMotores", DbType="Int")] System.Nullable<int> excluirMotores, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mes", DbType="Int")] System.Nullable<int> mes, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ano", DbType="Int")] System.Nullable<int> ano)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ramo, subRamo, oficina, poliza, codSupervisor, codIntermediario, excluirMotores, mes, ano);
+			return ((ISingleResult<SP_REPORTE_RENOVACION_MACHADOResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDOResult
@@ -11815,6 +11822,158 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._BalanceTotal != value))
 				{
 					this._BalanceTotal = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_REPORTE_RENOVACION_MACHADOResult
+	{
+		
+		private System.Nullable<decimal> _IdSupervisor;
+		
+		private string _Supervisor;
+		
+		private string _Oficina;
+		
+		private System.Nullable<int> _CantidadRenovar;
+		
+		private System.Nullable<decimal> _MontoRenovar;
+		
+		private System.Nullable<int> _CantidadRenovada;
+		
+		private System.Nullable<decimal> _MontoRenovado;
+		
+		private System.Nullable<decimal> _Cobrado;
+		
+		public SP_REPORTE_RENOVACION_MACHADOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdSupervisor", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdSupervisor
+		{
+			get
+			{
+				return this._IdSupervisor;
+			}
+			set
+			{
+				if ((this._IdSupervisor != value))
+				{
+					this._IdSupervisor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Supervisor", DbType="VarChar(200)")]
+		public string Supervisor
+		{
+			get
+			{
+				return this._Supervisor;
+			}
+			set
+			{
+				if ((this._Supervisor != value))
+				{
+					this._Supervisor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="VarChar(100)")]
+		public string Oficina
+		{
+			get
+			{
+				return this._Oficina;
+			}
+			set
+			{
+				if ((this._Oficina != value))
+				{
+					this._Oficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadRenovar", DbType="Int")]
+		public System.Nullable<int> CantidadRenovar
+		{
+			get
+			{
+				return this._CantidadRenovar;
+			}
+			set
+			{
+				if ((this._CantidadRenovar != value))
+				{
+					this._CantidadRenovar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoRenovar", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> MontoRenovar
+		{
+			get
+			{
+				return this._MontoRenovar;
+			}
+			set
+			{
+				if ((this._MontoRenovar != value))
+				{
+					this._MontoRenovar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadRenovada", DbType="Int")]
+		public System.Nullable<int> CantidadRenovada
+		{
+			get
+			{
+				return this._CantidadRenovada;
+			}
+			set
+			{
+				if ((this._CantidadRenovada != value))
+				{
+					this._CantidadRenovada = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoRenovado", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> MontoRenovado
+		{
+			get
+			{
+				return this._MontoRenovado;
+			}
+			set
+			{
+				if ((this._MontoRenovado != value))
+				{
+					this._MontoRenovado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cobrado", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Cobrado
+		{
+			get
+			{
+				return this._Cobrado;
+			}
+			set
+			{
+				if ((this._Cobrado != value))
+				{
+					this._Cobrado = value;
 				}
 			}
 		}

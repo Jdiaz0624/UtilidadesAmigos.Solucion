@@ -350,6 +350,7 @@
     <Compile Include="Entidades\Reportes\EProduccionPorUsuarioDetalle.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorusuarioResumido.cs" />
     <Compile Include="Entidades\Reportes\EReporteProduccionOrigen.cs" />
+    <Compile Include="Entidades\Reportes\EReporteRenovacionMachado.cs" />
     <Compile Include="Entidades\Reportes\EReporteSobreComision.cs" />
     <Compile Include="Entidades\Reportes\ESacarConceptoMediantePAgo.cs" />
     <Compile Include="Entidades\Reportes\ESacarPorcientoComisionesSupervisores.cs" />

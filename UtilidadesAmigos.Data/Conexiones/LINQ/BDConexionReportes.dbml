@@ -1124,4 +1124,25 @@
       <Column Name="BalanceTotal" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_REPORTE_RENOVACION_MACHADO" Method="SP_REPORTE_RENOVACION_MACHADO">
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CodSupervisor" Parameter="codSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodIntermediario" Parameter="codIntermediario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="ExcluirMotores" Parameter="excluirMotores" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Mes" Parameter="mes" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ano" Parameter="ano" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_REPORTE_RENOVACION_MACHADOResult">
+      <Column Name="IdSupervisor" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CantidadRenovar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MontoRenovar" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CantidadRenovada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MontoRenovado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
