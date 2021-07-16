@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportSource;
+using CrystalDecisions.Shared;
+
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -338,6 +342,46 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
 
         }
+        #endregion
+
+        #region GENERAR REPORTES DE COBROS
+        private void GenerarReporteListadoRenovacion(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreReporte)
+        {
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _SubRamo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+            int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+            string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+            decimal? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtCodigoSupervisor.Text);
+            decimal? _Intermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtFCodIntermediario.Text);
+            int? ExcluirMotores = cbExclirMotoresMachado.Checked == true ? 2 : 1;
+
+            ReportDocument Reporte = new ReportDocument();
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@Ramo", _Ramo);
+            Reporte.SetParameterValue("@SubRamo", _SubRamo);
+            Reporte.SetParameterValue("@Oficina", _Oficina);
+            Reporte.SetParameterValue("@Poliza", _Poliza);
+            Reporte.SetParameterValue("@CodSupervisor", _Supervisor);
+            Reporte.SetParameterValue("@CodIntermediario", _Intermediario);
+            Reporte.SetParameterValue("@ExcluirMotores", ExcluirMotores);
+            Reporte.SetParameterValue("@Mes", Convert.ToInt32(ddlSeleccionarMes.SelectedValue));
+            Reporte.SetParameterValue("@Ano", Convert.ToInt32(txtAno.Text));
+
+            Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
+
+            if (rbReportePDFMachado.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
+            else if (rbReporteExcelMachado.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+            }
+            else if (rbReporteWordMachado.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreReporte);
+            }
+        }
+
         #endregion
 
         private void MostrarInformacionReporteMacjado() {
@@ -790,6 +834,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 DivMes.Visible = true;
                 DivAno.Visible = true;
                 CargarMesesAño();
+                rbReportePDFMachado.Checked = true;
             }
             else if (cbProcesarRegistros.Checked == false) {
                 DivBloqueConsultaNormal.Visible = true;
@@ -890,8 +935,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         }
                       
                     }
+                    ClientScript.RegisterStartupScript(GetType(), "RegistrosPolizasARenovar()", "RegistrosPolizasARenovar();", true);
                 }
-
+               
             }
 
          
@@ -905,6 +951,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnReporteRegistrosProcesados_Click(object sender, EventArgs e)
         {
 
+            GenerarReporteListadoRenovacion((decimal)Session["IdUsuario"], Server.MapPath("ReporteRenovacionMachadoPorSupervisor.rpt"), "sa", "Pa$$W0rd", "Listado de Renovacion Machado Supervisor");
         }
 
         protected void LinkPrimeroProceso_Click(object sender, EventArgs e)
@@ -939,7 +986,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnActualizar_Click(object sender, EventArgs e)
         {
-            MostrarInformacionReporteMacjado();
+            //MostrarInformacionReporteMacjado();
             if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHAsta.Text.Trim()))
             {
                 ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
@@ -1020,8 +1067,23 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
 
 
-
+                ClientScript.RegisterStartupScript(GetType(), "RegistrsPolizasRenovadas()", "RegistrsPolizasRenovadas();", true);
             }
+        }
+
+        protected void btnEliminarRegistrosMAchados_Click(object sender, EventArgs e)
+        {
+            //ELIMINAR REGISTROS DE LAS POLIZAS A RENOVAR
+            UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionPolizasARenovar EliminarPolizasARenovar = new Logica.Comunes.Reportes.ProcesarInformacionPolizasARenovar(
+                0, 0, "", 0, 0, 0, DateTime.Now, DateTime.Now, 0, 0, 0, 0, 0, DateTime.Now, DateTime.Now, "DELETE");
+            EliminarPolizasARenovar.ProcesarInformacion();
+
+            //ELIMINAR REGISTROS DE LAS POLIZAS RENOVADAS
+            UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionPolizasRenovadas EliminarPolizasRenovadas = new Logica.Comunes.Reportes.ProcesarInformacionPolizasRenovadas(
+                0, 0, "", 0, 0, 0, DateTime.Now, DateTime.Now, DateTime.Now, 0, 0, 0, 0, 0, 0, "DELETE");
+            EliminarPolizasRenovadas.ProcesarInformacion();
+
+            ClientScript.RegisterStartupScript(GetType(), "RegistrosEliminados()", "RegistrosEliminados();", true);
         }
 
         protected void LinkUltimo_Click(object sender, EventArgs e)

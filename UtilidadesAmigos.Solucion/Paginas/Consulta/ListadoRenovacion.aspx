@@ -49,7 +49,20 @@
          }
               function FechaHastaVacio() {
                   $("#<%=txtFechaHAsta.ClientID%>").css("border-color", "red");
-}
+        }
+
+
+
+
+        function RegistrosPolizasARenovar() {
+            alert("Registros de Polizas a Renovar cargados y actualizados correctamente");
+        }
+        function RegistrsPolizasRenovadas() {
+            alert("Registros de Polizas Renovadas Cargadas y Actualizadas correctamente");
+        }
+        function RegistrosEliminados() {
+            alert("Registros de polizas a Renovar y Renovadas Eliminadas corerctamente");
+        }
     </script>
        <div class="container-fluid">
        <br /><br />
@@ -219,11 +232,20 @@
                        <asp:CheckBox ID="cbExclirMotoresMachado" runat="server" Text="Excluir Motores" CssClass="form-check-input Letranegrita" />
                    </div>
                </div>
+               <br />
+               <div class="form-check-inline">
+                   <div class="form-group form-check">
+                       <asp:RadioButton ID="rbReportePDFMachado" runat="server" Text="PDF" CssClass="form-check-input Letranegrita" ToolTip="Generar Reporte en PDF" GroupName="ReporteMachado" />
+                       <asp:RadioButton ID="rbReporteExcelMachado" runat="server" Text="Excel" CssClass="form-check-input Letranegrita" ToolTip="Generar Reporte en Excel" GroupName="ReporteMachado" />
+                       <asp:RadioButton ID="rbReporteWordMachado" runat="server" Text="Word" CssClass="form-check-input Letranegrita" ToolTip="Generar Reporte en Word" GroupName="ReporteMachado" />
+                   </div>
+               </div>
                <div align="center">
-            <asp:Button ID="btnProcesar" runat="server" Text="Procesar" ToolTip="Procesar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnProcesar_Click" />
-            <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" ToolTip="Actualizar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnActualizar_Click" />
-            <asp:Button ID="btnConsultarRegistrosProcesados" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultarRegistrosProcesados_Click" />
-            <asp:Button ID="btnReporteRegistrosProcesados" runat="server" Text="Reporte" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnReporteRegistrosProcesados_Click" />
+            <asp:Button ID="btnProcesar" runat="server" Text="A Renovar" ToolTip="Procesar los registros a Renovar" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnProcesar_Click" />
+            <asp:Button ID="btnActualizar" runat="server" Text="Renovadas" ToolTip="Actualizar Registros registros renovados" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnActualizar_Click" />
+            <asp:Button ID="btnConsultarRegistrosProcesados" runat="server" Text="Consultar" ToolTip="Consultar Registros en Pantalla" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultarRegistrosProcesados_Click" />
+            <asp:Button ID="btnReporteRegistrosProcesados" runat="server" Text="Reporte" ToolTip="Generar Reporte Machado" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnReporteRegistrosProcesados_Click" />
+            <asp:Button ID="btnEliminarRegistrosMAchados" runat="server" Text="Eliminar" ToolTip="Eliminar los registros machados entre las polizas a renovar y renovadas" CssClass="btn btn-outline-danger btn-sm Custom" OnClick="btnEliminarRegistrosMAchados_Click" />
         </div>
                <br />
                <div class="table-responsive">
