@@ -17,6 +17,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> Objdata = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido> ObjDataReportes = new Lazy<Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido>();
 
+        enum PermisoReporteMachado { 
+        JuanMarcelino=1,
+        AlfredoPimentel=10,
+        AdalgisaAlmonte=18,
+        MiguelBerroa=22
+        }
+
         #region CARGAR LAS LISTAS DESPLEGABLES
         private void CargarRamos()
         {
@@ -434,6 +441,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarOficinaEstadistica();
                 ValidarBalanceEstadistica();
                 ExcluirMotoresEstadistica();
+
+                decimal IdUsuarioProcesa = (decimal)Session["IdUsuario"];
+                cbProcesarRegistros.Visible = false;
+
+                if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.JuanMarcelino) { cbProcesarRegistros.Visible = true; }
+                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.AlfredoPimentel) { cbProcesarRegistros.Visible = true; }
+                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.AdalgisaAlmonte) { cbProcesarRegistros.Visible = true; }
+                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.MiguelBerroa) { cbProcesarRegistros.Visible = true; }
             }
         }
 
