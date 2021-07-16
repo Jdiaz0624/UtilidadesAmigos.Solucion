@@ -935,6 +935,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         }
                       
                     }
+                    MostrarInformacionReporteMacjado();
                     ClientScript.RegisterStartupScript(GetType(), "RegistrosPolizasARenovar()", "RegistrosPolizasARenovar();", true);
                 }
                
@@ -956,12 +957,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void LinkPrimeroProceso_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarInformacionReporteMacjado();
         }
 
         protected void LinkAnteriorProceso_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarInformacionReporteMacjado();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleMachado, ref lbCantidadPaginaVAriableMachado);
         }
 
         protected void dtPaginacionProceso_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -971,17 +975,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void dtPaginacionProceso_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarInformacionReporteMacjado();
         }
 
         protected void LinkSiguienteProceso_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += 1;
+            MostrarInformacionReporteMacjado();
         }
 
         protected void LinkUltimoProceso_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarInformacionReporteMacjado();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleMachado, ref lbCantidadPaginaVAriableMachado);
         }
 
         protected void btnActualizar_Click(object sender, EventArgs e)
@@ -1066,7 +1075,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     
                 }
 
-
+                MostrarInformacionReporteMacjado();
                 ClientScript.RegisterStartupScript(GetType(), "RegistrsPolizasRenovadas()", "RegistrsPolizasRenovadas();", true);
             }
         }
@@ -1083,6 +1092,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 0, 0, "", 0, 0, 0, DateTime.Now, DateTime.Now, DateTime.Now, 0, 0, 0, 0, 0, 0, "DELETE");
             EliminarPolizasRenovadas.ProcesarInformacion();
 
+            MostrarInformacionReporteMacjado();
             ClientScript.RegisterStartupScript(GetType(), "RegistrosEliminados()", "RegistrosEliminados();", true);
         }
 
