@@ -13,17 +13,23 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.SuperIntendenci
         private decimal IdUsuario = 0;
         private string Nombre = "";
         private string NumeroIdentificacion = "";
+        private string Chasis = "";
+        private string Placa = "";
         private string Accion = "";
 
         public ProcesarInformacionPersonasArchivoSuperIntenedencia(
             decimal IdUsuarioCON,
             string NombreCON,
             string NumeroIdentificacionCON,
+            string ChasisCON,
+            string PlacaCON,
             string AccionCON)
         {
             IdUsuario = IdUsuarioCON;
             Nombre = NombreCON;
             NumeroIdentificacion = NumeroIdentificacionCON;
+            Chasis = ChasisCON;
+            Placa = PlacaCON;
             Accion = AccionCON;
         }
 
@@ -36,6 +42,8 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.SuperIntendenci
             Procesar.IdUsuario = IdUsuario;
             Procesar.Nombre = Nombre;
             Procesar.NumeroIdentificacion = NumeroIdentificacion;
+            Procesar.Chasis = Chasis;
+            Procesar.Placa = Placa;
 
             var MAN = ObjData.ProcesarArchivo(Procesar, Accion);
         }

@@ -204,7 +204,6 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
             return Listado;
         }
 
-
         //PROCESAR INFORMACION DE PERSONAS PARA LA SUPER INTENDENCIA
         public UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EProcesarArchivoSuperIntendencia ProcesarArchivo(UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EProcesarArchivoSuperIntendencia Item, string Accion) {
             ObjData.CommandTimeout = 999999999;
@@ -215,6 +214,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
                 Item.IdUsuario,
                 Item.Nombre,
                 Item.NumeroIdentificacion,
+                Item.Chasis,
+                Item.Placa,
                 Accion);
             if (ArchivoSuperIntenedencia != null) {
                 Procesar = (from n in ArchivoSuperIntenedencia
@@ -222,12 +223,13 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
                             {
                                 IdUsuario=n.IdUsuario,
                                 Nombre=n.Nombre,
-                                NumeroIdentificacion=n.NumeroIdentificacion
+                                NumeroIdentificacion=n.NumeroIdentificacion,
+                                Chasis=n.Chasis,
+                                Placa=n.Placa
                             }).FirstOrDefault();
             }
             return Procesar;
         }
-
 
         //PROCESAR INFORMACION DE LA DATA CONSULTADA DE LA BUSQUEDA DE EL ARCHIVO DE EXCEL
         public UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EProcesarDataResultadoBusquedaPersonaSuperIntendencia ProcesarResultadoBusquedaSuperIntendencia(UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EProcesarDataResultadoBusquedaPersonaSuperIntendencia Item, string Accion) {
@@ -275,7 +277,6 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
             return Procesar;
         }
 
-
         //BUSCAR INFORMACION REGISTRADA ACHIVO EXCEL
         public List<UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EBuscaInformacionPersonasRegistradasArchivo> BuscarInformacionRegistrada(decimal? IdUsuario = null, string Nombre = null, string NumeroIdentificacion = null) {
             ObjData.CommandTimeout = 999999999;
@@ -283,9 +284,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
             var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_PERSONAS_REGISTRADAS_ARCHIVO(IdUsuario, Nombre, NumeroIdentificacion)
                            select new UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EBuscaInformacionPersonasRegistradasArchivo
                            {
-                               IdUsuario=n.IdUsuario,
-                               Nombre=n.Nombre,
-                               NumeroIdentificacion=n.NumeroIdentificacion
+                               IdUsuario = n.IdUsuario,
+                               Nombre = n.Nombre,
+                               NumeroIdentificacion = n.NumeroIdentificacion,
+                               Chasis = n.Chasis,
+                               Placa = n.Placa
                            }).ToList();
             return Listado;
         }

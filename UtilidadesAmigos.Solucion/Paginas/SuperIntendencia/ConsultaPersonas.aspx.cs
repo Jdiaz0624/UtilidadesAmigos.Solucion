@@ -344,12 +344,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             DivDetalleDependientes.Visible = false;              
         }
 
-        private void ProcesarInformacionArchivo(string Nombre, string NumeroIdentificacion, string Accion) {
+        private void ProcesarInformacionArchivo(string Nombre, string NumeroIdentificacion, string Chasis, string Placa, string Accion) {
 
             decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
 
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.SuperIntendencia.ProcesarInformacionPersonasArchivoSuperIntenedencia Procesar = new Logica.Comunes.ProcesarMantenimientos.SuperIntendencia.ProcesarInformacionPersonasArchivoSuperIntenedencia(
-                IdUsuario, Nombre, NumeroIdentificacion, Accion);
+                IdUsuario, Nombre, NumeroIdentificacion,Chasis,Placa, Accion);
             Procesar.ProcesarInformacion();
         }
 
@@ -431,13 +431,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 txtNombreVendedorDetalleCliente.Text = n.NombreVendedor;
                 txtRNCVendedorDetalleCliente.Text = n.RNCIntermediario;
                 txtLicenciaDetalleVendedor.Text = n.LicenciaSeguro;
-                txttipoVehiculoDetalleCliente.Text = n.TipoVehiculo;
-                txtMarcaDetalleCliente.Text = n.Marca;
-                txtModeloDetalleCliente.Text = n.Modelo;
-                txtAnoDetalleCliente.Text = n.Ano;
-                txtPalcaDetalleCliente.Text = n.Placa;
-                txtCiasusDetalleCliente.Text = n.Chasis;
-                txtColorDetalleCliente.Text = n.Color;
                 decimal MontoAsegurado = (decimal)n.MontoAsegurado;
                 txtMontoAseguradoDetalleCliente.Text = MontoAsegurado.ToString("N2");
                 decimal Prima = (decimal)n.Prima;
@@ -562,7 +555,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 DivPaginacionInformacionAsegurado.Visible = false;
                 DivPaginacionAseguradoGeneral.Visible = false;
                 DivPaginacionDependiente.Visible = false;
+
+
+                DivBuscarArchivoExcel.Visible = false;
+                DivBloqueConsulta.Visible = true;
+                DivBloqueProcesoLote.Visible = false;
+                btnProcesarRegistros.Visible = false;
             }
+
+       
         }
 
         protected void btnSeleccionarRegistrosBusquedaCliente_Click(object sender, EventArgs e)
@@ -614,74 +615,53 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
             if (cbBusquedaPorLote.Checked == true) {
-                ProcesarInformacionArchivo("", "", "DELETE");
+                ProcesarInformacionArchivo("", "","","", "DELETE");
                 //BUSCAMOS Y LEEMOS LA RUTA DEL ARCHIVO SELECCIONADO
-                string ruta_carpeta = HttpContext.Current.Server.MapPath("~/Temporal");
+                try {
 
-                if (!Directory.Exists(ruta_carpeta))
-                {
-                    Directory.CreateDirectory(ruta_carpeta);
-                }
+                    string ruta_carpeta = HttpContext.Current.Server.MapPath("~/Temporal");
 
-                var ruta_guardado = Path.Combine(ruta_carpeta, FileUpload1.FileName);
-                FileUpload1.SaveAs(ruta_guardado);
-                string RutaArchivoSeleccionado = ruta_guardado;
+                    if (!Directory.Exists(ruta_carpeta))
+                    {
+                        Directory.CreateDirectory(ruta_carpeta);
+                    }
 
-                SLDocument sl = new SLDocument(RutaArchivoSeleccionado);
-                int Row = 2;
-                while (!string.IsNullOrEmpty(sl.GetCellValueAsString(Row, 1))) {
-                    string Nombre = sl.GetCellValueAsString(Row, 1);
-                    string Cedula = sl.GetCellValueAsString(Row, 2);
-                    ProcesarInformacionArchivo(Nombre, Cedula, "INSERT");
+                    var ruta_guardado = Path.Combine(ruta_carpeta, FileUpload1.FileName);
+                    FileUpload1.SaveAs(ruta_guardado);
+                    string RutaArchivoSeleccionado = ruta_guardado;
+
+                    SLDocument sl = new SLDocument(RutaArchivoSeleccionado);
+                    int Row = 2;
+                    while (!string.IsNullOrEmpty(sl.GetCellValueAsString(Row, 1)))
+                    {
+                        string Nombre = sl.GetCellValueAsString(Row, 1);
+                        string Cedula = sl.GetCellValueAsString(Row, 2);
+                        string Chasis = sl.GetCellValueAsString(Row, 3);
+                        string Placa = sl.GetCellValueAsString(Row, 4);
+                        ProcesarInformacionArchivo(Nombre, Cedula, Chasis, Placa, "INSERT");
+
+                        Row++;
+
+                    }
+                    decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+                    var BuscaInformacionRegistrada = ObjDataSuperIntendencia.Value.BuscarInformacionRegistrada(
+                        IdUsuario, null, null);
+                    if (BuscaInformacionRegistrada.Count() < 1) {
+                        lbCantidadRegistrosProcesadosVariable.Text = "0";
+                    }
+                    else {
+                        int CantidadEncontrada = BuscaInformacionRegistrada.Count;
+                        lbCantidadRegistrosProcesadosVariable.Text = CantidadEncontrada.ToString("N0");
+                        Paginar(ref rpRegistrosCargadoArchivo, BuscaInformacionRegistrada, 10, ref lbCantidadPaginaVAriableArchivo, ref LinkPrimeroArchivo, ref LinkAnteriorArchivo, ref LinkSiguienteArchivo, ref LinkUltimoArchivo);
+                        HandlePaging(ref dtArchivo, ref lbPaginaActualVariavleArchivo);
+                    }
                     
-                    Row++;
-                
                 }
-                decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
-                var BuscaInformacionRegistrada = ObjDataSuperIntendencia.Value.BuscarInformacionRegistrada(
-                    IdUsuario, null, null);
-                string NombreRegistrado = "";
-                string NumeroIdentificacionRegistrado = "";
-                foreach (var n in BuscaInformacionRegistrada) {
-                    NombreRegistrado = n.Nombre;
-                    NumeroIdentificacionRegistrado = n.NumeroIdentificacion;
-
-                    //CLIENTES
-                    BuscarInformacionClientesLote(1, NombreRegistrado, "");
-                    BuscarInformacionClientesLote(2, "", NumeroIdentificacionRegistrado);
-
-                    //INTERMEDIARIOS
-                    BuscarInformacionIntermediarioLote(1, NombreRegistrado, "");
-                    BuscarInformacionIntermediarioLote(2, "", NumeroIdentificacionRegistrado);
-
-                    //PROVEEDOR
-                    BuscarInformacionProveedorLote(1, NombreRegistrado, "");
-                    BuscarInformacionProveedorLote(2, "", NumeroIdentificacionRegistrado);
-
-                    //ASEGURADO
-                    BuscarInformacionAseguradoLote(1, NombreRegistrado, "");
-                    BuscarInformacionAseguradoLote(2, "", NumeroIdentificacionRegistrado);
-
-                    //ASEGURADO BAJO POLIZA
-                    BuscarInformacionAseguradoBajoPolizaLote(1, NombreRegistrado, "");
-                    BuscarInformacionAseguradoBajoPolizaLote(2, "", NumeroIdentificacionRegistrado);
-
-                    //DEPENDIENTES
-                    BuscarInformacionDependienteLote(1, NombreRegistrado, "");
-                    BuscarInformacionDependienteLote(2, "", NumeroIdentificacionRegistrado);
-
-                    //RECLAMACION
-                    BuscarInformacionReclamoLote(1, NombreRegistrado, "");
-                    BuscarInformacionReclamoLote(2, "", NumeroIdentificacionRegistrado);
-
-                    //DOCUMENTOS AMIGOS
-                    BuscarInformacionDocumentosAmigosLote(1, NombreRegistrado, "");
-                    BuscarInformacionDocumentosAmigosLote(2, "", NumeroIdentificacionRegistrado);
+                catch (Exception) {
+                    ClientScript.RegisterStartupScript(GetType(), "ArchivoNoProcesado()", "ArchivoNoProcesado();", true);
                 }
 
-
-
-            }
+                }
             else if (cbBusquedaPorLote.Checked == false) {
                 if (rbConsultaNormal.Checked)
                 {
@@ -1101,12 +1081,50 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 DivBuscarArchivoExcel.Visible = true;
                 DivBloqueConsulta.Visible = false;
                 DivBloqueProcesoLote.Visible = true;
+                btnProcesarRegistros.Visible = true;
+                rbBuscarPorClienteArchivo.Checked = true;
             }
             else {
                 DivBuscarArchivoExcel.Visible = false;
                 DivBloqueConsulta.Visible = true;
                 DivBloqueProcesoLote.Visible = false;
+                btnProcesarRegistros.Visible = false;
             }
+        }
+
+        protected void LinkPrimeroArchivo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkAnteriorArchivo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dtArchivo_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtArchivo_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguienteArchivo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoArchivo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnProcesarRegistros_Click(object sender, EventArgs e)
+        {
+
         }
 
         protected void LinkUltimoCliente_Click(object sender, EventArgs e)

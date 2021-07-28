@@ -33,6 +33,14 @@
             background-color: dodgerblue;
             color: white;
         }
+          .auto-style1 {
+              width: 70%;
+              height: 36px;
+          }
+          .auto-style2 {
+              width: 10%;
+              height: 36px;
+          }
     </style>
 
     <script type="text/javascript">
@@ -45,6 +53,11 @@
             alert("Los campos Placa y Chasis no pueden estar ambos vacio, favor de verificar.");
             $("#<%=txtPlacaConsulta.ClientID%>").css("border-color", "red");
             $("#<%=txtChasisConsulta.ClientID%>").css("border-color", "red");  
+        }
+
+        function ArchivoNoProcesado() {
+            alert("Error al procesar el archivo, no se selecciono ninguno o los parametros de este no son correctos, favor de verificar.");
+
         }
     </script>
 
@@ -106,6 +119,7 @@
        </div>
        <div align="center">
            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click" />
+           <asp:Button ID="btnProcesarRegistros" runat="server" Text="Procesar" ToolTip="Procesar Registros" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnProcesarRegistros_Click" />
        </div>
 
        <br />
@@ -1142,7 +1156,79 @@
 
 
        <div id="DivBloqueProcesoLote" runat="server">
-           <asp:GridView ID="gbListadoExcel" runat="server"></asp:GridView>
+           <div class="form-check-inline">
+               <div class="form-group form-check">
+                   <asp:Label ID="lbLetreroBusquedaArchivo" runat="server" Text="Buscar Como: " CssClass="Letranegrita"></asp:Label><br />
+                   <asp:RadioButton ID="rbBuscarPorClienteArchivo" runat="server" Text="Cliente" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar Información como cliente" />
+                   <asp:RadioButton ID="rbBuscarIntermediarioArchivo" runat="server" Text="Intermediario" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar Información como Intermediario o Supervisor" />
+                   <asp:RadioButton ID="rbBuscarProveedorArchivo" runat="server" Text="Proveedor" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar Información como Proveedor" />
+                   <asp:RadioButton ID="rbBuscarAseguradoArchivo" runat="server" Text="Asegurado" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar Información como Asegurado" />
+                   <asp:RadioButton ID="rbBuscarAseguradoItemArchivo" runat="server" Text="Asegurado Item" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar Información como Asegurado en Item" />
+                   <asp:RadioButton ID="rbBuscarDependienteArchivo" runat="server" Text="Dependiente" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar Información como Dependiente" /> <br />
+                   <asp:RadioButton ID="rbBuscarReclamacionesArchivo" runat="server" Text="Reclamo" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar Información como Reclamo" />
+                   <asp:RadioButton ID="rbBuscarDocumentosAmigosArchivo" runat="server" Text="Documentos Amigos" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar en la data vieja de la Cia" />
+               </div>
+           </div>
+           <br />
+           <div align="center">
+               <asp:Label ID="lbCantidadRegistrosProcesadosTitulo" runat="server" Text="Cantidad de Registros Procesados ( " CssClass="Letranegrita"></asp:Label>
+               <asp:Label ID="lbCantidadRegistrosProcesadosVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+               <asp:Label ID="lbCantidadRegistrosProcesadosCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+           </div>
+           <div class="table-responsive">
+               <table class="table table-hover">
+                   <thead>
+                       <tr>
+                            <th align="left" class="auto-style1"> NOMBRE </th>
+                            <th align="left" class="auto-style2"> IDENTIFICACION </th>
+                            <th align="left" class="auto-style2"> CHASIS </th>
+                            <th align="left" class="auto-style2"> PLACA </th>
+                       </tr>
+                   </thead>
+
+                   <tbody>
+                       <asp:Repeater ID="rpRegistrosCargadoArchivo" runat="server">
+                           <ItemTemplate>
+                               <tr>
+                                    <td style="width:70%" align="left"> <%# Eval("Nombre") %> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("NumeroIdentificacion") %> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("Chasis") %> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("Placa") %> </td>
+                               </tr>
+                           </ItemTemplate>
+                       </asp:Repeater>
+                   </tbody>
+
+                   
+               </table>
+           </div>
+
+            <div align="center">
+                <asp:Label ID="lbPaginaActualTituloArchivo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavleArchivo" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloArchivo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriableArchivo" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+           <div id="DivPaginacionArchivo" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeroArchivo" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroArchivo_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorArchivo" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorArchivo_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtArchivo" runat="server" OnItemCommand="dtArchivo_ItemCommand" OnItemDataBound="dtArchivo_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionArchivo" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteArchivo" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteArchivo_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoArchivo" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoArchivo_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
 
        </div>
   </div>
