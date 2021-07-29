@@ -59,6 +59,8 @@
             alert("Error al procesar el archivo, no se selecciono ninguno o los parametros de este no son correctos, favor de verificar.");
 
         }
+
+
     </script>
 
    <div class="container-fluid">

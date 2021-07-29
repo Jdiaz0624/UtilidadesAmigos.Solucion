@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.IO;
 using SpreadsheetLight;
+using System.Web.Security;
 
 
 namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
@@ -250,7 +251,33 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             switch (TipoBusqueda)
             {
                 case (int)TipoBusquedaProceso.BusquedaPorNombre:
+                    var BuscarInformacionPorNombre = ObjDataSuperIntendencia.Value.BuscaPersonasSuperIntendenciaIntermediario(
+                        new Nullable<int>(),
+                        null, Nombre);
+                    if (BuscarInformacionPorNombre.Count() < 1) { }
+                    else {
+                        decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
 
+                        foreach (var nIntermediario in BuscarInformacionPorNombre) {
+                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.SuperIntendencia.ProcesarInformacionResultadoBusquedaArchivo Procesar = new Logica.Comunes.ProcesarMantenimientos.SuperIntendencia.ProcesarInformacionResultadoBusquedaArchivo(
+                                       IdUsuario,
+                                       nIntermediario.Nombre,
+                                       nIntermediario.Rnc,
+                                       "",
+                                       "",
+                                       "",
+                                       "",
+                                       0,
+                                       0,
+                                       DateTime.Now,
+                                       DateTime.Now,
+                                       "Por Nombre",
+                                       "Encontrado como Intermediario / Supervisor Codigo " + nIntermediario.Codigo.ToString() + " Licencia " + nIntermediario.LicenciaSeguro,
+                                       "",
+                                       "INSERT");
+                            Procesar.ProcesarInformacion();
+                        }
+                    }
                     break;
 
                 case (int)TipoBusquedaProceso.BusquedaPorRNC:
@@ -1124,7 +1151,37 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 
         protected void btnProcesarRegistros_Click(object sender, EventArgs e)
         {
+            if (Session["IdUsuario"] != null) {
+                //BUSCAR TODA LA INFORMACION DE LOS CLIENTES
+                if (rbBuscarPorClienteArchivo.Checked == true)
+                {
+                    //BUSCAR INFORMACION MEDIANTE EL NOMBRE
+                    string Nombre = "", RNC = "";
 
+                    var BuscarInformacionCargada = ObjDataSuperIntendencia.Value.BuscarInformacionRegistrada((decimal)Session["IdUsuario"], null, null);
+                    if (BuscarInformacionCargada.Count() < 1) { }
+                    else
+                    {
+                        foreach (var n in BuscarInformacionCargada)
+                        {
+                            Nombre = n.Nombre.Length < 1 ? "..." : n.Nombre;
+                            RNC = n.NumeroIdentificacion.Length < 1 ? "...." : n.NumeroIdentificacion;
+
+                            //BuscarInformacionClientesLote((int)TipoBusquedaProceso.BusquedaPorNombre, Nombre, "...");
+                          //  BuscarInformacionClientesLote((int)TipoBusquedaProceso.BusquedaPorRNC, "...", RNC);
+
+                            BuscarInformacionIntermediarioLote((int)TipoBusquedaProceso.BusquedaPorNombre, Nombre, "..");
+                        }
+                    }
+
+                }
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+
+
+            }
         }
 
         protected void LinkUltimoCliente_Click(object sender, EventArgs e)
