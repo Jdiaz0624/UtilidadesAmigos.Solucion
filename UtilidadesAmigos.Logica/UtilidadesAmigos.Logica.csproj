@@ -365,6 +365,7 @@
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendenciaAseguradoGeneral.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonasSuperIntendenciaIntermediario.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscarPersonasDependientes.cs" />
+    <Compile Include="Entidades\SuperIntendencia\EInformacionPersonasSuperIntentenciaPorLote.cs" />
     <Compile Include="Entidades\SuperIntendencia\EProcesarArchivoSuperIntendencia.cs" />
     <Compile Include="Entidades\SuperIntendencia\EProcesarDataResultadoBusquedaPersonaSuperIntendencia.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />

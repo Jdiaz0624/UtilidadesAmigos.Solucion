@@ -59,7 +59,9 @@
             alert("Error al procesar el archivo, no se selecciono ninguno o los parametros de este no son correctos, favor de verificar.");
 
         }
-
+        function InformacionAProcesarNoEncontrada() {
+            alert("No se encontraron registros extraidos de archivos, favor de verificar.");
+        }
 
     </script>
 
@@ -1160,18 +1162,29 @@
        <div id="DivBloqueProcesoLote" runat="server">
            <div class="form-check-inline">
                <div class="form-group form-check">
-                   <asp:Label ID="lbLetreroBusquedaArchivo" runat="server" Text="Buscar Como: " CssClass="Letranegrita"></asp:Label><br />
-                   <asp:RadioButton ID="rbBuscarPorClienteArchivo" runat="server" Text="Cliente" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar Información como cliente" />
-                   <asp:RadioButton ID="rbBuscarIntermediarioArchivo" runat="server" Text="Intermediario" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar Información como Intermediario o Supervisor" />
-                   <asp:RadioButton ID="rbBuscarProveedorArchivo" runat="server" Text="Proveedor" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar Información como Proveedor" />
-                   <asp:RadioButton ID="rbBuscarAseguradoArchivo" runat="server" Text="Asegurado" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar Información como Asegurado" />
-                   <asp:RadioButton ID="rbBuscarAseguradoItemArchivo" runat="server" Text="Asegurado Item" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar Información como Asegurado en Item" />
-                   <asp:RadioButton ID="rbBuscarDependienteArchivo" runat="server" Text="Dependiente" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar Información como Dependiente" /> <br />
-                   <asp:RadioButton ID="rbBuscarReclamacionesArchivo" runat="server" Text="Reclamo" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar Información como Reclamo" />
-                   <asp:RadioButton ID="rbBuscarDocumentosAmigosArchivo" runat="server" Text="Documentos Amigos" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar en la data vieja de la Cia" />
+                   <asp:Label ID="lbLetreroBusquedaArchivoBusquedaPorLote" runat="server" Text="Tipo de Busqueda: " CssClass="Letranegrita"></asp:Label><br />
+                   <asp:RadioButton ID="rbTodosLosParametros" runat="server" Text="Todos" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar por Todos los Parametros" />
+                   <asp:RadioButton ID="rbPorNombreBusquedaPorLote" runat="server" Text="Nombre" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el nombre de la persona" />
+                   <asp:RadioButton ID="rbNumeroIdentificacionBusquedaPorLote" runat="server" Text="Numero de Identificación" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el Numero de Identificación de la persona" />
+                   <asp:RadioButton ID="rbChasisBusquedaPorLote" runat="server" Text="Chasis" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el Numero de Chasis" />
+                   <asp:RadioButton ID="rbPlacaBusquedaPorLote" runat="server" Text="Placa" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el Numero de Placa" />
                </div>
            </div>
            <br />
+           <div class="form-check-inline">
+               <div class="form-group form-check">
+                   <asp:Label ID="lbLetreroBuscarEn" runat="server" Text="Buscar Como" CssClass="Letranegrita"></asp:Label><br />
+                   <asp:CheckBox ID="cbTodos" runat="server" Text="Todos" CssClass="form-check-input" ToolTip="Buscar en Todos los Registros" />
+                   <asp:CheckBox ID="cbCliente" runat="server" Text="Cliente" CssClass="form-check-input" ToolTip="Buscar informacion en la data de los clientes registrados" />
+                   <asp:CheckBox ID="cbIntermediario" runat="server" Text="Intermediario" CssClass="form-check-input" ToolTip="Buscar en la Data de los Intermediarios y Supervisores" />
+                   <asp:CheckBox ID="cbProvedor" runat="server" Text="Proveedor" CssClass="form-check-input" ToolTip="Buscar en la Data de los Proveedores" />
+                   <asp:CheckBox ID="cbAseguradoBajoPoliza" runat="server" Text="Asegurado P" CssClass="form-check-input" ToolTip="Buscar en la Data de los Asegurados Bajo Polizas" /><br />
+                   <asp:CheckBox ID="cbAsegurado" runat="server" Text="Asegurado" CssClass="form-check-input" ToolTip="Buscar en la Data de los Asegurados" />
+                   <asp:CheckBox ID="cbDependiente" runat="server" Text="Dependiente" CssClass="form-check-input" ToolTip="Buscar en la Data de los Dependientes" />
+                   <asp:CheckBox ID="cbCheque" runat="server" Text="Cheque" CssClass="form-check-input" ToolTip="Buscar en la Data de las Solicitudes y Cheques" />
+                   <asp:CheckBox ID="cbDocumentosAmigos" runat="server" Text="Documentos Amigos" CssClass="form-check-input" ToolTip="Buscar en la Data de los Documentos Amigos" />
+               </div>
+           </div>
            <div align="center">
                <asp:Label ID="lbCantidadRegistrosProcesadosTitulo" runat="server" Text="Cantidad de Registros Procesados ( " CssClass="Letranegrita"></asp:Label>
                <asp:Label ID="lbCantidadRegistrosProcesadosVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>

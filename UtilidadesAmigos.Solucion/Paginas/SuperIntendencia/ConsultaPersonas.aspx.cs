@@ -362,6 +362,245 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         #endregion
 
 
+        #region BUSCAR INFORMACION PARA BUSCAR POR LOTE
+        /// <summary>
+        /// Buscar y procesar las informaciónes de los clientes segun información cargada.
+        /// </summary>
+        /// <param name="TipoBusqueda"></param>
+        private void ProcesarInformacionClientePorLote(int TipoBusqueda) {
+
+            var BuscarInformacion = ObjDataSuperIntendencia.Value.BuscaInformacionClienteSuperIntendenciaPorLote((decimal)Session["IdUsuario"], TipoBusqueda);
+            if (BuscarInformacion.Count() < 1)
+            {
+
+            }
+            else {
+                string TipoBusquedaRealizada = TipoBusqueda == 1 ? "Por Nombre" : "Por Numero de Identificación";
+
+
+                foreach (var n in BuscarInformacion) {
+                    //GUARDAMOS LA INFORMACION
+
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.SuperIntendencia.ProcesarInformacionResultadoBusquedaArchivo Guardar = new Logica.Comunes.ProcesarMantenimientos.SuperIntendencia.ProcesarInformacionResultadoBusquedaArchivo(
+                        (decimal)Session["IdUsuario"],
+                        n.Nombre,
+                        n.NumeroIdentificacion,
+                        n.Poliza,
+                        n.Reclamacion,
+                        n.Estatus,
+                        n.Ramo,
+                        (decimal)n.MontoAsegurado,
+                        (decimal)n.Prima,
+                        (DateTime)n.InicioVigencia,
+                        (DateTime)n.FinVigencia,
+                        TipoBusquedaRealizada,
+                        n.EncontradoComo,
+                        n.Comentario,
+                        "INSERT");
+                    Guardar.ProcesarInformacion();
+                }
+            }
+        }
+        /// <summary>
+        /// Buscar y procesar las informaciónes de los intermediarios segun información cargada.
+        /// </summary>
+        /// <param name="TipoBusqueda"></param>
+        private void ProcesarInformacionIntermediarioPorLote(int TipoBusqueda)
+        {
+
+        }
+        /// <summary>
+        /// Buscar y procesar las informaciónes de los proveedores segun información cargada.
+        /// </summary>
+        /// <param name="TipoBusqueda"></param>
+        private void ProcesarInformacionProveedorPorLote(int TipoBusqueda)
+        {
+
+        }
+        /// <summary>
+        /// Buscar y procesar las informaciónes de los asegurados bajo poliza segun información cargada.
+        /// </summary>
+        /// <param name="TipoBusqueda"></param>
+        private void ProcesarInformacionAseguradoBajoPolizaPorLote(int TipoBusqueda)
+        {
+
+        }
+        /// <summary>
+        /// Buscar y procesar las informaciónes de los asegurados segun información cargada.
+        /// </summary>
+        /// <param name="TipoBusqueda"></param>
+        private void ProcesarInformacionAseguradoPorLote(int TipoBusqueda)
+        {
+
+        }
+        /// <summary>
+        /// Buscar y procesar las informaciónes de los dependientes segun información cargada.
+        /// </summary>
+        /// <param name="TipoBusqueda"></param>
+        private void ProcesarInformacionDependientePorLote(int TipoBusqueda)
+        {
+
+        }
+        /// <summary>
+        /// Buscar y procesar las informaciónes de los cheques segun información cargada.
+        /// </summary>
+        /// <param name="TipoBusqueda"></param>
+        private void ProcesarInformacionChequePorLote(int TipoBusqueda)
+        {
+
+        }
+        /// <summary>
+        /// Buscar y procesar las informaciónes de la data de Documentos Amigos segun información cargada.
+        /// </summary>
+        /// <param name="TipoBusqueda"></param>
+        private void ProcesarInformacionDocumentosAmigosPorLote(int TipoBusqueda)
+        {
+
+        }
+
+        /// <summary>
+        /// Buscar y procesar las informaciónes por chasis segun información cargada.
+        /// </summary>
+        private void ProcesarInformacionPorChasis() { }
+
+        /// <summary>
+        /// Buscar y procesar las informaciónes por placa segun información cargada.
+        /// </summary>
+        private void ProcesarInformacionPorPlaca() { }
+        #endregion
+
+
+        #region PROCESAR INFORMACION POR LOTE
+        /// <summary>
+        /// Procesar la informacion cargada por lote
+        /// </summary>
+        private void ProcesarInformacionPorlote(decimal IdUsuario) {
+            //VALIDAMOS QUE HAY REGISTROS GUARDADOS PARA PODER PROCESARLOS
+            var ValidarDatosExtraidos = ObjDataSuperIntendencia.Value.BuscarInformacionRegistrada(IdUsuario, null, null);
+            if (ValidarDatosExtraidos.Count() < 1) {
+                ClientScript.RegisterStartupScript(GetType(), "InformacionAProcesarNoEncontrada()", "InformacionAProcesarNoEncontrada();", true);
+
+
+            }
+            else {
+
+                //ELIMINAMOS TODOS LOS REGISTROS GUARDADOS MEDIANTE EL USUARIO
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.SuperIntendencia.ProcesarInformacionResultadoBusquedaArchivo Eliminar = new Logica.Comunes.ProcesarMantenimientos.SuperIntendencia.ProcesarInformacionResultadoBusquedaArchivo(
+                    IdUsuario, "", "", "", "", "", "", 0, 0, DateTime.Now, DateTime.Now, "", "", "", "DELETE");
+                Eliminar.ProcesarInformacion();
+
+                //VALIDAMOS EL TIPO DE BUSQUEDA
+                
+                if (rbTodosLosParametros.Checked == true) {
+
+                    if (cbCliente.Checked == true) {
+                        ProcesarInformacionClientePorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionClientePorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+                    if (cbIntermediario.Checked == true) {
+                        ProcesarInformacionIntermediarioPorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionIntermediarioPorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+                    if (cbProvedor.Checked == true) {
+                        ProcesarInformacionProveedorPorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionProveedorPorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+                    if (cbAseguradoBajoPoliza.Checked == true) {
+                        ProcesarInformacionAseguradoBajoPolizaPorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionAseguradoBajoPolizaPorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+                    if (cbAsegurado.Checked == true) {
+                        ProcesarInformacionAseguradoPorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionAseguradoPorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+                    if (cbDependiente.Checked == true) {
+                        ProcesarInformacionDependientePorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionDependientePorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+                    if (cbCheque.Checked == true) {
+                        ProcesarInformacionChequePorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionChequePorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+                    if (cbDocumentosAmigos.Checked == true) {
+                        ProcesarInformacionDocumentosAmigosPorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionDocumentosAmigosPorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+
+
+                }
+                else if (rbPorNombreBusquedaPorLote.Checked == true) {
+
+                    if (cbCliente.Checked == true) {
+                        ProcesarInformacionClientePorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                    }
+                    if (cbIntermediario.Checked == true) {
+                        ProcesarInformacionIntermediarioPorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                    }
+                    if (cbProvedor.Checked == true) {
+                        ProcesarInformacionProveedorPorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                    }
+                    if (cbAseguradoBajoPoliza.Checked == true) {
+                        ProcesarInformacionAseguradoBajoPolizaPorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                    }
+                    if (cbAsegurado.Checked == true) {
+                        ProcesarInformacionAseguradoPorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                    }
+                    if (cbDependiente.Checked == true) {
+                        ProcesarInformacionDependientePorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                    }
+                    if (cbCheque.Checked == true) {
+                        ProcesarInformacionChequePorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                    }
+                    if (cbDocumentosAmigos.Checked == true) {
+                        ProcesarInformacionDocumentosAmigosPorLote((int)TipoBusquedaProceso.BusquedaPorNombre);
+                    }
+
+                }
+                else if (rbNumeroIdentificacionBusquedaPorLote.Checked == true) {
+
+                    if (cbCliente.Checked == true)
+                    {
+                        ProcesarInformacionClientePorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+                    if (cbIntermediario.Checked == true)
+                    {
+                        ProcesarInformacionIntermediarioPorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+                    if (cbProvedor.Checked == true)
+                    {
+                        ProcesarInformacionProveedorPorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+                    if (cbAseguradoBajoPoliza.Checked == true)
+                    {
+                        ProcesarInformacionAseguradoBajoPolizaPorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+                    if (cbAsegurado.Checked == true)
+                    {
+                        ProcesarInformacionAseguradoPorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+                    if (cbDependiente.Checked == true)
+                    {
+                        ProcesarInformacionDependientePorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+                    if (cbCheque.Checked == true)
+                    {
+                        ProcesarInformacionChequePorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+                    if (cbDocumentosAmigos.Checked == true)
+                    {
+                        ProcesarInformacionDocumentosAmigosPorLote((int)TipoBusquedaProceso.BusquedaPorRNC);
+                    }
+
+                }
+                else if (rbChasisBusquedaPorLote.Checked == true) { }
+                else if (rbPlacaBusquedaPorLote.Checked == true) { }
+            
+            }
+        
+        }
+        #endregion
+
+
         private void OcultarDetalle() {
             DivBloqueDetalleCliente.Visible = false;
             DivDetalleInformacionIntermediarioSeleccionado.Visible = false;
@@ -1109,7 +1348,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 DivBloqueConsulta.Visible = false;
                 DivBloqueProcesoLote.Visible = true;
                 btnProcesarRegistros.Visible = true;
-                rbBuscarPorClienteArchivo.Checked = true;
+                rbTodosLosParametros.Checked = true;
             }
             else {
                 DivBuscarArchivoExcel.Visible = false;
@@ -1152,29 +1391,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected void btnProcesarRegistros_Click(object sender, EventArgs e)
         {
             if (Session["IdUsuario"] != null) {
-                //BUSCAR TODA LA INFORMACION DE LOS CLIENTES
-                if (rbBuscarPorClienteArchivo.Checked == true)
-                {
-                    //BUSCAR INFORMACION MEDIANTE EL NOMBRE
-                    string Nombre = "", RNC = "";
 
-                    var BuscarInformacionCargada = ObjDataSuperIntendencia.Value.BuscarInformacionRegistrada((decimal)Session["IdUsuario"], null, null);
-                    if (BuscarInformacionCargada.Count() < 1) { }
-                    else
-                    {
-                        foreach (var n in BuscarInformacionCargada)
-                        {
-                            Nombre = n.Nombre.Length < 1 ? "..." : n.Nombre;
-                            RNC = n.NumeroIdentificacion.Length < 1 ? "...." : n.NumeroIdentificacion;
-
-                            //BuscarInformacionClientesLote((int)TipoBusquedaProceso.BusquedaPorNombre, Nombre, "...");
-                          //  BuscarInformacionClientesLote((int)TipoBusquedaProceso.BusquedaPorRNC, "...", RNC);
-
-                            BuscarInformacionIntermediarioLote((int)TipoBusquedaProceso.BusquedaPorNombre, Nombre, "..");
-                        }
-                    }
-
-                }
+                ProcesarInformacionPorlote((decimal)Session["IdUsuario"]);
             }
             else {
                 FormsAuthentication.SignOut();

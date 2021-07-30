@@ -292,5 +292,31 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
                            }).ToList();
             return Listado;
         }
+
+
+
+        public List<UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EInformacionPersonasSuperIntentenciaPorLote> BuscaInformacionClienteSuperIntendenciaPorLote(decimal? IdUsuario = null, int? TipoBusqieda = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_PERSONAS_SUPER_INTENDENCIA_POR_LOTE(IdUsuario, TipoBusqieda)
+                           select new UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EInformacionPersonasSuperIntentenciaPorLote
+                           {
+                               Nombre=n.Nombre,
+                               NumeroIdentificacion=n.NumeroIdentificacion,
+                               Poliza=n.Poliza,
+                               Reclamacion=n.Reclamacion,
+                               Estatus=n.Estatus,
+                               Ramo=n.Ramo,
+                               MontoAsegurado=n.MontoAsegurado,
+                               Prima=n.Prima,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               EncontradoComo=n.EncontradoComo,
+                               Comentario=n.Comentario,
+
+                           }).ToList();
+            return Listado;
+        }
     }
 }

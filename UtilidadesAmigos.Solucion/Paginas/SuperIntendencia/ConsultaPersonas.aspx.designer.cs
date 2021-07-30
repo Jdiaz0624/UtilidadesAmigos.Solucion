@@ -3399,85 +3399,148 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueProcesoLote;
 
         /// <summary>
-        /// lbLetreroBusquedaArchivo control.
+        /// lbLetreroBusquedaArchivoBusquedaPorLote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbLetreroBusquedaArchivo;
+        protected global::System.Web.UI.WebControls.Label lbLetreroBusquedaArchivoBusquedaPorLote;
 
         /// <summary>
-        /// rbBuscarPorClienteArchivo control.
+        /// rbTodosLosParametros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbBuscarPorClienteArchivo;
+        protected global::System.Web.UI.WebControls.RadioButton rbTodosLosParametros;
 
         /// <summary>
-        /// rbBuscarIntermediarioArchivo control.
+        /// rbPorNombreBusquedaPorLote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbBuscarIntermediarioArchivo;
+        protected global::System.Web.UI.WebControls.RadioButton rbPorNombreBusquedaPorLote;
 
         /// <summary>
-        /// rbBuscarProveedorArchivo control.
+        /// rbNumeroIdentificacionBusquedaPorLote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbBuscarProveedorArchivo;
+        protected global::System.Web.UI.WebControls.RadioButton rbNumeroIdentificacionBusquedaPorLote;
 
         /// <summary>
-        /// rbBuscarAseguradoArchivo control.
+        /// rbChasisBusquedaPorLote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbBuscarAseguradoArchivo;
+        protected global::System.Web.UI.WebControls.RadioButton rbChasisBusquedaPorLote;
 
         /// <summary>
-        /// rbBuscarAseguradoItemArchivo control.
+        /// rbPlacaBusquedaPorLote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbBuscarAseguradoItemArchivo;
+        protected global::System.Web.UI.WebControls.RadioButton rbPlacaBusquedaPorLote;
 
         /// <summary>
-        /// rbBuscarDependienteArchivo control.
+        /// lbLetreroBuscarEn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbBuscarDependienteArchivo;
+        protected global::System.Web.UI.WebControls.Label lbLetreroBuscarEn;
 
         /// <summary>
-        /// rbBuscarReclamacionesArchivo control.
+        /// cbTodos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbBuscarReclamacionesArchivo;
+        protected global::System.Web.UI.WebControls.CheckBox cbTodos;
 
         /// <summary>
-        /// rbBuscarDocumentosAmigosArchivo control.
+        /// cbCliente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbBuscarDocumentosAmigosArchivo;
+        protected global::System.Web.UI.WebControls.CheckBox cbCliente;
+
+        /// <summary>
+        /// cbIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbIntermediario;
+
+        /// <summary>
+        /// cbProvedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbProvedor;
+
+        /// <summary>
+        /// cbAseguradoBajoPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAseguradoBajoPoliza;
+
+        /// <summary>
+        /// cbAsegurado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAsegurado;
+
+        /// <summary>
+        /// cbDependiente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbDependiente;
+
+        /// <summary>
+        /// cbCheque control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbCheque;
+
+        /// <summary>
+        /// cbDocumentosAmigos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbDocumentosAmigos;
 
         /// <summary>
         /// lbCantidadRegistrosProcesadosTitulo control.
