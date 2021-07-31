@@ -295,6 +295,12 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
 
 
 
+        /// <summary>
+        /// Buscar Clientes para el proceso en lote
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="TipoBusqieda"></param>
+        /// <returns></returns>
         public List<UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EInformacionPersonasSuperIntentenciaPorLote> BuscaInformacionClienteSuperIntendenciaPorLote(decimal? IdUsuario = null, int? TipoBusqieda = null) {
 
             ObjData.CommandTimeout = 999999999;
@@ -318,5 +324,5 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
                            }).ToList();
             return Listado;
         }
-    }
+  }
 }
