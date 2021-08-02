@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDSuperIntendenciaConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
 		{
 			OnCreated();
 		}
@@ -126,9 +126,9 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_INFORMACION_PERSONAS_SUPER_INTENDENCIA_POR_LOTE")]
-		public ISingleResult<SP_BUSCA_INFORMACION_PERSONAS_SUPER_INTENDENCIA_POR_LOTEResult> SP_BUSCA_INFORMACION_PERSONAS_SUPER_INTENDENCIA_POR_LOTE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoBusqueda", DbType="Int")] System.Nullable<int> tipoBusqueda)
+		public ISingleResult<SP_BUSCA_INFORMACION_PERSONAS_SUPER_INTENDENCIA_POR_LOTEResult> SP_BUSCA_INFORMACION_PERSONAS_SUPER_INTENDENCIA_POR_LOTE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BuscarComo", DbType="Int")] System.Nullable<int> buscarComo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoBusqueda", DbType="Int")] System.Nullable<int> tipoBusqueda)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, tipoBusqueda);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, buscarComo, tipoBusqueda);
 			return ((ISingleResult<SP_BUSCA_INFORMACION_PERSONAS_SUPER_INTENDENCIA_POR_LOTEResult>)(result.ReturnValue));
 		}
 	}
@@ -2874,6 +2874,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<System.DateTime> _FinVigencia;
 		
+		private string _TipoBusqueda;
+		
 		private string _EncontradoComo;
 		
 		private string _Comentario;
@@ -3038,6 +3040,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._FinVigencia != value))
 				{
 					this._FinVigencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoBusqueda", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string TipoBusqueda
+		{
+			get
+			{
+				return this._TipoBusqueda;
+			}
+			set
+			{
+				if ((this._TipoBusqueda != value))
+				{
+					this._TipoBusqueda = value;
 				}
 			}
 		}

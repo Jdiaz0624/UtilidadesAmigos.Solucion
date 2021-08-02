@@ -301,11 +301,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
         /// <param name="IdUsuario"></param>
         /// <param name="TipoBusqieda"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EInformacionPersonasSuperIntentenciaPorLote> BuscaInformacionClienteSuperIntendenciaPorLote(decimal? IdUsuario = null, int? TipoBusqieda = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EInformacionPersonasSuperIntentenciaPorLote> BuscaInformacionClienteSuperIntendenciaPorLote(decimal? IdUsuario = null, int? BuscarComo = null, int? TipoBusqueda = null) {
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_PERSONAS_SUPER_INTENDENCIA_POR_LOTE(IdUsuario, TipoBusqieda)
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_PERSONAS_SUPER_INTENDENCIA_POR_LOTE(IdUsuario,BuscarComo,TipoBusqueda)
                            select new UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EInformacionPersonasSuperIntentenciaPorLote
                            {
                                Nombre=n.Nombre,
@@ -318,8 +318,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
                                Prima=n.Prima,
                                InicioVigencia=n.InicioVigencia,
                                FinVigencia=n.FinVigencia,
+                               TipoBusqueda=n.TipoBusqueda,
                                EncontradoComo=n.EncontradoComo,
-                               Comentario=n.Comentario,
+                               Comentario=n.Comentario
 
                            }).ToList();
             return Listado;

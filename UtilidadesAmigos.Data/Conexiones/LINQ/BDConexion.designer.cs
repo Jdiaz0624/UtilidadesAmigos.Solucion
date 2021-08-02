@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString16, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1177,6 +1177,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, usuario);
 			return ((ISingleResult<SP_GENERAR_COMISIONES_INTERMEDIARIOS_RESUMIDO_FINALResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_CONTROL_VISITA")]
+		public ISingleResult<SP_BUSCA_CONTROL_VISITAResult> SP_BUSCA_CONTROL_VISITA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoRegistro", DbType="Decimal(20,0)")] System.Nullable<decimal> noRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoProcesoRecepcion", DbType="Int")] System.Nullable<int> idTipoProcesoRecepcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Remitente", DbType="VarChar(100)")] string remitente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Destinatario", DbType="VarChar(100)")] string destinatario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioDigita", DbType="Decimal(20,0)")] System.Nullable<decimal> usuarioDigita, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDigitaDesde", DbType="DateTime")] System.Nullable<System.DateTime> fechaDigitaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDigitaHasta", DbType="DateTime")] System.Nullable<System.DateTime> fechaDigitaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioGenera", DbType="Decimal(20,0)")] System.Nullable<decimal> usuarioGenera)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), noRegistro, idTipoProcesoRecepcion, nombre, remitente, destinatario, usuarioDigita, fechaDigitaDesde, fechaDigitaHasta, usuarioGenera);
+			return ((ISingleResult<SP_BUSCA_CONTROL_VISITAResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -36777,6 +36784,392 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadRegistros != value))
 				{
 					this._CantidadRegistros = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_CONTROL_VISITAResult
+	{
+		
+		private System.Nullable<decimal> _NoRegistro;
+		
+		private System.Nullable<int> _IdTipoProcesoRecepcion;
+		
+		private string _TipoProceso;
+		
+		private string _Nombre;
+		
+		private string _Remitente;
+		
+		private string _Destinatario;
+		
+		private string _NumeroIdentificacion;
+		
+		private System.Nullable<int> _CantidadDocumentos;
+		
+		private System.Nullable<int> _CantidadPersonas;
+		
+		private System.Nullable<decimal> _UsuarioDigita;
+		
+		private string _DigitadoPor;
+		
+		private System.Nullable<System.DateTime> _FechaDigita0;
+		
+		private string _FechaDigita;
+		
+		private string _HoraDigita;
+		
+		private System.Nullable<decimal> _UsuarioModifica;
+		
+		private string _Modificado;
+		
+		private System.Nullable<System.DateTime> _FechaModifica0;
+		
+		private string _HoraModifica;
+		
+		private string _FechaModifica;
+		
+		private string _Comentario;
+		
+		private string _GeneradoPor;
+		
+		public SP_BUSCA_CONTROL_VISITAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoRegistro", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> NoRegistro
+		{
+			get
+			{
+				return this._NoRegistro;
+			}
+			set
+			{
+				if ((this._NoRegistro != value))
+				{
+					this._NoRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTipoProcesoRecepcion", DbType="Int")]
+		public System.Nullable<int> IdTipoProcesoRecepcion
+		{
+			get
+			{
+				return this._IdTipoProcesoRecepcion;
+			}
+			set
+			{
+				if ((this._IdTipoProcesoRecepcion != value))
+				{
+					this._IdTipoProcesoRecepcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoProceso", DbType="VarChar(100)")]
+		public string TipoProceso
+		{
+			get
+			{
+				return this._TipoProceso;
+			}
+			set
+			{
+				if ((this._TipoProceso != value))
+				{
+					this._TipoProceso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remitente", DbType="VarChar(100)")]
+		public string Remitente
+		{
+			get
+			{
+				return this._Remitente;
+			}
+			set
+			{
+				if ((this._Remitente != value))
+				{
+					this._Remitente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Destinatario", DbType="VarChar(100)")]
+		public string Destinatario
+		{
+			get
+			{
+				return this._Destinatario;
+			}
+			set
+			{
+				if ((this._Destinatario != value))
+				{
+					this._Destinatario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroIdentificacion", DbType="VarChar(100)")]
+		public string NumeroIdentificacion
+		{
+			get
+			{
+				return this._NumeroIdentificacion;
+			}
+			set
+			{
+				if ((this._NumeroIdentificacion != value))
+				{
+					this._NumeroIdentificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadDocumentos", DbType="Int")]
+		public System.Nullable<int> CantidadDocumentos
+		{
+			get
+			{
+				return this._CantidadDocumentos;
+			}
+			set
+			{
+				if ((this._CantidadDocumentos != value))
+				{
+					this._CantidadDocumentos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadPersonas", DbType="Int")]
+		public System.Nullable<int> CantidadPersonas
+		{
+			get
+			{
+				return this._CantidadPersonas;
+			}
+			set
+			{
+				if ((this._CantidadPersonas != value))
+				{
+					this._CantidadPersonas = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioDigita", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> UsuarioDigita
+		{
+			get
+			{
+				return this._UsuarioDigita;
+			}
+			set
+			{
+				if ((this._UsuarioDigita != value))
+				{
+					this._UsuarioDigita = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DigitadoPor", DbType="VarChar(150)")]
+		public string DigitadoPor
+		{
+			get
+			{
+				return this._DigitadoPor;
+			}
+			set
+			{
+				if ((this._DigitadoPor != value))
+				{
+					this._DigitadoPor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaDigita0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaDigita0
+		{
+			get
+			{
+				return this._FechaDigita0;
+			}
+			set
+			{
+				if ((this._FechaDigita0 != value))
+				{
+					this._FechaDigita0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaDigita", DbType="NVarChar(4000)")]
+		public string FechaDigita
+		{
+			get
+			{
+				return this._FechaDigita;
+			}
+			set
+			{
+				if ((this._FechaDigita != value))
+				{
+					this._FechaDigita = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoraDigita", DbType="VarChar(92) NOT NULL", CanBeNull=false)]
+		public string HoraDigita
+		{
+			get
+			{
+				return this._HoraDigita;
+			}
+			set
+			{
+				if ((this._HoraDigita != value))
+				{
+					this._HoraDigita = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioModifica", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> UsuarioModifica
+		{
+			get
+			{
+				return this._UsuarioModifica;
+			}
+			set
+			{
+				if ((this._UsuarioModifica != value))
+				{
+					this._UsuarioModifica = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Modificado", DbType="VarChar(150)")]
+		public string Modificado
+		{
+			get
+			{
+				return this._Modificado;
+			}
+			set
+			{
+				if ((this._Modificado != value))
+				{
+					this._Modificado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaModifica0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaModifica0
+		{
+			get
+			{
+				return this._FechaModifica0;
+			}
+			set
+			{
+				if ((this._FechaModifica0 != value))
+				{
+					this._FechaModifica0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoraModifica", DbType="VarChar(92) NOT NULL", CanBeNull=false)]
+		public string HoraModifica
+		{
+			get
+			{
+				return this._HoraModifica;
+			}
+			set
+			{
+				if ((this._HoraModifica != value))
+				{
+					this._HoraModifica = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaModifica", DbType="NVarChar(4000)")]
+		public string FechaModifica
+		{
+			get
+			{
+				return this._FechaModifica;
+			}
+			set
+			{
+				if ((this._FechaModifica != value))
+				{
+					this._FechaModifica = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comentario", DbType="VarChar(8000)")]
+		public string Comentario
+		{
+			get
+			{
+				return this._Comentario;
+			}
+			set
+			{
+				if ((this._Comentario != value))
+				{
+					this._Comentario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GeneradoPor", DbType="VarChar(150)")]
+		public string GeneradoPor
+		{
+			get
+			{
+				return this._GeneradoPor;
+			}
+			set
+			{
+				if ((this._GeneradoPor != value))
+				{
+					this._GeneradoPor = value;
 				}
 			}
 		}

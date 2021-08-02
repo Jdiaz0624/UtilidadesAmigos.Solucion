@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDSuperIntendenciaConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_BUSCA_REGISTROS_SUPER_INTENDENCIA_INTERMEDIARIO" Method="SP_BUSCA_REGISTROS_SUPER_INTENDENCIA_INTERMEDIARIO">
     <Parameter Name="Codigo" Parameter="codigo" Type="System.Int32" DbType="Int" />
     <Parameter Name="NumeroIdentificacion" Parameter="numeroIdentificacion" Type="System.String" DbType="VarChar(100)" />
@@ -238,6 +238,7 @@
   </Function>
   <Function Name="Utililades.SP_BUSCA_INFORMACION_PERSONAS_SUPER_INTENDENCIA_POR_LOTE" Method="SP_BUSCA_INFORMACION_PERSONAS_SUPER_INTENDENCIA_POR_LOTE">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="BuscarComo" Parameter="buscarComo" Type="System.Int32" DbType="Int" />
     <Parameter Name="TipoBusqueda" Parameter="tipoBusqueda" Type="System.Int32" DbType="Int" />
     <ElementType Name="SP_BUSCA_INFORMACION_PERSONAS_SUPER_INTENDENCIA_POR_LOTEResult">
       <Column Name="Nombre" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
@@ -250,6 +251,7 @@
       <Column Name="Prima" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="InicioVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="FinVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TipoBusqueda" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="EncontradoComo" Type="System.String" DbType="VarChar(7) NOT NULL" CanBeNull="false" />
       <Column Name="Comentario" Type="System.String" DbType="VarChar(48) NOT NULL" CanBeNull="false" />
     </ElementType>

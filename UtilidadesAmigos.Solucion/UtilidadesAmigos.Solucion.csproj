@@ -190,6 +190,7 @@
     <Content Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx" />
     <Content Include="Paginas\Consulta\ValidarCoberturas.aspx" />
     <Content Include="Paginas\ConsumoWS.aspx" />
+    <Content Include="Paginas\ControlVisitas.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
@@ -455,6 +456,13 @@
     </Compile>
     <Compile Include="Paginas\ConsumoWS.aspx.designer.cs">
       <DependentUpon>ConsumoWS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\ControlVisitas.aspx.cs">
+      <DependentUpon>ControlVisitas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\ControlVisitas.aspx.designer.cs">
+      <DependentUpon>ControlVisitas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\CotizadorAmigos.aspx.cs">
       <DependentUpon>CotizadorAmigos.aspx</DependentUpon>

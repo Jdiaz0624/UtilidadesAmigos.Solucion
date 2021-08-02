@@ -28,6 +28,8 @@ namespace UtilidadesAmigos.Logica.Entidades.SuperIntendencia
 
 		public System.Nullable<System.DateTime> FinVigencia { get; set; }
 
+		public string TipoBusqueda { get; set; }
+
 		public string EncontradoComo { get; set; }
 
 		public string Comentario { get; set; }

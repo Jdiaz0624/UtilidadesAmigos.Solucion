@@ -572,5 +572,17 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkControlVisitas_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null) {
+                //ControlVisitas.aspx
+                Response.Redirect("~/Paginas/ControlVisitas.aspx");
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }

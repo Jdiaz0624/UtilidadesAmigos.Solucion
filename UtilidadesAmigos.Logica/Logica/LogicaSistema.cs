@@ -3857,6 +3857,55 @@ namespace UtilidadesAmigos.Logica.Logica
         }
         #endregion
 
-       
+
+        #region MANTENIMIENTO DE CONTROL DE VISITAS
+        /// <summary>
+        /// Este metodo es para buscar el listado de las visitas y entregas de documentos entregadas
+        /// </summary>
+        /// <param name="NoRegistro"></param>
+        /// <param name="IdTipoProcesoRecepcion"></param>               
+        /// <param name="Nombre"></param>
+        /// <param name="Remitente"></param>
+        /// <param name="Destinatario"></param>
+        /// <param name="UsuarioDigita"></param>
+        /// <param name="FechaDigitaDesde"></param>
+        /// <param name="FechaDigitaHasta"></param>
+        /// <param name="UsuarioGenera"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.EControlVisitas> BuscaControlVisitas(decimal? NoRegistro = null, int? IdTipoProcesoRecepcion = null, string Nombre = null, string Remitente = null, string Destinatario = null, decimal? UsuarioDigita = null, DateTime? FechaDigitaDesde = null, DateTime? FechaDigitaHasta = null, decimal? UsuarioGenera = null) {
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_CONTROL_VISITA(NoRegistro, IdTipoProcesoRecepcion, Nombre, Remitente, Destinatario, UsuarioDigita, FechaDigitaDesde, FechaDigitaHasta, UsuarioGenera)
+                           select new UtilidadesAmigos.Logica.Entidades.EControlVisitas
+                           {
+                               NoRegistro=n.NoRegistro,
+                               IdTipoProcesoRecepcion=n.IdTipoProcesoRecepcion,
+                               TipoProceso=n.TipoProceso,
+                               Nombre=n.Nombre,
+                               Remitente=n.Remitente,
+                               Destinatario=n.Destinatario,
+                               NumeroIdentificacion=n.NumeroIdentificacion,
+                               CantidadDocumentos=n.CantidadDocumentos,
+                               CantidadPersonas=n.CantidadPersonas,
+                               UsuarioDigita=n.UsuarioDigita,
+                               DigitadoPor=n.DigitadoPor,
+                               FechaDigita0=n.FechaDigita0,
+                               FechaDigita=n.FechaDigita,
+                               HoraDigita=n.HoraDigita,
+                               UsuarioModifica=n.UsuarioModifica,
+                               Modificado=n.Modificado,
+                               FechaModifica0=n.FechaModifica0,
+                               HoraModifica=n.HoraModifica,
+                               FechaModifica=n.FechaModifica,
+                               Comentario=n.Comentario,
+                               GeneradoPor=n.GeneradoPor
+
+                           }).ToList();
+            return Listado;
+        
+        }
+        #endregion
+
+
     }
 }

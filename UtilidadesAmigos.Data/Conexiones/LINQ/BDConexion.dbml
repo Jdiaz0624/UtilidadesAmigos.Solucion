@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.26.24.199;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString16" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_LISTA_CARGAR_RAMOS" Method="SP_LISTA_CARGAR_RAMOS">
     <Parameter Name="IdRamo" Parameter="idRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
@@ -3102,6 +3102,40 @@
       <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_CONTROL_VISITA" Method="SP_BUSCA_CONTROL_VISITA">
+    <Parameter Name="NoRegistro" Parameter="noRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdTipoProcesoRecepcion" Parameter="idTipoProcesoRecepcion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Remitente" Parameter="remitente" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Destinatario" Parameter="destinatario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="UsuarioDigita" Parameter="usuarioDigita" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="FechaDigitaDesde" Parameter="fechaDigitaDesde" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaDigitaHasta" Parameter="fechaDigitaHasta" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="UsuarioGenera" Parameter="usuarioGenera" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCA_CONTROL_VISITAResult">
+      <Column Name="NoRegistro" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdTipoProcesoRecepcion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoProceso" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Remitente" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Destinatario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NumeroIdentificacion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CantidadDocumentos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadPersonas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioDigita" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="DigitadoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FechaDigita0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaDigita" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="HoraDigita" Type="System.String" DbType="VarChar(92) NOT NULL" CanBeNull="false" />
+      <Column Name="UsuarioModifica" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Modificado" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FechaModifica0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HoraModifica" Type="System.String" DbType="VarChar(92) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaModifica" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
