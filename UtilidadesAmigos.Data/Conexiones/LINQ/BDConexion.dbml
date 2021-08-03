@@ -3138,4 +3138,33 @@
       <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_PROCESAR_CONTROL_VISITAS" Method="SP_PROCESAR_CONTROL_VISITAS">
+    <Parameter Name="NoRegistro" Parameter="noRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdTipoProcesoRecepcion" Parameter="idTipoProcesoRecepcion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Remitente" Parameter="remitente" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Destinatario" Parameter="destinatario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="NumeroIdentificacion" Parameter="numeroIdentificacion" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CantidadDocumentos" Parameter="cantidadDocumentos" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CantidadPersonas" Parameter="cantidadPersonas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UsuarioDigita" Parameter="usuarioDigita" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="UsuarioModifica" Parameter="usuarioModifica" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Comentario" Parameter="comentario" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_CONTROL_VISITASResult">
+      <Column Name="NoRegistro" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdTipoProcesoRecepcion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Remitente" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Destinatario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NumeroIdentificacion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CantidadDocumentos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadPersonas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioDigita" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="FechaDigita" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuarioModifica" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="FechaModifica" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

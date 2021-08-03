@@ -115,6 +115,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesMontosAcumulados.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionConsultaInformacionPrPantalla.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionControlVisitas.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosComisionesSupervisores.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosGrafico.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionDatosProduccion.cs" />

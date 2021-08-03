@@ -3904,6 +3904,47 @@ namespace UtilidadesAmigos.Logica.Logica
             return Listado;
         
         }
+
+
+        public UtilidadesAmigos.Logica.Entidades.EControlVisitas ProcesarControlVisitas(UtilidadesAmigos.Logica.Entidades.EControlVisitas Item, string Accion) {
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EControlVisitas Procesar = null;
+
+            var ControlVisitas = Objdata.SP_PROCESAR_CONTROL_VISITAS(
+                Item.NoRegistro,
+                Item.IdTipoProcesoRecepcion,
+                Item.Nombre,
+                Item.Remitente,
+                Item.Destinatario,
+                Item.NumeroIdentificacion,
+                Item.CantidadDocumentos,
+                Item.CantidadPersonas,
+                Item.UsuarioDigita,
+                Item.UsuarioModifica,
+                Item.Comentario,
+                Accion);
+            if (ControlVisitas != null) {
+                Procesar = (from n in ControlVisitas
+                            select new UtilidadesAmigos.Logica.Entidades.EControlVisitas
+                            {
+                                NoRegistro=n.NoRegistro,
+                                IdTipoProcesoRecepcion=n.IdTipoProcesoRecepcion,
+                                Nombre=n.Nombre,
+                                Remitente=n.Remitente,
+                                Destinatario=n.Destinatario,
+                                NumeroIdentificacion=n.NumeroIdentificacion,
+                                CantidadDocumentos=n.CantidadDocumentos,
+                                CantidadPersonas=n.CantidadPersonas,
+                                UsuarioDigita=n.UsuarioDigita,
+                                FechaDigita0=n.FechaDigita,
+                                UsuarioModifica=n.UsuarioModifica,
+                                FechaModifica0=n.FechaModifica,
+                                Comentario=n.Comentario
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
         #endregion
 
 
