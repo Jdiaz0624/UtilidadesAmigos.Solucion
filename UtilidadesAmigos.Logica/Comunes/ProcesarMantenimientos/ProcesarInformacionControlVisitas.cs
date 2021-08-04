@@ -54,8 +54,25 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos
         /// <summary>
         /// Este metodo es para procesar la informacion de los datos de la rcepcion de documentos
         /// </summary>
-        private void ProcesarInformacion() { 
-        
+        public void ProcesarInformacion() {
+
+            UtilidadesAmigos.Logica.Entidades.EControlVisitas Procesar = new Entidades.EControlVisitas();
+
+            Procesar.NoRegistro = NoRegistro;
+            Procesar.IdTipoProcesoRecepcion = IdTipoProcesoRecepcion;
+            Procesar.Nombre = Nombre;
+            Procesar.Remitente = Remitente;
+            Procesar.Destinatario = Destinatario;
+            Procesar.NumeroIdentificacion = NumeroIdentificacion;
+            Procesar.CantidadDocumentos = CantidadDocumentos;
+            Procesar.CantidadPersonas = CantidadPersonas;
+            Procesar.UsuarioDigita = UsuarioDigita;
+            Procesar.FechaDigita0 = DateTime.Now;
+            Procesar.UsuarioModifica = UsuarioModifica;
+            Procesar.FechaModifica0 = DateTime.Now;
+            Procesar.Comentario = Comentario;
+
+            var MAN = ObjData.ProcesarControlVisitas(Procesar, Accion);
         }
 
     }
