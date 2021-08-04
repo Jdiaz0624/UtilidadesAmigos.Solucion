@@ -797,6 +797,26 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 DivPaginacionDependiente.Visible = true;
             }
         }
+
+        /// <summary>
+        /// Este metodo marca el check de todo siempre y cuando todos los demas estan marcados
+        /// </summary>
+        private void ValidarTodosLosCheck() {
+            if (cbCliente.Checked == true &&
+                            cbIntermediario.Checked == true &&
+                            cbProvedor.Checked == true &&
+                            cbAseguradoBajoPoliza.Checked == true &&
+                            cbAsegurado.Checked == true == true &&
+                            cbDependiente.Checked == true &&
+                            cbCheque.Checked == true &&
+                            cbDocumentosAmigos.Checked == true &&
+                            cbReclamaciones.Checked == true &&
+                            cbPlaca.Checked == true &&
+                            cbChasis.Checked == true)
+            {
+                cbTodos.Checked = true;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -1405,6 +1425,173 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 FormsAuthentication.RedirectToLoginPage();
 
 
+            }
+        }
+
+        protected void cbTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbTodos.Checked == true) {
+                cbCliente.Checked = true;
+                cbIntermediario.Checked = true;
+                cbProvedor.Checked = true;
+                cbAseguradoBajoPoliza.Checked = true;
+                cbAsegurado.Checked = true;
+                cbDependiente.Checked = true;
+                cbCheque.Checked = true;
+                cbDocumentosAmigos.Checked = true;
+                cbReclamaciones.Checked = true;
+                cbPlaca.Checked = true;
+                cbChasis.Checked = true;
+            }
+            else if (cbTodos.Checked == false) {
+                cbCliente.Checked = false;
+                cbIntermediario.Checked = false;
+                cbProvedor.Checked = false;
+                cbAseguradoBajoPoliza.Checked = false;
+                cbAsegurado.Checked = false;
+                cbDependiente.Checked = false;
+                cbCheque.Checked = false;
+                cbDocumentosAmigos.Checked = false;
+                cbReclamaciones.Checked = false;
+                cbPlaca.Checked = false;
+                cbChasis.Checked = false;
+            }
+        }
+
+        protected void cbCliente_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbCliente.Checked == false)
+            {
+                cbTodos.Checked = false;
+            }
+            else if (cbCliente.Checked == true) {
+                ValidarTodosLosCheck();
+            }
+        }
+
+        protected void cbIntermediario_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbIntermediario.Checked == false)
+            {
+                cbTodos.Checked = false;
+
+            }
+            else if (cbIntermediario.Checked == true) {
+                ValidarTodosLosCheck();
+            }
+        }
+
+        protected void cbProvedor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbProvedor.Checked == false)
+            {
+                cbTodos.Checked = false;
+
+            }
+            else if (cbProvedor.Checked == true) {
+                ValidarTodosLosCheck();
+            }
+        }
+
+        protected void cbAseguradoBajoPoliza_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAseguradoBajoPoliza.Checked == false)
+            {
+                cbTodos.Checked = false;
+
+            }
+            else if (cbAseguradoBajoPoliza.Checked == true) {
+                ValidarTodosLosCheck();
+            }
+
+        }
+
+        protected void cbAsegurado_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAsegurado.Checked == false)
+            {
+                cbTodos.Checked = false;
+
+            }
+            else if (cbAsegurado.Checked == true) {
+                ValidarTodosLosCheck();
+            }
+        }
+
+        protected void cbDependiente_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbDependiente.Checked == false)
+            {
+                cbTodos.Checked = false;
+
+            }
+            else if (cbDependiente.Checked == true) {
+                ValidarTodosLosCheck();
+            }
+            
+
+        }
+
+        protected void cbCheque_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbCheque.Checked == false)
+            {
+                cbTodos.Checked = false;
+
+            }
+            else if (cbCheque.Checked == true) {
+                ValidarTodosLosCheck();
+            }
+        }
+
+        protected void cbDocumentosAmigos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbDocumentosAmigos.Checked == false)
+            {
+                cbTodos.Checked = false;
+
+            }
+            else if (cbDocumentosAmigos.Checked == true) {
+                ValidarTodosLosCheck();
+            }
+        }
+
+        protected void cbReclamaciones_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbReclamaciones.Checked == false)
+            {
+                cbTodos.Checked = false;
+
+            }
+            else if (cbReclamaciones.Checked == true) {
+                ValidarTodosLosCheck();
+            }
+        }
+
+        protected void cbPlaca_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPlaca.Checked == false)
+            {
+                cbTodos.Checked = false;
+
+            }
+            else if (cbPlaca.Checked == true)
+            {
+                ValidarTodosLosCheck();
+            }
+           
+        }
+
+        protected void cbChasis_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbChasis.Checked == false)
+            {
+                cbTodos.Checked = false;
+
+            }
+            else if (cbChasis.Checked == true)
+            {
+                ValidarTodosLosCheck();
             }
         }
 

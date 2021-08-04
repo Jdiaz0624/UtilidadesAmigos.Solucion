@@ -3552,6 +3552,33 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.WebControls.CheckBox cbDocumentosAmigos;
 
         /// <summary>
+        /// cbReclamaciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbReclamaciones;
+
+        /// <summary>
+        /// cbPlaca control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbPlaca;
+
+        /// <summary>
+        /// cbChasis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbChasis;
+
+        /// <summary>
         /// lbCantidadRegistrosProcesadosTitulo control.
         /// </summary>
         /// <remarks>

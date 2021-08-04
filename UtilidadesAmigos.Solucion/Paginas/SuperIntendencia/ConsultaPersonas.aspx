@@ -1177,19 +1177,23 @@
            <div class="form-check-inline">
                <div class="form-group form-check">
                    <asp:Label ID="lbLetreroBuscarEn" runat="server" Text="Buscar Como" CssClass="Letranegrita"></asp:Label><br />
-                   <asp:CheckBox ID="cbTodos" runat="server" Text="Todos" CssClass="form-check-input" ToolTip="Buscar en Todos los Registros" />
-                   <asp:CheckBox ID="cbCliente" runat="server" Text="Cliente" CssClass="form-check-input" ToolTip="Buscar informacion en la data de los clientes registrados" />
-                   <asp:CheckBox ID="cbIntermediario" runat="server" Text="Intermediario" CssClass="form-check-input" ToolTip="Buscar en la Data de los Intermediarios y Supervisores" />
-                   <asp:CheckBox ID="cbProvedor" runat="server" Text="Proveedor" CssClass="form-check-input" ToolTip="Buscar en la Data de los Proveedores" />
-                   <asp:CheckBox ID="cbAseguradoBajoPoliza" runat="server" Text="Asegurado P" CssClass="form-check-input" ToolTip="Buscar en la Data de los Asegurados Bajo Polizas" /><br />
-                   <asp:CheckBox ID="cbAsegurado" runat="server" Text="Asegurado" CssClass="form-check-input" ToolTip="Buscar en la Data de los Asegurados" />
-                   <asp:CheckBox ID="cbDependiente" runat="server" Text="Dependiente" CssClass="form-check-input" ToolTip="Buscar en la Data de los Dependientes" />
-                   <asp:CheckBox ID="cbCheque" runat="server" Text="Cheque" CssClass="form-check-input" ToolTip="Buscar en la Data de las Solicitudes y Cheques" />
-                   <asp:CheckBox ID="cbDocumentosAmigos" runat="server" Text="Documentos Amigos" CssClass="form-check-input" ToolTip="Buscar en la Data de los Documentos Amigos" />
+                   <asp:CheckBox ID="cbTodos" runat="server" AutoPostBack="true" OnCheckedChanged="cbTodos_CheckedChanged" Text="Todos" CssClass="form-check-input" ToolTip="Buscar en Todos los Registros" />
+                   <asp:CheckBox ID="cbCliente" runat="server" AutoPostBack="true" OnCheckedChanged="cbCliente_CheckedChanged" Text="Cliente" CssClass="form-check-input" ToolTip="Buscar informacion en la data de los clientes registrados" />
+                   <asp:CheckBox ID="cbIntermediario" runat="server" AutoPostBack="true" OnCheckedChanged="cbIntermediario_CheckedChanged" Text="Intermediario" CssClass="form-check-input" ToolTip="Buscar en la Data de los Intermediarios y Supervisores" />
+                   <asp:CheckBox ID="cbProvedor" runat="server" AutoPostBack="true" OnCheckedChanged="cbProvedor_CheckedChanged" Text="Proveedor" CssClass="form-check-input" ToolTip="Buscar en la Data de los Proveedores" />
+                   <asp:CheckBox ID="cbAseguradoBajoPoliza" runat="server" AutoPostBack="true" OnCheckedChanged="cbAseguradoBajoPoliza_CheckedChanged" Text="Asegurado P" CssClass="form-check-input" ToolTip="Buscar en la Data de los Asegurados Bajo Polizas" />
+                   <asp:CheckBox ID="cbAsegurado" runat="server" AutoPostBack="true" OnCheckedChanged="cbAsegurado_CheckedChanged" Text="Asegurado" CssClass="form-check-input" ToolTip="Buscar en la Data de los Asegurados" />
+                   <asp:CheckBox ID="cbDependiente" runat="server" AutoPostBack="true" OnCheckedChanged="cbDependiente_CheckedChanged" Text="Dependiente" CssClass="form-check-input" ToolTip="Buscar en la Data de los Dependientes" /><br />
+                   <asp:CheckBox ID="cbCheque" runat="server" AutoPostBack="true" OnCheckedChanged="cbCheque_CheckedChanged" Text="Cheque" CssClass="form-check-input" ToolTip="Buscar en la Data de las Solicitudes y Cheques" />
+                   <asp:CheckBox ID="cbDocumentosAmigos" runat="server" AutoPostBack="true" OnCheckedChanged="cbDocumentosAmigos_CheckedChanged" Text="Documentos Amigos" CssClass="form-check-input" ToolTip="Buscar en la Data de los Documentos Amigos" />
+                   <asp:CheckBox ID="cbReclamaciones" runat="server" AutoPostBack="true" OnCheckedChanged="cbReclamaciones_CheckedChanged" Text="Reclamos" CssClass="form-check-input" ToolTip="Buscar en los reclamos" />
+                   <asp:CheckBox ID="cbPlaca" runat="server" AutoPostBack="true" OnCheckedChanged="cbPlaca_CheckedChanged" Text="Placa" CssClass="form-check-input" ToolTip="Buscar Por Placa" />
+                   <asp:CheckBox ID="cbChasis" runat="server" AutoPostBack="true" OnCheckedChanged="cbChasis_CheckedChanged" Text="CHasis" CssClass="form-check-input" ToolTip="Buscar Por Chasis" />
+
                </div>
            </div>
            <div align="center">
-               <asp:Label ID="lbCantidadRegistrosProcesadosTitulo" runat="server" Text="Cantidad de Registros Procesados ( " CssClass="Letranegrita"></asp:Label>
+               <asp:Label ID="lbCantidadRegistrosProcesadosTitulo" runat="server" Text="Cantidad de Registros Cargados ( " CssClass="Letranegrita"></asp:Label>
                <asp:Label ID="lbCantidadRegistrosProcesadosVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
                <asp:Label ID="lbCantidadRegistrosProcesadosCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
            </div>
@@ -1247,7 +1251,7 @@
             </table>
         </div>
         </div>
-
+           <br />
        </div>
   </div>
 </asp:Content>
