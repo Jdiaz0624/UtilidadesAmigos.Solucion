@@ -63,6 +63,8 @@
             alert("No se encontraron registros extraidos de archivos, favor de verificar.");
         }
 
+
+
     </script>
 
    <div class="container-fluid">
@@ -123,7 +125,8 @@
        </div>
        <div align="center">
            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click" />
-           <asp:Button ID="btnProcesarRegistros" runat="server" Text="Procesar" ToolTip="Procesar Registros" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnProcesarRegistros_Click" />
+           <asp:Button ID="btnProcesarRegistros" runat="server" Text="Procesar" ToolTip="Procesar Registros" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnProcesarRegistros_Click" /><br />
+           <asp:Label ID="lbError" runat="server" Text="Error" ForeColor="Red" Visible="false"></asp:Label>
        </div>
 
        <br />

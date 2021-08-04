@@ -109,6 +109,14 @@
                                             $("#<%=txtCantidadPersonasMantenimiento.ClientID%>").css("border-color", "red");
                                             return false;
                                         }
+                                        else {
+                                            var Comentario = $("#<%=txtComentarioMantenimiento.ClientID%>").val().length;
+                                            if (Comentario < 1) {
+                                                alert("El campo Comentario / Descripción no puede estar vacio para realizar esta operación, favor de verificar.");
+                                                $("#<%=txtComentarioMantenimiento.ClientID%>").css("border-color", "red");
+                                                return false;
+                                            }
+                                        }
                                     }
                                 }
                             }

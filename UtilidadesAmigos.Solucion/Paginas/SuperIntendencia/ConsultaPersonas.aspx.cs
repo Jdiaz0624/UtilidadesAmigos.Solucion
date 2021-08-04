@@ -923,8 +923,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                     }
                     
                 }
-                catch (Exception) {
-                    ClientScript.RegisterStartupScript(GetType(), "ArchivoNoProcesado()", "ArchivoNoProcesado();", true);
+                catch (Exception ex) {
+                    lbError.Visible = true;
+                    lbError.Text = ex.Message;
+                    string Mensaje = "Error al procesar el archivo, no se selecciono ninguno o los parametros de este no son correctos, favor de verificar, Codigo de Error: ";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('" + Mensaje + "');", true);
+
+
+                 
                 }
 
                 }
