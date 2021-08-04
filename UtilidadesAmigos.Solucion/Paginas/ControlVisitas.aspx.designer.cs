@@ -375,6 +375,150 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.LinkButton LinkUltimoControlVisistas;
 
         /// <summary>
+        /// DivGraficoControlVisitas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivGraficoControlVisitas;
+
+        /// <summary>
+        /// lbGraficoControlVisitas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbGraficoControlVisitas;
+
+        /// <summary>
+        /// GraControlVisitas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart GraControlVisitas;
+
+        /// <summary>
+        /// DivBloqueDetalle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueDetalle;
+
+        /// <summary>
+        /// lbCantidadDocumentosVistaPrevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadDocumentosVistaPrevia;
+
+        /// <summary>
+        /// txtCantidadDocumentosVistaPrevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadDocumentosVistaPrevia;
+
+        /// <summary>
+        /// lbCantidadPersonasVistaPrevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPersonasVistaPrevia;
+
+        /// <summary>
+        /// txtCantidadPersonasVistaPrevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadPersonasVistaPrevia;
+
+        /// <summary>
+        /// lbCreadoPorVistaPrevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCreadoPorVistaPrevia;
+
+        /// <summary>
+        /// txtCreadoPorVistaPrevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCreadoPorVistaPrevia;
+
+        /// <summary>
+        /// lbUltimaModificacionVistaPrevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbUltimaModificacionVistaPrevia;
+
+        /// <summary>
+        /// txtModificadoPorVistaPrevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtModificadoPorVistaPrevia;
+
+        /// <summary>
+        /// lbFechaModificadoVistaPrevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaModificadoVistaPrevia;
+
+        /// <summary>
+        /// txtFechaModificadoVistaPrevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaModificadoVistaPrevia;
+
+        /// <summary>
+        /// lbComentarioVistaPrevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbComentarioVistaPrevia;
+
+        /// <summary>
+        /// txtComentarioVistaPrevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtComentarioVistaPrevia;
+
+        /// <summary>
         /// DivBloqueMantenimiento control.
         /// </summary>
         /// <remarks>

@@ -243,6 +243,60 @@
         </div>
         </div>
         <br />
+
+         <!--GRAFICO DE SUPERVISORES-->
+        <div id="DivGraficoControlVisitas" runat="server" align="center" >
+
+             <asp:Label ID="lbGraficoControlVisitas" runat="server"  Text="Estadistica de Control de visitas" CssClass="Letranegrita"></asp:Label>
+             <br />
+            <asp:Chart ID="GraControlVisitas" Width="1100px" runat="server" Palette="SeaGreen">
+           <Series>
+               <asp:Series Name="Serie" XValueMember="1" YValueMembers="2" IsValueShownAsLabel="true" Label="#VAL{N0}"></asp:Series>
+           </Series>
+           <ChartAreas>
+               <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+           </ChartAreas>
+       </asp:Chart>
+        </div>
+
+
+        <div id="DivBloqueDetalle" visible="false" runat="server">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <asp:Label id="lbCantidadDocumentosVistaPrevia" runat="server" Text="Cantidad de Documentos" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtCantidadDocumentosVistaPrevia" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                 <div class="form-group col-md-4">
+                    <asp:Label id="lbCantidadPersonasVistaPrevia" runat="server" Text="Cantidad de Personas" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtCantidadPersonasVistaPrevia" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                 <div class="form-group col-md-4">
+                    <asp:Label id="lbCreadoPorVistaPrevia" runat="server" Text="Creado Por" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtCreadoPorVistaPrevia" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                 <div class="form-group col-md-4">
+                    <asp:Label id="lbUltimaModificacionVistaPrevia" runat="server" Text="Modificado Por" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtModificadoPorVistaPrevia" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                 <div class="form-group col-md-4">
+                    <asp:Label id="lbFechaModificadoVistaPrevia" runat="server" Text="Fecha Modificado" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtFechaModificadoVistaPrevia" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+
+                </div>
+
+                <div class="form-group col-md-12">
+                    <asp:Label id="lbComentarioVistaPrevia" runat="server" Text="Comentario / Descripción" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtComentarioVistaPrevia" runat="server" Enabled="false" TextMode="MultiLine" Height="100px" CssClass="form-control"></asp:TextBox>
+                </div>
+            </div>
+        </div>
     </div>
 
 

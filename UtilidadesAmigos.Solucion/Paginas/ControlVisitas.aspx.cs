@@ -5,6 +5,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportSource;
+using CrystalDecisions.Shared;
+using System.Web.Security;
+using System.Data.SqlClient;
+
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -18,7 +24,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
             SalidaDeDocumentos = 3
         }
 
+        enum PermisoUsuarios { 
+        CarlosMercado=9,
+        ErikSonVeras=30,
+        AdalgisaAlmonte=18,
+        JuanMarcelino=1,
+        AlfredoPimentel=10,
+        MiguelBerrora=22,
 
+        }
+        
         #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
         int _PrimeraPagina, _UltimaPagina;
@@ -175,6 +190,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 null);
             Paginar(ref rpListadoControlVisitas, Listado, 10, ref lbCantidadPaginaVAriableControlVisistas, ref LinkPrimeraPaginaControlVisistas, ref LinkAnteriorControlVisistas, ref LinkSiguienteControlVisistas, ref LinkUltimoControlVisistas);
             HandlePaging(ref dtPaginacionControlVisistas, ref lbPaginaActualVariableControlVisistas);
+            GraficarCantidadProcesos();
         }
         #endregion
         #region CARGAR EL LISTADO DE RECEPCON DE DOCUMENTOS
@@ -210,6 +226,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             DivBloqueMantenimiento.Visible = false;
             DivBloqueCOnsulta.Visible = true;
             CurrentPage = 0;
+            DivGraficoControlVisitas.Visible = true;
             MostrarListadoControlCisitas();
 
 
@@ -222,6 +239,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
             LinkSiguienteControlVisistas.Enabled = true;
             LinkAnteriorControlVisistas.Enabled = true;
             LinkUltimoControlVisistas.Enabled = true;
+            btnRestablecer.Enabled = false;
+
+
+            txtCantidadDocumentosVistaPrevia.Text = string.Empty;
+            txtCantidadPersonasVistaPrevia.Text = string.Empty;
+            txtCreadoPorVistaPrevia.Text = string.Empty;
+            txtModificadoPorVistaPrevia.Text = string.Empty;
+            txtFechaModificadoVistaPrevia.Text = string.Empty;
+            txtComentarioVistaPrevia.Text = string.Empty;
+
+            DivBloqueDetalle.Visible = false;
         }
         #endregion
         #region BLOQUEAR Y DESBLOQUEAR CONTROLES
@@ -273,6 +301,99 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
+        #region REPORTE DE CONTROL DE VISITAS
+        private void GenerarReporte(string RutaReporte, string NombreArchivo,decimal UsuarioGenera) {
+            decimal? _NoRegistro = new Nullable<decimal>();
+            decimal? _UsuarioDigita = new Nullable<decimal>();
+            int? _TipoProceso = ddlSeleccionarTipoProcesoCOnsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarTipoProcesoCOnsulta.SelectedValue) : new Nullable<int>();
+            string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.Text.Trim()) ? null : txtNombreConsulta.Text.Trim();
+            string _Remitente = string.IsNullOrEmpty(txtRemitenteConsulta.Text.Trim()) ? null : txtRemitenteConsulta.Text.Trim();
+            string _Destinatario = string.IsNullOrEmpty(txtDestinatario.Text.Trim()) ? null : txtDestinatario.Text.Trim();
+
+            DateTime? _FechaDesde = cbAgregarRangoFecha.Checked == true ? Convert.ToDateTime(txtFechaDesde.Text) : new Nullable<DateTime>();
+            DateTime? _FechaHasta = cbAgregarRangoFecha.Checked == true ? Convert.ToDateTime(txtFechaHAsta.Text) : new Nullable<DateTime>();
+
+            ReportDocument Reporte = new ReportDocument();
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@NoRegistro", _NoRegistro);
+            Reporte.SetParameterValue("@IdTipoProcesoRecepcion", _TipoProceso);
+            Reporte.SetParameterValue("@Nombre", _Nombre);
+            Reporte.SetParameterValue("@Remitente", _Remitente);
+            Reporte.SetParameterValue("@Destinatario", _Destinatario);
+            Reporte.SetParameterValue("@UsuarioDigita", _UsuarioDigita);
+            Reporte.SetParameterValue("@FechaDigitaDesde", _FechaDesde);
+            Reporte.SetParameterValue("@FechaDigitaHasta", _FechaHasta);
+            Reporte.SetParameterValue("@UsuarioGenera", UsuarioGenera);
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+            if (rbPDF.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+            }
+            else if (rbEXcel.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreArchivo);
+            }
+            else if (rbWord.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreArchivo);
+            }
+            else if (rbTXT.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Text, Response, true, NombreArchivo);
+            }
+
+        }
+        #endregion
+        #region GRAFICOS
+        private void GraficarCantidadProcesos() {
+            int[] CantidadRegistros = new int[3];
+            string[] NombreProceso = new string[3];
+            int Contador = 0;
+
+            //VALIDAMOS LOS CAMPOS PARA PASARLO COMO PARAMETROS
+            decimal _NoProceso = 0;
+            int _TipoProcesoRecepcion = ddlSeleccionarTipoProcesoCOnsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarTipoProcesoCOnsulta.SelectedValue) : 0;
+            string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.Text.Trim()) ? "N/A" : txtNombreConsulta.Text.Trim();
+            string _Remitente = string.IsNullOrEmpty(txtRemitenteConsulta.Text.Trim()) ? "N/A" : txtRemitenteConsulta.Text.Trim();
+            string _Destinatario = string.IsNullOrEmpty(txtDestinatario.Text.Trim()) ? "N/A" : txtDestinatario.Text.Trim();
+            decimal _UsuarioDigita = 0;
+            DateTime _FechaDigita = cbAgregarRangoFecha.Checked == true ? Convert.ToDateTime(txtFechaDesde.Text) : Convert.ToDateTime("1942-01-01");
+            DateTime _FechaHAsta = cbAgregarRangoFecha.Checked == true ? Convert.ToDateTime(txtFechaHAsta.Text) : Convert.ToDateTime("1942-01-01");
+            decimal _UsuarioGenera = 0;
+
+            //GENERAMOS EL GRAFICO CON LOS DATOS RECOLECTADOS
+
+            SqlConnection Conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+            SqlCommand Comando = new SqlCommand("EXEC [Utililades].[SP_GENERA_GRAFICO_CONTROL_VISITA] @NoRegistro,@IdTipoProcesoRecepcion,@Nombre,@Remitente,@Destinatario,@UsuarioDigita,@FechaDigitaDesde,@FechaDigitaHasta,@UsuarioGenera", Conexion);
+
+            Comando.Parameters.AddWithValue("@NoRegistro", SqlDbType.Decimal).Value = _NoProceso;
+            Comando.Parameters.AddWithValue("@IdTipoProcesoRecepcion", SqlDbType.Int).Value = _TipoProcesoRecepcion;
+            Comando.Parameters.AddWithValue("@Nombre", SqlDbType.VarChar).Value = _Nombre;
+            Comando.Parameters.AddWithValue("@Remitente", SqlDbType.VarChar).Value = _Remitente;
+            Comando.Parameters.AddWithValue("@Destinatario", SqlDbType.VarChar).Value = _Destinatario;
+            Comando.Parameters.AddWithValue("@UsuarioDigita", SqlDbType.Decimal).Value = _UsuarioDigita;
+            Comando.Parameters.AddWithValue("@FechaDigitaDesde", SqlDbType.DateTime).Value = _FechaDigita;
+            Comando.Parameters.AddWithValue("@FechaDigitaHasta", SqlDbType.DateTime).Value = _FechaHAsta;
+            Comando.Parameters.AddWithValue("@UsuarioGenera", SqlDbType.Decimal).Value = _UsuarioGenera;
+
+            Conexion.Open();
+
+            SqlDataReader Reader = Comando.ExecuteReader();
+            while (Reader.Read()) {
+                CantidadRegistros[Contador] = Convert.ToInt32(Reader.GetInt32(1));
+                NombreProceso[Contador] = Reader.GetString(0);
+                Contador++;
+            }
+            Reader.Close();
+            Conexion.Close();
+
+            GraControlVisitas.ChartAreas[0].AxisX.LabelStyle.Format = "{0:0,k}";
+            GraControlVisitas.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            GraControlVisitas.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            GraControlVisitas.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+            GraControlVisitas.Series["Serie"].Points.DataBindXY(NombreProceso, CantidadRegistros);
+        }
+        #endregion
 
 
 
@@ -298,6 +419,47 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 DivBloqueMantenimiento.Visible = false;
 
+                btnNuevo.Visible = false;
+                btnModificar.Visible = false;
+                btnEliminar.Visible = false;
+
+                decimal IdUsuario = (decimal)Session["IdUsuario"];
+
+                if (IdUsuario == (decimal)PermisoUsuarios.CarlosMercado) {
+                    btnNuevo.Visible = true;
+                    btnModificar.Visible = true;
+                    btnEliminar.Visible = false;
+                }
+                else if (IdUsuario == (decimal)PermisoUsuarios.ErikSonVeras) {
+                    btnNuevo.Visible = true;
+                    btnModificar.Visible = true;
+                    btnEliminar.Visible = false;
+                }
+                else if (IdUsuario == (decimal)PermisoUsuarios.AdalgisaAlmonte) {
+                    btnNuevo.Visible = true;
+                    btnModificar.Visible = true;
+                    btnEliminar.Visible = false;
+                }
+                else if (IdUsuario == (decimal)PermisoUsuarios.JuanMarcelino) {
+                    btnNuevo.Visible = true;
+                    btnModificar.Visible = true;
+                    btnEliminar.Visible = true;
+                }
+                else if (IdUsuario == (decimal)PermisoUsuarios.AlfredoPimentel) {
+                    btnNuevo.Visible = true;
+                    btnModificar.Visible = true;
+                    btnEliminar.Visible = true;
+                }
+                else if (IdUsuario == (decimal)PermisoUsuarios.MiguelBerrora) {
+                    btnNuevo.Visible = true;
+                    btnModificar.Visible = true;
+                    btnEliminar.Visible = true;
+                }
+                else {
+                    btnNuevo.Visible = false;
+                    btnModificar.Visible = false;
+                    btnEliminar.Visible = false;
+                }
 
             }
         }
@@ -396,8 +558,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            ProcesarInformacion(Convert.ToDecimal(lbIdRegistroSeleccionado.Text), lbAccionTomarSeleccionado.Text);
-            VolverAtras();
+            if (Session["IdUsuario"] != null)
+            {
+                ProcesarInformacion(Convert.ToDecimal(lbIdRegistroSeleccionado.Text), lbAccionTomarSeleccionado.Text);
+                VolverAtras();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+           
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
@@ -407,7 +578,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnReporte_Click(object sender, EventArgs e)
         {
+            if (Session["IdUsuario"] != null) {
+                decimal UsuarioGenera = (decimal)Session["IdUsuario"];
 
+                GenerarReporte(Server.MapPath("ControlVisitas.rpt"), "Reporte de Control de Visitas", UsuarioGenera);
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+            
         }
 
         protected void ddlTipoprocesoMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
@@ -442,6 +622,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtCantidadDocumentosMantenimiento.Text = n.CantidadDocumentos.ToString();
                 txtCantidadPersonasMantenimiento.Text = n.CantidadPersonas.ToString();
                 txtComentarioMantenimiento.Text = n.Comentario;
+
+
+                int CantidadDocumentos = (int)n.CantidadDocumentos;
+                txtCantidadDocumentosVistaPrevia.Text = CantidadDocumentos.ToString("N0");
+                int CantidadPersonas = (int)n.CantidadPersonas;
+                txtCantidadPersonasVistaPrevia.Text = CantidadPersonas.ToString("N0");
+                txtCreadoPorVistaPrevia.Text = n.DigitadoPor;
+                txtModificadoPorVistaPrevia.Text = n.Modificado;
+                txtFechaModificadoVistaPrevia.Text = n.FechaModifica;
+                txtComentarioVistaPrevia.Text = n.Comentario;
             }
             btnConsultar.Enabled = false;
             btnReporte.Enabled = false;
@@ -452,6 +642,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             LinkSiguienteControlVisistas.Enabled = false;
             LinkAnteriorControlVisistas.Enabled = false;
             LinkUltimoControlVisistas.Enabled = false;
+            btnRestablecer.Enabled = true;
+            DivBloqueDetalle.Visible = true;
+            DivGraficoControlVisitas.Visible = false;
         }
     }
 }
