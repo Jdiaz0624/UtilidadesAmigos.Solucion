@@ -305,22 +305,22 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_PERSONAS_SUPER_INTENDENCIA_POR_LOTE(IdUsuario,BuscarComo,TipoBusqueda)
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_PERSONAS_SUPER_INTENDENCIA_POR_LOTE(IdUsuario, BuscarComo, TipoBusqueda)
                            select new UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EInformacionPersonasSuperIntentenciaPorLote
                            {
-                               Nombre=n.Nombre,
-                               NumeroIdentificacion=n.NumeroIdentificacion,
-                               Poliza=n.Poliza,
-                               Reclamacion=n.Reclamacion,
-                               Estatus=n.Estatus,
-                               Ramo=n.Ramo,
-                               MontoAsegurado=n.MontoAsegurado,
-                               Prima=n.Prima,
-                               InicioVigencia=n.InicioVigencia,
-                               FinVigencia=n.FinVigencia,
-                               TipoBusqueda=n.TipoBusqueda,
-                               EncontradoComo=n.EncontradoComo,
-                               Comentario=n.Comentario
+                               Nombre = n.Nombre,
+                               NumeroIdentificacion = n.NumeroIdentificacion,
+                               Poliza = n.Poliza,
+                               Reclamacion = n.Reclamacion,
+                               Estatus = n.Estatus,
+                               Ramo = n.Ramo,
+                               MontoAsegurado = n.MontoAsegurado,
+                               Prima = n.Prima,
+                               InicioVigencia = n.InicioVigencia,
+                               FinVigencia = n.FinVigencia,
+                               TipoBusqueda = n.TipoBusqueda,
+                               EncontradoComo = n.EncontradoComo,
+                               Comentario = n.Comentario
 
                            }).ToList();
             return Listado;
