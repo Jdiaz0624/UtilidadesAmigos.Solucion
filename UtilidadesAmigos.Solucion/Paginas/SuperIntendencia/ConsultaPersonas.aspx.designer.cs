@@ -15,24 +15,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
     {
 
         /// <summary>
-        /// rbExportarPDF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbExportarPDF;
-
-        /// <summary>
-        /// rbExportarWord control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbExportarWord;
-
-        /// <summary>
         /// ScripMAnagerConsultaPersonas control.
         /// </summary>
         /// <remarks>
@@ -3577,6 +3559,42 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbChasis;
+
+        /// <summary>
+        /// rbHojaExcelPlano control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbHojaExcelPlano;
+
+        /// <summary>
+        /// rbExportarPDF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbExportarPDF;
+
+        /// <summary>
+        /// rbExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbExcel;
+
+        /// <summary>
+        /// rbExportarWord control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbExportarWord;
 
         /// <summary>
         /// lbCantidadRegistrosProcesadosTitulo control.

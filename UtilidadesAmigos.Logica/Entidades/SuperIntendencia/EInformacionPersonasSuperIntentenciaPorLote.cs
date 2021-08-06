@@ -8,9 +8,9 @@ namespace UtilidadesAmigos.Logica.Entidades.SuperIntendencia
 {
     public class EInformacionPersonasSuperIntentenciaPorLote
     {
-		public string Nombre;
+		public string Nombre { get; set; }
 
-		public string NumeroIdentificacion;
+		public string NumeroIdentificacion { get; set; }
 
 		public string Poliza { get; set; }
 

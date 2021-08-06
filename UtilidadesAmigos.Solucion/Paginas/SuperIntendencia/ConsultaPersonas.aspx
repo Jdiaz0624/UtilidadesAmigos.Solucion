@@ -69,16 +69,7 @@
 
    <div class="container-fluid">
     <br /><br />
-       <div class="form-check-inline">
-           <div class="form-group form-check">               
-               <asp:RadioButton ID="rbExportarPDF" runat="server" Text="Exportar a PDF" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a PDF" />
-               <asp:RadioButton ID="rbExportarWord" runat="server" Text="Exportar a Word" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Word" />
-               <br />
-                
-           </div>
-           
-      
-       </div>
+     
        <asp:ScriptManager ID="ScripMAnagerConsultaPersonas" runat="server"></asp:ScriptManager>
 
 
@@ -1192,6 +1183,19 @@
 
                </div>
            </div>
+           <br />
+             <div class="form-check-inline">
+           <div class="form-group form-check">      
+               <asp:RadioButton ID="rbHojaExcelPlano" runat="server" Text="Excel Plano" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Excel Plano" />
+               <asp:RadioButton ID="rbExportarPDF" runat="server" Text="Exportar a PDF" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a PDF" />
+               <asp:RadioButton ID="rbExcel" runat="server" Text="Exportar a Excel" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Excel" />
+               <asp:RadioButton ID="rbExportarWord" runat="server" Text="Exportar a Word" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Word" />
+               <br />
+                
+           </div>
+           
+      
+       </div>
            <div align="center">
                <asp:Label ID="lbCantidadRegistrosProcesadosTitulo" runat="server" Text="Cantidad de Registros Cargados ( " CssClass="Letranegrita"></asp:Label>
                <asp:Label ID="lbCantidadRegistrosProcesadosVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>

@@ -8,6 +8,9 @@ using System.Data;
 using System.IO;
 using SpreadsheetLight;
 using System.Web.Security;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportSource;
+using CrystalDecisions.Shared;
 
 
 namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
@@ -451,43 +454,43 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                         ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Cliente, (int)TipoBusquedaProceso.BusquedaPorRNC);
                     }
                     if (cbIntermediario.Checked == true) {
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Intermediario, (int)TipoBusquedaProceso.BusquedaPorNombre);
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Intermediario, (int)TipoBusquedaProceso.BusquedaPorRNC);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Intermediario, (int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Intermediario, (int)TipoBusquedaProceso.BusquedaPorRNC);
                     }
                     if (cbProvedor.Checked == true) {
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Proveedores, (int)TipoBusquedaProceso.BusquedaPorNombre);
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Proveedores, (int)TipoBusquedaProceso.BusquedaPorRNC);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Proveedores, (int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Proveedores, (int)TipoBusquedaProceso.BusquedaPorRNC);
                     }
                     if (cbAseguradoBajoPoliza.Checked == true) {
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.AseguradoBajoPoliza, (int)TipoBusquedaProceso.BusquedaPorNombre);
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.AseguradoBajoPoliza, (int)TipoBusquedaProceso.BusquedaPorRNC);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.AseguradoBajoPoliza, (int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.AseguradoBajoPoliza, (int)TipoBusquedaProceso.BusquedaPorRNC);
                     }
                     if (cbAsegurado.Checked == true) {
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Asegurado, (int)TipoBusquedaProceso.BusquedaPorNombre);
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Asegurado, (int)TipoBusquedaProceso.BusquedaPorRNC);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Asegurado, (int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Asegurado, (int)TipoBusquedaProceso.BusquedaPorRNC);
                     }
                     if (cbDependiente.Checked == true) {
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Dependiente, (int)TipoBusquedaProceso.BusquedaPorNombre);
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Dependiente, (int)TipoBusquedaProceso.BusquedaPorRNC);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Dependiente, (int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Dependiente, (int)TipoBusquedaProceso.BusquedaPorRNC);
                     }
                     if (cbCheque.Checked == true) {
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Cheque, (int)TipoBusquedaProceso.BusquedaPorNombre);
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Cheque, (int)TipoBusquedaProceso.BusquedaPorRNC);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Cheque, (int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Cheque, (int)TipoBusquedaProceso.BusquedaPorRNC);
                     }
                     if (cbDocumentosAmigos.Checked == true) {
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.DocumentosAmigos, (int)TipoBusquedaProceso.BusquedaPorNombre);
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.DocumentosAmigos, (int)TipoBusquedaProceso.BusquedaPorRNC);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.DocumentosAmigos, (int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.DocumentosAmigos, (int)TipoBusquedaProceso.BusquedaPorRNC);
                     }
                     if (cbReclamaciones.Checked == true) {
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Reclamaciones, (int)TipoBusquedaProceso.BusquedaPorNombre);
-                        //ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Reclamaciones, (int)TipoBusquedaProceso.BusquedaPorRNC);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Reclamaciones, (int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Reclamaciones, (int)TipoBusquedaProceso.BusquedaPorRNC);
                     }
                     if (cbPlaca.Checked == true) {
-                      //  ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Placa, (int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Placa, (int)TipoBusquedaProceso.BusquedaPorNombre);
                        // ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Placa, (int)TipoBusquedaProceso.BusquedaPorRNC);
                     }
                     if (cbChasis.Checked == true) {
-                      //  ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Chasis, (int)TipoBusquedaProceso.BusquedaPorNombre);
+                        ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Chasis, (int)TipoBusquedaProceso.BusquedaPorNombre);
                       //  ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Chasis, (int)TipoBusquedaProceso.BusquedaPorRNC);
                     }
                 }
@@ -528,6 +531,30 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             
             }
         
+        }
+        #endregion
+
+
+        #region REPORTE DE RESULTADO DE BUSQUEDA DE PERSONAS
+        private void GenerarReporte(string RutaReporte, string NombreReporte, decimal IdUsuario) {
+
+            ReportDocument Reprte = new ReportDocument();
+            Reprte.Load(RutaReporte);
+            Reprte.Refresh();
+
+            Reprte.SetParameterValue("@IdUsuario", IdUsuario);
+
+            Reprte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+            if (rbExportarPDF.Checked == true) {
+                Reprte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
+            else if (rbExcel.Checked == true) {
+                Reprte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+            }
+            else if (rbExportarWord.Checked == true) {
+                Reprte.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreReporte);
+            }
         }
         #endregion
 
@@ -761,7 +788,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 DivBuscarArchivoExcel.Visible = false;
 
 
-                rbExportarPDF.Checked = true;
+                rbHojaExcelPlano.Checked = true;
                 rbConsultaNormal.Checked = true;
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarRamo, ObjDataSistema.Value.BuscaListas("RAMO", null, null), true);
                 DivBloqueDetalleCliente.Visible = false;
@@ -1350,6 +1377,36 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             if (Session["IdUsuario"] != null) {
 
                 ProcesarInformacionPorlote((decimal)Session["IdUsuario"]);
+
+                if (rbHojaExcelPlano.Checked == true) {
+
+                    var ExportarExcelPlano = (from n in ObjDataSuperIntendencia.Value.ResultadoBusquedaSuperIntendencia((decimal)Session["IdUsuario"])
+                                              select new
+                                              {
+                                                //  IdUsuario = n.IdUsuario,
+                                                  ProcesadoPor = n.ProcesadoPor,
+                                                  Nombre = n.Nombre,
+                                                  NumeroIdentificacion = n.NumeroIdentificacion,
+                                                  Poliza = n.Poliza,
+                                                  Reclamacion = n.Reclamacion,
+                                                  Estatus = n.Estatus,
+                                                  Ramo = n.Ramo,
+                                                  MontoAsegurado = n.MontoAsegurado,
+                                                  Prima = n.Prima,
+                                                  InicioVigencia0 = n.InicioVigencia0,
+                                                  InicioVigencia = n.InicioVigencia,
+                                                  FinVigencia0 = n.FinVigencia0,
+                                                  FinVigencia = n.FinVigencia,
+                                                  TipoBusqueda = n.TipoBusqueda,
+                                                  EncontradoComo = n.EncontradoComo,
+                                                  Comentario = n.Comentario
+                                              }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Resultado Busqueda Personas", ExportarExcelPlano);
+                
+                }
+                else {
+                    GenerarReporte(Server.MapPath("ResultadoBusquedaPersonas.rpt"), "Resultado Busqueda Personas", (decimal)Session["IdUsuario"]);
+                }
 
             }
             else {

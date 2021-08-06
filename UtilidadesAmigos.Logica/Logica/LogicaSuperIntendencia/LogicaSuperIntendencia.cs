@@ -314,8 +314,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
                                Reclamacion = n.Reclamacion,
                                Estatus = n.Estatus,
                                Ramo = n.Ramo,
-                               MontoAsegurado = n.MontoAsegurado,
-                               Prima = n.Prima,
+                               MontoAsegurado = n.MontoAsegurado == 0 ? 1 : n.MontoAsegurado,
+                               Prima = n.Prima == 0 ? 1 : n.Prima,
                                InicioVigencia = n.InicioVigencia,
                                FinVigencia = n.FinVigencia,
                                TipoBusqueda = n.TipoBusqueda,
@@ -324,6 +324,35 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
 
                            }).ToList();
             return Listado;
+        }
+
+
+        public List<UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EResultadoBusquedaPersonasSuperIntendencia> ResultadoBusquedaSuperIntendencia(decimal? IdUsuario = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var ResultadoBusqueda = (from n in ObjData.SP_BUSCA_LISTADO_RESULTADO_BUSQUEDA_PERSONAS_SUPER_INTENDENCIA(IdUsuario)
+                                     select new UtilidadesAmigos.Logica.Entidades.SuperIntendencia.EResultadoBusquedaPersonasSuperIntendencia
+                                     {
+                                         IdUsuario=n.IdUsuario,
+                                         ProcesadoPor=n.ProcesadoPor,
+                                         Nombre=n.Nombre,
+                                         NumeroIdentificacion=n.NumeroIdentificacion,
+                                         Poliza=n.Poliza,
+                                         Reclamacion=n.Reclamacion,
+                                         Estatus=n.Estatus,
+                                         Ramo=n.Ramo,
+                                         MontoAsegurado=n.MontoAsegurado,
+                                         Prima=n.Prima,
+                                         InicioVigencia0=n.InicioVigencia0,
+                                         InicioVigencia=n.InicioVigencia,
+                                         FinVigencia0=n.FinVigencia0,
+                                         FinVigencia=n.FinVigencia,
+                                         TipoBusqueda=n.TipoBusqueda,
+                                         EncontradoComo=n.EncontradoComo,
+                                         Comentario=n.Comentario
+                                     }).ToList();
+            return ResultadoBusqueda;
         }
   }
 }
