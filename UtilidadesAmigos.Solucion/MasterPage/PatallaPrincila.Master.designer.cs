@@ -177,13 +177,13 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkReporteCobrado;
 
         /// <summary>
-        /// LinkGenerarMarbetesBehiculo control.
+        /// LinkReporteAlfredoIntermediarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkGenerarMarbetesBehiculo;
+        protected global::System.Web.UI.WebControls.LinkButton LinkReporteAlfredoIntermediarios;
 
         /// <summary>
         /// LiniComisionesIntermediarios control.
