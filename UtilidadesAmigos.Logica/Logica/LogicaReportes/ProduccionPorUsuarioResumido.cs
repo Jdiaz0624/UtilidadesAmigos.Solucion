@@ -1469,5 +1469,96 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Listado;
         }
         #endregion
+
+        #region REPORTE DE COMISIONES DE INTERMEDIARIOS ESPECIALES ALFREDO
+        /// <summary>
+        /// Este metodo es para procesar la informaciones del reporte de comisiones de alfredo
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionComisionesIntermediarioAlfredo ProcesarInformacionAlfredo(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionComisionesIntermediarioAlfredo Item, string Accion)
+        {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionComisionesIntermediarioAlfredo Procesar = null;
+
+            var InformacionComisionIntermediarioAlfredo = ObjData.SP_PROCESAR_INFORMACION_COMISIONES_INTERMEDIARIOS_ALFREDO(
+                Item.Supervisor,
+                Item.CodigoSupervisor,
+                Item.Codigo,
+                Item.Intermediario,
+                Item.CodigoOficina,
+                Item.Oficina,
+                Item.NumeroIdentificacion,
+                Item.CuentaBanco,
+                Item.TipoCuenta,
+                Item.Banco,
+                Item.CodigoBanco,
+                Item.Cliente,
+                Item.NumeroRecibo,
+                Item.Recibo,
+                Item.Fecha,
+                Item.Factura,
+                Item.FechaFactura,
+                Item.Moneda,
+                Item.Poliza,
+                Item.Ramo,
+                Item.Producto,
+                Item.Bruto,
+                Item.Neto,
+                Item.PorcientoComision,
+                Item.Comision,
+                Item.Retencion,
+                Item.AvanceComision,
+                Item.ALiquidar,
+                Item.ValidadoDesde,
+                Item.ValidadoHasta,
+                Item.IdUsuario,
+                Accion);
+            if (InformacionComisionIntermediarioAlfredo != null) {
+
+                Procesar = (from n in InformacionComisionIntermediarioAlfredo
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionComisionesIntermediarioAlfredo
+                            {
+                                Supervisor =n.Supervisor,
+                                CodigoSupervisor=n.CodigoSupervisor,
+                                Codigo=n.Codigo,
+                                Intermediario=n.Intermediario,
+                                CodigoOficina=n.CodigoOficina,
+                                Oficina=n.Oficina,
+                                NumeroIdentificacion=n.NumeroIdentificacion,
+                                CuentaBanco=n.CuentaBanco,
+                                TipoCuenta=n.TipoCuenta,
+                                Banco=n.Banco,
+                                CodigoBanco=n.CodigoBanco,
+                                Cliente=n.Cliente,
+                                NumeroRecibo=n.NumeroRecibo,
+                                Recibo=n.Recibo,
+                                Fecha=n.Fecha,
+                                Factura=n.Factura,
+                                FechaFactura=n.FechaFactura,
+                                Moneda=n.Moneda,
+                                Poliza=n.Poliza,
+                                Ramo=n.Ramo,
+                                Producto=n.Producto,
+                                Bruto=n.Bruto,
+                                Neto=n.Neto,
+                                PorcientoComision=n.PorcientoComision,
+                                Comision=n.Comision,
+                                Retencion=n.Retencion,
+                                AvanceComision=n.AvanceComision,
+                                ALiquidar=n.ALiquidar,
+                                ValidadoDesde=n.ValidadoDesde,
+                                ValidadoHasta=n.ValidadoHasta,
+                                IdUsuario=n.IdUsuario
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+
+
+        }
+        #endregion
     }
 }

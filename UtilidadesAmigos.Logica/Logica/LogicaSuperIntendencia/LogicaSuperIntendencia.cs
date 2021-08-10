@@ -354,5 +354,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuperIntendencia
                                      }).ToList();
             return ResultadoBusqueda;
         }
+
+
+        
   }
 }

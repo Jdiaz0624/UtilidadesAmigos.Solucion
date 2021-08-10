@@ -133,6 +133,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionSolicitudCheques.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionSolicitudCuentas.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarMontosSolicitudCheques.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\Reporte\ProcesarInformacionComisionesIntermediariosAlfredo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\SacarUltimoNumeroSolicitudGenerada.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\SuperIntendencia\ProcesarInformacionPersonasArchivoSuperIntenedencia.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\SuperIntendencia\ProcesarInformacionResultadoBusquedaArchivo.cs" />
@@ -342,6 +343,7 @@
     <Compile Include="Entidades\Reportes\EGenerarInformacionSupervisoresDetalle.cs" />
     <Compile Include="Entidades\Reportes\EProcesarChequesInformacionImprimir.cs" />
     <Compile Include="Entidades\Reportes\EProcesarDatosReporteIntermediairoInterno.cs" />
+    <Compile Include="Entidades\Reportes\EProcesarInformacionComisionesIntermediarioAlfredo.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionComisionesSupervisores.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionDataCobrado.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionDataCobradoPorDia.cs" />
@@ -370,6 +372,7 @@
     <Compile Include="Entidades\SuperIntendencia\EInformacionPersonasSuperIntentenciaPorLote.cs" />
     <Compile Include="Entidades\SuperIntendencia\EProcesarArchivoSuperIntendencia.cs" />
     <Compile Include="Entidades\SuperIntendencia\EProcesarDataResultadoBusquedaPersonaSuperIntendencia.cs" />
+    <Compile Include="Entidades\SuperIntendencia\EProcesarInformacionComisionesIntermediarioAlfredo.cs" />
     <Compile Include="Entidades\SuperIntendencia\EResultadoBusquedaPersonasSuperIntendencia.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
