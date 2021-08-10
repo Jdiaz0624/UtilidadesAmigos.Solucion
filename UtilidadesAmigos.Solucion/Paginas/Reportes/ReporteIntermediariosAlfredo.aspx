@@ -31,6 +31,20 @@
     </style>
 
 
+    <script type="text/javascript">
+        function CamposFechasVacios() {
+            alert("Has dejado campos fechas vacios, estos son necesarios para realizar esta operación, favor de verificar.");
+        }
+
+        function FechaDesdeVacio() {
+            $("#<%=txtFechaDesdeReporte.ClientID%>").css("border-color", "red");
+        }
+
+        function FechaHastaVacio() {
+            $("#<%=txtFechaHastaReporte.ClientID%>").css("border-color", "red");
+        }
+    </script>
+
     <br />
 
     <div id="DivBloqueReporte" runat="server">

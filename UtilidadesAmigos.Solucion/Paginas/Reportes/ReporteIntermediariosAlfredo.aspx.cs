@@ -11,7 +11,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack) {
+                Label lbNombreUsuarioCOnectado = (Label)Master.FindControl("lbUsuarioConectado");
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario NombreUsuario = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                lbNombreUsuarioCOnectado.Text = NombreUsuario.SacarNombreUsuarioConectado();
 
+                Label lbNombrePantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbNombrePantalla.Text = "REPORTE DE INTERMEDIARIOS MOVIMIENTOS";
+
+                rbPDF.Checked = true;
+            }
         }
 
         protected void txtCodigoIntermediarioReporte_TextChanged(object sender, EventArgs e)
@@ -21,12 +30,25 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtFechaDesdeReporte.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaReporte.Text.Trim())) {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
 
+                if (string.IsNullOrEmpty(txtFechaDesdeReporte.Text.Trim())) { ClientScript.RegisterStartupScript(GetType(), "FechaDesdeVacio()", "FechaDesdeVacio();", true); }
+                if (string.IsNullOrEmpty(txtFechaHastaReporte.Text.Trim())) { ClientScript.RegisterStartupScript(GetType(), "FechaHastaVacio()", "FechaHastaVacio();", true); }
+            }
+            else { }
         }
 
         protected void btnReporte_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtFechaDesdeReporte.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaReporte.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
 
+                if (string.IsNullOrEmpty(txtFechaDesdeReporte.Text.Trim())) { ClientScript.RegisterStartupScript(GetType(), "FechaDesdeVacio()", "FechaDesdeVacio();", true); }
+                if (string.IsNullOrEmpty(txtFechaHastaReporte.Text.Trim())) { ClientScript.RegisterStartupScript(GetType(), "FechaHastaVacio()", "FechaHastaVacio();", true); }
+            }
+            else { }
         }
 
         protected void LinkPrimeraPaginaReporteIntermediariosEspecial_Click(object sender, EventArgs e)
