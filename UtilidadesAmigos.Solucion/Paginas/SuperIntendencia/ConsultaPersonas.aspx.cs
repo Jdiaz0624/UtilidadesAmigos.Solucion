@@ -495,37 +495,37 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                     }
                 }
                 else if (rbPorNombreBusquedaPorLote.Checked == true) {
-                    if (cbCliente.Checked == true) { }
-                    if (cbIntermediario.Checked == true) { }
-                    if (cbProvedor.Checked == true) { }
-                    if (cbAseguradoBajoPoliza.Checked == true) { }
-                    if (cbAsegurado.Checked == true) { }
-                    if (cbDependiente.Checked == true) { }
-                    if (cbCheque.Checked == true) { }
-                    if (cbDocumentosAmigos.Checked == true) { }
-                    if (cbReclamaciones.Checked == true) { }
-                    if (cbPlaca.Checked == true) { }
-                    if (cbChasis.Checked == true) { }
+                    if (cbCliente.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Cliente, (int)TipoBusquedaProceso.BusquedaPorNombre); }
+                    if (cbIntermediario.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Intermediario, (int)TipoBusquedaProceso.BusquedaPorNombre); }
+                    if (cbProvedor.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Proveedores, (int)TipoBusquedaProceso.BusquedaPorNombre); }
+                    if (cbAseguradoBajoPoliza.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.AseguradoBajoPoliza, (int)TipoBusquedaProceso.BusquedaPorNombre); }
+                    if (cbAsegurado.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Asegurado, (int)TipoBusquedaProceso.BusquedaPorNombre); }
+                    if (cbDependiente.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Dependiente, (int)TipoBusquedaProceso.BusquedaPorNombre); }
+                    if (cbCheque.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Cheque, (int)TipoBusquedaProceso.BusquedaPorNombre); }
+                    if (cbDocumentosAmigos.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.DocumentosAmigos, (int)TipoBusquedaProceso.BusquedaPorNombre); }
+                    if (cbReclamaciones.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Reclamaciones, (int)TipoBusquedaProceso.BusquedaPorNombre); }
+                    if (cbPlaca.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Placa, (int)TipoBusquedaProceso.BusquedaPorNombre); }
+                    if (cbChasis.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Chasis, (int)TipoBusquedaProceso.BusquedaPorNombre); }
                 }
                 else if (rbNumeroIdentificacionBusquedaPorLote.Checked == true) {
-                    if (cbCliente.Checked == true) { }
-                    if (cbIntermediario.Checked == true) { }
-                    if (cbProvedor.Checked == true) { }
-                    if (cbAseguradoBajoPoliza.Checked == true) { }
-                    if (cbAsegurado.Checked == true) { }
-                    if (cbDependiente.Checked == true) { }
-                    if (cbCheque.Checked == true) { }
-                    if (cbDocumentosAmigos.Checked == true) { }
-                    if (cbReclamaciones.Checked == true) { }
+                    if (cbCliente.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Cliente, (int)TipoBusquedaProceso.BusquedaPorRNC); }
+                    if (cbIntermediario.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Intermediario, (int)TipoBusquedaProceso.BusquedaPorRNC); }
+                    if (cbProvedor.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Proveedores, (int)TipoBusquedaProceso.BusquedaPorRNC); }
+                    if (cbAseguradoBajoPoliza.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.AseguradoBajoPoliza, (int)TipoBusquedaProceso.BusquedaPorRNC); }
+                    if (cbAsegurado.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Asegurado, (int)TipoBusquedaProceso.BusquedaPorRNC); }
+                    if (cbDependiente.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Dependiente, (int)TipoBusquedaProceso.BusquedaPorRNC); }
+                    if (cbCheque.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Cheque, (int)TipoBusquedaProceso.BusquedaPorRNC); }
+                    if (cbDocumentosAmigos.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.DocumentosAmigos, (int)TipoBusquedaProceso.BusquedaPorRNC); }
+                    if (cbReclamaciones.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Reclamaciones, (int)TipoBusquedaProceso.BusquedaPorRNC); }
 
                 }
                 else if (rbPlacaBusquedaPorLote.Checked == true) {
 
-                    if (cbPlaca.Checked == true) { }
+                    if (cbPlaca.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Placa, (int)TipoBusquedaProceso.BusquedaPorNombre); }
                 }
                 else if (rbChasisBusquedaPorLote.Checked == true) {
 
-                    if (cbChasis.Checked == true) { }
+                    if (cbChasis.Checked == true) { ProcesarInformacionPersonasSuperIntendenciaPorLote(IdUsuario, (int)BuscarComo.Chasis, (int)TipoBusquedaProceso.BusquedaPorNombre); }
                 }
              
             

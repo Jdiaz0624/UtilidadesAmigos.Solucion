@@ -1560,5 +1560,62 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
 
         }
         #endregion
+        #region SACAR LA INFORMACION DEL REPORTE DE COMISIONES DE INTERMEDIARIOS PARA ALFREDO
+        /// <summary>
+        /// Este metodo es para sacar la información que se va a prcesar
+        /// </summary>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="CodigoIntermediario"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="MontoMinimo"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="NumeroRecibo"></param>
+        /// <param name="NumeroFactura"></param>
+        /// <param name="Tasa"></param>
+        /// <param name="Usuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EComisionesIntermediarioAlfredo> SacarDatosComisionesIntermediarioAlfredo(DateTime? FechaDesde = null, DateTime? FechaHasta = null, string CodigoIntermediario = null, int? Oficina = null, int? Ramo = null, decimal? MontoMinimo = null, string Poliza = null, string NumeroRecibo = null, string NumeroFactura = null, decimal? Tasa = null, decimal? Usuario = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_SACAR_COMISIONES_INTERMEDIARIOS_ALFREDO(FechaDesde, FechaHasta, CodigoIntermediario, Oficina, Ramo, MontoMinimo, Poliza, NumeroRecibo, NumeroFactura, Tasa, Usuario)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EComisionesIntermediarioAlfredo
+                           {
+                               Supervisor=n.Supervisor,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Codigo=n.Codigo,
+                               Intermediario=n.Intermediario,
+                               CodigoOficina=n.CodigoOficina,
+                               Oficina=n.Oficina,
+                               NumeroIdentificacion=n.NumeroIdentificacion,
+                               CuentaBanco=n.CuentaBanco,
+                               TipoCuenta=n.TipoCuenta,
+                               Banco=n.Banco,
+                               CodigoBanco=n.CodigoBanco,
+                               Cliente=n.Cliente,
+                               NumeroRecibo=n.NumeroRecibo,
+                               Recibo=n.Recibo,
+                               Fecha=n.Fecha,
+                               Factura=n.Factura,
+                               FechaFactura=n.FechaFactura,
+                               Moneda=n.Moneda,
+                               Poliza=n.Poliza,
+                               Ramo=n.Ramo,
+                               Producto=n.Producto,
+                               Bruto=n.Bruto,
+                               Neto=n.Neto,
+                               PorcientoComision=n.PorcientoComision,
+                               Comision=n.Comision,
+                               Retencion=n.Retencion,
+                               AvanceComision=n.AvanceComision,
+                               ALiquidar=n.ALiquidar,
+                               Usuario=n.Usuario,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta,
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }
