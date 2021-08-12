@@ -599,6 +599,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, codigoIntermediario, oficina, ramo, montoMinimo, poliza, numeroRecibo, numeroFactura, tasa, usuario);
 			return ((ISingleResult<SP_SACAR_COMISIONES_INTERMEDIARIOS_ALFREDOResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_REPORTE_INFORMACION_INTERMEDIARIOS_ALFREDO")]
+		public ISingleResult<SP_REPORTE_INFORMACION_INTERMEDIARIOS_ALFREDOResult> SP_REPORTE_INFORMACION_INTERMEDIARIOS_ALFREDO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, idUsuario);
+			return ((ISingleResult<SP_REPORTE_INFORMACION_INTERMEDIARIOS_ALFREDOResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDOResult
@@ -13152,6 +13159,248 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._ValidadoHasta != value))
 				{
 					this._ValidadoHasta = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_REPORTE_INFORMACION_INTERMEDIARIOS_ALFREDOResult
+	{
+		
+		private System.Nullable<int> _Codigo;
+		
+		private string _Intermediario;
+		
+		private System.Nullable<decimal> _ProduccionBruto;
+		
+		private System.Nullable<decimal> _ISC;
+		
+		private System.Nullable<decimal> _ProduccionNeto;
+		
+		private System.Nullable<decimal> _CobradoBruto;
+		
+		private System.Nullable<decimal> _CobradoNeto;
+		
+		private System.Nullable<decimal> _Comision;
+		
+		private System.Nullable<decimal> _Retencion;
+		
+		private System.Nullable<decimal> _ALiquidar;
+		
+		private string _ValidadoDesde;
+		
+		private string _ValidadoHasta;
+		
+		private string _GeneradoPor;
+		
+		public SP_REPORTE_INFORMACION_INTERMEDIARIOS_ALFREDOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", DbType="Int")]
+		public System.Nullable<int> Codigo
+		{
+			get
+			{
+				return this._Codigo;
+			}
+			set
+			{
+				if ((this._Codigo != value))
+				{
+					this._Codigo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Intermediario", DbType="VarChar(200)")]
+		public string Intermediario
+		{
+			get
+			{
+				return this._Intermediario;
+			}
+			set
+			{
+				if ((this._Intermediario != value))
+				{
+					this._Intermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProduccionBruto", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> ProduccionBruto
+		{
+			get
+			{
+				return this._ProduccionBruto;
+			}
+			set
+			{
+				if ((this._ProduccionBruto != value))
+				{
+					this._ProduccionBruto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ISC", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> ISC
+		{
+			get
+			{
+				return this._ISC;
+			}
+			set
+			{
+				if ((this._ISC != value))
+				{
+					this._ISC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProduccionNeto", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ProduccionNeto
+		{
+			get
+			{
+				return this._ProduccionNeto;
+			}
+			set
+			{
+				if ((this._ProduccionNeto != value))
+				{
+					this._ProduccionNeto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CobradoBruto", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> CobradoBruto
+		{
+			get
+			{
+				return this._CobradoBruto;
+			}
+			set
+			{
+				if ((this._CobradoBruto != value))
+				{
+					this._CobradoBruto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CobradoNeto", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> CobradoNeto
+		{
+			get
+			{
+				return this._CobradoNeto;
+			}
+			set
+			{
+				if ((this._CobradoNeto != value))
+				{
+					this._CobradoNeto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comision", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Comision
+		{
+			get
+			{
+				return this._Comision;
+			}
+			set
+			{
+				if ((this._Comision != value))
+				{
+					this._Comision = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Retencion", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Retencion
+		{
+			get
+			{
+				return this._Retencion;
+			}
+			set
+			{
+				if ((this._Retencion != value))
+				{
+					this._Retencion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ALiquidar", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> ALiquidar
+		{
+			get
+			{
+				return this._ALiquidar;
+			}
+			set
+			{
+				if ((this._ALiquidar != value))
+				{
+					this._ALiquidar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidadoDesde", DbType="NVarChar(4000)")]
+		public string ValidadoDesde
+		{
+			get
+			{
+				return this._ValidadoDesde;
+			}
+			set
+			{
+				if ((this._ValidadoDesde != value))
+				{
+					this._ValidadoDesde = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValidadoHasta", DbType="NVarChar(4000)")]
+		public string ValidadoHasta
+		{
+			get
+			{
+				return this._ValidadoHasta;
+			}
+			set
+			{
+				if ((this._ValidadoHasta != value))
+				{
+					this._ValidadoHasta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GeneradoPor", DbType="VarChar(150)")]
+		public string GeneradoPor
+		{
+			get
+			{
+				return this._GeneradoPor;
+			}
+			set
+			{
+				if ((this._GeneradoPor != value))
+				{
+					this._GeneradoPor = value;
 				}
 			}
 		}

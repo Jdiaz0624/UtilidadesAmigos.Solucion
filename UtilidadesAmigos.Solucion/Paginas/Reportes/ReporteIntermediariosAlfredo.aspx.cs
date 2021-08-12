@@ -225,7 +225,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
             try {
                 UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoIntermediarioReporte.Text);
-                txtNombreIntermediarioReprte.Text = Nombre.SacarNombreIntermediario();
+                txtNombreIntermediarioReprte.Text = Nombre.SacarNombreIntermediario(); 
             }
             catch (Exception) {
                 txtNombreIntermediarioReprte.Text = string.Empty;

@@ -60,13 +60,13 @@
            </div>
 
            <div class="form-group col-md-3">
-               <asp:Label ID="lbCodigoIntermediarioReporte" runat="server" Text="Codigo de Intermediario" CssClass="LetrasNegrita"></asp:Label>
-               <asp:TextBox ID="txtCodigoIntermediarioReporte" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoIntermediarioReporte_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
+               <asp:Label ID="lbCodigoIntermediarioReporte" visible="false" runat="server" Text="Codigo de Intermediario" CssClass="LetrasNegrita"></asp:Label>
+               <asp:TextBox ID="txtCodigoIntermediarioReporte" visible="false" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoIntermediarioReporte_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
            </div>
 
             <div class="form-group col-md-3">
-               <asp:Label ID="lbNombreIntermediarioReporte" runat="server" Text="Nombre de Intermediario" CssClass="LetrasNegrita"></asp:Label>
-               <asp:TextBox ID="txtNombreIntermediarioReprte" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+               <asp:Label ID="lbNombreIntermediarioReporte" visible="false" runat="server" Text="Nombre de Intermediario" CssClass="LetrasNegrita"></asp:Label>
+               <asp:TextBox ID="txtNombreIntermediarioReprte" visible="false"  runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
            </div>
 
 
