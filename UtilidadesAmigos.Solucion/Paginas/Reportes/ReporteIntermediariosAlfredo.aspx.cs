@@ -206,6 +206,47 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             }
         }
         #endregion
+        #region MOSTRAR LA INFORMACION POR PANTALLA
+        /// <summary>
+        /// Muestra el listado por pantalla
+        /// </summary>
+        private void MostrarInformacionPorPantalla() {
+            DateTime? _fechaDesde = string.IsNullOrEmpty(txtFechaDesdeReporte.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesdeReporte.Text);
+            DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHastaReporte.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHastaReporte.Text);
+
+            var Listado = ObjDataReportes.Value.ReporteInformacionAlfredo(
+                _fechaDesde,
+                _FechaHasta,
+                (decimal)Session["IdUsuario"]);
+            Paginar(ref rpListadoIntermediarios, Listado, 10, ref lbCantidadPaginaVAriableControlVisistas, ref LinkPrimeraPaginaReporteIntermediariosEspecial, ref LinkAnteriorReporteIntermediariosEspecial, ref LinkSiguienteReporteIntermediariosEspecial, ref LinkUltimoReporteIntermediariosEspecial);
+            HandlePaging(ref dtPaginacionReporteIntermediariosEspecial, ref lbPaginaActualVariableControlVisistas);
+        }
+        #endregion
+        #region GENERAR REPORTE DE INTERMEDIARIOS
+        private void GenerarReporte(string RutaReporte, string NombreArchivo, decimal IdUsuario) {
+
+            DateTime? _FechaDesde = string.IsNullOrEmpty(txtFechaDesdeReporte.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesdeReporte.Text);
+            DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHastaReporte.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHastaReporte.Text);
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@FechaDesde", _FechaDesde);
+            Reporte.SetParameterValue("@FechaHasta", _FechaHasta);
+            Reporte.SetParameterValue("@IdUsuario", IdUsuario);
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+            if (rbPDF.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+            }
+            else if (rbExcel.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreArchivo);
+            }
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
@@ -242,6 +283,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             }
             else {
                 ProcesarInformacion();
+                MostrarInformacionPorPantalla();
             }
         }
 
@@ -256,17 +298,50 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             }
             else {
                 ProcesarInformacion();
+
+                if (rbExcelPlano.Checked == true) {
+                    DateTime? _fechaDesde = string.IsNullOrEmpty(txtFechaDesdeReporte.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesdeReporte.Text);
+                    DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHastaReporte.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHastaReporte.Text);
+
+                    var ExportarInformacion = (from n in ObjDataReportes.Value.ReporteInformacionAlfredo(
+                        _fechaDesde,
+                        _FechaHasta,
+                        (decimal)Session["IdUsuario"])
+                                               select new
+                                               {
+                                                   Intermediario = n.Intermediario,
+                                                   ProduccionBruto = n.ProduccionBruto,
+                                                   ISC = n.ISC,
+                                                   ProduccionNeto = n.ProduccionNeto,
+                                                   CobradoBruto = n.CobradoBruto,
+                                                   CobradoNeto = n.CobradoNeto,
+                                                   Comision = n.Comision,
+                                                   Retencion = n.Retencion,
+                                                   ALiquidar = n.ALiquidar,
+                                                   ValidadoDesde = n.ValidadoDesde,
+                                                   ValidadoHasta = n.ValidadoHasta,
+                                                   GeneradoPor = n.GeneradoPor
+                                               }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte Intermediarios Alfredo", ExportarInformacion);
+                }
+                else {
+                    decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+                    GenerarReporte(Server.MapPath("ReporteInformacionIntermediarioAlfredo.rpt"), "Reporte Intermediarios Alfredo", IdUsuario);
+                }
             }
         }
 
         protected void LinkPrimeraPaginaReporteIntermediariosEspecial_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarInformacionPorPantalla();
         }
 
         protected void LinkAnteriorReporteIntermediariosEspecial_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarInformacionPorPantalla();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableControlVisistas, ref lbCantidadPaginaVAriableControlVisistas);
         }
 
         protected void dtPaginacionReporteIntermediariosEspecial_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -276,17 +351,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
         protected void dtPaginacionReporteIntermediariosEspecial_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarInformacionPorPantalla();
         }
 
         protected void LinkSiguienteReporteIntermediariosEspecial_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += 1;
+            MostrarInformacionPorPantalla();
         }
 
         protected void LinkUltimoReporteIntermediariosEspecial_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarInformacionPorPantalla();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableControlVisistas, ref lbCantidadPaginaVAriableControlVisistas);
         }
     }
 }

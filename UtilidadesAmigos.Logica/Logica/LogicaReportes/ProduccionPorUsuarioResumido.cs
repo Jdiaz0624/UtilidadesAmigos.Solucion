@@ -1616,6 +1616,30 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                            }).ToList();
             return Listado;
         }
+
+
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EReporteInformacionPersonasAlfredo> ReporteInformacionAlfredo(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? IdUsuario = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_REPORTE_INFORMACION_INTERMEDIARIOS_ALFREDO(FechaDesde, FechaHasta, IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EReporteInformacionPersonasAlfredo
+                           {
+                               Codigo=n.Codigo,
+                               Intermediario=n.Intermediario,
+                               ProduccionBruto=n.ProduccionBruto,
+                               ISC=n.ISC,
+                               ProduccionNeto=n.ProduccionNeto,
+                               CobradoBruto=n.CobradoBruto,
+                               CobradoNeto=n.CobradoNeto,
+                               Comision=n.Comision,
+                               Retencion=n.Retencion,
+                               ALiquidar=n.ALiquidar,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta,
+                               GeneradoPor=n.GeneradoPor
+                           }).ToList();
+            return Listado;
+        }
         #endregion
     }
 }

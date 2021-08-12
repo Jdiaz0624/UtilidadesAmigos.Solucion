@@ -64,7 +64,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
-
+        enum UsuariosPermiso {
+            JUAN_MARCELINO_MEDINA_DIAZ =1,
+            ALFREDO_PIMENTEL=10,
+            EDUARD_GARCIA=12,
+            ING_MIGUEL_BERROA=22
+        }
         private void SacarDatosUsuario(decimal IdUsuario)
         {
             Label lbControlUsuarioConectado = (Label)Master.FindControl("lbUsuarioConectado");
@@ -124,20 +129,21 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 else
                 {
                     SacarDatosUsuario(Convert.ToDecimal(Session["IdUsuario"]));
-                    decimal idiusuario = Convert.ToDecimal(Session["IdUsuario"]);
+                    decimal IdUsuarioConectado = Convert.ToDecimal(Session["IdUsuario"]);
                     decimal Hablar = Convert.ToDecimal(Session["Veronica"]);
-                    if (idiusuario == 1)
-                    {
-                        // this.Master.FindControl("lbTiket").Visible = false;
-                    }
-                    //     lbHablar.Text = Session["Veronica"].ToString();
-                    //if (Session["Veronica"] != null)
-                    //{
-                    //    Thread tarea = new Thread(new ParameterizedThreadStart(UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar));
-                    //    tarea.Start("Hola " + lbUsuarioConectado.Text + ", ¿Como puedo ayudarte?");
-                    //    Session["Veronica"] = null;
 
-                    //}
+                    LinkButton LinkReporteIntermediarioAlfredo = (LinkButton)Master.FindControl("LinkReporteAlfredoIntermediarios");
+                    LinkReporteIntermediarioAlfredo.Visible = false;
+
+                    if (IdUsuarioConectado == (decimal)UsuariosPermiso.JUAN_MARCELINO_MEDINA_DIAZ) { LinkReporteIntermediarioAlfredo.Visible = true; }
+                    else if (IdUsuarioConectado == (decimal)UsuariosPermiso.ALFREDO_PIMENTEL) { LinkReporteIntermediarioAlfredo.Visible = true; }
+                    else if (IdUsuarioConectado == (decimal)UsuariosPermiso.EDUARD_GARCIA) { LinkReporteIntermediarioAlfredo.Visible = true; }
+                    else if (IdUsuarioConectado == (decimal)UsuariosPermiso.ING_MIGUEL_BERROA) { LinkReporteIntermediarioAlfredo.Visible = true; }
+
+
+
+
+
                     int IdPerfil = Convert.ToInt32(lbIdPerfil.Text);
                     if (IdPerfil > 2) {
                         LinkButton LinkVolantePago = (LinkButton)Master.FindControl("LinkVolantePago");

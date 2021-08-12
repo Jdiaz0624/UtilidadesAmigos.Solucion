@@ -85,20 +85,6 @@
             <asp:Button ID="btnReporte" runat="server" Text="Reporte" ToolTip="Generar Reporte" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnReporte_Click" />
         </div>
         <br />
-        <div align="center">
-            <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros (" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadRegistrosVariables" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbSeparador1" runat="server" Text=" | " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbTotalProduccionTitulo" runat="server" Text="Producción Total (" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbTotalProduccionVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbTotalProduccionCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbSeradador2" runat="server" Text=" | " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="TotalCobradoTitulo" runat="server" Text="Total Cobrado (" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="TotalCobradoVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="TotalCobradoCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
-        </div>
-        <br />
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
@@ -115,12 +101,12 @@
                     <asp:Repeater ID="rpListadoIntermediarios" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <td style="width:30%" align="left"> <%# Eval("") %> </td>
-                                <td style="width:15%" align="left"> <%# string.Format("{0,n2}", Eval("")) %> </td>
-                                <td style="width:15%" align="left"> <%# string.Format("{0,n2}", Eval("")) %> </td>
-                                <td style="width:15%" align="left"> <%# string.Format("{0,n2}", Eval("")) %> </td>
-                                <td style="width:15%" align="left"> <%# string.Format("{0,n2}", Eval("")) %> </td>
-                                <td style="width:10%" align="left"> <%# string.Format("{0,n2}", Eval("")) %> </td>
+                                <td style="width:30%" align="left"> <%# Eval("Intermediario") %> </td>
+                                <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("ProduccionBruto")) %> </td>
+                                <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("ProduccionNeto")) %> </td>
+                                <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("CobradoBruto")) %> </td>
+                                <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("CobradoNeto")) %> </td>
+                                <td style="width:10%" align="left"> <%# string.Format("{0:n2}", Eval("ALiquidar")) %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
