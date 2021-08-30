@@ -186,6 +186,7 @@
     <None Include="Properties\PublishProfiles\Prueba.pubxml" />
     <Content Include="Paginas\Consulta\ConsultarDataAsegurado.aspx" />
     <Content Include="Paginas\Consulta\GenerarReporteFianzas.aspx" />
+    <Content Include="Paginas\Consulta\GestionCobros.aspx" />
     <Content Include="Paginas\Consulta\ListadoRenovacion.aspx" />
     <Content Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx" />
     <Content Include="Paginas\Consulta\ValidarCoberturas.aspx" />
@@ -429,6 +430,13 @@
     </Compile>
     <Compile Include="Paginas\Consulta\GenerarReporteFianzas.aspx.designer.cs">
       <DependentUpon>GenerarReporteFianzas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Consulta\GestionCobros.aspx.cs">
+      <DependentUpon>GestionCobros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Consulta\GestionCobros.aspx.designer.cs">
+      <DependentUpon>GestionCobros.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Consulta\ListadoRenovacion.aspx.cs">
       <DependentUpon>ListadoRenovacion.aspx</DependentUpon>

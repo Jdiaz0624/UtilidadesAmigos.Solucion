@@ -595,5 +595,16 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkGestionCObros_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null) {
+                Response.Redirect("~/Paginas/Consulta/GestionCobros.aspx");
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }

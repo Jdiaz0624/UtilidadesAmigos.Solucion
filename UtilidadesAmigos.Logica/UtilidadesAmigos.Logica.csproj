@@ -110,6 +110,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionBackupBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionCorreosENviar.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionRutaBackupBD.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionComentarioGestionCObros.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionSeguridad.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
@@ -164,6 +165,8 @@
     <Compile Include="Comunes\VariablesPowerBi.cs" />
     <Compile Include="Comunes\VozVeronica.cs" />
     <Compile Include="Entidades\ComisionesIntermediarioDetalle.cs" />
+    <Compile Include="Entidades\Consulta\EBuscarInformacionPolizasGestionCobros.cs" />
+    <Compile Include="Entidades\Consulta\EComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Cotizador\EAnoVehiculo.cs" />
     <Compile Include="Entidades\Cotizador\EComprensivoIncendioRobo.cs" />
     <Compile Include="Entidades\Cotizador\EServiciosFijos.cs" />
@@ -376,6 +379,7 @@
     <Compile Include="Entidades\SuperIntendencia\EProcesarDataResultadoBusquedaPersonaSuperIntendencia.cs" />
     <Compile Include="Entidades\SuperIntendencia\EProcesarInformacionComisionesIntermediarioAlfredo.cs" />
     <Compile Include="Entidades\SuperIntendencia\EResultadoBusquedaPersonasSuperIntendencia.cs" />
+    <Compile Include="Logica\LogicaConsulta\LogicaConsulta.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
     <Compile Include="Logica\LogicaOpcionesAdministrador\LogicaOpcionesdministrador.cs" />

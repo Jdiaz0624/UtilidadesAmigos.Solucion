@@ -1,0 +1,23 @@
+<div>
+	<table cellspacing="0" rules="all" border="1" style="border-collapse:collapse;">
+		<tr>
+			<th scope="col">ProcesadoPor</th><th scope="col">Nombre</th><th scope="col">NumeroIdentificacion</th><th scope="col">Poliza</th><th scope="col">Reclamacion</th><th scope="col">Estatus</th><th scope="col">Ramo</th><th scope="col">MontoAsegurado</th><th scope="col">Prima</th><th scope="col">InicioVigencia0</th><th scope="col">InicioVigencia</th><th scope="col">FinVigencia0</th><th scope="col">FinVigencia</th><th scope="col">TipoBusqueda</th><th scope="col">EncontradoComo</th><th scope="col">Comentario</th>
+		</tr><tr>
+			<td>JUAN MARCELINO MEDINA DIAZ</td><td>LUIS EDUARDO COMARAZAMY VALDEZ </td><td>…</td><td> </td><td> </td><td> </td><td> </td><td>50000.00</td><td>1.00</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>POR NOMBRE</td><td>DATA DOCUMENTOS AMIGOS</td><td>CARPETA: ARS PALIC SALUD  HASTA 1 MAY 18 </td>
+		</tr><tr>
+			<td>JUAN MARCELINO MEDINA DIAZ</td><td>LUIS EDUARDO COMARAZAMY VALDEZ </td><td>…</td><td> </td><td> </td><td> </td><td> </td><td>1.00</td><td>7.35</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>POR NOMBRE</td><td>DATA DOCUMENTOS AMIGOS</td><td>CARPETA: ARS PALIC SALUD  HASTA 1 MAY 18 </td>
+		</tr><tr>
+			<td>JUAN MARCELINO MEDINA DIAZ</td><td>MICHEL ELIAS KAIR TABAR </td><td>…</td><td> </td><td> </td><td> </td><td> </td><td>50000.00</td><td>7.35</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>POR NOMBRE</td><td>DATA DOCUMENTOS AMIGOS</td><td>CARPETA: ARS PALIC SALUD  HASTA 1 MAY 18 </td>
+		</tr><tr>
+			<td>JUAN MARCELINO MEDINA DIAZ</td><td>LUIS EDUARDO COMARAZAMY VALDEZ </td><td>…</td><td> </td><td> </td><td> </td><td> </td><td>50000.00</td><td>7.35</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>POR NOMBRE</td><td>DATA DOCUMENTOS AMIGOS</td><td>CARPETA: ARS PALIC SALUD  HASTA 1 MAY 18 </td>
+		</tr><tr>
+			<td>JUAN MARCELINO MEDINA DIAZ</td><td>MARIANO ANTONIO REYES  </td><td>…</td><td> </td><td> </td><td> </td><td> </td><td>50000.00</td><td>7.35</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>POR NOMBRE</td><td>DATA DOCUMENTOS AMIGOS</td><td>CARPETA: ARS PALIC SALUD  HASTA 1 MAY 18 </td>
+		</tr><tr>
+			<td>JUAN MARCELINO MEDINA DIAZ</td><td>TOMAS GUILLERMO AVOGADRO  </td><td>…</td><td> </td><td> </td><td> </td><td> </td><td>50000.00</td><td>7.35</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>POR NOMBRE</td><td>DATA DOCUMENTOS AMIGOS</td><td>CARPETA: ARS PALIC SALUD  HASTA 1 MAY 18 </td>
+		</tr><tr>
+			<td>JUAN MARCELINO MEDINA DIAZ</td><td>TOMAS GUILLERMO AVOGADRO  </td><td>…</td><td> </td><td> </td><td> </td><td> </td><td>50000.00</td><td>10.50</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>POR NOMBRE</td><td>DATA DOCUMENTOS AMIGOS</td><td>CARPETA: ARS PALIC SALUD  HASTA 1 MAY 18 </td>
+		</tr><tr>
+			<td>JUAN MARCELINO MEDINA DIAZ</td><td>OSCAR ENRIQUE                  MESA                          </td><td>001-0571197-2</td><td> </td><td> </td><td> </td><td> </td><td>200000.00</td><td>31.50</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>2021/08/17 0:00:00</td><td>17/08/2021</td><td>POR NUMERO DE IDENTIFICACION</td><td>DATA DOCUMENTOS AMIGOS</td><td>CARPETA: BANCO PROMERICA </td>
+		</tr>
+	</table>
+</div>
