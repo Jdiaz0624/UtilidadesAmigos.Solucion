@@ -154,7 +154,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             }
             else {
                 DivBloquePrincipal.Visible = false;
-                DivBloqueBotones.Visible = true;
                 DivInformacionPolizaGeneral.Visible = true;
                 foreach (var n in Listado) {
                     txtPoliza.Text = n.Poliza;
@@ -253,32 +252,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             BuscarRegistro();
             
         }
-
-        protected void btnMostrarFActuras_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnMostrarPAgos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnMostrarReclamaciones_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnMostrarCondiciones_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnMostrarCoberturas_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             if (lbAccion.Text == "INSERT") {
@@ -366,7 +339,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             DivBloquePrincipal.Visible = true;
-            DivBloqueBotones.Visible = false;
             DivInformacionPolizaGeneral.Visible = false;
             txtCoentario.Text = string.Empty;
             txtIngresarPoliza.Text = string.Empty;

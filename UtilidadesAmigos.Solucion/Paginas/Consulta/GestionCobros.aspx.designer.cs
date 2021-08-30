@@ -69,60 +69,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.Button btnCOnsultarPOliza;
 
         /// <summary>
-        /// DivBloqueBotones control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueBotones;
-
-        /// <summary>
-        /// btnMostrarFActuras control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMostrarFActuras;
-
-        /// <summary>
-        /// btnMostrarPAgos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMostrarPAgos;
-
-        /// <summary>
-        /// btnMostrarReclamaciones control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMostrarReclamaciones;
-
-        /// <summary>
-        /// btnMostrarCondiciones control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMostrarCondiciones;
-
-        /// <summary>
-        /// btnMostrarCoberturas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMostrarCoberturas;
-
-        /// <summary>
         /// DivInformacionPolizaGeneral control.
         /// </summary>
         /// <remarks>

@@ -71,14 +71,7 @@
             <asp:Button ID="btnCOnsultarPOliza" runat="server" Text="Buscar" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnCOnsultarPOliza_Click" ToolTip="Buscar Registro" />
         </div>
     </div>
-    <br />
-    <div id="DivBloqueBotones" align="center" visible="false" runat="server">
-        <asp:Button ID="btnMostrarFActuras" runat="server" Text="Facturas" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnMostrarFActuras_Click" ToolTip="Mostrar las facturas de esta poliza" />
-        <asp:Button ID="btnMostrarPAgos" runat="server" Text="Recibos" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnMostrarPAgos_Click" ToolTip="Mostrar los recibos de esta poliza" />
-        <asp:Button ID="btnMostrarReclamaciones" runat="server" Text="Reclamos" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnMostrarReclamaciones_Click" ToolTip="Mostrar las Reclamaciones de esta poliza" />
-        <asp:Button ID="btnMostrarCondiciones" runat="server" Text="Condiciones" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnMostrarCondiciones_Click" ToolTip="Mostrar las condiciones de esta poliza" />
-        <asp:Button ID="btnMostrarCoberturas" runat="server" Text="Coberturas" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnMostrarCoberturas_Click" ToolTip="Mostrar las coberturas de esta poliza" />
-    </div>
+
     <br />
     <div id="DivInformacionPolizaGeneral" visible="false" runat="server">
         <div class="form-row">
@@ -246,5 +239,6 @@
         <div align="center">
             <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnVolver_Click" ToolTip="Volver Atras" />
         </div>
+        <br />
     </div>
 </asp:Content>
