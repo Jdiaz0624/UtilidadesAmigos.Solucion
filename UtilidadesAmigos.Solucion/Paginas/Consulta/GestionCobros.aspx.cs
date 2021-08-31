@@ -243,66 +243,88 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             DateTime? _FechaDesde = cbNoAgregarRangoFecha.Checked == true ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesdeReporte.Text);
             DateTime? _FechaHAsta = cbNoAgregarRangoFecha.Checked == true ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHAstaReporte.Text);
 
+            try {
+                if (rbExcelPlano.Checked == true) {
+                    var GenerarExcelPlano = (from n in ObjDataConsulta.Value.BuscarComentariosAgregadosPoliza(
+                      new Nullable<decimal>(),
+                      _Poliza,
+                      _FechaDesde,
+                      _FechaHAsta)
+                                             select new
+                                             {
+                                                 Poliza = n.Poliza,
+                                                 Comentario = n.Comentario,
+                                                 CreadoPor = n.Usuario,
+                                                 Fecha = n.Fecha,
+                                                 Hora = n.Hora
+                                             }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(NombreArchivo, GenerarExcelPlano);
+                }
+                else {
+                    decimal IdUsuarioGenera = (decimal)Session["IdUsuario"];
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionReporteComentarioGestionCobros Eliminar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionReporteComentarioGestionCobros(
+                        0, "", "", 0, "", DateTime.Now, "", "", 0, IdUsuarioGenera, "DELETE");
+                    Eliminar.ProcesarInformacion();
 
-            var GenerarExcelPlano = (from n in ObjDataConsulta.Value.BuscarComentariosAgregadosPoliza(
-                  new Nullable<decimal>(),
-                  _Poliza,
-                  _FechaDesde,
-                  _FechaHAsta)
-                                     select new
-                                     {
-                                         Poliza = n.Poliza,
-                                         Comentario = n.Comentario,
-                                         CreadoPor = n.Usuario,
-                                         Fecha = n.Fecha,
-                                         Hora = n.Hora
-                                     }).ToList();
-            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(NombreArchivo, GenerarExcelPlano);
+                    var InformacionReporte = ObjDataConsulta.Value.BuscarComentariosAgregadosPoliza(
+                        new Nullable<decimal>(),
+                      _Poliza,
+                      _FechaDesde,
+                      _FechaHAsta);
+                    if (InformacionReporte.Count() < 1) {
+                        ClientScript.RegisterStartupScript(GetType(), "RegistrosNoEncontrados()", "RegistrosNoEncontrados();", true);
+                    }
+                    else {
+                        foreach (var n in InformacionReporte) {
+                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionReporteComentarioGestionCobros Guardar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionReporteComentarioGestionCobros(
+                                0,
+                                n.Poliza,
+                                n.Comentario,
+                                (decimal)n.IdUsuario,
+                                n.Usuario,
+                                (DateTime)n.FechaProceso,
+                                n.Fecha,
+                                n.Hora,
+                                (int)n.CantidadRegistros,
+                                IdUsuarioGenera,
+                                "INSERT");
+                            Guardar.ProcesarInformacion();
+                        }
 
-            //if (rbExcelPlano.Checked == true)
-            //{
+                        ReportDocument Reporte = new ReportDocument();
 
+                        Reporte.Load(RutaArchivo);
+                        Reporte.Refresh();
 
+                        Reporte.SetParameterValue("@IdUsuarioGenera", IdUsuarioGenera);
 
-            //}
-            //else
-            //{
-            //    decimal? ID = null;
-            //    ReportDocument Reporte = new ReportDocument();
+                        Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
 
-            //    Reporte.Load(RutaArchivo);
-            //    Reporte.Refresh();
+                        if (rbPDF.Checked == true) {
+                            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+                        
+                        }
+                        else if (rbExcel.Checked == true) {
+                            Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreArchivo);
+                        }
 
-            //    Reporte.SetParameterValue("@ID", ID);
-            //    Reporte.SetParameterValue("@Poliza", _Poliza);
-            //    Reporte.SetParameterValue("@FechaDesde", _FechaDesde);
-            //    Reporte.SetParameterValue("@FechaHasta", _FechaHAsta);
+                    }
+                }
+            }
+            catch (Exception EX){
+                string Mensaje = EX.Message;
+                ClientScript.RegisterStartupScript(GetType(), "ErrorGenerarReporte()", "ErrorGenerarReporte();", true);
+                if (string.IsNullOrEmpty(txtFechaDesdeReporte.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVAcio()", "CampoFechaDesdeVAcio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHAstaReporte.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                }
 
-            //    Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
-
-            //    if (rbPDF.Checked == true)
-            //    {
-            //        Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
-
-            //    }
-            //    else if (rbExcel.Checked == true)
-            //    {
-            //        Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreArchivo);
-            //    }
-            //}
-            //try {
-
-            //}
-            //catch (Exception ex) {
-            //    string Mensaje = ex.Message;
-            //    ClientScript.RegisterStartupScript(GetType(), "ErrorGenerarReporte()", "ErrorGenerarReporte();", true);
-            //    if (string.IsNullOrEmpty(txtFechaDesdeReporte.Text.Trim())) {
-            //        ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVAcio()", "CampoFechaDesdeVAcio();", true);
-            //    }
-            //    if (string.IsNullOrEmpty(txtFechaHAstaReporte.Text.Trim())) {
-            //        ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
-            //    }
-            //}
+            }
+           
         }
         #endregion
         protected void Page_Load(object sender, EventArgs e)
@@ -435,7 +457,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void btnReporte_Click(object sender, EventArgs e)
         {
-            GenerarReporte(Server.MapPath("ReporteGestionCobros.rpt"), "Reporte de Comentarios");
+
+            GenerarReporte(Server.MapPath("ReporteComentarioGestionCobro.rpt"), "Reporte de Comentarios");
         }
 
         protected void LinkUltimoGestionCobros_Click(object sender, EventArgs e)

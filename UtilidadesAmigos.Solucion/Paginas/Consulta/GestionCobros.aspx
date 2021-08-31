@@ -40,6 +40,10 @@
             alert("Estas usando la opción de uso de rango de fecha, favor de verificar si uno de esos campo no esa vacio, o marca la opción de no agregar rango de fecha.");
         }
 
+        function RegistrosNoEncontrados() {
+            alert("No se encontraron registros");
+        }
+
         function CampoFechaDesdeVAcio() {
             $("#<%=txtFechaDesdeReporte.ClientID%>").css("border-color", "red");
         }
@@ -99,9 +103,9 @@
 
                 <div class="form-group form-check">
                     <asp:Label ID="lbGenerarReporteEn" runat="server" Text="Generar Reporte en: " CssClass="Letranegrita"></asp:Label>
-                    <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" Visible="false" ToolTip="Genear Reporte en PDF" CssClass="form-check-input Letranegrita" GroupName="Reporte" />
-                    <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" Visible="false" ToolTip="Generar Reporte en Excel" CssClass="form-check-input Letranegrita" GroupName="Reporte" />
-                    <asp:RadioButton ID="rbExcelPlano" runat="server" Text="Excel Plano" Visible="false" ToolTip="Generar Reporte en Excel Plano" CssClass="form-check-input Letranegrita" GroupName="Reporte" />
+                    <asp:RadioButton ID="rbPDF" runat="server" Text="PDF"  ToolTip="Genear Reporte en PDF" CssClass="form-check-input Letranegrita" GroupName="Reporte" />
+                    <asp:RadioButton ID="rbExcel" runat="server" Text="Excel"  ToolTip="Generar Reporte en Excel" CssClass="form-check-input Letranegrita" GroupName="Reporte" />
+                    <asp:RadioButton ID="rbExcelPlano" runat="server" Text="Excel Plano"  ToolTip="Generar Reporte en Excel Plano" CssClass="form-check-input Letranegrita" GroupName="Reporte" />
                 </div>
             
             </div>

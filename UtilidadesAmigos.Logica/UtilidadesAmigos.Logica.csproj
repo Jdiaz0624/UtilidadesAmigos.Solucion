@@ -111,6 +111,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionCorreosENviar.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionRutaBackupBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionComentarioGestionCObros.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionReporteComentarioGestionCobros.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionSeguridad.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="Entidades\ComisionesIntermediarioDetalle.cs" />
     <Compile Include="Entidades\Consulta\EBuscarInformacionPolizasGestionCobros.cs" />
     <Compile Include="Entidades\Consulta\EComentarioGestionCobro.cs" />
+    <Compile Include="Entidades\Consulta\EProcesarInformacionReporteComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Cotizador\EAnoVehiculo.cs" />
     <Compile Include="Entidades\Cotizador\EComprensivoIncendioRobo.cs" />
     <Compile Include="Entidades\Cotizador\EServiciosFijos.cs" />

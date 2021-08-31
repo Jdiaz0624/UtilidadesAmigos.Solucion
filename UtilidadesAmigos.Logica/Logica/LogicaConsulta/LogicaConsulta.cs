@@ -114,6 +114,49 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
             }
             return Procesar;
         }
+
+        /// <summary>
+        /// Este metodo es para procesar informacion para generar el reporte
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarInformacionReporteComentarioGestionCobro ProcesarComentarioGestionCobro(UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarInformacionReporteComentarioGestionCobro Item, string Accion) {
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarInformacionReporteComentarioGestionCobro Procesar = null;
+
+            var ReporteComentarioGestionCobro = ObjData.SP_PROCESAR_INFORMACON_REPORTE_COMENTARIO_GESTION_COBRO(
+                Item.NumeroRegistro,
+                Item.Poliza,
+                Item.Comentario,
+                Item.IdUsuario,
+                Item.Usuario,
+                Item.FechaProceso,
+                Item.Fecha,
+                Item.Hora,
+                Item.CantidadRegistros,
+                Item.IdUsuarioGenera,
+                Accion);
+            if (ReporteComentarioGestionCobro != null) {
+                Procesar = (from n in ReporteComentarioGestionCobro
+                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarInformacionReporteComentarioGestionCobro
+                            {
+                                NumeroRegistro=n.NumeroRegistro,
+                                Poliza=n.Poliza,
+                                Comentario=n.Comentario,
+                                IdUsuario=n.IdUsuario,
+                                Usuario=n.Usuario,
+                                FechaProceso=n.FechaProceso,
+                                Fecha=n.Fecha,
+                                Hora=n.Hora,
+                                CantidadRegistros=n.CantidadRegistros,
+                                IdUsuarioGenera=n.IdUsuarioGenera
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
         #endregion
+
     }
 }
