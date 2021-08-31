@@ -51,6 +51,8 @@
   <Function Name="Utililades.SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZA" Method="SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZA">
     <Parameter Name="ID" Parameter="iD" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
     <ElementType Name="SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZAResult">
       <Column Name="ID" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />

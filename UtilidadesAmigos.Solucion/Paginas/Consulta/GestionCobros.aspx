@@ -36,6 +36,17 @@
             alert("No se encontraron resultados con el numero de poliza ingresada, favor de verificar.");
         }
 
+        function ErrorGenerarReporte() {
+            alert("Estas usando la opción de uso de rango de fecha, favor de verificar si uno de esos campo no esa vacio, o marca la opción de no agregar rango de fecha.");
+        }
+
+        function CampoFechaDesdeVAcio() {
+            $("#<%=txtFechaDesdeReporte.ClientID%>").css("border-color", "red");
+        }
+        function CampoFechaHastaVacio() {
+            $("#<%=txtFechaHAstaReporte.ClientID%>").css("border-color", "red");
+        }
+
         $(document).ready(function () {
             //VALIDAR EL BOTON BUSCAR
             $("#<%=btnCOnsultarPOliza.ClientID%>").click(function () {
@@ -70,7 +81,53 @@
             <asp:TextBox ID="txtIngresarPoliza" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             <asp:Button ID="btnCOnsultarPOliza" runat="server" Text="Buscar" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnCOnsultarPOliza_Click" ToolTip="Buscar Registro" />
         </div>
+
+     
     </div>
+    <br />
+        <div id="DivReporteCOmentarios" runat="server" class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:CheckBox ID="cbMostrarReporteCOmentarios" runat="server" Text="Reporte de Comentarios" CssClass="form-check-input Letranegrita" AutoPostBack="true" OnCheckedChanged="cbMostrarReporteCOmentarios_CheckedChanged" ToolTip="Habilita la opción para generar los reportes de comentarios" />
+            </div>
+        </div>
+        <div id="DivBloqueReporteCOmentario" runat="server">
+
+            <div class="form-check-inline">
+                <div class="form-group form-check">
+                    <asp:CheckBox ID="cbNoAgregarRangoFecha" runat="server" Text="No Agregar Rango de Fecha" CssClass="form-check-input Letranegrita" ToolTip="No agregar rango de fecha para gerenar el reporte." />
+                </div>
+
+                <div class="form-group form-check">
+                    <asp:Label ID="lbGenerarReporteEn" runat="server" Text="Generar Reporte en: " CssClass="Letranegrita"></asp:Label>
+                    <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" Visible="false" ToolTip="Genear Reporte en PDF" CssClass="form-check-input Letranegrita" GroupName="Reporte" />
+                    <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" Visible="false" ToolTip="Generar Reporte en Excel" CssClass="form-check-input Letranegrita" GroupName="Reporte" />
+                    <asp:RadioButton ID="rbExcelPlano" runat="server" Text="Excel Plano" Visible="false" ToolTip="Generar Reporte en Excel Plano" CssClass="form-check-input Letranegrita" GroupName="Reporte" />
+                </div>
+            
+            </div>
+                <br />
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbPolizaReporte" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtPolizaReporte" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbFechaDesdeReporte" runat="server" Text="Fecha Desde" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtFechaDesdeReporte" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbFechaHastaReporte" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtFechaHAstaReporte" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                </div>
+
+            </div>
+            <br />
+            <div align="center">
+                <asp:Button ID="btnReporte" runat="server" Text="Reporte" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnReporte_Click" ToolTip="Generar Reporte" />
+            </div>
+        </div>
 
     <br />
     <div id="DivInformacionPolizaGeneral" visible="false" runat="server">
@@ -172,6 +229,7 @@
             <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnGuardar_Click" ToolTip="Guardar Registro" />
             <asp:Button ID="btnDeselccionar" runat="server" Text="Quitar" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnDeselccionar_Click" ToolTip="Deseleccionar Registro" />
         </div>
+       
         <br />
         <div align="center">
             <asp:Label ID="lbCantidadCOmentarios" runat="server" Text="Cantidad de Comentarios (" CssClass="Letranegrita"></asp:Label>
@@ -183,8 +241,8 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th style="width:10%" align="left"> EDITAR </th>
-                        <th style="width:45%" align="left"> COMENTARIO </th>
+                        <%--<th style="width:10%" align="left"> EDITAR </th>--%>
+                        <th style="width:55%" align="left"> COMENTARIO </th>
                         <th style="width:25%" align="left"> USUARIO </th>
                         <th style="width:10%" align="left"> FECHA </th>
                         <th style="width:10%" align="left"> HORA </th>
@@ -197,8 +255,8 @@
                             <tr>
                                 <asp:HiddenField ID="HFID" runat="server" Value='<%# Eval("ID") %>' />
                                 <asp:HiddenField ID="hfPoliza" runat="server" Value='<%# Eval("Poliza") %>' />
-                        <td style="width:10%" align="left"> <asp:Button ID="btnEditar" runat="server" Text="Editar" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnEditar_Click" ToolTip="Editar Registro" /> </td>
-                        <td style="width:45%" align="left"> <%# Eval("Comentario") %> </td>
+                        <%--<td style="width:10%" align="left"> <asp:Button ID="btnEditar" runat="server" Text="Editar" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnEditar_Click" ToolTip="Editar Registro" /> </td>--%>
+                        <td style="width:55%" align="left"> <%# Eval("Comentario") %> </td>
                         <td style="width:25%" align="left"> <%# Eval("Usuario") %> </td>
                         <td style="width:10%" align="left"> <%# Eval("Fecha") %> </td>
                         <td style="width:10%" align="left"> <%# Eval("Hora") %> </td>

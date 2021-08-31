@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Web.Security;
 using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportSource;
 using CrystalDecisions.Shared;
 
 namespace UtilidadesAmigos.Solucion.Paginas

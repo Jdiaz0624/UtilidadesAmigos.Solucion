@@ -77,9 +77,9 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZA")]
-		public ISingleResult<SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZAResult> SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Decimal(20,0)")] System.Nullable<decimal> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza)
+		public ISingleResult<SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZAResult> SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Decimal(20,0)")] System.Nullable<decimal> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, poliza);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, poliza, fechaDesde, fechaHasta);
 			return ((ISingleResult<SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZAResult>)(result.ReturnValue));
 		}
 	}

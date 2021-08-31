@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+//using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 {
@@ -155,6 +158,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             else {
                 DivBloquePrincipal.Visible = false;
                 DivInformacionPolizaGeneral.Visible = true;
+                DivReporteCOmentarios.Visible = false;
+                DivBloqueReporteCOmentario.Visible = false;
                 foreach (var n in Listado) {
                     txtPoliza.Text = n.Poliza;
                     txtEstatus.Text = n.Estatus;
@@ -232,13 +237,81 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             LBid.Text = "0";
         }
         #endregion
+        #region GENERAR REPORTE
+        private void GenerarReporte(string RutaArchivo, string NombreArchivo) {
+            string _Poliza = string.IsNullOrEmpty(txtPolizaReporte.Text.Trim()) ? null : txtPolizaReporte.Text.Trim();
+            DateTime? _FechaDesde = cbNoAgregarRangoFecha.Checked == true ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesdeReporte.Text);
+            DateTime? _FechaHAsta = cbNoAgregarRangoFecha.Checked == true ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHAstaReporte.Text);
+
+
+            var GenerarExcelPlano = (from n in ObjDataConsulta.Value.BuscarComentariosAgregadosPoliza(
+                  new Nullable<decimal>(),
+                  _Poliza,
+                  _FechaDesde,
+                  _FechaHAsta)
+                                     select new
+                                     {
+                                         Poliza = n.Poliza,
+                                         Comentario = n.Comentario,
+                                         CreadoPor = n.Usuario,
+                                         Fecha = n.Fecha,
+                                         Hora = n.Hora
+                                     }).ToList();
+            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(NombreArchivo, GenerarExcelPlano);
+
+            //if (rbExcelPlano.Checked == true)
+            //{
+
+
+
+            //}
+            //else
+            //{
+            //    decimal? ID = null;
+            //    ReportDocument Reporte = new ReportDocument();
+
+            //    Reporte.Load(RutaArchivo);
+            //    Reporte.Refresh();
+
+            //    Reporte.SetParameterValue("@ID", ID);
+            //    Reporte.SetParameterValue("@Poliza", _Poliza);
+            //    Reporte.SetParameterValue("@FechaDesde", _FechaDesde);
+            //    Reporte.SetParameterValue("@FechaHasta", _FechaHAsta);
+
+            //    Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+            //    if (rbPDF.Checked == true)
+            //    {
+            //        Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+
+            //    }
+            //    else if (rbExcel.Checked == true)
+            //    {
+            //        Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreArchivo);
+            //    }
+            //}
+            //try {
+
+            //}
+            //catch (Exception ex) {
+            //    string Mensaje = ex.Message;
+            //    ClientScript.RegisterStartupScript(GetType(), "ErrorGenerarReporte()", "ErrorGenerarReporte();", true);
+            //    if (string.IsNullOrEmpty(txtFechaDesdeReporte.Text.Trim())) {
+            //        ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVAcio()", "CampoFechaDesdeVAcio();", true);
+            //    }
+            //    if (string.IsNullOrEmpty(txtFechaHAstaReporte.Text.Trim())) {
+            //        ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+            //    }
+            //}
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
                 lbAccion.Text = "INSERT";
                 LBid.Text = "0";
                 btnDeselccionar.Visible = false;
-
+                DivBloqueReporteCOmentario.Visible = false;
                 UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario SacarNombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
                 Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
                 lbNombreUsuario.Text = SacarNombre.SacarNombreUsuarioConectado();
@@ -260,35 +333,35 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             else { ProcesarInformacion(Convert.ToDecimal(LBid.Text), txtPoliza.Text, "UPDATE"); }
         }
 
-        protected void btnEditar_Click(object sender, EventArgs e)
-        {
-            /* var RegistroSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfIdRegistroSeleccionado = ((HiddenField)RegistroSeleccionado.FindControl("hfIdRegistroSeleccionado")).Value.ToString();*/
-            var IDSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-            var HFID = ((HiddenField)IDSeleccionado.FindControl("HFID")).Value.ToString();
+        //protected void btnEditar_Click(object sender, EventArgs e)
+        //{
+        //    /* var RegistroSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+        //    var hfIdRegistroSeleccionado = ((HiddenField)RegistroSeleccionado.FindControl("hfIdRegistroSeleccionado")).Value.ToString();*/
+        //    var IDSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+        //    var HFID = ((HiddenField)IDSeleccionado.FindControl("HFID")).Value.ToString();
 
-            var PolizaSeleccionada = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfPOliza = ((HiddenField)PolizaSeleccionada.FindControl("hfPoliza")).Value.ToString();
+        //    var PolizaSeleccionada = (RepeaterItem)((Button)sender).NamingContainer;
+        //    var hfPOliza = ((HiddenField)PolizaSeleccionada.FindControl("hfPoliza")).Value.ToString();
 
-            LBid.Text = HFID;
-            lbAccion.Text = "UPDATE";
+        //    LBid.Text = HFID;
+        //    lbAccion.Text = "UPDATE";
 
-            var BuscarRegistroSeleccionado = ObjDataConsulta.Value.BuscarComentariosAgregadosPoliza(
-                Convert.ToDecimal(HFID),
-                hfPOliza);
-            Paginar(ref rpListadoCOmentarios, BuscarRegistroSeleccionado, 1, ref lbCantidadPaginaVariableGestionCobros, ref LinkPrimeraPaginaGestionCobros, ref LinkAnteriorGestionCobros, ref LinkSiguienteGestionCobros, ref LinkUltimoGestionCobros);
-            HandlePaging(ref dtPaginacionGestionCobros, ref lbPaginaActualVariavleGestionCobros);
-            foreach (var n in BuscarRegistroSeleccionado) {
-                txtCoentario.Text = n.Comentario;
-            }
+        //    var BuscarRegistroSeleccionado = ObjDataConsulta.Value.BuscarComentariosAgregadosPoliza(
+        //        Convert.ToDecimal(HFID),
+        //        hfPOliza);
+        //    Paginar(ref rpListadoCOmentarios, BuscarRegistroSeleccionado, 1, ref lbCantidadPaginaVariableGestionCobros, ref LinkPrimeraPaginaGestionCobros, ref LinkAnteriorGestionCobros, ref LinkSiguienteGestionCobros, ref LinkUltimoGestionCobros);
+        //    HandlePaging(ref dtPaginacionGestionCobros, ref lbPaginaActualVariavleGestionCobros);
+        //    foreach (var n in BuscarRegistroSeleccionado) {
+        //        txtCoentario.Text = n.Comentario;
+        //    }
 
-            LinkPrimeraPaginaGestionCobros.Enabled = false;
-            LinkAnteriorGestionCobros.Enabled = false;
-            LinkSiguienteGestionCobros.Enabled = false;
-            LinkUltimoGestionCobros.Enabled = false;
-            dtPaginacionGestionCobros.Enabled = false;
-            btnDeselccionar.Visible = true;
-        }
+        //    LinkPrimeraPaginaGestionCobros.Enabled = false;
+        //    LinkAnteriorGestionCobros.Enabled = false;
+        //    LinkSiguienteGestionCobros.Enabled = false;
+        //    LinkUltimoGestionCobros.Enabled = false;
+        //    dtPaginacionGestionCobros.Enabled = false;
+        //    btnDeselccionar.Visible = true;
+        //}
 
         protected void LinkPrimeraPaginaGestionCobros_Click(object sender, EventArgs e)
         {
@@ -342,6 +415,27 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             DivInformacionPolizaGeneral.Visible = false;
             txtCoentario.Text = string.Empty;
             txtIngresarPoliza.Text = string.Empty;
+            DivReporteCOmentarios.Visible = true;
+            cbMostrarReporteCOmentarios.Checked = false;
+            DivBloqueReporteCOmentario.Visible = false;
+        }
+
+        protected void cbMostrarReporteCOmentarios_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbMostrarReporteCOmentarios.Checked == true) {
+                DivBloqueReporteCOmentario.Visible = true;
+                rbPDF.Checked = true;
+                cbNoAgregarRangoFecha.Checked = false;
+            }
+            else {
+                DivBloqueReporteCOmentario.Visible = false;
+            }
+           
+        }
+
+        protected void btnReporte_Click(object sender, EventArgs e)
+        {
+            GenerarReporte(Server.MapPath("ReporteGestionCobros.rpt"), "Reporte de Comentarios");
         }
 
         protected void LinkUltimoGestionCobros_Click(object sender, EventArgs e)
