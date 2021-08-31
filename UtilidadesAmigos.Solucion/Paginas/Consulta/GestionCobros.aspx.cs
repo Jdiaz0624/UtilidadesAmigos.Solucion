@@ -275,7 +275,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                         ClientScript.RegisterStartupScript(GetType(), "RegistrosNoEncontrados()", "RegistrosNoEncontrados();", true);
                     }
                     else {
-                        foreach (var n in InformacionReporte) {
+                        foreach (var n in InformacionReporte) {  
                             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionReporteComentarioGestionCobros Guardar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionReporteComentarioGestionCobros(
                                 0,
                                 n.Poliza,
