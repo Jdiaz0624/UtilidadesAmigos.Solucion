@@ -111,19 +111,24 @@
             </div>
                 <br />
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <asp:Label ID="lbPolizaReporte" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtPolizaReporte" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <asp:Label ID="lbFechaDesdeReporte" runat="server" Text="Fecha Desde" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtFechaDesdeReporte" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </div>
 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <asp:Label ID="lbFechaHastaReporte" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtFechaHAstaReporte" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                </div>
+
+                 <div class="form-group col-md-3">
+                    <asp:Label ID="lbSeleccionarUsuario" runat="server" Text="Seleccionar Usuario" CssClass="Letranegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlSeleccionarUsuario" runat="server" ToolTip="Seleccionar Usuario" CssClass="form-control"></asp:DropDownList>
                 </div>
 
             </div>

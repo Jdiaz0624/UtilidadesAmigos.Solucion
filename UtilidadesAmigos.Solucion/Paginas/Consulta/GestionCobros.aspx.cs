@@ -15,7 +15,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
     {
 
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaConsulta.LogicaConsulta> ObjDataConsulta = new Lazy<Logica.Logica.LogicaConsulta.LogicaConsulta>();
-
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataSistema = new Lazy<Logica.Logica.LogicaSistema>();
         #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
         int _PrimeraPagina, _UltimaPagina;
@@ -242,14 +242,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             string _Poliza = string.IsNullOrEmpty(txtPolizaReporte.Text.Trim()) ? null : txtPolizaReporte.Text.Trim();
             DateTime? _FechaDesde = cbNoAgregarRangoFecha.Checked == true ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesdeReporte.Text);
             DateTime? _FechaHAsta = cbNoAgregarRangoFecha.Checked == true ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHAstaReporte.Text);
-
+            decimal? _IdUsuario = ddlSeleccionarUsuario.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarUsuario.SelectedValue) : new Nullable<decimal>();
             try {
                 if (rbExcelPlano.Checked == true) {
                     var GenerarExcelPlano = (from n in ObjDataConsulta.Value.BuscarComentariosAgregadosPoliza(
                       new Nullable<decimal>(),
                       _Poliza,
                       _FechaDesde,
-                      _FechaHAsta)
+                      _FechaHAsta,
+                      _IdUsuario)
                                              select new
                                              {
                                                  Poliza = n.Poliza,
@@ -270,7 +271,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                         new Nullable<decimal>(),
                       _Poliza,
                       _FechaDesde,
-                      _FechaHAsta);
+                      _FechaHAsta,
+                      _IdUsuario);
                     if (InformacionReporte.Count() < 1) {
                         ClientScript.RegisterStartupScript(GetType(), "RegistrosNoEncontrados()", "RegistrosNoEncontrados();", true);
                     }
@@ -327,9 +329,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
            
         }
         #endregion
+        #region CARGAR EL LISTADO DE USUARIOS
+        private void CargarUsuarios() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarUsuario, ObjDataSistema.Value.BuscaListas("USUARIOGESTIONCOBRO", null, null), true);
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
+                CargarUsuarios();
                 lbAccion.Text = "INSERT";
                 LBid.Text = "0";
                 btnDeselccionar.Visible = false;
@@ -354,36 +362,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             }
             else { ProcesarInformacion(Convert.ToDecimal(LBid.Text), txtPoliza.Text, "UPDATE"); }
         }
-
-        //protected void btnEditar_Click(object sender, EventArgs e)
-        //{
-        //    /* var RegistroSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-        //    var hfIdRegistroSeleccionado = ((HiddenField)RegistroSeleccionado.FindControl("hfIdRegistroSeleccionado")).Value.ToString();*/
-        //    var IDSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-        //    var HFID = ((HiddenField)IDSeleccionado.FindControl("HFID")).Value.ToString();
-
-        //    var PolizaSeleccionada = (RepeaterItem)((Button)sender).NamingContainer;
-        //    var hfPOliza = ((HiddenField)PolizaSeleccionada.FindControl("hfPoliza")).Value.ToString();
-
-        //    LBid.Text = HFID;
-        //    lbAccion.Text = "UPDATE";
-
-        //    var BuscarRegistroSeleccionado = ObjDataConsulta.Value.BuscarComentariosAgregadosPoliza(
-        //        Convert.ToDecimal(HFID),
-        //        hfPOliza);
-        //    Paginar(ref rpListadoCOmentarios, BuscarRegistroSeleccionado, 1, ref lbCantidadPaginaVariableGestionCobros, ref LinkPrimeraPaginaGestionCobros, ref LinkAnteriorGestionCobros, ref LinkSiguienteGestionCobros, ref LinkUltimoGestionCobros);
-        //    HandlePaging(ref dtPaginacionGestionCobros, ref lbPaginaActualVariavleGestionCobros);
-        //    foreach (var n in BuscarRegistroSeleccionado) {
-        //        txtCoentario.Text = n.Comentario;
-        //    }
-
-        //    LinkPrimeraPaginaGestionCobros.Enabled = false;
-        //    LinkAnteriorGestionCobros.Enabled = false;
-        //    LinkSiguienteGestionCobros.Enabled = false;
-        //    LinkUltimoGestionCobros.Enabled = false;
-        //    dtPaginacionGestionCobros.Enabled = false;
-        //    btnDeselccionar.Visible = true;
-        //}
 
         protected void LinkPrimeraPaginaGestionCobros_Click(object sender, EventArgs e)
         {

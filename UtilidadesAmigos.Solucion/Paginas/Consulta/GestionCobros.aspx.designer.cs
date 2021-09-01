@@ -195,6 +195,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.TextBox txtFechaHAstaReporte;
 
         /// <summary>
+        /// lbSeleccionarUsuario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionarUsuario;
+
+        /// <summary>
+        /// ddlSeleccionarUsuario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarUsuario;
+
+        /// <summary>
         /// btnReporte control.
         /// </summary>
         /// <remarks>
