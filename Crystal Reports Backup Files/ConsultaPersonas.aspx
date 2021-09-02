@@ -33,6 +33,14 @@
             background-color: dodgerblue;
             color: white;
         }
+          .auto-style1 {
+              width: 70%;
+              height: 36px;
+          }
+          .auto-style2 {
+              width: 10%;
+              height: 36px;
+          }
     </style>
 
     <script type="text/javascript">
@@ -46,20 +54,22 @@
             $("#<%=txtPlacaConsulta.ClientID%>").css("border-color", "red");
             $("#<%=txtChasisConsulta.ClientID%>").css("border-color", "red");  
         }
+
+        function ArchivoNoProcesado() {
+            alert("Error al procesar el archivo, no se selecciono ninguno o los parametros de este no son correctos, favor de verificar.");
+
+        }
+        function InformacionAProcesarNoEncontrada() {
+            alert("No se encontraron registros extraidos de archivos, favor de verificar.");
+        }
+
+
+
     </script>
 
    <div class="container-fluid">
     <br /><br />
-       <div class="form-check-inline">
-           <div class="form-group form-check">               
-               <asp:RadioButton ID="rbExportarPDF" runat="server" Text="Exportar a PDF" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a PDF" />
-               <asp:RadioButton ID="rbExportarWord" runat="server" Text="Exportar a Word" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Word" />
-               <br />
-                
-           </div>
-           
-      
-       </div>
+     
        <asp:ScriptManager ID="ScripMAnagerConsultaPersonas" runat="server"></asp:ScriptManager>
 
 
@@ -106,6 +116,8 @@
        </div>
        <div align="center">
            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click" />
+           <asp:Button ID="btnProcesarRegistros" runat="server" Text="Procesar" ToolTip="Procesar Registros" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnProcesarRegistros_Click" /><br />
+           <asp:Label ID="lbError" runat="server" Text="Error" ForeColor="Red" Visible="false"></asp:Label>
        </div>
 
        <br />
@@ -1142,8 +1154,108 @@
 
 
        <div id="DivBloqueProcesoLote" runat="server">
-           <asp:GridView ID="gbListadoExcel" runat="server"></asp:GridView>
+           <div class="form-check-inline">
+               <div class="form-group form-check">
+                   <asp:Label ID="lbLetreroBusquedaArchivoBusquedaPorLote" runat="server" Text="Tipo de Busqueda: " CssClass="Letranegrita"></asp:Label><br />
+                   <asp:RadioButton ID="rbTodosLosParametros" runat="server" Text="Todos" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar por Todos los Parametros" />
+                   <asp:RadioButton ID="rbPorNombreBusquedaPorLote" runat="server" Text="Nombre" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el nombre de la persona" />
+                   <asp:RadioButton ID="rbNumeroIdentificacionBusquedaPorLote" runat="server" Text="Numero de Identificación" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el Numero de Identificación de la persona" />
+                   <asp:RadioButton ID="rbChasisBusquedaPorLote" runat="server" Text="Chasis" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el Numero de Chasis" />
+                   <asp:RadioButton ID="rbPlacaBusquedaPorLote" runat="server" Text="Placa" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el Numero de Placa" />
+               </div>
+           </div>
+           <br />
+           <div class="form-check-inline">
+               <div class="form-group form-check">
+                   <asp:Label ID="lbLetreroBuscarEn" runat="server" Text="Buscar Como" CssClass="Letranegrita"></asp:Label><br />
+                   <asp:CheckBox ID="cbTodos" runat="server" AutoPostBack="true" OnCheckedChanged="cbTodos_CheckedChanged" Text="Todos" CssClass="form-check-input" ToolTip="Buscar en Todos los Registros" />
+                   <asp:CheckBox ID="cbCliente" runat="server" AutoPostBack="true" OnCheckedChanged="cbCliente_CheckedChanged" Text="Cliente" CssClass="form-check-input" ToolTip="Buscar informacion en la data de los clientes registrados" />
+                   <asp:CheckBox ID="cbIntermediario" runat="server" AutoPostBack="true" OnCheckedChanged="cbIntermediario_CheckedChanged" Text="Intermediario" CssClass="form-check-input" ToolTip="Buscar en la Data de los Intermediarios y Supervisores" />
+                   <asp:CheckBox ID="cbProvedor" runat="server" AutoPostBack="true" OnCheckedChanged="cbProvedor_CheckedChanged" Text="Proveedor" CssClass="form-check-input" ToolTip="Buscar en la Data de los Proveedores" />
+                   <asp:CheckBox ID="cbAseguradoBajoPoliza" runat="server" AutoPostBack="true" OnCheckedChanged="cbAseguradoBajoPoliza_CheckedChanged" Text="Asegurado P" CssClass="form-check-input" ToolTip="Buscar en la Data de los Asegurados Bajo Polizas" />
+                   <asp:CheckBox ID="cbAsegurado" runat="server" AutoPostBack="true" OnCheckedChanged="cbAsegurado_CheckedChanged" Text="Asegurado" CssClass="form-check-input" ToolTip="Buscar en la Data de los Asegurados" />
+                   <asp:CheckBox ID="cbDependiente" runat="server" AutoPostBack="true" OnCheckedChanged="cbDependiente_CheckedChanged" Text="Dependiente" CssClass="form-check-input" ToolTip="Buscar en la Data de los Dependientes" /><br />
+                   <asp:CheckBox ID="cbCheque" runat="server" AutoPostBack="true" OnCheckedChanged="cbCheque_CheckedChanged" Text="Cheque" CssClass="form-check-input" ToolTip="Buscar en la Data de las Solicitudes y Cheques" />
+                   <asp:CheckBox ID="cbDocumentosAmigos" runat="server" AutoPostBack="true" OnCheckedChanged="cbDocumentosAmigos_CheckedChanged" Text="Documentos Amigos" CssClass="form-check-input" ToolTip="Buscar en la Data de los Documentos Amigos" />
+                   <asp:CheckBox ID="cbReclamaciones" runat="server" AutoPostBack="true" OnCheckedChanged="cbReclamaciones_CheckedChanged" Text="Reclamos" CssClass="form-check-input" ToolTip="Buscar en los reclamos" />
+                   <asp:CheckBox ID="cbPlaca" runat="server" AutoPostBack="true" OnCheckedChanged="cbPlaca_CheckedChanged" Text="Placa" CssClass="form-check-input" ToolTip="Buscar Por Placa" />
+                   <asp:CheckBox ID="cbChasis" runat="server" AutoPostBack="true" OnCheckedChanged="cbChasis_CheckedChanged" Text="CHasis" CssClass="form-check-input" ToolTip="Buscar Por Chasis" />
 
+               </div>
+           </div>
+           <br />
+             <div class="form-check-inline">
+           <div class="form-group form-check">      
+               <asp:RadioButton ID="rbHojaExcelPlano" runat="server" Text="Excel Plano" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Excel Plano" />
+               <asp:RadioButton ID="rbExportarPDF" runat="server" Text="Exportar a PDF" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a PDF" />
+               <asp:RadioButton ID="rbExcel" runat="server" Text="Exportar a Excel" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Excel" />
+               <asp:RadioButton ID="rbExportarWord" runat="server" Text="Exportar a Word" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Word" />
+               <br />
+                
+           </div>
+           
+      
+       </div>
+           <div align="center">
+               <asp:Label ID="lbCantidadRegistrosProcesadosTitulo" runat="server" Text="Cantidad de Registros Cargados ( " CssClass="Letranegrita"></asp:Label>
+               <asp:Label ID="lbCantidadRegistrosProcesadosVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+               <asp:Label ID="lbCantidadRegistrosProcesadosCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+           </div>
+           <div class="table-responsive">
+               <table class="table table-hover">
+                   <thead>
+                       <tr>
+                            <th align="left" class="auto-style1"> NOMBRE </th>
+                            <th align="left" class="auto-style2"> IDENTIFICACION </th>
+                            <th align="left" class="auto-style2"> CHASIS </th>
+                            <th align="left" class="auto-style2"> PLACA </th>
+                       </tr>
+                   </thead>
+
+                   <tbody>
+                       <asp:Repeater ID="rpRegistrosCargadoArchivo" runat="server">
+                           <ItemTemplate>
+                               <tr>
+                                    <td style="width:70%" align="left"> <%# Eval("Nombre") %> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("NumeroIdentificacion") %> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("Chasis") %> </td>
+                                    <td style="width:10%" align="left"> <%# Eval("Placa") %> </td>
+                               </tr>
+                           </ItemTemplate>
+                       </asp:Repeater>
+                   </tbody>
+
+                   
+               </table>
+           </div>
+
+            <div align="center">
+                <asp:Label ID="lbPaginaActualTituloArchivo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariavleArchivo" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloArchivo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriableArchivo" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+           <div id="DivPaginacionArchivo" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeroArchivo" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroArchivo_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorArchivo" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorArchivo_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtArchivo" runat="server" OnItemCommand="dtArchivo_ItemCommand" OnItemDataBound="dtArchivo_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionArchivo" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteArchivo" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteArchivo_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoArchivo" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoArchivo_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+           <br />
        </div>
   </div>
 </asp:Content>

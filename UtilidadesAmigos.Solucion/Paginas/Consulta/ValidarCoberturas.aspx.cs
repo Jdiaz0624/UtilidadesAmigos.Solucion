@@ -9,6 +9,8 @@ using System.Data;
 using System.Data.SqlClient;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
+using SpreadsheetLight;
+using System.IO;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
@@ -688,6 +690,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarSucursales();
                 Cargaroficinas();
                 rbExportarExel.Checked = true;
+                DivBloqueValidarData.Visible = false;
             }
         }
 
@@ -1185,6 +1188,61 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void LinkUltimoPlanCobertura_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void cbValidarDataCobertura_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbValidarDataCobertura.Checked == true) {
+                DIVBloqueConsulta.Visible = false;
+                DivBloqueValidarData.Visible = true;
+            }
+            else {
+                DIVBloqueConsulta.Visible = true;
+                DivBloqueValidarData.Visible = false;
+            }
+        }
+
+        protected void btnProcesarInformacion_Click(object sender, EventArgs e)
+        {
+            try {
+                decimal IdUsuario = (decimal)Session["IdUsuario"];
+
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaArchivo Eliminar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaArchivo(
+                    0, IdUsuario, "", "", "", "", "DELETE");
+                Eliminar.ProcesarInformacion();
+
+                string RutaArchivo = HttpContext.Current.Server.MapPath("~/Temporal");
+                if (!Directory.Exists(RutaArchivo)) {
+                    Directory.CreateDirectory(RutaArchivo);
+                }
+
+                var RutaGuardado = Path.Combine(RutaArchivo, FIleArchivoCobertura.FileName);
+                FIleArchivoCobertura.SaveAs(RutaGuardado);
+                string RutaArchivoSeleccionado = RutaGuardado;
+
+                SLDocument sl = new SLDocument(RutaArchivoSeleccionado);
+                int Row = 2;
+                while (!string.IsNullOrEmpty(sl.GetCellValueAsString(Row, 1))) {
+
+                    string Poliza = sl.GetCellValueAsString(Row, 1);
+                    string Chasis = sl.GetCellValueAsString(Row, 2);
+                    string Placa = sl.GetCellValueAsString(Row, 3);
+                    string Cobertura = sl.GetCellValueAsString(Row, 4);
+
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaArchivo Guardar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaArchivo(
+                        0,
+                        IdUsuario,
+                        Poliza,
+                        Chasis,
+                        Placa,
+                        Cobertura,
+                        "INSERT");
+                    Guardar.ProcesarInformacion();
+                    Row++;
+                }
+
+            }
+            catch (Exception) { }
         }
 
         protected void LinkUltimoListadoPrincipal_Click(object sender, EventArgs e)

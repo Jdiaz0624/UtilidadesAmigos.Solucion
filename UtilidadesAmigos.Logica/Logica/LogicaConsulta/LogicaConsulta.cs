@@ -158,5 +158,36 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         }
         #endregion
 
+        #region VALIDACIOND DE LA DATA DE COBERTURA
+        public UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarInformacionValidacionArchivo ProcesarValidacionCoberturaArchivo(UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarInformacionValidacionArchivo Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarInformacionValidacionArchivo Procesar = null;
+
+            var ValidarcionCoberturaArchivo = ObjData.SP_PROCESAR_INFORMACION_COBERTURA_VALIDACION_ARCHIVO(
+                Item.NumeroRegistro,
+                Item.IdUaurioProceso,
+                Item.Poliza,
+                Item.Chasis,
+                Item.Placa,
+                Item.Cobertura,
+                Accion);
+            if (ValidarcionCoberturaArchivo != null) {
+                Procesar = (from n in ValidarcionCoberturaArchivo
+                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarInformacionValidacionArchivo
+                            {
+                                NumeroRegistro=n.NumeroRegistro,
+                                IdUaurioProceso=n.IdUaurioProceso,
+                                Poliza=n.Poliza,
+                                Chasis=n.Chasis,
+                                Placa=n.Placa,
+                                Cobertura=n.Cobertura
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
+
     }
 }

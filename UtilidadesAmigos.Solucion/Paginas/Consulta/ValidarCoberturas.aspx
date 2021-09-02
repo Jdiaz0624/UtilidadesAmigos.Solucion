@@ -188,8 +188,13 @@
         </div>
         <!--FIN DE LOS MENUS DESPLEGABLES Y CONTROLES DE BUSQUEDA-->
         <br />
-
-        <!--INICIO DE LOS RADIOS PARA EXPORTAR-->
+        <div class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:CheckBox ID="cbValidarDataCobertura" runat="server" Text="Validar Data" ToolTip="Validar la data de cobertura" CssClass="form-check-input Letranegrita" AutoPostBack="true" OnCheckedChanged="cbValidarDataCobertura_CheckedChanged" />
+            </div>
+        </div>
+<div id="DIVBloqueConsulta" runat="server">
+            <!--INICIO DE LOS RADIOS PARA EXPORTAR-->
         <div class="form-check-inline">
                 <div class="form-group form-check">
                     <asp:Label ID="lbExportarA" runat="server" Text="Exportar A:" CssClass="Letranegrita"></asp:Label>
@@ -206,7 +211,6 @@
                 </div>
             </div>
         <!--FIN DE LOS RADIOS PARA EXPORTAR-->
-
         <!--INICIO DE LOS BOTONES-->
         <div align="center" >
             <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-secondary btn-sm Letranegrita" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
@@ -219,8 +223,7 @@
             <asp:Label ID="lbCantidadRegistrosListadoGeneralVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
             <asp:Label ID="lbCantidadRegistrosListadoGeneralCerrar" runat="server" Text=" ) " CssClass="Letranegrita"></asp:Label>
         </div>
-        <br />
-        
+        <br />       
         <!--FIN DE LOS BOTONES-->
      <!--INICIO DEL GRID-->
         <div class="table-responsive">
@@ -308,6 +311,20 @@
         </div>
        </div>
     </div>
+
+
+        <div id="DivBloqueValidarData" runat="server">
+            <br />
+            <div id="DivBuscarArchivoExcel" runat="server" class="form-group col-sm-6">
+                                  <label for="FileUpload1">Buscar Archivo en el equipo</label>
+                                    <asp:FileUpload ID="FIleArchivoCobertura" CssClass="form-control-file" runat="server" />
+                                </div>
+            <div align="center">
+                <asp:Button ID="btnProcesarInformacion" runat="server" Text="Procesar Información" CssClass="btn btn-outline-secondary" OnClick="btnProcesarInformacion_Click" ToolTip="Validar Información" />
+            </div>
+            <br />
+        </div>
+</div>
 
 
 

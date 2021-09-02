@@ -79,6 +79,7 @@
                 <asp:RadioButton ID="rbAgruparPorOficina" runat="server" Text="Oficina" ToolTip="Generar Reporte Agrupado Por Oficina" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparPorOficina_CheckedChanged" />
                 <asp:RadioButton ID="rbAgrupaRamo" runat="server" Text="Ramo" ToolTip="Generar Reporte Agrupado Por Ramo" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgrupaRamo_CheckedChanged" />
                 <asp:RadioButton ID="rbAgruparUsuario" runat="server" Text="Usuario" ToolTip="Generar Reporte Agrupado Por Usuario" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparUsuario_CheckedChanged" />
+                <asp:RadioButton  ID="rbAgrupadoPorDia" runat="server" Text="Por Dia" ToolTip="Generar Reporte Agrupado Por Dia" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgrupadoPorDia_CheckedChanged" />
             </div>
         </div><br />
         <asp:Label ID="lbTipoReporte" runat="server" Text="Tipo de Reporte a Generar" CssClass="Letranegrita"></asp:Label><br />
@@ -86,6 +87,16 @@
             <div class="form-group form-check">
                 <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Detallado" ToolTip="Generar Reporte Detallado" CssClass="form-check-input Letranegrita" GroupName="TipoReporte"/>
                 <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" ToolTip="Generar Reporte Resumido" CssClass="form-check-input Letranegrita" GroupName="TipoReporte"/>
+            </div>
+        </div>
+        <br />
+        <asp:Label ID="lbTipoReportePorDia" runat="server" Text="Tipo de Reporte Por Dia a Generar" CssClass="Letranegrita"></asp:Label><br />
+        <div id="DivTipoReportePorDia" runat="server" class="form-check-inline">
+            <div class="form-group form-check">
+                <asp:RadioButton ID="rbReporteResumidoPorDia" runat="server" Text="Resumido" ToolTip="Generar Reporte Resumido Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
+                <asp:RadioButton ID="rbReporteDetalladoPorDia" runat="server" Text="Detallado" ToolTip="Generar Reporte Detallado Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
+                <asp:RadioButton ID="rbReportePorSupervisorPorDia" runat="server" Text="Por Supervisor" ToolTip="Generar Reporte Por Supervisor Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
+                <asp:RadioButton ID="rbReportePorIntermediarioPorDia" runat="server" Text="Por Intermediario" ToolTip="Generar Reporte Por Intermediario Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
             </div>
         </div>
         <hr />
@@ -173,24 +184,24 @@
         <div align="center">
 
             <asp:Button ID="btnConsultarRegistros" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnConsultarRegistros_Click" />
-            <asp:Button ID="btnExportarRegistros" runat="server" Text="Exportar" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportarRegistros_Click" />
-       
+            <asp:Button ID="btnExportarRegistros" runat="server" Text="Reporte" ToolTip="Generar Reporte de Cobros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportarRegistros_Click" />
+     
         <hr />
-        <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbCantidadRegistrosVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbCantidadRegistroscerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbCantidadRegistrosTitulo" Visible="false" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbCantidadRegistrosVariable" Visible="false" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbCantidadRegistroscerrar" Visible="false" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
 
-        <asp:Label ID="lbTotalCobradopesosTitulo" runat="server" Text="Cobrado en Pesos ( " CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbTotalCobradoPesosVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbTotalCobradoCerrarPesos" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbTotalCobradopesosTitulo" Visible="false" runat="server" Text="Cobrado en Pesos ( " CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbTotalCobradoPesosVariable" Visible="false" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbTotalCobradoCerrarPesos" Visible="false" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
 
-        <asp:Label ID="lbTotalCobradoDollarTitulo" runat="server" Text="Cobrado en Dollar ( " CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbTotalCobradoDollarVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbTotalCobradoCerrarDollar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbTotalCobradoDollarTitulo" Visible="false" runat="server" Text="Cobrado en Dollar ( " CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbTotalCobradoDollarVariable" Visible="false" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbTotalCobradoCerrarDollar" Visible="false" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
 
-        <asp:Label ID="lbPesosDollarConvertidoTitulo" runat="server" Text="RD$ ( " CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbPesosDollarConvertidoVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-        <asp:Label ID="lbPesosDollarConvertidoCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbPesosDollarConvertidoTitulo" Visible="false" runat="server" Text="RD$ ( " CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbPesosDollarConvertidoVariable" Visible="false" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+        <asp:Label ID="lbPesosDollarConvertidoCerrar" Visible="false" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
              </div>
         <br />
         <!--INICIO DEL REPEATER-->

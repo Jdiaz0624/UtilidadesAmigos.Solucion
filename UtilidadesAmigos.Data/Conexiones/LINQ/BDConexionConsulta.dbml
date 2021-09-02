@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionConsultaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString7" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_BUSCAR_INFORMACION_POLIZA_GESTION_COBRO" Method="SP_BUSCAR_INFORMACION_POLIZA_GESTION_COBRO">
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="CodigoCliente" Parameter="codigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" />
@@ -89,6 +89,104 @@
       <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_COBERTURA_VALIDACION_ARCHIVO" Method="SP_PROCESAR_INFORMACION_COBERTURA_VALIDACION_ARCHIVO">
+    <Parameter Name="NumeroRegistro" Parameter="numeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdUauario" Parameter="idUauario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Chasis" Parameter="chasis" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Placa" Parameter="placa" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Cobertura" Parameter="cobertura" Type="System.String" DbType="VarChar(300)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_COBERTURA_VALIDACION_ARCHIVOResult">
+      <Column Name="NumeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdUaurioProceso" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Chasis" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Placa" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cobertura" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_VALIDACION_COBERTURA_SISTEMA" Method="SP_PROCESAR_INFORMACION_VALIDACION_COBERTURA_SISTEMA">
+    <Parameter Name="NumeroRegistro" Parameter="numeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Items" Parameter="items" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.String" DbType="VarChar(60)" />
+    <Parameter Name="Concepto" Parameter="concepto" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="Cliente" Parameter="cliente" Type="System.String" DbType="VarChar(300)" />
+    <Parameter Name="NombreCliente" Parameter="nombreCliente" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="ApellidoCliente" Parameter="apellidoCliente" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="Ciudad" Parameter="ciudad" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="DireccionCliente" Parameter="direccionCliente" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TipoIdentificacion" Parameter="tipoIdentificacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NumeroIdentificacion" Parameter="numeroIdentificacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="FechaInicioVigencia" Parameter="fechaInicioVigencia" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaFinVigencia" Parameter="fechaFinVigencia" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="InicioVigencia" Parameter="inicioVigencia" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="FinVigencia" Parameter="finVigencia" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="FechaProceso" Parameter="fechaProceso" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="FechaProcesoBruto" Parameter="fechaProcesoBruto" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="MesValidado" Parameter="mesValidado" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TipoVehiculo" Parameter="tipoVehiculo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Marca" Parameter="marca" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Modelo" Parameter="modelo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Capacidad" Parameter="capacidad" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Ano" Parameter="ano" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Color" Parameter="color" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Chasis" Parameter="chasis" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Placa" Parameter="placa" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ValorAsegurado" Parameter="valorAsegurado" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Cobertura" Parameter="cobertura" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TipoMovimiento" Parameter="tipoMovimiento" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CantidadRegistros" Parameter="cantidadRegistros" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ValidadoDesde" Parameter="validadoDesde" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ValidadoHasta" Parameter="validadoHasta" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_VALIDACION_COBERTURA_SISTEMAResult">
+      <Column Name="NumeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Items" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="NombreCliente" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ApellidoCliente" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Ciudad" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="DireccionCliente" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NumeroIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FechaInicioVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaFinVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FechaProceso" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FechaProcesoBruto" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MesValidado" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoVehiculo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Marca" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Modelo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Capacidad" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ano" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Chasis" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Placa" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ValorAsegurado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Cobertura" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoMovimiento" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
