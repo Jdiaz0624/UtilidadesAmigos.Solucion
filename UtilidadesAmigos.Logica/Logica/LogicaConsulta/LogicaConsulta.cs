@@ -187,6 +187,99 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
             }
             return Procesar;
         }
+
+        public UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarInformacionValidacionCoberturaSistema ProcesarValidacionCoberturaArchivo(UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarInformacionValidacionCoberturaSistema Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarInformacionValidacionCoberturaSistema Procesar = null;
+
+            var Coberturas = ObjData.SP_PROCESAR_INFORMACION_VALIDACION_COBERTURA_SISTEMA(
+                Item.NumeroRegistro,
+                Item.IdUsuario,
+                Item.Poliza,
+                Item.Items,
+                Item.Estatus,
+                Item.Concepto,
+                Item.Cliente,
+                Item.NombreCliente,
+                Item.ApellidoCliente,
+                Item.Ciudad,
+                Item.DireccionCliente,
+                Item.Telefono,
+                Item.TipoIdentificacion,
+                Item.NumeroIdentificacion,
+                Item.Intermediario,
+                Item.FechaInicioVigencia,
+                Item.FechaFinVigencia,
+                Item.InicioVigencia,
+                Item.FinVigencia,
+                Item.FechaProceso,
+                Item.FechaProcesoBruto,
+                Item.MesValidado,
+                Item.TipoVehiculo,
+                Item.Marca,
+                Item.Modelo,
+                Item.Capacidad,
+                Item.Ano,
+                Item.Color,
+                Item.Chasis,
+                Item.Placa,
+                Item.ValorAsegurado,
+                Item.Cobertura,
+                Item.TipoMovimiento,
+                Item.CantidadRegistros,
+                Item.ValidadoDesde,
+                Item.ValidadoHasta,
+                Item.GeneradoPor,
+                Item.Oficina,
+                Accion);
+            if (Coberturas != null) {
+                Procesar = (from n in Coberturas
+                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarInformacionValidacionCoberturaSistema
+                            {
+                                NumeroRegistro = n.NumeroRegistro,
+                                IdUsuario = n.IdUsuario,
+                                Poliza = n.Poliza,
+                                Items = n.Items,
+                                Estatus = n.Estatus,
+                                Concepto = n.Concepto,
+                                Cliente = n.Cliente,
+                                NombreCliente = n.NombreCliente,
+                                ApellidoCliente = n.ApellidoCliente,
+                                Ciudad = n.Ciudad,
+                                DireccionCliente = n.DireccionCliente,
+                                Telefono = n.Telefono,
+                                TipoIdentificacion = n.TipoIdentificacion,
+                                NumeroIdentificacion = n.NumeroIdentificacion,
+                                Intermediario = n.Intermediario,
+                                FechaInicioVigencia = n.FechaInicioVigencia,
+                                FechaFinVigencia = n.FechaFinVigencia,
+                                InicioVigencia = n.InicioVigencia,
+                                FinVigencia = n.FinVigencia,
+                                FechaProceso = n.FechaProceso,
+                                FechaProcesoBruto = n.FechaProcesoBruto,
+                                MesValidado = n.MesValidado,
+                                TipoVehiculo = n.TipoVehiculo,
+                                Marca = n.Marca,
+                                Modelo = n.Modelo,
+                                Capacidad = n.Capacidad,
+                                Ano = n.Ano,
+                                Color = n.Color,
+                                Chasis = n.Chasis,
+                                Placa = n.Placa,
+                                ValorAsegurado = n.ValorAsegurado,
+                                Cobertura = n.Cobertura,
+                                TipoMovimiento = n.TipoMovimiento,
+                                CantidadRegistros = n.CantidadRegistros,
+                                ValidadoDesde = n.ValidadoDesde,
+                                ValidadoHasta = n.ValidadoHasta,
+                                GeneradoPor = n.GeneradoPor,
+                                Oficina = n.Oficina
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
         #endregion
 
     }

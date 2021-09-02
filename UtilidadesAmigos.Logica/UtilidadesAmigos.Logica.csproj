@@ -171,6 +171,7 @@
     <Compile Include="Entidades\Consulta\EComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionReporteComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionArchivo.cs" />
+    <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionCoberturaSistema.cs" />
     <Compile Include="Entidades\Cotizador\EAnoVehiculo.cs" />
     <Compile Include="Entidades\Cotizador\EComprensivoIncendioRobo.cs" />
     <Compile Include="Entidades\Cotizador\EServiciosFijos.cs" />
