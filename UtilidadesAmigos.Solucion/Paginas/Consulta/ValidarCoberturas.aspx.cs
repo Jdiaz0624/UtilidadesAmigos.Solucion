@@ -485,6 +485,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
+        private void EliminarRegistrosTablaConfiguracion(decimal IdUsuario) {
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaArchivo Eliminar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaArchivo(
+                           0, IdUsuario, "", "", "", "", "DELETE");
+            Eliminar.ProcesarInformacion();
+        }
+
         //----------------------------------------------------------------------------------------------------------------------------------------
         private void CargarSucursales() {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSucursal, ObjData.Value.BuscaListas("SUCURSAL", null, null), true);
@@ -1204,45 +1210,143 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnProcesarInformacion_Click(object sender, EventArgs e)
         {
-            try {
-                decimal IdUsuario = (decimal)Session["IdUsuario"];
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim())) {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
 
-                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaArchivo Eliminar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaArchivo(
-                    0, IdUsuario, "", "", "", "", "DELETE");
-                Eliminar.ProcesarInformacion();
-
-                string RutaArchivo = HttpContext.Current.Server.MapPath("~/Temporal");
-                if (!Directory.Exists(RutaArchivo)) {
-                    Directory.CreateDirectory(RutaArchivo);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
                 }
 
-                var RutaGuardado = Path.Combine(RutaArchivo, FIleArchivoCobertura.FileName);
-                FIleArchivoCobertura.SaveAs(RutaGuardado);
-                string RutaArchivoSeleccionado = RutaGuardado;
-
-                SLDocument sl = new SLDocument(RutaArchivoSeleccionado);
-                int Row = 2;
-                while (!string.IsNullOrEmpty(sl.GetCellValueAsString(Row, 1))) {
-
-                    string Poliza = sl.GetCellValueAsString(Row, 1);
-                    string Chasis = sl.GetCellValueAsString(Row, 2);
-                    string Placa = sl.GetCellValueAsString(Row, 3);
-                    string Cobertura = sl.GetCellValueAsString(Row, 4);
-
-                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaArchivo Guardar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaArchivo(
-                        0,
-                        IdUsuario,
-                        Poliza,
-                        Chasis,
-                        Placa,
-                        Cobertura,
-                        "INSERT");
-                    Guardar.ProcesarInformacion();
-                    Row++;
-                }
 
             }
-            catch (Exception) { }
+            else {
+                try
+                {
+                    //GUARDAMOS LOS DATOS ENVIADOS POR LA ENTIDAD EMISIRA 
+                    decimal IdUsuario = (decimal)Session["IdUsuario"];
+
+                    EliminarRegistrosTablaConfiguracion(IdUsuario);
+
+                    string RutaArchivo = HttpContext.Current.Server.MapPath("~/Temporal");
+                    if (!Directory.Exists(RutaArchivo))
+                    {
+                        Directory.CreateDirectory(RutaArchivo);
+                    }
+
+                    var RutaGuardado = Path.Combine(RutaArchivo, FIleArchivoCobertura.FileName);
+                    FIleArchivoCobertura.SaveAs(RutaGuardado);
+                    string RutaArchivoSeleccionado = RutaGuardado;
+
+                    SLDocument sl = new SLDocument(RutaArchivoSeleccionado);
+                    int Row = 2;
+                    while (!string.IsNullOrEmpty(sl.GetCellValueAsString(Row, 1)))
+                    {
+
+                        string Poliza = sl.GetCellValueAsString(Row, 1);
+                        string Chasis = sl.GetCellValueAsString(Row, 2);
+                        string Placa = sl.GetCellValueAsString(Row, 3);
+                        string Cobertura = sl.GetCellValueAsString(Row, 4);
+
+                        UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaArchivo Guardar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaArchivo(
+                            0,
+                            IdUsuario,
+                            Poliza,
+                            Chasis,
+                            Placa,
+                            Cobertura,
+                            "INSERT");
+                        Guardar.ProcesarInformacion();
+                        Row++;
+                    }
+
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaSistema Eliminar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaSistema(
+                        0, IdUsuario, "", 0, "", "", "", "", "", "", "", "", "", "", "", DateTime.Now, DateTime.Now, "", "", "", DateTime.Now, "", "", "", "", "", "", "", "", "", 0, "", "", 0, "", "", "", "", "DELETE");
+                    Eliminar.ProcesarInformacion();
+
+                    //SACAMOS LOS DATOS DEL SISTEMA Y LO GUARAMOS 
+                    string _Poliza = string.IsNullOrEmpty(txtPolizaFiltro.Text.Trim()) ? null : txtPolizaFiltro.Text.Trim();
+                    int? _Cobertura = ddlSeleccionarPlanCobertura.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue) : new Nullable<int>();
+                    int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+
+                    var InformacionSistema = ObjData.Value.SacarDataCoberturasFinal(
+                       Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHasta.Text),
+                    _Poliza,
+                    _Cobertura,
+                    _Oficina,
+                    null);
+                    if (InformacionSistema.Count() < 1) {
+                        EliminarRegistrosTablaConfiguracion(IdUsuario);
+                        ClientScript.RegisterStartupScript(GetType(), "RegistrosNoEncontrados()", "RegistrosNoEncontrados();", true);
+                    }
+                    else {
+                        string NombreCobertura = "";
+                        foreach (var n in InformacionSistema) {
+                            NombreCobertura = n.Cobertura;
+                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaSistema Guardar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaSistema(
+                                0,
+                                IdUsuario,
+                                n.Poliza,
+                                (int)n.Items,
+                                n.Estatus,
+                                n.Concepto,
+                                n.Cliente,
+                                n.NombreCliente,
+                                n.ApellidoCliente,
+                                n.Ciudad,
+                                n.DireccionCliente,
+                                n.Telefono,
+                                n.TipoIdentificacion,
+                                n.NumeroIdentificacion,
+                                n.Intermediario,
+                                (DateTime)n.FechaInicioVigencia,
+                                (DateTime)n.FechaFinVigencia,
+                                n.InicioVigencia,
+                                n.FinVigencia,
+                                n.FechaProceso,
+                                (DateTime)n.FechaProcesoBruto,
+                                n.MesValidado,
+                                n.Tipovehiculo,
+                                n.Marca,
+                                n.Modelo,
+                                n.Capacidad,
+                                n.Ano,
+                                n.Color,
+                                n.Chasis,
+                                n.Placa,
+                                (decimal)n.ValorAsegurado,
+                                n.Cobertura,
+                                n.TipoMovimiento,
+                                (int)n.CantidadRegistros,
+                                n.ValidadoHasta,
+                                n.ValidadoDesde,
+                                n.GeneradoPor,
+                                n.Oficina,
+                                "INSERT");
+                            Guardar.ProcesarInformacion();
+                        }
+
+                        ReportDocument Reporte = new ReportDocument();
+
+                        Reporte.Load(Server.MapPath("ValidacionCoberturas.rpt"));
+                        Reporte.Refresh();
+
+                        Reporte.SetParameterValue("@IdUsuarioProcesa", IdUsuario);
+                        Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+                        Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Validación " + NombreCobertura);
+                    }
+
+                }
+                catch (Exception) { }
+
+            }
+           
         }
 
         protected void LinkUltimoListadoPrincipal_Click(object sender, EventArgs e)

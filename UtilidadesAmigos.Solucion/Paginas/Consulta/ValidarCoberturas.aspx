@@ -44,6 +44,10 @@
             $("#<%=txtCoberturaMantenimiento.ClientID%>").removeAttr("disabled", true);
         }
 
+        function RegistrosNoEncontrados() {
+            alert("No se encontrarón registros para validar.");
+        }
+
         function ActivarControlesPlanCobertura() {
             $("#<%=ddlCoberturaPlanCobertura.ClientID%>").removeAttr("disabled", true);
             $("#<%=txtCodigoCoberturaPlanCobertura.ClientID%>").removeAttr("disabled", true);
