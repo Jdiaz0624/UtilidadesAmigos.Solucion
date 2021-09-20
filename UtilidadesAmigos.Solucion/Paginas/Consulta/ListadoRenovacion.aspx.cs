@@ -16,6 +16,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> Objdata = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido> ObjDataReportes = new Lazy<Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaConsulta.LogicaConsulta> ObjDataConsulta = new Lazy<Logica.Logica.LogicaConsulta.LogicaConsulta>();
 
         enum PermisoReporteMachado { 
         JuanMarcelino=1,
@@ -389,6 +390,62 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
 
+        #endregion
+
+        #region SACAR INFORMACION DE POLIZA SELECCIONAD
+        /// <summary>
+        /// Este metodo es para sacar la información del registro seleccionado
+        /// </summary>
+        /// <param name="Poliza"></param>
+        private void SacarInformacionPoliza(string Poliza) {
+
+            var SacarInformacion = ObjDataConsulta.Value.BuscaPolizaGestionCobros(
+                Poliza, null);
+            foreach (var n in SacarInformacion) {
+                txtPolizaGestionCObros.Text = n.Poliza;
+                txtEstatusGestionCobros.Text = n.Estatus;
+                txtRamoGestionCobros.Text = n.Ramo;
+                txtClienteGestionCobros.Text = n.NombreCliente;
+                txtTelefonosGestonCobros.Text = n.Telefonos;
+                txtDireccionGestionCobros.Text = n.Direccion;
+                txtSupervisorGEstionCobros.Text = n.Supervisor;
+                txtIntermediarioGestionCobro.Text = n.Intermediario;
+                txtLicencia.Text = n.LicenciaSeguro;
+                txtFechaCreadaGestionCobros.Text = n.FechaCreada;
+                txtInicioVigencia.Text = n.InicioVigencia;
+                txtFInVigenciaGestionCobros.Text = n.FinVigencia;
+                decimal TotalFActurado = (decimal)n.Facturado;
+                txtTotalFacturado.Text = TotalFActurado.ToString("N2");
+                decimal TotalCobrado = (decimal)n.Cobrado;
+                txtTotalCobradoGestionCobros.Text = TotalCobrado.ToString("N2");
+                decimal Balance = (decimal)n.Balance;
+                txtBalanceGestionCobros.Text = Balance.ToString("N2");
+                int TotalFacturas = (int)n.TotalFacturas;
+                txtTotalFacturasGestionCobros.Text = TotalFacturas.ToString("N0");
+                int TotalRecibos = (int)n.TotalRecibos;
+                txtTotalRecibosGestionCobros.Text = TotalRecibos.ToString("N0");
+                int TotalReclamaciones = (int)n.TotalReclamaciones;
+                txtTotalReclamacionesGestionCobros.Text = TotalReclamaciones.ToString("N0");
+            }
+        }
+        #endregion
+
+        #region MOSTRAR LOS COMENTARIOS DE LA POLIZA SELECCIONADA
+        private void MostrarComentariosPoliza(string POliza) {
+
+            var MostrarCOmentario = ObjDataConsulta.Value.BuscarComentariosAgregadosPoliza(
+                new Nullable<decimal>(),
+                POliza,
+                null, null, null, null);
+            if (MostrarCOmentario.Count() < 1) {
+                rpGestionCobros.DataSource = null;
+                rpGestionCobros.DataBind();
+            }
+            else {
+                Paginar(ref rpGestionCobros, MostrarCOmentario, 10, ref lbCantidadPaginaVAriableGestionCobros, ref LinkPrimeroGestionCobros, ref LinkAnteriorGestionCobros, ref LinkSiguienteGestionCobros, ref LinkUltimoGestionCobros);
+                HandlePaging(ref dtPaginacionGestionCobros, ref lbPaginaActualVariableGestionCobros);
+            }
+        }
         #endregion
 
         private void MostrarInformacionReporteMacjado() {
@@ -1112,6 +1169,67 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
 
         protected void btnGestion_Click(object sender, EventArgs e)
+        {
+           
+
+           
+            var PolizaSeleccionadaGestionCobros = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfPolizaSeleccionadaGestionCobros = ((HiddenField)PolizaSeleccionadaGestionCobros.FindControl("hfPolizaGestionCobros")).Value.ToString();
+
+            var FechaFinVigenciaSeleccionadaGestionCobros = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfFechaFinVigenciaSeleccionadaGestionCObros = ((HiddenField)FechaFinVigenciaSeleccionadaGestionCobros.FindControl("hfFechaFinVigenciaGestionCobros")).Value.ToString();
+
+            lbPolizaSeleccionada.Text = hfPolizaSeleccionadaGestionCobros;
+            lbFinVigenciaSeleccionada.Text = hfFechaFinVigenciaSeleccionadaGestionCObros;
+
+            SacarInformacionPoliza(hfPolizaSeleccionadaGestionCobros);
+            MostrarComentariosPoliza(hfPolizaSeleccionadaGestionCobros);
+
+            DivBloquePrincipal.Visible = false;
+            DivGestionCobros.Visible = true;
+        }
+
+        protected void ddlSeleccionarEstatusLLamadaGestionCobros_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkPrimeroGestionCobros_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkAnteriorGestionCobros_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionGestionCobros_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionGestionCobros_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguienteGestionCobros_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoGestionCobros_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
         {
 
         }

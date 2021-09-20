@@ -64,11 +64,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         /// <param name="ID"></param>
         /// <param name="Poliza"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EComentarioGestionCobro> BuscarComentariosAgregadosPoliza(decimal? ID = null, string Poliza = null,DateTime? FechaDesde = null, DateTime? FechaHasta = null,decimal? IdUsuario = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EComentarioGestionCobro> BuscarComentariosAgregadosPoliza(decimal? ID = null, string Poliza = null,DateTime? FechaDesde = null, DateTime? FechaHasta = null,decimal? IdUsuario = null,string FechaFinVigencia = null) {
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZA(ID, Poliza,FechaDesde,FechaHasta, IdUsuario)
+            var Listado = (from n in ObjData.SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZA(ID, Poliza,FechaDesde,FechaHasta, IdUsuario, FechaFinVigencia)
                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EComentarioGestionCobro
                            {
                                ID=n.ID,
@@ -79,6 +79,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                FechaProceso=n.FechaProceso,
                                Fecha=n.Fecha,
                                Hora=n.Hora,
+                               IdEstatusLlamada=n.IdEstatusLlamada,
+                               EstatusLlamada=n.EstatusLlamada,
+                               IdConceptoLlamada=n.IdConceptoLlamada,
+                               ConceptoLlamada=n.ConceptoLlamada,
+                               FechaFinVigencia=n.FechaFinVigencia,
                                CantidadRegistros=n.CantidadRegistros
                            }).ToList();
             return Listado;

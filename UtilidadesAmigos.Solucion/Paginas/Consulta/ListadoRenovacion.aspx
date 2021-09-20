@@ -23,6 +23,10 @@
             border-collapse: collapse;
         }
         
+        .BotonEspecial {
+           width:100%;
+           font-weight:bold;
+          }
 
         th {
             background-color: dodgerblue;
@@ -64,7 +68,9 @@
             alert("Registros de polizas a Renovar y Renovadas Eliminadas corerctamente");
         }
     </script>
-       <div class="container-fluid">
+
+
+       <div id="DivBloquePrincipal" runat="server" class="container-fluid">
        <br /><br />
         <asp:Label ID="lbCotizacionPoliza" runat="server" Text="Cotizacion" Visible="false" ></asp:Label>
         <div align="center">
@@ -181,6 +187,8 @@
                     <asp:Repeater ID="rpListadoRenovacion" runat="server">
                         <ItemTemplate>
                             <tr>
+                                 <asp:HiddenField ID="hfPolizaGestionCobros" runat="server" Value='<%# Eval("Poliza") %>' />
+                        <asp:HiddenField ID="hfFechaFinVigenciaGestionCobros" runat="server" Value='<%# Eval("FechaFinVigencia") %>' />
                                 <td style="width:10%"> <asp:Button ID="btnGestion" runat="server" Text="Gestionar" ToolTip="Gestion de Cobros" OnClick="btnGestion_Click" CssClass="btn btn-outline-secondary btn-sm" /> </td>
                                 <td style="width:10%"> <%# Eval("Poliza") %> </td>
                                 <td style="width:10%"> <%# Eval("FechaInicioVigencia") %> </td>
@@ -226,11 +234,7 @@
         <!--FIN DEL GRID-->
         </div>
 
-
-
-
-
-           <div id="DivBloqueProcesarRegistros" runat="server" visible="false">
+        <div id="DivBloqueProcesarRegistros" runat="server" visible="false">
                <div class="form-check-inline">
                    <div class="form-group form-check">
                        <asp:CheckBox ID="cbExclirMotoresMachado" runat="server" Text="Excluir Motores" CssClass="form-check-input Letranegrita" />
@@ -314,6 +318,223 @@
            </div>
     </div>
 
+    <div id="DivGestionCobros" visible="false" runat="server">
+        <asp:Label ID="lbPolizaSeleccionada" runat="server" Text="Poliza" Visible="false"></asp:Label>
+        <asp:Label ID="lbFinVigenciaSeleccionada" runat="server" Text="FinVigencia" Visible="false"></asp:Label>
+
+        <div class="container-fluid">
+            <br />
+            <asp:ScriptManager ID="ScripManagerGestionCobros" runat="server"></asp:ScriptManager>
+              <button class="btn btn-outline-primary btn-sm BotonEspecial" type="button" id="btnInformacionCobertura" data-toggle="collapse" data-target="#InformacionCliente" aria-expanded="false" aria-controls="collapseExample">
+                    DETALLES GENERALES DE LA POLIZA SELECCIONADA
+                     </button><br />
+
+
+       <div class="collapse" id="InformacionCliente">
+                <div class="card card-body">
+                   <asp:UpdatePanel ID="UpdatePanelCliente" runat="server">
+                       <ContentTemplate>
+                           <div class="form-row">
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbPolizaGestionCobro" runat="server"  Text="Poliza" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtPolizaGestionCObros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbEstatusGestionCobros" runat="server"  Text="Estatus" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtEstatusGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbRamoGestionCobros" runat="server"  Text="Ramo" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtRamoGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <!--SEGUNDA LINEA-->
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbClienteGestionCobros" runat="server" Text="Cliente" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtClienteGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbTelefonosGestionCObros" runat="server" Text="Telefonos" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtTelefonosGestonCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbDireccionGestionCobros" runat="server" Text="Dirección" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtDireccionGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <!--TERCERA FILA-->
+
+                 <div class="form-group col-md-4">
+                    <asp:Label ID="lbSupervisorGestionCobros" runat="server" Text="Supervisor" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtSupervisorGEstionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbIntermediarioGEstionCobros" runat="server" Text="Intermediario" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtIntermediarioGestionCobro" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbLicenciaGestionCobros" runat="server" Text="Licencia" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtLicencia" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <!--CUARTA FILA-->
+                 <div class="form-group col-md-4">
+                    <asp:Label ID="lbFechaCreadaGestionCobros" runat="server" Text="Fecha Creada" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtFechaCreadaGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbInicioVigenciaGestionCObros" runat="server" Text="Inicio de Vigencia" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtInicioVigencia" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbFInVigenciaGestionCobros" runat="server" Text="Fin de Vigencia" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtFInVigenciaGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <!--QUINTA FILA-->
+                 <div class="form-group col-md-4">
+                    <asp:Label ID="lbTotalFActuradoGestionCobros" runat="server" Text="Total Facturado" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtTotalFacturado" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbTotalCobradoGestionCobros" runat="server" Text="Total Cobrado" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtTotalCobradoGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbBalanceGestionCobros" runat="server" Text="Balance" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtBalanceGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <!--SEXTA FILA-->
+                 <div class="form-group col-md-4">
+                    <asp:Label ID="lbTotalFacturasGestionCobros" runat="server" Text="Facturas" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtTotalFacturasGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbTotalRecibos" runat="server" Text="Recibos" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtTotalRecibosGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbTotalReclamaciones" runat="server" Text="Reclamaciones" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtTotalReclamacionesGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+              
+            </div>
+            </ContentTemplate>
+                   </asp:UpdatePanel>
+                </div>
+            </div>
+
+
+       <br />
+
+            <div class="form-row">
+                  <!--SEPTIMA FILA-->
+                <div class="form-group col-md-4">
+                    <asp:Label ID="lbEstatusDeLlamada" runat="server" Text="Concepto de Llamada" CssClass="Letranegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlSeleccionarEstatusLLamadaGestionCobros" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarEstatusLLamadaGestionCobros_SelectedIndexChanged" CssClass="form-control" ToolTip="Seleccionar el Estatus de llamada"></asp:DropDownList>
+                </div>
+
+                 <div class="form-group col-md-8">
+                    <asp:Label ID="lbConceptoEstatusLlamada" runat="server" Text="Concepto" CssClass="Letranegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlSeleccionarConceptoGestionCobros" runat="server" CssClass="form-control" ToolTip="Seleccionar el Estatus de llamada"></asp:DropDownList>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <asp:Label ID="lbComentarioGestionCobros" runat="server" Text="Comentario" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtComentarioGestionCobros" runat="server" CssClass="form-control" AutoCompleteType="Disabled" TextMode="MultiLine" Height="60px"></asp:TextBox>
+                </div>
+             
+            </div>
+               <br />
+        </div>
+
+        <br />
+        <div align="center">
+             <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnGuardar_Click" ToolTip="Guardar Registro" />
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnVolver_Click" ToolTip="Volver Atras" />
+            <br /><br />
+            <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCantidadRegistrosVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" Text=")" CssClass="Letranegrita"></asp:Label>
+        </div>
+       
+        
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th style="width:10%" align="left"> ESTATUS </th>
+                    <th style="width:20%" align="left"> CONCEPTO </th>
+                    <th style="width:30%" align="left"> COMENTARIO </th>
+                    <th style="width:10%" align="left"> VIGENCIA </th>
+                    <th style="width:10%" align="left"> USUARIO </th>
+                    <th style="width:10%" align="left"> FECHA </th>
+                    <th style="width:10%" align="left"> HORA </th>
+                   </tr>
+                </thead>
+
+                <tbody>
+                    <asp:Repeater ID="rpGestionCobros" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                       
+
+                        <td style="width:10%" align="left"> <%# Eval("EstatusLlamada") %> </td>
+                        <td style="width:20%" align="left"> <%# Eval("ConceptoLlamada") %> </td>
+                        <td style="width:30%" align="left"> <%# Eval("Comentario") %> </td>
+                        <td style="width:10%" align="left"> <%# Eval("FechaFinVigencia") %> </td>
+                        <td style="width:10%" align="left"> <%# Eval("Usuario") %> </td>
+                        <td style="width:10%" align="left"> <%# Eval("Fecha") %> </td>
+                        <td style="width:10%" align="left"> <%# Eval("Hora") %> </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
+            </table>
+        </div>
+        <div align="center">
+                <asp:Label ID="lbPaginaActualTituloGestionCobros" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariableGestionCobros" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloGestionCobros" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriableGestionCobros" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+               <div id="divPaginacionGestionCobros" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeroGestionCobros" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroGestionCobros_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorGestionCobros" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorGestionCobros_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionGestionCobros" runat="server" OnItemCommand="dtPaginacionGestionCobros_ItemCommand" OnItemDataBound="dtPaginacionGestionCobros_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralGestionCobros" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteGestionCobros" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteGestionCobros_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoGestionCobros" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoGestionCobros_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+               <br />
+    </div>
+
 
     <!--ESTADISTICA-->
     <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -323,7 +544,7 @@
           <div class="jumbotron" align="center">
               <asp:Label ID="lbTituloEstatustica" runat="server" Text="Estadistica de Renovación"></asp:Label>
           </div>
-          <asp:ScriptManager ID="EstadisticaScripmanager" runat="server"></asp:ScriptManager>
+          <%--<asp:ScriptManager ID="EstadisticaScripmanager" runat="server"></asp:ScriptManager>--%>
           <asp:UpdatePanel ID="EstadisticaUpdatePanel" runat="server">
               <ContentTemplate>
                   <div class="form-check">
