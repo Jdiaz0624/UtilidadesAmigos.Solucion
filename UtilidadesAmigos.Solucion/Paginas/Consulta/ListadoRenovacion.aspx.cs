@@ -1111,6 +1111,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
             ClientScript.RegisterStartupScript(GetType(), "RegistrosEliminados()", "RegistrosEliminados();", true);
         }
 
+        protected void btnGestion_Click(object sender, EventArgs e)
+        {
+
+        }
+
         protected void LinkUltimo_Click(object sender, EventArgs e)
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);

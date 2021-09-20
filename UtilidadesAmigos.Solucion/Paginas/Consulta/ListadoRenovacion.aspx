@@ -166,26 +166,30 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th style="width:10%" align="left"> <asp:Label ID="lbGestion" runat="server" ToolTip="Gestion" Text="Gestion" CssClass="Letranegrita"></asp:Label> </th>
                         <th style="width:10%" align="left"> <asp:Label ID="lbPolizaHeaderRepeater" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
                         <th style="width:10%" align="left"> <asp:Label ID="lbInicioVigenciaHeaderRepeater" runat="server" Text="Inicio" CssClass="Letranegrita"></asp:Label> </th>
                         <th style="width:10%" align="left"> <asp:Label ID="lbFinVigenciaHeaderRepeater" runat="server" Text="Fin" CssClass="Letranegrita"></asp:Label> </th>
                         <th style="width:10%" align="left"> <asp:Label ID="lbPrimaHeaderRepeater" runat="server" Text="Prima" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:20%" align="left"> <asp:Label ID="lbFacturadoHeaderRepeater" runat="server" Text="Facturado" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:20%" align="left"> <asp:Label ID="lbCobradoHeaderRepeater" runat="server" Text="Cobrado" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:20%" align="left"> <asp:Label ID="lbBalanceHeaderRepeater" runat="server" Text="Balance" CssClass="Letranegrita"></asp:Label> </th>
+                        <th style="width:15%" align="left"> <asp:Label ID="lbFacturadoHeaderRepeater" runat="server" Text="Facturado" CssClass="Letranegrita"></asp:Label> </th>
+                        <th style="width:15%" align="left"> <asp:Label ID="lbCobradoHeaderRepeater" runat="server" Text="Cobrado" CssClass="Letranegrita"></asp:Label> </th>
+                        <th style="width:10%" align="left"> <asp:Label ID="lbBalanceHeaderRepeater" runat="server" Text="Balance" CssClass="Letranegrita"></asp:Label> </th>
+                        <th style="width:10%" align="left"> <asp:Label ID="lbCantidadComentarios" runat="server" Text="Comentarios" CssClass="Letranegrita"></asp:Label> </th>
                     </tr>
                 </thead>
                 <tbody>
                     <asp:Repeater ID="rpListadoRenovacion" runat="server">
                         <ItemTemplate>
                             <tr>
+                                <td style="width:10%"> <asp:Button ID="btnGestion" runat="server" Text="Gestionar" ToolTip="Gestion de Cobros" OnClick="btnGestion_Click" CssClass="btn btn-outline-secondary btn-sm" /> </td>
                                 <td style="width:10%"> <%# Eval("Poliza") %> </td>
                                 <td style="width:10%"> <%# Eval("FechaInicioVigencia") %> </td>
                                 <td style="width:10%"> <%# Eval("FechaFinVigencia") %> </td>
                                 <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Prima")) %> </td>
-                                <td style="width:20%"> <%#string.Format("{0:n2}", Eval("Facturado")) %> </td>
-                                <td style="width:20%"> <%#string.Format("{0:n2}", Eval("Cobrado")) %> </td>
-                                <td style="width:20%"> <%#string.Format("{0:n2}", Eval("Balance")) %> </td>
+                                <td style="width:15%"> <%#string.Format("{0:n2}", Eval("Facturado")) %> </td>
+                                <td style="width:15%"> <%#string.Format("{0:n2}", Eval("Cobrado")) %> </td>
+                                <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Balance")) %> </td>
+                                <td style="width:10%"> <%# string.Format("{0:n0}", Eval("CantidadComentarios")) %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>

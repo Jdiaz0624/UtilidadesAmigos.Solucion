@@ -2445,7 +2445,8 @@ namespace UtilidadesAmigos.Logica.Logica
                                FechaHasta=n.FechaHasta,
                                Dias=n.Dias,
                                Mes=n.Mes,
-                               Anos=n.Anos
+                               Anos=n.Anos,
+                               CantidadComentarios=n.CantidadComentarios
                            }).ToList();
             return Listado;
         }

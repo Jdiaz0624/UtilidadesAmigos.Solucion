@@ -456,6 +456,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Button btnImprimir;
 
         /// <summary>
+        /// lbGestion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbGestion;
+
+        /// <summary>
         /// lbPolizaHeaderRepeater control.
         /// </summary>
         /// <remarks>
@@ -517,6 +526,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbBalanceHeaderRepeater;
+
+        /// <summary>
+        /// lbCantidadComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadComentarios;
 
         /// <summary>
         /// rpListadoRenovacion control.

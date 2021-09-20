@@ -91,5 +91,6 @@ namespace UtilidadesAmigos.Logica.Entidades
         public System.Nullable<int> Mes { get; set; }
 
         public System.Nullable<int> Anos { get; set; }
+        public System.Nullable<int> CantidadComentarios { get; set; }
     }
 }
