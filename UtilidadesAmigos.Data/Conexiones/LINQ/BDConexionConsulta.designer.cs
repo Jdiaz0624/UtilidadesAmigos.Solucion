@@ -69,13 +69,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_BUSCAR_INFORMACION_POLIZA_GESTION_COBROResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_COMENTARIO_POLIZA")]
-		public ISingleResult<SP_PROCESAR_COMENTARIO_POLIZAResult> SP_PROCESAR_COMENTARIO_POLIZA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Decimal(20,0)")] System.Nullable<decimal> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Comentario", DbType="VarChar(8000)")] string comentario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, poliza, comentario, idUsuario, accion);
-			return ((ISingleResult<SP_PROCESAR_COMENTARIO_POLIZAResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACON_REPORTE_COMENTARIO_GESTION_COBRO")]
 		public ISingleResult<SP_PROCESAR_INFORMACON_REPORTE_COMENTARIO_GESTION_COBROResult> SP_PROCESAR_INFORMACON_REPORTE_COMENTARIO_GESTION_COBRO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRegistro", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Comentario", DbType="VarChar(8000)")] string comentario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(100)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaProceso", DbType="DateTime")] System.Nullable<System.DateTime> fechaProceso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha", DbType="VarChar(30)")] string fecha, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Hora", DbType="VarChar(30)")] string hora, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CantidadRegistros", DbType="Int")] System.Nullable<int> cantidadRegistros, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuarioGenera", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuarioGenera, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
 		{
@@ -141,6 +134,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, poliza, fechaDesde, fechaHasta, idUsuario, fechaFinVigencia);
 			return ((ISingleResult<SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZAResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_COMENTARIO_POLIZA")]
+		public ISingleResult<SP_PROCESAR_COMENTARIO_POLIZAResult> SP_PROCESAR_COMENTARIO_POLIZA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Decimal(20,0)")] System.Nullable<decimal> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Comentario", DbType="VarChar(8000)")] string comentario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstatusLlamada", DbType="Int")] System.Nullable<int> idEstatusLlamada, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdConceptoLlamada", DbType="Int")] System.Nullable<int> idConceptoLlamada, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaFinVigencia", DbType="VarChar(20)")] string fechaFinVigencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, poliza, comentario, idUsuario, idEstatusLlamada, idConceptoLlamada, fechaFinVigencia, accion);
+			return ((ISingleResult<SP_PROCESAR_COMENTARIO_POLIZAResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -651,104 +651,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._TotalReclamaciones != value))
 				{
 					this._TotalReclamaciones = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_PROCESAR_COMENTARIO_POLIZAResult
-	{
-		
-		private System.Nullable<decimal> _ID;
-		
-		private string _Poliza;
-		
-		private string _Comentario;
-		
-		private System.Nullable<decimal> _IdUsuario;
-		
-		private System.Nullable<System.DateTime> _FechaProceso;
-		
-		public SP_PROCESAR_COMENTARIO_POLIZAResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
-		public string Poliza
-		{
-			get
-			{
-				return this._Poliza;
-			}
-			set
-			{
-				if ((this._Poliza != value))
-				{
-					this._Poliza = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comentario", DbType="VarChar(8000)")]
-		public string Comentario
-		{
-			get
-			{
-				return this._Comentario;
-			}
-			set
-			{
-				if ((this._Comentario != value))
-				{
-					this._Comentario = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> IdUsuario
-		{
-			get
-			{
-				return this._IdUsuario;
-			}
-			set
-			{
-				if ((this._IdUsuario != value))
-				{
-					this._IdUsuario = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaProceso", DbType="DateTime")]
-		public System.Nullable<System.DateTime> FechaProceso
-		{
-			get
-			{
-				return this._FechaProceso;
-			}
-			set
-			{
-				if ((this._FechaProceso != value))
-				{
-					this._FechaProceso = value;
 				}
 			}
 		}
@@ -2005,6 +1907,158 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadRegistros != value))
 				{
 					this._CantidadRegistros = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_COMENTARIO_POLIZAResult
+	{
+		
+		private System.Nullable<decimal> _ID;
+		
+		private string _Poliza;
+		
+		private string _Comentario;
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private System.Nullable<System.DateTime> _FechaProceso;
+		
+		private System.Nullable<int> _IdEstatusLlamada;
+		
+		private System.Nullable<int> _IdConceptoLlamada;
+		
+		private string _FechaFinVigencia;
+		
+		public SP_PROCESAR_COMENTARIO_POLIZAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comentario", DbType="VarChar(8000)")]
+		public string Comentario
+		{
+			get
+			{
+				return this._Comentario;
+			}
+			set
+			{
+				if ((this._Comentario != value))
+				{
+					this._Comentario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaProceso", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaProceso
+		{
+			get
+			{
+				return this._FechaProceso;
+			}
+			set
+			{
+				if ((this._FechaProceso != value))
+				{
+					this._FechaProceso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdEstatusLlamada", DbType="Int")]
+		public System.Nullable<int> IdEstatusLlamada
+		{
+			get
+			{
+				return this._IdEstatusLlamada;
+			}
+			set
+			{
+				if ((this._IdEstatusLlamada != value))
+				{
+					this._IdEstatusLlamada = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdConceptoLlamada", DbType="Int")]
+		public System.Nullable<int> IdConceptoLlamada
+		{
+			get
+			{
+				return this._IdConceptoLlamada;
+			}
+			set
+			{
+				if ((this._IdConceptoLlamada != value))
+				{
+					this._IdConceptoLlamada = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaFinVigencia", DbType="VarChar(20)")]
+		public string FechaFinVigencia
+		{
+			get
+			{
+				return this._FechaFinVigencia;
+			}
+			set
+			{
+				if ((this._FechaFinVigencia != value))
+				{
+					this._FechaFinVigencia = value;
 				}
 			}
 		}

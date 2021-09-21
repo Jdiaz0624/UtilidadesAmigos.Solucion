@@ -15,6 +15,9 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionCons
         private string Comentario = "";
         private decimal IdUsuario = 0;
         private DateTime FechaProceso = DateTime.Now;
+        private int IdEstatusLlamada = 0;
+        private int IdConceptoLlamada = 0;
+        private string FechaFinVigencia = "";
         private string Accion = "";
 
         public ProcesarInformacionComentarioGestionCObros(
@@ -23,6 +26,9 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionCons
         string ComentarioCON,
         decimal IdUsuarioCON,
         DateTime FechaProcesoCON,
+        int IdEstatusLlamadaCON,
+        int IdConceptoLlamadaCON,
+        string FechaFinVigenciaCON,
         string AccionCON)
         {
             ID = IDCON;
@@ -30,6 +36,9 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionCons
             Comentario = ComentarioCON;
             IdUsuario = IdUsuarioCON;
             FechaProceso = FechaProcesoCON;
+            IdEstatusLlamada = IdEstatusLlamadaCON;
+            IdConceptoLlamada = IdConceptoLlamadaCON;
+            FechaFinVigencia = FechaFinVigenciaCON;
             Accion = AccionCON;
         }
 
@@ -41,6 +50,9 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionCons
             Procesar.Comentario = Comentario;
             Procesar.IdUsuario = IdUsuario;
             Procesar.FechaProceso = FechaProceso;
+            Procesar.IdEstatusLlamada = IdEstatusLlamada;
+            Procesar.IdConceptoLlamada = IdConceptoLlamada;
+            Procesar.FechaFinVigencia = FechaFinVigencia;
 
             var MAN = ObjDa.ProcesarComentarioPolizaGestionCObro(Procesar, Accion);
         }

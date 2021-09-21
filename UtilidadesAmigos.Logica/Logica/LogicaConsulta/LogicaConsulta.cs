@@ -105,6 +105,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                 Item.Poliza,
                 Item.Comentario,
                 Item.IdUsuario,
+                Item.IdEstatusLlamada,
+                Item.IdConceptoLlamada,
+                Item.FechaFinVigencia,
                 Accion);
             if (ComentarioPoliza != null) {
                 Procesar = (from n in ComentarioPoliza
@@ -114,7 +117,10 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                 Poliza=n.Poliza,
                                 Comentario=n.Comentario,
                                 IdUsuario=n.IdUsuario,
-                                FechaProceso=n.FechaProceso
+                                FechaProceso=n.FechaProceso,
+                                IdEstatusLlamada=n.IdEstatusLlamada,
+                                IdConceptoLlamada=n.IdConceptoLlamada,
+                                FechaFinVigencia=n.FechaFinVigencia
                             }).FirstOrDefault();
             }
             return Procesar;

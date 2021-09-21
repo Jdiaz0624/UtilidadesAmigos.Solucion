@@ -22,7 +22,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
         JuanMarcelino=1,
         AlfredoPimentel=10,
         AdalgisaAlmonte=18,
-        MiguelBerroa=22
+        MiguelBerroa=22,
+        JessicaPayano=31,
+        EriksonVeras=30,
+        DismailisAcosta=27,
+        IngriHerrera=17,
+        RiselotRojas=21
         }
 
         #region CARGAR LAS LISTAS DESPLEGABLES
@@ -448,6 +453,32 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
+        #region LISTAS DESPLEGABLES PARA LA GESTION DE COBROS
+        private void CargarLosEstatusDeLlamada() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarEstatusLLamadaGestionCobros, Objdata.Value.BuscaListas("ESTATUSLLAMADA", null, null));
+        }
+        private void CargarLosConceptosDeLlamada() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarConceptoGestionCobros, Objdata.Value.BuscaListas("CONCEPTOLLAMADA", ddlSeleccionarEstatusLLamadaGestionCobros.SelectedValue.ToString(), null));
+        }
+        #endregion
+
+        #region PROCESAR INFORMACION DE LOS COMENTARIOS
+        private void ProcesarInformacionComentarios(string Poliza, string FechaFinVigencia, string Accion) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionComentarioGestionCObros Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionComentarioGestionCObros(
+                0,
+                lbPolizaSeleccionada.Text,
+                txtComentarioGestionCobros.Text,
+                (decimal)Session["IdUsuario"],
+                DateTime.Now,
+                Convert.ToInt32(ddlSeleccionarEstatusLLamadaGestionCobros.SelectedValue),
+                Convert.ToInt32(ddlSeleccionarConceptoGestionCobros.SelectedValue),
+                lbFinVigenciaSeleccionada.Text,
+                Accion);
+            Procesar.ProcesarInformacion();
+        }
+        #endregion
+
         private void MostrarInformacionReporteMacjado() {
             int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
             int? _SubRamo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
@@ -506,6 +537,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.AlfredoPimentel) { cbProcesarRegistros.Visible = true; }
                 else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.AdalgisaAlmonte) { cbProcesarRegistros.Visible = true; }
                 else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.MiguelBerroa) { cbProcesarRegistros.Visible = true; }
+                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.JessicaPayano) { cbProcesarRegistros.Visible = true; }
+                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.EriksonVeras) { cbProcesarRegistros.Visible = true; }
+                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.DismailisAcosta) { cbProcesarRegistros.Visible = true; }
+                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.IngriHerrera) { cbProcesarRegistros.Visible = true; }
+                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.RiselotRojas) { cbProcesarRegistros.Visible = true; }
             }
         }
 
@@ -1144,7 +1180,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         (decimal)n.BalanceTotal,
                         AccionTomar);
                     Procesar.ProcesarInformacion();
-                    
                 }
 
                 MostrarInformacionReporteMacjado();
@@ -1185,23 +1220,47 @@ namespace UtilidadesAmigos.Solucion.Paginas
             SacarInformacionPoliza(hfPolizaSeleccionadaGestionCobros);
             MostrarComentariosPoliza(hfPolizaSeleccionadaGestionCobros);
 
+            
+
+            var ValidarComentarioPoliza = ObjDataConsulta.Value.BuscarComentariosAgregadosPoliza(
+                new Nullable<decimal>(),
+                hfPolizaSeleccionadaGestionCobros,
+                null,
+                null,
+                null,
+                hfFechaFinVigenciaSeleccionadaGestionCObros);
+            if (ValidarComentarioPoliza.Count() < 1) {
+                CargarLosEstatusDeLlamada();
+                CargarLosConceptosDeLlamada();
+            }
+            else {
+                foreach (var n in ValidarComentarioPoliza) {
+                    CargarLosEstatusDeLlamada();
+                    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarEstatusLLamadaGestionCobros, n.IdEstatusLlamada.ToString());
+                    CargarLosConceptosDeLlamada();
+                    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarConceptoGestionCobros, n.IdConceptoLlamada.ToString());
+                }
+            }
             DivBloquePrincipal.Visible = false;
             DivGestionCobros.Visible = true;
         }
 
         protected void ddlSeleccionarEstatusLLamadaGestionCobros_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            CargarLosConceptosDeLlamada();
         }
 
         protected void LinkPrimeroGestionCobros_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
         }
 
         protected void LinkAnteriorGestionCobros_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableGestionCobros, ref lbCantidadPaginaVAriableGestionCobros);
         }
 
         protected void dtPaginacionGestionCobros_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -1211,27 +1270,37 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void dtPaginacionGestionCobros_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
         }
 
         protected void LinkSiguienteGestionCobros_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += 1;
+            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
         }
 
         protected void LinkUltimoGestionCobros_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableGestionCobros, ref lbCantidadPaginaVAriableGestionCobros);
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-
+            ProcesarInformacionComentarios(
+                lbPolizaSeleccionada.Text,
+                lbFinVigenciaSeleccionada.Text,
+                "INSERT");
+            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-
+            DivGestionCobros.Visible = false;
+            DivBloquePrincipal.Visible = true;
         }
 
         protected void LinkUltimo_Click(object sender, EventArgs e)

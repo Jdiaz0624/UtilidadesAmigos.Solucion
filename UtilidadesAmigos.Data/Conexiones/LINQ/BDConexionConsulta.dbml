@@ -34,20 +34,6 @@
       <Column Name="TotalReclamaciones" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_PROCESAR_COMENTARIO_POLIZA" Method="SP_PROCESAR_COMENTARIO_POLIZA">
-    <Parameter Name="ID" Parameter="iD" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Comentario" Parameter="comentario" Type="System.String" DbType="VarChar(8000)" />
-    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
-    <ElementType Name="SP_PROCESAR_COMENTARIO_POLIZAResult">
-      <Column Name="ID" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="FechaProceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_PROCESAR_INFORMACON_REPORTE_COMENTARIO_GESTION_COBRO" Method="SP_PROCESAR_INFORMACON_REPORTE_COMENTARIO_GESTION_COBRO">
     <Parameter Name="NumeroRegistro" Parameter="numeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
@@ -193,6 +179,26 @@
       <Column Name="ConceptoLlamada" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Column Name="FechaFinVigencia" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_COMENTARIO_POLIZA" Method="SP_PROCESAR_COMENTARIO_POLIZA">
+    <Parameter Name="ID" Parameter="iD" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Comentario" Parameter="comentario" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdEstatusLlamada" Parameter="idEstatusLlamada" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdConceptoLlamada" Parameter="idConceptoLlamada" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaFinVigencia" Parameter="fechaFinVigencia" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_COMENTARIO_POLIZAResult">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="FechaProceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IdEstatusLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdConceptoLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaFinVigencia" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
