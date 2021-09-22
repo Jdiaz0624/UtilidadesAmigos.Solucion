@@ -110,48 +110,48 @@
             </div>
 
               <div class="form-group col-md-4">
-                        <asp:Label ID="lbSeleccionarRamo" runat="server" Text="Ramo" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:Label ID="lbSeleccionarRamo" runat="server" Text="Ramo" CssClass="Letranegrita"></asp:Label>
                <asp:DropDownList ID="ddlSeleccionarRamo" AutoPostBack="true" runat="server" ToolTip="Seleccionar Ramo" CssClass="form-control" OnSelectedIndexChanged="ddlSeleccionarRamo_SelectedIndexChanged"></asp:DropDownList>
             </div>
 
               <div class="form-group col-md-4">
-                   <asp:Label ID="lbSeleccionarSubRamo" runat="server" Text="SubRamo" CssClass="LetrasNegrita"></asp:Label>
+                   <asp:Label ID="lbSeleccionarSubRamo" runat="server" Text="SubRamo" CssClass="Letranegrita"></asp:Label>
                <asp:DropDownList ID="ddlSeleccionarSubRamo" runat="server" ToolTip="Seleccionar SubRamo" CssClass="form-control"></asp:DropDownList>
             </div>
 
               <div class="form-group col-md-3">
-                   <asp:Label ID="lbSeleccionarOficina" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
+                   <asp:Label ID="lbSeleccionarOficina" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
                <asp:DropDownList ID="ddlSeleccionarOficina" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
             </div>
 
               <div class="form-group col-md-3">
-                       <asp:Label ID="lbPoliza" runat="server" Text="Poliza" CssClass="LetrasNegrita"></asp:Label>
+                       <asp:Label ID="lbPoliza" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtPoliza" runat="server" MaxLength="50" CssClass="form-control"></asp:TextBox>
             </div>
 
               <div class="form-group col-md-3">
-                        <asp:Label ID="lbCodSupervisor" runat="server" Text="Cod Supervisor" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:Label ID="lbCodSupervisor" runat="server" Text="Cod Supervisor" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoSupervisor" TextMode="Number" runat="server" MaxLength="5" CssClass="form-control"></asp:TextBox>
             </div>
 
               <div class="form-group col-md-3">
-                  <asp:Label ID="lbCodIntermediario" runat="server" Text="Cod Intermediario" CssClass="LetrasNegrita"></asp:Label>
+                  <asp:Label ID="lbCodIntermediario" runat="server" Text="Cod Intermediario" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtFCodIntermediario" TextMode="Number" runat="server" MaxLength="5" CssClass="form-control"></asp:TextBox>
             </div>
               <div class="form-group col-md-3">
-                  <asp:Label ID="lbValidarBalance" runat="server" Text="Validar Balance" CssClass="LetrasNegrita"></asp:Label>
+                  <asp:Label ID="lbValidarBalance" runat="server" Text="Validar Balance" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlValidarBalance" runat="server" ToolTip="Validar Balance" CssClass="form-control"></asp:DropDownList>
             </div>
              <div class="form-group col-md-3">
-                  <asp:Label ID="lbExcluirMotores" runat="server" Visible="false" Text="Excluir Motores" CssClass="LetrasNegrita"></asp:Label>
+                  <asp:Label ID="lbExcluirMotores" runat="server" Visible="false" Text="Excluir Motores" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlExcluirMotorew" runat="server" Visible="false" ToolTip="Excluir Motores" CssClass="form-control"></asp:DropDownList>
             </div>
              <div class="form-group col-md-3" id="DivMes" runat="server" visible="false">
-                  <asp:Label ID="lbSeleccionarMes" runat="server" Text="Mes" CssClass="LetrasNegrita"></asp:Label>
+                  <asp:Label ID="lbSeleccionarMes" runat="server" Text="Mes" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarMes" runat="server" ToolTip="Seleccionar Mes" CssClass="form-control"></asp:DropDownList>
             </div>
             <div class="form-group col-md-3" id="DivAno" runat="server" visible="false">
-                  <asp:Label ID="lbSeleccionarAno" runat="server" Text="Año" CssClass="LetrasNegrita"></asp:Label>
+                  <asp:Label ID="lbSeleccionarAno" runat="server" Text="Año" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtAno" runat="server" CssClass="form-control" TextMode="Number" MaxLength="4" Enabled="false"></asp:TextBox>
             </div>
         </div>

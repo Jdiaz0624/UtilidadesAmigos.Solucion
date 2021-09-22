@@ -445,10 +445,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (MostrarCOmentario.Count() < 1) {
                 rpGestionCobros.DataSource = null;
                 rpGestionCobros.DataBind();
+                lbCantidadRegistrosVariable.Text = "0";
             }
             else {
                 Paginar(ref rpGestionCobros, MostrarCOmentario, 10, ref lbCantidadPaginaVAriableGestionCobros, ref LinkPrimeroGestionCobros, ref LinkAnteriorGestionCobros, ref LinkSiguienteGestionCobros, ref LinkUltimoGestionCobros);
                 HandlePaging(ref dtPaginacionGestionCobros, ref lbPaginaActualVariableGestionCobros);
+                int CantidadRegistros = 0;
+                foreach (var n in MostrarCOmentario) {
+                    CantidadRegistros = (int)n.CantidadRegistros;
+
+                }
+                lbCantidadRegistrosVariable.Text = CantidadRegistros.ToString("N0");
             }
         }
         #endregion
@@ -562,6 +569,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else
             {
+                CurrentPage = 0;
                 MostrarListadoRenovaciones();
             }
             
@@ -1219,10 +1227,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
             lbFinVigenciaSeleccionada.Text = hfFechaFinVigenciaSeleccionadaGestionCObros;
 
             SacarInformacionPoliza(hfPolizaSeleccionadaGestionCobros);
+            CurrentPage = 0; 
             MostrarComentariosPoliza(hfPolizaSeleccionadaGestionCobros);
 
-            
 
+            
             var ValidarComentarioPoliza = ObjDataConsulta.Value.BuscarComentariosAgregadosPoliza(
                 new Nullable<decimal>(),
                 hfPolizaSeleccionadaGestionCobros,
