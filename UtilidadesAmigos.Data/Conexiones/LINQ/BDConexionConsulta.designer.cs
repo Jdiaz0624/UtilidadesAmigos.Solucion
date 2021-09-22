@@ -137,9 +137,9 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_COMENTARIO_POLIZA")]
-		public ISingleResult<SP_PROCESAR_COMENTARIO_POLIZAResult> SP_PROCESAR_COMENTARIO_POLIZA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Decimal(20,0)")] System.Nullable<decimal> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Comentario", DbType="VarChar(8000)")] string comentario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstatusLlamada", DbType="Int")] System.Nullable<int> idEstatusLlamada, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdConceptoLlamada", DbType="Int")] System.Nullable<int> idConceptoLlamada, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaFinVigencia", DbType="VarChar(20)")] string fechaFinVigencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		public ISingleResult<SP_PROCESAR_COMENTARIO_POLIZAResult> SP_PROCESAR_COMENTARIO_POLIZA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Decimal(20,0)")] System.Nullable<decimal> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Comentario", DbType="VarChar(8000)")] string comentario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstatusLlamada", DbType="Int")] System.Nullable<int> idEstatusLlamada, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdConceptoLlamada", DbType="Int")] System.Nullable<int> idConceptoLlamada, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaFinVigencia", DbType="VarChar(20)")] string fechaFinVigencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSeguimiento", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroSeguimiento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, poliza, comentario, idUsuario, idEstatusLlamada, idConceptoLlamada, fechaFinVigencia, accion);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, poliza, comentario, idUsuario, idEstatusLlamada, idConceptoLlamada, fechaFinVigencia, numeroSeguimiento, accion);
 			return ((ISingleResult<SP_PROCESAR_COMENTARIO_POLIZAResult>)(result.ReturnValue));
 		}
 	}
@@ -1681,6 +1681,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private string _FechaFinVigencia;
 		
+		private System.Nullable<decimal> _NumeroSeguimiento;
+		
 		private System.Nullable<int> _CantidadRegistros;
 		
 		public SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZAResult()
@@ -1895,6 +1897,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroSeguimiento", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> NumeroSeguimiento
+		{
+			get
+			{
+				return this._NumeroSeguimiento;
+			}
+			set
+			{
+				if ((this._NumeroSeguimiento != value))
+				{
+					this._NumeroSeguimiento = value;
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadRegistros", DbType="Int")]
 		public System.Nullable<int> CantidadRegistros
 		{
@@ -1930,6 +1948,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		private System.Nullable<int> _IdConceptoLlamada;
 		
 		private string _FechaFinVigencia;
+		
+		private System.Nullable<decimal> _NumeroSeguimiento;
 		
 		public SP_PROCESAR_COMENTARIO_POLIZAResult()
 		{
@@ -2059,6 +2079,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._FechaFinVigencia != value))
 				{
 					this._FechaFinVigencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroSeguimiento", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> NumeroSeguimiento
+		{
+			get
+			{
+				return this._NumeroSeguimiento;
+			}
+			set
+			{
+				if ((this._NumeroSeguimiento != value))
+				{
+					this._NumeroSeguimiento = value;
 				}
 			}
 		}

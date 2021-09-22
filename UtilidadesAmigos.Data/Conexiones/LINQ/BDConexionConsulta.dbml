@@ -178,6 +178,7 @@
       <Column Name="IdConceptoLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ConceptoLlamada" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Column Name="FechaFinVigencia" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NumeroSeguimiento" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
@@ -189,6 +190,7 @@
     <Parameter Name="IdEstatusLlamada" Parameter="idEstatusLlamada" Type="System.Int32" DbType="Int" />
     <Parameter Name="IdConceptoLlamada" Parameter="idConceptoLlamada" Type="System.Int32" DbType="Int" />
     <Parameter Name="FechaFinVigencia" Parameter="fechaFinVigencia" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="NumeroSeguimiento" Parameter="numeroSeguimiento" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
     <ElementType Name="SP_PROCESAR_COMENTARIO_POLIZAResult">
       <Column Name="ID" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
@@ -199,6 +201,7 @@
       <Column Name="IdEstatusLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IdConceptoLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="FechaFinVigencia" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NumeroSeguimiento" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

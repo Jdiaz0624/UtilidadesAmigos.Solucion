@@ -474,6 +474,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Convert.ToInt32(ddlSeleccionarEstatusLLamadaGestionCobros.SelectedValue),
                 Convert.ToInt32(ddlSeleccionarConceptoGestionCobros.SelectedValue),
                 lbFinVigenciaSeleccionada.Text,
+                0,
                 Accion);
             Procesar.ProcesarInformacion();
         }

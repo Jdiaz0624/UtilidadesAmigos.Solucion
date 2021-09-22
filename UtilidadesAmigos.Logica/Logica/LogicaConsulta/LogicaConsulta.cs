@@ -84,7 +84,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                IdConceptoLlamada=n.IdConceptoLlamada,
                                ConceptoLlamada=n.ConceptoLlamada,
                                FechaFinVigencia=n.FechaFinVigencia,
-                               CantidadRegistros=n.CantidadRegistros
+                               NumeroSeguimiento=n.NumeroSeguimiento,
+                               CantidadRegistros =n.CantidadRegistros
                            }).ToList();
             return Listado;
         }
@@ -108,6 +109,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                 Item.IdEstatusLlamada,
                 Item.IdConceptoLlamada,
                 Item.FechaFinVigencia,
+                Item.NumeroSeguimiento,
                 Accion);
             if (ComentarioPoliza != null) {
                 Procesar = (from n in ComentarioPoliza
@@ -120,7 +122,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                 FechaProceso=n.FechaProceso,
                                 IdEstatusLlamada=n.IdEstatusLlamada,
                                 IdConceptoLlamada=n.IdConceptoLlamada,
-                                FechaFinVigencia=n.FechaFinVigencia
+                                FechaFinVigencia=n.FechaFinVigencia,
+                                NumeroSeguimiento=n.NumeroSeguimiento
                             }).FirstOrDefault();
             }
             return Procesar;

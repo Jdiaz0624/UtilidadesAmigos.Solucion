@@ -229,7 +229,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 txtCoentario.Text,
                 (decimal)Session["IdUsuario"],
                 DateTime.Now,
-                1,1,"",
+                1,1,"",0,
                 Accion);
             Procesar.ProcesarInformacion();
             MostrarComentarios(txtPoliza.Text);
