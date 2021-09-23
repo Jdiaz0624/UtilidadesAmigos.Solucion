@@ -119,14 +119,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         _CodIntermediario,
                         _ValidarBalance,
                         2);
-                    foreach (var n in Buscar)
-                    {
-                        lbMesDesde.Text = n.FechaDesde;
-                        lbMesHasta.Text = n.FechaHasta;
-                        lbDIas.Text = n.Dias.ToString();
-                        lbMes.Text = n.Mes.ToString();
-                        lbano.Text = n.Anos.ToString();
-                    }
+                    //foreach (var n in Buscar)
+                    //{
+                    //    lbMesDesde.Text = n.FechaDesde;
+                    //    lbMesHasta.Text = n.FechaHasta;
+                    //    lbDIas.Text = n.Dias.ToString();
+                    //    lbMes.Text = n.Mes.ToString();
+                    //    lbano.Text = n.Anos.ToString();
+                    //}
                     Paginar(ref rpListadoRenovacion, Buscar, 10, ref lbCantidadPaginaVAriable, ref LinkPrimeraPagina, ref LinkAnterior, ref LinkSiguiente, ref LinkUltimo);
                     HandlePaging(ref dtPaginacion, ref lbPaginaActualVariavle);
                     divPaginacion.Visible = true;
@@ -153,14 +153,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         _CodIntermediario,
                         _ValidarBalance,
                         1);
-                    foreach (var n in Buscar)
-                    {
-                        lbMesDesde.Text = n.FechaDesde;
-                        lbMesHasta.Text = n.FechaHasta;
-                        lbDIas.Text = n.Dias.ToString();
-                        lbMes.Text = n.Mes.ToString();
-                        lbano.Text = n.Anos.ToString();
-                    }
+                    //foreach (var n in Buscar)
+                    //{
+                    //    lbMesDesde.Text = n.FechaDesde;
+                    //    lbMesHasta.Text = n.FechaHasta;
+                    //    lbDIas.Text = n.Dias.ToString();
+                    //    lbMes.Text = n.Mes.ToString();
+                    //    lbano.Text = n.Anos.ToString();
+                    //}
                     Paginar(ref rpListadoRenovacion, Buscar, 10, ref lbCantidadPaginaVAriable, ref LinkPrimeraPagina, ref LinkAnterior, ref LinkSiguiente, ref LinkUltimo);
                     HandlePaging(ref dtPaginacion, ref lbPaginaActualVariavle);
                     divPaginacion.Visible = true;
@@ -487,6 +487,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
+        #region MOSTRAR LAS POLIZAS NO CONTACTADAS
+        private void MostrarPolizasNoContactadas(int CantidadPolizasNoContactadasGeneral, int MostrarPolizasNoCOntactadasSegunParametros) {
+
+           
+
+            string CantidadPolizasNoContactadas = "Polizas No Contactadas: General (" + CantidadPolizasNoContactadasGeneral.ToString("N0") + ") Segun Parametros (" + MostrarPolizasNoCOntactadasSegunParametros.ToString("N0") + ")";
+            lbPolizasNoContactadas.Text = CantidadPolizasNoContactadas;
+        }
+        #endregion
+
         private void MostrarInformacionReporteMacjado() {
             int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
             int? _SubRamo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
@@ -513,6 +523,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
 
+
+        #region PROCESAR LA INFORMACION DE LOS REGISTROS GAURDADOS PARA LA GESTION DE COBROS
+        private void ProcesarInformacionRegistrosGuardados() {
+
+            //1-VALIDAMOS EL CONCEPTO DE LA LLAMADA PARA SABER SI EL REGISTRO PROCEDE PARA GUARDAR
+            UtilidadesAmigos.Logica.Comunes.Validaciones.ValidarConceptoLLamadas Validar = new Logica.Comunes.Validaciones.ValidarConceptoLLamadas(Convert.ToInt32(ddlSeleccionarConceptoGestionCobros.SelectedValue));
+            bool AplicaParaGuardar = Validar.ValidarInformacion();
+
+            if (AplicaParaGuardar == true) { 
+            
+            }
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -537,6 +561,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarOficinaEstadistica();
                 ValidarBalanceEstadistica();
                 ExcluirMotoresEstadistica();
+                MostrarPolizasNoContactadas(6500,1250);
 
                 decimal IdUsuarioProcesa = (decimal)Session["IdUsuario"];
                 cbProcesarRegistros.Visible = false;
@@ -550,6 +575,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.DismailisAcosta) { cbProcesarRegistros.Visible = true; }
                 else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.IngriHerrera) { cbProcesarRegistros.Visible = true; }
                 else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.RiselotRojas) { cbProcesarRegistros.Visible = true; }
+
+               
             }
         }
 
@@ -1305,12 +1332,48 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbFinVigenciaSeleccionada.Text,
                 "INSERT");
             MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
+            ProcesarInformacionRegistrosGuardados();
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             DivGestionCobros.Visible = false;
             DivBloquePrincipal.Visible = true;
+        }
+
+        protected void btnGestionarPolizasNoContactadas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkPrimeraPaginaPolizasNoContactadas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkAnteriorPolizasNoContactadas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionPolizasNoContactadas_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionPolizasNoContactadas_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguientePolizasNoContactadas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoPolizasNoContactadas_Click(object sender, EventArgs e)
+        {
+
         }
 
         protected void LinkUltimo_Click(object sender, EventArgs e)

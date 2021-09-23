@@ -111,6 +111,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionCorreosENviar.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionRutaBackupBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionComentarioGestionCObros.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionPolizasAvisosGestionCobros.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionReporteComentarioGestionCobros.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionValidacionCoberturaArchivo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionValidacionCoberturaSistema.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Comunes\SeguridadEncriptacion.cs" />
     <Compile Include="Comunes\UtilidadDrop.cs" />
     <Compile Include="Comunes\Validaciones\ValidarClaveSeguridad.cs" />
+    <Compile Include="Comunes\Validaciones\ValidarConceptoLLamadas.cs" />
     <Compile Include="Comunes\Validaciones\ValidarMontosAcumuladosIntermediarios.cs" />
     <Compile Include="Comunes\ValidarClaveSeguridad.cs" />
     <Compile Include="Comunes\ValidarControles.cs" />
@@ -170,6 +172,8 @@
     <Compile Include="Entidades\ComisionesIntermediarioDetalle.cs" />
     <Compile Include="Entidades\Consulta\EBuscarInformacionPolizasGestionCobros.cs" />
     <Compile Include="Entidades\Consulta\EComentarioGestionCobro.cs" />
+    <Compile Include="Entidades\Consulta\EConceptoLLamadas.cs" />
+    <Compile Include="Entidades\Consulta\EPolizasAvisoGestionCobros.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionReporteComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionArchivo.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionCoberturaSistema.cs" />

@@ -33,157 +33,130 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbCotizacionPoliza;
 
         /// <summary>
-        /// Label2 control.
+        /// ScripManagerGestionCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.ScriptManager ScripManagerGestionCobros;
 
         /// <summary>
-        /// lbMesDesde control.
+        /// lbPolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMesDesde;
+        protected global::System.Web.UI.WebControls.Label lbPolizasNoContactadas;
 
         /// <summary>
-        /// Label3 control.
+        /// UpdatePanelPolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelPolizasNoContactadas;
 
         /// <summary>
-        /// Label4 control.
+        /// rpPolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Repeater rpPolizasNoContactadas;
 
         /// <summary>
-        /// lbMesHasta control.
+        /// lbPaginaActualTituloPolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMesHasta;
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloPolizasNoContactadas;
 
         /// <summary>
-        /// Label6 control.
+        /// lbPaginaActualVariablePolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualVariablePolizasNoContactadas;
 
         /// <summary>
-        /// Label5 control.
+        /// lbCantidadPaginaTituloPolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloPolizasNoContactadas;
 
         /// <summary>
-        /// lbDIas control.
+        /// lbCantidadPaginaVAriablePolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDIas;
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVAriablePolizasNoContactadas;
 
         /// <summary>
-        /// Label7 control.
+        /// divPaginacionPolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionPolizasNoContactadas;
 
         /// <summary>
-        /// Label9 control.
+        /// LinkPrimeraPaginaPolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
+        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPaginaPolizasNoContactadas;
 
         /// <summary>
-        /// Label8 control.
+        /// LinkAnteriorPolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorPolizasNoContactadas;
 
         /// <summary>
-        /// lbMes control.
+        /// dtPaginacionPolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMes;
+        protected global::System.Web.UI.WebControls.DataList dtPaginacionPolizasNoContactadas;
 
         /// <summary>
-        /// Label10 control.
+        /// LinkSiguientePolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
+        protected global::System.Web.UI.WebControls.LinkButton LinkSiguientePolizasNoContactadas;
 
         /// <summary>
-        /// Label12 control.
+        /// LinkUltimoPolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
-
-        /// <summary>
-        /// Label11 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
-
-        /// <summary>
-        /// lbano control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbano;
-
-        /// <summary>
-        /// Label13 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label13;
+        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoPolizasNoContactadas;
 
         /// <summary>
         /// cbProcesarRegistros control.
@@ -861,13 +834,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbFinVigenciaSeleccionada;
 
         /// <summary>
-        /// ScripManagerGestionCobros control.
+        /// lbDetalleGeneralesPolizaSeleccionada control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScripManagerGestionCobros;
+        protected global::System.Web.UI.WebControls.Label lbDetalleGeneralesPolizaSeleccionada;
 
         /// <summary>
         /// UpdatePanelCliente control.

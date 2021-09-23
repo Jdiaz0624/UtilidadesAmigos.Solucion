@@ -73,7 +73,7 @@
        <div id="DivBloquePrincipal" runat="server" class="container-fluid">
        <br /><br />
         <asp:Label ID="lbCotizacionPoliza" runat="server" Text="Cotizacion" Visible="false" ></asp:Label>
-        <div align="center">
+      <%--  <div align="center">
             <asp:Label ID="Label2" runat="server" Text=" Desde " CssClass="LetrasNegrita"></asp:Label>
              <asp:Label ID="lbMesDesde" runat="server" Text=" Mes " CssClass="LetrasNegrita"></asp:Label>
              <asp:Label ID="Label3" runat="server" Text="  " CssClass="LetrasNegrita"></asp:Label>
@@ -91,7 +91,82 @@
                   <asp:Label ID="Label11" runat="server" Text="Años ( " CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbano" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="Label13" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
+        </div>--%>
+           <asp:ScriptManager ID="ScripManagerGestionCobros" runat="server"></asp:ScriptManager> 
+<button class="btn btn-outline-primary btn-sm BotonEspecial" type="button" id="btnPolizasNoContastadas" data-toggle="collapse" data-target="#PolizasNoContactadas" aria-expanded="false" aria-controls="collapseExample">
+                  
+                  <asp:Label ID="lbPolizasNoContactadas" runat="server" Text="  POLIZAS NO CONTACTADAS" CssClass="Letranegrita"></asp:Label>
+                     </button><br />
+
+
+       <div class="collapse" id="PolizasNoContactadas">
+                <div class="card card-body">
+                   <asp:UpdatePanel ID="UpdatePanelPolizasNoContactadas" runat="server">
+                       <ContentTemplate>
+           
+                           <div class="table-responsive">
+                               <table class="table table-hover">
+                                   <thead>
+                                       <tr>
+                                           <th style="width:10%" align="left"> GESTIONAR </th>
+                                           <th style="width:10%" align="left"> POLIZA </th>
+                                           <th style="width:10%" align="left"> ESTATUS </th>
+                                           <th style="width:10%" align="left"> CONCEPTO </th>
+                                           <th style="width:50%" align="left"> COMENTARIO </th>
+                                           <th style="width:10%" align="left"> VIGENCIA </th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                       <asp:Repeater ID="rpPolizasNoContactadas" runat="server">
+                                           <ItemTemplate>
+                                               <tr>
+                                                   <td style="width:10%" align="left"> <asp:Button ID="btnGestionarPolizasNoContactadas" runat="server" Text="Gestión" CssClass="btn btn-outline-primary btn-sm" ToolTip="Gestionar polizas no contactadas en la gestion de cobros" OnClick="btnGestionarPolizasNoContactadas_Click" /> </td>
+                                                   <td style="width:10%" align="left"> <%# Eval("") %> </td>
+                                                   <td style="width:10%" align="left"> <%# Eval("") %> </td>
+                                                   <td style="width:10%" align="left"> <%# Eval("") %> </td>
+                                                   <td style="width:50%" align="left"> <%# Eval("") %> </td>
+                                                   <td style="width:10%" align="left"> <%# Eval("") %> </td>
+                                               </tr>
+                                           </ItemTemplate>
+                                       </asp:Repeater>
+                                   </tbody>
+                               </table>
+                           </div>
+
+                            <div align="center">
+                <asp:Label ID="lbPaginaActualTituloPolizasNoContactadas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariablePolizasNoContactadas" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloPolizasNoContactadas" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriablePolizasNoContactadas" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="divPaginacionPolizasNoContactadas" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeraPaginaPolizasNoContactadas" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaPolizasNoContactadas_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorPolizasNoContactadas" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorPolizasNoContactadas_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionPolizasNoContactadas" runat="server" OnItemCommand="dtPaginacionPolizasNoContactadas_ItemCommand" OnItemDataBound="dtPaginacionPolizasNoContactadas_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralPolizasNoContactadas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguientePolizasNoContactadas" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguientePolizasNoContactadas_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoPolizasNoContactadas" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoPolizasNoContactadas_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
         </div>
+        </div>
+                           <br />
+              
+        
+            </ContentTemplate>
+                   </asp:UpdatePanel>
+                </div>
+            </div>
+           <br />
         <!--AGREGAMOS LOS FILTROS-->
            <div class="form-check-inline">
                <div class="form-group form-check">
@@ -324,9 +399,10 @@
 
         <div class="container-fluid">
             <br />
-            <asp:ScriptManager ID="ScripManagerGestionCobros" runat="server"></asp:ScriptManager>
+            
               <button class="btn btn-outline-primary btn-sm BotonEspecial" type="button" id="btnInformacionCobertura" data-toggle="collapse" data-target="#InformacionCliente" aria-expanded="false" aria-controls="collapseExample">
-                    DETALLES GENERALES DE LA POLIZA SELECCIONADA
+                  
+                  <asp:Label ID="lbDetalleGeneralesPolizaSeleccionada" runat="server" Text="  DETALLES GENERALES DE LA POLIZA SELECCIONADA" CssClass="Letranegrita"></asp:Label>
                      </button><br />
 
 

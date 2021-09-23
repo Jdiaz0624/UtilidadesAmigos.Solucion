@@ -296,5 +296,116 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         }
         #endregion
 
+
+        #region MOSTRAR EL CONCEPTO DE LLAMADAS
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EConceptoLLamadas> BuscaCOnceptoLLamadas(int? IdConceptoLlamada = null, int? IdEstatusLlamada = null, string Descripcion = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_CONCEPTO_LLAMADA(IdConceptoLlamada, IdEstatusLlamada, Descripcion)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EConceptoLLamadas
+                           {
+                               IdConceptoLlamada=n.IdConceptoLlamada,
+                               IdEstatusLlamada=n.IdEstatusLlamada,
+                               EstatusLLamada=n.EstatusLLamada,
+                               ConceptoLLamada=n.ConceptoLLamada,
+                               Estatus0=n.Estatus0,
+                               Estatus=n.Estatus,
+                               AplicaParaAviso0=n.AplicaParaAviso0,
+                               AplicaParaAviso=n.AplicaParaAviso,
+
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
+
+        #region MANTENIMIENTO DE POLIZA PARA AVISO DE GESTION DE COBROS
+        /// <summary>
+        /// LISTADO DE POLIZAS PARA LA GESTION DE COBROS
+        /// </summary>
+        /// <param name="NumeroRegistro"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="IdEstatusLlamada"></param>
+        /// <param name="IdConceptoLlamada"></param>
+        /// <param name="IdUsuario"></param>
+        /// <param name="FechaGuardadoDesde"></param>
+        /// <param name="FechaGuardadoHasta"></param>
+        /// <param name="Estatus"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EPolizasAvisoGestionCobros> BuscaPolizaAvisoGestionCobro(decimal? NumeroRegistro = null, string Poliza = null, int? IdEstatusLlamada = null, int? IdConceptoLlamada = null, decimal? IdUsuario = null, DateTime? FechaGuardadoDesde = null, DateTime? FechaGuardadoHasta = null, bool? Estatus = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_POLIZAS_PARA_AVISO_GESTION_COBROS(NumeroRegistro, Poliza, IdEstatusLlamada, IdConceptoLlamada, IdUsuario, FechaGuardadoDesde, FechaGuardadoHasta, Estatus)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EPolizasAvisoGestionCobros
+                           {
+                               NumeroRegistro=n.NumeroRegistro,
+                               Poliza=n.Poliza,
+                               IdEstatusLlamada=n.IdEstatusLlamada,
+                               EstatusLlamada=n.EstatusLlamada,
+                               IdConceptoLlamada=n.IdConceptoLlamada,
+                               ConceptoLlamada=n.ConceptoLlamada,
+                               Comentario=n.Comentario,
+                               IdUsuario=n.IdUsuario,
+                               Usuario=n.Usuario,
+                               FechaGuardado=n.FechaGuardado,
+                               Fecha=n.Fecha,
+                               Hora=n.Hora,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               Estatus0=n.Estatus0,
+                               Estatus=n.Estatus,
+                               CantidadRegistrosNoProcesados=n.CantidadRegistrosNoProcesados,
+                               CantidadRegistrosProcesados=n.CantidadRegistrosProcesados,
+                               CantidadRegistrosNoProcesadosParametros=n.CantidadRegistrosNoProcesadosParametros,
+                               CantidadRegistrosProcesadosParametros=n.CantidadRegistrosProcesadosParametros
+                           }).ToList();
+            return Listado;
+        }
+
+
+        /// <summary>
+        /// Mantenimiento para procesar las informaciones de las polizas para aviso en gestion de cobros
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Consulta.EPolizasAvisoGestionCobros ProcesarPolizasGestionCobros(UtilidadesAmigos.Logica.Entidades.Consulta.EPolizasAvisoGestionCobros Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Consulta.EPolizasAvisoGestionCobros Procesar = null;
+
+            var PolizasAvisoGestionCobros = ObjData.SP_PROCESAR_INFORMACION_POLIZAS_AVISO_GESTION_COBROS(
+                Item.NumeroRegistro,
+                Item.Poliza,
+                Item.IdEstatusLlamada,
+                Item.IdConceptoLlamada,
+                Item.Comentario,
+                Item.IdUsuario,
+                Item.InicioVigencia,
+                Item.FinVigencia,
+                Item.Estatus0,
+                Accion);
+            if (PolizasAvisoGestionCobros != null) {
+                Procesar = (from n in PolizasAvisoGestionCobros
+                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EPolizasAvisoGestionCobros
+                            {
+                                NumeroRegistro=n.NumeroRegistro,
+                                Poliza=n.Poliza,
+                                IdEstatusLlamada=n.IdEstatusLlamada,
+                                IdConceptoLlamada=n.IdConceptoLlamada,
+                                Comentario=n.Comentario,
+                                IdUsuario=n.IdUsuario,
+                                FechaGuardado=n.FechaGuardado,
+                                InicioVigencia=n.InicioVigencia,
+                                FinVigencia=n.FinVigencia,
+                                Estatus0=n.Estatus
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
+
     }
 }
