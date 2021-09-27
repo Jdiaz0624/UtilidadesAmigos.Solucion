@@ -614,6 +614,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
+        private void ActualizarEstadistica() {
+            var MostrarListadoGestionCobros = ObjDataConsulta.Value.BuscaPolizaAvisoGestionCobro(
+                   new Nullable<decimal>(),
+                   null, null, null, null, null, null, null);
+            int Pendientes = 0, Procesados = 0;
+            foreach (var n in MostrarListadoGestionCobros)
+            {
+                Pendientes = (int)n.CantidadRegistrosNoProcesados;
+                Procesados = (int)n.CantidadRegistrosProcesados;
+            }
+            lbCantidadPolizasPendientesVariable.Text = Pendientes.ToString("N0");
+            lbCantidadPolizasProcesadasVariableGestion.Text = Procesados.ToString("N0");
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -654,7 +668,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.IngriHerrera) { cbProcesarRegistros.Visible = true; }
                 else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.RiselotRojas) { cbProcesarRegistros.Visible = true; }
 
-               
+                ActualizarEstadistica();
             }
         }
 
@@ -1485,16 +1499,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnActualizarEstadistica_Click(object sender, ImageClickEventArgs e)
         {
-            var MostrarListadoGestionCobros = ObjDataConsulta.Value.BuscaPolizaAvisoGestionCobro(
-                new Nullable<decimal>(),
-                null, null, null, null, null, null, null);
-            int Pendientes = 0, Procesados = 0;
-            foreach (var n in MostrarListadoGestionCobros) {
-                Pendientes = (int)n.CantidadRegistrosNoProcesados;
-                Procesados = (int)n.CantidadRegistrosProcesados;
-            }
-            lbCantidadPolizasPendientesVariable.Text = Pendientes.ToString("N0");
-            lbCantidadPolizasProcesadasVariableGestion.Text = Procesados.ToString("N0");
+            ActualizarEstadistica();
         }
 
         protected void LinkUltimo_Click(object sender, EventArgs e)

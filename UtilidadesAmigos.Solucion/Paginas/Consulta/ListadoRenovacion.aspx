@@ -80,7 +80,7 @@
         <asp:Label ID="lbCotizacionPoliza" runat="server" Text="Cotizacion" Visible="false" ></asp:Label>
 
           <div align="center">
-               <asp:ImageButton ID="btnActualizarEstadistica" runat="server" CssClass="BotonSolicitud" OnClick="btnActualizarEstadistica_Click" ToolTip="Actualizar" ImageUrl="~/Imagenes/png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
+               <asp:ImageButton ID="btnActualizarEstadistica" runat="server" CssClass="BotonSolicitud" OnClick="btnActualizarEstadistica_Click" ToolTip="Actualizar" ImageUrl="~/Imagenes/auto.png" />
               <br />
            <asp:Label ID="lbCantidadPolizasPendientesGestionTitulo" runat="server" Text="Cantidad de Polizas Pendientes (" CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadPolizasPendientesVariable" runat="server" Text="0" ForeColor="Red" CssClass="Letranegrita"></asp:Label>
