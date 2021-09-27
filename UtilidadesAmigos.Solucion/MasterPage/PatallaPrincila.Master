@@ -207,6 +207,8 @@
          <asp:LinkButton ID="LinkEliminarBalance" runat="server"  ForeColor="Red" Visible="false" Text="Eliminar Balance" OnClick="LinkEliminarBalance_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
          <asp:LinkButton ID="LinkGenerarFacturasPDF" runat="server" Visible="false" Text="Generar Facturas PDF" OnClick="LinkGenerarFacturasPDF_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
          <asp:LinkButton ID="LinkVolantePago" runat="server" Text="Volante de Pagos" OnClick="LinkVolantePago_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="linkUtilidadesCobros" runat="server" Text="Utilidades Cobros" OnClick="linkUtilidadesCobros_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+        <asp:LinkButton ID="LinkAgregarDPAReclamos" runat="server" Text="Agregar Item Reclamos" OnClick="LinkAgregarDPAReclamos_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
     </div>
   </li>
 </ul>
