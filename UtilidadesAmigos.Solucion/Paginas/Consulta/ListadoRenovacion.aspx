@@ -32,6 +32,11 @@
             background-color: dodgerblue;
             color: white;
         }
+
+        .BotonSolicitud {
+                width:50px;
+               height:50px;
+           }
     </style>
     <script type="text/javascript">
         function ErrorConsulta() {
@@ -73,25 +78,20 @@
        <div id="DivBloquePrincipal" runat="server" class="container-fluid">
        <br /><br />
         <asp:Label ID="lbCotizacionPoliza" runat="server" Text="Cotizacion" Visible="false" ></asp:Label>
-      <%--  <div align="center">
-            <asp:Label ID="Label2" runat="server" Text=" Desde " CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="lbMesDesde" runat="server" Text=" Mes " CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="Label3" runat="server" Text="  " CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="Label4" runat="server" Text=" Hasta " CssClass="LetrasNegrita"></asp:Label>
-             <asp:Label ID="lbMesHasta" runat="server" Text=" Mes " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="Label6" runat="server" Text="," CssClass="LetrasNegrita"></asp:Label>
-                  <asp:Label ID="Label5" runat="server" Text="Dias ( " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbDIas" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="Label7" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="Label9" runat="server" Text="," CssClass="LetrasNegrita"></asp:Label>
-                  <asp:Label ID="Label8" runat="server" Text="Meses ( " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbMes" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="Label10" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="Label12" runat="server" Text="," CssClass="LetrasNegrita"></asp:Label>
-                  <asp:Label ID="Label11" runat="server" Text="Años ( " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbano" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="Label13" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
-        </div>--%>
+
+          <div align="center">
+               <asp:ImageButton ID="btnActualizarEstadistica" runat="server" CssClass="BotonSolicitud" OnClick="btnActualizarEstadistica_Click" ToolTip="Actualizar" ImageUrl="~/Imagenes/png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
+              <br />
+           <asp:Label ID="lbCantidadPolizasPendientesGestionTitulo" runat="server" Text="Cantidad de Polizas Pendientes (" CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadPolizasPendientesVariable" runat="server" Text="0" ForeColor="Red" CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadPolizasPendientesCerrar" runat="server" Text=")" CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbSeparadorGestion" runat="server" Text=" | " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCantidadPolizasProcesadasGestionTitulo" runat="server" Text="Cantidad de Polizas Procesadas (" CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadPolizasProcesadasVariableGestion" runat="server" Text="0" ForeColor="ForestGreen" CssClass="Letranegrita"></asp:Label>
+           <asp:Label ID="lbCantidadPolizasProcesadasGestionCerrar" runat="server" Text=")" CssClass="Letranegrita"></asp:Label>
+          
+          </div>
+
            <asp:ScriptManager ID="ScripManagerGestionCobros" runat="server"></asp:ScriptManager> 
 <button class="btn btn-outline-primary btn-sm BotonEspecial" type="button" id="btnPolizasNoContastadas" data-toggle="collapse" data-target="#PolizasNoContactadas" aria-expanded="false" aria-controls="collapseExample">
                   
@@ -103,12 +103,27 @@
                 <div class="card card-body">
                    <asp:UpdatePanel ID="UpdatePanelPolizasNoContactadas" runat="server">
                        <ContentTemplate>
-           
+                           <div class="form-check-inline">
+                               <div class="form-group form-check">
+                                   <asp:RadioButton ID="rbRegistrosPendientesGestionCobros" runat="server" Text="Pendientes" ToolTip="Mostrar Todos los Registros Pendientes" CssClass="form-check-input Letranegrita" GroupName="RadiosGestionCobros" />
+                                   <asp:RadioButton ID="rbRegistrosProcesadosGestionCobros" runat="server" Text="Procesados" ToolTip="Mostrar Todos los Registros Procesados" CssClass="form-check-input Letranegrita" GroupName="RadiosGestionCobros" />
+                                   <asp:RadioButton ID="rbTodosLosRegistrosGestionCobros" runat="server" Text="Todos" ToolTip="Mostrar Todos los Registros (Penientes y Procesados)" CssClass="form-check-input Letranegrita" GroupName="RadiosGestionCobros" />
+
+                               </div>
+                           </div>
+                           <div class="form-row">
+                               <div class="form-inline col-md-4">
+                                   <asp:Label ID="lbPolizaCOnsultaGesionCobro" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
+                                   <asp:TextBox ID="txtPolizaConsultaGestionCobro" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+                                   <asp:Button ID="btnBuscarPolizaGestionCobros" runat="server" Text="Buscar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Buscar Registros" OnClick="btnBuscarPolizaGestionCobros_Click" />
+                               </div>
+                           </div>
+           <br />
                            <div class="table-responsive">
                                <table class="table table-hover">
                                    <thead>
                                        <tr>
-                                           <th style="width:10%" align="left"> GESTIONAR </th>
+                                           <th style="width:10%" align="left"> COMPLETAR </th>
                                            <th style="width:10%" align="left"> POLIZA </th>
                                            <th style="width:10%" align="left"> ESTATUS </th>
                                            <th style="width:10%" align="left"> CONCEPTO </th>
@@ -120,12 +135,16 @@
                                        <asp:Repeater ID="rpPolizasNoContactadas" runat="server">
                                            <ItemTemplate>
                                                <tr>
+                                                   <asp:HiddenField ID="hfNumeroRegistroGestion" runat="server" Value='<%# Eval("NumeroRegistro") %>' />
+                                                   <asp:HiddenField ID="hfPolizaGestion" runat="server" Value='<%# Eval("Poliza") %>' />
+                                                   <asp:HiddenField ID="hfEstatusGEstion" runat="server" Value='<%# Eval("Estatus") %>' />
+
                                                    <td style="width:10%" align="left"> <asp:Button ID="btnGestionarPolizasNoContactadas" runat="server" Text="Gestión" CssClass="btn btn-outline-primary btn-sm" ToolTip="Gestionar polizas no contactadas en la gestion de cobros" OnClick="btnGestionarPolizasNoContactadas_Click" /> </td>
-                                                   <td style="width:10%" align="left"> <%# Eval("") %> </td>
-                                                   <td style="width:10%" align="left"> <%# Eval("") %> </td>
-                                                   <td style="width:10%" align="left"> <%# Eval("") %> </td>
-                                                   <td style="width:50%" align="left"> <%# Eval("") %> </td>
-                                                   <td style="width:10%" align="left"> <%# Eval("") %> </td>
+                                                   <td style="width:10%" align="left"> <%# Eval("Poliza") %> </td>
+                                                   <td style="width:10%" align="left"> <%# Eval("Estatus") %> </td>
+                                                   <td style="width:10%" align="left"> <%# Eval("ConceptoLlamada") %> </td>
+                                                   <td style="width:50%" align="left"> <%# Eval("Comentario") %> </td>
+                                                   <td style="width:10%" align="left"> <%# Eval("FinVigencia") %> </td>
                                                </tr>
                                            </ItemTemplate>
                                        </asp:Repeater>

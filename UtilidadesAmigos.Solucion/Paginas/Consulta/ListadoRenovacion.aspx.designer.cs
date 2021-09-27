@@ -33,6 +33,78 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbCotizacionPoliza;
 
         /// <summary>
+        /// btnActualizarEstadistica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnActualizarEstadistica;
+
+        /// <summary>
+        /// lbCantidadPolizasPendientesGestionTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasPendientesGestionTitulo;
+
+        /// <summary>
+        /// lbCantidadPolizasPendientesVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasPendientesVariable;
+
+        /// <summary>
+        /// lbCantidadPolizasPendientesCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasPendientesCerrar;
+
+        /// <summary>
+        /// lbSeparadorGestion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeparadorGestion;
+
+        /// <summary>
+        /// lbCantidadPolizasProcesadasGestionTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasProcesadasGestionTitulo;
+
+        /// <summary>
+        /// lbCantidadPolizasProcesadasVariableGestion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasProcesadasVariableGestion;
+
+        /// <summary>
+        /// lbCantidadPolizasProcesadasGestionCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasProcesadasGestionCerrar;
+
+        /// <summary>
         /// ScripManagerGestionCobros control.
         /// </summary>
         /// <remarks>
@@ -58,6 +130,60 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanelPolizasNoContactadas;
+
+        /// <summary>
+        /// rbRegistrosPendientesGestionCobros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbRegistrosPendientesGestionCobros;
+
+        /// <summary>
+        /// rbRegistrosProcesadosGestionCobros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbRegistrosProcesadosGestionCobros;
+
+        /// <summary>
+        /// rbTodosLosRegistrosGestionCobros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbTodosLosRegistrosGestionCobros;
+
+        /// <summary>
+        /// lbPolizaCOnsultaGesionCobro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPolizaCOnsultaGesionCobro;
+
+        /// <summary>
+        /// txtPolizaConsultaGestionCobro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPolizaConsultaGestionCobro;
+
+        /// <summary>
+        /// btnBuscarPolizaGestionCobros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarPolizaGestionCobros;
 
         /// <summary>
         /// rpPolizasNoContactadas control.

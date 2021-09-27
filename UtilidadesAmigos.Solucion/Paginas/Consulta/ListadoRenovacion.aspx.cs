@@ -488,13 +488,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #endregion
 
         #region MOSTRAR LAS POLIZAS NO CONTACTADAS
-        private void MostrarPolizasNoContactadas(int CantidadPolizasNoContactadasGeneral, int MostrarPolizasNoCOntactadasSegunParametros) {
 
-           
-
-            string CantidadPolizasNoContactadas = "Polizas No Contactadas: General (" + CantidadPolizasNoContactadasGeneral.ToString("N0") + ") Segun Parametros (" + MostrarPolizasNoCOntactadasSegunParametros.ToString("N0") + ")";
-            lbPolizasNoContactadas.Text = CantidadPolizasNoContactadas;
-        }
         #endregion
 
         private void MostrarInformacionReporteMacjado() {
@@ -525,14 +519,97 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
 
         #region PROCESAR LA INFORMACION DE LOS REGISTROS GAURDADOS PARA LA GESTION DE COBROS
+        /// <summary>
+        /// Este metodo es para procesar la información (Guardar, Modificar y Eliminar) registros para los avisos de gestion de cobros).
+        /// </summary>
+        /// <param name="NumeroRegistro"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="Accion"></param>
+        private void ProcesarInformacionPolizasAvisoGestionCobros(decimal NumeroRegistro,string Poliza,string Estatus,int EstatusLLamada,int ConceptoLlamada, string Accion) {
+
+            bool _Estatus = false;
+
+            if (Estatus == "PROCESADO") { _Estatus = false; }
+            else if (Estatus == "PENDIENTE") { _Estatus = true; }
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionPolizasAvisosGestionCobros Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionPolizasAvisosGestionCobros(
+                NumeroRegistro,
+                Poliza,
+                EstatusLLamada,
+                ConceptoLlamada,
+                txtComentarioGestionCobros.Text,
+                (decimal)Session["IdUsuario"],
+                DateTime.Now,
+                txtInicioVigencia.Text,
+                txtFInVigenciaGestionCobros.Text,
+                _Estatus,
+                Accion);
+            Procesar.ProcesarInformacion();
+        }
         private void ProcesarInformacionRegistrosGuardados() {
 
             //1-VALIDAMOS EL CONCEPTO DE LA LLAMADA PARA SABER SI EL REGISTRO PROCEDE PARA GUARDAR
             UtilidadesAmigos.Logica.Comunes.Validaciones.ValidarConceptoLLamadas Validar = new Logica.Comunes.Validaciones.ValidarConceptoLLamadas(Convert.ToInt32(ddlSeleccionarConceptoGestionCobros.SelectedValue));
             bool AplicaParaGuardar = Validar.ValidarInformacion();
 
-            if (AplicaParaGuardar == true) { 
-            
+            if (AplicaParaGuardar == true) {
+
+                //2-VALIDAMOS SI EL REGISTRO A REGISTRAR YA ESTA GUARDADO EN EL SISTEMA
+                string _Poliza = string.IsNullOrEmpty(txtPolizaGestionCObros.Text.Trim()) ? null : txtPolizaGestionCObros.Text.Trim();
+                int EstatusLLamada = ddlSeleccionarEstatusLLamadaGestionCobros.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarEstatusLLamadaGestionCobros.SelectedValue) : 1;
+                int ConceptoLlamada = ddlSeleccionarConceptoGestionCobros.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarConceptoGestionCobros.SelectedValue) : 1;
+               
+                var ValidarPoliza = ObjDataConsulta.Value.BuscaPolizaAvisoGestionCobro(
+                    new Nullable<decimal>(),
+                    _Poliza,
+                    null, null, null, null, null, false);
+                if (ValidarPoliza.Count() < 1)
+                {
+                    
+
+                    ProcesarInformacionPolizasAvisoGestionCobros(0, _Poliza, "PROCESADO", EstatusLLamada,ConceptoLlamada, "DELETE");
+
+                    //PROCESAMOS EL REGISTRO
+                    ProcesarInformacionPolizasAvisoGestionCobros(0, _Poliza, "PROCESADO",EstatusLLamada,ConceptoLlamada, "INSERT");
+                }
+                else {
+
+                    //PROCESAMOS EL REGISTRO
+                    ProcesarInformacionPolizasAvisoGestionCobros(0, _Poliza, "PROCESADO",EstatusLLamada,ConceptoLlamada, "INSERT");
+
+                }
+            }
+        }
+
+        private void MostrarListadoGestionCobros() {
+
+            string _Poliza = string.IsNullOrEmpty(txtPolizaConsultaGestionCobro.Text.Trim()) ? null : txtPolizaConsultaGestionCobro.Text.Trim();
+            bool? _Estatus = false;
+
+            if (rbRegistrosPendientesGestionCobros.Checked == true) { _Estatus = false; }
+            else if (rbRegistrosProcesadosGestionCobros.Checked == true) { _Estatus = true; }
+            else if (rbTodosLosRegistrosGestionCobros.Checked == true) { _Estatus = new Nullable<bool>(); }
+
+            var MostrarListadoGestionCobros = ObjDataConsulta.Value.BuscaPolizaAvisoGestionCobro(
+                new Nullable<decimal>(),
+                _Poliza, null, null, null, null, null, _Estatus);
+            if (MostrarListadoGestionCobros.Count() < 1) {
+                rpPolizasNoContactadas.DataSource = null;
+                rpPolizasNoContactadas.DataBind();
+            }
+            else {
+                Paginar(ref rpPolizasNoContactadas, MostrarListadoGestionCobros, 10, ref lbCantidadPaginaVAriablePolizasNoContactadas, ref LinkPrimeraPaginaPolizasNoContactadas, ref LinkAnteriorPolizasNoContactadas, ref LinkSiguientePolizasNoContactadas, ref LinkUltimoPolizasNoContactadas);
+                HandlePaging(ref dtPaginacionPolizasNoContactadas, ref lbPaginaActualVariablePolizasNoContactadas);
+
+                decimal CantidadPolizasPendientes = 0, CantidadPolizasProcesadas = 0;
+
+                foreach (var n in MostrarListadoGestionCobros) {
+                    CantidadPolizasPendientes = (decimal)n.CantidadRegistrosNoProcesados;
+                    CantidadPolizasProcesadas = (decimal)n.CantidadRegistrosProcesados;
+                }
+                lbCantidadPolizasPendientesVariable.Text = CantidadPolizasPendientes.ToString("N0");
+                lbCantidadPolizasProcesadasVariableGestion.Text = CantidadPolizasProcesadas.ToString("N0");
+                //MostrarPolizasNoContactadas(CantidadPolizasPendientes, CantidadPolizasProcesadas);
             }
         }
         #endregion
@@ -561,7 +638,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarOficinaEstadistica();
                 ValidarBalanceEstadistica();
                 ExcluirMotoresEstadistica();
-                MostrarPolizasNoContactadas(6500,1250);
+                rbRegistrosPendientesGestionCobros.Checked = true;               
+                MostrarListadoGestionCobros();
 
                 decimal IdUsuarioProcesa = (decimal)Session["IdUsuario"];
                 cbProcesarRegistros.Visible = false;
@@ -986,6 +1064,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 DivMes.Visible = false;
                 DivAno.Visible = false;
             }
+            MostrarListadoGestionCobros();
         }
 
         protected void btnProcesar_Click(object sender, EventArgs e)
@@ -1343,17 +1422,34 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnGestionarPolizasNoContactadas_Click(object sender, EventArgs e)
         {
+            var NumeroRegistroSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfNumeroRegistroSeleccionado = ((HiddenField)NumeroRegistroSeleccionado.FindControl("hfNumeroRegistroGestion")).Value.ToString();
+
+            var PolizaSeleccionada = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfPolizaSeleccionad = ((HiddenField)PolizaSeleccionada.FindControl("hfPolizaGestion")).Value.ToString();
+
+            var EstatusSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfEstatusSeleccionado = ((HiddenField)EstatusSeleccionado.FindControl("hfEstatusGEstion")).Value.ToString();
+
+            
+            //CAMBIAMOS EL ESTATUS DEL REGISTRO
+            ProcesarInformacionPolizasAvisoGestionCobros(Convert.ToDecimal(hfNumeroRegistroSeleccionado), hfPolizaSeleccionad, hfEstatusSeleccionado.ToString(),1,1, "UPDATE");
+            CurrentPage = 0;
+            MostrarListadoGestionCobros();
 
         }
 
         protected void LinkPrimeraPaginaPolizasNoContactadas_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarListadoGestionCobros();
         }
 
         protected void LinkAnteriorPolizasNoContactadas_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarListadoGestionCobros();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariablePolizasNoContactadas, ref lbCantidadPaginaVAriablePolizasNoContactadas);
         }
 
         protected void dtPaginacionPolizasNoContactadas_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -1363,17 +1459,42 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void dtPaginacionPolizasNoContactadas_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoGestionCobros();
         }
 
         protected void LinkSiguientePolizasNoContactadas_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += 1;
+            MostrarListadoGestionCobros();
         }
 
         protected void LinkUltimoPolizasNoContactadas_Click(object sender, EventArgs e)
         {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoGestionCobros();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariablePolizasNoContactadas, ref lbCantidadPaginaVAriablePolizasNoContactadas);
+        }
 
+        protected void btnBuscarPolizaGestionCobros_Click(object sender, EventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarListadoGestionCobros();
+        }
+
+        protected void btnActualizarEstadistica_Click(object sender, ImageClickEventArgs e)
+        {
+            var MostrarListadoGestionCobros = ObjDataConsulta.Value.BuscaPolizaAvisoGestionCobro(
+                new Nullable<decimal>(),
+                null, null, null, null, null, null, null);
+            int Pendientes = 0, Procesados = 0;
+            foreach (var n in MostrarListadoGestionCobros) {
+                Pendientes = (int)n.CantidadRegistrosNoProcesados;
+                Procesados = (int)n.CantidadRegistrosProcesados;
+            }
+            lbCantidadPolizasPendientesVariable.Text = Pendientes.ToString("N0");
+            lbCantidadPolizasProcesadasVariableGestion.Text = Procesados.ToString("N0");
         }
 
         protected void LinkUltimo_Click(object sender, EventArgs e)
