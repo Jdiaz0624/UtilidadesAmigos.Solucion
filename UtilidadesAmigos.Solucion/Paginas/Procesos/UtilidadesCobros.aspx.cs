@@ -86,6 +86,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         {
             if (!IsPostBack) {
                 lbNumeroreciboSeleccionado.Text = "0";
+
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario NombreUsuario = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
+                lbNombreUsuario.Text = NombreUsuario.SacarNombreUsuarioConectado();
+
+                Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbPantalla.Text = "UTILIDADES DE COBROS";
             }
         }
 
