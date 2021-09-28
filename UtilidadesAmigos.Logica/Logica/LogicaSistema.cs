@@ -876,7 +876,7 @@ namespace UtilidadesAmigos.Logica.Logica
                                  Balance=n.Balance,
                                  Concepto=n.Concepto,
                                  Anulado=n.Anulado
-                             }).ToList();
+                             }).ToList();   
             return SacarData;
         }
         #endregion
