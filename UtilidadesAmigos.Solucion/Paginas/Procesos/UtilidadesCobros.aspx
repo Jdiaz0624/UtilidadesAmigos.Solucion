@@ -40,7 +40,48 @@
            }
     </style>
 
+    <script type="text/javascript">
 
+        function ProcesoCompletado() {
+            alert("Proceso Completado con exito.");
+        }
+
+        function PolizaNoExiste() {
+            alert("La poliza ingresada no existe, favor de verificar.");
+        }
+        function ErrorAlRealizarProceso() {
+            alert("Error al realizar el proceso, favor de contactar al administrador del sistema.");
+        }
+        function RegistroNoEncontrado() {
+            alert("El recibo ingresado no es valido, favor de verificar.");
+        }
+
+        $(document).ready(function () {
+
+
+
+            $("#<%=btnProcesarPolizaSinPagos.ClientID%>").click(function () {
+                 var PolizaSinPago = $("#<%=txtPolizaSinPagos.ClientID%>").val().length;
+                if (PolizaSinPago < 1) {
+                    alert("El campo poliza no puede estar vacio para realizar este proceso, favor de verificar.");
+                    $("#<%=txtPolizaSinPagos.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            })
+
+
+            $("#<%=btnBuscarPolizaFormaPago.ClientID%>").click(function () {
+                var FormapAgo = $("#<%=txtNumeroRecibo.ClientID%>").val().length;
+                if (FormapAgo < 1) {
+                    alert("El campo recibo no puede estar vacio para buscar un registro, favor de verificar.");
+                     $("#<%=txtNumeroRecibo.ClientID%>").css("border-color", "red");
+                     return false;
+                 }
+            })
+
+
+         });
+    </script>
 
     <br />
     <div class="form-row">
@@ -75,14 +116,14 @@
             <tbody>
                 <asp:Repeater ID="rpListadoFormaPago" runat="server">
                     <ItemTemplate>
-                        <asp:HiddenField ID="hfNumeroRecibo" runat="server" Value='<%# Eval("") %>' />
+                        <asp:HiddenField ID="hfNumeroRecibo" runat="server" Value='<%# Eval("Numero_Recibo") %>' />
 
                         <td style="width:10%"> <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionar_Click" ToolTip="Seleccionar Registro" /> </td>
-                        <td style="width:20%"> <%# Eval("#") %> </td>
-                        <td style="width:20%"> <%# Eval("#") %>  </td>
-                        <td style="width:10%"> <%# Eval("#") %>  </td>
-                        <td style="width:20%"> <%# Eval("#") %>  </td>
-                        <td style="width:20%"> <%# Eval("#") %>  </td>
+                        <td style="width:20%"> <%# Eval("Poliza") %> </td>
+                        <td style="width:20%"> <%# Eval("Numero_Recibo") %>  </td>
+                        <td style="width:10%"> <%# Eval("Fecha") %>  </td>
+                        <td style="width:20%"> <%# Eval("Tipo") %>  </td>
+                        <td style="width:20%"> <%#string.Format("{0:n2}", Eval("Monto")) %>  </td>
                     </ItemTemplate>
                 </asp:Repeater>
             </tbody>

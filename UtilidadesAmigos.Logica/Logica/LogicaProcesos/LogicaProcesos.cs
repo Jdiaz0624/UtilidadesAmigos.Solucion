@@ -493,5 +493,56 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
         }
 
         #endregion
+        #region UTILIDADES GESTION COBROS
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaFormaPagoCobros> BuscaPolizaFormaPago(decimal? NumeroRecibo = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_FORMA_PAGO_COBROS(NumeroRecibo)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaFormaPagoCobros
+                           {
+                               Poliza=n.Poliza,
+                               Numero_Recibo=n.Numero_Recibo,
+                               Fecha_pago=n.Fecha_pago,
+                               Fecha=n.Fecha,
+                               Tipo=n.Tipo,
+                               Monto=n.Monto
+                           }).ToList();
+            return Listado;
+        }
+
+        public UtilidadesAmigos.Logica.Entidades.Procesos.EModificarFormaPago ModificarFormaPago(UtilidadesAmigos.Logica.Entidades.Procesos.EModificarFormaPago Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.EModificarFormaPago Modificar = null;
+
+            var FormaPago = ObjData.SP_MODIFICAR_FORMA_PAGO_RECIBO(
+                Item.NumeroRecibo,
+                Item.Tipo,
+                Accion);
+            if (FormaPago != null) {
+                Modificar = (from n in FormaPago
+                             select new UtilidadesAmigos.Logica.Entidades.Procesos.EModificarFormaPago
+                             {
+                                   Compania  =n.Compania,
+                                   TipoFactura =n.TipoFactura,
+                                   Anulado =n.Anulado,
+                                   sistema =n.sistema,
+                                   tipodocumento = n.tipo_documento,
+                                   NumeroRecibo=n.Numero_Recibo,
+                                   Fechapago =n.Fecha_pago,
+                                   Tipo =n.Tipo,
+                                   Monto =n.Monto,
+                                   NoDocumento=n.No_Documento, 
+                                   NoAprobacion=n.No_Aprobacion,
+                                   FechaVencimiento =n.Fecha_Vencimiento,
+                                   CodBanco =n.Cod_Banco,
+                                   TipoTarjeta =n.Tipo_Tarjeta
+                             }).FirstOrDefault();
+            }
+            return Modificar;
+        }
+        #endregion
     }
 }

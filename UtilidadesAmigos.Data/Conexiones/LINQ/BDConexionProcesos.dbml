@@ -386,4 +386,36 @@
       <Column Name="EnvioCorreo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_FORMA_PAGO_COBROS" Method="SP_BUSCA_FORMA_PAGO_COBROS">
+    <Parameter Name="NumeroRecibo" Parameter="numeroRecibo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCA_FORMA_PAGO_COBROSResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Numero_Recibo" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_pago" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Monto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MODIFICAR_FORMA_PAGO_RECIBO" Method="SP_MODIFICAR_FORMA_PAGO_RECIBO">
+    <Parameter Name="Numero_Recibo" Parameter="numero_Recibo" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="Tipo" Parameter="tipo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_MODIFICAR_FORMA_PAGO_RECIBOResult">
+      <Column Name="Compania" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoFactura" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="Anulado" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="sistema" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tipo_documento" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Numero_Recibo" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Fecha_pago" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Monto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="No_Documento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="No_Aprobacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Vencimiento" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Cod_Banco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Tipo_Tarjeta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

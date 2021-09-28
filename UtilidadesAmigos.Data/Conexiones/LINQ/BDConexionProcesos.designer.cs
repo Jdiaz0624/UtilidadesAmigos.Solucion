@@ -239,6 +239,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, codigoEmpleado, nombre, correo, envioCorreo, accion);
 			return ((ISingleResult<SP_MODIFICAR_CODIGOS_EMPLEADOS_VOLANTE_PAGOSResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_FORMA_PAGO_COBROS")]
+		public ISingleResult<SP_BUSCA_FORMA_PAGO_COBROSResult> SP_BUSCA_FORMA_PAGO_COBROS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRecibo", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRecibo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroRecibo);
+			return ((ISingleResult<SP_BUSCA_FORMA_PAGO_COBROSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MODIFICAR_FORMA_PAGO_RECIBO")]
+		public ISingleResult<SP_MODIFICAR_FORMA_PAGO_RECIBOResult> SP_MODIFICAR_FORMA_PAGO_RECIBO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Numero_Recibo", DbType="Decimal(18,0)")] System.Nullable<decimal> numero_Recibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="VarChar(50)")] string tipo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numero_Recibo, tipo, accion);
+			return ((ISingleResult<SP_MODIFICAR_FORMA_PAGO_RECIBOResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_GENERAR_DATOS_PARA_MARBETE_VEHICULOResult
@@ -3938,6 +3952,382 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._EnvioCorreo != value))
 				{
 					this._EnvioCorreo = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_FORMA_PAGO_COBROSResult
+	{
+		
+		private string _Poliza;
+		
+		private decimal _Numero_Recibo;
+		
+		private System.Nullable<System.DateTime> _Fecha_pago;
+		
+		private string _Fecha;
+		
+		private string _Tipo;
+		
+		private System.Nullable<decimal> _Monto;
+		
+		public SP_BUSCA_FORMA_PAGO_COBROSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Numero_Recibo", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Numero_Recibo
+		{
+			get
+			{
+				return this._Numero_Recibo;
+			}
+			set
+			{
+				if ((this._Numero_Recibo != value))
+				{
+					this._Numero_Recibo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_pago", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_pago
+		{
+			get
+			{
+				return this._Fecha_pago;
+			}
+			set
+			{
+				if ((this._Fecha_pago != value))
+				{
+					this._Fecha_pago = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="NVarChar(4000)")]
+		public string Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this._Fecha = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Tipo
+		{
+			get
+			{
+				return this._Tipo;
+			}
+			set
+			{
+				if ((this._Tipo != value))
+				{
+					this._Tipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Monto", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Monto
+		{
+			get
+			{
+				return this._Monto;
+			}
+			set
+			{
+				if ((this._Monto != value))
+				{
+					this._Monto = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MODIFICAR_FORMA_PAGO_RECIBOResult
+	{
+		
+		private System.Nullable<int> _Compania;
+		
+		private string _TipoFactura;
+		
+		private string _Anulado;
+		
+		private System.Nullable<int> _sistema;
+		
+		private System.Nullable<int> _tipo_documento;
+		
+		private System.Nullable<decimal> _Numero_Recibo;
+		
+		private System.Nullable<System.DateTime> _Fecha_pago;
+		
+		private string _Tipo;
+		
+		private System.Nullable<decimal> _Monto;
+		
+		private string _No_Documento;
+		
+		private string _No_Aprobacion;
+		
+		private string _Fecha_Vencimiento;
+		
+		private string _Cod_Banco;
+		
+		private string _Tipo_Tarjeta;
+		
+		public SP_MODIFICAR_FORMA_PAGO_RECIBOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Compania", DbType="Int")]
+		public System.Nullable<int> Compania
+		{
+			get
+			{
+				return this._Compania;
+			}
+			set
+			{
+				if ((this._Compania != value))
+				{
+					this._Compania = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoFactura", DbType="VarChar(1)")]
+		public string TipoFactura
+		{
+			get
+			{
+				return this._TipoFactura;
+			}
+			set
+			{
+				if ((this._TipoFactura != value))
+				{
+					this._TipoFactura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Anulado", DbType="VarChar(1)")]
+		public string Anulado
+		{
+			get
+			{
+				return this._Anulado;
+			}
+			set
+			{
+				if ((this._Anulado != value))
+				{
+					this._Anulado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sistema", DbType="Int")]
+		public System.Nullable<int> sistema
+		{
+			get
+			{
+				return this._sistema;
+			}
+			set
+			{
+				if ((this._sistema != value))
+				{
+					this._sistema = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tipo_documento", DbType="Int")]
+		public System.Nullable<int> tipo_documento
+		{
+			get
+			{
+				return this._tipo_documento;
+			}
+			set
+			{
+				if ((this._tipo_documento != value))
+				{
+					this._tipo_documento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Numero_Recibo", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Numero_Recibo
+		{
+			get
+			{
+				return this._Numero_Recibo;
+			}
+			set
+			{
+				if ((this._Numero_Recibo != value))
+				{
+					this._Numero_Recibo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_pago", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_pago
+		{
+			get
+			{
+				return this._Fecha_pago;
+			}
+			set
+			{
+				if ((this._Fecha_pago != value))
+				{
+					this._Fecha_pago = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(50)")]
+		public string Tipo
+		{
+			get
+			{
+				return this._Tipo;
+			}
+			set
+			{
+				if ((this._Tipo != value))
+				{
+					this._Tipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Monto", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Monto
+		{
+			get
+			{
+				return this._Monto;
+			}
+			set
+			{
+				if ((this._Monto != value))
+				{
+					this._Monto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_No_Documento", DbType="VarChar(50)")]
+		public string No_Documento
+		{
+			get
+			{
+				return this._No_Documento;
+			}
+			set
+			{
+				if ((this._No_Documento != value))
+				{
+					this._No_Documento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_No_Aprobacion", DbType="VarChar(50)")]
+		public string No_Aprobacion
+		{
+			get
+			{
+				return this._No_Aprobacion;
+			}
+			set
+			{
+				if ((this._No_Aprobacion != value))
+				{
+					this._No_Aprobacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Vencimiento", DbType="VarChar(15)")]
+		public string Fecha_Vencimiento
+		{
+			get
+			{
+				return this._Fecha_Vencimiento;
+			}
+			set
+			{
+				if ((this._Fecha_Vencimiento != value))
+				{
+					this._Fecha_Vencimiento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cod_Banco", DbType="VarChar(50)")]
+		public string Cod_Banco
+		{
+			get
+			{
+				return this._Cod_Banco;
+			}
+			set
+			{
+				if ((this._Cod_Banco != value))
+				{
+					this._Cod_Banco = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo_Tarjeta", DbType="VarChar(50)")]
+		public string Tipo_Tarjeta
+		{
+			get
+			{
+				return this._Tipo_Tarjeta;
+			}
+			set
+			{
+				if ((this._Tipo_Tarjeta != value))
+				{
+					this._Tipo_Tarjeta = value;
 				}
 			}
 		}
