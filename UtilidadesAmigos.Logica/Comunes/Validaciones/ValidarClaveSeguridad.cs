@@ -8,7 +8,7 @@ namespace UtilidadesAmigos.Logica.Comunes.Validaciones
 {
     public class ValidarClaveSeguridad
     {
-        readonly UtilidadesAmigos.Logica.Logica.LogicaSistema ObjData = new Logica.LogicaSistema();
+        readonly UtilidadesAmigos.Logica.Logica.LogicaSistema ObjData = new Logica.LogicaSistema();  
 
         private string ClaveSeguridad = "";
 
