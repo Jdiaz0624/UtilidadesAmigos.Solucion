@@ -164,6 +164,7 @@
     <Compile Include="Comunes\Validaciones\ValidarClaveSeguridad.cs" />
     <Compile Include="Comunes\Validaciones\ValidarConceptoLLamadas.cs" />
     <Compile Include="Comunes\Validaciones\ValidarMontosAcumuladosIntermediarios.cs" />
+    <Compile Include="Comunes\Validaciones\ValidarPoliza.cs" />
     <Compile Include="Comunes\ValidarClaveSeguridad.cs" />
     <Compile Include="Comunes\ValidarControles.cs" />
     <Compile Include="Comunes\ValidarPolizasARenovar.cs" />
@@ -294,6 +295,7 @@
     <Compile Include="Entidades\ETipoReclamacion.cs" />
     <Compile Include="Entidades\ETransaccionesEfectivo.cs" />
     <Compile Include="Entidades\EUsuarios.cs" />
+    <Compile Include="Entidades\EValidarPoliza.cs" />
     <Compile Include="Entidades\EValidarPolizasCanceladasCoberturas.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscaListadoIntermediarios.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscarComisionesIntermediarios.cs" />

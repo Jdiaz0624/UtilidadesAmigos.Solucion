@@ -3948,6 +3948,34 @@ namespace UtilidadesAmigos.Logica.Logica
         }
         #endregion
 
+        public List<UtilidadesAmigos.Logica.Entidades.EValidarPoliza> ValidarPoliza(string Poliza = null) {
+            Objdata.CommandTimeout = 999999999;
 
+            var Listado = (from n in Objdata.SP_VALIDAR_POLIZA(Poliza)
+                           select new UtilidadesAmigos.Logica.Entidades.EValidarPoliza
+                           {
+                               Compania = n.Compania,
+                               Cotizacion = n.Cotizacion,
+                               Cliente = n.Cliente,
+                               Intermediario = n.Intermediario,
+                               Poliza = n.Poliza,
+                               MontoNeto = n.MontoNeto,
+                               UsuarioAdiciona = n.UsuarioAdiciona,
+                               FechaAdiciona = n.FechaAdiciona,
+                               UsuarioModifica = n.UsuarioModifica,
+                               FechaModifica = n.FechaModifica,
+                               Estatus = n.Estatus,
+                               Ramo = n.Ramo,
+                               Hora = n.Hora,
+                               SumaAsegurada = n.SumaAsegurada,
+                               Deudor = n.Deudor,
+                               CodMoneda = n.CodMoneda,
+                               Prima = n.Prima,
+                               Observacion = n.Observacion,
+                               PorcComision = n.PorcComision,
+                               Oficina = n.Oficina
+                           }).ToList();
+            return Listado;
+        }
     }
 }

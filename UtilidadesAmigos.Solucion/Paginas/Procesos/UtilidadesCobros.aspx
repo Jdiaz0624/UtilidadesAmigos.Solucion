@@ -84,6 +84,7 @@
     </script>
 
     <br />
+    <asp:Label ID="lbNumeroreciboSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
     <div class="form-row">
         <div class="form-inline col-md-12">
            <asp:Label ID="lbCorreirPolizaSonPagos" runat="server" Text="Corregir Poliza sin cobro" CssClass="Letranegrita"></asp:Label>
@@ -129,4 +130,23 @@
             </tbody>
         </table>
     </div>
+    <br />
+   <div ID="DivBloqueModificar" visible="false" runat="server">
+        <div class="form-check-inline">
+        <div class="form-group form-check">
+            <asp:Label ID="lbSeleccionarTipoPago" runat="server" Text="Seleccionar Tipo de Pago: " CssClass="Letranegrita"></asp:Label>
+            <asp:RadioButton ID="rbEfectivo" runat="server" Text="EFECTIVO" ToolTip="Colocar el tipo de pago en Efectivo" CssClass="form-check-input Letranegrita" GroupName="TipoPago" />
+            <asp:RadioButton ID="rbTarjeta" runat="server" Text="TARJETA" ToolTip="Colocar el tipo de pago en Tarjeta" CssClass="form-check-input Letranegrita" GroupName="TipoPago" />
+            <asp:RadioButton ID="rbTransferencia" runat="server" Text="TRANSFERENCIA" ToolTip="Colocar el tipo de pago en Transferencia" CssClass="form-check-input Letranegrita" GroupName="TipoPago" />
+            <asp:RadioButton ID="rbCheque" runat="server" Text="CHEQUE" ToolTip="Colocar el tipo de pago en Cheque" CssClass="form-check-input Letranegrita" GroupName="TipoPago" />
+            <asp:RadioButton ID="rbOtros" runat="server" Text="OTROS" ToolTip="Colocar el tipo de pago en Otros Pagos" CssClass="form-check-input Letranegrita" GroupName="TipoPago" />
+        </div>
+    </div>
+    <br />
+    <div align="center">
+        <asp:Button ID="btnGuardar" runat="server" Text="Guardar" ToolTip="Guardar Información" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnGuardar_Click" />
+        <asp:Button ID="btnVolver" runat="server" Text="Volver" ToolTip="Volver" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnVolver_Click" />
+    </div>
+   </div>
+    <br />
 </asp:Content>

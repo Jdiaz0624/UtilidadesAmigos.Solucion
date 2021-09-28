@@ -16,21 +16,36 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         private void CorregirPolizaSinCobro(string Poliza) {
 
-            try {
-                SqlCommand comando = new SqlCommand();
-                comando.CommandText = "EXEC [utililades].[SP_CORRERIR_POLIZA_NO_SALEN_PAGOS] @Poliza";
-                comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
 
-                comando.Parameters.Add("@Poliza", SqlDbType.VarChar);
-                comando.Parameters["@Poliza"].Value = Poliza;
+            //VALIDAMOS SI LA POLIZA INGRESADA ES VALIDA
+            string _Poliza = string.IsNullOrEmpty(txtPolizaSinPagos.Text.Trim()) ? null : txtPolizaSinPagos.Text.Trim();
 
-                UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
-                comando.ExecuteNonQuery();
-                UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion().Close();
+            UtilidadesAmigos.Logica.Comunes.Validaciones.ValidarPoliza Validar = new Logica.Comunes.Validaciones.ValidarPoliza(_Poliza);
+            bool ResultadoValidacion = Validar.ValidacionPoliza();
+            if (ResultadoValidacion == true) {
+                try
+                {
+                    SqlCommand comando = new SqlCommand();
+                    comando.CommandText = "EXEC [utililades].[SP_CORRERIR_POLIZA_NO_SALEN_PAGOS] @Poliza";
+                    comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
 
-                ClientScript.RegisterStartupScript(GetType(), "ProcesoCompletado()", "ProcesoCompletado();", true);
+                    comando.Parameters.Add("@Poliza", SqlDbType.VarChar);
+                    comando.Parameters["@Poliza"].Value = Poliza;
+
+                    UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+                    comando.ExecuteNonQuery();
+                    UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion().Close();
+
+                    ClientScript.RegisterStartupScript(GetType(), "ProcesoCompletado()", "ProcesoCompletado();", true);
+                }
+                catch (Exception) {
+                    ClientScript.RegisterStartupScript(GetType(), "ErrorAlRealizarProceso()", "ErrorAlRealizarProceso();", true);
+                }
             }
-            catch (Exception) { }
+            else {
+                ClientScript.RegisterStartupScript(GetType(), "PolizaNoExiste()", "PolizaNoExiste();", true);
+            }
+          
 
            
 
@@ -50,10 +65,27 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 rpListadoFormaPago.DataBind();
             }
         }
+
+        private void ModificarInformacion() {
+
+            string TipoPago = "";
+            if (rbEfectivo.Checked == true) { TipoPago = "EFECTIVO"; }
+            else if (rbTarjeta.Checked == true) { TipoPago = "TARJETA"; }
+            else if (rbTransferencia.Checked == true) { TipoPago = "TRANSFERENCIA"; }
+            else if (rbCheque.Checked == true) { TipoPago = "CHEQUE"; }
+            else if (rbOtros.Checked == true) { TipoPago = "OTROS"; }
+
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionFormaPago Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionFormaPago(
+                Convert.ToDecimal(lbNumeroreciboSeleccionado.Text),
+                TipoPago,
+                "UPDATE");
+            Procesar.ProcesarInformacion();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) { 
-            
+            if (!IsPostBack) {
+                lbNumeroreciboSeleccionado.Text = "0";
             }
         }
 
@@ -70,7 +102,58 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         protected void btnSeleccionar_Click(object sender, EventArgs e)
         {
+            DivBloqueModificar.Visible = true;
+            var RegistroSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfRegistroSeleccionado = ((HiddenField)RegistroSeleccionado.FindControl("hfNumeroRecibo")).Value.ToString();
+            lbNumeroreciboSeleccionado.Text = hfRegistroSeleccionado;
 
+            string TipoPago = "";
+            var SacarTipoPago = ObjData.Value.BuscaPolizaFormaPago(Convert.ToDecimal(hfRegistroSeleccionado));
+            foreach (var n in SacarTipoPago) {
+                TipoPago = n.Tipo;
+            }
+            switch (TipoPago) {
+
+                case "EFECTIVO":
+                    rbEfectivo.Checked = true;
+                    break;
+
+                case "TARJETA":
+                    rbTarjeta.Checked = true;
+                    break;
+
+                case "TRANSFERENCIA":
+                    rbTransferencia.Checked = true;
+                    break;
+
+                case "CHEQUE":
+                    rbCheque.Checked = true;
+                    break;
+
+                case "OTROS":
+                    rbOtros.Checked = true;
+                    break;
+
+                case "OTROS PAGOS":
+                    rbOtros.Checked = true;
+                    break;
+            }
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            ModificarInformacion();
+            txtNumeroRecibo.Text = lbNumeroreciboSeleccionado.Text;
+            BuscarReciboFormaPago();
+            DivBloqueModificar.Visible = false;
+           
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            lbNumeroreciboSeleccionado.Text = "0";
+            DivBloqueModificar.Visible = false;
+            txtNumeroRecibo.Text = string.Empty;
         }
     }
 }
