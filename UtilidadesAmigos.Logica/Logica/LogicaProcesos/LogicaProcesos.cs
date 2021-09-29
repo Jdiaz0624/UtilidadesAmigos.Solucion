@@ -544,5 +544,76 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
             return Modificar;
         }
         #endregion
+
+        #region RECLAMACIONES AGREGAR ITEMS
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaDatoReclamacionesAgregarItems> BuscaDatosReclamacionesAgregarItems(string Poliza = null,decimal? NumeroReclamo = null,int? Secuencia=null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMS(Poliza,NumeroReclamo,Secuencia)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaDatoReclamacionesAgregarItems
+                           {
+                               Poliza=n.Poliza,
+                               Reclamacion=n.Reclamacion,
+                               Secuencia=n.Secuencia,
+                               IdTipoReclamacion=n.IdTipoReclamacion,
+                               TipoReclamacion=n.TipoReclamacion,
+                               IdReclamante=n.IdReclamante,
+                               Reclamante=n.Reclamante
+                           }).ToList();
+            return Listado;
+        }
+
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ESacarNombreReclamante> SacarNombreReclamante(decimal? CodigoReclamante = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCAR_NOMBRE_RECLAMANTE(CodigoReclamante)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.ESacarNombreReclamante
+                           {
+                               Codigo=n.Codigo,
+                               NombreReclamante=n.NombreReclamante
+                           }).ToList();
+            return Listado;
+        }
+
+        public UtilidadesAmigos.Logica.Entidades.Procesos.AgregarEditarEliminarItemsReclamos ProcesarItemsReclamaciones(UtilidadesAmigos.Logica.Entidades.Procesos.AgregarEditarEliminarItemsReclamos Item,string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.AgregarEditarEliminarItemsReclamos AgregarModificarEliminar = null;
+
+            var ItemsReclamaciones = ObjData.SP_AGREGAR_EDITAR_ELIMINAR_ITEMS_RECLAMACIONES(
+                Item.Reclamacion,
+                Item.Secuencia,
+                Item.IdReclamante,
+                Item.IdTipoReclamacion,
+                Accion);
+            if (ItemsReclamaciones != null) {
+                AgregarModificarEliminar = (from n in ItemsReclamaciones
+                                            select new UtilidadesAmigos.Logica.Entidades.Procesos.AgregarEditarEliminarItemsReclamos
+                                            {
+                                                  Compania =n.Compania,
+                                                  Reclamacion = n.Reclamacion,
+                                                  Secuencia = n.Secuencia,
+                                                  IdTipoReclamacion = n.IdTipoReclamacion,
+                                                  IdReclamante = n.IdReclamante,
+                                                  MontoReclamado = n.MontoReclamado,
+                                                  MontoAjustado = n.MontoAjustado,
+                                                  MontoReserva = n.MontoReserva,
+                                                  MontoDeducible = n.MontoDeducible,
+                                                  UsuarioAdiciona = n.UsuarioAdiciona,
+                                                  FechaAdiciona = n.FechaAdiciona,
+                                                  UsuarioModifica = n.UsuarioModifica,
+                                                  FechaModifica = n.FechaModifica,
+                                                  Estatus = n.Estatus,
+                                                  IdEjecutivoReclamacion = n.IdEjecutivoReclamacion
+                                            }).FirstOrDefault();
+            }
+            return AgregarModificarEliminar;
+
+
+        }
+        #endregion
     }
 }

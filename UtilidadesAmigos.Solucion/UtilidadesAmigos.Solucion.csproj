@@ -156,15 +156,22 @@
     <Content Include="Imagenes\07.jpg" />
     <Content Include="Imagenes\08.jpg" />
     <Content Include="Imagenes\155805d262d9564.jpg" />
+    <Content Include="Imagenes\Agregar %282%29.png" />
     <Content Include="Imagenes\auto.png" />
+    <Content Include="Imagenes\Buscar.png" />
     <Content Include="Imagenes\CampoImagen.jpg" />
+    <Content Include="Imagenes\Editar.png" />
+    <Content Include="Imagenes\Eliminar.png" />
     <Content Include="Imagenes\Iniciales.ico" />
     <Content Include="Imagenes\login.jpg" />
     <Content Include="Imagenes\Logo.ico" />
+    <Content Include="Imagenes\modificar.png" />
     <Content Include="Imagenes\png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
+    <Content Include="Imagenes\salvar.png" />
     <Content Include="Imagenes\Seguro de Ley.jpg" />
     <Content Include="Imagenes\SeguroFull.jpg" />
     <Content Include="Imagenes\tDYC1tp.jpg" />
+    <Content Include="Imagenes\volver-flecha.png" />
     <Content Include="JS\Mask.js" />
     <Content Include="JS\Utililades.js" />
     <Content Include="packages.config" />
@@ -204,6 +211,7 @@
     <Content Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx" />
     <Content Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx" />
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
+    <Content Include="Paginas\Procesos\AgregarItemsReclamos.aspx" />
     <Content Include="Paginas\Procesos\DatosPoliza.aspx" />
     <Content Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx" />
     <Content Include="Paginas\Procesos\GenerarBakupBD.aspx" />
@@ -635,6 +643,13 @@
     </Compile>
     <Compile Include="Paginas\ProcesarDataPowerBi.aspx.designer.cs">
       <DependentUpon>ProcesarDataPowerBi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\AgregarItemsReclamos.aspx.cs">
+      <DependentUpon>AgregarItemsReclamos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\AgregarItemsReclamos.aspx.designer.cs">
+      <DependentUpon>AgregarItemsReclamos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Procesos\DatosPoliza.aspx.cs">
       <DependentUpon>DatosPoliza.aspx</DependentUpon>

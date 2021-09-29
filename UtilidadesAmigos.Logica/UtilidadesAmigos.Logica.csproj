@@ -133,6 +133,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCorreosEmisoresSistema.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCredencialesBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionFormaPago.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionItemReclamaciones.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProveedoresSolicitud.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionRegistrosSolicitudChequeLote.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionReporteAntiguedadSaldo.cs" />
@@ -330,6 +331,8 @@
     <Compile Include="Entidades\OpcionesAdministrador\EMantenimientoBackupDatabase.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\ERutaArchivoBakup.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\GenerarBakupBD.cs" />
+    <Compile Include="Entidades\Procesos\AgregarEditarEliminarItemsReclamos.cs" />
+    <Compile Include="Entidades\Procesos\EBuscaDatoReclamacionesAgregarItems.cs" />
     <Compile Include="Entidades\Procesos\EBuscaFormaPagoCobros.cs" />
     <Compile Include="Entidades\Procesos\EBuscaHistoricoImpresionMarbetes.cs" />
     <Compile Include="Entidades\Procesos\EBuscarInformacionVolantesPagos.cs" />
@@ -342,6 +345,7 @@
     <Compile Include="Entidades\Procesos\EModificarFormaPago.cs" />
     <Compile Include="Entidades\Procesos\EProcesarHistoricoImprsionMarbete.cs" />
     <Compile Include="Entidades\Procesos\EProcesarInformacionMarbetes.cs" />
+    <Compile Include="Entidades\Procesos\ESacarNombreReclamante.cs" />
     <Compile Include="Entidades\Procesos\ESacarRutaArchivoGaurdado.cs" />
     <Compile Include="Entidades\ProduccionPorUsuario.cs" />
     <Compile Include="Entidades\Reportes\EBuscaBeneficiariosSobreComisiones.cs" />

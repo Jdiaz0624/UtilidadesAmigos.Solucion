@@ -622,7 +622,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("");
+                Response.Redirect("~/Paginas/Procesos/AgregarItemsReclamos.aspx");
             }
             else
             {
