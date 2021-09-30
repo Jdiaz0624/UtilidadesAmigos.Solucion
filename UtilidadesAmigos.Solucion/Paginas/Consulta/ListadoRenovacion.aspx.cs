@@ -1621,6 +1621,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
             MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableDatoVehiculo, ref lbCantidadPaginaVAriableDatoVehiculo);
         }
 
+        protected void btnEliminarRegistrosPolizasGestionadas_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
         protected void LinkUltimo_Click(object sender, EventArgs e)
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);

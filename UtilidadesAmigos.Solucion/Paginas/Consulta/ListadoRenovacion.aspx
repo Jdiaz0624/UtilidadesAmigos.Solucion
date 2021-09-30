@@ -128,12 +128,13 @@
                                <table class="table table-hover">
                                    <thead>
                                        <tr>
-                                           <th style="width:10%" align="center"> COMPLETAR </th>
                                            <th style="width:10%" align="left"> POLIZA </th>
                                            <th style="width:10%" align="left"> ESTATUS </th>
                                            <th style="width:10%" align="left"> CONCEPTO </th>
-                                           <th style="width:50%" align="left"> COMENTARIO </th>
+                                           <th style="width:40%" align="left"> COMENTARIO </th>
                                            <th style="width:10%" align="left"> VIGENCIA </th>
+                                           <th style="width:10%" align="center"> COMPLETAR </th>
+                                           <th style="width:10%" align="center"> BORRAR </th>
                                        </tr>
                                    </thead>
                                    <tbody>
@@ -144,13 +145,14 @@
                                                    <asp:HiddenField ID="hfPolizaGestion" runat="server" Value='<%# Eval("Poliza") %>' />
                                                    <asp:HiddenField ID="hfEstatusGEstion" runat="server" Value='<%# Eval("Estatus") %>' />
 
-                                                 <%--  <td style="width:10%" align="left"> <asp:Button ID="btnGestionarPolizasNoContactadas" runat="server" Text="Gestión" CssClass="btn btn-outline-primary btn-sm" ToolTip="Gestionar polizas no contactadas en la gestion de cobros" OnClick="btnGestionarPolizasNoContactadas_Click" /> </td>--%>
-                                                   <td style="width:10%" align="center"> <asp:ImageButton ID="btnGestionarPolizasNoContactadasNuevo" runat="server" CssClass="BotonImagen" OnClick="btnGestionarPolizasNoContactadasNuevo_Click" ToolTip="Cambiar estatus de polizas no contactadas en la gestion de cobros" ImageUrl="~/Imagenes/Completar.png" /> </td>
+                                                 <%--  <td style="width:10%" align="left"> <asp:Button ID="btnGestionarPolizasNoContactadas" runat="server" Text="Gestión" CssClass="btn btn-outline-primary btn-sm" ToolTip="Gestionar polizas no contactadas en la gestion de cobros" OnClick="btnGestionarPolizasNoContactadas_Click" /> </td>--%>                                               
                                                    <td style="width:10%" align="left"> <%# Eval("Poliza") %> </td>
                                                    <td style="width:10%" align="left"> <%# Eval("Estatus") %> </td>
                                                    <td style="width:10%" align="left"> <%# Eval("ConceptoLlamada") %> </td>
-                                                   <td style="width:50%" align="left"> <%# Eval("Comentario") %> </td>
+                                                   <td style="width:40%" align="left"> <%# Eval("Comentario") %> </td>
                                                    <td style="width:10%" align="left"> <%# Eval("FinVigencia") %> </td>
+                                                   <td style="width:10%" align="center"> <asp:ImageButton ID="btnGestionarPolizasNoContactadasNuevo" runat="server" CssClass="BotonImagen" OnClick="btnGestionarPolizasNoContactadasNuevo_Click" ToolTip="Cambiar estatus de polizas no contactadas en la gestion de cobros" ImageUrl="~/Imagenes/Completar.png" /> </td>
+                                                   <td style="width:10%" align="center"> <asp:ImageButton ID="btnEliminarRegistrosPolizasGestionadas" runat="server" CssClass="BotonImagen" OnClick="btnEliminarRegistrosPolizasGestionadas_Click" ToolTip="Borrar Registro." ImageUrl="~/Imagenes/Eliminar.png" /> </td>
                                                </tr>
                                            </ItemTemplate>
                                        </asp:Repeater>
