@@ -1584,6 +1584,150 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             }
         }
 
+        protected void btnConsultar_Click1(object sender, ImageClickEventArgs e)
+        {
+            if (cbBusquedaPorLote.Checked == true)
+            {
+                ProcesarInformacionArchivo("", "", "", "", "DELETE");
+                //BUSCAMOS Y LEEMOS LA RUTA DEL ARCHIVO SELECCIONADO
+                try
+                {
+
+                    string ruta_carpeta = HttpContext.Current.Server.MapPath("~/Temporal");
+
+                    if (!Directory.Exists(ruta_carpeta))
+                    {
+                        Directory.CreateDirectory(ruta_carpeta);
+                    }
+
+                    var ruta_guardado = Path.Combine(ruta_carpeta, FileUpload1.FileName);
+                    FileUpload1.SaveAs(ruta_guardado);
+                    string RutaArchivoSeleccionado = ruta_guardado;
+
+                    SLDocument sl = new SLDocument(RutaArchivoSeleccionado);
+                    int Row = 2;
+                    while (!string.IsNullOrEmpty(sl.GetCellValueAsString(Row, 1)))
+                    {
+                        string Nombre = sl.GetCellValueAsString(Row, 1);
+                        string Cedula = sl.GetCellValueAsString(Row, 2);
+                        string Chasis = sl.GetCellValueAsString(Row, 3);
+                        string Placa = sl.GetCellValueAsString(Row, 4);
+                        ProcesarInformacionArchivo(Nombre, Cedula, Chasis, Placa, "INSERT");
+
+                        Row++;
+
+                    }
+                    decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+                    var BuscaInformacionRegistrada = ObjDataSuperIntendencia.Value.BuscarInformacionRegistrada(
+                        IdUsuario, null, null);
+                    if (BuscaInformacionRegistrada.Count() < 1)
+                    {
+                        lbCantidadRegistrosProcesadosVariable.Text = "0";
+                    }
+                    else
+                    {
+                        int CantidadEncontrada = BuscaInformacionRegistrada.Count;
+                        lbCantidadRegistrosProcesadosVariable.Text = CantidadEncontrada.ToString("N0");
+                        Paginar(ref rpRegistrosCargadoArchivo, BuscaInformacionRegistrada, 10, ref lbCantidadPaginaVAriableArchivo, ref LinkPrimeroArchivo, ref LinkAnteriorArchivo, ref LinkSiguienteArchivo, ref LinkUltimoArchivo);
+                        HandlePaging(ref dtArchivo, ref lbPaginaActualVariavleArchivo);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    lbError.Visible = true;
+                    lbError.Text = ex.Message;
+                    string Mensaje = "Error al procesar el archivo, no se selecciono ninguno o los parametros de este no son correctos, favor de verificar, Codigo de Error: ";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('" + Mensaje + "');", true);
+
+
+
+                }
+
+            }
+            else if (cbBusquedaPorLote.Checked == false)
+            {
+                if (rbConsultaNormal.Checked)
+                {
+                    if (string.IsNullOrEmpty(txtRNCCedula.Text.Trim()) && string.IsNullOrEmpty(txtNombre.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CamposBusquedaNormalVacio()", "CamposBusquedaNormalVacio();", true);
+                    }
+                    else
+                    {
+                        MostrarListadoClientes(1);
+                        MostrarListadoIntermediarios();
+                        MostrarListadoProveedores();
+                        MostrarListadoAsegurado();
+                        MostrarListadoAseguradoGeneral();
+                        MostrarListadoDependientes();
+                    }
+                }
+                else if (rbConsultaChasisPlaca.Checked)
+                {
+                    if (string.IsNullOrEmpty(txtPlacaConsulta.Text.Trim()) && string.IsNullOrEmpty(txtChasisConsulta.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CamposChasisPlacaVacios()", "CamposChasisPlacaVacios();", true);
+                    }
+                    else
+                    {
+                        MostrarListadoClientes(2);
+                        //MostrarListadoIntermediarios();
+                        //MostrarListadoProveedores();
+                    }
+                }
+            }
+        }
+
+        protected void btnProcesarRegistros_Click1(object sender, ImageClickEventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+
+                ProcesarInformacionPorlote((decimal)Session["IdUsuario"]);
+
+                if (rbHojaExcelPlano.Checked == true)
+                {
+
+                    var ExportarExcelPlano = (from n in ObjDataSuperIntendencia.Value.ResultadoBusquedaSuperIntendencia((decimal)Session["IdUsuario"])
+                                              select new
+                                              {
+                                                  //  IdUsuario = n.IdUsuario,
+                                                  ProcesadoPor = n.ProcesadoPor,
+                                                  Nombre = n.Nombre,
+                                                  NumeroIdentificacion = n.NumeroIdentificacion,
+                                                  Poliza = n.Poliza,
+                                                  Reclamacion = n.Reclamacion,
+                                                  Estatus = n.Estatus,
+                                                  Ramo = n.Ramo,
+                                                  MontoAsegurado = n.MontoAsegurado,
+                                                  Prima = n.Prima,
+                                                  InicioVigencia0 = n.InicioVigencia0,
+                                                  InicioVigencia = n.InicioVigencia,
+                                                  FinVigencia0 = n.FinVigencia0,
+                                                  FinVigencia = n.FinVigencia,
+                                                  TipoBusqueda = n.TipoBusqueda,
+                                                  EncontradoComo = n.EncontradoComo,
+                                                  Comentario = n.Comentario
+                                              }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Resultado Busqueda Personas", ExportarExcelPlano);
+
+                }
+                else
+                {
+                    GenerarReporte(Server.MapPath("ResultadoBusquedaPersonas.rpt"), "Resultado Busqueda Personas", (decimal)Session["IdUsuario"]);
+                }
+
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+
+
+            }
+        }
+
         protected void LinkUltimoCliente_Click(object sender, EventArgs e)
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);

@@ -41,6 +41,11 @@
               width: 10%;
               height: 36px;
           }
+
+           .BotonImagen {
+                width:50px;
+               height:50px;
+           }
     </style>
 
     <script type="text/javascript">
@@ -115,8 +120,8 @@
                                 </div>
        </div>
        <div align="center">
-           <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click" />
-           <asp:Button ID="btnProcesarRegistros" runat="server" Text="Procesar" ToolTip="Procesar Registros" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnProcesarRegistros_Click" /><br />
+           <asp:ImageButton ID="btnConsultar" runat="server" CssClass="BotonImagen" OnClick="btnConsultar_Click1" ToolTip="Buscar Información" ImageUrl="~/Imagenes/Buscar.png" />
+           <asp:ImageButton ID="btnProcesarRegistros" runat="server" CssClass="BotonImagen" OnClick="btnProcesarRegistros_Click1" ToolTip="Procesar Información" ImageUrl="~/Imagenes/Procesar.png" /><br />
            <asp:Label ID="lbError" runat="server" Text="Error" ForeColor="Red" Visible="false"></asp:Label>
        </div>
 

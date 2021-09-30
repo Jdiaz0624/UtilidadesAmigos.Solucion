@@ -162,11 +162,13 @@
     <Content Include="Imagenes\CampoImagen.jpg" />
     <Content Include="Imagenes\Editar.png" />
     <Content Include="Imagenes\Eliminar.png" />
+    <Content Include="Imagenes\escoger.png" />
     <Content Include="Imagenes\Iniciales.ico" />
     <Content Include="Imagenes\login.jpg" />
     <Content Include="Imagenes\Logo.ico" />
     <Content Include="Imagenes\modificar.png" />
     <Content Include="Imagenes\png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
+    <Content Include="Imagenes\Procesar.png" />
     <Content Include="Imagenes\salvar.png" />
     <Content Include="Imagenes\Seguro de Ley.jpg" />
     <Content Include="Imagenes\SeguroFull.jpg" />
