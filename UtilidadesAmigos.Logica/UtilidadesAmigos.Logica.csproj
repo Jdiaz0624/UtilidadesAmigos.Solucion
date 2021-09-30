@@ -173,6 +173,7 @@
     <Compile Include="Comunes\VariablesPowerBi.cs" />
     <Compile Include="Comunes\VozVeronica.cs" />
     <Compile Include="Entidades\ComisionesIntermediarioDetalle.cs" />
+    <Compile Include="Entidades\Consulta\EBuscaDatosVehiculoGestionCobros.cs" />
     <Compile Include="Entidades\Consulta\EBuscarInformacionPolizasGestionCobros.cs" />
     <Compile Include="Entidades\Consulta\EComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Consulta\EConceptoLLamadas.cs" />

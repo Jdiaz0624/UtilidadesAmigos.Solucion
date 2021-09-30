@@ -405,6 +405,26 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
             }
             return Procesar;
         }
+
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EBuscaDatosVehiculoGestionCobros> BuscaDatosVehiculoGestion(string Poliza = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_DATOS_VEHICULO_GESTION_COBRO(Poliza)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EBuscaDatosVehiculoGestionCobros
+                           {
+                               Poliza=n.Poliza,
+                               Item=n.Item,
+                               Tipo=n.Tipo,
+                               Marca=n.Marca,
+                               Modelo=n.Modelo,
+                               Ano=n.Ano,
+                               Color=n.Color,
+                               Chasis=n.Chasis,
+                               Placa=n.Placa
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
     }

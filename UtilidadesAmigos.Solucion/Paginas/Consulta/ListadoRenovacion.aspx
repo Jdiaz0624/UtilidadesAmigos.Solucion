@@ -536,6 +536,70 @@
 
               
             </div>
+
+                           <div id="DivDatoVehiculo" runat="server">
+                               <div class="table-responsive">
+                                   <table class="table table-responsive">
+                                       <thead>
+                                           <tr>
+                                               <th style="width:10%" align="left"> ITEM </th>
+                                               <th style="width:10%" align="left"> TIPO </th>
+                                               <th style="width:20%" align="left"> MARCA </th>
+                                               <th style="width:20%" align="left"> MODELO </th>
+                                               <th style="width:10%" align="left"> COLOR </th>
+                                               <th style="width:10%" align="left"> AÑO </th>
+                                               <th style="width:10%" align="left"> PLACA </th>
+                                               <th style="width:10%" align="left"> CHASIS </th>
+                                           </tr>
+                                       </thead>
+
+                                       <tbody>
+                                           <asp:Repeater ID="rpDatosVehiculo" runat="server">
+                                               <ItemTemplate>
+                                                   <tr>
+                                                       <td style="width:10%" align="left"> <%# Eval("Item") %> </td>
+                                                       <td style="width:10%" align="left"> <%# Eval("Tipo") %> </td>
+                                                       <td style="width:20%" align="left"> <%# Eval("Marca") %> </td>
+                                                       <td style="width:20%" align="left"> <%# Eval("Modelo") %> </td>
+                                                       <td style="width:10%" align="left"> <%# Eval("Color") %> </td>
+                                                       <td style="width:10%" align="left"> <%# Eval("Ano") %> </td>
+                                                       <td style="width:10%" align="left"> <%# Eval("Placa") %> </td>
+                                                       <td style="width:10%" align="left"> <%# Eval("Chasis") %> </td>
+                                                   </tr>
+                                               </ItemTemplate>
+                                           </asp:Repeater>
+                                       </tbody>
+
+                                   </table>
+                               </div>
+                                <div align="center">
+                <asp:Label ID="lbPaginaActualTituloDatoVehiculo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariableDatoVehiculo" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloDatoVehiculo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriableDatoVehiculo" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+               <div id="divPaginacionDatoVehiculo" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:LinkButton ID="LinkPrimeroDatoVehiculo" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroDatoVehiculo_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkAnteriorDatoVehiculo" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorDatoVehiculo_Click"></asp:LinkButton> </td>
+                    <td>
+                        <asp:DataList ID="dtPaginacionDatoVehiculo" runat="server" OnItemCommand="dtPaginacionDatoVehiculo_ItemCommand" OnItemDataBound="dtPaginacionDatoVehiculo_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkPaginacionCentralDatoVehiculo" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:LinkButton ID="LinkSiguienteDatoVehiculo" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteDatoVehiculo_Click"></asp:LinkButton> </td>
+                    <td> <asp:LinkButton ID="LinkUltimoDatoVehiculo" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoDatoVehiculo_Click"></asp:LinkButton> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+               <br />
+                           </div>
             </ContentTemplate>
                    </asp:UpdatePanel>
                 </div>

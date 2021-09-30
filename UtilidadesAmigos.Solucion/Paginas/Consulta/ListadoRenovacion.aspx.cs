@@ -431,6 +431,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtTotalRecibosGestionCobros.Text = TotalRecibos.ToString("N0");
                 int TotalReclamaciones = (int)n.TotalReclamaciones;
                 txtTotalReclamacionesGestionCobros.Text = TotalReclamaciones.ToString("N0");
+
+                string Ramo = txtRamoGestionCobros.Text;
+
+                if (Ramo == "Vehiculo De Motor") {
+                    DivDatoVehiculo.Visible = true;
+                    BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
+                }
+                else {
+                    DivDatoVehiculo.Visible = false;
+                }
             }
         }
         #endregion
@@ -489,6 +499,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         #region MOSTRAR LAS POLIZAS NO CONTACTADAS
 
+        #endregion
+
+        #region BUSCAR LOS DATOS DEL VEHICULO SELECCIONADO
+        private void BuscaDatosVehiculos(string Poliza) {
+
+            var BuscarDatos = ObjDataConsulta.Value.BuscaDatosVehiculoGestion(Poliza);
+            if (BuscarDatos.Count() < 1) {
+
+                rpDatosVehiculo.DataSource = null;
+                rpDatosVehiculo.DataBind();
+            }
+            else {
+                Paginar(ref rpDatosVehiculo, BuscarDatos, 10, ref lbCantidadPaginaTituloDatoVehiculo, ref LinkPrimeroDatoVehiculo, ref LinkAnteriorDatoVehiculo, ref LinkSiguienteDatoVehiculo, ref LinkUltimoDatoVehiculo);
+                HandlePaging(ref dtPaginacionDatoVehiculo, ref lbPaginaActualTituloDatoVehiculo);
+            }
+        }
         #endregion
 
         private void MostrarInformacionReporteMacjado() {
@@ -1555,6 +1581,44 @@ namespace UtilidadesAmigos.Solucion.Paginas
             ProcesarInformacionPolizasAvisoGestionCobros(Convert.ToDecimal(hfNumeroRegistroSeleccionado), hfPolizaSeleccionad, hfEstatusSeleccionado.ToString(), 1, 1, "UPDATE");
             CurrentPage = 0;
             MostrarListadoGestionCobros();
+        }
+
+        protected void LinkPrimeroDatoVehiculo_Click(object sender, EventArgs e)
+        {
+            CurrentPage = 0;
+            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
+        }
+
+        protected void LinkAnteriorDatoVehiculo_Click(object sender, EventArgs e)
+        {
+            CurrentPage += -1;
+            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableDatoVehiculo, ref lbCantidadPaginaVAriableDatoVehiculo);
+        }
+
+        protected void dtPaginacionDatoVehiculo_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionDatoVehiculo_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
+        }
+
+        protected void LinkSiguienteDatoVehiculo_Click(object sender, EventArgs e)
+        {
+            CurrentPage += 1;
+            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
+        }
+
+        protected void LinkUltimoDatoVehiculo_Click(object sender, EventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableDatoVehiculo, ref lbCantidadPaginaVAriableDatoVehiculo);
         }
 
         protected void LinkUltimo_Click(object sender, EventArgs e)
