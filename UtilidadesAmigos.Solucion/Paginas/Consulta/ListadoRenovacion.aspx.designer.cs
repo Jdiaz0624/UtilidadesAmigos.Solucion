@@ -177,13 +177,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.TextBox txtPolizaConsultaGestionCobro;
 
         /// <summary>
-        /// btnBuscarPolizaGestionCobros control.
+        /// btnBuscarPolizaGestionCobrosNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarPolizaGestionCobros;
+        protected global::System.Web.UI.WebControls.ImageButton btnBuscarPolizaGestionCobrosNuevo;
 
         /// <summary>
         /// rpPolizasNoContactadas control.
@@ -537,31 +537,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueConsultaNormal;
 
         /// <summary>
-        /// btnConsultar control.
+        /// btnConsultarNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConsultar;
+        protected global::System.Web.UI.WebControls.ImageButton btnConsultarNuevo;
 
         /// <summary>
-        /// btnExportar control.
+        /// btnExportarNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportar;
-
-        /// <summary>
-        /// btnImprimir control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnImprimir;
+        protected global::System.Web.UI.WebControls.ImageButton btnExportarNuevo;
 
         /// <summary>
         /// lbGestion control.
@@ -1356,22 +1347,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.TextBox txtComentarioGestionCobros;
 
         /// <summary>
-        /// btnGuardar control.
+        /// btnGuardarNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardar;
+        protected global::System.Web.UI.WebControls.ImageButton btnGuardarNuevo;
 
         /// <summary>
-        /// btnVolver control.
+        /// btnVolverNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolver;
+        protected global::System.Web.UI.WebControls.ImageButton btnVolverNuevo;
 
         /// <summary>
         /// lbCantidadRegistrosTitulo control.

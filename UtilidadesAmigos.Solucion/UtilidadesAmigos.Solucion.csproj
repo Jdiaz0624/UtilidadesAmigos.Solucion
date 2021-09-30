@@ -160,9 +160,11 @@
     <Content Include="Imagenes\auto.png" />
     <Content Include="Imagenes\Buscar.png" />
     <Content Include="Imagenes\CampoImagen.jpg" />
+    <Content Include="Imagenes\Completar.png" />
     <Content Include="Imagenes\Editar.png" />
     <Content Include="Imagenes\Eliminar.png" />
     <Content Include="Imagenes\escoger.png" />
+    <Content Include="Imagenes\excel.png" />
     <Content Include="Imagenes\Iniciales.ico" />
     <Content Include="Imagenes\login.jpg" />
     <Content Include="Imagenes\Logo.ico" />
@@ -172,6 +174,7 @@
     <Content Include="Imagenes\salvar.png" />
     <Content Include="Imagenes\Seguro de Ley.jpg" />
     <Content Include="Imagenes\SeguroFull.jpg" />
+    <Content Include="Imagenes\Servicio al Cliente.png" />
     <Content Include="Imagenes\tDYC1tp.jpg" />
     <Content Include="Imagenes\volver-flecha.png" />
     <Content Include="JS\Mask.js" />

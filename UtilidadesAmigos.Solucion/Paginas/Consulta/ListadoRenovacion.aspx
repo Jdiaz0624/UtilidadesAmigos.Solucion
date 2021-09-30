@@ -37,6 +37,10 @@
                 width:50px;
                height:50px;
            }
+        .BotonImagen {
+                width:50px;
+               height:50px;
+           }
     </style>
     <script type="text/javascript">
         function ErrorConsulta() {
@@ -115,7 +119,8 @@
                                <div class="form-inline col-md-4">
                                    <asp:Label ID="lbPolizaCOnsultaGesionCobro" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
                                    <asp:TextBox ID="txtPolizaConsultaGestionCobro" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
-                                   <asp:Button ID="btnBuscarPolizaGestionCobros" runat="server" Text="Buscar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Buscar Registros" OnClick="btnBuscarPolizaGestionCobros_Click" />
+                         <%--          <asp:Button ID="btnBuscarPolizaGestionCobros" runat="server" Text="Buscar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Buscar Registros" OnClick="btnBuscarPolizaGestionCobros_Click" />--%>
+                                   <asp:ImageButton ID="btnBuscarPolizaGestionCobrosNuevo" runat="server" CssClass="BotonImagen" OnClick="btnBuscarPolizaGestionCobrosNuevo_Click" ToolTip="Buscar Información" ImageUrl="~/Imagenes/Buscar.png" />
                                </div>
                            </div>
            <br />
@@ -123,7 +128,7 @@
                                <table class="table table-hover">
                                    <thead>
                                        <tr>
-                                           <th style="width:10%" align="left"> COMPLETAR </th>
+                                           <th style="width:10%" align="center"> COMPLETAR </th>
                                            <th style="width:10%" align="left"> POLIZA </th>
                                            <th style="width:10%" align="left"> ESTATUS </th>
                                            <th style="width:10%" align="left"> CONCEPTO </th>
@@ -139,7 +144,8 @@
                                                    <asp:HiddenField ID="hfPolizaGestion" runat="server" Value='<%# Eval("Poliza") %>' />
                                                    <asp:HiddenField ID="hfEstatusGEstion" runat="server" Value='<%# Eval("Estatus") %>' />
 
-                                                   <td style="width:10%" align="left"> <asp:Button ID="btnGestionarPolizasNoContactadas" runat="server" Text="Gestión" CssClass="btn btn-outline-primary btn-sm" ToolTip="Gestionar polizas no contactadas en la gestion de cobros" OnClick="btnGestionarPolizasNoContactadas_Click" /> </td>
+                                                 <%--  <td style="width:10%" align="left"> <asp:Button ID="btnGestionarPolizasNoContactadas" runat="server" Text="Gestión" CssClass="btn btn-outline-primary btn-sm" ToolTip="Gestionar polizas no contactadas en la gestion de cobros" OnClick="btnGestionarPolizasNoContactadas_Click" /> </td>--%>
+                                                   <td style="width:10%" align="center"> <asp:ImageButton ID="btnGestionarPolizasNoContactadasNuevo" runat="server" CssClass="BotonImagen" OnClick="btnGestionarPolizasNoContactadasNuevo_Click" ToolTip="Cambiar estatus de polizas no contactadas en la gestion de cobros" ImageUrl="~/Imagenes/Completar.png" /> </td>
                                                    <td style="width:10%" align="left"> <%# Eval("Poliza") %> </td>
                                                    <td style="width:10%" align="left"> <%# Eval("Estatus") %> </td>
                                                    <td style="width:10%" align="left"> <%# Eval("ConceptoLlamada") %> </td>
@@ -254,10 +260,11 @@
         <div id="DivBloqueConsultaNormal" runat="server">
             <!--INGRESMAOS LOS BOTONES-->
         <div align="center">
-            <asp:Button ID="btnConsultar" runat="server" Text="Buscar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultar_Click" />
-            <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportar_Click" />
-            <button type="button" id="btnEstadistica" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".bd-example-modal-xl">Estadistica</button>
-            <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" CssClass="btn btn-outline-primary btn-sm Custom" ToolTip="Imprimir listado de renovación" OnClick="btnImprimir_Click" />
+          <%--  <asp:Button ID="btnConsultar" runat="server" Text="Buscar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnConsultar_Click" />
+            <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar Registros" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnExportar_Click" />--%>
+            <%--<button type="button" id="btnEstadistica" class="btn btn-outline-primary btn-sm Custom" data-toggle="modal" data-target=".bd-example-modal-xl">Estadistica</button>--%>
+            <asp:ImageButton ID="btnConsultarNuevo" runat="server" CssClass="BotonImagen" OnClick="btnConsultarNuevo_Click" ToolTip="Buscar Información" ImageUrl="~/Imagenes/Buscar.png" />
+            <asp:ImageButton ID="btnExportarNuevo" runat="server" CssClass="BotonImagen" OnClick="btnExportarNuevo_Click" ToolTip="Exportar" ImageUrl="~/Imagenes/excel.png" />
         </div>
         <!--FINALIZAMOS LOS BOTONES-->
         <br />
@@ -266,7 +273,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbGestion" runat="server" ToolTip="Gestion" Text="Gestion" CssClass="Letranegrita"></asp:Label> </th>
+                        <th style="width:10%" align="center"> <asp:Label ID="lbGestion" runat="server" ToolTip="Gestion" Text="Gestion" CssClass="Letranegrita"></asp:Label> </th>
                         <th style="width:10%" align="left"> <asp:Label ID="lbPolizaHeaderRepeater" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
                         <th style="width:10%" align="left"> <asp:Label ID="lbInicioVigenciaHeaderRepeater" runat="server" Text="Inicio" CssClass="Letranegrita"></asp:Label> </th>
                         <th style="width:10%" align="left"> <asp:Label ID="lbFinVigenciaHeaderRepeater" runat="server" Text="Fin" CssClass="Letranegrita"></asp:Label> </th>
@@ -283,7 +290,8 @@
                             <tr>
                                  <asp:HiddenField ID="hfPolizaGestionCobros" runat="server" Value='<%# Eval("Poliza") %>' />
                         <asp:HiddenField ID="hfFechaFinVigenciaGestionCobros" runat="server" Value='<%# Eval("FechaFinVigencia") %>' />
-                                <td style="width:10%"> <asp:Button ID="btnGestion" runat="server" Text="Gestionar" ToolTip="Gestion de Cobros" OnClick="btnGestion_Click" CssClass="btn btn-outline-secondary btn-sm" /> </td>
+                                <%--<td style="width:10%" align="center"> <asp:Button ID="btnGestion" runat="server" Text="Gestionar" ToolTip="Gestion de Cobros" OnClick="btnGestion_Click" CssClass="btn btn-outline-secondary btn-sm" /> </td>--%>
+                                <td style="width:10%" align="center"> <asp:ImageButton ID="btnGestionNuevo" runat="server" CssClass="BotonImagen" OnClick="btnGestionNuevo_Click" ToolTip="Gestion de Cobros" ImageUrl="~/Imagenes/Servicio al Cliente.png" /> </td>
                                 <td style="width:10%"> <%# Eval("Poliza") %> </td>
                                 <td style="width:10%"> <%# Eval("FechaInicioVigencia") %> </td>
                                 <td style="width:10%"> <%# Eval("FechaFinVigencia") %> </td>
@@ -559,8 +567,10 @@
 
         <br />
         <div align="center">
-             <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnGuardar_Click" ToolTip="Guardar Registro" />
-            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnVolver_Click" ToolTip="Volver Atras" />
+          <%--   <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnGuardar_Click" ToolTip="Guardar Registro" />
+            <asp:Button ID="btnVolver" runat="server" Text="Volver" CssClass="btn btn-outline-primary btn-sm Custom" OnClick="btnVolver_Click" ToolTip="Volver Atras" />--%>
+            <asp:ImageButton ID="btnGuardarNuevo" runat="server" CssClass="BotonImagen" OnClick="btnGuardarNuevo_Click" ToolTip="Guardar Registro" ImageUrl="~/Imagenes/salvar.png" />
+            <asp:ImageButton ID="btnVolverNuevo" runat="server" CssClass="BotonImagen" OnClick="btnVolverNuevo_Click" ToolTip="Volver Atras" ImageUrl="~/Imagenes/volver-flecha.png" />
             <br /><br />
             <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
             <asp:Label ID="lbCantidadRegistrosVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>

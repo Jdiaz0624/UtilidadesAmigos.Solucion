@@ -696,132 +696,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
-            try {
-                int RamoSeleccionado = Convert.ToInt32(ddlSeleccionarRamo.SelectedValue);
-                int Excluir = Convert.ToInt32(ddlExcluirMotorew.SelectedValue);
-
-                if (RamoSeleccionado == 106 && Excluir == 2)
-                {
-
-                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
-                    int? _Subramo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
-                    int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
-                    int? _ValidarBalance = ddlValidarBalance.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalance.SelectedValue) : new Nullable<int>();
-                    string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
-                    string _CodSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
-                    string _CodIntermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? null : txtFCodIntermediario.Text.Trim();
-
-                    var Exportar = (from n in Objdata.Value.ReporteRenovacionPoliza(
-                        Convert.ToDateTime(txtFechaDesde.Text),
-                        Convert.ToDateTime(txtFechaHAsta.Text),
-                        _Ramo,
-                        _Subramo,
-                        _Poliza,
-                        null,
-                        _Oficina,
-                        _CodSupervisor,
-                        _CodIntermediario,
-                        _ValidarBalance,
-                        2)
-                                    select new
-                                    {
-                                        Poliza = n.Poliza,
-                                        Cotizacion = n.Cotizacion,
-                                        Estatus = n.Estatus,
-                                        Prima = n.Prima,
-                                        SumaAsegurada = n.SumaAsegurada,
-                                        Ramo = n.Ramo,
-                                        SubRamo = n.SubRamo,
-                                        Asegurado = n.Asegurado,
-                                        TelefonoResidencia = n.TelefonoResidencia,
-                                        Celular = n.Celular,
-                                        TelefonoOficina = n.TelefonoOficina,
-                                        Items = n.Items,
-                                        FechaInicioVigencia = n.FechaInicioVigencia,
-                                        FechaFinVigencia = n.FechaFinVigencia,
-                                        Supervisor = n.Supervisor,
-                                        Intermediario = n.Intermediario,
-                                        TipoVehiculo = n.TipoVehiculo,
-                                        Marca = n.Marca,
-                                        Modelo = n.Modelo,
-                                        Capacidad = n.Capacidad,
-                                        Ano = n.Ano,
-                                        Color = n.Color,
-                                        Chasis = n.Chasis,
-                                        Placa = n.Placa,
-                                        Uso = n.Uso,
-                                        ValorVehiculo = n.ValorVehiculo,
-                                        NombreAsegurado = n.NombreAsegurado,
-                                        Fianza = n.Fianza,
-                                        Oficina = n.Oficina,
-                                        Facturado = n.Facturado,
-                                        Cobrado = n.Cobrado,
-                                        Balance = n.Balance
-                                    }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Renovacion", Exportar);
-                }
-                else
-                {
-
-                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
-                    int? _Subramo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
-                    int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
-                    int? _ValidarBalance = ddlValidarBalance.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalance.SelectedValue) : new Nullable<int>();
-                    string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
-                    string _CodSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
-                    string _CodIntermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? null : txtFCodIntermediario.Text.Trim();
-
-                    var Exportar = (from n in Objdata.Value.ReporteRenovacionPoliza(
-                        Convert.ToDateTime(txtFechaDesde.Text),
-                        Convert.ToDateTime(txtFechaHAsta.Text),
-                        _Ramo,
-                        _Subramo,
-                        _Poliza,
-                        null,
-                        _Oficina,
-                        _CodSupervisor,
-                        _CodIntermediario,
-                        _ValidarBalance,
-                        1)
-                                    select new
-                                    {
-                                        Poliza = n.Poliza,
-                                        Cotizacion = n.Cotizacion,
-                                        Estatus = n.Estatus,
-                                        Prima = n.Prima,
-                                        SumaAsegurada = n.SumaAsegurada,
-                                        Ramo = n.Ramo,
-                                        SubRamo = n.SubRamo,
-                                        Asegurado = n.Asegurado,
-                                        TelefonoResidencia = n.TelefonoResidencia,
-                                        Celular = n.Celular,
-                                        TelefonoOficina = n.TelefonoOficina,
-                                        Items = n.Items,
-                                        FechaInicioVigencia = n.FechaInicioVigencia,
-                                        FechaFinVigencia = n.FechaFinVigencia,
-                                        Supervisor = n.Supervisor,
-                                        Intermediario = n.Intermediario,
-                                        TipoVehiculo = n.TipoVehiculo,
-                                        Marca = n.Marca,
-                                        Modelo = n.Modelo,
-                                        Capacidad = n.Capacidad,
-                                        Ano = n.Ano,
-                                        Color = n.Color,
-                                        Chasis = n.Chasis,
-                                        Placa = n.Placa,
-                                        Uso = n.Uso,
-                                        ValorVehiculo = n.ValorVehiculo,
-                                        NombreAsegurado = n.NombreAsegurado,
-                                        Fianza = n.Fianza,
-                                        Oficina = n.Oficina,
-                                        Facturado = n.Facturado,
-                                        Cobrado = n.Cobrado,
-                                        Balance = n.Balance
-                                    }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Renovacion", Exportar);
-                }
-            }
-            catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "ErrorConsulta", "ErrorConsulta();", true); }
+           
         }
 
 
@@ -1334,45 +1209,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnGestion_Click(object sender, EventArgs e)
         {
-           
 
-           
-            var PolizaSeleccionadaGestionCobros = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfPolizaSeleccionadaGestionCobros = ((HiddenField)PolizaSeleccionadaGestionCobros.FindControl("hfPolizaGestionCobros")).Value.ToString();
-
-            var FechaFinVigenciaSeleccionadaGestionCobros = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfFechaFinVigenciaSeleccionadaGestionCObros = ((HiddenField)FechaFinVigenciaSeleccionadaGestionCobros.FindControl("hfFechaFinVigenciaGestionCobros")).Value.ToString();
-
-            lbPolizaSeleccionada.Text = hfPolizaSeleccionadaGestionCobros;
-            lbFinVigenciaSeleccionada.Text = hfFechaFinVigenciaSeleccionadaGestionCObros;
-
-            SacarInformacionPoliza(hfPolizaSeleccionadaGestionCobros);
-            CurrentPage = 0; 
-            MostrarComentariosPoliza(hfPolizaSeleccionadaGestionCobros);
-
-
-            
-            var ValidarComentarioPoliza = ObjDataConsulta.Value.BuscarComentariosAgregadosPoliza(
-                new Nullable<decimal>(),
-                hfPolizaSeleccionadaGestionCobros,
-                null,
-                null,
-                null,
-                hfFechaFinVigenciaSeleccionadaGestionCObros);
-            if (ValidarComentarioPoliza.Count() < 1) {
-                CargarLosEstatusDeLlamada();
-                CargarLosConceptosDeLlamada();
-            }
-            else {
-                foreach (var n in ValidarComentarioPoliza) {
-                    CargarLosEstatusDeLlamada();
-                    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarEstatusLLamadaGestionCobros, n.IdEstatusLlamada.ToString());
-                    CargarLosConceptosDeLlamada();
-                    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarConceptoGestionCobros, n.IdConceptoLlamada.ToString());
-                }
-            }
-            DivBloquePrincipal.Visible = false;
-            DivGestionCobros.Visible = true;
         }
 
         protected void ddlSeleccionarEstatusLLamadaGestionCobros_SelectedIndexChanged(object sender, EventArgs e)
@@ -1420,36 +1257,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            ProcesarInformacionComentarios(
-                lbPolizaSeleccionada.Text,
-                lbFinVigenciaSeleccionada.Text,
-                "INSERT");
-            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
-            ProcesarInformacionRegistrosGuardados();
+           
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            DivGestionCobros.Visible = false;
-            DivBloquePrincipal.Visible = true;
+          
         }
 
         protected void btnGestionarPolizasNoContactadas_Click(object sender, EventArgs e)
         {
-            var NumeroRegistroSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfNumeroRegistroSeleccionado = ((HiddenField)NumeroRegistroSeleccionado.FindControl("hfNumeroRegistroGestion")).Value.ToString();
-
-            var PolizaSeleccionada = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfPolizaSeleccionad = ((HiddenField)PolizaSeleccionada.FindControl("hfPolizaGestion")).Value.ToString();
-
-            var EstatusSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfEstatusSeleccionado = ((HiddenField)EstatusSeleccionado.FindControl("hfEstatusGEstion")).Value.ToString();
-
-            
-            //CAMBIAMOS EL ESTATUS DEL REGISTRO
-            ProcesarInformacionPolizasAvisoGestionCobros(Convert.ToDecimal(hfNumeroRegistroSeleccionado), hfPolizaSeleccionad, hfEstatusSeleccionado.ToString(),1,1, "UPDATE");
-            CurrentPage = 0;
-            MostrarListadoGestionCobros();
+           
 
         }
 
@@ -1493,13 +1311,250 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnBuscarPolizaGestionCobros_Click(object sender, EventArgs e)
         {
-            CurrentPage = 0;
-            MostrarListadoGestionCobros();
+           
         }
 
         protected void btnActualizarEstadistica_Click(object sender, ImageClickEventArgs e)
         {
             ActualizarEstadistica();
+        }
+
+        protected void btnBuscarPolizaGestionCobrosNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarListadoGestionCobros();
+        }
+
+        protected void btnConsultarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHAsta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "ErrorConsulta", "ErrorConsulta();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeVacio", "FechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHAsta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaHastaVacio", "FechaHastaVacio();", true);
+                }
+            }
+            else
+            {
+                CurrentPage = 0;
+                MostrarListadoRenovaciones();
+            }
+        }
+
+        protected void btnExportarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                int RamoSeleccionado = Convert.ToInt32(ddlSeleccionarRamo.SelectedValue);
+                int Excluir = Convert.ToInt32(ddlExcluirMotorew.SelectedValue);
+
+                if (RamoSeleccionado == 106 && Excluir == 2)
+                {
+
+                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                    int? _Subramo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+                    int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                    int? _ValidarBalance = ddlValidarBalance.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalance.SelectedValue) : new Nullable<int>();
+                    string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+                    string _CodSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+                    string _CodIntermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? null : txtFCodIntermediario.Text.Trim();
+
+                    var Exportar = (from n in Objdata.Value.ReporteRenovacionPoliza(
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHAsta.Text),
+                        _Ramo,
+                        _Subramo,
+                        _Poliza,
+                        null,
+                        _Oficina,
+                        _CodSupervisor,
+                        _CodIntermediario,
+                        _ValidarBalance,
+                        2)
+                                    select new
+                                    {
+                                        Poliza = n.Poliza,
+                                        Cotizacion = n.Cotizacion,
+                                        Estatus = n.Estatus,
+                                        Prima = n.Prima,
+                                        SumaAsegurada = n.SumaAsegurada,
+                                        Ramo = n.Ramo,
+                                        SubRamo = n.SubRamo,
+                                        Asegurado = n.Asegurado,
+                                        TelefonoResidencia = n.TelefonoResidencia,
+                                        Celular = n.Celular,
+                                        TelefonoOficina = n.TelefonoOficina,
+                                        Items = n.Items,
+                                        FechaInicioVigencia = n.FechaInicioVigencia,
+                                        FechaFinVigencia = n.FechaFinVigencia,
+                                        Supervisor = n.Supervisor,
+                                        Intermediario = n.Intermediario,
+                                        TipoVehiculo = n.TipoVehiculo,
+                                        Marca = n.Marca,
+                                        Modelo = n.Modelo,
+                                        Capacidad = n.Capacidad,
+                                        Ano = n.Ano,
+                                        Color = n.Color,
+                                        Chasis = n.Chasis,
+                                        Placa = n.Placa,
+                                        Uso = n.Uso,
+                                        ValorVehiculo = n.ValorVehiculo,
+                                        NombreAsegurado = n.NombreAsegurado,
+                                        Fianza = n.Fianza,
+                                        Oficina = n.Oficina,
+                                        Facturado = n.Facturado,
+                                        Cobrado = n.Cobrado,
+                                        Balance = n.Balance
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Renovacion", Exportar);
+                }
+                else
+                {
+
+                    int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                    int? _Subramo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+                    int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
+                    int? _ValidarBalance = ddlValidarBalance.SelectedValue != "-1" ? Convert.ToInt32(ddlValidarBalance.SelectedValue) : new Nullable<int>();
+                    string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+                    string _CodSupervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? null : txtCodigoSupervisor.Text.Trim();
+                    string _CodIntermediario = string.IsNullOrEmpty(txtFCodIntermediario.Text.Trim()) ? null : txtFCodIntermediario.Text.Trim();
+
+                    var Exportar = (from n in Objdata.Value.ReporteRenovacionPoliza(
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHAsta.Text),
+                        _Ramo,
+                        _Subramo,
+                        _Poliza,
+                        null,
+                        _Oficina,
+                        _CodSupervisor,
+                        _CodIntermediario,
+                        _ValidarBalance,
+                        1)
+                                    select new
+                                    {
+                                        Poliza = n.Poliza,
+                                        Cotizacion = n.Cotizacion,
+                                        Estatus = n.Estatus,
+                                        Prima = n.Prima,
+                                        SumaAsegurada = n.SumaAsegurada,
+                                        Ramo = n.Ramo,
+                                        SubRamo = n.SubRamo,
+                                        Asegurado = n.Asegurado,
+                                        TelefonoResidencia = n.TelefonoResidencia,
+                                        Celular = n.Celular,
+                                        TelefonoOficina = n.TelefonoOficina,
+                                        Items = n.Items,
+                                        FechaInicioVigencia = n.FechaInicioVigencia,
+                                        FechaFinVigencia = n.FechaFinVigencia,
+                                        Supervisor = n.Supervisor,
+                                        Intermediario = n.Intermediario,
+                                        TipoVehiculo = n.TipoVehiculo,
+                                        Marca = n.Marca,
+                                        Modelo = n.Modelo,
+                                        Capacidad = n.Capacidad,
+                                        Ano = n.Ano,
+                                        Color = n.Color,
+                                        Chasis = n.Chasis,
+                                        Placa = n.Placa,
+                                        Uso = n.Uso,
+                                        ValorVehiculo = n.ValorVehiculo,
+                                        NombreAsegurado = n.NombreAsegurado,
+                                        Fianza = n.Fianza,
+                                        Oficina = n.Oficina,
+                                        Facturado = n.Facturado,
+                                        Cobrado = n.Cobrado,
+                                        Balance = n.Balance
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Renovacion", Exportar);
+                }
+            }
+            catch (Exception) { ClientScript.RegisterStartupScript(GetType(), "ErrorConsulta", "ErrorConsulta();", true); }
+        }
+
+        protected void btnGestionNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+
+
+
+            var PolizaSeleccionadaGestionCobros = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfPolizaSeleccionadaGestionCobros = ((HiddenField)PolizaSeleccionadaGestionCobros.FindControl("hfPolizaGestionCobros")).Value.ToString();
+
+            var FechaFinVigenciaSeleccionadaGestionCobros = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfFechaFinVigenciaSeleccionadaGestionCObros = ((HiddenField)FechaFinVigenciaSeleccionadaGestionCobros.FindControl("hfFechaFinVigenciaGestionCobros")).Value.ToString();
+
+            lbPolizaSeleccionada.Text = hfPolizaSeleccionadaGestionCobros;
+            lbFinVigenciaSeleccionada.Text = hfFechaFinVigenciaSeleccionadaGestionCObros;
+
+            SacarInformacionPoliza(hfPolizaSeleccionadaGestionCobros);
+            CurrentPage = 0;
+            MostrarComentariosPoliza(hfPolizaSeleccionadaGestionCobros);
+
+
+
+            var ValidarComentarioPoliza = ObjDataConsulta.Value.BuscarComentariosAgregadosPoliza(
+                new Nullable<decimal>(),
+                hfPolizaSeleccionadaGestionCobros,
+                null,
+                null,
+                null,
+                hfFechaFinVigenciaSeleccionadaGestionCObros);
+            if (ValidarComentarioPoliza.Count() < 1)
+            {
+                CargarLosEstatusDeLlamada();
+                CargarLosConceptosDeLlamada();
+            }
+            else
+            {
+                foreach (var n in ValidarComentarioPoliza)
+                {
+                    CargarLosEstatusDeLlamada();
+                    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarEstatusLLamadaGestionCobros, n.IdEstatusLlamada.ToString());
+                    CargarLosConceptosDeLlamada();
+                    UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarConceptoGestionCobros, n.IdConceptoLlamada.ToString());
+                }
+            }
+            DivBloquePrincipal.Visible = false;
+            DivGestionCobros.Visible = true;
+        }
+
+        protected void btnGuardarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            ProcesarInformacionComentarios(
+               lbPolizaSeleccionada.Text,
+               lbFinVigenciaSeleccionada.Text,
+               "INSERT");
+            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
+            ProcesarInformacionRegistrosGuardados();
+        }
+
+        protected void btnVolverNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            DivGestionCobros.Visible = false;
+            DivBloquePrincipal.Visible = true;
+        }
+
+        protected void btnGestionarPolizasNoContactadasNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            var NumeroRegistroSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfNumeroRegistroSeleccionado = ((HiddenField)NumeroRegistroSeleccionado.FindControl("hfNumeroRegistroGestion")).Value.ToString();
+
+            var PolizaSeleccionada = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfPolizaSeleccionad = ((HiddenField)PolizaSeleccionada.FindControl("hfPolizaGestion")).Value.ToString();
+
+            var EstatusSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfEstatusSeleccionado = ((HiddenField)EstatusSeleccionado.FindControl("hfEstatusGEstion")).Value.ToString();
+
+
+            //CAMBIAMOS EL ESTATUS DEL REGISTRO
+            ProcesarInformacionPolizasAvisoGestionCobros(Convert.ToDecimal(hfNumeroRegistroSeleccionado), hfPolizaSeleccionad, hfEstatusSeleccionado.ToString(), 1, 1, "UPDATE");
+            CurrentPage = 0;
+            MostrarListadoGestionCobros();
         }
 
         protected void LinkUltimo_Click(object sender, EventArgs e)
