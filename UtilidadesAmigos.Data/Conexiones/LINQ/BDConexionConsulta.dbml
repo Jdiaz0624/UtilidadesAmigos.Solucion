@@ -289,4 +289,33 @@
       <Column Name="Placa" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_GENERAR_REPORTE_GESTION_COBROS_FINAL" Method="SP_GENERAR_REPORTE_GESTION_COBROS_FINAL">
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="IdUsuarioCreo" Parameter="idUsuarioCreo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="FechaProcesoDesde" Parameter="fechaProcesoDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaProcesoHasta" Parameter="fechaProcesoHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="UsuarioGenera" Parameter="usuarioGenera" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="NOLLevaRangoFecha" Parameter="nOLLevaRangoFecha" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="SP_GENERAR_REPORTE_GESTION_COBROS_FINALResult">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CreadoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FechaProceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="IdEstatusLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EstatusLlamada" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdConceptoLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ConceptoLlamada" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="FechaFinVigencia" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NumeroSeguimiento" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="ValidadoHAsta" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="NoLLevaRangoFecha0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NoLlevaRangoFecha" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -674,16 +674,49 @@ namespace UtilidadesAmigos.Solucion.Paginas
             decimal IdUsuarioGenera = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
             bool _NollevaRangoFecha = cbNoAgregarRangoFechaReporte.Checked;
 
-            ReportDocument ReporteGestion = new ReportDocument();
-            ReporteGestion.Load(RutaReporte);
-            ReporteGestion.Refresh();
+            if (rbFormatoExcelPlanoGestion.Checked == true) {
 
-            ReporteGestion.SetParameterValue("@Poliza", _PolizaFiltro);
-            ReporteGestion.SetParameterValue("@IdUsuarioCreo", _UsuarioCreo);
-            ReporteGestion.SetParameterValue("@FechaProcesoDesde", _FechaDesde);
-            ReporteGestion.SetParameterValue("@FechaProcesoHasta", _FechaHasta);
-            ReporteGestion.SetParameterValue("@UsuarioGenera", IdUsuarioGenera);
-            ReporteGestion.SetParameterValue("@NOLLevaRangoFecha", _NollevaRangoFecha);
+                var Exportar = (from n in ObjDataConsulta.Value.ReporteGestionCObroPlano(
+                    _PolizaFiltro,
+                    _UsuarioCreo,
+                    _FechaDesde,
+                    _FechaHasta,
+                    IdUsuarioGenera,
+                    _NollevaRangoFecha)
+                                select new
+                                {
+                                    Poliza = n.Poliza,
+                                    Comentario = n.Comentario,
+                                    CreadoPor = n.CreadoPor,
+                                    Fecha = n.Fecha,
+                                    Hora = n.Hora,
+                                    Estatus = n.EstatusLlamada,
+                                    Concepto = n.ConceptoLlamada,
+                                    Fin_Vigencia = n.FechaFinVigencia,
+                                    Secuencia = n.NumeroSeguimiento,
+
+                                }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(NombreReporte, Exportar);
+                
+            }
+            else {
+                ReportDocument ReporteGestion = new ReportDocument();
+                ReporteGestion.Load(RutaReporte);
+                ReporteGestion.Refresh();
+
+                ReporteGestion.SetParameterValue("@Poliza", _PolizaFiltro);
+                ReporteGestion.SetParameterValue("@IdUsuarioCreo", _UsuarioCreo);
+                ReporteGestion.SetParameterValue("@FechaProcesoDesde", _FechaDesde);
+                ReporteGestion.SetParameterValue("@FechaProcesoHasta", _FechaHasta);
+                ReporteGestion.SetParameterValue("@UsuarioGenera", IdUsuarioGenera);
+                ReporteGestion.SetParameterValue("@NOLLevaRangoFecha", _NollevaRangoFecha);
+
+                ReporteGestion.SetDatabaseLogon(UsuarioBD, ClaveBD);
+
+                if (rbFormatoPDFGestion.Checked == true) { ReporteGestion.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte); }
+                else if (rbFormatoExcelGestion.Checked == true) { ReporteGestion.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte); }
+            }
+
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -1709,7 +1742,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnReporteGestionCobros_Click(object sender, ImageClickEventArgs e)
         {
-            if (cbNoAgregarRangoFechaReporte.Checked == true) { }
+            if (cbNoAgregarRangoFechaReporte.Checked == true) { GenerarReporteGestionCobros(); }
             else {
 
                 if (string.IsNullOrEmpty(txtFechaDesdeReporte.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaReporte.Text.Trim())) {
@@ -1717,7 +1750,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     if (string.IsNullOrEmpty(txtFechaDesdeReporte.Text.Trim())) { ClientScript.RegisterStartupScript(GetType(), "FechaDesdeReporteVacio()", "FechaDesdeReporteVacio();", true); }
                     if (string.IsNullOrEmpty(txtFechaHastaReporte.Text.Trim())) { ClientScript.RegisterStartupScript(GetType(), "FechaHastaReportevacio()", "FechaHastaReportevacio();", true); }
                 }
-                else { }
+                else {
+                    GenerarReporteGestionCobros();
+                }
             }
         }
 

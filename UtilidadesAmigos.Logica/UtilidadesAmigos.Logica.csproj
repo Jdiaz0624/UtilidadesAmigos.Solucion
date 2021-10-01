@@ -177,6 +177,7 @@
     <Compile Include="Entidades\Consulta\EBuscarInformacionPolizasGestionCobros.cs" />
     <Compile Include="Entidades\Consulta\EComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Consulta\EConceptoLLamadas.cs" />
+    <Compile Include="Entidades\Consulta\EGenerarReporteCobroFinal.cs" />
     <Compile Include="Entidades\Consulta\EPolizasAvisoGestionCobros.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionReporteComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionArchivo.cs" />

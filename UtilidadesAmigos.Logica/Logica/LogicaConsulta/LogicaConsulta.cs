@@ -425,6 +425,36 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                            }).ToList();
             return Listado;
         }
+
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EGenerarReporteCobroFinal> ReporteGestionCObroPlano(string Poliza = null, decimal? IdUsuarioCreo = null, DateTime? FechaProcesoDesde = null, DateTime? FechaProcesoHasta = null, decimal? UsuarioGenera = null, bool? NOLLevaRangoFecha = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var ExcelPlano = (from n in ObjData.SP_GENERAR_REPORTE_GESTION_COBROS_FINAL(Poliza, IdUsuarioCreo, FechaProcesoDesde, FechaProcesoHasta, UsuarioGenera, NOLLevaRangoFecha)
+                              select new UtilidadesAmigos.Logica.Entidades.Consulta.EGenerarReporteCobroFinal
+                              {
+                                  ID=n.ID,
+                                  Poliza=n.Poliza,
+                                  Comentario=n.Comentario,
+                                  IdUsuario=n.IdUsuario,
+                                  CreadoPor=n.CreadoPor,
+                                  FechaProceso=n.FechaProceso,
+                                  Fecha=n.Fecha,
+                                  Hora=n.Hora,
+                                  IdEstatusLlamada=n.IdEstatusLlamada,
+                                  EstatusLlamada=n.EstatusLlamada,
+                                  IdConceptoLlamada=n.IdConceptoLlamada,
+                                  ConceptoLlamada=n.ConceptoLlamada,
+                                  FechaFinVigencia=n.FechaFinVigencia,
+                                  NumeroSeguimiento=n.NumeroSeguimiento,
+                                  ValidadoDesde=n.ValidadoDesde,
+                                  ValidadoHAsta=n.ValidadoHAsta,
+                                  NoLLevaRangoFecha0=n.NoLLevaRangoFecha0,
+                                  NoLlevaRangoFecha=n.NoLlevaRangoFecha,
+                                  GeneradoPor=n.GeneradoPor
+                              }).ToList();
+            return ExcelPlano;
+        }
         #endregion
 
     }
