@@ -85,6 +85,7 @@
 
           <div align="center">
                <asp:ImageButton ID="btnActualizarEstadistica" runat="server" CssClass="BotonSolicitud" OnClick="btnActualizarEstadistica_Click" ToolTip="Actualizar" ImageUrl="~/Imagenes/auto.png" />
+              <asp:ImageButton ID="btnReportePolizasGestionCobros" runat="server" CssClass="BotonImagen" OnClick="btnReportePolizasGestionCobros_Click" ToolTip="Exportar Información" ImageUrl="~/Imagenes/pdf.png" />
               <br />
            <asp:Label ID="lbCantidadPolizasPendientesGestionTitulo" runat="server" Text="Cantidad de Polizas Pendientes (" CssClass="Letranegrita"></asp:Label>
            <asp:Label ID="lbCantidadPolizasPendientesVariable" runat="server" Text="0" ForeColor="Red" CssClass="Letranegrita"></asp:Label>
@@ -121,6 +122,7 @@
                                    <asp:TextBox ID="txtPolizaConsultaGestionCobro" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                          <%--          <asp:Button ID="btnBuscarPolizaGestionCobros" runat="server" Text="Buscar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Buscar Registros" OnClick="btnBuscarPolizaGestionCobros_Click" />--%>
                                    <asp:ImageButton ID="btnBuscarPolizaGestionCobrosNuevo" runat="server" CssClass="BotonImagen" OnClick="btnBuscarPolizaGestionCobrosNuevo_Click" ToolTip="Buscar Información" ImageUrl="~/Imagenes/Buscar.png" />
+                                   
                                </div>
                            </div>
            <br />
@@ -128,6 +130,7 @@
                                <table class="table table-hover">
                                    <thead>
                                        <tr>
+
                                            <th style="width:10%" align="left"> POLIZA </th>
                                            <th style="width:10%" align="left"> ESTATUS </th>
                                            <th style="width:10%" align="left"> CONCEPTO </th>

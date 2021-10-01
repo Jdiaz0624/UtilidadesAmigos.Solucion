@@ -678,7 +678,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarOficinaEstadistica();
                 ValidarBalanceEstadistica();
                 ExcluirMotoresEstadistica();
-                rbRegistrosPendientesGestionCobros.Checked = true;               
+                rbTodosLosRegistrosGestionCobros.Checked = true;               
                 MostrarListadoGestionCobros();
 
                 decimal IdUsuarioProcesa = (decimal)Session["IdUsuario"];
@@ -1623,7 +1623,41 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnEliminarRegistrosPolizasGestionadas_Click(object sender, ImageClickEventArgs e)
         {
+            var NumeroRegistroSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfNumeroRegistroSeleccionado = ((HiddenField)NumeroRegistroSeleccionado.FindControl("hfNumeroRegistroGestion")).Value.ToString();
 
+            var PolizaSeleccionada = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfPolizaSeleccionada = ((HiddenField)PolizaSeleccionada.FindControl("hfPolizaGestion")).Value.ToString();
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionPolizasAvisosGestionCobros Eliminar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionPolizasAvisosGestionCobros(
+                Convert.ToDecimal(hfNumeroRegistroSeleccionado),
+                hfPolizaSeleccionada, 0, 0, "", 0, DateTime.Now, "", "", false, "DELETE");
+            Eliminar.ProcesarInformacion();
+            MostrarListadoGestionCobros();
+        }
+
+        protected void btnReportePolizasGestionCobros_Click(object sender, ImageClickEventArgs e)
+        {
+            bool? _Estatus = false;
+            if (rbTodosLosRegistrosGestionCobros.Checked == true) { _Estatus = new Nullable<bool>(); }
+            else if (rbRegistrosProcesadosGestionCobros.Checked == true) { _Estatus = true; }
+            else if (rbRegistrosPendientesGestionCobros.Checked == true) { _Estatus = false; }
+            else { _Estatus = new Nullable<bool>(); }
+
+            string _Poliza = string.IsNullOrEmpty(txtPolizaConsultaGestionCobro.Text.Trim()) ? null : txtPolizaConsultaGestionCobro.Text.Trim();
+            decimal? _IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+
+            ReportDocument ReporteGestion = new ReportDocument();
+            ReporteGestion.Load(Server.MapPath("ReportePolizasAvisoGestionCobros.rpt"));
+            ReporteGestion.Refresh();
+
+            ReporteGestion.SetParameterValue("@Estatus", _Estatus);
+            ReporteGestion.SetParameterValue("@Poliza", _Poliza);
+            ReporteGestion.SetParameterValue("@UsuarioGenera", _IdUsuario);
+
+            ReporteGestion.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+            ReporteGestion.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Reporte Polizas Aviso Gestion");
         }
 
         protected void LinkUltimo_Click(object sender, EventArgs e)

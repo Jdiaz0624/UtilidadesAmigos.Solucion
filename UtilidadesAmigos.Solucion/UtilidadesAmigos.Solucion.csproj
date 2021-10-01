@@ -169,6 +169,7 @@
     <Content Include="Imagenes\login.jpg" />
     <Content Include="Imagenes\Logo.ico" />
     <Content Include="Imagenes\modificar.png" />
+    <Content Include="Imagenes\pdf.png" />
     <Content Include="Imagenes\png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
     <Content Include="Imagenes\Procesar.png" />
     <Content Include="Imagenes\salvar.png" />
