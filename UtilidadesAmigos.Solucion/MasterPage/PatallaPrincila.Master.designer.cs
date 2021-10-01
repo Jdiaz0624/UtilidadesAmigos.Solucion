@@ -159,15 +159,6 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkConsultarInformacionAsegurado;
 
         /// <summary>
-        /// LinkGestionCObros control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkGestionCObros;
-
-        /// <summary>
         /// LinkProduccionIntermediarioSupervisor control.
         /// </summary>
         /// <remarks>
