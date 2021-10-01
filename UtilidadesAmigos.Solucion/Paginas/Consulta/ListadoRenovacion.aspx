@@ -64,7 +64,17 @@
                   $("#<%=txtFechaHAsta.ClientID%>").css("border-color", "red");
         }
 
+        function CamposFechaReporteVacios() {
+            alert("Los campos fecha son necesarios para generar este reporte o marcar el check para no utilizar fecha.");
+        }
 
+        function FechaDesdeReporteVacio() {
+            $("#<%=txtFechaDesdeReporte.ClientID%>").css("border-color", "red");
+        }
+
+        function FechaHastaReportevacio() {
+            $("#<%=txtFechaHastaReporte.ClientID%>").css("border-color", "red");
+        }
 
 
         function RegistrosPolizasARenovar() {
@@ -201,6 +211,7 @@
            <div class="form-check-inline">
                <div class="form-group form-check">
                    <asp:CheckBox ID="cbProcesarRegistros" runat="server" Text="Procesar Registros" CssClass="form-check-input Letranegrita" AutoPostBack="true" OnCheckedChanged="cbProcesarRegistros_CheckedChanged" ToolTip="Procesar Registros de las renovaciones" />
+                   <asp:CheckBox ID="cbGenerarReporteGestionCobros" runat="server" Text="Reporte de Gestión de Cobros" ToolTip="Generar Reporte de los comentarios de la gestion de cobro" CssClass="form-check-input Letranegrita" AutoPostBack="true" OnCheckedChanged="cbGenerarReporteGestionCobros_CheckedChanged" />
                </div>
            </div>
         <div class="form-row">
@@ -273,6 +284,45 @@
         </div>
         <!--FINALIZAMOS LOS BOTONES-->
         <br />
+            <!--REPORTE DE GESTION DE COBROS-->
+            <div id="DivReporteGestionCobros" runat="server" visible="false">
+                <div class="form-check-inline">
+                    <div class="form-group form-check">
+                        <asp:CheckBox ID="cbNoAgregarRangoFechaReporte" runat="server" CssClass="form-check-input Letranegrita" ToolTip="No Agregar Rango de fecha para el repore" Text="No Agregar Rango de Fecha" />
+                    </div>
+                </div>
+                <div class="form-check-inline">
+                    <div class="form-group form-check">
+                        <asp:Label ID="lbTipoFormatoReporteGEstion" runat="server" Text="Formato de Reporte: " CssClass="Letranegrita"></asp:Label>
+                        <asp:RadioButton ID="rbFormatoPDFGestion" runat="server" Text="PDF" ToolTip="Genear Reporte de Gestión de cobros en PDF" GroupName="ReporteGestion" CssClass="form-check-input" />
+                        <asp:RadioButton ID="rbFormatoExcelGestion" runat="server" Text="PDF" ToolTip="Genear Reporte de Gestión de cobros en EXCEL" GroupName="ReporteGestion" CssClass="form-check-input" />
+                        <asp:RadioButton ID="rbFormatoExcelPlanoGestion" runat="server" Text="EXCEL PLANO" ToolTip="Genear Reporte de Gestión de cobros en EXCEL sin formato" GroupName="ReporteGestion" CssClass="form-check-input" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <asp:Label ID="lbPolizaReporte" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
+                        <asp:TextBox ID="txtPolizaReporte" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                     <div class="form-group col-md-3">
+                        <asp:Label ID="lbFechaDesdeReporte" runat="server" Text="Fecha Desde" CssClass="Letranegrita"></asp:Label>
+                        <asp:TextBox ID="txtFechaDesdeReporte" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <asp:Label ID="lbFechaHastaReporte" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
+                        <asp:TextBox ID="txtFechaHastaReporte" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <asp:Label ID="lbSeleccionarUsuarioReporte" runat="server" Text="Seleccionar Usuario" CssClass="Letranegrita"></asp:Label>
+                        <asp:DropDownList ID="ddlSeleccionarUsuarioReporte" runat="server" ToolTip="Seleccionar usuario para filtrar en el reporte" CssClass="form-control"></asp:DropDownList>
+                    </div>
+                </div>
+
+                <div align="center">
+                    <asp:ImageButton ID="btnReporteGestionCobros" runat="server" ToolTip="Generar Reporte de comentarios de gestión de cobros" CssClass="BotonImagen" OnClick="btnReporteGestionCobros_Click" ImageUrl="~/Imagenes/Reporte.png" />
+                </div>
+                <br />
+            </div>
         <!--INICIO DEL GRID-->
         <div class="table-responsive mT20">
             <table class="table table-hover">

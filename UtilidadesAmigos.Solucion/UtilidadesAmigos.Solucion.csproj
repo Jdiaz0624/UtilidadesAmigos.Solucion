@@ -172,6 +172,7 @@
     <Content Include="Imagenes\pdf.png" />
     <Content Include="Imagenes\png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
     <Content Include="Imagenes\Procesar.png" />
+    <Content Include="Imagenes\Reporte.png" />
     <Content Include="Imagenes\salvar.png" />
     <Content Include="Imagenes\Seguro de Ley.jpg" />
     <Content Include="Imagenes\SeguroFull.jpg" />

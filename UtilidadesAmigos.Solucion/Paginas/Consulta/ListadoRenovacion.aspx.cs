@@ -654,6 +654,38 @@ namespace UtilidadesAmigos.Solucion.Paginas
             lbCantidadPolizasProcesadasVariableGestion.Text = Procesados.ToString("N0");
         }
 
+        private void CargarUsuariosGestionCobros() {
+
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarUsuarioReporte, Objdata.Value.BuscaListas("USUARIOGESTIONCOBRO", null, null), true);
+        }
+
+        private void GenerarReporteGestionCobros() {
+
+            
+            string RutaReporte = Server.MapPath("ReporteGestionCobrosFinal.rpt");
+            string UsuarioBD = "sa";
+            string ClaveBD = "Pa$$W0rd";
+            string NombreReporte = "Reporte de Gestion de Cobros";
+
+            string _PolizaFiltro = string.IsNullOrEmpty(txtPolizaReporte.Text.Trim()) ? null : txtPolizaReporte.Text.Trim();
+            decimal? _UsuarioCreo = ddlSeleccionarUsuarioReporte.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarUsuarioReporte.SelectedValue) : new Nullable<decimal>();
+            DateTime? _FechaDesde = cbNoAgregarRangoFechaReporte.Checked == false ? Convert.ToDateTime(txtFechaDesdeReporte.Text) : new Nullable<DateTime>();
+            DateTime? _FechaHasta = cbNoAgregarRangoFechaReporte.Checked == false ? Convert.ToDateTime(txtFechaHastaReporte.Text) : new Nullable<DateTime>();
+            decimal IdUsuarioGenera = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+            bool _NollevaRangoFecha = cbNoAgregarRangoFechaReporte.Checked;
+
+            ReportDocument ReporteGestion = new ReportDocument();
+            ReporteGestion.Load(RutaReporte);
+            ReporteGestion.Refresh();
+
+            ReporteGestion.SetParameterValue("@Poliza", _PolizaFiltro);
+            ReporteGestion.SetParameterValue("@IdUsuarioCreo", _UsuarioCreo);
+            ReporteGestion.SetParameterValue("@FechaProcesoDesde", _FechaDesde);
+            ReporteGestion.SetParameterValue("@FechaProcesoHasta", _FechaHasta);
+            ReporteGestion.SetParameterValue("@UsuarioGenera", IdUsuarioGenera);
+            ReporteGestion.SetParameterValue("@NOLLevaRangoFecha", _NollevaRangoFecha);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -1658,6 +1690,35 @@ namespace UtilidadesAmigos.Solucion.Paginas
             ReporteGestion.SetDatabaseLogon("sa", "Pa$$W0rd");
 
             ReporteGestion.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Reporte Polizas Aviso Gestion");
+        }
+
+        protected void cbGenerarReporteGestionCobros_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbGenerarReporteGestionCobros.Checked == true) {
+                DivReporteGestionCobros.Visible = true;
+                CargarUsuariosGestionCobros();
+                txtPolizaReporte.Text = string.Empty;
+                txtFechaDesdeReporte.Text = string.Empty;
+                txtFechaHastaReporte.Text = string.Empty;
+                rbFormatoPDFGestion.Checked = true;
+            }
+            else {
+                DivReporteGestionCobros.Visible = false;
+            }
+        }
+
+        protected void btnReporteGestionCobros_Click(object sender, ImageClickEventArgs e)
+        {
+            if (cbNoAgregarRangoFechaReporte.Checked == true) { }
+            else {
+
+                if (string.IsNullOrEmpty(txtFechaDesdeReporte.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaReporte.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "CamposFechaReporteVacios()", "CamposFechaReporteVacios();", true);
+                    if (string.IsNullOrEmpty(txtFechaDesdeReporte.Text.Trim())) { ClientScript.RegisterStartupScript(GetType(), "FechaDesdeReporteVacio()", "FechaDesdeReporteVacio();", true); }
+                    if (string.IsNullOrEmpty(txtFechaHastaReporte.Text.Trim())) { ClientScript.RegisterStartupScript(GetType(), "FechaHastaReportevacio()", "FechaHastaReportevacio();", true); }
+                }
+                else { }
+            }
         }
 
         protected void LinkUltimo_Click(object sender, EventArgs e)
