@@ -226,6 +226,7 @@
           <asp:LinkButton ID="LinkDependientes" runat="server" Text="Dependientes" OnClick="LinkDependientes_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="LinkCorreoElectronicos" runat="server" Visible="false" ForeColor="Red" Text="Correo Electronico" OnClick="LinkCorreoElectronicos_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="LinkMantenimientoPorcientoComisionPorDefecto" runat="server" Text="Porciento Comisión" OnClick="LinkMantenimientoPorcientoComisionPorDefecto_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+        <asp:LinkButton ID="LinkMantenimientoMonedas" runat="server" Text="Monedas" OnClick="LinkMantenimientoMonedas_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
     </div>
   </li>
 </ul>

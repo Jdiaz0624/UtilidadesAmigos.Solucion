@@ -1559,5 +1559,70 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
         }
         #endregion
 
+        #region MANTENIMIENTO DE MONEDAS
+        /// <summary>
+        /// Listado de Monedas
+        /// </summary>
+        /// <param name="CodigoMoneda"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EBuscaMonedas> BuscaMonedas(int? CodigoMoneda = null) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCAR_MONEDAS(CodigoMoneda)
+                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EBuscaMonedas
+                           {
+                               Codigo=n.Codigo,
+                               Descripcion=n.Descripcion,
+                               Sigla=n.Sigla,
+                               Tasa=n.Tasa,
+                               PrimaCobrar=n.PrimaCobrar
+                           }).ToList();
+            return Listado;
+        }
+
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMantenimientoTasaMoneda ModificarTasaMoneda(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMantenimientoTasaMoneda Item, string Accion) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMantenimientoTasaMoneda Mantenimiento = null;
+
+            var Moneda = Objdata.SP_MODIFICAR_TASA_MONEDA(
+                Item.Codigo,
+                Item.Prima,
+                Accion);
+            if (Moneda != null) {
+
+                Mantenimiento = (from n in Moneda
+                                 select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EMantenimientoTasaMoneda
+                                 {
+                                     Codigo = n.Codigo,
+                                     Descripcion = n.Descripcion,
+                                     Siglas = n.Siglas,
+                                     Prima = n.Prima,
+                                     Cuenta = n.Cuenta,
+                                     AuxiliarCuenta = n.AuxiliarCuenta,
+                                     CuentaIngreso = n.CuentaIngreso,
+                                     AuxiliarIngreso = n.AuxiliarIngreso,
+                                     CuentaEgreso = n.CuentaEgreso,
+                                     AuxiliarEgreso = n.AuxiliarEgreso,
+                                     UsuarioAdiciona = n.UsuarioAdiciona,
+                                     FechaAdiciona = n.FechaAdiciona,
+                                     UsuarioModifica = n.UsuarioModifica,
+                                     FechaModifica = n.FechaModifica,
+                                     TipoCompromiso = n.TipoCompromiso,
+                                     TipoCompromisoEgreso = n.TipoCompromisoEgreso,
+                                     TipoCompromisoIngreso = n.TipoCompromisoIngreso,
+                                     Origen = n.Origen,
+                                     MonedaBase = n.MonedaBase,
+                                     CuentaCobrar = n.CuentaCobrar,
+                                     AuxiliarCobrar = n.AuxiliarCobrar,
+                                     PrimaCobrar = n.PrimaCobrar
+                                 }).FirstOrDefault();
+            }
+            return Mantenimiento;
+        }
+        #endregion
+
     }
 }

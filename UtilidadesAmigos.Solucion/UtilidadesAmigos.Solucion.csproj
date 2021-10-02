@@ -217,6 +217,7 @@
     <Content Include="Paginas\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx" />
     <Content Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx" />
+    <Content Include="Paginas\Mantenimientos\MantenimientoMonedas.aspx" />
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
     <Content Include="Paginas\Procesos\AgregarItemsReclamos.aspx" />
     <Content Include="Paginas\Procesos\DatosPoliza.aspx" />
@@ -608,6 +609,13 @@
     </Compile>
     <Compile Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx.designer.cs">
       <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Mantenimientos\MantenimientoMonedas.aspx.cs">
+      <DependentUpon>MantenimientoMonedas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Mantenimientos\MantenimientoMonedas.aspx.designer.cs">
+      <DependentUpon>MantenimientoMonedas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Oficinas.aspx.cs">
       <DependentUpon>Oficinas.aspx</DependentUpon>

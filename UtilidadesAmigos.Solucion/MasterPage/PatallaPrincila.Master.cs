@@ -630,5 +630,16 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkMantenimientoMonedas_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null) {
+                Response.Redirect("~/Paginas/Mantenimientos/MantenimientoMonedas.aspx");
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }

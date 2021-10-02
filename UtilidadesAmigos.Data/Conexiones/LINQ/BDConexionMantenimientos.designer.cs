@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionMantenimientosDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString16, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
 		{
 			OnCreated();
 		}
@@ -474,6 +474,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, codigoIntermediario);
 			return ((ISingleResult<SP_BUSCA_MONTOS_SOLICITUD_CHEQUESResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_MONEDAS")]
+		public ISingleResult<SP_BUSCAR_MONEDASResult> SP_BUSCAR_MONEDAS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoMoneda", DbType="Int")] System.Nullable<int> codigoMoneda)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoMoneda);
+			return ((ISingleResult<SP_BUSCAR_MONEDASResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MODIFICAR_TASA_MONEDA")]
+		public ISingleResult<SP_MODIFICAR_TASA_MONEDAResult> SP_MODIFICAR_TASA_MONEDA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Codigo", DbType="Int")] System.Nullable<int> codigo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tasa", DbType="Decimal(20,2)")] System.Nullable<decimal> tasa, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigo, tasa, accion);
+			return ((ISingleResult<SP_MODIFICAR_TASA_MONEDAResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -14054,6 +14068,508 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Total != value))
 				{
 					this._Total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCAR_MONEDASResult
+	{
+		
+		private int _Codigo;
+		
+		private string _Descripcion;
+		
+		private string _Sigla;
+		
+		private System.Nullable<decimal> _Tasa;
+		
+		private System.Nullable<decimal> _PrimaCobrar;
+		
+		public SP_BUSCAR_MONEDASResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", DbType="Int NOT NULL")]
+		public int Codigo
+		{
+			get
+			{
+				return this._Codigo;
+			}
+			set
+			{
+				if ((this._Codigo != value))
+				{
+					this._Codigo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(50)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sigla", DbType="VarChar(10)")]
+		public string Sigla
+		{
+			get
+			{
+				return this._Sigla;
+			}
+			set
+			{
+				if ((this._Sigla != value))
+				{
+					this._Sigla = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tasa", DbType="Decimal(8,2)")]
+		public System.Nullable<decimal> Tasa
+		{
+			get
+			{
+				return this._Tasa;
+			}
+			set
+			{
+				if ((this._Tasa != value))
+				{
+					this._Tasa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimaCobrar", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> PrimaCobrar
+		{
+			get
+			{
+				return this._PrimaCobrar;
+			}
+			set
+			{
+				if ((this._PrimaCobrar != value))
+				{
+					this._PrimaCobrar = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MODIFICAR_TASA_MONEDAResult
+	{
+		
+		private System.Nullable<int> _Codigo;
+		
+		private string _Descripcion;
+		
+		private string _Siglas;
+		
+		private System.Nullable<decimal> _Prima;
+		
+		private string _Cuenta;
+		
+		private string _AuxiliarCuenta;
+		
+		private string _CuentaIngreso;
+		
+		private string _AuxiliarIngreso;
+		
+		private string _CuentaEgreso;
+		
+		private string _AuxiliarEgreso;
+		
+		private string _UsuarioAdiciona;
+		
+		private System.Nullable<System.DateTime> _FechaAdiciona;
+		
+		private string _UsuarioModifica;
+		
+		private System.Nullable<System.DateTime> _FechaModifica;
+		
+		private System.Nullable<int> _TipoCompromiso;
+		
+		private System.Nullable<int> _TipoCompromisoEgreso;
+		
+		private System.Nullable<int> _TipoCompromisoIngreso;
+		
+		private string _Origen;
+		
+		private System.Nullable<byte> _MonedaBase;
+		
+		private string _CuentaCobrar;
+		
+		private System.Nullable<int> _AuxiliarCobrar;
+		
+		private System.Nullable<decimal> _PrimaCobrar;
+		
+		public SP_MODIFICAR_TASA_MONEDAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", DbType="Int")]
+		public System.Nullable<int> Codigo
+		{
+			get
+			{
+				return this._Codigo;
+			}
+			set
+			{
+				if ((this._Codigo != value))
+				{
+					this._Codigo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(50)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Siglas", DbType="VarChar(10)")]
+		public string Siglas
+		{
+			get
+			{
+				return this._Siglas;
+			}
+			set
+			{
+				if ((this._Siglas != value))
+				{
+					this._Siglas = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prima", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Prima
+		{
+			get
+			{
+				return this._Prima;
+			}
+			set
+			{
+				if ((this._Prima != value))
+				{
+					this._Prima = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cuenta", DbType="VarChar(14)")]
+		public string Cuenta
+		{
+			get
+			{
+				return this._Cuenta;
+			}
+			set
+			{
+				if ((this._Cuenta != value))
+				{
+					this._Cuenta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuxiliarCuenta", DbType="VarChar(9)")]
+		public string AuxiliarCuenta
+		{
+			get
+			{
+				return this._AuxiliarCuenta;
+			}
+			set
+			{
+				if ((this._AuxiliarCuenta != value))
+				{
+					this._AuxiliarCuenta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CuentaIngreso", DbType="VarChar(14)")]
+		public string CuentaIngreso
+		{
+			get
+			{
+				return this._CuentaIngreso;
+			}
+			set
+			{
+				if ((this._CuentaIngreso != value))
+				{
+					this._CuentaIngreso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuxiliarIngreso", DbType="VarChar(9)")]
+		public string AuxiliarIngreso
+		{
+			get
+			{
+				return this._AuxiliarIngreso;
+			}
+			set
+			{
+				if ((this._AuxiliarIngreso != value))
+				{
+					this._AuxiliarIngreso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CuentaEgreso", DbType="VarChar(14)")]
+		public string CuentaEgreso
+		{
+			get
+			{
+				return this._CuentaEgreso;
+			}
+			set
+			{
+				if ((this._CuentaEgreso != value))
+				{
+					this._CuentaEgreso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuxiliarEgreso", DbType="VarChar(9)")]
+		public string AuxiliarEgreso
+		{
+			get
+			{
+				return this._AuxiliarEgreso;
+			}
+			set
+			{
+				if ((this._AuxiliarEgreso != value))
+				{
+					this._AuxiliarEgreso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioAdiciona", DbType="VarChar(50)")]
+		public string UsuarioAdiciona
+		{
+			get
+			{
+				return this._UsuarioAdiciona;
+			}
+			set
+			{
+				if ((this._UsuarioAdiciona != value))
+				{
+					this._UsuarioAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaAdiciona
+		{
+			get
+			{
+				return this._FechaAdiciona;
+			}
+			set
+			{
+				if ((this._FechaAdiciona != value))
+				{
+					this._FechaAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioModifica", DbType="VarChar(50)")]
+		public string UsuarioModifica
+		{
+			get
+			{
+				return this._UsuarioModifica;
+			}
+			set
+			{
+				if ((this._UsuarioModifica != value))
+				{
+					this._UsuarioModifica = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaModifica", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaModifica
+		{
+			get
+			{
+				return this._FechaModifica;
+			}
+			set
+			{
+				if ((this._FechaModifica != value))
+				{
+					this._FechaModifica = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoCompromiso", DbType="Int")]
+		public System.Nullable<int> TipoCompromiso
+		{
+			get
+			{
+				return this._TipoCompromiso;
+			}
+			set
+			{
+				if ((this._TipoCompromiso != value))
+				{
+					this._TipoCompromiso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoCompromisoEgreso", DbType="Int")]
+		public System.Nullable<int> TipoCompromisoEgreso
+		{
+			get
+			{
+				return this._TipoCompromisoEgreso;
+			}
+			set
+			{
+				if ((this._TipoCompromisoEgreso != value))
+				{
+					this._TipoCompromisoEgreso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoCompromisoIngreso", DbType="Int")]
+		public System.Nullable<int> TipoCompromisoIngreso
+		{
+			get
+			{
+				return this._TipoCompromisoIngreso;
+			}
+			set
+			{
+				if ((this._TipoCompromisoIngreso != value))
+				{
+					this._TipoCompromisoIngreso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Origen", DbType="VarChar(1)")]
+		public string Origen
+		{
+			get
+			{
+				return this._Origen;
+			}
+			set
+			{
+				if ((this._Origen != value))
+				{
+					this._Origen = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MonedaBase", DbType="TinyInt")]
+		public System.Nullable<byte> MonedaBase
+		{
+			get
+			{
+				return this._MonedaBase;
+			}
+			set
+			{
+				if ((this._MonedaBase != value))
+				{
+					this._MonedaBase = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CuentaCobrar", DbType="VarChar(50)")]
+		public string CuentaCobrar
+		{
+			get
+			{
+				return this._CuentaCobrar;
+			}
+			set
+			{
+				if ((this._CuentaCobrar != value))
+				{
+					this._CuentaCobrar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuxiliarCobrar", DbType="Int")]
+		public System.Nullable<int> AuxiliarCobrar
+		{
+			get
+			{
+				return this._AuxiliarCobrar;
+			}
+			set
+			{
+				if ((this._AuxiliarCobrar != value))
+				{
+					this._AuxiliarCobrar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimaCobrar", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> PrimaCobrar
+		{
+			get
+			{
+				return this._PrimaCobrar;
+			}
+			set
+			{
+				if ((this._PrimaCobrar != value))
+				{
+					this._PrimaCobrar = value;
 				}
 			}
 		}
