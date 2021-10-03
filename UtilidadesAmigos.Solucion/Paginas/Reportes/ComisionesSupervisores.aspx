@@ -28,6 +28,11 @@
             background-color: dodgerblue;
             color: white;
         }
+            .BotonImagen {
+            
+                width:50px;
+                height:50px;
+            }
     </style>
 
     <script type="text/javascript">
@@ -107,9 +112,12 @@
         </div>
 
         <div align="center">
-            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros Por Pantalla" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click" />
-             <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar Listado a Excel" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnExportar_Click" />
-             <asp:Button ID="btnReporte" runat="server" Text="Reporte" ToolTip="Generar Reporte de Comisiones" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnReporte_Click" />
+       
+
+            <asp:ImageButton ID="btnConsultarNuevo" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" OnClick="btnConsultarNuevo_Click" ImageUrl="~/Imagenes/Buscar.png" />
+            <asp:ImageButton ID="btnExportarNuevo" runat="server" ToolTip="Exportar Información a Excel" CssClass="BotonImagen" OnClick="btnExportarNuevo_Click" ImageUrl="~/Imagenes/excel.png" />
+            <asp:ImageButton ID="btnReporteNuevo" runat="server" ToolTip="Generar Reporte" CssClass="BotonImagen" OnClick="btnReporteNuevo_Click" ImageUrl="~/Imagenes/Reporte.png" />
+            <br />
             <button type="button" id="btnCodigosPermitidos" class="btn btn-outline-secondary btn-sm Custom" data-toggle="modal" data-target=".CodigosPermitidos">Codigos</button>
             <br />
             <asp:Label ID="lbCantidadRegistrosEncontradosTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>

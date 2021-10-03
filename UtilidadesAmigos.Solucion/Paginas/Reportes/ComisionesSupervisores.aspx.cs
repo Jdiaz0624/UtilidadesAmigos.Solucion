@@ -507,145 +507,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim())) {
-                ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
-
-                if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim())) {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
-                }
-                if (string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim())) {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
-                }
-            }
-            else {
-                ProcesarComisiones();
-                MostrarComisionesPantalla();
-            }
+            
         }
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
-            {
-                ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
-
-                if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
-                }
-                if (string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
-                }
-            }
-            else {
-                ProcesarComisiones();
-                decimal IdUsuario = (decimal)Session["IdUsuario"];
-                var BuscarInformacion = ObjDataReporte.Value.BuscarInformacionComisionSupervisorDetalle(IdUsuario);
-                if (BuscarInformacion.Count() < 1)
-                {
-                    var ExportarInformacion = (from n in "Informacion"
-                                               select new
-                                               {
-                                                   Poliza = "",
-                                                   Recibo = "",
-                                                   ConceptoPago = "",
-                                                   ReciboFormateado = "",
-                                                   Anulado = "",
-                                                   FechaPago = "",
-                                                   FechaPagoFormateado = "",
-                                                   TipoPago = "",
-                                                   CodigoCliente = "",
-                                                   NombreCliente = "",
-                                                   CodigoIntermediario = "",
-                                                   NombreIntermediario = "",
-                                                   CodigoSupervisor = "",
-                                                   NombreSupervisor = "",
-                                                   CodigoOficina = "",
-                                                   NombreOficina = "",
-                                                   Usuario = "",
-                                                   CodigoRamo = "",
-                                                   DescripcionRamo = "",
-                                                   CodigoMoneda = "",
-                                                   DescripcionMoneda = "",
-                                                   Bruto = "",
-                                                   Impuesto = "",
-                                                   Neto = "",
-                                                   ComisionPagar = "",
-                                                   Tasa = "",
-                                                   Pesos = "",
-                                                   ConceptoFactura = "",
-                                                   PorcientoComisionIntermediario = "",
-                                               }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Comisiones", ExportarInformacion);
-                }
-                else
-                {
-                    var ExportarInformacion = (from n in ObjDataReporte.Value.BuscarInformacionComisionSupervisorDetalle(IdUsuario)
-                                               select new
-                                               {
-                                                   Poliza = n.Poliza,
-                                                   Recibo = n.Recibo,
-                                                   ConceptoPago = n.ConceptoPago,
-                                                   ReciboFormateado = n.ReciboFormateado,
-                                                   Anulado = n.Anulado,
-                                                   FechaPago = n.FechaPago,
-                                                   FechaPagoFormateado = n.FechaPagoFormateado,
-                                                   TipoPago = n.TipoPago,
-                                                   CodigoCliente = n.CodigoCliente,
-                                                   NombreCliente = n.NombreCliente,
-                                                   CodigoIntermediario = n.CodigoIntermediario,
-                                                   NombreIntermediario = n.NombreIntermediario,
-                                                   CodigoSupervisor = n.CodigoSupervisor,
-                                                   NombreSupervisor = n.NombreSupervisor,
-                                                   CodigoOficina = n.CodigoOficina,
-                                                   NombreOficina = n.NombreOficina,
-                                                   Usuario = n.Usuario,
-                                                   CodigoRamo = n.CodigoRamo,
-                                                   DescripcionRamo = n.DescripcionRamo,
-                                                   CodigoMoneda = n.CodigoMoneda,
-                                                   DescripcionMoneda = n.DescripcionMoneda,
-                                                   Bruto = n.Bruto,
-                                                   Impuesto = n.Impuesto,
-                                                   Neto = n.Neto,
-                                                   ComisionPagar = n.ComisionPagar,
-                                                   Tasa = n.Tasa,
-                                                   Pesos = n.Pesos,
-                                                   ConceptoFactura = n.ConceptoFactura,
-                                                   PorcientoComisionIntermediario = n.PorcientoComisionIntermediario,
-                                               }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Comisiones", ExportarInformacion);
-                }
-            }
         }
 
         protected void btnReporte_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
-            {
-                ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
-
-                if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
-                }
-                if (string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
-                } 
-            }
-            else {
-                ProcesarComisiones();
-                if (rbReporteDetallado.Checked == true) {
-                    GenerarReporteComisionesSupervisores(Server.MapPath("ReporteComisionSupervisorDetalleNuevo.rpt"), "Comisiones Supervisores Detallado");
-                }
-                else if (rbReporteResumido.Checked == true) {
-                    GenerarReporteComisionesSupervisores(Server.MapPath("ReporteComisionesSupervisoresResumidoNuevo.rpt"), "Comisiones Supervisores Resumido");
-                }
-
-            }
         }
 
         protected void LinkPrimeraPaginaPrincipal_Click(object sender, EventArgs e)
@@ -877,7 +749,156 @@ namespace UtilidadesAmigos.Solucion.Paginas
             txtNombreSupervisorConsulta.Text = SacarNombre.SacarNombreSupervisor();
         }
 
-     
+        protected void btnConsultarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
+
+                if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                }
+            }
+            else
+            {
+                ProcesarComisiones();
+                MostrarComisionesPantalla();
+            }
+        }
+
+        protected void btnExportarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
+
+                if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                }
+            }
+            else
+            {
+                ProcesarComisiones();
+                decimal IdUsuario = (decimal)Session["IdUsuario"];
+                var BuscarInformacion = ObjDataReporte.Value.BuscarInformacionComisionSupervisorDetalle(IdUsuario);
+                if (BuscarInformacion.Count() < 1)
+                {
+                    var ExportarInformacion = (from n in "Informacion"
+                                               select new
+                                               {
+                                                   Poliza = "",
+                                                   Recibo = "",
+                                                   ConceptoPago = "",
+                                                   ReciboFormateado = "",
+                                                   Anulado = "",
+                                                   FechaPago = "",
+                                                   FechaPagoFormateado = "",
+                                                   TipoPago = "",
+                                                   CodigoCliente = "",
+                                                   NombreCliente = "",
+                                                   CodigoIntermediario = "",
+                                                   NombreIntermediario = "",
+                                                   CodigoSupervisor = "",
+                                                   NombreSupervisor = "",
+                                                   CodigoOficina = "",
+                                                   NombreOficina = "",
+                                                   Usuario = "",
+                                                   CodigoRamo = "",
+                                                   DescripcionRamo = "",
+                                                   CodigoMoneda = "",
+                                                   DescripcionMoneda = "",
+                                                   Bruto = "",
+                                                   Impuesto = "",
+                                                   Neto = "",
+                                                   ComisionPagar = "",
+                                                   Tasa = "",
+                                                   Pesos = "",
+                                                   ConceptoFactura = "",
+                                                   PorcientoComisionIntermediario = "",
+                                               }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Comisiones", ExportarInformacion);
+                }
+                else
+                {
+                    var ExportarInformacion = (from n in ObjDataReporte.Value.BuscarInformacionComisionSupervisorDetalle(IdUsuario)
+                                               select new
+                                               {
+                                                   Poliza = n.Poliza,
+                                                   Recibo = n.Recibo,
+                                                   ConceptoPago = n.ConceptoPago,
+                                                   ReciboFormateado = n.ReciboFormateado,
+                                                   Anulado = n.Anulado,
+                                                   FechaPago = n.FechaPago,
+                                                   FechaPagoFormateado = n.FechaPagoFormateado,
+                                                   TipoPago = n.TipoPago,
+                                                   CodigoCliente = n.CodigoCliente,
+                                                   NombreCliente = n.NombreCliente,
+                                                   CodigoIntermediario = n.CodigoIntermediario,
+                                                   NombreIntermediario = n.NombreIntermediario,
+                                                   CodigoSupervisor = n.CodigoSupervisor,
+                                                   NombreSupervisor = n.NombreSupervisor,
+                                                   CodigoOficina = n.CodigoOficina,
+                                                   NombreOficina = n.NombreOficina,
+                                                   Usuario = n.Usuario,
+                                                   CodigoRamo = n.CodigoRamo,
+                                                   DescripcionRamo = n.DescripcionRamo,
+                                                   CodigoMoneda = n.CodigoMoneda,
+                                                   DescripcionMoneda = n.DescripcionMoneda,
+                                                   Bruto = n.Bruto,
+                                                   Impuesto = n.Impuesto,
+                                                   Neto = n.Neto,
+                                                   ComisionPagar = n.ComisionPagar,
+                                                   Tasa = n.Tasa,
+                                                   Pesos = n.Pesos,
+                                                   ConceptoFactura = n.ConceptoFactura,
+                                                   PorcientoComisionIntermediario = n.PorcientoComisionIntermediario,
+                                               }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Comisiones", ExportarInformacion);
+                }
+            }
+        }
+
+        protected void btnReporteNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
+
+                if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                }
+            }
+            else
+            {
+                ProcesarComisiones();
+                if (rbReporteDetallado.Checked == true)
+                {
+                    GenerarReporteComisionesSupervisores(Server.MapPath("ReporteComisionSupervisorDetalleNuevo.rpt"), "Comisiones Supervisores Detallado");
+                }
+                else if (rbReporteResumido.Checked == true)
+                {
+                    GenerarReporteComisionesSupervisores(Server.MapPath("ReporteComisionesSupervisoresResumidoNuevo.rpt"), "Comisiones Supervisores Resumido");
+                }
+
+            }
+        }
 
         protected void LinkUltimoBuscarCodigos_Click(object sender, EventArgs e)
         {

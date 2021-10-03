@@ -312,40 +312,40 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.CheckBox cbMostrarIntermediariosAcumulativos;
 
         /// <summary>
-        /// btnConsultarComisiones control.
+        /// btnConsultarComisionesNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConsultarComisiones;
+        protected global::System.Web.UI.WebControls.ImageButton btnConsultarComisionesNuevo;
 
         /// <summary>
-        /// btnExortarComisiones control.
+        /// btnExortarComisionesNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExortarComisiones;
+        protected global::System.Web.UI.WebControls.ImageButton btnExortarComisionesNuevo;
 
         /// <summary>
-        /// btnReporteCOmisiones control.
+        /// btnReporteCOmisionesNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReporteCOmisiones;
+        protected global::System.Web.UI.WebControls.ImageButton btnReporteCOmisionesNuevo;
 
         /// <summary>
-        /// btnActualizarListado control.
+        /// btnActualizarListadoNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnActualizarListado;
+        protected global::System.Web.UI.WebControls.ImageButton btnActualizarListadoNuevo;
 
         /// <summary>
         /// DivRepeaterNormal control.

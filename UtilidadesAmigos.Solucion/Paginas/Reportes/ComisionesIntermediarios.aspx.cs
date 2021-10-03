@@ -649,127 +649,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
            
 
-            if (cbMostrarIntermediariosAcumulativos.Checked == true) {
-                MostrarListadoComisioneAcumulados();
-            }
-            else if (cbMostrarIntermediariosAcumulativos.Checked == false) {
-                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
-                    if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()))
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "FechaDesdeComisionesVacio()", "FechaDesdeComisionesVacio();", true);
-                    }
-                    if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "FechaHastaComisionesVAcio()", "FechaHastaComisionesVAcio();", true);
-                    }
-                }
-                else
-                {
-                    GenerarComisionesIntermediarios();
-                }
-            }
+          
             
         }
 
         protected void btnExortarComisiones_Click(object sender, EventArgs e)
         {
-            if (cbMostrarIntermediariosAcumulativos.Checked == true) {
-                int? _Oficina = ddlSeleccionaroficinaComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaComisiones.SelectedValue) : new Nullable<int>();
-                int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
-
-                var ExportarInformacion = (from n in ObjDataConexion.Value.ComisionesAcumuladasIntermediarios(
-                    new Nullable<int>(),
-                    _Oficina,
-                    _Ramo,
-                    Convert.ToDecimal(txtMontoMinimo.Text))
-                                           select new
-                                           {
-                                               CodigoIntermediario = n.CodigoIntermediario,
-                                               Intermediario = n.Intermediario,
-                                               Oficina = n.Oficina,
-                                               ValorReciboBruto = n.ValorReciboBruto,
-                                               ValorReciboNeto = n.ValorReciboNeto,
-                                               ComisionGenerada = n.ComisionGenerada,
-                                               Retencion = n.Retencion,
-                                               AvanceComision = n.AvanceComision,
-                                               Aliquidar = n.Aliquidar,
-                                               Estatus = n.GeneraCheque,
-                                               CantiadRegistros = n.CantiadRegistros
-                                           }).ToList();
-                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Comisiones Acumuladas", ExportarInformacion);
-            }
-            else if (cbMostrarIntermediariosAcumulativos.Checked == false) {
-                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
-                    if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()))
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "FechaDesdeComisionesVacio()", "FechaDesdeComisionesVacio();", true);
-                    }
-                    if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "FechaHastaComisionesVAcio()", "FechaHastaComisionesVAcio();", true);
-                    }
-                }
-                else
-                {
-                    ExportarConsultaExcel();
-                }
-            }
 
         }
 
         protected void btnReporteCOmisiones_Click(object sender, EventArgs e)
         {
-            if (cbMostrarIntermediariosAcumulativos.Checked == true) {
-                decimal UsuarioGenera = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
-                string RutaReporte = "ReporteAcumuladoIntermediariosComisiones.rpt";
-                string NombreReporte = "Acumulado Comisiones Intermediarios";
-
-                GenerarReporteComisiones(UsuarioGenera, Server.MapPath(RutaReporte), NombreReporte);
-            }
-            //--------------------------------------------------------------
-            else if (cbMostrarIntermediariosAcumulativos.Checked == false) {
-                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
-                    if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()))
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "FechaDesdeComisionesVacio()", "FechaDesdeComisionesVacio();", true);
-                    }
-                    if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "FechaHastaComisionesVAcio()", "FechaHastaComisionesVAcio();", true);
-                    }
-                }
-                else
-                {
-                    decimal UsuarioGenera = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
-                    string RutaReporte = "";
-                    string NombreReporte = "";
-
-                    if (rbGenerarReporteDetalle.Checked == true)
-                    {
-                        RutaReporte = "ReporteComisionesIntermediarioDetalleDefinitivo.rpt";
-                        NombreReporte = "Comisiones Intermediario Detalle";
-                    }
-                    else if (rbGenerarReporteResumido.Checked == true)
-                    {
-                        RutaReporte = "ReporteComisionesResumidoFinal.rpt";
-                        NombreReporte = "Comisiones Intermediario Resumido";
-                        ProcesoComisionesIntermediario();
-                    }
-                    else if (rbGenerarReporteInterno.Checked == true)
-                    {
-                        RutaReporte = "ReporteComisionIntermediarioInterno.rpt";
-                        NombreReporte = "Comisiones Intermediario Interno";
-                        ProcesoComisionesIntermediario();
-                    }
-                    GenerarReporteComisiones(UsuarioGenera, Server.MapPath(RutaReporte), NombreReporte);
-                }
-            }
         }
 
 
@@ -822,12 +712,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (cbMostrarIntermediariosAcumulativos.Checked == true) {
                 DivRepeaterNormal.Visible = false;
                 DivBloqueRepeaterAcumulativo.Visible = true;
-                btnActualizarListado.Visible = true;
+                btnActualizarListadoNuevo.Visible = true;
             }
             else if (cbMostrarIntermediariosAcumulativos.Checked == false) {
                 DivRepeaterNormal.Visible = true;
                 DivBloqueRepeaterAcumulativo.Visible = false;
-                btnActualizarListado.Visible = false;
+                btnActualizarListadoNuevo.Visible = false;
             }
         }
 
@@ -897,16 +787,156 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnActualizarListado_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim())) {
+        }
+
+        protected void btnConsultarComisionesNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            if (cbMostrarIntermediariosAcumulativos.Checked == true)
+            {
+                MostrarListadoComisioneAcumulados();
+            }
+            else if (cbMostrarIntermediariosAcumulativos.Checked == false)
+            {
+                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
+                    if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "FechaDesdeComisionesVacio()", "FechaDesdeComisionesVacio();", true);
+                    }
+                    if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "FechaHastaComisionesVAcio()", "FechaHastaComisionesVAcio();", true);
+                    }
+                }
+                else
+                {
+                    GenerarComisionesIntermediarios();
+                }
+            }
+        }
+
+        protected void btnExortarComisionesNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+
+            if (cbMostrarIntermediariosAcumulativos.Checked == true)
+            {
+                int? _Oficina = ddlSeleccionaroficinaComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaComisiones.SelectedValue) : new Nullable<int>();
+                int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+
+                var ExportarInformacion = (from n in ObjDataConexion.Value.ComisionesAcumuladasIntermediarios(
+                    new Nullable<int>(),
+                    _Oficina,
+                    _Ramo,
+                    Convert.ToDecimal(txtMontoMinimo.Text))
+                                           select new
+                                           {
+                                               CodigoIntermediario = n.CodigoIntermediario,
+                                               Intermediario = n.Intermediario,
+                                               Oficina = n.Oficina,
+                                               ValorReciboBruto = n.ValorReciboBruto,
+                                               ValorReciboNeto = n.ValorReciboNeto,
+                                               ComisionGenerada = n.ComisionGenerada,
+                                               Retencion = n.Retencion,
+                                               AvanceComision = n.AvanceComision,
+                                               Aliquidar = n.Aliquidar,
+                                               Estatus = n.GeneraCheque,
+                                               CantiadRegistros = n.CantiadRegistros
+                                           }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Comisiones Acumuladas", ExportarInformacion);
+            }
+            else if (cbMostrarIntermediariosAcumulativos.Checked == false)
+            {
+                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
+                    if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "FechaDesdeComisionesVacio()", "FechaDesdeComisionesVacio();", true);
+                    }
+                    if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "FechaHastaComisionesVAcio()", "FechaHastaComisionesVAcio();", true);
+                    }
+                }
+                else
+                {
+                    ExportarConsultaExcel();
+                }
+            }
+        }
+
+        protected void btnReporteCOmisionesNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+
+            if (cbMostrarIntermediariosAcumulativos.Checked == true)
+            {
+                decimal UsuarioGenera = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+                string RutaReporte = "ReporteAcumuladoIntermediariosComisiones.rpt";
+                string NombreReporte = "Acumulado Comisiones Intermediarios";
+
+                GenerarReporteComisiones(UsuarioGenera, Server.MapPath(RutaReporte), NombreReporte);
+            }
+            //--------------------------------------------------------------
+            else if (cbMostrarIntermediariosAcumulativos.Checked == false)
+            {
+                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
+                    if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "FechaDesdeComisionesVacio()", "FechaDesdeComisionesVacio();", true);
+                    }
+                    if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "FechaHastaComisionesVAcio()", "FechaHastaComisionesVAcio();", true);
+                    }
+                }
+                else
+                {
+                    decimal UsuarioGenera = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+                    string RutaReporte = "";
+                    string NombreReporte = "";
+
+                    if (rbGenerarReporteDetalle.Checked == true)
+                    {
+                        RutaReporte = "ReporteComisionesIntermediarioDetalleDefinitivo.rpt";
+                        NombreReporte = "Comisiones Intermediario Detalle";
+                    }
+                    else if (rbGenerarReporteResumido.Checked == true)
+                    {
+                        RutaReporte = "ReporteComisionesResumidoFinal.rpt";
+                        NombreReporte = "Comisiones Intermediario Resumido";
+                        ProcesoComisionesIntermediario();
+                    }
+                    else if (rbGenerarReporteInterno.Checked == true)
+                    {
+                        RutaReporte = "ReporteComisionIntermediarioInterno.rpt";
+                        NombreReporte = "Comisiones Intermediario Interno";
+                        ProcesoComisionesIntermediario();
+                    }
+                    GenerarReporteComisiones(UsuarioGenera, Server.MapPath(RutaReporte), NombreReporte);
+                }
+            }
+        }
+
+        protected void btnActualizarListadoNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
+            {
                 ClientScript.RegisterStartupScript(GetType(), "CamposFechasVacios()", "CamposFechasVacios();", true);
-                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim())) {
+                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()))
+                {
                     ClientScript.RegisterStartupScript(GetType(), "FechaDesdeComisionesVacio()", "FechaDesdeComisionesVacio();", true);
                 }
-                if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim())) {
+                if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
+                {
                     ClientScript.RegisterStartupScript(GetType(), "FechaHastaComisionesVAcio()", "FechaHastaComisionesVAcio();", true);
                 }
             }
-            else {
+            else
+            {
                 ActualizarComisionesAcumuladas();
             }
         }

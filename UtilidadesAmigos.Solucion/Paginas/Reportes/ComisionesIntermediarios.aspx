@@ -28,6 +28,12 @@
             background-color: dodgerblue;
             color: white;
         }
+
+                 .BotonImagen {
+                   width:50px;
+                   height:50px;
+                 
+                 }
     </style>
 
     <script type="text/javascript">
@@ -46,7 +52,7 @@
             $("#<%=txtFechaHastaComisiones.ClientID%>").css("border-color", "red");
         }
         $(document).ready(function () {
-            $("#<%=btnConsultarComisiones.ClientID%>").click(function () {
+            $("#<%=btnConsultarComisionesNuevo.ClientID%>").click(function () {
                 var Tasa = $("#<%=txtTasaDollar.ClientID%>").val().length;
                 if (Tasa < 1) {
                     alert("El campo tasa no puede estar vacio para realizar esta operación, favor de verificar.");
@@ -62,7 +68,7 @@
                     }
                 }
             });
-            $("#<%=btnExortarComisiones.ClientID%>").click(function () {
+            $("#<%=btnExortarComisionesNuevo.ClientID%>").click(function () {
                 var Tasa = $("#<%=txtTasaDollar.ClientID%>").val().length;
                 if (Tasa < 1) {
                     alert("El campo tasa no puede estar vacio para realizar esta operación, favor de verificar.");
@@ -78,7 +84,7 @@
                     }
                 }
             });
-            $("#<%=btnReporteCOmisiones.ClientID%>").click(function () {
+            $("#<%=btnReporteCOmisionesNuevo.ClientID%>").click(function () {
                 var Tasa = $("#<%=txtTasaDollar.ClientID%>").val().length;
                 if (Tasa < 1) {
                     alert("El campo tasa no puede estar vacio para realizar esta operación, favor de verificar.");
@@ -175,10 +181,10 @@
                       </div>
                   </div>
           <div align="center">
-              <asp:Button ID="btnConsultarComisiones" runat="server" Text="Consultar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultarComisiones_Click"  />
-              <asp:Button ID="btnExortarComisiones" runat="server" Text="Exportar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Exportar Registros" OnClick="btnExortarComisiones_Click" />
-              <asp:Button ID="btnReporteCOmisiones" runat="server" Text="Reporte" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Reporte de Comisiones" OnClick="btnReporteCOmisiones_Click" />
-              <asp:Button ID="btnActualizarListado" runat="server" Text="Actualizar" CssClass="btn btn-outline-secondary btn-sm" Visible="false" ToolTip="Actualizar Listado de Acumulados" OnClick="btnActualizarListado_Click" />
+              <asp:ImageButton ID="btnConsultarComisionesNuevo" runat="server" ToolTip="Buscar Información" CssClass="BotonImagen" OnClick="btnConsultarComisionesNuevo_Click" ImageUrl="~/Imagenes/Buscar.png" />
+              <asp:ImageButton ID="btnExortarComisionesNuevo" runat="server" ToolTip="Exportar Información a Excel" CssClass="BotonImagen" OnClick="btnExortarComisionesNuevo_Click" ImageUrl="~/Imagenes/excel.png" />
+              <asp:ImageButton ID="btnReporteCOmisionesNuevo" runat="server" ToolTip="Generar Reporte de Comisiones" CssClass="BotonImagen" OnClick="btnReporteCOmisionesNuevo_Click" ImageUrl="~/Imagenes/Reporte.png" />
+              <asp:ImageButton ID="btnActualizarListadoNuevo" runat="server" ToolTip="Actualizar Montos Acumulados" CssClass="BotonImagen" Visible="false" OnClick="btnActualizarListadoNuevo_Click" ImageUrl="~/Imagenes/auto.png" />
           </div>
           <br />
     </div>

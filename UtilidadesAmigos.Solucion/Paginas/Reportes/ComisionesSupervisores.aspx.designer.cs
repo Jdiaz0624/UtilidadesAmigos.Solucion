@@ -186,31 +186,31 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.RadioButton rbReporteDetallado;
 
         /// <summary>
-        /// btnConsultar control.
+        /// btnConsultarNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConsultar;
+        protected global::System.Web.UI.WebControls.ImageButton btnConsultarNuevo;
 
         /// <summary>
-        /// btnExportar control.
+        /// btnExportarNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportar;
+        protected global::System.Web.UI.WebControls.ImageButton btnExportarNuevo;
 
         /// <summary>
-        /// btnReporte control.
+        /// btnReporteNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReporte;
+        protected global::System.Web.UI.WebControls.ImageButton btnReporteNuevo;
 
         /// <summary>
         /// lbCantidadRegistrosEncontradosTitulo control.
