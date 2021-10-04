@@ -564,17 +564,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultarRegistros_Click(object sender, EventArgs e)
         {
-            MostrarListado();
+            
         }
 
         protected void btnExportarRegistros_Click(object sender, EventArgs e)
         {
-            ExportarRegistros();
+            
         }
 
         protected void btnRestablecerPantalla_Click(object sender, EventArgs e)
         {
-            RestablecerPantalla();
+            
         }
 
         protected void btnDetalle_Click(object sender, EventArgs e)
@@ -830,6 +830,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnVolverAtras_Click(object sender, EventArgs e)
         {
+            RestablecerPantalla();
+        }
+
+        protected void btnConsultarRegistrosNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarListado();
+        }
+
+        protected void btnExportarRegistrosNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            ExportarRegistros();
+        }
+
+        protected void btnRestablecerPantallaNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
             RestablecerPantalla();
         }
 

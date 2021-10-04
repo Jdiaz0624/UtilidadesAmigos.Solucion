@@ -105,31 +105,31 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.TextBox txtTasa;
 
         /// <summary>
-        /// btnConsultarRegistros control.
+        /// btnConsultarRegistrosNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConsultarRegistros;
+        protected global::System.Web.UI.WebControls.ImageButton btnConsultarRegistrosNuevo;
 
         /// <summary>
-        /// btnExportarRegistros control.
+        /// btnExportarRegistrosNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportarRegistros;
+        protected global::System.Web.UI.WebControls.ImageButton btnExportarRegistrosNuevo;
 
         /// <summary>
-        /// btnRestablecerPantalla control.
+        /// btnRestablecerPantallaNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRestablecerPantalla;
+        protected global::System.Web.UI.WebControls.ImageButton btnRestablecerPantallaNuevo;
 
         /// <summary>
         /// lbCantidadRegistrosTitulo control.

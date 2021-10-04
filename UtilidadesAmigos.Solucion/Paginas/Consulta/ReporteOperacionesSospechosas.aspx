@@ -28,6 +28,12 @@
             background-color: dodgerblue;
             color: white;
         }
+
+        .BotonImagen {
+        width:50px;
+        height:50px;
+        
+        }
     </style>
 
     <script type="text/javascript">
@@ -41,7 +47,7 @@
             $("#<%=txtFechaHasta.ClientID%>").css("border-color", "red");
         }
         $(document).ready(function () {
-            $("#<%=btnConsultarRegistros.ClientID%>").click(function () {
+            $("#<%=btnConsultarRegistrosNuevo.ClientID%>").click(function () {
                 var TipoOperacion = $("#<%=ddlSeleccionarTipoOperacion.ClientID%>").val();
                 if (TipoOperacion < 1) {
                     alert("El campo tipo de operación no puede estar vacio, favor de verificar.");
@@ -66,7 +72,7 @@
                 }
             });
 
-            $("#<%=btnExportarRegistros.ClientID%>").click(function () {
+            $("#<%=btnExportarRegistrosNuevo.ClientID%>").click(function () {
                 var TipoOperacion = $("#<%=ddlSeleccionarTipoOperacion.ClientID%>").val();
                  if (TipoOperacion < 1) {
                      alert("El campo tipo de operación no puede estar vacio, favor de verificar.");
@@ -123,9 +129,10 @@
           </div>
           <br />
           <div align="center">
-              <asp:Button ID="btnConsultarRegistros" runat="server" Text="Consultar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultarRegistros_Click" />
-              <asp:Button ID="btnExportarRegistros" runat="server" Text="Exportar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Exportar Registros" OnClick="btnExportarRegistros_Click" />
-              <asp:Button ID="btnRestablecerPantalla" runat="server" Text="Restablecer" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Restablecer Pantalla" OnClick="btnRestablecerPantalla_Click" />
+              <asp:ImageButton ID="btnConsultarRegistrosNuevo" runat="server" ToolTip="Consultar Registros" CssClass="BotonImagen" OnClick="btnConsultarRegistrosNuevo_Click" ImageUrl="~/Imagenes/Buscar.png" />
+              <asp:ImageButton ID="btnExportarRegistrosNuevo" runat="server" ToolTip="Exportar Registros" CssClass="BotonImagen" OnClick="btnExportarRegistrosNuevo_Click" ImageUrl="~/Imagenes/excel.png" />
+              <asp:ImageButton ID="btnRestablecerPantallaNuevo" runat="server" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" OnClick="btnRestablecerPantallaNuevo_Click" ImageUrl="~/Imagenes/auto.png" />
+
               <br /><br />
               <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
               <asp:Label ID="lbCantidadRegistrosVariable" runat="server" Text="0 " CssClass="Letranegrita"></asp:Label>
