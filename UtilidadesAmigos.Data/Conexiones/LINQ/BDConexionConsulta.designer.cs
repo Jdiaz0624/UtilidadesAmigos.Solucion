@@ -177,6 +177,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, idUsuarioCreo, fechaProcesoDesde, fechaProcesoHasta, usuarioGenera, nOLLevaRangoFecha);
 			return ((ISingleResult<SP_GENERAR_REPORTE_GESTION_COBROS_FINALResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_CARTERA_EJECUTIVOS")]
+		public ISingleResult<SP_SACAR_CARTERA_EJECUTIVOSResult> SP_SACAR_CARTERA_EJECUTIVOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Int")] System.Nullable<int> codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoSupervisor, codigoIntermediario);
+			return ((ISingleResult<SP_SACAR_CARTERA_EJECUTIVOSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_CARTERA_INTERMEDIARIOS")]
+		public ISingleResult<SP_SACAR_CARTERA_INTERMEDIARIOSResult> SP_SACAR_CARTERA_INTERMEDIARIOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Intermediario", DbType="Int")] System.Nullable<int> intermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EstatusPoliza", DbType="VarChar(20)")] string estatusPoliza)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), intermediario, estatusPoliza);
+			return ((ISingleResult<SP_SACAR_CARTERA_INTERMEDIARIOSResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_BUSCAR_INFORMACION_POLIZA_GESTION_COBROResult
@@ -3358,6 +3372,310 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._GeneradoPor != value))
 				{
 					this._GeneradoPor = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_CARTERA_EJECUTIVOSResult
+	{
+		
+		private int _IdIntermediarioSupervisa;
+		
+		private string _NombreSupervisor;
+		
+		private int _IdIntermediario;
+		
+		private string _NombreIntermediario;
+		
+		public SP_SACAR_CARTERA_EJECUTIVOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdIntermediarioSupervisa", DbType="Int NOT NULL")]
+		public int IdIntermediarioSupervisa
+		{
+			get
+			{
+				return this._IdIntermediarioSupervisa;
+			}
+			set
+			{
+				if ((this._IdIntermediarioSupervisa != value))
+				{
+					this._IdIntermediarioSupervisa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreSupervisor", DbType="VarChar(200)")]
+		public string NombreSupervisor
+		{
+			get
+			{
+				return this._NombreSupervisor;
+			}
+			set
+			{
+				if ((this._NombreSupervisor != value))
+				{
+					this._NombreSupervisor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdIntermediario", DbType="Int NOT NULL")]
+		public int IdIntermediario
+		{
+			get
+			{
+				return this._IdIntermediario;
+			}
+			set
+			{
+				if ((this._IdIntermediario != value))
+				{
+					this._IdIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreIntermediario", DbType="VarChar(200)")]
+		public string NombreIntermediario
+		{
+			get
+			{
+				return this._NombreIntermediario;
+			}
+			set
+			{
+				if ((this._NombreIntermediario != value))
+				{
+					this._NombreIntermediario = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_CARTERA_INTERMEDIARIOSResult
+	{
+		
+		private string _Poliza;
+		
+		private string _EstatusPoliza;
+		
+		private System.Nullable<decimal> _SumaAsegurada;
+		
+		private System.Nullable<int> _Intermediario;
+		
+		private string _NombreVendedor;
+		
+		private System.Nullable<byte> _Estatus;
+		
+		private string _EstatusIntermediario;
+		
+		private System.Nullable<decimal> _Facturado;
+		
+		private System.Nullable<decimal> _Cobrado;
+		
+		private System.Nullable<decimal> _Balance;
+		
+		private System.Nullable<int> _PolizasActivas;
+		
+		private System.Nullable<int> _PolizasCanceladas;
+		
+		public SP_SACAR_CARTERA_INTERMEDIARIOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EstatusPoliza", DbType="VarChar(50)")]
+		public string EstatusPoliza
+		{
+			get
+			{
+				return this._EstatusPoliza;
+			}
+			set
+			{
+				if ((this._EstatusPoliza != value))
+				{
+					this._EstatusPoliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SumaAsegurada", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> SumaAsegurada
+		{
+			get
+			{
+				return this._SumaAsegurada;
+			}
+			set
+			{
+				if ((this._SumaAsegurada != value))
+				{
+					this._SumaAsegurada = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Intermediario", DbType="Int")]
+		public System.Nullable<int> Intermediario
+		{
+			get
+			{
+				return this._Intermediario;
+			}
+			set
+			{
+				if ((this._Intermediario != value))
+				{
+					this._Intermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreVendedor", DbType="VarChar(200)")]
+		public string NombreVendedor
+		{
+			get
+			{
+				return this._NombreVendedor;
+			}
+			set
+			{
+				if ((this._NombreVendedor != value))
+				{
+					this._NombreVendedor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="TinyInt")]
+		public System.Nullable<byte> Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EstatusIntermediario", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		public string EstatusIntermediario
+		{
+			get
+			{
+				return this._EstatusIntermediario;
+			}
+			set
+			{
+				if ((this._EstatusIntermediario != value))
+				{
+					this._EstatusIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Facturado", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Facturado
+		{
+			get
+			{
+				return this._Facturado;
+			}
+			set
+			{
+				if ((this._Facturado != value))
+				{
+					this._Facturado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cobrado", DbType="Money")]
+		public System.Nullable<decimal> Cobrado
+		{
+			get
+			{
+				return this._Cobrado;
+			}
+			set
+			{
+				if ((this._Cobrado != value))
+				{
+					this._Cobrado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Balance", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Balance
+		{
+			get
+			{
+				return this._Balance;
+			}
+			set
+			{
+				if ((this._Balance != value))
+				{
+					this._Balance = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PolizasActivas", DbType="Int")]
+		public System.Nullable<int> PolizasActivas
+		{
+			get
+			{
+				return this._PolizasActivas;
+			}
+			set
+			{
+				if ((this._PolizasActivas != value))
+				{
+					this._PolizasActivas = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PolizasCanceladas", DbType="Int")]
+		public System.Nullable<int> PolizasCanceladas
+		{
+			get
+			{
+				return this._PolizasCanceladas;
+			}
+			set
+			{
+				if ((this._PolizasCanceladas != value))
+				{
+					this._PolizasCanceladas = value;
 				}
 			}
 		}

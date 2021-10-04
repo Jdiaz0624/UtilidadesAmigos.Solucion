@@ -457,5 +457,44 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         }
         #endregion
 
+        #region CARTERA
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.ECarteraIntermediarios> SacarCarteraIntermeiario(int? Intermediario = null, string EstatusPoliza = null) {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_SACAR_CARTERA_INTERMEDIARIOS(Intermediario, EstatusPoliza)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.ECarteraIntermediarios
+                           {
+                               Poliza=n.Poliza,
+                               EstatusPoliza=n.EstatusPoliza,
+                               SumaAsegurada=n.SumaAsegurada,
+                               Intermediario=n.Intermediario,
+                               NombreVendedor=n.NombreVendedor,
+                               Estatus=n.Estatus,
+                               EstatusIntermediario=n.EstatusIntermediario,
+                               Facturado=n.Facturado,
+                               Cobrado=n.Cobrado,
+                               Balance=n.Balance,
+                               PolizasActivas=n.PolizasActivas,
+                               PolizasCanceladas=n.PolizasCanceladas
+                           }).ToList();
+            return Listado;
+        }
+
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.ECarteraEjecutivos> SacarCarteraEjecutivos(int? CodigoSupervisor = null, int? CodigoIntermediario = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_SACAR_CARTERA_EJECUTIVOS(CodigoSupervisor, CodigoIntermediario)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.ECarteraEjecutivos
+                           {
+                               IdIntermediarioSupervisa=n.IdIntermediarioSupervisa,
+                               NombreSupervisor=n.NombreSupervisor,
+                               IdIntermediario=n.IdIntermediario,
+                               NombreIntermediario=n.NombreIntermediario
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
+
     }
 }
