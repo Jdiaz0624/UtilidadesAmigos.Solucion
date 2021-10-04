@@ -114,22 +114,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.TextBox txtFechaHasta;
 
         /// <summary>
-        /// btnConsultar control.
+        /// btnConsultarNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConsultar;
+        protected global::System.Web.UI.WebControls.ImageButton btnConsultarNuevo;
 
         /// <summary>
-        /// btnExportar control.
+        /// btnExportarExelPrincipal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportar;
+        protected global::System.Web.UI.WebControls.ImageButton btnExportarExelPrincipal;
 
         /// <summary>
         /// lbNumeroFacturaHeaderRepeater control.
@@ -420,13 +420,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.TextBox txtFechaHAstaHistoricoPoliza;
 
         /// <summary>
-        /// btnConsultarHistorico control.
+        /// btnConsultarHistoricoNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConsultarHistorico;
+        protected global::System.Web.UI.WebControls.ImageButton btnConsultarHistoricoNuevo;
 
         /// <summary>
         /// lbPolizaHeaderHistoricoFianzas control.
@@ -582,12 +582,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.LinkButton LinkUltimaPaginaHistoricoFianzas;
 
         /// <summary>
-        /// btnExportarHistoriclPoliza control.
+        /// btnExportarHistorialPolizaNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportarHistoriclPoliza;
+        protected global::System.Web.UI.WebControls.ImageButton btnExportarHistorialPolizaNuevo;
     }
 }

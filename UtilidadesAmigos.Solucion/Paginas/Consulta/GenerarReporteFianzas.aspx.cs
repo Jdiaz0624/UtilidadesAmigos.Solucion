@@ -227,81 +227,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            MostrarRegistros();
+           
         }
 
         protected void btnExportar_Click(object sender, EventArgs e)
         {
-            try {
-                //VALIDAMOS LOS RANGOS DE FECHA
-                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "MensajeConsulta", "MensajeConsulta();", true);
-                    if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "FechaDesdeError", "FechaDesdeError();", true);
-                    }
-                    if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "FechaHastaError", "FechaHastaError();", true);
-                    }
-                }
-                else
-                {
-                    string _Poliza = string.IsNullOrEmpty(txtpolizaConsulta.Text.Trim()) ? null : txtpolizaConsulta.Text.Trim();
-                    decimal? _Subramo = ddlSeleccionarSubramo.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarSubramo.SelectedValue) : new Nullable<decimal>();
-
-                    var Exportar = (from n in ObjData.Value.GenerarProduccionFianzas(
-                        _Poliza,
-                        _Subramo,
-                        Convert.ToDateTime(txtFechaDesde.Text),
-                        Convert.ToDateTime(txtFechaHasta.Text))
-                                    select new
-                                    {
-                                        NoFactura = n.NoFactura,
-                                        Poliza = n.Poliza,
-                                        NumeroItem=n.Item,
-                                        Estatus = n.Estatus,
-                                        NoFormulario=n.NoFormulario,
-                                        Ramo = n.Ramo,
-                                        SubRamo = n.SubRamo,
-                                        Cliente = n.Cliente,
-                                        Deudor = n.Deudor,
-                                        TelefonoResidencia = n.TelefonoResidencia,
-                                        TelefonoOficina = n.TelefonoOficina,
-                                        Celular = n.Celular,
-                                        fax = n.fax,
-                                        Otro = n.Otro,
-                                        Direccion = n.Direccion,
-                                        UbicacionCliente = n.UbicacionCliente,
-                                        ProvinciaCliente = n.ProvinciaCliente,
-                                        MunicipioCliente = n.MunicipioCliente,
-                                        SectorCliente = n.SectorCliente,
-                                        Supervisor = n.Supervisor,
-                                        Intermediario = n.Intermediario,
-                                        UbicacionIntermediario = n.UbicacionIntermediario,
-                                        ProvinciaIntermediario = n.ProvinciaIntermediario,
-                                        MunicipioIntermediario = n.MunicipioIntermediario,
-                                        SectorIntermediario = n.SectorIntermediario,
-                                        FechaFacturacion = n.FechaFacturacion,
-                                        SecuenciaFactura=n.SecuenciaFactura,
-                                        InicioVigencia = n.InicioVigencia,
-                                        FinVigencia = n.FinVigencia,
-                                        SumaAsegurada = n.SumaAsegurada,
-                                        Neto = n.Neto,
-                                        Tasa = n.Tasa,
-                                        Impuesto = n.Impuesto,
-                                        PorcComision = n.PorcComision,
-                                        Facturado = n.Facturado,
-                                        Cobrado = n.Cobrado,
-                                        Balance = n.Balance,
-                                        LeyInfraccionImputado = n.LeyInfraccionImputado
-
-                                    }).ToList();
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Produccion de Fianzas", Exportar);
-                }
-            }
-            catch (Exception) { }
+         
         }
 
 
@@ -309,18 +240,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultarHistorico_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtFechaDesdeHistoricoPoliza.Text.Trim()) || string.IsNullOrEmpty(txtFechaHAstaHistoricoPoliza.Text.Trim()))
-            {
-                ClientScript.RegisterStartupScript(GetType(), "MensajeConsulta", "MensajeConsulta();", true);
-            }
-            else {
-
-                try {
-                    ConsultarHistorico();
-                }
-                catch (Exception) { }
-
-            }
+          
         }
 
         protected void LinkPrimeraPaginaFianzas_Click(object sender, EventArgs e)
@@ -399,7 +319,113 @@ namespace UtilidadesAmigos.Solucion.Paginas
             MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableHistoricoFianzas, ref lbCantidadPaginaVariableHistoricoFianzas);
         }
 
-        protected void btnExportarHistoriclPoliza_Click(object sender, EventArgs e)
+        protected void btnConsultarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarRegistros();
+        }
+
+        protected void btnExportarExelPrincipal_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                //VALIDAMOS LOS RANGOS DE FECHA
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "MensajeConsulta", "MensajeConsulta();", true);
+                    if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "FechaDesdeError", "FechaDesdeError();", true);
+                    }
+                    if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "FechaHastaError", "FechaHastaError();", true);
+                    }
+                }
+                else
+                {
+                    string _Poliza = string.IsNullOrEmpty(txtpolizaConsulta.Text.Trim()) ? null : txtpolizaConsulta.Text.Trim();
+                    decimal? _Subramo = ddlSeleccionarSubramo.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarSubramo.SelectedValue) : new Nullable<decimal>();
+
+                    var Exportar = (from n in ObjData.Value.GenerarProduccionFianzas(
+                        _Poliza,
+                        _Subramo,
+                        Convert.ToDateTime(txtFechaDesde.Text),
+                        Convert.ToDateTime(txtFechaHasta.Text))
+                                    select new
+                                    {
+                                        NoFactura = n.NoFactura,
+                                        Poliza = n.Poliza,
+                                        NumeroItem = n.Item,
+                                        Estatus = n.Estatus,
+                                        NoFormulario = n.NoFormulario,
+                                        Ramo = n.Ramo,
+                                        SubRamo = n.SubRamo,
+                                        Cliente = n.Cliente,
+                                        Deudor = n.Deudor,
+                                        TelefonoResidencia = n.TelefonoResidencia,
+                                        TelefonoOficina = n.TelefonoOficina,
+                                        Celular = n.Celular,
+                                        fax = n.fax,
+                                        Otro = n.Otro,
+                                        Direccion = n.Direccion,
+                                        UbicacionCliente = n.UbicacionCliente,
+                                        ProvinciaCliente = n.ProvinciaCliente,
+                                        MunicipioCliente = n.MunicipioCliente,
+                                        SectorCliente = n.SectorCliente,
+                                        Supervisor = n.Supervisor,
+                                        Intermediario = n.Intermediario,
+                                        UbicacionIntermediario = n.UbicacionIntermediario,
+                                        ProvinciaIntermediario = n.ProvinciaIntermediario,
+                                        MunicipioIntermediario = n.MunicipioIntermediario,
+                                        SectorIntermediario = n.SectorIntermediario,
+                                        FechaFacturacion = n.FechaFacturacion,
+                                        SecuenciaFactura = n.SecuenciaFactura,
+                                        InicioVigencia = n.InicioVigencia,
+                                        FinVigencia = n.FinVigencia,
+                                        SumaAsegurada = n.SumaAsegurada,
+                                        Neto = n.Neto,
+                                        Tasa = n.Tasa,
+                                        Impuesto = n.Impuesto,
+                                        PorcComision = n.PorcComision,
+                                        Facturado = n.Facturado,
+                                        Cobrado = n.Cobrado,
+                                        Balance = n.Balance,
+                                        LeyInfraccionImputado = n.LeyInfraccionImputado
+
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Produccion de Fianzas", Exportar);
+                }
+            }
+            catch (Exception) { }
+        }
+
+        protected void btnConsultarHistorico_Click1(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnConsultarHistoricoNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+           
+            if (string.IsNullOrEmpty(txtFechaDesdeHistoricoPoliza.Text.Trim()) || string.IsNullOrEmpty(txtFechaHAstaHistoricoPoliza.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "MensajeConsulta", "MensajeConsulta();", true);
+            }
+            else
+            {
+
+                try
+                {
+                    CurrentPage = 0;
+                    ConsultarHistorico();
+                }
+                catch (Exception) { }
+
+            }
+        }
+
+        protected void btnExportarHistorialPolizaNuevo_Click(object sender, ImageClickEventArgs e)
         {
             if (string.IsNullOrEmpty(txtFechaDesdeHistoricoPoliza.Text.Trim()) || string.IsNullOrEmpty(txtFechaHAstaHistoricoPoliza.Text.Trim()))
             {
@@ -407,7 +433,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else
             {
-                try {
+                try
+                {
                     string _poliza = string.IsNullOrEmpty(txtPolizaHistoricoPoliza.Text.Trim()) ? null : txtPolizaHistoricoPoliza.Text.Trim();
                     int? _Subramo = ddlSeleccionarSubramHistoriclPoliza.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubramHistoriclPoliza.SelectedValue) : new Nullable<int>();
 
@@ -440,6 +467,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 catch (Exception) { }
                 //EXPORTAR
             }
+        }
+
+        protected void btnExportarHistoriclPoliza_Click(object sender, EventArgs e)
+        {
+         
         }
     }
 }

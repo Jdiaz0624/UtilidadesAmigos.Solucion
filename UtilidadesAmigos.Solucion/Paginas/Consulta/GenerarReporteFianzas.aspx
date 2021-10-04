@@ -28,6 +28,10 @@
             background-color: dodgerblue;
             color: white;
         }
+          .BotonImagen {
+              width: 50px;
+              height: 50px;
+          }
     </style>
     <script type="text/javascript">
         function MensajeConsulta() {
@@ -75,10 +79,14 @@
         </div>
         <br />
         <div align="center">
-            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
+            <asp:ImageButton ID="btnConsultarNuevo" runat="server" ToolTip="Consultar Registros en Pantalla" OnClick="btnConsultarNuevo_Click" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" />
+            <asp:ImageButton ID="btnExportarExelPrincipal" runat="server" ToolTip="Exportar Registros a Excel" OnClick="btnExportarExelPrincipal_Click" CssClass="BotonImagen" ImageUrl="~/Imagenes/excel.png" />
+
+
+           <br />
             <button type="button" id="btnHistorico" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-xl">Historico</button>
 
-            <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExportar_Click" />
+           
         </div>
         <br />
            <div class="table-responsive">
@@ -183,7 +191,7 @@
                  </div>
                  <!--BOTONES-->
                  <div align="center">
-                     <asp:Button ID="btnConsultarHistorico" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnConsultarHistorico_Click" ToolTip="Consultar Registros" />
+                     <asp:ImageButton ID="btnConsultarHistoricoNuevo" runat="server" ToolTip="Consultar Historico de Fianzas" CssClass="BotonImagen" OnClick="btnConsultarHistoricoNuevo_Click" ImageUrl="~/Imagenes/Buscar.png" />
                  </div>
                  <!--BOTONES-->
                  <br />
@@ -250,7 +258,7 @@
              <br />
                <!--BOTONES-->
                  <div align="center">
-                     <asp:Button ID="btnExportarHistoriclPoliza" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExportarHistoriclPoliza_Click" />
+                     <asp:ImageButton ID="btnExportarHistorialPolizaNuevo" runat="server" ToolTip="Exportar Información" CssClass="BotonImagen" OnClick="btnExportarHistorialPolizaNuevo_Click" ImageUrl="~/Imagenes/excel.png" />
 
                  </div>
              <br />
