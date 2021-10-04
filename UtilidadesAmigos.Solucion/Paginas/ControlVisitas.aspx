@@ -42,6 +42,10 @@
               width: 10%;
               height: 36px;
           }
+        .BotonImagen {
+            width: 50px;
+            height: 50px;
+        }
     </style>
 
     <script type="text/javascript">
@@ -60,7 +64,7 @@
 
         $(Document).ready(function () {
             //Funciones del Boton Guardar
-            $("#<%=btnGuardar.ClientID%>").click(function () {
+            $("#<%=btnGuardarNuevo.ClientID%>").click(function () {
                 var TipoProceso = $("#<%=ddlTipoprocesoMantenimiento.ClientID%>").val();
                 if (TipoProceso < 1) {
                     alert("El campo Tipo de Proceso no puede estar vacio para realizar esta operación, favor de verificar.");
@@ -181,12 +185,12 @@
         </div>
         <br />
         <div align="center">
-             <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click" />
-            <asp:Button ID="btnReporte" runat="server" Text="Reporte" ToolTip="Volver Atras" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnReporte_Click" />
-             <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" ToolTip="Crear Nuevo Registro" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnNuevo_Click" />
-             <asp:Button ID="btnModificar" runat="server" Text="Modificar" Enabled="false" ToolTip="Modificar Registros" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnModificar_Click" />
-             <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" Enabled="false" ToolTip="Eliminar Registros" CssClass="btn btn-outline-danger btn-sm" OnClick="btnEliminar_Click" />
-            <asp:Button ID="btnRestablecer" runat="server" Text="Restablecer" Enabled="false" ToolTip="Restablecer Pantalla" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnRestablecer_Click" />
+            <asp:ImageButton ID="btnConsultarNuevo" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" OnClick="btnConsultarNuevo_Click" ImageUrl="~/Imagenes/Buscar.png" />
+            <asp:ImageButton ID="btnReporteNuevo" runat="server" ToolTip="Generar Reporte de Control de Visitas" CssClass="BotonImagen" OnClick="btnReporteNuevo_Click" ImageUrl="~/Imagenes/Reporte.png" />
+            <asp:ImageButton ID="btnNuevoNuevo" runat="server" ToolTip="Crear Nuevo Registro" CssClass="BotonImagen" OnClick="btnNuevoNuevo_Click" ImageUrl="~/Imagenes/Agregar (2).png" />
+            <asp:ImageButton ID="btnModificarNuevo" runat="server" Enabled="false" ToolTip="Modificar Registro Seleccionado" CssClass="BotonImagen" OnClick="btnModificarNuevo_Click" ImageUrl="~/Imagenes/Editar.png" />
+            <asp:ImageButton ID="btnEliminarNuevo" runat="server" Enabled="false" ToolTip="Eliminar Registro Seleccionado" CssClass="BotonImagen" OnClick="btnEliminarNuevo_Click" ImageUrl="~/Imagenes/Eliminar.png" />
+            <asp:ImageButton ID="btnRestablecerNuevo" runat="server" Enabled="false" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" OnClick="btnRestablecerNuevo_Click" ImageUrl="~/Imagenes/auto.png" />
         </div>
         <br />
 
@@ -194,7 +198,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th style="width:10%" align="left">SELECT</th>
+                        <th style="width:10%" align="center">SELECT</th>
                         <th style="width:15%" align="left">NOMBRE</th>
                         <th style="width:15%" align="left">RNC</th>
                         <th style="width:10%" align="left">FECHA</th>
@@ -209,7 +213,7 @@
                             <asp:HiddenField ID="hfNoRegistro" runat="server" Value='<%# Eval("NoRegistro") %>' />
 
                             <tr>
-                                <td style="width:10%" align="left"><asp:Button ID="btnSeleccionarRegistros" runat="server" Text="Seleccionar" ToolTip="Seleccionar Registros" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarRegistros_Click" /> </td>
+                                <td style="width:10%" align="center"><asp:ImageButton ID="btnSeleccionarRegistrosNuevo" runat="server" ToolTip="Seleccionar Registro" CssClass="BotonImagen" OnClick="btnSeleccionarRegistrosNuevo_Click" ImageUrl="~/Imagenes/Seleccionar2.png" /></td>
                                 <td style="width:15%" align="left"><%# Eval("Nombre") %> </td>
                                 <td style="width:15%" align="left"><%# Eval("NumeroIdentificacion") %></td>
                                 <td style="width:15%" align="left"><%# Eval("FechaDigita") %></td>
@@ -362,8 +366,8 @@
         </div>
         <br />
         <div align="center">
-           <asp:Button ID="btnGuardar" runat="server" Text="Completar" ToolTip="Completar Operación" CssClass="btn btn-outline-success btn-sm" OnClick="btnGuardar_Click" />
-            <asp:Button ID="btnVolver" runat="server" Text="Volver" ToolTip="Volver Atras" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnVolver_Click" />
+            <asp:ImageButton ID="btnGuardarNuevo" runat="server" ToolTip="Completar Operación" CssClass="BotonImagen" OnClick="btnGuardarNuevo_Click" ImageUrl="~/Imagenes/salvar.png" />
+            <asp:ImageButton ID="btnVolverNuevo" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen" OnClick="btnVolverNuevo_Click" ImageUrl="~/Imagenes/volver-flecha.png" />
         </div>
         <br />
     </div>

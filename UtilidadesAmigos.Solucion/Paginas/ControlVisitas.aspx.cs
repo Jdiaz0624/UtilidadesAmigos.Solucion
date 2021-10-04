@@ -230,16 +230,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
             MostrarListadoControlCisitas();
 
 
-            btnConsultar.Enabled = true;
-            btnReporte.Enabled = true;
-            btnNuevo.Enabled = true;
-            btnModificar.Enabled = false;
-            btnEliminar.Enabled = false;
+            btnConsultarNuevo.Enabled = true;
+            btnReporteNuevo.Enabled = true;
+            btnNuevoNuevo.Enabled = true;
+            btnModificarNuevo.Enabled = false;
+            btnEliminarNuevo.Enabled = false;
             LinkPrimeraPaginaControlVisistas.Enabled = true;
             LinkSiguienteControlVisistas.Enabled = true;
             LinkAnteriorControlVisistas.Enabled = true;
             LinkUltimoControlVisistas.Enabled = true;
-            btnRestablecer.Enabled = false;
+            btnRestablecerNuevo.Enabled = false;
 
 
             txtCantidadDocumentosVistaPrevia.Text = string.Empty;
@@ -419,46 +419,46 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 DivBloqueMantenimiento.Visible = false;
 
-                btnNuevo.Visible = false;
-                btnModificar.Visible = false;
-                btnEliminar.Visible = false;
+                btnNuevoNuevo.Visible = false;
+                btnModificarNuevo.Visible = false;
+                btnEliminarNuevo.Visible = false;
 
                 decimal IdUsuario = (decimal)Session["IdUsuario"];
 
                 if (IdUsuario == (decimal)PermisoUsuarios.CarlosMercado) {
-                    btnNuevo.Visible = true;
-                    btnModificar.Visible = true;
-                    btnEliminar.Visible = false;
+                    btnNuevoNuevo.Visible = true;
+                    btnModificarNuevo.Visible = true;
+                    btnEliminarNuevo.Visible = false;
                 }
                 else if (IdUsuario == (decimal)PermisoUsuarios.ErikSonVeras) {
-                    btnNuevo.Visible = true;
-                    btnModificar.Visible = true;
-                    btnEliminar.Visible = false;
+                    btnNuevoNuevo.Visible = true;
+                    btnModificarNuevo.Visible = true;
+                    btnEliminarNuevo.Visible = false;
                 }
                 else if (IdUsuario == (decimal)PermisoUsuarios.AdalgisaAlmonte) {
-                    btnNuevo.Visible = true;
-                    btnModificar.Visible = true;
-                    btnEliminar.Visible = false;
+                    btnNuevoNuevo.Visible = true;
+                    btnModificarNuevo.Visible = true;
+                    btnEliminarNuevo.Visible = false;
                 }
                 else if (IdUsuario == (decimal)PermisoUsuarios.JuanMarcelino) {
-                    btnNuevo.Visible = true;
-                    btnModificar.Visible = true;
-                    btnEliminar.Visible = true;
+                    btnNuevoNuevo.Visible = true;
+                    btnModificarNuevo.Visible = true;
+                    btnEliminarNuevo.Visible = true;
                 }
                 else if (IdUsuario == (decimal)PermisoUsuarios.AlfredoPimentel) {
-                    btnNuevo.Visible = true;
-                    btnModificar.Visible = true;
-                    btnEliminar.Visible = true;
+                    btnNuevoNuevo.Visible = true;
+                    btnModificarNuevo.Visible = true;
+                    btnEliminarNuevo.Visible = true;
                 }
                 else if (IdUsuario == (decimal)PermisoUsuarios.MiguelBerrora) {
-                    btnNuevo.Visible = true;
-                    btnModificar.Visible = true;
-                    btnEliminar.Visible = true;
+                    btnNuevoNuevo.Visible = true;
+                    btnModificarNuevo.Visible = true;
+                    btnEliminarNuevo.Visible = true;
                 }
                 else {
-                    btnNuevo.Visible = false;
-                    btnModificar.Visible = false;
-                    btnEliminar.Visible = false;
+                    btnNuevoNuevo.Visible = false;
+                    btnModificarNuevo.Visible = false;
+                    btnEliminarNuevo.Visible = false;
                 }
 
             }
@@ -478,44 +478,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            CurrentPage = 0;
-            MostrarListadoControlCisitas();
+          
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-            DesbloquearControles();
-            lbIdRegistroSeleccionado.Text = "0";
-            lbAccionTomarSeleccionado.Text = "INSERT";
-            CargarTipoProcesoMantenimiento();
-            txtNombreMantenimiento.Text = string.Empty;
-            txtNumeroIdentificacionMantenimiento.Text = string.Empty;
-            txtRemitenteMantenimiento.Text = string.Empty;
-            txtDestinatarioMantenimiento.Text = string.Empty;
-            txtCantidadDocumentosMantenimiento.Text = string.Empty;
-            txtCantidadPersonasMantenimiento.Text = string.Empty;
-            txtComentarioMantenimiento.Text = string.Empty;
-            DivBloqueCOnsulta.Visible = false;
-            DivBloqueMantenimiento.Visible = true;
-
-            AccionDrop(Convert.ToInt32(ddlTipoprocesoMantenimiento.SelectedValue));
+           
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            DesbloquearControles();
-            ddlTipoprocesoMantenimiento.Enabled = false;
-            lbAccionTomarSeleccionado.Text = "UPDATE";
-            DivBloqueCOnsulta.Visible = false;
-            DivBloqueMantenimiento.Visible = true;
+           
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            BloquearControles();
-            lbAccionTomarSeleccionado.Text = "DELETE";
-            DivBloqueCOnsulta.Visible = false;
-            DivBloqueMantenimiento.Visible = true;
+          
         }
 
         protected void LinkPrimeraPaginaControlVisistas_Click(object sender, EventArgs e)
@@ -558,35 +536,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (Session["IdUsuario"] != null)
-            {
-                ProcesarInformacion(Convert.ToDecimal(lbIdRegistroSeleccionado.Text), lbAccionTomarSeleccionado.Text);
-                VolverAtras();
-            }
-            else
-            {
-                FormsAuthentication.SignOut();
-                FormsAuthentication.RedirectToLoginPage();
-            }
+            
            
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            VolverAtras();
+           
         }
 
         protected void btnReporte_Click(object sender, EventArgs e)
         {
-            if (Session["IdUsuario"] != null) {
-                decimal UsuarioGenera = (decimal)Session["IdUsuario"];
-
-                GenerarReporte(Server.MapPath("ControlVisitas.rpt"), "Reporte de Control de Visitas", UsuarioGenera);
-            }
-            else {
-                FormsAuthentication.SignOut();
-                FormsAuthentication.RedirectToLoginPage();
-            }
+           
             
         }
 
@@ -597,12 +558,74 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnRestablecer_Click(object sender, EventArgs e)
         {
+          
+        }
+
+        protected void btnConsultarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarListadoControlCisitas();
+        }
+
+        protected void btnReporteNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+                decimal UsuarioGenera = (decimal)Session["IdUsuario"];
+
+                GenerarReporte(Server.MapPath("ControlVisitas.rpt"), "Reporte de Control de Visitas", UsuarioGenera);
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
+
+        protected void btnNuevoNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            DesbloquearControles();
+            lbIdRegistroSeleccionado.Text = "0";
+            lbAccionTomarSeleccionado.Text = "INSERT";
+            CargarTipoProcesoMantenimiento();
+            txtNombreMantenimiento.Text = string.Empty;
+            txtNumeroIdentificacionMantenimiento.Text = string.Empty;
+            txtRemitenteMantenimiento.Text = string.Empty;
+            txtDestinatarioMantenimiento.Text = string.Empty;
+            txtCantidadDocumentosMantenimiento.Text = string.Empty;
+            txtCantidadPersonasMantenimiento.Text = string.Empty;
+            txtComentarioMantenimiento.Text = string.Empty;
+            DivBloqueCOnsulta.Visible = false;
+            DivBloqueMantenimiento.Visible = true;
+
+            AccionDrop(Convert.ToInt32(ddlTipoprocesoMantenimiento.SelectedValue));
+        }
+
+        protected void btnModificarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            DesbloquearControles();
+            ddlTipoprocesoMantenimiento.Enabled = false;
+            lbAccionTomarSeleccionado.Text = "UPDATE";
+            DivBloqueCOnsulta.Visible = false;
+            DivBloqueMantenimiento.Visible = true;
+        }
+
+        protected void btnEliminarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            BloquearControles();
+            lbAccionTomarSeleccionado.Text = "DELETE";
+            DivBloqueCOnsulta.Visible = false;
+            DivBloqueMantenimiento.Visible = true;
+        }
+
+        protected void btnRestablecerNuevo_Click(object sender, ImageClickEventArgs e)
+        {
             VolverAtras();
         }
 
-        protected void btnSeleccionarRegistros_Click(object sender, EventArgs e)
+        protected void btnSeleccionarRegistrosNuevo_Click(object sender, ImageClickEventArgs e)
         {
-            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
             var hfNoRegistroseleccionado = ((HiddenField)ItemSeleccionado.FindControl("hfNoRegistro")).Value.ToString();
             lbIdRegistroSeleccionado.Text = hfNoRegistroseleccionado.ToString();
 
@@ -612,7 +635,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             Paginar(ref rpListadoControlVisitas, BuscarInformacionSeleccionada, 1, ref lbCantidadPaginaVAriableControlVisistas, ref LinkPrimeraPaginaControlVisistas, ref LinkAnteriorControlVisistas, ref LinkSiguienteControlVisistas, ref LinkUltimoControlVisistas);
             HandlePaging(ref dtPaginacionControlVisistas, ref lbPaginaActualVariableControlVisistas);
 
-            foreach (var n in BuscarInformacionSeleccionada) {
+            foreach (var n in BuscarInformacionSeleccionada)
+            {
 
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlTipoprocesoMantenimiento, n.IdTipoProcesoRecepcion.ToString());
                 txtNombreMantenimiento.Text = n.Nombre;
@@ -633,18 +657,42 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtFechaModificadoVistaPrevia.Text = n.FechaModifica;
                 txtComentarioVistaPrevia.Text = n.Comentario;
             }
-            btnConsultar.Enabled = false;
-            btnReporte.Enabled = false;
-            btnNuevo.Enabled = false;
-            btnModificar.Enabled = true;
-            btnEliminar.Enabled = true;
+            btnConsultarNuevo.Enabled = false;
+            btnReporteNuevo.Enabled = false;
+            btnNuevoNuevo.Enabled = false;
+            btnModificarNuevo.Enabled = true;
+            btnEliminarNuevo.Enabled = true;
             LinkPrimeraPaginaControlVisistas.Enabled = false;
             LinkSiguienteControlVisistas.Enabled = false;
             LinkAnteriorControlVisistas.Enabled = false;
             LinkUltimoControlVisistas.Enabled = false;
-            btnRestablecer.Enabled = true;
+            btnRestablecerNuevo.Enabled = true;
             DivBloqueDetalle.Visible = true;
             DivGraficoControlVisitas.Visible = false;
+        }
+
+        protected void btnGuardarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+                ProcesarInformacion(Convert.ToDecimal(lbIdRegistroSeleccionado.Text), lbAccionTomarSeleccionado.Text);
+                VolverAtras();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
+
+        protected void btnVolverNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            VolverAtras();
+        }
+
+        protected void btnSeleccionarRegistros_Click(object sender, EventArgs e)
+        {
+          
         }
     }
 }
