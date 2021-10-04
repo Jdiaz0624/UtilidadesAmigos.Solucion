@@ -702,14 +702,225 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
+          
+        }
+
+        protected void btnExportar_Click(object sender, EventArgs e)
+        {
+           
+
+        }
+
+
+
+        protected void rbGenerarDataRangoFecha_CheckedChanged(object sender, EventArgs e)
+        {
+         
+        }
+
+        protected void rbGenerarDataCompleta_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void rbGenerarDataRangoFecha_CheckedChanged1(object sender, EventArgs e)
+        {
+          
+        }
+
+        protected void ddlSeleccionarCpbertura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarPlanCoberturas();
+        }
+
+        protected void btnGuardarCobertura_Click(object sender, EventArgs e)
+        {
+            MAnCoberturas(Convert.ToDecimal(lbIdCobertura.Text));
+            ListadoPlanCoberturas();
+            CargarCoberturas();
+        }
+
+
+        protected void btnGuardarPlanCobertura_Click(object sender, EventArgs e)
+        {
+            MANPlanCoberturas();
+            ListadoPlanCoberturas();
+            CargarCoberturas();
+        }
+
+        protected void ddlSeleccionarSucursal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Cargaroficinas();
+        }
+
+        protected void btnReporte_Click(object sender, EventArgs e)
+        {
+           
+          
+        }
+
+        protected void LinkPrimeraListadoPrincipal_Click(object sender, EventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarListadoCoberturaFinal();
+        }
+
+        protected void LinkAnteriorListadoPrincipal_Click(object sender, EventArgs e)
+        {
+            CurrentPage += -1;
+            MostrarListadoCoberturaFinal();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableListadoPrincipal, ref lbCantidadPaginaVariableListadoPrincipal);
+        }
+
+        protected void dtPaginacionListadoPrincipal_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionListadoPrincipal_CancelCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoCoberturaFinal();
+        }
+
+        protected void LinkSiguienteListadoPrincipal_Click(object sender, EventArgs e)
+        {
+            CurrentPage += 1;
+            MostrarListadoCoberturaFinal();
+        }
+
+        protected void btnSeleccionarCobertura_Click(object sender, EventArgs e)
+        {
+            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfIdCobertura = ((HiddenField)ItemSeleccionado.FindControl("hfIdCobertura")).Value.ToString();
+            lbIdCobertura.Text = hfIdCobertura.ToString();
+
+            var SeleccionarRegistro = ObjData.Value.BuscaCoberturaMantenimiento(Convert.ToDecimal(hfIdCobertura), null);
+            foreach (var n in SeleccionarRegistro) {
+                txtCoberturaMantenimiento.Text = n.Descripcion;
+                cbEstatus.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
+            }
+        }
+
+        protected void LinkPrimeroCoberturas_Click(object sender, EventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarCoberturas();
+        }
+
+        protected void LinkAnteriorCoberturas_Click(object sender, EventArgs e)
+        {
+            CurrentPage += -1;
+            MostrarCoberturas();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCoberturas, ref lbCantidadPaginaVariableCoberturas);
+        }
+
+        protected void dtPaginacionCoberturas_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionCoberturas_CancelCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarCoberturas();
+        }
+
+        protected void LinkSiguienteCoberturas_Click(object sender, EventArgs e)
+        {
+            CurrentPage += 1;
+            MostrarCoberturas();
+        }
+
+        protected void LinkUltimoCoberturas_Click(object sender, EventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarCoberturas();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCoberturas, ref lbCantidadPaginaVariableCoberturas);
+        }
+
+        protected void btnSeleccionarPlanCobertura_Click(object sender, EventArgs e)
+        {
+            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var hfIdPlanCobertura = ((HiddenField)ItemSeleccionado.FindControl("hfIdPlanCobertura")).Value.ToString();
+
+            var MostrarPlanCoberturaSeleccionado = ObjData.Value.BuscaPlanCoberturas(Convert.ToDecimal(hfIdPlanCobertura));
+            Paginar(ref rpListadoPlanCobertura, MostrarPlanCoberturaSeleccionado, 1, ref lbCantidadPaginaVariablePlanCoberturas, ref LinkPrimeroPlanCobertura, ref LinkAnteriorPlanCobertura, ref LinkSiguientePlanCobertura, ref LinkUltimoPlanCobertura);
+            HandlePaging(ref dlPlanCobertura, ref lbPaginaActualVariablePlanCoberturas);
+            lbIdMantenimientoPlanCobertura.Text = hfIdPlanCobertura.ToString();
+
+            foreach (var n in MostrarPlanCoberturaSeleccionado) {
+                CargarPlanCoberturas();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlCoberturaPlanCobertura, n.IdCobertura.ToString());
+                txtCodigoCoberturaPlanCobertura.Text = n.CodigoCobertura.ToString();
+                txtPlanCobertura.Text = n.PlanCobertura;
+                cbEstatusPlanCobertura.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
+            }
+
+            txtCodigoCoberturaPlanCobertura.Enabled = false;
+
+        }
+
+        protected void LinkPrimeroPlanCobertura_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkAnteriorPlanCobertura_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dlPlanCobertura_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dlPlanCobertura_CancelCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void LinkSiguientePlanCobertura_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkUltimoPlanCobertura_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cbValidarDataCobertura_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbValidarDataCobertura.Checked == true) {
+                DIVBloqueConsulta.Visible = false;
+                DivBloqueValidarData.Visible = true;
+            }
+            else {
+                DIVBloqueConsulta.Visible = true;
+                DivBloqueValidarData.Visible = false;
+            }
+        }
+
+        protected void btnProcesarInformacion_Click(object sender, EventArgs e)
+        {
+         
+           
+        }
+
+        protected void btnConsultarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
             // MostrarDataCoberturas();
             CurrentPage = 0;
             MostrarListadoCoberturaFinal();
         }
 
-        protected void btnExportar_Click(object sender, EventArgs e)
+        protected void btnExportarExcelNuevo_Click(object sender, ImageClickEventArgs e)
         {
-            
+
             int PlanCobertura = Convert.ToInt32(ddlSeleccionarPlanCobertura.SelectedValue);
 
             switch (PlanCobertura)
@@ -974,63 +1185,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             //}
             #endregion
-
         }
 
-
-
-        protected void rbGenerarDataRangoFecha_CheckedChanged(object sender, EventArgs e)
+        protected void btnReporteNuevo_Click(object sender, ImageClickEventArgs e)
         {
-         
-        }
-
-        protected void rbGenerarDataCompleta_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        protected void rbGenerarDataRangoFecha_CheckedChanged1(object sender, EventArgs e)
-        {
-          
-        }
-
-        protected void ddlSeleccionarCpbertura_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CargarPlanCoberturas();
-        }
-
-        protected void btnGuardarCobertura_Click(object sender, EventArgs e)
-        {
-            MAnCoberturas(Convert.ToDecimal(lbIdCobertura.Text));
-            ListadoPlanCoberturas();
-            CargarCoberturas();
-        }
-
-
-        protected void btnGuardarPlanCobertura_Click(object sender, EventArgs e)
-        {
-            MANPlanCoberturas();
-            ListadoPlanCoberturas();
-            CargarCoberturas();
-        }
-
-        protected void ddlSeleccionarSucursal_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Cargaroficinas();
-        }
-
-        protected void btnReporte_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim())) {
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            {
                 ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
-                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim())){
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
                     ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
                 }
-                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim())){
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                {
                     ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
                 }
             }
-            else {
+            else
+            {
                 int CoberturaSeleccionada = Convert.ToInt32(ddlSeleccionarCpbertura.SelectedValue);
 
                 if (CoberturaSeleccionada == (int)CodigosCoberturas.CasaConductor || CoberturaSeleccionada == (int)CodigosCoberturas.AeroAmbulancia)
@@ -1059,158 +1231,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 }
             }
-          
         }
 
-        protected void LinkPrimeraListadoPrincipal_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarListadoCoberturaFinal();
-        }
-
-        protected void LinkAnteriorListadoPrincipal_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarListadoCoberturaFinal();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableListadoPrincipal, ref lbCantidadPaginaVariableListadoPrincipal);
-        }
-
-        protected void dtPaginacionListadoPrincipal_ItemDataBound(object sender, DataListItemEventArgs e)
+        protected void btnProcesarInformacion_Click1(object sender, ImageClickEventArgs e)
         {
 
         }
 
-        protected void dtPaginacionListadoPrincipal_CancelCommand(object source, DataListCommandEventArgs e)
+        protected void btnProcesarInformacionNuevo_Click(object sender, ImageClickEventArgs e)
         {
-            if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-            MostrarListadoCoberturaFinal();
-        }
-
-        protected void LinkSiguienteListadoPrincipal_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            MostrarListadoCoberturaFinal();
-        }
-
-        protected void btnSeleccionarCobertura_Click(object sender, EventArgs e)
-        {
-            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfIdCobertura = ((HiddenField)ItemSeleccionado.FindControl("hfIdCobertura")).Value.ToString();
-            lbIdCobertura.Text = hfIdCobertura.ToString();
-
-            var SeleccionarRegistro = ObjData.Value.BuscaCoberturaMantenimiento(Convert.ToDecimal(hfIdCobertura), null);
-            foreach (var n in SeleccionarRegistro) {
-                txtCoberturaMantenimiento.Text = n.Descripcion;
-                cbEstatus.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
-            }
-        }
-
-        protected void LinkPrimeroCoberturas_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarCoberturas();
-        }
-
-        protected void LinkAnteriorCoberturas_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarCoberturas();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCoberturas, ref lbCantidadPaginaVariableCoberturas);
-        }
-
-        protected void dtPaginacionCoberturas_ItemDataBound(object sender, DataListItemEventArgs e)
-        {
-
-        }
-
-        protected void dtPaginacionCoberturas_CancelCommand(object source, DataListCommandEventArgs e)
-        {
-            if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-            MostrarCoberturas();
-        }
-
-        protected void LinkSiguienteCoberturas_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            MostrarCoberturas();
-        }
-
-        protected void LinkUltimoCoberturas_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            MostrarCoberturas();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCoberturas, ref lbCantidadPaginaVariableCoberturas);
-        }
-
-        protected void btnSeleccionarPlanCobertura_Click(object sender, EventArgs e)
-        {
-            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfIdPlanCobertura = ((HiddenField)ItemSeleccionado.FindControl("hfIdPlanCobertura")).Value.ToString();
-
-            var MostrarPlanCoberturaSeleccionado = ObjData.Value.BuscaPlanCoberturas(Convert.ToDecimal(hfIdPlanCobertura));
-            Paginar(ref rpListadoPlanCobertura, MostrarPlanCoberturaSeleccionado, 1, ref lbCantidadPaginaVariablePlanCoberturas, ref LinkPrimeroPlanCobertura, ref LinkAnteriorPlanCobertura, ref LinkSiguientePlanCobertura, ref LinkUltimoPlanCobertura);
-            HandlePaging(ref dlPlanCobertura, ref lbPaginaActualVariablePlanCoberturas);
-            lbIdMantenimientoPlanCobertura.Text = hfIdPlanCobertura.ToString();
-
-            foreach (var n in MostrarPlanCoberturaSeleccionado) {
-                CargarPlanCoberturas();
-                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlCoberturaPlanCobertura, n.IdCobertura.ToString());
-                txtCodigoCoberturaPlanCobertura.Text = n.CodigoCobertura.ToString();
-                txtPlanCobertura.Text = n.PlanCobertura;
-                cbEstatusPlanCobertura.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
-            }
-
-            txtCodigoCoberturaPlanCobertura.Enabled = false;
-
-        }
-
-        protected void LinkPrimeroPlanCobertura_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void LinkAnteriorPlanCobertura_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void dlPlanCobertura_ItemDataBound(object sender, DataListItemEventArgs e)
-        {
-
-        }
-
-        protected void dlPlanCobertura_CancelCommand(object source, DataListCommandEventArgs e)
-        {
-
-        }
-
-        protected void LinkSiguientePlanCobertura_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void LinkUltimoPlanCobertura_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void cbValidarDataCobertura_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbValidarDataCobertura.Checked == true) {
-                DIVBloqueConsulta.Visible = false;
-                DivBloqueValidarData.Visible = true;
-            }
-            else {
-                DIVBloqueConsulta.Visible = true;
-                DivBloqueValidarData.Visible = false;
-            }
-        }
-
-        protected void btnProcesarInformacion_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim())) {
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            {
                 ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
 
                 if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
@@ -1224,7 +1255,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
 
             }
-            else {
+            else
+            {
                 try
                 {
                     //GUARDAMOS LOS DATOS ENVIADOS POR LA ENTIDAD EMISIRA 
@@ -1280,13 +1312,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     _Cobertura,
                     _Oficina,
                     null);
-                    if (InformacionSistema.Count() < 1) {
+                    if (InformacionSistema.Count() < 1)
+                    {
                         EliminarRegistrosTablaConfiguracion(IdUsuario);
                         ClientScript.RegisterStartupScript(GetType(), "RegistrosNoEncontrados()", "RegistrosNoEncontrados();", true);
                     }
-                    else {
+                    else
+                    {
                         string NombreCobertura = "";
-                        foreach (var n in InformacionSistema) {
+                        foreach (var n in InformacionSistema)
+                        {
                             NombreCobertura = n.Cobertura;
                             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaSistema Guardar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionValidacionCoberturaSistema(
                                 0,
@@ -1346,7 +1381,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 catch (Exception) { }
 
             }
-           
         }
 
         protected void LinkUltimoListadoPrincipal_Click(object sender, EventArgs e)

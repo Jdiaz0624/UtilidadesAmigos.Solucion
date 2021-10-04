@@ -204,31 +204,31 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.RadioButton rbExportarPDF;
 
         /// <summary>
-        /// btnConsultar control.
+        /// btnConsultarNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConsultar;
+        protected global::System.Web.UI.WebControls.ImageButton btnConsultarNuevo;
 
         /// <summary>
-        /// btnExportar control.
+        /// btnExportarExcelNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportar;
+        protected global::System.Web.UI.WebControls.ImageButton btnExportarExcelNuevo;
 
         /// <summary>
-        /// btnReporte control.
+        /// btnReporteNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReporte;
+        protected global::System.Web.UI.WebControls.ImageButton btnReporteNuevo;
 
         /// <summary>
         /// lbCantidadRegistrosListadoGeneralTitulo control.
@@ -474,13 +474,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.FileUpload FIleArchivoCobertura;
 
         /// <summary>
-        /// btnProcesarInformacion control.
+        /// lbEjemeploFormatoExel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnProcesarInformacion;
+        protected global::System.Web.UI.WebControls.Label lbEjemeploFormatoExel;
+
+        /// <summary>
+        /// btnProcesarInformacionNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnProcesarInformacionNuevo;
 
         /// <summary>
         /// MantenimientoCoberturas control.

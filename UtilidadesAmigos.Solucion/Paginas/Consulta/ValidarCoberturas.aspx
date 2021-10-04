@@ -28,6 +28,11 @@
             background-color: dodgerblue;
             color: white;
         }
+
+              .BotonImgen {
+              width:50px;
+              height:50px;
+              }
     </style>
     <script type="text/javascript">
       function OcultarControlesCoberturas() {
@@ -120,7 +125,7 @@
 
 
             //CONTROLAMOS EL EVENTO CLICK DEL BOTON CONSULTA
-            $("#<%=btnConsultar.ClientID%>").click(function () {
+            $("#<%=btnConsultarNuevo.ClientID%>").click(function () {
                 //VALIDAMOS EL CAMPO COBERTURA
                 var Cobertura = $("#<%=ddlSeleccionarCpbertura.ClientID%>").val();
                 if (Cobertura < 1) {
@@ -217,11 +222,13 @@
         <!--FIN DE LOS RADIOS PARA EXPORTAR-->
         <!--INICIO DE LOS BOTONES-->
         <div align="center" >
-            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-secondary btn-sm Letranegrita" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
-            <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-secondary btn-sm Letranegrita" ToolTip="Exportar Registros" OnClick="btnExportar_Click" />
+            <asp:ImageButton ID="btnConsultarNuevo" runat="server" ToolTip="Consultar Registros" CssClass="BotonImgen" OnClick="btnConsultarNuevo_Click" ImageUrl="~/Imagenes/Buscar.png" />
+            <asp:ImageButton ID="btnExportarExcelNuevo" runat="server" ToolTip="Exportar Registros a Excel" CssClass="BotonImgen" OnClick="btnExportarExcelNuevo_Click" ImageUrl="~/Imagenes/excel.png" />
+            <asp:ImageButton ID="btnReporteNuevo" runat="server" ToolTip="Generar Reporte de Coberturas" CssClass="BotonImgen" OnClick="btnReporteNuevo_Click" ImageUrl="~/Imagenes/Reporte.png" />
+
+          <br />
                 <button type="button" id="btnCobertura" class="btn btn-outline-secondary btn-sm Letranegrita" data-toggle="modal" data-target=".bd-example-modal-lg">Coberturas</button>
              <button type="button" id="btnPlan" class="btn btn-outline-secondary btn-sm Letranegrita" data-toggle="modal" data-target=".PlanCobertura">Plan</button>
-            <asp:Button ID="btnReporte" runat="server" Text="Reporte" CssClass="btn btn-outline-secondary btn-sm Letranegrita" ToolTip="Reporte de Cobertura" OnClick="btnReporte_Click" />
             <br /><br />
             <asp:Label ID="lbCantidadRegistrosListadoGeneralTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
             <asp:Label ID="lbCantidadRegistrosListadoGeneralVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
@@ -324,7 +331,8 @@
                                     <asp:FileUpload ID="FIleArchivoCobertura" CssClass="form-control-file" runat="server" />
                                 </div>
             <div align="center">
-                <asp:Button ID="btnProcesarInformacion" runat="server" Text="Procesar Información" CssClass="btn btn-outline-secondary" OnClick="btnProcesarInformacion_Click" ToolTip="Validar Información" />
+                <asp:Label ID="lbEjemeploFormatoExel" runat="server" Text="Formato de Archivo (Columnas)--> Poliza|Chasis|Placa|Cobertura" CssClass="Letranegrita"></asp:Label><br />
+                <asp:ImageButton ID="btnProcesarInformacionNuevo" runat="server" ToolTip="Validar la información de cobertura" CssClass="BotonImgen" OnClick="btnProcesarInformacionNuevo_Click" ImageUrl="~/Imagenes/Procesar.png" />
             </div>
             <br />
         </div>
