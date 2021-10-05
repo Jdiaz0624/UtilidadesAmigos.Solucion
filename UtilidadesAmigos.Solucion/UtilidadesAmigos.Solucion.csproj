@@ -206,6 +206,7 @@
     <Content Include="Paginas\Consulta\GestionCobros.aspx" />
     <Content Include="Paginas\Consulta\ListadoRenovacion.aspx" />
     <Content Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx" />
+    <Content Include="Paginas\Consulta\SacarCarteraIntermediariosSupervisor.aspx" />
     <Content Include="Paginas\Consulta\ValidarCoberturas.aspx" />
     <Content Include="Paginas\ConsumoWS.aspx" />
     <Content Include="Paginas\ControlVisitas.aspx" />
@@ -471,6 +472,13 @@
     </Compile>
     <Compile Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx.designer.cs">
       <DependentUpon>ReporteOperacionesSospechosas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Consulta\SacarCarteraIntermediariosSupervisor.aspx.cs">
+      <DependentUpon>SacarCarteraIntermediariosSupervisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Consulta\SacarCarteraIntermediariosSupervisor.aspx.designer.cs">
+      <DependentUpon>SacarCarteraIntermediariosSupervisor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Consulta\ValidarCoberturas.aspx.cs">
       <DependentUpon>ValidarCoberturas.aspx</DependentUpon>

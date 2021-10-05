@@ -157,6 +157,7 @@
   <li class="nav-item dropdown">
     <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%" role="button" aria-haspopup="true" aria-expanded="false">Consultas</a>
     <div class="dropdown-menu">
+        <asp:LinkButton ID="LinkCartera" runat="server" ToolTip="Sacar la Cartera de Intermediarios y Supervisores" Text="Cartera" OnClick="LinkCartera_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="LinkConsultarPersonas" runat="server" ToolTip="Consultar Pesonas Super Intendencia" Text="Consultar Personas" OnClick="LinkConsultarPersonas_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkProduccionPorUsuarios" runat="server" Visible="false" ToolTip="Muestra la Producción por usuarios con movimientos en Cobros, Producción y Reclamaciones" Text="Produccion Por Usuario" OnClick="linkProduccionPorUsuarios_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkProduccionDiaria" runat="server" Visible="false" ToolTip="Mostrar la Producción, lo Cobrado y lo reclamado" Text="Produccion - Cobrado - Reclamado" OnClick="linkProduccionDiaria_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>

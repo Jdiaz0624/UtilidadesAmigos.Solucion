@@ -490,7 +490,10 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                IdIntermediarioSupervisa=n.IdIntermediarioSupervisa,
                                NombreSupervisor=n.NombreSupervisor,
                                IdIntermediario=n.IdIntermediario,
-                               NombreIntermediario=n.NombreIntermediario
+                               NombreIntermediario=n.NombreIntermediario,
+                               Estatus=n.Estatus,
+                               EstatusVendedor=n.EstatusVendedor,
+                               TotalIntermediarios=n.TotalIntermediarios
                            }).ToList();
             return Listado;
         }

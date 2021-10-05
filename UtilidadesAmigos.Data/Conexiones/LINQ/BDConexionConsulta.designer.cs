@@ -178,18 +178,18 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_GENERAR_REPORTE_GESTION_COBROS_FINALResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_CARTERA_EJECUTIVOS")]
-		public ISingleResult<SP_SACAR_CARTERA_EJECUTIVOSResult> SP_SACAR_CARTERA_EJECUTIVOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Int")] System.Nullable<int> codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoSupervisor, codigoIntermediario);
-			return ((ISingleResult<SP_SACAR_CARTERA_EJECUTIVOSResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_CARTERA_INTERMEDIARIOS")]
 		public ISingleResult<SP_SACAR_CARTERA_INTERMEDIARIOSResult> SP_SACAR_CARTERA_INTERMEDIARIOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Intermediario", DbType="Int")] System.Nullable<int> intermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EstatusPoliza", DbType="VarChar(20)")] string estatusPoliza)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), intermediario, estatusPoliza);
 			return ((ISingleResult<SP_SACAR_CARTERA_INTERMEDIARIOSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_SACAR_CARTERA_EJECUTIVOS")]
+		public ISingleResult<SP_SACAR_CARTERA_EJECUTIVOSResult> SP_SACAR_CARTERA_EJECUTIVOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Int")] System.Nullable<int> codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoSupervisor, codigoIntermediario);
+			return ((ISingleResult<SP_SACAR_CARTERA_EJECUTIVOSResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -3377,86 +3377,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_SACAR_CARTERA_EJECUTIVOSResult
-	{
-		
-		private int _IdIntermediarioSupervisa;
-		
-		private string _NombreSupervisor;
-		
-		private int _IdIntermediario;
-		
-		private string _NombreIntermediario;
-		
-		public SP_SACAR_CARTERA_EJECUTIVOSResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdIntermediarioSupervisa", DbType="Int NOT NULL")]
-		public int IdIntermediarioSupervisa
-		{
-			get
-			{
-				return this._IdIntermediarioSupervisa;
-			}
-			set
-			{
-				if ((this._IdIntermediarioSupervisa != value))
-				{
-					this._IdIntermediarioSupervisa = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreSupervisor", DbType="VarChar(200)")]
-		public string NombreSupervisor
-		{
-			get
-			{
-				return this._NombreSupervisor;
-			}
-			set
-			{
-				if ((this._NombreSupervisor != value))
-				{
-					this._NombreSupervisor = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdIntermediario", DbType="Int NOT NULL")]
-		public int IdIntermediario
-		{
-			get
-			{
-				return this._IdIntermediario;
-			}
-			set
-			{
-				if ((this._IdIntermediario != value))
-				{
-					this._IdIntermediario = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreIntermediario", DbType="VarChar(200)")]
-		public string NombreIntermediario
-		{
-			get
-			{
-				return this._NombreIntermediario;
-			}
-			set
-			{
-				if ((this._NombreIntermediario != value))
-				{
-					this._NombreIntermediario = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_SACAR_CARTERA_INTERMEDIARIOSResult
 	{
 		
@@ -3676,6 +3596,140 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._PolizasCanceladas != value))
 				{
 					this._PolizasCanceladas = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SACAR_CARTERA_EJECUTIVOSResult
+	{
+		
+		private int _IdIntermediarioSupervisa;
+		
+		private string _NombreSupervisor;
+		
+		private int _IdIntermediario;
+		
+		private string _NombreIntermediario;
+		
+		private System.Nullable<byte> _Estatus;
+		
+		private string _EstatusVendedor;
+		
+		private System.Nullable<int> _TotalIntermediarios;
+		
+		public SP_SACAR_CARTERA_EJECUTIVOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdIntermediarioSupervisa", DbType="Int NOT NULL")]
+		public int IdIntermediarioSupervisa
+		{
+			get
+			{
+				return this._IdIntermediarioSupervisa;
+			}
+			set
+			{
+				if ((this._IdIntermediarioSupervisa != value))
+				{
+					this._IdIntermediarioSupervisa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreSupervisor", DbType="VarChar(200)")]
+		public string NombreSupervisor
+		{
+			get
+			{
+				return this._NombreSupervisor;
+			}
+			set
+			{
+				if ((this._NombreSupervisor != value))
+				{
+					this._NombreSupervisor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdIntermediario", DbType="Int NOT NULL")]
+		public int IdIntermediario
+		{
+			get
+			{
+				return this._IdIntermediario;
+			}
+			set
+			{
+				if ((this._IdIntermediario != value))
+				{
+					this._IdIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreIntermediario", DbType="VarChar(200)")]
+		public string NombreIntermediario
+		{
+			get
+			{
+				return this._NombreIntermediario;
+			}
+			set
+			{
+				if ((this._NombreIntermediario != value))
+				{
+					this._NombreIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="TinyInt")]
+		public System.Nullable<byte> Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EstatusVendedor", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		public string EstatusVendedor
+		{
+			get
+			{
+				return this._EstatusVendedor;
+			}
+			set
+			{
+				if ((this._EstatusVendedor != value))
+				{
+					this._EstatusVendedor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalIntermediarios", DbType="Int")]
+		public System.Nullable<int> TotalIntermediarios
+		{
+			get
+			{
+				return this._TotalIntermediarios;
+			}
+			set
+			{
+				if ((this._TotalIntermediarios != value))
+				{
+					this._TotalIntermediarios = value;
 				}
 			}
 		}
