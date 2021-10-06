@@ -31,5 +31,9 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 		public System.Nullable<int> PolizasActivas {get;set;}
 
 		public System.Nullable<int> PolizasCanceladas {get;set;}
+
+		public System.Nullable<int> PolizasTransito {get;set;}
+
+		public System.Nullable<int> PolizasExclusion {get;set;}
 	}
 }

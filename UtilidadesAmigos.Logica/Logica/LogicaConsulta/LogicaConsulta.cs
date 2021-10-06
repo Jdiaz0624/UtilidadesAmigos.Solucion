@@ -475,7 +475,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                Cobrado=n.Cobrado,
                                Balance=n.Balance,
                                PolizasActivas=n.PolizasActivas,
-                               PolizasCanceladas=n.PolizasCanceladas
+                               PolizasCanceladas=n.PolizasCanceladas,
+                               PolizasTransito=n.PolizasTransito,
+                               PolizasExclusion=n.PolizasExclusion
                            }).ToList();
             return Listado;
         }

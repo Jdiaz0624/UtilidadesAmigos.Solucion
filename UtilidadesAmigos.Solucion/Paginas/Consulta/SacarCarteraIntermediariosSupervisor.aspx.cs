@@ -144,6 +144,116 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         }
         #endregion
 
+        #region MOSTRAR LA CARTERA DE LOS INTERMEDIARIOS
+        private void CarteraIntermediario() {
+
+            int? CodigoVendedor = string.IsNullOrEmpty(txtCodigoIntermedairio.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermedairio.Text);
+            string Estatus = "";
+            int CodigoEstatus = Convert.ToInt32(ddlSeleccionarEstatusPoliza.SelectedValue);
+
+            switch (CodigoEstatus) {
+
+                case 1:
+                    Estatus=  "ACTIVO";
+                    break;
+
+                case 2:
+                    Estatus = "CANCELADA";
+                    break;
+
+                case 3:
+                    Estatus = "EXCLUSION";
+                    break;
+
+                case 4:
+                    Estatus = "TRANSITO";
+                    break;
+
+                default:
+                   Estatus= null;
+                    break;
+            }
+
+            var SacarCarteraIntermediarios = ObjDataConsulta.Value.SacarCarteraIntermeiario(CodigoVendedor, Estatus);
+            if (SacarCarteraIntermediarios.Count() < 1) {
+                CurrentPage = 0;
+                rpCarteraIntermediario.DataSource = null;
+                rpCarteraIntermediario.DataBind();
+                lbCantidadPolizasActivasVariable.Text = "0";
+                lbCantidadPolizasCanceladasVariable.Text = "0";
+                lbCantidadPolizasTransitoVariable.Text = "0";
+                lbCantidadPolizasExcluidasVariable.Text = "0";
+            }
+            else {
+
+                Paginar(ref rpCarteraIntermediario, SacarCarteraIntermediarios, 10, ref lbCantidadPaginaVAriableCarteraIntermediario, ref LinkPrimeraPaginaCarteraIntermediario, ref LinkAnteriorCarteraIntermediario, ref LinkSiguienteCarteraIntermediario, ref LinkUltimoCarteraIntermediario);
+                HandlePaging(ref dtPaginacionCarteraIntermediario, ref lbPaginaActualVariableCarteraIntermediario);
+                int Activas = 0, Canceladas = 0, Transito = 0, Exclidas = 0;
+
+                foreach (var n in SacarCarteraIntermediarios) {
+                    Activas = (int)n.PolizasActivas;
+                    Canceladas = (int)n.PolizasCanceladas;
+                    Transito = (int)n.PolizasTransito;
+                    Exclidas = (int)n.PolizasExclusion;
+                }
+
+                lbCantidadPolizasActivasVariable.Text = Activas.ToString("N0");
+                lbCantidadPolizasCanceladasVariable.Text = Canceladas.ToString("N0");
+                lbCantidadPolizasTransitoVariable.Text = Transito.ToString("N0");
+                lbCantidadPolizasExcluidasVariable.Text = Exclidas.ToString("N0");
+            }
+        }
+        #endregion
+
+        #region EXPORTAR CARTERA DE INTERMEDIARIOS
+        private void ExportarCarteraVendedores() {
+
+            int? CodigoVendedor = string.IsNullOrEmpty(txtCodigoIntermedairio.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermedairio.Text);
+            string Estatus = "";
+            int CodigoEstatus = Convert.ToInt32(ddlSeleccionarEstatusPoliza.SelectedValue);
+
+            switch (CodigoEstatus)
+            {
+
+                case 1:
+                    Estatus = "ACTIVO";
+                    break;
+
+                case 2:
+                    Estatus = "CANCELADA";
+                    break;
+
+                case 3:
+                    Estatus = "EXCLUSION";
+                    break;
+
+                case 4:
+                    Estatus = "TRANSITO";
+                    break;
+
+                default:
+                    Estatus = null;
+                    break;
+            }
+
+            var Exportar = (from n in ObjDataConsulta.Value.SacarCarteraIntermeiario(CodigoVendedor, Estatus)
+                            select new
+                            {
+                                Poliza = n.Poliza,
+                                EstatusPoliza = n.EstatusPoliza,
+                                SumaAsegurada = n.SumaAsegurada,
+                                CodigoIntermediario = n.Intermediario,
+                                Intermediario = n.NombreVendedor,
+                                EstatusIntermediario = n.EstatusIntermediario,
+                                Facturado = n.Facturado,
+                                Cobrado = n.Cobrado,
+                                Balance = n.Balance
+
+                            }).ToList();
+            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cartera de Intermediarios", Exportar);
+        }
+        #endregion
+
         private void CargarEstatus() {
 
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarEstatusPoliza, ObjDataGeneral.Value.BuscaListas("ESTATUSPOLIZA", null, null), true);
@@ -196,22 +306,30 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void btnConsultarIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage = 0;
+            CarteraIntermediario();
         }
 
         protected void txtCodigoIntermedairio_TextChanged(object sender, EventArgs e)
         {
-
+            string NombreVendedor = "", CodigoIntermediario = "";
+            CodigoIntermediario = txtCodigoIntermedairio.Text;
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor SacarNombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(CodigoIntermediario);
+            NombreVendedor = SacarNombre.SacarNombreIntermediario();
+            txtNombreIntermediario.Text = NombreVendedor;
         }
 
         protected void LinkPrimeraPaginaCarteraIntermediario_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = 0;
+            CarteraIntermediario();
         }
 
         protected void LinkAnteriorCarteraIntermediario_Click(object sender, EventArgs e)
         {
-
+            CurrentPage += -1;
+            CarteraIntermediario();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCarteraIntermediario, ref lbCantidadPaginaVAriableCarteraIntermediario);
         }
 
         protected void dtPaginacionCarteraIntermediario_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -221,17 +339,23 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void dtPaginacionCarteraIntermediario_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            CarteraIntermediario();
         }
 
         protected void LinkSiguienteCarteraIntermediario_Click(object sender, EventArgs e)
         {
+            CurrentPage += 1;
+            CarteraIntermediario();
 
         }
 
         protected void LinkUltimoCarteraIntermediario_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            CarteraIntermediario();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCarteraIntermediario, ref lbCantidadPaginaVAriableCarteraIntermediario);
         }
 
         protected void btnBuscarSupervisores_Click(object sender, ImageClickEventArgs e)
@@ -271,7 +395,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void ExportarInformacionIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage = 0;
+            ExportarCarteraVendedores();
         }
     }
 }

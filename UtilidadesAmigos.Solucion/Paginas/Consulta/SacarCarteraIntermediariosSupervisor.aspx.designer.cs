@@ -177,6 +177,78 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.Label lbCantidadPolizasCanceladasCerrar;
 
         /// <summary>
+        /// lbSeparador2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeparador2;
+
+        /// <summary>
+        /// lbCantidadPolizasTransitoTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasTransitoTitulo;
+
+        /// <summary>
+        /// lbCantidadPolizasTransitoVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasTransitoVariable;
+
+        /// <summary>
+        /// lbCantidadPolizasCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasCerrar;
+
+        /// <summary>
+        /// lbSeparador3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeparador3;
+
+        /// <summary>
+        /// lbCantidadPolziasExcluidasTitulos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolziasExcluidasTitulos;
+
+        /// <summary>
+        /// lbCantidadPolizasExcluidasVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasExcluidasVariable;
+
+        /// <summary>
+        /// lbCantidadPolizasExcluidasCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasExcluidasCerrar;
+
+        /// <summary>
         /// rpCarteraIntermediario control.
         /// </summary>
         /// <remarks>

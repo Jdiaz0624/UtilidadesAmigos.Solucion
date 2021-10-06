@@ -67,9 +67,17 @@
             <asp:Label ID="lbCantidadPolizasActivasVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCantidadPolizasActivasCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbSeparador" runat="server" Text=" | " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadPolizasCanceladasTitulo" runat="server" Text="Polizas Activas (" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadPolizasCanceladasTitulo" runat="server" Text="Polizas Canceladas (" CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCantidadPolizasCanceladasVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCantidadPolizasCanceladasCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbSeparador2" runat="server" Text=" | " CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadPolizasTransitoTitulo" runat="server" Text="Polizas En Transito (" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadPolizasTransitoVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadPolizasCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbSeparador3" runat="server" Text=" | " CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadPolziasExcluidasTitulos" runat="server" Text="Polizas En Exclusión (" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadPolizasExcluidasVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadPolizasExcluidasCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
         </div>
         <br />
         <div class="table-responsive">

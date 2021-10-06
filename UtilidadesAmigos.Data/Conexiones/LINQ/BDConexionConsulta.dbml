@@ -318,6 +318,19 @@
       <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_SACAR_CARTERA_EJECUTIVOS" Method="SP_SACAR_CARTERA_EJECUTIVOS">
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SACAR_CARTERA_EJECUTIVOSResult">
+      <Column Name="IdIntermediarioSupervisa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="IdIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NombreIntermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="EstatusVendedor" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalIntermediarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="Utililades.SP_SACAR_CARTERA_INTERMEDIARIOS" Method="SP_SACAR_CARTERA_INTERMEDIARIOS">
     <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
     <Parameter Name="EstatusPoliza" Parameter="estatusPoliza" Type="System.String" DbType="VarChar(20)" />
@@ -334,19 +347,8 @@
       <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="PolizasActivas" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="PolizasCanceladas" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_SACAR_CARTERA_EJECUTIVOS" Method="SP_SACAR_CARTERA_EJECUTIVOS">
-    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Int32" DbType="Int" />
-    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_SACAR_CARTERA_EJECUTIVOSResult">
-      <Column Name="IdIntermediarioSupervisa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="IdIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="NombreIntermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="EstatusVendedor" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
-      <Column Name="TotalIntermediarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PolizasTransito" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PolizasExclusion" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
