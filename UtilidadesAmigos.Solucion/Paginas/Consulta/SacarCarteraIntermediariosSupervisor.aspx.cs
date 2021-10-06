@@ -241,7 +241,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                             {
                                 Poliza = n.Poliza,
                                 EstatusPoliza = n.EstatusPoliza,
-                                SumaAsegurada = n.SumaAsegurada,
+                                CodigoDeCliente=n.CodigoCliente,
+                                Cliente = n.Cliente,
                                 CodigoIntermediario = n.Intermediario,
                                 Intermediario = n.NombreVendedor,
                                 EstatusIntermediario = n.EstatusIntermediario,
