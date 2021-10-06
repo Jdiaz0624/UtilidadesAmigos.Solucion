@@ -324,7 +324,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 lbNombreUsuario.Text = SacarNombre.SacarNombreUsuarioConectado();
                 Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantallaActual.Text = "CARTERA DE INTERMEDIARIOS / SUPERVISORES";
-            }
+            } 
         }
 
         protected void rbCarteraIntermediarios_CheckedChanged(object sender, EventArgs e)
