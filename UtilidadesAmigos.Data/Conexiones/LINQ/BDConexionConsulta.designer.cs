@@ -3520,6 +3520,10 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<decimal> _SumaAsegurada;
 		
+		private System.Nullable<decimal> _CodigoCliente;
+		
+		private string _Cliente;
+		
 		private System.Nullable<int> _Intermediario;
 		
 		private string _NombreVendedor;
@@ -3590,6 +3594,38 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._SumaAsegurada != value))
 				{
 					this._SumaAsegurada = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoCliente", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> CodigoCliente
+		{
+			get
+			{
+				return this._CodigoCliente;
+			}
+			set
+			{
+				if ((this._CodigoCliente != value))
+				{
+					this._CodigoCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cliente", DbType="VarChar(255)")]
+		public string Cliente
+		{
+			get
+			{
+				return this._Cliente;
+			}
+			set
+			{
+				if ((this._Cliente != value))
+				{
+					this._Cliente = value;
 				}
 			}
 		}

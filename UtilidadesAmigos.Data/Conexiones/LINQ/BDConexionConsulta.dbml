@@ -338,6 +338,8 @@
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="EstatusPoliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="SumaAsegurada" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Intermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="NombreVendedor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="Estatus" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />

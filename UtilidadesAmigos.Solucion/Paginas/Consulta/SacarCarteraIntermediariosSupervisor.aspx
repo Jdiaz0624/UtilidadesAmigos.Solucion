@@ -86,7 +86,7 @@
                     <tr>
                         <th style="width:10%" align="left"> POLIZA </th>
                         <th style="width:10%" align="left"> ESTATUS </th>
-                        <th style="width:20%" align="left"> ASEGURADO </th>
+                        <th style="width:20%" align="left"> CLIENTE </th>
                         <th style="width:20%" align="left"> FACTURADO </th>
                         <th style="width:20%" align="left"> COBRADO </th>
                         <th style="width:20%" align="left"> BALANCE </th>
@@ -98,7 +98,7 @@
                             <tr>
                                 <td style="width:10%" align="left"> <%# Eval("Poliza") %> </td>
                                 <td style="width:10%" align="left"> <%# Eval("EstatusPoliza") %> </td>
-                                <td style="width:20%" align="left"> <%#string.Format("{0:n2}", Eval("SumaAsegurada")) %> </td>
+                                <td style="width:20%" align="left"> <%# Eval("Cliente") %> </td>
                                 <td style="width:20%" align="left"> <%#string.Format("{0:n2}", Eval("Facturado")) %> </td>
                                 <td style="width:20%" align="left"> <%#string.Format("{0:n2}", Eval("Cobrado")) %> </td>
                                 <td style="width:20%" align="left"> <%#string.Format("{0:n2}", Eval("Balance")) %> </td>

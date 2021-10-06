@@ -13,6 +13,9 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 		public string EstatusPoliza {get;set;}
 
 		public System.Nullable<decimal> SumaAsegurada {get;set;}
+		public System.Nullable<decimal> CodigoCliente { get; set; }
+
+		public string Cliente { get; set; }
 
 		public System.Nullable<int> Intermediario {get;set;}
 

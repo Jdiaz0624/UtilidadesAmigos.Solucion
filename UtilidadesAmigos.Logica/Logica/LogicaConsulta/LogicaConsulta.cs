@@ -467,6 +467,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                Poliza=n.Poliza,
                                EstatusPoliza=n.EstatusPoliza,
                                SumaAsegurada=n.SumaAsegurada,
+                               CodigoCliente=n.CodigoCliente,
+                               Cliente=n.Cliente,
                                Intermediario=n.Intermediario,
                                NombreVendedor=n.NombreVendedor,
                                Estatus=n.Estatus,
