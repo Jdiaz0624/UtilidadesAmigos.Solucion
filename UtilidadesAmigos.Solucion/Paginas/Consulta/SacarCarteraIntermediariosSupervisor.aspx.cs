@@ -254,6 +254,56 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         }
         #endregion
 
+        #region MOSTRAR LA CARTERA DE LOS SUPERVISORES
+        private void MostrarCarteraSupervisores() {
+
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioSupervisor.Text);
+
+            var SacarCartera = ObjDataConsulta.Value.SacarCarteraEjecutivos(_Supervisor, _Intermediario);
+            if (SacarCartera.Count() < 1) {
+
+                lbCantidadIntermediariosVariable.Text = "0";
+                rpCarteraSupervisor.DataSource = null;
+                rpCarteraSupervisor.DataBind();
+                CurrentPage = 0;
+            }
+            else {
+
+                Paginar(ref rpCarteraSupervisor, SacarCartera, 10, ref lbCantidadPaginaVAriableCarteraSupervisor, ref LinkPrimeraPaginaCarteraSupervisor, ref LinkAnteriorCarteraSupervisor, ref LinkSiguienteCarteraSupervisor, ref LinkUltimoCarteraSupervisor);
+                HandlePaging(ref dtPaginacionCarteraSupervisor, ref lbPaginaActualVariableCarteraSupervisor);
+
+                int CantidadIntemediaro = 0;
+
+                foreach (var n in SacarCartera) {
+
+                    CantidadIntemediaro = (int)n.TotalIntermediarios;
+                }
+                lbCantidadIntermediariosVariable.Text = CantidadIntemediaro.ToString("N0");
+            }
+        }
+        #endregion
+
+        #region EXPORTAR CARTERA SUPERVISORES
+        private void ExportarCartaraSupervisores() {
+
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioSupervisor.Text);
+
+            var Exportar = (from n in ObjDataConsulta.Value.SacarCarteraEjecutivos(_Supervisor, _Intermediario)
+                            select new
+                            {
+                                Codigo_Supervisor = n.IdIntermediarioSupervisa,
+                                Supervisor = n.NombreSupervisor,
+                                Codigo_Intermediario = n.IdIntermediario,
+                                Intermediario = n.NombreIntermediario,
+                                Estatus_Intermediario = n.EstatusVendedor
+                            }).ToList();
+            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cartera de Supervisores", Exportar);
+        }
+
+        #endregion
+
         private void CargarEstatus() {
 
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarEstatusPoliza, ObjDataGeneral.Value.BuscaListas("ESTATUSPOLIZA", null, null), true);
@@ -268,6 +318,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 DivBloqueIntermediarios.Visible = true;
                 DivBloqueSupervisores.Visible = false;
                 CargarEstatus();
+
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario SacarNombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
+                lbNombreUsuario.Text = SacarNombre.SacarNombreUsuarioConectado();
+                Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbPantallaActual.Text = "CARTERA DE INTERMEDIARIOS / SUPERVISORES";
             }
         }
 
@@ -360,17 +416,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void btnBuscarSupervisores_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarCarteraSupervisores();
         }
 
         protected void LinkPrimeraPaginaCarteraSupervisor_Click(object sender, EventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarCarteraSupervisores();
         }
 
         protected void LinkAnteriorCarteraSupervisor_Click(object sender, EventArgs e)
         {
 
+            CurrentPage += -1;
+            MostrarCarteraSupervisores();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCarteraSupervisor, ref lbCantidadPaginaVAriableCarteraSupervisor);
         }
 
         protected void dtPaginacionCarteraSupervisor_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -381,16 +442,40 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected void dtPaginacionCarteraSupervisor_ItemCommand(object source, DataListCommandEventArgs e)
         {
 
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarCarteraSupervisores();
         }
 
         protected void LinkSiguienteCarteraSupervisor_Click(object sender, EventArgs e)
         {
 
+            CurrentPage += 1;
+            MostrarCarteraSupervisores();
         }
 
         protected void LinkUltimoCarteraSupervisor_Click(object sender, EventArgs e)
         {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarCarteraSupervisores();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCarteraSupervisor, ref lbCantidadPaginaVAriableCarteraSupervisor);
+        }
 
+        protected void btnExportarSupervisores_Click(object sender, ImageClickEventArgs e)
+        {
+            ExportarCartaraSupervisores();
+        }
+
+        protected void txtCodigoSupervisor_TextChanged(object sender, EventArgs e)
+        {
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoSupervisor.Text);
+            txtNombreSupervisor.Text = Nombre.SacarNombreSupervisor();
+        }
+
+        protected void txtCodigoIntermediarioSupervisor_TextChanged(object sender, EventArgs e)
+        {
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoIntermediarioSupervisor.Text);
+            txtNombreIntermediarioSupervisor.Text = Nombre.SacarNombreIntermediario();
         }
 
         protected void ExportarInformacionIntermediario_Click(object sender, ImageClickEventArgs e)

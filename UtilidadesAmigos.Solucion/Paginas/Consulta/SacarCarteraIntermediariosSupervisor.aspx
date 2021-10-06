@@ -146,7 +146,7 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <asp:Label ID="lbCodigoSupervisor" runat="server" Text="Codigo de Supervisor" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtCodigoSupervisor" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtCodigoSupervisor" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoSupervisor_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
 
             <div class="form-group col-md-3">
@@ -156,7 +156,7 @@
 
             <div class="form-group col-md-3">
                 <asp:Label ID="lbCodigoIntermediarioSupervisor" runat="server" Text="Codigo de Intermediario" CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtCodigoIntermediarioSupervisor" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtCodigoIntermediarioSupervisor" AutoPostBack="true" OnTextChanged="txtCodigoIntermediarioSupervisor_TextChanged" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
 
             <div class="form-group col-md-3">
@@ -167,7 +167,7 @@
 
         <div align="center">
             <asp:ImageButton ID="btnBuscarSupervisores" runat="server" ToolTip="Buscar Información" CssClass="BotonImagen" OnClick="btnBuscarSupervisores_Click" ImageUrl="~/Imagenes/Buscar.png" />
-            <asp:ImageButton ID="btnExportarSupervisores" runat="server" ToolTip="Exportar Información" CssClass="BotonImagen" OnClick="btnBuscarSupervisores_Click" ImageUrl="~/Imagenes/excel.png" />
+            <asp:ImageButton ID="btnExportarSupervisores" runat="server" ToolTip="Exportar Información" CssClass="BotonImagen" OnClick="btnExportarSupervisores_Click" ImageUrl="~/Imagenes/excel.png" />
             <br />
             <asp:Label ID="lbCantidadIntermediariosTitulo" runat="server" Text="Cantidad de Intermediarios (" CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCantidadIntermediariosVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
