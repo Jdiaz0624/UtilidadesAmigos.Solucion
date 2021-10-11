@@ -269,6 +269,7 @@ body { background-color: #465268; }
     		<div class="lock-head">
     			<asp:Label ID="NombreEmpresa" runat="server" Text="Ingresar Datos de Acceso"></asp:Label>
                 <asp:Label ID="lbContador" Visible="false" runat="server" Text="0"></asp:Label>
+                
     		</div>
     		<div class="lock-body" >
     			

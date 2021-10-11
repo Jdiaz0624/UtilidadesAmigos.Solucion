@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UtilidadesAmigos.Solucion.Paginas {
-    
-    
-    public partial class Login {
-        
+namespace UtilidadesAmigos.Solucion.Paginas
+{
+
+
+    public partial class Login
+    {
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// NombreEmpresa control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label NombreEmpresa;
-        
+
         /// <summary>
         /// lbContador control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbContador;
-        
+
         /// <summary>
         /// txtUsuarioLogin control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUsuarioLogin;
-        
+
         /// <summary>
         /// txtClaveLogin control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtClaveLogin;
-        
+
         /// <summary>
         /// txtNuevaClave control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNuevaClave;
-        
+
         /// <summary>
         /// txtConfirmarClave control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtConfirmarClave;
-        
+
         /// <summary>
         /// btnIngresarSistema control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnIngresarSistema;
-        
+
         /// <summary>
         /// btnCambiarClave control.
         /// </summary>
