@@ -191,6 +191,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficina, ObjDataSistema.Value.BuscaListas("OFICINAS", null, null), true);
                 btnReporte.Visible = false;
+
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario SacarNombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
+                lbNombreUsuario.Text = SacarNombre.SacarNombreUsuarioConectado();
+                Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbPantallaActual.Text = "GENERAR RECLAMACIONES PAGADAS";
             }
         }
 
