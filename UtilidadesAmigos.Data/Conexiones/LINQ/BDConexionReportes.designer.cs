@@ -606,6 +606,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, idUsuario);
 			return ((ISingleResult<SP_REPORTE_INFORMACION_INTERMEDIARIOS_ALFREDOResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_RECLAMACIONES_PAGADAS")]
+		public ISingleResult<SP_BUSCA_RECLAMACIONES_PAGADASResult> SP_BUSCA_RECLAMACIONES_PAGADAS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoBeneficiario", DbType="Int")] System.Nullable<int> codigoBeneficiario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Beneficiario", DbType="VarChar(100)")] string beneficiario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroCheque", DbType="Int")] System.Nullable<int> numeroCheque, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaChequeDesde", DbType="Date")] System.Nullable<System.DateTime> fechaChequeDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaChequeHasta", DbType="Date")] System.Nullable<System.DateTime> fechaChequeHasta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoBeneficiario, beneficiario, oficina, numeroCheque, fechaChequeDesde, fechaChequeHasta);
+			return ((ISingleResult<SP_BUSCA_RECLAMACIONES_PAGADASResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDOResult
@@ -13401,6 +13408,266 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._GeneradoPor != value))
 				{
 					this._GeneradoPor = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_RECLAMACIONES_PAGADASResult
+	{
+		
+		private System.Nullable<int> _CodigoBeneficiario;
+		
+		private string _Beneficiario1;
+		
+		private System.Nullable<byte> _RNCTipo;
+		
+		private string _TipoIdentificacion;
+		
+		private string _NumeroIdentificacion;
+		
+		private System.Nullable<decimal> _Valor;
+		
+		private string _Concepto1;
+		
+		private string _Concepto2;
+		
+		private System.Nullable<int> _NumeroCheque;
+		
+		private System.Nullable<System.DateTime> _FechaCheque0;
+		
+		private string _FechaCheque;
+		
+		private System.Nullable<byte> _Sucursal;
+		
+		private string _DescSucursal;
+		
+		private System.Nullable<int> _CantidadRegistros;
+		
+		public SP_BUSCA_RECLAMACIONES_PAGADASResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoBeneficiario", DbType="Int")]
+		public System.Nullable<int> CodigoBeneficiario
+		{
+			get
+			{
+				return this._CodigoBeneficiario;
+			}
+			set
+			{
+				if ((this._CodigoBeneficiario != value))
+				{
+					this._CodigoBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Beneficiario1", DbType="VarChar(100)")]
+		public string Beneficiario1
+		{
+			get
+			{
+				return this._Beneficiario1;
+			}
+			set
+			{
+				if ((this._Beneficiario1 != value))
+				{
+					this._Beneficiario1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RNCTipo", DbType="TinyInt")]
+		public System.Nullable<byte> RNCTipo
+		{
+			get
+			{
+				return this._RNCTipo;
+			}
+			set
+			{
+				if ((this._RNCTipo != value))
+				{
+					this._RNCTipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoIdentificacion", DbType="VarChar(50)")]
+		public string TipoIdentificacion
+		{
+			get
+			{
+				return this._TipoIdentificacion;
+			}
+			set
+			{
+				if ((this._TipoIdentificacion != value))
+				{
+					this._TipoIdentificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroIdentificacion", DbType="VarChar(50)")]
+		public string NumeroIdentificacion
+		{
+			get
+			{
+				return this._NumeroIdentificacion;
+			}
+			set
+			{
+				if ((this._NumeroIdentificacion != value))
+				{
+					this._NumeroIdentificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Valor", DbType="Money")]
+		public System.Nullable<decimal> Valor
+		{
+			get
+			{
+				return this._Valor;
+			}
+			set
+			{
+				if ((this._Valor != value))
+				{
+					this._Valor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Concepto1", DbType="VarChar(1000)")]
+		public string Concepto1
+		{
+			get
+			{
+				return this._Concepto1;
+			}
+			set
+			{
+				if ((this._Concepto1 != value))
+				{
+					this._Concepto1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Concepto2", DbType="VarChar(1000)")]
+		public string Concepto2
+		{
+			get
+			{
+				return this._Concepto2;
+			}
+			set
+			{
+				if ((this._Concepto2 != value))
+				{
+					this._Concepto2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroCheque", DbType="Int")]
+		public System.Nullable<int> NumeroCheque
+		{
+			get
+			{
+				return this._NumeroCheque;
+			}
+			set
+			{
+				if ((this._NumeroCheque != value))
+				{
+					this._NumeroCheque = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCheque0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaCheque0
+		{
+			get
+			{
+				return this._FechaCheque0;
+			}
+			set
+			{
+				if ((this._FechaCheque0 != value))
+				{
+					this._FechaCheque0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCheque", DbType="NVarChar(4000)")]
+		public string FechaCheque
+		{
+			get
+			{
+				return this._FechaCheque;
+			}
+			set
+			{
+				if ((this._FechaCheque != value))
+				{
+					this._FechaCheque = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sucursal", DbType="TinyInt")]
+		public System.Nullable<byte> Sucursal
+		{
+			get
+			{
+				return this._Sucursal;
+			}
+			set
+			{
+				if ((this._Sucursal != value))
+				{
+					this._Sucursal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescSucursal", DbType="VarChar(50)")]
+		public string DescSucursal
+		{
+			get
+			{
+				return this._DescSucursal;
+			}
+			set
+			{
+				if ((this._DescSucursal != value))
+				{
+					this._DescSucursal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadRegistros", DbType="Int")]
+		public System.Nullable<int> CantidadRegistros
+		{
+			get
+			{
+				return this._CantidadRegistros;
+			}
+			set
+			{
+				if ((this._CantidadRegistros != value))
+				{
+					this._CantidadRegistros = value;
 				}
 			}
 		}

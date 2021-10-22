@@ -1278,4 +1278,28 @@
       <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_RECLAMACIONES_PAGADAS" Method="SP_BUSCA_RECLAMACIONES_PAGADAS">
+    <Parameter Name="CodigoBeneficiario" Parameter="codigoBeneficiario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Beneficiario" Parameter="beneficiario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NumeroCheque" Parameter="numeroCheque" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaChequeDesde" Parameter="fechaChequeDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaChequeHasta" Parameter="fechaChequeHasta" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="SP_BUSCA_RECLAMACIONES_PAGADASResult">
+      <Column Name="CodigoBeneficiario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Beneficiario1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="RNCTipo" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NumeroIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Concepto1" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Concepto2" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="NumeroCheque" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaCheque0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaCheque" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Sucursal" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="DescSucursal" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

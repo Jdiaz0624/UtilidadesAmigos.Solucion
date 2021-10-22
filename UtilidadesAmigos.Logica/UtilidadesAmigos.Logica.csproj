@@ -383,6 +383,7 @@
     <Compile Include="Entidades\Reportes\EProcesarInformacionPolizasRenovadas.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorUsuarioDetalle.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorusuarioResumido.cs" />
+    <Compile Include="Entidades\Reportes\EReclamacionesPagadas.cs" />
     <Compile Include="Entidades\Reportes\EReporteInformacionPersonasAlfredo.cs" />
     <Compile Include="Entidades\Reportes\EReporteProduccionOrigen.cs" />
     <Compile Include="Entidades\Reportes\EReporteRenovacionMachado.cs" />

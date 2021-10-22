@@ -1641,5 +1641,32 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Listado;
         }
         #endregion
+
+        #region RECLAMACIONE SPAGADAS
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EReclamacionesPagadas> BuscaReclamacionesPagadas(int? CodigoBeneficiario = null, string NombreBeneficiario = null, int? Oficina = null, int? NumeroCheque = null, DateTime? FechaChequeDesde = null, DateTime? FechaChequeHasta = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_RECLAMACIONES_PAGADAS(CodigoBeneficiario, NombreBeneficiario, Oficina, NumeroCheque, FechaChequeDesde, FechaChequeHasta)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EReclamacionesPagadas
+                           {
+                               CodigoBeneficiario=n.CodigoBeneficiario,
+                               Beneficiario1=n.Beneficiario1,
+                               RNCTipo=n.RNCTipo,
+                               TipoIdentificacion=n.TipoIdentificacion,
+                               NumeroIdentificacion=n.NumeroIdentificacion,
+                               Valor=n.Valor,
+                               Concepto1=n.Concepto1,
+                               Concepto2=n.Concepto2,
+                               NumeroCheque=n.NumeroCheque,
+                               FechaCheque0 = n.FechaCheque0,
+                               FechaCheque=n.FechaCheque,
+                               Sucursal=n.Sucursal,
+                               DescSucursal=n.DescSucursal,
+                               CantidadRegistros=n.CantidadRegistros
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }
