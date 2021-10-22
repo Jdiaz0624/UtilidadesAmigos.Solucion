@@ -15,7 +15,7 @@ header{
     margin:20PX auto;
 }
 
-header nav{
+header navbar-nav{
     background-color:#0092f5;
     overflow:hidden;
     height:30%;
