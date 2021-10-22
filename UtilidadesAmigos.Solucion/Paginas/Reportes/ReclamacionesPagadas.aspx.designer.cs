@@ -177,6 +177,42 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         protected global::System.Web.UI.WebControls.Label lbCanidadRegistrosCerrar;
 
         /// <summary>
+        /// lbSeparador1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeparador1;
+
+        /// <summary>
+        /// lbTotaoTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTotaoTitulo;
+
+        /// <summary>
+        /// lbTotalVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTotalVariable;
+
+        /// <summary>
+        /// lbTotalCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTotalCerrar;
+
+        /// <summary>
         /// rpReclamacionesPagadas control.
         /// </summary>
         /// <remarks>

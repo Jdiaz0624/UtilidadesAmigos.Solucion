@@ -89,6 +89,10 @@
             <asp:Label ID="lbCanidadRegistrosTitulo" runat="server" Text="Cantidad de Registros (" CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCanidadRegistrosVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCanidadRegistrosCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbSeparador1" runat="server" Text=" | " CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbTotaoTitulo" runat="server" Text="Total (" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbTotalVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbTotalCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
         </div>
         <br />
         <table class="table table-striped">

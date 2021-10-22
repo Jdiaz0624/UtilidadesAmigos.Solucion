@@ -1663,7 +1663,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                FechaCheque=n.FechaCheque,
                                Sucursal=n.Sucursal,
                                DescSucursal=n.DescSucursal,
-                               CantidadRegistros=n.CantidadRegistros
+                               CantidadRegistros=n.CantidadRegistros,
+                               Total=n.Total
                            }).ToList();
             return Listado;
         }

@@ -13444,6 +13444,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<int> _CantidadRegistros;
 		
+		private System.Nullable<decimal> _Total;
+		
 		public SP_BUSCA_RECLAMACIONES_PAGADASResult()
 		{
 		}
@@ -13668,6 +13670,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadRegistros != value))
 				{
 					this._CantidadRegistros = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Money")]
+		public System.Nullable<decimal> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
 				}
 			}
 		}

@@ -153,6 +153,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             int? _Oficina = ddlOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlOficina.SelectedValue) : new Nullable<int>();
             int? _NumeroChqeue = string.IsNullOrEmpty(txtNumeroCheque.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtNumeroCheque.Text);
             int CantidadRegistros = 0;
+            decimal TotalPagado = 0;
 
             var Listado = ObjDataReporte.Value.BuscaReclamacionesPagadas(
                 _CodigoBeneficiario,
@@ -167,7 +168,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 rpReclamacionesPagadas.DataSource = null;
                 rpReclamacionesPagadas.DataBind();
                 lbCanidadRegistrosVariable.Text = "0";
-
+                lbTotalVariable.Text = "0";
             }
             else
             {
@@ -176,8 +177,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 {
 
                     CantidadRegistros = (int)n.CantidadRegistros;
+                    TotalPagado = (decimal)n.Total;
                 }
                 lbCanidadRegistrosVariable.Text = CantidadRegistros.ToString("N0");
+                lbTotalVariable.Text = TotalPagado.ToString("N2");
                 Paginar(ref rpReclamacionesPagadas, Listado, 10, ref lbCantidadPaginaVAriableReclamacionesPagadas, ref LinkPrimeraPaginaReclamacionesPagadas, ref LinkAnteriorReclamacionesPagadas, ref LinkSiguienteReclamacionesPagadas, ref LinkUltimoReclamacionesPagadas);
                 HandlePaging(ref dtPaginacionReclamacionesPagadas, ref lbPaginaActualVariableReclamacionesPagadas);
             }

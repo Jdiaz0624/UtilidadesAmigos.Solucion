@@ -1300,6 +1300,7 @@
       <Column Name="Sucursal" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
       <Column Name="DescSucursal" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Money" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
