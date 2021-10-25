@@ -132,69 +132,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.ImageButton btnExportarExelPrincipal;
 
         /// <summary>
-        /// lbNumeroFacturaHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNumeroFacturaHeaderRepeater;
-
-        /// <summary>
-        /// lbPolizaHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPolizaHeaderRepeater;
-
-        /// <summary>
-        /// lbEstatusHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbEstatusHeaderRepeater;
-
-        /// <summary>
-        /// lbSubRamoHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSubRamoHeaderRepeater;
-
-        /// <summary>
-        /// lbClienteHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbClienteHeaderRepeater;
-
-        /// <summary>
-        /// lbIntermediarioHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbIntermediarioHeaderRepeater;
-
-        /// <summary>
-        /// lbFechaHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFechaHeaderRepeater;
-
-        /// <summary>
         /// rpListadoFianzas control.
         /// </summary>
         /// <remarks>
@@ -427,60 +364,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton btnConsultarHistoricoNuevo;
-
-        /// <summary>
-        /// lbPolizaHeaderHistoricoFianzas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPolizaHeaderHistoricoFianzas;
-
-        /// <summary>
-        /// lbClienteHeaderHistoricoFianza control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbClienteHeaderHistoricoFianza;
-
-        /// <summary>
-        /// lbSubRamoHeaderHistoricoFianzas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSubRamoHeaderHistoricoFianzas;
-
-        /// <summary>
-        /// lbConceptoHeaderHistoricoFianzas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbConceptoHeaderHistoricoFianzas;
-
-        /// <summary>
-        /// lbValorHeaderHistoricoFianzas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbValorHeaderHistoricoFianzas;
-
-        /// <summary>
-        /// lbFechaHeaderHistoricoFianzas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFechaHeaderHistoricoFianzas;
 
         /// <summary>
         /// rpListadoHistoricoFianzas control.

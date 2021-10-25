@@ -708,87 +708,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.ImageButton btnReporteGestionCobros;
 
         /// <summary>
-        /// lbGestion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbGestion;
-
-        /// <summary>
-        /// lbPolizaHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPolizaHeaderRepeater;
-
-        /// <summary>
-        /// lbInicioVigenciaHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbInicioVigenciaHeaderRepeater;
-
-        /// <summary>
-        /// lbFinVigenciaHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFinVigenciaHeaderRepeater;
-
-        /// <summary>
-        /// lbPrimaHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPrimaHeaderRepeater;
-
-        /// <summary>
-        /// lbFacturadoHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFacturadoHeaderRepeater;
-
-        /// <summary>
-        /// lbCobradoHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoHeaderRepeater;
-
-        /// <summary>
-        /// lbBalanceHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbBalanceHeaderRepeater;
-
-        /// <summary>
-        /// lbCantidadComentarios control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadComentarios;
-
-        /// <summary>
         /// rpListadoRenovacion control.
         /// </summary>
         /// <remarks>
@@ -1921,33 +1840,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConsultarEstadistica;
-
-        /// <summary>
-        /// lbPersonaHeaderRepeaterEstadistica control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPersonaHeaderRepeaterEstadistica;
-
-        /// <summary>
-        /// lbCantidadHeaderRepeaterEstadistica control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadHeaderRepeaterEstadistica;
-
-        /// <summary>
-        /// lbMontoHeaderRepeaterEstadistica control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMontoHeaderRepeaterEstadistica;
 
         /// <summary>
         /// rpListadoEstadistica control.
