@@ -31,8 +31,8 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #1E90FF;
+            color: #000000;
         }
           .auto-style1 {
               width: 70%;
@@ -138,50 +138,50 @@
 
     <div id="DivBloqueCOnsulta" runat="server">
         <div class="form-check-inline">
-            <div class="form-group form-check">
+     
                 <asp:CheckBox ID="cbAgregarRangoFecha" runat="server" Text="Agregar Rango Fecha" CssClass="form-check-input Letranegrita" AutoPostBack="true" OnCheckedChanged="cbAgregarRangoFecha_CheckedChanged" />
-            </div>
+         
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
+        <div class="row">
+            <div class="col-md-4">
                 <asp:Label ID="lbTipoProcesoConsulta" runat="server" Text="Tipo de Proceso" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarTipoProcesoCOnsulta" runat="server" ToolTip="Seleccionar el Tipo de Proceso" CssClass="form-control"></asp:DropDownList>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbNombreConsulta" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreConsulta" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbRemitenteConsulta" runat="server" Text="Remitente" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtRemitenteConsulta" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </div>
 
-             <div class="form-group col-md-4">
+             <div class="col-md-4">
                 <asp:Label ID="lbDestinatarioConsulta" runat="server" Text="Destinatario" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtDestinatario" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </div>
 
-             <div class="form-group col-md-4" id="DivFechaDesde" runat="server">
+             <div class="col-md-4" id="DivFechaDesde" runat="server">
                 <asp:Label ID="lbFechaDesde" runat="server" Text="Fecha Desde" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaDesde" runat="server" TextMode="Date" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </div>
 
-             <div class="form-group col-md-4" id="DivFechaHAsta" runat="server">
+             <div class="col-md-4" id="DivFechaHAsta" runat="server">
                 <asp:Label ID="lbFechaHasta" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaHAsta" runat="server" TextMode="Date" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </div>
         </div>
         <br />
         <div class="form-check-inline">
-            <div class="form-group form-check">
+
                 <asp:Label ID="lbGenerarReporteEn" runat="server" Text="Generar Reporte en:" CssClass="Letranegrita"></asp:Label><br />
                 <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" ToolTip="Generar Reporte en PDF" CssClass="Letranegrita form-check-input" GroupName="Reporte" />
                 <asp:RadioButton ID="rbEXcel" runat="server" Text="XLSX" ToolTip="Generar Reporte en Excel" CssClass="Letranegrita form-check-input" GroupName="Reporte" />
                 <asp:RadioButton ID="rbWord" runat="server" Text="Docx" ToolTip="Generar Reporte en Word" CssClass="Letranegrita form-check-input" GroupName="Reporte" />
                 <asp:RadioButton ID="rbTXT" runat="server" Text="TXT" ToolTip="Generar Reporte en TXT" CssClass="Letranegrita form-check-input" GroupName="Reporte" />
-            </div>
+   
         </div>
         <br />
         <div align="center">
@@ -193,18 +193,16 @@
             <asp:ImageButton ID="btnRestablecerNuevo" runat="server" Enabled="false" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" OnClick="btnRestablecerNuevo_Click" ImageUrl="~/Imagenes/auto.png" />
         </div>
         <br />
-
-        <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th style="width:10%" align="center">SELECT</th>
-                        <th style="width:15%" align="left">NOMBRE</th>
-                        <th style="width:15%" align="left">RNC</th>
-                        <th style="width:10%" align="left">FECHA</th>
-                        <th style="width:15%" align="left">TIPO PROC</th>
-                        <th style="width:15%" align="left">REMITENTE</th>
-                        <th style="width:15%" align="left">DESTINATARIO</th>
+                        <th scope="col">Selet</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">RNC</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Tipo PROC</th>
+                        <th scope="col">Remitente</th>
+                        <th scope="col">Destinatario</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -213,19 +211,19 @@
                             <asp:HiddenField ID="hfNoRegistro" runat="server" Value='<%# Eval("NoRegistro") %>' />
 
                             <tr>
-                                <td style="width:10%" align="center"><asp:ImageButton ID="btnSeleccionarRegistrosNuevo" runat="server" ToolTip="Seleccionar Registro" CssClass="BotonImagen" OnClick="btnSeleccionarRegistrosNuevo_Click" ImageUrl="~/Imagenes/Seleccionar2.png" /></td>
-                                <td style="width:15%" align="left"><%# Eval("Nombre") %> </td>
-                                <td style="width:15%" align="left"><%# Eval("NumeroIdentificacion") %></td>
-                                <td style="width:15%" align="left"><%# Eval("FechaDigita") %></td>
-                                <td style="width:15%" align="left"><%# Eval("TipoProceso") %></td>
-                                <td style="width:15%" align="left"><%# Eval("Remitente") %></td>
-                                <td style="width:15%" align="left"><%# Eval("Destinatario") %></td>
+                                <td><asp:ImageButton ID="btnSeleccionarRegistrosNuevo" runat="server" ToolTip="Seleccionar Registro" CssClass="BotonImagen" OnClick="btnSeleccionarRegistrosNuevo_Click" ImageUrl="~/Imagenes/Seleccionar2.png" /></td>
+                                <td><%# Eval("Nombre") %> </td>
+                                <td><%# Eval("NumeroIdentificacion") %></td>
+                                <td><%# Eval("FechaDigita") %></td>
+                                <td><%# Eval("TipoProceso") %></td>
+                                <td><%# Eval("Remitente") %></td>
+                                <td><%# Eval("Destinatario") %></td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
-        </div>
+
 
 
          <div align="center">
@@ -273,37 +271,38 @@
 
 
         <div id="DivBloqueDetalle" visible="false" runat="server">
-            <div class="form-row">
-                <div class="form-group col-md-4">
+            <br />
+            <div class="row">
+                <div class="col-md-4">
                     <asp:Label id="lbCantidadDocumentosVistaPrevia" runat="server" Text="Cantidad de Documentos" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtCantidadDocumentosVistaPrevia" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                 </div>
 
-                 <div class="form-group col-md-4">
+                 <div class="col-md-4">
                     <asp:Label id="lbCantidadPersonasVistaPrevia" runat="server" Text="Cantidad de Personas" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtCantidadPersonasVistaPrevia" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                 </div>
 
-                 <div class="form-group col-md-4">
+                 <div class="col-md-4">
                     <asp:Label id="lbCreadoPorVistaPrevia" runat="server" Text="Creado Por" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtCreadoPorVistaPrevia" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                 </div>
 
-                 <div class="form-group col-md-4">
+                 <div class="col-md-4">
                     <asp:Label id="lbUltimaModificacionVistaPrevia" runat="server" Text="Modificado Por" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtModificadoPorVistaPrevia" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                 </div>
 
-                 <div class="form-group col-md-4">
+                 <div class="col-md-4">
                     <asp:Label id="lbFechaModificadoVistaPrevia" runat="server" Text="Fecha Modificado" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtFechaModificadoVistaPrevia" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                 </div>
 
-                <div class="form-group col-md-4">
+                <div class="col-md-4">
 
                 </div>
 
-                <div class="form-group col-md-12">
+                <div class="col-md-12">
                     <asp:Label id="lbComentarioVistaPrevia" runat="server" Text="Comentario / Descripción" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtComentarioVistaPrevia" runat="server" Enabled="false" TextMode="MultiLine" Height="100px" CssClass="form-control"></asp:TextBox>
                 </div>
@@ -315,51 +314,51 @@
     <div id="DivBloqueMantenimiento" runat="server">
 
         <br />
-        <div class="form-row">
-            <div class="form-group col-md-4">
+        <div class="row">
+            <div class="col-md-4">
                 <asp:Label ID="lbTipoProcesoMantenimiento" runat="server" Text="Tipo de Proceso" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlTipoprocesoMantenimiento" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoprocesoMantenimiento_SelectedIndexChanged" ToolTip="Seleccionar el Tipo de Proceso"></asp:DropDownList>
             </div>
 
-              <div class="form-group col-md-4">
+              <div class="col-md-4">
                 <asp:Label ID="lbNombreMantenimiento" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreMantenimiento" runat="server" MaxLength="100" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
 
-             <div class="form-group col-md-4">
+             <div class="col-md-4">
                 <asp:Label ID="lbNumeroIdentificacionMantenimiento" runat="server" Text="Numero de Identificación" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNumeroIdentificacionMantenimiento" runat="server" MaxLength="30" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
 
-             <div class="form-group col-md-4">
+             <div class="col-md-4">
                 <asp:Label ID="lbRemitenteMantenimiento" runat="server" Text="Remitente" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtRemitenteMantenimiento" runat="server" MaxLength="100" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
 
-             <div class="form-group col-md-4">
+             <div class="col-md-4">
                 <asp:Label ID="lbDestinatarioMantenimiento" runat="server" Text="Destinatario" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtDestinatarioMantenimiento" runat="server" MaxLength="100" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
 
-             <div class="form-group col-md-4">
+             <div class="col-md-4">
                 <asp:Label ID="lbCantidadDocumentosMantenimiento" runat="server" Text="Cantidad de Documentos" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtCantidadDocumentosMantenimiento" runat="server" TextMode="Number" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
 
-             <div class="form-group col-md-4">
+             <div class="col-md-4">
                 <asp:Label ID="lbCantidadPersonasMantenimient" runat="server" Text="Cantidad de Personas" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtCantidadPersonasMantenimiento" runat="server" TextMode="Number" AutoCompleteType ="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
               
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
        
             </div>
 
-            <div class="form-group col-md-12">
+            <div class="col-md-12">
                 <asp:Label ID="lbComentario" runat="server" Text="Comentario / Descripción" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtComentarioMantenimiento" runat="server" TextMode="MultiLine" Height="100px" AutoCompleteType ="Disabled" CssClass="form-control"></asp:TextBox>
             </div>

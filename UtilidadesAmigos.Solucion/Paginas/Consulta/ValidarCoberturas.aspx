@@ -25,8 +25,8 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #1E90FF;
+            color: #000000;
         }
 
               .BotonImgen {
@@ -159,38 +159,38 @@
 <!--INICIO DE LOS MENUS DESPLEGABLES Y CONTROLES DE BUSQUEDA-->
     <div class="container-fluid">
         <br /><br />
-        <div class="form-row">
-            <div class="form-group col-md-4">
+        <div class="row">
+            <div class="col-md-4">
                 <asp:Label ID="lbSeleccionarCobertura" runat="server" CssClass="Letranegrita" Text="Seleccionar Cobertura"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarCpbertura" runat="server" AutoPostBack="true" CssClass="form-control" ToolTip="Seleccionar Cobertura" OnSelectedIndexChanged="ddlSeleccionarCpbertura_SelectedIndexChanged"></asp:DropDownList>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbSeleccionarPlanCobertura" runat="server" CssClass="Letranegrita" Text="Seleccionar Plan"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarPlanCobertura" runat="server" ToolTip="Seleccionar un plan Segun la cobertura seleccionada" CssClass="form-control"></asp:DropDownList>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbPolizaFiltro" runat="server" CssClass="Letranegrita" Text="Poliza"></asp:Label>
                 <asp:TextBox ID="txtPolizaFiltro" runat="server" AutoCompleteType="Disabled"  MaxLength="20" CssClass="form-control"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbSeleccionarSucursal" runat="server" CssClass="Letranegrita" Text="Seleccionar Sucursal"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarSucursal" runat="server" ToolTip="Seleccionar Surcursal" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarSucursal_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbSeleccionaroficina" runat="server" Text="Seleccionar Oficina" CssClass="Letranegrita" ></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionaroficina" runat="server" ToolTip="Seleccionar la Oficina para el filtro" CssClass="form-control"></asp:DropDownList>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                
             </div>
-              <div class="form-group col-md-4">
+              <div class="col-md-4">
                     <asp:Label ID="lbFechaDesde" runat="server" CssClass="Letranegrita" Text="Fecha Desde"></asp:Label>
                     <asp:TextBox ID="txtFechaDesde" runat="server" ToolTip="Inicio de Rango de fecha" TextMode="Date" CssClass="form-control" ></asp:TextBox>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="col-md-4">
                     <asp:Label ID="lbFechaHasta" runat="server" CssClass="Letranegrita" Text="Fecha Hasta"></asp:Label>
                     <asp:TextBox ID="txtFechaHasta" runat="server" ToolTip="Fin de Rango de fecha" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </div>
@@ -198,26 +198,20 @@
         <!--FIN DE LOS MENUS DESPLEGABLES Y CONTROLES DE BUSQUEDA-->
         <br />
         <div class="form-check-inline">
-            <div class="form-group form-check">
                 <asp:CheckBox ID="cbValidarDataCobertura" runat="server" Text="Validar Data" ToolTip="Validar la data de cobertura" CssClass="form-check-input Letranegrita" AutoPostBack="true" OnCheckedChanged="cbValidarDataCobertura_CheckedChanged" />
-            </div>
+        
         </div>
 <div id="DIVBloqueConsulta" runat="server">
             <!--INICIO DE LOS RADIOS PARA EXPORTAR-->
         <div class="form-check-inline">
-                <div class="form-group form-check">
+      
                     <asp:Label ID="lbExportarA" runat="server" Text="Exportar A:" CssClass="Letranegrita"></asp:Label>
                     <asp:RadioButton ID="rbExportarExel" runat="server" Text="Excel" CssClass="form-check-input" ToolTip="Exportar a Formato de Excel" GroupName="Exportar" />
                     <asp:RadioButton ID="rbExportarcsv" runat="server" Text="CSV" CssClass="form-check-input"  ToolTip="Exportar a Formato CSV" GroupName="Exportar" />
                     <asp:RadioButton ID="rbExportartxt" runat="server" Text="TXT" CssClass="form-check-input" ToolTip="Exportar a formato de texto" GroupName="Exportar" />
                     <asp:RadioButton ID="rbExportarPDF" runat="server" Text="PDF" CssClass="form-check-input" ToolTip="Exportar a formato PDF" GroupName="Exportar" />
-                </div>
-                <div class="form-group form-check">
-                    
-                </div>
-                <div class="form-group form-check">
-                    
-                </div>
+        
+              
             </div>
         <!--FIN DE LOS RADIOS PARA EXPORTAR-->
         <!--INICIO DE LOS BOTONES-->
@@ -237,36 +231,36 @@
         <br />       
         <!--FIN DE LOS BOTONES-->
      <!--INICIO DEL GRID-->
-        <div class="table-responsive">
-            <table class="table table-hover">
+       
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbPolizaHeaderCoberturas" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbEstatusHeaderCoberturas" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:15%" align="left"> <asp:Label ID="lbInicioVigenciaHeaderCoberturas" runat="server" Text="Inicio" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:15%" align="left"> <asp:Label ID="lbFinVigenciaHeaderCoberturas" runat="server" Text="Fin" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbFechaProcesoHeaderCoberturas" runat="server" Text="Proceso" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:25%" align="left"> <asp:Label ID="lbCoberturaHeaderCobertutras" runat="server" Text="Cobertura" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:15%" align="left"> <asp:Label ID="lbTipoMovimientoHeaderCoberturas" runat="server" Text="Movimiento" CssClass="Letranegrita"></asp:Label> </th>
+                        <th scope="col"> Poliza </th>
+                        <th scope="col"> Estatus </th>
+                        <th scope="col"> Inicio </th>
+                        <th scope="col"> Fin </th>
+                        <th scope="col"> Proceso </th>
+                        <th scope="col"> Cobertura </th>
+                        <th scope="col"> Movimiento </th>
                     </tr>
                 </thead>
                 <tbody>
                     <asp:Repeater ID="rpListadoCoberturasPrincipal" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <td style="width:10%"> <%# Eval("Poliza") %> </td>
-                                <td style="width:10%"> <%# Eval("Estatus") %> </td>
-                                <td style="width:15%"> <%# Eval("InicioVigencia") %> </td>
-                                <td style="width:15%"> <%# Eval("FinVigencia") %> </td>
-                                <td style="width:10%"> <%# Eval("FechaProceso") %> </td>
-                                <td style="width:25%"> <%# Eval("Cobertura") %> </td>
-                                <td style="width:15%"> <%# Eval("TipoMovimiento") %> </td>
+                                <td> <%# Eval("Poliza") %> </td>
+                                <td> <%# Eval("Estatus") %> </td>
+                                <td> <%# Eval("InicioVigencia") %> </td>
+                                <td> <%# Eval("FinVigencia") %> </td>
+                                <td> <%# Eval("FechaProceso") %> </td>
+                                <td> <%# Eval("Cobertura") %> </td>
+                                <td> <%# Eval("TipoMovimiento") %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
-        </div>
+    
 
          <div align="center">
                 <asp:Label ID="lbPaginaActualTituloListadoPrincipal" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
@@ -354,26 +348,26 @@
          <asp:ScriptManager ID="CoberturasScript" runat="server"></asp:ScriptManager>
           <asp:UpdatePanel ID="UpdatePanelCoberturas" runat="server" Visible="true">
               <ContentTemplate>
-                   <div class="form-row">
-              <div class="form-group col-md-12">
+                   <div class="row">
+              <div class="col-md-12">
                   <asp:Label ID="Cobertura" runat="server" Text="Cobertura"></asp:Label>
                   <asp:TextBox ID="txtCoberturaMantenimiento" runat="server" MaxLength="100" CssClass="form-control"></asp:TextBox>
               </div>
           </div>
           <div class="form-check-inline">
-              <div class="form-group form-check">
+
                   <asp:CheckBox ID="cbEstatus" runat="server" Text="Estatus" CssClass="form-check-input Letranegrita" />
-              </div>
+           
           </div>
                   <br />
                        <!--INICIO DEL GRID-->
-                        <div class="table-responsive">
-                            <table class="table table-hover">
+
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="width:10%" align="left"> <asp:Label ID="lbSeleccionarCoberturaHeaderCobertura" runat="server" Text="Seleccionar" CssClass="Letranegrita"></asp:Label> </th>
-                                        <th style="width:80%" align="left"> <asp:Label ID="lbCoberturaHeaderCobertura" runat="server" Text="Cobertura" CssClass="Letranegrita"></asp:Label> </th>
-                                        <th style="width:10%" align="left"> <asp:Label ID="lbEstatusHeaderCobertura" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
+                                        <th scope="col"> Seleccionar </th>
+                                        <th scope="col"> Cobertura </th>
+                                        <th scope="col"> Estatus </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -381,15 +375,15 @@
                                         <ItemTemplate>
                                             <tr>
                                                 <asp:HiddenField ID="hfIdCobertura" runat="server" Value='<%# Eval("IdCobertura") %>' />
-                                                <td style="width:10%"> <asp:Button ID="btnSeleccionarCobertura" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm Letranegrita" ToolTip="Seleccionar Cobertura" OnClick="btnSeleccionarCobertura_Click" /> </td>
-                                                <td style="width:10%"> <%# Eval("Descripcion") %> </td>
-                                                <td style="width:10%"> <%# Eval("Estatus") %> </td>
+                                                <td> <asp:Button ID="btnSeleccionarCobertura" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm Letranegrita" ToolTip="Seleccionar Cobertura" OnClick="btnSeleccionarCobertura_Click" /> </td>
+                                                <td> <%# Eval("Descripcion") %> </td>
+                                                <td> <%# Eval("Estatus") %> </td>
                                             </tr>
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </tbody>
                             </table>
-                        </div>
+                  
 
                    <div align="center">
                 <asp:Label ID="lbPaginaActualTituloCoberturas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
@@ -454,35 +448,35 @@
       
           <asp:UpdatePanel ID="PlanCoberturaUpdatePanel" runat="server" Visible="true">
               <ContentTemplate>
-                   <div class="form-row">
-              <div class="form-group col-md-12">
+                   <div class="row">
+              <div class="col-md-12">
                   <asp:Label ID="lbCoberturaPlanCobertura" runat="server" Text="Cobertura"></asp:Label>
                   <asp:DropDownList ID="ddlCoberturaPlanCobertura" runat="server" ToolTip="Seleccionar Cobertura" CssClass="form-control"></asp:DropDownList>
               </div>
-              <div class="form-group col-md-6">
+              <div class="col-md-6">
                   <asp:Label ID="lbCodigoCobertura" runat="server" Text="Codigo de Cobertura"></asp:Label>
                   <asp:TextBox ID="txtCodigoCoberturaPlanCobertura" runat="server" MaxLength="5" TextMode="Number" CssClass="form-control" ></asp:TextBox>
               </div>
-              <div class="form-group col-md-6">
+              <div class="col-md-6">
                   <asp:Label ID="lbPlanCobertura" runat="server" Text="Plan de Cobertura"></asp:Label>
                   <asp:TextBox ID="txtPlanCobertura" runat="server" MaxLength="150" CssClass="form-control"></asp:TextBox>
               </div>
           </div>
           <div class="form-check-inline">
-              <div class="form-group form-check">
+     
                   <asp:CheckBox ID="cbEstatusPlanCobertura" runat="server" Text="Estatus" CssClass="form-check-input" />
-              </div>
+         
           </div>
           <br />
-          <div class="table-responsive">
-              <table class="table table-hover">
+       
+              <table class="table table-striped">
                   <thead>
                       <tr>
-                          <th style="width:10%" align="left"> <asp:Label ID="lbSeleccionarHeaderPlanCobertura" runat="server" Text="Seleccionar" CssClass="Letranegrita"></asp:Label> </th>
-                          <th style="width:30%" align="left"> <asp:Label ID="lbCoberturaHeaderPlanCobertura" runat="server" Text="Cobertura" CssClass="Letranegrita"></asp:Label> </th>
-                          <th style="width:10%" align="left"> <asp:Label ID="lbCodigoCobertutaHeaderPlanCobertura" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label> </th>
-                          <th style="width:40%" align="left"> <asp:Label ID="lbPlanCoberturaHeaderPlanCobertura" runat="server" Text="Plan" CssClass="Letranegrita"></asp:Label> </th>
-                          <th style="width:10%" align="left"> <asp:Label ID="lbEstatusHeaderPlanCobertura" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
+                          <th scope="col"> Seleccionar </th>
+                          <th scope="col"> Cobertura </th>
+                          <th scope="col"> Codigo </th>
+                          <th scope="col"> Plan </th>
+                          <th scope="col"> Estatus </th>
                       </tr>
                   </thead>
                   <tbody>
@@ -491,17 +485,17 @@
                               <tr>
                                   <asp:HiddenField ID="hfIdPlanCobertura" runat="server" Value='<%# Eval("IdPlanCobertura") %>' />
 
-                                  <td style="width:10%"> <asp:Button ID="btnSeleccionarPlanCobertura" runat="server" Text="Seleccionar" ToolTip="Seleccionar Plan Cobertura" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarPlanCobertura_Click" /> </td>
-                                  <td style="width:30%"> <%# Eval("Cobertura") %> </td>
-                                  <td style="width:10%"> <%# Eval("CodigoCobertura") %> </td>
-                                  <td style="width:40%"> <%# Eval("PlanCobertura") %> </td>
-                                  <td style="width:10%"> <%# Eval("Estatus") %> </td>
+                                  <td> <asp:Button ID="btnSeleccionarPlanCobertura" runat="server" Text="Seleccionar" ToolTip="Seleccionar Plan Cobertura" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarPlanCobertura_Click" /> </td>
+                                  <td> <%# Eval("Cobertura") %> </td>
+                                  <td> <%# Eval("CodigoCobertura") %> </td>
+                                  <td> <%# Eval("PlanCobertura") %> </td>
+                                  <td> <%# Eval("Estatus") %> </td>
                               </tr>
                           </ItemTemplate>
                       </asp:Repeater>
                   </tbody>
               </table>
-          </div>
+      
 
                       <div align="center">
                 <asp:Label ID="lbPaginaActualTituloPlanCoberturas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>

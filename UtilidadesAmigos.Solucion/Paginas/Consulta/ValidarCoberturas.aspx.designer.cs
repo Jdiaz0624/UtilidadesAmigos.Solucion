@@ -258,69 +258,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosListadoGeneralCerrar;
 
         /// <summary>
-        /// lbPolizaHeaderCoberturas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPolizaHeaderCoberturas;
-
-        /// <summary>
-        /// lbEstatusHeaderCoberturas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbEstatusHeaderCoberturas;
-
-        /// <summary>
-        /// lbInicioVigenciaHeaderCoberturas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbInicioVigenciaHeaderCoberturas;
-
-        /// <summary>
-        /// lbFinVigenciaHeaderCoberturas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFinVigenciaHeaderCoberturas;
-
-        /// <summary>
-        /// lbFechaProcesoHeaderCoberturas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFechaProcesoHeaderCoberturas;
-
-        /// <summary>
-        /// lbCoberturaHeaderCobertutras control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCoberturaHeaderCobertutras;
-
-        /// <summary>
-        /// lbTipoMovimientoHeaderCoberturas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTipoMovimientoHeaderCoberturas;
-
-        /// <summary>
         /// rpListadoCoberturasPrincipal control.
         /// </summary>
         /// <remarks>
@@ -555,33 +492,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.CheckBox cbEstatus;
 
         /// <summary>
-        /// lbSeleccionarCoberturaHeaderCobertura control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSeleccionarCoberturaHeaderCobertura;
-
-        /// <summary>
-        /// lbCoberturaHeaderCobertura control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCoberturaHeaderCobertura;
-
-        /// <summary>
-        /// lbEstatusHeaderCobertura control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbEstatusHeaderCobertura;
-
-        /// <summary>
         /// rpListadoCoberturas control.
         /// </summary>
         /// <remarks>
@@ -778,51 +688,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbEstatusPlanCobertura;
-
-        /// <summary>
-        /// lbSeleccionarHeaderPlanCobertura control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSeleccionarHeaderPlanCobertura;
-
-        /// <summary>
-        /// lbCoberturaHeaderPlanCobertura control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCoberturaHeaderPlanCobertura;
-
-        /// <summary>
-        /// lbCodigoCobertutaHeaderPlanCobertura control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCodigoCobertutaHeaderPlanCobertura;
-
-        /// <summary>
-        /// lbPlanCoberturaHeaderPlanCobertura control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPlanCoberturaHeaderPlanCobertura;
-
-        /// <summary>
-        /// lbEstatusHeaderPlanCobertura control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbEstatusHeaderPlanCobertura;
 
         /// <summary>
         /// rpListadoPlanCobertura control.
