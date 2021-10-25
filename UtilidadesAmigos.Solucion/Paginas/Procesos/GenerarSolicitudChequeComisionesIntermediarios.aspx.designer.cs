@@ -267,60 +267,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosCerrar;
 
         /// <summary>
-        /// lbGenerarSolicitudHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbGenerarSolicitudHeaderRepeater;
-
-        /// <summary>
-        /// lbNombreIntermediarioHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNombreIntermediarioHeaderRepeater;
-
-        /// <summary>
-        /// lbBancoHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbBancoHeaderRepeater;
-
-        /// <summary>
-        /// lbMontoHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMontoHeaderRepeater;
-
-        /// <summary>
-        /// lbAcumuladoAnteriorHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbAcumuladoAnteriorHeaderRepeater;
-
-        /// <summary>
-        /// lbTotalHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalHeaderRepeater;
-
-        /// <summary>
         /// rpListadoRegistrosComisiones control.
         /// </summary>
         /// <remarks>

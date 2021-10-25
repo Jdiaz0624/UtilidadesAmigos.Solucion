@@ -30,8 +30,8 @@
           }
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #1E90FF;
+            color: #000000;
         }
 
         .BotonSolicitud {
@@ -85,33 +85,33 @@
 
     <br />
     <asp:Label ID="lbNumeroreciboSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
-    <div class="form-row">
-        <div class="form-inline col-md-12">
+    <div class="row">
+        <div class="d-inline-flex col-md-6">
            <asp:Label ID="lbCorreirPolizaSonPagos" runat="server" Text="Corregir Poliza sin cobro" CssClass="Letranegrita"></asp:Label>
-            <asp:TextBox ID="txtPolizaSinPagos" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtPolizaSinPagos" runat="server" Height="40px" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             <asp:Button ID="btnProcesarPolizaSinPagos" runat="server" Text="Procesar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Corregir la poliza sin cobros" OnClick="btnProcesarPolizaSinPagos_Click" />
         </div>
     </div>
     <br />
     <hr />
-    <div class="form-row">
-        <div class="form-inline col-md-12">
+    <div class="row">
+        <div class="d-inline-flex col-md-6">
             <asp:Label ID="lbConsultarPolizaFormaPago" runat="server" Text="Ingresar Recibo para cambiar forma de pago" CssClass="Letranegrita"></asp:Label>
-            <asp:TextBox ID="txtNumeroRecibo" runat="server" TextMode="Number" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtNumeroRecibo" runat="server" Height="40px" TextMode="Number" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             <asp:Button ID="btnBuscarPolizaFormaPago" runat="server" Text="Buscar" ToolTip="Buscar Poliza para cambiar la forma de pago" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnBuscarPolizaFormaPago_Click" />
         </div>
     </div>
     <br />
-    <div class="table-responsive">
+
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th style="width:10%"> SELECCIONAR </th>
-                    <th style="width:20%"> POLIZA </th>
-                    <th style="width:20%"> RECIBO </th>
-                    <th style="width:10%"> FECHA </th>
-                    <th style="width:20%"> TIPO </th>
-                    <th style="width:20%"> VALOR </th>
+                    <th scope="col"> Seleccionar </th>
+                    <th scope="col"> Poliza </th>
+                    <th scope="col"> Recibo </th>
+                    <th scope="col"> Fecha </th>
+                    <th scope="col"> Tipo </th>
+                    <th scope="col"> Valor </th>
                 </tr>
             </thead>
             <tbody>
@@ -119,28 +119,28 @@
                     <ItemTemplate>
                         <asp:HiddenField ID="hfNumeroRecibo" runat="server" Value='<%# Eval("Numero_Recibo") %>' />
 
-                        <td style="width:10%"> <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionar_Click" ToolTip="Seleccionar Registro" /> </td>
-                        <td style="width:20%"> <%# Eval("Poliza") %> </td>
-                        <td style="width:20%"> <%# Eval("Numero_Recibo") %>  </td>
-                        <td style="width:10%"> <%# Eval("Fecha") %>  </td>
-                        <td style="width:20%"> <%# Eval("Tipo") %>  </td>
-                        <td style="width:20%"> <%#string.Format("{0:n2}", Eval("Monto")) %>  </td>
+                        <td> <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionar_Click" ToolTip="Seleccionar Registro" /> </td>
+                        <td> <%# Eval("Poliza") %> </td>
+                        <td> <%# Eval("Numero_Recibo") %>  </td>
+                        <td> <%# Eval("Fecha") %>  </td>
+                        <td> <%# Eval("Tipo") %>  </td>
+                        <td> <%#string.Format("{0:n2}", Eval("Monto")) %>  </td>
                     </ItemTemplate>
                 </asp:Repeater>
             </tbody>
         </table>
-    </div>
+
     <br />
    <div ID="DivBloqueModificar" visible="false" runat="server">
         <div class="form-check-inline">
-        <div class="form-group form-check">
+
             <asp:Label ID="lbSeleccionarTipoPago" runat="server" Text="Seleccionar Tipo de Pago: " CssClass="Letranegrita"></asp:Label>
             <asp:RadioButton ID="rbEfectivo" runat="server" Text="EFECTIVO" ToolTip="Colocar el tipo de pago en Efectivo" CssClass="form-check-input Letranegrita" GroupName="TipoPago" />
             <asp:RadioButton ID="rbTarjeta" runat="server" Text="TARJETA" ToolTip="Colocar el tipo de pago en Tarjeta" CssClass="form-check-input Letranegrita" GroupName="TipoPago" />
             <asp:RadioButton ID="rbTransferencia" runat="server" Text="TRANSFERENCIA" ToolTip="Colocar el tipo de pago en Transferencia" CssClass="form-check-input Letranegrita" GroupName="TipoPago" />
             <asp:RadioButton ID="rbCheque" runat="server" Text="CHEQUE" ToolTip="Colocar el tipo de pago en Cheque" CssClass="form-check-input Letranegrita" GroupName="TipoPago" />
             <asp:RadioButton ID="rbOtros" runat="server" Text="OTROS" ToolTip="Colocar el tipo de pago en Otros Pagos" CssClass="form-check-input Letranegrita" GroupName="TipoPago" />
-        </div>
+    
     </div>
     <br />
     <div align="center">

@@ -226,62 +226,62 @@
     <div class="container-fluid">
         <br /><br />
         <div class="form-check-inline">
-            <div class="form-group form-check">
+ 
                 <asp:RadioButton ID="rbNoEndosable" runat="server" Text="No Endosable" GroupName="TipoCheque" ToolTip="Generar el tipo de cheque de manera no endosable." CssClass="form-check-input LetrasNegrita" />
                  <asp:RadioButton ID="rbEndosable" runat="server" Text="Endosable" GroupName="TipoCheque" ToolTip="Generar el tipo de cheque de manera endosable." CssClass="form-check-input LetrasNegrita" />
-            </div>
+  
         </div>
         <br />
-         <div class="form-check-inline">
-            <div class="form-group form-check" id="DivSolicitudChequeLote" runat="server" visible="false">
+         <div class="form-check-inline" id="DivSolicitudChequeLote" runat="server" visible="false">
+  
               <asp:CheckBox ID="cbGenerarSolicitudPorLote" runat="server" Text="Generar Solicitudes por Lote" CssClass="form-check-input LetrasNegrita" AutoPostBack="true" OnCheckedChanged="cbGenerarSolicitudPorLote_CheckedChanged" ToolTip="Generar las solicitudes de cheques por lotes" />
              <asp:Label ID="lbLetreroRojo" runat="server" Text="Este proceso puede tardar 5 Minutos o mas dependiendo de la cantidad de registros a procesar" Visible="false" CssClass="LetrasNegrita" ForeColor="Red"></asp:Label>
-            </div>
+
         </div>
         <br />
         <br /><br />
-        <div class="form-row">
-            <div class="form-group col-md-6">
+        <div class="row">
+            <div class="col-md-6">
                 <asp:Label ID="lbCodigoIntermediario" runat="server" Text="Codigo de Intermediario" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoIntermediario" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoIntermediario_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="col-md-6">
                 <asp:Label ID="lbNombreIntermediario" runat="server" Text="Nombre de Intermediario" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreIntermediario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbSeleccionarBanco" runat="server" Text="Seleccionar Banco" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarBanco" runat="server" ToolTip="Seleccionar Banco" CssClass="form-control"></asp:DropDownList>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbSeleccionarOficina" runat="server" Text="Seleccionar Oficina" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionaroficina" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbSeleccionarRamo" runat="server" Text="Seleccionar Ramo" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarRamo" runat="server" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
             </div>
 
-            <div class="form-group col-md-2">
+            <div class="col-md-2">
                 <asp:Label ID="lbTasa" runat="server" Text="Tasa" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txttasa" runat="server" CssClass="form-control" TextMode="Number" step="0.01"></asp:TextBox>
             </div>
 
-             <div class="form-group col-md-2">
+             <div class="col-md-2">
                 <asp:Label ID="lbMontoMinimo" runat="server" Text="Monto Minimo" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtMontoMinimo" runat="server" Enabled="false" CssClass="form-control" TextMode="Number" step="0.01"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbFechaDesde" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaDesde" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbFechaHasta" runat="server" Text="Fecha Hasta" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaHasta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
@@ -297,16 +297,16 @@
             <br />
         </div>
 
-        <div class="table-responsive">
-            <table class="table table-hover">
+
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbGenerarSolicitudHeaderRepeater" runat="server" Text="Generar" CssClass="LetrasNegrita" > </asp:Label></th>
-                        <th style="width:40%" align="left"> <asp:Label ID="lbNombreIntermediarioHeaderRepeater" runat="server" Text="Nombre" CssClass="LetrasNegrita" ></asp:Label> </th>
-                        <th style="width:20%" align="left"> <asp:Label ID="lbBancoHeaderRepeater" runat="server" Text="Banco" CssClass="LetrasNegrita" ></asp:Label> </th>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbMontoHeaderRepeater" runat="server" Text="Monto" CssClass="LetrasNegrita" ></asp:Label> </th>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbAcumuladoAnteriorHeaderRepeater" runat="server" Text="Acumulado" CssClass="LetrasNegrita" ></asp:Label> </th>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbTotalHeaderRepeater" runat="server" Text="Total" CssClass="LetrasNegrita" ></asp:Label> </th>
+                        <th scope="col"> Generar </th>
+                        <th scope="col"> Nombre </th>
+                        <th scope="col"> Banco </th>
+                        <th scope="col"> Monto </th>
+                        <th scope="col"> Acumulado </th>
+                        <th scope="col"> Total </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -314,18 +314,18 @@
                         <ItemTemplate>
                             <tr>
                                 <asp:HiddenField ID="hfCodigoIntermediario" runat="server" Value='<%# "CodigoIntermediario" %>' />
-                                <td style="width:10%"> <asp:Button ID="btnSeleccionarSeleccionarRegistro" runat="server" Text="Generar" ToolTip="Generar solicitud de chqeue" OnClick="btnSeleccionarSeleccionarRegistro_Click" CssClass="btn btn-outline-secondary btn-sm" /> </td>
-                                <td style="width:40%"> <%# Eval("NombreIntermediario") %> </td>
-                                <td style="width:20%"> <%# Eval("Banco") %> </td>
-                                <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Monto")) %> </td>
-                                <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Acumulado")) %> </td>
-                                <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Total")) %> </td>
+                                <td> <asp:Button ID="btnSeleccionarSeleccionarRegistro" runat="server" Text="Generar" ToolTip="Generar solicitud de chqeue" OnClick="btnSeleccionarSeleccionarRegistro_Click" CssClass="btn btn-outline-secondary btn-sm" /> </td>
+                                <td> <%# Eval("NombreIntermediario") %> </td>
+                                <td> <%# Eval("Banco") %> </td>
+                                <td> <%#string.Format("{0:n2}", Eval("Monto")) %> </td>
+                                <td> <%#string.Format("{0:n2}", Eval("Acumulado")) %> </td>
+                                <td> <%#string.Format("{0:n2}", Eval("Total")) %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
-        </div>
+   
 
          <div align="center">
                 <asp:Label ID="lbPaginaActualTitulo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>

@@ -29,8 +29,8 @@
           }
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #1E90FF;
+            color: #000000;
         }
 
         .BotonImagen {
@@ -87,23 +87,23 @@
     <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
 
    <div id="DivBloqueConsulta" runat="server">
-        <div class="form-row">
-        <div class="form-inline col-md-12">
+        <div class="row">
+        <div class="d-inline-flex col-md-6">
             <asp:Label ID="lbNumeroReclamoCOnsulta" runat="server" Text="Numero de Reclamo" CssClass="Letranegrita"></asp:Label>
             <asp:TextBox ID="txtNumeroReclamoConsulta" runat="server" TextMode="Number" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             <asp:ImageButton ID="btnConsultarReclamo" runat="server" CssClass="BotonImagen" OnClick="btnConsultarReclamo_Click1" ToolTip="Buscar Registro" ImageUrl="~/Imagenes/Buscar.png" />
         </div>
     </div>
     <br />
-    <div class="table-responsive">
+
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th style="width:10%" align="left"> POLIZA </th>
-                    <th style="width:10%" align="left"> RECLAMO </th>
-                    <th style="width:10%" align="left"> SECUENCIA </th>
-                    <th style="width:30%" align="left"> TIPO </th>
-                    <th style="width:25%" align="left"> RECLAMANTE </th>
+                    <th style="width:10%" align="left"> Poliza </th>
+                    <th style="width:10%" align="left"> Reclamo </th>
+                    <th style="width:10%" align="left"> Secuencia </th>
+                    <th style="width:30%" align="left"> Tipo </th>
+                    <th style="width:25%" align="left"> Reclamante </th>
                     <th style="width:5%" align="left">  </th>
                     <th style="width:5%" align="left">  </th>
                     <th style="width:5%" align="left">  </th>
@@ -117,20 +117,20 @@
                             <asp:HiddenField ID="hfReclamo" runat="server" Value='<%# Eval("Reclamacion") %>' />
                             <asp:HiddenField ID="hfsecuencia" runat="server" Value='<%# Eval("Secuencia") %>' />
 
-                            <td style="width:10%"> <%# Eval("Poliza") %> </td>
-                            <td style="width:10%"> <%# Eval("Reclamacion") %> </td>
-                            <td style="width:10%"> <%# Eval("Secuencia") %> </td>
-                            <td style="width:30%"> <%# Eval("TipoReclamacion") %> </td>
-                            <td style="width:25%"> <%# Eval("Reclamante") %> </td>
-                            <td style="width:5%" align="center"> <asp:ImageButton ID="btnAgregar" runat="server" CssClass="BotonImagen" OnClick="btnAgregar_Click" ToolTip="Agregar Nuevo Registro" ImageUrl="~/Imagenes/Agregar (2).png" /> </td>
-                            <td style="width:5%" align="center"> <asp:ImageButton ID="btnEditarRegistro" runat="server" CssClass="BotonImagen" OnClick="btnEditarRegistro_Click" ToolTip="Editar Registro Seleccionado" ImageUrl="~/Imagenes/Editar.png" /> </td>
-                            <td style="width:5%" align="center"> <asp:ImageButton ID="btnEliminar" runat="server" CssClass="BotonImagen" OnClick="btnEliminar_Click" ToolTip="Eliminar Registro Seleccionado" ImageUrl="~/Imagenes/Eliminar.png" /> </td>
+                            <td> <%# Eval("Poliza") %> </td>
+                            <td> <%# Eval("Reclamacion") %> </td>
+                            <td> <%# Eval("Secuencia") %> </td>
+                            <td> <%# Eval("TipoReclamacion") %> </td>
+                            <td> <%# Eval("Reclamante") %> </td>
+                            <td> <asp:ImageButton ID="btnAgregar" runat="server" CssClass="BotonImagen" OnClick="btnAgregar_Click" ToolTip="Agregar Nuevo Registro" ImageUrl="~/Imagenes/Agregar (2).png" /> </td>
+                            <td> <asp:ImageButton ID="btnEditarRegistro" runat="server" CssClass="BotonImagen" OnClick="btnEditarRegistro_Click" ToolTip="Editar Registro Seleccionado" ImageUrl="~/Imagenes/Editar.png" /> </td>
+                            <td> <asp:ImageButton ID="btnEliminar" runat="server" CssClass="BotonImagen" OnClick="btnEliminar_Click" ToolTip="Eliminar Registro Seleccionado" ImageUrl="~/Imagenes/Eliminar.png" /> </td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
             </tbody>
         </table>
-    </div>
+
     <div align="center">
                 <asp:Label ID="lbPaginaActualTituloAgregarItemReclamo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
                 <asp:Label ID="lbPaginaActualVariableAgregarItemReclamo" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
@@ -163,28 +163,28 @@
 
     <div id="DivBloqueAgregarEditar" runat="server" visible="false">
         <br />
-        <div class="form-row">
+        <div class="row">
             <div class="form-group col-md-4">
                 <asp:Label ID="lbPolizaSeleccionada" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtPolizaSeleccionada" runat="server" AutoCompleteType="Disabled" CssClass="form-control" Enabled="false"></asp:TextBox>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbSecuencia" runat="server" Text="Secuencia" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtSecuencia" runat="server" AutoCompleteType="Disabled" CssClass="form-control" Enabled="false"></asp:TextBox>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbReclamante" runat="server" Text="Reclamacion" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtReclamacionSeleccionada" Enabled="false" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbTipoReclamaciones" runat="server" Text="Tipo Reclamo" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarTipoReclamo" runat="server" ToolTip="Seleccionar el Tipo de Reclamo" CssClass="form-control"></asp:DropDownList>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbCodigoReclamante" runat="server" Text="Codigo Reclamante" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoReclamante" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoReclamante_TextChanged" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbNombreReclamante" runat="server" Text="Nombre Reclamante" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreReclamante" runat="server" AutoCompleteType="Disabled" CssClass="form-control" Enabled="false"></asp:TextBox>
             </div>
