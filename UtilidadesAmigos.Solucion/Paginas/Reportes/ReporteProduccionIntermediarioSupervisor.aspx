@@ -27,8 +27,8 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #1E90FF;
+            color: #000000;
         }
     </style>
 
