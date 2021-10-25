@@ -591,60 +591,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbFacturadoTotalCerrar;
 
         /// <summary>
-        /// lbPolizaHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPolizaHeaderRepeater;
-
-        /// <summary>
-        /// lbFacturaHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFacturaHeaderRepeater;
-
-        /// <summary>
-        /// lbTipoHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTipoHeaderRepeater;
-
-        /// <summary>
-        /// lbBrutoHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbBrutoHeaderRepeater;
-
-        /// <summary>
-        /// lbMonedaHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMonedaHeaderRepeater;
-
-        /// <summary>
-        /// lbConceptoHeaderRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbConceptoHeaderRepeater;
-
-        /// <summary>
         /// rpListadoProduccion control.
         /// </summary>
         /// <remarks>
