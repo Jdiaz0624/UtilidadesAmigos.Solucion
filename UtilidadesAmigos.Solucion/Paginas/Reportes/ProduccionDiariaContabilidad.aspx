@@ -3,6 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style type="text/css">
+       <style type="text/css">
         .jumbotron{
             color:#000000; 
             background:#7BC5FF;
@@ -13,11 +14,21 @@
         }
 
         .btn-sm{
-            width:100px;
+            width:90px;
         }
-          .LetrasNegrita {
-          font-weight:bold;
-          }
+
+        .Letranegrita {
+        font-weight:bold;
+        }
+          table {
+            border-collapse: collapse;
+        }
+        
+
+        th {
+            background-color: #7BC5FF;
+            color: #000000;
+        }
 
 
     </style>
@@ -79,8 +90,8 @@
 
     <div class="container-fluid">
         <br /><br />
-        <div class="form-row">
-            <div class="form-group col-md-3">
+        <div class="row">
+            <div class="col-md-3">
                 <asp:Label ID="lbTipoReporte" runat="server" Text="Tipo de Reporte" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarTipoReporte" runat="server" ToolTip="Seleccionar Tipo de Reporte" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlSeleccionarTipoReporte_SelectedIndexChanged">
                     <asp:ListItem Value="1">Producción</asp:ListItem>
@@ -89,55 +100,55 @@
             </div>
         </div>
         <div class="form-check-inline">
-            <div class="form-group form-check">
+         
                 <asp:CheckBox ID="cbModoComparativo" AutoPostBack="true" OnCheckedChanged="cbModoComparativo_CheckedChanged" runat="server" Text="Modo Comparativo" CssClass="form-check-input" ToolTip="Este modo es para comparar dos rangos de fechas" />
-            </div>
+     
         </div>
        
          <%--  MODO COMPARATIVO--%>
-        <div class="form-row">
+        <div class="row">
              
-            <div class="form-group col-md-2">
+            <div class="col-md-2">
                 <asp:Label ID="lbFechaDesdeModoComparativo" runat="server" Visible="false" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaDesdeModoComparativo" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
-             <div class="form-group col-md-2">
+             <div class="col-md-2">
                  <asp:Label ID="lbFechaHastaModoCOmparativo" runat="server" Visible="false" Text="Fecha Hasta" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaHastaModoComparativo" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
-             <div class="form-group col-md-2">
-                 <asp:Label ID="lbFechaDesdeMesAnteriorModoComparativo" runat="server" Visible="false" Text="Fecha Desde Mes Anterior" CssClass="LetrasNegrita"></asp:Label>
+             <div class="col-md-2">
+                 <asp:Label ID="lbFechaDesdeMesAnteriorModoComparativo" runat="server" Visible="false" Text="Desde Mes Anterior" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaDesdeMesAnteriorModoComparativo" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
-             <div class="form-group col-md-2">
-                 <asp:Label ID="lbFechaHastaMesAnteriorModoComparativo" runat="server" Visible="false" Text="Fecha Hasta Mes Anterior" CssClass="LetrasNegrita"></asp:Label>
+             <div class="col-md-2">
+                 <asp:Label ID="lbFechaHastaMesAnteriorModoComparativo" runat="server" Visible="false" Text="Hasta Mes Anterior" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaHastaMesAnteriorModoCOmparativo" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
         <%--  MODO NORMAL--%>
-        <div class="form-row">
-            <div class="form-group col-md-3">
+        <div class="row">
+            <div class="col-md-3">
                 <asp:Label ID="lbSeleccionarMes" runat="server" Text="Seleccionar Mes" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarMes" runat="server" ToolTip="Seleccionar el mes a validar" CssClass="form-control">
                 </asp:DropDownList>
             </div>
-             <div class="form-group col-md-3">
+             <div class="col-md-3">
                  <asp:Label ID="lbAno" runat="server" Text="Año" CssClass="LetrasNegrita"></asp:Label>
                  <asp:TextBox ID="txtAno" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
-             <div class="form-group col-md-3">
+             <div class="col-md-3">
                    <asp:Label ID="lbRamo" runat="server" Text="Seleccionar Ramo" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarRamo" runat="server" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
             </div>
 
              
 
-             <div class="form-group col-md-3">
+             <div class="col-md-3">
                   <asp:Label ID="lbSeleccionarOficina" runat="server" Text="Seleccionar Oficina" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarOficina" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
             </div>
 
-             <div class="form-group col-md-3">
+             <div class="col-md-3">
                    <asp:Label ID="lbLlevaIntermediario" runat="server" Text="Lleva Intermediario" CssClass="LetrasNegrita"></asp:Label>
                  <asp:DropDownList ID="ddlLlevaIntermediario" runat="server" ToolTip="Lleva Intermediario" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlLlevaIntermediario_SelectedIndexChanged">
                      <asp:ListItem Value="1">NO</asp:ListItem>
@@ -145,16 +156,16 @@
                    </asp:DropDownList>
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                    <asp:Label ID="lbIntermediario" Visible="false" runat="server" Text="Codigo Intermediario" CssClass="LetrasNegrita"></asp:Label>
                  <asp:TextBox ID="txtCodigoIntermediario" Visible="false" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
         </div>
         <div class="form-check-inline">
-            <div class="form-group form-check">
+       
                 <asp:CheckBox ID="cbTodosLosIntermediarios" runat="server" Visible="false" Text="Todos los Intermediarios" AutoPostBack="true" ToolTip="Mostrar todos los intermediarios" OnCheckedChanged="cbTodosLosIntermediarios_CheckedChanged" /><br />
                 <asp:Label ID="lbLetreroTodosIntermediairos" runat="server" Visible="false" Text="La consulta con todos los intermediarios puede tardar hasta 5 minutos debido a la cantidad de registros y calculos de primas." CssClass="LetrasNegrita" ForeColor="Red"></asp:Label>
-            </div>
+   
         </div>
 
         <!--BOTONES-->

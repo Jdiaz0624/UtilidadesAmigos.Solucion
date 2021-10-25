@@ -528,51 +528,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueCodigosPermitidos;
 
         /// <summary>
-        /// lbSeleccionarSupervisoresHeaderrepeaterPOPOP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSeleccionarSupervisoresHeaderrepeaterPOPOP;
-
-        /// <summary>
-        /// lbCodigoSupervisorHeaderRepeaterPOPOP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCodigoSupervisorHeaderRepeaterPOPOP;
-
-        /// <summary>
-        /// lbNombreSupervisorHeaderRepeaterPOPOP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNombreSupervisorHeaderRepeaterPOPOP;
-
-        /// <summary>
-        /// lbFechaAgregadoHeaderRepeaterPOPOP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFechaAgregadoHeaderRepeaterPOPOP;
-
-        /// <summary>
-        /// lbOficinaHEaderRepeaterPOPOP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbOficinaHEaderRepeaterPOPOP;
-
-        /// <summary>
         /// rpListadoSupervisoresAgregados control.
         /// </summary>
         /// <remarks>
@@ -823,51 +778,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtClaveSeguridadBuscarCodigo;
-
-        /// <summary>
-        /// lbGuardarBuscarCodigo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbGuardarBuscarCodigo;
-
-        /// <summary>
-        /// lbCodigoSupervisorBuscarCodigo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCodigoSupervisorBuscarCodigo;
-
-        /// <summary>
-        /// lbNombreSupervisorBuscarCodigo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNombreSupervisorBuscarCodigo;
-
-        /// <summary>
-        /// lbEstatusSupervisorBuscarCodigo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbEstatusSupervisorBuscarCodigo;
-
-        /// <summary>
-        /// lbOficinaSupervisorBuscarCodigo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbOficinaSupervisorBuscarCodigo;
 
         /// <summary>
         /// rpListadoSupervisoresBuscar control.
