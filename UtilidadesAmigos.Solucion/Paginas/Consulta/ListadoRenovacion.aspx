@@ -118,18 +118,18 @@
                 <div class="card card-body">
                    <asp:UpdatePanel ID="UpdatePanelPolizasNoContactadas" runat="server">
                        <ContentTemplate>
-                               <div class="form-check">
+                               <div class="form-check-inline">
                                    <asp:RadioButton ID="rbRegistrosPendientesGestionCobros" runat="server" Text="Pendientes" ToolTip="Mostrar Todos los Registros Pendientes" CssClass="form-check-input Letranegrita" GroupName="RadiosGestionCobros" />
                                    <asp:RadioButton ID="rbRegistrosProcesadosGestionCobros" runat="server" Text="Procesados" ToolTip="Mostrar Todos los Registros Procesados" CssClass="form-check-input Letranegrita" GroupName="RadiosGestionCobros" />
                                    <asp:RadioButton ID="rbTodosLosRegistrosGestionCobros" runat="server" Text="Todos" ToolTip="Mostrar Todos los Registros (Penientes y Procesados)" CssClass="form-check-input Letranegrita" GroupName="RadiosGestionCobros" />
 
                                </div>
-    
+    <br />
                            <div class="row">
-                               <div class="col-md-4">
+                               <div class="d-inline-flex col-md-4 ">
                                    <asp:Label ID="lbPolizaCOnsultaGesionCobro" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
-                                   <asp:TextBox ID="txtPolizaConsultaGestionCobro" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
-                                   <asp:ImageButton ID="btnBuscarPolizaGestionCobrosNuevo" runat="server" CssClass="BotonImagen" OnClick="btnBuscarPolizaGestionCobrosNuevo_Click" ToolTip="Buscar Información" ImageUrl="~/Imagenes/Buscar.png" />
+                                   <asp:TextBox ID="txtPolizaConsultaGestionCobro" runat="server" Height="40px" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+                                   <asp:ImageButton ID="btnBuscarPolizaGestionCobrosNuevo" runat="server" CssClass="BotonImagen mb-3" OnClick="btnBuscarPolizaGestionCobrosNuevo_Click" ToolTip="Buscar Información" ImageUrl="~/Imagenes/Buscar.png" />
                                    
                                </div>
                            </div>
@@ -207,7 +207,7 @@
            <br />
         <!--AGREGAMOS LOS FILTROS-->
 
-               <div class="form-check">
+               <div class="form-check-inline">
                    <asp:CheckBox ID="cbProcesarRegistros" runat="server" Text="Procesar Registros" CssClass="form-check-input Letranegrita" AutoPostBack="true" OnCheckedChanged="cbProcesarRegistros_CheckedChanged" ToolTip="Procesar Registros de las renovaciones" />
                    <asp:CheckBox ID="cbGenerarReporteGestionCobros" runat="server" Text="Reporte de Gestión de Cobros" ToolTip="Generar Reporte de los comentarios de la gestion de cobro" CssClass="form-check-input Letranegrita" AutoPostBack="true" OnCheckedChanged="cbGenerarReporteGestionCobros_CheckedChanged" />
                </div>
@@ -281,7 +281,7 @@
         <br />
             <!--REPORTE DE GESTION DE COBROS-->
             <div id="DivReporteGestionCobros" runat="server" visible="false">
-                <div class="form-check">
+                <div class="form-check-inline">
              
                         <asp:CheckBox ID="cbNoAgregarRangoFechaReporte" runat="server" CssClass="form-check-input Letranegrita" ToolTip="No Agregar Rango de fecha para el repore" Text="No Agregar Rango de Fecha" />
              
@@ -388,7 +388,7 @@
 
         <div id="DivBloqueProcesarRegistros" runat="server" visible="false">
       
-                   <div class="form-check">
+                   <div class="form-check-inline">
                        <asp:CheckBox ID="cbExclirMotoresMachado" runat="server" Text="Excluir Motores" CssClass="form-check-input Letranegrita" />
                    </div>
    
@@ -765,10 +765,10 @@
           <asp:UpdatePanel ID="EstadisticaUpdatePanel" runat="server">
               <ContentTemplate>
   
-                      <div class="form-check">
+                      <div class="form-check-inline">
                           <asp:RadioButton ID="rbEstadisticaSupervisor" runat="server" Text="Por Supervisor" GroupName="Estadistica" CssClass="form-check-input LetrasNegrita" />
                       </div>
-                      <div class="form-check">
+                      <div class="form-check-inline">
                           <asp:RadioButton ID="rbEstadisticaIntermediario" runat="server" Text="Por Intermediario" GroupName="Estadistica" CssClass="form-check-input LetrasNegrita" />
                       </div>
            
