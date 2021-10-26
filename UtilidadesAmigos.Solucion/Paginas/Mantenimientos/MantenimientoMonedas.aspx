@@ -30,8 +30,8 @@
           }
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #1E90FF;
+            color: #000000;
         }
 
         .BotonSolicitud {
@@ -68,14 +68,14 @@
         <asp:Label ID="lbTitulo" runat="server" Text="Mantenimiento de Monedas" CssClass="Letranegrita"></asp:Label>
         <asp:Label ID="lbCodigoMoneda" runat="server" Text="0" Visible="false"></asp:Label>
     </div>
-    <div class="table-responsive">
-        <table class="table table-hover">
+
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <th align="center" style="width:10%"> MODIFICAR </th>
-                    <th align="left" style="width:50%"> MONEDA </th>
-                    <th align="left" style="width:20%"> SIGLA </th>
-                    <th align="left" style="width:20%"> TASA </th>
+                    <th scope="col"> Modificar </th>
+                    <th scope="col"> Moneda </th>
+                    <th scope="col"> SIgla </th>
+                    <th scope="col"> Tasa </th>
                 </tr>
             </thead>
             <tbody>
@@ -84,30 +84,30 @@
                         <tr>
                             <asp:HiddenField ID="hfCodigoMoneda" runat="server" Value='<%# Eval("Codigo") %>' />
 
-                            <td style="width:10%" align="center"> <asp:ImageButton ID="btnSeleccionarRegistro" runat="server" OnClick="btnSeleccionarRegistro_Click" CssClass="BotonImagen" ToolTip="Modificar Registro" ImageUrl="~/Imagenes/modificar.png" /> </td>
-                            <td style="width:10%" align="left"> <%# Eval("Descripcion") %> </td>
-                            <td style="width:10%" align="left"> <%# Eval("Sigla") %> </td>
-                            <td style="width:10%" align="left"> <%#string.Format("{0:n2}", Eval("Tasa")) %> </td>
+                            <td> <asp:ImageButton ID="btnSeleccionarRegistro" runat="server" OnClick="btnSeleccionarRegistro_Click" CssClass="BotonImagen" ToolTip="Modificar Registro" ImageUrl="~/Imagenes/modificar.png" /> </td>
+                            <td> <%# Eval("Descripcion") %> </td>
+                            <td> <%# Eval("Sigla") %> </td>
+                            <td> <%#string.Format("{0:n2}", Eval("Tasa")) %> </td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
             </tbody>
         </table>
-    </div>
+ 
     <br />
     <div id="DivBloqueModificar" runat="server">
-        <div class="form-row">
-            <div class="form-group col-md-4">
+        <div class="row">
+            <div class="col-md-4">
                 <asp:Label ID="lbNombreMonedaSeleccionada" runat="server" Text="Moneda" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreMneda" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbsIGLAmONEDA" runat="server" Text="Sigla" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtSiglaMoneda" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbTasaMoneda" runat="server" Text="Tasa" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtTasa" runat="server" TextMode="Number" step="0.01" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
