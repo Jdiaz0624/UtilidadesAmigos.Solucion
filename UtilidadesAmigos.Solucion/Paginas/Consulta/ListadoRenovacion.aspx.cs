@@ -1025,7 +1025,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             CargarListadoEstadistica();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleEstadistica, ref lbCantidadPaginaVAriableEstadistica);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavleEstadistica, ref lbCantidadPaginaVAriableEstadistica);
         }
 
         protected void cbProcesarRegistros_CheckedChanged(object sender, EventArgs e)
@@ -1100,8 +1100,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         __Poliza = n.Poliza;
                         __Ramo = (int)n.CodRamo;
                         __SubRamo = (int)n.CodSubramo;
-                        __InicioVigencia = (DateTime)n.FechaInicioVigencia0;
-                        __FinVigencia = (DateTime)n.FechaFinVigencia0;
+                        //__InicioVigencia = (DateTime)n.FechaInicioVigencia0;
+                        //__FinVigencia = (DateTime)n.FechaFinVigencia0;
                         int ResultadoValidacion = 0;
                         UtilidadesAmigos.Logica.Comunes.ValidarPolizasARenovar ValidacionPolizasRenovar = new Logica.Comunes.ValidarPolizasARenovar(
                             __CodigoIntermediario,
@@ -1193,7 +1193,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostrarInformacionReporteMacjado();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleMachado, ref lbCantidadPaginaVAriableMachado);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavleMachado, ref lbCantidadPaginaVAriableMachado);
         }
 
         protected void btnActualizar_Click(object sender, EventArgs e)
@@ -1343,7 +1343,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableGestionCobros, ref lbCantidadPaginaVAriableGestionCobros);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariableGestionCobros, ref lbCantidadPaginaVAriableGestionCobros);
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -1397,7 +1397,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostrarListadoGestionCobros();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariablePolizasNoContactadas, ref lbCantidadPaginaVAriablePolizasNoContactadas);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariablePolizasNoContactadas, ref lbCantidadPaginaVAriablePolizasNoContactadas);
         }
 
         protected void btnBuscarPolizaGestionCobros_Click(object sender, EventArgs e)
@@ -1481,22 +1481,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                         Celular = n.Celular,
                                         TelefonoOficina = n.TelefonoOficina,
                                         Items = n.Items,
-                                        FechaInicioVigencia = n.FechaInicioVigencia,
-                                        FechaFinVigencia = n.FechaFinVigencia,
+                                        //FechaInicioVigencia = n.FechaInicioVigencia,
+                                        //FechaFinVigencia = n.FechaFinVigencia,
                                         Supervisor = n.Supervisor,
                                         Intermediario = n.Intermediario,
-                                        TipoVehiculo = n.TipoVehiculo,
-                                        Marca = n.Marca,
-                                        Modelo = n.Modelo,
-                                        Capacidad = n.Capacidad,
-                                        Ano = n.Ano,
-                                        Color = n.Color,
-                                        Chasis = n.Chasis,
-                                        Placa = n.Placa,
-                                        Uso = n.Uso,
-                                        ValorVehiculo = n.ValorVehiculo,
-                                        NombreAsegurado = n.NombreAsegurado,
-                                        Fianza = n.Fianza,
+                                        //TipoVehiculo = n.TipoVehiculo,
+                                        //Marca = n.Marca,
+                                        //Modelo = n.Modelo,
+                                        //Capacidad = n.Capacidad,
+                                        //Ano = n.Ano,
+                                        //Color = n.Color,
+                                        //Chasis = n.Chasis,
+                                        //Placa = n.Placa,
+                                        //Uso = n.Uso,
+                                        //ValorVehiculo = n.ValorVehiculo,
+                                        //NombreAsegurado = n.NombreAsegurado,
+                                        //Fianza = n.Fianza,
                                         Oficina = n.Oficina,
                                         Facturado = n.Facturado,
                                         Cobrado = n.Cobrado,
@@ -1541,22 +1541,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                         Celular = n.Celular,
                                         TelefonoOficina = n.TelefonoOficina,
                                         Items = n.Items,
-                                        FechaInicioVigencia = n.FechaInicioVigencia,
-                                        FechaFinVigencia = n.FechaFinVigencia,
+                                        //FechaInicioVigencia = n.FechaInicioVigencia,
+                                        //FechaFinVigencia = n.FechaFinVigencia,
                                         Supervisor = n.Supervisor,
                                         Intermediario = n.Intermediario,
-                                        TipoVehiculo = n.TipoVehiculo,
-                                        Marca = n.Marca,
-                                        Modelo = n.Modelo,
-                                        Capacidad = n.Capacidad,
-                                        Ano = n.Ano,
-                                        Color = n.Color,
-                                        Chasis = n.Chasis,
-                                        Placa = n.Placa,
-                                        Uso = n.Uso,
-                                        ValorVehiculo = n.ValorVehiculo,
-                                        NombreAsegurado = n.NombreAsegurado,
-                                        Fianza = n.Fianza,
+                                        //TipoVehiculo = n.TipoVehiculo,
+                                        //Marca = n.Marca,
+                                        //Modelo = n.Modelo,
+                                        //Capacidad = n.Capacidad,
+                                        //Ano = n.Ano,
+                                        //Color = n.Color,
+                                        //Chasis = n.Chasis,
+                                        //Placa = n.Placa,
+                                        //Uso = n.Uso,
+                                        //ValorVehiculo = n.ValorVehiculo,
+                                        //NombreAsegurado = n.NombreAsegurado,
+                                        //Fianza = n.Fianza,
                                         Oficina = n.Oficina,
                                         Facturado = n.Facturado,
                                         Cobrado = n.Cobrado,
@@ -1577,10 +1577,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
             var hfPolizaSeleccionadaGestionCobros = ((HiddenField)PolizaSeleccionadaGestionCobros.FindControl("hfPolizaGestionCobros")).Value.ToString();
 
             var FechaFinVigenciaSeleccionadaGestionCobros = (RepeaterItem)((ImageButton)sender).NamingContainer;
-            var hfFechaFinVigenciaSeleccionadaGestionCObros = ((HiddenField)FechaFinVigenciaSeleccionadaGestionCobros.FindControl("hfFechaFinVigenciaGestionCobros")).Value.ToString();
+            //var hfFechaFinVigenciaSeleccionadaGestionCObros = ((HiddenField)FechaFinVigenciaSeleccionadaGestionCobros.FindControl("hfFechaFinVigenciaGestionCobros")).Value.ToString();
 
             lbPolizaSeleccionada.Text = hfPolizaSeleccionadaGestionCobros;
-            lbFinVigenciaSeleccionada.Text = hfFechaFinVigenciaSeleccionadaGestionCObros;
+          //  lbFinVigenciaSeleccionada.Text = hfFechaFinVigenciaSeleccionadaGestionCObros;
 
             SacarInformacionPoliza(hfPolizaSeleccionadaGestionCobros);
             CurrentPage = 0;
@@ -1594,7 +1594,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 null,
                 null,
                 null,
-                hfFechaFinVigenciaSeleccionadaGestionCObros);
+                null);
             if (ValidarComentarioPoliza.Count() < 1)
             {
                 CargarLosEstatusDeLlamada();
@@ -1683,7 +1683,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableDatoVehiculo, ref lbCantidadPaginaVAriableDatoVehiculo);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariableDatoVehiculo, ref lbCantidadPaginaVAriableDatoVehiculo);
         }
 
         protected void btnEliminarRegistrosPolizasGestionadas_Click(object sender, ImageClickEventArgs e)
@@ -1760,7 +1760,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostrarListadoRenovaciones();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavle, ref lbCantidadPaginaVAriable);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavle, ref lbCantidadPaginaVAriable);
         }
     }
 }

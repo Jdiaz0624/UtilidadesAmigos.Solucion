@@ -3109,6 +3109,31 @@
       <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_VALIDAR_POLIZA" Method="SP_VALIDAR_POLIZA">
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="SP_VALIDAR_POLIZAResult">
+      <Column Name="Compania" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MontoNeto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="UsuarioAdiciona" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuarioModifica" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FechaModifica" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SumaAsegurada" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Deudor" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CodMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Prima" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Observacion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="PorcComision" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="Utililades.SP_MOSTRAR_LISTADO_RENOVACION" Method="SP_MOSTRAR_LISTADO_RENOVACION">
     <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
     <Parameter Name="FechaFin" Parameter="fechaFin" Type="System.DateTime" DbType="Date" />
@@ -3136,26 +3161,10 @@
       <Column Name="Celular" Type="System.String" DbType="Char(50)" CanBeNull="true" />
       <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Items" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FechaInicioVigencia0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FechaFinVigencia0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FechaInicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="FechaFinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
       <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
       <Column Name="CodSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CodIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="TipoVehiculo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Marca" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Modelo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Capacidad" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Ano" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Color" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Chasis" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Placa" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Uso" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ValorVehiculo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="NombreAsegurado" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Fianza" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
@@ -3166,31 +3175,6 @@
       <Column Name="Mes" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Anos" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CantidadComentarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_VALIDAR_POLIZA" Method="SP_VALIDAR_POLIZA">
-    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(20)" />
-    <ElementType Name="SP_VALIDAR_POLIZAResult">
-      <Column Name="Compania" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Cliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Intermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="MontoNeto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="UsuarioAdiciona" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UsuarioModifica" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FechaModifica" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Ramo" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Hora" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SumaAsegurada" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Deudor" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="CodMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Prima" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Observacion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
-      <Column Name="PorcComision" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Oficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

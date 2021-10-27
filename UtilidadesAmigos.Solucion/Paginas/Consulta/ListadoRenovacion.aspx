@@ -325,8 +325,6 @@
                     <tr>
                         <th scope="col"> Gestión </th>
                         <th scope="col"> Poliza </th>
-                        <th scope="col"> Inicio </th>
-                        <th scope="col"> Fin </th>
                         <th scope="col"> Prima </th>
                         <th scope="col"> Facturado </th>
                         <th scope="col"> Cobrado </th>
@@ -339,17 +337,15 @@
                         <ItemTemplate>
                             <tr>
                                  <asp:HiddenField ID="hfPolizaGestionCobros" runat="server" Value='<%# Eval("Poliza") %>' />
-                        <asp:HiddenField ID="hfFechaFinVigenciaGestionCobros" runat="server" Value='<%# Eval("FechaFinVigencia") %>' />
+                   <%--     <asp:HiddenField ID="hfFechaFinVigenciaGestionCobros" runat="server" Value='<%# Eval("FechaFinVigencia") %>' />--%>
 
-                                <td style="width:10%" align="center"> <asp:ImageButton ID="btnGestionNuevo" runat="server" CssClass="BotonImagen" OnClick="btnGestionNuevo_Click" ToolTip="Gestion de Cobros" ImageUrl="~/Imagenes/Servicio al Cliente.png" /> </td>
-                                <td style="width:10%"> <%# Eval("Poliza") %> </td>
-                                <td style="width:10%"> <%# Eval("FechaInicioVigencia") %> </td>
-                                <td style="width:10%"> <%# Eval("FechaFinVigencia") %> </td>
-                                <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Prima")) %> </td>
-                                <td style="width:15%"> <%#string.Format("{0:n2}", Eval("Facturado")) %> </td>
-                                <td style="width:15%"> <%#string.Format("{0:n2}", Eval("Cobrado")) %> </td>
-                                <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Balance")) %> </td>
-                                <td style="width:10%"> <%# string.Format("{0:n0}", Eval("CantidadComentarios")) %> </td>
+                                <td> <asp:ImageButton ID="btnGestionNuevo" runat="server" CssClass="BotonImagen" OnClick="btnGestionNuevo_Click" ToolTip="Gestion de Cobros" ImageUrl="~/Imagenes/Servicio al Cliente.png" /> </td>
+                                <td> <%# Eval("Poliza") %> </td>
+                                <td> <%#string.Format("{0:n2}", Eval("Prima")) %> </td>
+                                <td> <%#string.Format("{0:n2}", Eval("Facturado")) %> </td>
+                                <td> <%#string.Format("{0:n2}", Eval("Cobrado")) %> </td>
+                                <td> <%#string.Format("{0:n2}", Eval("Balance")) %> </td>
+                                <td> <%# string.Format("{0:n0}", Eval("CantidadComentarios")) %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
