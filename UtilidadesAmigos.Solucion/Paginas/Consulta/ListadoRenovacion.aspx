@@ -287,7 +287,7 @@
              
                 </div>
 
-                    <div class="form-check">
+                    <div class="form-check-inline">
                         <asp:Label ID="lbTipoFormatoReporteGEstion" runat="server" Text="Formato de Reporte: " CssClass="Letranegrita"></asp:Label>
                         <asp:RadioButton ID="rbFormatoPDFGestion" runat="server" Text="PDF" ToolTip="Genear Reporte de Gestión de cobros en PDF" GroupName="ReporteGestion" CssClass="form-check-input" />
                         <asp:RadioButton ID="rbFormatoExcelGestion" runat="server" Text="EXCEL" ToolTip="Genear Reporte de Gestión de cobros en EXCEL" GroupName="ReporteGestion" CssClass="form-check-input" />

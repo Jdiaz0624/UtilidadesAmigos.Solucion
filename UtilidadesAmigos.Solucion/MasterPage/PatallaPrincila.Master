@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Utilidades Seguros Amigos</title>
+    <title>Utilidades Futuro Seguros</title>
     <link href="../Estilos/EstilosMaster.css" rel="stylesheet" type="text/css" />
     <link href="../Estilos/EstiloMenuPrincipal.css" rel="stylesheet" type="text/css" />
     <link type="text/css" href="../Content/bootstrap.min.css" rel="stylesheet" />
