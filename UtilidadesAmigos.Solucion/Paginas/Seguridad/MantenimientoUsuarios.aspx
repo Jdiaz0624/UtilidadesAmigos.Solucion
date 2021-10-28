@@ -18,8 +18,8 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #0094ff;
+            color: #000000;
         }
     </style>
 
@@ -108,28 +108,28 @@
     <asp:Label ID="lbIdUsuario" runat="server" Text="0" Visible="false"></asp:Label>
     <div class="container-fluid">
         <div id="DivBloqueConsulta" runat="server">
-           <div class="form-row">
-               <div class="form-group col-md-3">
+           <div class="row">
+               <div class="col-md-3">
                    <asp:Label ID="lbSucursalConsulta" runat="server" Text="Sucursal" CssClass="LetrasNegrita"></asp:Label>
                    <asp:DropDownList ID="ddlSucursalCOnsulta" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSucursalCOnsulta_SelectedIndexChanged"></asp:DropDownList>
                </div>
 
-               <div class="form-group col-md-3">
+               <div class="col-md-3">
                    <asp:Label ID="lbOficinaConsulta" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
                    <asp:DropDownList ID="ddlOficinaConsulta" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlOficinaConsulta_SelectedIndexChanged"></asp:DropDownList>
                </div>
 
-               <div class="form-group col-md-3">
+               <div class="col-md-3">
                    <asp:Label ID="lbDepartamentoConsulta" runat="server" Text="Departamento" CssClass="LetrasNegrita"></asp:Label>
                    <asp:DropDownList ID="ddlDepartamentoConsulta" runat="server" ToolTip="Seleccionar Departamento" CssClass="form-control"></asp:DropDownList>
                </div>
 
-               <div class="form-group col-md-3">
+               <div class="col-md-3">
                    <asp:Label ID="lbPerfilConsulta" runat="server" Text="Perfil" CssClass="LetrasNegrita"></asp:Label>
                    <asp:DropDownList ID="ddlPerfilCOnsulta" runat="server" ToolTip="Seleccionar Perfil" CssClass="form-control"></asp:DropDownList>
                </div>
 
-               <div class="form-group col-md-3">
+               <div class="col-md-3">
                    <asp:Label ID="lbUsuarioConsulta" runat="server" Text="Usuario" CssClass="LetrasNegrita"></asp:Label>
                    <asp:TextBox ID="txtUsuarioConsulta" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                </div> 
@@ -144,19 +144,19 @@
 
             </div>
             <br />
-            <div class="table-responsive">
-                <table class="table table-hover">
+ 
+                <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th style="width:10%" align="left"> SELECCIONAR </th>
-                            <th style="width:10%" align="left"> USUARIO </th>
-                            <th style="width:20%" align="left"> PERSONA </th>
-                            <th style="width:10%" align="left"> SUCURSAL </th>
-                            <th style="width:10%" align="left"> OFICINA </th>
-                            <th style="width:10%" align="left"> DEPARTAMENTO </th>
-                            <th style="width:10%" align="left"> PERFIL </th>
-                            <th style="width:10%" align="left"> ESTATUS </th>
-                            <th style="width:10%" align="left"> CAMBIA CLAVE </th>
+                            <th scope="col"> Seleccionar </th>
+                            <th scope="col"> Usuario </th>
+                            <th scope="col"> Persona </th>
+                            <th scope="col"> Sucursal </th>
+                            <th scope="col"> Oficina </th>
+                            <th scope="col"> Departamento </th>
+                            <th scope="col"> Perfil </th>
+                            <th scope="col"> Estatus </th>
+                            <th scope="col"> Cambia Clave </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -164,21 +164,21 @@
                             <ItemTemplate>
                                 <tr>
                                     <asp:HiddenField ID="hfIdUsuario" runat="server" Value='<%# Eval("IdUsuario") %>' />
-                                    <td style="width:10%" align="left"> <asp:Button ID="btnSeleccionarUsuario" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarUsuario_Click" /> </td>
-                                    <td style="width:10%" align="left"> <%# Eval("Usuario") %> </td>
-                                    <td style="width:20%" align="left"> <%# Eval("Persona") %> </td>
-                                    <td style="width:10%" align="left"> <%# Eval("Sucursal") %> </td>
-                                    <td style="width:10%" align="left"> <%# Eval("Oficina") %> </td>
-                                    <td style="width:10%" align="left"> <%# Eval("Departamento") %> </td>
-                                    <td style="width:10%" align="left"> <%# Eval("Perfil") %> </td>
-                                    <td style="width:10%" align="left"> <%# Eval("Estatus") %> </td>
-                                    <td style="width:10%" align="left"> <%# Eval("CambiaClave") %> </td>
+                                    <td> <asp:Button ID="btnSeleccionarUsuario" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarUsuario_Click" /> </td>
+                                    <td> <%# Eval("Usuario") %> </td>
+                                    <td> <%# Eval("Persona") %> </td>
+                                    <td> <%# Eval("Sucursal") %> </td>
+                                    <td> <%# Eval("Oficina") %> </td>
+                                    <td> <%# Eval("Departamento") %> </td>
+                                    <td> <%# Eval("Perfil") %> </td>
+                                    <td> <%# Eval("Estatus") %> </td>
+                                    <td> <%# Eval("CambiaClave") %> </td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
                     </tbody>
                 </table>
-            </div>
+
 
              <div align="center">
                <asp:Label ID="lbPaginaActualTituloUsuarios" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
@@ -211,48 +211,48 @@
 
         <div id="DivBloqueMantenimiento" runat="server">
             <br />
-            <div class="form-row">
-                <div class="form-group col-md-3">
+            <div class="row">
+                <div class="col-md-3">
                     <asp:Label ID="lbSucursalMantenimiento" runat="server" Text="Sucursal" CssClass="LetrasNegrita"></asp:Label>
                     <asp:DropDownList ID="ddlSucursalMantenimiento" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSucursalMantenimiento_SelectedIndexChanged"></asp:DropDownList>
                 </div>
 
-                 <div class="form-group col-md-3">
+                 <div class="col-md-3">
                     <asp:Label ID="lbOficinaMAntenimiento" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
                     <asp:DropDownList ID="ddlOficinaMantenimiento" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
                 </div>
 
-                 <div class="form-group col-md-3">
+                 <div class="col-md-3">
                     <asp:Label ID="lbDepartamentoMantenimiento" runat="server" Text="Departamento" CssClass="LetrasNegrita"></asp:Label>
                     <asp:DropDownList ID="ddlDepartamentoMantenimiento" runat="server" ToolTip="Seleccionar Departamento" CssClass="form-control"></asp:DropDownList>
                 </div>
 
-                 <div class="form-group col-md-3">
+                 <div class="col-md-3">
                     <asp:Label ID="lbPerfilMantenimiento" runat="server" Text="Perfil" CssClass="LetrasNegrita"></asp:Label>
                     <asp:DropDownList ID="ddlPerfilMantenimiento" runat="server" ToolTip="Seleccionar Perfil" CssClass="form-control"></asp:DropDownList>
                 </div>
 
-                 <div class="form-group col-md-3">
+                 <div class="col-md-3">
                     <asp:Label ID="lbUsuarioMantenimiento" runat="server" Text="Usuario" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtUsuarioMantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
 
-                <div class="form-group col-md-3">
+                <div class="col-md-3">
                     <asp:Label ID="lbPersonaMantenimiento" runat="server" Text="Persona" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtPersonaMantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
 
-                <div class="form-group col-md-3">
+                <div class="col-md-3">
                     <asp:Label ID="lbEmailMantenimiento" runat="server" Text="Email" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtEmailMantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
 
-                <div class="form-group col-md-3">
+                <div class="col-md-3">
                     <asp:Label ID="lbTipoPersonaMantenimiento" runat="server" Text="Tipo de Persona" CssClass="LetrasNegrita"></asp:Label>
                     <asp:DropDownList ID="ddlTipoPersonaMantenimiento" runat="server" ToolTip="Seleccionar Tipo de Persona" CssClass="form-control"></asp:DropDownList>
                 </div>
 
-                 <div class="form-group col-md-3">
+                 <div class="col-md-3">
                     <asp:Label ID="lbClaveSeguridadMAntenimiento" runat="server" Text="Clave de Seguridad" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtClaveSeguridadMAntenimiento" runat="server" CssClass="form-control" TextMode="Password" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
@@ -260,12 +260,12 @@
             </div>
 
             <div class="form-check-inline">
-                <div class="form-group form-check">
+           
                     <asp:CheckBox ID="cbEstatusMantenimiento" runat="server" Text="Estatus" ToolTip="Estatus de Usuario" CssClass="form-check-input" />
                     <asp:CheckBox ID="cbLLevaEmail" runat="server" Text="Lleva Email" ToolTip="Validar si lleva envio de correo" CssClass="form-check-input" />
                     <asp:CheckBox ID="cbCambiaClave" runat="server" Text="Cambia Clave" ToolTip="Validar si el usuario cambia clave en el proximo login" CssClass="form-check-input" />
                     <asp:CheckBox ID="cbImpresionMarbete" runat="server" Text="Impresión de Marbete" ToolTip="Dar permiso para impresión de marbetes" CssClass="form-check-input" />
-                </div>
+         
             </div>
             <br />
              <div align="center">
