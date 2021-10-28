@@ -1509,6 +1509,60 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarConceptoGestionCobros;
 
         /// <summary>
+        /// DivFechaLlamada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivFechaLlamada;
+
+        /// <summary>
+        /// lbFechaNuevallamada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaNuevallamada;
+
+        /// <summary>
+        /// txtFechaNuevaLLamada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaNuevaLLamada;
+
+        /// <summary>
+        /// DIVHoraLLamada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVHoraLLamada;
+
+        /// <summary>
+        /// lbHoranUevaLLamada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbHoranUevaLLamada;
+
+        /// <summary>
+        /// txtHoraNuevaLLamada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtHoraNuevaLLamada;
+
+        /// <summary>
         /// lbComentarioGestionCobros control.
         /// </summary>
         /// <remarks>

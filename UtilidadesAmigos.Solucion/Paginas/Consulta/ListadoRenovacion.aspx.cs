@@ -30,6 +30,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
         RiselotRojas=21
         }
 
+
+        enum ConceptosDeLlamada
+        {
+            Cliente_va_a_Renovar = 7,
+            Cliente_no_va_a_Renovar = 8,
+            Llamar_mas_tarde = 9,
+            Cliente_ya_realizo_el_pago = 10,
+            Cliente_Vendio_El_Vehiculo = 11,
+            El_Cliente_ya_Renovo_su_Poliza = 12,
+            Cliente_Quiere_Cancelar_Su_Poliza = 13,
+            Cancelar_Poliza_por_cambio_de_compañia = 14,
+            Cliente_no_puede_recibir_llamada, _llamar_mas_tarde = 15
+        }
+
         #region CARGAR LAS LISTAS DESPLEGABLES
         private void CargarRamos()
         {
@@ -482,18 +496,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region PROCESAR INFORMACION DE LOS COMENTARIOS
         private void ProcesarInformacionComentarios(string Poliza, string FechaFinVigencia, string Accion) {
 
-            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionComentarioGestionCObros Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionComentarioGestionCObros(
-                0,
-                lbPolizaSeleccionada.Text,
-                txtComentarioGestionCobros.Text,
-                (decimal)Session["IdUsuario"],
-                DateTime.Now,
-                Convert.ToInt32(ddlSeleccionarEstatusLLamadaGestionCobros.SelectedValue),
-                Convert.ToInt32(ddlSeleccionarConceptoGestionCobros.SelectedValue),
-                lbFinVigenciaSeleccionada.Text,
-                0,
-                Accion);
-            Procesar.ProcesarInformacion();
+            try {
+                DateTime? FechaNuevaLLamada = string.IsNullOrEmpty(txtFechaNuevaLLamada.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaNuevaLLamada.Text);
+
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionComentarioGestionCObros Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionComentarioGestionCObros(
+                    0,
+                    lbPolizaSeleccionada.Text,
+                    txtComentarioGestionCobros.Text,
+                    (decimal)Session["IdUsuario"],
+                    DateTime.Now,
+                    Convert.ToInt32(ddlSeleccionarEstatusLLamadaGestionCobros.SelectedValue),
+                    Convert.ToInt32(ddlSeleccionarConceptoGestionCobros.SelectedValue),
+                    lbFinVigenciaSeleccionada.Text,
+                    0,
+                    FechaNuevaLLamada,
+                    txtHoraNuevaLLamada.Text,
+                    Accion);
+                Procesar.ProcesarInformacion();
+            }
+            catch (Exception) {
+                ClientScript.RegisterStartupScript(GetType(), "ErrorProcesarComentrio()", "ErrorProcesarComentrio();", true);
+            }
         }
         #endregion
 
@@ -558,6 +581,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (Estatus == "PROCESADO") { _Estatus = false; }
             else if (Estatus == "PENDIENTE") { _Estatus = true; }
 
+            DateTime? FechaNuevaLlamada = string.IsNullOrEmpty(txtFechaNuevaLLamada.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaNuevaLLamada.Text);
+
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionPolizasAvisosGestionCobros Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionPolizasAvisosGestionCobros(
                 NumeroRegistro,
                 Poliza,
@@ -569,6 +594,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtInicioVigencia.Text,
                 txtFInVigenciaGestionCobros.Text,
                 _Estatus,
+                FechaNuevaLlamada,
+                txtHoraNuevaLLamada.Text,
                 Accion);
             Procesar.ProcesarInformacion();
         }
@@ -1642,10 +1669,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
             var hfEstatusSeleccionado = ((HiddenField)EstatusSeleccionado.FindControl("hfEstatusGEstion")).Value.ToString();
 
 
-            //CAMBIAMOS EL ESTATUS DEL REGISTRO
-            ProcesarInformacionPolizasAvisoGestionCobros(Convert.ToDecimal(hfNumeroRegistroSeleccionado), hfPolizaSeleccionad, hfEstatusSeleccionado.ToString(), 1, 1, "UPDATE");
-            CurrentPage = 0;
-            MostrarListadoGestionCobros();
+            if (hfEstatusSeleccionado == "PENDIENTE") {
+                //CAMBIAMOS EL ESTATUS DEL REGISTRO
+                ProcesarInformacionPolizasAvisoGestionCobros(Convert.ToDecimal(hfNumeroRegistroSeleccionado), hfPolizaSeleccionad, hfEstatusSeleccionado.ToString(), 1, 1, "UPDATE");
+                CurrentPage = 0;
+                MostrarListadoGestionCobros();
+            }
+            else { ClientScript.RegisterStartupScript(GetType(), "CambioEstatus()", "CambioEstatus();", true); }
+
+
+
         }
 
         protected void LinkPrimeroDatoVehiculo_Click(object sender, EventArgs e)
@@ -1694,11 +1727,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
             var PolizaSeleccionada = (RepeaterItem)((ImageButton)sender).NamingContainer;
             var hfPolizaSeleccionada = ((HiddenField)PolizaSeleccionada.FindControl("hfPolizaGestion")).Value.ToString();
 
-            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionPolizasAvisosGestionCobros Eliminar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionPolizasAvisosGestionCobros(
-                Convert.ToDecimal(hfNumeroRegistroSeleccionado),
-                hfPolizaSeleccionada, 0, 0, "", 0, DateTime.Now, "", "", false, "DELETE");
-            Eliminar.ProcesarInformacion();
-            MostrarListadoGestionCobros();
+            if (hfPolizaSeleccionada == "PENDIENTE") {
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionPolizasAvisosGestionCobros Eliminar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionPolizasAvisosGestionCobros(
+                    Convert.ToDecimal(hfNumeroRegistroSeleccionado),
+                    hfPolizaSeleccionada, 0, 0, "", 0, DateTime.Now, "", "", false,DateTime.Now,"", "DELETE");
+                Eliminar.ProcesarInformacion();
+                MostrarListadoGestionCobros();
+            }
+            else {
+                ClientScript.RegisterStartupScript(GetType(), "EliminarRegistro()", "EliminarRegistro();", true);
+            }
+
+            
         }
 
         protected void btnReportePolizasGestionCobros_Click(object sender, ImageClickEventArgs e)
@@ -1753,6 +1793,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 else {
                     GenerarReporteGestionCobros();
                 }
+            }
+        }
+
+        protected void ddlSeleccionarConceptoGestionCobros_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int LLamarMasTarde = Convert.ToInt32(ddlSeleccionarConceptoGestionCobros.SelectedValue);
+
+            if (LLamarMasTarde == (int)ConceptosDeLlamada.Llamar_mas_tarde)
+            {
+
+                DivFechaLlamada.Visible = true;
+                DIVHoraLLamada.Visible = true;
+                txtFechaNuevaLLamada.Text = string.Empty;
+                txtHoraNuevaLLamada.Text = string.Empty;
+            }
+            else {
+                DivFechaLlamada.Visible = false;
+                DIVHoraLLamada.Visible = false;
             }
         }
 

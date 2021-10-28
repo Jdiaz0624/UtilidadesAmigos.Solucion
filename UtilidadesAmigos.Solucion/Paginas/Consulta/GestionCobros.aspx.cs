@@ -223,19 +223,19 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         /// <param name="Accion"></param>
         private void ProcesarInformacion(decimal ID, string Poliza, string Accion) {
 
-            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionComentarioGestionCObros Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionComentarioGestionCObros(
-                ID,
-                Poliza,
-                txtCoentario.Text,
-                (decimal)Session["IdUsuario"],
-                DateTime.Now,
-                1,1,"",0,
-                Accion);
-            Procesar.ProcesarInformacion();
-            MostrarComentarios(txtPoliza.Text);
-            txtCoentario.Text = string.Empty;
-            lbAccion.Text = "INSERT";
-            LBid.Text = "0";
+            //UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionComentarioGestionCObros Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionComentarioGestionCObros(
+            //    ID,
+            //    Poliza,
+            //    txtCoentario.Text,
+            //    (decimal)Session["IdUsuario"],
+            //    DateTime.Now,
+            //    1,1,"",0,
+            //    Accion);
+            //Procesar.ProcesarInformacion();
+            //MostrarComentarios(txtPoliza.Text);
+            //txtCoentario.Text = string.Empty;
+            //lbAccion.Text = "INSERT";
+            //LBid.Text = "0";
         }
         #endregion
         #region GENERAR REPORTE

@@ -10,17 +10,19 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionCons
     {
         readonly UtilidadesAmigos.Logica.Logica.LogicaConsulta.LogicaConsulta ObjData = new Logica.LogicaConsulta.LogicaConsulta();
 
-        decimal NumeroRegistro = 0;
-        string Poliza = "";
-        int IdEstatusLlamada = 0;
-        int IdConceptoLlamada = 0;
-        string Comentario = "";
-        decimal IdUsuario = 0;
-        DateTime FechaGuardado = DateTime.Now;
-        string InicioVigencia = "";
-        string FinVigencia = "";
-        bool Estatus = false;
-        string Accion = "";
+        private decimal NumeroRegistro = 0;
+        private string Poliza = "";
+        private int IdEstatusLlamada = 0;
+        private int IdConceptoLlamada = 0;
+        private string Comentario = "";
+        private decimal IdUsuario = 0;
+        private DateTime FechaGuardado = DateTime.Now;
+        private string InicioVigencia = "";
+        private string FinVigencia = "";
+        private bool Estatus = false;
+        private DateTime? FechaNuevaLLamada = DateTime.Now;
+        private string HoraNuevaLLamada = "";
+        private string Accion = "";
 
         public ProcesarInformacionPolizasAvisosGestionCobros(
             decimal NumeroRegistroCON,
@@ -33,6 +35,8 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionCons
             string InicioVigenciaCON,
             string FinVigenciaCON,
             bool EstatusCON,
+            DateTime? FechaNuevaLLamadaCON,
+            string HoraNuevaLLamadaCON,
             string AccionCON)
         {
             NumeroRegistro = NumeroRegistroCON;
@@ -45,6 +49,8 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionCons
             InicioVigencia = InicioVigenciaCON;
             FinVigencia = FinVigenciaCON;
             Estatus = EstatusCON;
+            FechaNuevaLLamada = FechaNuevaLLamadaCON;
+            HoraNuevaLLamada = HoraNuevaLLamadaCON;
             Accion = AccionCON;
         }
 
@@ -62,6 +68,9 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionCons
             Procesar.InicioVigencia = InicioVigencia;
             Procesar.FinVigencia = FinVigencia;
             Procesar.Estatus0 = Estatus;
+            Procesar.FechaNuevaLLamada0 = FechaNuevaLLamada;
+            Procesar.HoraNuevaLLamada = HoraNuevaLLamada;
+
 
             var MAN = ObjData.ProcesarPolizasGestionCobros(Procesar, Accion);
         }

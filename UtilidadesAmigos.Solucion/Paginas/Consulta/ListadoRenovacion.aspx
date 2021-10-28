@@ -86,6 +86,16 @@
         function RegistrosEliminados() {
             alert("Registros de polizas a Renovar y Renovadas Eliminadas corerctamente");
         }
+
+        function CambioEstatus() {
+            alert("No es posible camiar el estatus de este registro por que ya fue procesado.");
+        }
+        function EliminarRegistro() {
+            alert("No es polible eliminar este registro por que ya fue procesado.");
+        }
+        function ErrorProcesarComentrio() {
+            alert("Error al guardar el comentario, favor verificar los datos ingresados.");
+        }
     </script>
 
 
@@ -144,6 +154,7 @@
                                            <th scope="col"> Concepto </th>
                                            <th scope="col"> Comentario </th>
                                            <th scope="col"> Vigencia </th>
+                                           <th scope="col"> Nueva LLamada </th>
                                            <th scope="col"> Completar </th>
                                            <th scope="col"> Borrar </th>
                                        </tr>
@@ -162,6 +173,7 @@
                                                    <td> <%# Eval("ConceptoLlamada") %> </td>
                                                    <td> <%# Eval("Comentario") %> </td>
                                                    <td> <%# Eval("FinVigencia") %> </td>
+                                                   <td> <%# Eval("NuevaLLamada") %> </td>
                                                    <td> <asp:ImageButton ID="btnGestionarPolizasNoContactadasNuevo" runat="server" CssClass="BotonImagen" OnClick="btnGestionarPolizasNoContactadasNuevo_Click" ToolTip="Cambiar estatus de polizas no contactadas en la gestion de cobros" ImageUrl="~/Imagenes/Completar.png" /> </td>
                                                    <td> <asp:ImageButton ID="btnEliminarRegistrosPolizasGestionadas" runat="server" CssClass="BotonImagen" OnClick="btnEliminarRegistrosPolizasGestionadas_Click" ToolTip="Borrar Registro." ImageUrl="~/Imagenes/Eliminar.png" /> </td>
                                                </tr>
@@ -663,7 +675,16 @@
 
                  <div class="col-md-8">
                     <asp:Label ID="lbConceptoEstatusLlamada" runat="server" Text="Concepto" CssClass="Letranegrita"></asp:Label>
-                    <asp:DropDownList ID="ddlSeleccionarConceptoGestionCobros" runat="server" CssClass="form-control" ToolTip="Seleccionar el Estatus de llamada"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlSeleccionarConceptoGestionCobros" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarConceptoGestionCobros_SelectedIndexChanged" ToolTip="Seleccionar el Estatus de llamada"></asp:DropDownList>
+                </div>
+
+                <div class="col-md-4" id="DivFechaLlamada" runat="server" visible="false" >
+                    <asp:Label ID="lbFechaNuevallamada" runat="server" Text="Fecha de Nueva LLamada" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtFechaNuevaLLamada" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                </div>
+                <div class="col-md-4" id="DIVHoraLLamada" runat="server" visible="false">
+                    <asp:Label ID="lbHoranUevaLLamada" runat="server" Text="Hora de Nueva LLamada" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtHoraNuevaLLamada" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                 </div>
 
                 <div class="col-md-12">

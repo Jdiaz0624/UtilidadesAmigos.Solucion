@@ -85,6 +85,10 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                ConceptoLlamada=n.ConceptoLlamada,
                                FechaFinVigencia=n.FechaFinVigencia,
                                NumeroSeguimiento=n.NumeroSeguimiento,
+                               FechaNuevaLlamada0=n.FechaNuevaLlamada0,
+                               FechaLlamada=n.FechaLlamada,
+                               HoraLLamada=n.HoraLLamada,
+                               NuevaLLamada=n.NuevaLLamada,
                                CantidadRegistros =n.CantidadRegistros
                            }).ToList();
             return Listado;
@@ -110,6 +114,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                 Item.IdConceptoLlamada,
                 Item.FechaFinVigencia,
                 Item.NumeroSeguimiento,
+                Item.FechaNuevaLlamada0,
+                Item.HoraLLamada,
                 Accion);
             if (ComentarioPoliza != null) {
                 Procesar = (from n in ComentarioPoliza
@@ -123,7 +129,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                 IdEstatusLlamada=n.IdEstatusLlamada,
                                 IdConceptoLlamada=n.IdConceptoLlamada,
                                 FechaFinVigencia=n.FechaFinVigencia,
-                                NumeroSeguimiento=n.NumeroSeguimiento
+                                NumeroSeguimiento=n.NumeroSeguimiento,
+                                FechaNuevaLlamada0=n.FechaNuevaLlamada,
+                                HoraLLamada=n.Hora
                             }).FirstOrDefault();
             }
             return Procesar;
@@ -355,6 +363,10 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                FinVigencia=n.FinVigencia,
                                Estatus0=n.Estatus0,
                                Estatus=n.Estatus,
+                               FechaNuevaLLamada0=n.FechaNuevaLLamada0,
+                               FechaNuevaLlamada=n.FechaNuevaLlamada,
+                               HoraNuevaLLamada=n.HoraNuevaLLamada,
+                               NuevaLlamada=n.NuevaLlamada,
                                CantidadRegistrosNoProcesados=n.CantidadRegistrosNoProcesados,
                                CantidadRegistrosProcesados=n.CantidadRegistrosProcesados,
                                CantidadRegistrosNoProcesadosParametros=n.CantidadRegistrosNoProcesadosParametros,
@@ -386,6 +398,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                 Item.InicioVigencia,
                 Item.FinVigencia,
                 Item.Estatus0,
+                Item.FechaNuevaLLamada0,
+                Item.HoraNuevaLLamada,
                 Accion);
             if (PolizasAvisoGestionCobros != null) {
                 Procesar = (from n in PolizasAvisoGestionCobros
@@ -400,7 +414,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                 FechaGuardado=n.FechaGuardado,
                                 InicioVigencia=n.InicioVigencia,
                                 FinVigencia=n.FinVigencia,
-                                Estatus0=n.Estatus
+                                Estatus0=n.Estatus,
+                                FechaNuevaLLamada0=n.FechaNuevaLlamada,
+                                HoraNuevaLLamada=n.HoraNuevaLlamada,
                             }).FirstOrDefault();
             }
             return Procesar;

@@ -40,6 +40,14 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 
 		public string Estatus {get;set;}
 
+		public System.Nullable<System.DateTime> FechaNuevaLLamada0 { get; set; }
+
+		public string FechaNuevaLlamada { get; set; }
+
+		public string HoraNuevaLLamada { get; set; }
+
+		public string NuevaLlamada { get; set; }
+
 		public System.Nullable<int> CantidadRegistrosNoProcesados {get;set;}
 
 		public System.Nullable<int> CantidadRegistrosProcesados {get;set;}

@@ -35,6 +35,12 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 		public string FechaFinVigencia { get; set; }
 
 		public System.Nullable<decimal> NumeroSeguimiento { get; set; }
+		public System.Nullable<System.DateTime> FechaNuevaLlamada0 { get; set; }
+
+		public string FechaLlamada { get; set; }
+
+		public string HoraLLamada { get; set; }
+		public string NuevaLLamada { get; set; }
 
 		public System.Nullable<int> CantidadRegistros { get; set; }
 	}
