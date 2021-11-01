@@ -1669,5 +1669,87 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Listado;
         }
         #endregion
+
+
+        #region REPORTE DE PRODUCCION NUEVO
+        /// <summary>
+        /// Este metodo muestra la Producción segun los parametros ingresados
+        /// </summary>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Tasa"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="SubRamo"></param>
+        /// <param name="Concepto"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="Moneda"></param>
+        /// <param name="Usuario"></param>
+        /// <param name="NumeroFactura"></param>
+        /// <param name="UsuarioGeneraReporte"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EReporteProduccionNuevo> BuscaProduccion(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? Tasa = null, int? Intermediario = null, int? Supervisor = null, int? Oficina = null, int? Ramo = null, int? SubRamo = null, string Concepto = null, string Poliza = null, decimal? Moneda = null, string Usuario = null, decimal? NumeroFactura = null, decimal? UsuarioGeneraReporte = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_REPORTE_PRODUCCION_NUEVO(FechaDesde, FechaHasta, Tasa, Intermediario, Supervisor, Oficina, Ramo, SubRamo, Concepto, Poliza, Moneda, Usuario, NumeroFactura, UsuarioGeneraReporte)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EReporteProduccionNuevo
+                           {
+                               CodRamo=n.CodRamo,
+                               SubRamo=n.SubRamo,
+                               Ramo=n.Ramo,
+                               NombreSubRamo=n.NombreSubRamo,
+                               NumeroFactura=n.NumeroFactura,
+                               NumeroFacturaFormateado=n.NumeroFacturaFormateado,
+                               Poliza=n.Poliza,
+                               Asegurado=n.Asegurado,
+                               Items=n.Items,
+                               Supervisor=n.Supervisor,
+                               CodIntermediario=n.CodIntermediario,
+                               CodSupervisor=n.CodSupervisor,
+                               Intermediario=n.Intermediario,
+                               Fecha=n.Fecha,
+                               FechaFormateada=n.FechaFormateada,
+                               Hora=n.Hora,
+                               FechaInicioVigencia=n.FechaInicioVigencia,
+                               FechaFinVigencia=n.FechaFinVigencia,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               SumaAsegurada=n.SumaAsegurada,
+                               Estatus=n.Estatus,
+                               CodOficina=n.CodOficina,
+                               Oficina=n.Oficina,
+                               Concepto=n.Concepto,
+                               Ncf=n.Ncf,
+                               Tipo=n.Tipo,
+                               DescripcionTipo=n.DescripcionTipo,
+                               Bruto=n.Bruto,
+                               Impuesto=n.Impuesto,
+                               Neto=n.Neto,
+                               Tasa=n.Tasa,
+                               Cobrado=n.Cobrado,
+                               CodMoneda=n.CodMoneda,
+                               Moneda=n.Moneda,
+                               TasaUsada=n.TasaUsada,
+                               MontoPesos=n.MontoPesos,
+                               CodigoMes=n.CodigoMes,
+                               CodigoAno=n.CodigoAno,
+                               Mes=n.Mes,
+                               Usuario=n.Usuario,
+                               TipoVehiculo=n.TipoVehiculo,
+                               Marca=n.Marca,
+                               Modelo=n.Modelo,
+                               Ano=n.Ano,
+                               Color=n.Color,
+                               Chasis=n.Chasis,
+                               Placa=n.Placa,
+                               GeneradoPor=n.GeneradoPor
+                           }).ToList();
+            return Listado;
+
+        }
+        #endregion
     }
 }

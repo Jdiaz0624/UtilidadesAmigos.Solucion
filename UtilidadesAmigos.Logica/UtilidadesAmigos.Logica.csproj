@@ -385,6 +385,7 @@
     <Compile Include="Entidades\Reportes\EProduccionPorusuarioResumido.cs" />
     <Compile Include="Entidades\Reportes\EReclamacionesPagadas.cs" />
     <Compile Include="Entidades\Reportes\EReporteInformacionPersonasAlfredo.cs" />
+    <Compile Include="Entidades\Reportes\EReporteProduccionNuevo.cs" />
     <Compile Include="Entidades\Reportes\EReporteProduccionOrigen.cs" />
     <Compile Include="Entidades\Reportes\EReporteRenovacionMachado.cs" />
     <Compile Include="Entidades\Reportes\EReporteSobreComision.cs" />

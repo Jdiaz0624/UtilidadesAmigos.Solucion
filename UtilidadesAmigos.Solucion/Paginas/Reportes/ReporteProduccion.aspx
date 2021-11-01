@@ -44,6 +44,34 @@
            }
     </style>
 
+    <script type="text/javascript">
+        function CamposFechaVAcios() {
+            alert("Los campos Fechas son necesarios para generar esta información, favor de verificar.");
+        }
+        function CampoFechaDesdeVacio() {
+
+            $("#<%=txtFechaDesde.ClientID%>").css("border-color", "red");
+        }
+        function CampoFechaHastaVacio() {
+            $("#<%=txtFechaHasta.ClientID%>").css("border-color", "red");
+        }
+
+        $(document).ready(function () {
+
+            //VALIDAR LA TASA
+            $("#<%=btnBuscarInformacion.ClientID%>").click(function () {
+
+                var Tasa = $("#<%=txtTasa.ClientID%>").val().length;
+                if (Tasa < 1) {
+
+                    alert("El campo tasa no puede estar vacio para realizar esta operación, favor de verificar.");
+                    $("#<%=txtTasa.ClientID%>").css("border-color", "red");
+                    return false;
+
+                }
+            });
+        })
+    </script>
 
     <br />
     <div class="container-fluid">
@@ -51,17 +79,17 @@
             <asp:Label ID="lbAgruparDatos" runat="server" Text="Agrupar Datos" CssClass="Letranegrita"></asp:Label>
             <br />
             <asp:RadioButton ID="rbNoAgruparDatos" runat="server" Text="No Agrupar" ToolTip="No Agrupar Datos" CssClass="form-check-input" AutoPostBack="true" OnCheckedChanged="rbNoAgruparDatos_CheckedChanged" GroupName="Agrupacion" />
-            <asp:RadioButton ID="rbAgruparPorConcepto" runat="server" Text="Por Concepto" ToolTip="Agrupar Información por Concepto" CssClass="form-check-input" GroupName="Agrupacion" />
-            <asp:RadioButton ID="rbAgruparPorUsuario" runat="server" Text="Por Usuario" ToolTip="Agrupar Información por Usuario" CssClass="form-check-input"  GroupName="Agrupacion" />
-            <asp:RadioButton ID="rbAgruparPorOficina" runat="server" Text="Por Oficina" ToolTip="Agrupar Información por Oficina" CssClass="form-check-input"  GroupName="Agrupacion" />
-            <asp:RadioButton ID="rbAgruparPorRamo" runat="server" Text="Por Ramo" ToolTip="Agrupar Información por Ramo" CssClass="form-check-input" GroupName="Agrupacion" />
-            <asp:RadioButton ID="rbAgruparPorIntermediario" runat="server" Text="Por Intermediario" ToolTip="Agrupar Información Por Intermediario" CssClass="form-check-input" GroupName="Agrupacion" />
-            <asp:RadioButton ID="rbAgruparPorSupervisor" runat="server" Text="Por Supervisor" ToolTip="Agrupar Información por Supervisor" CssClass="form-check-input"  GroupName="Agrupacion" />
-            <asp:RadioButton ID="rbAgruparPorMoneda" runat="server" Text="Por Moneda" ToolTip="Agrupar Informacion Por Moneda" CssClass="form-check-input"  GroupName="Agrupacion" />
+            <asp:RadioButton ID="rbAgruparPorConcepto" runat="server" Text="Por Concepto" AutoPostBack="true" OnCheckedChanged="rbAgruparPorConcepto_CheckedChanged" ToolTip="Agrupar Información por Concepto" CssClass="form-check-input" GroupName="Agrupacion" />
+            <asp:RadioButton ID="rbAgruparPorUsuario" runat="server" Text="Por Usuario" AutoPostBack="true" OnCheckedChanged="rbAgruparPorUsuario_CheckedChanged" ToolTip="Agrupar Información por Usuario" CssClass="form-check-input"  GroupName="Agrupacion" />
+            <asp:RadioButton ID="rbAgruparPorOficina" runat="server" Text="Por Oficina" AutoPostBack="true" OnCheckedChanged="rbAgruparPorOficina_CheckedChanged" ToolTip="Agrupar Información por Oficina" CssClass="form-check-input"  GroupName="Agrupacion" />
+            <asp:RadioButton ID="rbAgruparPorRamo" runat="server" Text="Por Ramo" AutoPostBack="true" OnCheckedChanged="rbAgruparPorRamo_CheckedChanged" ToolTip="Agrupar Información por Ramo" CssClass="form-check-input" GroupName="Agrupacion" />
+            <asp:RadioButton ID="rbAgruparPorIntermediario" runat="server" AutoPostBack="true" OnCheckedChanged="rbAgruparPorIntermediario_CheckedChanged" Text="Por Intermediario" ToolTip="Agrupar Información Por Intermediario" CssClass="form-check-input" GroupName="Agrupacion" />
+            <asp:RadioButton ID="rbAgruparPorSupervisor" runat="server" AutoPostBack="true" OnCheckedChanged="rbAgruparPorSupervisor_CheckedChanged" Text="Por Supervisor" ToolTip="Agrupar Información por Supervisor" CssClass="form-check-input"  GroupName="Agrupacion" />
+            <asp:RadioButton ID="rbAgruparPorMoneda" runat="server" Text="Por Moneda" AutoPostBack="true" OnCheckedChanged="rbAgruparPorMoneda_CheckedChanged" ToolTip="Agrupar Informacion Por Moneda" CssClass="form-check-input"  GroupName="Agrupacion" />
         </div>
-        <hr />
+        <hr id="HRSeparadorTipoReporte" runat="server" />
 
-        <div class="form-check-inline">
+        <div id="DIVTipoReporteGenerar" runat="server" class="form-check-inline">
             <asp:Label ID="lbTipoReporteGenerar" runat="server" Text="Tipo de Reporte" CssClass="Letranegrita"></asp:Label><br />
             <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Reporte Detallado" ToolTip="Generar el reporte detallado" CssClass="form-check-input" GroupName="TipoReporte" />
             <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Reporte Resumido" ToolTip="Generar el reporte resumido" CssClass="form-check-input" GroupName="TipoReporte" />
@@ -174,6 +202,9 @@
                 <asp:Repeater ID="rpListadoProduccion" runat="server">
                     <ItemTemplate>
                         <tr>
+                            <asp:HiddenField ID="hfPoliza" runat="server" Value='<%# Eval("Poliza") %>' />
+                            <asp:HiddenField ID="hfNumeroFactura" runat="server" Value='<%# Eval("NumeroFactura") %>' />
+
                             <td> <%# Eval("Poliza") %> </td>
                             <td> <%# Eval("Concepto") %> </td>
                             <td> <%#string.Format("{0:N2}", Eval("Bruto")) %> </td>
@@ -213,7 +244,7 @@
         </div>
                            <br />
 
-        <div id="DIVBloqueDetalleFActura" runat="server" visible="true" class="row">
+        <div id="DIVBloqueDetalleFActura" runat="server" visible="false" class="row">
             <div class="col-md-3">
                 <asp:Label ID="lbPolizaDetalle" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtPolizaDetalle" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
