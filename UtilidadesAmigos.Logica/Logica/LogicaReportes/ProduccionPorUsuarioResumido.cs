@@ -1751,5 +1751,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
 
         }
         #endregion
+
+
+
     }
 }

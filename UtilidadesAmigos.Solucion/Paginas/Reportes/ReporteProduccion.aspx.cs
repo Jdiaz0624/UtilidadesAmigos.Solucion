@@ -225,6 +225,158 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         }
         #endregion
 
+        #region EXPORTAR INFORMACION A EXCEL PLANO
+        private void ExportarExcelPlano() {
+
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                }
+            }
+            else
+            {
+
+                int? _Intermediario = string.IsNullOrEmpty(txtCodIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodIntermediario.Text);
+                int? _Supervisor = string.IsNullOrEmpty(txtCodSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodSupervisor.Text);
+                int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+                int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                int? _SubRamo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+                string _Concepto = ddlSeleccionarCOncepto.SelectedValue != "-1" ? ddlSeleccionarCOncepto.SelectedItem.Text : null;
+                string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+                decimal? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarMoneda.SelectedValue) : new Nullable<decimal>();
+                string _Usuario = ddlSeleccionarUsuario.SelectedValue != "-1" ? ddlSeleccionarUsuario.SelectedItem.Text : null;
+                decimal? _NumeroFactura = string.IsNullOrEmpty(txtNumeroDocumento.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroDocumento.Text);
+
+                var Exportar = (from n in ObjDataReportes.Value.BuscaProduccion(
+                    Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHasta.Text),
+                    Convert.ToDecimal(txtTasa.Text),
+                    _Intermediario,
+                    _Supervisor,
+                    _Oficina,
+                    _Ramo,
+                    _SubRamo,
+                    _Concepto,
+                    _Poliza,
+                    _Moneda,
+                    _Usuario,
+                    _NumeroFactura,
+                    (decimal)Session["IdUsuario"])
+                                select new UtilidadesAmigos.Logica.Entidades.Reportes.EReporteProduccionNuevo
+                                {
+                                    Ramo = n.Ramo,
+                                    NombreSubRamo = n.NombreSubRamo,
+                                    NumeroFacturaFormateado = n.NumeroFacturaFormateado,
+                                    Poliza = n.Poliza,
+                                    Asegurado = n.Asegurado,
+                                    Items = n.Items,
+                                    Supervisor = n.Supervisor,
+                                    Intermediario = n.Intermediario,
+                                    FechaFormateada = n.FechaFormateada,
+                                    Hora = n.Hora,
+                                    InicioVigencia = n.InicioVigencia,
+                                    FinVigencia = n.FinVigencia,
+                                    SumaAsegurada = n.SumaAsegurada,
+                                    Estatus = n.Estatus,
+                                    Oficina = n.Oficina,
+                                    Concepto = n.Concepto,
+                                    Ncf = n.Ncf,
+                                    DescripcionTipo = n.DescripcionTipo,
+                                    Bruto = n.Bruto,
+                                    Impuesto = n.Impuesto,
+                                    Neto = n.Neto,
+                                    Tasa = n.Tasa,
+                                    Cobrado = n.Cobrado,
+                                    Moneda = n.Moneda,
+                                    TasaUsada = n.TasaUsada,
+                                    MontoPesos = n.MontoPesos,
+                                    Mes = n.Mes,
+                                    Usuario = n.Usuario,
+                                    TipoVehiculo = n.TipoVehiculo,
+                                    Marca = n.Marca,
+                                    Modelo = n.Modelo,
+                                    Ano = n.Ano,
+                                    Color = n.Color,
+                                    Chasis = n.Chasis,
+                                    Placa = n.Placa
+                                }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de Produccion", Exportar);
+
+            }
+        }
+        #endregion
+
+        #region REPORTE DE PRODUCCION
+        private void GenerarReporteProduccion(string RutaReporte, string NombreReporte) {
+
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                }
+            }
+            else {
+                int? _Intermediario = string.IsNullOrEmpty(txtCodIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodIntermediario.Text);
+                int? _Supervisor = string.IsNullOrEmpty(txtCodSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodSupervisor.Text);
+                int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+                int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                int? _SubRamo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+                string _Concepto = ddlSeleccionarCOncepto.SelectedValue != "-1" ? ddlSeleccionarCOncepto.SelectedItem.Text : null;
+                string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+                decimal? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarMoneda.SelectedValue) : new Nullable<decimal>();
+                string _Usuario = ddlSeleccionarUsuario.SelectedValue != "-1" ? ddlSeleccionarUsuario.SelectedItem.Text : null;
+                decimal? _NumeroFactura = string.IsNullOrEmpty(txtNumeroDocumento.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroDocumento.Text);
+
+                ReportDocument Reporte = new ReportDocument();
+
+                Reporte.Load(RutaReporte);
+                Reporte.Refresh();
+
+                Reporte.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
+                Reporte.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHasta.Text));
+                Reporte.SetParameterValue("@Tasa", Convert.ToDecimal(txtTasa.Text));
+                Reporte.SetParameterValue("@Intermediario", _Intermediario);
+                Reporte.SetParameterValue("@Supervisor", _Supervisor);
+                Reporte.SetParameterValue("@Oficina", _Oficina);
+                Reporte.SetParameterValue("@Ramo", _Ramo);
+                Reporte.SetParameterValue("@SubRamo", _SubRamo);
+                Reporte.SetParameterValue("@Concepto", _Concepto);
+                Reporte.SetParameterValue("@Poliza", _Poliza);
+                Reporte.SetParameterValue("@Moneda", _Moneda);
+                Reporte.SetParameterValue("@Usuario", _Usuario);
+                Reporte.SetParameterValue("@NumeroFactura", _NumeroFactura);
+                Reporte.SetParameterValue("@UsuarioGeneraReporte", (decimal)Session["IdUsuario"]);
+
+                Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+                if (rbPDF.Checked == true) {
+                    Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+                }
+                else if (rbExcel.Checked == true) {
+                    Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+                }
+            }
+
+
+         
+
+
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -242,6 +394,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 lbPantalla.Text = "GENERAR REPORTE DE PRODUCCION";
 
                 ListaDesplegables();
+
+                decimal Tasa = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2);
+                txtTasa.Text = Tasa.ToString();
+
             }
         }
 
@@ -260,12 +416,18 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
         protected void txtCodIntermediario_TextChanged(object sender, EventArgs e)
         {
-
+            string NombreIntermediario = "";
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodIntermediario.Text);
+            NombreIntermediario = Nombre.SacarNombreIntermediario();
+            txtNombreIntermediario.Text = NombreIntermediario;
         }
 
         protected void txtCodSupervisor_TextChanged(object sender, EventArgs e)
         {
-
+            string NombreSupervisor = "";
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodSupervisor.Text);
+            NombreSupervisor = Nombre.SacarNombreIntermediario();
+            txtNombreSupervisor.Text = NombreSupervisor;
         }
 
         protected void ddlSeleccionarRamo_SelectedIndexChanged(object sender, EventArgs e)
@@ -281,7 +443,28 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
         protected void btnReporteProduccion_Click(object sender, ImageClickEventArgs e)
         {
+            if (rbExcelPlano.Checked == true) {
+                ExportarExcelPlano();
+            }
+            else {
+                if (rbNoAgruparDatos.Checked == true)
+                {
+                    if (rbReporteDetallado.Checked == true) {
 
+                        GenerarReporteProduccion(Server.MapPath("ReporteProduccionNuevoDetalle.rpt"), "Reporte de Producción Detalle");
+
+                    }
+                    else if (rbReporteResumido.Checked == true) { }
+                }
+                else if (rbAgruparPorConcepto.Checked == true) { }
+                else if (rbAgruparPorUsuario.Checked == true) { }
+                else if (rbAgruparPorOficina.Checked == true) { }
+                else if (rbAgruparPorRamo.Checked == true) { }
+                else if (rbAgruparPorIntermediario.Checked == true) { }
+                else if (rbAgruparPorSupervisor.Checked == true) { }
+                else if (rbAgruparPorMoneda.Checked == true) { }
+
+            }
         }
 
         protected void LinkPrimeraPaginaPolizasProduccion_Click(object sender, EventArgs e)

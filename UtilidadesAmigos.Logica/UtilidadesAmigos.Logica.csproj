@@ -370,6 +370,7 @@
     <Compile Include="Entidades\Reportes\ECodigosPermitidosSobreComision.cs" />
     <Compile Include="Entidades\Reportes\EComisionesIntermediarioAlfredo.cs" />
     <Compile Include="Entidades\Reportes\EDatosProduccionReporte.cs" />
+    <Compile Include="Entidades\Reportes\EDatosReporteNuevo.cs" />
     <Compile Include="Entidades\Reportes\EGenerarInformacionSupervisoresDetalle.cs" />
     <Compile Include="Entidades\Reportes\EProcesarChequesInformacionImprimir.cs" />
     <Compile Include="Entidades\Reportes\EProcesarDatosReporteIntermediairoInterno.cs" />
