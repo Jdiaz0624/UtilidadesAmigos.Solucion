@@ -40,7 +40,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte
         private decimal Tasa = 0;
         private decimal Cobrado = 0;
         private int CodMoneda = 0;
-        private string Moneda = 0;
+        private string Moneda = "";
         private decimal TasaUsada = 0;
         private decimal MontoPesos = 0;
         private int CodigoMes = 0;
