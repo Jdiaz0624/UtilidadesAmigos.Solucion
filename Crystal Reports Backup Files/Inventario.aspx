@@ -22,20 +22,20 @@
             <asp:Label ID="lbTituloConsulta" runat="server" Text="Consulta de Inventario"></asp:Label>
              <asp:Label ID="lbArticulo" Visible ="false" runat="server" Text="Consulta de Inventario"></asp:Label>
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-3">
+        <div class="row">
+            <div class="col-md-3">
                 <asp:Label ID="lbSeleccionarSurcursalConsulta" runat="server" Text="Sucursal"></asp:Label>
                 <asp:DropDownList ID="ddlSucursalCOnsulta" runat="server" CssClass="form-control" ToolTip="Seleccionar Sucursal"></asp:DropDownList>
             </div>
-                <div class="form-group col-md-3">
+                <div class="col-md-3">
                 <asp:Label ID="lbSeleccionarDepartamentoConsulta" runat="server" Text="Departamento"></asp:Label>
                 <asp:DropDownList ID="ddlDepartamentoConsulta" runat="server" CssClass="form-control" ToolTip="Seleccionar Departamento"></asp:DropDownList>
             </div>
-                <div class="form-group col-md-3">
+                <div class="col-md-3">
                 <asp:Label ID="lbSeleccionarTipoArticuloConsulta" runat="server" Text="Tipo de Articulo"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarTipoArticulo" runat="server" CssClass="form-control" ToolTip="Seleccionar Tipo de Articulo"></asp:DropDownList>
             </div>
-                <div class="form-group col-md-3">
+                <div class="col-md-3">
                 <asp:Label ID="lbDescripcionConsulta" runat="server" Text="Descripción"></asp:Label>
                <asp:TextBox ID="txtDescripcionCOnsulta" runat="server" CssClass="form-control" MaxLength="200"></asp:TextBox>
             </div>

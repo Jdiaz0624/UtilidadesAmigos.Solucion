@@ -111,9 +111,11 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionCorreosENviar.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionRutaBackupBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionComentarioGestionCObros.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionPolizasAvisosGestionCobros.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionReporteComentarioGestionCobros.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionValidacionCoberturaArchivo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionValidacionCoberturaSistema.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionMantenimientos\ProcesarInformacionTasaMoneda.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionSeguridad.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
@@ -131,6 +133,8 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCodigosEmpleadosVolantesPagos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCorreosEmisoresSistema.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCredencialesBD.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionFormaPago.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionItemReclamaciones.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProveedoresSolicitud.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionRegistrosSolicitudChequeLote.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionReporteAntiguedadSaldo.cs" />
@@ -160,7 +164,9 @@
     <Compile Include="Comunes\SeguridadEncriptacion.cs" />
     <Compile Include="Comunes\UtilidadDrop.cs" />
     <Compile Include="Comunes\Validaciones\ValidarClaveSeguridad.cs" />
+    <Compile Include="Comunes\Validaciones\ValidarConceptoLLamadas.cs" />
     <Compile Include="Comunes\Validaciones\ValidarMontosAcumuladosIntermediarios.cs" />
+    <Compile Include="Comunes\Validaciones\ValidarPoliza.cs" />
     <Compile Include="Comunes\ValidarClaveSeguridad.cs" />
     <Compile Include="Comunes\ValidarControles.cs" />
     <Compile Include="Comunes\ValidarPolizasARenovar.cs" />
@@ -168,8 +174,14 @@
     <Compile Include="Comunes\VariablesPowerBi.cs" />
     <Compile Include="Comunes\VozVeronica.cs" />
     <Compile Include="Entidades\ComisionesIntermediarioDetalle.cs" />
+    <Compile Include="Entidades\Consulta\EBuscaDatosVehiculoGestionCobros.cs" />
     <Compile Include="Entidades\Consulta\EBuscarInformacionPolizasGestionCobros.cs" />
+    <Compile Include="Entidades\Consulta\ECarteraEjecutivos.cs" />
+    <Compile Include="Entidades\Consulta\ECarteraIntermediarios.cs" />
     <Compile Include="Entidades\Consulta\EComentarioGestionCobro.cs" />
+    <Compile Include="Entidades\Consulta\EConceptoLLamadas.cs" />
+    <Compile Include="Entidades\Consulta\EGenerarReporteCobroFinal.cs" />
+    <Compile Include="Entidades\Consulta\EPolizasAvisoGestionCobros.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionReporteComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionArchivo.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionCoberturaSistema.cs" />
@@ -289,8 +301,10 @@
     <Compile Include="Entidades\ETipoReclamacion.cs" />
     <Compile Include="Entidades\ETransaccionesEfectivo.cs" />
     <Compile Include="Entidades\EUsuarios.cs" />
+    <Compile Include="Entidades\EValidarPoliza.cs" />
     <Compile Include="Entidades\EValidarPolizasCanceladasCoberturas.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscaListadoIntermediarios.cs" />
+    <Compile Include="Entidades\Mantenimientos\EBuscaMonedas.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscarComisionesIntermediarios.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscarProveedoresSolicitudCheques.cs" />
     <Compile Include="Entidades\Mantenimientos\ECadenaIntermediarioDetalle.cs" />
@@ -304,6 +318,7 @@
     <Compile Include="Entidades\Mantenimientos\EHistorialReporteAntiguedadSaldoResumido.cs" />
     <Compile Include="Entidades\Mantenimientos\EMantenimientoIntermediariosSupervisores.cs" />
     <Compile Include="Entidades\Mantenimientos\EMantenimientoProveedoresSolicitud.cs" />
+    <Compile Include="Entidades\Mantenimientos\EMantenimientoTasaMoneda.cs" />
     <Compile Include="Entidades\Mantenimientos\EMontosSolicitudCheques.cs" />
     <Compile Include="Entidades\Mantenimientos\EOficinas.cs" />
     <Compile Include="Entidades\Mantenimientos\EProcesarDatosSolicitudChequesCuentas.cs" />
@@ -323,6 +338,9 @@
     <Compile Include="Entidades\OpcionesAdministrador\EMantenimientoBackupDatabase.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\ERutaArchivoBakup.cs" />
     <Compile Include="Entidades\OpcionesAdministrador\GenerarBakupBD.cs" />
+    <Compile Include="Entidades\Procesos\AgregarEditarEliminarItemsReclamos.cs" />
+    <Compile Include="Entidades\Procesos\EBuscaDatoReclamacionesAgregarItems.cs" />
+    <Compile Include="Entidades\Procesos\EBuscaFormaPagoCobros.cs" />
     <Compile Include="Entidades\Procesos\EBuscaHistoricoImpresionMarbetes.cs" />
     <Compile Include="Entidades\Procesos\EBuscarInformacionVolantesPagos.cs" />
     <Compile Include="Entidades\Procesos\ECodigoEmpleadosVolantePagos.cs" />
@@ -331,8 +349,10 @@
     <Compile Include="Entidades\Procesos\EEMpleados.cs" />
     <Compile Include="Entidades\Procesos\EGenerarDatosMarbeteVehiculo.cs" />
     <Compile Include="Entidades\Procesos\EHistoricoImpresionResumido.cs" />
+    <Compile Include="Entidades\Procesos\EModificarFormaPago.cs" />
     <Compile Include="Entidades\Procesos\EProcesarHistoricoImprsionMarbete.cs" />
     <Compile Include="Entidades\Procesos\EProcesarInformacionMarbetes.cs" />
+    <Compile Include="Entidades\Procesos\ESacarNombreReclamante.cs" />
     <Compile Include="Entidades\Procesos\ESacarRutaArchivoGaurdado.cs" />
     <Compile Include="Entidades\ProduccionPorUsuario.cs" />
     <Compile Include="Entidades\Reportes\EBuscaBeneficiariosSobreComisiones.cs" />
@@ -363,7 +383,9 @@
     <Compile Include="Entidades\Reportes\EProcesarInformacionPolizasRenovadas.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorUsuarioDetalle.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorusuarioResumido.cs" />
+    <Compile Include="Entidades\Reportes\EReclamacionesPagadas.cs" />
     <Compile Include="Entidades\Reportes\EReporteInformacionPersonasAlfredo.cs" />
+    <Compile Include="Entidades\Reportes\EReporteProduccionNuevo.cs" />
     <Compile Include="Entidades\Reportes\EReporteProduccionOrigen.cs" />
     <Compile Include="Entidades\Reportes\EReporteRenovacionMachado.cs" />
     <Compile Include="Entidades\Reportes\EReporteSobreComision.cs" />

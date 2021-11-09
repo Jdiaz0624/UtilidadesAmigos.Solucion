@@ -78,49 +78,29 @@
     </div>
     <br />
 <div class="container-fluid Imagenesxx">
-
-        <div align="center" id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active">
+
+     <div class="carousel-item active">
       <img src="../Imagenes/Logo.jpg" class="d-block w-100" alt="...">
     </div>
-    <div class="carousel-item">
-      <img src="../Imagenes/login.jpg" class="d-block w-100" alt="...">
-    </div>
-   <div class="carousel-item">
-      <img src="../Imagenes/01.jpg" class="d-block w-100" alt="...">
-    </div>
-      <div class="carousel-item">
-      <img src="../Imagenes/02.gif" class="d-block w-100" alt="...">
-    </div>
-      <div class="carousel-item">
-      <img src="../Imagenes/03.jpg" class="d-block w-100" alt="...">
-    </div>
-      <div class="carousel-item">
-      <img src="../Imagenes/04.jfif" class="d-block w-100" alt="...">
-    </div>
-      <div class="carousel-item">
-      <img src="../Imagenes/05.jfif" class="d-block w-100" alt="...">
-    </div>
-      <div class="carousel-item">
-      <img src="../Imagenes/06.jpg" class="d-block w-100" alt="...">
-    </div>
-      <div class="carousel-item">
-      <img src="../Imagenes/07.jpg" class="d-block w-100" alt="...">
-    </div>
-      <div class="carousel-item">
-      <img src="../Imagenes/08.jpg" class="d-block w-100" alt="...">
-    </div>
+
+
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
+
+
+
+
 </div>
    <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">

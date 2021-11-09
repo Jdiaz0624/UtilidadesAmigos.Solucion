@@ -17,8 +17,8 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #0094ff;
+            color: #000000;
         }
     </style>
 
@@ -219,18 +219,18 @@
   <div class="container-fluid">
         <div id="DivBloqueConsulta"  runat="server">
             <br />
-            <div class="form-row">
-                <div class="form-group col-md-4">
+            <div class="row">
+                <div class="col-md-4">
                     <asp:Label ID="lbCodigoIntermediarioConsulta" runat="server" Text="Codigo" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtCodigoIntermediarioConsulta" runat="server" MaxLength="4" TextMode="Number" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                 </div>
 
-                <div class="form-group col-md-4">
+                <div class="col-md-4">
                     <asp:Label ID="lbNombreIntermediarioCnsulta" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtNombreIntermediarioConsulta" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
 
-                <div class="form-group col-md-4">
+                <div class="col-md-4">
                     <asp:Label ID="lbOficinaConsulta" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
                     <asp:DropDownList ID="ddlSeleccionarOficinaConsulta" runat="server" ToolTip="Seleccionar la Oficina para consultar" CssClass="form-control"></asp:DropDownList>
                 </div>
@@ -244,17 +244,17 @@
                  <asp:Button ID="btnRestabelcer" runat="server" Text="Restablecer"  CssClass="btn btn-outline-secondary btn-sm" ToolTip="Restabelcer Pantalla" OnClick="btnRestabelcer_Click" />
         </div>
             <br />
-            <div class="table-responsive">
-                <table class="table table-hover">
+         
+                <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th style="width:10%" align="left">Seleccionar</th>
-                            <th style="width:10%" align="left">Codigo</th>
-                            <th style="width:35%" align="left">Nombre</th>
-                            <th style="width:10%" align="left">Estatus</th>
-                            <th style="width:15%" align="left">Oficina</th>
-                            <th style="width:10%" align="left">Entrada</th>
-                            <th style="width:10%" align="left">Licencia</th>
+                            <th scope="col">Seleccionar</th>
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Estatus</th>
+                            <th scope="col">Oficina</th>
+                            <th scope="col">Entrada</th>
+                            <th scope="col">Licencia</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -263,20 +263,20 @@
                                <ItemTemplate>
                                       <tr>
                                    <asp:HiddenField ID="hfIdRegistroSeleccionado" runat="server" Value='<%# Eval("Codigo") %>' />
-                                   <td style="width:10%" align="left"> <asp:Button ID="btnSeleccionarRegistro" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Seleccionar Registro" OnClick="btnSeleccionarRegistro_Click" />  </td>
-                                   <td style="width:10%" align="left"> <%# Eval("Codigo") %> </td>
-                                   <td style="width:35%" align="left"> <%# Eval("NombreVendedor") %> </td>
-                                   <td style="width:10%" align="left"> <%# Eval("Estatus") %> </td>
-                                   <td style="width:15%" align="left"> <%# Eval("NombreOficina") %> </td>
-                                   <td style="width:10%" align="left"> <%# Eval("FechaEntrada") %> </td>
-                                   <td style="width:10%" align="left"> <%# Eval("LicenciaSeguro") %> </td>
+                                   <td> <asp:Button ID="btnSeleccionarRegistro" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Seleccionar Registro" OnClick="btnSeleccionarRegistro_Click" />  </td>
+                                   <td> <%# Eval("Codigo") %> </td>
+                                   <td> <%# Eval("NombreVendedor") %> </td>
+                                   <td> <%# Eval("Estatus") %> </td>
+                                   <td> <%# Eval("NombreOficina") %> </td>
+                                   <td> <%# Eval("FechaEntrada") %> </td>
+                                   <td> <%# Eval("LicenciaSeguro") %> </td>
                                           </tr>
                                </ItemTemplate>
                            </asp:Repeater>
                         
                     </tbody>
                 </table>
-            </div>
+         
             <br />
             <div align="center">
                <asp:Label ID="lbPaginaActualTituloIntermediariosSupervisores" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
@@ -314,7 +314,7 @@
         <!----------------------------------------------------------------PRIMERA FILA------------------------------------------------------------------------------------->
 
         <div class="form-check-inline">
-            <div class="form-group form-check">
+
                 <asp:RadioButton ID="rbRetencionSiMantenimiento" runat="server" Text="Retencion Si" CssClass="form-check-input LetrasNegrita" ToolTip="Agregar la Retención al nuevo registro" GroupName="RetencionIntermediario" />
                 <asp:RadioButton ID="rbRetencionNoMantenimiento" runat="server" Text="Retencion No" CssClass="form-check-input LetrasNegrita" ToolTip="No Agregar la Retención al nuevo registro" GroupName="RetencionIntermediario" />
                 <asp:Label ID="lbSeparador1" runat="server" Text=" | " CssClass="LetrasNegrita"></asp:Label>
@@ -323,129 +323,129 @@
                 <asp:Label ID="lbSeparador2" runat="server" Text=" | " CssClass="LetrasNegrita"></asp:Label>
                 <asp:RadioButton ID="rbIntermediarioDirectoMantenimiento" runat="server" Text="Directo" CssClass="form-check-input LetrasNegrita" ToolTip="Intermediario Directo" GroupName="IntermediarioDirecto" />
                 <asp:RadioButton ID="rbIntermediarioNoDirectoMantenimiento" runat="server" Text="No Directo" CssClass="form-check-input LetrasNegrita" ToolTip="Intermediario No Directo" GroupName="IntermediarioDirecto" />
-            </div>
+       
         </div>
         <br />
-        <div class="form-row">
+        <div class="row">
 
             <!----------------------------------------------------------------SEGUNDA FILA------------------------------------------------------------------------------------->
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbFechaEntradaMAntenimiento" runat="server" Text="Fecha de Entrada" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaEntradaMantenimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbFechaNacimienoMantenimiento" runat="server" Text="Fecha de Nacimiento" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaNacimientoMantenimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbseleccionarTipoIdentificacionMantenimiento" runat="server" Text="Tipo de Identificación" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarTipoIdentificacionMantenimiento" runat="server" ToolTip="Seleccionar el tipo de identificación" CssClass="form-control"></asp:DropDownList>
             </div>
 
-             <div class="form-group col-md-3">
+             <div class="col-md-3">
                 <asp:Label ID="lbNumeroIdentificacionMAntenimiento" runat="server" Text="Numero de Identificación" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtNumeroIdentificacionMantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
             <!-----------------------------------------------------------------TERCERA FILA----------------------------------------------------------------------------------->
 
-            <div class="form-group col-md-6">
+            <div class="col-md-6">
                 <asp:Label ID="lbApellidoMantenimiento" runat="server" Text="Apellido" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtApellidoMantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="col-md-6">
                 <asp:Label ID="lbNombreMantenimiento" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreMantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
             <!------------------------------------------------------------------CUARTA FILA-------------------------------------------------------------------------------------->
 
-            <div class="form-group col-md-12">
+            <div class="col-md-12">
                 <asp:Label ID="lbDireccionMantenimiento" runat="server" Text="Dirección" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
             <!----------------------------------------------------------------QUINTA FILA---------------------------------------------------------------------------------------->
 
-              <div class="form-group col-md-12">
+              <div class="col-md-12">
                 <asp:Label ID="lbContactoMantenimiento" runat="server" Text="Contacto" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtContactoMantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
             <!----------------------------------------------------------------SEXTA FILA---------------------------------------------------------------------------------------->
 
-             <div class="form-group col-md-4">
+             <div class="col-md-4">
                 <asp:Label ID="lbPaisMantenimiento" runat="server" Text="Pais" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlPaisMantenimiento" runat="server" ToolTip="Seleccionar el Pais" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPaisMantenimiento_SelectedIndexChanged" ></asp:DropDownList>
             </div>
 
-             <div class="form-group col-md-4">
+             <div class="col-md-4">
                 <asp:Label ID="lbZonaMAntenimiento" runat="server" Text="Zona" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlZonaMantenimiento" runat="server" ToolTip="Seleccionar la Zona" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlZonaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
             </div>
 
-             <div class="form-group col-md-4">
+             <div class="col-md-4">
                 <asp:Label ID="lbProvinciaMantenimiento" runat="server" Text="Provincia" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlProvinciaMantenimiento" runat="server" ToolTip="Seleccionar la Provincia" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlProvinciaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
             </div>
 
             <!----------------------------------------------------------------SEPTIMA FILA-------------------------------------------------------------------------------------->
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbMunicipioMantenimiento" runat="server" Text="Municipio" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlMunicipioMAntenimiento" runat="server" ToolTip="Seleccionar el Municipio" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlMunicipioMAntenimiento_SelectedIndexChanged"></asp:DropDownList>
             </div>
 
-             <div class="form-group col-md-4">
+             <div class="col-md-4">
                 <asp:Label ID="lbSectorMantenimiento" runat="server" Text="Sector" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSectorMantenimiento" runat="server" ToolTip="Seleccionar el Sector" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSectorMantenimiento_SelectedIndexChanged"></asp:DropDownList>
             </div>
 
-             <div class="form-group col-md-4">
+             <div class="col-md-4">
                 <asp:Label ID="lbUnicacionMAntenimiento" runat="server" Text="Ubicación" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlUbicacionMantenimiento" runat="server" ToolTip="Seleccionar la Ubicación" CssClass="form-control"></asp:DropDownList>
             </div>
 
             <!---------------------------------------------------------------OCTAVA FILA---------------------------------------------------------------------------------------------------->
 
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbCodigoSupervisorMantenimiento" runat="server" Text="Codigo Supervisor" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoSupervisorMantenimiento" runat="server" TextMode="Number" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtCodigoSupervisorMantenimiento_TextChanged" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-9">
+            <div class="col-md-9">
                 <asp:Label ID="lbNombreSupervisorMAntenimiento" runat="server" Text="Nombre de Supervisor" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreSupervisorMantenimiento" runat="server" Enabled="false" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
             <!--------------------------------------------------------------NOVENA FILA-------------------------------------------------------------------------------------------------->
 
-            <div class="form-group col-md-6">
+            <div class="col-md-6">
                 <asp:Label ID="lbOficinaMantenimiento" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlOficinaMAntenimiento" runat="server" ToolTip="Seleccionar la Oficina" CssClass="form-control"></asp:DropDownList>
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="col-md-6">
                 <asp:Label ID="lbBancoMantenimieto" runat="server" Text="Banco" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlBancoMantenimiento" runat="server" ToolTip="Seleccionar el Banco" CssClass="form-control"></asp:DropDownList>
             </div>
 
              <!--------------------------------------------------------------DECIMA FILA-------------------------------------------------------------------------------------------------->
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbNumeroCuentaMantenimiento" runat="server" Text="Numero de Cuenta" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtNumeroCuentaMantenimiento" runat="server" CssClass="form-control" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbCanalDistribucionMantenimiento" runat="server" Text="Canal de Distribución" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlCanalDistribucionMantenimiento" runat="server" ToolTip="Seleccionar el Canal de Distribución" CssClass="form-control"></asp:DropDownList>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbLicenciaSeguroMantenimiento" runat="server" Text="Licencia de Seguro" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtLicenciaSeguro" runat="server" CssClass="form-control"  AutoCompleteType="Disabled"></asp:TextBox>
             </div>
@@ -455,7 +455,7 @@
         </div>
         <br />
         <div class="form-check-inline">
-            <div class="form-group form-check">
+
                 <asp:Label ID="lbTipoCuentaMantenimiento" runat="server" CssClass="LetrasNegrita" Text="Tipo de Cuenta"></asp:Label><br />
                 <asp:RadioButton ID="rbCuentaAhorroMantenimiento" runat="server" Text="Cuenta de Ahorro" CssClass="form-check-input LetrasNegrita" GroupName="TipoCuenta" />
                 <asp:RadioButton ID="rbCuentaCorrienteMantenimiento" runat="server" Text="Cuenta Corriente" CssClass="form-check-input LetrasNegrita" GroupName="TipoCuenta" />
@@ -468,47 +468,47 @@
                 <asp:RadioButton ID="rbEfectivoMantenimiento" runat="server" Text="Efectivo" CssClass="form-check-input LetrasNegrita" GroupName="TipoCobro" />
                 <asp:RadioButton ID="rbTransferenciaMantenimiento" runat="server" Text="Transferencia" CssClass="form-check-input LetrasNegrita" GroupName="TipoCobro" />
                 <asp:RadioButton ID="rbCuentasPorPagar" runat="server" Text="Cuentas Por Pagar" CssClass="form-check-input LetrasNegrita" GroupName="TipoCobro" />
-            </div>
+  
         </div>
         <br />
 
         <!---------------------------------------------------------------DECIMA SEGUNDA FILA------------------------------------------------------------------------------------------->
-        <div class="form-row">
-            <div class="form-group col-md-4">
+        <div class="row">
+            <div class="col-md-4">
                 <asp:Label ID="lbTelefono1Mantenimiento" runat="server" Text="Telefono 1" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtTelefono1Mantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbTelefono2Mantenimiento" runat="server" Text="Telefono 2" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtTelefono2Mantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbTelefono3Mantenimiento" runat="server" Text="Telefono 3" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtTelefono3Mantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
         <!-----------------------------------------------------------------DECIMAL TERCERA FILA------------------------------------------------------------------------------------------>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbCelularMantenimiento" runat="server" Text="Celular" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtCelularMantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbFacMantenimiento" runat="server" Text="Fax" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFAxMantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbEmailMantenimiento" runat="server" Text="Email" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtEmailMantenimiento" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
             <!------------------------------------------------------------DECIMAL CUARTA FILA--------------------------------------------------------------------------------------------->
 
-            <div class="form-group col-md-12">
+            <div class="col-md-12">
                 <asp:Label ID="lbComentarioMAntenimiento" runat="server" Text="Comentario" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtComentarioMantenimiento" runat="server" TextMode="MultiLine" CssClass="form-control" Width="100%" Height="60px" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
@@ -533,24 +533,24 @@
           </div>
           <br />
           <div class="form-check-inline">
-              <div class="form-group form-check">
+             
                   <asp:RadioButton ID="rbConsultarComisiones" runat="server" Text="Consultar Comisiones" CssClass="form-check-input LetrasNegrita" ToolTip="Consultar las comisiones del Intermediario seleccionado" AutoPostBack="true" OnCheckedChanged="rbConsultarComisiones_CheckedChanged" GroupName="Comisiones" />
                   <asp:RadioButton ID="rbModificarComisiones" runat="server" Text="Modificar Comisiones" CssClass="form-check-input LetrasNegrita" ToolTip="Modificar las comisiones del Intermediario seleccionado" AutoPostBack="true" OnCheckedChanged="rbModificarComisiones_CheckedChanged" GroupName="Comisiones" />
-              </div>
+             
           </div>
           <br />
-          <div class="form-row">
-              <div class="form-group col-md-4">
+          <div class="row">
+              <div class="col-md-4">
                   <asp:Label ID="lbSeleccionarRamoComisiones" runat="server" Text="Ramo" CssClass="LetrasNegrita"></asp:Label>
                   <asp:DropDownList ID="ddlSeleccionarRamoComisiones" runat="server" ToolTip="Seleccionar el Ramo para consulta" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarRamoComisiones_SelectedIndexChanged"></asp:DropDownList>
               </div>
 
-              <div class="form-group col-md-4">
+              <div class="col-md-4">
                   <asp:Label ID="lbSeleccionarSubRamoComsiiones" runat="server" Text="SubRamo" CssClass="LetrasNegrita"></asp:Label>
                   <asp:DropDownList ID="ddlSeleccionarSubRamoComisiones" runat="server" ToolTip="Seleccionar el SubRamo para consulta" CssClass="form-control"></asp:DropDownList>
               </div>
 
-              <div class="form-group col-md-4">
+              <div class="col-md-4">
                   <asp:Label ID="lbClaveSeguridad" runat="server" Text="Clave de Seguridad" CssClass="LetrasNegrita"></asp:Label>
                   <asp:TextBox ID="txtClaveSeguridadComisiones" runat="server" TextMode="Password" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
               </div>
@@ -562,16 +562,16 @@
         </div><br />
      
       <!--LISTADO DE COMISIONES-->
-      <div class="table-responsive">
-          <table class="table table-hover">
+   
+          <table class="table table-striped">
               <thead>
                   <tr>
-                      <th style="width:10%" align="left"> SELECCIONAR </th>
-                      <th style="width:5%" align="left"> ID </th>
-                      <th style="width:35%" align="left"> RAMO </th>
-                      <th style="width:5%" align="left"> ID </th>
-                      <th style="width:35%" align="left"> SUBRAMO </th>
-                      <th style="width:10%" align="left"> %  </th>
+                      <th scope="col"> Seleccionar </th>
+                      <th scope="col"> IRamo </th>
+                      <th scope="col"> Ramo </th>
+                      <th scope="col"> IdSubRamo </th>
+                      <th scope="col"> SubRamo </th>
+                      <th scope="col"> %  </th>
                   </tr>
               </thead>
 
@@ -582,18 +582,18 @@
                               <asp:HiddenField ID="hfRamoComsiones" runat="server" Value='<%# Eval("IdRamo") %>' />
                               <asp:HiddenField ID="hfSubRamoComisiones" runat="server" Value='<%# Eval("IdSubRamo") %>' />
 
-                              <td style="width:10%" align="left"> <asp:Button ID="btnSeleccionarComision" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Seleccionar Registro" OnClick="btnSeleccionarComision_Click" /> </td>
-                              <td style="width:5%" align="left"> <%# Eval("IdRamo") %> </td>
-                              <td style="width:35%" align="left"> <%# Eval("Ramo") %> </td>
-                              <td style="width:5%" align="left"> <%# Eval("IdSubRamo") %> </td>
-                              <td style="width:35%" align="left"> <%# Eval("Subramo") %> </td>
-                              <td style="width:10%" align="left"> <%#string.Format("{0:n2}", Eval("PorcientoComision")) %> </td>
+                              <td> <asp:Button ID="btnSeleccionarComision" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Seleccionar Registro" OnClick="btnSeleccionarComision_Click" /> </td>
+                              <td> <%# Eval("IdRamo") %> </td>
+                              <td> <%# Eval("Ramo") %> </td>
+                              <td> <%# Eval("IdSubRamo") %> </td>
+                              <td> <%# Eval("Subramo") %> </td>
+                              <td> <%#string.Format("{0:n2}", Eval("PorcientoComision")) %> </td>
                           </tr>
                       </ItemTemplate>
                   </asp:Repeater>
               </tbody>
           </table>
-      </div>
+
       <div align="center">
                <asp:Label ID="lbPaginaActualTituloIntermediariosSupervisoresComisiones" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
                 <asp:Label ID="lbPaginaActualVariavleIntermediariosSupervisoresComisiones" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
@@ -623,18 +623,18 @@
             <br />
 
       <div id="DivBloqueInternoComision" runat="server">
-          <div class="form-row">
-              <div class="form-group col-md-6">
+          <div class="row">
+              <div class="col-md-6">
                   <asp:Label ID="lbRamoSeleccionadoComisionesComisiones" runat="server" Text="Ramo" CssClass="LetrasNegrita"></asp:Label>
                   <asp:TextBox ID="txtRamoSeleccionadoComisionesComisiones" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
               </div>
 
-               <div class="form-group col-md-6">
+               <div class="col-md-6">
                   <asp:Label ID="lbSubRamoSeleccionadoComisiones" runat="server" Text="SubRamo" CssClass="LetrasNegrita"></asp:Label>
                   <asp:TextBox ID="txtSubRamoSeleccionadoComisiones" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
               </div>
 
-               <div class="form-group col-md-6">
+               <div class="col-md-6">
                   <asp:Label ID="lbPorcientoComisionSeleccionadoComisiones" runat="server" Text="% de Comisión" CssClass="LetrasNegrita"></asp:Label>
                   <asp:TextBox ID="txtPorcientoComisionSeleccionadoComisiones" runat="server" TextMode="Number" step="0.01" CssClass="form-control" Enabled="false"></asp:TextBox>
               </div>

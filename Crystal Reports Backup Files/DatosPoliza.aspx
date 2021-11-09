@@ -16,8 +16,8 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #00ffff;
+            color: #000000;
         }
 
 
@@ -129,13 +129,13 @@
     <br /><br />
     <div class="container-fluid">
         <div id="DivBloquePrincipal" runat="server">
-            <div class="form-row">
-                <div class="form-group col-md-6">
+            <div class="row">
+                <div class="col-md-6">
                     <asp:Label ID="lbIngresarPolizaConsulta" runat="server" Text="Ingresar Poliza" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtIngresarPolizaConsulta" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                 </div>
 
-                   <div class="form-group col-md-6">
+                   <div class="col-md-6">
                     <asp:Label ID="lbIngresaNumeroItemConsulta" runat="server" Text="Ingresar Item" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtIngresarItemConsulta" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
                 </div>
@@ -150,16 +150,16 @@
                  <asp:Label ID="lbCantidadRegistrosBloquePrincipalCerrar" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
             </div>
             <br /><br />
-            <div class="table-responsive">
-                <table class="table table-hover">
+       
+                <table class="table table-striped">
                     <thead>
                         <tr>
-                             <th style="width:10%" align="left"> Detalle </th>
-                             <th style="width:10%" align="left"> Poliza </th>
-                             <th style="width:10%" align="left"> Item </th>
-                             <th style="width:20%" align="left"> Ramo </th>
-                             <th style="width:20%" align="left"> SubRamo </th>
-                             <th style="width:30%" align="left"> Cliente </th>
+                             <th scope="col"> Detalle </th>
+                             <th scope="col"> Poliza </th>
+                             <th scope="col"> Item </th>
+                             <th scope="col"> Ramo </th>
+                             <th scope="col"> SubRamo </th>
+                             <th scope="col"> Cliente </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -169,18 +169,18 @@
                                     <asp:HiddenField ID="hfPolizaListadoPrncipal" runat="server" Value='<%# Eval("Poliza") %>' />
                                      <asp:HiddenField ID="hfNumeroItemPrincipal" runat="server" Value='<%# Eval("Item") %>' />
 
-                                    <td style="width:10%"> <asp:Button ID="btnDetallePrincipal" runat="server" Text="Detalle" ToolTip="Mostrar el Detalle del registro" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnDetallePrincipal_Click" /> </td>
-                                    <td style="width:10%"> <%# Eval("Poliza") %> </td>
-                                    <td style="width:10%"> <%# Eval("Item") %> </td>
-                                    <td style="width:20%"> <%# Eval("Ramo") %> </td>
-                                    <td style="width:20%"> <%# Eval("SubRamo") %> </td>
-                                    <td style="width:30%"> <%# Eval("Cliente") %> </td>
+                                    <td> <asp:Button ID="btnDetallePrincipal" runat="server" Text="Detalle" ToolTip="Mostrar el Detalle del registro" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnDetallePrincipal_Click" /> </td>
+                                    <td> <%# Eval("Poliza") %> </td>
+                                    <td> <%# Eval("Item") %> </td>
+                                    <td> <%# Eval("Ramo") %> </td>
+                                    <td> <%# Eval("SubRamo") %> </td>
+                                    <td> <%# Eval("Cliente") %> </td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
                     </tbody>
                 </table>
-            </div>
+       
 
                <div align="center">
                 <asp:Label ID="lbPaginaActualTituloBloquePrincipal" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
@@ -211,10 +211,10 @@
               <br />
             <div id="DIVBloqueDecision" visible="false" runat="server">
                 <div class="form-check-inline">
-                    <div class="form-group form-check">
+  
                         <asp:RadioButton ID="rbDetallePoliza" runat="server" Text="Detalle de Registro" CssClass="form-check-input LetrasNegrita" ToolTip="Mostrar el detalle del Registro seleccionado" GroupName="Decision" AutoPostBack="true" OnCheckedChanged="rbDetallePoliza_CheckedChanged" />
                          <asp:RadioButton ID="rbCoberturasPolizas" runat="server" Text="Cobertura de Registro" CssClass="form-check-input LetrasNegrita" ToolTip="Mostrar las coberturas del registro seleccionado" GroupName="Decision" AutoPostBack="true" OnCheckedChanged="rbCoberturasPolizas_CheckedChanged" />
-                    </div>
+      
                 </div>
             </div>
             <!--DETALLE DE LA PANTALLA PRINCIPAL-->
@@ -224,99 +224,99 @@
                 
 
                 <div class="form-check-inline">
-                    <div class="form-group form-check">
+           
                         <asp:CheckBox ID="cbModificarValor" runat="server" Text="Modificar Valor" CssClass="form-check-input LetrasNegrita" ToolTip="Modificar el valor del registro" AutoPostBack="true" OnCheckedChanged="cbModificarValor_CheckedChanged" />
                         <asp:CheckBox ID="cbModificarVigencia" runat="server" Text="Modificar Vigencia" CssClass="form-check-input LetrasNegrita" ToolTip="Modificar la vigencia del registro" AutoPostBack="true" OnCheckedChanged="cbModificarVigencia_CheckedChanged" />
-                    </div>
+            
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleRamoPrincipal" runat="server" Text="Ramo" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleRamoPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleSubramoPrincipal" runat="server" Text="SubRamo" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleSubramoPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                     <div class="form-group col-md-6">
+                     <div class="col-md-6">
                         <asp:Label ID="lbDetalleInicioVigencia" runat="server" Text="Inicio Vigencia Actual" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleInicioVigenciaPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                     <div class="form-group col-md-6">
+                     <div class="col-md-6">
                         <asp:Label ID="lbDetalleFinVigenciaPrincipal" runat="server" Text="Fin Vigencia Actual" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleFinVigenciaPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleTipoVehiculoPrincipal" runat="server" Text="Tipo de Vehiculo" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleTipoVehiculoPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleMarcaPrincipal" runat="server" Text="Marca" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleMarcaPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleModeloPrincipal" runat="server" Text="Modelo" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleModeloPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleColorPrincipal" runat="server" Text="Color" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleColorPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleChasisPrincipal" runat="server" Text="Chasis" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleChasisPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetallePlacaPrincipal" runat="server" Text="Placa" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetallePlacaprincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleValorAseguradoPrincipal" runat="server" Text="Valor Asegurado" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleValorAseguradoPrinncipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleFianzaPrincipal" runat="server" Text="Fianza" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleFianzaPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleAseguradoPrincipal" runat="server" Text="Asegurado" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleAseguradoPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleClientePrincipal" runat="server" Text="Cliente" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleClientePrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetallePrimaActualPrincipal" runat="server" Text="Prima Actual" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetallePrimaActualPrincipal" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6" id="DivPrimaNueva" runat="server">
+                    <div class="col-md-6" id="DivPrimaNueva" runat="server">
                         <asp:Label ID="lbDetallePrimaNuevaPrincipal" runat="server" Text="Prima Nueva" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetallePrimaNuevaPrincipal" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6" id="DivFechaInicioVigencia" runat="server">
+                    <div class="col-md-6" id="DivFechaInicioVigencia" runat="server">
                         <asp:Label ID="lbInicioVigencia" runat="server" Text="Inicio de Vigencia" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleInicioVigencia" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6" id="DivFechaFinVigencia" runat="server">
+                    <div class="col-md-6" id="DivFechaFinVigencia" runat="server">
                         <asp:Label ID="lbDetalleFechaFinVigencia" runat="server" Text="Fin de Vigencia" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleFechaFinVigencia" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
                     </div>
@@ -345,16 +345,16 @@
         <div id="DivBloqieCoberturas" visible="false" runat="server">
             <asp:Label ID="lbPolizaCoberturas" runat="server" Text="Poliza Coberturas" Visible="false"></asp:Label>
             <asp:Label ID="lbItemPoliza" runat="server" Text="Item" Visible="false"></asp:Label>
-            <div class="table-responsive">
-                <table class="table table-hover">
+
+                <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th style="width:10%" align="left"> Seleccionar </th>
-                            <th style="width:40%" align="left"> Cobertura </th>
-                            <th style="width:20%" align="left"> Limite </th>
-                            <th style="width:10%" align="left"> % Deducible </th>
-                            <th style="width:10%" align="left"> Minimo </th>
-                            <th style="width:10%" align="left"> % Cobertura </th>
+                            <th scope="col"> Seleccionar </th>
+                            <th scope="col"> Cobertura </th>
+                            <th scope="col"> Limite </th>
+                            <th scope="col"> % Deducible </th>
+                            <th scope="col"> Minimo </th>
+                            <th scope="col"> % Cobertura </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -366,18 +366,18 @@
                                      <asp:HiddenField ID="hfNumeroItemCobertura" runat="server" Value='<%# Eval("SecuenciaCot") %>' />
                                     <asp:HiddenField ID="hfCodigoCobertura" runat="server" Value='<%# Eval("Secuencia") %>' />
 
-                                    <td style="width:10%"> <asp:Button ID="btnseleccionarCoberturas" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Seleccionar Coberturas" OnClick="btnseleccionarCoberturas_Click" /> </td>
-                                    <td style="width:40%"> <%# Eval("Descripcion") %> </td>
-                                    <td style="width:20%"> <%# Eval("MontoInformativo") %> </td>
-                                    <td style="width:10%"> <%# Eval("PorcDeducible") %> </td>
-                                    <td style="width:10%"> <%#string.Format("{0:n2}", Eval("MinimoDeducible")) %> </td>
-                                    <td style="width:10%"> <%#string.Format("{0:n2}", Eval("PorcCobertura")) %> </td>
+                                    <td> <asp:Button ID="btnseleccionarCoberturas" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Seleccionar Coberturas" OnClick="btnseleccionarCoberturas_Click" /> </td>
+                                    <td> <%# Eval("Descripcion") %> </td>
+                                    <td> <%# Eval("MontoInformativo") %> </td>
+                                    <td> <%# Eval("PorcDeducible") %> </td>
+                                    <td> <%#string.Format("{0:n2}", Eval("MinimoDeducible")) %> </td>
+                                    <td> <%#string.Format("{0:n2}", Eval("PorcCobertura")) %> </td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
                     </tbody>
                 </table>
-            </div>
+   
 
         
 
@@ -410,28 +410,28 @@
 
           
             <br />
-              <div class="form-row">
-                <div class="form-group col-md-12">
+              <div class="row">
+                <div class="col-md-12">
                     <asp:Label ID="lbNombreCoberturaSeleccionaa" runat="server" Text="Nombre de Cobertura" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtNombreCoberturaSeleccionada" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
 
-                 <div class="form-group col-md-6">
+                 <div class="col-md-6">
                     <asp:Label ID="lbLimiteCoberturaSeleccionada" runat="server" Text="Limite" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtLimiteCoberturaSeleccionada" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
 
-                 <div class="form-group col-md-6">
+                 <div class="col-md-6">
                     <asp:Label ID="lbPorcientoDeducibleCoberturaSeleccionada" runat="server" Text="% Deducible" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtPorcientoDeducibleCoberturaSeleccionada" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                 </div>
 
-                 <div class="form-group col-md-6">
+                 <div class="col-md-6">
                     <asp:Label ID="lbMinimoDeducibleCoberturaSeleccionada" runat="server" Text="Minimo Deducible" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtMinimoDeducibleCoberturaSeleccionada" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                 </div>
 
-                 <div class="form-group col-md-6">
+                 <div class="col-md-6">
                     <asp:Label ID="lbPorcientoCoberturaCoberturaSeleccionada" runat="server" Text="% de Cobertura" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtPorcientoCoberturaCoberturaSeleccionada" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                 </div>
@@ -482,14 +482,14 @@
               <div class="container-fluid">
                   <div id="DivBloqueConsultaOtrosFiltros" runat="server">
                         <div class="form-check-inline">
-                    <div class="form-group form-check">
+
                         <asp:RadioButton ID="rbBuscarPorPlaca" runat="server" Text="Buscar Por Placa" CssClass="form-check-input LetrasNegrita" ToolTip="Buscar mediante la placa" AutoPostBack="true" OnCheckedChanged="rbBuscarPorPlaca_CheckedChanged" GroupName="TipoBusqueda" />
                          <asp:RadioButton ID="rbBuscarPorChasis" runat="server" Text="Buscar Por Chasis" CssClass="form-check-input LetrasNegrita" ToolTip="Buscar mediante el Chasis" AutoPostBack="true" OnCheckedChanged="rbBuscarPorChasis_CheckedChanged" GroupName="TipoBusqueda" />
-                    </div>
+           
                 </div>
                 <br />
-                <div class="form-row">
-                    <div class="form-group col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
                         <asp:Label ID="lbLetreroOtroFiltro" runat="server" Text="Ingresar Dato" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtCampoOtroFiltro" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                     </div>
@@ -504,16 +504,16 @@
                 </div>
                 <br />
 
-                  <div class="table-responsive">
-                      <table class="table table-hover">
+
+                      <table class="table table-striped">
                           <thead>
                               <tr>
-                              <th style="width:10%" align="left"> Detalle </th>
-                              <th style="width:10%" align="left"> Poliza </th>
-                              <th style="width:10%" align="left"> Item </th>
-                              <th style="width:20%" align="left"> Ramo </th>
-                              <th style="width:20%" align="left"> SubRamo </th>
-                              <th style="width:30%" align="left"> Cliente </th>
+                              <th scope="col"> Detalle </th>
+                              <th scope="col"> Poliza </th>
+                              <th scope="col"> Item </th>
+                              <th scope="col"> Ramo </th>
+                              <th scope="col"> SubRamo </th>
+                              <th scope="col"> Cliente </th>
                           </tr>
                           </thead>
                           <tbody>
@@ -523,18 +523,18 @@
                                           <asp:HiddenField ID="hfPolizaOtrosFiltros" runat="server" Value='<%# Eval("Poliza") %>' />
                                           <asp:HiddenField ID="hfItemOtrosFiltros" runat="server" Value='<%# Eval("Item") %>' />
 
-                                          <td style="width:10%"> <asp:Button ID="btnDetalleOtrosFiltros" runat="server" Text="Detalle" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Mostrar el Detalle del Registro" OnClick="btnDetalleOtrosFiltros_Click" /> </td>
-                                          <td style="width:10%"> <%# Eval("Poliza") %> </td>
-                                          <td style="width:10%"> <%# Eval("Item") %> </td>
-                                          <td style="width:20%"> <%# Eval("Ramo") %> </td>
-                                          <td style="width:20%"> <%# Eval("Subramo") %> </td>
-                                          <td style="width:30%"> <%# Eval("Cliente") %> </td>
+                                          <td> <asp:Button ID="btnDetalleOtrosFiltros" runat="server" Text="Detalle" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Mostrar el Detalle del Registro" OnClick="btnDetalleOtrosFiltros_Click" /> </td>
+                                          <td> <%# Eval("Poliza") %> </td>
+                                          <td> <%# Eval("Item") %> </td>
+                                          <td> <%# Eval("Ramo") %> </td>
+                                          <td> <%# Eval("Subramo") %> </td>
+                                          <td> <%# Eval("Cliente") %> </td>
                                       </tr>
                                   </ItemTemplate>
                               </asp:Repeater>
                           </tbody>
                       </table>
-                  </div>
+        
                    <div align="center">
                 <asp:Label ID="lbPaginaActualTituloOtrosFiltros" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
                 <asp:Label ID="LinkBlbPaginaActualVariableOtrosFiltros" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
@@ -571,79 +571,79 @@
 
                   <div id="DivBloqueDetalleOtrosFiltros" visible="false" runat="server">
 
-                      <div class="form-row">
-                    <div class="form-group col-md-6">
+                      <div class="row">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleRamoOtrosFiltros" runat="server" Text="Ramo" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleRamoOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleSubramoOtrosFiltros" runat="server" Text="SubRamo" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleSubramoOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                     <div class="form-group col-md-6">
+                     <div class="col-md-6">
                         <asp:Label ID="lbDetalleInicioOtrosFiltros" runat="server" Text="Inicio Vigencia Actual" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleInicioVigenciaOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                     <div class="form-group col-md-6">
+                     <div class="col-md-6">
                         <asp:Label ID="lbDetalleFinVigenciaOtrosFiltros" runat="server" Text="Fin Vigencia Actual" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleFinVigenciaOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleTipoVehiculoOtrosFiltros" runat="server" Text="Tipo de Vehiculo" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleTipoVehiculoOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleMarcaOtrosFiltros" runat="server" Text="Marca" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleMarcaOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleModeloOtrosFiltros" runat="server" Text="Modelo" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleModeloOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleColorOtrosFiltros" runat="server" Text="Color" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleColorOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleChasisOtrosFiltros" runat="server" Text="Chasis" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleChasisOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetallePlacaOtrosFiltros" runat="server" Text="Placa" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetallePlacaOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleValorAseguradoOtrosFiltros" runat="server" Text="Valor Asegurado" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleValorAseguradoOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleFianzaOtrosFiltros" runat="server" Text="Fianza" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleFianzaOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleAseguradoOtrosFiltros" runat="server" Text="Asegurado" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleAseguradoOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetalleClienteOtrosFiltros" runat="server" Text="Cliente" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetalleClienteOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
 
 
-                    <div class="form-group col-md-6">
+                    <div class="col-md-6">
                         <asp:Label ID="lbDetallePrimaActualOtrosFiltros" runat="server" Text="Prima Actual" CssClass="LetrasNegrita"></asp:Label>
                         <asp:TextBox ID="txtDetallePrimaActualOtrosFiltros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>

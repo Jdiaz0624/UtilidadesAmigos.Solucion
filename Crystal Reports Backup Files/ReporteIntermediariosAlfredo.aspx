@@ -25,8 +25,8 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #1E90FF;
+            color: #000000;
         }
     </style>
 
@@ -48,23 +48,23 @@
     <br />
 
     <div id="DivBloqueReporte" runat="server">
-       <div class="form-row">
-           <div class="form-group col-md-3">
+       <div class="row">
+           <div class="col-md-3">
                <asp:Label ID="lbFechaDesdeReporte" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
                <asp:TextBox ID="txtFechaDesdeReporte" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
            </div>
 
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                <asp:Label ID="lbFechaHastaReporte" runat="server" Text="Fecha Hasta" CssClass="LetrasNegrita"></asp:Label>
                <asp:TextBox ID="txtFechaHastaReporte" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
            </div>
 
-           <div class="form-group col-md-3">
+           <div class="col-md-3">
                <asp:Label ID="lbCodigoIntermediarioReporte" visible="false" runat="server" Text="Codigo de Intermediario" CssClass="LetrasNegrita"></asp:Label>
                <asp:TextBox ID="txtCodigoIntermediarioReporte" visible="false" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoIntermediarioReporte_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
            </div>
 
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                <asp:Label ID="lbNombreIntermediarioReporte" visible="false" runat="server" Text="Nombre de Intermediario" CssClass="LetrasNegrita"></asp:Label>
                <asp:TextBox ID="txtNombreIntermediarioReprte" visible="false"  runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
            </div>
@@ -85,34 +85,33 @@
             <asp:Button ID="btnReporte" runat="server" Text="Reporte" ToolTip="Generar Reporte" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnReporte_Click" />
         </div>
         <br />
-        <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th style="width:30%" align="left"> INTERMEDIARIO </th>
-                        <th style="width:15%" align="left"> PRODUCCION B. </th>
-                        <th style="width:15%" align="left"> PRODUCCION N. </th>
-                        <th style="width:15%" align="left"> COBRADO B. </th>
-                        <th style="width:15%" align="left"> COBRADO N. </th>
-                        <th style="width:10%" align="left"> COMISION </th>
+                        <th scope="col"> Intermediario </th>
+                        <th scope="col"> Producción B. </th>
+                        <th scope="col"> Producción N. </th>
+                        <th scope="col"> Cobrado B. </th>
+                        <th scope="col"> Cobrado N. </th>
+                        <th scope="col"> Comisión </th>
                     </tr>
                 </thead>
                 <tbody>
                     <asp:Repeater ID="rpListadoIntermediarios" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <td style="width:30%" align="left"> <%# Eval("Intermediario") %> </td>
-                                <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("ProduccionBruto")) %> </td>
-                                <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("ProduccionNeto")) %> </td>
-                                <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("CobradoBruto")) %> </td>
-                                <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("CobradoNeto")) %> </td>
-                                <td style="width:10%" align="left"> <%# string.Format("{0:n2}", Eval("ALiquidar")) %> </td>
+                                <td> <%# Eval("Intermediario") %> </td>
+                                <td> <%# string.Format("{0:n2}", Eval("ProduccionBruto")) %> </td>
+                                <td> <%# string.Format("{0:n2}", Eval("ProduccionNeto")) %> </td>
+                                <td> <%# string.Format("{0:n2}", Eval("CobradoBruto")) %> </td>
+                                <td> <%# string.Format("{0:n2}", Eval("CobradoNeto")) %> </td>
+                                <td> <%# string.Format("{0:n2}", Eval("ALiquidar")) %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
-        </div>
+
 
         <div align="center">
                 <asp:Label ID="lbPaginaActualTituloControlVisistas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>

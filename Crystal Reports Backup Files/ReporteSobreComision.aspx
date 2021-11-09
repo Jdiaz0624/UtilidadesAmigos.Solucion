@@ -25,8 +25,8 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #1E90FF;
+            color: #000000;
         }
     </style>
 
@@ -46,13 +46,13 @@
           <asp:Label ID="lbCodigobeneficiarioSeleccionado" Text="0" Visible="false" runat="server"></asp:Label>
            <asp:Label ID="lbPorcientoComisionBeneficiario" Text="0" Visible="false" runat="server"></asp:Label>
 
-            <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="row">
+            <div class="col-md-6">
                 <asp:Label ID="lbFechaDesde" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechadesde" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="col-md-6">
                 <asp:Label ID="lbFechaHasta" runat="server" Text="Fecha Hasta" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaHAsta" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
@@ -63,16 +63,14 @@
         </div>
           <br />
 
-          <div class="table-responsive">
               <table class="table table-hover">
                   <thead>
                       <tr>
-                          <th style="width:10%" align="left"> CONSULTAR</th>
-                         <%-- <th style="width:10%" align="left"> CODIGO</th>--%>
-                          <th style="width:60%" align="left"> NOMBRE</th>
-                          <th style="width:10%" align="left"> % COMISION</th>
-                          <th style="width:10%" align="left"> INGRESO</th>
-                          <th style="width:10%" align="left"> ESTATUS</th>
+                          <th scope="col"> Consultar</th>
+                          <th scope="col"> Nombre</th>
+                          <th scope="col"> % Comisión</th>
+                          <th scope="col"> Ingreso</th>
+                          <th scope="col"> Estatus</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -84,19 +82,18 @@
                                   <asp:HiddenField ID="hfPorcientoComisionBeneficiario" runat="server" Value='<%# Eval("PorcientoComision") %>' />
 
 
-                                  <td style="width:10%" align="left"> <asp:Button ID="btnConsultarInformacion" runat="server" Text="Consultar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultarInformacion_Click" ToolTip="Consultar Comisiones" /> </td>
-                                  <%--<td style="width:10%" align="left"> <%# Eval("CodigoBeneficiario") %> </td>--%>
-                                  <td style="width:60%" align="left"> <%# Eval("NombreVendedor") %> </td>
-                                  <td style="width:50%" align="left"> <%# string.Format("{0:n2}", Eval("Comision")) %> </td>
-                                  <td style="width:10%" align="left"> <%# Eval("Ingreso") %> </td>
-                                  <td style="width:10%" align="left"> <%# Eval("Estatus") %> </td>
+                                  <td> <asp:Button ID="btnConsultarInformacion" runat="server" Text="Consultar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultarInformacion_Click" ToolTip="Consultar Comisiones" /> </td>
+                                  <td> <%# Eval("NombreVendedor") %> </td>
+                                  <td> <%# string.Format("{0:n2}", Eval("Comision")) %> </td>
+                                  <td> <%# Eval("Ingreso") %> </td>
+                                  <td> <%# Eval("Estatus") %> </td>
 
                               </tr>
                           </ItemTemplate>
                       </asp:Repeater>
                   </tbody>
               </table>
-          </div>
+  
           <br />
           <div align="center">
               <asp:Label ID="lbTotalCobradoNetoTitulo" runat="server" Text="Total Cobrado Neto ( " CssClass="LetrasNegrita"></asp:Label>
@@ -108,17 +105,17 @@
                <asp:Label ID="lbComisionPagarCerrar" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
           </div>
           <br />
-          <div class="table-responsive">
-              <table class="table table-hover">
+
+              <table class="table table-striped">
                   <thead>
                       <tr>
-                          <th style="width:25%" align="left"> SUPERVISOR </th>
-                          <th style="width:10%" align="left"> MONEDA </th>
-                          <th style="width:10%" align="left"> CANTIDAD </th>
-                          <th style="width:15%" align="left"> BRUTO </th>
-                          <th style="width:10%" align="left"> IMPUESTO </th>
-                          <th style="width:15%" align="left"> NETO </th>
-                          <th style="width:15%" align="left"> PESOS </th>
+                          <th scope="col"> Supervisor </th>
+                          <th scope="col"> Moneda </th>
+                          <th scope="col"> Cantidad </th>
+                          <th scope="col"> Bruto </th>
+                          <th scope="col"> Impuesto </th>
+                          <th scope="col"> Neto </th>
+                          <th scope="col"> Pesos </th>
                       </tr>
                   </thead>
 
@@ -126,19 +123,19 @@
                       <asp:Repeater ID="rpCobradoSupervisores" runat="server">
                           <ItemTemplate>
                               <tr>
-                                  <td style="width:25%" align="left"> <%# Eval("NombreSupervisor") %> </td>
-                                  <td style="width:10%" align="left"> <%# Eval("NombreMoneda") %> </td>
-                                  <td style="width:10%" align="left"> <%# string.Format("{0:n0}", Eval("Cantidad")) %> </td>
-                                  <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("Bruto")) %> </td>
-                                  <td style="width:10%" align="left"> <%# string.Format("{0:n2}", Eval("Impuesto")) %> </td>
-                                  <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("Neto")) %> </td>
-                                  <td style="width:15%" align="left"> <%# string.Format("{0:n2}", Eval("MontoPesos")) %> </td>
+                                  <td> <%# Eval("NombreSupervisor") %> </td>
+                                  <td> <%# Eval("NombreMoneda") %> </td>
+                                  <td> <%# string.Format("{0:n0}", Eval("Cantidad")) %> </td>
+                                  <td> <%# string.Format("{0:n2}", Eval("Bruto")) %> </td>
+                                  <td> <%# string.Format("{0:n2}", Eval("Impuesto")) %> </td>
+                                  <td> <%# string.Format("{0:n2}", Eval("Neto")) %> </td>
+                                  <td> <%# string.Format("{0:n2}", Eval("MontoPesos")) %> </td>
                               </tr>
                           </ItemTemplate>
                       </asp:Repeater>
                   </tbody>
               </table>
-          </div>
+
 
             <div align="center">
                 <asp:Label ID="lbPaginaActualTituloCobradoSupervisores" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>

@@ -25,9 +25,13 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #1E90FF;
+            color: #000000;
         }
+          .BotonImagen {
+              width: 50px;
+              height: 50px;
+          }
     </style>
     <script type="text/javascript">
         function MensajeConsulta() {
@@ -53,64 +57,68 @@
             <asp:Label ID="lbCantidadRegistros" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCerrarParentesis" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-3">
+        <div class="row">
+            <div class="col-md-3">
                 <asp:Label ID="lbPolizaConsulta" runat="server" Text="Poliza" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtpolizaConsulta" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbSeleccionarSubramo" runat="server" Text="SubRamo" CssClass="LetrasNegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarSubramo" runat="server" CssClass="form-control" ToolTip="Seleccionar Subramo"></asp:DropDownList>
             </div>
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbFechaDesde" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaDesde" TextMode="Date" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
         
             </div>
-           <div class="form-group col-md-3">
+           <div class="col-md-3">
                <asp:Label ID="lbFechaHasta" runat="server" Text="Fecha Hasta" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaHasta" TextMode="Date" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
             </div>
         </div>
         <br />
         <div align="center">
-            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
+            <asp:ImageButton ID="btnConsultarNuevo" runat="server" ToolTip="Consultar Registros en Pantalla" OnClick="btnConsultarNuevo_Click" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" />
+            <asp:ImageButton ID="btnExportarExelPrincipal" runat="server" ToolTip="Exportar Registros a Excel" OnClick="btnExportarExelPrincipal_Click" CssClass="BotonImagen" ImageUrl="~/Imagenes/excel.png" />
+
+
+           <br />
             <button type="button" id="btnHistorico" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-xl">Historico</button>
 
-            <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExportar_Click" />
+           
         </div>
         <br />
-           <div class="table-responsive">
-               <table class="table table-hover">
+     
+               <table class="table table-striped">
                    <thead>
                        <tr>
-                           <th style="width:10%" align="left"> <asp:Label ID="lbNumeroFacturaHeaderRepeater" runat="server" Text="No. Factura" CssClass="Letranegrita"></asp:Label> </th>
-                           <th style="width:10%" align="left"> <asp:Label ID="lbPolizaHeaderRepeater" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
-                           <th style="width:10%" align="left"> <asp:Label ID="lbEstatusHeaderRepeater" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
-                           <th style="width:20%" align="left"> <asp:Label ID="lbSubRamoHeaderRepeater" runat="server" Text="SubRamo" CssClass="Letranegrita"></asp:Label> </th>
-                           <th style="width:20%" align="left"> <asp:Label ID="lbClienteHeaderRepeater" runat="server" Text="Cliente" CssClass="Letranegrita"></asp:Label> </th>
-                           <th style="width:20%" align="left"> <asp:Label ID="lbIntermediarioHeaderRepeater" runat="server" Text="Intermediario" CssClass="Letranegrita"></asp:Label> </th>
-                           <th style="width:10%" align="left"> <asp:Label ID="lbFechaHeaderRepeater" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label> </th>
+                           <th scope="col"> No. Factura </th>
+                           <th scope="col"> Poliza </th>
+                           <th scope="col"> Estatus </th>
+                           <th scope="col"> SubRamo </th>
+                           <th scope="col"> Cliente </th>
+                           <th scope="col"> Intermediario </th>
+                           <th scope="col">Fecha</th>
                        </tr>
                    </thead>
                    <tbody>
                        <asp:Repeater ID="rpListadoFianzas" runat="server">
                            <ItemTemplate>
                                <tr>
-                                   <td style="width:10%"> <%# Eval("NoFactura") %> </td>
-                                   <td style="width:10%"> <%# Eval("Poliza") %> </td>
-                                   <td style="width:10%"> <%# Eval("Estatus") %> </td>
-                                   <td style="width:20%"> <%# Eval("SubRamo") %> </td>
-                                   <td style="width:20%"> <%# Eval("Cliente") %> </td>
-                                   <td style="width:20%"> <%# Eval("Intermediario") %> </td>
-                                   <td style="width:10%"> <%# Eval("FechaFacturacion") %> </td>
+                                   <td> <%# Eval("NoFactura") %> </td>
+                                   <td> <%# Eval("Poliza") %> </td>
+                                   <td> <%# Eval("Estatus") %> </td>
+                                   <td> <%# Eval("SubRamo") %> </td>
+                                   <td> <%# Eval("Cliente") %> </td>
+                                   <td> <%# Eval("Intermediario") %> </td>
+                                   <td> <%# Eval("FechaFacturacion") %> </td>
                                </tr>
                            </ItemTemplate>
                        </asp:Repeater>
                    </tbody>
                </table>
-           </div>
+
 
          <div align="center">
                 <asp:Label ID="lbPaginaActualTituloFianzas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
@@ -159,23 +167,23 @@
              <asp:Label ID="lbCantidadRegistrosVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
              <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
         </div>
-                 <div class="form-row">
-                     <div class="form-group col-md-3">
+                 <div class="row">
+                     <div class="col-md-3">
                          <asp:Label ID="lbPolizaHistoricoPoliza" runat="server" Text="Poliza"  CssClass="LetrasNegrita"></asp:Label>
                          <asp:TextBox ID="txtPolizaHistoricoPoliza" runat="server" CssClass="form-control" MaxLength="20" AutoCompleteType="Disabled"></asp:TextBox>
                      </div>
 
-                     <div class="form-group col-md-3">
+                     <div class="col-md-3">
                          <asp:Label ID="lbSubRanoHistoriclPoliza" runat="server" Text="Sub Ramo"  CssClass="LetrasNegrita"></asp:Label>
                          <asp:DropDownList ID="ddlSeleccionarSubramHistoriclPoliza" runat="server" CssClass="form-control" ToolTip="Seleccionar Sub Ramo"></asp:DropDownList>
                      </div>
 
-                     <div class="form-group col-md-3">
+                     <div class="col-md-3">
                          <asp:Label ID="lbFecgaDesdeHistoricl" runat="server" Text="Fecha Desde"  CssClass="LetrasNegrita"></asp:Label>
                          <asp:TextBox ID="txtFechaDesdeHistoricoPoliza" TextMode="Date" runat="server" CssClass="form-control"></asp:TextBox>
                      </div>
 
-                      <div class="form-group col-md-3">
+                      <div class="col-md-3">
                          <asp:Label ID="lbFechaHastaHistoricoPoliza" runat="server" Text="Fecha Hasta"  CssClass="LetrasNegrita"></asp:Label>
                          <asp:TextBox ID="txtFechaHAstaHistoricoPoliza" TextMode="Date" runat="server" CssClass="form-control"></asp:TextBox>
                      </div>
@@ -183,20 +191,20 @@
                  </div>
                  <!--BOTONES-->
                  <div align="center">
-                     <asp:Button ID="btnConsultarHistorico" runat="server" Text="Consultar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnConsultarHistorico_Click" ToolTip="Consultar Registros" />
+                     <asp:ImageButton ID="btnConsultarHistoricoNuevo" runat="server" ToolTip="Consultar Historico de Fianzas" CssClass="BotonImagen" OnClick="btnConsultarHistoricoNuevo_Click" ImageUrl="~/Imagenes/Buscar.png" />
                  </div>
                  <!--BOTONES-->
                  <br />
-                   <div class="table-responsive">
-                       <table class="table table-hover">
+         
+                       <table class="table table-striped">
                            <thead>
                                <tr>
-                                   <th style="width:10%" align="left"> <asp:Label ID="lbPolizaHeaderHistoricoFianzas" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
-                                   <th style="width:20%" align="left"> <asp:Label ID="lbClienteHeaderHistoricoFianza" runat="server" Text="Cliente" CssClass="Letranegrita"></asp:Label> </th>
-                                   <th style="width:20%" align="left"> <asp:Label ID="lbSubRamoHeaderHistoricoFianzas" runat="server" Text="SubRamo" CssClass="Letranegrita"></asp:Label> </th>
-                                   <th style="width:30%" align="left"> <asp:Label ID="lbConceptoHeaderHistoricoFianzas" runat="server" Text="Concepto" CssClass="Letranegrita"></asp:Label> </th>
-                                   <th style="width:10%" align="left"> <asp:Label ID="lbValorHeaderHistoricoFianzas" runat="server" Text="Valor" CssClass="Letranegrita"></asp:Label> </th>
-                                   <th style="width:10%" align="left"> <asp:Label ID="lbFechaHeaderHistoricoFianzas" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label> </th>
+                                   <th scope="col"> Poliza </th>
+                                   <th scope="col"> Cliente </th>
+                                   <th scope="col"> SubRamo</th>
+                                   <th scope="col"> Concepto</th>
+                                   <th scope="col"> Valor</th>
+                                   <th scope="col"> Fecha</th>
                                </tr>
                            </thead>
                            <tbody>
@@ -214,7 +222,7 @@
                                </asp:Repeater>
                            </tbody>
                        </table>
-                   </div>
+            
                   <div align="center">
                 <asp:Label ID="lbPaginaActualTituloHistoricoFianzas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
                 <asp:Label ID="lbPaginaActualVariableHistoricoFianzas" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
@@ -250,7 +258,7 @@
              <br />
                <!--BOTONES-->
                  <div align="center">
-                     <asp:Button ID="btnExportarHistoriclPoliza" runat="server" Text="Exportar" CssClass="btn btn-outline-primary btn-sm" ToolTip="Exportar Registros" OnClick="btnExportarHistoriclPoliza_Click" />
+                     <asp:ImageButton ID="btnExportarHistorialPolizaNuevo" runat="server" ToolTip="Exportar Información" CssClass="BotonImagen" OnClick="btnExportarHistorialPolizaNuevo_Click" ImageUrl="~/Imagenes/excel.png" />
 
                  </div>
              <br />

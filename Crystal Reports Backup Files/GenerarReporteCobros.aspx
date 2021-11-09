@@ -25,8 +25,8 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #7BC5FF;
+            color: #000000;
         }
     </style>
 
@@ -70,7 +70,7 @@
         <asp:Label ID="lbAgruparDatos" runat="server" Text="Agrupar Datos" CssClass="Letranegrita"></asp:Label>
         <br />
         <div class="form-check-inline">
-            <div class="form-group form-check">
+      
                 <asp:RadioButton ID="rbNoAgruparDatos" runat="server" Text="No Agrupar" ToolTip="Generar Reporte sin Agrupar datos" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbNoAgruparDatos_CheckedChanged" />
                 <asp:RadioButton ID="rbAgruparPorConcepto" runat="server" Text="Concepto" ToolTip="Generar Reporte Agrupado Por Concepto" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparPorConcepto_CheckedChanged" />
                 <asp:RadioButton ID="rbAgruparTipoPago" runat="server" Text="Tipo de Pago" ToolTip="Generar Reporte Agrupado Por Tipo de Pago" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparTipoPago_CheckedChanged" />
@@ -80,105 +80,104 @@
                 <asp:RadioButton ID="rbAgrupaRamo" runat="server" Text="Ramo" ToolTip="Generar Reporte Agrupado Por Ramo" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgrupaRamo_CheckedChanged" />
                 <asp:RadioButton ID="rbAgruparUsuario" runat="server" Text="Usuario" ToolTip="Generar Reporte Agrupado Por Usuario" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparUsuario_CheckedChanged" />
                 <asp:RadioButton  ID="rbAgrupadoPorDia" runat="server" Text="Por Dia" ToolTip="Generar Reporte Agrupado Por Dia" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgrupadoPorDia_CheckedChanged" />
-            </div>
+       
         </div><br />
         <asp:Label ID="lbTipoReporte" runat="server" Text="Tipo de Reporte a Generar" CssClass="Letranegrita"></asp:Label><br />
         <div id="divTipoReporte" runat="server" class="form-check-inline">
-            <div class="form-group form-check">
+          
                 <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Detallado" ToolTip="Generar Reporte Detallado" CssClass="form-check-input Letranegrita" GroupName="TipoReporte"/>
                 <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" ToolTip="Generar Reporte Resumido" CssClass="form-check-input Letranegrita" GroupName="TipoReporte"/>
-            </div>
+           
         </div>
         <br />
         <asp:Label ID="lbTipoReportePorDia" runat="server" Text="Tipo de Reporte Por Dia a Generar" CssClass="Letranegrita"></asp:Label><br />
         <div id="DivTipoReportePorDia" runat="server" class="form-check-inline">
-            <div class="form-group form-check">
+         
                 <asp:RadioButton ID="rbReporteResumidoPorDia" runat="server" Text="Resumido" ToolTip="Generar Reporte Resumido Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
                 <asp:RadioButton ID="rbReporteDetalladoPorDia" runat="server" Text="Detallado" ToolTip="Generar Reporte Detallado Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
                 <asp:RadioButton ID="rbReportePorSupervisorPorDia" runat="server" Text="Por Supervisor" ToolTip="Generar Reporte Por Supervisor Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
                 <asp:RadioButton ID="rbReportePorIntermediarioPorDia" runat="server" Text="Por Intermediario" ToolTip="Generar Reporte Por Intermediario Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
-            </div>
+        
         </div>
         <hr />
         <asp:Label ID="lbTipoRecibos" runat="server" Text="Tipo de Recibos a Mostrar" CssClass="Letranegrita"></asp:Label><br />
         <div class="form-check-inline">
-            <div class="form-group form-check">
+     
                 <asp:RadioButton ID="rbTodosRecibos" runat="server" Text="Todos" ToolTip="Mostrar Todos los Recibos (Activos y Anulados)" CssClass="form-check-input Letranegrita" GroupName="Anulado"/>
                 <asp:RadioButton ID="rbRecibosActivos" runat="server" Text="Activos" ToolTip="Mostrar Recibos Activos" CssClass="form-check-input Letranegrita" GroupName="Anulado"/>
                 <asp:RadioButton ID="rbRecibosAnulados" runat="server" Text="Anulados" ToolTip="Mostrar Recibos Anulados" CssClass="form-check-input Letranegrita" GroupName="Anulado" />
-            </div>
+          
         </div>
 
         <!--AGREGAMOS LOS CONTROLES DE BUSQUEDA-->
-        <div class="form-row">
-            <div class="form-group col-md-6">
+        <div class="row">
+            <div class="col-md-6">
                 <asp:Label ID="lbfechadesdeConsulta" runat="server" Text="Fecha Desde" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaDesdeConsulta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
-            <div class="form-group col-md-6">
+            <div class="col-md-6">
                 <asp:Label ID="lbFechaHastaConsulta" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaHastaConsulta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
-            <div class="form-group col-md-2">
+            <div class="col-md-2">
                 <asp:Label ID="lbCodigoSupervisorConsulta" runat="server" Text="Codigo de Supervisor" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoSupervisorConsulta" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoSupervisorConsulta_TextChanged" TextMode="Number" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbNombreSupervisorintermediario" runat="server" Text="Nombre de Supervisor" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreSupervisorConsulta" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="form-group col-md-2">
-                <asp:Label ID="lbCodigoIntermediarioConsulta" runat="server" Text="Codigo de Intermediario" CssClass="Letranegrita"></asp:Label>
+            <div class="col-md-2">
+                <asp:Label ID="lbCodigoIntermediarioConsulta" runat="server" Text="ID de Intermediario" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoIntermediarioConsulta" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoIntermediarioConsulta_TextChanged" TextMode="Number" CssClass="form-control"></asp:TextBox>
             </div>
-              <div class="form-group col-md-4">
+              <div class="col-md-4">
                 <asp:Label ID="lbNombreIntermediarioConsulta" runat="server" Text="Nombre de Intermediario" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreIntermediarioConsulta" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbSeleccionarSucursalConsulta" runat="server" Text="Seleccionar Sucursal" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarSucursalConsulta" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarSucursalConsulta_SelectedIndexChanged" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbSeleccionaroficinaConsulta" runat="server" Text="Seleccionar Oficina" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarOficinaConsulta" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
             </div>
-             <div class="form-group col-md-4">
+             <div class="col-md-4">
                 <asp:Label ID="lbSeleccionarRamoConsulta" runat="server" Text="Seleccionar Ramo" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarRamoConsulta" runat="server" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
             </div>
-            <div class="form-group col-md-1">
+            <div class="col-md-1">
                 <asp:Label ID="lbTasaConsulta" runat="server" Text="Tasa" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtTasaConsulta" runat="server" TextMode="Number" Step="0.01" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbSeleccionarConceptoConsulta" runat="server" Text="Seleccionar Concepto" CssClass="Letranegrita"></asp:Label>
                  <asp:DropDownList ID="ddlSeleccionarConceptoConsulta" runat="server" ToolTip="Seleccionar Concepto" CssClass="form-control"></asp:DropDownList>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbNumeroReciboConsulta" runat="server" Text="Numero de Recibo" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNumeroRecibo" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbNumeroPolizaConsulta" runat="server" Text="Numero de Poliza" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNumeroPolizaCOnsulta" runat="server"  CssClass="form-control"></asp:TextBox>
             </div>
         </div>
         <asp:Label ID="lbExportarA" runat="server" Text="Exportar A:" CssClass="Letranegrita"></asp:Label>
         <div class="form-check-inline">
-            <div class="form-group form-check">
+       
                 <asp:RadioButton ID="rbExportarPDF" runat="server" Text="PDF" ToolTip="Exportar Data a PDF" GroupName="ExportarData" CssClass="form-check-input Letranegrita" />
                 <asp:RadioButton ID="rbExportarExcel" runat="server" Text="Excel" ToolTip="Exportar Data a Excel" GroupName="ExportarData" CssClass="form-check-input Letranegrita" />
                 <asp:RadioButton ID="rbExportarWord" runat="server" Text="Word" ToolTip="Exportar Data a Word" GroupName="ExportarData" CssClass="form-check-input Letranegrita" />
                 <asp:RadioButton ID="rbExportarTXT" runat="server" Text="TXT" ToolTip="Exportar Data a TXT" GroupName="ExportarData" CssClass="form-check-input Letranegrita" />
                 <asp:RadioButton ID="rbExportarCSV" runat="server" Text="CSV" ToolTip="Exportar Data a CSV" GroupName="ExportarData" CssClass="form-check-input Letranegrita" />
-            </div>
+       
         </div>
          <div id="divGraficar" runat="server" align="center">
             <div class="form-check-inline"  >
-           <div class="form-group form-check">
                <asp:CheckBox ID="cbGraficar" runat="server" Text="Graficar" AutoPostBack="true" OnCheckedChanged="cbGraficar_CheckedChanged"  ToolTip="Graficar Información" CssClass="form-check-input" />
-           </div>
+     
        </div>
        </div><br />
         <div align="center">
@@ -206,84 +205,37 @@
         <br />
         <!--INICIO DEL REPEATER-->
         <div>
-            <div class="table-responsive mT20">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th style="width:10%" align="left" >
-                                <asp:Label ID="lbPolizaHeaderRepeater" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
-                            </th>
-
-                            <th style="width:20%" align="left" >
-                                <asp:Label ID="lbRamoHeaderRepeater" runat="server" Text="Ramo" CssClass="Letranegrita"></asp:Label>
-                            </th>
-
-                            <th style="width:15%" align="left" >
-                                <asp:Label ID="lbReciboHeaderrepeater" runat="server" Text="Recibo" CssClass="Letranegrita"></asp:Label>
-                            </th>
-
-                            <th style="width:15%"  align="left" >
-                                <asp:Label ID="lbConceptoHeaderRepeater" runat="server" Text="Concepto" CssClass="Letranegrita"></asp:Label>
-                            </th>
-
-                            <th style="width:10%" align="left" >
-                                <asp:Label ID="lbValorHaderRepeater" runat="server" Text="Valor" CssClass="Letranegrita"></asp:Label>
-                            </th>
-
-                            <th style="width:10%" align="left" >
-                                <asp:Label ID="lbMonedaHeaderRepeater" runat="server" Text="Moneda" CssClass="Letranegrita"></asp:Label>
-                            </th>
-
-                            <th style="width:10%" align="left" >
-                                <asp:Label ID="lbFechaHeaderRepeater" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label>
-                            </th>
-
-                            <th style="width:10%" align="left" >
-                                <asp:Label ID="lbTipoPagoHeaderRepeater" runat="server" Text="Tipo Pago" CssClass="Letranegrita"></asp:Label>
-                            </th>
+                            <th scope="col" > Poliza </th>
+                            <th scope="col" > Ramo </th>
+                            <th scope="col" > Recibo </th>
+                            <th scope="col" > Concepto </th>
+                            <th scope="col" > Valor </th>
+                            <th scope="col" > Moneda </th>
+                            <th scope="col" > Fecha </th>
+                            <th scope="col" > Tipo Pago" </th>
                         </tr>
                     </thead>
                     <tbody>
                         <asp:Repeater ID="rpListadoCobro" runat="server">
                             <ItemTemplate>
                                 <tr>
-                                    <td style="width:10%" >
-                                        <%#Eval("Poliza") %>
-                                    </td>
-
-                                    <td style="width:20%">
-                                        <%# Eval("Ramo") %>
-                                    </td>
-
-                                    <td style="width:15%" >
-                                        <%#Eval("NumeroFormateado") %>
-                                    </td>
-
-                                    <td style="width:15%" >
-                                        <%#Eval("Concepto") %>
-                                    </td>
-
-                                    <td style="width:10%" >
-                                        <%# string.Format("{0:n2}", Eval("Bruto")) %>
-                                    </td>
-
-                                    <td style="width:10%" >
-                                        <%#Eval("Moneda") %>
-                                    </td>
-
-                                    <td style="width:10%" >
-                                        <%#Eval("FechaFormateada") %>
-                                    </td>
-
-                                    <td style="width:10%" >
-                                        <%#Eval("TipoPago") %>
-                                    </td>
+                                    <td> <%#Eval("Poliza") %> </td>
+                                    <td> <%# Eval("Ramo") %> </td>
+                                    <td> <%#Eval("NumeroFormateado") %> </td>
+                                    <td> <%#Eval("Concepto") %> </td>
+                                    <td> <%# string.Format("{0:n2}", Eval("Bruto")) %> </td>
+                                    <td> <%#Eval("Moneda") %> </td>
+                                    <td> <%#Eval("FechaFormateada") %>  </td>
+                                    <td> <%#Eval("TipoPago") %> </td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
                     </tbody>
                 </table>
-            </div>
+
         </div>
         <!--FIN DEL REPEATER-->
 

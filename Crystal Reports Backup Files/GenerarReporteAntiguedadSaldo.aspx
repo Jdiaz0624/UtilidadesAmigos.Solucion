@@ -25,8 +25,8 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #1E90FF;
+            color: #000000;
         }
     </style>
 
@@ -62,83 +62,83 @@
     <div class="container-fluid">
        <br /><br />
 
-        <div class="form-row">
-            <div class="form-group col-md-3">
+        <div class="row">
+            <div class="col-md-3">
                 <asp:Label ID="lbfechacorte" runat="server" Text="Fecha de Corte" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaCorte" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbNumeroFactura" runat="server" Text="Numero de Factura (FT, CR o PAD)" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNumeroFactura" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbPoliza" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtPoliza" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbSeleccionarRamo" runat="server" Text="Ramo" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarRamo" runat="server" ToolTip="Seleccionar Ramo para la consulta" CssClass="form-control"></asp:DropDownList>
             </div>
 
-             <div class="form-group col-md-1">
+             <div class="col-md-1">
                 <asp:Label ID="lbTasaDollar" runat="server" Text="Tasa" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtTasaDollar" runat="server" CssClass="form-control" TextMode="Number" step="0.01"></asp:TextBox>
             </div>
-            <div class="form-group col-md-2">
+            <div class="col-md-2">
                 <asp:Label ID="lbTipoMovimiento" runat="server" Text="Tipo de Movimiento" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarTipoMovimiento" runat="server" ToolTip="Seleccionar el Tipo de Movimiento" CssClass="form-control"></asp:DropDownList>
             </div>
-            <div class="form-group col-md-1">
+            <div class="col-md-1">
                 <asp:Label ID="lbCodigoCliente" runat="server" Text="Cliente" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoCliente" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoCliente_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
-             <div class="form-group col-md-2">
+             <div class="col-md-2">
                 <asp:Label ID="lbNombreCliente" runat="server" Text="Nombre Cliente" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-1">
+            <div class="col-md-1">
                 <asp:Label ID="lbCodigoVendedor" runat="server" Text="Vendedor" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoVendedor" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoVendedor_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
-             <div class="form-group col-md-2">
+             <div class="col-md-2">
                 <asp:Label ID="lbNombreVendedor" runat="server" Text="Nombre Vendedor" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreVendedor" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
             </div>
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbOficina" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarOficina" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
             </div>
-            <div class="form-group col-md-2">
+            <div class="col-md-2">
                 <asp:Label ID="lbSeleccionarMoneda" runat="server" Text="Moneda" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarMoneda" runat="server" ToolTip="Seleccionar Moneda" CssClass="form-control"></asp:DropDownList>
             </div>
         </div>
 
         <div class="form-check-inline">
-            <div class="form-group form-check">
+
                 <asp:Label ID="lbTipoReporte" runat="server" Text="Tipo de Reporte: " CssClass="Letranegrita"></asp:Label>
                 <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" CssClass="form-check-input" GroupName="TipoReporte" ToolTip="Generar Antiguedad de Saldo Resumida" />
                 <asp:RadioButton ID="rbReporteNeteado" runat="server" Text="Neteado" CssClass="form-check-input" GroupName="TipoReporte" ToolTip="Generar Antiguedad de Saldo Neteada" />
                 <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Detallado" CssClass="form-check-input" GroupName="TipoReporte" ToolTip="Generar Antiguedad de Saldo Detallada" />
-            </div>
+  
         </div>
         <br />
         <div class="form-check-inline">
-            <div class="form-group form-check">
+       
                 <asp:Label ID="lbFormatoReporte" runat="server" Text="Formato de Reporte: " CssClass="Letranegrita"></asp:Label>
                 <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" CssClass="form-check-input" GroupName="FormatoReporte" ToolTip="Generar Información en PDF" />
                 <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" CssClass="form-check-input" GroupName="FormatoReporte" ToolTip="Generar Información en Excel" />
                 <asp:RadioButton ID="rbWord" runat="server" Text="Word" CssClass="form-check-input" GroupName="FormatoReporte" ToolTip="Generar Informacion en Word" />
-            </div>
+
         </div>
         <br />
          <div class="form-check-inline">
-            <div class="form-group form-check">
+          
                 <asp:Label ID="lbTipoConsulta" runat="server" Text="Tipo de Consulta: " CssClass="Letranegrita"></asp:Label>
                 <asp:RadioButton ID="rbSistema" runat="server" Text="Sistema" CssClass="form-check-input" GroupName="TipoConsulta" ToolTip="Consultar en el Sistema (Sysflex)" AutoPostBack="true" OnCheckedChanged="rbSistema_CheckedChanged" />
                 <asp:RadioButton ID="rbHistorico" runat="server" Text="Historico" CssClass="form-check-input" GroupName="TipoConsulta" ToolTip="Consultar en el historico" AutoPostBack="true" OnCheckedChanged="rbHistorico_CheckedChanged" />
-            </div>
+   
         </div>
 
         <div align="center">
@@ -155,20 +155,20 @@
         </div>
         <br />
 
-        <div class="table-responsive">
+
             <table class="table table-hover">
                 <thead>
                     <tr>
-                    <th style="width:10%" align="left"> <asp:Label ID="lbPolizaHeaderRepeater" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
-                    <th style="width:10%" align="left"> <asp:Label ID="lbNumeroHeaderRepeater" runat="server" Text="Numero" CssClass="Letranegrita"></asp:Label>  </th>
-                    <th style="width:10%" align="left"> <asp:Label ID="lbMonedaHEaderRepeater" runat="server" Text="Balance" CssClass="Letranegrita"></asp:Label>  </th>
-                    <th style="width:10%" align="left"> <asp:Label ID="lbDiasHeaderRepeater" runat="server" Text="Dias" CssClass="Letranegrita"></asp:Label>  </th>
-                    <th style="width:10%" align="left"> <asp:Label ID="lb030HEaderRepeater" runat="server" Text="0-30" CssClass="Letranegrita"></asp:Label> </th>
-                    <th style="width:10%" align="left"> <asp:Label ID="lb3160HeaderRepeater" runat="server" Text="31-60" CssClass="Letranegrita"></asp:Label>  </th>
-                    <th style="width:10%" align="left"> <asp:Label ID="lb6190HeaderRepeater" runat="server" Text="61-90" CssClass="Letranegrita"></asp:Label>  </th>
-                    <th style="width:10%" align="left"> <asp:Label ID="lb91120HEaderRepeater" runat="server" Text="91-120" CssClass="Letranegrita"></asp:Label>  </th>
-                    <th style="width:10%" align="left"> <asp:Label ID="lb121150HeaderRepeater" runat="server" Text="121-150" CssClass="Letranegrita"></asp:Label> </th>
-                    <th style="width:10%" align="left"> <asp:Label ID="lb151MasHEaderRepeater" runat="server" Text="151 o Mas" CssClass="Letranegrita"></asp:Label>  </th>                    
+                    <th scope="col"> Poliza </th>
+                    <th scope="col"> Numero  </th>
+                    <th scope="col"> Balance  </th>
+                    <th scope="col"> Dias  </th>
+                    <th scope="col"> 0-30 </th>
+                    <th scope="col"> 31-60  </th>
+                    <th scope="col"> 61-90  </th>
+                    <th scope="col"> 91-120  </th>
+                    <th scope="col"> 121-150 </th>
+                    <th scope="col"> 151 o Mas  </th>                    
                 </tr>
                 </thead>
                 <tbody>
@@ -176,23 +176,23 @@
                         <asp:Repeater ID="rpListadoAntiguedaSando" runat="server">
                             <ItemTemplate>
                                 <tr>
-                                <td style="width:10%"><%# Eval("Poliza") %></td>
-                                <td style="width:10%"><%# Eval("Documento") %></td>
-                                <td style="width:10%"><%#string.Format("{0:n2}", Eval("Balance")) %></td>
-                                <td style="width:10%"><%#string.Format("{0:n0}", Eval("Dias")) %></td>
-                                <td style="width:10%"><%#string.Format("{0:n2}", Eval("__0_30")) %></td>
-                                <td style="width:10%"><%#string.Format("{0:n2}", Eval("__31_60")) %></td>
-                                <td style="width:10%"><%#string.Format("{0:n2}", Eval("__61_90")) %></td>
-                                <td style="width:10%"><%#string.Format("{0:n2}", Eval("__91_120")) %></td>
-                                <td style="width:10%"><%#string.Format("{0:n2}", Eval("__121_150")) %></td>
-                                <td style="width:10%"><%#string.Format("{0:n2}", Eval("__151_MAS")) %></td>
+                                <td><%# Eval("Poliza") %></td>
+                                <td><%# Eval("Documento") %></td>
+                                <td><%#string.Format("{0:n2}", Eval("Balance")) %></td>
+                                <td><%#string.Format("{0:n0}", Eval("Dias")) %></td>
+                                <td><%#string.Format("{0:n2}", Eval("__0_30")) %></td>
+                                <td><%#string.Format("{0:n2}", Eval("__31_60")) %></td>
+                                <td><%#string.Format("{0:n2}", Eval("__61_90")) %></td>
+                                <td><%#string.Format("{0:n2}", Eval("__91_120")) %></td>
+                                <td><%#string.Format("{0:n2}", Eval("__121_150")) %></td>
+                                <td><%#string.Format("{0:n2}", Eval("__151_MAS")) %></td>
                                     </tr>
                             </ItemTemplate>
                         </asp:Repeater>
                     
                 </tbody>
             </table>
-        </div>
+       
           <div align="center">
                 <asp:Label ID="lbPaginaActualTitulo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
                 <asp:Label ID="lbPaginaActualVariavle" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>

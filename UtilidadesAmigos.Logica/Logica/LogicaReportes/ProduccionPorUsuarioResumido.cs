@@ -1753,7 +1753,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         #endregion
 
         #region PROCESAR INFORMACION DEL REPORTE DE PRODUCCION
-        UtilidadesAmigos.Logica.Entidades.Reportes.EDatosReporteNuevo ProcesarReporteDatosProduccion(UtilidadesAmigos.Logica.Entidades.Reportes.EDatosReporteNuevo Item, string Accion) {
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EDatosReporteNuevo ProcesarReporteDatosProduccion(UtilidadesAmigos.Logica.Entidades.Reportes.EDatosReporteNuevo Item, string Accion) {
 
             ObjData.CommandTimeout = 999999999;
 
@@ -1818,7 +1818,58 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                 Procesar = (from n in DatosProduccionNuevo
                             select new UtilidadesAmigos.Logica.Entidades.Reportes.EDatosReporteNuevo
                             {
-                       
+                                  CodRamo =n.CodRamo,
+                                  SubRamo = n.SubRamo,
+                                  Ramo = n.Ramo,
+                                  NombreSubRamo = n.NombreSubRamo,
+                                  NumeroFactura = n.NumeroFactura,
+                                  NumeroFacturaFormateado = n.NumeroFacturaFormateado,
+                                  Poliza = n.Poliza,
+                                  Asegurado = n.Asegurado,
+                                  Items = n.Items,
+                                  Supervisor = n.Supervisor,
+                                  CodIntermediario = n.CodIntermediario,
+                                  CodSupervisor = n.CodSupervisor,
+                                  Intermediario = n.Intermediario,
+                                  Fecha = n.Fecha,
+                                  FechaFormateada = n.FechaFormateada,
+                                  Hora = n.Hora,
+                                  FechaInicioVigencia = n.FechaInicioVigencia,
+                                  FechaFinVigencia = n.FechaFinVigencia,
+                                  InicioVigencia = n.InicioVigencia,
+                                  FinVigencia = n.FinVigencia,
+                                  SumaAsegurada = n.SumaAsegurada,
+                                  Estatus = n.Estatus,
+                                  CodOficina = n.CodOficina,
+                                  Oficina = n.Oficina,
+                                  Concepto = n.Concepto,
+                                  Ncf = n.Ncf,
+                                  Tipo = n.Tipo,
+                                  DescripcionTipo = n.DescripcionTipo,
+                                  Bruto = n.Bruto,
+                                  Impuesto = n.Impuesto,
+                                  Neto = n.Neto,
+                                  Tasa = n.Tasa,
+                                  Cobrado = n.Cobrado,
+                                  CodMoneda = n.CodMoneda,
+                                  Moneda = n.Moneda,
+                                  TasaUsada = n.TasaUsada,
+                                  MontoPesos = n.MontoPesos,
+                                  CodigoMes = n.CodigoMes,
+                                  CodigoAno = n.CodigoAno,
+                                  Mes = n.Mes,
+                                  Usuario = n.Usuario,
+                                  ValidadoDesde = n.ValidadoDesde,
+                                  ValidadoHasta = n.ValidadoHasta,
+                                  TipoVehiculo = n.TipoVehiculo,
+                                  Marca = n.Marca,
+                                  Modelo = n.Modelo,
+                                  Ano = n.Ano,
+                                  Color = n.Color,
+                                  Chasis = n.Chasis,
+                                  Placa = n.Placa,
+                                  GeneradoPor = n.GeneradoPor,
+                                  IdUsuarioGeneraReporte = n.IdUsuarioGeneraReporte
                             }).FirstOrDefault();
             }
             return Procesar;

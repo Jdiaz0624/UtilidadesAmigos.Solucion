@@ -25,20 +25,18 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #1E90FF;
+            color: #000000;
         }
     </style>
 
     <div class="container-fluid">
         <br /><br />
-        <div class="form-check-inline">
-           
-            <div class="form-group form-check">
+        <div class="form-check">
                  <asp:Label ID="lbTipoOperacion" runat="server" Text="Tipo de Operación: " CssClass="LetrasNegrita"></asp:Label>
                 <asp:RadioButton ID="rbConsultarRegistros" runat="server" Text="Consultar" AutoPostBack="true" CssClass="form-check-input" GroupName="TipoOperacion" />
                 <asp:RadioButton ID="rbProcesarRegistros" runat="server" Text="Procesar" AutoPostBack="true" CssClass="form-check-input" GroupName="TipoOperacion" />
-            </div>
+   
         </div>
     </div>
 </asp:Content>
