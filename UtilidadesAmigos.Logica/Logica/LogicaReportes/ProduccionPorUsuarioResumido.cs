@@ -1752,7 +1752,78 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         }
         #endregion
 
+        #region PROCESAR INFORMACION DEL REPORTE DE PRODUCCION
+        UtilidadesAmigos.Logica.Entidades.Reportes.EDatosReporteNuevo ProcesarReporteDatosProduccion(UtilidadesAmigos.Logica.Entidades.Reportes.EDatosReporteNuevo Item, string Accion) {
 
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EDatosReporteNuevo Procesar = null;
+
+            var DatosProduccionNuevo = ObjData.SP_PROCESAR_DATOS_REPORTE_NUEVO(
+                Item.CodRamo,
+                Item.SubRamo,
+                Item.Ramo,
+                Item.NombreSubRamo,
+                Item.NumeroFactura,
+                Item.NumeroFacturaFormateado,
+                Item.Poliza,
+                Item.Asegurado,
+                Item.Items,
+                Item.Supervisor,
+                Item.CodIntermediario,
+                Item.CodSupervisor,
+                Item.Intermediario,
+                Item.Fecha,
+                Item.FechaFormateada,
+                Item.Hora,
+                Item.FechaInicioVigencia,
+                Item.FechaFinVigencia,
+                Item.InicioVigencia,
+                Item.FinVigencia,
+                Item.SumaAsegurada,
+                Item.Estatus,
+                Item.CodOficina,
+                Item.Oficina,
+                Item.Concepto,
+                Item.Ncf,
+                Item.Tipo,
+                Item.DescripcionTipo,
+                Item.Bruto,
+                Item.Impuesto,
+                Item.Neto,
+                Item.Tasa,
+                Item.Cobrado,
+                Item.CodMoneda,
+                Item.Moneda,
+                Item.TasaUsada,
+                Item.MontoPesos,
+                Item.CodigoMes,
+                Item.CodigoAno,
+                Item.Mes,
+                Item.Usuario,
+                Item.ValidadoDesde,
+                Item.ValidadoHasta,
+                Item.TipoVehiculo,
+                Item.Marca,
+                Item.Modelo,
+                Item.Ano,
+                Item.Color,
+                Item.Chasis,
+                Item.Placa,
+                Item.GeneradoPor,
+                Item.IdUsuarioGeneraReporte,
+                Accion);
+            if (DatosProduccionNuevo != null) {
+
+                Procesar = (from n in DatosProduccionNuevo
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EDatosReporteNuevo
+                            {
+                       
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
 
     }
 }
