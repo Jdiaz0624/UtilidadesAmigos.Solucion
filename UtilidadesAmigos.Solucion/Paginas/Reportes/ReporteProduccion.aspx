@@ -74,6 +74,8 @@
     </script>
 
     <br />
+    <asp:Label ID="lbFechaDesdeGuardada" runat="server" Text="1942-01-01" Visible="false"></asp:Label>
+    <asp:Label ID="Label1" runat="server" Text="1942-01-31" Visible="false"></asp:Label>
     <div class="container-fluid">
         <div class="form-check-inline">
             <asp:Label ID="lbAgruparDatos" runat="server" Text="Agrupar Datos" CssClass="Letranegrita"></asp:Label>
@@ -182,6 +184,9 @@
             <asp:RadioButton ID="rbExcelPlano" runat="server" Text="Excel Plano" CssClass="form-check-input" GroupName="FormatoReporte" />
         </div>
         <hr />
+        <div id="DIVRecargarData" runat="server" class="form-check-inline">
+            <asp:CheckBox ID="cbRecargarData" runat="server" Text="Recargar Data" ToolTip="Recargar la Data" CssClass="form-check-input" />
+        </div>
         <div align="center">
             <asp:ImageButton ID="btnBuscarInformacion" runat="server" CssClass="BotonImagen" ToolTip="Consultar Información por pantalla" OnClick="btnBuscarInformacion_Click" ImageUrl="~/Imagenes/Buscar.png" />
              <asp:ImageButton ID="btnReporteProduccion" runat="server" CssClass="BotonImagen" ToolTip="Generar Reporte" OnClick="btnReporteProduccion_Click" ImageUrl="~/Imagenes/Reporte.png" />

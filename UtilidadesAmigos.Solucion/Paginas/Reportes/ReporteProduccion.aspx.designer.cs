@@ -15,6 +15,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
     {
 
         /// <summary>
+        /// lbFechaDesdeGuardada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaDesdeGuardada;
+
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// lbAgruparDatos control.
         /// </summary>
         /// <remarks>
@@ -445,6 +463,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rbExcelPlano;
+
+        /// <summary>
+        /// DIVRecargarData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVRecargarData;
+
+        /// <summary>
+        /// cbRecargarData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbRecargarData;
 
         /// <summary>
         /// btnBuscarInformacion control.

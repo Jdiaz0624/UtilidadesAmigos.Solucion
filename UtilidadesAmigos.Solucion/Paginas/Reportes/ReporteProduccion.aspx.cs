@@ -15,6 +15,17 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDAtaGeneral = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido> ObjDataReportes = new Lazy<Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido>();
 
+        enum TipoAgrupacion { 
+        
+            Concepto=1,
+            Usuario=2,
+            Oficina=3,
+            Ramo=4,
+            Intermediario=5,
+            Supervisor=6,
+            Moneda=7
+        }
+
         #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
         int _PrimeraPagina, _UltimaPagina;
@@ -375,116 +386,143 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
 
         }
+
+        private void GenerarReporteProduccionAgrupado(string RutaReporte, string NombreReporte, int TipoAgrupacion) {
+
+            int? _Intermediario = string.IsNullOrEmpty(txtCodIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodIntermediario.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtCodSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodSupervisor.Text);
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _SubRamo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+            string _Concepto = ddlSeleccionarCOncepto.SelectedValue != "-1" ? ddlSeleccionarCOncepto.SelectedItem.Text : null;
+            string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+            decimal? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarMoneda.SelectedValue) : new Nullable<decimal>();
+            string _Usuario = ddlSeleccionarUsuario.SelectedValue != "-1" ? ddlSeleccionarUsuario.SelectedItem.Text : null;
+            decimal? _NumeroFactura = string.IsNullOrEmpty(txtNumeroDocumento.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroDocumento.Text);
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@Intermediario", _Intermediario);
+            Reporte.SetParameterValue("@Supervisor", _Supervisor);
+            Reporte.SetParameterValue("@Oficina", _Oficina);
+            Reporte.SetParameterValue("@Ramo", _Ramo);
+            Reporte.SetParameterValue("@SubRamo", _SubRamo);
+            Reporte.SetParameterValue("@Concepto", _Concepto);
+            Reporte.SetParameterValue("@Poliza", _Poliza);
+            Reporte.SetParameterValue("@Moneda", _Moneda);
+            Reporte.SetParameterValue("@Usuario", _Usuario);
+            Reporte.SetParameterValue("@NumeroFactura", _NumeroFactura);
+            Reporte.SetParameterValue("@UsuarioGeneraReporte", (decimal)Session["Idusuario"]);
+            Reporte.SetParameterValue("@TipoAgrupacion", TipoAgrupacion);
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+            if (rbPDF.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
+            else if (rbExcel.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+            }
+
+        }
         #endregion
 
         #region PROCESAR LA INFORMACION PARA GENERAR REPORTES
         private void ProcesarInformacionParaReportes() {
-            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            decimal IdUsuarioGenera = (decimal)Session["IdUsuario"];
+            //ELIMINAMOS LOS REGISTROS
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionDatosReporteNuevo EliminarRegistro = new Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionDatosReporteNuevo(
+               IdUsuarioGenera,
+                "DELETE");
+            EliminarRegistro.ProcesarInformacion();
+
+            int? _Intermediario = string.IsNullOrEmpty(txtCodIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodIntermediario.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtCodSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodSupervisor.Text);
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _SubRamo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+            string _Concepto = ddlSeleccionarCOncepto.SelectedValue != "-1" ? ddlSeleccionarCOncepto.SelectedItem.Text : null;
+            string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+            decimal? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarMoneda.SelectedValue) : new Nullable<decimal>();
+            string _Usuario = ddlSeleccionarUsuario.SelectedValue != "-1" ? ddlSeleccionarUsuario.SelectedItem.Text : null;
+            decimal? _NumeroFactura = string.IsNullOrEmpty(txtNumeroDocumento.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroDocumento.Text);
+
+            var Listado = ObjDataReportes.Value.BuscaProduccion(
+                Convert.ToDateTime(txtFechaDesde.Text),
+                Convert.ToDateTime(txtFechaHasta.Text),
+                Convert.ToDecimal(txtTasa.Text),
+                _Intermediario,
+                _Supervisor,
+                _Oficina,
+                _Ramo,
+                _SubRamo,
+                _Concepto,
+                _Poliza,
+                _Moneda,
+                _Usuario,
+                _NumeroFactura,
+                IdUsuarioGenera);
+            foreach (var n in Listado)
             {
-                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
-                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
-                }
-                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
-                }
-            }
-            else
-            {
-                decimal IdUsuarioGenera = (decimal)Session["IdUsuario"];
-                //ELIMINAMOS LOS REGISTROS
-                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionDatosReporteNuevo EliminarRegistro = new Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionDatosReporteNuevo(
-                   IdUsuarioGenera,
-                    "DELETE");
-                EliminarRegistro.ProcesarInformacion();
 
-                int? _Intermediario = string.IsNullOrEmpty(txtCodIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodIntermediario.Text);
-                int? _Supervisor = string.IsNullOrEmpty(txtCodSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodSupervisor.Text);
-                int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
-                int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
-                int? _SubRamo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
-                string _Concepto = ddlSeleccionarCOncepto.SelectedValue != "-1" ? ddlSeleccionarCOncepto.SelectedItem.Text : null;
-                string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
-                decimal? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarMoneda.SelectedValue) : new Nullable<decimal>();
-                string _Usuario = ddlSeleccionarUsuario.SelectedValue != "-1" ? ddlSeleccionarUsuario.SelectedItem.Text : null;
-                decimal? _NumeroFactura = string.IsNullOrEmpty(txtNumeroDocumento.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroDocumento.Text);
-
-                var Listado = ObjDataReportes.Value.BuscaProduccion(
-                    Convert.ToDateTime(txtFechaDesde.Text),
-                    Convert.ToDateTime(txtFechaHasta.Text),
-                    Convert.ToDecimal(txtTasa.Text),
-                    _Intermediario,
-                    _Supervisor,
-                    _Oficina,
-                    _Ramo,
-                    _SubRamo,
-                    _Concepto,
-                    _Poliza,
-                    _Moneda,
-                    _Usuario,
-                    _NumeroFactura,
-                    IdUsuarioGenera);
-                foreach (var n in Listado) {
-
-                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionDatosReporteNuevo Guardar = new Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionDatosReporteNuevo(
-                        (int)n.CodRamo,
-                        (int)n.SubRamo,
-                        n.Ramo,
-                        n.NombreSubRamo,
-                        (decimal)n.NumeroFactura,
-                        n.NumeroFacturaFormateado,
-                        n.Poliza,
-                        n.Asegurado,
-                        (int)n.Items,
-                        n.Supervisor,
-                        (int)n.CodIntermediario,
-                        (int)n.CodSupervisor,
-                        n.Intermediario,
-                        (DateTime)n.Fecha,
-                        n.FechaFormateada,
-                        n.Hora,
-                        (DateTime)n.FechaInicioVigencia,
-                        (DateTime)n.FechaFinVigencia,
-                        n.InicioVigencia,
-                        n.FinVigencia,
-                        (decimal)n.SumaAsegurada,
-                        n.Estatus,
-                        (int)n.CodOficina,
-                        n.Oficina,
-                        n.Concepto,
-                        n.Ncf,
-                        (int)n.Tipo,
-                        n.DescripcionTipo,
-                        (decimal)n.Bruto,
-                        (decimal)n.Impuesto,
-                        (decimal)n.Neto,
-                        (decimal)n.Tasa,
-                        (decimal)n.Cobrado,
-                        (int)n.CodMoneda,
-                        n.Moneda,
-                        (decimal)n.TasaUsada,
-                        (decimal)n.MontoPesos,
-                        (int)n.CodigoMes,
-                        (int)n.CodigoAno,
-                        n.Mes,
-                        n.Usuario,
-                        txtFechaDesde.Text,
-                        txtFechaHasta.Text,
-                        n.TipoVehiculo,
-                        n.Marca,
-                        n.Modelo,
-                        n.Ano,
-                        n.Color,
-                        n.Chasis,
-                        n.Placa,
-                        n.GeneradoPor,
-                        IdUsuarioGenera,
-                        "INSERT");
-                    Guardar.ProcesarInformacion();
-
-                }
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionDatosReporteNuevo Guardar = new Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionDatosReporteNuevo(
+                    (int)n.CodRamo,
+                    (int)n.SubRamo,
+                    n.Ramo,
+                    n.NombreSubRamo,
+                    (decimal)n.NumeroFactura,
+                    n.NumeroFacturaFormateado,
+                    n.Poliza,
+                    n.Asegurado,
+                    (int)n.Items,
+                    n.Supervisor,
+                    (int)n.CodIntermediario,
+                    (int)n.CodSupervisor,
+                    n.Intermediario,
+                    (DateTime)n.Fecha,
+                    n.FechaFormateada,
+                    n.Hora,
+                    (DateTime)n.FechaInicioVigencia,
+                    (DateTime)n.FechaFinVigencia,
+                    n.InicioVigencia,
+                    n.FinVigencia,
+                    (decimal)n.SumaAsegurada,
+                    n.Estatus,
+                    (int)n.CodOficina,
+                    n.Oficina,
+                    n.Concepto,
+                    n.Ncf,
+                    (int)n.Tipo,
+                    n.DescripcionTipo,
+                    (decimal)n.Bruto,
+                    (decimal)n.Impuesto,
+                    (decimal)n.Neto,
+                    (decimal)n.Tasa,
+                    (decimal)n.Cobrado,
+                    (int)n.CodMoneda,
+                    n.Moneda,
+                    (decimal)n.TasaUsada,
+                    (decimal)n.MontoPesos,
+                    (int)n.CodigoMes,
+                    (int)n.CodigoAno,
+                    n.Mes,
+                    n.Usuario,
+                    txtFechaDesde.Text,
+                    txtFechaHasta.Text,
+                    n.TipoVehiculo,
+                    n.Marca,
+                    n.Modelo,
+                    n.Ano,
+                    n.Color,
+                    n.Chasis,
+                    n.Placa,
+                    n.GeneradoPor,
+                    IdUsuarioGenera,
+                    "INSERT");
+                Guardar.ProcesarInformacion();
 
             }
         }
@@ -496,6 +534,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             if (!IsPostBack) {
 
                 rbNoAgruparDatos.Checked = true;
+                DIVRecargarData.Visible = false;
+                cbRecargarData.Checked = false;
                 rbReporteDetallado.Checked = true;
                 rbPDF.Checked = true;
 
@@ -511,6 +551,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 decimal Tasa = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2);
                 txtTasa.Text = Tasa.ToString();
 
+             
+
             }
         }
 
@@ -520,10 +562,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 DIVTipoReporteGenerar.Visible = true;
                 HRSeparadorTipoReporte.Visible = true;
                 rbReporteDetallado.Checked = true;
+                DIVRecargarData.Visible = false;
             }
             else if (rbNoAgruparDatos.Checked == false) {
                 DIVTipoReporteGenerar.Visible = false;
                 HRSeparadorTipoReporte.Visible = false;
+                DIVRecargarData.Visible = true;
+                cbRecargarData.Checked = true;
             }
         }
 
@@ -560,6 +605,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 ExportarExcelPlano();
             }
             else {
+                int Agrupacion = 0;
+
                 if (rbNoAgruparDatos.Checked == true)
                 {
                     if (rbReporteDetallado.Checked == true) {
@@ -571,13 +618,149 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                         ProcesarInformacionParaReportes();
                     }
                 }
-                else if (rbAgruparPorConcepto.Checked == true) { }
-                else if (rbAgruparPorUsuario.Checked == true) { }
-                else if (rbAgruparPorOficina.Checked == true) { }
-                else if (rbAgruparPorRamo.Checked == true) { }
-                else if (rbAgruparPorIntermediario.Checked == true) { }
-                else if (rbAgruparPorSupervisor.Checked == true) { }
-                else if (rbAgruparPorMoneda.Checked == true) { }
+                else if (rbAgruparPorConcepto.Checked == true) {
+
+                    if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
+                        if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                        }
+                        if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                        }
+                    }
+                    else {
+                        Agrupacion = (int)TipoAgrupacion.Concepto;
+                        ProcesarInformacionParaReportes();
+                        GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Concepto", (int)TipoAgrupacion.Concepto);
+
+
+                    }
+
+                }
+                else if (rbAgruparPorUsuario.Checked == true) {
+                    if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
+                        if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                        }
+                        if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                        }
+                    }
+                    else {
+                        Agrupacion = (int)TipoAgrupacion.Usuario;
+                        ProcesarInformacionParaReportes();
+                        GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Usuario", (int)TipoAgrupacion.Usuario);
+                    }
+                }
+                else if (rbAgruparPorOficina.Checked == true) {
+                    if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
+                        if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                        }
+                        if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                        }
+                    }
+                    else {
+                        Agrupacion = (int)TipoAgrupacion.Oficina;
+                        ProcesarInformacionParaReportes();
+                        GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Oficina", (int)TipoAgrupacion.Oficina);
+                    }
+
+
+                }
+                else if (rbAgruparPorRamo.Checked == true) {
+                    if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
+                        if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                        }
+                        if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                        }
+                    }
+                    else {
+                        Agrupacion = (int)TipoAgrupacion.Ramo;
+                        ProcesarInformacionParaReportes();
+                        GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Ramo", (int)TipoAgrupacion.Ramo);
+                    }
+
+                }
+                else if (rbAgruparPorIntermediario.Checked == true) {
+                    if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
+                        if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                        }
+                        if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                        }
+                    }
+                    else {
+                        Agrupacion = (int)TipoAgrupacion.Intermediario;
+                        ProcesarInformacionParaReportes();
+                        GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Intermediario", (int)TipoAgrupacion.Intermediario);
+                    }
+
+                }
+                else if (rbAgruparPorSupervisor.Checked == true) {
+                    if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
+                        if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                        }
+                        if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                        }
+                    }
+                    else {
+                        Agrupacion = (int)TipoAgrupacion.Supervisor;
+                        ProcesarInformacionParaReportes();
+                        GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Supervisor", (int)TipoAgrupacion.Supervisor);
+                    }
+
+                }
+                else if (rbAgruparPorMoneda.Checked == true) {
+                    if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
+                        if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                        }
+                        if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                        {
+                            ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                        }
+                    }
+                    else {
+                        Agrupacion = (int)TipoAgrupacion.Moneda;
+                        ProcesarInformacionParaReportes();
+                        GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Moneda", (int)TipoAgrupacion.Moneda);
+                    }
+
+                }
 
             }
         }
@@ -620,10 +803,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
                 DIVTipoReporteGenerar.Visible = false;
                 HRSeparadorTipoReporte.Visible = false;
+                DIVRecargarData.Visible = true;
+                cbRecargarData.Checked = false;
             }
             else {
                 DIVTipoReporteGenerar.Visible = true;
                 HRSeparadorTipoReporte.Visible = true;
+                DIVRecargarData.Visible = false;
             }
         }
 
@@ -634,11 +820,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
                 DIVTipoReporteGenerar.Visible = false;
                 HRSeparadorTipoReporte.Visible = false;
+                DIVRecargarData.Visible = true;
+                cbRecargarData.Checked = false;
             }
             else
             {
                 DIVTipoReporteGenerar.Visible = true;
                 HRSeparadorTipoReporte.Visible = true;
+                DIVRecargarData.Visible = false;
             }
         }
 
@@ -649,11 +838,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
                 DIVTipoReporteGenerar.Visible = false;
                 HRSeparadorTipoReporte.Visible = false;
+                DIVRecargarData.Visible = true;
+                cbRecargarData.Checked = false;
             }
             else
             {
                 DIVTipoReporteGenerar.Visible = true;
                 HRSeparadorTipoReporte.Visible = true;
+                DIVRecargarData.Visible = false;
             }
         }
 
@@ -664,11 +856,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
                 DIVTipoReporteGenerar.Visible = false;
                 HRSeparadorTipoReporte.Visible = false;
+                DIVRecargarData.Visible = true;
+                cbRecargarData.Checked = false;
             }
             else
             {
                 DIVTipoReporteGenerar.Visible = true;
                 HRSeparadorTipoReporte.Visible = true;
+                DIVRecargarData.Visible = false;
             }
         }
 
@@ -679,11 +874,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
                 DIVTipoReporteGenerar.Visible = false;
                 HRSeparadorTipoReporte.Visible = false;
+                DIVRecargarData.Visible = true;
+                cbRecargarData.Checked = false;
             }
             else
             {
                 DIVTipoReporteGenerar.Visible = true;
                 HRSeparadorTipoReporte.Visible = true;
+                DIVRecargarData.Visible = false;
             }
         }
 
@@ -694,11 +892,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
                 DIVTipoReporteGenerar.Visible = false;
                 HRSeparadorTipoReporte.Visible = false;
+                DIVRecargarData.Visible = true;
+                cbRecargarData.Checked = false;
             }
             else
             {
                 DIVTipoReporteGenerar.Visible = true;
                 HRSeparadorTipoReporte.Visible = true;
+                DIVRecargarData.Visible = false;
             }
         }
 
@@ -709,11 +910,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
                 DIVTipoReporteGenerar.Visible = false;
                 HRSeparadorTipoReporte.Visible = false;
+                DIVRecargarData.Visible = true;
+                cbRecargarData.Checked = false;
             }
             else
             {
                 DIVTipoReporteGenerar.Visible = true;
                 HRSeparadorTipoReporte.Visible = true;
+                DIVRecargarData.Visible = false;
             }
         }
 
