@@ -75,7 +75,7 @@
 
     <br />
     <asp:Label ID="lbFechaDesdeGuardada" runat="server" Text="1942-01-01" Visible="false"></asp:Label>
-    <asp:Label ID="Label1" runat="server" Text="1942-01-31" Visible="false"></asp:Label>
+    <asp:Label ID="lbFechaHastaGardada" runat="server" Text="1942-01-31" Visible="false"></asp:Label>
     <div class="container-fluid">
         <div class="form-check-inline">
             <asp:Label ID="lbAgruparDatos" runat="server" Text="Agrupar Datos" CssClass="Letranegrita"></asp:Label>

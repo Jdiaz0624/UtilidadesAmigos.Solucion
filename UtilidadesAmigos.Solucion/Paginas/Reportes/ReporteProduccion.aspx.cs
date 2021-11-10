@@ -525,6 +525,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 Guardar.ProcesarInformacion();
 
             }
+            
         }
         #endregion
 
@@ -634,8 +635,34 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                     }
                     else {
                         Agrupacion = (int)TipoAgrupacion.Concepto;
-                        ProcesarInformacionParaReportes();
+
+                        string _FechaDesdeoriginal = lbFechaDesdeGuardada.Text;
+                        string _FechaHastaoriginal = lbFechaHastaGardada.Text;
+                        string _FechaDesdeDinamica = txtFechaDesde.Text;
+                        string _FechaHastaDinamica = txtFechaHasta.Text;
+
+                        if (_FechaDesdeoriginal != _FechaDesdeDinamica || _FechaHastaoriginal != _FechaHastaDinamica)
+                        {
+                            lbFechaDesdeGuardada.Text = txtFechaDesde.Text;
+                            lbFechaHastaGardada.Text = txtFechaHasta.Text;
+
+                            if (_FechaDesdeoriginal == _FechaDesdeDinamica || _FechaHastaoriginal == _FechaHastaDinamica)
+                            {
+                                if (cbRecargarData.Checked == true) {
+                                    ProcesarInformacionParaReportes();
+                                   
+                                }
+                            }
+                            else {
+                                ProcesarInformacionParaReportes();
+                            }
+                        }
+
+                        
                         GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Concepto", (int)TipoAgrupacion.Concepto);
+
+
+
 
 
                     }
