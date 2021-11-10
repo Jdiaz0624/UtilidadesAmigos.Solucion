@@ -377,6 +377,119 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         }
         #endregion
 
+        #region PROCESAR LA INFORMACION PARA GENERAR REPORTES
+        private void ProcesarInformacionParaReportes() {
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                }
+            }
+            else
+            {
+                decimal IdUsuarioGenera = (decimal)Session["IdUsuario"];
+                //ELIMINAMOS LOS REGISTROS
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionDatosReporteNuevo EliminarRegistro = new Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionDatosReporteNuevo(
+                   IdUsuarioGenera,
+                    "DELETE");
+                EliminarRegistro.ProcesarInformacion();
+
+                int? _Intermediario = string.IsNullOrEmpty(txtCodIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodIntermediario.Text);
+                int? _Supervisor = string.IsNullOrEmpty(txtCodSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodSupervisor.Text);
+                int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+                int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                int? _SubRamo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+                string _Concepto = ddlSeleccionarCOncepto.SelectedValue != "-1" ? ddlSeleccionarCOncepto.SelectedItem.Text : null;
+                string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+                decimal? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarMoneda.SelectedValue) : new Nullable<decimal>();
+                string _Usuario = ddlSeleccionarUsuario.SelectedValue != "-1" ? ddlSeleccionarUsuario.SelectedItem.Text : null;
+                decimal? _NumeroFactura = string.IsNullOrEmpty(txtNumeroDocumento.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroDocumento.Text);
+
+                var Listado = ObjDataReportes.Value.BuscaProduccion(
+                    Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHasta.Text),
+                    Convert.ToDecimal(txtTasa.Text),
+                    _Intermediario,
+                    _Supervisor,
+                    _Oficina,
+                    _Ramo,
+                    _SubRamo,
+                    _Concepto,
+                    _Poliza,
+                    _Moneda,
+                    _Usuario,
+                    _NumeroFactura,
+                    IdUsuarioGenera);
+                foreach (var n in Listado) {
+
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionDatosReporteNuevo Guardar = new Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionDatosReporteNuevo(
+                        (int)n.CodRamo,
+                        (int)n.SubRamo,
+                        n.Ramo,
+                        n.NombreSubRamo,
+                        (decimal)n.NumeroFactura,
+                        n.NumeroFacturaFormateado,
+                        n.Poliza,
+                        n.Asegurado,
+                        (int)n.Items,
+                        n.Supervisor,
+                        (int)n.CodIntermediario,
+                        (int)n.CodSupervisor,
+                        n.Intermediario,
+                        (DateTime)n.Fecha,
+                        n.FechaFormateada,
+                        n.Hora,
+                        (DateTime)n.FechaInicioVigencia,
+                        (DateTime)n.FechaFinVigencia,
+                        n.InicioVigencia,
+                        n.FinVigencia,
+                        (decimal)n.SumaAsegurada,
+                        n.Estatus,
+                        (int)n.CodOficina,
+                        n.Oficina,
+                        n.Concepto,
+                        n.Ncf,
+                        (int)n.Tipo,
+                        n.DescripcionTipo,
+                        (decimal)n.Bruto,
+                        (decimal)n.Impuesto,
+                        (decimal)n.Neto,
+                        (decimal)n.Tasa,
+                        (decimal)n.Cobrado,
+                        (int)n.CodMoneda,
+                        n.Moneda,
+                        (decimal)n.TasaUsada,
+                        (decimal)n.MontoPesos,
+                        (int)n.CodigoMes,
+                        (int)n.CodigoAno,
+                        n.Mes,
+                        n.Usuario,
+                        txtFechaDesde.Text,
+                        txtFechaHasta.Text,
+                        n.TipoVehiculo,
+                        n.Marca,
+                        n.Modelo,
+                        n.Ano,
+                        n.Color,
+                        n.Chasis,
+                        n.Placa,
+                        n.GeneradoPor,
+                        IdUsuarioGenera,
+                        "INSERT");
+                    Guardar.ProcesarInformacion();
+
+                }
+
+            }
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -454,7 +567,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                         GenerarReporteProduccion(Server.MapPath("ReporteProduccionNuevoDetalle.rpt"), "Reporte de Producción Detalle");
 
                     }
-                    else if (rbReporteResumido.Checked == true) { }
+                    else if (rbReporteResumido.Checked == true) {
+                        ProcesarInformacionParaReportes();
+                    }
                 }
                 else if (rbAgruparPorConcepto.Checked == true) { }
                 else if (rbAgruparPorUsuario.Checked == true) { }
