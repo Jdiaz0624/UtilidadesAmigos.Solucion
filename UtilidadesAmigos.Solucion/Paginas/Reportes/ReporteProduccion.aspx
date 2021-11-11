@@ -74,8 +74,10 @@
     </script>
 
     <br />
-    <asp:Label ID="lbFechaDesdeGuardada" runat="server" Text="1942-01-01" Visible="false"></asp:Label>
-    <asp:Label ID="lbFechaHastaGardada" runat="server" Text="1942-01-31" Visible="false"></asp:Label>
+    <asp:Label ID="lbFechaDesdeValidacion" runat="server" Text="0" Visible="false"></asp:Label>
+    <asp:Label ID="lbFechaHastaValidacion" runat="server" Text="0" Visible="false"></asp:Label>
+    <asp:Label ID="lbTasaValidacion" runat="server" Text="0" Visible="false"></asp:Label>
+
     <div class="container-fluid">
         <div class="form-check-inline">
             <asp:Label ID="lbAgruparDatos" runat="server" Text="Agrupar Datos" CssClass="Letranegrita"></asp:Label>
@@ -88,15 +90,16 @@
             <asp:RadioButton ID="rbAgruparPorIntermediario" runat="server" AutoPostBack="true" OnCheckedChanged="rbAgruparPorIntermediario_CheckedChanged" Text="Por Intermediario" ToolTip="Agrupar Información Por Intermediario" CssClass="form-check-input" GroupName="Agrupacion" />
             <asp:RadioButton ID="rbAgruparPorSupervisor" runat="server" AutoPostBack="true" OnCheckedChanged="rbAgruparPorSupervisor_CheckedChanged" Text="Por Supervisor" ToolTip="Agrupar Información por Supervisor" CssClass="form-check-input"  GroupName="Agrupacion" />
             <asp:RadioButton ID="rbAgruparPorMoneda" runat="server" Text="Por Moneda" AutoPostBack="true" OnCheckedChanged="rbAgruparPorMoneda_CheckedChanged" ToolTip="Agrupar Informacion Por Moneda" CssClass="form-check-input"  GroupName="Agrupacion" />
+            <asp:CheckBox ID="cbInformacionVehiculo" runat="server" Text="Información de Vehiculos" CssClass="form-check-input" ToolTip="Mostrar el reporte con la información de los vehiculos" />
         </div>
-        <hr id="HRSeparadorTipoReporte" runat="server" />
+<%--        <hr id="HRSeparadorTipoReporte" runat="server" />--%>
 
-        <div id="DIVTipoReporteGenerar" runat="server" class="form-check-inline">
-            <asp:Label ID="lbTipoReporteGenerar" runat="server" Text="Tipo de Reporte" CssClass="Letranegrita"></asp:Label><br />
-            <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Reporte Detallado" ToolTip="Generar el reporte detallado" CssClass="form-check-input" GroupName="TipoReporte" />
-            <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Reporte Resumido" ToolTip="Generar el reporte resumido" CssClass="form-check-input" GroupName="TipoReporte" />
-        </div>
-        <hr />
+       <%-- <div id="DIVTipoReporteGenerar" runat="server" class="form-check-inline">--%>
+           <%-- <asp:Label ID="lbTipoReporteGenerar" runat="server" Text="Tipo de Reporte" CssClass="Letranegrita"></asp:Label><br />--%>
+           <%-- <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Reporte Detallado" ToolTip="Generar el reporte detallado" CssClass="form-check-input" GroupName="TipoReporte" />--%>
+            <%--<asp:RadioButton ID="rbReporteResumido" runat="server" Text="Reporte Resumido" ToolTip="Generar el reporte resumido" CssClass="form-check-input" GroupName="TipoReporte" />--%>
+<%--        </div>--%>
+      <%--  <hr />--%>
 
         <div class="row">
             <div class="col-md-6">
@@ -184,9 +187,7 @@
             <asp:RadioButton ID="rbExcelPlano" runat="server" Text="Excel Plano" CssClass="form-check-input" GroupName="FormatoReporte" />
         </div>
         <hr />
-        <div id="DIVRecargarData" runat="server" class="form-check-inline">
-            <asp:CheckBox ID="cbRecargarData" runat="server" Text="Recargar Data" ToolTip="Recargar la Data" CssClass="form-check-input" />
-        </div>
+      
         <div align="center">
             <asp:ImageButton ID="btnBuscarInformacion" runat="server" CssClass="BotonImagen" ToolTip="Consultar Información por pantalla" OnClick="btnBuscarInformacion_Click" ImageUrl="~/Imagenes/Buscar.png" />
              <asp:ImageButton ID="btnReporteProduccion" runat="server" CssClass="BotonImagen" ToolTip="Generar Reporte" OnClick="btnReporteProduccion_Click" ImageUrl="~/Imagenes/Reporte.png" />

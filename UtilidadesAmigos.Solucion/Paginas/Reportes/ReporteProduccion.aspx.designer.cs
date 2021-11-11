@@ -15,22 +15,31 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
     {
 
         /// <summary>
-        /// lbFechaDesdeGuardada control.
+        /// lbFechaDesdeValidacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFechaDesdeGuardada;
+        protected global::System.Web.UI.WebControls.Label lbFechaDesdeValidacion;
 
         /// <summary>
-        /// lbFechaHastaGardada control.
+        /// lbFechaHastaValidacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFechaHastaGardada;
+        protected global::System.Web.UI.WebControls.Label lbFechaHastaValidacion;
+
+        /// <summary>
+        /// lbTasaValidacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTasaValidacion;
 
         /// <summary>
         /// lbAgruparDatos control.
@@ -114,49 +123,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         protected global::System.Web.UI.WebControls.RadioButton rbAgruparPorMoneda;
 
         /// <summary>
-        /// HRSeparadorTipoReporte control.
+        /// cbInformacionVehiculo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HRSeparadorTipoReporte;
-
-        /// <summary>
-        /// DIVTipoReporteGenerar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVTipoReporteGenerar;
-
-        /// <summary>
-        /// lbTipoReporteGenerar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTipoReporteGenerar;
-
-        /// <summary>
-        /// rbReporteDetallado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbReporteDetallado;
-
-        /// <summary>
-        /// rbReporteResumido control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbReporteResumido;
+        protected global::System.Web.UI.WebControls.CheckBox cbInformacionVehiculo;
 
         /// <summary>
         /// lbFechaDesde control.
@@ -463,24 +436,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rbExcelPlano;
-
-        /// <summary>
-        /// DIVRecargarData control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVRecargarData;
-
-        /// <summary>
-        /// cbRecargarData control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbRecargarData;
 
         /// <summary>
         /// btnBuscarInformacion control.

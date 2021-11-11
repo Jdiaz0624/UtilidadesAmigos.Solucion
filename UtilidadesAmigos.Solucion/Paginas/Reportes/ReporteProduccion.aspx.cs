@@ -428,6 +428,38 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             }
 
         }
+
+        private void GenerarReporteProduccionAgrupadoVehiculo(string Rutareporte, string NombreReporte, int TipoAgrupacion) {
+            int? _Intermediario = string.IsNullOrEmpty(txtCodIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodIntermediario.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtCodSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodSupervisor.Text);
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            string _Concepto = ddlSeleccionarCOncepto.SelectedValue != "-1" ? ddlSeleccionarCOncepto.SelectedItem.Text : null;
+            string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+            decimal? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToDecimal(ddlSeleccionarMoneda.SelectedValue) : new Nullable<decimal>();
+            string _Usuario = ddlSeleccionarUsuario.SelectedValue != "-1" ? ddlSeleccionarUsuario.SelectedItem.Text : null;
+            decimal? _NumeroFactura = string.IsNullOrEmpty(txtNumeroDocumento.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroDocumento.Text);
+
+            ReportDocument Vehiculo = new ReportDocument();
+
+            Vehiculo.Load(Rutareporte);
+            Vehiculo.Refresh();
+
+            Vehiculo.SetParameterValue("@Intermediario", _Intermediario);
+            Vehiculo.SetParameterValue("@Supervisor", _Supervisor);
+            Vehiculo.SetParameterValue("@Oficina", _Oficina);
+            Vehiculo.SetParameterValue("@Concepto", _Concepto);
+            Vehiculo.SetParameterValue("@Poliza", _Poliza);
+            Vehiculo.SetParameterValue("@Moneda", _Moneda);
+            Vehiculo.SetParameterValue("@Usuario", _Usuario);
+            Vehiculo.SetParameterValue("@NumeroFactura", _NumeroFactura);
+            Vehiculo.SetParameterValue("@UsuarioGeneraReporte", (decimal)Session["IdUsuario"]);
+            Vehiculo.SetParameterValue("@TipoAgrupacion", TipoAgrupacion);
+
+            Vehiculo.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+            if (rbPDF.Checked == true) { Vehiculo.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte); }
+            else if (rbExcel.Checked == true) { Vehiculo.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte); }
+        }
         #endregion
 
         #region PROCESAR LA INFORMACION PARA GENERAR REPORTES
@@ -529,15 +561,70 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         }
         #endregion
 
+
+        #region VALIDAR LOS CONTROLES DE VALIDACION
+        private void LimpiarCOntrolesValidacion()
+        {
+            lbFechaDesdeValidacion.Text = "0";
+            lbFechaHastaValidacion.Text = "0";
+            lbTasaValidacion.Text = "0";
+        }
+        private bool ValidacionControles(string FechaDesdeEntrada, string FechaHastaEntrada, string TasaEntrada)
+        {
+            bool Validacion = false;
+
+            string FechaDesdeValidar = "", FechaHastaValidar = "", TasaValidar = "";
+
+
+            FechaDesdeValidar = lbFechaDesdeValidacion.Text;
+            FechaHastaValidar = lbFechaHastaValidacion.Text;
+            TasaValidar = lbTasaValidacion.Text;
+
+            if (FechaDesdeValidar == FechaDesdeEntrada &&
+                FechaHastaValidar == FechaHastaEntrada &&
+                TasaValidar == TasaEntrada)
+            {
+                Validacion = true;
+            }
+            else
+            {
+                Validacion = false;
+            }
+            return Validacion;
+        }
+
+        private void PasarParametrosValidacion()
+        {
+            string FechaDesde = "", FechaHasta = "", Tasa = "";
+
+            FechaDesde = txtFechaDesde.Text;
+            FechaHasta = txtFechaHasta.Text;
+
+
+            if (string.IsNullOrEmpty(txtTasa.Text.Trim()))
+            {
+                Tasa = "0";
+            }
+            else
+            {
+                Tasa = txtTasa.Text;
+            }
+            Tasa = txtTasa.Text;
+            lbFechaDesdeValidacion.Text = FechaDesde;
+            lbFechaHastaValidacion.Text = FechaHasta;
+            lbTasaValidacion.Text = Tasa;
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack) {
 
                 rbNoAgruparDatos.Checked = true;
-                DIVRecargarData.Visible = false;
-                cbRecargarData.Checked = false;
-                rbReporteDetallado.Checked = true;
+                //DIVRecargarData.Visible = false;
+               // cbRecargarData.Checked = false;
+                //rbReporteDetallado.Checked = true;
                 rbPDF.Checked = true;
 
                 UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Nombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
@@ -551,25 +638,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
                 decimal Tasa = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2);
                 txtTasa.Text = Tasa.ToString();
-
-             
-
             }
         }
 
         protected void rbNoAgruparDatos_CheckedChanged(object sender, EventArgs e)
         {
             if (rbNoAgruparDatos.Checked == true) {
-                DIVTipoReporteGenerar.Visible = true;
-                HRSeparadorTipoReporte.Visible = true;
-                rbReporteDetallado.Checked = true;
-                DIVRecargarData.Visible = false;
+               // DIVTipoReporteGenerar.Visible = true;
+                //HRSeparadorTipoReporte.Visible = true;
+             //   rbReporteDetallado.Checked = true;
+              //  DIVRecargarData.Visible = false;
             }
             else if (rbNoAgruparDatos.Checked == false) {
-                DIVTipoReporteGenerar.Visible = false;
-                HRSeparadorTipoReporte.Visible = false;
-                DIVRecargarData.Visible = true;
-                cbRecargarData.Checked = true;
+               // DIVTipoReporteGenerar.Visible = false;
+              //  HRSeparadorTipoReporte.Visible = false;
+              //  DIVRecargarData.Visible = true;
+              //  cbRecargarData.Checked = true;
             }
         }
 
@@ -610,14 +694,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
                 if (rbNoAgruparDatos.Checked == true)
                 {
-                    if (rbReporteDetallado.Checked == true) {
-
-                        GenerarReporteProduccion(Server.MapPath("ReporteProduccionNuevoDetalle.rpt"), "Reporte de Producción Detalle");
-
-                    }
-                    else if (rbReporteResumido.Checked == true) {
-                        ProcesarInformacionParaReportes();
-                    }
+                    GenerarReporteProduccion(Server.MapPath("ReporteProduccionNuevoDetalle.rpt"), "Reporte de Producción Detalle");
                 }
                 else if (rbAgruparPorConcepto.Checked == true) {
 
@@ -634,37 +711,18 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                         }
                     }
                     else {
-                        Agrupacion = (int)TipoAgrupacion.Concepto;
 
-                        string _FechaDesdeoriginal = lbFechaDesdeGuardada.Text;
-                        string _FechaHastaoriginal = lbFechaHastaGardada.Text;
-                        string _FechaDesdeDinamica = txtFechaDesde.Text;
-                        string _FechaHastaDinamica = txtFechaHasta.Text;
-
-                        if (_FechaDesdeoriginal != _FechaDesdeDinamica || _FechaHastaoriginal != _FechaHastaDinamica)
-                        {
-                            lbFechaDesdeGuardada.Text = txtFechaDesde.Text;
-                            lbFechaHastaGardada.Text = txtFechaHasta.Text;
-
-                            if (_FechaDesdeoriginal == _FechaDesdeDinamica || _FechaHastaoriginal == _FechaHastaDinamica)
-                            {
-                                if (cbRecargarData.Checked == true) {
-                                    ProcesarInformacionParaReportes();
-                                   
-                                }
-                            }
-                            else {
-                                ProcesarInformacionParaReportes();
-                            }
+                        if (cbInformacionVehiculo.Checked == true) {
+                            Agrupacion = (int)TipoAgrupacion.Concepto;
+                            ProcesarInformacionParaReportes();
+                            GenerarReporteProduccionAgrupadoVehiculo(Server.MapPath("ReporteProduccionNuevoAgrupadoVehiculo.rpt"), "Produccion Por Concepto Con Vehiculo", (int)TipoAgrupacion.Concepto);
                         }
-
+                        else if (cbInformacionVehiculo.Checked == false) {
+                            Agrupacion = (int)TipoAgrupacion.Concepto;
+                            ProcesarInformacionParaReportes();
+                            GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Concepto", (int)TipoAgrupacion.Concepto);
+                        }
                         
-                        GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Concepto", (int)TipoAgrupacion.Concepto);
-
-
-
-
-
                     }
 
                 }
@@ -682,9 +740,17 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                         }
                     }
                     else {
-                        Agrupacion = (int)TipoAgrupacion.Usuario;
-                        ProcesarInformacionParaReportes();
-                        GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Usuario", (int)TipoAgrupacion.Usuario);
+                        if (cbInformacionVehiculo.Checked == true) {
+                            Agrupacion = (int)TipoAgrupacion.Usuario;
+                            ProcesarInformacionParaReportes();
+                            GenerarReporteProduccionAgrupadoVehiculo(Server.MapPath("ReporteProduccionNuevoAgrupadoVehiculo.rpt"), "Produccion Por Oficina Con Vehiculo", (int)TipoAgrupacion.Usuario);
+                        }
+                        else if (cbInformacionVehiculo.Checked == false) {
+                            Agrupacion = (int)TipoAgrupacion.Usuario;
+                            ProcesarInformacionParaReportes();
+                            GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Usuario", (int)TipoAgrupacion.Usuario);
+                        }
+                      
                     }
                 }
                 else if (rbAgruparPorOficina.Checked == true) {
@@ -701,13 +767,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                         }
                     }
                     else {
-                        Agrupacion = (int)TipoAgrupacion.Oficina;
-                        ProcesarInformacionParaReportes();
-                        GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Oficina", (int)TipoAgrupacion.Oficina);
+                        if (cbInformacionVehiculo.Checked == true) {
+                            Agrupacion = (int)TipoAgrupacion.Oficina;
+                            ProcesarInformacionParaReportes();
+                            GenerarReporteProduccionAgrupadoVehiculo(Server.MapPath("ReporteProduccionNuevoAgrupadoVehiculo.rpt"), "Produccion Por Oficina Con Vehiculo", (int)TipoAgrupacion.Oficina);
+                        }
+                        else if (cbInformacionVehiculo.Checked == false) {
+                            Agrupacion = (int)TipoAgrupacion.Oficina;
+                            ProcesarInformacionParaReportes();
+                            GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Oficina", (int)TipoAgrupacion.Oficina);
+                        }
+                       
                     }
 
 
                 }
+
                 else if (rbAgruparPorRamo.Checked == true) {
                     if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
                     {
@@ -722,12 +797,21 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                         }
                     }
                     else {
-                        Agrupacion = (int)TipoAgrupacion.Ramo;
-                        ProcesarInformacionParaReportes();
-                        GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Ramo", (int)TipoAgrupacion.Ramo);
+                        if (cbInformacionVehiculo.Checked == true) {
+                            //Agrupacion = (int)TipoAgrupacion.Ramo;
+                            //ProcesarInformacionParaReportes();
+                            //GenerarReporteProduccionAgrupadoVehiculo(Server.MapPath("ReporteProduccionNuevoAgrupadoVehiculo.rpt"), "Produccion Por Moneda Con Ramo", (int)TipoAgrupacion.Ramo);
+                        }
+                        else if (cbInformacionVehiculo.Checked == false) {
+                            Agrupacion = (int)TipoAgrupacion.Ramo;
+                            ProcesarInformacionParaReportes();
+                            GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Ramo", (int)TipoAgrupacion.Ramo);
+                        }
+                        
                     }
 
                 }
+               
                 else if (rbAgruparPorIntermediario.Checked == true) {
                     if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
                     {
@@ -742,9 +826,17 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                         }
                     }
                     else {
-                        Agrupacion = (int)TipoAgrupacion.Intermediario;
-                        ProcesarInformacionParaReportes();
-                        GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Intermediario", (int)TipoAgrupacion.Intermediario);
+                        if (cbInformacionVehiculo.Checked == true) {
+                            Agrupacion = (int)TipoAgrupacion.Intermediario;
+                            ProcesarInformacionParaReportes();
+                            GenerarReporteProduccionAgrupadoVehiculo(Server.MapPath("ReporteProduccionNuevoAgrupadoVehiculo.rpt"), "Produccion Por Intermediario Con Vehiculo", (int)TipoAgrupacion.Intermediario);
+                        }
+                        else if (cbInformacionVehiculo.Checked == false) {
+                            Agrupacion = (int)TipoAgrupacion.Intermediario;
+                            ProcesarInformacionParaReportes();
+                            GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Intermediario", (int)TipoAgrupacion.Intermediario);
+                        }
+                       
                     }
 
                 }
@@ -762,9 +854,18 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                         }
                     }
                     else {
-                        Agrupacion = (int)TipoAgrupacion.Supervisor;
-                        ProcesarInformacionParaReportes();
-                        GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Supervisor", (int)TipoAgrupacion.Supervisor);
+                        if (cbInformacionVehiculo.Checked == true)
+                        {
+                            Agrupacion = (int)TipoAgrupacion.Supervisor;
+                            ProcesarInformacionParaReportes();
+                            GenerarReporteProduccionAgrupadoVehiculo(Server.MapPath("ReporteProduccionNuevoAgrupadoVehiculo.rpt"), "Produccion Por Supervisor Con Vehiculos", (int)TipoAgrupacion.Supervisor);
+                        }
+                        else {
+                            Agrupacion = (int)TipoAgrupacion.Supervisor;
+                            ProcesarInformacionParaReportes();
+                            GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Supervisor", (int)TipoAgrupacion.Supervisor);
+                        }
+                        
                     }
 
                 }
@@ -782,9 +883,18 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                         }
                     }
                     else {
-                        Agrupacion = (int)TipoAgrupacion.Moneda;
-                        ProcesarInformacionParaReportes();
-                        GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Moneda", (int)TipoAgrupacion.Moneda);
+                        if (cbInformacionVehiculo.Checked == true) {
+                            Agrupacion = (int)TipoAgrupacion.Moneda;
+                            ProcesarInformacionParaReportes();
+                            GenerarReporteProduccionAgrupadoVehiculo(Server.MapPath("ReporteProduccionNuevoAgrupadoVehiculo.rpt"), "Produccion Por Moneda Con Vehiculos", (int)TipoAgrupacion.Moneda);
+                        }
+                        else if (cbInformacionVehiculo.Checked == false) {
+
+                            Agrupacion = (int)TipoAgrupacion.Moneda;
+                            ProcesarInformacionParaReportes();
+                            GenerarReporteProduccionAgrupado(Server.MapPath("ReporteProduccionNuevoAgrupado.rpt"), "Producción Agrupada Por Moneda", (int)TipoAgrupacion.Moneda);
+                        }
+                       
                     }
 
                 }
@@ -828,15 +938,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             if (rbAgruparPorConcepto.Checked == true)
             {
 
-                DIVTipoReporteGenerar.Visible = false;
-                HRSeparadorTipoReporte.Visible = false;
-                DIVRecargarData.Visible = true;
-                cbRecargarData.Checked = false;
+                //DIVTipoReporteGenerar.Visible = false;
+                //HRSeparadorTipoReporte.Visible = false;
+             //   DIVRecargarData.Visible = true;
+              //  cbRecargarData.Checked = false;
             }
             else {
-                DIVTipoReporteGenerar.Visible = true;
-                HRSeparadorTipoReporte.Visible = true;
-                DIVRecargarData.Visible = false;
+             //   DIVTipoReporteGenerar.Visible = true;
+               // HRSeparadorTipoReporte.Visible = true;
+           //     DIVRecargarData.Visible = false;
             }
         }
 
@@ -845,16 +955,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             if (rbAgruparPorUsuario.Checked == true)
             {
 
-                DIVTipoReporteGenerar.Visible = false;
-                HRSeparadorTipoReporte.Visible = false;
-                DIVRecargarData.Visible = true;
-                cbRecargarData.Checked = false;
+            //    DIVTipoReporteGenerar.Visible = false;
+                //HRSeparadorTipoReporte.Visible = false;
+           //     DIVRecargarData.Visible = true;
+             //   cbRecargarData.Checked = false;
             }
             else
             {
-                DIVTipoReporteGenerar.Visible = true;
-                HRSeparadorTipoReporte.Visible = true;
-                DIVRecargarData.Visible = false;
+              //  DIVTipoReporteGenerar.Visible = true;
+               // HRSeparadorTipoReporte.Visible = true;
+             //   DIVRecargarData.Visible = false;
             }
         }
 
@@ -863,16 +973,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             if (rbAgruparPorOficina.Checked == true)
             {
 
-                DIVTipoReporteGenerar.Visible = false;
-                HRSeparadorTipoReporte.Visible = false;
-                DIVRecargarData.Visible = true;
-                cbRecargarData.Checked = false;
+               // DIVTipoReporteGenerar.Visible = false;
+                //HRSeparadorTipoReporte.Visible = false;
+              //  DIVRecargarData.Visible = true;
+               // cbRecargarData.Checked = false;
             }
             else
             {
-                DIVTipoReporteGenerar.Visible = true;
-                HRSeparadorTipoReporte.Visible = true;
-                DIVRecargarData.Visible = false;
+               // DIVTipoReporteGenerar.Visible = true;
+              //  HRSeparadorTipoReporte.Visible = true;
+              //  DIVRecargarData.Visible = false;
             }
         }
 
@@ -881,16 +991,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             if (rbAgruparPorRamo.Checked == true)
             {
 
-                DIVTipoReporteGenerar.Visible = false;
-                HRSeparadorTipoReporte.Visible = false;
-                DIVRecargarData.Visible = true;
-                cbRecargarData.Checked = false;
+              //  DIVTipoReporteGenerar.Visible = false;
+                //HRSeparadorTipoReporte.Visible = false;
+             //   DIVRecargarData.Visible = true;
+              //  cbRecargarData.Checked = false;
             }
             else
             {
-                DIVTipoReporteGenerar.Visible = true;
-                HRSeparadorTipoReporte.Visible = true;
-                DIVRecargarData.Visible = false;
+             //   DIVTipoReporteGenerar.Visible = true;
+               // HRSeparadorTipoReporte.Visible = true;
+              //  DIVRecargarData.Visible = false;
             }
         }
 
@@ -899,16 +1009,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             if (rbAgruparPorIntermediario.Checked == true)
             {
 
-                DIVTipoReporteGenerar.Visible = false;
-                HRSeparadorTipoReporte.Visible = false;
-                DIVRecargarData.Visible = true;
-                cbRecargarData.Checked = false;
+              //  DIVTipoReporteGenerar.Visible = false;
+                //HRSeparadorTipoReporte.Visible = false;
+               //DIVRecargarData.Visible = true;
+               // cbRecargarData.Checked = false;
             }
             else
             {
-                DIVTipoReporteGenerar.Visible = true;
-                HRSeparadorTipoReporte.Visible = true;
-                DIVRecargarData.Visible = false;
+               // DIVTipoReporteGenerar.Visible = true;
+               // HRSeparadorTipoReporte.Visible = true;
+              //  DIVRecargarData.Visible = false;
             }
         }
 
@@ -917,16 +1027,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             if (rbAgruparPorSupervisor.Checked == true)
             {
 
-                DIVTipoReporteGenerar.Visible = false;
-                HRSeparadorTipoReporte.Visible = false;
-                DIVRecargarData.Visible = true;
-                cbRecargarData.Checked = false;
+               // DIVTipoReporteGenerar.Visible = false;
+                //HRSeparadorTipoReporte.Visible = false;
+               // DIVRecargarData.Visible = true;
+              //  cbRecargarData.Checked = false;
             }
             else
             {
-                DIVTipoReporteGenerar.Visible = true;
-                HRSeparadorTipoReporte.Visible = true;
-                DIVRecargarData.Visible = false;
+               // DIVTipoReporteGenerar.Visible = true;
+              //  HRSeparadorTipoReporte.Visible = true;
+              //  DIVRecargarData.Visible = false;
             }
         }
 
@@ -935,16 +1045,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             if (rbAgruparPorMoneda.Checked == true)
             {
 
-                DIVTipoReporteGenerar.Visible = false;
-                HRSeparadorTipoReporte.Visible = false;
-                DIVRecargarData.Visible = true;
-                cbRecargarData.Checked = false;
+                //DIVTipoReporteGenerar.Visible = false;
+                //HRSeparadorTipoReporte.Visible = false;
+               // DIVRecargarData.Visible = true;
+               // cbRecargarData.Checked = false;
             }
             else
             {
-                DIVTipoReporteGenerar.Visible = true;
-                HRSeparadorTipoReporte.Visible = true;
-                DIVRecargarData.Visible = false;
+               // DIVTipoReporteGenerar.Visible = true;
+               // HRSeparadorTipoReporte.Visible = true;
+              //  DIVRecargarData.Visible = false;
             }
         }
 
