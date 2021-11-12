@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -37048,6 +37048,16 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<int> _Items;
 		
+		private System.Nullable<System.DateTime> _InicioVigencia;
+		
+		private System.Nullable<System.DateTime> _FinVigencia;
+		
+		private string _InicioVigenciaFormateado;
+		
+		private string _FinVigenciaFormateado;
+		
+		private int _Secuencia;
+		
 		private string _Supervisor;
 		
 		private string _Intermediario;
@@ -37300,6 +37310,86 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Items != value))
 				{
 					this._Items = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InicioVigencia", DbType="DateTime")]
+		public System.Nullable<System.DateTime> InicioVigencia
+		{
+			get
+			{
+				return this._InicioVigencia;
+			}
+			set
+			{
+				if ((this._InicioVigencia != value))
+				{
+					this._InicioVigencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinVigencia", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FinVigencia
+		{
+			get
+			{
+				return this._FinVigencia;
+			}
+			set
+			{
+				if ((this._FinVigencia != value))
+				{
+					this._FinVigencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InicioVigenciaFormateado", DbType="NVarChar(4000)")]
+		public string InicioVigenciaFormateado
+		{
+			get
+			{
+				return this._InicioVigenciaFormateado;
+			}
+			set
+			{
+				if ((this._InicioVigenciaFormateado != value))
+				{
+					this._InicioVigenciaFormateado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinVigenciaFormateado", DbType="NVarChar(4000)")]
+		public string FinVigenciaFormateado
+		{
+			get
+			{
+				return this._FinVigenciaFormateado;
+			}
+			set
+			{
+				if ((this._FinVigenciaFormateado != value))
+				{
+					this._FinVigenciaFormateado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int NOT NULL")]
+		public int Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
 				}
 			}
 		}
