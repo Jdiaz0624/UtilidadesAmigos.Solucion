@@ -229,9 +229,9 @@
     <Content Include="Paginas\LoginSistema.aspx" />
     <Content Include="Paginas\MantenimeintoPerfiles.aspx" />
     <Content Include="Paginas\MantenimientoClaveSeguridad.aspx" />
-    <Content Include="Paginas\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx" />
     <Content Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx" />
+    <Content Include="Paginas\Mantenimientos\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\Mantenimientos\MantenimientoMonedas.aspx" />
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
     <Content Include="Paginas\Procesos\AgregarItemsReclamos.aspx" />
@@ -613,13 +613,6 @@
     <Compile Include="Paginas\MantenimientoClaveSeguridad.aspx.designer.cs">
       <DependentUpon>MantenimientoClaveSeguridad.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\MantenimientoDependientes.aspx.cs">
-      <DependentUpon>MantenimientoDependientes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\MantenimientoDependientes.aspx.designer.cs">
-      <DependentUpon>MantenimientoDependientes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx.cs">
       <DependentUpon>MantenimientoPorcientoComisionPorDefecto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -633,6 +626,13 @@
     </Compile>
     <Compile Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx.designer.cs">
       <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Mantenimientos\MantenimientoDependientes.aspx.cs">
+      <DependentUpon>MantenimientoDependientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Mantenimientos\MantenimientoDependientes.aspx.designer.cs">
+      <DependentUpon>MantenimientoDependientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Mantenimientos\MantenimientoMonedas.aspx.cs">
       <DependentUpon>MantenimientoMonedas.aspx</DependentUpon>

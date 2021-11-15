@@ -73,5 +73,6 @@ namespace UtilidadesAmigos.Logica.Entidades
 		public System.Nullable<int> Anos { get; set; }
 
 		public System.Nullable<int> CantidadComentarios { get; set; }
+		public string Chasis { get; set; }
 	}
 }

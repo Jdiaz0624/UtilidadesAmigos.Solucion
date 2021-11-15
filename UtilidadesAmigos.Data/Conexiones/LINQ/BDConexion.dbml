@@ -3180,6 +3180,7 @@
       <Column Name="Mes" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Anos" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CantidadComentarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Chasis" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

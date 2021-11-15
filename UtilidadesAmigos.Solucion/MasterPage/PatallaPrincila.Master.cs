@@ -236,7 +236,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkDependientes_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Paginas/MantenimientoDependientes.aspx");
+            Response.Redirect("~/Paginas/Mantenimientos/MantenimientoDependientes.aspx");
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
         }
 

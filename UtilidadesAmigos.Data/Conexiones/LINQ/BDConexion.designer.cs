@@ -37086,6 +37086,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<int> _CantidadComentarios;
 		
+		private string _Chasis;
+		
 		public SP_MOSTRAR_LISTADO_RENOVACIONResult()
 		{
 		}
@@ -37614,6 +37616,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadComentarios != value))
 				{
 					this._CantidadComentarios = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Chasis", DbType="VarChar(200)")]
+		public string Chasis
+		{
+			get
+			{
+				return this._Chasis;
+			}
+			set
+			{
+				if ((this._Chasis != value))
+				{
+					this._Chasis = value;
 				}
 			}
 		}

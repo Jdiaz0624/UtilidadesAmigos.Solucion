@@ -721,6 +721,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                     Concepto = n.ConceptoLlamada,
                                     Fin_Vigencia = n.FechaFinVigencia,
                                     Secuencia = n.NumeroSeguimiento,
+                                    
 
                                 }).ToList();
                 UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(NombreReporte, Exportar);
@@ -1557,6 +1558,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                     select new
                                     {
                                         Poliza = n.Poliza,
+                                        Chasis=n.Chasis,
                                         Cotizacion = n.Cotizacion,
                                         Estatus = n.Estatus,
                                         Prima = n.Prima,
