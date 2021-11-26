@@ -1938,11 +1938,11 @@ namespace UtilidadesAmigos.Logica.Logica
 
         #region MANTENIMIENTO DE DEPENDIENTES
         //MOSTRAR EL LISTADO DE LOS DEPENDIENTES
-        public List<UtilidadesAmigos.Logica.Entidades.EDependientes> BuscaDependientes(string Poliza = null,decimal? IdAsegurado = null)
+        public List<UtilidadesAmigos.Logica.Entidades.EDependientes> BuscaDependientes(string Poliza = null,decimal? IdAsegurado = null,string NombreDependiente = null, string NumeroIdentificacion = null)
         {
             Objdata.CommandTimeout = 999999999;
 
-            var Buscar = (from n in Objdata.SP_BUSCAR_DEPENDIENTES(Poliza, IdAsegurado)
+            var Buscar = (from n in Objdata.SP_BUSCAR_DEPENDIENTES(Poliza, IdAsegurado, NombreDependiente, NumeroIdentificacion)
                           select new UtilidadesAmigos.Logica.Entidades.EDependientes
                           {
                               Poliza=n.Poliza,
@@ -2005,23 +2005,23 @@ namespace UtilidadesAmigos.Logica.Logica
                 Mantenimiento = (from n in Dependientes
                                  select new UtilidadesAmigos.Logica.Entidades.EDependientes
                                  {
-                                     Compania=n.Compania,
-                                     Cotizacion=n.Cotizacion,
-                                     Secuencia=n.Secuencia,
-                                     IdAsegurado=n.IdAsegurado,
-                                     Nombre=n.Nombre,
-                                     Parentezco=n.Parentezco,
-                                     Cedula=n.NumeroId,
-                                     FechaNacimiento0=n.FechaNacimiento,
-                                     Sexo=n.Sexo,
-                                     PorcPrima=n.PorcPrima,
-                                     UsuarioAdiciona=n.UsuarioAdiciona,
-                                     FechaAdiciona0=n.FechaAdiciona,
-                                     Estatus0=n.Estatus,
-                                     ValorAsegurado=n.ValorAsegurado,
-                                     PorcCobertura=n.PorcCobertura,
-                                     FechaInclusion0=n.FechaInclusion,
-                                     FechaInicioCobertura0=n.FechaInicioCobertura
+                                     //Compania=n.Compania,
+                                     //Cotizacion=n.Cotizacion,
+                                     //Secuencia=n.Secuencia,
+                                     //IdAsegurado=n.IdAsegurado,
+                                     //Nombre=n.Nombre,
+                                     //Parentezco=n.Parentezco,
+                                     //Cedula=n.NumeroId,
+                                     //FechaNacimiento0=n.FechaNacimiento,
+                                     //Sexo=n.Sexo,
+                                     //PorcPrima=n.PorcPrima,
+                                     //UsuarioAdiciona=n.UsuarioAdiciona,
+                                     //FechaAdiciona0=n.FechaAdiciona,
+                                     //Estatus0=n.Estatus,
+                                     //ValorAsegurado=n.ValorAsegurado,
+                                     //PorcCobertura=n.PorcCobertura,
+                                     //FechaInclusion0=n.FechaInclusion,
+                                     //FechaInicioCobertura0=n.FechaInicioCobertura
                                  }).FirstOrDefault();
             }
             return Mantenimiento;

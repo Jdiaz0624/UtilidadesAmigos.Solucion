@@ -53,7 +53,7 @@
                 var Poliza = $("#<%=txtNumeroPolizaConuslta.ClientID%>").val().length;
                 if (Poliza < 1) {
                     alert("El campo Poliza no puede estar vacio para buscar dependientes, favor de verificar.");
-                    $("#").css("border-color", "red");
+                    $("#<%=txtNumeroPolizaConuslta.ClientID%>").css("border-color", "red");
                     return false;
                 }
             });
@@ -62,7 +62,7 @@
                 var Poliza = $("#<%=txtNumeroPolizaConuslta.ClientID%>").val().length;
                 if (Poliza < 1) {
                     alert("El campo Poliza no puede estar vacio para Exportar dependientes, favor de verificar.");
-                    $("#").css("border-color", "red");
+                    $("#<%=txtNumeroPolizaConuslta.ClientID%>").css("border-color", "red");
                     return false;
                 }
             });
