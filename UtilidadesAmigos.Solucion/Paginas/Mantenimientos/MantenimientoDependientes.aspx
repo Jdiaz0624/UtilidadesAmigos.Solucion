@@ -43,6 +43,31 @@
            }
     </style>
 
+
+    <script type="text/javascript">
+        function OpcionNoDisponible() { alert("Esta Opción esta en desarrollo por el momento."); }
+
+        $(document).ready(function () {
+
+            $("#<%=btnConsultarRegistros.ClientID%>").click(function () {
+                var Poliza = $("#<%=txtNumeroPolizaConuslta.ClientID%>").val().length;
+                if (Poliza < 1) {
+                    alert("El campo Poliza no puede estar vacio para buscar dependientes, favor de verificar.");
+                    $("#").css("border-color", "red");
+                    return false;
+                }
+            });
+
+            $("#<%=btnExportarInformacion.ClientID%>").click(function () {
+                var Poliza = $("#<%=txtNumeroPolizaConuslta.ClientID%>").val().length;
+                if (Poliza < 1) {
+                    alert("El campo Poliza no puede estar vacio para Exportar dependientes, favor de verificar.");
+                    $("#").css("border-color", "red");
+                    return false;
+                }
+            });
+        })
+    </script>
     <div class="container-fluid">
         <div id="DIVBloqueCOnsulta" runat="server">
             <br />
@@ -52,6 +77,7 @@
                     <asp:TextBox ID="txtNumeroPolizaConuslta" runat="server" CssClass="form-control"></asp:TextBox>
                     <asp:ImageButton ID="btnConsultarRegistros" runat="server" OnClick="btnConsultarRegistros_Click" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" />
                     <asp:ImageButton ID="btnExportarInformacion" runat="server" OnClick="btnExportarInformacion_Click" CssClass="BotonImagen" ImageUrl="~/Imagenes/excel.png" />
+                    <asp:ImageButton ID="btnAgregarDependiente" runat="server" Visible="false" OnClick="btnAgregarDependiente_Click" CssClass="BotonImagen" ImageUrl="~/Imagenes/Agregar (2).png" />
                 </div>
             </div>
             <br />
@@ -89,15 +115,15 @@
                     <asp:Repeater ID="rpListadodepenientes" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <asp:HiddenField ID="hfNumeroCotizacion" runat="server" Value='<%# Eval("") %>' />
-                                <asp:HiddenField ID="hfIdAsegurao" runat="server" Value='<%# Eval("") %>' />
+                                <asp:HiddenField ID="hfNumeroCotizacion" runat="server" Value='<%# Eval("Cotizacion") %>' />
+                                <asp:HiddenField ID="hfIdAsegurao" runat="server" Value='<%# Eval("IdAsegurado") %>' />
 
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%#string.Format("{0:N2}", Eval("")) %> </td>
+                                <td> <%# Eval("Nombre") %> </td>
+                                <td> <%# Eval("Parentezco") %> </td>
+                                <td> <%# Eval("Cedula") %> </td>
+                                <td> <%# Eval("FechaNacimiento") %> </td>
+                                <td> <%# Eval("Sexo") %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("PorcPrima")) %> </td>
                                 <td> <asp:ImageButton ID="btnEditarRegistro" runat="server" ToolTip="Editar Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Editar.png" OnClick="btnEditarRegistro_Click" /> </td>
                                 <td> <asp:ImageButton ID="btnBorrarRegistro" runat="server" ToolTip="Borrar Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Eliminar.png" OnClick="btnBorrarRegistro_Click" /> </td>
                             </tr>

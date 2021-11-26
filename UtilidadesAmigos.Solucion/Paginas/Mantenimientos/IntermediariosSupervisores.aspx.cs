@@ -1062,7 +1062,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleIntermediariosSupervisoresComisiones, ref lbCantidadPaginaVariableIntermediariosSupervisoresComisiones);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavleIntermediariosSupervisoresComisiones, ref lbCantidadPaginaVariableIntermediariosSupervisoresComisiones);
         }
 
         protected void btnModificarComision_Click(object sender, EventArgs e)

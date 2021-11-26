@@ -31,7 +31,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         JuanMarcelino=1,
         AlfredoPimentel=10,
         MiguelBerrora=22,
-
+        KimailiRazon=35
         }
         
         #region CONTROL PARA MOSTRAR LA PAGINACION
@@ -425,37 +425,50 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 decimal IdUsuario = (decimal)Session["IdUsuario"];
 
-                if (IdUsuario == (decimal)PermisoUsuarios.CarlosMercado) {
+                if (IdUsuario == (decimal)PermisoUsuarios.CarlosMercado)
+                {
                     btnNuevoNuevo.Visible = true;
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
                 }
-                else if (IdUsuario == (decimal)PermisoUsuarios.ErikSonVeras) {
+                else if (IdUsuario == (decimal)PermisoUsuarios.ErikSonVeras)
+                {
                     btnNuevoNuevo.Visible = true;
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
                 }
-                else if (IdUsuario == (decimal)PermisoUsuarios.AdalgisaAlmonte) {
+                else if (IdUsuario == (decimal)PermisoUsuarios.AdalgisaAlmonte)
+                {
                     btnNuevoNuevo.Visible = true;
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
                 }
-                else if (IdUsuario == (decimal)PermisoUsuarios.JuanMarcelino) {
+                else if (IdUsuario == (decimal)PermisoUsuarios.JuanMarcelino)
+                {
                     btnNuevoNuevo.Visible = true;
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = true;
                 }
-                else if (IdUsuario == (decimal)PermisoUsuarios.AlfredoPimentel) {
+                else if (IdUsuario == (decimal)PermisoUsuarios.AlfredoPimentel)
+                {
                     btnNuevoNuevo.Visible = true;
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = true;
                 }
-                else if (IdUsuario == (decimal)PermisoUsuarios.MiguelBerrora) {
+                else if (IdUsuario == (decimal)PermisoUsuarios.MiguelBerrora)
+                {
                     btnNuevoNuevo.Visible = true;
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = true;
                 }
-                else {
+                else if (IdUsuario == (decimal)PermisoUsuarios.KimailiRazon) {
+
+                    btnNuevoNuevo.Visible = true;
+                    btnModificarNuevo.Visible = true;
+                    btnEliminarNuevo.Visible = false;
+                }
+                else
+                {
                     btnNuevoNuevo.Visible = false;
                     btnModificarNuevo.Visible = false;
                     btnEliminarNuevo.Visible = false;

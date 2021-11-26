@@ -60,6 +60,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.ImageButton btnExportarInformacion;
 
         /// <summary>
+        /// btnAgregarDependiente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnAgregarDependiente;
+
+        /// <summary>
         /// DivEstatusPoliza control.
         /// </summary>
         /// <remarks>
