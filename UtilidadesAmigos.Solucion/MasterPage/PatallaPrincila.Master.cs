@@ -667,5 +667,17 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkCotizador_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null) {
+
+                Response.Redirect("~/Paginas/ProcesoPoliza/Cotizador.aspx");
+            }
+            else {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }
