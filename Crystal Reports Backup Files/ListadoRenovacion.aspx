@@ -337,10 +337,12 @@
                     <tr>
                         <th scope="col"> Gestión </th>
                         <th scope="col"> Poliza </th>
+                        <th scope="col"> Item </th>
                         <th scope="col"> Prima </th>
                         <th scope="col"> Facturado </th>
                         <th scope="col"> Cobrado </th>
                         <th scope="col"> Balance </th>
+                        <th scope="col"> Fin Vigencia </th>
                         <th scope="col"> Comentarios </th>
                     </tr>
                 </thead>
@@ -353,10 +355,12 @@
 
                                 <td> <asp:ImageButton ID="btnGestionNuevo" runat="server" CssClass="BotonImagen" OnClick="btnGestionNuevo_Click" ToolTip="Gestion de Cobros" ImageUrl="~/Imagenes/Servicio al Cliente.png" /> </td>
                                 <td> <%# Eval("Poliza") %> </td>
+                                <td> <%#string.Format("{0:n0}", Eval("Secuencia")) %> </td>
                                 <td> <%#string.Format("{0:n2}", Eval("Prima")) %> </td>
                                 <td> <%#string.Format("{0:n2}", Eval("Facturado")) %> </td>
                                 <td> <%#string.Format("{0:n2}", Eval("Cobrado")) %> </td>
                                 <td> <%#string.Format("{0:n2}", Eval("Balance")) %> </td>
+                                <td> <%# Eval("FinVigenciaFormateado") %> </td>
                                 <td> <%# string.Format("{0:n0}", Eval("CantidadComentarios")) %> </td>
                             </tr>
                         </ItemTemplate>

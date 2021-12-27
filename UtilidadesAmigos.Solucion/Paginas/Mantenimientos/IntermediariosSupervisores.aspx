@@ -54,6 +54,11 @@
             alert("La clave de seguridad ingresada no es valida, favor de verificar.");
         }
 
+
+        function CodigoSupervisorNoValido() {
+            alert("El codigo de supervisor que intentas colocar es el mismo que este registro tiene como intermediario, favor de colocar otro codigo.");
+        }
+
         $(document).ready(function () {
             $("#<%=btnModificarComision.ClientID%>").click(function () {
                 var RamoSeleccionado = $("#<%=txtRamoSeleccionadoComisionesComisiones.ClientID%>").val().length;

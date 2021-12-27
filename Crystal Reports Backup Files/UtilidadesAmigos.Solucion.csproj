@@ -174,6 +174,7 @@
     <Content Include="Imagenes\Buscar.png" />
     <Content Include="Imagenes\CampoImagen.jpg" />
     <Content Include="Imagenes\Completar.png" />
+    <Content Include="Imagenes\Cotizar.png" />
     <Content Include="Imagenes\Editar.png" />
     <Content Include="Imagenes\Eliminar.png" />
     <Content Include="Imagenes\escoger.png" />
@@ -229,11 +230,12 @@
     <Content Include="Paginas\LoginSistema.aspx" />
     <Content Include="Paginas\MantenimeintoPerfiles.aspx" />
     <Content Include="Paginas\MantenimientoClaveSeguridad.aspx" />
-    <Content Include="Paginas\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx" />
     <Content Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx" />
+    <Content Include="Paginas\Mantenimientos\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\Mantenimientos\MantenimientoMonedas.aspx" />
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
+    <Content Include="Paginas\ProcesoPoliza\Cotizador.aspx" />
     <Content Include="Paginas\Procesos\AgregarItemsReclamos.aspx" />
     <Content Include="Paginas\Procesos\DatosPoliza.aspx" />
     <Content Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx" />
@@ -613,13 +615,6 @@
     <Compile Include="Paginas\MantenimientoClaveSeguridad.aspx.designer.cs">
       <DependentUpon>MantenimientoClaveSeguridad.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\MantenimientoDependientes.aspx.cs">
-      <DependentUpon>MantenimientoDependientes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\MantenimientoDependientes.aspx.designer.cs">
-      <DependentUpon>MantenimientoDependientes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx.cs">
       <DependentUpon>MantenimientoPorcientoComisionPorDefecto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -633,6 +628,13 @@
     </Compile>
     <Compile Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx.designer.cs">
       <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Mantenimientos\MantenimientoDependientes.aspx.cs">
+      <DependentUpon>MantenimientoDependientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Mantenimientos\MantenimientoDependientes.aspx.designer.cs">
+      <DependentUpon>MantenimientoDependientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Mantenimientos\MantenimientoMonedas.aspx.cs">
       <DependentUpon>MantenimientoMonedas.aspx</DependentUpon>
@@ -682,6 +684,13 @@
     </Compile>
     <Compile Include="Paginas\ProcesarDataPowerBi.aspx.designer.cs">
       <DependentUpon>ProcesarDataPowerBi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\ProcesoPoliza\Cotizador.aspx.cs">
+      <DependentUpon>Cotizador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\ProcesoPoliza\Cotizador.aspx.designer.cs">
+      <DependentUpon>Cotizador.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Procesos\AgregarItemsReclamos.aspx.cs">
       <DependentUpon>AgregarItemsReclamos.aspx</DependentUpon>

@@ -961,9 +961,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     }
                     else
                     {
-                        ProcesarInformacionRegistros();
-                        VolverAtras();
-                        LimpiarControles();
+                        string Accion = lbAccionTomar.Text;
+                        if (Accion == "UPDATE") {
+
+                            int CodigoIntermediario = Convert.ToInt32(lbCodigoSeleccionadoVariable.Text);
+                            int CodigoSupervisor = Convert.ToInt32(txtCodigoSupervisorMantenimiento.Text);
+
+                            if (CodigoIntermediario == CodigoSupervisor) {
+                                ClientScript.RegisterStartupScript(GetType(), "CodigoSupervisorNoValido()", "CodigoSupervisorNoValido();", true);
+                            }
+                            else {
+                                ProcesarInformacionRegistros();
+                                VolverAtras();
+                                LimpiarControles();
+                            }
+                        }
+                        else {
+                            ProcesarInformacionRegistros();
+                            VolverAtras();
+                            LimpiarControles();
+                        }
+                     
                     }
                 }
             }
