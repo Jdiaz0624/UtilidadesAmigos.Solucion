@@ -41,6 +41,9 @@
                width:50px;
                height:50px;
            }
+               .auto-style1 {
+                   width: 199px;
+               }
     </style>
     <script type="text/javascript">
         function ErrorConsulta() {
@@ -152,7 +155,7 @@
                                            <th scope="col"> Poliza </th>
                                            <th scope="col"> Estatus </th>
                                            <th scope="col"> Concepto </th>
-                                           <th scope="col"> Comentario </th>
+                                           <th scope="col" class="auto-style1"> Comentario </th>
                                            <th scope="col"> Vigencia </th>
                                            <th scope="col"> Nueva LLamada </th>
                                            <th scope="col"> Completar </th>
