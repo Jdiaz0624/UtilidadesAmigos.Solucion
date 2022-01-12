@@ -31,6 +31,17 @@
         color: #ffffff;
         }
     </style>
+
+    <script type="text/javascript">
+        function disableBackButton() {
+            window.history.forward();
+        }
+        setTimeout("disableBackButton()", 0);
+
+        $(document).ready(function () {
+            disableBackButton();
+        })
+    </script>
 </head>
 <body>
       <form id="form1" runat="server">   

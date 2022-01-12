@@ -13,11 +13,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         UtilidadesAmigos.Logica.Logica.LogicaSistema ObjData = new Logica.Logica.LogicaSistema();
         UtilidadesAmigos.Logica.Logica.LogicaMantenimientos.LogicaMantenimientos Objdatamantenimientos = new Logica.Logica.LogicaMantenimientos.LogicaMantenimientos();
 
-        #region CONTROL PARA MOSTRAR LA PAGINACION
-        readonly PagedDataSource pagedDataSource = new PagedDataSource();
-        int _PrimeraPagina, _UltimaPagina;
-        private int _TamanioPagina = 10;
-        private int CurrentPage
+
+
+        #region CONTROL DE PAGINACION DE LISTADO INTERMEDIARIOS SUPERVISORES
+        readonly PagedDataSource pagedDataSource_IntermediariosSupervisores = new PagedDataSource();
+        int _PrimeraPagina_IntermediariosSupervisores, _UltimaPagina_IntermediariosSupervisores;
+        private int _TamanioPagina_IntermediariosSupervisores = 10;
+        private int CurrentPage_IntermediariosSupervisores
         {
             get
             {
@@ -33,33 +35,34 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
 
         }
-        private void HandlePaging(ref DataList NombreDataList, ref Label LbPaginaActual)
+
+        private void HandlePaging_IntermediariosSupervisores(ref DataList NombreDataList, ref Label LbPaginaActual)
         {
             var dt = new DataTable();
             dt.Columns.Add("IndicePagina"); //Start from 0
             dt.Columns.Add("TextoPagina"); //Start from 1
 
-            _PrimeraPagina = CurrentPage - 5;
-            if (CurrentPage > 5)
-                _UltimaPagina = CurrentPage + 5;
+            _PrimeraPagina_IntermediariosSupervisores = CurrentPage_IntermediariosSupervisores - 5;
+            if (CurrentPage_IntermediariosSupervisores > 5)
+                _UltimaPagina_IntermediariosSupervisores = CurrentPage_IntermediariosSupervisores + 5;
             else
-                _UltimaPagina = 10;
+                _UltimaPagina_IntermediariosSupervisores = 10;
 
             // Check last page is greater than total page then reduced it to total no. of page is last index
-            if (_UltimaPagina > Convert.ToInt32(ViewState["TotalPages"]))
+            if (_UltimaPagina_IntermediariosSupervisores > Convert.ToInt32(ViewState["TotalPages"]))
             {
-                _UltimaPagina = Convert.ToInt32(ViewState["TotalPages"]);
-                _PrimeraPagina = _UltimaPagina - 10;
+                _UltimaPagina_IntermediariosSupervisores = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_IntermediariosSupervisores = _UltimaPagina_IntermediariosSupervisores - 10;
             }
 
-            if (_PrimeraPagina < 0)
-                _PrimeraPagina = 0;
+            if (_PrimeraPagina_IntermediariosSupervisores < 0)
+                _PrimeraPagina_IntermediariosSupervisores = 0;
 
             //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
-            int NumeroPagina = (int)CurrentPage;
+            int NumeroPagina = (int)CurrentPage_IntermediariosSupervisores;
             LbPaginaActual.Text = (NumeroPagina + 1).ToString();
             // Now creating page number based on above first and last page index
-            for (var i = _PrimeraPagina; i < _UltimaPagina; i++)
+            for (var i = _PrimeraPagina_IntermediariosSupervisores; i < _UltimaPagina_IntermediariosSupervisores; i++)
             {
                 var dr = dt.NewRow();
                 dr[0] = i;
@@ -71,39 +74,40 @@ namespace UtilidadesAmigos.Solucion.Paginas
             NombreDataList.DataSource = dt;
             NombreDataList.DataBind();
         }
-        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref LinkButton PrimeraPagina, ref LinkButton PaginaAnterior, ref LinkButton SiguientePagina, ref LinkButton UltimaPagina)
-        {
-            pagedDataSource.DataSource = Listado;
-            pagedDataSource.AllowPaging = true;
 
-            ViewState["TotalPages"] = pagedDataSource.PageCount;
+        private void Paginar_IntermediariosSupervisores(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_IntermediariosSupervisores.DataSource = Listado;
+            pagedDataSource_IntermediariosSupervisores.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_IntermediariosSupervisores.PageCount;
             // lbNumeroVariable.Text = "1";
-            lbCantidadPagina.Text = pagedDataSource.PageCount.ToString();
+            lbCantidadPagina.Text = pagedDataSource_IntermediariosSupervisores.PageCount.ToString();
 
             //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
-            pagedDataSource.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina : _NumeroRegistros);
-            pagedDataSource.CurrentPageIndex = CurrentPage;
+            pagedDataSource_IntermediariosSupervisores.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_IntermediariosSupervisores : _NumeroRegistros);
+            pagedDataSource_IntermediariosSupervisores.CurrentPageIndex = CurrentPage_IntermediariosSupervisores;
 
             //HABILITAMOS LOS BOTONES DE LA PAGINACION
-            PrimeraPagina.Enabled = !pagedDataSource.IsFirstPage;
-            PaginaAnterior.Enabled = !pagedDataSource.IsFirstPage;
-            SiguientePagina.Enabled = !pagedDataSource.IsLastPage;
-            UltimaPagina.Enabled = !pagedDataSource.IsLastPage;
+            PrimeraPagina.Enabled = !pagedDataSource_IntermediariosSupervisores.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_IntermediariosSupervisores.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_IntermediariosSupervisores.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_IntermediariosSupervisores.IsLastPage;
 
-            RptGrid.DataSource = pagedDataSource;
+            RptGrid.DataSource = pagedDataSource_IntermediariosSupervisores;
             RptGrid.DataBind();
 
 
             //divPaginacionComisionSupervisor.Visible = true;
         }
-        enum OpcionesPaginacionValores
+        enum OpcionesPaginacionValores_IntermediariosSupervisores
         {
             PrimeraPagina = 1,
             SiguientePagina = 2,
             PaginaAnterior = 3,
             UltimaPagina = 4
         }
-        private void MoverValoresPaginacion(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        private void MoverValoresPaginacion_IntermediariosSupervisores(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
         {
 
             int PaginaActual = 0;
@@ -143,6 +147,141 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
         #endregion
+
+        #region CONTROL DE PAGINACION DE COMISIONES
+        readonly PagedDataSource pagedDataSource_Comisiones = new PagedDataSource();
+        int _PrimeraPagina_Comisiones, _UltimaPagina_Comisiones;
+        private int _TamanioPagina_Comisiones = 10;
+        private int CurrentPage_Comisiones
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_Comisiones(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_Comisiones = CurrentPage_Comisiones - 5;
+            if (CurrentPage_Comisiones > 5)
+                _UltimaPagina_Comisiones = CurrentPage_Comisiones + 5;
+            else
+                _UltimaPagina_Comisiones = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_Comisiones > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_Comisiones = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_Comisiones = _UltimaPagina_Comisiones - 10;
+            }
+
+            if (_PrimeraPagina_Comisiones < 0)
+                _PrimeraPagina_Comisiones = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_Comisiones;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_Comisiones; i < _UltimaPagina_Comisiones; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_Comisiones(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_Comisiones.DataSource = Listado;
+            pagedDataSource_Comisiones.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_Comisiones.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_Comisiones.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_Comisiones.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_Comisiones : _NumeroRegistros);
+            pagedDataSource_Comisiones.CurrentPageIndex = CurrentPage_Comisiones;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_Comisiones.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_Comisiones.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_Comisiones.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_Comisiones.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_Comisiones;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_Comisiones
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_Comisiones(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+
+
         #region CARGAR LAS OFICINAS PARA LA PANTALLA DE CONSULTA
         private void CargaroficinaConsulta() {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarOficinaConsulta, ObjData.BuscaListas("OFICINAS", null, null), true);
@@ -161,8 +300,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 null,
                 null,
                 _Oficina);
-            Paginar(ref rpListado, Listado, 10, ref lbCantidadPaginaVariableIntermediariosSupervisores, ref LinkPrimeraPaginaIntermediariosSupervisores, ref LinkAnteriorIntermediariosSupervisores, ref LinkSiguienteIntermediariosSupervisores, ref LinkUltimoIntermediariosSupervisores);
-            HandlePaging(ref dtPaginacionIntermediariosSupervisores, ref lbPaginaActualVariavleIntermediariosSupervisores);
+            Paginar_IntermediariosSupervisores(ref rpListado, Listado, 10, ref lbCantidadPaginaVariableIntermediariosSupervisores, ref btnPrimeraPaginaIntermediariosSupervisores, ref btnAnteriorIntermediariosSupervisores, ref btnSiguienteIntermediariosSupervisores, ref btnUltimoIntermediariosSupervisores);
+            HandlePaging_IntermediariosSupervisores(ref dtPaginacionIntermediariosSupervisores, ref lbPaginaActualVariavleIntermediariosSupervisores);
         }
         #endregion
 
@@ -462,10 +601,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             MANIntermediarioCadenaDetalle(30, Convert.ToInt32(CodigoVendedorAfectado), Convert.ToInt32(txtCodigoSupervisorMantenimiento.Text), UsuarioProcesa, lbAccionTomar.Text);
 
-            CurrentPage = 0;
+            CurrentPage_IntermediariosSupervisores = 0;
             var Buscar = Objdatamantenimientos.BuscaListadoIntermediario(CodigoVendedorAfectado.ToString(), null, null, null, null);
-            Paginar(ref rpListado, Buscar, 1, ref lbCantidadPaginaVariableIntermediariosSupervisores, ref LinkPrimeraPaginaIntermediariosSupervisores, ref LinkAnteriorIntermediariosSupervisores, ref LinkSiguienteIntermediariosSupervisores, ref LinkUltimoIntermediariosSupervisores);
-            HandlePaging(ref dtPaginacionIntermediariosSupervisores, ref lbPaginaActualVariavleIntermediariosSupervisores);
+            Paginar_IntermediariosSupervisores(ref rpListado, Buscar, 1, ref lbCantidadPaginaVariableIntermediariosSupervisores, ref btnPrimeraPaginaIntermediariosSupervisores, ref btnAnteriorIntermediariosSupervisores, ref btnSiguienteIntermediariosSupervisores, ref btnUltimoIntermediariosSupervisores);
+            HandlePaging_IntermediariosSupervisores(ref dtPaginacionIntermediariosSupervisores, ref lbPaginaActualVariavleIntermediariosSupervisores);
             LimpiarControles();
 
             ClientScript.RegisterStartupScript(GetType(), "BloquearComision()", "BloquearComision();", true);
@@ -510,11 +649,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             txtCodigoIntermediarioConsulta.Text = string.Empty;
 
-            btnConsultar.Enabled = true;
-            btnNuevo.Enabled = true;
-            btnModificar.Enabled = false;
-            btnComisiones.Enabled = false;
-            btnRestabelcer.Enabled = false;
+            btnConsultarNuevo.Enabled = true;
+            btnNuevoNuevo.Enabled = true;
+            btnModificarNuevo.Enabled = false;
+            btnComisionesNuevo.Enabled = false;
+            btnRestabelcerNuevo.Enabled = false;
 
         }
         #endregion
@@ -522,7 +661,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region Restablecer Pantalla
         private void RestablecerPantalla() {
             LimpiarControles();
-            CurrentPage = 0;
+            CurrentPage_IntermediariosSupervisores = 0;
             MostrarIntermediariosSupervisores();
         }
         #endregion
@@ -792,8 +931,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CodigoIntermediario,
                 _Ramo,
                 _Subramo);
-            Paginar(ref rpListadoComisiones, Listado, 10, ref lbCantidadPaginaVariableIntermediariosSupervisoresComisiones, ref LinkPrimeraPaginaIntermediariosSupervisoresComisiones, ref LinkAnteriorIntermediariosSupervisoresComisiones, ref LinkSiguienteIntermediariosSupervisoresComisiones, ref LinkUltimoIntermediariosSupervisoresComisiones);
-            HandlePaging(ref dtPaginacionIntermediariosSupervisoresComisiones, ref lbPaginaActualVariavleIntermediariosSupervisoresComisiones);
+            Paginar_IntermediariosSupervisores(ref rpListadoComisiones, Listado, 10, ref lbCantidadPaginaVariableIntermediariosSupervisoresComisiones, ref btnPrimeraPaginaIntermediariosSupervisoresComisiones, ref btnAnteriorIntermediariosSupervisoresComisiones, ref btnSiguienteIntermediariosSupervisoresComisiones, ref btnUltimoIntermediariosSupervisoresComisiones);
+            HandlePaging_IntermediariosSupervisores(ref dtPaginacionIntermediariosSupervisoresComisiones, ref lbPaginaActualVariavleIntermediariosSupervisoresComisiones);
         }
         #endregion
 
@@ -827,103 +966,19 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                     lbPantallaActual.Text = "MANTENIMIENTO INTERMEDIARIOS / SUPERVISORES";
                     CargaroficinaConsulta();
-                    CurrentPage = 0;
+                    CurrentPage_IntermediariosSupervisores = 0;
                     MostrarIntermediariosSupervisores();
                     DivBloqueConsulta.Visible = true;
                     DivBloqueMantenimiento.Visible = false;
                     DivBloqueComisiones.Visible = false;
                     DivBloqueInternoComision.Visible = false;
-                    btnModificar.Enabled = false;
-                    btnComisiones.Enabled = false;
+                    btnModificarNuevo.Enabled = false;
+                    btnComisionesNuevo.Enabled = false;
                 }
             }
 
-            protected void btnConsultar_Click(object sender, EventArgs e)
-            {
-                CurrentPage = 0;
-                MostrarIntermediariosSupervisores();
-            }
-
-            protected void btnNuevo_Click(object sender, EventArgs e)
-            {
-                lbAccionTomar.Text = "INSERT";
-                DivBloqueConsulta.Visible = false;
-                DivBloqueComisiones.Visible = false;
-                DivBloqueInternoComision.Visible = false;
-                DivBloqueMantenimiento.Visible = true;
-                CargarConfiguracionesInicialesBloqueMantenimiento();
-            }
-
-            protected void btnModificar_Click(object sender, EventArgs e)
-            {
-                lbAccionTomar.Text = "UPDATE";
-                DivBloqueConsulta.Visible = false;
-                DivBloqueComisiones.Visible = false;
-                DivBloqueInternoComision.Visible = false;
-                DivBloqueMantenimiento.Visible = true;
-                CargarConfiguracionesInicialesBloqueMantenimiento();
-                SacarDatosIntermediario(lbCodigoSeleccionadoVariable.Text);
-
-            }
-
-            protected void btnComisiones_Click(object sender, EventArgs e)
-            {
-                DivBloqueConsulta.Visible = false;
-                DivBloqueMantenimiento.Visible = false;
-                DivBloqueComisiones.Visible = true;
-                DivBloqueInternoComision.Visible = false;
-
-                UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(lbCodigoSeleccionadoVariable.Text);
-                lbEncabezadoComisionesVariable.Text = Nombre.SacarNombreIntermediario();
-                rbConsultarComisiones.Checked = true;
-                CargarRamos();
-                CargarSubramos();
-                MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
-                lbClaveSeguridad.Visible = false;
-                txtClaveSeguridadComisiones.Visible = false;
-                txtClaveSeguridadComisiones.Text = string.Empty;
-                btnValidarClaveSeguridad.Visible = false;
-            }
-
-            protected void btnRestabelcer_Click(object sender, EventArgs e)
-            {
-                RestablecerPantalla();
-            }
-
-            protected void btnSeleccionarRegistro_Click(object sender, EventArgs e)
-            {
-                /*var RegistroSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-                var hfRegistroSeleccionado = ((HiddenField)RegistroSeleccionado.FindControl("hfIdRegistroSeleccionado")).Value.ToString();*/
-
-            var RegistroSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfIdRegistroSeleccionado = ((HiddenField)RegistroSeleccionado.FindControl("hfIdRegistroSeleccionado")).Value.ToString();
-            lbCodigoSeleccionadoVariable.Text = hfIdRegistroSeleccionado.ToString();
-            var BuscarRegistroSeleccionado = Objdatamantenimientos.BuscaListadoIntermediario(lbCodigoSeleccionadoVariable.Text, null, null, null, null);
-            Paginar(ref rpListado, BuscarRegistroSeleccionado, 1, ref lbCantidadPaginaVariableIntermediariosSupervisores, ref LinkPrimeraPaginaIntermediariosSupervisores, ref LinkAnteriorIntermediariosSupervisores, ref LinkSiguienteIntermediariosSupervisores, ref LinkUltimoIntermediariosSupervisores);
-            HandlePaging(ref dtPaginacionIntermediariosSupervisores, ref lbPaginaActualVariavleIntermediariosSupervisores);
-
-            btnConsultar.Enabled = false;
-            btnNuevo.Enabled = false;
-            btnModificar.Enabled = true;
-            btnComisiones.Enabled = true;
-            btnRestabelcer.Enabled = true;
 
 
-        }
-
-        protected void LinkPrimeraPaginaIntermediariosSupervisores_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarIntermediariosSupervisores();
-
-        }
-
-        protected void LinkAnteriorIntermediariosSupervisores_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarIntermediariosSupervisores();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleIntermediariosSupervisores, ref lbCantidadPaginaVariableIntermediariosSupervisores);
-        }
 
         protected void dtPaginacionIntermediariosSupervisores_ItemDataBound(object sender, DataListItemEventArgs e)
         {
@@ -933,130 +988,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void dtPaginacionIntermediariosSupervisores_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            CurrentPage_IntermediariosSupervisores = Convert.ToInt32(e.CommandArgument.ToString());
             MostrarIntermediariosSupervisores();
         }
 
-        protected void LinkSiguienteIntermediariosSupervisores_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            MostrarIntermediariosSupervisores();
-        }
-
-        protected void btnGuardarMantenimiento_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtFechaEntradaMantenimiento.Text.Trim()))
-            {
-                ClientScript.RegisterStartupScript(GetType(), "CampoFechaEntradaVacio()", "CampoFechaEntradaVacio();", true);
-            }
-            else {
-                if (string.IsNullOrEmpty(txtFechaNacimientoMantenimiento.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaNAcimientoVacio()", "CampoFechaNAcimientoVacio();", true);
-                }
-                else {
-                    if (string.IsNullOrEmpty(txtTelefono1Mantenimiento.Text.Trim()) && string.IsNullOrEmpty(txtTelefono2Mantenimiento.Text.Trim()) && string.IsNullOrEmpty(txtTelefono3Mantenimiento.Text.Trim()) && string.IsNullOrEmpty(txtCelularMantenimiento.Text.Trim()))
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "CamposComunicacionVacios(),", "CamposComunicacionVacios();", true);
-                    }
-                    else
-                    {
-                        string Accion = lbAccionTomar.Text;
-                        if (Accion == "UPDATE") {
-
-                            int CodigoIntermediario = Convert.ToInt32(lbCodigoSeleccionadoVariable.Text);
-                            int CodigoSupervisor = Convert.ToInt32(txtCodigoSupervisorMantenimiento.Text);
-
-                            if (CodigoIntermediario == CodigoSupervisor) {
-                                ClientScript.RegisterStartupScript(GetType(), "CodigoSupervisorNoValido()", "CodigoSupervisorNoValido();", true);
-                            }
-                            else {
-                                ProcesarInformacionRegistros();
-                                VolverAtras();
-                                LimpiarControles();
-                            }
-                        }
-                        else {
-                            ProcesarInformacionRegistros();
-                            VolverAtras();
-                            LimpiarControles();
-                        }
-                     
-                    }
-                }
-            }
-
-        }
-
-        protected void btnVolverAtrasMantenimiento_Click(object sender, EventArgs e)
-        {
-            VolverAtras();
-            LimpiarControles();
-        }
-
-        protected void btnConsultarComisiones_Click(object sender, EventArgs e)
-        {
-            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
-        }
-
-        protected void btnValidarClaveSeguridad_Click(object sender, EventArgs e)
-        {
-            bool Resultado = false;
-            string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridadComisiones.Text.Trim()) ? null : txtClaveSeguridadComisiones.Text.Trim();
-            UtilidadesAmigos.Logica.Comunes.ValidarClaveSeguridad ValidarClave = new Logica.Comunes.ValidarClaveSeguridad(_ClaveSeguridad);
-            Resultado = ValidarClave.ValidarClave();
-            switch (Resultado) {
-                case true:
-                    DivBloqueInternoComision.Visible = true;
-                    break;
-
-                case false:
-                    ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadInvalida()", "ClaveSeguridadInvalida();", true);
-                    break;
-            }
-        }
-
-        protected void btnSeleccionarComision_Click(object sender, EventArgs e)
-        {
-
-            if (DivBloqueInternoComision.Visible == true) {
-                var RamoSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-                var hfRamoSeleccionado = ((HiddenField)RamoSeleccionado.FindControl("hfRamoComsiones")).Value.ToString();
-
-                var SubRamoSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-                var hfSubRamoSeleccionado = ((HiddenField)SubRamoSeleccionado.FindControl("hfSubRamoComisiones")).Value.ToString();
-
-                lbCodigoIntermediario.Text = lbCodigoSeleccionadoVariable.Text;
-                lbCodigoRamo.Text = hfRamoSeleccionado.ToString();
-                lbCodigoSubRamo.Text = hfSubRamoSeleccionado.ToString();
-
-
-                var Listado = Objdatamantenimientos.BuscaComisionesIntermediario(
-                    Convert.ToInt32(lbCodigoSeleccionadoVariable.Text),
-                    Convert.ToInt32(hfRamoSeleccionado.ToString()),
-                    Convert.ToInt32(hfSubRamoSeleccionado.ToString()));
-                foreach (var n in Listado)
-                {
-                    txtRamoSeleccionadoComisionesComisiones.Text = n.Ramo;
-                    txtSubRamoSeleccionadoComisiones.Text = n.Subramo;
-                    txtPorcientoComisionSeleccionadoComisiones.Text = n.PorcientoComision.ToString();
-                    txtPorcientoComisionSeleccionadoComisiones.Enabled = true;
-                }
-            }
-        }
-
-        protected void LinkPrimeraPaginaIntermediariosSupervisoresComisiones_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
-        }
-
-        protected void LinkAnteriorIntermediariosSupervisoresComisiones_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleIntermediariosSupervisoresComisiones, ref lbCantidadPaginaVariableIntermediariosSupervisoresComisiones);
-        }
+  
 
         protected void dtPaginacionIntermediariosSupervisoresComisiones_ItemDataBound(object sender, DataListItemEventArgs e)
         {
@@ -1066,42 +1002,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void dtPaginacionIntermediariosSupervisoresComisiones_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            CurrentPage_Comisiones = Convert.ToInt32(e.CommandArgument.ToString());
             MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
         }
 
-        protected void LinkSiguienteIntermediariosSupervisoresComisiones_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
-        }
-
-        protected void LinkUltimoIntermediariosSupervisoresComisiones_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavleIntermediariosSupervisoresComisiones, ref lbCantidadPaginaVariableIntermediariosSupervisoresComisiones);
-        }
-
-        protected void btnModificarComision_Click(object sender, EventArgs e)
-        {
-            ModificarComisionesIntermediario();
-        }
-
-        protected void btnCancearProceso_Click(object sender, EventArgs e)
-        {
-            txtRamoSeleccionadoComisionesComisiones.Text = string.Empty;
-            txtSubRamoSeleccionadoComisiones.Text = string.Empty;
-            txtPorcientoComisionSeleccionadoComisiones.Text = string.Empty;
-            rbConsultarComisiones.Checked = false;
-            DivBloqueInternoComision.Visible = false;
-        }
-
-        protected void btnVolverAtrasComisiones_Click(object sender, EventArgs e)
-        {
-            VolverAtras();
-            LimpiarControles();
-        }
 
         protected void ddlPaisMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1161,13 +1065,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 case true:
                     lbClaveSeguridad.Visible = false;
                     txtClaveSeguridadComisiones.Visible = false;
-                    btnValidarClaveSeguridad.Visible = false;
+                    btnValidarClaveSeguridadNuevo.Visible = false;
                     break;
 
                 case false:
                     lbClaveSeguridad.Visible = true;
                     txtClaveSeguridadComisiones.Visible = true;
-                    btnValidarClaveSeguridad.Visible = true;
+                    btnValidarClaveSeguridadNuevo.Visible = true;
                     break;
             }
         }
@@ -1179,22 +1083,269 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     lbClaveSeguridad.Visible = true;
                     txtClaveSeguridadComisiones.Visible = true;
                     txtClaveSeguridadComisiones.Text = string.Empty;
-                    btnValidarClaveSeguridad.Visible = true;
+                    btnValidarClaveSeguridadNuevo.Visible = true;
                     break;
 
                 case false:
                     lbClaveSeguridad.Visible = false;
                     txtClaveSeguridadComisiones.Visible = false;
-                    btnValidarClaveSeguridad.Visible = false;
+                    btnValidarClaveSeguridadNuevo.Visible = false;
                     break;
             }
         }
 
-        protected void LinkUltimoIntermediariosSupervisores_Click(object sender, EventArgs e)
+        protected void btnConsultarNuevo_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            CurrentPage_IntermediariosSupervisores = 0;
             MostrarIntermediariosSupervisores();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleIntermediariosSupervisores, ref lbCantidadPaginaVariableIntermediariosSupervisores);
+        }
+
+        protected void btnNuevoNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            lbAccionTomar.Text = "INSERT";
+            DivBloqueConsulta.Visible = false;
+            DivBloqueComisiones.Visible = false;
+            DivBloqueInternoComision.Visible = false;
+            DivBloqueMantenimiento.Visible = true;
+            CargarConfiguracionesInicialesBloqueMantenimiento();
+        }
+
+        protected void btnModificarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            lbAccionTomar.Text = "UPDATE";
+            DivBloqueConsulta.Visible = false;
+            DivBloqueComisiones.Visible = false;
+            DivBloqueInternoComision.Visible = false;
+            DivBloqueMantenimiento.Visible = true;
+            CargarConfiguracionesInicialesBloqueMantenimiento();
+            SacarDatosIntermediario(lbCodigoSeleccionadoVariable.Text);
+        }
+
+        protected void btnComisionesNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+
+            DivBloqueConsulta.Visible = false;
+            DivBloqueMantenimiento.Visible = false;
+            DivBloqueComisiones.Visible = true;
+            DivBloqueInternoComision.Visible = false;
+
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(lbCodigoSeleccionadoVariable.Text);
+            lbEncabezadoComisionesVariable.Text = Nombre.SacarNombreIntermediario();
+            rbConsultarComisiones.Checked = true;
+            CargarRamos();
+            CargarSubramos();
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
+            lbClaveSeguridad.Visible = false;
+            txtClaveSeguridadComisiones.Visible = false;
+            txtClaveSeguridadComisiones.Text = string.Empty;
+            btnValidarClaveSeguridadNuevo.Visible = false;
+        }
+
+        protected void btnRestabelcerNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            RestablecerPantalla();
+        }
+
+        protected void btnPrimeraPaginaIntermediariosSupervisores_Click(object sender, ImageClickEventArgs e)
+        {
+
+            CurrentPage_IntermediariosSupervisores = 0;
+            MostrarIntermediariosSupervisores();
+        }
+
+        protected void btnAnteriorIntermediariosSupervisores_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_IntermediariosSupervisores += -1;
+            MostrarIntermediariosSupervisores();
+            MoverValoresPaginacion_IntermediariosSupervisores((int)OpcionesPaginacionValores_IntermediariosSupervisores.PaginaAnterior, ref lbPaginaActualVariavleIntermediariosSupervisores, ref lbCantidadPaginaVariableIntermediariosSupervisores);
+        }
+
+        protected void btnPrimeraPaginaIntermediariosSupervisoresComisiones_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Comisiones = 0;
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
+        }
+
+        protected void btnAnteriorIntermediariosSupervisoresComisiones_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Comisiones += -1;
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
+            MoverValoresPaginacion_Comisiones((int)OpcionesPaginacionValores_Comisiones.PaginaAnterior, ref lbPaginaActualVariavleIntermediariosSupervisoresComisiones, ref lbCantidadPaginaVariableIntermediariosSupervisoresComisiones);
+        }
+
+        protected void btnSiguienteIntermediariosSupervisoresComisiones_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Comisiones += 1;
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
+        }
+
+        protected void btnSiguienteIntermediariosSupervisores_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_IntermediariosSupervisores += 1;
+            MostrarIntermediariosSupervisores();
+        }
+
+        protected void btnUltimoIntermediariosSupervisores_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_IntermediariosSupervisores = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarIntermediariosSupervisores();
+            MoverValoresPaginacion_IntermediariosSupervisores((int)OpcionesPaginacionValores_IntermediariosSupervisores.PaginaAnterior, ref lbPaginaActualVariavleIntermediariosSupervisores, ref lbCantidadPaginaVariableIntermediariosSupervisores);
+        }
+
+        protected void btnSeleccionarComisionNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            if (DivBloqueInternoComision.Visible == true)
+            {
+                var RamoSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+                var hfRamoSeleccionado = ((HiddenField)RamoSeleccionado.FindControl("hfRamoComsiones")).Value.ToString();
+
+                var SubRamoSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+                var hfSubRamoSeleccionado = ((HiddenField)SubRamoSeleccionado.FindControl("hfSubRamoComisiones")).Value.ToString();
+
+                lbCodigoIntermediario.Text = lbCodigoSeleccionadoVariable.Text;
+                lbCodigoRamo.Text = hfRamoSeleccionado.ToString();
+                lbCodigoSubRamo.Text = hfSubRamoSeleccionado.ToString();
+
+
+                var Listado = Objdatamantenimientos.BuscaComisionesIntermediario(
+                    Convert.ToInt32(lbCodigoSeleccionadoVariable.Text),
+                    Convert.ToInt32(hfRamoSeleccionado.ToString()),
+                    Convert.ToInt32(hfSubRamoSeleccionado.ToString()));
+                foreach (var n in Listado)
+                {
+                    txtRamoSeleccionadoComisionesComisiones.Text = n.Ramo;
+                    txtSubRamoSeleccionadoComisiones.Text = n.Subramo;
+                    txtPorcientoComisionSeleccionadoComisiones.Text = n.PorcientoComision.ToString();
+                    txtPorcientoComisionSeleccionadoComisiones.Enabled = true;
+                }
+            }
+        }
+
+        protected void btnSeleccionarRegistroNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            /*var RegistroSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+           var hfRegistroSeleccionado = ((HiddenField)RegistroSeleccionado.FindControl("hfIdRegistroSeleccionado")).Value.ToString();*/
+
+            var RegistroSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfIdRegistroSeleccionado = ((HiddenField)RegistroSeleccionado.FindControl("hfIdRegistroSeleccionado")).Value.ToString();
+            lbCodigoSeleccionadoVariable.Text = hfIdRegistroSeleccionado.ToString();
+            CurrentPage_IntermediariosSupervisores = 0;
+            var BuscarRegistroSeleccionado = Objdatamantenimientos.BuscaListadoIntermediario(lbCodigoSeleccionadoVariable.Text, null, null, null, null);
+            Paginar_IntermediariosSupervisores(ref rpListado, BuscarRegistroSeleccionado, 1, ref lbCantidadPaginaVariableIntermediariosSupervisores, ref btnPrimeraPaginaIntermediariosSupervisores, ref btnAnteriorIntermediariosSupervisores, ref btnSiguienteIntermediariosSupervisores, ref btnUltimoIntermediariosSupervisores);
+            HandlePaging_IntermediariosSupervisores(ref dtPaginacionIntermediariosSupervisores, ref lbPaginaActualVariavleIntermediariosSupervisores);
+
+            btnConsultarNuevo.Enabled = false;
+            btnNuevoNuevo.Enabled = false;
+            btnModificarNuevo.Enabled = true;
+            btnComisionesNuevo.Enabled = true;
+            btnRestabelcerNuevo.Enabled = true;
+        }
+
+        protected void btnGuardarMantenimientoNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFechaEntradaMantenimiento.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CampoFechaEntradaVacio()", "CampoFechaEntradaVacio();", true);
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(txtFechaNacimientoMantenimiento.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaNAcimientoVacio()", "CampoFechaNAcimientoVacio();", true);
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(txtTelefono1Mantenimiento.Text.Trim()) && string.IsNullOrEmpty(txtTelefono2Mantenimiento.Text.Trim()) && string.IsNullOrEmpty(txtTelefono3Mantenimiento.Text.Trim()) && string.IsNullOrEmpty(txtCelularMantenimiento.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CamposComunicacionVacios(),", "CamposComunicacionVacios();", true);
+                    }
+                    else
+                    {
+                        string Accion = lbAccionTomar.Text;
+                        if (Accion == "UPDATE")
+                        {
+
+                            int CodigoIntermediario = Convert.ToInt32(lbCodigoSeleccionadoVariable.Text);
+                            int CodigoSupervisor = Convert.ToInt32(txtCodigoSupervisorMantenimiento.Text);
+
+                            if (CodigoIntermediario == CodigoSupervisor)
+                            {
+                                ClientScript.RegisterStartupScript(GetType(), "CodigoSupervisorNoValido()", "CodigoSupervisorNoValido();", true);
+                            }
+                            else
+                            {
+                                ProcesarInformacionRegistros();
+                                VolverAtras();
+                                LimpiarControles();
+                            }
+                        }
+                        else
+                        {
+                            ProcesarInformacionRegistros();
+                            VolverAtras();
+                            LimpiarControles();
+                        }
+
+                    }
+                }
+            }
+        }
+
+        protected void btnVolverAtrasMantenimientoNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            VolverAtras();
+            LimpiarControles();
+        }
+
+        protected void btnConsultarComisionesNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Comisiones = 0;
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
+        }
+
+        protected void btnValidarClaveSeguridadNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            bool Resultado = false;
+            string _ClaveSeguridad = string.IsNullOrEmpty(txtClaveSeguridadComisiones.Text.Trim()) ? null : txtClaveSeguridadComisiones.Text.Trim();
+            UtilidadesAmigos.Logica.Comunes.ValidarClaveSeguridad ValidarClave = new Logica.Comunes.ValidarClaveSeguridad(_ClaveSeguridad);
+            Resultado = ValidarClave.ValidarClave();
+            switch (Resultado)
+            {
+                case true:
+                    DivBloqueInternoComision.Visible = true;
+                    break;
+
+                case false:
+                    ClientScript.RegisterStartupScript(GetType(), "ClaveSeguridadInvalida()", "ClaveSeguridadInvalida();", true);
+                    break;
+            }
+        }
+
+        protected void btnModificarComisionNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            ModificarComisionesIntermediario();
+        }
+
+        protected void btnCancearProcesoNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            txtRamoSeleccionadoComisionesComisiones.Text = string.Empty;
+            txtSubRamoSeleccionadoComisiones.Text = string.Empty;
+            txtPorcientoComisionSeleccionadoComisiones.Text = string.Empty;
+            rbConsultarComisiones.Checked = false;
+            DivBloqueInternoComision.Visible = false;
+        }
+
+        protected void btnVolverAtrasComisionesNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            VolverAtras();
+            LimpiarControles();
+        }
+
+        protected void btnUltimoIntermediariosSupervisoresComisiones_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Comisiones = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
+            MoverValoresPaginacion_Comisiones((int)OpcionesPaginacionValores_Comisiones.UltimaPagina, ref lbPaginaActualVariavleIntermediariosSupervisoresComisiones, ref lbCantidadPaginaVariableIntermediariosSupervisoresComisiones);
         }
     }
 }

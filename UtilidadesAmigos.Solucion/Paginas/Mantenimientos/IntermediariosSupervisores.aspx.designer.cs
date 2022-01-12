@@ -78,49 +78,49 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarOficinaConsulta;
 
         /// <summary>
-        /// btnConsultar control.
+        /// btnConsultarNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConsultar;
+        protected global::System.Web.UI.WebControls.ImageButton btnConsultarNuevo;
 
         /// <summary>
-        /// btnNuevo control.
+        /// btnNuevoNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNuevo;
+        protected global::System.Web.UI.WebControls.ImageButton btnNuevoNuevo;
 
         /// <summary>
-        /// btnModificar control.
+        /// btnModificarNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificar;
+        protected global::System.Web.UI.WebControls.ImageButton btnModificarNuevo;
 
         /// <summary>
-        /// btnComisiones control.
+        /// btnComisionesNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnComisiones;
+        protected global::System.Web.UI.WebControls.ImageButton btnComisionesNuevo;
 
         /// <summary>
-        /// btnRestabelcer control.
+        /// btnRestabelcerNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRestabelcer;
+        protected global::System.Web.UI.WebControls.ImageButton btnRestabelcerNuevo;
 
         /// <summary>
         /// rpListado control.
@@ -177,22 +177,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacion;
 
         /// <summary>
-        /// LinkPrimeraPaginaIntermediariosSupervisores control.
+        /// btnPrimeraPaginaIntermediariosSupervisores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPaginaIntermediariosSupervisores;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaIntermediariosSupervisores;
 
         /// <summary>
-        /// LinkAnteriorIntermediariosSupervisores control.
+        /// btnAnteriorIntermediariosSupervisores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorIntermediariosSupervisores;
+        protected global::System.Web.UI.WebControls.ImageButton btnAnteriorIntermediariosSupervisores;
 
         /// <summary>
         /// dtPaginacionIntermediariosSupervisores control.
@@ -204,22 +204,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.DataList dtPaginacionIntermediariosSupervisores;
 
         /// <summary>
-        /// LinkSiguienteIntermediariosSupervisores control.
+        /// btnSiguienteIntermediariosSupervisores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteIntermediariosSupervisores;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguienteIntermediariosSupervisores;
 
         /// <summary>
-        /// LinkUltimoIntermediariosSupervisores control.
+        /// btnUltimoIntermediariosSupervisores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoIntermediariosSupervisores;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimoIntermediariosSupervisores;
 
         /// <summary>
         /// DivBloqueMantenimiento control.
@@ -915,22 +915,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.TextBox txtComentarioMantenimiento;
 
         /// <summary>
-        /// btnGuardarMantenimiento control.
+        /// btnGuardarMantenimientoNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarMantenimiento;
+        protected global::System.Web.UI.WebControls.ImageButton btnGuardarMantenimientoNuevo;
 
         /// <summary>
-        /// btnVolverAtrasMantenimiento control.
+        /// btnVolverAtrasMantenimientoNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolverAtrasMantenimiento;
+        protected global::System.Web.UI.WebControls.ImageButton btnVolverAtrasMantenimientoNuevo;
 
         /// <summary>
         /// DivBloqueComisiones control.
@@ -1059,22 +1059,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.TextBox txtClaveSeguridadComisiones;
 
         /// <summary>
-        /// btnConsultarComisiones control.
+        /// btnConsultarComisionesNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConsultarComisiones;
+        protected global::System.Web.UI.WebControls.ImageButton btnConsultarComisionesNuevo;
 
         /// <summary>
-        /// btnValidarClaveSeguridad control.
+        /// btnValidarClaveSeguridadNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnValidarClaveSeguridad;
+        protected global::System.Web.UI.WebControls.ImageButton btnValidarClaveSeguridadNuevo;
 
         /// <summary>
         /// rpListadoComisiones control.
@@ -1131,22 +1131,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacionComisiones;
 
         /// <summary>
-        /// LinkPrimeraPaginaIntermediariosSupervisoresComisiones control.
+        /// btnPrimeraPaginaIntermediariosSupervisoresComisiones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPaginaIntermediariosSupervisoresComisiones;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaIntermediariosSupervisoresComisiones;
 
         /// <summary>
-        /// LinkAnteriorIntermediariosSupervisoresComisiones control.
+        /// btnAnteriorIntermediariosSupervisoresComisiones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorIntermediariosSupervisoresComisiones;
+        protected global::System.Web.UI.WebControls.ImageButton btnAnteriorIntermediariosSupervisoresComisiones;
 
         /// <summary>
         /// dtPaginacionIntermediariosSupervisoresComisiones control.
@@ -1158,22 +1158,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.DataList dtPaginacionIntermediariosSupervisoresComisiones;
 
         /// <summary>
-        /// LinkSiguienteIntermediariosSupervisoresComisiones control.
+        /// btnSiguienteIntermediariosSupervisoresComisiones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteIntermediariosSupervisoresComisiones;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguienteIntermediariosSupervisoresComisiones;
 
         /// <summary>
-        /// LinkUltimoIntermediariosSupervisoresComisiones control.
+        /// btnUltimoIntermediariosSupervisoresComisiones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoIntermediariosSupervisoresComisiones;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimoIntermediariosSupervisoresComisiones;
 
         /// <summary>
         /// DivBloqueInternoComision control.
@@ -1239,30 +1239,30 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.TextBox txtPorcientoComisionSeleccionadoComisiones;
 
         /// <summary>
-        /// btnModificarComision control.
+        /// btnModificarComisionNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarComision;
+        protected global::System.Web.UI.WebControls.ImageButton btnModificarComisionNuevo;
 
         /// <summary>
-        /// btnCancearProceso control.
+        /// btnCancearProcesoNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancearProceso;
+        protected global::System.Web.UI.WebControls.ImageButton btnCancearProcesoNuevo;
 
         /// <summary>
-        /// btnVolverAtrasComisiones control.
+        /// btnVolverAtrasComisionesNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolverAtrasComisiones;
+        protected global::System.Web.UI.WebControls.ImageButton btnVolverAtrasComisionesNuevo;
     }
 }

@@ -170,10 +170,14 @@
     <Content Include="Imagenes\08.jpg" />
     <Content Include="Imagenes\155805d262d9564.jpg" />
     <Content Include="Imagenes\Agregar %282%29.png" />
+    <Content Include="Imagenes\Anterior.png" />
     <Content Include="Imagenes\auto.png" />
     <Content Include="Imagenes\Buscar.png" />
     <Content Include="Imagenes\CampoImagen.jpg" />
+    <Content Include="Imagenes\cancelado.png" />
+    <Content Include="Imagenes\comision.png" />
     <Content Include="Imagenes\Completar.png" />
+    <Content Include="Imagenes\comprobar.png" />
     <Content Include="Imagenes\Cotizar.png" />
     <Content Include="Imagenes\Editar.png" />
     <Content Include="Imagenes\Eliminar.png" />
@@ -185,6 +189,7 @@
     <Content Include="Imagenes\modificar.png" />
     <Content Include="Imagenes\pdf.png" />
     <Content Include="Imagenes\png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
+    <Content Include="Imagenes\Primera Pagina.png" />
     <Content Include="Imagenes\Procesar.png" />
     <Content Include="Imagenes\Reporte.png" />
     <Content Include="Imagenes\salvar.png" />
@@ -192,7 +197,9 @@
     <Content Include="Imagenes\SeguroFull.jpg" />
     <Content Include="Imagenes\Seleccionar2.png" />
     <Content Include="Imagenes\Servicio al Cliente.png" />
+    <Content Include="Imagenes\Siguiente.png" />
     <Content Include="Imagenes\tDYC1tp.jpg" />
+    <Content Include="Imagenes\Ultima Pagina.png" />
     <Content Include="Imagenes\volver-flecha.png" />
     <Content Include="JS\Mask.js" />
     <Content Include="JS\Utililades.js" />
