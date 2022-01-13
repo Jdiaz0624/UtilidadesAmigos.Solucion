@@ -1185,22 +1185,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacionProveedores;
 
         /// <summary>
-        /// LinkPrimeroProveedor control.
+        /// btnPrimeroProveedor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeroProveedor;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeroProveedor;
 
         /// <summary>
-        /// LinkAnteriorProveedor control.
+        /// btnAnteriorProveedor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorProveedor;
+        protected global::System.Web.UI.WebControls.ImageButton btnAnteriorProveedor;
 
         /// <summary>
         /// dtProveedor control.
@@ -1212,22 +1212,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.WebControls.DataList dtProveedor;
 
         /// <summary>
-        /// LinkSiguienteProveedor control.
+        /// btnSiguienteProveedor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteProveedor;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguienteProveedor;
 
         /// <summary>
-        /// LinkUltimoProveedor control.
+        /// AnteriorUltimoProveedor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoProveedor;
+        protected global::System.Web.UI.WebControls.ImageButton AnteriorUltimoProveedor;
 
         /// <summary>
         /// DivDetalleProveedores control.
