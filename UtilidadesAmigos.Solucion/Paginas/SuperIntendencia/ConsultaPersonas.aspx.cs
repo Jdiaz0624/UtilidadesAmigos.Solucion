@@ -171,9 +171,276 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
 
         #endregion
 
+        #region CONTROL DE PAGINACION DE CLIENTES
+        readonly PagedDataSource pagedDataSource_Clientes = new PagedDataSource();
+        int _PrimeraPagina_Clientes, _UltimaPagina_Clientes;
+        private int _TamanioPagina_Clientes = 10;
+        private int CurrentPage_Clientes
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_Clientes(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_Clientes = CurrentPage_Clientes - 5;
+            if (CurrentPage_Clientes > 5)
+                _UltimaPagina_Clientes = CurrentPage_Clientes + 5;
+            else
+                _UltimaPagina_Clientes = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_Clientes > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_Clientes = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_Clientes = _UltimaPagina_Clientes - 10;
+            }
+
+            if (_PrimeraPagina_Clientes < 0)
+                _PrimeraPagina_Clientes = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_Clientes;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_Clientes; i < _UltimaPagina_Clientes; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_Clientes(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_Clientes.DataSource = Listado;
+            pagedDataSource_Clientes.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_Clientes.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_Clientes.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_Clientes.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_Clientes : _NumeroRegistros);
+            pagedDataSource_Clientes.CurrentPageIndex = CurrentPage_Clientes;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_Clientes.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_Clientes.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_Clientes.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_Clientes.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_Clientes;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_Clientes
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_Clientes(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+
+        #region CONTROL DE PAGINACION DE INTERMEDIARIOS SUPERVISORES
+        readonly PagedDataSource pagedDataSource_IntermediariosSupervisores = new PagedDataSource();
+        int _PrimeraPagina_IntermediariosSupervisores, _UltimaPagina_IntermediariosSupervisores;
+        private int _TamanioPagina_IntermediariosSupervisores = 10;
+        private int CurrentPage_IntermediariosSupervisores
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_IntermediariosSupervisores(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_IntermediariosSupervisores = CurrentPage_IntermediariosSupervisores - 5;
+            if (CurrentPage_IntermediariosSupervisores > 5)
+                _UltimaPagina_IntermediariosSupervisores = CurrentPage_IntermediariosSupervisores + 5;
+            else
+                _UltimaPagina_IntermediariosSupervisores = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_IntermediariosSupervisores > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_IntermediariosSupervisores = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_IntermediariosSupervisores = _UltimaPagina_IntermediariosSupervisores - 10;
+            }
+
+            if (_PrimeraPagina_IntermediariosSupervisores < 0)
+                _PrimeraPagina_IntermediariosSupervisores = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_IntermediariosSupervisores;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_IntermediariosSupervisores; i < _UltimaPagina_IntermediariosSupervisores; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_IntermediariosSupervisores(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_IntermediariosSupervisores.DataSource = Listado;
+            pagedDataSource_IntermediariosSupervisores.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_IntermediariosSupervisores.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_IntermediariosSupervisores.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_IntermediariosSupervisores.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_IntermediariosSupervisores : _NumeroRegistros);
+            pagedDataSource_IntermediariosSupervisores.CurrentPageIndex = CurrentPage_Clientes;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_IntermediariosSupervisores.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_IntermediariosSupervisores.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_IntermediariosSupervisores.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_IntermediariosSupervisores.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_IntermediariosSupervisores;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_IntermediariosSupervisores
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_IntermediariosSupervisores(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+
+
         #region PROCESOS PARA LA BUSQUEDA Y PROCESO DE INFORMACION A TRAVEZ DE ARCHIVO DE EXCEL
 
-        
+
 
         enum TipoBusquedaProceso { 
         BusquedaPorNombre=1,
@@ -605,8 +872,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 lbCantidadRegistrosClienteVariable.Text = "SI";
                 lbCantidadRegistrosClienteVariable.ForeColor = System.Drawing.Color.Green;
 
-                Paginar(ref rpListadoBusquedaCliente, BuscarListado, 10, ref lbCantidadPaginaVAriableCliente, ref LinkPrimeraPaginaCliente, ref LinkAnteriorCliente, ref LinkSiguienteCliente, ref LinkUltimoCliente);
-                HandlePaging(ref dtPaginacionCliente, ref lbPaginaActualVariavleCliente);
+                Paginar_Clientes(ref rpListadoBusquedaCliente, BuscarListado, 10, ref lbCantidadPaginaVAriableCliente, ref btnPrimeraPaginaCliente, ref btnAnteriorCliente, ref btnSiguienteCliente, ref btnUltimoCliente);
+                HandlePaging_Clientes(ref dtPaginacionCliente, ref lbPaginaActualVariavleCliente);
                 divPaginacionCliente.Visible = true;
             }
         }
@@ -627,8 +894,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             else {
                 lbCantidadIntermediariosSupervisorVariable.ForeColor = System.Drawing.Color.Green;
                 lbCantidadIntermediariosSupervisorVariable.Text = "SI";
-                Paginar(ref rpListadoIntermediarios, Listado, 10, ref lbCantidadPaginaVAriableIntermedairaio, ref LinkPrimeroIntermediario, ref LinkAnteriorIntermediario, ref LinkSiguienteCliente, ref LinkUltimoIntermediario);
-                HandlePaging(ref dtIntermediario, ref lbPaginaActualVariavleIntermediario);
+              //  CurrentPage_IntermediariosSupervisores = 0;
+                Paginar_IntermediariosSupervisores(ref rpListadoIntermediarios, Listado, 10, ref lbCantidadPaginaVAriableIntermedairaio, ref btnPrimeroIntermediario, ref btnAnteriorIntermediario, ref btnSiguienteIntermediario, ref btnUltimoIntermediario);
+                HandlePaging_IntermediariosSupervisores(ref dtIntermediario, ref lbPaginaActualVariavleIntermediario);
                 DivPaginacionIntermediario.Visible = true;
             }
         }
@@ -645,8 +913,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 Cotizacion,
                 Secuencia,
                 ReportePreciso);
-            Paginar(ref rpListadoBusquedaCliente, BuscarRegistroSeleccionado, 1, ref lbCantidadPaginaVAriableCliente, ref LinkPrimeraPaginaCliente, ref LinkAnteriorCliente, ref LinkSiguienteCliente, ref LinkUltimoCliente);
-            HandlePaging(ref dtPaginacionCliente, ref lbPaginaActualVariavleCliente);
+            Paginar_Clientes(ref rpListadoBusquedaCliente, BuscarRegistroSeleccionado, 1, ref lbCantidadPaginaVAriableCliente, ref btnPrimeraPaginaCliente, ref btnAnteriorCliente, ref btnSiguienteCliente, ref btnUltimoCliente);
+            HandlePaging_Clientes(ref dtPaginacionCliente, ref lbPaginaActualVariavleCliente);
             DivBloqueDetalleCliente.Visible = true;
             foreach (var n in BuscarRegistroSeleccionado) {
                 txtNombreDetalleCliente.Text = n.Nombre;
@@ -810,50 +1078,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
        
         }
 
-        protected void btnSeleccionarRegistrosBusquedaCliente_Click(object sender, EventArgs e)
-        {
-            var PolizaSeleccionada = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfPolizaSeleccionada = ((HiddenField)PolizaSeleccionada.FindControl("hfPolizaBusquedaCliente")).Value.ToString();
-
-            var CotizacionSeleccionada = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfCotizacionSeleccionada = ((HiddenField)CotizacionSeleccionada.FindControl("hfCotizacionBusquedaCliente")).Value.ToString();
-
-            var SecuenciaSeleccionada = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfSecuenciaSeleccionada = ((HiddenField)SecuenciaSeleccionada.FindControl("hfSecuenciaBusquedaCliente")).Value.ToString();
-
-            SeleccionarRegistrosClientes(hfPolizaSeleccionada.ToString(), Convert.ToDecimal(hfCotizacionSeleccionada), Convert.ToDecimal(hfSecuenciaSeleccionada), 1);
-            DivBloqueDetalleCliente.Visible = true;
-        }
-
-        protected void LinkPrimeraPaginaCliente_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarListadoClientes(1);
-        }
-
-        protected void LinkAnteriorCliente_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarListadoClientes(1);
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleCliente, ref lbCantidadPaginaVAriableCliente);
-        }
-
         protected void dtPaginacionCliente_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            CurrentPage_Clientes = Convert.ToInt32(e.CommandArgument.ToString());
             MostrarListadoClientes(1);
         }
 
         protected void dtPaginacionCliente_ItemDataBound(object sender, DataListItemEventArgs e)
         {
            
-        }
-
-        protected void LinkSiguienteCliente_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            MostrarListadoClientes(1);
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
@@ -896,8 +1130,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                     else {
                         int CantidadEncontrada = BuscaInformacionRegistrada.Count;
                         lbCantidadRegistrosProcesadosVariable.Text = CantidadEncontrada.ToString("N0");
-                        Paginar(ref rpRegistrosCargadoArchivo, BuscaInformacionRegistrada, 10, ref lbCantidadPaginaVAriableArchivo, ref LinkPrimeroArchivo, ref LinkAnteriorArchivo, ref LinkSiguienteArchivo, ref LinkUltimoArchivo);
-                        HandlePaging(ref dtArchivo, ref lbPaginaActualVariavleArchivo);
+                        //Paginar(ref rpRegistrosCargadoArchivo, BuscaInformacionRegistrada, 10, ref lbCantidadPaginaVAriableArchivo, ref LinkPrimeroArchivo, ref LinkAnteriorArchivo, ref LinkSiguienteArchivo, ref LinkUltimoArchivo);
+                        //HandlePaging(ref dtArchivo, ref lbPaginaActualVariavleArchivo);
                     }
                     
                 }
@@ -945,72 +1179,17 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             }
         }
 
-        protected void btnSeleccionarIntermediarioRepeater_Click(object sender, EventArgs e)
-        {
-            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfCodigoIntermediario = ((HiddenField)ItemSeleccionado.FindControl("hfCodigointermediario")).Value.ToString();
-
-            var BuscarRegistroSeleccionado = ObjDataSuperIntendencia.Value.BuscaPersonasSuperIntendenciaIntermediario(Convert.ToInt32(hfCodigoIntermediario), null, null);
-            Paginar(ref rpListadoIntermediarios, BuscarRegistroSeleccionado, 10, ref lbCantidadPaginaVAriableIntermedairaio, ref LinkPrimeroIntermediario, ref LinkAnteriorIntermediario, ref LinkSiguienteCliente, ref LinkUltimoIntermediario);
-            HandlePaging(ref dtIntermediario, ref lbPaginaActualVariavleIntermediario);
-            DivPaginacionIntermediario.Visible = true;
-            foreach (var n in BuscarRegistroSeleccionado) {
-                txtBusquedaIntermediarioCodigoDetalle.Text = n.Codigo.ToString();
-                txtBusquedaIntermediarioTipoRNCDetalle.Text = n.TipoIdentificacion;
-                txtBusquedaIntermediarioNumeroIdentificacionDetalle.Text = n.Rnc;
-                txtBusquedaIntermediarioNombreDetalle.Text = n.Nombre;
-                txtBusquedaIntermediarioSupervisorDetalle.Text = n.Supervisor;
-                txtBusquedaIntermediarioFechaEntradaDetalle.Text = n.FechaEntrada;
-                txtBusquedaIntermediarioTelefonoResidenciaDetalle.Text = n.Telefono;
-                txtBusquedaIntermediarioTelefonoOficinaDetalle.Text = n.TelefonoOficina;
-                txtBusquedaIntermediarioCelularDetalle.Text = n.Celular;
-                txtBusquedaIntermediarioLicenciaSeguroDetalle.Text = n.LicenciaSeguro;
-                txtBusquedaIntermediarioOficinaDetalle.Text = n.NombreOficina;
-                txtBusquedaIntermediarioFechaNacimientoDetalle.Text = n.FechaNacimiento;
-                txtBusquedaIntermediarioCuentaBancoDetalle.Text = n.CtaBanco;
-                txtBusquedaIntermediarioBancoDetalle.Text = n.Banco;
-                txtBusquedaIntermediarioFormaPagoDetalle.Text = n.TipoPago;
-                DivDetalleInformacionIntermediarioSeleccionado.Visible = true;
-            }
-            DivDetalleInformacionIntermediarioSeleccionado.Visible = true;
-        }
-
-        protected void LinkPrimeroIntermediario_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarListadoIntermediarios();
-        }
-
-        protected void LinkAnteriorIntermediario_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarListadoIntermediarios();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleIntermediario, ref lbCantidadPaginaVAriableIntermedairaio);
-        }
 
         protected void dtIntermediario_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            CurrentPage_IntermediariosSupervisores = Convert.ToInt32(e.CommandArgument.ToString());
             MostrarListadoIntermediarios();
         }
 
         protected void dtIntermediario_ItemDataBound(object sender, DataListItemEventArgs e)
         {
 
-        }
-
-        protected void LinkSiguienteIntermediario_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            MostrarListadoIntermediarios();
-        }
-
-        protected void LinkUltimoIntermediario_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            MostrarListadoIntermediarios();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleIntermediario, ref lbCantidadPaginaVAriableIntermedairaio);
         }
 
         protected void btnSeleccionarRegistroProveedor_Click(object sender, EventArgs e)
@@ -1342,32 +1521,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             }
         }
 
-        protected void LinkPrimeroArchivo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void LinkAnteriorArchivo_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void dtArchivo_ItemDataBound(object sender, DataListItemEventArgs e)
         {
 
         }
 
         protected void dtArchivo_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-
-        }
-
-        protected void LinkSiguienteArchivo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void LinkUltimoArchivo_Click(object sender, EventArgs e)
         {
 
         }
@@ -1533,6 +1692,73 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             }
         }
 
+        protected void btnPrimeraPaginaCliente_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Clientes = 0;
+            MostrarListadoClientes(1);
+        }
+
+        protected void btnAnteriorCliente_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Clientes += -1;
+            MostrarListadoClientes(1);
+            MoverValoresPaginacion_Clientes((int)OpcionesPaginacionValores_Clientes.PaginaAnterior, ref lbPaginaActualVariavleCliente, ref lbCantidadPaginaVAriableCliente);
+        }
+
+        protected void btnSiguienteCliente_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Clientes += 1;
+            MostrarListadoClientes(1);
+        }
+
+        protected void btnseleccionarRegistrosBusquedaClienteNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            var PolizaSeleccionada = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfPolizaSeleccionada = ((HiddenField)PolizaSeleccionada.FindControl("hfPolizaBusquedaCliente")).Value.ToString();
+
+            var CotizacionSeleccionada = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfCotizacionSeleccionada = ((HiddenField)CotizacionSeleccionada.FindControl("hfCotizacionBusquedaCliente")).Value.ToString();
+
+            var SecuenciaSeleccionada = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfSecuenciaSeleccionada = ((HiddenField)SecuenciaSeleccionada.FindControl("hfSecuenciaBusquedaCliente")).Value.ToString();
+
+            SeleccionarRegistrosClientes(hfPolizaSeleccionada.ToString(), Convert.ToDecimal(hfCotizacionSeleccionada), Convert.ToDecimal(hfSecuenciaSeleccionada), 1);
+            DivBloqueDetalleCliente.Visible = true;
+        }
+
+        protected void btnPrimeroIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_IntermediariosSupervisores = 0;
+            MostrarListadoIntermediarios();
+        }
+
+        protected void btnAnteriorIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_IntermediariosSupervisores += -1;
+            MostrarListadoIntermediarios();
+            MoverValoresPaginacion_IntermediariosSupervisores((int)OpcionesPaginacionValores_IntermediariosSupervisores.PaginaAnterior, ref lbPaginaActualVariavleIntermediario, ref lbCantidadPaginaVAriableIntermedairaio);
+        }
+
+        protected void btnSiguienteIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_IntermediariosSupervisores += 1;
+            MostrarListadoIntermediarios();
+        }
+
+        protected void btnUltimoIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_IntermediariosSupervisores = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoIntermediarios();
+            MoverValoresPaginacion_IntermediariosSupervisores((int)OpcionesPaginacionValores_IntermediariosSupervisores.UltimaPagina, ref lbPaginaActualVariavleIntermediario, ref lbCantidadPaginaVAriableIntermedairaio);
+        }
+
+        protected void btnUltimoCliente_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Clientes = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoClientes(1);
+            MoverValoresPaginacion_Clientes((int)OpcionesPaginacionValores_Clientes.UltimaPagina, ref lbPaginaActualVariavleCliente, ref lbCantidadPaginaVAriableCliente);
+        }
+
         protected void cbDocumentosAmigos_CheckedChanged(object sender, EventArgs e)
         {
             if (cbDocumentosAmigos.Checked == false)
@@ -1569,6 +1795,37 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 ValidarTodosLosCheck();
             }
            
+        }
+
+        protected void btnseleccionarIntermediarioSupervisorNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfCodigoIntermediario = ((HiddenField)ItemSeleccionado.FindControl("hfCodigointermediario")).Value.ToString();
+
+            var BuscarRegistroSeleccionado = ObjDataSuperIntendencia.Value.BuscaPersonasSuperIntendenciaIntermediario(Convert.ToInt32(hfCodigoIntermediario), null, null);
+            Paginar_IntermediariosSupervisores(ref rpListadoIntermediarios, BuscarRegistroSeleccionado, 10, ref lbCantidadPaginaVAriableIntermedairaio, ref btnPrimeroIntermediario, ref btnAnteriorIntermediario, ref btnSiguienteIntermediario, ref btnUltimoIntermediario);
+            HandlePaging_IntermediariosSupervisores(ref dtIntermediario, ref lbPaginaActualVariavleIntermediario);
+            DivPaginacionIntermediario.Visible = true;
+            foreach (var n in BuscarRegistroSeleccionado)
+            {
+                txtBusquedaIntermediarioCodigoDetalle.Text = n.Codigo.ToString();
+                txtBusquedaIntermediarioTipoRNCDetalle.Text = n.TipoIdentificacion;
+                txtBusquedaIntermediarioNumeroIdentificacionDetalle.Text = n.Rnc;
+                txtBusquedaIntermediarioNombreDetalle.Text = n.Nombre;
+                txtBusquedaIntermediarioSupervisorDetalle.Text = n.Supervisor;
+                txtBusquedaIntermediarioFechaEntradaDetalle.Text = n.FechaEntrada;
+                txtBusquedaIntermediarioTelefonoResidenciaDetalle.Text = n.Telefono;
+                txtBusquedaIntermediarioTelefonoOficinaDetalle.Text = n.TelefonoOficina;
+                txtBusquedaIntermediarioCelularDetalle.Text = n.Celular;
+                txtBusquedaIntermediarioLicenciaSeguroDetalle.Text = n.LicenciaSeguro;
+                txtBusquedaIntermediarioOficinaDetalle.Text = n.NombreOficina;
+                txtBusquedaIntermediarioFechaNacimientoDetalle.Text = n.FechaNacimiento;
+                txtBusquedaIntermediarioCuentaBancoDetalle.Text = n.CtaBanco;
+                txtBusquedaIntermediarioBancoDetalle.Text = n.Banco;
+                txtBusquedaIntermediarioFormaPagoDetalle.Text = n.TipoPago;
+                DivDetalleInformacionIntermediarioSeleccionado.Visible = true;
+            }
+            DivDetalleInformacionIntermediarioSeleccionado.Visible = true;
         }
 
         protected void cbChasis_CheckedChanged(object sender, EventArgs e)
@@ -1626,10 +1883,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                     }
                     else
                     {
-                        int CantidadEncontrada = BuscaInformacionRegistrada.Count;
-                        lbCantidadRegistrosProcesadosVariable.Text = CantidadEncontrada.ToString("N0");
-                        Paginar(ref rpRegistrosCargadoArchivo, BuscaInformacionRegistrada, 10, ref lbCantidadPaginaVAriableArchivo, ref LinkPrimeroArchivo, ref LinkAnteriorArchivo, ref LinkSiguienteArchivo, ref LinkUltimoArchivo);
-                        HandlePaging(ref dtArchivo, ref lbPaginaActualVariavleArchivo);
+                        //int CantidadEncontrada = BuscaInformacionRegistrada.Count;
+                        //lbCantidadRegistrosProcesadosVariable.Text = CantidadEncontrada.ToString("N0");
+                        //Paginar(ref rpRegistrosCargadoArchivo, BuscaInformacionRegistrada, 10, ref lbCantidadPaginaVAriableArchivo, ref LinkPrimeroArchivo, ref LinkAnteriorArchivo, ref LinkSiguienteArchivo, ref LinkUltimoArchivo);
+                        //HandlePaging(ref dtArchivo, ref lbPaginaActualVariavleArchivo);
                     }
 
                 }
@@ -1639,9 +1896,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                     lbError.Text = ex.Message;
                     string Mensaje = "Error al procesar el archivo, no se selecciono ninguno o los parametros de este no son correctos, favor de verificar, Codigo de Error: ";
                     ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('" + Mensaje + "');", true);
-
-
-
                 }
 
             }
@@ -1723,16 +1977,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             {
                 FormsAuthentication.SignOut();
                 FormsAuthentication.RedirectToLoginPage();
-
-
             }
-        }
-
-        protected void LinkUltimoCliente_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            MostrarListadoClientes(1);
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleCliente, ref lbCantidadPaginaVAriableCliente);
         }
     }
 }

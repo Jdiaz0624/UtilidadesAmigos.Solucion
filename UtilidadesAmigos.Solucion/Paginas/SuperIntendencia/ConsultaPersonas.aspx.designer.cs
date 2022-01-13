@@ -285,22 +285,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionCliente;
 
         /// <summary>
-        /// LinkPrimeraPaginaCliente control.
+        /// btnPrimeraPaginaCliente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPaginaCliente;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaCliente;
 
         /// <summary>
-        /// LinkAnteriorCliente control.
+        /// btnAnteriorCliente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorCliente;
+        protected global::System.Web.UI.WebControls.ImageButton btnAnteriorCliente;
 
         /// <summary>
         /// dtPaginacionCliente control.
@@ -312,22 +312,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.WebControls.DataList dtPaginacionCliente;
 
         /// <summary>
-        /// LinkSiguienteCliente control.
+        /// btnSiguienteCliente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteCliente;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguienteCliente;
 
         /// <summary>
-        /// LinkUltimoCliente control.
+        /// btnUltimoCliente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoCliente;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimoCliente;
 
         /// <summary>
         /// DivBloqueDetalleCliente control.
@@ -762,22 +762,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacionIntermediario;
 
         /// <summary>
-        /// LinkPrimeroIntermediario control.
+        /// btnPrimeroIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeroIntermediario;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeroIntermediario;
 
         /// <summary>
-        /// LinkAnteriorIntermediario control.
+        /// btnAnteriorIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorIntermediario;
+        protected global::System.Web.UI.WebControls.ImageButton btnAnteriorIntermediario;
 
         /// <summary>
         /// dtIntermediario control.
@@ -789,22 +789,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.WebControls.DataList dtIntermediario;
 
         /// <summary>
-        /// LinkSiguienteIntermediario control.
+        /// btnSiguienteIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteIntermediario;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguienteIntermediario;
 
         /// <summary>
-        /// LinkUltimoIntermediario control.
+        /// btnUltimoIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoIntermediario;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimoIntermediario;
 
         /// <summary>
         /// DivDetalleInformacionIntermediarioSeleccionado control.
@@ -3262,50 +3262,5 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacionArchivo;
-
-        /// <summary>
-        /// LinkPrimeroArchivo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeroArchivo;
-
-        /// <summary>
-        /// LinkAnteriorArchivo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorArchivo;
-
-        /// <summary>
-        /// dtArchivo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dtArchivo;
-
-        /// <summary>
-        /// LinkSiguienteArchivo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteArchivo;
-
-        /// <summary>
-        /// LinkUltimoArchivo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoArchivo;
     }
 }

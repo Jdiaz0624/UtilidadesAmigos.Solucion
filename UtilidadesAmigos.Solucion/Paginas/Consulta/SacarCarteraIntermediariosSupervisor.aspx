@@ -197,7 +197,7 @@
             <table style="width: 600px">
                 <tr>
                     <td> <asp:ImageButton ID="btnPrimeraPaginaCarteraSupervisor" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPaginaCarteraSupervisor_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
-                    <td> <asp:ImageButton ID="btnAnteriorCarteraSupervisor" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnAnteriorCarteraSupervisor_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnAnteriorCarteraSupervisor" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnAnteriorCarteraSupervisor_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
 
                     <td align="center" >
                         <asp:DataList ID="dtPaginacionCarteraSupervisor" runat="server" OnItemCommand="dtPaginacionCarteraSupervisor_ItemCommand" OnItemDataBound="dtPaginacionCarteraSupervisor_ItemDataBound" RepeatDirection="Horizontal">
@@ -207,8 +207,8 @@
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:ImageButton ID="btnSiguienteCarteraSupervisor" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnSiguienteCarteraSupervisor_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
-                    <td> <asp:ImageButton ID="btnUltimoCarteraSupervisor" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnUltimoCarteraSupervisor_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnSiguienteCarteraSupervisor" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguienteCarteraSupervisor_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimoCarteraSupervisor" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimoCarteraSupervisor_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
 
                 </tr>
             </table>
