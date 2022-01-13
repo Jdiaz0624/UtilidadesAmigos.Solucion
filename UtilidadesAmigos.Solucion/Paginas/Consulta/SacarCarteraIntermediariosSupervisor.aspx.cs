@@ -13,11 +13,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaConsulta.LogicaConsulta> ObjDataConsulta = new Lazy<Logica.Logica.LogicaConsulta.LogicaConsulta>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataGeneral = new Lazy<Logica.Logica.LogicaSistema>();
 
-        #region CONTROL PARA MOSTRAR LA PAGINACION
-        readonly PagedDataSource pagedDataSource = new PagedDataSource();
-        int _PrimeraPagina, _UltimaPagina;
-        private int _TamanioPagina = 10;
-        private int CurrentPage
+        #region CONTROL DE PAGINACION DE LISTADO INTERMEDIARIOS
+        readonly PagedDataSource pagedDataSource_CarteraIntermediarios = new PagedDataSource();
+        int _PrimeraPagina_CarteraIntermediarios, _UltimaPagina_CarteraIntermediarios;
+        private int _TamanioPagina_CarteraIntermediarios = 10;
+        private int CurrentPage_CarteraIntermediarios
         {
             get
             {
@@ -33,33 +33,34 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             }
 
         }
-        private void HandlePaging(ref DataList NombreDataList, ref Label LbPaginaActual)
+
+        private void HandlePaging_CarteraIntermediarios(ref DataList NombreDataList, ref Label LbPaginaActual)
         {
             var dt = new DataTable();
             dt.Columns.Add("IndicePagina"); //Start from 0
             dt.Columns.Add("TextoPagina"); //Start from 1
 
-            _PrimeraPagina = CurrentPage - 5;
-            if (CurrentPage > 5)
-                _UltimaPagina = CurrentPage + 5;
+            _PrimeraPagina_CarteraIntermediarios = CurrentPage_CarteraIntermediarios - 5;
+            if (CurrentPage_CarteraIntermediarios > 5)
+                _UltimaPagina_CarteraIntermediarios = CurrentPage_CarteraIntermediarios + 5;
             else
-                _UltimaPagina = 10;
+                _UltimaPagina_CarteraIntermediarios = 10;
 
             // Check last page is greater than total page then reduced it to total no. of page is last index
-            if (_UltimaPagina > Convert.ToInt32(ViewState["TotalPages"]))
+            if (_UltimaPagina_CarteraIntermediarios > Convert.ToInt32(ViewState["TotalPages"]))
             {
-                _UltimaPagina = Convert.ToInt32(ViewState["TotalPages"]);
-                _PrimeraPagina = _UltimaPagina - 10;
+                _UltimaPagina_CarteraIntermediarios = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_CarteraIntermediarios = _UltimaPagina_CarteraIntermediarios - 10;
             }
 
-            if (_PrimeraPagina < 0)
-                _PrimeraPagina = 0;
+            if (_PrimeraPagina_CarteraIntermediarios < 0)
+                _PrimeraPagina_CarteraIntermediarios = 0;
 
             //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
-            int NumeroPagina = (int)CurrentPage;
+            int NumeroPagina = (int)CurrentPage_CarteraIntermediarios;
             LbPaginaActual.Text = (NumeroPagina + 1).ToString();
             // Now creating page number based on above first and last page index
-            for (var i = _PrimeraPagina; i < _UltimaPagina; i++)
+            for (var i = _PrimeraPagina_CarteraIntermediarios; i < _UltimaPagina_CarteraIntermediarios; i++)
             {
                 var dr = dt.NewRow();
                 dr[0] = i;
@@ -71,39 +72,173 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             NombreDataList.DataSource = dt;
             NombreDataList.DataBind();
         }
-        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref LinkButton PrimeraPagina, ref LinkButton PaginaAnterior, ref LinkButton SiguientePagina, ref LinkButton UltimaPagina)
-        {
-            pagedDataSource.DataSource = Listado;
-            pagedDataSource.AllowPaging = true;
 
-            ViewState["TotalPages"] = pagedDataSource.PageCount;
+        private void Paginar_CarteraIntermediarios(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_CarteraIntermediarios.DataSource = Listado;
+            pagedDataSource_CarteraIntermediarios.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_CarteraIntermediarios.PageCount;
             // lbNumeroVariable.Text = "1";
-            lbCantidadPagina.Text = pagedDataSource.PageCount.ToString();
+            lbCantidadPagina.Text = pagedDataSource_CarteraIntermediarios.PageCount.ToString();
 
             //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
-            pagedDataSource.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina : _NumeroRegistros);
-            pagedDataSource.CurrentPageIndex = CurrentPage;
+            pagedDataSource_CarteraIntermediarios.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_CarteraIntermediarios : _NumeroRegistros);
+            pagedDataSource_CarteraIntermediarios.CurrentPageIndex = CurrentPage_CarteraIntermediarios;
 
             //HABILITAMOS LOS BOTONES DE LA PAGINACION
-            PrimeraPagina.Enabled = !pagedDataSource.IsFirstPage;
-            PaginaAnterior.Enabled = !pagedDataSource.IsFirstPage;
-            SiguientePagina.Enabled = !pagedDataSource.IsLastPage;
-            UltimaPagina.Enabled = !pagedDataSource.IsLastPage;
+            PrimeraPagina.Enabled = !pagedDataSource_CarteraIntermediarios.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_CarteraIntermediarios.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_CarteraIntermediarios.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_CarteraIntermediarios.IsLastPage;
 
-            RptGrid.DataSource = pagedDataSource;
+            RptGrid.DataSource = pagedDataSource_CarteraIntermediarios;
             RptGrid.DataBind();
 
 
-     
+            //divPaginacionComisionSupervisor.Visible = true;
         }
-        enum OpcionesPaginacionValores
+        enum OpcionesPaginacionValores_CarteraIntermediarios
         {
             PrimeraPagina = 1,
             SiguientePagina = 2,
             PaginaAnterior = 3,
             UltimaPagina = 4
         }
-        private void MoverValoresPaginacion(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        private void MoverValoresPaginacion_CarteraIntermediarios(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+
+        #region CONTROL DE PAGINACION DE LISTADO CARTERA SUPERVISORES
+        readonly PagedDataSource pagedDataSource_CarteraSupervisores = new PagedDataSource();
+        int _PrimeraPagina_CarteraSupervisores, _UltimaPagina_CarteraSupervisores;
+        private int _TamanioPagina_CarteraSupervisores = 10;
+        private int CurrentPage_CarteraSupervisores
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_CarteraSupervisores(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_CarteraSupervisores = CurrentPage_CarteraSupervisores - 5;
+            if (CurrentPage_CarteraSupervisores > 5)
+                _UltimaPagina_CarteraSupervisores = CurrentPage_CarteraSupervisores + 5;
+            else
+                _UltimaPagina_CarteraSupervisores = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_CarteraSupervisores > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_CarteraSupervisores = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_CarteraSupervisores = _UltimaPagina_CarteraSupervisores - 10;
+            }
+
+            if (_PrimeraPagina_CarteraSupervisores < 0)
+                _PrimeraPagina_CarteraSupervisores = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_CarteraSupervisores;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_CarteraSupervisores; i < _UltimaPagina_CarteraSupervisores; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_CarteraSupervisores(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_CarteraSupervisores.DataSource = Listado;
+            pagedDataSource_CarteraSupervisores.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_CarteraSupervisores.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_CarteraSupervisores.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_CarteraSupervisores.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_CarteraSupervisores : _NumeroRegistros);
+            pagedDataSource_CarteraSupervisores.CurrentPageIndex = CurrentPage_CarteraSupervisores;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_CarteraSupervisores.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_CarteraSupervisores.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_CarteraSupervisores.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_CarteraSupervisores.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_CarteraSupervisores;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_CarteraSupervisores
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_CarteraSupervisores(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
         {
 
             int PaginaActual = 0;
@@ -176,7 +311,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
             var SacarCarteraIntermediarios = ObjDataConsulta.Value.SacarCarteraIntermeiario(CodigoVendedor, Estatus);
             if (SacarCarteraIntermediarios.Count() < 1) {
-                CurrentPage = 0;
+                CurrentPage_CarteraIntermediarios = 0;
                 rpCarteraIntermediario.DataSource = null;
                 rpCarteraIntermediario.DataBind();
                 lbCantidadPolizasActivasVariable.Text = "0";
@@ -186,8 +321,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             }
             else {
 
-                Paginar(ref rpCarteraIntermediario, SacarCarteraIntermediarios, 10, ref lbCantidadPaginaVAriableCarteraIntermediario, ref LinkPrimeraPaginaCarteraIntermediario, ref LinkAnteriorCarteraIntermediario, ref LinkSiguienteCarteraIntermediario, ref LinkUltimoCarteraIntermediario);
-                HandlePaging(ref dtPaginacionCarteraIntermediario, ref lbPaginaActualVariableCarteraIntermediario);
+                Paginar_CarteraIntermediarios(ref rpCarteraIntermediario, SacarCarteraIntermediarios, 10, ref lbCantidadPaginaVAriableCarteraIntermediario, ref btnkPrimeraPaginaCarteraIntermediario, ref btnAnteriorCarteraIntermediario, ref btnSiguienteCarteraIntermediario, ref btnUltimoCarteraIntermediario);
+                HandlePaging_CarteraIntermediarios(ref dtPaginacionCarteraIntermediario, ref lbPaginaActualVariableCarteraIntermediario);
                 int Activas = 0, Canceladas = 0, Transito = 0, Exclidas = 0;
 
                 foreach (var n in SacarCarteraIntermediarios) {
@@ -267,12 +402,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 lbCantidadIntermediariosVariable.Text = "0";
                 rpCarteraSupervisor.DataSource = null;
                 rpCarteraSupervisor.DataBind();
-                CurrentPage = 0;
+                CurrentPage_CarteraSupervisores = 0;
             }
             else {
 
-                Paginar(ref rpCarteraSupervisor, SacarCartera, 10, ref lbCantidadPaginaVAriableCarteraSupervisor, ref LinkPrimeraPaginaCarteraSupervisor, ref LinkAnteriorCarteraSupervisor, ref LinkSiguienteCarteraSupervisor, ref LinkUltimoCarteraSupervisor);
-                HandlePaging(ref dtPaginacionCarteraSupervisor, ref lbPaginaActualVariableCarteraSupervisor);
+                Paginar_CarteraSupervisores(ref rpCarteraSupervisor, SacarCartera, 10, ref lbCantidadPaginaVAriableCarteraSupervisor, ref btnPrimeraPaginaCarteraSupervisor, ref btnAnteriorCarteraSupervisor, ref btnSiguienteCarteraIntermediario, ref btnUltimoCarteraSupervisor);
+                HandlePaging_CarteraSupervisores(ref dtPaginacionCarteraSupervisor, ref lbPaginaActualVariableCarteraSupervisor);
 
                 int CantidadIntemediaro = 0;
 
@@ -363,7 +498,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void btnConsultarIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage = 0;
+            CurrentPage_CarteraIntermediarios = 0;
             CarteraIntermediario();
         }
 
@@ -376,18 +511,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             txtNombreIntermediario.Text = NombreVendedor;
         }
 
-        protected void LinkPrimeraPaginaCarteraIntermediario_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            CarteraIntermediario();
-        }
-
-        protected void LinkAnteriorCarteraIntermediario_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            CarteraIntermediario();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCarteraIntermediario, ref lbCantidadPaginaVAriableCarteraIntermediario);
-        }
 
         protected void dtPaginacionCarteraIntermediario_ItemDataBound(object sender, DataListItemEventArgs e)
         {
@@ -397,42 +520,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected void dtPaginacionCarteraIntermediario_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            CurrentPage_CarteraIntermediarios = Convert.ToInt32(e.CommandArgument.ToString());
             CarteraIntermediario();
         }
 
-        protected void LinkSiguienteCarteraIntermediario_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            CarteraIntermediario();
 
-        }
-
-        protected void LinkUltimoCarteraIntermediario_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            CarteraIntermediario();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCarteraIntermediario, ref lbCantidadPaginaVAriableCarteraIntermediario);
-        }
 
         protected void btnBuscarSupervisores_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage = 0;
+            CurrentPage_CarteraSupervisores = 0;
             MostrarCarteraSupervisores();
-        }
-
-        protected void LinkPrimeraPaginaCarteraSupervisor_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarCarteraSupervisores();
-        }
-
-        protected void LinkAnteriorCarteraSupervisor_Click(object sender, EventArgs e)
-        {
-
-            CurrentPage += -1;
-            MostrarCarteraSupervisores();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCarteraSupervisor, ref lbCantidadPaginaVAriableCarteraSupervisor);
         }
 
         protected void dtPaginacionCarteraSupervisor_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -444,22 +541,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         {
 
             if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            CurrentPage_CarteraSupervisores = Convert.ToInt32(e.CommandArgument.ToString());
             MostrarCarteraSupervisores();
-        }
-
-        protected void LinkSiguienteCarteraSupervisor_Click(object sender, EventArgs e)
-        {
-
-            CurrentPage += 1;
-            MostrarCarteraSupervisores();
-        }
-
-        protected void LinkUltimoCarteraSupervisor_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            MostrarCarteraSupervisores();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCarteraSupervisor, ref lbCantidadPaginaVAriableCarteraSupervisor);
         }
 
         protected void btnExportarSupervisores_Click(object sender, ImageClickEventArgs e)
@@ -479,9 +562,62 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             txtNombreIntermediarioSupervisor.Text = Nombre.SacarNombreIntermediario();
         }
 
+        protected void btnkPrimeraPaginaCarteraIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_CarteraIntermediarios = 0;
+            CarteraIntermediario();
+        }
+
+        protected void btnAnteriorCarteraIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_CarteraIntermediarios += -1;
+            CarteraIntermediario();
+            MoverValoresPaginacion_CarteraIntermediarios((int)OpcionesPaginacionValores_CarteraIntermediarios.PaginaAnterior, ref lbPaginaActualVariableCarteraIntermediario, ref lbCantidadPaginaVAriableCarteraIntermediario);
+        }
+
+        protected void btnSiguienteCarteraIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+            CurrentPage_CarteraIntermediarios += 1;
+            CarteraIntermediario();
+        }
+
+        protected void btnPrimeraPaginaCarteraSupervisor_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_CarteraSupervisores = 0;
+            MostrarCarteraSupervisores();
+        }
+
+        protected void btnAnteriorCarteraSupervisor_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_CarteraSupervisores += -1;
+            MostrarCarteraSupervisores();
+            MoverValoresPaginacion_CarteraSupervisores((int)OpcionesPaginacionValores_CarteraSupervisores.PaginaAnterior, ref lbPaginaActualVariableCarteraSupervisor, ref lbCantidadPaginaVAriableCarteraSupervisor);
+        }
+
+        protected void btnSiguienteCarteraSupervisor_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_CarteraSupervisores += 1;
+            MostrarCarteraSupervisores();
+        }
+
+        protected void btnUltimoCarteraSupervisor_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_CarteraSupervisores = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarCarteraSupervisores();
+            MoverValoresPaginacion_CarteraSupervisores((int)OpcionesPaginacionValores_CarteraSupervisores.PaginaAnterior, ref lbPaginaActualVariableCarteraSupervisor, ref lbCantidadPaginaVAriableCarteraSupervisor);
+        }
+
+        protected void btnUltimoCarteraIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_CarteraIntermediarios = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            CarteraIntermediario();
+            MoverValoresPaginacion_CarteraIntermediarios((int)OpcionesPaginacionValores_CarteraIntermediarios.UltimaPagina, ref lbPaginaActualVariableCarteraIntermediario, ref lbCantidadPaginaVAriableCarteraIntermediario);
+        }
+
         protected void ExportarInformacionIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage = 0;
+           //CurrentPage = 0;
             ExportarCarteraVendedores();
         }
     }

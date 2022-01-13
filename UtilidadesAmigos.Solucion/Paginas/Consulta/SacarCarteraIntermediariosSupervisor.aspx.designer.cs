@@ -303,22 +303,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionCarteraIntermediario;
 
         /// <summary>
-        /// LinkPrimeraPaginaCarteraIntermediario control.
+        /// btnkPrimeraPaginaCarteraIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPaginaCarteraIntermediario;
+        protected global::System.Web.UI.WebControls.ImageButton btnkPrimeraPaginaCarteraIntermediario;
 
         /// <summary>
-        /// LinkAnteriorCarteraIntermediario control.
+        /// btnAnteriorCarteraIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorCarteraIntermediario;
+        protected global::System.Web.UI.WebControls.ImageButton btnAnteriorCarteraIntermediario;
 
         /// <summary>
         /// dtPaginacionCarteraIntermediario control.
@@ -330,22 +330,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.DataList dtPaginacionCarteraIntermediario;
 
         /// <summary>
-        /// LinkSiguienteCarteraIntermediario control.
+        /// btnSiguienteCarteraIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteCarteraIntermediario;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguienteCarteraIntermediario;
 
         /// <summary>
-        /// LinkUltimoCarteraIntermediario control.
+        /// btnUltimoCarteraIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoCarteraIntermediario;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimoCarteraIntermediario;
 
         /// <summary>
         /// DivBloqueSupervisores control.
@@ -528,22 +528,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionCarteraSupervisor;
 
         /// <summary>
-        /// LinkPrimeraPaginaCarteraSupervisor control.
+        /// btnPrimeraPaginaCarteraSupervisor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPaginaCarteraSupervisor;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaCarteraSupervisor;
 
         /// <summary>
-        /// LinkAnteriorCarteraSupervisor control.
+        /// btnAnteriorCarteraSupervisor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorCarteraSupervisor;
+        protected global::System.Web.UI.WebControls.ImageButton btnAnteriorCarteraSupervisor;
 
         /// <summary>
         /// dtPaginacionCarteraSupervisor control.
@@ -555,21 +555,21 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.DataList dtPaginacionCarteraSupervisor;
 
         /// <summary>
-        /// LinkSiguienteCarteraSupervisor control.
+        /// btnSiguienteCarteraSupervisor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteCarteraSupervisor;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguienteCarteraSupervisor;
 
         /// <summary>
-        /// LinkUltimoCarteraSupervisor control.
+        /// btnUltimoCarteraSupervisor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoCarteraSupervisor;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimoCarteraSupervisor;
     }
 }
