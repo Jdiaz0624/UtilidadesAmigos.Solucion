@@ -859,7 +859,7 @@
                                <table class="table table-striped">
                                    <thead>
                                        <tr>
-                                           <th scope="col"> Seleccionar </th>
+                                           
                                            <th scope="col"> Nombre </th>
                                            <th scope="col"> RNC </th>
                                            <th scope="col"> Poliza </th>
@@ -868,6 +868,7 @@
                                            <th scope="col"> Estatus </th>
                                            <th scope="col"> Inicio </th>
                                            <th scope="col"> Fin </th>
+                                           <th scope="col"> Seleccionar </th>
                                        </tr>
                                    </thead>
                                    <tbody>
@@ -878,7 +879,6 @@
                                                    <asp:HiddenField ID="hfItemAseguradoGeneral" runat="server" Value='<%# Eval("Secuencia") %>' />
                                                    <asp:HiddenField ID="hfIdAseguradoAseguradoGeneral" runat="server" Value='<%# Eval("IdAsegurado") %>' />
 
-                                                   <td> <asp:Button ID="btnSeleccionarRegistroAseguradoGeneral" runat="server" Text="Seleccionar" OnClick="btnSeleccionarRegistroAseguradoGeneral_Click" ToolTip="Seleccionar Registro" CssClass="btn btn-outline-secondary btn-sm" /> </td>
                                                    <td> <%# Eval("Nombre") %> </td>
                                                    <td> <%# Eval("RNC") %> </td>
                                                    <td> <%# Eval("Poliza") %> </td>
@@ -887,6 +887,7 @@
                                                    <td> <%# Eval("Estatus") %> </td>
                                                    <td> <%# Eval("InicioVigencia") %> </td>
                                                    <td> <%# Eval("FinVigencia") %> </td>
+                                                   <td> <asp:ImageButton ID="btnSeleccionarRegistroAseguradoGeneralNuevo" runat="server" ToolTip="Seleccionar Registro" OnClick="btnSeleccionarRegistroAseguradoGeneralNuevo_Click" ImageUrl="~/Imagenes/Seleccionar2.png" CssClass="BotonImagen" /> </td>
                                                </tr>
                                            </ItemTemplate>
                                        </asp:Repeater>
@@ -905,18 +906,18 @@
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:LinkButton ID="LinkPrimeroAseguradoGeneral" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroAseguradoGeneral_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkAnteriorAseguradoGeneral" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorAseguradoGeneral_Click"></asp:LinkButton> </td>
-                    <td>
+                    <td> <asp:ImageButton ID="btnPrimeroAseguradoGeneral" runat="server" CssClass="BotonImagen" ImageUrl="~/Imagenes/Primera Pagina.png" ToolTip="Ir a la Primera Pagina" OnClick="btnPrimeroAseguradoGeneral_Click" /> </td>
+                    <td> <asp:ImageButton ID="btnAnteriorAseguradoGeneral" runat="server" CssClass="BotonImagen" ImageUrl="~/Imagenes/Anterior.png" ToolTip="Ir a la Primera Anterior" OnClick="btnAnteriorAseguradoGeneral_Click" /> </td>
+                    <td align="center" >
                         <asp:DataList ID="dtAseguradoGeneral" runat="server" OnItemCommand="dtAseguradoGeneral_ItemCommand" OnItemDataBound="dtAseguradoGeneral_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionAseguradoGeneral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                                <asp:Button ID="btnPaginacionCentralAseguradoGeneral" runat="server" CssClass="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
                             </ItemTemplate>
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:LinkButton ID="LinkSiguienteAseguradoGeneral" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteAseguradoGeneral_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkUltimoAseguradoGeneral" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoAseguradoGeneral_Click"></asp:LinkButton> </td>
+                    <td> <asp:ImageButton ID="btnSiguienteAseguradoGeneral" runat="server" CssClass="BotonImagen" ImageUrl="~/Imagenes/Siguiente.png" ToolTip="Ir a la Primera Siguiente" OnClick="btnSiguienteAseguradoGeneral_Click" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimoAseguradoGeneral" runat="server" CssClass="BotonImagen" ImageUrl="~/Imagenes/Ultima Pagina.png" ToolTip="Ir a la Primera Siguiente" OnClick="btnUltimoAseguradoGeneral_Click" /> </td>
                 </tr>
             </table>
         </div>
@@ -1011,7 +1012,7 @@
                                <table class="table table-striped">
                                    <thead>
                                        <tr>
-                                           <th scope="col"> Seleccionar </th>
+                                           
                                            <th scope="col" >  Nombre </th>
                                            <th scope="col" >  RNC </th>
                                            <th scope="col" >  Poliza </th>
@@ -1020,6 +1021,7 @@
                                            <th scope="col" >  Estatus </th>
                                            <th scope="col" >  Inicio </th>
                                            <th scope="col" >  Fin </th>
+                                           <th scope="col"> Seleccionar </th>
                                        </tr>
                                    </thead>
                                    <tbody>
@@ -1031,7 +1033,6 @@
                                                    <asp:HiddenField ID="hfSecuenciaDependiente" runat="server" Value='<%# Eval("Secuencia") %>' />
                                                    <asp:HiddenField ID="hfIdAseguradoDependiente" runat="server" Value='<%# Eval("IdAsegurado") %>' />
 
-                                                      <td> <asp:Button ID="btnSeleccionarregistroDependiente" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarregistroDependiente_Click" ToolTip="Seleccionar registro" /> </td>
                                                       <td> <%# Eval("Nombre") %> </td>
                                                       <td> <%# Eval("RNC") %> </td>
                                                       <td> <%# Eval("Poliza") %> </td>
@@ -1040,6 +1041,7 @@
                                                       <td> <%# Eval("Estatus") %> </td>
                                                       <td> <%# Eval("InicioVigencia") %> </td>
                                                       <td> <%# Eval("FinVigencia") %> </td>
+                                                     <td> <asp:ImageButton ID="btnSeleccionarRegistroDependienteNuevo" runat="server" CssClass="BotonImagen" ImageUrl="~/Imagenes/Seleccionar2.png" OnClick="btnSeleccionarRegistroDependienteNuevo_Click" ToolTip="Seleccionar Registro" /> </td>
                                                  </tr>
 
 
@@ -1060,18 +1062,18 @@
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:LinkButton ID="LinkPrimeroDependiente" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroDependiente_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkAnteriorDependiente" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorDependiente_Click"></asp:LinkButton> </td>
-                    <td>
+                    <td> <asp:ImageButton ID="btnPrimeroDependiente" runat="server" CssClass="BotonImagen" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeroDependiente_Click" ToolTip="Ir a la Primera Pagina" /> </td>
+                    <td> <asp:ImageButton ID="btnAnteriorDependiente" runat="server" CssClass="BotonImagen" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnAnteriorDependiente_Click" ToolTip="Ir a la Pagina Anterior" /> </td>
+                    <td align="center" >
                         <asp:DataList ID="dtDependiente" runat="server" OnItemCommand="dtDependiente_ItemCommand" OnItemDataBound="dtDependiente_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionDependiente" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                                <asp:Button ID="btnPaginacionCentralDependiente" runat="server" CssClass="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
                             </ItemTemplate>
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:LinkButton ID="LinkSiguienteDependiente" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteDependiente_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkUltimoDependiente" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoDependiente_Click"></asp:LinkButton> </td>
+                    <td> <asp:ImageButton ID="btnSiguienteDependiente" runat="server" CssClass="BotonImagen" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguienteDependiente_Click" ToolTip="Ir a la Pagina Anterior" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimoDependiente" runat="server" CssClass="BotonImagen" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimoDependiente_Click" ToolTip="Ir a la Ultima Pagina" /> </td>
                 </tr>
             </table>
         </div>
@@ -1240,20 +1242,26 @@
            <div id="DivPaginacionArchivo" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
-         <%--       <tr>
+                <tr>
                     <td> <asp:LinkButton ID="LinkPrimeroArchivo" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroArchivo_Click"></asp:LinkButton> </td>
+                    <td> <asp:ImageButton ID="btnPrimeroarchivo" runat="server" ImageUrl="~/Imagenes/Primera Pagina.png" CssClass="BotonImagen" OnClick="btnPrimeroarchivo_Click" ToolTip="Ir a la Primera Pagina" /> </td>
+
                     <td> <asp:LinkButton ID="LinkAnteriorArchivo" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorArchivo_Click"></asp:LinkButton> </td>
-                    <td>
+                     <td> <asp:ImageButton ID="btnAnteriorArchivo" runat="server" ImageUrl="~/Imagenes/Anterior.png" CssClass="BotonImagen" OnClick="btnAnteriorArchivo_Click" ToolTip="Ir a la Pagina Anterior" /> </td>
+                    <td align="center" >
                         <asp:DataList ID="dtArchivo" runat="server" OnItemCommand="dtArchivo_ItemCommand" OnItemDataBound="dtArchivo_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionArchivo" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                                <asp:Button ID="btnPaginacionArchivo" runat="server" CssClass="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
                             </ItemTemplate>
                         </asp:DataList>
 
                     </td>
                     <td> <asp:LinkButton ID="LinkSiguienteArchivo" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteArchivo_Click"></asp:LinkButton> </td>
+                     <td> <asp:ImageButton ID="btnSiguienteArchivo" runat="server" ImageUrl="~/Imagenes/Siguiente.png" CssClass="BotonImagen" OnClick="btnSiguienteArchivo_Click" ToolTip="Ir a la Primera Siguiente" /> </td>
+
                     <td> <asp:LinkButton ID="LinkUltimoArchivo" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoArchivo_Click"></asp:LinkButton> </td>
-                </tr>--%>
+                     <td> <asp:ImageButton ID="btnUltimoArchivo" runat="server" ImageUrl="~/Imagenes/Ultima Pagina.png" CssClass="BotonImagen" OnClick="btnUltimoArchivo_Click" ToolTip="Ir a la Ultima Primera" /> </td>
+                </tr>
             </table>
         </div>
         </div>
