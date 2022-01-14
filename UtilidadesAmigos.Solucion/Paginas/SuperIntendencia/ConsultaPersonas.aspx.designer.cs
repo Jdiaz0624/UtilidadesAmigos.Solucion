@@ -1842,22 +1842,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacionInformacionAsegurado;
 
         /// <summary>
-        /// LinkPrimeroAsegurado control.
+        /// btnPrimeraPaginaAseguradoBajoPoliza control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeroAsegurado;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaAseguradoBajoPoliza;
 
         /// <summary>
-        /// LinkAnteriorAsegurado control.
+        /// btnPaginaAnteriorAseguradoBajoPoliza control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorAsegurado;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnteriorAseguradoBajoPoliza;
 
         /// <summary>
         /// dtAsegurado control.
@@ -1869,22 +1869,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.WebControls.DataList dtAsegurado;
 
         /// <summary>
-        /// LinkSiguienteAsegurado control.
+        /// btnSiguientePaginaAseguradoBajoPoliza control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteAsegurado;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePaginaAseguradoBajoPoliza;
 
         /// <summary>
-        /// LinkUltimaAsegurado control.
+        /// btnUltimaPaginaAseguradoBajoPoliza control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimaAsegurado;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPaginaAseguradoBajoPoliza;
 
         /// <summary>
         /// DivDetalleAsegurado control.
