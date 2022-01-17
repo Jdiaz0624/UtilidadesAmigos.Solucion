@@ -51,5 +51,6 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 		public System.Nullable<System.DateTime> ValidadoDesde {get;set;}
 
 		public System.Nullable<System.DateTime> ValidadoHasta {get;set;}
+		public System.Nullable<bool> ExcluirMotores { get; set; }
 	}
 }

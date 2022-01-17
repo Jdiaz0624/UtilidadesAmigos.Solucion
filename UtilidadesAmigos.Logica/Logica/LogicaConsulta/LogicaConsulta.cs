@@ -562,7 +562,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                MontoCancelado = n.MontoCancelado,
                                Cobrado=n.Cobrado,
                                ValidadoDesde=n.ValidadoDesde,
-                               ValidadoHasta=n.ValidadoHasta
+                               ValidadoHasta=n.ValidadoHasta,
+                               ExcluirMotores0=n.ExcluirMotores0,
+                               ExcluirMotores=n.ExcluirMotores
                            }).ToList();
             return Listado;
           
@@ -604,6 +606,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                 Item.Cobrado,
                 Item.ValidadoDesde,
                 Item.ValidadoHasta,
+                Item.ExcluirMotores,
                 Accion);
             if (EstadisticaRenovacion != null) {
 
@@ -631,7 +634,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                 MontoCancelado = n.MontoCancelado,
                                 Cobrado=n.Cobrado,
                                 ValidadoDesde = n.ValidadoDesde,
-                                ValidadoHasta = n.ValidadoHasta
+                                ValidadoHasta = n.ValidadoHasta,
+                                ExcluirMotores=n.ExcluirMotores
+                                
 
                             }).FirstOrDefault();
             }
@@ -667,6 +672,55 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                    GeneradoPor=n.GeneradoPor
                                }).ToList();
             return Informacion;
+        }
+
+        /// <summary>
+        /// Este metodo muestra el detalle de la estadistica de renovacion
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EDetalleEstadisticaRenovacion> GenerarDetalleEstadisticaRenovacion(decimal? IdUsuario = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_GENERAR_DETALLE_ESTADISTICA_RENOVACION(IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EDetalleEstadisticaRenovacion
+                           {
+                               IdUsuario=n.IdUsuario,
+                               GeneradoPor=n.GeneradoPor,
+                               Cotizacion=n.Cotizacion,
+                               Secuencia=n.Secuencia,
+                               Poliza=n.Poliza,
+                               CodigoOficina=n.CodigoOficina,
+                               Oficina=n.Oficina,
+                               CodigoRamo=n.CodigoRamo,
+                               NombreRamo=n.NombreRamo,
+                               CodigoSubRamo=n.CodigoSubRamo,
+                               NombreSubramo=n.NombreSubramo,
+                               Prima=n.Prima,
+                               FechaInicioVigencia = n.FechaInicioVigencia,
+                               FechaFinVigencia1=n.FechaFinVigencia,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               CodigoCliente=n.CodigoCliente,
+                               Cliente=n.Cliente,
+                               TelefonoResidencia=n.TelefonoResidencia,
+                               TelefonoOficina=n.TelefonoOficina,
+                               Celular=n.Celular,
+                               fax=n.fax,
+                               Renovada=n.Renovada,
+                               MontoRenovado=n.MontoRenovado,
+                               Cancelada=n.Cancelada,
+                               MontoCancelado=n.MontoCancelado,
+                               Cobrado=n.Cobrado,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta
+                           }).ToList();
+            return Listado;
         }
         #endregion
 

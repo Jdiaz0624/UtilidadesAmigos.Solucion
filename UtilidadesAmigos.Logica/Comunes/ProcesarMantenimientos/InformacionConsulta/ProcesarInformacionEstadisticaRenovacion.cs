@@ -32,6 +32,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionCons
         private decimal Cobrado = 0;
         private DateTime ValidadoDesde = DateTime.Now;
         private DateTime ValidadoHasta = DateTime.Now;
+        private bool ExcluirMotores = false;
         private string Accion = "";
 
         public ProcesarInformacionEstadisticaRenovacion(
@@ -57,6 +58,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionCons
         decimal CobradoCON,
         DateTime ValidadoDesdeCON,
         DateTime ValidadoHastaCON,
+        bool ExcluirMotoresCON,
         string AccionCON)
         {
             IdUsuario = IdUsuarioCON;
@@ -81,6 +83,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionCons
             Cobrado = CobradoCON;
             ValidadoDesde = ValidadoDesdeCON;
             ValidadoHasta = ValidadoHastaCON;
+            ExcluirMotores = ExcluirMotoresCON;
             Accion = AccionCON;
         }
 
@@ -110,6 +113,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionCons
             Procesar.Cobrado = Cobrado;
             Procesar.ValidadoDesde = ValidadoDesde;
             Procesar.ValidadoHasta = ValidadoHasta;
+            Procesar.ExcluirMotores = ExcluirMotores;
 
             var MAN = ObjData.ProcesarDatosEstadisticaRenovacion(Procesar, Accion);
         }
