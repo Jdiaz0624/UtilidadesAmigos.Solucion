@@ -679,5 +679,19 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkEstadisticaRenovacion_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+
+                Response.Redirect("~/Paginas/Consulta/EstadisticaRenovacion.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }

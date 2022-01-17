@@ -1243,10 +1243,7 @@
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:LinkButton ID="LinkPrimeroArchivo" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroArchivo_Click"></asp:LinkButton> </td>
                     <td> <asp:ImageButton ID="btnPrimeroarchivo" runat="server" ImageUrl="~/Imagenes/Primera Pagina.png" CssClass="BotonImagen" OnClick="btnPrimeroarchivo_Click" ToolTip="Ir a la Primera Pagina" /> </td>
-
-                    <td> <asp:LinkButton ID="LinkAnteriorArchivo" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorArchivo_Click"></asp:LinkButton> </td>
                      <td> <asp:ImageButton ID="btnAnteriorArchivo" runat="server" ImageUrl="~/Imagenes/Anterior.png" CssClass="BotonImagen" OnClick="btnAnteriorArchivo_Click" ToolTip="Ir a la Pagina Anterior" /> </td>
                     <td align="center" >
                         <asp:DataList ID="dtArchivo" runat="server" OnItemCommand="dtArchivo_ItemCommand" OnItemDataBound="dtArchivo_ItemDataBound" RepeatDirection="Horizontal">
@@ -1256,10 +1253,7 @@
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:LinkButton ID="LinkSiguienteArchivo" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteArchivo_Click"></asp:LinkButton> </td>
                      <td> <asp:ImageButton ID="btnSiguienteArchivo" runat="server" ImageUrl="~/Imagenes/Siguiente.png" CssClass="BotonImagen" OnClick="btnSiguienteArchivo_Click" ToolTip="Ir a la Primera Siguiente" /> </td>
-
-                    <td> <asp:LinkButton ID="LinkUltimoArchivo" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoArchivo_Click"></asp:LinkButton> </td>
                      <td> <asp:ImageButton ID="btnUltimoArchivo" runat="server" ImageUrl="~/Imagenes/Ultima Pagina.png" CssClass="BotonImagen" OnClick="btnUltimoArchivo_Click" ToolTip="Ir a la Ultima Primera" /> </td>
                 </tr>
             </table>

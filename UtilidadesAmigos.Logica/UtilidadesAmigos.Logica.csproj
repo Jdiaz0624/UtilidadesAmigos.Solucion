@@ -111,6 +111,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionCorreosENviar.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionRutaBackupBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionComentarioGestionCObros.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionEstadisticaRenovacion.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionPolizasAvisosGestionCobros.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionReporteComentarioGestionCobros.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionValidacionCoberturaArchivo.cs" />
@@ -181,8 +182,10 @@
     <Compile Include="Entidades\Consulta\ECarteraIntermediarios.cs" />
     <Compile Include="Entidades\Consulta\EComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Consulta\EConceptoLLamadas.cs" />
+    <Compile Include="Entidades\Consulta\EEstadisticaRenovacionOrigen.cs" />
     <Compile Include="Entidades\Consulta\EGenerarReporteCobroFinal.cs" />
     <Compile Include="Entidades\Consulta\EPolizasAvisoGestionCobros.cs" />
+    <Compile Include="Entidades\Consulta\EProcesarDatosEstadistocaRenovacion.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionReporteComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionArchivo.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionCoberturaSistema.cs" />

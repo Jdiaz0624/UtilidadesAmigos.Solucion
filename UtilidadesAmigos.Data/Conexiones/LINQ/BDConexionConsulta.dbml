@@ -369,4 +369,88 @@
       <Column Name="HoraNuevaLlamada" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_ESTADISTICA_RENOVACION_ORIGEN" Method="SP_ESTADISTICA_RENOVACION_ORIGEN">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Subramo" Parameter="subramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cliente" Parameter="cliente" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ExcluirMotores" Parameter="excluirMotores" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="SP_ESTADISTICA_RENOVACION_ORIGENResult">
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Secuencia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NombreRamo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoSubramo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NombreSubramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Bruto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="FechaInicioVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaFinVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CantidadRenovadas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MontoRenovado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CantidadCanceladas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MontoCancelado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_DATA_ESTADISTICA_RENOVACION" Method="SP_PROCESAR_DATA_ESTADISTICA_RENOVACION">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Cotizacion" Parameter="cotizacion" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Secuencia" Parameter="secuencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CodigoOficina" Parameter="codigoOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoRamo" Parameter="codigoRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreRamo" Parameter="nombreRamo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoSubRamo" Parameter="codigoSubRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreSubramo" Parameter="nombreSubramo" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Bruto" Parameter="bruto" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="FechaInicioVigencia" Parameter="fechaInicioVigencia" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaFinVigencia" Parameter="fechaFinVigencia" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoCliente" Parameter="codigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CantidadRenovadas" Parameter="cantidadRenovadas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MontoRenovado" Parameter="montoRenovado" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="CantidadCanceladas" Parameter="cantidadCanceladas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MontoCancelado" Parameter="montoCancelado" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Cobrado" Parameter="cobrado" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="ValidadoDesde" Parameter="validadoDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ValidadoHasta" Parameter="validadoHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_DATA_ESTADISTICA_RENOVACIONResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Secuencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreRamo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoSubRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreSubramo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Bruto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="FechaInicioVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaFinVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CantidadRenovadas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MontoRenovado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="CantidadCanceladas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MontoCancelado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

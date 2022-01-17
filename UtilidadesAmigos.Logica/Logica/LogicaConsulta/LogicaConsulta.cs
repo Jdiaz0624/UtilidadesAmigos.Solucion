@@ -519,5 +519,126 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         }
         #endregion
 
+        #region ESTADISTICA DE RENOVACION
+        /// <summary>
+        /// Este metodo es para buscar el origen de las polizas que estan por renovar segun los rapametros o filtros suministrados
+        /// </summary>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="SubRamo"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Cliente"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="ExcluirMotores"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EEstadisticaRenovacionOrigen> BuscaEstadisticaRenovacionOrigen(DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Oficina = null, int? Ramo = null, int? SubRamo = null, int? Intermediario = null, int? Supervisor = null, decimal? Cliente = null, string Poliza = null, bool? ExcluirMotores = null) {
+
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_ESTADISTICA_RENOVACION_ORIGEN(FechaDesde, FechaHasta, Oficina, Ramo, SubRamo, Intermediario, Supervisor, Cliente, Poliza, ExcluirMotores)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EEstadisticaRenovacionOrigen
+                           {
+                               Cotizacion=n.Cotizacion,
+                               Secuencia=n.Secuencia,
+                               Poliza=n.Poliza,
+                               CodigoOficina=n.CodigoOficina,
+                               CodigoRamo=n.CodigoRamo,
+                               NombreRamo=n.NombreRamo,
+                               CodigoSubramo=n.CodigoSubramo,
+                               NombreSubramo=n.NombreSubramo,
+                               Bruto=n.Bruto,
+                               FechaInicioVigencia=n.FechaInicioVigencia,
+                               FechaFinVigencia=n.FechaFinVigencia,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               CodigoCliente=n.CodigoCliente,
+                               CantidadRenovadas = n.CantidadRenovadas,
+                               MontoRenovado = n.MontoRenovado,
+                               CantidadCanceladas = n.CantidadCanceladas,
+                               MontoCancelado = n.MontoCancelado,
+                               Cobrado=n.Cobrado,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta
+                           }).ToList();
+            return Listado;
+          
+        }
+
+
+        /// <summary>
+        /// Este metodo es para guardar y eliminar registros enn la tabla de estadistica de renovacion
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarDatosEstadistocaRenovacion ProcesarDatosEstadisticaRenovacion(UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarDatosEstadistocaRenovacion Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarDatosEstadistocaRenovacion Procesar = null;
+
+            var EstadisticaRenovacion = ObjData.SP_PROCESAR_DATA_ESTADISTICA_RENOVACION(
+                Item.IdUsuario,
+                Item.Cotizacion,
+                Item.Secuencia,
+                Item.Poliza,
+                Item.CodigoOficina,
+                Item.CodigoRamo,
+                Item.NombreRamo,
+                Item.CodigoSubRamo,
+                Item.NombreSubramo,
+                Item.Bruto,
+                Item.FechaInicioVigencia,
+                Item.FechaFinVigencia,
+                Item.CodigoIntermediario,
+                Item.CodigoSupervisor,
+                Item.CodigoCliente,
+                Item.CantidadRenovadas,
+                Item.MontoRenovado,
+                Item.CantidadCanceladas,
+                Item.MontoCancelado,
+                Item.Cobrado,
+                Item.ValidadoHasta,
+                Item.ValidadoDesde,
+                Accion);
+            if (EstadisticaRenovacion != null) {
+
+                Procesar = (from n in EstadisticaRenovacion
+                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EProcesarDatosEstadistocaRenovacion
+                            {
+                                IdUsuario = n.IdUsuario,
+                                Cotizacion = n.Cotizacion,
+                                Secuencia = n.Secuencia,
+                                Poliza = n.Poliza,
+                                CodigoOficina = n.CodigoOficina,
+                                CodigoRamo = n.CodigoRamo,
+                                NombreRamo = n.NombreRamo,
+                                CodigoSubRamo = n.CodigoSubRamo,
+                                NombreSubramo = n.NombreSubramo,
+                                Bruto = n.Bruto,
+                                FechaInicioVigencia = n.FechaInicioVigencia,
+                                FechaFinVigencia = n.FechaFinVigencia,
+                                CodigoIntermediario = n.CodigoIntermediario,
+                                CodigoSupervisor = n.CodigoSupervisor,
+                                CodigoCliente = n.CodigoCliente,
+                                CantidadRenovadas = n.CantidadRenovadas,
+                                MontoRenovado = n.MontoRenovado,
+                                CantidadCanceladas = n.CantidadCanceladas,
+                                MontoCancelado = n.MontoCancelado,
+                                Cobrado=n.Cobrado,
+                                ValidadoDesde = n.ValidadoDesde,
+                                ValidadoHasta = n.ValidadoHasta
+
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+
+        }
+        #endregion
+
     }
 }
