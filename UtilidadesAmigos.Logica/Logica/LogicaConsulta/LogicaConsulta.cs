@@ -602,8 +602,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                 Item.CantidadCanceladas,
                 Item.MontoCancelado,
                 Item.Cobrado,
-                Item.ValidadoHasta,
                 Item.ValidadoDesde,
+                Item.ValidadoHasta,
                 Accion);
             if (EstadisticaRenovacion != null) {
 
@@ -661,7 +661,10 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                    MontoCancelado=n.MontoCancelado,
                                    Cobrado=n.Cobrado,
                                    CantidadSinProcesar=n.CantidadSinProcesar,
-                                   MontoSinRenovar=n.MontoSinRenovar
+                                   MontoSinRenovar=n.MontoSinRenovar,
+                                   ValidadoDesde=n.ValidadoDesde,
+                                   ValidadoHasta=n.ValidadoHasta,
+                                   GeneradoPor=n.GeneradoPor
                                }).ToList();
             return Informacion;
         }

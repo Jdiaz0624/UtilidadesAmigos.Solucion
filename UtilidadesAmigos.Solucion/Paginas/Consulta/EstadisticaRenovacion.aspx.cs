@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportSource;
+using CrystalDecisions.Shared;
 
 namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 {
@@ -12,6 +15,19 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataComun = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaConsulta.LogicaConsulta> ObjDataConsulta = new Lazy<Logica.Logica.LogicaConsulta.LogicaConsulta>();
+
+        enum ConceptosAgrupacion { 
+        NoAgrupado=1,
+        AgruparPorOficina=2,
+        AgruparPorRamo=3,
+        AgruparPorSubRamo=4,
+        AgruparPorIntermediario=5,
+        AgruparPorSupervisor=6
+        }
+
+        enum RamoPorDefecto { 
+        VahiculoMotor = 106
+        }
 
         #region CONTROL DE PAGINACION DE ESTADISTICA DE RENOVACION
         readonly PagedDataSource pagedDataSource_EstadisticaRenovacion = new PagedDataSource();
@@ -181,7 +197,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             else {
 
                 int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
-                int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : (int)RamoPorDefecto.VahiculoMotor;
                 int? _SubRamo = ddlSeleccionarSubramo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubramo.SelectedValue) : new Nullable<int>();
                 int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
                 int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
@@ -232,6 +248,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                         Guardar.ProcesarInformacion();
                     }
                 }
+                cbRetenerInformacion.Visible = true;
             }
         }
         #endregion
@@ -243,18 +260,49 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             else {
                 int TipoAgrupacion = 0;
                 decimal IdUsuario = (decimal)Session["IdUsuario"];
-                if (rbNoAgrupar.Checked == true) { TipoAgrupacion = 1; }
-                else if (rbOficina.Checked == true) { TipoAgrupacion = 2; }
-                else if (rbRamo.Checked == true) { TipoAgrupacion = 3; }
-                else if (rbSubRamo.Checked == true) { TipoAgrupacion = 4; }
-                else if (rbIntermediario.Checked == true) { TipoAgrupacion = 5; }
-                else if (rbSupervisor.Checked == true) { TipoAgrupacion = 6; }
+                if (rbNoAgrupar.Checked == true) { TipoAgrupacion = (int)ConceptosAgrupacion.NoAgrupado; }
+                else if (rbOficina.Checked == true) { TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorOficina; }
+                else if (rbRamo.Checked == true) { TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorRamo; }
+                else if (rbSubRamo.Checked == true) { TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorSubRamo; }
+                else if (rbIntermediario.Checked == true) { TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorIntermediario; }
+                else if (rbSupervisor.Checked == true) { TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorSupervisor; }
 
                 var BuscarInformacion = ObjDataConsulta.Value.BuscaEstadisticaRenovacionAgrupada(IdUsuario, TipoAgrupacion);
                 Paginar_EstadisticaRenovacion(ref rpEstadisticaRenovacion, BuscarInformacion, 10, ref lbCantidadPaginaVAriableEstadisticaRenovacion, ref btnkPrimeraPaginaEstadisticaRenovacion, ref btnAnteriorEstadisticaRenovacion, ref btnSiguienteEstadisticaRenovacion, ref btnUltimoEstadisticaRenovacion);
                 HandlePaging_EstadisticaRenovacion(ref dtPaginacionEstadisticaRenovacion, ref lbPaginaActualVariableEstadisticaRenovacion);
             }
            
+        }
+        #endregion
+
+        #region GENERER REPORTE DE ESTADISTICA DE RENOVACION
+        private void GenerarReporte(string RutaReporte, string NombreReporte,int TipoAgrupaicon, decimal IdUsuario) {
+
+            string UsuarioBD = "sa", ClaveBD = "Pa$$W0rd";
+
+            
+
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@IdUsuario", IdUsuario);
+            Reporte.SetParameterValue("@TipoAgrupacion", TipoAgrupaicon);
+
+            Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
+
+            if (rbPDF.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
+            else if (rbEXcel.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+            }
+            else if (rbWord.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreReporte);
+            }
+
         }
         #endregion
 
@@ -276,7 +324,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
                 rbPDF.Checked = true;
                 rbNoAgrupar.Checked = true;
-                cbExcluirMotores.Checked = false;               
+                cbExcluirMotores.Checked = false;
+                cbRetenerInformacion.Checked = false;
             }
         }
 
@@ -300,24 +349,64 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void btnBuscar_Click(object sender, ImageClickEventArgs e)
         {
-            CargarInformacion();
+            if (cbRetenerInformacion.Checked == false) {
+                CargarInformacion();
+            }
             CurrentPage_EstadisticaRenovacion = 0;
             MostrarEstadisticaRenovacion();
         }
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
         {
-            CargarInformacion();
+            if (cbRetenerInformacion.Checked == false)
+            {
+                CargarInformacion();
+            }
+
+            int TipoAgrupacion = 0;
+            string TipoAgrupacionNombre = "";
+            decimal IdUsuario = (decimal)Session["IdUsuario"];
+            if (rbNoAgrupar.Checked == true) {
+                TipoAgrupacion = (int)ConceptosAgrupacion.NoAgrupado;
+                TipoAgrupacionNombre = "No Agrupado";
+            }
+            else if (rbOficina.Checked == true) {
+                TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorOficina;
+                TipoAgrupacionNombre = "Agrupado Por Oficina";
+            }
+            else if (rbRamo.Checked == true) {
+                TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorRamo;
+                TipoAgrupacionNombre = "Agrupado Por Ramo";
+            }
+            else if (rbSubRamo.Checked == true) { 
+                TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorSubRamo;
+                TipoAgrupacionNombre = "Agrupado Por Sub Ramo";
+            }
+            else if (rbIntermediario.Checked == true) { 
+                TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorIntermediario;
+                TipoAgrupacionNombre = "Agrupado Por Intermediario";
+            }
+            else if (rbSupervisor.Checked == true) { 
+                TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorSupervisor;
+                TipoAgrupacionNombre = "Agrupado Por Supervisor";
+            }
+
+
+
+            GenerarReporte(Server.MapPath("EstadisticaRenovacionAgrupado.rpt"), "Reporte Estadistica de Renovacion " + TipoAgrupacionNombre, TipoAgrupacion, IdUsuario);
         }
 
         protected void btnkPrimeraPaginaEstadisticaRenovacion_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_EstadisticaRenovacion = 0;
+            MostrarEstadisticaRenovacion();
         }
 
         protected void btnAnteriorEstadisticaRenovacion_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_EstadisticaRenovacion += -1;
+            MostrarEstadisticaRenovacion();
+            MoverValoresPaginacion_EstadisticaRenovacion((int)OpcionesPaginacionValores_EstadisticaRenovacion.PaginaAnterior, ref lbPaginaActualVariableEstadisticaRenovacion, ref lbCantidadPaginaVAriableEstadisticaRenovacion);
         }
 
         protected void dtPaginacionEstadisticaRenovacion_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -327,23 +416,29 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void dtPaginacionEstadisticaRenovacion_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_EstadisticaRenovacion = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarEstadisticaRenovacion();
         }
 
         protected void btnSiguienteEstadisticaRenovacion_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_EstadisticaRenovacion += 1;
+            MostrarEstadisticaRenovacion();
         }
 
         protected void btnUltimoEstadisticaRenovacion_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_EstadisticaRenovacion = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarEstadisticaRenovacion();
+            MoverValoresPaginacion_EstadisticaRenovacion((int)OpcionesPaginacionValores_EstadisticaRenovacion.UltimaPagina, ref lbPaginaActualVariableEstadisticaRenovacion, ref lbCantidadPaginaVAriableEstadisticaRenovacion);
         }
 
         protected void ddlSeleccionarRamo_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarSubRamo();
         }
+
 
         protected void cbExcluirMotores_CheckedChanged(object sender, EventArgs e)
         {

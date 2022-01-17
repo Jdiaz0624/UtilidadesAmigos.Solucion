@@ -139,6 +139,7 @@
             <br />
             <div class="form-check-inline">
                 <asp:CheckBox ID="cbExcluirMotores" runat="server" Text="Excluir Motores" AutoPostBack="true" CssClass="LetrasNegrita" OnCheckedChanged="cbExcluirMotores_CheckedChanged"  />
+                <asp:CheckBox ID="cbRetenerInformacion" runat="server" CssClass="LetrasNegrita" Text="Retener Información" ToolTip="Retener la Data cargada" Visible="false" />
             </div>
             <br />
             <div align="center">

@@ -27,5 +27,10 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 		public System.Nullable<int> CantidadSinProcesar {get;set;}
 
 		public System.Nullable<decimal> MontoSinRenovar {get;set;}
+		public string ValidadoDesde { get; set; }
+
+		public string ValidadoHasta { get; set; }
+
+		public string GeneradoPor { get; set; }
 	}
 }
