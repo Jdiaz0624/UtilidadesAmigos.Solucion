@@ -638,6 +638,33 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
             return Procesar;
 
         }
+
+        /// <summary>
+        /// Este Metodo Muestra la cantidad agrupada
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="TipoAgrupacion"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EEstadisticaRenovacionAgrupada> BuscaEstadisticaRenovacionAgrupada(decimal? IdUsuario = null, int? TipoAgrupacion = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Informacion = (from n in ObjData.SP_MOSTRAR_ESTADISTICA_RENOVACION_AGRUPADA(IdUsuario, TipoAgrupacion)
+                               select new UtilidadesAmigos.Logica.Entidades.Consulta.EEstadisticaRenovacionAgrupada
+                               {
+                                   Entidad=n.Entidad,
+                                   CantidadRenovaciones=n.CantidadRenovaciones,
+                                   MontoRenovaciones=n.MontoRenovaciones,
+                                   CantidadRenovadas=n.CantidadRenovadas,
+                                   MontoRenovado=n.MontoRenovado,
+                                   CantidadCanceladas=n.CantidadCanceladas,
+                                   MontoCancelado=n.MontoCancelado,
+                                   Cobrado=n.Cobrado,
+                                   CantidadSinProcesar=n.CantidadSinProcesar,
+                                   MontoSinRenovar=n.MontoSinRenovar
+                               }).ToList();
+            return Informacion;
+        }
         #endregion
 
     }

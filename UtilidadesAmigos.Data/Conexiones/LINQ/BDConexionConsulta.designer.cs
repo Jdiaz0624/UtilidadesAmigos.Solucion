@@ -228,6 +228,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, cotizacion, secuencia, poliza, codigoOficina, codigoRamo, nombreRamo, codigoSubRamo, nombreSubramo, bruto, fechaInicioVigencia, fechaFinVigencia, codigoIntermediario, codigoSupervisor, codigoCliente, cantidadRenovadas, montoRenovado, cantidadCanceladas, montoCancelado, cobrado, validadoDesde, validadoHasta, accion);
 			return ((ISingleResult<SP_PROCESAR_DATA_ESTADISTICA_RENOVACIONResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MOSTRAR_ESTADISTICA_RENOVACION_AGRUPADA")]
+		public ISingleResult<SP_MOSTRAR_ESTADISTICA_RENOVACION_AGRUPADAResult> SP_MOSTRAR_ESTADISTICA_RENOVACION_AGRUPADA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoAgrupacion", DbType="Int")] System.Nullable<int> tipoAgrupacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, tipoAgrupacion);
+			return ((ISingleResult<SP_MOSTRAR_ESTADISTICA_RENOVACION_AGRUPADAResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_BUSCAR_INFORMACION_POLIZA_GESTION_COBROResult
@@ -4845,6 +4852,194 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._ValidadoHasta != value))
 				{
 					this._ValidadoHasta = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MOSTRAR_ESTADISTICA_RENOVACION_AGRUPADAResult
+	{
+		
+		private string _Entidad;
+		
+		private System.Nullable<int> _CantidadRenovaciones;
+		
+		private System.Nullable<decimal> _MontoRenovaciones;
+		
+		private System.Nullable<int> _CantidadRenovadas;
+		
+		private System.Nullable<decimal> _MontoRenovado;
+		
+		private System.Nullable<int> _CantidadCanceladas;
+		
+		private System.Nullable<decimal> _MontoCancelado;
+		
+		private System.Nullable<decimal> _Cobrado;
+		
+		private System.Nullable<int> _CantidadSinProcesar;
+		
+		private System.Nullable<decimal> _MontoSinRenovar;
+		
+		public SP_MOSTRAR_ESTADISTICA_RENOVACION_AGRUPADAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Entidad", DbType="VarChar(11) NOT NULL", CanBeNull=false)]
+		public string Entidad
+		{
+			get
+			{
+				return this._Entidad;
+			}
+			set
+			{
+				if ((this._Entidad != value))
+				{
+					this._Entidad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadRenovaciones", DbType="Int")]
+		public System.Nullable<int> CantidadRenovaciones
+		{
+			get
+			{
+				return this._CantidadRenovaciones;
+			}
+			set
+			{
+				if ((this._CantidadRenovaciones != value))
+				{
+					this._CantidadRenovaciones = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoRenovaciones", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> MontoRenovaciones
+		{
+			get
+			{
+				return this._MontoRenovaciones;
+			}
+			set
+			{
+				if ((this._MontoRenovaciones != value))
+				{
+					this._MontoRenovaciones = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadRenovadas", DbType="Int")]
+		public System.Nullable<int> CantidadRenovadas
+		{
+			get
+			{
+				return this._CantidadRenovadas;
+			}
+			set
+			{
+				if ((this._CantidadRenovadas != value))
+				{
+					this._CantidadRenovadas = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoRenovado", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> MontoRenovado
+		{
+			get
+			{
+				return this._MontoRenovado;
+			}
+			set
+			{
+				if ((this._MontoRenovado != value))
+				{
+					this._MontoRenovado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadCanceladas", DbType="Int")]
+		public System.Nullable<int> CantidadCanceladas
+		{
+			get
+			{
+				return this._CantidadCanceladas;
+			}
+			set
+			{
+				if ((this._CantidadCanceladas != value))
+				{
+					this._CantidadCanceladas = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoCancelado", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> MontoCancelado
+		{
+			get
+			{
+				return this._MontoCancelado;
+			}
+			set
+			{
+				if ((this._MontoCancelado != value))
+				{
+					this._MontoCancelado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cobrado", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Cobrado
+		{
+			get
+			{
+				return this._Cobrado;
+			}
+			set
+			{
+				if ((this._Cobrado != value))
+				{
+					this._Cobrado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadSinProcesar", DbType="Int")]
+		public System.Nullable<int> CantidadSinProcesar
+		{
+			get
+			{
+				return this._CantidadSinProcesar;
+			}
+			set
+			{
+				if ((this._CantidadSinProcesar != value))
+				{
+					this._CantidadSinProcesar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoSinRenovar", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> MontoSinRenovar
+		{
+			get
+			{
+				return this._MontoSinRenovar;
+			}
+			set
+			{
+				if ((this._MontoSinRenovar != value))
+				{
+					this._MontoSinRenovar = value;
 				}
 			}
 		}

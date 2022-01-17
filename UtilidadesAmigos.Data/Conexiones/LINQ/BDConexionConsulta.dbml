@@ -453,4 +453,20 @@
       <Column Name="ValidadoHasta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_MOSTRAR_ESTADISTICA_RENOVACION_AGRUPADA" Method="SP_MOSTRAR_ESTADISTICA_RENOVACION_AGRUPADA">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="TipoAgrupacion" Parameter="tipoAgrupacion" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_MOSTRAR_ESTADISTICA_RENOVACION_AGRUPADAResult">
+      <Column Name="Entidad" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="CantidadRenovaciones" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MontoRenovaciones" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CantidadRenovadas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MontoRenovado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CantidadCanceladas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MontoCancelado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CantidadSinProcesar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MontoSinRenovar" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

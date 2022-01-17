@@ -182,6 +182,7 @@
     <Compile Include="Entidades\Consulta\ECarteraIntermediarios.cs" />
     <Compile Include="Entidades\Consulta\EComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Consulta\EConceptoLLamadas.cs" />
+    <Compile Include="Entidades\Consulta\EEstadisticaRenovacionAgrupada.cs" />
     <Compile Include="Entidades\Consulta\EEstadisticaRenovacionOrigen.cs" />
     <Compile Include="Entidades\Consulta\EGenerarReporteCobroFinal.cs" />
     <Compile Include="Entidades\Consulta\EPolizasAvisoGestionCobros.cs" />

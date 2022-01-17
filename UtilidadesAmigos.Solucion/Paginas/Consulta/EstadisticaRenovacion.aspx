@@ -154,21 +154,23 @@
                          <th scope="col"> M. Renovaciones </th>
                          <th scope="col"> C. Renovadas </th>
                          <th scope="col"> M. Renovadas </th>
-                         <th scope="col"> Cobrado </th>
-                         <th scope="col"> Balance </th>
+                         <th scope="col"> C. Canceladas </th>
+                         <th scope="col"> M. Cancelado </th>
+                        <th scope="col"> Cobrado </th>
                     </tr>
                 </thead>
                 <tbody>
                     <asp:Repeater ID="rpEstadisticaRenovacion" runat="server">
                         <ItemTemplate>
                             <tr>
-                                 <td> <%# Eval("") %> </td>
-                                 <td> <%#string.Format("{0:N0}", Eval("")) %> </td>
-                                 <td> <%#string.Format("{0:N2}", Eval("")) %> </td>
-                                 <td> <%#string.Format("{0:N0}", Eval("")) %> </td>
-                                 <td> <%#string.Format("{0:N2}", Eval("")) %> </td>
-                                 <td> <%#string.Format("{0:N2}", Eval("")) %> </td>
-                                 <td> <%#string.Format("{0:N2}", Eval("")) %> </td>
+                                 <td> <%# Eval("Entidad") %> </td>
+                                 <td> <%#string.Format("{0:N0}", Eval("CantidadRenovaciones")) %> </td>
+                                 <td> <%#string.Format("{0:N2}", Eval("MontoRenovaciones")) %> </td>
+                                 <td> <%#string.Format("{0:N0}", Eval("CantidadRenovadas")) %> </td>
+                                 <td> <%#string.Format("{0:N2}", Eval("MontoRenovado")) %> </td>
+                                 <td> <%#string.Format("{0:N0}", Eval("CantidadCanceladas")) %> </td>
+                                 <td> <%#string.Format("{0:N2}", Eval("MontoCancelado")) %> </td>
+                                 <td> <%#string.Format("{0:N2}", Eval("Cobrado")) %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
