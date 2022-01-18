@@ -240,6 +240,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             catch (Exception) { }
         }
         #endregion
+
         #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
         int _PrimeraPagina, _UltimaPagina;
@@ -370,8 +371,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
         #endregion
-
-        #region CONTROL DE PAGINACION DE POLIZAS NO CONTACTADAS
+        #region CONTROL DE PAGINACION DE LAS POLIZAS NO CONTACTADAS
         readonly PagedDataSource pagedDataSource_PolizasNoContactadas = new PagedDataSource();
         int _PrimeraPagina_PolizasNoContactadas, _UltimaPagina_PolizasNoContactadas;
         private int _TamanioPagina_PolizasNoContactadas = 10;
@@ -431,7 +431,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             NombreDataList.DataBind();
         }
 
-        private void Paginar_PolizasNoContactadas(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        private void Paginar_NoContactadas(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
         {
             pagedDataSource_PolizasNoContactadas.DataSource = Listado;
             pagedDataSource_PolizasNoContactadas.AllowPaging = true;
@@ -503,6 +503,405 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
         #endregion
+        #region CONTROL DE PAGINACION DE LISTADO DE RENOVACIONES
+        readonly PagedDataSource pagedDataSource_ListadoRenovaciones = new PagedDataSource();
+        int _PrimeraPagina_ListadoRenovaciones, _UltimaPagina_ListadoRenovaciones;
+        private int _TamanioPagina_ListadoRenovaciones = 10;
+        private int CurrentPage_ListadoRenovaciones
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_ListadoRenovaciones(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_ListadoRenovaciones = CurrentPage_ListadoRenovaciones - 5;
+            if (CurrentPage_ListadoRenovaciones > 5)
+                _UltimaPagina_ListadoRenovaciones = CurrentPage_ListadoRenovaciones + 5;
+            else
+                _UltimaPagina_ListadoRenovaciones = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_ListadoRenovaciones > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_ListadoRenovaciones = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_ListadoRenovaciones = _UltimaPagina_ListadoRenovaciones - 10;
+            }
+
+            if (_PrimeraPagina_ListadoRenovaciones < 0)
+                _PrimeraPagina_ListadoRenovaciones = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_ListadoRenovaciones;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_ListadoRenovaciones; i < _UltimaPagina_ListadoRenovaciones; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_ListadoRenovaciones(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_ListadoRenovaciones.DataSource = Listado;
+            pagedDataSource_ListadoRenovaciones.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_ListadoRenovaciones.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_ListadoRenovaciones.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_ListadoRenovaciones.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_ListadoRenovaciones : _NumeroRegistros);
+            pagedDataSource_ListadoRenovaciones.CurrentPageIndex = CurrentPage_ListadoRenovaciones;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_ListadoRenovaciones.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_ListadoRenovaciones.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_ListadoRenovaciones.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_ListadoRenovaciones.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_ListadoRenovaciones;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_ListadoRenovaciones
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_ListadoRenovaciones(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+        #region CONTROL DE PAGINACION DEL DETALLE DE LOS VEHICULOS
+        readonly PagedDataSource pagedDataSource_DetalleVehiculo = new PagedDataSource();
+        int _PrimeraPagina_DetalleVehiculo, _UltimaPagina_DetalleVehiculo;
+        private int _TamanioPagina_DetalleVehiculo = 10;
+        private int CurrentPage_DetalleVehiculo
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_DetalleVehiculo(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_DetalleVehiculo = CurrentPage_DetalleVehiculo - 5;
+            if (CurrentPage_DetalleVehiculo > 5)
+                _UltimaPagina_DetalleVehiculo = CurrentPage_DetalleVehiculo + 5;
+            else
+                _UltimaPagina_DetalleVehiculo = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_DetalleVehiculo > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_DetalleVehiculo = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_DetalleVehiculo = _UltimaPagina_DetalleVehiculo - 10;
+            }
+
+            if (_PrimeraPagina_DetalleVehiculo < 0)
+                _PrimeraPagina_DetalleVehiculo = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_DetalleVehiculo;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_DetalleVehiculo; i < _UltimaPagina_DetalleVehiculo; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_DetalleVehiculo(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_DetalleVehiculo.DataSource = Listado;
+            pagedDataSource_DetalleVehiculo.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_DetalleVehiculo.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_DetalleVehiculo.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_DetalleVehiculo.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_DetalleVehiculo : _NumeroRegistros);
+            pagedDataSource_DetalleVehiculo.CurrentPageIndex = CurrentPage_DetalleVehiculo;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_DetalleVehiculo.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_DetalleVehiculo.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_DetalleVehiculo.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_DetalleVehiculo.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_DetalleVehiculo;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_DetalleVehiculo
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_DetalleVehiculo(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+        #region CONTROL DE PAGINACION DE LOS COMENTARIOS
+        readonly PagedDataSource pagedDataSource_Comentario = new PagedDataSource();
+        int _PrimeraPagina_Comentario, _UltimaPagina_Comentario;
+        private int _TamanioPagina_Comentario = 10;
+        private int CurrentPage_Comentario
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_Comentario(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_Comentario = CurrentPage_Comentario - 5;
+            if (CurrentPage_Comentario > 5)
+                _UltimaPagina_Comentario = CurrentPage_Comentario + 5;
+            else
+                _UltimaPagina_Comentario = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_Comentario > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_Comentario = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_Comentario = _UltimaPagina_Comentario - 10;
+            }
+
+            if (_PrimeraPagina_Comentario < 0)
+                _PrimeraPagina_Comentario = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_Comentario;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_Comentario; i < _UltimaPagina_Comentario; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_Comentario(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_Comentario.DataSource = Listado;
+            pagedDataSource_Comentario.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_Comentario.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_Comentario.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_Comentario.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_Comentario : _NumeroRegistros);
+            pagedDataSource_Comentario.CurrentPageIndex = CurrentPage_Comentario;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_Comentario.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_Comentario.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_Comentario.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_Comentario.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_Comentario;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_Comentario
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_Comentario(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+
+
+
         #region CONTROL DE PAGINACION DE LISTADO GENERAL
         readonly PagedDataSource pagedDataSource_ListadoGeneral = new PagedDataSource();
         int _PrimeraPagina_ListadoGeneral, _UltimaPagina_ListadoGeneral;
