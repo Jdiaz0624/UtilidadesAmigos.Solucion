@@ -33,6 +33,7 @@
     </style>
 
     <script type="text/javascript">
+
         function disableBackButton() {
             window.history.forward();
         }
