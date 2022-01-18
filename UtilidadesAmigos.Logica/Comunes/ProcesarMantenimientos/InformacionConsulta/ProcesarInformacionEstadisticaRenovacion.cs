@@ -12,75 +12,44 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionCons
 
         private decimal IdUsuario = 0;
         private decimal Cotizacion = 0;
-        private int Secuencia = 0;
         private string Poliza = "";
+        private string Estatus = "";
         private int CodigoOficina = 0;
-        private int CodigoRamo = 0;
-        private string NombreRamo = "";
-        private int CodigoSubRamo = 0;
-        private string NombreSubramo = "";
+        private int Ramo = 0;
         private decimal Bruto = 0;
-        private DateTime FechaInicioVigencia = DateTime.Now;
-        private DateTime FechaFinVigencia = DateTime.Now;
         private int CodigoIntermediario = 0;
         private int CodigoSupervisor = 0;
-        private decimal CodigoCliente = 0;
-        private int CantidadRenovadas = 0;
-        private decimal MontoRenovado = 0;
-        private int CantidadCanceladas = 0;
-        private decimal MontoCancelado = 0;
-        private decimal Cobrado = 0;
         private DateTime ValidadoDesde = DateTime.Now;
         private DateTime ValidadoHasta = DateTime.Now;
         private bool ExcluirMotores = false;
         private string Accion = "";
 
+
         public ProcesarInformacionEstadisticaRenovacion(
-            decimal IdUsuarioCON,
-        decimal CotizacionCON,
-        int SecuenciaCON,
-        string PolizaCON,
-        int CodigoOficinaCON,
-        int CodigoRamoCON,
-        string NombreRamoCON,
-        int CodigoSubRamoCON,
-        string NombreSubramoCON,
-        decimal BrutoCON,
-        DateTime FechaInicioVigenciaCON,
-        DateTime FechaFinVigenciaCON,
-        int CodigoIntermediarioCON,
-        int CodigoSupervisorCON,
-        decimal CodigoClienteCON,
-        int CantidadRenovadasCON,
-        decimal MontoRenovadoCON,
-        int CantidadCanceladasCON,
-        decimal MontoCanceladoCON,
-        decimal CobradoCON,
-        DateTime ValidadoDesdeCON,
-        DateTime ValidadoHastaCON,
-        bool ExcluirMotoresCON,
-        string AccionCON)
+         decimal IdUsuarioCON,
+         decimal CotizacionCON,
+         string PolizaCON,
+         string EstatusCON,
+         int CodigoOficinaCON,
+         int RamoCON,
+         decimal BrutoCON,
+         int CodigoIntermediarioCON,
+         int CodigoSupervisorCON,
+         DateTime ValidadoDesdeCON,
+         DateTime ValidadoHastaCON,
+         bool ExcluirMotoresCON,
+         string AccionCON
+            )
         {
             IdUsuario = IdUsuarioCON;
             Cotizacion = CotizacionCON;
-            Secuencia = SecuenciaCON;
             Poliza = PolizaCON;
+            Estatus = EstatusCON;
             CodigoOficina = CodigoOficinaCON;
-            CodigoRamo = CodigoRamoCON;
-            NombreRamo = NombreRamoCON;
-            CodigoSubRamo = CodigoSubRamoCON;
-            NombreSubramo = NombreSubramoCON;
+            Ramo = RamoCON;
             Bruto = BrutoCON;
-            FechaInicioVigencia = FechaInicioVigenciaCON;
-            FechaFinVigencia = FechaFinVigenciaCON;
             CodigoIntermediario = CodigoIntermediarioCON;
             CodigoSupervisor = CodigoSupervisorCON;
-            CodigoCliente = CodigoClienteCON;
-            CantidadRenovadas = CantidadRenovadasCON;
-            MontoRenovado = MontoRenovadoCON;
-            CantidadCanceladas = CantidadCanceladasCON;
-            MontoCancelado = MontoCanceladoCON;
-            Cobrado = CobradoCON;
             ValidadoDesde = ValidadoDesdeCON;
             ValidadoHasta = ValidadoHastaCON;
             ExcluirMotores = ExcluirMotoresCON;
@@ -93,24 +62,13 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionCons
 
             Procesar.IdUsuario = IdUsuario;
             Procesar.Cotizacion = Cotizacion;
-            Procesar.Secuencia = Secuencia;
             Procesar.Poliza = Poliza;
+            Procesar.Estatus = Estatus;
             Procesar.CodigoOficina = CodigoOficina;
-            Procesar.CodigoRamo = CodigoRamo;
-            Procesar.NombreRamo = NombreRamo;
-            Procesar.CodigoSubRamo = CodigoSubRamo;
-            Procesar.NombreSubramo = NombreSubramo;
-            Procesar.Bruto = Bruto;
-            Procesar.FechaInicioVigencia = FechaInicioVigencia;
-            Procesar.FechaFinVigencia = FechaFinVigencia;
+            Procesar.Ramo = Ramo;
+            Procesar.Prima = Bruto;
             Procesar.CodigoIntermediario = CodigoIntermediario;
             Procesar.CodigoSupervisor = CodigoSupervisor;
-            Procesar.CodigoCliente = CodigoCliente;
-            Procesar.CantidadRenovadas = CantidadRenovadas;
-            Procesar.MontoRenovado = MontoRenovado;
-            Procesar.CantidadCanceladas = CantidadCanceladas;
-            Procesar.MontoCancelado = MontoCancelado;
-            Procesar.Cobrado = Cobrado;
             Procesar.ValidadoDesde = ValidadoDesde;
             Procesar.ValidadoHasta = ValidadoHasta;
             Procesar.ExcluirMotores = ExcluirMotores;

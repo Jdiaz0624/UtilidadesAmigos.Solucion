@@ -10,9 +10,19 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
     {
 		public string Entidad {get;set;}
 
-		public System.Nullable<int> CantidadRenovaciones {get;set;}
+		public int? Codigo {get;set;}
 
-		public System.Nullable<decimal> MontoRenovaciones {get;set;}
+		public string ExcluirMotores {get;set;}
+
+		public string ValidadoDesde {get;set;}
+
+		public string ValidadoHasta {get;set;}
+
+		public string GeneradoPor {get;set;}
+
+		public System.Nullable<int> CantidadARenovar {get;set;}
+
+		public System.Nullable<decimal> MontoARenovar {get;set;}
 
 		public System.Nullable<int> CantidadRenovadas {get;set;}
 
@@ -24,13 +34,8 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 
 		public System.Nullable<decimal> Cobrado {get;set;}
 
-		public System.Nullable<int> CantidadSinProcesar {get;set;}
+		public System.Nullable<int> CantidadPendiente {get;set;}
 
-		public System.Nullable<decimal> MontoSinRenovar {get;set;}
-		public string ValidadoDesde { get; set; }
-
-		public string ValidadoHasta { get; set; }
-
-		public string GeneradoPor { get; set; }
+		public System.Nullable<decimal> MontoPendienteRenovar {get;set;}
 	}
 }

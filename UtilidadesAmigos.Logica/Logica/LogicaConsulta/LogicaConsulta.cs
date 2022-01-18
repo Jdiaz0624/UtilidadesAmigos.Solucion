@@ -528,48 +528,33 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         /// <param name="Oficina"></param>
         /// <param name="Ramo"></param>
         /// <param name="SubRamo"></param>
+        /// <param name="Poliza"></param>
         /// <param name="Intermediario"></param>
         /// <param name="Supervisor"></param>
-        /// <param name="Cliente"></param>
-        /// <param name="Poliza"></param>
-        /// <param name="ExcluirMotores"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EEstadisticaRenovacionOrigen> BuscaEstadisticaRenovacionOrigen(DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Oficina = null, int? Ramo = null, int? SubRamo = null, int? Intermediario = null, int? Supervisor = null, decimal? Cliente = null, string Poliza = null, bool? ExcluirMotores = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EEstadisticaRenovacionOrigen> BuscaEstadisticaRenovacionOrigen(DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Oficina = null, int? Ramo = null, int? SubRamo=null, string Poliza = null, int? Intermediario = null, int? Supervisor = null,bool? ExcluirMotores = null) {
 
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_ESTADISTICA_RENOVACION_ORIGEN(FechaDesde, FechaHasta, Oficina, Ramo, SubRamo, Intermediario, Supervisor, Cliente, Poliza, ExcluirMotores)
+            var Listado = (from n in ObjData.SP_ESTADISTICA_RENOVACION_ORIGEN(FechaDesde, FechaHasta, Oficina, Ramo,SubRamo, Poliza, Intermediario, Supervisor, ExcluirMotores)
                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EEstadisticaRenovacionOrigen
                            {
                                Cotizacion=n.Cotizacion,
-                               Secuencia=n.Secuencia,
                                Poliza=n.Poliza,
+                               Estatus=n.Estatus,
                                CodigoOficina=n.CodigoOficina,
-                               CodigoRamo=n.CodigoRamo,
-                               NombreRamo=n.NombreRamo,
-                               CodigoSubramo=n.CodigoSubramo,
-                               NombreSubramo=n.NombreSubramo,
+                               Ramo=n.Ramo,
                                Bruto=n.Bruto,
-                               FechaInicioVigencia=n.FechaInicioVigencia,
-                               FechaFinVigencia=n.FechaFinVigencia,
                                CodigoIntermediario=n.CodigoIntermediario,
                                CodigoSupervisor=n.CodigoSupervisor,
-                               CodigoCliente=n.CodigoCliente,
-                               CantidadRenovadas = n.CantidadRenovadas,
-                               MontoRenovado = n.MontoRenovado,
-                               CantidadCanceladas = n.CantidadCanceladas,
-                               MontoCancelado = n.MontoCancelado,
-                               Cobrado=n.Cobrado,
                                ValidadoDesde=n.ValidadoDesde,
                                ValidadoHasta=n.ValidadoHasta,
-                               ExcluirMotores0=n.ExcluirMotores0,
                                ExcluirMotores=n.ExcluirMotores
                            }).ToList();
             return Listado;
           
         }
-
 
         /// <summary>
         /// Este metodo es para guardar y eliminar registros enn la tabla de estadistica de renovacion
@@ -586,24 +571,13 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
             var EstadisticaRenovacion = ObjData.SP_PROCESAR_DATA_ESTADISTICA_RENOVACION(
                 Item.IdUsuario,
                 Item.Cotizacion,
-                Item.Secuencia,
                 Item.Poliza,
+                Item.Estatus,
                 Item.CodigoOficina,
-                Item.CodigoRamo,
-                Item.NombreRamo,
-                Item.CodigoSubRamo,
-                Item.NombreSubramo,
-                Item.Bruto,
-                Item.FechaInicioVigencia,
-                Item.FechaFinVigencia,
+                Item.Ramo,
+                Item.Prima,
                 Item.CodigoIntermediario,
                 Item.CodigoSupervisor,
-                Item.CodigoCliente,
-                Item.CantidadRenovadas,
-                Item.MontoRenovado,
-                Item.CantidadCanceladas,
-                Item.MontoCancelado,
-                Item.Cobrado,
                 Item.ValidadoDesde,
                 Item.ValidadoHasta,
                 Item.ExcluirMotores,
@@ -615,34 +589,66 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                             {
                                 IdUsuario = n.IdUsuario,
                                 Cotizacion = n.Cotizacion,
-                                Secuencia = n.Secuencia,
                                 Poliza = n.Poliza,
+                                Estatus=n.Estatus,
                                 CodigoOficina = n.CodigoOficina,
-                                CodigoRamo = n.CodigoRamo,
-                                NombreRamo = n.NombreRamo,
-                                CodigoSubRamo = n.CodigoSubRamo,
-                                NombreSubramo = n.NombreSubramo,
-                                Bruto = n.Bruto,
-                                FechaInicioVigencia = n.FechaInicioVigencia,
-                                FechaFinVigencia = n.FechaFinVigencia,
+                                Ramo = n.Ramo,
+                                Prima = n.Prima,
                                 CodigoIntermediario = n.CodigoIntermediario,
                                 CodigoSupervisor = n.CodigoSupervisor,
-                                CodigoCliente = n.CodigoCliente,
-                                CantidadRenovadas = n.CantidadRenovadas,
-                                MontoRenovado = n.MontoRenovado,
-                                CantidadCanceladas = n.CantidadCanceladas,
-                                MontoCancelado = n.MontoCancelado,
-                                Cobrado=n.Cobrado,
                                 ValidadoDesde = n.ValidadoDesde,
                                 ValidadoHasta = n.ValidadoHasta,
                                 ExcluirMotores=n.ExcluirMotores
-                                
 
                             }).FirstOrDefault();
             }
             return Procesar;
 
         }
+
+        /// <summary>
+        /// Este metodo muestra la data cargada
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EMostrarDataCargadaEstadisticaRenovacion> MostrarDataCargadaEstadisticaRenovacion(decimal? IdUsuario = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_MOSTRAR_DATA_CARGADA_ESTADISTICA_RENOVACION(IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EMostrarDataCargadaEstadisticaRenovacion
+                           {
+                               IdUsuario=n.IdUsuario,
+                               GeneradoPor=n.GeneradoPor,
+                               Cotizacion=n.Cotizacion,
+                               Poliza=n.Poliza,
+                               Estatus=n.Estatus,
+                               CodigoOficina=n.CodigoOficina,
+                               Oficina=n.Oficina,
+                               Ramo=n.Ramo,
+                               NombreRamo=n.NombreRamo,
+                               Prima=n.Prima,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               ValidadoDesde0=n.ValidadoHasta0,
+                               ValidadoHasta0=n.ValidadoHasta0,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta,
+                               CantidadRenovadas=n.CantidadRenovadas,
+                               MontoRenovado=n.MontoRenovado,
+                               CantidadCanceladas=n.CantidadCanceladas,
+                               MontoCancelado=n.MontoCancelado,
+                               Cobrado=n.Cobrado
+                           }).ToList();
+            return Listado;
+        }
+
+
+
+
+
 
         /// <summary>
         /// Este Metodo Muestra la cantidad agrupada
@@ -657,19 +663,22 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
             var Informacion = (from n in ObjData.SP_MOSTRAR_ESTADISTICA_RENOVACION_AGRUPADA(IdUsuario, TipoAgrupacion)
                                select new UtilidadesAmigos.Logica.Entidades.Consulta.EEstadisticaRenovacionAgrupada
                                {
-                                   Entidad=n.Entidad,
-                                   CantidadRenovaciones=n.CantidadRenovaciones,
-                                   MontoRenovaciones=n.MontoRenovaciones,
+                                  Entidad=n.Entidad,
+                                   Codigo=n.Codigo,
+                                   ExcluirMotores=n.ExcluirMotores,
+                                   ValidadoDesde=n.ValidadoDesde,
+                                   ValidadoHasta=n.ValidadoHasta,
+                                   GeneradoPor=n.GeneradoPor,
+                                   CantidadARenovar=n.CantidadARenovar,
+                                   MontoARenovar=n.MontoARenovar,
                                    CantidadRenovadas=n.CantidadRenovadas,
                                    MontoRenovado=n.MontoRenovado,
                                    CantidadCanceladas=n.CantidadCanceladas,
                                    MontoCancelado=n.MontoCancelado,
                                    Cobrado=n.Cobrado,
-                                   CantidadSinProcesar=n.CantidadSinProcesar,
-                                   MontoSinRenovar=n.MontoSinRenovar,
-                                   ValidadoDesde=n.ValidadoDesde,
-                                   ValidadoHasta=n.ValidadoHasta,
-                                   GeneradoPor=n.GeneradoPor
+                                   CantidadPendiente=n.CantidadPendiente,
+                                   MontoPendienteRenovar=n.MontoPendienteRenovar
+                                   
                                }).ToList();
             return Informacion;
         }
