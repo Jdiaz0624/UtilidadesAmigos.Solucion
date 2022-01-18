@@ -165,8 +165,8 @@
                         <ItemTemplate>
                             <tr>
                                  <td> <%# Eval("Entidad") %> </td>
-                                 <td> <%#string.Format("{0:N0}", Eval("CantidadRenovaciones")) %> </td>
-                                 <td> <%#string.Format("{0:N2}", Eval("MontoRenovaciones")) %> </td>
+                                 <td> <%#string.Format("{0:N0}", Eval("CantidadARenovar")) %> </td>
+                                 <td> <%#string.Format("{0:N2}", Eval("MontoARenovar")) %> </td>
                                  <td> <%#string.Format("{0:N0}", Eval("CantidadRenovadas")) %> </td>
                                  <td> <%#string.Format("{0:N2}", Eval("MontoRenovado")) %> </td>
                                  <td> <%#string.Format("{0:N0}", Eval("CantidadCanceladas")) %> </td>

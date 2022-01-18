@@ -20,9 +20,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         NoAgrupado=1,
         AgruparPorOficina=2,
         AgruparPorRamo=3,
-        AgruparPorSubRamo=4,
-        AgruparPorIntermediario=5,
-        AgruparPorSupervisor=6
+        AgruparPorIntermediario=4,
+        AgruparPorSupervisor=5
         }
 
         enum RamoPorDefecto { 
@@ -183,7 +182,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             decimal IdUsuario = (decimal)Session["IdUsuario"];
             //ELIMINAMOS DATOS
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionEstadisticaRenovacion Eliminar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionEstadisticaRenovacion(
-                IdUsuario, 0, 0, "", 0, 0, "", 0, "", 0, DateTime.Now, DateTime.Now, 0, 0, 0,0,0,0,0,0, DateTime.Now, DateTime.Now,false, "DELETE");
+                IdUsuario, 0, "", "", 0, 0, 0, 0, 0, DateTime.Now, DateTime.Now,false,"DELETE");
+
             Eliminar.ProcesarInformacion();
 
             //BUSCAMOS LA INFORMACION A PROCESAR
@@ -211,11 +211,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                     _Oficina,
                     _Ramo,
                     _SubRamo,
+                    _Poliza,
                     _Intermediario,
                     _Supervisor,
-                    _Cliente,
-                    _Poliza,
                     ExcluirMotores);
+
                 if (BuscarInformacion.Count() < 1) { ClientScript.RegisterStartupScript(GetType(), "CamposNoEncontrados()", "CamposNoEncontrados();", true); }
                 else {
 
@@ -224,27 +224,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                         UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionEstadisticaRenovacion Guardar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionEstadisticaRenovacion(
                             IdUsuario,
                             (decimal)n.Cotizacion,
-                            (int)n.Secuencia,
                             n.Poliza,
+                            n.Estatus,
                             (int)n.CodigoOficina,
-                            (int)n.CodigoRamo,
-                            n.NombreRamo,
-                            (int)n.CodigoSubramo,
-                            n.NombreSubramo,
+                            (int)n.Ramo,
                             (decimal)n.Bruto,
-                            (DateTime)n.FechaInicioVigencia,
-                            (DateTime)n.FechaFinVigencia,
                             (int)n.CodigoIntermediario,
                             (int)n.CodigoSupervisor,
-                            (decimal)n.CodigoCliente,
-                            (int)n.CantidadRenovadas,
-                            (decimal)n.MontoRenovado,
-                            (int)n.CantidadCanceladas,
-                            (decimal)n.MontoCancelado,
-                            (decimal)n.Cobrado,
                             (DateTime)n.ValidadoDesde,
                             (DateTime)n.ValidadoHasta,
-                            (bool)n.ExcluirMotores0,
+                            cbExcluirMotores.Checked,
                             "INSERT");
                         Guardar.ProcesarInformacion();
                     }
@@ -259,33 +248,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             decimal IdUsuario = (decimal)Session["IdUsuario"];
             if (rbDetalle.Checked == true) {
 
-                var MostrarDetalle = (from n in ObjDataConsulta.Value.GenerarDetalleEstadisticaRenovacion(IdUsuario)
-                                      select new
-                                      {
-                                          Poliza = n.Poliza,
-                                          Oficina = n.Oficina,
-                                          NombreRamo = n.NombreRamo,
-                                          NombreSubramo = n.NombreSubramo,
-                                          Prima = n.Prima,
-                                          InicioVigencia = n.InicioVigencia,
-                                          FinVigencia = n.FinVigencia,
-                                          CodigoIntermediario = n.CodigoIntermediario,
-                                          Intermediario = n.Intermediario,
-                                          CodigoSupervisor = n.CodigoSupervisor,
-                                          Supervisor = n.Supervisor,
-                                          CodigoCliente = n.CodigoCliente,
-                                          Cliente = n.Cliente,
-                                          TelefonoResidencia = n.TelefonoResidencia,
-                                          TelefonoOficina = n.TelefonoOficina,
-                                          Celular = n.Celular,
-                                          fax = n.fax,
-                                          Renovada = n.Renovada,
-                                          MontoRenovado = n.MontoRenovado,
-                                          Cancelada = n.Cancelada,
-                                          MontoCancelado = n.MontoCancelado,
-                                          Cobrado = n.Cobrado
-                                      }).ToList();
-                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Detalle de Estadistica de renovación", MostrarDetalle);
+              
             }
             else {
                 int TipoAgrupacion = 0;
@@ -293,7 +256,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 if (rbNoAgrupar.Checked == true) { TipoAgrupacion = (int)ConceptosAgrupacion.NoAgrupado; }
                 else if (rbOficina.Checked == true) { TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorOficina; }
                 else if (rbRamo.Checked == true) { TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorRamo; }
-                else if (rbSubRamo.Checked == true) { TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorSubRamo; }
                 else if (rbIntermediario.Checked == true) { TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorIntermediario; }
                 else if (rbSupervisor.Checked == true) { TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorSupervisor; }
 
@@ -408,10 +370,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorRamo;
                 TipoAgrupacionNombre = "Agrupado Por Ramo";
             }
-            else if (rbSubRamo.Checked == true) { 
-                TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorSubRamo;
-                TipoAgrupacionNombre = "Agrupado Por Sub Ramo";
-            }
             else if (rbIntermediario.Checked == true) { 
                 TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorIntermediario;
                 TipoAgrupacionNombre = "Agrupado Por Intermediario";
@@ -423,7 +381,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
 
 
-            GenerarReporte(Server.MapPath("EstadisticaRenovacionAgrupado.rpt"), "Reporte Estadistica de Renovacion " + TipoAgrupacionNombre, TipoAgrupacion, IdUsuario);
+            GenerarReporte(Server.MapPath("ReporteEstadisticaRenovacion.rpt"), "Reporte Estadistica de Renovacion " + TipoAgrupacionNombre, TipoAgrupacion, IdUsuario);
         }
 
         protected void btnkPrimeraPaginaEstadisticaRenovacion_Click(object sender, ImageClickEventArgs e)

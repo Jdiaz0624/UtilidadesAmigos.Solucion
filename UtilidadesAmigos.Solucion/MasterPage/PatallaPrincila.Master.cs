@@ -682,6 +682,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkEstadisticaRenovacion_Click(object sender, EventArgs e)
         {
+          //  ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Opción no esta disponible por el momento por que se esta trabajando en una mejora para la misma.');", true);
             if (Session["IdUsuario"] != null)
             {
 
