@@ -1428,22 +1428,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionDatoVehiculo;
 
         /// <summary>
-        /// LinkPrimeroDatoVehiculo control.
+        /// btnPrimeraPaginaDatoVehiculo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeroDatoVehiculo;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaDatoVehiculo;
 
         /// <summary>
-        /// LinkAnteriorDatoVehiculo control.
+        /// btnPaginaAnteriorDatoVehiculo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorDatoVehiculo;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnteriorDatoVehiculo;
 
         /// <summary>
         /// dtPaginacionDatoVehiculo control.
@@ -1455,22 +1455,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.DataList dtPaginacionDatoVehiculo;
 
         /// <summary>
-        /// LinkSiguienteDatoVehiculo control.
+        /// btnSiguientePaginaDatoVehiculo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteDatoVehiculo;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePaginaDatoVehiculo;
 
         /// <summary>
-        /// LinkUltimoDatoVehiculo control.
+        /// btnUltimaPaginaDatoVehiculo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoDatoVehiculo;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPaginaDatoVehiculo;
 
         /// <summary>
         /// lbEstatusDeLlamada control.

@@ -1435,8 +1435,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 rpDatosVehiculo.DataBind();
             }
             else {
-                Paginar(ref rpDatosVehiculo, BuscarDatos, 10, ref lbCantidadPaginaTituloDatoVehiculo, ref LinkPrimeroDatoVehiculo, ref LinkAnteriorDatoVehiculo, ref LinkSiguienteDatoVehiculo, ref LinkUltimoDatoVehiculo);
-                HandlePaging(ref dtPaginacionDatoVehiculo, ref lbPaginaActualTituloDatoVehiculo);
+                Paginar_DetalleVehiculo(ref rpDatosVehiculo, BuscarDatos, 10, ref lbPaginaActualVariableDatoVehiculo, ref btnPrimeraPaginaDatoVehiculo, ref btnPaginaAnteriorDatoVehiculo, ref btnSiguientePaginaDatoVehiculo, ref btnUltimaPaginaDatoVehiculo);
+                HandlePaging_DetalleVehiculo(ref dtPaginacionDatoVehiculo, ref lbCantidadPaginaVAriableDatoVehiculo);
             }
         }
         #endregion
@@ -2541,19 +2541,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
 
-        protected void LinkPrimeroDatoVehiculo_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
-        }
-
-        protected void LinkAnteriorDatoVehiculo_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableDatoVehiculo, ref lbCantidadPaginaVAriableDatoVehiculo);
-        }
-
         protected void dtPaginacionDatoVehiculo_ItemDataBound(object sender, DataListItemEventArgs e)
         {
 
@@ -2611,25 +2598,42 @@ namespace UtilidadesAmigos.Solucion.Paginas
             MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavle, ref lbCantidadPaginaVAriable);
         }
 
+        protected void btnPrimeraPaginaDatoVehiculo_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_DetalleVehiculo = 0;
+            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
+
+        }
+
+        protected void btnPaginaAnteriorDatoVehiculo_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_DetalleVehiculo += -1;
+            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
+            MoverValoresPaginacion_DetalleVehiculo((int)OpcionesPaginacionValores_DetalleVehiculo.PaginaAnterior, ref lbPaginaActualVariableDatoVehiculo, ref lbCantidadPaginaVAriableDatoVehiculo);
+
+        }
+
+        protected void btnSiguientePaginaDatoVehiculo_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_DetalleVehiculo += 1;
+            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
+        }
+
+        protected void btnUltimaPaginaDatoVehiculo_Click(object sender, ImageClickEventArgs e)
+        {
+
+
+            CurrentPage_DetalleVehiculo = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
+            MoverValoresPaginacion_DetalleVehiculo((int)OpcionesPaginacionValores_DetalleVehiculo.UltimaPagina, ref lbPaginaActualVariableDatoVehiculo, ref lbCantidadPaginaVAriableDatoVehiculo);
+        }
+
         protected void btnPaginaAnteriorListadoGeneral_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage += -1;
+            CurrentPage_ListadoGeneral += -1;
             MostrarListadoRenovaciones();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavle, ref lbCantidadPaginaVAriable);
+            MoverValoresPaginacion_ListadoGeneral((int)OpcionesPaginacionValores_ListadoGeneral.PaginaAnterior, ref lbPaginaActualVariavle, ref lbCantidadPaginaVAriable);
 
-        }
-
-        protected void LinkSiguienteDatoVehiculo_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
-        }
-
-        protected void LinkUltimoDatoVehiculo_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariableDatoVehiculo, ref lbCantidadPaginaVAriableDatoVehiculo);
         }
 
         protected void btnEliminarRegistrosPolizasGestionadas_Click(object sender, ImageClickEventArgs e)
