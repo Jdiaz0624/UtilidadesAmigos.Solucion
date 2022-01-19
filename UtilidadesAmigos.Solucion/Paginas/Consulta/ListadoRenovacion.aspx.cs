@@ -192,166 +192,36 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
                 if (Convert.ToInt32(ddlSeleccionarRamoEstadistica.SelectedValue) == 106 && Convert.ToInt32(ddlExcluirMotoresEstadistica.SelectedValue) == 2)
                 {
-                    var BuscarRegistros = Objdata.Value.SacarEstadisticaRenovacion(
-                        Convert.ToDateTime(txtFechaDesdeEstadistica.Text),
-                        Convert.ToDateTime(txtFechaHastaEstadistica.Text),
-                        _Ramo,
-                        _SubRamo,
-                        _Oficina,
-                        _ValidarBalance,
-                        _ExcluirMotores,
-                        Persona);
-                    Paginar(ref rpListadoEstadistica, BuscarRegistros, 10, ref lbCantidadPaginaVAriableEstadistica, ref linkPrimerostadistica, ref LinkAnteirorEstadistica, ref LinkSiguienteEstadistica, ref LinkUltimoEstadistica);
-                    HandlePaging(ref dtEstadistica, ref lbPaginaActualVariavleEstadistica);
-                    DivPaginacionEstadistica.Visible = true;
+                    //var BuscarRegistros = Objdata.Value.SacarEstadisticaRenovacion(
+                    //    Convert.ToDateTime(txtFechaDesdeEstadistica.Text),
+                    //    Convert.ToDateTime(txtFechaHastaEstadistica.Text),
+                    //    _Ramo,
+                    //    _SubRamo,
+                    //    _Oficina,
+                    //    _ValidarBalance,
+                    //    _ExcluirMotores,
+                    //    Persona);
+                    //Paginar(ref rpListadoEstadistica, BuscarRegistros, 10, ref lbCantidadPaginaVAriableEstadistica, ref linkPrimerostadistica, ref LinkAnteirorEstadistica, ref LinkSiguienteEstadistica, ref LinkUltimoEstadistica);
+                    //HandlePaging(ref dtEstadistica, ref lbPaginaActualVariavleEstadistica);
+                    //DivPaginacionEstadistica.Visible = true;
                 }
                 else
                 {
-                    var BuscarRegistros = Objdata.Value.SacarEstadisticaRenovacion(
-                       Convert.ToDateTime(txtFechaDesdeEstadistica.Text),
-                       Convert.ToDateTime(txtFechaHastaEstadistica.Text),
-                       _Ramo,
-                       _SubRamo,
-                       _Oficina,
-                       _ValidarBalance,
-                       _ExcluirMotores,
-                       Persona);
-                    Paginar(ref rpListadoEstadistica, BuscarRegistros, 10, ref lbCantidadPaginaVAriableEstadistica, ref linkPrimerostadistica, ref LinkAnteirorEstadistica, ref LinkSiguienteEstadistica, ref LinkUltimoEstadistica);
-                    HandlePaging(ref dtEstadistica, ref lbPaginaActualVariavleEstadistica);
-                    DivPaginacionEstadistica.Visible = true;
+                    //var BuscarRegistros = Objdata.Value.SacarEstadisticaRenovacion(
+                    //   Convert.ToDateTime(txtFechaDesdeEstadistica.Text),
+                    //   Convert.ToDateTime(txtFechaHastaEstadistica.Text),
+                    //   _Ramo,
+                    //   _SubRamo,
+                    //   _Oficina,
+                    //   _ValidarBalance,
+                    //   _ExcluirMotores,
+                    //   Persona);
+                    //Paginar(ref rpListadoEstadistica, BuscarRegistros, 10, ref lbCantidadPaginaVAriableEstadistica, ref linkPrimerostadistica, ref LinkAnteirorEstadistica, ref LinkSiguienteEstadistica, ref LinkUltimoEstadistica);
+                    //HandlePaging(ref dtEstadistica, ref lbPaginaActualVariavleEstadistica);
+                    //DivPaginacionEstadistica.Visible = true;
                 }
             }
             catch (Exception) { }
-        }
-        #endregion
-        #region CONTROL PARA MOSTRAR LA PAGINACION
-        readonly PagedDataSource pagedDataSource = new PagedDataSource();
-        int _PrimeraPagina, _UltimaPagina;
-        private int _TamanioPagina = 10;
-        private int CurrentPage
-        {
-            get
-            {
-                if (ViewState["CurrentPage"] == null)
-                {
-                    return 0;
-                }
-                return ((int)ViewState["CurrentPage"]);
-            }
-            set
-            {
-                ViewState["CurrentPage"] = value;
-            }
-
-        }
-        private void HandlePaging(ref DataList NombreDataList, ref Label LbPaginaActual)
-        {
-            var dt = new DataTable();
-            dt.Columns.Add("IndicePagina"); //Start from 0
-            dt.Columns.Add("TextoPagina"); //Start from 1
-
-            _PrimeraPagina = CurrentPage - 5;
-            if (CurrentPage > 5)
-                _UltimaPagina = CurrentPage + 5;
-            else
-                _UltimaPagina = 10;
-
-            // Check last page is greater than total page then reduced it to total no. of page is last index
-            if (_UltimaPagina > Convert.ToInt32(ViewState["TotalPages"]))
-            {
-                _UltimaPagina = Convert.ToInt32(ViewState["TotalPages"]);
-                _PrimeraPagina = _UltimaPagina - 10;
-            }
-
-            if (_PrimeraPagina < 0)
-                _PrimeraPagina = 0;
-
-            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
-            int NumeroPagina = (int)CurrentPage;
-            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
-            // Now creating page number based on above first and last page index
-            for (var i = _PrimeraPagina; i < _UltimaPagina; i++)
-            {
-                var dr = dt.NewRow();
-                dr[0] = i;
-                dr[1] = i + 1;
-                dt.Rows.Add(dr);
-            }
-
-
-            NombreDataList.DataSource = dt;
-            NombreDataList.DataBind();
-        }
-        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref LinkButton PrimeraPagina, ref LinkButton PaginaAnterior, ref LinkButton SiguientePagina, ref LinkButton UltimaPagina)
-        {
-            pagedDataSource.DataSource = Listado;
-            pagedDataSource.AllowPaging = true;
-
-            ViewState["TotalPages"] = pagedDataSource.PageCount;
-            // lbNumeroVariable.Text = "1";
-            lbCantidadPagina.Text = pagedDataSource.PageCount.ToString();
-
-            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
-            pagedDataSource.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina : _NumeroRegistros);
-            pagedDataSource.CurrentPageIndex = CurrentPage;
-
-            //HABILITAMOS LOS BOTONES DE LA PAGINACION
-            PrimeraPagina.Enabled = !pagedDataSource.IsFirstPage;
-            PaginaAnterior.Enabled = !pagedDataSource.IsFirstPage;
-            SiguientePagina.Enabled = !pagedDataSource.IsLastPage;
-            UltimaPagina.Enabled = !pagedDataSource.IsLastPage;
-
-            RptGrid.DataSource = pagedDataSource;
-            RptGrid.DataBind();
-
-
-            divPaginacion.Visible = true;
-        }
-        enum OpcionesPaginacionValores
-        {
-            PrimeraPagina = 1,
-            SiguientePagina = 2,
-            PaginaAnterior = 3,
-            UltimaPagina = 4
-        }
-        private void MoverValoresPaginacion(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas )
-        {
-
-            int PaginaActual = 0;
-            switch (Accion)
-            {
-
-                case 1:
-                    //PRIMERA PAGINA
-                    lbPaginaActual.Text = "1";
-
-                    break;
-
-                case 2:
-                    //SEGUNDA PAGINA
-                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
-                    PaginaActual++;
-                    lbPaginaActual.Text = PaginaActual.ToString();
-                    break;
-
-                case 3:
-                    //PAGINA ANTERIOR
-                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
-                    if (PaginaActual > 1)
-                    {
-                        PaginaActual--;
-                        lbPaginaActual.Text = PaginaActual.ToString();
-                    }
-                    break;
-
-                case 4:
-                    //ULTIMA PAGINA
-                    lbPaginaActual.Text = lbCantidadPaginas.Text;
-                    break;
-
-
-            }
-
         }
         #endregion
         #region CONTROL DE PAGINACION DE LAS POLIZAS NO CONTACTADAS
@@ -1377,8 +1247,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbCantidadRegistrosVariable.Text = "0";
             }
             else {
-                Paginar(ref rpGestionCobros, MostrarCOmentario, 10, ref lbCantidadPaginaVAriableGestionCobros, ref LinkPrimeroGestionCobros, ref LinkAnteriorGestionCobros, ref LinkSiguienteGestionCobros, ref LinkUltimoGestionCobros);
-                HandlePaging(ref dtPaginacionGestionCobros, ref lbPaginaActualVariableGestionCobros);
+                Paginar_Comentario(ref rpGestionCobros, MostrarCOmentario, 10, ref lbCantidadPaginaVAriableGestionCobros, ref btnPrimeraPaginaComentarios, ref btnPaginaAnteriorComentarios, ref btnPaginaSiguienteComentarios, ref btnUltimaPaginaComentarios);
+                HandlePaging_Comentario(ref dtPaginacionGestionCobros, ref lbPaginaActualVariableGestionCobros);
                 int CantidadRegistros = 0;
                 foreach (var n in MostrarCOmentario) {
                     CantidadRegistros = (int)n.CantidadRegistros;
@@ -1672,7 +1542,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarOficinaEstadistica();
                 ValidarBalanceEstadistica();
                 ExcluirMotoresEstadistica();
-                rbTodosLosRegistrosGestionCobros.Checked = true;               
+                rbTodosLosRegistrosGestionCobros.Checked = true;
+                CurrentPage_PolizasNoContactadas = 0;
                 MostrarListadoGestionCobros();
 
                 decimal IdUsuarioProcesa = (decimal)Session["IdUsuario"];
@@ -1891,7 +1762,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void dtPaginacion_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            CurrentPage_ListadoGeneral = Convert.ToInt32(e.CommandArgument.ToString());
             MostrarListadoRenovaciones();
         }
 
@@ -1902,22 +1773,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void linkPrimerostadistica_Click(object sender, EventArgs e)
         {
-            CurrentPage = 0;
-            CargarListadoEstadistica();
+            //CurrentPage = 0;
+            //CargarListadoEstadistica();
         }
 
         protected void LinkAnteirorEstadistica_Click(object sender, EventArgs e)
         {
-            CurrentPage += -1;
-            CargarListadoEstadistica();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleEstadistica, ref lbCantidadPaginaVAriableEstadistica);
+            //CurrentPage += -1;
+            //CargarListadoEstadistica();
+            //MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleEstadistica, ref lbCantidadPaginaVAriableEstadistica);
         }
 
         protected void dtEstadistica_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-            CargarListadoEstadistica();
+            //if (!e.CommandName.Equals("newPage")) return;
+            //CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            //CargarListadoEstadistica();
         }
 
         protected void dtEstadistica_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -1927,15 +1798,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void LinkSiguienteEstadistica_Click(object sender, EventArgs e)
         {
-            CurrentPage += 1;
-            CargarListadoEstadistica();
+            //CurrentPage += 1;
+            //CargarListadoEstadistica();
         }
 
         protected void LinkUltimoEstadistica_Click(object sender, EventArgs e)
         {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            CargarListadoEstadistica();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavleEstadistica, ref lbCantidadPaginaVAriableEstadistica);
+            //CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            //CargarListadoEstadistica();
+            //MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavleEstadistica, ref lbCantidadPaginaVAriableEstadistica);
         }
 
         protected void cbProcesarRegistros_CheckedChanged(object sender, EventArgs e)
@@ -1954,6 +1825,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 DivMes.Visible = false;
                 DivAno.Visible = false;
             }
+            CurrentPage_PolizasNoContactadas = 0;
             MostrarListadoGestionCobros();
         }
 
@@ -2070,15 +1942,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void LinkPrimeroProceso_Click(object sender, EventArgs e)
         {
-            CurrentPage = 0;
-            MostrarInformacionReporteMacjado();
+            //CurrentPage = 0;
+            //MostrarInformacionReporteMacjado();
         }
 
         protected void LinkAnteriorProceso_Click(object sender, EventArgs e)
         {
-            CurrentPage += -1;
-            MostrarInformacionReporteMacjado();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleMachado, ref lbCantidadPaginaVAriableMachado);
+            //CurrentPage += -1;
+            //MostrarInformacionReporteMacjado();
+            //MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleMachado, ref lbCantidadPaginaVAriableMachado);
         }
 
         protected void dtPaginacionProceso_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -2088,22 +1960,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void dtPaginacionProceso_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-            MostrarInformacionReporteMacjado();
+            //if (!e.CommandName.Equals("newPage")) return;
+            //CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            //MostrarInformacionReporteMacjado();
         }
 
         protected void LinkSiguienteProceso_Click(object sender, EventArgs e)
         {
-            CurrentPage += 1;
-            MostrarInformacionReporteMacjado();
+            //CurrentPage += 1;
+            //MostrarInformacionReporteMacjado();
         }
 
         protected void LinkUltimoProceso_Click(object sender, EventArgs e)
         {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            MostrarInformacionReporteMacjado();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavleMachado, ref lbCantidadPaginaVAriableMachado);
+            //CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            //MostrarInformacionReporteMacjado();
+            //MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavleMachado, ref lbCantidadPaginaVAriableMachado);
         }
 
         protected void btnActualizar_Click(object sender, EventArgs e)
@@ -2218,19 +2090,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             CargarLosConceptosDeLlamada();
         }
 
-        protected void LinkPrimeroGestionCobros_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
-        }
-
-        protected void LinkAnteriorGestionCobros_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableGestionCobros, ref lbCantidadPaginaVAriableGestionCobros);
-        }
-
         protected void dtPaginacionGestionCobros_ItemDataBound(object sender, DataListItemEventArgs e)
         {
 
@@ -2239,22 +2098,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void dtPaginacionGestionCobros_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            CurrentPage_Comentario = Convert.ToInt32(e.CommandArgument.ToString());
             MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
         }
 
-        protected void LinkSiguienteGestionCobros_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
-        }
-
-        protected void LinkUltimoGestionCobros_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariableGestionCobros, ref lbCantidadPaginaVAriableGestionCobros);
-        }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -2282,7 +2129,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void dtPaginacionPolizasNoContactadas_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            CurrentPage_PolizasNoContactadas = Convert.ToInt32(e.CommandArgument.ToString());
             MostrarListadoGestionCobros();
         }
 
@@ -2298,7 +2145,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnBuscarPolizaGestionCobrosNuevo_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage = 0;
+            CurrentPage_PolizasNoContactadas = 0;
             MostrarListadoGestionCobros();
         }
 
@@ -2318,7 +2165,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else
             {
-                CurrentPage = 0;
+                CurrentPage_ListadoGeneral = 0;
                 MostrarListadoRenovaciones();
             }
         }
@@ -2470,7 +2317,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
           //  lbFinVigenciaSeleccionada.Text = hfFechaFinVigenciaSeleccionadaGestionCObros;
 
             SacarInformacionPoliza(hfPolizaSeleccionadaGestionCobros);
-            CurrentPage = 0;
+            CurrentPage_Comentario = 0;
             MostrarComentariosPoliza(hfPolizaSeleccionadaGestionCobros);
 
 
@@ -2532,7 +2379,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (hfEstatusSeleccionado == "PENDIENTE") {
                 //CAMBIAMOS EL ESTATUS DEL REGISTRO
                 ProcesarInformacionPolizasAvisoGestionCobros(Convert.ToDecimal(hfNumeroRegistroSeleccionado), hfPolizaSeleccionad, hfEstatusSeleccionado.ToString(), 1, 1, "UPDATE");
-                CurrentPage = 0;
+                CurrentPage_PolizasNoContactadas = 0;
                 MostrarListadoGestionCobros();
             }
             else { ClientScript.RegisterStartupScript(GetType(), "CambioEstatus()", "CambioEstatus();", true); }
@@ -2549,53 +2396,53 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void dtPaginacionDatoVehiculo_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            CurrentPage_DetalleVehiculo = Convert.ToInt32(e.CommandArgument.ToString());
             BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
         }
 
         protected void btnPrimeraPaginaPolizasNoContactadas_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage = 0;
+            CurrentPage_PolizasNoContactadas = 0;
             MostrarListadoGestionCobros();
         }
 
         protected void btnAnteriorPolizasNoContactadas_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage += -1;
+            CurrentPage_PolizasNoContactadas += -1;
             MostrarListadoGestionCobros();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariablePolizasNoContactadas, ref lbCantidadPaginaVAriablePolizasNoContactadas);
+            MoverValoresPaginacion_PolizasNoContactadas((int)OpcionesPaginacionValores_PolizasNoContactadas.PaginaAnterior, ref lbPaginaActualVariablePolizasNoContactadas, ref lbCantidadPaginaVAriablePolizasNoContactadas);
         }
 
         protected void btnSiguientePolizasNoContactadas_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage += 1;
+            CurrentPage_PolizasNoContactadas += 1;
             MostrarListadoGestionCobros();
         }
 
         protected void btnUltimoPolizasNoContactadas_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            CurrentPage_PolizasNoContactadas = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostrarListadoGestionCobros();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariablePolizasNoContactadas, ref lbCantidadPaginaVAriablePolizasNoContactadas);
+            MoverValoresPaginacion_PolizasNoContactadas((int)OpcionesPaginacionValores_PolizasNoContactadas.UltimaPagina, ref lbPaginaActualVariablePolizasNoContactadas, ref lbCantidadPaginaVAriablePolizasNoContactadas);
         }
 
         protected void btnPrimeraPaginaListadoGeneral_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage = 0;
+            CurrentPage_ListadoGeneral = 0;
             MostrarListadoRenovaciones();
         }
 
         protected void btnPaginaSiguienteListadoGeneral_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage += 1;
+            CurrentPage_ListadoGeneral += 1;
             MostrarListadoRenovaciones();
         }
 
         protected void btnUltimaPaginaListadoGeneral_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            CurrentPage_ListadoGeneral = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostrarListadoRenovaciones();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavle, ref lbCantidadPaginaVAriable);
+            MoverValoresPaginacion_ListadoGeneral((int)OpcionesPaginacionValores_ListadoGeneral.UltimaPagina, ref lbPaginaActualVariavle, ref lbCantidadPaginaVAriable);
         }
 
         protected void btnPrimeraPaginaDatoVehiculo_Click(object sender, ImageClickEventArgs e)
@@ -2611,6 +2458,33 @@ namespace UtilidadesAmigos.Solucion.Paginas
             BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
             MoverValoresPaginacion_DetalleVehiculo((int)OpcionesPaginacionValores_DetalleVehiculo.PaginaAnterior, ref lbPaginaActualVariableDatoVehiculo, ref lbCantidadPaginaVAriableDatoVehiculo);
 
+        }
+
+        protected void btnPrimeraPaginaComentarios_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Comentario = 0;
+            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
+        }
+
+        protected void btnPaginaAnteriorComentarios_Click(object sender, ImageClickEventArgs e)
+        {
+
+            CurrentPage_Comentario += -1;
+            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
+            MoverValoresPaginacion_Comentario((int)OpcionesPaginacionValores_Comentario.PaginaAnterior, ref lbPaginaActualVariableGestionCobros, ref lbCantidadPaginaVAriableGestionCobros);
+        }
+
+        protected void btnPaginaSiguienteComentarios_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Comentario += 1;
+            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
+        }
+
+        protected void btnUltimaPaginaComentarios_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Comentario = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarComentariosPoliza(lbPolizaSeleccionada.Text);
+            MoverValoresPaginacion_Comentario((int)OpcionesPaginacionValores_Comentario.UltimaPagina, ref lbPaginaActualVariableGestionCobros, ref lbCantidadPaginaVAriableGestionCobros);
         }
 
         protected void btnSiguientePaginaDatoVehiculo_Click(object sender, ImageClickEventArgs e)
@@ -2649,6 +2523,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     Convert.ToDecimal(hfNumeroRegistroSeleccionado),
                     hfPolizaSeleccionada, 0, 0, "", 0, DateTime.Now, "", "", false,DateTime.Now,"", "DELETE");
                 Eliminar.ProcesarInformacion();
+                CurrentPage_PolizasNoContactadas = 0;
                 MostrarListadoGestionCobros();
             }
             else {

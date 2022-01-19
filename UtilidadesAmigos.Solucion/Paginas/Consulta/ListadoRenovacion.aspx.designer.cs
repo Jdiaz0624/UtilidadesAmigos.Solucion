@@ -1680,22 +1680,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionGestionCobros;
 
         /// <summary>
-        /// LinkPrimeroGestionCobros control.
+        /// btnPrimeraPaginaComentarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeroGestionCobros;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaComentarios;
 
         /// <summary>
-        /// LinkAnteriorGestionCobros control.
+        /// btnPaginaAnteriorComentarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorGestionCobros;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnteriorComentarios;
 
         /// <summary>
         /// dtPaginacionGestionCobros control.
@@ -1707,22 +1707,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.DataList dtPaginacionGestionCobros;
 
         /// <summary>
-        /// LinkSiguienteGestionCobros control.
+        /// btnPaginaSiguienteComentarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteGestionCobros;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaSiguienteComentarios;
 
         /// <summary>
-        /// LinkUltimoGestionCobros control.
+        /// btnUltimaPaginaComentarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoGestionCobros;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPaginaComentarios;
 
         /// <summary>
         /// lbTituloEstatustica control.
