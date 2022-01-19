@@ -249,22 +249,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionPolizasNoContactadas;
 
         /// <summary>
-        /// LinkPrimeraPaginaPolizasNoContactadas control.
+        /// btnPrimeraPaginaPolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPaginaPolizasNoContactadas;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaPolizasNoContactadas;
 
         /// <summary>
-        /// LinkAnteriorPolizasNoContactadas control.
+        /// btnAnteriorPolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorPolizasNoContactadas;
+        protected global::System.Web.UI.WebControls.ImageButton btnAnteriorPolizasNoContactadas;
 
         /// <summary>
         /// dtPaginacionPolizasNoContactadas control.
@@ -276,22 +276,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.DataList dtPaginacionPolizasNoContactadas;
 
         /// <summary>
-        /// LinkSiguientePolizasNoContactadas control.
+        /// btnSiguientePolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguientePolizasNoContactadas;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePolizasNoContactadas;
 
         /// <summary>
-        /// LinkUltimoPolizasNoContactadas control.
+        /// btnUltimoPolizasNoContactadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoPolizasNoContactadas;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimoPolizasNoContactadas;
 
         /// <summary>
         /// cbProcesarRegistros control.

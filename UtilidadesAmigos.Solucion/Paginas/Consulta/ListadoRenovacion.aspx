@@ -132,9 +132,9 @@
                    <asp:UpdatePanel ID="UpdatePanelPolizasNoContactadas" runat="server">
                        <ContentTemplate>
                                <div class="form-check-inline">
-                                   <asp:RadioButton ID="rbRegistrosPendientesGestionCobros" runat="server" Text="Pendientes" ToolTip="Mostrar Todos los Registros Pendientes" CssClass="form-check-input Letranegrita" GroupName="RadiosGestionCobros" />
-                                   <asp:RadioButton ID="rbRegistrosProcesadosGestionCobros" runat="server" Text="Procesados" ToolTip="Mostrar Todos los Registros Procesados" CssClass="form-check-input Letranegrita" GroupName="RadiosGestionCobros" />
-                                   <asp:RadioButton ID="rbTodosLosRegistrosGestionCobros" runat="server" Text="Todos" ToolTip="Mostrar Todos los Registros (Penientes y Procesados)" CssClass="form-check-input Letranegrita" GroupName="RadiosGestionCobros" />
+                                   <asp:RadioButton ID="rbRegistrosPendientesGestionCobros" runat="server" Text="Pendientes" ToolTip="Mostrar Todos los Registros Pendientes" CssClass=" Letranegrita" GroupName="RadiosGestionCobros" />
+                                   <asp:RadioButton ID="rbRegistrosProcesadosGestionCobros" runat="server" Text="Procesados" ToolTip="Mostrar Todos los Registros Procesados" CssClass=" Letranegrita" GroupName="RadiosGestionCobros" />
+                                   <asp:RadioButton ID="rbTodosLosRegistrosGestionCobros" runat="server" Text="Todos" ToolTip="Mostrar Todos los Registros (Penientes y Procesados)" CssClass=" Letranegrita" GroupName="RadiosGestionCobros" />
 
                                </div>
     <br />
@@ -196,19 +196,18 @@
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:LinkButton ID="LinkPrimeraPaginaPolizasNoContactadas" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaPolizasNoContactadas_Click"></asp:LinkButton> </td>
-                    AQUI
-                    <td> <asp:LinkButton ID="LinkAnteriorPolizasNoContactadas" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorPolizasNoContactadas_Click"></asp:LinkButton> </td>
-                    <td>
+                    <td> <asp:ImageButton ID="btnPrimeraPaginaPolizasNoContactadas" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPaginaPolizasNoContactadas_Click" /> </td>
+                    <td> <asp:ImageButton ID="btnAnteriorPolizasNoContactadas" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnAnteriorPolizasNoContactadas_Click" /> </td>
+                    <td align="center">
                         <asp:DataList ID="dtPaginacionPolizasNoContactadas" runat="server" OnItemCommand="dtPaginacionPolizasNoContactadas_ItemCommand" OnItemDataBound="dtPaginacionPolizasNoContactadas_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionCentralPolizasNoContactadas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                                <asp:Button ID="btnPaginacionCentralPolizasNoContactaas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
                             </ItemTemplate>
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:LinkButton ID="LinkSiguientePolizasNoContactadas" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguientePolizasNoContactadas_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkUltimoPolizasNoContactadas" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoPolizasNoContactadas_Click"></asp:LinkButton> </td>
+                    <td> <asp:ImageButton ID="btnSiguientePolizasNoContactadas" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguientePolizasNoContactadas_Click" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimoPolizasNoContactadas" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimoPolizasNoContactadas_Click" /> </td>
                 </tr>
             </table>
         </div>

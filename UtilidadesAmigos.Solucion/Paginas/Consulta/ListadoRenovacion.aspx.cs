@@ -1489,8 +1489,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 ExcluirMotores,
                 Convert.ToInt32(ddlSeleccionarMes.SelectedValue),
                 Convert.ToInt32(txtAno.Text));
-            Paginar(ref rpListadoRenovacionMachado, Listado, 10, ref lbCantidadPaginaVAriableMachado, ref LinkPrimeroProceso, ref LinkAnteriorProceso, ref LinkSiguienteProceso, ref LinkUltimoProceso);
-            HandlePaging(ref dtPaginacionProceso, ref lbPaginaActualVariavle);
+            Paginar_NoContactadas(ref rpListadoRenovacionMachado, Listado, 10, ref lbCantidadPaginaVAriableMachado, ref btnPrimeraPaginaPolizasNoContactadas, ref btnAnteriorPolizasNoContactadas, ref btnSiguientePolizasNoContactadas, ref btnUltimoPolizasNoContactadas);
+            HandlePaging_PolizasNoContactadas(ref dtPaginacionProceso, ref lbPaginaActualVariavle);
 
 
         }
@@ -1580,8 +1580,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 rpPolizasNoContactadas.DataBind();
             }
             else {
-                Paginar(ref rpPolizasNoContactadas, MostrarListadoGestionCobros, 10, ref lbCantidadPaginaVAriablePolizasNoContactadas, ref LinkPrimeraPaginaPolizasNoContactadas, ref LinkAnteriorPolizasNoContactadas, ref LinkSiguientePolizasNoContactadas, ref LinkUltimoPolizasNoContactadas);
-                HandlePaging(ref dtPaginacionPolizasNoContactadas, ref lbPaginaActualVariablePolizasNoContactadas);
+                Paginar_NoContactadas(ref rpPolizasNoContactadas, MostrarListadoGestionCobros, 10, ref lbCantidadPaginaVAriablePolizasNoContactadas, ref btnPrimeraPaginaPolizasNoContactadas, ref btnAnteriorPolizasNoContactadas, ref btnSiguientePolizasNoContactadas, ref btnUltimoPolizasNoContactadas);
+                HandlePaging_PolizasNoContactadas(ref dtPaginacionPolizasNoContactadas, ref lbPaginaActualVariablePolizasNoContactadas);
 
                 decimal CantidadPolizasPendientes = 0, CantidadPolizasProcesadas = 0;
 
@@ -2319,18 +2319,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
 
-        protected void LinkPrimeraPaginaPolizasNoContactadas_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarListadoGestionCobros();
-        }
 
-        protected void LinkAnteriorPolizasNoContactadas_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarListadoGestionCobros();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariablePolizasNoContactadas, ref lbCantidadPaginaVAriablePolizasNoContactadas);
-        }
 
         protected void dtPaginacionPolizasNoContactadas_ItemDataBound(object sender, DataListItemEventArgs e)
         {
@@ -2342,19 +2331,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (!e.CommandName.Equals("newPage")) return;
             CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
             MostrarListadoGestionCobros();
-        }
-
-        protected void LinkSiguientePolizasNoContactadas_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            MostrarListadoGestionCobros();
-        }
-
-        protected void LinkUltimoPolizasNoContactadas_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            MostrarListadoGestionCobros();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariablePolizasNoContactadas, ref lbCantidadPaginaVAriablePolizasNoContactadas);
         }
 
         protected void btnBuscarPolizaGestionCobros_Click(object sender, EventArgs e)
@@ -2635,6 +2611,32 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (!e.CommandName.Equals("newPage")) return;
             CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
             BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
+        }
+
+        protected void btnPrimeraPaginaPolizasNoContactadas_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarListadoGestionCobros();
+        }
+
+        protected void btnAnteriorPolizasNoContactadas_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += -1;
+            MostrarListadoGestionCobros();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariablePolizasNoContactadas, ref lbCantidadPaginaVAriablePolizasNoContactadas);
+        }
+
+        protected void btnSiguientePolizasNoContactadas_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += 1;
+            MostrarListadoGestionCobros();
+        }
+
+        protected void btnUltimoPolizasNoContactadas_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoGestionCobros();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariablePolizasNoContactadas, ref lbCantidadPaginaVAriablePolizasNoContactadas);
         }
 
         protected void LinkSiguienteDatoVehiculo_Click(object sender, EventArgs e)
