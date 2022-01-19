@@ -238,7 +238,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                         Guardar.ProcesarInformacion();
                     }
                 }
-                cbRetenerInformacion.Visible = true;
+              //  cbRetenerInformacion.Visible = true;
             }
         }
         #endregion
@@ -298,6 +298,43 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         }
         #endregion
 
+        #region GENERAR EL DETALLE DE LA ESTADISTICA DE RENOVACION
+        private void GenerarDetalleData(decimal IdUsuario) {
+
+            var Detalle = (from n in ObjDataConsulta.Value.DetalleEstadisticaRenovacion(IdUsuario)
+                           select new
+                           {
+                               Poliza = n.Poliza,
+                               Estatus = n.Estatus,
+                               InicioVigencia = n.InicioVigencia,
+                               FinVigencia = n.FinVigencia,
+                               Cliente = n.Cliente,
+                               TelefonoResidencia = n.TelefonoResidencia,
+                               TelefonoOficina = n.TelefonoOficina,
+                               Celular = n.Celular,
+                               fax = n.fax,
+                               Oficina = n.Oficina,
+                               NombreRamo = n.NombreRamo,
+                               Prima = n.Prima,
+                               CodigoIntermediario = n.CodigoIntermediario,
+                               Intermediario = n.Intermediario,
+                               CodigoSupervisor = n.CodigoSupervisor,
+                               Supervisor = n.Supervisor,
+                               ValidadoDesde = n.ValidadoDesde,
+                               ValidadoHasta = n.ValidadoHasta,
+                               ExcluirMotores = n.ExcluirMotores,
+                               CantidadRenovadas = n.CantidadRenovadas,
+                               Renovada = n.Renovada,
+                               MontoRenovado = n.MontoRenovado,
+                               CantidadCanceladas = n.CantidadCanceladas,
+                               Cancelada = n.Cancelada,
+                               MontoCancelado = n.MontoCancelado,
+                               Cobrado = n.Cobrado
+                           }).ToList();
+            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Detalle de Estadistica de Renovacion", Detalle);
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -341,47 +378,59 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void btnBuscar_Click(object sender, ImageClickEventArgs e)
         {
-            if (cbRetenerInformacion.Checked == false) {
-                CargarInformacion();
+            CargarInformacion();
+            if (rbDetalle.Checked == true) {
+                GenerarDetalleData((decimal)Session["IdUsuario"]);
             }
-            CurrentPage_EstadisticaRenovacion = 0;
-            MostrarEstadisticaRenovacion();
+            else {
+                CurrentPage_EstadisticaRenovacion = 0;
+                MostrarEstadisticaRenovacion();
+            }
+            
+           
         }
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
         {
-            if (cbRetenerInformacion.Checked == false)
-            {
-                CargarInformacion();
-            }
+           
+            CargarInformacion();
 
-            int TipoAgrupacion = 0;
-            string TipoAgrupacionNombre = "";
-            decimal IdUsuario = (decimal)Session["IdUsuario"];
-            if (rbNoAgrupar.Checked == true) {
-                TipoAgrupacion = (int)ConceptosAgrupacion.NoAgrupado;
-                TipoAgrupacionNombre = "No Agrupado";
+            if (rbDetalle.Checked == true) {
+                GenerarDetalleData((decimal)Session["IdUsuario"]);
             }
-            else if (rbOficina.Checked == true) {
-                TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorOficina;
-                TipoAgrupacionNombre = "Agrupado Por Oficina";
-            }
-            else if (rbRamo.Checked == true) {
-                TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorRamo;
-                TipoAgrupacionNombre = "Agrupado Por Ramo";
-            }
-            else if (rbIntermediario.Checked == true) { 
-                TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorIntermediario;
-                TipoAgrupacionNombre = "Agrupado Por Intermediario";
-            }
-            else if (rbSupervisor.Checked == true) { 
-                TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorSupervisor;
-                TipoAgrupacionNombre = "Agrupado Por Supervisor";
-            }
+            else if (rbDetalle.Checked == false) {
+                int TipoAgrupacion = 0;
+                string TipoAgrupacionNombre = "";
+                decimal IdUsuario = (decimal)Session["IdUsuario"];
+                if (rbNoAgrupar.Checked == true)
+                {
+                    TipoAgrupacion = (int)ConceptosAgrupacion.NoAgrupado;
+                    TipoAgrupacionNombre = "No Agrupado";
+                }
+                else if (rbOficina.Checked == true)
+                {
+                    TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorOficina;
+                    TipoAgrupacionNombre = "Agrupado Por Oficina";
+                }
+                else if (rbRamo.Checked == true)
+                {
+                    TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorRamo;
+                    TipoAgrupacionNombre = "Agrupado Por Ramo";
+                }
+                else if (rbIntermediario.Checked == true)
+                {
+                    TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorIntermediario;
+                    TipoAgrupacionNombre = "Agrupado Por Intermediario";
+                }
+                else if (rbSupervisor.Checked == true)
+                {
+                    TipoAgrupacion = (int)ConceptosAgrupacion.AgruparPorSupervisor;
+                    TipoAgrupacionNombre = "Agrupado Por Supervisor";
+                }
 
-
-
-            GenerarReporte(Server.MapPath("ReporteEstadisticaRenovacion.rpt"), "Reporte Estadistica de Renovacion " + TipoAgrupacionNombre, TipoAgrupacion, IdUsuario);
+                GenerarReporte(Server.MapPath("ReporteEstadisticaRenovacion.rpt"), "Reporte Estadistica de Renovacion " + TipoAgrupacionNombre, TipoAgrupacion, IdUsuario);
+            }
+            
         }
 
         protected void btnkPrimeraPaginaEstadisticaRenovacion_Click(object sender, ImageClickEventArgs e)

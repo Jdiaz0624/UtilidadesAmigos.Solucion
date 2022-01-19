@@ -646,8 +646,55 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         }
 
 
+        /// <summary>
+        /// Este metodo muestra la estadistica de renovacion segun la data cargarda y sus filtros
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EMostrarDetalleEstadisticaRenovacion> DetalleEstadisticaRenovacion(decimal? IdUsuario = null) {
 
+            ObjData.CommandTimeout = 999999999;
 
+            var Detalle = (from n in ObjData.SP_MOSTRAR_DETALLE_ESTADISTICA_RENOVACION(IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EMostrarDetalleEstadisticaRenovacion
+                           {
+                               IdUsuario=n.IdUsuario,
+                               GeneradoPor=n.GeneradoPor,
+                               Cotizacion=n.Cotizacion,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               Poliza=n.Poliza,
+                               Estatus=n.Estatus,
+                               Cliente=n.Cliente,
+                               TelefonoResidencia=n.TelefonoResidencia,
+                               TelefonoOficina=n.TelefonoOficina,
+                               Celular=n.Celular,
+                               fax=n.fax,
+                               CodigoOficina=n.CodigoOficina,
+                               Oficina=n.Oficina,
+                               Ramo=n.Ramo,
+                               NombreRamo=n.NombreRamo,
+                               Prima=n.Prima,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               ValidadoDesde0=n.ValidadoDesde0,
+                               ValidadoHasta0=n.ValidadoHasta0,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta,
+                               ExcluirMotores0=n.ExcluirMotores0,
+                               ExcluirMotores=n.ExcluirMotores,
+                               CantidadRenovadas=n.CantidadRenovadas,
+                               Renovada=n.Renovada,
+                               MontoRenovado=n.MontoRenovado,
+                               CantidadCanceladas=n.CantidadCanceladas,
+                               Cancelada=n.Cancelada,
+                               MontoCancelado=n.MontoCancelado,
+                               Cobrado=n.Cobrado
+                           }).ToList();
+            return Detalle;
+        }
 
 
         /// <summary>
