@@ -762,22 +762,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacion;
 
         /// <summary>
-        /// LinkPrimeraPagina control.
+        /// btnPrimeraPaginaListadoGeneral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPagina;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaListadoGeneral;
 
         /// <summary>
-        /// LinkAnterior control.
+        /// btnPaginaAnteriorListadoGeneral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnterior;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnteriorListadoGeneral;
 
         /// <summary>
         /// dtPaginacion control.
@@ -789,22 +789,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.DataList dtPaginacion;
 
         /// <summary>
-        /// LinkSiguiente control.
+        /// btnPaginaSiguienteListadoGeneral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguiente;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaSiguienteListadoGeneral;
 
         /// <summary>
-        /// LinkUltimo control.
+        /// btnUltimaPaginaListadoGeneral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimo;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPaginaListadoGeneral;
 
         /// <summary>
         /// DivBloqueProcesarRegistros control.

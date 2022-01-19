@@ -133,16 +133,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         _CodIntermediario,
                         _ValidarBalance,
                         2);
-                    //foreach (var n in Buscar)
-                    //{
-                    //    lbMesDesde.Text = n.FechaDesde;
-                    //    lbMesHasta.Text = n.FechaHasta;
-                    //    lbDIas.Text = n.Dias.ToString();
-                    //    lbMes.Text = n.Mes.ToString();
-                    //    lbano.Text = n.Anos.ToString();
-                    //}
-                    Paginar(ref rpListadoRenovacion, Buscar, 10, ref lbCantidadPaginaVAriable, ref LinkPrimeraPagina, ref LinkAnterior, ref LinkSiguiente, ref LinkUltimo);
-                    HandlePaging(ref dtPaginacion, ref lbPaginaActualVariavle);
+                    Paginar_ListadoGeneral(ref rpListadoRenovacion, Buscar, 10, ref lbCantidadPaginaVAriable, ref btnPrimeraPaginaListadoGeneral, ref btnPaginaAnteriorListadoGeneral, ref btnPaginaSiguienteListadoGeneral, ref btnUltimaPaginaListadoGeneral);
+                    HandlePaging_ListadoGeneral(ref dtPaginacion, ref lbPaginaActualVariavle);
                     divPaginacion.Visible = true;
                 }
                 else
@@ -167,16 +159,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         _CodIntermediario,
                         _ValidarBalance,
                         1);
-                    //foreach (var n in Buscar)
-                    //{
-                    //    lbMesDesde.Text = n.FechaDesde;
-                    //    lbMesHasta.Text = n.FechaHasta;
-                    //    lbDIas.Text = n.Dias.ToString();
-                    //    lbMes.Text = n.Mes.ToString();
-                    //    lbano.Text = n.Anos.ToString();
-                    //}
-                    Paginar(ref rpListadoRenovacion, Buscar, 10, ref lbCantidadPaginaVAriable, ref LinkPrimeraPagina, ref LinkAnterior, ref LinkSiguiente, ref LinkUltimo);
-                    HandlePaging(ref dtPaginacion, ref lbPaginaActualVariavle);
+                    Paginar_ListadoGeneral(ref rpListadoRenovacion, Buscar, 10, ref lbCantidadPaginaVAriable, ref btnPrimeraPaginaListadoGeneral, ref btnPaginaAnteriorListadoGeneral, ref btnPaginaSiguienteListadoGeneral, ref btnUltimaPaginaListadoGeneral);
+                    HandlePaging_ListadoGeneral(ref dtPaginacion, ref lbPaginaActualVariavle);
                     divPaginacion.Visible = true;
                 }
             }
@@ -1736,7 +1720,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else
             {
-                CurrentPage = 0;
+                CurrentPage_ListadoGeneral = 0;
                 MostrarListadoRenovaciones();
             }
             
@@ -1916,19 +1900,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             ClientScript.RegisterStartupScript(GetType(), "OpcionEnDesarrollo", "OpcionEnDesarrollo();", true);
         }
 
-        protected void LinkPrimeraPagina_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarListadoRenovaciones();
-        }
-
-        protected void LinkAnterior_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarListadoRenovaciones();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior,ref lbPaginaActualVariavle, ref lbCantidadPaginaVAriable);
-        }
-
         protected void dtPaginacion_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (!e.CommandName.Equals("newPage")) return;
@@ -1939,12 +1910,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void dtPaginacion_ItemDataBound(object sender, DataListItemEventArgs e)
         {
 
-        }
-
-        protected void LinkSiguiente_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            MostrarListadoRenovaciones();
         }
 
         protected void linkPrimerostadistica_Click(object sender, EventArgs e)
@@ -2639,6 +2604,33 @@ namespace UtilidadesAmigos.Solucion.Paginas
             MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariablePolizasNoContactadas, ref lbCantidadPaginaVAriablePolizasNoContactadas);
         }
 
+        protected void btnPrimeraPaginaListadoGeneral_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarListadoRenovaciones();
+        }
+
+        protected void btnPaginaSiguienteListadoGeneral_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += 1;
+            MostrarListadoRenovaciones();
+        }
+
+        protected void btnUltimaPaginaListadoGeneral_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoRenovaciones();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavle, ref lbCantidadPaginaVAriable);
+        }
+
+        protected void btnPaginaAnteriorListadoGeneral_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += -1;
+            MostrarListadoRenovaciones();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavle, ref lbCantidadPaginaVAriable);
+
+        }
+
         protected void LinkSiguienteDatoVehiculo_Click(object sender, EventArgs e)
         {
             CurrentPage += 1;
@@ -2745,13 +2737,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 DivFechaLlamada.Visible = false;
                 DIVHoraLLamada.Visible = false;
             }
-        }
-
-        protected void LinkUltimo_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            MostrarListadoRenovaciones();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavle, ref lbCantidadPaginaVAriable);
         }
     }
 }
