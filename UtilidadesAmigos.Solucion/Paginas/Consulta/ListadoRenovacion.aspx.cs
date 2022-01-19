@@ -224,7 +224,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             catch (Exception) { }
         }
         #endregion
-
         #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
         int _PrimeraPagina, _UltimaPagina;
@@ -883,9 +882,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
         #endregion
-
-
-
         #region CONTROL DE PAGINACION DE LISTADO GENERAL
         readonly PagedDataSource pagedDataSource_ListadoGeneral = new PagedDataSource();
         int _PrimeraPagina_ListadoGeneral, _UltimaPagina_ListadoGeneral;
@@ -1282,8 +1278,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
         #endregion
-
-
         #region GENERAR REPORTES DE COBROS
         private void GenerarReporteListadoRenovacion(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string NombreReporte)
         {
@@ -1323,7 +1317,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
 
         #endregion
-
         #region SACAR INFORMACION DE POLIZA SELECCIONAD
         /// <summary>
         /// Este metodo es para sacar la información del registro seleccionado
@@ -1371,7 +1364,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
-
         #region MOSTRAR LOS COMENTARIOS DE LA POLIZA SELECCIONADA
         private void MostrarComentariosPoliza(string POliza) {
 
@@ -1396,7 +1388,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
-
         #region LISTAS DESPLEGABLES PARA LA GESTION DE COBROS
         private void CargarLosEstatusDeLlamada() {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarEstatusLLamadaGestionCobros, Objdata.Value.BuscaListas("ESTATUSLLAMADA", null, null));
@@ -1405,7 +1396,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarConceptoGestionCobros, Objdata.Value.BuscaListas("CONCEPTOLLAMADA", ddlSeleccionarEstatusLLamadaGestionCobros.SelectedValue.ToString(), null));
         }
         #endregion
-
         #region PROCESAR INFORMACION DE LOS COMENTARIOS
         private void ProcesarInformacionComentarios(string Poliza, string FechaFinVigencia, string Accion) {
 
@@ -1432,11 +1422,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
-
         #region MOSTRAR LAS POLIZAS NO CONTACTADAS
 
         #endregion
-
         #region BUSCAR LOS DATOS DEL VEHICULO SELECCIONADO
         private void BuscaDatosVehiculos(string Poliza) {
 
