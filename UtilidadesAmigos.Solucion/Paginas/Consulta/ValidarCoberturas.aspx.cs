@@ -74,12 +74,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
-
-        #region CONTROL PARA MOSTRAR LA PAGINACION
-        readonly PagedDataSource pagedDataSource = new PagedDataSource();
-        int _PrimeraPagina, _UltimaPagina;
-        private int _TamanioPagina = 10;
-        private int CurrentPage
+        #region CONTROL DE PAGINACION DEL LISTADO GENERAL
+        readonly PagedDataSource pagedDataSource_ListadoGeneral = new PagedDataSource();
+        int _PrimeraPagina_ListadoGeneral, _UltimaPagina_ListadoGeneral;
+        private int _TamanioPagina_ListadoGeneral = 10;
+        private int CurrentPage_ListadoGeneral
         {
             get
             {
@@ -96,34 +95,33 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
 
-
-        private void HandlePaging(ref DataList NombreDataList, ref Label lbPaginaActual)
+        private void HandlePaging_ListadoGeneral(ref DataList NombreDataList, ref Label LbPaginaActual)
         {
             var dt = new DataTable();
             dt.Columns.Add("IndicePagina"); //Start from 0
             dt.Columns.Add("TextoPagina"); //Start from 1
 
-            _PrimeraPagina = CurrentPage - 5;
-            if (CurrentPage > 5)
-                _UltimaPagina = CurrentPage + 5;
+            _PrimeraPagina_ListadoGeneral = CurrentPage_ListadoGeneral - 5;
+            if (CurrentPage_ListadoGeneral > 5)
+                _UltimaPagina_ListadoGeneral = CurrentPage_ListadoGeneral + 5;
             else
-                _UltimaPagina = 10;
+                _UltimaPagina_ListadoGeneral = 10;
 
             // Check last page is greater than total page then reduced it to total no. of page is last index
-            if (_UltimaPagina > Convert.ToInt32(ViewState["TotalPages"]))
+            if (_UltimaPagina_ListadoGeneral > Convert.ToInt32(ViewState["TotalPages"]))
             {
-                _UltimaPagina = Convert.ToInt32(ViewState["TotalPages"]);
-                _PrimeraPagina = _UltimaPagina - 10;
+                _UltimaPagina_ListadoGeneral = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_ListadoGeneral = _UltimaPagina_ListadoGeneral - 10;
             }
 
-            if (_PrimeraPagina < 0)
-                _PrimeraPagina = 0;
+            if (_PrimeraPagina_ListadoGeneral < 0)
+                _PrimeraPagina_ListadoGeneral = 0;
 
             //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
-            int NumeroPagina = (int)CurrentPage;
-            lbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            int NumeroPagina = (int)CurrentPage_ListadoGeneral;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
             // Now creating page number based on above first and last page index
-            for (var i = _PrimeraPagina; i < _UltimaPagina; i++)
+            for (var i = _PrimeraPagina_ListadoGeneral; i < _UltimaPagina_ListadoGeneral; i++)
             {
                 var dr = dt.NewRow();
                 dr[0] = i;
@@ -135,39 +133,40 @@ namespace UtilidadesAmigos.Solucion.Paginas
             NombreDataList.DataSource = dt;
             NombreDataList.DataBind();
         }
-        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref LinkButton PrimeraPagina, ref LinkButton PaginaAnterior, ref LinkButton PaginaSiguiente, ref LinkButton UltimaPagina)
-        {
-            pagedDataSource.DataSource = Listado;
-            pagedDataSource.AllowPaging = true;
 
-            ViewState["TotalPages"] = pagedDataSource.PageCount;
+        private void Paginar_ListadoGeneral(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_ListadoGeneral.DataSource = Listado;
+            pagedDataSource_ListadoGeneral.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_ListadoGeneral.PageCount;
             // lbNumeroVariable.Text = "1";
-            lbCantidadPagina.Text = pagedDataSource.PageCount.ToString();
+            lbCantidadPagina.Text = pagedDataSource_ListadoGeneral.PageCount.ToString();
 
             //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
-            pagedDataSource.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina : _NumeroRegistros);
-            pagedDataSource.CurrentPageIndex = CurrentPage;
+            pagedDataSource_ListadoGeneral.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_ListadoGeneral : _NumeroRegistros);
+            pagedDataSource_ListadoGeneral.CurrentPageIndex = CurrentPage_ListadoGeneral;
 
             //HABILITAMOS LOS BOTONES DE LA PAGINACION
-            PrimeraPagina.Enabled = !pagedDataSource.IsFirstPage;
-            PaginaAnterior.Enabled = !pagedDataSource.IsFirstPage;
-            PaginaSiguiente.Enabled = !pagedDataSource.IsLastPage;
-            UltimaPagina.Enabled = !pagedDataSource.IsLastPage;
+            PrimeraPagina.Enabled = !pagedDataSource_ListadoGeneral.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_ListadoGeneral.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_ListadoGeneral.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_ListadoGeneral.IsLastPage;
 
-            RptGrid.DataSource = pagedDataSource;
+            RptGrid.DataSource = pagedDataSource_ListadoGeneral;
             RptGrid.DataBind();
 
 
-            //  divPaginacionBancos.Visible = true;
+            //divPaginacionComisionSupervisor.Visible = true;
         }
-        enum OpcionesPaginacionValores
+        enum OpcionesPaginacionValores_ListadoGeneral
         {
             PrimeraPagina = 1,
             SiguientePagina = 2,
             PaginaAnterior = 3,
             UltimaPagina = 4
         }
-        private void MoverValoresPaginacion(int Accion, ref Label lbPaginaActual, ref Label CantidadPagina)
+        private void MoverValoresPaginacion_ListadoGeneral(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
         {
 
             int PaginaActual = 0;
@@ -199,7 +198,271 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 case 4:
                     //ULTIMA PAGINA
-                    lbPaginaActual.Text = CantidadPagina.Text;
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+        #region CONTROL DE PAGINACION DE LAS COBERTURAS
+        readonly PagedDataSource pagedDataSource_Coberturas = new PagedDataSource();
+        int _PrimeraPagina_Coberturas, _UltimaPagina_Coberturas;
+        private int _TamanioPagina_Coberturas = 10;
+        private int CurrentPage_Coberturas
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_Coberturas(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_Coberturas = CurrentPage_Coberturas - 5;
+            if (CurrentPage_Coberturas > 5)
+                _UltimaPagina_Coberturas = CurrentPage_Coberturas + 5;
+            else
+                _UltimaPagina_Coberturas = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_Coberturas > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_Coberturas = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_Coberturas = _UltimaPagina_Coberturas - 10;
+            }
+
+            if (_PrimeraPagina_Coberturas < 0)
+                _PrimeraPagina_Coberturas = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_Coberturas;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_Coberturas; i < _UltimaPagina_Coberturas; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_Coberturas(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_Coberturas.DataSource = Listado;
+            pagedDataSource_Coberturas.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_Coberturas.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_Coberturas.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_Coberturas.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_Coberturas : _NumeroRegistros);
+            pagedDataSource_Coberturas.CurrentPageIndex = CurrentPage_ListadoGeneral;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_Coberturas.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_Coberturas.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_Coberturas.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_Coberturas.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_Coberturas;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_Coberturas
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_Coberturas(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+        #region CONTROL DE PAGINACION DE LOS PLANES DE COBERTURA
+        readonly PagedDataSource pagedDataSource_PlanCobertura = new PagedDataSource();
+        int _PrimeraPagina_PlanCobertura, _UltimaPagina_PlanCobertura;
+        private int _TamanioPagina_PlanCobertura = 10;
+        private int CurrentPage_PlanCobertura
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_PlanCobertura(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_PlanCobertura = CurrentPage_PlanCobertura - 5;
+            if (CurrentPage_PlanCobertura > 5)
+                _UltimaPagina_PlanCobertura = CurrentPage_PlanCobertura + 5;
+            else
+                _UltimaPagina_PlanCobertura = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_PlanCobertura > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_PlanCobertura = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_PlanCobertura = _UltimaPagina_PlanCobertura - 10;
+            }
+
+            if (_PrimeraPagina_PlanCobertura < 0)
+                _PrimeraPagina_PlanCobertura = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_PlanCobertura;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_PlanCobertura; i < _UltimaPagina_PlanCobertura; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_PlanCobertura(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_PlanCobertura.DataSource = Listado;
+            pagedDataSource_PlanCobertura.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_PlanCobertura.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_PlanCobertura.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_PlanCobertura.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_PlanCobertura : _NumeroRegistros);
+            pagedDataSource_PlanCobertura.CurrentPageIndex = CurrentPage_PlanCobertura;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_PlanCobertura.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_PlanCobertura.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_PlanCobertura.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_PlanCobertura.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_PlanCobertura;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_PlanCobertura
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_PlanCobertura(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
                     break;
 
 
@@ -232,8 +495,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             var Buscar = ObjData.Value.BuscaCoberturaMantenimiento(
                 new Nullable<decimal> (),
                 _Cobertura);
-            Paginar(ref rpListadoCoberturas, Buscar, 10, ref lbCantidadPaginaVariableCoberturas, ref LinkPrimeroCoberturas, ref LinkAnteriorCoberturas, ref LinkSiguienteCoberturas, ref LinkUltimoCoberturas);
-            HandlePaging(ref dtPaginacionCoberturas, ref lbPaginaActualVariableCoberturas);
+            Paginar_Coberturas(ref rpListadoCoberturas, Buscar, 10, ref lbCantidadPaginaVariableCoberturas, ref btnPriemraPaginaCoberturas, ref btnPaginaAnteriorCobertura, ref btnPaginaSiguienteCobertura, ref btnUltimaPaginaCobertura);
+            HandlePaging_Coberturas(ref dtPaginacionCoberturas, ref lbPaginaActualVariableCoberturas);
            
         }
         #endregion
@@ -266,8 +529,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void ListadoPlanCoberturas()
         {
             var Buscar = ObjData.Value.BuscaPlanCoberturas();
-            Paginar(ref rpListadoPlanCobertura, Buscar, 10, ref lbCantidadPaginaVariablePlanCoberturas, ref LinkPrimeroPlanCobertura, ref LinkAnteriorPlanCobertura, ref LinkSiguientePlanCobertura, ref LinkUltimoPlanCobertura);
-            HandlePaging(ref dlPlanCobertura, ref lbPaginaActualVariablePlanCoberturas);
+            Paginar_PlanCobertura(ref rpListadoPlanCobertura, Buscar, 10, ref lbCantidadPaginaVariablePlanCoberturas, ref btnPrimeraPaginaPlanCobertura, ref btnPaginaAnteriorPlanCobertura, ref btnPaginaSiguientePlanCobertura, ref btnUltimoPlanCobertura);
+            HandlePaging_PlanCobertura(ref dlPlanCobertura, ref lbPaginaActualVariablePlanCoberturas);
         }
         #endregion
         #region MANTENIMIENTO DE PLAN DE COBERTURAS
@@ -537,8 +800,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         CantidadRegistros = (int)n.CantidadRegistros;
                     }
                     lbCantidadRegistrosListadoGeneralVariable.Text = CantidadRegistros.ToString("N0");
-                    Paginar(ref rpListadoCoberturasPrincipal, BuscarListadoCoberturas, 10, ref lbCantidadPaginaVariableListadoPrincipal, ref LinkPrimeraListadoPrincipal, ref LinkAnteriorListadoPrincipal, ref LinkSiguienteListadoPrincipal, ref LinkUltimoListadoPrincipal);
-                    HandlePaging(ref dtPaginacionListadoPrincipal, ref lbPaginaActualVariableListadoPrincipal);
+                    Paginar_ListadoGeneral(ref rpListadoCoberturasPrincipal, BuscarListadoCoberturas, 10, ref lbCantidadPaginaVariableListadoPrincipal, ref btnPrimeraPaginaListado, ref btnPaginaAnteriorListado, ref btnSiguientePaginaListado, ref btnUltimaPaginaListado);
+                    HandlePaging_ListadoGeneral(ref dtPaginacionListadoPrincipal, ref lbPaginaActualVariableListadoPrincipal);
                     DivPaginacionListadoPrincipal.Visible = true;
 
                     GenerarGrafico();
@@ -733,21 +996,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             CargarPlanCoberturas();
         }
 
-        protected void btnGuardarCobertura_Click(object sender, EventArgs e)
-        {
-            MAnCoberturas(Convert.ToDecimal(lbIdCobertura.Text));
-            ListadoPlanCoberturas();
-            CargarCoberturas();
-        }
-
-
-        protected void btnGuardarPlanCobertura_Click(object sender, EventArgs e)
-        {
-            MANPlanCoberturas();
-            ListadoPlanCoberturas();
-            CargarCoberturas();
-        }
-
         protected void ddlSeleccionarSucursal_SelectedIndexChanged(object sender, EventArgs e)
         {
             Cargaroficinas();
@@ -759,19 +1007,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
           
         }
 
-        protected void LinkPrimeraListadoPrincipal_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarListadoCoberturaFinal();
-        }
-
-        protected void LinkAnteriorListadoPrincipal_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarListadoCoberturaFinal();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableListadoPrincipal, ref lbCantidadPaginaVariableListadoPrincipal);
-        }
-
         protected void dtPaginacionListadoPrincipal_ItemDataBound(object sender, DataListItemEventArgs e)
         {
 
@@ -780,41 +1015,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void dtPaginacionListadoPrincipal_CancelCommand(object source, DataListCommandEventArgs e)
         {
             if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            CurrentPage_Coberturas = Convert.ToInt32(e.CommandArgument.ToString());
             MostrarListadoCoberturaFinal();
         }
 
-        protected void LinkSiguienteListadoPrincipal_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            MostrarListadoCoberturaFinal();
-        }
-
-        protected void btnSeleccionarCobertura_Click(object sender, EventArgs e)
-        {
-            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfIdCobertura = ((HiddenField)ItemSeleccionado.FindControl("hfIdCobertura")).Value.ToString();
-            lbIdCobertura.Text = hfIdCobertura.ToString();
-
-            var SeleccionarRegistro = ObjData.Value.BuscaCoberturaMantenimiento(Convert.ToDecimal(hfIdCobertura), null);
-            foreach (var n in SeleccionarRegistro) {
-                txtCoberturaMantenimiento.Text = n.Descripcion;
-                cbEstatus.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
-            }
-        }
-
-        protected void LinkPrimeroCoberturas_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarCoberturas();
-        }
-
-        protected void LinkAnteriorCoberturas_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarCoberturas();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCoberturas, ref lbCantidadPaginaVariableCoberturas);
-        }
 
         protected void dtPaginacionCoberturas_ItemDataBound(object sender, DataListItemEventArgs e)
         {
@@ -824,53 +1028,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void dtPaginacionCoberturas_CancelCommand(object source, DataListCommandEventArgs e)
         {
             if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            CurrentPage_Coberturas = Convert.ToInt32(e.CommandArgument.ToString());
             MostrarCoberturas();
-        }
-
-        protected void LinkSiguienteCoberturas_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            MostrarCoberturas();
-        }
-
-        protected void LinkUltimoCoberturas_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            MostrarCoberturas();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCoberturas, ref lbCantidadPaginaVariableCoberturas);
-        }
-
-        protected void btnSeleccionarPlanCobertura_Click(object sender, EventArgs e)
-        {
-            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfIdPlanCobertura = ((HiddenField)ItemSeleccionado.FindControl("hfIdPlanCobertura")).Value.ToString();
-
-            var MostrarPlanCoberturaSeleccionado = ObjData.Value.BuscaPlanCoberturas(Convert.ToDecimal(hfIdPlanCobertura));
-            Paginar(ref rpListadoPlanCobertura, MostrarPlanCoberturaSeleccionado, 1, ref lbCantidadPaginaVariablePlanCoberturas, ref LinkPrimeroPlanCobertura, ref LinkAnteriorPlanCobertura, ref LinkSiguientePlanCobertura, ref LinkUltimoPlanCobertura);
-            HandlePaging(ref dlPlanCobertura, ref lbPaginaActualVariablePlanCoberturas);
-            lbIdMantenimientoPlanCobertura.Text = hfIdPlanCobertura.ToString();
-
-            foreach (var n in MostrarPlanCoberturaSeleccionado) {
-                CargarPlanCoberturas();
-                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlCoberturaPlanCobertura, n.IdCobertura.ToString());
-                txtCodigoCoberturaPlanCobertura.Text = n.CodigoCobertura.ToString();
-                txtPlanCobertura.Text = n.PlanCobertura;
-                cbEstatusPlanCobertura.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
-            }
-
-            txtCodigoCoberturaPlanCobertura.Enabled = false;
-
-        }
-
-        protected void LinkPrimeroPlanCobertura_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void LinkAnteriorPlanCobertura_Click(object sender, EventArgs e)
-        {
-
         }
 
         protected void dlPlanCobertura_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -880,17 +1039,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void dlPlanCobertura_CancelCommand(object source, DataListCommandEventArgs e)
         {
-
-        }
-
-        protected void LinkSiguientePlanCobertura_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void LinkUltimoPlanCobertura_Click(object sender, EventArgs e)
-        {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_PlanCobertura = Convert.ToInt32(e.CommandArgument.ToString());
+            ListadoPlanCoberturas();
         }
 
         protected void cbValidarDataCobertura_CheckedChanged(object sender, EventArgs e)
@@ -914,7 +1065,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnConsultarNuevo_Click(object sender, ImageClickEventArgs e)
         {
             // MostrarDataCoberturas();
-            CurrentPage = 0;
+            CurrentPage_Coberturas = 0;
             MostrarListadoCoberturaFinal();
         }
 
@@ -1383,11 +1534,132 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
 
-        protected void LinkUltimoListadoPrincipal_Click(object sender, EventArgs e)
+        protected void btnPrimeraPaginaListado_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            CurrentPage_ListadoGeneral = 0;
             MostrarListadoCoberturaFinal();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina,ref lbPaginaActualVariableListadoPrincipal,ref lbCantidadPaginaVariableListadoPrincipal);
+        }
+
+        protected void btnUltimaPaginaListado_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_ListadoGeneral = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoCoberturaFinal();
+            MoverValoresPaginacion_ListadoGeneral((int)OpcionesPaginacionValores_ListadoGeneral.UltimaPagina, ref lbPaginaActualVariableListadoPrincipal, ref lbCantidadPaginaVariableListadoPrincipal);
+        }
+
+        protected void btnSeleccioanrCoberturaNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfIdCobertura = ((HiddenField)ItemSeleccionado.FindControl("hfIdCobertura")).Value.ToString();
+            lbIdCobertura.Text = hfIdCobertura.ToString();
+
+            var SeleccionarRegistro = ObjData.Value.BuscaCoberturaMantenimiento(Convert.ToDecimal(hfIdCobertura), null);
+            foreach (var n in SeleccionarRegistro)
+            {
+                txtCoberturaMantenimiento.Text = n.Descripcion;
+                cbEstatus.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
+            }
+        }
+
+        protected void btnPriemraPaginaCoberturas_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Coberturas = 0;
+            MostrarCoberturas();
+        }
+
+        protected void btnPaginaAnteriorCobertura_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Coberturas += -1;
+            MostrarCoberturas();
+            MoverValoresPaginacion_Coberturas((int)OpcionesPaginacionValores_Coberturas.PaginaAnterior, ref lbPaginaActualVariableCoberturas, ref lbCantidadPaginaVariableCoberturas);
+        }
+
+        protected void btnPaginaSiguienteCobertura_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Coberturas += 1;
+            MostrarCoberturas();
+        }
+
+        protected void btnGuardarCoberturaNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            MAnCoberturas(Convert.ToDecimal(lbIdCobertura.Text));
+            ListadoPlanCoberturas();
+            CargarCoberturas();
+        }
+
+        protected void btnPrimeraPaginaPlanCobertura_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_PlanCobertura = 0;
+            ListadoPlanCoberturas();
+        }
+
+        protected void btnPaginaAnteriorPlanCobertura_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_PlanCobertura += -1;
+            ListadoPlanCoberturas();
+            MoverValoresPaginacion_PlanCobertura((int)OpcionesPaginacionValores_PlanCobertura.PaginaAnterior, ref lbPaginaActualVariableCoberturas, ref lbCantidadPaginaVariableCoberturas);
+        }
+
+        protected void btnPaginaSiguientePlanCobertura_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_PlanCobertura += 1;
+            ListadoPlanCoberturas();
+        }
+
+        protected void btnUltimoPlanCobertura_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_PlanCobertura = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            ListadoPlanCoberturas();
+            MoverValoresPaginacion_PlanCobertura((int)OpcionesPaginacionValores_PlanCobertura.UltimaPagina, ref lbPaginaActualVariableListadoPrincipal, ref lbCantidadPaginaVariableListadoPrincipal);
+        }
+
+        protected void btnSeleccionarPlanCoberturaNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfIdPlanCobertura = ((HiddenField)ItemSeleccionado.FindControl("hfIdPlanCobertura")).Value.ToString();
+
+            var MostrarPlanCoberturaSeleccionado = ObjData.Value.BuscaPlanCoberturas(Convert.ToDecimal(hfIdPlanCobertura));
+            Paginar_PlanCobertura(ref rpListadoPlanCobertura, MostrarPlanCoberturaSeleccionado, 1, ref lbCantidadPaginaVariablePlanCoberturas, ref btnPrimeraPaginaPlanCobertura, ref btnPaginaAnteriorPlanCobertura, ref btnPaginaSiguientePlanCobertura, ref btnUltimoPlanCobertura);
+            HandlePaging_PlanCobertura(ref dlPlanCobertura, ref lbPaginaActualVariablePlanCoberturas);
+            lbIdMantenimientoPlanCobertura.Text = hfIdPlanCobertura.ToString();
+
+            foreach (var n in MostrarPlanCoberturaSeleccionado)
+            {
+                CargarPlanCoberturas();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlCoberturaPlanCobertura, n.IdCobertura.ToString());
+                txtCodigoCoberturaPlanCobertura.Text = n.CodigoCobertura.ToString();
+                txtPlanCobertura.Text = n.PlanCobertura;
+                cbEstatusPlanCobertura.Checked = (n.Estatus0.HasValue ? n.Estatus0.Value : false);
+            }
+
+            txtCodigoCoberturaPlanCobertura.Enabled = false;
+        }
+
+        protected void btnGuardarPlanCoberturaNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            MANPlanCoberturas();
+            ListadoPlanCoberturas();
+            CargarCoberturas();
+        }
+
+        protected void btnUltimaPaginaCobertura_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Coberturas = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarCoberturas();
+            MoverValoresPaginacion_Coberturas((int)OpcionesPaginacionValores_Coberturas.PaginaAnterior, ref lbPaginaActualVariableCoberturas, ref lbCantidadPaginaVariableCoberturas);
+        }
+
+        protected void btnPaginaAnteriorListado_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_ListadoGeneral += -1;
+            MostrarListadoCoberturaFinal();
+            MoverValoresPaginacion_ListadoGeneral((int)OpcionesPaginacionValores_ListadoGeneral.PaginaAnterior, ref lbPaginaActualVariableListadoPrincipal, ref lbCantidadPaginaVariableListadoPrincipal);
+        }
+
+        protected void btnSiguientePaginaListado_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_ListadoGeneral += 1;
+            MostrarListadoCoberturaFinal();
         }
     }
 }

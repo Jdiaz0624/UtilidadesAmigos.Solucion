@@ -312,22 +312,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacionListadoPrincipal;
 
         /// <summary>
-        /// LinkPrimeraListadoPrincipal control.
+        /// btnPrimeraPaginaListado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraListadoPrincipal;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaListado;
 
         /// <summary>
-        /// LinkAnteriorListadoPrincipal control.
+        /// btnPaginaAnteriorListado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorListadoPrincipal;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnteriorListado;
 
         /// <summary>
         /// dtPaginacionListadoPrincipal control.
@@ -339,22 +339,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.DataList dtPaginacionListadoPrincipal;
 
         /// <summary>
-        /// LinkSiguienteListadoPrincipal control.
+        /// btnSiguientePaginaListado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteListadoPrincipal;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePaginaListado;
 
         /// <summary>
-        /// LinkUltimoListadoPrincipal control.
+        /// btnUltimaPaginaListado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoListadoPrincipal;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPaginaListado;
 
         /// <summary>
         /// divGraficoEstatus control.
@@ -546,22 +546,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacionCoberturas;
 
         /// <summary>
-        /// LinkPrimeroCoberturas control.
+        /// btnPriemraPaginaCoberturas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeroCoberturas;
+        protected global::System.Web.UI.WebControls.ImageButton btnPriemraPaginaCoberturas;
 
         /// <summary>
-        /// LinkAnteriorCoberturas control.
+        /// btnPaginaAnteriorCobertura control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorCoberturas;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnteriorCobertura;
 
         /// <summary>
         /// dtPaginacionCoberturas control.
@@ -573,31 +573,31 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.DataList dtPaginacionCoberturas;
 
         /// <summary>
-        /// LinkSiguienteCoberturas control.
+        /// btnPaginaSiguienteCobertura control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteCoberturas;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaSiguienteCobertura;
 
         /// <summary>
-        /// LinkUltimoCoberturas control.
+        /// btnUltimaPaginaCobertura control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoCoberturas;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPaginaCobertura;
 
         /// <summary>
-        /// btnGuardarCobertura control.
+        /// btnGuardarCoberturaNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarCobertura;
+        protected global::System.Web.UI.WebControls.ImageButton btnGuardarCoberturaNuevo;
 
         /// <summary>
         /// lbEncabezadoPlanCobertura control.
@@ -744,22 +744,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacionPlanCobertura;
 
         /// <summary>
-        /// LinkPrimeroPlanCobertura control.
+        /// btnPrimeraPaginaPlanCobertura control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeroPlanCobertura;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaPlanCobertura;
 
         /// <summary>
-        /// LinkAnteriorPlanCobertura control.
+        /// btnPaginaAnteriorPlanCobertura control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorPlanCobertura;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnteriorPlanCobertura;
 
         /// <summary>
         /// dlPlanCobertura control.
@@ -771,30 +771,30 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.DataList dlPlanCobertura;
 
         /// <summary>
-        /// LinkSiguientePlanCobertura control.
+        /// btnPaginaSiguientePlanCobertura control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguientePlanCobertura;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaSiguientePlanCobertura;
 
         /// <summary>
-        /// LinkUltimoPlanCobertura control.
+        /// btnUltimoPlanCobertura control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoPlanCobertura;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimoPlanCobertura;
 
         /// <summary>
-        /// btnGuardarPlanCobertura control.
+        /// btnGuardarPlanCoberturaNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarPlanCobertura;
+        protected global::System.Web.UI.WebControls.ImageButton btnGuardarPlanCoberturaNuevo;
     }
 }

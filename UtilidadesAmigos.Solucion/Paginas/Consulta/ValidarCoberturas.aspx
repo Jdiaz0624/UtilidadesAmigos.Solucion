@@ -30,8 +30,8 @@
         }
 
               .BotonImgen {
-              width:50px;
-              height:50px;
+              width:40px;
+              height:40px;
               }
     </style>
     <script type="text/javascript">
@@ -113,7 +113,7 @@
 
             })
 
-            $("#<%=btnGuardarCobertura.ClientID%>").click(function () {
+            $("#<%=btnGuardarCoberturaNuevo.ClientID%>").click(function () {
                 var DescripcionCobertura = $('#<%=txtCoberturaMantenimiento.ClientID%>').val().length;
                 if (DescripcionCobertura < 1) {
                     alert("El campo Descripción no puede estar vacio")
@@ -273,18 +273,18 @@
                 <div style="margin-top=20px;">
                     <table style="width:600px;">
                         <tr>
-                            <td> <asp:LinkButton ID="LinkPrimeraListadoPrincipal" runat="server" Text="Primero" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraListadoPrincipal_Click" CssClass="btn btn-outline-success btn-sm"  ></asp:LinkButton> </td>
-                            <td> <asp:LinkButton ID="LinkAnteriorListadoPrincipal" runat="server" Text="Anterior" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorListadoPrincipal_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
-                            <td>
+                            <td> <asp:ImageButton ID="btnPrimeraPaginaListado" runat="server" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPaginaListado_Click" CssClass="BotonImgen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnPaginaAnteriorListado" runat="server" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnPaginaAnteriorListado_Click" CssClass="BotonImgen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td align="center">
                                 <asp:DataList ID="dtPaginacionListadoPrincipal" runat="server" OnCancelCommand="dtPaginacionListadoPrincipal_CancelCommand" OnItemDataBound="dtPaginacionListadoPrincipal_ItemDataBound" RepeatDirection="Horizontal" >
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="LinkIndiceListadoPrincipal" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="NuevaPagina" Text='<%# Eval("TextoPagina")%>' Width="20px"></asp:LinkButton>
+                                        <asp:Button ID="btnPaginacionCentralListadoGeneral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
                                     </ItemTemplate>
                                 </asp:DataList>
 
                             </td>
-                            <td> <asp:LinkButton ID="LinkSiguienteListadoPrincipal" runat="server" Text="Siguiente" ToolTip="Ir la Siguiente pagina del listado" OnClick="LinkSiguienteListadoPrincipal_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
-                            <td> <asp:LinkButton ID="LinkUltimoListadoPrincipal" runat="server" Text="Ultmo" ToolTip="Ir a la Ultima Pagina del listado" OnClick="LinkUltimoListadoPrincipal_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td> <asp:ImageButton ID="btnSiguientePaginaListado" runat="server" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguientePaginaListado_Click" CssClass="BotonImgen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnUltimaPaginaListado" runat="server" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimaPaginaListado_Click" CssClass="BotonImgen" ToolTip="Ir a la Primera Pagina" /> </td>
                            
                         </tr>
                     </table>
@@ -365,9 +365,10 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col"> Seleccionar </th>
+                                        
                                         <th scope="col"> Cobertura </th>
                                         <th scope="col"> Estatus </th>
+                                        <th scope="col"> Seleccionar </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -375,9 +376,9 @@
                                         <ItemTemplate>
                                             <tr>
                                                 <asp:HiddenField ID="hfIdCobertura" runat="server" Value='<%# Eval("IdCobertura") %>' />
-                                                <td> <asp:Button ID="btnSeleccionarCobertura" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm Letranegrita" ToolTip="Seleccionar Cobertura" OnClick="btnSeleccionarCobertura_Click" /> </td>
                                                 <td> <%# Eval("Descripcion") %> </td>
                                                 <td> <%# Eval("Estatus") %> </td>
+                                                <td> <asp:ImageButton ID="btnSeleccioanrCoberturaNuevo" runat="server" ToolTip="Seleccionar" CssClass="BotonImgen" ImageUrl="~/Imagenes/Seleccionar2.png" OnClick="btnSeleccioanrCoberturaNuevo_Click" /> </td>
                                             </tr>
                                         </ItemTemplate>
                                     </asp:Repeater>
@@ -396,18 +397,19 @@
                 <div style="margin-top=20px;">
                     <table style="width:600px;">
                         <tr>
-                            <td> <asp:LinkButton ID="LinkPrimeroCoberturas" runat="server" Text="Primero" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroCoberturas_Click" CssClass="btn btn-outline-success btn-sm"  ></asp:LinkButton> </td>
-                            <td> <asp:LinkButton ID="LinkAnteriorCoberturas" runat="server" Text="Anterior" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorCoberturas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
-                            <td>
+                            <td> <asp:ImageButton ID="btnPriemraPaginaCoberturas" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImgen" OnClick="btnPriemraPaginaCoberturas_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
+                            <td> <asp:ImageButton ID="btnPaginaAnteriorCobertura" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImgen" OnClick="btnPaginaAnteriorCobertura_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+
+                            <td align="center">
                                 <asp:DataList ID="dtPaginacionCoberturas" runat="server" OnCancelCommand="dtPaginacionCoberturas_CancelCommand" OnItemDataBound="dtPaginacionCoberturas_ItemDataBound" RepeatDirection="Horizontal" >
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="LinkIndiceListadoCoberturas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="NuevaPagina" Text='<%# Eval("TextoPagina")%>' Width="20px"></asp:LinkButton>
+                                        <asp:Button ID="btnPaginacionCentralCoberturas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
                                     </ItemTemplate>
                                 </asp:DataList>
 
                             </td>
-                            <td> <asp:LinkButton ID="LinkSiguienteCoberturas" runat="server" Text="Siguiente" ToolTip="Ir la Siguiente pagina del listado" OnClick="LinkSiguienteCoberturas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
-                            <td> <asp:LinkButton ID="LinkUltimoCoberturas" runat="server" Text="Ultmo" ToolTip="Ir a la Ultima Pagina del listado" OnClick="LinkUltimoCoberturas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td> <asp:ImageButton ID="btnPaginaSiguienteCobertura" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImgen" OnClick="btnPaginaSiguienteCobertura_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
+                            <td> <asp:ImageButton ID="btnUltimaPaginaCobertura" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImgen" OnClick="btnUltimaPaginaCobertura_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
                            
                         </tr>
                     </table>
@@ -420,7 +422,7 @@
                   
 
                     <div align="center">
-              <asp:Button ID="btnGuardarCobertura" runat="server" Text="Guardar" CssClass="btn btn-outline-secondary btn-sm Letranegrita" OnClick="btnGuardarCobertura_Click" />
+                        <asp:ImageButton ID="btnGuardarCoberturaNuevo" runat="server" ToolTip="Guardar Información" CssClass="BotonImgen" ImageUrl="~/Imagenes/salvar.png" OnClick="btnGuardarCoberturaNuevo_Click" />
           </div>
                   <br />
               </ContentTemplate>
@@ -472,11 +474,12 @@
               <table class="table table-striped">
                   <thead>
                       <tr>
-                          <th scope="col"> Seleccionar </th>
+                         
                           <th scope="col"> Cobertura </th>
                           <th scope="col"> Codigo </th>
                           <th scope="col"> Plan </th>
                           <th scope="col"> Estatus </th>
+                           <th scope="col"> Seleccionar </th>
                       </tr>
                   </thead>
                   <tbody>
@@ -485,11 +488,11 @@
                               <tr>
                                   <asp:HiddenField ID="hfIdPlanCobertura" runat="server" Value='<%# Eval("IdPlanCobertura") %>' />
 
-                                  <td> <asp:Button ID="btnSeleccionarPlanCobertura" runat="server" Text="Seleccionar" ToolTip="Seleccionar Plan Cobertura" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarPlanCobertura_Click" /> </td>
                                   <td> <%# Eval("Cobertura") %> </td>
                                   <td> <%# Eval("CodigoCobertura") %> </td>
                                   <td> <%# Eval("PlanCobertura") %> </td>
                                   <td> <%# Eval("Estatus") %> </td>
+                                  <td> <asp:ImageButton ID="btnSeleccionarPlanCoberturaNuevo" runat="server" ToolTip="Seleccionar Registro" CssClass="BotonImgen" ImageUrl="~/Imagenes/Seleccionar2.png" OnClick="btnSeleccionarPlanCoberturaNuevo_Click" /> </td>
                               </tr>
                           </ItemTemplate>
                       </asp:Repeater>
@@ -508,18 +511,18 @@
                 <div style="margin-top=20px;">
                     <table style="width:600px;">
                         <tr>
-                            <td> <asp:LinkButton ID="LinkPrimeroPlanCobertura" runat="server" Text="Primero" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroPlanCobertura_Click" CssClass="btn btn-outline-success btn-sm"  ></asp:LinkButton> </td>
-                            <td> <asp:LinkButton ID="LinkAnteriorPlanCobertura" runat="server" Text="Anterior" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorPlanCobertura_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
-                            <td>
+                            <td> <asp:ImageButton ID="btnPrimeraPaginaPlanCobertura" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImgen" OnClick="btnPrimeraPaginaPlanCobertura_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
+                            <td> <asp:ImageButton ID="btnPaginaAnteriorPlanCobertura" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImgen" OnClick="btnPaginaAnteriorPlanCobertura_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+                            <td align="center">
                                 <asp:DataList ID="dlPlanCobertura" runat="server" OnCancelCommand="dlPlanCobertura_CancelCommand" OnItemDataBound="dlPlanCobertura_ItemDataBound" RepeatDirection="Horizontal" >
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="LinkIndiceListadoCoberturas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="NuevaPagina" Text='<%# Eval("TextoPagina")%>' Width="20px"></asp:LinkButton>
+                                        <asp:Button ID="btnPAginacionCentralPlanCoberturas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
                                     </ItemTemplate>
                                 </asp:DataList>
 
                             </td>
-                            <td> <asp:LinkButton ID="LinkSiguientePlanCobertura" runat="server" Text="Siguiente" ToolTip="Ir la Siguiente pagina del listado" OnClick="LinkSiguientePlanCobertura_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
-                            <td> <asp:LinkButton ID="LinkUltimoPlanCobertura" runat="server" Text="Ultmo" ToolTip="Ir a la Ultima Pagina del listado" OnClick="LinkUltimoPlanCobertura_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td> <asp:ImageButton ID="btnPaginaSiguientePlanCobertura" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImgen" OnClick="btnPaginaSiguientePlanCobertura_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
+                            <td> <asp:ImageButton ID="btnUltimoPlanCobertura" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImgen" OnClick="btnUltimoPlanCobertura_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
                            
                         </tr>
                     </table>
@@ -527,7 +530,7 @@
             </div>
                   <br />
                   <div align="center">
-              <asp:Button ID="btnGuardarPlanCobertura" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnGuardarPlanCobertura_Click" ToolTip="Guardar Registro" />
+                      <asp:ImageButton ID="btnGuardarPlanCoberturaNuevo" runat="server" CssClass="BotonImgen" ToolTip="Guardar Información" OnClick="btnGuardarPlanCoberturaNuevo_Click" ImageUrl="~/Imagenes/salvar.png" />
     </div>
               </ContentTemplate>
           </asp:UpdatePanel>
