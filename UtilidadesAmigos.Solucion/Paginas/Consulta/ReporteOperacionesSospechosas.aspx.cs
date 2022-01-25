@@ -86,10 +86,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
             pagedDataSource.CurrentPageIndex = CurrentPage;
 
             //HABILITAMOS LOS BOTONES DE LA PAGINACION
-            LinkPrimeraOperacionesSospechosas.Enabled = !pagedDataSource.IsFirstPage;
-            LinkAnteriorOperacionesSospechosas.Enabled = !pagedDataSource.IsFirstPage;
-            LinkSiguienteOperacionesSospechosas.Enabled = !pagedDataSource.IsLastPage;
-            LinkUltimoOperacionesSospechosas.Enabled = !pagedDataSource.IsLastPage;
+            btnPriemraPagina.Enabled = !pagedDataSource.IsFirstPage;
+            btnPaginaAnterior.Enabled = !pagedDataSource.IsFirstPage;
+            btnPaginasiguiente.Enabled = !pagedDataSource.IsLastPage;
+            btnUltimaPagina.Enabled = !pagedDataSource.IsLastPage;
 
             ControlRepeater.DataSource = pagedDataSource;
             ControlRepeater.DataBind();
@@ -144,8 +144,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
         #endregion
-
-       
 
         enum ConceptosOperacionesSospechosas {
             OperacionesSospechosas=1,
@@ -577,233 +575,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             
         }
 
-        protected void btnDetalle_Click(object sender, EventArgs e)
-        {
-            DivBloqueDetalle.Visible = true;
-            var PolizaSeleccionada = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfPolizaSeleccionada = ((HiddenField)PolizaSeleccionada.FindControl("hfPoliza")).Value.ToString();
-
-            var NumeroreciboSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
-            var hfNumeroReciboSeleccionado = ((HiddenField)NumeroreciboSeleccionado.FindControl("hfNumeroRecibo")).Value.ToString();
-
-
-            int TipoOperacionSeleccionada = Convert.ToInt32(ddlSeleccionarTipoOperacion.SelectedValue);
-            decimal? UsuarioProcesa = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
-            if (TipoOperacionSeleccionada == (int)ConceptosOperacionesSospechosas.TransaccionesEnEfectivo) {
-                var SacarDetalle = ObjData.Value.GenerarReporteTransaccionesEfectivo(
-                    Convert.ToDateTime(txtFechaDesde.Text), Convert.ToDateTime(txtFechaHasta.Text), Convert.ToDecimal(txtTasa.Text), UsuarioProcesa, Convert.ToDecimal(txtMontoCondicion.Text),
-                    Convert.ToDecimal(hfNumeroReciboSeleccionado),
-                    hfPolizaSeleccionada.ToString());
-                foreach (var n in SacarDetalle) {
-                    txtNumeroReporteDetalle.Text = n.NumeroReporte.ToString();
-                    txtPolizaDetalle.Text = n.Poliza;
-                    txtCodigoRegistroEntidadDetalle.Text = n.CodigoRegistroEntidad;
-                    txtUsuario.Text = n.Usuario;
-                    txtOficina.Text = n.Oficina;
-                    txtFechaEnvio.Text = n.FechaEnvio;
-                    txtHoraEnvio.Text = n.HoraEnvio;
-                    txtTipoPersonaCliente.Text = n.TipoPersonaCliente;
-                    txtPEPCliente.Text = n.PEPCliente;
-                    txtPEPClienteTipo.Text = n.PEPClienteTipo;
-                    txtSexoCliente.Text = n.SexoCliente;
-                    txtNombreRazonSocialCliente.Text = n.NombreRazonSocialCliente;
-                    txtApellidoRazonSocialCliente.Text = n.ApellidoRazonSocialCliente;
-                    txtNacionalidadorigenCliente.Text = n.NacionalidadorigenCliente;
-                    txtNacionalidadAdquiridaCliente.Text = n.NacionalidadAdquiridaCliente;
-                    txtTipoDocumentoCliente.Text = n.TipoDocumentoCliente;
-                    txtNoDocumentoIdentidadCliente.Text = n.NoDocumentoIdentidadCliente;
-                    txtSiTipoDocumentoIgualOtroEspesificar.Text = n.SiTipoDocumentoIgualOtroEspesificar;
-                    txtActividadEconomicaCliente.Text = n.ActividadEconomicaCliente;
-                    txtTipoProductoCliente.Text = n.TipoProductoCliente;
-                    txtNoCuenta1.Text = n.NoCuenta1;
-                    txtNoCuenta2.Text = n.NoCuenta2;
-                    txtNoCuenta3.Text = n.NoCuenta3;
-                    txtProvinciaCliente.Text = n.ProvinciaCliente;
-                    txtMunicipioCliente.Text = n.MunicipioCliente;
-                    txtSectorCliente.Text = n.SectorCliente;
-                    txtDireccionCliente.Text = n.DireccionCliente;
-                    txtTelefonoCasaCliente.Text = n.TelefonoCasaCliente;
-                    txtTelefonoOficinaCliente.Text = n.TelefonoOficinaCliente;
-                    txtCelular1Cliente.Text = n.Celular1Cliente;
-                    txtCelular2Cliente.Text = n.Celular2Cliente;
-                    txtTipoTransaccion.Text = n.TipoTransaccion;
-                    txtDescripcionTransaccion.Text = n.DescripcionTransaccion;
-                    txtTipoMoneda.Text = n.TipoMoneda;
-                    txtNumeroRecibo.Text = n.NumeroRecibo.ToString();
-                    txtFechaRecibo.Text = n.FechaRecibo;
-                    decimal MontoOriginal = (decimal)n.MontoOriginal;
-                    txtMontoOriginal.Text = MontoOriginal.ToString("N2");
-                    decimal MontoPesos = (decimal)n.PagoAcumuladoPesos;
-                    txtPagoAcumuladoPesos.Text = MontoPesos.ToString("N2");
-                    decimal MontoDolar = (decimal)n.PagoAcumuladoDollar;
-                    txtPagoAcumuladoDollar.Text = MontoDolar.ToString("N2");
-                    txtTasaCambio.Text = n.TasaCambio.ToString();
-                    txtTipoInstrumento.Text = n.TipoInstrumento;
-                    txtFechaTransaccion.Text = n.FechaTransaccion;
-                    txtHoraTransaccion.Text = n.HoraTransaccion;
-                    txtFechaEnvioDetalle.Text = n.FechaEnvio1;
-                    txtHoraTransaccion2.Text = n.HoraTransaccion1;
-                    txtOrigenFondos.Text = n.OrigenFondos;
-                    txtTransaccionRealizada.Text = n.TransaccionRealizada;
-                    txtMotivoTransaccion.Text = n.MotivoTransaccion;
-                    txtPaisOrigen.Text = n.PaisOrigen;
-                    txtPaisDestino.Text = n.PaisDestino;
-                    txtEntidadCorresponsal.Text = n.EntidadCorresponsal;
-                    txtRemesador.Text = n.Remesador;
-                    txtIntermediarioIgualCliente.Text = n.IntermediarioIgualCliente;
-                    txtSexoIntermediario.Text = n.SexoIntermediario;
-                    txtNombreRazonIntermediario.Text = n.NombreRazonIntermediario;
-                    txtApellidoRazonIntermediario.Text = n.ApellidoRazonIntermediario;
-                    txtNacionalidadOrigenIntermediario.Text = n.NacionalidadOrigenIntermediario;
-                    txtNacionalidadAdquiridaIntermediario.Text = n.NacionalidadAdquiridaIntermediario;
-                    txtTipoRncIntermediario.Text = n.TipoRncIntermediario;
-                    txtNoDocumentoIntermediario.Text = n.NoDocumentoIntermediario;
-                    txtSiTipoDocumentoIgualOtroEspesificarIntermdiario.Text = n.SiTipoDocumentoIgualOtroEspesificarIntermdiario;
-                    txtProvinciaIntermediario.Text = n.ProvinciaIntermediario;
-                    txtMunicipioIntermediario.Text = n.MunicipioIntermediario;
-                    txtSectorIntermediario.Text = n.SectorIntermediario;
-                    txtDireccionIntermediario.Text = n.DireccionIntermediario;
-                    txtBeneficiarioIgualCliente.Text = n.BeneficiarioIgualCliente;
-                    txtSexoBeneficiario.Text = n.SexoBeneficiario;
-                    txtNombreRazonSocialBeneficiario.Text = n.NombreRazonSocialBeneficiario;
-                    txtApellidoRazonSocialBeneficiario.Text = n.ApellidoRazonSocialBeneficiario;
-                    txtNacionalidadBeneficiario.Text = n.NacionalidadBeneficiario;
-                    txtNacionalidadAdquiridaBeneficiario.Text = n.NacionalidadAdquiridaBeneficiario;
-                    txtTipoIdentificacionBeneficiario.Text = n.TipoIdentificacionBeneficiario;
-                    txtNoDocumentoIdentidadBeneficiario.Text = n.NoDocumentoIdentidadBeneficiario;
-                    txtSiTipoDocumentoIgualOtroEspesificarBeneficiario.Text = n.SiTipoDocumentoIgualOtroEspesificar1;
-                    txtProvinciaBeneficiario.Text = n.ProvinciaBeneficiario;
-                    txtMunicipioBeneficiario.Text = n.MunicipioBeneficiario;
-                    txtSectorBeneficiario.Text = n.SectorBeneficiario;
-                    txtDireccionBeneficiario.Text = n.DireccionBeneficiario;
-                    txtMotivoReporte.Text = n.MotivoReporte;
-                    txtEspesifiquePrioridadReporte.Text = n.EspesifiquePrioridadReporte;
-                    txtAnexo.Text = n.Anexo;
-                    txtValidadoDesde.Text = n.ValidadoDesde;
-                    txtValidadoHasta.Text = n.ValidadoHasta;
-                    decimal MontoCondicion = (decimal)n.MontoCondicion;
-                    txtMontoCondicion2.Text = MontoCondicion.ToString("N2");
-                    txtGeneradoPor.Text = n.GeneradoPor;
-                }
-
-
-            }
-            else if (TipoOperacionSeleccionada == (int)ConceptosOperacionesSospechosas.OperacionesSospechosas) {
-
-                var SacarDetalleOperacionesSospechosas = ObjData.Value.GenerarReporteDeOperacionesSospechisas(
-                    Convert.ToDateTime(txtFechaDesde.Text),
-                    Convert.ToDateTime(txtFechaHasta.Text),
-                    Convert.ToDecimal(txtTasa.Text),
-                    UsuarioProcesa,
-                    Convert.ToDecimal(txtMontoCondicion.Text),
-                    Convert.ToDecimal(hfNumeroReciboSeleccionado),
-                    hfPolizaSeleccionada);
-                foreach (var n in SacarDetalleOperacionesSospechosas) {
-                    txtNumeroReporteDetalle.Text = n.NumeroReporte.ToString();
-                    txtPolizaDetalle.Text = n.Poliza;
-                    txtCodigoRegistroEntidadDetalle.Text = n.CodigoRegistroEntidad;
-                    txtUsuario.Text = n.Usuario;
-                    txtOficina.Text = n.Oficina;
-                    txtFechaEnvio.Text = n.FechaEnvio;
-                    txtHoraEnvio.Text = n.HoraEnvio;
-                    txtTipoPersonaCliente.Text = n.TipoPersonaCliente;
-                    txtPEPCliente.Text = n.PEPCliente;
-                    txtPEPClienteTipo.Text = n.PEPClienteTipo;
-                    txtSexoCliente.Text = n.SexoCliente;
-                    txtNombreRazonSocialCliente.Text = n.NombreRazonSocialCliente;
-                    txtApellidoRazonSocialCliente.Text = n.ApellidoRazonSocialCliente;
-                    txtNacionalidadorigenCliente.Text = n.NacionalidadorigenCliente;
-                    txtNacionalidadAdquiridaCliente.Text = n.NacionalidadAdquiridaCliente;
-                    txtTipoDocumentoCliente.Text = n.TipoDocumentoCliente;
-                    txtNoDocumentoIdentidadCliente.Text = n.NoDocumentoIdentidadCliente;
-                    txtSiTipoDocumentoIgualOtroEspesificar.Text = n.SiTipoDocumentoIgualOtroEspesificar;
-                    txtActividadEconomicaCliente.Text = n.ActividadEconomicaCliente;
-                    txtTipoProductoCliente.Text = n.TipoProductoCliente;
-                    txtNoCuenta1.Text = n.NoCuenta1;
-                    txtNoCuenta2.Text = n.NoCuenta2;
-                    txtNoCuenta3.Text = n.NoCuenta3;
-                    txtProvinciaCliente.Text = n.ProvinciaCliente;
-                    txtMunicipioCliente.Text = n.MunicipioCliente;
-                    txtSectorCliente.Text = n.SectorCliente;
-                    txtDireccionCliente.Text = n.DireccionCliente;
-                    txtTelefonoCasaCliente.Text = n.TelefonoCasaCliente;
-                    txtTelefonoOficinaCliente.Text = n.TelefonoOficinaCliente;
-                    txtCelular1Cliente.Text = n.Celular1Cliente;
-                    txtCelular2Cliente.Text = n.Celular2Cliente;
-                    txtTipoTransaccion.Text = n.TipoTransaccion;
-                    txtDescripcionTransaccion.Text = n.DescripcionTransaccion;
-                    txtTipoMoneda.Text = n.TipoMoneda;
-                    txtNumeroRecibo.Text = n.NumeroRecibo.ToString();
-                    txtFechaRecibo.Text = n.FechaRecibo;
-                    decimal MontoOriginal = (decimal)n.MontoOriginal;
-                    txtMontoOriginal.Text = MontoOriginal.ToString("N2");
-                    decimal MontoPesos = (decimal)n.PagoAcumuladoPesos;
-                    txtPagoAcumuladoPesos.Text = MontoPesos.ToString("N2");
-                    decimal MontoDolar = (decimal)n.PagoAcumuladoDollar;
-                    txtPagoAcumuladoDollar.Text = MontoDolar.ToString("N2");
-                    txtTasaCambio.Text = n.TasaCambio.ToString();
-                    txtTipoInstrumento.Text = n.TipoInstrumento;
-                    txtFechaTransaccion.Text = n.FechaTransaccion;
-                    txtHoraTransaccion.Text = n.HoraTransaccion;
-                    txtFechaEnvioDetalle.Text = n.FechaEnvio1;
-                    txtHoraTransaccion2.Text = n.HoraTransaccion1;
-                    txtOrigenFondos.Text = n.OrigenFondos;
-                    txtTransaccionRealizada.Text = n.TransaccionRealizada;
-                    txtMotivoTransaccion.Text = n.MotivoTransaccion;
-                    txtPaisOrigen.Text = n.PaisOrigen;
-                    txtPaisDestino.Text = n.PaisDestino;
-                    txtEntidadCorresponsal.Text = n.EntidadCorresponsal;
-                    txtRemesador.Text = n.Remesador;
-                    txtIntermediarioIgualCliente.Text = n.IntermediarioIgualCliente;
-                    txtSexoIntermediario.Text = n.SexoIntermediario;
-                    txtNombreRazonIntermediario.Text = n.NombreRazonIntermediario;
-                    txtApellidoRazonIntermediario.Text = n.ApellidoRazonIntermediario;
-                    txtNacionalidadOrigenIntermediario.Text = n.NacionalidadOrigenIntermediario;
-                    txtNacionalidadAdquiridaIntermediario.Text = n.NacionalidadAdquiridaIntermediario;
-                    txtTipoRncIntermediario.Text = n.TipoRncIntermediario;
-                    txtNoDocumentoIntermediario.Text = n.NoDocumentoIntermediario;
-                    txtSiTipoDocumentoIgualOtroEspesificarIntermdiario.Text = n.SiTipoDocumentoIgualOtroEspesificarIntermdiario;
-                    txtProvinciaIntermediario.Text = n.ProvinciaIntermediario;
-                    txtMunicipioIntermediario.Text = n.MunicipioIntermediario;
-                    txtSectorIntermediario.Text = n.SectorIntermediario;
-                    txtDireccionIntermediario.Text = n.DireccionIntermediario;
-                    txtBeneficiarioIgualCliente.Text = n.BeneficiarioIgualCliente;
-                    txtSexoBeneficiario.Text = n.SexoBeneficiario;
-                    txtNombreRazonSocialBeneficiario.Text = n.NombreRazonSocialBeneficiario;
-                    txtApellidoRazonSocialBeneficiario.Text = n.ApellidoRazonSocialBeneficiario;
-                    txtNacionalidadBeneficiario.Text = n.NacionalidadBeneficiario;
-                    txtNacionalidadAdquiridaBeneficiario.Text = n.NacionalidadAdquiridaBeneficiario;
-                    txtTipoIdentificacionBeneficiario.Text = n.TipoIdentificacionBeneficiario;
-                    txtNoDocumentoIdentidadBeneficiario.Text = n.NoDocumentoIdentidadBeneficiario;
-                    txtSiTipoDocumentoIgualOtroEspesificarBeneficiario.Text = n.SiTipoDocumentoIgualOtroEspesificar1;
-                    txtProvinciaBeneficiario.Text = n.ProvinciaBeneficiario;
-                    txtMunicipioBeneficiario.Text = n.MunicipioBeneficiario;
-                    txtSectorBeneficiario.Text = n.SectorBeneficiario;
-                    txtDireccionBeneficiario.Text = n.DireccionBeneficiario;
-                    txtMotivoReporte.Text = n.MotivoReporte;
-                    txtEspesifiquePrioridadReporte.Text = n.EspesifiquePrioridadReporte;
-                    txtAnexo.Text = n.Anexo;
-                    txtValidadoDesde.Text = n.ValidadoDesde;
-                    txtValidadoHasta.Text = n.ValidadoHasta;
-                    decimal MontoCondicion = (decimal)n.MontoCondicion;
-                    txtMontoCondicion2.Text = MontoCondicion.ToString("N2");
-                    txtGeneradoPor.Text = n.GeneradoPor;
-                }
-            }
-        }
-
-        protected void LinkPrimeraOperacionesSospechosas_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarListado();
-        }
-
-        protected void LinkAnteriorOperacionesSospechosas_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarListado();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior);
-        }
 
         protected void dtPaginacionOperacionesSospechosas_ItemDataBound(object sender, DataListItemEventArgs e)
         {
@@ -814,12 +585,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (!e.CommandName.Equals("newPage")) return;
             CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-            MostrarListado();
-        }
-
-        protected void LinkSiguienteOperacionesSospechosas_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
             MostrarListado();
         }
 
@@ -851,11 +616,251 @@ namespace UtilidadesAmigos.Solucion.Paginas
             RestablecerPantalla();
         }
 
-        protected void LinkUltimoOperacionesSospechosas_Click(object sender, EventArgs e)
+        protected void btnPriemraPagina_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            CurrentPage = 0;
+            MostrarListado();
+        }
+
+        protected void btnPaginaAnterior_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += -1;
             MostrarListado();
             MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior);
+        }
+
+        protected void btnPaginasiguiente_Click(object sender, ImageClickEventArgs e)
+        {
+
+            CurrentPage += 1;
+            MostrarListado();
+        }
+
+        protected void btnDetalleNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            DivBloqueDetalle.Visible = true;
+            var PolizaSeleccionada = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfPolizaSeleccionada = ((HiddenField)PolizaSeleccionada.FindControl("hfPoliza")).Value.ToString();
+
+            var NumeroreciboSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfNumeroReciboSeleccionado = ((HiddenField)NumeroreciboSeleccionado.FindControl("hfNumeroRecibo")).Value.ToString();
+
+
+            int TipoOperacionSeleccionada = Convert.ToInt32(ddlSeleccionarTipoOperacion.SelectedValue);
+            decimal? UsuarioProcesa = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+            if (TipoOperacionSeleccionada == (int)ConceptosOperacionesSospechosas.TransaccionesEnEfectivo)
+            {
+                var SacarDetalle = ObjData.Value.GenerarReporteTransaccionesEfectivo(
+                    Convert.ToDateTime(txtFechaDesde.Text), Convert.ToDateTime(txtFechaHasta.Text), Convert.ToDecimal(txtTasa.Text), UsuarioProcesa, Convert.ToDecimal(txtMontoCondicion.Text),
+                    Convert.ToDecimal(hfNumeroReciboSeleccionado),
+                    hfPolizaSeleccionada.ToString());
+                foreach (var n in SacarDetalle)
+                {
+                    txtNumeroReporteDetalle.Text = n.NumeroReporte.ToString();
+                    txtPolizaDetalle.Text = n.Poliza;
+                    txtCodigoRegistroEntidadDetalle.Text = n.CodigoRegistroEntidad;
+                    txtUsuario.Text = n.Usuario;
+                    txtOficina.Text = n.Oficina;
+                    txtFechaEnvio.Text = n.FechaEnvio;
+                    txtHoraEnvio.Text = n.HoraEnvio;
+                    txtTipoPersonaCliente.Text = n.TipoPersonaCliente;
+                    txtPEPCliente.Text = n.PEPCliente;
+                    txtPEPClienteTipo.Text = n.PEPClienteTipo;
+                    txtSexoCliente.Text = n.SexoCliente;
+                    txtNombreRazonSocialCliente.Text = n.NombreRazonSocialCliente;
+                    txtApellidoRazonSocialCliente.Text = n.ApellidoRazonSocialCliente;
+                    txtNacionalidadorigenCliente.Text = n.NacionalidadorigenCliente;
+                    txtNacionalidadAdquiridaCliente.Text = n.NacionalidadAdquiridaCliente;
+                    txtTipoDocumentoCliente.Text = n.TipoDocumentoCliente;
+                    txtNoDocumentoIdentidadCliente.Text = n.NoDocumentoIdentidadCliente;
+                    txtSiTipoDocumentoIgualOtroEspesificar.Text = n.SiTipoDocumentoIgualOtroEspesificar;
+                    txtActividadEconomicaCliente.Text = n.ActividadEconomicaCliente;
+                    txtTipoProductoCliente.Text = n.TipoProductoCliente;
+                    txtNoCuenta1.Text = n.NoCuenta1;
+                    txtNoCuenta2.Text = n.NoCuenta2;
+                    txtNoCuenta3.Text = n.NoCuenta3;
+                    txtProvinciaCliente.Text = n.ProvinciaCliente;
+                    txtMunicipioCliente.Text = n.MunicipioCliente;
+                    txtSectorCliente.Text = n.SectorCliente;
+                    txtDireccionCliente.Text = n.DireccionCliente;
+                    txtTelefonoCasaCliente.Text = n.TelefonoCasaCliente;
+                    txtTelefonoOficinaCliente.Text = n.TelefonoOficinaCliente;
+                    txtCelular1Cliente.Text = n.Celular1Cliente;
+                    txtCelular2Cliente.Text = n.Celular2Cliente;
+                    txtTipoTransaccion.Text = n.TipoTransaccion;
+                    txtDescripcionTransaccion.Text = n.DescripcionTransaccion;
+                    txtTipoMoneda.Text = n.TipoMoneda;
+                    txtNumeroRecibo.Text = n.NumeroRecibo.ToString();
+                    txtFechaRecibo.Text = n.FechaRecibo;
+                    decimal MontoOriginal = (decimal)n.MontoOriginal;
+                    txtMontoOriginal.Text = MontoOriginal.ToString("N2");
+                    decimal MontoPesos = (decimal)n.PagoAcumuladoPesos;
+                    txtPagoAcumuladoPesos.Text = MontoPesos.ToString("N2");
+                    decimal MontoDolar = (decimal)n.PagoAcumuladoDollar;
+                    txtPagoAcumuladoDollar.Text = MontoDolar.ToString("N2");
+                    txtTasaCambio.Text = n.TasaCambio.ToString();
+                    txtTipoInstrumento.Text = n.TipoInstrumento;
+                    txtFechaTransaccion.Text = n.FechaTransaccion;
+                    txtHoraTransaccion.Text = n.HoraTransaccion;
+                    txtFechaEnvioDetalle.Text = n.FechaEnvio1;
+                    txtHoraTransaccion2.Text = n.HoraTransaccion1;
+                    txtOrigenFondos.Text = n.OrigenFondos;
+                    txtTransaccionRealizada.Text = n.TransaccionRealizada;
+                    txtMotivoTransaccion.Text = n.MotivoTransaccion;
+                    txtPaisOrigen.Text = n.PaisOrigen;
+                    txtPaisDestino.Text = n.PaisDestino;
+                    txtEntidadCorresponsal.Text = n.EntidadCorresponsal;
+                    txtRemesador.Text = n.Remesador;
+                    txtIntermediarioIgualCliente.Text = n.IntermediarioIgualCliente;
+                    txtSexoIntermediario.Text = n.SexoIntermediario;
+                    txtNombreRazonIntermediario.Text = n.NombreRazonIntermediario;
+                    txtApellidoRazonIntermediario.Text = n.ApellidoRazonIntermediario;
+                    txtNacionalidadOrigenIntermediario.Text = n.NacionalidadOrigenIntermediario;
+                    txtNacionalidadAdquiridaIntermediario.Text = n.NacionalidadAdquiridaIntermediario;
+                    txtTipoRncIntermediario.Text = n.TipoRncIntermediario;
+                    txtNoDocumentoIntermediario.Text = n.NoDocumentoIntermediario;
+                    txtSiTipoDocumentoIgualOtroEspesificarIntermdiario.Text = n.SiTipoDocumentoIgualOtroEspesificarIntermdiario;
+                    txtProvinciaIntermediario.Text = n.ProvinciaIntermediario;
+                    txtMunicipioIntermediario.Text = n.MunicipioIntermediario;
+                    txtSectorIntermediario.Text = n.SectorIntermediario;
+                    txtDireccionIntermediario.Text = n.DireccionIntermediario;
+                    txtBeneficiarioIgualCliente.Text = n.BeneficiarioIgualCliente;
+                    txtSexoBeneficiario.Text = n.SexoBeneficiario;
+                    txtNombreRazonSocialBeneficiario.Text = n.NombreRazonSocialBeneficiario;
+                    txtApellidoRazonSocialBeneficiario.Text = n.ApellidoRazonSocialBeneficiario;
+                    txtNacionalidadBeneficiario.Text = n.NacionalidadBeneficiario;
+                    txtNacionalidadAdquiridaBeneficiario.Text = n.NacionalidadAdquiridaBeneficiario;
+                    txtTipoIdentificacionBeneficiario.Text = n.TipoIdentificacionBeneficiario;
+                    txtNoDocumentoIdentidadBeneficiario.Text = n.NoDocumentoIdentidadBeneficiario;
+                    txtSiTipoDocumentoIgualOtroEspesificarBeneficiario.Text = n.SiTipoDocumentoIgualOtroEspesificar1;
+                    txtProvinciaBeneficiario.Text = n.ProvinciaBeneficiario;
+                    txtMunicipioBeneficiario.Text = n.MunicipioBeneficiario;
+                    txtSectorBeneficiario.Text = n.SectorBeneficiario;
+                    txtDireccionBeneficiario.Text = n.DireccionBeneficiario;
+                    txtMotivoReporte.Text = n.MotivoReporte;
+                    txtEspesifiquePrioridadReporte.Text = n.EspesifiquePrioridadReporte;
+                    txtAnexo.Text = n.Anexo;
+                    txtValidadoDesde.Text = n.ValidadoDesde;
+                    txtValidadoHasta.Text = n.ValidadoHasta;
+                    decimal MontoCondicion = (decimal)n.MontoCondicion;
+                    txtMontoCondicion2.Text = MontoCondicion.ToString("N2");
+                    txtGeneradoPor.Text = n.GeneradoPor;
+                }
+
+
+            }
+            else if (TipoOperacionSeleccionada == (int)ConceptosOperacionesSospechosas.OperacionesSospechosas)
+            {
+
+                var SacarDetalleOperacionesSospechosas = ObjData.Value.GenerarReporteDeOperacionesSospechisas(
+                    Convert.ToDateTime(txtFechaDesde.Text),
+                    Convert.ToDateTime(txtFechaHasta.Text),
+                    Convert.ToDecimal(txtTasa.Text),
+                    UsuarioProcesa,
+                    Convert.ToDecimal(txtMontoCondicion.Text),
+                    Convert.ToDecimal(hfNumeroReciboSeleccionado),
+                    hfPolizaSeleccionada);
+                foreach (var n in SacarDetalleOperacionesSospechosas)
+                {
+                    txtNumeroReporteDetalle.Text = n.NumeroReporte.ToString();
+                    txtPolizaDetalle.Text = n.Poliza;
+                    txtCodigoRegistroEntidadDetalle.Text = n.CodigoRegistroEntidad;
+                    txtUsuario.Text = n.Usuario;
+                    txtOficina.Text = n.Oficina;
+                    txtFechaEnvio.Text = n.FechaEnvio;
+                    txtHoraEnvio.Text = n.HoraEnvio;
+                    txtTipoPersonaCliente.Text = n.TipoPersonaCliente;
+                    txtPEPCliente.Text = n.PEPCliente;
+                    txtPEPClienteTipo.Text = n.PEPClienteTipo;
+                    txtSexoCliente.Text = n.SexoCliente;
+                    txtNombreRazonSocialCliente.Text = n.NombreRazonSocialCliente;
+                    txtApellidoRazonSocialCliente.Text = n.ApellidoRazonSocialCliente;
+                    txtNacionalidadorigenCliente.Text = n.NacionalidadorigenCliente;
+                    txtNacionalidadAdquiridaCliente.Text = n.NacionalidadAdquiridaCliente;
+                    txtTipoDocumentoCliente.Text = n.TipoDocumentoCliente;
+                    txtNoDocumentoIdentidadCliente.Text = n.NoDocumentoIdentidadCliente;
+                    txtSiTipoDocumentoIgualOtroEspesificar.Text = n.SiTipoDocumentoIgualOtroEspesificar;
+                    txtActividadEconomicaCliente.Text = n.ActividadEconomicaCliente;
+                    txtTipoProductoCliente.Text = n.TipoProductoCliente;
+                    txtNoCuenta1.Text = n.NoCuenta1;
+                    txtNoCuenta2.Text = n.NoCuenta2;
+                    txtNoCuenta3.Text = n.NoCuenta3;
+                    txtProvinciaCliente.Text = n.ProvinciaCliente;
+                    txtMunicipioCliente.Text = n.MunicipioCliente;
+                    txtSectorCliente.Text = n.SectorCliente;
+                    txtDireccionCliente.Text = n.DireccionCliente;
+                    txtTelefonoCasaCliente.Text = n.TelefonoCasaCliente;
+                    txtTelefonoOficinaCliente.Text = n.TelefonoOficinaCliente;
+                    txtCelular1Cliente.Text = n.Celular1Cliente;
+                    txtCelular2Cliente.Text = n.Celular2Cliente;
+                    txtTipoTransaccion.Text = n.TipoTransaccion;
+                    txtDescripcionTransaccion.Text = n.DescripcionTransaccion;
+                    txtTipoMoneda.Text = n.TipoMoneda;
+                    txtNumeroRecibo.Text = n.NumeroRecibo.ToString();
+                    txtFechaRecibo.Text = n.FechaRecibo;
+                    decimal MontoOriginal = (decimal)n.MontoOriginal;
+                    txtMontoOriginal.Text = MontoOriginal.ToString("N2");
+                    decimal MontoPesos = (decimal)n.PagoAcumuladoPesos;
+                    txtPagoAcumuladoPesos.Text = MontoPesos.ToString("N2");
+                    decimal MontoDolar = (decimal)n.PagoAcumuladoDollar;
+                    txtPagoAcumuladoDollar.Text = MontoDolar.ToString("N2");
+                    txtTasaCambio.Text = n.TasaCambio.ToString();
+                    txtTipoInstrumento.Text = n.TipoInstrumento;
+                    txtFechaTransaccion.Text = n.FechaTransaccion;
+                    txtHoraTransaccion.Text = n.HoraTransaccion;
+                    txtFechaEnvioDetalle.Text = n.FechaEnvio1;
+                    txtHoraTransaccion2.Text = n.HoraTransaccion1;
+                    txtOrigenFondos.Text = n.OrigenFondos;
+                    txtTransaccionRealizada.Text = n.TransaccionRealizada;
+                    txtMotivoTransaccion.Text = n.MotivoTransaccion;
+                    txtPaisOrigen.Text = n.PaisOrigen;
+                    txtPaisDestino.Text = n.PaisDestino;
+                    txtEntidadCorresponsal.Text = n.EntidadCorresponsal;
+                    txtRemesador.Text = n.Remesador;
+                    txtIntermediarioIgualCliente.Text = n.IntermediarioIgualCliente;
+                    txtSexoIntermediario.Text = n.SexoIntermediario;
+                    txtNombreRazonIntermediario.Text = n.NombreRazonIntermediario;
+                    txtApellidoRazonIntermediario.Text = n.ApellidoRazonIntermediario;
+                    txtNacionalidadOrigenIntermediario.Text = n.NacionalidadOrigenIntermediario;
+                    txtNacionalidadAdquiridaIntermediario.Text = n.NacionalidadAdquiridaIntermediario;
+                    txtTipoRncIntermediario.Text = n.TipoRncIntermediario;
+                    txtNoDocumentoIntermediario.Text = n.NoDocumentoIntermediario;
+                    txtSiTipoDocumentoIgualOtroEspesificarIntermdiario.Text = n.SiTipoDocumentoIgualOtroEspesificarIntermdiario;
+                    txtProvinciaIntermediario.Text = n.ProvinciaIntermediario;
+                    txtMunicipioIntermediario.Text = n.MunicipioIntermediario;
+                    txtSectorIntermediario.Text = n.SectorIntermediario;
+                    txtDireccionIntermediario.Text = n.DireccionIntermediario;
+                    txtBeneficiarioIgualCliente.Text = n.BeneficiarioIgualCliente;
+                    txtSexoBeneficiario.Text = n.SexoBeneficiario;
+                    txtNombreRazonSocialBeneficiario.Text = n.NombreRazonSocialBeneficiario;
+                    txtApellidoRazonSocialBeneficiario.Text = n.ApellidoRazonSocialBeneficiario;
+                    txtNacionalidadBeneficiario.Text = n.NacionalidadBeneficiario;
+                    txtNacionalidadAdquiridaBeneficiario.Text = n.NacionalidadAdquiridaBeneficiario;
+                    txtTipoIdentificacionBeneficiario.Text = n.TipoIdentificacionBeneficiario;
+                    txtNoDocumentoIdentidadBeneficiario.Text = n.NoDocumentoIdentidadBeneficiario;
+                    txtSiTipoDocumentoIgualOtroEspesificarBeneficiario.Text = n.SiTipoDocumentoIgualOtroEspesificar1;
+                    txtProvinciaBeneficiario.Text = n.ProvinciaBeneficiario;
+                    txtMunicipioBeneficiario.Text = n.MunicipioBeneficiario;
+                    txtSectorBeneficiario.Text = n.SectorBeneficiario;
+                    txtDireccionBeneficiario.Text = n.DireccionBeneficiario;
+                    txtMotivoReporte.Text = n.MotivoReporte;
+                    txtEspesifiquePrioridadReporte.Text = n.EspesifiquePrioridadReporte;
+                    txtAnexo.Text = n.Anexo;
+                    txtValidadoDesde.Text = n.ValidadoDesde;
+                    txtValidadoHasta.Text = n.ValidadoHasta;
+                    decimal MontoCondicion = (decimal)n.MontoCondicion;
+                    txtMontoCondicion2.Text = MontoCondicion.ToString("N2");
+                    txtGeneradoPor.Text = n.GeneradoPor;
+                }
+            }
+        }
+
+        protected void btnUltimaPagina_Click(object sender, ImageClickEventArgs e)
+        {
+
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListado();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina);
         }
     }
 }

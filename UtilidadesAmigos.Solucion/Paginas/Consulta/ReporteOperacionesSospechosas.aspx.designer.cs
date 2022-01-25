@@ -213,22 +213,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacionListadoPrincipal;
 
         /// <summary>
-        /// LinkPrimeraOperacionesSospechosas control.
+        /// btnPriemraPagina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraOperacionesSospechosas;
+        protected global::System.Web.UI.WebControls.ImageButton btnPriemraPagina;
 
         /// <summary>
-        /// LinkAnteriorOperacionesSospechosas control.
+        /// btnPaginaAnterior control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorOperacionesSospechosas;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnterior;
 
         /// <summary>
         /// dtPaginacionOperacionesSospechosas control.
@@ -240,22 +240,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.DataList dtPaginacionOperacionesSospechosas;
 
         /// <summary>
-        /// LinkSiguienteOperacionesSospechosas control.
+        /// btnPaginasiguiente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteOperacionesSospechosas;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginasiguiente;
 
         /// <summary>
-        /// LinkUltimoOperacionesSospechosas control.
+        /// btnUltimaPagina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoOperacionesSospechosas;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPagina;
 
         /// <summary>
         /// DivBloqueDetalle control.
