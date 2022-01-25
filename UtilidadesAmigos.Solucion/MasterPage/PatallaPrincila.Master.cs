@@ -446,6 +446,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkAntiguedadSaldo_Click(object sender, EventArgs e)
         {
+
             if (Session["Idusuario"] != null)
             {
                 Response.Redirect("~/Paginas/Reportes/GenerarReporteAntiguedadSaldo.aspx");
