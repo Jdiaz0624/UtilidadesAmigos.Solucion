@@ -182,7 +182,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos
             Procesar.Diferencia = Diferencia;
             Procesar.OrigenTipo = OrigenTipo;
 
-            var MAn = ObjData.ProcesarInformacionAntiguedadSaldo(Procesar, Accion);
+         //   var MAn = ObjData.ProcesarInformacionAntiguedadSaldo(Procesar, Accion);
 
     }
 

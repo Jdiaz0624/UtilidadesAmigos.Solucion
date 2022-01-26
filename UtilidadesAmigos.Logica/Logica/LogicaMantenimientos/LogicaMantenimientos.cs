@@ -857,301 +857,349 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaMantenimientos
         #endregion
 
         #region REPORTE DE ANTIGUEDAD DE SALDO
-        //BUSCAR LOS DATOS DEL REPORTE
-        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EConsultarAntiguedadSaldos> BuscarDatosAntiguedadSaldo(DateTime? FechaCorte = null, string NumeroFactura = null, string Poliza = null, int? Ramo = null, decimal? Tasa = null,int? Tipo = null, string CodigoCliente = null,  string CodigoVendedor = null, int? Oficina = null,decimal? UsuarioGenera = null, int? Moneda = null) {
+
+        /// <summary>
+        /// Este metodo es para mostrar el origen de los datos para los reportes de antigeuda de saldo
+        /// </summary>
+        /// <param name="FechaCorte"></param>
+        /// <param name="NumeroFactura"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="Tipo"></param>
+        /// <param name="CodigoCliente"></param>
+        /// <param name="CodigoVendedor"></param>
+        /// <param name="CodigoSupervisor"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="UsuarioGenera"></param>
+        /// <param name="Moneda"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EOrigenDatosAntiguedadSaldo> BuscaOrigenDataAntiguedadSaldo(DateTime? FechaCorte = null, decimal? NumeroFactura = null, string Poliza = null, int? Ramo = null, int? Tipo = null, decimal? CodigoCliente = null, int? CodigoVendedor = null, int? CodigoSupervisor = null, int? Oficina = null, decimal? UsuarioGenera = null, int? Moneda = null) {
+
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_CONSULTAR_DATOS_ANTIGUEDAD_SALDO(FechaCorte, NumeroFactura, Poliza, Ramo, Tasa, Tipo, CodigoCliente, CodigoVendedor, Oficina, UsuarioGenera, Moneda)
-                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EConsultarAntiguedadSaldos
-                           {
-                               Documento = n.Documento,
-                               NumeroFacturaFiltro = n.NumeroFacturaFiltro,
-                               Tipo = n.Tipo,
-                               DescripcionTipo = n.DescripcionTipo,
-                               Asegurado = n.Asegurado,
-                               ClienteFiltro = n.ClienteFiltro,
-                               Fecha = n.Fecha,
-                               Intermediario = n.Intermediario,
-                               VendedorFiltro = n.VendedorFiltro,
-                               Poliza = n.Poliza,
-                               CodMoneda = n.CodMoneda,
-                               DescripcionMoneda = n.DescripcionMoneda,
-                               Estatus = n.Estatus,
-                               CodRamo = n.CodRamo,
-                               DescripcionRamo = n.DescripcionRamo,
-                               InicioVigencia = n.InicioVigencia,
-                               Inicio = n.Inicio,
-                               FinVigencia = n.FinVigencia,
-                               Fin = n.Fin,
-                               CodOficina = n.CodOficina,
-                               Oficina = n.Oficina,
-                               Dias = n.Dias,
-                               Facturado = n.Facturado,
-                               Cobrado = n.Cobrado,
-                               Balance = n.Balance,
-                               Impuesto = n.Impuesto,
-                               PorcComision = n.PorcComision,
-                               ValorComision = n.ValorComision,
-                               ComisionPendiente = n.ComisionPendiente,
-                               __0_10 = n._0_10,
-                               __0_30 = n._0_30,
-                               __31_60 = n._31_60,
-                               __61_90 = n._61_90,
-                               __91_120 = n._91_120,
-                               __121_150 = n._121_150,
-                               __151_MAS = n._151_MAS,
-                               Total = n.Total,
-                               Diferencia = n.Diferencia,
-                               OrdenTipo = n.OrdenTipo,
-                               CortadoAL=n.CortadoAL,
-                               GeneradoPor=n.GeneradoPor
-                           }).ToList();
-            return Listado;
+            var Origen = (from n in Objdata.SP_ORIGEN_DATOS_ANTIGUEDAD_SALDO(FechaCorte, NumeroFactura, Poliza, Ramo, Tipo, CodigoCliente, CodigoVendedor, CodigoSupervisor, Oficina, UsuarioGenera, Moneda)
+                          select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EOrigenDatosAntiguedadSaldo
+                          {
+                              Poliza=n.Poliza,
+                              Cotizacion=n.Cotizacion,
+                              CodigoCliente=n.CodigoCliente,
+                              CodigoIntermediario=n.CodigoIntermediario,
+                              CodigoSupervisor=n.CodigoSupervisor,
+                              CodigoOficina=n.CodigoOficina,
+                              CodigoMoneda=n.CodigoMoneda,
+                              CodigoRamo=n.CodigoRamo,
+                              Valor=n.Valor,
+                              NumeroFactura=n.NumeroFactura,
+                              Balance=n.Balance,
+                              Tipo=n.Tipo,
+                              Fecha=n.Fecha,
+                              FechaCorte=n.FechaCorte,
+                              UsuarioGenera=n.UsuarioGenera
+                        
+                          }).ToList();
+            return Origen;
         }
 
-        //PROCESAR INFORMACION PARA EL REPORTE DE ANTIGUEDAD DE SALDO
-        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionAntiguedadSaldo ProcesarInformacionAntiguedadSaldo(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionAntiguedadSaldo Item, string accion) {
+
+        /// <summary>
+        /// Procesar los datos de la antiguedad de saldo
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionDatosAntiguedadSaldo ProcesarDatosAntiguedadSaldo(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionDatosAntiguedadSaldo Item, string Accion) {
+
             Objdata.CommandTimeout = 999999999;
 
-            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionAntiguedadSaldo Procesar = null;
+            UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionDatosAntiguedadSaldo Procesar = null;
 
-            var AntiguedadSaldo = Objdata.SP_PROCESAR_INFORMACION_REPORTE_ANTIGUEDAD_SALDO(
+            var AntiguedadSaldo = Objdata.SP_PROCESAR_INFORMACION_DATOS_ANTIGUEDAD_SALDO(
                 Item.IdUsuario,
-                Item.FechaCorte,
-                Item.DocumentoFormateado,
-                Item.DocumentoFiltro,
-                Item.Tipo,
-                Item.DescripcionTipo,
-                Item.Asegurado,
-                Item.CodCliente,
-                Item.FechaFactura,
-                Item.Intermediario,
-                Item.CodIntermediario,
                 Item.Poliza,
-                Item.CodMoneda,
-                Item.DescripcionMoneda,
-                Item.Estatus,
-                Item.CodRamo,
-                Item.InicioVigencia,
-                Item.Inicio,
-                Item.FinVigencia,
-                Item.Fin,
-                Item.CodOficina,
-                Item.Oficina,
-                Item.dias,
-                Item.Facturado,
-                Item.Cobrado,
+                Item.Cotizacion,
+                Item.CodigoCliente,
+                Item.CodigoIntermediario,
+                Item.CodigoSupervisor,
+                Item.CodigoOficina,
+                Item.CodigoMoneda,
+                Item.CodigoRamo,
+                Item.Valor,
+                Item.NumeroFactura,
                 Item.Balance,
-                Item.Impuesto,
-                Item.PorcientoComision,
-                Item.ValorComision,
-                Item.ComisionPendiente,
-                Item.__0_10,
-                Item.__0_30,
-                Item.__31_60,
-                Item.__61_90,
-                Item.__91_120,
-                Item.__121_150,
-                Item.__151_mas,
-                Item.Total,
-                Item.Diferencia,
-                Item.OrigenTipo,
-                accion);
+                Item.Tipo,
+                Item.Fecha,
+                Item.FechaCorte,
+                Accion);
             if (AntiguedadSaldo != null) {
                 Procesar = (from n in AntiguedadSaldo
-                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionAntiguedadSaldo
+                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionDatosAntiguedadSaldo
                             {
-                                IdUsuario = n.IdUsuario,
-                                FechaCorte = n.FechaCorte,
-                                DocumentoFormateado = n.DocumentoFormateado,
-                                DocumentoFiltro = n.DocumentoFiltro,
-                                Tipo = n.Tipo,
-                                DescripcionTipo = n.DescripcionTipo,
-                                Asegurado = n.Asegurado,
-                                CodCliente = n.CodCliente,
-                                FechaFactura = n.FechaFactura,
-                                Intermediario = n.Intermediario,
-                                CodIntermediario = n.CodIntermediario,
-                                Poliza = n.Poliza,
-                                CodMoneda = n.CodMoneda,
-                                DescripcionMoneda = n.DescripcionMoneda,
-                                Estatus = n.Estatus,
-                                CodRamo = n.CodRamo,
-                                InicioVigencia = n.InicioVigencia,
-                                Inicio = n.Inicio,
-                                FinVigencia = n.FinVigencia,
-                                Fin = n.Fin,
-                                CodOficina = n.CodOficina,
-                                Oficina = n.Oficina,
-                                dias = n.dias,
-                                Facturado = n.Facturado,
-                                Cobrado = n.Cobrado,
-                                Balance = n.Balance,
-                                Impuesto = n.Impuesto,
-                                PorcientoComision = n.PorcientoComision,
-                                ValorComision = n.ValorComision,
-                                ComisionPendiente = n.ComisionPendiente,
-                                __0_10 = n._0_10,
-                                __0_30 = n._0_30,
-                                __31_60 = n._31_60,
-                                __61_90 = n._61_90,
-                                __91_120 = n._91_120,
-                                __121_150 = n._121_150,
-                                __151_mas = n._151_mas,
-                                Total = n.Total,
-                                Diferencia = n.Diferencia,
-                                OrigenTipo = n.OrigenTipo
+                                IdUsuario=n.IdUsuario,
+                                Poliza=n.Poliza,
+                                Cotizacion=n.Cotizacion,
+                                CodigoCliente=n.CodigoCliente,
+                                CodigoIntermediario=n.CodigoIntermediario,
+                                CodigoSupervisor=n.CodigoSupervisor,
+                                CodigoOficina=n.CodigoOficina,
+                                CodigoMoneda=n.CodigoMoneda,
+                                CodigoRamo=n.CodigoRamo,
+                                Valor=n.Valor,
+                                NumeroFactura=n.NumeroFactura,
+                                Balance=n.Balance,
+                                Tipo=n.Tipo,
+                                Fecha=n.Fecha,
+                                FechaCorte=n.FechaCorte
                             }).FirstOrDefault();
+                
+
             }
             return Procesar;
         }
-        /// <summary>
-        /// Este MEtodo es apra generar los datos del reporte de antiguedad de saldo resumido y super resumido.
-        /// </summary>
-        /// <param name="IdUsuario"></param>
-        /// <param name="TasaDollar"></param>
-        /// <param name="SuperResumido"></param>
-        /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EReporteAntiguedadSaldoResumido> ReporteAntiguedadSaldoResumido(decimal? IdUsuario = null, decimal? TasaDollar = null, int? SuperResumido = null) {
-            Objdata.CommandTimeout = 999999999;
 
-            var Resumido = (from n in Objdata.SP_REPORTE_ANTIDAD_SALDO_RESUMIDO(IdUsuario, TasaDollar, SuperResumido)
-                            select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EReporteAntiguedadSaldoResumido
-                            {
-                                CodMoneda=n.CodMoneda,
-                                FechaCorte=n.FechaCorte,
-                                DescripcionMoneda=n.DescripcionMoneda,
-                                Ramo=n.Ramo,
-                                CodRamo=n.CodRamo,
-                                CantidadFactura=n.CantidadFactura,
-                                CantidadCreditos=n.CantidadCreditos,
-                                CantidadPrimaDeposito=n.CantidadPrimaDeposito,
-                                CantidadRegistros=n.CantidadRegistros,
-                                Balance=n.Balance,
-                                __0_30=n._0_30,
-                                __31_60=n._31_60,
-                                __61_90=n._61_90,
-                                __91_120=n._91_120,
-                                __121_150=n._121_150,
-                                __151_Mas=n._151_Mas,
-                                Total=n.Total,
-                                GeneradoPor=n.GeneradoPor,
-                                TotalPesos=n.TotalPesos,
-                                Tasa=n.Tasa
-                                
-                            }).ToList();
-            return Resumido;
-        }
 
-        /// <summary>
-        /// Este Metodo es para mostrar los datos de la antiguedad de saldo en detalle
-        /// </summary>
-        /// <param name="IdUsuario"></param>
-        /// <param name="TasaDollar"></param>
-        /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EReporteAntiguedadSaldoDetalle> ReporteAntiguedadSaldoDetalle(decimal? IdUsuario = null, decimal? TasaDollar = null) {
-            Objdata.CommandTimeout = 999999999;
+        ////PROCESAR INFORMACION PARA EL REPORTE DE ANTIGUEDAD DE SALDO
+        //public UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionAntiguedadSaldo ProcesarInformacionAntiguedadSaldo(UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionAntiguedadSaldo Item, string accion) {
+        //    Objdata.CommandTimeout = 999999999;
 
-            var AntigueadSaldoDetalle = (from n in Objdata.SP_REPORTE_ANTIDAD_SALDO_DETALLE(IdUsuario, TasaDollar)
-                                         select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EReporteAntiguedadSaldoDetalle
-                                         {
-                                             IdUsuario=n.IdUsuario,
-                                             Persona=n.Persona,
-                                             FechaCorte=n.FechaCorte,
-                                             DocumentoFormateado=n.DocumentoFormateado,
-                                             DocumentoFiltro=n.DocumentoFiltro,
-                                             Tipo=n.Tipo,
-                                             DescripcionTipo=n.DescripcionTipo,
-                                             Asegurado=n.Asegurado,
-                                             CodCliente=n.CodCliente,
-                                             FechaFactura=n.FechaFactura,
-                                             Intermediario=n.Intermediario,
-                                             CodIntermediario=n.CodIntermediario,
-                                             Poliza=n.Poliza,
-                                             CodMoneda=n.CodMoneda,
-                                             DescripcionMoneda=n.DescripcionMoneda,
-                                             Estatus=n.Estatus,
-                                             CodRamo=n.CodRamo,
-                                             Ramo=n.Ramo,
-                                             InicioVigencia=n.InicioVigencia,
-                                             Inicio=n.Inicio,
-                                             FinVigencia=n.FinVigencia,
-                                             Fin=n.Fin,
-                                             CodOficina=n.CodOficina,
-                                             Oficina=n.Oficina,
-                                             dias=n.dias,
-                                             Facturado=n.Facturado,
-                                             Cobrado=n.Cobrado,
-                                             Balance=n.Balance,
-                                             Impuesto=n.Impuesto,
-                                             PorcientoComision=n.PorcientoComision,
-                                             ValorComision=n.ValorComision,
-                                             ComisionPendiente=n.ComisionPendiente,
-                                             __0_10=n._0_10,
-                                             __0_30=n._0_30,
-                                             __31_60=n._31_60,
-                                             __61_90=n._61_90,
-                                             __91_120=n._91_120,
-                                             __121_150=n._121_150,
-                                             __151_mas=n._151_mas,
-                                             Total=n.Total,
-                                             Diferencia=n.Diferencia,
-                                             OrigenTipo=n.OrigenTipo,
-                                             TotalPesos=n.TotalPesos,
-                                             CantidadFactura=n.CantidadFactura,
-                                             CantidadCreditos=n.CantidadCreditos,
-                                             CantidadPrimaDeposito=n.CantidadPrimaDeposito,
-                                             CantidadRegistros=n.CantidadRegistros,
-                                             Tasa=n.Tasa
-                                         }).ToList();
-            return AntigueadSaldoDetalle;
-        }
+        //    UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionAntiguedadSaldo Procesar = null;
 
-        public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EReporteAntiguedadSaldoNeteadoDetalle> ReporteAntiguedadSaldoNeteadoDetalle(decimal? IdUsuario = null, decimal? TasaDollar = null) {
-            Objdata.CommandTimeout = 999999999;
+        //    var AntiguedadSaldo = Objdata.SP_PROCESAR_INFORMACION_REPORTE_ANTIGUEDAD_SALDO(
+        //        Item.IdUsuario,
+        //        Item.FechaCorte,
+        //        Item.DocumentoFormateado,
+        //        Item.DocumentoFiltro,
+        //        Item.Tipo,
+        //        Item.DescripcionTipo,
+        //        Item.Asegurado,
+        //        Item.CodCliente,
+        //        Item.FechaFactura,
+        //        Item.Intermediario,
+        //        Item.CodIntermediario,
+        //        Item.Poliza,
+        //        Item.CodMoneda,
+        //        Item.DescripcionMoneda,
+        //        Item.Estatus,
+        //        Item.CodRamo,
+        //        Item.InicioVigencia,
+        //        Item.Inicio,
+        //        Item.FinVigencia,
+        //        Item.Fin,
+        //        Item.CodOficina,
+        //        Item.Oficina,
+        //        Item.dias,
+        //        Item.Facturado,
+        //        Item.Cobrado,
+        //        Item.Balance,
+        //        Item.Impuesto,
+        //        Item.PorcientoComision,
+        //        Item.ValorComision,
+        //        Item.ComisionPendiente,
+        //        Item.__0_10,
+        //        Item.__0_30,
+        //        Item.__31_60,
+        //        Item.__61_90,
+        //        Item.__91_120,
+        //        Item.__121_150,
+        //        Item.__151_mas,
+        //        Item.Total,
+        //        Item.Diferencia,
+        //        Item.OrigenTipo,
+        //        accion);
+        //    if (AntiguedadSaldo != null) {
+        //        Procesar = (from n in AntiguedadSaldo
+        //                    select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EProcesarInformacionAntiguedadSaldo
+        //                    {
+        //                        IdUsuario = n.IdUsuario,
+        //                        FechaCorte = n.FechaCorte,
+        //                        DocumentoFormateado = n.DocumentoFormateado,
+        //                        DocumentoFiltro = n.DocumentoFiltro,
+        //                        Tipo = n.Tipo,
+        //                        DescripcionTipo = n.DescripcionTipo,
+        //                        Asegurado = n.Asegurado,
+        //                        CodCliente = n.CodCliente,
+        //                        FechaFactura = n.FechaFactura,
+        //                        Intermediario = n.Intermediario,
+        //                        CodIntermediario = n.CodIntermediario,
+        //                        Poliza = n.Poliza,
+        //                        CodMoneda = n.CodMoneda,
+        //                        DescripcionMoneda = n.DescripcionMoneda,
+        //                        Estatus = n.Estatus,
+        //                        CodRamo = n.CodRamo,
+        //                        InicioVigencia = n.InicioVigencia,
+        //                        Inicio = n.Inicio,
+        //                        FinVigencia = n.FinVigencia,
+        //                        Fin = n.Fin,
+        //                        CodOficina = n.CodOficina,
+        //                        Oficina = n.Oficina,
+        //                        dias = n.dias,
+        //                        Facturado = n.Facturado,
+        //                        Cobrado = n.Cobrado,
+        //                        Balance = n.Balance,
+        //                        Impuesto = n.Impuesto,
+        //                        PorcientoComision = n.PorcientoComision,
+        //                        ValorComision = n.ValorComision,
+        //                        ComisionPendiente = n.ComisionPendiente,
+        //                        __0_10 = n._0_10,
+        //                        __0_30 = n._0_30,
+        //                        __31_60 = n._31_60,
+        //                        __61_90 = n._61_90,
+        //                        __91_120 = n._91_120,
+        //                        __121_150 = n._121_150,
+        //                        __151_mas = n._151_mas,
+        //                        Total = n.Total,
+        //                        Diferencia = n.Diferencia,
+        //                        OrigenTipo = n.OrigenTipo
+        //                    }).FirstOrDefault();
+        //    }
+        //    return Procesar;
+        //}
+        ///// <summary>
+        ///// Este MEtodo es apra generar los datos del reporte de antiguedad de saldo resumido y super resumido.
+        ///// </summary>
+        ///// <param name="IdUsuario"></param>
+        ///// <param name="TasaDollar"></param>
+        ///// <param name="SuperResumido"></param>
+        ///// <returns></returns>
+        //public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EReporteAntiguedadSaldoResumido> ReporteAntiguedadSaldoResumido(decimal? IdUsuario = null, decimal? TasaDollar = null, int? SuperResumido = null) {
+        //    Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_BUSCA_REPORTE_ANTIGUEDAD_SALDO_NETEADO_DETALLE(IdUsuario, TasaDollar)
-                           select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EReporteAntiguedadSaldoNeteadoDetalle
-                           {
-                               IdUsuario=n.IdUsuario,
-                               GeneradoPor=n.GeneradoPor,
-                               FechaCorte=n.FechaCorte,
-                               FechaCorteFormateado=n.FechaCorteFormateado,
-                               Asegurado=n.Asegurado,
-                               Asegurado1=n.Asegurado1,
-                               CodCliente=n.CodCliente,
-                               Intermediario=n.Intermediario,
-                               CodIntermediario=n.CodIntermediario,
-                               Poliza=n.Poliza,
-                               CodMoneda=n.CodMoneda,
-                               DescripcionMoneda=n.DescripcionMoneda,
-                               Estatus=n.Estatus,
-                               CodRamo=n.CodRamo,
-                               Ramo=n.Ramo,
-                               InicioVigencia=n.InicioVigencia,
-                               Inicio=n.Inicio,
-                               FinVigencia=n.FinVigencia,
-                               Fin=n.Fin,
-                               Facturado=n.Facturado,
-                               Cobrado=n.Cobrado,
-                               Balance=n.Balance,
-                               Impuesto=n.Impuesto,
-                               ValorComision=n.ValorComision,
-                               ComisionPendiente=n.ComisionPendiente,
-                               __0_30=n._0_30,
-                               __31_60=n._31_60,
-                               __61_90=n._61_90,
-                               __91_120=n._91_120,
-                               __121_150=n._121_150,
-                               __151_mas=n._151_mas,
-                               Total=n.Total,
-                               TotalPesos=n.TotalPesos,
-                               TasaDollar=n.TasaDollar,
-                               Diferencia=n.Diferencia
+        //    var Resumido = (from n in Objdata.SP_REPORTE_ANTIDAD_SALDO_RESUMIDO(IdUsuario, TasaDollar, SuperResumido)
+        //                    select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EReporteAntiguedadSaldoResumido
+        //                    {
+        //                        CodMoneda=n.CodMoneda,
+        //                        FechaCorte=n.FechaCorte,
+        //                        DescripcionMoneda=n.DescripcionMoneda,
+        //                        Ramo=n.Ramo,
+        //                        CodRamo=n.CodRamo,
+        //                        CantidadFactura=n.CantidadFactura,
+        //                        CantidadCreditos=n.CantidadCreditos,
+        //                        CantidadPrimaDeposito=n.CantidadPrimaDeposito,
+        //                        CantidadRegistros=n.CantidadRegistros,
+        //                        Balance=n.Balance,
+        //                        __0_30=n._0_30,
+        //                        __31_60=n._31_60,
+        //                        __61_90=n._61_90,
+        //                        __91_120=n._91_120,
+        //                        __121_150=n._121_150,
+        //                        __151_Mas=n._151_Mas,
+        //                        Total=n.Total,
+        //                        GeneradoPor=n.GeneradoPor,
+        //                        TotalPesos=n.TotalPesos,
+        //                        Tasa=n.Tasa
 
-                           }).ToList();
-            return Listado;
-        }
+        //                    }).ToList();
+        //    return Resumido;
+        //}
+
+        ///// <summary>
+        ///// Este Metodo es para mostrar los datos de la antiguedad de saldo en detalle
+        ///// </summary>
+        ///// <param name="IdUsuario"></param>
+        ///// <param name="TasaDollar"></param>
+        ///// <returns></returns>
+        //public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EReporteAntiguedadSaldoDetalle> ReporteAntiguedadSaldoDetalle(decimal? IdUsuario = null, decimal? TasaDollar = null) {
+        //    Objdata.CommandTimeout = 999999999;
+
+        //    var AntigueadSaldoDetalle = (from n in Objdata.SP_REPORTE_ANTIDAD_SALDO_DETALLE(IdUsuario, TasaDollar)
+        //                                 select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EReporteAntiguedadSaldoDetalle
+        //                                 {
+        //                                     IdUsuario=n.IdUsuario,
+        //                                     Persona=n.Persona,
+        //                                     FechaCorte=n.FechaCorte,
+        //                                     DocumentoFormateado=n.DocumentoFormateado,
+        //                                     DocumentoFiltro=n.DocumentoFiltro,
+        //                                     Tipo=n.Tipo,
+        //                                     DescripcionTipo=n.DescripcionTipo,
+        //                                     Asegurado=n.Asegurado,
+        //                                     CodCliente=n.CodCliente,
+        //                                     FechaFactura=n.FechaFactura,
+        //                                     Intermediario=n.Intermediario,
+        //                                     CodIntermediario=n.CodIntermediario,
+        //                                     Poliza=n.Poliza,
+        //                                     CodMoneda=n.CodMoneda,
+        //                                     DescripcionMoneda=n.DescripcionMoneda,
+        //                                     Estatus=n.Estatus,
+        //                                     CodRamo=n.CodRamo,
+        //                                     Ramo=n.Ramo,
+        //                                     InicioVigencia=n.InicioVigencia,
+        //                                     Inicio=n.Inicio,
+        //                                     FinVigencia=n.FinVigencia,
+        //                                     Fin=n.Fin,
+        //                                     CodOficina=n.CodOficina,
+        //                                     Oficina=n.Oficina,
+        //                                     dias=n.dias,
+        //                                     Facturado=n.Facturado,
+        //                                     Cobrado=n.Cobrado,
+        //                                     Balance=n.Balance,
+        //                                     Impuesto=n.Impuesto,
+        //                                     PorcientoComision=n.PorcientoComision,
+        //                                     ValorComision=n.ValorComision,
+        //                                     ComisionPendiente=n.ComisionPendiente,
+        //                                     __0_10=n._0_10,
+        //                                     __0_30=n._0_30,
+        //                                     __31_60=n._31_60,
+        //                                     __61_90=n._61_90,
+        //                                     __91_120=n._91_120,
+        //                                     __121_150=n._121_150,
+        //                                     __151_mas=n._151_mas,
+        //                                     Total=n.Total,
+        //                                     Diferencia=n.Diferencia,
+        //                                     OrigenTipo=n.OrigenTipo,
+        //                                     TotalPesos=n.TotalPesos,
+        //                                     CantidadFactura=n.CantidadFactura,
+        //                                     CantidadCreditos=n.CantidadCreditos,
+        //                                     CantidadPrimaDeposito=n.CantidadPrimaDeposito,
+        //                                     CantidadRegistros=n.CantidadRegistros,
+        //                                     Tasa=n.Tasa
+        //                                 }).ToList();
+        //    return AntigueadSaldoDetalle;
+        //}
+
+        //public List<UtilidadesAmigos.Logica.Entidades.Mantenimientos.EReporteAntiguedadSaldoNeteadoDetalle> ReporteAntiguedadSaldoNeteadoDetalle(decimal? IdUsuario = null, decimal? TasaDollar = null) {
+        //    Objdata.CommandTimeout = 999999999;
+
+        //    var Listado = (from n in Objdata.SP_BUSCA_REPORTE_ANTIGUEDAD_SALDO_NETEADO_DETALLE(IdUsuario, TasaDollar)
+        //                   select new UtilidadesAmigos.Logica.Entidades.Mantenimientos.EReporteAntiguedadSaldoNeteadoDetalle
+        //                   {
+        //                       IdUsuario=n.IdUsuario,
+        //                       GeneradoPor=n.GeneradoPor,
+        //                       FechaCorte=n.FechaCorte,
+        //                       FechaCorteFormateado=n.FechaCorteFormateado,
+        //                       Asegurado=n.Asegurado,
+        //                       Asegurado1=n.Asegurado1,
+        //                       CodCliente=n.CodCliente,
+        //                       Intermediario=n.Intermediario,
+        //                       CodIntermediario=n.CodIntermediario,
+        //                       Poliza=n.Poliza,
+        //                       CodMoneda=n.CodMoneda,
+        //                       DescripcionMoneda=n.DescripcionMoneda,
+        //                       Estatus=n.Estatus,
+        //                       CodRamo=n.CodRamo,
+        //                       Ramo=n.Ramo,
+        //                       InicioVigencia=n.InicioVigencia,
+        //                       Inicio=n.Inicio,
+        //                       FinVigencia=n.FinVigencia,
+        //                       Fin=n.Fin,
+        //                       Facturado=n.Facturado,
+        //                       Cobrado=n.Cobrado,
+        //                       Balance=n.Balance,
+        //                       Impuesto=n.Impuesto,
+        //                       ValorComision=n.ValorComision,
+        //                       ComisionPendiente=n.ComisionPendiente,
+        //                       __0_30=n._0_30,
+        //                       __31_60=n._31_60,
+        //                       __61_90=n._61_90,
+        //                       __91_120=n._91_120,
+        //                       __121_150=n._121_150,
+        //                       __151_mas=n._151_mas,
+        //                       Total=n.Total,
+        //                       TotalPesos=n.TotalPesos,
+        //                       TasaDollar=n.TasaDollar,
+        //                       Diferencia=n.Diferencia
+
+        //                   }).ToList();
+        //    return Listado;
+        //}
         #endregion
 
         #region SACAR LA TASA DE A MONEDA

@@ -2,21 +2,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-       <style type="text/css">
-        .jumbotron{
-            color:#000000; 
-            background:#1E90FF;
-            font-size:30px;
-            font-weight:bold;
-            font-family:'Gill Sans';
-            padding:25px;
-        }
+     
+     <style type="text/css">
 
         .btn-sm{
             width:90px;
         }
 
-        .Letranegrita {
+        .LetrasNegrita {
         font-weight:bold;
         }
         table {
@@ -28,197 +21,157 @@
             background-color: #1E90FF;
             color: #000000;
         }
+          .BotonImagen {
+              width: 40px;
+              height: 40px;
+          }
     </style>
 
     <script type="text/javascript">
         function CampoFechaCorteVacio() {
-            alert("El campo Fecha de corte no puede estar vacio para realziar esta operación, favor de verificar.");
+            alert("El campo Fecha de Corte no puede estar vacio para buscar esta información, favor de verificar.");
             $("#<%=txtFechaCorte.ClientID%>").css("border-color", "red");
         }
-
-        $(document).ready(function () {
-            $("#<%=btnConsultar.ClientID%>").click(function () {
-                var Tasa = $("#<%=txtTasaDollar.ClientID%>").val().length;
-                if (Tasa < 1) {
-                    alert("El campo tasa no puede estar vacio para realizar esta consulta, favor de verificar.");
-                    $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
-                    return false;
-                }
-
-            });
-
-            $("#<%=btnExportar.ClientID%>").click(function () {
-                var Tasa = $("#<%=txtTasaDollar.ClientID%>").val().length;
-                if (Tasa < 1) {
-                    alert("El campo tasa no puede estar vacio para exportar esta información, favor de verificar.");
-                    $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
-                    return false;
-                }
-
-            });
-        })
     </script>
 
     <div class="container-fluid">
-       <br /><br />
-
+        <br />
         <div class="row">
             <div class="col-md-3">
-                <asp:Label ID="lbfechacorte" runat="server" Text="Fecha de Corte" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtFechaCorte" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
-            </div>
-            <div class="col-md-3">
-                <asp:Label ID="lbNumeroFactura" runat="server" Text="Numero de Factura (FT, CR o PAD)" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtNumeroFactura" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
-            </div>
-            <div class="col-md-3">
-                <asp:Label ID="lbPoliza" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtPoliza" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="col-md-3">
-                <asp:Label ID="lbSeleccionarRamo" runat="server" Text="Ramo" CssClass="Letranegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarRamo" runat="server" ToolTip="Seleccionar Ramo para la consulta" CssClass="form-control"></asp:DropDownList>
+                <asp:Label ID="lbFechaCorte" runat="server" Text="Fecha de Corte" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaCorte" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
 
-             <div class="col-md-1">
-                <asp:Label ID="lbTasaDollar" runat="server" Text="Tasa" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtTasaDollar" runat="server" CssClass="form-control" TextMode="Number" step="0.01"></asp:TextBox>
-            </div>
-            <div class="col-md-2">
-                <asp:Label ID="lbTipoMovimiento" runat="server" Text="Tipo de Movimiento" CssClass="Letranegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarTipoMovimiento" runat="server" ToolTip="Seleccionar el Tipo de Movimiento" CssClass="form-control"></asp:DropDownList>
-            </div>
-            <div class="col-md-1">
-                <asp:Label ID="lbCodigoCliente" runat="server" Text="Cliente" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtCodigoCliente" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoCliente_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
-            </div>
-             <div class="col-md-2">
-                <asp:Label ID="lbNombreCliente" runat="server" Text="Nombre Cliente" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtNombreCliente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-            </div>
-
-            <div class="col-md-1">
-                <asp:Label ID="lbCodigoVendedor" runat="server" Text="Vendedor" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtCodigoVendedor" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoVendedor_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
-            </div>
-             <div class="col-md-2">
-                <asp:Label ID="lbNombreVendedor" runat="server" Text="Nombre Vendedor" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtNombreVendedor" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-            </div>
             <div class="col-md-3">
-                <asp:Label ID="lbOficina" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarOficina" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
+                <asp:Label ID="lbNumeroFactura" runat="server" Text="No. Factura" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtNumeroFactura" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="col-md-2">
-                <asp:Label ID="lbSeleccionarMoneda" runat="server" Text="Moneda" CssClass="Letranegrita"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarMoneda" runat="server" ToolTip="Seleccionar Moneda" CssClass="form-control"></asp:DropDownList>
+
+            <div class="col-md-3">
+                <asp:Label ID="lbPoliza" runat="server" Text="Poliza" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtPoliza" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
-        </div>
 
-        <div class="form-check-inline">
+            <div class="col-md-3">
+                <asp:Label ID="lbRamo" runat="server" Text="Ramo" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlRamo" runat="server" ToolTip="Seleccionar Ramo para la consulta" CssClass="form-control"></asp:DropDownList>
+            </div>
 
-                <asp:Label ID="lbTipoReporte" runat="server" Text="Tipo de Reporte: " CssClass="Letranegrita"></asp:Label>
-                <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" CssClass="form-check-input" GroupName="TipoReporte" ToolTip="Generar Antiguedad de Saldo Resumida" />
-                <asp:RadioButton ID="rbReporteNeteado" runat="server" Text="Neteado" CssClass="form-check-input" GroupName="TipoReporte" ToolTip="Generar Antiguedad de Saldo Neteada" />
-                <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Detallado" CssClass="form-check-input" GroupName="TipoReporte" ToolTip="Generar Antiguedad de Saldo Detallada" />
-  
+            <div class="col-md-3">
+                <asp:Label ID="lbTasa" runat="server" Text="Tasa" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtTasa" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
+            </div>
+
+             <div class="col-md-3">
+                <asp:Label ID="lbTipo" runat="server" Text="Tipo" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlTipo" runat="server" ToolTip="Seleccionar Tipo para la consulta" CssClass="form-control"></asp:DropDownList>
+            </div>
+
+             <div class="col-md-3">
+                <asp:Label ID="lbCodigoCliente" runat="server" Text="No. Cliente" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtCodigoCliente" runat="server" TextMode="Number" AutoPostBack="true" OnTextChanged="txtCodigoCliente_TextChanged" CssClass="form-control"></asp:TextBox>
+            </div>
+
+            <div class="col-md-3">
+                <asp:Label ID="lbNombreCliente" runat="server" Text="Cliente" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtNombreCliente" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+
+             <div class="col-md-3">
+                <asp:Label ID="lbCodigoIntermediario" runat="server" Text="No. Vendedor" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtCodigoIntermediario" runat="server" TextMode="Number" AutoPostBack="true" OnTextChanged="txtCodigoIntermediario_TextChanged" CssClass="form-control"></asp:TextBox>
+            </div>
+
+             <div class="col-md-3">
+                <asp:Label ID="lbNombreIntermediario" runat="server" Text="Vendedor" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtNombreIntermediario" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+
+            <div class="col-md-3">
+                <asp:Label ID="lbCodigoSupervisor" runat="server" Text="No. Supervisor" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtCodigoSupervisor" runat="server" TextMode="Number" AutoPostBack="true" OnTextChanged="txtCodigoSupervisor_TextChanged" CssClass="form-control"></asp:TextBox>
+            </div>
+
+            <div class="col-md-3">
+                <asp:Label ID="lbNombreSupervisor" runat="server" Text="Supervisor" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtNombreSupervisor" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+
+             <div class="col-md-3">
+                <asp:Label ID="lbOficina" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlOficina" runat="server" ToolTip="Seleccionar Oficina    para la consulta" CssClass="form-control"></asp:DropDownList>
+            </div>
+
+             <div class="col-md-3">
+                <asp:Label ID="lbMoneda" runat="server" Text="Moneda" CssClass="LetrasNegrita"></asp:Label>
+                <asp:DropDownList ID="ddlMoneda" runat="server" ToolTip="Seleccionar Moneda para la consulta" CssClass="form-control"></asp:DropDownList>
+            </div>
         </div>
         <br />
-        <div class="form-check-inline">
-       
-                <asp:Label ID="lbFormatoReporte" runat="server" Text="Formato de Reporte: " CssClass="Letranegrita"></asp:Label>
-                <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" CssClass="form-check-input" GroupName="FormatoReporte" ToolTip="Generar Información en PDF" />
-                <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" CssClass="form-check-input" GroupName="FormatoReporte" ToolTip="Generar Información en Excel" />
-                <asp:RadioButton ID="rbWord" runat="server" Text="Word" CssClass="form-check-input" GroupName="FormatoReporte" ToolTip="Generar Informacion en Word" />
-
-        </div>
-        <br />
-         <div class="form-check-inline">
-          
-                <asp:Label ID="lbTipoConsulta" runat="server" Text="Tipo de Consulta: " CssClass="Letranegrita"></asp:Label>
-                <asp:RadioButton ID="rbSistema" runat="server" Text="Sistema" CssClass="form-check-input" GroupName="TipoConsulta" ToolTip="Consultar en el Sistema (Sysflex)" AutoPostBack="true" OnCheckedChanged="rbSistema_CheckedChanged" />
-                <asp:RadioButton ID="rbHistorico" runat="server" Text="Historico" CssClass="form-check-input" GroupName="TipoConsulta" ToolTip="Consultar en el historico" AutoPostBack="true" OnCheckedChanged="rbHistorico_CheckedChanged" />
-   
-        </div>
-
         <div align="center">
-            <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar Registros a Excel de manera directa" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnExportar_Click" />
-            <asp:Button ID="btnReporte" runat="server" Text="Reporte" ToolTip="Generar Reporte de Antiguedad de Saldo" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnReporte_Click"/>
-            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros por pantalla" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click"/>
-            <asp:Button ID="btnGuardar" runat="server" Text="Guardar" ToolTip="Guardar Registro para Historico" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnGuardar_Click"/>
-            <br /><br />
-
-
-               <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Total ( " CssClass="Letranegrita"></asp:Label>
-            <asp:Label ID="lbCantidadRegistrosVariable" runat="server" Text="0 " CssClass="Letranegrita"></asp:Label>
-            <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
+             <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consultar Informacón por Pantalla" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultar_Click" />
+             <asp:ImageButton ID="btnGenerarExcel" runat="server" ToolTip="Consultar Informacón por Pantalla" CssClass="BotonImagen" ImageUrl="~/Imagenes/excel.png" OnClick="btnGenerarExcel_Click" />
+            <br />
+            <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Registros Encontrados (" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadRegistrosVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
         </div>
         <br />
-
-
-            <table class="table table-hover">
-                <thead>
-                    <tr>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col"> Asegurado </th>
+                    <th scope="col"> Tipo </th>
                     <th scope="col"> Poliza </th>
-                    <th scope="col"> Numero  </th>
-                    <th scope="col"> Balance  </th>
-                    <th scope="col"> Dias  </th>
-                    <th scope="col"> 0-30 </th>
-                    <th scope="col"> 31-60  </th>
-                    <th scope="col"> 61-90  </th>
-                    <th scope="col"> 91-120  </th>
-                    <th scope="col"> 121-150 </th>
-                    <th scope="col"> 151 o Mas  </th>                    
+                    <th scope="col"> Facturado </th>
+                    <th scope="col"> Cobrado </th>
+                    <th scope="col"> Balance </th>
                 </tr>
-                </thead>
-                <tbody>
-                    
-                        <asp:Repeater ID="rpListadoAntiguedaSando" runat="server">
-                            <ItemTemplate>
-                                <tr>
-                                <td><%# Eval("Poliza") %></td>
-                                <td><%# Eval("Documento") %></td>
-                                <td><%#string.Format("{0:n2}", Eval("Balance")) %></td>
-                                <td><%#string.Format("{0:n0}", Eval("Dias")) %></td>
-                                <td><%#string.Format("{0:n2}", Eval("__0_30")) %></td>
-                                <td><%#string.Format("{0:n2}", Eval("__31_60")) %></td>
-                                <td><%#string.Format("{0:n2}", Eval("__61_90")) %></td>
-                                <td><%#string.Format("{0:n2}", Eval("__91_120")) %></td>
-                                <td><%#string.Format("{0:n2}", Eval("__121_150")) %></td>
-                                <td><%#string.Format("{0:n2}", Eval("__151_MAS")) %></td>
-                                    </tr>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    
-                </tbody>
-            </table>
-       
-          <div align="center">
-                <asp:Label ID="lbPaginaActualTitulo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariavle" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTitulo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </thead>
+            <tbody>
+                <asp:Repeater ID="rpListadoAntiguedad" runat="server">
+                    <ItemTemplate>
+                        <tr>
+                            <td> <%# Eval("Asegurado") %> </td>
+                            <td> <%# Eval("DescripcionTipo") %> </td>
+                            <td> <%# Eval("Poliza") %> </td>
+                            <td> <%#string.Format("{0:N2}", Eval("ValorFactura")) %> </td>
+                            <td> <%#string.Format("{0:N2}", Eval("ValorPagado")) %> </td>
+                            <td> <%#string.Format("{0:N2}", Eval("Balance")) %> </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </tbody>
+        </table>
+        
+         <div align="center">
+                <asp:Label ID="lbPaginaActualTituloListadoAntiguedadSaldo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariableListadoAntiguedadSaldo" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloListadoAntiguedadSaldo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVariableListadoAntiguedadSaldo" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
             </div>
-             <div id="divPaginacion" runat="server" align="center">
+             <div id="divPaginacionListadoAntiguedadSaldo" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:LinkButton ID="LinkPrimeraPagina" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPagina_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkAnterior" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnterior_Click"></asp:LinkButton> </td>
-                    <td>
-                        <asp:DataList ID="dtPaginacion" runat="server" OnItemCommand="dtPaginacion_ItemCommand" OnItemDataBound="dtPaginacion_ItemDataBound" RepeatDirection="Horizontal">
+                    <td> <asp:ImageButton ID="btnkPrimeraPaginaListadoAntiguedadSaldo" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnkPrimeraPaginaListadoAntiguedadSaldo_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnAnteriorListadoAntiguedadSaldo" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnAnteriorListadoAntiguedadSaldo_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+                    <td align="center" >
+                        <asp:DataList ID="dtPaginacionListadoAntiguedadSaldo" runat="server" OnItemCommand="dtPaginacionListadoAntiguedadSaldo_ItemCommand" OnItemDataBound="dtPaginacionListadoAntiguedadSaldo_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                                <asp:Button ID="btnPaginacionCentral" runat="server" CssClass="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
                             </ItemTemplate>
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:LinkButton ID="LinkSiguiente" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguiente_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkUltimo" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimo_Click"></asp:LinkButton> </td>
+                    <td> <asp:ImageButton ID="btnSiguienteListadoAntiguedadSaldo" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguienteListadoAntiguedadSaldo_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimoListadoAntiguedadSaldo" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimoListadoAntiguedadSaldo_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
                 </tr>
             </table>
         </div>
-    </div>
         </div>
+                           <br />
+    </div>
+
  
 </asp:Content>
