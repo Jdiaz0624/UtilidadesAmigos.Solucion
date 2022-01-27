@@ -11,7 +11,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionMant
         readonly UtilidadesAmigos.Logica.Logica.LogicaMantenimientos.LogicaMantenimientos ObjData = new Logica.LogicaMantenimientos.LogicaMantenimientos();
 
 
-        private decimal IdUsuario = 0;
+        private decimal? IdUsuario = 0;
         private string Poliza = "";
         private decimal Cotizacion = 0;
         private decimal CodigoCliente = 0;
@@ -29,7 +29,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionMant
         private string Accion = "";
 
         public ProcesarInformacionAntiguedadSaldo(
-            decimal IdUsuarioCON,
+            decimal? IdUsuarioCON,
         string PolizaCON,
         decimal CotizacionCON,
         decimal CodigoClienteCON,

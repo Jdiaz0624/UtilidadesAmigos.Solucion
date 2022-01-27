@@ -178,6 +178,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #endregion
         #region MOSTRAR LISTADO POR PANTALLA
         private void ListadoPorPantalla() {
+             
             decimal? _NumeroFactura = string.IsNullOrEmpty(txtNumeroFactura.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroFactura.Text);
             string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
             int? _Ramo = ddlRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlRamo.SelectedValue) : new Nullable<int>();
@@ -191,6 +192,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
             int? _Moneda = ddlMoneda.SelectedValue != "-1" ? Convert.ToInt32(ddlMoneda.SelectedValue) : new Nullable<int>();
 
             int CantidadRegistros = 0;
+
+            //ELIMINAMOS TODOS LOS REGISTROS MEDIANTE EL CODIGO DEL USUARIO
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionMantenimientos.ProcesarInformacionAntiguedadSaldo Eliminar = new Logica.Comunes.ProcesarMantenimientos.InformacionMantenimientos.ProcesarInformacionAntiguedadSaldo(
+                _IdUsuario, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, DateTime.Now, DateTime.Now, "DELETE");
+            Eliminar.ProcesarInformacion();
 
             var Buscarorigen = ObDataMantenimiento.Value.BuscaOrigenDataAntiguedadSaldo(
                 Convert.ToDateTime(txtFechaCorte.Text),
@@ -216,8 +222,26 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbCantidadRegistrosVariable.Text = CantidadRegistros.ToString("N0");
                 lbCantidadRegistrosVariable.ForeColor = System.Drawing.Color.Green;
 
-                foreach (var n in Buscarorigen) { 
-                
+                foreach (var n in Buscarorigen) {
+                    //GAURDAMOS LOS REGISTROS
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionMantenimientos.ProcesarInformacionAntiguedadSaldo Guardar = new Logica.Comunes.ProcesarMantenimientos.InformacionMantenimientos.ProcesarInformacionAntiguedadSaldo(
+                        _IdUsuario,
+                        n.Poliza,
+                        (decimal)n.Cotizacion,
+                        (decimal)n.CodigoCliente,
+                        (int)n.CodigoIntermediario,
+                        (int)n.CodigoSupervisor,
+                        (int)n.CodigoOficina,
+                        (int)n.CodigoMoneda,
+                        (int)n.CodigoRamo,
+                        (decimal)n.Valor,
+                        (decimal)n.NumeroFactura,
+                        (decimal)n.Balance,
+                        (int)n.Tipo,
+                        (DateTime)n.Fecha,
+                        (DateTime)n.FechaCorte,
+                        "INSERT");
+                    Guardar.ProcesarInformacion();
                 }
             }
 
