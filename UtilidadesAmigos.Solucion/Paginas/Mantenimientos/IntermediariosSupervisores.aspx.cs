@@ -13,6 +13,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
         UtilidadesAmigos.Logica.Logica.LogicaSistema ObjData = new Logica.Logica.LogicaSistema();
         UtilidadesAmigos.Logica.Logica.LogicaMantenimientos.LogicaMantenimientos Objdatamantenimientos = new Logica.Logica.LogicaMantenimientos.LogicaMantenimientos();
 
+        enum PermisoUsuarios { 
+        
+            JuanMarcelinoMedinaDiaz=1
+        }
 
 
         #region CONTROL DE PAGINACION DE LISTADO INTERMEDIARIOS SUPERVISORES
@@ -1119,6 +1123,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
             DivBloqueMantenimiento.Visible = true;
             CargarConfiguracionesInicialesBloqueMantenimiento();
             SacarDatosIntermediario(lbCodigoSeleccionadoVariable.Text);
+
+            btnGuardarMantenimientoNuevo.Visible = false;
+
+            decimal IdUsuario = (decimal)Session["IdUsuario"];
+
+            switch (IdUsuario) {
+
+                case (decimal)PermisoUsuarios.JuanMarcelinoMedinaDiaz:
+                    btnGuardarMantenimientoNuevo.Visible = true;
+                    break;
+            }
         }
 
         protected void btnComisionesNuevo_Click(object sender, ImageClickEventArgs e)
@@ -1239,6 +1254,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnModificarNuevo.Enabled = true;
             btnComisionesNuevo.Enabled = true;
             btnRestabelcerNuevo.Enabled = true;
+
+
+            
         }
 
         protected void btnGuardarMantenimientoNuevo_Click(object sender, ImageClickEventArgs e)
