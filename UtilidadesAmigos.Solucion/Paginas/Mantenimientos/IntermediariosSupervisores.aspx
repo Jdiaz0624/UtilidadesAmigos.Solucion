@@ -250,7 +250,7 @@
                 
                  <asp:ImageButton ID="btnConsultarNuevo" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultarNuevo_Click" />
                  <asp:ImageButton ID="btnNuevoNuevo" runat="server" ToolTip="Crear Nuevo Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Agregar (2).png" OnClick="btnNuevoNuevo_Click" />
-                 <asp:ImageButton ID="btnModificarNuevo" runat="server" ToolTip="Modificar Registro Seleccionado" CssClass="BotonImagen" ImageUrl="~/Imagenes/modificar.png" OnClick="btnModificarNuevo_Click" />
+                 <asp:ImageButton ID="btnModificarNuevo" runat="server" ToolTip="Modificar Registro Seleccionado" CssClass="BotonImagen" ImageUrl="~/Imagenes/ojo.png" OnClick="btnModificarNuevo_Click" />
                  <asp:ImageButton ID="btnComisionesNuevo" runat="server" ToolTip="Ver el % de Comisión del registro seleccionado" CssClass="BotonImagen" ImageUrl="~/Imagenes/comision.png" OnClick="btnComisionesNuevo_Click" />
                  <asp:ImageButton ID="btnRestabelcerNuevo" runat="server" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" ImageUrl="~/Imagenes/auto.png" OnClick="btnRestabelcerNuevo_Click" />
         </div>
@@ -572,6 +572,7 @@
            <div align="center">
                <asp:ImageButton ID="btnConsultarComisionesNuevo" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" OnClick="btnConsultarComisionesNuevo_Click" ImageUrl="~/Imagenes/Buscar.png" />
                <asp:ImageButton ID="btnValidarClaveSeguridadNuevo" runat="server" ToolTip="Validar Clave" CssClass="BotonImagen" OnClick="btnValidarClaveSeguridadNuevo_Click" ImageUrl="~/Imagenes/comprobar.png" />
+                <asp:ImageButton ID="btnVolverAtrasComisionesNuevo" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" OnClick="btnVolverAtrasComisionesNuevo_Click" ImageUrl="~/Imagenes/volver-flecha.png" />
         </div><br />
      
       <!--LISTADO DE COMISIONES-->
@@ -661,7 +662,7 @@
            <div align="center">
                 <asp:ImageButton ID="btnModificarComisionNuevo" runat="server" ToolTip="Modificar Información" CssClass="BotonImagen" OnClick="btnModificarComisionNuevo_Click" ImageUrl="~/Imagenes/modificar.png" />
                 <asp:ImageButton ID="btnCancearProcesoNuevo" runat="server" ToolTip="Cancelar Proceso" CssClass="BotonImagen" OnClick="btnCancearProcesoNuevo_Click" ImageUrl="~/Imagenes/cancelado.png" />
-               <asp:ImageButton ID="btnVolverAtrasComisionesNuevo" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" OnClick="btnVolverAtrasComisionesNuevo_Click" ImageUrl="~/Imagenes/volver-flecha.png" />
+              
         </div>
           <br />
       </div>

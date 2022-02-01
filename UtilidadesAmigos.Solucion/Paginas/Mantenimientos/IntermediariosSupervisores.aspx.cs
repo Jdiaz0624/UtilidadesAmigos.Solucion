@@ -667,6 +667,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
             LimpiarControles();
             CurrentPage_IntermediariosSupervisores = 0;
             MostrarIntermediariosSupervisores();
+
+            btnConsultarNuevo.Visible = true;
+            btnNuevoNuevo.Visible = true;
+            btnModificarNuevo.Visible = false;
+            btnComisionesNuevo.Visible = false;
+            btnRestabelcerNuevo.Visible = false;
         }
         #endregion
 
@@ -978,7 +984,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     DivBloqueInternoComision.Visible = false;
                     btnModificarNuevo.Enabled = false;
                     btnComisionesNuevo.Enabled = false;
-                }
+
+                btnConsultarNuevo.Visible = true;
+                btnNuevoNuevo.Visible = true;
+                btnModificarNuevo.Visible = false;
+                btnComisionesNuevo.Visible = false;
+                btnRestabelcerNuevo.Visible = false;
+            }
             }
 
 
@@ -1255,8 +1267,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnComisionesNuevo.Enabled = true;
             btnRestabelcerNuevo.Enabled = true;
 
+            btnConsultarNuevo.Visible = false;
+            btnNuevoNuevo.Visible = false;
+            btnModificarNuevo.Visible = true;
+            btnComisionesNuevo.Visible = true;
+            btnRestabelcerNuevo.Visible = true;
 
-            
+
         }
 
         protected void btnGuardarMantenimientoNuevo_Click(object sender, ImageClickEventArgs e)
@@ -1295,6 +1312,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                 ProcesarInformacionRegistros();
                                 VolverAtras();
                                 LimpiarControles();
+                                RestablecerPantalla();
                             }
                         }
                         else
@@ -1302,6 +1320,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             ProcesarInformacionRegistros();
                             VolverAtras();
                             LimpiarControles();
+                            RestablecerPantalla();
                         }
 
                     }
@@ -1313,6 +1332,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             VolverAtras();
             LimpiarControles();
+            RestablecerPantalla();
         }
 
         protected void btnConsultarComisionesNuevo_Click(object sender, ImageClickEventArgs e)
@@ -1357,6 +1377,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             VolverAtras();
             LimpiarControles();
+            RestablecerPantalla();
         }
 
         protected void btnUltimoIntermediariosSupervisoresComisiones_Click(object sender, ImageClickEventArgs e)
