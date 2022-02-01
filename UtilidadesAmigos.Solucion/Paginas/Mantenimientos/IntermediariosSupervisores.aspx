@@ -250,7 +250,7 @@
                 
                  <asp:ImageButton ID="btnConsultarNuevo" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultarNuevo_Click" />
                  <asp:ImageButton ID="btnNuevoNuevo" runat="server" ToolTip="Crear Nuevo Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Agregar (2).png" OnClick="btnNuevoNuevo_Click" />
-                 <asp:ImageButton ID="btnModificarNuevo" runat="server" ToolTip="Modificar Registro Seleccionado" CssClass="BotonImagen" ImageUrl="~/Imagenes/modificar.png" OnClick="btnModificarNuevo_Click" />
+                 <asp:ImageButton ID="btnModificarNuevo" runat="server" ToolTip="Modificar Registro Seleccionado" CssClass="BotonImagen" ImageUrl="~/Imagenes/modificar.png" OnClick="btnModificarNuevo_Click" Visible="False" />
                  <asp:ImageButton ID="btnComisionesNuevo" runat="server" ToolTip="Ver el % de Comisión del registro seleccionado" CssClass="BotonImagen" ImageUrl="~/Imagenes/comision.png" OnClick="btnComisionesNuevo_Click" />
                  <asp:ImageButton ID="btnRestabelcerNuevo" runat="server" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" ImageUrl="~/Imagenes/auto.png" OnClick="btnRestabelcerNuevo_Click" />
         </div>
