@@ -14,8 +14,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         UtilidadesAmigos.Logica.Logica.LogicaMantenimientos.LogicaMantenimientos Objdatamantenimientos = new Logica.Logica.LogicaMantenimientos.LogicaMantenimientos();
 
         enum PermisoUsuarios { 
-        
-            JuanMarcelinoMedinaDiaz=1
+            JuanMarcelinoMedinaDiaz=1,
+            NoeliaGonzalez=28
         }
 
 
@@ -1140,19 +1140,19 @@ namespace UtilidadesAmigos.Solucion.Paginas
             CargarConfiguracionesInicialesBloqueMantenimiento();
             SacarDatosIntermediario(lbCodigoSeleccionadoVariable.Text);
 
-            //btnGuardarMantenimientoNuevo.Visible = false;
-            txtCodigoSupervisorMantenimiento.Enabled = false;
+            btnGuardarMantenimientoNuevo.Visible = false;
+       //     txtCodigoSupervisorMantenimiento.Enabled = false;
             decimal IdUsuario = (decimal)Session["IdUsuario"];
 
             switch (IdUsuario) {
 
                 case (decimal)PermisoUsuarios.JuanMarcelinoMedinaDiaz:
 
-                    //btnGuardarMantenimientoNuevo.Visible = true;
-                    txtCodigoSupervisorMantenimiento.Enabled = true;
-
-
+                    btnGuardarMantenimientoNuevo.Visible = true;
+                  //  txtCodigoSupervisorMantenimiento.Enabled = true;
                     break;
+
+               
             }
         }
 
