@@ -15,7 +15,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         enum PermisoUsuarios { 
         
-            JuanMarcelinoMedinaDiaz=10
+            JuanMarcelinoMedinaDiaz=1
         }
 
 
