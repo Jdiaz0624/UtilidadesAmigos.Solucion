@@ -15,7 +15,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         enum PermisoUsuarios { 
         
-            JuanMarcelinoMedinaDiaz=1
+            JuanMarcelinoMedinaDiaz=10
         }
 
 
@@ -673,6 +673,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnModificarNuevo.Visible = false;
             btnComisionesNuevo.Visible = false;
             btnRestabelcerNuevo.Visible = false;
+            DIVBloqueCodigoSupervisor.Visible = true;
+            DivBloqueNombreSupervisor.Visible = true;
         }
         #endregion
 
@@ -750,7 +752,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
                 else
                 {
-                    string _CodigoSupervisorSacado = string.IsNullOrEmpty(txtCodigoSupervisorMantenimiento.Text.Trim()) ? "0" : txtNombreSupervisorMantenimiento.Text.Trim();
+                    string _CodigoSupervisorSacado = string.IsNullOrEmpty(txtCodigoSupervisorMantenimiento.Text.Trim()) ? "0" : txtCodigoSupervisorMantenimiento.Text.Trim();
                     UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(_CodigoSupervisorSacado);
                     txtNombreSupervisorMantenimiento.Text = Nombre.SacarNombreSupervisor();
                   
@@ -1124,6 +1126,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             DivBloqueInternoComision.Visible = false;
             DivBloqueMantenimiento.Visible = true;
             CargarConfiguracionesInicialesBloqueMantenimiento();
+            txtCodigoSupervisorMantenimiento.Enabled = true;
+
         }
 
         protected void btnModificarNuevo_Click(object sender, ImageClickEventArgs e)
@@ -1136,14 +1140,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
             CargarConfiguracionesInicialesBloqueMantenimiento();
             SacarDatosIntermediario(lbCodigoSeleccionadoVariable.Text);
 
-            btnGuardarMantenimientoNuevo.Visible = false;
-
+            //btnGuardarMantenimientoNuevo.Visible = false;
+            txtCodigoSupervisorMantenimiento.Enabled = false;
             decimal IdUsuario = (decimal)Session["IdUsuario"];
 
             switch (IdUsuario) {
 
                 case (decimal)PermisoUsuarios.JuanMarcelinoMedinaDiaz:
-                    btnGuardarMantenimientoNuevo.Visible = true;
+
+                    //btnGuardarMantenimientoNuevo.Visible = true;
+                    txtCodigoSupervisorMantenimiento.Enabled = true;
+
+
                     break;
             }
         }
@@ -1162,6 +1170,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             CargarRamos();
             CargarSubramos();
             MostrarComisionesIntermediario(Convert.ToInt32(lbCodigoSeleccionadoVariable.Text));
+
             lbClaveSeguridad.Visible = false;
             txtClaveSeguridadComisiones.Visible = false;
             txtClaveSeguridadComisiones.Text = string.Empty;

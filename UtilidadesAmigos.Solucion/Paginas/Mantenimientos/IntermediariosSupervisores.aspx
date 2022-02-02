@@ -328,14 +328,14 @@
 
         <div class="form-check-inline">
 
-                <asp:RadioButton ID="rbRetencionSiMantenimiento" runat="server" Text="Retencion Si" CssClass="form-check-input LetrasNegrita" ToolTip="Agregar la Retención al nuevo registro" GroupName="RetencionIntermediario" />
-                <asp:RadioButton ID="rbRetencionNoMantenimiento" runat="server" Text="Retencion No" CssClass="form-check-input LetrasNegrita" ToolTip="No Agregar la Retención al nuevo registro" GroupName="RetencionIntermediario" />
+                <asp:RadioButton ID="rbRetencionSiMantenimiento" runat="server" Text="Retencion Si" CssClass="LetrasNegrita" ToolTip="Agregar la Retención al nuevo registro" GroupName="RetencionIntermediario" />
+                <asp:RadioButton ID="rbRetencionNoMantenimiento" runat="server" Text="Retencion No" CssClass="LetrasNegrita" ToolTip="No Agregar la Retención al nuevo registro" GroupName="RetencionIntermediario" />
                 <asp:Label ID="lbSeparador1" runat="server" Text=" | " CssClass="LetrasNegrita"></asp:Label>
-                <asp:RadioButton ID="rbActivoMantenimiento" runat="server" Text="Activo" CssClass="form-check-input LetrasNegrita" ToolTip="Marcar el estatus activo el intermediario" GroupName="EstatusIntermediario" />
-                <asp:RadioButton ID="rbInactivoMantenimiento" runat="server" Text="Inactivo" CssClass="form-check-input LetrasNegrita" ToolTip="Marcar el estatus inactivo el intermediario" GroupName="EstatusIntermediario" />
+                <asp:RadioButton ID="rbActivoMantenimiento" runat="server" Text="Activo" CssClass="LetrasNegrita" ToolTip="Marcar el estatus activo el intermediario" GroupName="EstatusIntermediario" />
+                <asp:RadioButton ID="rbInactivoMantenimiento" runat="server" Text="Inactivo" CssClass="LetrasNegrita" ToolTip="Marcar el estatus inactivo el intermediario" GroupName="EstatusIntermediario" />
                 <asp:Label ID="lbSeparador2" runat="server" Text=" | " CssClass="LetrasNegrita"></asp:Label>
-                <asp:RadioButton ID="rbIntermediarioDirectoMantenimiento" runat="server" Text="Directo" CssClass="form-check-input LetrasNegrita" ToolTip="Intermediario Directo" GroupName="IntermediarioDirecto" />
-                <asp:RadioButton ID="rbIntermediarioNoDirectoMantenimiento" runat="server" Text="No Directo" CssClass="form-check-input LetrasNegrita" ToolTip="Intermediario No Directo" GroupName="IntermediarioDirecto" />
+                <asp:RadioButton ID="rbIntermediarioDirectoMantenimiento" runat="server" Text="Directo" CssClass="LetrasNegrita" ToolTip="Intermediario Directo" GroupName="IntermediarioDirecto" />
+                <asp:RadioButton ID="rbIntermediarioNoDirectoMantenimiento" runat="server" Text="No Directo" CssClass="LetrasNegrita" ToolTip="Intermediario No Directo" GroupName="IntermediarioDirecto" />
        
         </div>
         <br />
@@ -424,12 +424,12 @@
 
             <!---------------------------------------------------------------OCTAVA FILA---------------------------------------------------------------------------------------------------->
 
-            <div class="col-md-3">
+            <div class="col-md-3" id="DIVBloqueCodigoSupervisor" runat="server">
                 <asp:Label ID="lbCodigoSupervisorMantenimiento" runat="server" Text="Codigo Supervisor" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoSupervisorMantenimiento" runat="server" TextMode="Number" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtCodigoSupervisorMantenimiento_TextChanged" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-9" id="DivBloqueNombreSupervisor" runat="server">
                 <asp:Label ID="lbNombreSupervisorMAntenimiento" runat="server" Text="Nombre de Supervisor" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreSupervisorMantenimiento" runat="server" Enabled="false" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
