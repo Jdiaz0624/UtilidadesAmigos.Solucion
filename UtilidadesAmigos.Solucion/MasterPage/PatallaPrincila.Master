@@ -167,6 +167,9 @@
 
                     <%--MODULO DE CONSULTA--%>
           <ul class="nav nav-item bg-dark list-group-item list-group-item-action">
+  <li class="nav-item dropdown">
+    <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%" role="button" aria-haspopup="true" aria-expanded="false">Consultas</a>
+    <div class="dropdown-menu">
         <asp:LinkButton ID="LinkCartera" runat="server" ToolTip="Sacar la Cartera de Intermediarios y Supervisores" Text="Cartera" OnClick="LinkCartera_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="LinkConsultarPersonas" runat="server" ToolTip="Consultar Pesonas Super Intendencia" Text="Consultar Personas" OnClick="LinkConsultarPersonas_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkProduccionPorUsuarios" runat="server" Visible="false" ToolTip="Muestra la Producción por usuarios con movimientos en Cobros, Producción y Reclamaciones" Text="Produccion Por Usuario" OnClick="linkProduccionPorUsuarios_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
@@ -178,7 +181,7 @@
 
           <asp:LinkButton ID="linkValidarCoberturas" runat="server" Text="Sacar Data Coberturas" OnClick="linkValidarCoberturas_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkGenerarReporteUAF" runat="server" Text="Generar Reporte para la UAF" OnClick="linkGenerarReporteUAF_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
-          <%-- <asp:LinkButton ID="LinkReporteFianzas" runat="server" Text="Reporte de Fianzas" OnClick="LinkReporteFianzas_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>--%>
+           <%--<asp:LinkButton ID="LinkReporteFianzas" runat="server" Text="Reporte de Fianzas" OnClick="LinkReporteFianzas_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>--%>
            <asp:LinkButton ID="LinkReporteReclamos" runat="server" Visible="false" Text="Reporte de Reclamos" OnClick="LinkReporteReclamos_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
             <%--<asp:LinkButton ID="LinkConsumoWS" runat="server"  Text="Consultar Dato Poliza (WS)" OnClick="LinkConsumoWS_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>--%>
             <asp:LinkButton ID="LinkControlVisitas" runat="server" Text="Control de Visitas" OnClick="LinkControlVisitas_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
