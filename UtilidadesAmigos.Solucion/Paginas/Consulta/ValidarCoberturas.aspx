@@ -206,10 +206,10 @@
         <div class="form-check-inline">
       
                     <asp:Label ID="lbExportarA" runat="server" Text="Exportar A:" CssClass="Letranegrita"></asp:Label>
-                    <asp:RadioButton ID="rbExportarExel" runat="server" Text="Excel" CssClass="form-check-input" ToolTip="Exportar a Formato de Excel" GroupName="Exportar" />
-                    <asp:RadioButton ID="rbExportarcsv" runat="server" Text="CSV" CssClass="form-check-input"  ToolTip="Exportar a Formato CSV" GroupName="Exportar" />
-                    <asp:RadioButton ID="rbExportartxt" runat="server" Text="TXT" CssClass="form-check-input" ToolTip="Exportar a formato de texto" GroupName="Exportar" />
-                    <asp:RadioButton ID="rbExportarPDF" runat="server" Text="PDF" CssClass="form-check-input" ToolTip="Exportar a formato PDF" GroupName="Exportar" />
+                    <asp:RadioButton ID="rbExportarExel" runat="server" Text="Excel" ToolTip="Exportar a Formato de Excel" GroupName="Exportar" />
+                    <asp:RadioButton ID="rbExportarcsv" runat="server" Text="CSV"   ToolTip="Exportar a Formato CSV" GroupName="Exportar" />
+                    <asp:RadioButton ID="rbExportartxt" runat="server" Text="TXT"  ToolTip="Exportar a formato de texto" GroupName="Exportar" />
+                    <asp:RadioButton ID="rbExportarPDF" runat="server" Text="PDF"  ToolTip="Exportar a formato PDF" GroupName="Exportar" />
         
               
             </div>

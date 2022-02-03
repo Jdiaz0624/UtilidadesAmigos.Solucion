@@ -145,6 +145,144 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
+
+
+        #region CONTROL DE PAGINACION DE ESTADISTICA DE LISTADO DE FIANZAS
+        readonly PagedDataSource pagedDataSource_ListadoFianzas = new PagedDataSource();
+        int _PrimeraPagina_ListadoFianzas, _UltimaPagina_ListadoFianzas;
+        private int _TamanioPagina_ListadoFianzas = 10;
+        private int CurrentPage_ListadoFianzas
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_ListadoFianzas(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_ListadoFianzas = CurrentPage_ListadoFianzas - 5;
+            if (CurrentPage_ListadoFianzas > 5)
+                _UltimaPagina_ListadoFianzas = CurrentPage_ListadoFianzas + 5;
+            else
+                _UltimaPagina_ListadoFianzas = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_ListadoFianzas > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_ListadoFianzas = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_ListadoFianzas = _UltimaPagina_ListadoFianzas - 10;
+            }
+
+            if (_PrimeraPagina_ListadoFianzas < 0)
+                _PrimeraPagina_ListadoFianzas = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_ListadoFianzas;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_ListadoFianzas; i < _UltimaPagina_ListadoFianzas; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_ListadoFianzas(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_ListadoFianzas.DataSource = Listado;
+            pagedDataSource_ListadoFianzas.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_ListadoFianzas.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_ListadoFianzas.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_ListadoFianzas.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_ListadoFianzas : _NumeroRegistros);
+            pagedDataSource_ListadoFianzas.CurrentPageIndex = CurrentPage_ListadoFianzas;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_ListadoFianzas.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_ListadoFianzas.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_ListadoFianzas.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_ListadoFianzas.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_ListadoFianzas;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_ListadoFianzas
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_ListadoFianzas(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+
+
+
+
         #region MOSTRAR LOS SUBRAMOS
         private void CargarSubramo(string Ramo)
         {
@@ -185,8 +323,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     int Cantidad = Convert.ToInt32(n.Cantidad);
                     lbCantidadRegistros.Text = Cantidad.ToString("N0");
                 }
-                Paginar(ref rpListadoFianzas, Buscar, 10, ref lbCantidadPaginaVariableFianzas, ref LinkPrimeraPaginaFianzas, ref LinkPaginaAnteriorFianzas, ref LinkSiguientePaginaFianzas, ref LinkUltimaPaginaFianzas);
-                HandlePaging(ref dtPaginacionFianzas, ref lbPaginaActualVariableFianzas);
+                Paginar_ListadoFianzas(ref rpListadoFianzas, Buscar, 10, ref lbCantidadPaginaVariableFianzas, ref btnPrimeraPaginaFianzas, ref btnPaginaAnteriorFianzas, ref btnSiguientePaginaFianzas, ref btnUltimaPaginaFianzas);
+                HandlePaging_ListadoFianzas(ref dtPaginacionFianzas, ref lbPaginaActualVariableFianzas);
             }
         }
         #endregion
@@ -243,19 +381,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
           
         }
 
-        protected void LinkPrimeraPaginaFianzas_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarRegistros();
-        }
-
-        protected void LinkPaginaAnteriorFianzas_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarRegistros();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableFianzas, ref lbCantidadPaginaVariableFianzas);
-        }
-
         protected void dtPaginacionFianzas_ItemDataBound(object sender, DataListItemEventArgs e)
         {
 
@@ -266,19 +391,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (!e.CommandName.Equals("newPage")) return;
             CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
             MostrarRegistros();
-        }
-
-        protected void LinkSiguientePaginaFianzas_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            MostrarRegistros();
-        }
-
-        protected void LinkUltimaPaginaFianzas_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            MostrarRegistros();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableFianzas, ref lbCantidadPaginaVariableFianzas);
         }
 
         protected void LinkPrimeraPaginaHistoricoFianzas_Click(object sender, EventArgs e)
@@ -321,7 +433,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultarNuevo_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage = 0;
+            CurrentPage_ListadoFianzas = 0;
             MostrarRegistros();
         }
 
@@ -467,6 +579,32 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 catch (Exception) { }
                 //EXPORTAR
             }
+        }
+
+        protected void btnPrimeraPaginaFianzas_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarRegistros();
+        }
+
+        protected void btnPaginaAnteriorFianzas_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += -1;
+            MostrarRegistros();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableFianzas, ref lbCantidadPaginaVariableFianzas);
+        }
+
+        protected void btnSiguientePaginaFianzas_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += 1;
+            MostrarRegistros();
+        }
+
+        protected void btnUltimaPaginaFianzas_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarRegistros();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariableFianzas, ref lbCantidadPaginaVariableFianzas);
         }
 
         protected void btnExportarHistoriclPoliza_Click(object sender, EventArgs e)

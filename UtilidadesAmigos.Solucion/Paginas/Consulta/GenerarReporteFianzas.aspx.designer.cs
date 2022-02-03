@@ -186,22 +186,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacionListadoPrincipalFianzas;
 
         /// <summary>
-        /// LinkPrimeraPaginaFianzas control.
+        /// btnPrimeraPaginaFianzas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPaginaFianzas;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaFianzas;
 
         /// <summary>
-        /// LinkPaginaAnteriorFianzas control.
+        /// btnPaginaAnteriorFianzas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPaginaAnteriorFianzas;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnteriorFianzas;
 
         /// <summary>
         /// dtPaginacionFianzas control.
@@ -213,22 +213,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.DataList dtPaginacionFianzas;
 
         /// <summary>
-        /// LinkSiguientePaginaFianzas control.
+        /// btnSiguientePaginaFianzas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguientePaginaFianzas;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePaginaFianzas;
 
         /// <summary>
-        /// LinkUltimaPaginaFianzas control.
+        /// btnUltimaPaginaFianzas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimaPaginaFianzas;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPaginaFianzas;
 
         /// <summary>
         /// lbHistoricFinzas control.

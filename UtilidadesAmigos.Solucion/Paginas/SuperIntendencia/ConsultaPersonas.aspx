@@ -80,14 +80,14 @@
 
        <div class="form-check-inline">
      
-               <asp:RadioButton ID="rbConsultaNormal" runat="server" Text="Consultar Por RNC o Nombre" CssClass="form-check-input Letranegrita" GroupName="TipoConsulta" ToolTip="Consultar mediante el rnc o el Nombre" />
-               <asp:RadioButton ID="rbConsultaChasisPlaca" runat="server" Text="Consultar por Placa o Chasis" CssClass="form-check-input Letranegrita " GroupName="TipoConsulta" ToolTip="Consultar mediante el chasis o la placa" /><br />
+               <asp:RadioButton ID="rbConsultaNormal" runat="server" Text="Consultar Por RNC o Nombre" CssClass="Letranegrita" GroupName="TipoConsulta" ToolTip="Consultar mediante el rnc o el Nombre" />
+               <asp:RadioButton ID="rbConsultaChasisPlaca" runat="server" Text="Consultar por Placa o Chasis" CssClass="Letranegrita " GroupName="TipoConsulta" ToolTip="Consultar mediante el chasis o la placa" /><br />
              
        </div>
        <br />
        <div class="form-check-inline">
       
-          <asp:CheckBox ID="cbBusquedaPorLote" runat="server" CssClass="form-check-input Letranegrita" ToolTip="Buscar informacion de Personas mediante un archio de excel seleccionado del equipo" Text="Buscar Mediante Archivo" AutoPostBack="true" OnCheckedChanged="cbBusquedaPorLote_CheckedChanged" />
+          <asp:CheckBox ID="cbBusquedaPorLote" runat="server" CssClass="Letranegrita" ToolTip="Buscar informacion de Personas mediante un archio de excel seleccionado del equipo" Text="Buscar Mediante Archivo" AutoPostBack="true" OnCheckedChanged="cbBusquedaPorLote_CheckedChanged" />
 
        </div>
        <div class="row">
@@ -117,6 +117,7 @@
                                     <asp:FileUpload ID="FileUpload1" CssClass="form-control-file" runat="server" />
                                 </div>
        </div>
+       <br />
        <div align="center">
            <asp:ImageButton ID="btnConsultar" runat="server" CssClass="BotonImagen" OnClick="btnConsultar_Click1" ToolTip="Buscar Información" ImageUrl="~/Imagenes/Buscar.png" />
            <asp:ImageButton ID="btnProcesarRegistros" runat="server" CssClass="BotonImagen" OnClick="btnProcesarRegistros_Click1" ToolTip="Procesar Información" ImageUrl="~/Imagenes/Procesar.png" /><br />
@@ -1161,39 +1162,39 @@
            <div class="form-check-inline">
 
                    <asp:Label ID="lbLetreroBusquedaArchivoBusquedaPorLote" runat="server" Text="Tipo de Busqueda: " CssClass="Letranegrita"></asp:Label><br />
-                   <asp:RadioButton ID="rbTodosLosParametros" runat="server" Text="Todos" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar por Todos los Parametros" />
-                   <asp:RadioButton ID="rbPorNombreBusquedaPorLote" runat="server" Text="Nombre" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el nombre de la persona" />
-                   <asp:RadioButton ID="rbNumeroIdentificacionBusquedaPorLote" runat="server" Text="Numero de Identificación" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el Numero de Identificación de la persona" />
-                   <asp:RadioButton ID="rbChasisBusquedaPorLote" runat="server" Text="Chasis" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el Numero de Chasis" />
-                   <asp:RadioButton ID="rbPlacaBusquedaPorLote" runat="server" Text="Placa" CssClass="form-check-input" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el Numero de Placa" />
+                   <asp:RadioButton ID="rbTodosLosParametros" runat="server" Text="Todos" GroupName="BusqudaArchivo" ToolTip="Buscar por Todos los Parametros" />
+                   <asp:RadioButton ID="rbPorNombreBusquedaPorLote" runat="server" Text="Nombre" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el nombre de la persona" />
+                   <asp:RadioButton ID="rbNumeroIdentificacionBusquedaPorLote" runat="server" Text="Numero de Identificación" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el Numero de Identificación de la persona" />
+                   <asp:RadioButton ID="rbChasisBusquedaPorLote" runat="server" Text="Chasis" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el Numero de Chasis" />
+                   <asp:RadioButton ID="rbPlacaBusquedaPorLote" runat="server" Text="Placa" GroupName="BusqudaArchivo" ToolTip="Buscar mediante el Numero de Placa" />
                </div>
     
            <br />
            <div class="form-check-inline">
 
                    <asp:Label ID="lbLetreroBuscarEn" runat="server" Text="Buscar Como" CssClass="Letranegrita"></asp:Label><br />
-                   <asp:CheckBox ID="cbTodos" runat="server" AutoPostBack="true" OnCheckedChanged="cbTodos_CheckedChanged" Text="Todos" CssClass="form-check-input" ToolTip="Buscar en Todos los Registros" />
-                   <asp:CheckBox ID="cbCliente" runat="server" AutoPostBack="true" OnCheckedChanged="cbCliente_CheckedChanged" Text="Cliente" CssClass="form-check-input" ToolTip="Buscar informacion en la data de los clientes registrados" />
-                   <asp:CheckBox ID="cbIntermediario" runat="server" AutoPostBack="true" OnCheckedChanged="cbIntermediario_CheckedChanged" Text="Intermediario" CssClass="form-check-input" ToolTip="Buscar en la Data de los Intermediarios y Supervisores" />
-                   <asp:CheckBox ID="cbProvedor" runat="server" AutoPostBack="true" OnCheckedChanged="cbProvedor_CheckedChanged" Text="Proveedor" CssClass="form-check-input" ToolTip="Buscar en la Data de los Proveedores" />
-                   <asp:CheckBox ID="cbAseguradoBajoPoliza" runat="server" AutoPostBack="true" OnCheckedChanged="cbAseguradoBajoPoliza_CheckedChanged" Text="Asegurado P" CssClass="form-check-input" ToolTip="Buscar en la Data de los Asegurados Bajo Polizas" />
-                   <asp:CheckBox ID="cbAsegurado" runat="server" AutoPostBack="true" OnCheckedChanged="cbAsegurado_CheckedChanged" Text="Asegurado" CssClass="form-check-input" ToolTip="Buscar en la Data de los Asegurados" />
-                   <asp:CheckBox ID="cbDependiente" runat="server" AutoPostBack="true" OnCheckedChanged="cbDependiente_CheckedChanged" Text="Dependiente" CssClass="form-check-input" ToolTip="Buscar en la Data de los Dependientes" /><br />
-                   <asp:CheckBox ID="cbCheque" runat="server" AutoPostBack="true" OnCheckedChanged="cbCheque_CheckedChanged" Text="Cheque" CssClass="form-check-input" ToolTip="Buscar en la Data de las Solicitudes y Cheques" />
-                   <asp:CheckBox ID="cbDocumentosAmigos" runat="server" AutoPostBack="true" OnCheckedChanged="cbDocumentosAmigos_CheckedChanged" Text="Documentos Amigos" CssClass="form-check-input" ToolTip="Buscar en la Data de los Documentos Amigos" />
-                   <asp:CheckBox ID="cbReclamaciones" runat="server" AutoPostBack="true" OnCheckedChanged="cbReclamaciones_CheckedChanged" Text="Reclamos" CssClass="form-check-input" ToolTip="Buscar en los reclamos" />
-                   <asp:CheckBox ID="cbPlaca" runat="server" AutoPostBack="true" OnCheckedChanged="cbPlaca_CheckedChanged" Text="Placa" CssClass="form-check-input" ToolTip="Buscar Por Placa" />
-                   <asp:CheckBox ID="cbChasis" runat="server" AutoPostBack="true" OnCheckedChanged="cbChasis_CheckedChanged" Text="CHasis" CssClass="form-check-input" ToolTip="Buscar Por Chasis" />
+                   <asp:CheckBox ID="cbTodos" runat="server" AutoPostBack="true" OnCheckedChanged="cbTodos_CheckedChanged" Text="Todos" ToolTip="Buscar en Todos los Registros" />
+                   <asp:CheckBox ID="cbCliente" runat="server" AutoPostBack="true" OnCheckedChanged="cbCliente_CheckedChanged" Text="Cliente" ToolTip="Buscar informacion en la data de los clientes registrados" />
+                   <asp:CheckBox ID="cbIntermediario" runat="server" AutoPostBack="true" OnCheckedChanged="cbIntermediario_CheckedChanged" Text="Intermediario" ToolTip="Buscar en la Data de los Intermediarios y Supervisores" />
+                   <asp:CheckBox ID="cbProvedor" runat="server" AutoPostBack="true" OnCheckedChanged="cbProvedor_CheckedChanged" Text="Proveedor" ToolTip="Buscar en la Data de los Proveedores" />
+                   <asp:CheckBox ID="cbAseguradoBajoPoliza" runat="server" AutoPostBack="true" OnCheckedChanged="cbAseguradoBajoPoliza_CheckedChanged" Text="Asegurado P" ToolTip="Buscar en la Data de los Asegurados Bajo Polizas" />
+                   <asp:CheckBox ID="cbAsegurado" runat="server" AutoPostBack="true" OnCheckedChanged="cbAsegurado_CheckedChanged" Text="Asegurado" ToolTip="Buscar en la Data de los Asegurados" />
+                   <asp:CheckBox ID="cbDependiente" runat="server" AutoPostBack="true" OnCheckedChanged="cbDependiente_CheckedChanged" Text="Dependiente" ToolTip="Buscar en la Data de los Dependientes" /><br />
+                   <asp:CheckBox ID="cbCheque" runat="server" AutoPostBack="true" OnCheckedChanged="cbCheque_CheckedChanged" Text="Cheque" ToolTip="Buscar en la Data de las Solicitudes y Cheques" />
+                   <asp:CheckBox ID="cbDocumentosAmigos" runat="server" AutoPostBack="true" OnCheckedChanged="cbDocumentosAmigos_CheckedChanged" Text="Documentos Amigos" ToolTip="Buscar en la Data de los Documentos Amigos" />
+                   <asp:CheckBox ID="cbReclamaciones" runat="server" AutoPostBack="true" OnCheckedChanged="cbReclamaciones_CheckedChanged" Text="Reclamos" ToolTip="Buscar en los reclamos" />
+                   <asp:CheckBox ID="cbPlaca" runat="server" AutoPostBack="true" OnCheckedChanged="cbPlaca_CheckedChanged" Text="Placa" ToolTip="Buscar Por Placa" />
+                   <asp:CheckBox ID="cbChasis" runat="server" AutoPostBack="true" OnCheckedChanged="cbChasis_CheckedChanged" Text="CHasis" ToolTip="Buscar Por Chasis" />
 
                </div>
 
            <br />
              <div class="form-check-inline">
          
-               <asp:RadioButton ID="rbHojaExcelPlano" runat="server" Text="Excel Plano" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Excel Plano" />
-               <asp:RadioButton ID="rbExportarPDF" runat="server" Text="Exportar a PDF" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a PDF" />
-               <asp:RadioButton ID="rbExcel" runat="server" Text="Exportar a Excel" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Excel" />
-               <asp:RadioButton ID="rbExportarWord" runat="server" Text="Exportar a Word" CssClass="form-check-input Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Word" />
+               <asp:RadioButton ID="rbHojaExcelPlano" runat="server" Text="Excel Plano" CssClass="Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Excel Plano" />
+               <asp:RadioButton ID="rbExportarPDF" runat="server" Text="Exportar a PDF" CssClass="Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a PDF" />
+               <asp:RadioButton ID="rbExcel" runat="server" Text="Exportar a Excel" CssClass="Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Excel" />
+               <asp:RadioButton ID="rbExportarWord" runat="server" Text="Exportar a Word" CssClass="Letranegrita" GroupName="Exportar" ToolTip="Exportar Informacion a Word" />
                <br />
                 
            </div>

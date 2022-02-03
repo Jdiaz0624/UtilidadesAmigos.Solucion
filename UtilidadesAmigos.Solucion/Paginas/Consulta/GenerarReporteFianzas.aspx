@@ -131,18 +131,18 @@
                 <div style="margin-top=20px;">
                     <table style="width:600px;">
                         <tr>
-                            <td> <asp:LinkButton ID="LinkPrimeraPaginaFianzas" runat="server" Text="Primero" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaFianzas_Click" CssClass="btn btn-outline-success btn-sm"  ></asp:LinkButton> </td>
-                            <td> <asp:LinkButton ID="LinkPaginaAnteriorFianzas" runat="server" Text="Anterior" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkPaginaAnteriorFianzas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
-                            <td>
+                            <td> <asp:ImageButton ID="btnPrimeraPaginaFianzas" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPaginaFianzas_Click" /> </td>
+                            <td> <asp:ImageButton ID="btnPaginaAnteriorFianzas" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnPaginaAnteriorFianzas_Click" /> </td>
+                            <td align="center" >
                                 <asp:DataList ID="dtPaginacionFianzas" runat="server" OnCancelCommand="dtPaginacionFianzas_CancelCommand" OnItemDataBound="dtPaginacionFianzas_ItemDataBound" RepeatDirection="Horizontal" >
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="LinkIndiceFianzas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="NuevaPagina" Text='<%# Eval("TextoPagina")%>' Width="20px"></asp:LinkButton>
+                                        <asp:Button ID="btnPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
                                     </ItemTemplate>
                                 </asp:DataList>
 
                             </td>
-                            <td> <asp:LinkButton ID="LinkSiguientePaginaFianzas" runat="server" Text="Siguiente" ToolTip="Ir la Siguiente pagina del listado" OnClick="LinkSiguientePaginaFianzas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
-                            <td> <asp:LinkButton ID="LinkUltimaPaginaFianzas" runat="server" Text="Ultmo" ToolTip="Ir a la Ultima Pagina del listado" OnClick="LinkUltimaPaginaFianzas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td> <asp:ImageButton ID="btnSiguientePaginaFianzas" runat="server" ToolTip="Ir a la Siguuiente Pagina" CssClass="BotonImagen" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguientePaginaFianzas_Click" /> </td>
+                            <td> <asp:ImageButton ID="btnUltimaPaginaFianzas" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimaPaginaFianzas_Click" /> </td>
                            
                         </tr>
                     </table>
