@@ -76,5 +76,97 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSeguridad
             return Mantenimeinto;
         }
         #endregion
+        #region CONTROL DE TARJETAS DE ACCESOS
+        /// <summary>
+        /// Este metodo es para buscar el listado de las tarjetas de accesos registradas en el sistema
+        /// </summary>
+        /// <param name="IdRegistro"></param>
+        /// <param name="IdOficina"></param>
+        /// <param name="IdDepartamento"></param>
+        /// <param name="IdEstatus"></param>
+        /// <param name="Empleado"></param>
+        /// <param name="NumeroTarjeta"></param>
+        /// <param name="Secuencia"></param>
+        /// <param name="FechaEntradaDesde"></param>
+        /// <param name="FechaEntradaHasta"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Seguridad.EControlTarjetasAcceso> BuscaListadoTarjetasAcceso(decimal? IdRegistro = null, decimal? IdOficina = null, decimal? IdDepartamento = null, decimal? IdEstatus = null, string Empleado = null, string NumeroTarjeta = null, string Secuencia = null, DateTime? FechaEntradaDesde = null, DateTime? FechaEntradaHasta = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_LISTADO_CONTROL_TARJETA_ACCESO(IdRegistro, IdOficina, IdDepartamento, IdEstatus, Empleado, NumeroTarjeta, Secuencia, FechaEntradaDesde, FechaEntradaHasta)
+                           select new UtilidadesAmigos.Logica.Entidades.Seguridad.EControlTarjetasAcceso
+                           {
+                               IdRegistro=n.IdRegistro,
+                               IdOficina=n.IdOficina,
+                               Oficina=n.Oficina,
+                               IdDepartamento=n.IdDepartamento,
+                               Departamento=n.Departamento,
+                               Empleado=n.Empleado,
+                               NumeroTarjeta=n.NumeroTarjeta,
+                               SecuenciaInterna=n.SecuenciaInterna,
+                               FechaEntrega0=n.FechaEntrega0,
+                               FechaEntrada =n.FechaEntrada,
+                               HoraEntrada=n.HoraEntrada,
+                               IdEstatus=n.IdEstatus,
+                               Estatus=n.Estatus,
+                               IdUsuarioAdiciona=n.IdUsuarioAdiciona,
+                               CreadoPor=n.CreadoPor,
+                               FechaAdiciona0=n.FechaAdiciona0,
+                               FechaCreado=n.FechaCreado,
+                               HoraCreado=n.HoraCreado,
+                               IdUsuarioModifica=n.IdUsuarioModifica,
+                               ModificadoPor=n.ModificadoPor,
+                               FechaModifica0=n.FechaModifica0,
+                               FechaModificado=n.FechaModificado,
+                               HoraModificado=n.HoraModificado
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo es para procesar los registros para el control de las tarjetas de acceso
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Seguridad.EControlTarjetasAcceso ProcesarTarjetasAccesp(UtilidadesAmigos.Logica.Entidades.Seguridad.EControlTarjetasAcceso Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Seguridad.EControlTarjetasAcceso Procesar = null;
+
+            var TarjetasAcceso = ObjData.SP_PROCESAR_INFORMACION_TARJETAS_ACCESO(
+                Item.IdRegistro,
+                Item.IdOficina,
+                Item.IdDepartamento,
+                Item.Empleado,
+                Item.NumeroTarjeta,
+                Item.SecuenciaInterna,
+                Item.IdEstatus,
+                Item.IdUsuarioAdiciona,
+                Accion);
+            if (TarjetasAcceso != null) {
+
+                Procesar = (from n in TarjetasAcceso
+                            select new UtilidadesAmigos.Logica.Entidades.Seguridad.EControlTarjetasAcceso
+                            {
+                                IdRegistro=n.IdRegistro,
+                                IdOficina=n.IdOficina,
+                                IdDepartamento=n.IdDepartamento,
+                                Empleado=n.Empleado,
+                                NumeroTarjeta=n.NumeroTarjeta,
+                                SecuenciaInterna=n.SecuenciaInterna,
+                                FechaEntrega0=n.FechaEntrega,
+                                IdEstatus=n.IdEstatus,
+                                IdUsuarioAdiciona=n.IdUsuarioAdiciona,
+                                FechaAdiciona0=n.FechaAdiciona,
+                                IdUsuarioModifica=n.IdUsuarioModifica,
+                                FechaModifica0=n.FechaModifica
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }

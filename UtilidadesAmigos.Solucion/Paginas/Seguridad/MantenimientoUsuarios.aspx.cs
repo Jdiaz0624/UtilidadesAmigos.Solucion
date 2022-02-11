@@ -436,7 +436,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             ListadoUsuarios();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleUsuarios, ref lbCantidadPaginaVariableUsuarios);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavleUsuarios, ref lbCantidadPaginaVariableUsuarios);
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)

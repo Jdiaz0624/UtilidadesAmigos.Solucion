@@ -119,6 +119,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionMantenimientos\ProcesarInformacionAntiguedadSaldo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionMantenimientos\ProcesarInformacionTasaMoneda.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionSeguridad.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionTarjetaAcceso.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesMontosAcumulados.cs" />
@@ -306,7 +307,6 @@
     <Compile Include="Entidades\ESacarreclamaciones.cs" />
     <Compile Include="Entidades\ESacarSubramoDetalle.cs" />
     <Compile Include="Entidades\ESugerencias.cs" />
-    <Compile Include="Entidades\ETarjetaAcceso.cs" />
     <Compile Include="Entidades\ETipoReclamacion.cs" />
     <Compile Include="Entidades\ETransaccionesEfectivo.cs" />
     <Compile Include="Entidades\EUsuarios.cs" />
@@ -404,6 +404,7 @@
     <Compile Include="Entidades\Reportes\ESacarPorcientoComisionesSupervisores.cs" />
     <Compile Include="Entidades\Reportes\EValidarInformacionPolizasRenovar.cs" />
     <Compile Include="Entidades\Reportes\EValidarPolizasRenovadas.cs" />
+    <Compile Include="Entidades\Seguridad\EControlTarjetasAcceso.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaInformacionPersonasRegistradasArchivo.cs" />

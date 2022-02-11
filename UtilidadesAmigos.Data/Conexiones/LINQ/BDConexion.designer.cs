@@ -367,20 +367,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_MANTENIMIENTO_CLAVE_SEGURIDADResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MANTENIMIENTO_TARJETAS_ACCESO")]
-		public ISingleResult<SP_MANTENIMIENTO_TARJETAS_ACCESOResult> SP_MANTENIMIENTO_TARJETAS_ACCESO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdOficina", DbType="Decimal(20,0)")] System.Nullable<decimal> idOficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdDepartamento", DbType="Decimal(20,0)")] System.Nullable<decimal> idDepartamento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEmpleado", DbType="Decimal(20,0)")] System.Nullable<decimal> idEmpleado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTarjetaAcceso", DbType="Decimal(20,0)")] System.Nullable<decimal> idTarjetaAcceso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SecuenciaInterna", DbType="VarChar(5)")] string secuenciaInterna, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroTarjeta", DbType="VarChar(100)")] string numeroTarjeta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaEntrega", DbType="Date")] System.Nullable<System.DateTime> fechaEntrega, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="Decimal(20,0)")] System.Nullable<decimal> estatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioAdiciona", DbType="Decimal(20,0)")] System.Nullable<decimal> usuarioAdiciona, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idOficina, idDepartamento, idEmpleado, idTarjetaAcceso, secuenciaInterna, numeroTarjeta, fechaEntrega, estatus, usuarioAdiciona, accion);
-			return ((ISingleResult<SP_MANTENIMIENTO_TARJETAS_ACCESOResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_LISTADO_TARJETAS_ACCESO")]
-		public ISingleResult<SP_BUSCA_LISTADO_TARJETAS_ACCESOResult> SP_BUSCA_LISTADO_TARJETAS_ACCESO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdOficina", DbType="Decimal(20,0)")] System.Nullable<decimal> idOficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdDepartamento", DbType="Decimal(20,0)")] System.Nullable<decimal> idDepartamento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEmpleado", DbType="Decimal(20,0)")] System.Nullable<decimal> idEmpleado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTarjetaAcceso", DbType="Decimal(20,0)")] System.Nullable<decimal> idTarjetaAcceso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="Decimal(20,0)")] System.Nullable<decimal> estatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroTarjeta", DbType="VarChar(100)")] string numeroTarjeta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaEntregaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaEntregaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaEntregaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaEntregaHasta)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idOficina, idDepartamento, idEmpleado, idTarjetaAcceso, estatus, numeroTarjeta, fechaEntregaDesde, fechaEntregaHasta);
-			return ((ISingleResult<SP_BUSCA_LISTADO_TARJETAS_ACCESOResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_GENERAR_DATA_GRUAS_AERO_AMBULANCIA")]
 		public ISingleResult<SP_GENERAR_DATA_GRUAS_AERO_AMBULANCIAResult> SP_GENERAR_DATA_GRUAS_AERO_AMBULANCIA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cobertura", DbType="Decimal(20,0)")] System.Nullable<decimal> cobertura, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Chasis", DbType="VarChar(100)")] string chasis, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="VarChar(100)")] string estatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta)
 		{
@@ -1198,6 +1184,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, idAsegurado, nombreDependiente, numeroIdentificacion);
 			return ((ISingleResult<SP_BUSCAR_DEPENDIENTESResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_LISTADO_CONTROL_TARJETA_ACCESO")]
+		public ISingleResult<SP_BUSCA_LISTADO_CONTROL_TARJETA_ACCESOResult> SP_BUSCA_LISTADO_CONTROL_TARJETA_ACCESO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Decimal(20,0)")] System.Nullable<decimal> idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdOficina", DbType="Decimal(20,0)")] System.Nullable<decimal> idOficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdDepartamento", DbType="Decimal(20,0)")] System.Nullable<decimal> idDepartamento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstatus", DbType="Decimal(5,0)")] System.Nullable<decimal> idEstatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Empleado", DbType="VarChar(100)")] string empleado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroTarjeta", DbType="VarChar(30)")] string numeroTarjeta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="VarChar(4)")] string secuencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaEntradaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaEntradaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaEntradaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaEntradaHasta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, idOficina, idDepartamento, idEstatus, empleado, numeroTarjeta, secuencia, fechaEntradaDesde, fechaEntradaHasta);
+			return ((ISingleResult<SP_BUSCA_LISTADO_CONTROL_TARJETA_ACCESOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_TARJETAS_ACCESO")]
+		public ISingleResult<SP_PROCESAR_INFORMACION_TARJETAS_ACCESOResult> SP_PROCESAR_INFORMACION_TARJETAS_ACCESO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Decimal(20,0)")] System.Nullable<decimal> idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdOficina", DbType="Decimal(20,0)")] System.Nullable<decimal> idOficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdDepartamento", DbType="Decimal(20,0)")] System.Nullable<decimal> idDepartamento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Empleado", DbType="VarChar(100)")] string empleado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroTarjeta", DbType="VarChar(30)")] string numeroTarjeta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SecuenciaInterna", DbType="VarChar(4)")] string secuenciaInterna, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstatus", DbType="Decimal(5,0)")] System.Nullable<decimal> idEstatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, idOficina, idDepartamento, empleado, numeroTarjeta, secuenciaInterna, idEstatus, idUsuario, accion);
+			return ((ISingleResult<SP_PROCESAR_INFORMACION_TARJETAS_ACCESOResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -10758,616 +10758,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Estatus != value))
 				{
 					this._Estatus = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_MANTENIMIENTO_TARJETAS_ACCESOResult
-	{
-		
-		private System.Nullable<decimal> _IdOficina;
-		
-		private System.Nullable<decimal> _IdDepartamento;
-		
-		private System.Nullable<decimal> _IdEmpleado;
-		
-		private System.Nullable<decimal> _IdTarjetaAcceso;
-		
-		private string _SecuenciaInterna;
-		
-		private string _NumeroTarjeta;
-		
-		private System.Nullable<System.DateTime> _FechaEntrega;
-		
-		private System.Nullable<decimal> _Estatus;
-		
-		private System.Nullable<decimal> _UsuarioAdiciona;
-		
-		private System.Nullable<System.DateTime> _FechaAdiciona;
-		
-		private System.Nullable<decimal> _UsuarioModicia;
-		
-		private System.Nullable<System.DateTime> _FechaModifica;
-		
-		public SP_MANTENIMIENTO_TARJETAS_ACCESOResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdOficina", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> IdOficina
-		{
-			get
-			{
-				return this._IdOficina;
-			}
-			set
-			{
-				if ((this._IdOficina != value))
-				{
-					this._IdOficina = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdDepartamento", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> IdDepartamento
-		{
-			get
-			{
-				return this._IdDepartamento;
-			}
-			set
-			{
-				if ((this._IdDepartamento != value))
-				{
-					this._IdDepartamento = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdEmpleado", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> IdEmpleado
-		{
-			get
-			{
-				return this._IdEmpleado;
-			}
-			set
-			{
-				if ((this._IdEmpleado != value))
-				{
-					this._IdEmpleado = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTarjetaAcceso", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> IdTarjetaAcceso
-		{
-			get
-			{
-				return this._IdTarjetaAcceso;
-			}
-			set
-			{
-				if ((this._IdTarjetaAcceso != value))
-				{
-					this._IdTarjetaAcceso = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecuenciaInterna", DbType="VarChar(5)")]
-		public string SecuenciaInterna
-		{
-			get
-			{
-				return this._SecuenciaInterna;
-			}
-			set
-			{
-				if ((this._SecuenciaInterna != value))
-				{
-					this._SecuenciaInterna = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroTarjeta", DbType="VarChar(100)")]
-		public string NumeroTarjeta
-		{
-			get
-			{
-				return this._NumeroTarjeta;
-			}
-			set
-			{
-				if ((this._NumeroTarjeta != value))
-				{
-					this._NumeroTarjeta = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaEntrega", DbType="Date")]
-		public System.Nullable<System.DateTime> FechaEntrega
-		{
-			get
-			{
-				return this._FechaEntrega;
-			}
-			set
-			{
-				if ((this._FechaEntrega != value))
-				{
-					this._FechaEntrega = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> Estatus
-		{
-			get
-			{
-				return this._Estatus;
-			}
-			set
-			{
-				if ((this._Estatus != value))
-				{
-					this._Estatus = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioAdiciona", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> UsuarioAdiciona
-		{
-			get
-			{
-				return this._UsuarioAdiciona;
-			}
-			set
-			{
-				if ((this._UsuarioAdiciona != value))
-				{
-					this._UsuarioAdiciona = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona", DbType="Date")]
-		public System.Nullable<System.DateTime> FechaAdiciona
-		{
-			get
-			{
-				return this._FechaAdiciona;
-			}
-			set
-			{
-				if ((this._FechaAdiciona != value))
-				{
-					this._FechaAdiciona = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioModicia", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> UsuarioModicia
-		{
-			get
-			{
-				return this._UsuarioModicia;
-			}
-			set
-			{
-				if ((this._UsuarioModicia != value))
-				{
-					this._UsuarioModicia = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaModifica", DbType="Date")]
-		public System.Nullable<System.DateTime> FechaModifica
-		{
-			get
-			{
-				return this._FechaModifica;
-			}
-			set
-			{
-				if ((this._FechaModifica != value))
-				{
-					this._FechaModifica = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_BUSCA_LISTADO_TARJETAS_ACCESOResult
-	{
-		
-		private System.Nullable<decimal> _IdOficina;
-		
-		private string _Oficina;
-		
-		private System.Nullable<decimal> _IdDepartamento;
-		
-		private string _Departamento;
-		
-		private System.Nullable<decimal> _IdEmpleado;
-		
-		private string _Empleado;
-		
-		private decimal _IdTarjetaAcceso;
-		
-		private string _SecuenciaInterna;
-		
-		private string _NumeroTarjeta;
-		
-		private System.Nullable<System.DateTime> _FechaEntrega0;
-		
-		private string _FechaEntrega;
-		
-		private System.Nullable<decimal> _Estatus0;
-		
-		private string _Estatus;
-		
-		private System.Nullable<decimal> _UsuarioAdiciona;
-		
-		private string _Creadopor;
-		
-		private System.Nullable<System.DateTime> _FechaAdiciona0;
-		
-		private string _FechaAdiciona;
-		
-		private System.Nullable<decimal> _UsuarioModicia;
-		
-		private string _ModificadoPor;
-		
-		private System.Nullable<System.DateTime> _FechaModifica0;
-		
-		private string _FechaModifica;
-		
-		public SP_BUSCA_LISTADO_TARJETAS_ACCESOResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdOficina", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> IdOficina
-		{
-			get
-			{
-				return this._IdOficina;
-			}
-			set
-			{
-				if ((this._IdOficina != value))
-				{
-					this._IdOficina = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="VarChar(100)")]
-		public string Oficina
-		{
-			get
-			{
-				return this._Oficina;
-			}
-			set
-			{
-				if ((this._Oficina != value))
-				{
-					this._Oficina = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdDepartamento", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> IdDepartamento
-		{
-			get
-			{
-				return this._IdDepartamento;
-			}
-			set
-			{
-				if ((this._IdDepartamento != value))
-				{
-					this._IdDepartamento = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Departamento", DbType="VarChar(100)")]
-		public string Departamento
-		{
-			get
-			{
-				return this._Departamento;
-			}
-			set
-			{
-				if ((this._Departamento != value))
-				{
-					this._Departamento = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdEmpleado", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> IdEmpleado
-		{
-			get
-			{
-				return this._IdEmpleado;
-			}
-			set
-			{
-				if ((this._IdEmpleado != value))
-				{
-					this._IdEmpleado = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Empleado", DbType="VarChar(100)")]
-		public string Empleado
-		{
-			get
-			{
-				return this._Empleado;
-			}
-			set
-			{
-				if ((this._Empleado != value))
-				{
-					this._Empleado = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTarjetaAcceso", DbType="Decimal(18,0) NOT NULL")]
-		public decimal IdTarjetaAcceso
-		{
-			get
-			{
-				return this._IdTarjetaAcceso;
-			}
-			set
-			{
-				if ((this._IdTarjetaAcceso != value))
-				{
-					this._IdTarjetaAcceso = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecuenciaInterna", DbType="VarChar(5)")]
-		public string SecuenciaInterna
-		{
-			get
-			{
-				return this._SecuenciaInterna;
-			}
-			set
-			{
-				if ((this._SecuenciaInterna != value))
-				{
-					this._SecuenciaInterna = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroTarjeta", DbType="VarChar(100)")]
-		public string NumeroTarjeta
-		{
-			get
-			{
-				return this._NumeroTarjeta;
-			}
-			set
-			{
-				if ((this._NumeroTarjeta != value))
-				{
-					this._NumeroTarjeta = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaEntrega0", DbType="Date")]
-		public System.Nullable<System.DateTime> FechaEntrega0
-		{
-			get
-			{
-				return this._FechaEntrega0;
-			}
-			set
-			{
-				if ((this._FechaEntrega0 != value))
-				{
-					this._FechaEntrega0 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaEntrega", DbType="NVarChar(30)")]
-		public string FechaEntrega
-		{
-			get
-			{
-				return this._FechaEntrega;
-			}
-			set
-			{
-				if ((this._FechaEntrega != value))
-				{
-					this._FechaEntrega = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus0", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> Estatus0
-		{
-			get
-			{
-				return this._Estatus0;
-			}
-			set
-			{
-				if ((this._Estatus0 != value))
-				{
-					this._Estatus0 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(100)")]
-		public string Estatus
-		{
-			get
-			{
-				return this._Estatus;
-			}
-			set
-			{
-				if ((this._Estatus != value))
-				{
-					this._Estatus = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioAdiciona", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> UsuarioAdiciona
-		{
-			get
-			{
-				return this._UsuarioAdiciona;
-			}
-			set
-			{
-				if ((this._UsuarioAdiciona != value))
-				{
-					this._UsuarioAdiciona = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creadopor", DbType="VarChar(150)")]
-		public string Creadopor
-		{
-			get
-			{
-				return this._Creadopor;
-			}
-			set
-			{
-				if ((this._Creadopor != value))
-				{
-					this._Creadopor = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona0", DbType="DateTime")]
-		public System.Nullable<System.DateTime> FechaAdiciona0
-		{
-			get
-			{
-				return this._FechaAdiciona0;
-			}
-			set
-			{
-				if ((this._FechaAdiciona0 != value))
-				{
-					this._FechaAdiciona0 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona", DbType="NVarChar(30)")]
-		public string FechaAdiciona
-		{
-			get
-			{
-				return this._FechaAdiciona;
-			}
-			set
-			{
-				if ((this._FechaAdiciona != value))
-				{
-					this._FechaAdiciona = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioModicia", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> UsuarioModicia
-		{
-			get
-			{
-				return this._UsuarioModicia;
-			}
-			set
-			{
-				if ((this._UsuarioModicia != value))
-				{
-					this._UsuarioModicia = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModificadoPor", DbType="VarChar(150)")]
-		public string ModificadoPor
-		{
-			get
-			{
-				return this._ModificadoPor;
-			}
-			set
-			{
-				if ((this._ModificadoPor != value))
-				{
-					this._ModificadoPor = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaModifica0", DbType="DateTime")]
-		public System.Nullable<System.DateTime> FechaModifica0
-		{
-			get
-			{
-				return this._FechaModifica0;
-			}
-			set
-			{
-				if ((this._FechaModifica0 != value))
-				{
-					this._FechaModifica0 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaModifica", DbType="NVarChar(30)")]
-		public string FechaModifica
-		{
-			get
-			{
-				return this._FechaModifica;
-			}
-			set
-			{
-				if ((this._FechaModifica != value))
-				{
-					this._FechaModifica = value;
 				}
 			}
 		}
@@ -37632,6 +37022,652 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._FechaInicioCobertura != value))
 				{
 					this._FechaInicioCobertura = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_LISTADO_CONTROL_TARJETA_ACCESOResult
+	{
+		
+		private decimal _IdRegistro;
+		
+		private System.Nullable<decimal> _IdOficina;
+		
+		private string _Oficina;
+		
+		private System.Nullable<decimal> _IdDepartamento;
+		
+		private string _Departamento;
+		
+		private string _Empleado;
+		
+		private string _NumeroTarjeta;
+		
+		private string _SecuenciaInterna;
+		
+		private System.Nullable<System.DateTime> _FechaEntrega0;
+		
+		private string _FechaEntrada;
+		
+		private string _HoraEntrada;
+		
+		private System.Nullable<decimal> _IdEstatus;
+		
+		private string _Estatus;
+		
+		private System.Nullable<decimal> _IdUsuarioAdiciona;
+		
+		private string _CreadoPor;
+		
+		private System.Nullable<System.DateTime> _FechaAdiciona0;
+		
+		private string _FechaCreado;
+		
+		private string _HoraCreado;
+		
+		private System.Nullable<decimal> _IdUsuarioModifica;
+		
+		private string _ModificadoPor;
+		
+		private System.Nullable<System.DateTime> _FechaModifica0;
+		
+		private string _FechaModificado;
+		
+		private string _HoraModificado;
+		
+		public SP_BUSCA_LISTADO_CONTROL_TARJETA_ACCESOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Decimal(20,0) NOT NULL")]
+		public decimal IdRegistro
+		{
+			get
+			{
+				return this._IdRegistro;
+			}
+			set
+			{
+				if ((this._IdRegistro != value))
+				{
+					this._IdRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdOficina", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdOficina
+		{
+			get
+			{
+				return this._IdOficina;
+			}
+			set
+			{
+				if ((this._IdOficina != value))
+				{
+					this._IdOficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="VarChar(100)")]
+		public string Oficina
+		{
+			get
+			{
+				return this._Oficina;
+			}
+			set
+			{
+				if ((this._Oficina != value))
+				{
+					this._Oficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdDepartamento", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdDepartamento
+		{
+			get
+			{
+				return this._IdDepartamento;
+			}
+			set
+			{
+				if ((this._IdDepartamento != value))
+				{
+					this._IdDepartamento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Departamento", DbType="VarChar(50)")]
+		public string Departamento
+		{
+			get
+			{
+				return this._Departamento;
+			}
+			set
+			{
+				if ((this._Departamento != value))
+				{
+					this._Departamento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Empleado", DbType="VarChar(100)")]
+		public string Empleado
+		{
+			get
+			{
+				return this._Empleado;
+			}
+			set
+			{
+				if ((this._Empleado != value))
+				{
+					this._Empleado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroTarjeta", DbType="VarChar(30)")]
+		public string NumeroTarjeta
+		{
+			get
+			{
+				return this._NumeroTarjeta;
+			}
+			set
+			{
+				if ((this._NumeroTarjeta != value))
+				{
+					this._NumeroTarjeta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecuenciaInterna", DbType="VarChar(4)")]
+		public string SecuenciaInterna
+		{
+			get
+			{
+				return this._SecuenciaInterna;
+			}
+			set
+			{
+				if ((this._SecuenciaInterna != value))
+				{
+					this._SecuenciaInterna = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaEntrega0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaEntrega0
+		{
+			get
+			{
+				return this._FechaEntrega0;
+			}
+			set
+			{
+				if ((this._FechaEntrega0 != value))
+				{
+					this._FechaEntrega0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaEntrada", DbType="NVarChar(4000)")]
+		public string FechaEntrada
+		{
+			get
+			{
+				return this._FechaEntrada;
+			}
+			set
+			{
+				if ((this._FechaEntrada != value))
+				{
+					this._FechaEntrada = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoraEntrada", DbType="NVarChar(4000)")]
+		public string HoraEntrada
+		{
+			get
+			{
+				return this._HoraEntrada;
+			}
+			set
+			{
+				if ((this._HoraEntrada != value))
+				{
+					this._HoraEntrada = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdEstatus", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> IdEstatus
+		{
+			get
+			{
+				return this._IdEstatus;
+			}
+			set
+			{
+				if ((this._IdEstatus != value))
+				{
+					this._IdEstatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(100)")]
+		public string Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuarioAdiciona", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuarioAdiciona
+		{
+			get
+			{
+				return this._IdUsuarioAdiciona;
+			}
+			set
+			{
+				if ((this._IdUsuarioAdiciona != value))
+				{
+					this._IdUsuarioAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreadoPor", DbType="VarChar(150)")]
+		public string CreadoPor
+		{
+			get
+			{
+				return this._CreadoPor;
+			}
+			set
+			{
+				if ((this._CreadoPor != value))
+				{
+					this._CreadoPor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaAdiciona0
+		{
+			get
+			{
+				return this._FechaAdiciona0;
+			}
+			set
+			{
+				if ((this._FechaAdiciona0 != value))
+				{
+					this._FechaAdiciona0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCreado", DbType="NVarChar(4000)")]
+		public string FechaCreado
+		{
+			get
+			{
+				return this._FechaCreado;
+			}
+			set
+			{
+				if ((this._FechaCreado != value))
+				{
+					this._FechaCreado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoraCreado", DbType="NVarChar(4000)")]
+		public string HoraCreado
+		{
+			get
+			{
+				return this._HoraCreado;
+			}
+			set
+			{
+				if ((this._HoraCreado != value))
+				{
+					this._HoraCreado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuarioModifica", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuarioModifica
+		{
+			get
+			{
+				return this._IdUsuarioModifica;
+			}
+			set
+			{
+				if ((this._IdUsuarioModifica != value))
+				{
+					this._IdUsuarioModifica = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModificadoPor", DbType="VarChar(150)")]
+		public string ModificadoPor
+		{
+			get
+			{
+				return this._ModificadoPor;
+			}
+			set
+			{
+				if ((this._ModificadoPor != value))
+				{
+					this._ModificadoPor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaModifica0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaModifica0
+		{
+			get
+			{
+				return this._FechaModifica0;
+			}
+			set
+			{
+				if ((this._FechaModifica0 != value))
+				{
+					this._FechaModifica0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaModificado", DbType="NVarChar(4000)")]
+		public string FechaModificado
+		{
+			get
+			{
+				return this._FechaModificado;
+			}
+			set
+			{
+				if ((this._FechaModificado != value))
+				{
+					this._FechaModificado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoraModificado", DbType="NVarChar(4000)")]
+		public string HoraModificado
+		{
+			get
+			{
+				return this._HoraModificado;
+			}
+			set
+			{
+				if ((this._HoraModificado != value))
+				{
+					this._HoraModificado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_INFORMACION_TARJETAS_ACCESOResult
+	{
+		
+		private System.Nullable<decimal> _IdRegistro;
+		
+		private System.Nullable<decimal> _IdOficina;
+		
+		private System.Nullable<decimal> _IdDepartamento;
+		
+		private string _Empleado;
+		
+		private string _NumeroTarjeta;
+		
+		private string _SecuenciaInterna;
+		
+		private System.Nullable<System.DateTime> _FechaEntrega;
+		
+		private System.Nullable<decimal> _IdEstatus;
+		
+		private System.Nullable<decimal> _IdUsuarioAdiciona;
+		
+		private System.Nullable<System.DateTime> _FechaAdiciona;
+		
+		private System.Nullable<decimal> _IdUsuarioModifica;
+		
+		private System.Nullable<System.DateTime> _FechaModifica;
+		
+		public SP_PROCESAR_INFORMACION_TARJETAS_ACCESOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdRegistro
+		{
+			get
+			{
+				return this._IdRegistro;
+			}
+			set
+			{
+				if ((this._IdRegistro != value))
+				{
+					this._IdRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdOficina", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdOficina
+		{
+			get
+			{
+				return this._IdOficina;
+			}
+			set
+			{
+				if ((this._IdOficina != value))
+				{
+					this._IdOficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdDepartamento", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdDepartamento
+		{
+			get
+			{
+				return this._IdDepartamento;
+			}
+			set
+			{
+				if ((this._IdDepartamento != value))
+				{
+					this._IdDepartamento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Empleado", DbType="VarChar(100)")]
+		public string Empleado
+		{
+			get
+			{
+				return this._Empleado;
+			}
+			set
+			{
+				if ((this._Empleado != value))
+				{
+					this._Empleado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroTarjeta", DbType="VarChar(30)")]
+		public string NumeroTarjeta
+		{
+			get
+			{
+				return this._NumeroTarjeta;
+			}
+			set
+			{
+				if ((this._NumeroTarjeta != value))
+				{
+					this._NumeroTarjeta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecuenciaInterna", DbType="VarChar(4)")]
+		public string SecuenciaInterna
+		{
+			get
+			{
+				return this._SecuenciaInterna;
+			}
+			set
+			{
+				if ((this._SecuenciaInterna != value))
+				{
+					this._SecuenciaInterna = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaEntrega", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaEntrega
+		{
+			get
+			{
+				return this._FechaEntrega;
+			}
+			set
+			{
+				if ((this._FechaEntrega != value))
+				{
+					this._FechaEntrega = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdEstatus", DbType="Decimal(5,0)")]
+		public System.Nullable<decimal> IdEstatus
+		{
+			get
+			{
+				return this._IdEstatus;
+			}
+			set
+			{
+				if ((this._IdEstatus != value))
+				{
+					this._IdEstatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuarioAdiciona", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuarioAdiciona
+		{
+			get
+			{
+				return this._IdUsuarioAdiciona;
+			}
+			set
+			{
+				if ((this._IdUsuarioAdiciona != value))
+				{
+					this._IdUsuarioAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaAdiciona
+		{
+			get
+			{
+				return this._FechaAdiciona;
+			}
+			set
+			{
+				if ((this._FechaAdiciona != value))
+				{
+					this._FechaAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuarioModifica", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuarioModifica
+		{
+			get
+			{
+				return this._IdUsuarioModifica;
+			}
+			set
+			{
+				if ((this._IdUsuarioModifica != value))
+				{
+					this._IdUsuarioModifica = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaModifica", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaModifica
+		{
+			get
+			{
+				return this._FechaModifica;
+			}
+			set
+			{
+				if ((this._FechaModifica != value))
+				{
+					this._FechaModifica = value;
 				}
 			}
 		}

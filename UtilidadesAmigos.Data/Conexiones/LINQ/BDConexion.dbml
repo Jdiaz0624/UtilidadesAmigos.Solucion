@@ -820,65 +820,6 @@
       <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_MANTENIMIENTO_TARJETAS_ACCESO" Method="SP_MANTENIMIENTO_TARJETAS_ACCESO">
-    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="IdEmpleado" Parameter="idEmpleado" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="IdTarjetaAcceso" Parameter="idTarjetaAcceso" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="SecuenciaInterna" Parameter="secuenciaInterna" Type="System.String" DbType="VarChar(5)" />
-    <Parameter Name="NumeroTarjeta" Parameter="numeroTarjeta" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="FechaEntrega" Parameter="fechaEntrega" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="Estatus" Parameter="estatus" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="UsuarioAdiciona" Parameter="usuarioAdiciona" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
-    <ElementType Name="SP_MANTENIMIENTO_TARJETAS_ACCESOResult">
-      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="IdEmpleado" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="IdTarjetaAcceso" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="SecuenciaInterna" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
-      <Column Name="NumeroTarjeta" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="FechaEntrega" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="UsuarioAdiciona" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="UsuarioModicia" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="FechaModifica" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_BUSCA_LISTADO_TARJETAS_ACCESO" Method="SP_BUSCA_LISTADO_TARJETAS_ACCESO">
-    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="IdEmpleado" Parameter="idEmpleado" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="IdTarjetaAcceso" Parameter="idTarjetaAcceso" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Estatus" Parameter="estatus" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="NumeroTarjeta" Parameter="numeroTarjeta" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="FechaEntregaDesde" Parameter="fechaEntregaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaEntregaHasta" Parameter="fechaEntregaHasta" Type="System.DateTime" DbType="Date" />
-    <ElementType Name="SP_BUSCA_LISTADO_TARJETAS_ACCESOResult">
-      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Departamento" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdEmpleado" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Empleado" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdTarjetaAcceso" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="SecuenciaInterna" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
-      <Column Name="NumeroTarjeta" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="FechaEntrega0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FechaEntrega" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="Estatus0" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="UsuarioAdiciona" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Creadopor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="FechaAdiciona0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FechaAdiciona" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="UsuarioModicia" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="ModificadoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="FechaModifica0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FechaModifica" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_GENERAR_DATA_GRUAS_AERO_AMBULANCIA" Method="SP_GENERAR_DATA_GRUAS_AERO_AMBULANCIA">
     <Parameter Name="Cobertura" Parameter="cobertura" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
@@ -3183,6 +3124,67 @@
       <Column Name="FechaInclusion" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="FechaInicioCobertura0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="FechaInicioCobertura" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_LISTADO_CONTROL_TARJETA_ACCESO" Method="SP_BUSCA_LISTADO_CONTROL_TARJETA_ACCESO">
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdEstatus" Parameter="idEstatus" Type="System.Decimal" DbType="Decimal(5,0)" />
+    <Parameter Name="Empleado" Parameter="empleado" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="NumeroTarjeta" Parameter="numeroTarjeta" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Secuencia" Parameter="secuencia" Type="System.String" DbType="VarChar(4)" />
+    <Parameter Name="FechaEntradaDesde" Parameter="fechaEntradaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaEntradaHasta" Parameter="fechaEntradaHasta" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="SP_BUSCA_LISTADO_CONTROL_TARJETA_ACCESOResult">
+      <Column Name="IdRegistro" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Departamento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Empleado" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NumeroTarjeta" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="SecuenciaInterna" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="FechaEntrega0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaEntrada" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="HoraEntrada" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="IdEstatus" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdUsuarioAdiciona" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CreadoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FechaAdiciona0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaCreado" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="HoraCreado" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="IdUsuarioModifica" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="ModificadoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FechaModifica0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaModificado" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="HoraModificado" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_TARJETAS_ACCESO" Method="SP_PROCESAR_INFORMACION_TARJETAS_ACCESO">
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Empleado" Parameter="empleado" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="NumeroTarjeta" Parameter="numeroTarjeta" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="SecuenciaInterna" Parameter="secuenciaInterna" Type="System.String" DbType="VarChar(4)" />
+    <Parameter Name="IdEstatus" Parameter="idEstatus" Type="System.Decimal" DbType="Decimal(5,0)" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_TARJETAS_ACCESOResult">
+      <Column Name="IdRegistro" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Empleado" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NumeroTarjeta" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="SecuenciaInterna" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="FechaEntrega" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IdEstatus" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="IdUsuarioAdiciona" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IdUsuarioModifica" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="FechaModifica" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
