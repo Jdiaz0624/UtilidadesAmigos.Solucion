@@ -13,9 +13,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
 {//decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? decimal.Parse(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
     
     public partial class AsignacionTarjetas : System.Web.UI.Page
+
+  
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSeguridad.LogicaSeguridad> ObjDataSeguridad = new Lazy<Logica.Logica.LogicaSeguridad.LogicaSeguridad>();
+
+        enum PermisoUSuarios
+        {
+            JuanMarcelinoMedinaDiaz=1
+        }
 
         #region CONTROL DE PAGINACION
         readonly PagedDataSource pagedDataSource_ControlTarjetaAcceso = new PagedDataSource();
@@ -209,11 +216,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
         #region MOSTRAR CONFIGURACION INICIAL
-        private void ConfiguracionInicial() {
+        private void ConfiguracionInicial(decimal IdUsuario) {
             btnConsultar.Visible = true;
             btnNuevo.Visible = true;
+            btnReporte.Visible = true;
             btnEditar.Visible = false;
             btnRestabelcer.Visible = false;
+            btnGuardar.Visible = false;
+
+
+
+            switch (IdUsuario)
+            {
+
+                case (decimal)PermisoUSuarios.JuanMarcelinoMedinaDiaz:
+                    btnGuardar.Visible = true;
+                    break;
+            }
+
 
             CargarOficinas();
             CargarDepartamentos();
@@ -224,6 +244,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             DIVBloqueMantenimiento.Visible = false;
             lbIdRegistroSeleccionado.Text = "0";
             lbAcionTomar.Text = "INSERT";
+
         }
         #endregion
         #region PROCESAR LA INFORMACION DE LAS TARJETAS DE ACCESO
@@ -290,7 +311,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "CONTROL DE TARJETAS DE ACCESO";
 
-                ConfiguracionInicial();
+                ConfiguracionInicial((decimal)Session["IdUsuario"]);
+
+              
             }
 
 
@@ -325,7 +348,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnRestabelcer_Click(object sender, ImageClickEventArgs e)
         {
-            ConfiguracionInicial();
+            ConfiguracionInicial((decimal)Session["IdUsuario"]);
         }
 
         protected void btnSeleccionar_Click(object sender, ImageClickEventArgs e)
@@ -353,6 +376,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             btnConsultar.Visible = false;
             btnNuevo.Visible = false;
+            btnReporte.Visible = false;
             btnEditar.Visible = true;
             btnRestabelcer.Visible = true;
             lbAcionTomar.Text = "UPDATE";
@@ -399,12 +423,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnGuardar_Click(object sender, ImageClickEventArgs e)
         {
             ProcesarInformacionTarjetasAcceso();
-            ConfiguracionInicial();
+            ConfiguracionInicial((decimal)Session["IdUsuario"]);
         }
 
         protected void btnVolverAtras_Click(object sender, ImageClickEventArgs e)
         {
-            ConfiguracionInicial();
+            ConfiguracionInicial((decimal)Session["IdUsuario"]);
         }
 
         protected void ddlOficinaMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
