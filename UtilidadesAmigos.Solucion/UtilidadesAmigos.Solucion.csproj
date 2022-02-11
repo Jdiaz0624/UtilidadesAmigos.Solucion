@@ -266,6 +266,7 @@
     <Content Include="Paginas\Reportes\ReporteProduccion.aspx" />
     <Content Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx" />
     <Content Include="Paginas\Reportes\ReporteSobreComision.aspx" />
+    <Content Include="Paginas\Seguridad\AsignacionTarjetas.aspx" />
     <Content Include="Paginas\Seguridad\ConfiguracionCorreosEmisorProcesos.aspx" />
     <Content Include="Paginas\Seguridad\CredencialesBD.aspx" />
     <Content Include="Paginas\Seguridad\MantenimientoUsuarios.aspx" />
@@ -397,7 +398,6 @@
     <Content Include="Estilos\EstilosMaster.css" />
     <Content Include="Imagenes\Logo.jpg" />
     <Content Include="Paginas\AnoVehiculo.aspx" />
-    <Content Include="Paginas\AsignacionTarjetas.aspx" />
     <Content Include="Paginas\ComprensivoIncendioRoboPoPup.aspx" />
     <Content Include="Paginas\CotizadorAmigos.aspx" />
     <Content Include="Paginas\Empleados.aspx" />
@@ -449,13 +449,6 @@
     </Compile>
     <Compile Include="Paginas\AnoVehiculo.aspx.designer.cs">
       <DependentUpon>AnoVehiculo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\AsignacionTarjetas.aspx.cs">
-      <DependentUpon>AsignacionTarjetas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\AsignacionTarjetas.aspx.designer.cs">
-      <DependentUpon>AsignacionTarjetas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ComprensivoIncendioRoboPoPup.aspx.cs">
       <DependentUpon>ComprensivoIncendioRoboPoPup.aspx</DependentUpon>
@@ -877,6 +870,13 @@
     </Compile>
     <Compile Include="Paginas\SacarDataCoberturas.aspx.designer.cs">
       <DependentUpon>SacarDataCoberturas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\AsignacionTarjetas.aspx.cs">
+      <DependentUpon>AsignacionTarjetas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\AsignacionTarjetas.aspx.designer.cs">
+      <DependentUpon>AsignacionTarjetas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Seguridad\ConfiguracionCorreosEmisorProcesos.aspx.cs">
       <DependentUpon>ConfiguracionCorreosEmisorProcesos.aspx</DependentUpon>

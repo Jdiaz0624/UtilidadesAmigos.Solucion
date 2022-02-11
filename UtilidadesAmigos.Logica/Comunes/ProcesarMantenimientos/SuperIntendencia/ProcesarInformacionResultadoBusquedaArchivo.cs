@@ -17,10 +17,10 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.SuperIntendenci
         private string Reclamacion = "";
         private string Estatus = "";
         private string Ramo = "";
-        private decimal MontoAsegurado = 0;
-        private decimal Prima = 0;
-        private DateTime InicioVigencia = DateTime.Now;
-        private DateTime FinVigencia = DateTime.Now;
+        private decimal? MontoAsegurado = 0;
+        private decimal? Prima = 0;
+        private DateTime? InicioVigencia = DateTime.Now;
+        private DateTime? FinVigencia = DateTime.Now;
         private string TipoBusqueda = "";
         private string EncontradoComo = "";
         private string Comentario = "";
@@ -34,10 +34,10 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.SuperIntendenci
             string ReclamacionCON,
             string EstatusCON,
             string RamoCON,
-            decimal MontoAseguradoCON,
-            decimal PrimaCON,
-            DateTime InicioVigenciaCON,
-            DateTime FinVigenciaCON,
+            decimal? MontoAseguradoCON,
+            decimal? PrimaCON,
+            DateTime? InicioVigenciaCON,
+            DateTime? FinVigenciaCON,
             string TipoBusquedaCON,
             string EncontradoComoCON,
             string ComentarioCON,

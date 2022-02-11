@@ -163,7 +163,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected void linkTarjetasAccesos_Click(object sender, EventArgs e)
         {
            // ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
-            Response.Redirect("~/Paginas/AsignacionTarjetas.aspx");
+            Response.Redirect("~/Paginas/Seguridad/AsignacionTarjetas.aspx");
         }
 
         protected void linkMovimientoUsuarios_Click(object sender, EventArgs e)
