@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportSource;
+using CrystalDecisions.Shared;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {//decimal? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? decimal.Parse(ddlOficinaConsulta.SelectedValue) : new Nullable<decimal>();
@@ -242,7 +245,38 @@ namespace UtilidadesAmigos.Solucion.Paginas
             Procesar.ProcesarInformacion();
         }
         #endregion
+        #region GENERAR REPORTE DE CONTROL DE TARJETAS DE ACCESO
+        private void GenerarReporte(string RutaReporte, string NombreReporte) {
 
+            decimal? _Oficina = ddlOficinaCOnsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlOficinaCOnsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _Departamento = ddlDepartamentoConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlDepartamentoConsulta.SelectedValue) : new Nullable<decimal>();
+            decimal? _Estatus = ddlEstatusCOnsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlEstatusCOnsulta.SelectedValue) : new Nullable<decimal>();
+            string _Empleado = string.IsNullOrEmpty(txtEmpleadoConsulta.Text.Trim()) ? null : txtEmpleadoConsulta.Text.Trim();
+            string _NumeroTarjeta = string.IsNullOrEmpty(txtNumeroTarjeta.Text.Trim()) ? null : txtNumeroTarjeta.Text.Trim();
+            string _SecuencialPoliza = string.IsNullOrEmpty(txtSecuenciainterna.Text.Trim()) ? null : txtSecuenciainterna.Text.Trim();
+            
+
+           
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@IdRegistro", new Nullable<decimal>());
+            Reporte.SetParameterValue("@IdOficina", _Oficina);
+            Reporte.SetParameterValue("@IdDepartamento", _Departamento);
+            Reporte.SetParameterValue("@IdEstatus", _Estatus);
+            Reporte.SetParameterValue("@Empleado", _Empleado);
+            Reporte.SetParameterValue("@NumeroTarjeta", _NumeroTarjeta);
+            Reporte.SetParameterValue("@Secuencia", _SecuencialPoliza);
+            Reporte.SetParameterValue("@FechaEntradaDesde", new Nullable<DateTime>());
+            Reporte.SetParameterValue("@FechaEntradaHasta", new Nullable<DateTime>());
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+        }
+        #endregion
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -376,6 +410,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void ddlOficinaMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarDepartamentosMantenimiento();
+        }
+
+        protected void btnReporte_Click(object sender, ImageClickEventArgs e)
+        {
+            GenerarReporte(Server.MapPath("ReporteTarjetaControlAcceso.rpt"), "Control de Acceso");
         }
 
         protected void ddlOficinaCOnsulta_SelectedIndexChanged(object sender, EventArgs e)

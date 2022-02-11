@@ -118,6 +118,7 @@
             <div align="center">
                 <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Buscar Registros" CssClass="BotonImagen" OnClick="btnConsultar_Click" ImageUrl="~/Imagenes/Buscar.png" />
                  <asp:ImageButton ID="btnNuevo" runat="server" ToolTip="Crear Nuevo Registro" CssClass="BotonImagen" OnClick="btnNuevo_Click" ImageUrl="~/Imagenes/Agregar (2).png" />
+                <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Generar Reporte" CssClass="BotonImagen" OnClick="btnReporte_Click" ImageUrl="~/Imagenes/Reporte.png" />
                  <asp:ImageButton ID="btnEditar" runat="server" ToolTip="Editar Registro Seleccionado" CssClass="BotonImagen" OnClick="btnEditar_Click" ImageUrl="~/Imagenes/Editar.png" />
                  <asp:ImageButton ID="btnRestabelcer" runat="server" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" OnClick="btnRestabelcer_Click" ImageUrl="~/Imagenes/auto.png" />
             </div>
