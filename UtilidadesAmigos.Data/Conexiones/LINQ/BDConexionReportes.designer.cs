@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionReportesDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
 		{
 			OnCreated();
 		}
@@ -679,6 +679,27 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codRamo, subRamo, ramo, nombreSubRamo, numeroFactura, numeroFacturaFormateado, poliza, asegurado, items, supervisor, codIntermediario, codSupervisor, intermediario, fecha, fechaFormateada, hora, fechaInicioVigencia, fechaFinVigencia, inicioVigencia, finVigencia, sumaAsegurada, estatus, codOficina, oficina, concepto, ncf, tipo, descripcionTipo, bruto, impuesto, neto, tasa, cobrado, codMoneda, moneda, tasaUsada, montoPesos, codigoMes, codigoAno, mes, usuario, validadoDesde, validadoHasta, tipoVehiculo, marca, modelo, ano, color, chasis, placa, generadoPor, idUsuarioGeneraReporte, acion);
 			return ((ISingleResult<SP_PROCESAR_DATOS_REPORTE_NUEVOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_PRIMA_DEPOSITO_PENDIENTES")]
+		public ISingleResult<SP_BUSCA_PRIMA_DEPOSITO_PENDIENTESResult> SP_BUSCA_PRIMA_DEPOSITO_PENDIENTES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroDeposito", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroDeposito, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRecibo", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRecibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Supervisor", DbType="Int")] System.Nullable<int> supervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Intermediario", DbType="Int")] System.Nullable<int> intermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="VarChar(100)")] string estatus)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta, numeroDeposito, numeroRecibo, supervisor, intermediario, estatus);
+			return ((ISingleResult<SP_BUSCA_PRIMA_DEPOSITO_PENDIENTESResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_DEPOSITOS_PAGADOS")]
+		public ISingleResult<SP_PROCESAR_INFORMACION_DEPOSITOS_PAGADOSResult> SP_PROCESAR_INFORMACION_DEPOSITOS_PAGADOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Deposito", DbType="Decimal(20,0)")] System.Nullable<decimal> deposito, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Monto", DbType="Decimal(20,2)")] System.Nullable<decimal> monto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), deposito, monto, accion);
+			return ((ISingleResult<SP_PROCESAR_INFORMACION_DEPOSITOS_PAGADOSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_VALIDAR_DEPOSITOS_PAGADOS")]
+		public ISingleResult<SP_VALIDAR_DEPOSITOS_PAGADOSResult> SP_VALIDAR_DEPOSITOS_PAGADOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Deposito", DbType="Decimal(20,0)")] System.Nullable<decimal> deposito, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Monto", DbType="Decimal(20,2)")] System.Nullable<decimal> monto)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), deposito, monto);
+			return ((ISingleResult<SP_VALIDAR_DEPOSITOS_PAGADOSResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -15587,6 +15608,246 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._IdUsuarioGeneraReporte != value))
 				{
 					this._IdUsuarioGeneraReporte = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_PRIMA_DEPOSITO_PENDIENTESResult
+	{
+		
+		private decimal _Numero;
+		
+		private string _Fecha;
+		
+		private System.Nullable<decimal> _Monto;
+		
+		private string _Cuenta;
+		
+		private int _CodigoSupervisor;
+		
+		private string _Supervisor;
+		
+		private int _CodigoIntermediario;
+		
+		private string _Intermediario;
+		
+		private string _Estatus;
+		
+		public SP_BUSCA_PRIMA_DEPOSITO_PENDIENTESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Numero", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Numero
+		{
+			get
+			{
+				return this._Numero;
+			}
+			set
+			{
+				if ((this._Numero != value))
+				{
+					this._Numero = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="NVarChar(4000)")]
+		public string Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this._Fecha = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Monto", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Monto
+		{
+			get
+			{
+				return this._Monto;
+			}
+			set
+			{
+				if ((this._Monto != value))
+				{
+					this._Monto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cuenta", DbType="VarChar(50)")]
+		public string Cuenta
+		{
+			get
+			{
+				return this._Cuenta;
+			}
+			set
+			{
+				if ((this._Cuenta != value))
+				{
+					this._Cuenta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoSupervisor", DbType="Int NOT NULL")]
+		public int CodigoSupervisor
+		{
+			get
+			{
+				return this._CodigoSupervisor;
+			}
+			set
+			{
+				if ((this._CodigoSupervisor != value))
+				{
+					this._CodigoSupervisor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Supervisor", DbType="VarChar(233) NOT NULL", CanBeNull=false)]
+		public string Supervisor
+		{
+			get
+			{
+				return this._Supervisor;
+			}
+			set
+			{
+				if ((this._Supervisor != value))
+				{
+					this._Supervisor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoIntermediario", DbType="Int NOT NULL")]
+		public int CodigoIntermediario
+		{
+			get
+			{
+				return this._CodigoIntermediario;
+			}
+			set
+			{
+				if ((this._CodigoIntermediario != value))
+				{
+					this._CodigoIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Intermediario", DbType="VarChar(233) NOT NULL", CanBeNull=false)]
+		public string Intermediario
+		{
+			get
+			{
+				return this._Intermediario;
+			}
+			set
+			{
+				if ((this._Intermediario != value))
+				{
+					this._Intermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(9) NOT NULL", CanBeNull=false)]
+		public string Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_INFORMACION_DEPOSITOS_PAGADOSResult
+	{
+		
+		private System.Nullable<decimal> _Deposito;
+		
+		private System.Nullable<decimal> _Monto;
+		
+		public SP_PROCESAR_INFORMACION_DEPOSITOS_PAGADOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deposito", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> Deposito
+		{
+			get
+			{
+				return this._Deposito;
+			}
+			set
+			{
+				if ((this._Deposito != value))
+				{
+					this._Deposito = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Monto", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> Monto
+		{
+			get
+			{
+				return this._Monto;
+			}
+			set
+			{
+				if ((this._Monto != value))
+				{
+					this._Monto = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_VALIDAR_DEPOSITOS_PAGADOSResult
+	{
+		
+		private string _Validacion;
+		
+		public SP_VALIDAR_DEPOSITOS_PAGADOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Validacion", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string Validacion
+		{
+			get
+			{
+				return this._Validacion;
+			}
+			set
+			{
+				if ((this._Validacion != value))
+				{
+					this._Validacion = value;
 				}
 			}
 		}

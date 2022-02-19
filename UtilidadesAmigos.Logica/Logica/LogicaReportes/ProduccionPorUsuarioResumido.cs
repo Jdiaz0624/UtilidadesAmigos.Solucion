@@ -1876,5 +1876,84 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         }
         #endregion
 
+        #region LISTADO DE PRIMA DEPOSITO
+        /// <summary>
+        /// Este metodo es para mostrar el listado de los depositos con prima por pagar
+        /// </summary>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="NumeroDeposito"></param>
+        /// <param name="NumeroRecibo"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="Estatus"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EPrimaDepositoPendiente> BuscaListadoPrimaDeposito(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? NumeroDeposito = null, decimal? NumeroRecibo = null, int? Supervisor = null, int? Intermediario = null, string Estatus = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_PRIMA_DEPOSITO_PENDIENTES(FechaDesde, FechaHasta, NumeroDeposito, NumeroRecibo, Supervisor, Intermediario, Estatus)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EPrimaDepositoPendiente
+                           {
+                               Numero=n.Numero,
+                               Fecha=n.Fecha,
+                               Monto=n.Monto,
+                               Cuenta=n.Cuenta,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               Estatus=n.Estatus
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo procesa toda la informacion de los deppositos pagados
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EDepositosPagados ProcesarDepositosPagados(UtilidadesAmigos.Logica.Entidades.Reportes.EDepositosPagados Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EDepositosPagados Procesar = null;
+
+            var Depositos = ObjData.SP_PROCESAR_INFORMACION_DEPOSITOS_PAGADOS(
+                Item.Deposito,
+                Item.Monto,
+                Accion);
+            if (Depositos != null) {
+
+                Procesar = (from n in Depositos
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EDepositosPagados
+                            {
+                                Deposito=n.Deposito,
+                                Monto=n.Monto
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+
+        /// <summary>
+        /// Validar los depositos pagados
+        /// </summary>
+        /// <param name="Deposito"></param>
+        /// <param name="Monto"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EvalidarDepositosPagados> ValidarDepositosPagados(decimal? Deposito = null, decimal? Monto = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Validar = (from n in ObjData.SP_VALIDAR_DEPOSITOS_PAGADOS(Deposito, Monto)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EvalidarDepositosPagados
+                           {
+                               Validacion=n.Validacion
+                           }).ToList();
+            return Validar;
+        }
+        #endregion
+
     }
 }

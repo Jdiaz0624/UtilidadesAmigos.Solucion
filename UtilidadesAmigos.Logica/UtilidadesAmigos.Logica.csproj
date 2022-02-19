@@ -158,6 +158,7 @@
     <Compile Include="Comunes\Reportes\ProcesarInformacionDatosReporteIntermediarioInterno.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionPolizasARenovar.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionPolizasRenovadas.cs" />
+    <Compile Include="Comunes\Reportes\ProcesarInformacionPrimaDepositos.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionProduccuinPorUsuarioDetalle.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionReporteComisionIntermediario.cs" />
     <Compile Include="Comunes\Reportes\ProcesarProduccionPorUsuarioResumido.cs" />
@@ -381,7 +382,9 @@
     <Compile Include="Entidades\Reportes\EComisionesIntermediarioAlfredo.cs" />
     <Compile Include="Entidades\Reportes\EDatosProduccionReporte.cs" />
     <Compile Include="Entidades\Reportes\EDatosReporteNuevo.cs" />
+    <Compile Include="Entidades\Reportes\EDepositosPagados.cs" />
     <Compile Include="Entidades\Reportes\EGenerarInformacionSupervisoresDetalle.cs" />
+    <Compile Include="Entidades\Reportes\EPrimaDepositoPendiente.cs" />
     <Compile Include="Entidades\Reportes\EProcesarChequesInformacionImprimir.cs" />
     <Compile Include="Entidades\Reportes\EProcesarDatosReporteIntermediairoInterno.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionComisionesIntermediarioAlfredo.cs" />
@@ -402,6 +405,7 @@
     <Compile Include="Entidades\Reportes\EReporteSobreComision.cs" />
     <Compile Include="Entidades\Reportes\ESacarConceptoMediantePAgo.cs" />
     <Compile Include="Entidades\Reportes\ESacarPorcientoComisionesSupervisores.cs" />
+    <Compile Include="Entidades\Reportes\EvalidarDepositosPagados.cs" />
     <Compile Include="Entidades\Reportes\EValidarInformacionPolizasRenovar.cs" />
     <Compile Include="Entidades\Reportes\EValidarPolizasRenovadas.cs" />
     <Compile Include="Entidades\Seguridad\EControlTarjetasAcceso.cs" />

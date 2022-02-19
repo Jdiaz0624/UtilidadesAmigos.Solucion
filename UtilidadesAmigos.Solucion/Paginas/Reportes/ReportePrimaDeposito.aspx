@@ -62,7 +62,7 @@
 
                 <div class="col-md-2">
                     <asp:Label ID="lbCCodigoSupervisor" runat="server" Text="Supervisor" CssClass="Letranegrita"></asp:Label>
-                    <asp:TextBox ID="txtCodigoSupervisor" runat="server" CssClass="form-control" TextMode="Number" MaxLength="4" ></asp:TextBox>
+                    <asp:TextBox ID="txtCodigoSupervisor" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoSupervisor_TextChanged" CssClass="form-control" TextMode="Number" MaxLength="4" ></asp:TextBox>
                 </div>
 
                  <div class="col-md-4">
@@ -72,7 +72,7 @@
 
                  <div class="col-md-2">
                     <asp:Label ID="lbCodigoIntermediario" runat="server" Text="Intermediario" CssClass="Letranegrita"></asp:Label>
-                    <asp:TextBox ID="txtCodigoIntermediario" runat="server" CssClass="form-control" TextMode="Number" MaxLength="4" ></asp:TextBox>
+                    <asp:TextBox ID="txtCodigoIntermediario" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoIntermediario_TextChanged" CssClass="form-control" TextMode="Number" MaxLength="4" ></asp:TextBox>
                 </div>
 
                  <div class="col-md-4">
@@ -134,7 +134,7 @@
                                 <td> <%# Eval("Supervisor") %> </td>
                                 <td> <%# Eval("Intermediario") %> </td>
                                 <td> <%# Eval("Estatus") %> </td>
-                                <td> <asp:ImageButton ID="btnSeleccionar" runat="server" ToolTip="Seleccionar Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Seleccionar2.png" OnClick="btnSeleccionar_Click" /> </td>
+                                <td> <asp:ImageButton ID="btnSeleccionar" runat="server" ToolTip="Seleccionar Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Procesar.png" OnClick="btnSeleccionar_Click" /> </td>
 
 
                             </tr>
