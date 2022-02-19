@@ -695,5 +695,19 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkReportePrimaDeposito_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+
+                Response.Redirect("~/Paginas/Reportes/ReportePrimaDeposito.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }
