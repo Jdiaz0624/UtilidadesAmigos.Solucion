@@ -46,6 +46,15 @@
                }
     </style>
 
+    <script type="text/javascript">
+        function ErrorValidacion() {
+            alert("Se produjo una error en la validación de este registro, favor de contactar al administrador del sistema para consultar este caso.");
+        }
+        function USuarioNoValido() {
+            alert("No tienes permiso para realizar esta operación.");
+        }
+    </script>
+
     <div class="container-fluid">
         <br />
         <div id="DIVBloqueConsulta" runat="server">

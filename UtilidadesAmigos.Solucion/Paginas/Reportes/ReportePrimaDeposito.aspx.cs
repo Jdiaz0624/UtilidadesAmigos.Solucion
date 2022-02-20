@@ -15,6 +15,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido> ObjData = new Lazy<Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido>();
 
+        enum PermisoUsuariosEliminar { 
+        
+            JuanMarcelinoMedinaDiaz=1
+        }
+
         #region CONTROL DE PAGINACION DE LOS PRIMA DEPOSITOS
         readonly PagedDataSource pagedDataSource_PrimaDeposito = new PagedDataSource();
         int _PrimeraPagina_PrimaDeposito, _UltimaPagina_PrimaDeposito;
@@ -202,6 +207,92 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             return Resltado;
         }
         #endregion
+
+        #region PROCESAR LA INFORMACION DE LOS DEPOSITOS
+        private void ProcesarInformacionDepositos(decimal Deposito, decimal Monto, string Accion) {
+
+            UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionPrimaDepositos Procesar = new Logica.Comunes.Reportes.ProcesarInformacionPrimaDepositos(
+                Deposito,
+                Monto,
+                Accion);
+            Procesar.ProcesarInformacion();
+        }
+        #endregion
+
+        #region GENERAR REPORTES
+        private void GenerarReporte(string RutaReporte, string NombreReporte) {
+
+            DateTime? _FechaDesde = string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesde.Text);
+            DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHasta.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHasta.Text);
+            decimal? _NumeroDeposito = string.IsNullOrEmpty(txtNumeroDeposito.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroDeposito.Text);
+            decimal? _NumeroRecibo = string.IsNullOrEmpty(txtRecibo.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtRecibo.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
+            string Estatus = "";
+            if (rbTodos.Checked == true)
+            {
+                Estatus = null;
+            }
+            else if (rbPendientes.Checked == true)
+            {
+                Estatus = "Pendiente";
+            }
+            else if (rbPagados.Checked == true)
+            {
+                Estatus = "Pagado";
+            }
+
+            if (rbExelPlano.Checked == true) {
+
+                var Exportar = (from n in ObjData.Value.BuscaListadoPrimaDeposito(
+                    _FechaDesde,
+                    _FechaHasta,
+                    _NumeroDeposito,
+                    _NumeroRecibo,
+                    _Supervisor,
+                    _Intermediario,
+                    Estatus)
+                                select new
+                                {
+                                    Deposito = n.Numero,
+                                    Fecha = n.Fecha,
+                                    Monto = n.Monto,
+                                    Cuenta = n.Cuenta,
+                                    Supervisor = n.Supervisor,
+                                    Intermediario = n.Intermediario,
+                                    Estatus = n.Estatus
+                                }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(NombreReporte, Exportar);
+            
+            }
+            else {
+
+                ReportDocument Reporte = new ReportDocument();
+
+                Reporte.Load(RutaReporte);
+                Reporte.Refresh();
+
+                Reporte.SetParameterValue("@FechaDesde", _FechaDesde);
+                Reporte.SetParameterValue("@FechaHasta", _FechaHasta);
+                Reporte.SetParameterValue("@NumeroDeposito", _NumeroDeposito);
+                Reporte.SetParameterValue("@NumeroRecibo", _NumeroRecibo);
+                Reporte.SetParameterValue("@Supervisor", _Supervisor);
+                Reporte.SetParameterValue("@Intermediario", _Intermediario);
+                Reporte.SetParameterValue("@Estatus", Estatus);
+
+                Reporte.SetDatabaseLogon("sa", "!@Pa$$W0rd!@0624-");
+
+                if (rbPDF.Checked == true)
+                {
+                    Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+                }
+                else if (rbExcel.Checked == true)
+                {
+                    Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+                }
+            }
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -219,12 +310,47 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
         {
-
+            GenerarReporte(Server.MapPath("PrimaDepositosPendientes.rpt"), "Depositos en prima");
         }
 
         protected void btnSeleccionar_Click(object sender, ImageClickEventArgs e)
         {
-           
+            var DepositoSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfDepositoSeleccionado = ((HiddenField)DepositoSeleccionado.FindControl("hfNumeroDeposito")).Value.ToString();
+
+            var MontoSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfMontoSeleccionado = ((HiddenField)MontoSeleccionado.FindControl("hfMontoDeposito")).Value.ToString();
+
+            string Validacion = ValidarDeposito(Convert.ToDecimal(hfDepositoSeleccionado), Convert.ToDecimal(hfMontoSeleccionado));
+
+            switch (Validacion) {
+
+                case "SI":
+                    //VALIDAMOS SI EL USUARIO TIENE PERMISO PARA ELIMINAR EL REGISTRO
+                    decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+
+                    switch (IdUsuario) {
+
+                        case (decimal)PermisoUsuariosEliminar.JuanMarcelinoMedinaDiaz:
+                            ProcesarInformacionDepositos(Convert.ToDecimal(hfDepositoSeleccionado), Convert.ToDecimal(hfMontoSeleccionado), "DELETE");
+                            MostrarListadoPromaDeposito();
+                            break;
+
+                        default:
+                            ClientScript.RegisterStartupScript(GetType(), "USuarioNoValido()", "USuarioNoValido();", true);
+                            break;
+                    }
+                    break;
+
+                case "NO":
+                    ProcesarInformacionDepositos(Convert.ToDecimal(hfDepositoSeleccionado), Convert.ToDecimal(hfMontoSeleccionado), "INSERT");
+                    MostrarListadoPromaDeposito();
+                    break;
+
+                default:
+                    ClientScript.RegisterStartupScript(GetType(), "ErrorValidacion()", "ErrorValidacion();", true);
+                    break;
+            }
         }
 
         protected void btnPrimeraPaginaPrimaDeposito_Click(object sender, ImageClickEventArgs e)
