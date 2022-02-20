@@ -280,7 +280,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 Reporte.SetParameterValue("@Intermediario", _Intermediario);
                 Reporte.SetParameterValue("@Estatus", Estatus);
 
-                Reporte.SetDatabaseLogon("sa", "!@Pa$$W0rd!@0624-");
+                Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
 
                 if (rbPDF.Checked == true)
                 {
