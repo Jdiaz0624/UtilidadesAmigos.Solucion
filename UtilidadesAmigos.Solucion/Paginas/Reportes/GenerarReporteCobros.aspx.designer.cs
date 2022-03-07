@@ -537,22 +537,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.CheckBox cbGraficar;
 
         /// <summary>
-        /// btnConsultarRegistros control.
+        /// btnConsultarRegistrosNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConsultarRegistros;
+        protected global::System.Web.UI.WebControls.ImageButton btnConsultarRegistrosNuevo;
 
         /// <summary>
-        /// btnExportarRegistros control.
+        /// btnReporteCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportarRegistros;
+        protected global::System.Web.UI.WebControls.ImageButton btnReporteCobros;
 
         /// <summary>
         /// lbCantidadRegistrosTitulo control.
@@ -708,6 +708,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.LinkButton lbPrimeraPagina;
 
         /// <summary>
+        /// btnPrimeraPagina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPagina;
+
+        /// <summary>
         /// lbPaginaAnterior control.
         /// </summary>
         /// <remarks>
@@ -715,6 +724,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbPaginaAnterior;
+
+        /// <summary>
+        /// btnPaginaAnterior control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnterior;
 
         /// <summary>
         /// rptPaging control.
@@ -735,6 +753,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.LinkButton lbSiguientePagina;
 
         /// <summary>
+        /// btnSiguientePagina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePagina;
+
+        /// <summary>
         /// LinkUltimaPagina control.
         /// </summary>
         /// <remarks>
@@ -742,6 +769,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkUltimaPagina;
+
+        /// <summary>
+        /// btnUltimaPagina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPagina;
 
         /// <summary>
         /// lbPaginaActual control.

@@ -1378,25 +1378,95 @@ namespace UtilidadesAmigos.Solucion.Paginas
             CargarOficinas();
         }
 
-        protected void btnConsultarRegistros_Click(object sender, EventArgs e)
+        protected void cbGraficar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbGraficar.Checked == true) {
+                MostrarGraficos();
+               
+            }
+            else {
+                OcultarGraficos();
+            }
+        }
+
+        protected void lbPrimeraPagina_Click(object sender, EventArgs e)
+        {
+            CurrentPage = 0;
+            ConsultarInformacionPantalla();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PrimeraPagina);
+        }
+
+        protected void lbPaginaAnterior_Click(object sender, EventArgs e)
+        {
+            CurrentPage += -1;
+            ConsultarInformacionPantalla();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior);
+        }
+
+        protected void lbSiguientePagina_Click(object sender, EventArgs e)
+        {
+            CurrentPage += 1;
+
+            ConsultarInformacionPantalla();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.SiguientePagina);
+        }
+
+        protected void LinkUltimaPagina_Click(object sender, EventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            ConsultarInformacionPantalla();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina);
+        }
+
+        protected void rptPaging_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            ConsultarInformacionPantalla();
+        }
+
+        protected void rbAgrupadoPorDia_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbAgrupadoPorDia.Checked == true) {
+                lbTipoReporte.Visible = false;
+                divTipoReporte.Visible = false;
+
+                lbTipoReportePorDia.Visible = true;
+                DivTipoReportePorDia.Visible = true;
+                rbReporteResumidoPorDia.Checked = true;
+            }
+            else if (rbAgrupadoPorDia.Checked == false) {
+
+                lbTipoReporte.Visible = false;
+                divTipoReporte.Visible = false;
+
+                lbTipoReportePorDia.Visible = false;
+                DivTipoReportePorDia.Visible = false;
+            }
+        }
+
+        protected void btnConsultarRegistrosNuevo_Click(object sender, ImageClickEventArgs e)
         {
             if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
             {
                 ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
 
-                if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim())) {
+                if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()))
+                {
                     ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdevacio()", "CampoFechaDesdevacio();", true);
                 }
-                if (string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim())) {
+                if (string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
+                {
                     ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
                 }
             }
-            else {
+            else
+            {
                 ConsultarInformacionPantalla();
             }
         }
 
-        protected void btnExportarRegistros_Click(object sender, EventArgs e)
+        protected void btnReporteCobros_Click(object sender, ImageClickEventArgs e)
         {
             if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()))
             {
@@ -1469,7 +1539,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 {
                     GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoPorUsuario.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado por Usuaio");
                 }
-                else if (rbAgrupadoPorDia.Checked == true) {
+                else if (rbAgrupadoPorDia.Checked == true)
+                {
                     decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
 
                     UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarDataCobradaPorDia EliminarRegistrosCobradoPorDia = new Logica.Comunes.Reportes.ProcesarDataCobradaPorDia(
@@ -1487,7 +1558,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     int? _CodigoOficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
                     int? _CodigoRamo = ddlSeleccionarRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamoConsulta.SelectedValue) : new Nullable<int>();
                     string _Concepto = ddlSeleccionarConceptoConsulta.SelectedValue != "-1" ? ddlSeleccionarConceptoConsulta.SelectedItem.Text : null;
-                   
+
 
                     string _Poliza = string.IsNullOrEmpty(txtNumeroPolizaCOnsulta.Text.Trim()) ? null : txtNumeroPolizaCOnsulta.Text.Trim();
                     string _NumeroRecibo = string.IsNullOrEmpty(txtNumeroRecibo.Text.Trim()) ? null : txtNumeroRecibo.Text.Trim();
@@ -1507,7 +1578,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     _Concepto,
                     Convert.ToDecimal(txtTasaConsulta.Text),
                     IdUsuario);
-                    foreach (var nCobrado in SacarDataCobrado) {
+                    foreach (var nCobrado in SacarDataCobrado)
+                    {
 
                         UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarDataCobradaPorDia GuardarInformacion = new Logica.Comunes.Reportes.ProcesarDataCobradaPorDia(
                             IdUsuario,
@@ -1543,97 +1615,44 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         GuardarInformacion.ProcesarInformacion();
                     }
 
-                    if (rbReporteResumidoPorDia.Checked == true) {
+                    if (rbReporteResumidoPorDia.Checked == true)
+                    {
                         GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoPorDiaResumido.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Por Dia Resumido");
                     }
-                    else if (rbReporteDetalladoPorDia.Checked == true) {
+                    else if (rbReporteDetalladoPorDia.Checked == true)
+                    {
                         GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoPorDiaDetallado.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Por Dia Detallado");
                     }
-                    else if (rbReportePorSupervisorPorDia.Checked == true) {
+                    else if (rbReportePorSupervisorPorDia.Checked == true)
+                    {
                         GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoPorDiaPorSupervisor.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Por Dia Por Supervisor");
                     }
-                    else if (rbReportePorIntermediarioPorDia.Checked == true) {
+                    else if (rbReportePorIntermediarioPorDia.Checked == true)
+                    {
                         GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoPorDiaPorIntermediario.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Por Dia Por Intermediario");
                     }
                 }
             }
         }
 
-        protected void gvListadoCobros_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)
         {
 
         }
 
-        protected void gvListadoCobros_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnPaginaAnterior_Click(object sender, ImageClickEventArgs e)
         {
 
         }
 
-        protected void cbGraficar_CheckedChanged(object sender, EventArgs e)
+        protected void btnSiguientePagina_Click(object sender, ImageClickEventArgs e)
         {
-            if (cbGraficar.Checked == true) {
-                MostrarGraficos();
-               
-            }
-            else {
-                OcultarGraficos();
-            }
+
         }
 
-        protected void lbPrimeraPagina_Click(object sender, EventArgs e)
+        protected void btnUltimaPagina_Click(object sender, ImageClickEventArgs e)
         {
-            CurrentPage = 0;
-            ConsultarInformacionPantalla();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PrimeraPagina);
-        }
 
-        protected void lbPaginaAnterior_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            ConsultarInformacionPantalla();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior);
-        }
-
-        protected void lbSiguientePagina_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-
-            ConsultarInformacionPantalla();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.SiguientePagina);
-        }
-
-        protected void LinkUltimaPagina_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            ConsultarInformacionPantalla();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina);
-        }
-
-        protected void rptPaging_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-            ConsultarInformacionPantalla();
-        }
-
-        protected void rbAgrupadoPorDia_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbAgrupadoPorDia.Checked == true) {
-                lbTipoReporte.Visible = false;
-                divTipoReporte.Visible = false;
-
-                lbTipoReportePorDia.Visible = true;
-                DivTipoReportePorDia.Visible = true;
-                rbReporteResumidoPorDia.Checked = true;
-            }
-            else if (rbAgrupadoPorDia.Checked == false) {
-
-                lbTipoReporte.Visible = false;
-                divTipoReporte.Visible = false;
-
-                lbTipoReportePorDia.Visible = false;
-                DivTipoReportePorDia.Visible = false;
-            }
         }
 
         protected void rptPaging_ItemDataBound(object sender, DataListItemEventArgs e)

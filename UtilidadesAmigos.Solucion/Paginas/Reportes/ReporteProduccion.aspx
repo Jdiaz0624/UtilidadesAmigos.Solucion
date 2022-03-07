@@ -82,15 +82,15 @@
         <div class="form-check-inline">
             <asp:Label ID="lbAgruparDatos" runat="server" Text="Agrupar Datos" CssClass="Letranegrita"></asp:Label>
             <br />
-            <asp:RadioButton ID="rbNoAgruparDatos" runat="server" Text="No Agrupar" ToolTip="No Agrupar Datos" CssClass="form-check-input" AutoPostBack="true" OnCheckedChanged="rbNoAgruparDatos_CheckedChanged" GroupName="Agrupacion" />
-            <asp:RadioButton ID="rbAgruparPorConcepto" runat="server" Text="Por Concepto" AutoPostBack="true" OnCheckedChanged="rbAgruparPorConcepto_CheckedChanged" ToolTip="Agrupar Información por Concepto" CssClass="form-check-input" GroupName="Agrupacion" />
-            <asp:RadioButton ID="rbAgruparPorUsuario" runat="server" Text="Por Usuario" AutoPostBack="true" OnCheckedChanged="rbAgruparPorUsuario_CheckedChanged" ToolTip="Agrupar Información por Usuario" CssClass="form-check-input"  GroupName="Agrupacion" />
-            <asp:RadioButton ID="rbAgruparPorOficina" runat="server" Text="Por Oficina" AutoPostBack="true" OnCheckedChanged="rbAgruparPorOficina_CheckedChanged" ToolTip="Agrupar Información por Oficina" CssClass="form-check-input"  GroupName="Agrupacion" />
-            <asp:RadioButton ID="rbAgruparPorRamo" runat="server" Text="Por Ramo" AutoPostBack="true" OnCheckedChanged="rbAgruparPorRamo_CheckedChanged" ToolTip="Agrupar Información por Ramo" CssClass="form-check-input" GroupName="Agrupacion" />
-            <asp:RadioButton ID="rbAgruparPorIntermediario" runat="server" AutoPostBack="true" OnCheckedChanged="rbAgruparPorIntermediario_CheckedChanged" Text="Por Intermediario" ToolTip="Agrupar Información Por Intermediario" CssClass="form-check-input" GroupName="Agrupacion" />
-            <asp:RadioButton ID="rbAgruparPorSupervisor" runat="server" AutoPostBack="true" OnCheckedChanged="rbAgruparPorSupervisor_CheckedChanged" Text="Por Supervisor" ToolTip="Agrupar Información por Supervisor" CssClass="form-check-input"  GroupName="Agrupacion" />
-            <asp:RadioButton ID="rbAgruparPorMoneda" runat="server" Text="Por Moneda" AutoPostBack="true" OnCheckedChanged="rbAgruparPorMoneda_CheckedChanged" ToolTip="Agrupar Informacion Por Moneda" CssClass="form-check-input"  GroupName="Agrupacion" />
-            <asp:CheckBox ID="cbInformacionVehiculo" runat="server" Text="Información de Vehiculos" CssClass="form-check-input" ToolTip="Mostrar el reporte con la información de los vehiculos" />
+            <asp:RadioButton ID="rbNoAgruparDatos" runat="server" Text="No Agrupar" ToolTip="No Agrupar Datos" AutoPostBack="true" OnCheckedChanged="rbNoAgruparDatos_CheckedChanged" GroupName="Agrupacion" />
+            <asp:RadioButton ID="rbAgruparPorConcepto" runat="server" Text="Por Concepto" AutoPostBack="true" OnCheckedChanged="rbAgruparPorConcepto_CheckedChanged" ToolTip="Agrupar Información por Concepto" GroupName="Agrupacion" />
+            <asp:RadioButton ID="rbAgruparPorUsuario" runat="server" Text="Por Usuario" AutoPostBack="true" OnCheckedChanged="rbAgruparPorUsuario_CheckedChanged" ToolTip="Agrupar Información por Usuario"   GroupName="Agrupacion" />
+            <asp:RadioButton ID="rbAgruparPorOficina" runat="server" Text="Por Oficina" AutoPostBack="true" OnCheckedChanged="rbAgruparPorOficina_CheckedChanged" ToolTip="Agrupar Información por Oficina"   GroupName="Agrupacion" />
+            <asp:RadioButton ID="rbAgruparPorRamo" runat="server" Text="Por Ramo" AutoPostBack="true" OnCheckedChanged="rbAgruparPorRamo_CheckedChanged" ToolTip="Agrupar Información por Ramo"  GroupName="Agrupacion" />
+            <asp:RadioButton ID="rbAgruparPorIntermediario" runat="server" AutoPostBack="true" OnCheckedChanged="rbAgruparPorIntermediario_CheckedChanged" Text="Por Intermediario" ToolTip="Agrupar Información Por Intermediario"  GroupName="Agrupacion" />
+            <asp:RadioButton ID="rbAgruparPorSupervisor" runat="server" AutoPostBack="true" OnCheckedChanged="rbAgruparPorSupervisor_CheckedChanged" Text="Por Supervisor" ToolTip="Agrupar Información por Supervisor"   GroupName="Agrupacion" />
+            <asp:RadioButton ID="rbAgruparPorMoneda" runat="server" Text="Por Moneda" AutoPostBack="true" OnCheckedChanged="rbAgruparPorMoneda_CheckedChanged" ToolTip="Agrupar Informacion Por Moneda"  GroupName="Agrupacion" />
+            <asp:CheckBox ID="cbInformacionVehiculo" runat="server" Text="Información de Vehiculos" ToolTip="Mostrar el reporte con la información de los vehiculos" />
         </div>
 <%--        <hr id="HRSeparadorTipoReporte" runat="server" />--%>
 
@@ -182,9 +182,9 @@
         <div class="form-check-inline">
             <asp:Label ID="lbTipoReporte" runat="server" Text="Formato de Reporte" CssClass="Letranegrita"></asp:Label>
             <br />
-            <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" CssClass="form-check-input" GroupName="FormatoReporte" />
-            <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" CssClass="form-check-input" GroupName="FormatoReporte" />
-            <asp:RadioButton ID="rbExcelPlano" runat="server" Text="Excel Plano" CssClass="form-check-input" GroupName="FormatoReporte" />
+            <asp:RadioButton ID="rbPDF" runat="server" Text="PDF"  GroupName="FormatoReporte" />
+            <asp:RadioButton ID="rbExcel" runat="server" Text="Excel"  GroupName="FormatoReporte" />
+            <asp:RadioButton ID="rbExcelPlano" runat="server" Text="Excel Plano"  GroupName="FormatoReporte" />
         </div>
         <hr />
       

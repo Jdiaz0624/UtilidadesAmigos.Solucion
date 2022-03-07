@@ -15,9 +15,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido> ObjData = new Lazy<Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido>();
 
-        enum PermisoUsuariosEliminar { 
+        enum PermisoUsuariosProceso { 
         
-            JuanMarcelinoMedinaDiaz=1
+            JuanMarcelinoMedinaDiaz=1,
+            GinayraLopez=8,
+            AlfredoPimentel=10,
+            EduardGarcia=12,
+            GracyFeliz=19,
+            RiselotRojasSantana=21,
+            HanoyDiaz=39
         }
 
         #region CONTROL DE PAGINACION DE LOS PRIMA DEPOSITOS
@@ -322,16 +328,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             var hfMontoSeleccionado = ((HiddenField)MontoSeleccionado.FindControl("hfMontoDeposito")).Value.ToString();
 
             string Validacion = ValidarDeposito(Convert.ToDecimal(hfDepositoSeleccionado), Convert.ToDecimal(hfMontoSeleccionado));
-
+            decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
             switch (Validacion) {
 
                 case "SI":
                     //VALIDAMOS SI EL USUARIO TIENE PERMISO PARA ELIMINAR EL REGISTRO
-                    decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
+                    
 
                     switch (IdUsuario) {
 
-                        case (decimal)PermisoUsuariosEliminar.JuanMarcelinoMedinaDiaz:
+                        case (decimal)PermisoUsuariosProceso.JuanMarcelinoMedinaDiaz:
                             ProcesarInformacionDepositos(Convert.ToDecimal(hfDepositoSeleccionado), Convert.ToDecimal(hfMontoSeleccionado), "DELETE");
                             MostrarListadoPromaDeposito();
                             break;
@@ -343,8 +349,53 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                     break;
 
                 case "NO":
-                    ProcesarInformacionDepositos(Convert.ToDecimal(hfDepositoSeleccionado), Convert.ToDecimal(hfMontoSeleccionado), "INSERT");
-                    MostrarListadoPromaDeposito();
+
+                    switch (IdUsuario) {
+
+                        case (decimal)PermisoUsuariosProceso.JuanMarcelinoMedinaDiaz:
+                            ProcesarInformacionDepositos(Convert.ToDecimal(hfDepositoSeleccionado), Convert.ToDecimal(hfMontoSeleccionado), "INSERT");
+                            MostrarListadoPromaDeposito();
+                            break;
+
+                        case (decimal)PermisoUsuariosProceso.GinayraLopez:
+                            ProcesarInformacionDepositos(Convert.ToDecimal(hfDepositoSeleccionado), Convert.ToDecimal(hfMontoSeleccionado), "INSERT");
+                            MostrarListadoPromaDeposito();
+                            break;
+
+                        case (decimal)PermisoUsuariosProceso.AlfredoPimentel:
+                            ProcesarInformacionDepositos(Convert.ToDecimal(hfDepositoSeleccionado), Convert.ToDecimal(hfMontoSeleccionado), "INSERT");
+                            MostrarListadoPromaDeposito();
+                            break;
+
+                        case (decimal)PermisoUsuariosProceso.EduardGarcia:
+                            ProcesarInformacionDepositos(Convert.ToDecimal(hfDepositoSeleccionado), Convert.ToDecimal(hfMontoSeleccionado), "INSERT");
+                            MostrarListadoPromaDeposito();
+                            break;
+
+                        case (decimal)PermisoUsuariosProceso.GracyFeliz:
+                            ProcesarInformacionDepositos(Convert.ToDecimal(hfDepositoSeleccionado), Convert.ToDecimal(hfMontoSeleccionado), "INSERT");
+                            MostrarListadoPromaDeposito();
+                            break;
+
+                        case (decimal)PermisoUsuariosProceso.RiselotRojasSantana:
+                            ProcesarInformacionDepositos(Convert.ToDecimal(hfDepositoSeleccionado), Convert.ToDecimal(hfMontoSeleccionado), "INSERT");
+                            MostrarListadoPromaDeposito();
+                            break;
+
+                        case (decimal)PermisoUsuariosProceso.HanoyDiaz:
+                            ProcesarInformacionDepositos(Convert.ToDecimal(hfDepositoSeleccionado), Convert.ToDecimal(hfMontoSeleccionado), "INSERT");
+                            MostrarListadoPromaDeposito();
+                            break;
+
+                        default:
+                            ClientScript.RegisterStartupScript(GetType(), "USuarioNoValido()", "USuarioNoValido();", true);
+                            break;
+
+
+                    }
+
+
+                  
                     break;
 
                 default:

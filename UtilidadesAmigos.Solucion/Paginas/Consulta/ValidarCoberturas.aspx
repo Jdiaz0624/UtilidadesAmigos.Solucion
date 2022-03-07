@@ -198,7 +198,7 @@
         <!--FIN DE LOS MENUS DESPLEGABLES Y CONTROLES DE BUSQUEDA-->
         <br />
         <div class="form-check-inline">
-                <asp:CheckBox ID="cbValidarDataCobertura" runat="server" Text="Validar Data" ToolTip="Validar la data de cobertura" CssClass="form-check-input Letranegrita" AutoPostBack="true" OnCheckedChanged="cbValidarDataCobertura_CheckedChanged" />
+                <asp:CheckBox ID="cbValidarDataCobertura" runat="server" Text="Validar Data" ToolTip="Validar la data de cobertura" CssClass="Letranegrita" AutoPostBack="true" OnCheckedChanged="cbValidarDataCobertura_CheckedChanged" />
         
         </div>
 <div id="DIVBloqueConsulta" runat="server">

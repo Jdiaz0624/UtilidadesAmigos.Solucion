@@ -139,7 +139,7 @@
     <div id="DivBloqueCOnsulta" runat="server">
         <div class="form-check-inline">
      
-                <asp:CheckBox ID="cbAgregarRangoFecha" runat="server" Text="Agregar Rango Fecha" CssClass="form-check-input Letranegrita" AutoPostBack="true" OnCheckedChanged="cbAgregarRangoFecha_CheckedChanged" />
+                <asp:CheckBox ID="cbAgregarRangoFecha" runat="server" Text="Agregar Rango Fecha" CssClass="Letranegrita" AutoPostBack="true" OnCheckedChanged="cbAgregarRangoFecha_CheckedChanged" />
          
         </div>
         <div class="row">
@@ -177,10 +177,10 @@
         <div class="form-check-inline">
 
                 <asp:Label ID="lbGenerarReporteEn" runat="server" Text="Generar Reporte en:" CssClass="Letranegrita"></asp:Label><br />
-                <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" ToolTip="Generar Reporte en PDF" CssClass="Letranegrita form-check-input" GroupName="Reporte" />
-                <asp:RadioButton ID="rbEXcel" runat="server" Text="XLSX" ToolTip="Generar Reporte en Excel" CssClass="Letranegrita form-check-input" GroupName="Reporte" />
-                <asp:RadioButton ID="rbWord" runat="server" Text="Docx" ToolTip="Generar Reporte en Word" CssClass="Letranegrita form-check-input" GroupName="Reporte" />
-                <asp:RadioButton ID="rbTXT" runat="server" Text="TXT" ToolTip="Generar Reporte en TXT" CssClass="Letranegrita form-check-input" GroupName="Reporte" />
+                <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" ToolTip="Generar Reporte en PDF" CssClass="Letranegrita" GroupName="Reporte" />
+                <asp:RadioButton ID="rbEXcel" runat="server" Text="XLSX" ToolTip="Generar Reporte en Excel" CssClass="Letranegrita" GroupName="Reporte" />
+                <asp:RadioButton ID="rbWord" runat="server" Text="Docx" ToolTip="Generar Reporte en Word" CssClass="Letranegrita" GroupName="Reporte" />
+                <asp:RadioButton ID="rbTXT" runat="server" Text="TXT" ToolTip="Generar Reporte en TXT" CssClass="Letranegrita" GroupName="Reporte" />
    
         </div>
         <br />

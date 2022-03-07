@@ -70,15 +70,6 @@ namespace UtilidadesAmigos.Logica.Comunes
             Cliente.EnableSsl = true;
             Cliente.Send(Mail);
             return true;
-            //try
-            //{
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error al enviar el correo, codigo de error: " + ex.Message, "Error de envio de correo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return false;
-            //}
         }
     }
 }
