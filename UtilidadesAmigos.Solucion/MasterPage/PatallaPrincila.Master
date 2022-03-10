@@ -165,6 +165,19 @@
                <div class="list-group  list-group-flush">
                    <asp:LinkButton ID="LinkInicio" runat="server" Text="Inicio"  ForeColor="White" CssClass="list-group-item bg-dark list-group-item-action bg-light" OnClick="LinkInicio_Click"></asp:LinkButton>
 
+                           <%--MODULO DE SUMINISTRO--%>
+          <ul class="nav nav-item bg-dark list-group-item list-group-item-action">
+  <li class="nav-item dropdown">
+    <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%" role="button" aria-haspopup="true" aria-expanded="false">Suministro</a>
+    <div class="dropdown-menu">
+        <asp:LinkButton ID="LinkAdministracionSuministro" runat="server" ToolTip="Administración de Suministro" Text="Administracion" OnClick="LinkAdministracionSuministro_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+          <asp:LinkButton ID="LinkSolicitud" runat="server" ToolTip="Generar Solicitud de Materiales de Oficina" Text="Solicitud" OnClick="LinkSolicitud_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         
+    </div>
+  </li>
+</ul>
+
+
                     <%--MODULO DE CONSULTA--%>
           <ul class="nav nav-item bg-dark list-group-item list-group-item-action">
   <li class="nav-item dropdown">

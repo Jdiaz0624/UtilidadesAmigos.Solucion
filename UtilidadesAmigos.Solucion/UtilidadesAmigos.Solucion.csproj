@@ -176,6 +176,7 @@
     <Content Include="Imagenes\CampoImagen.jpg" />
     <Content Include="Imagenes\cancelado.png" />
     <Content Include="Imagenes\comision.png" />
+    <Content Include="Imagenes\Completado3.gif" />
     <Content Include="Imagenes\Completar.png" />
     <Content Include="Imagenes\comprobar.png" />
     <Content Include="Imagenes\Cotizar.png" />
@@ -274,6 +275,8 @@
     <Content Include="Paginas\SistemaTicket.aspx" />
     <Content Include="Paginas\SolicitudEmisionPoliza.aspx" />
     <Content Include="Paginas\SolicitudSeguroLey.aspx" />
+    <Content Include="Paginas\Suministro\AdministracionSuministro.aspx" />
+    <Content Include="Paginas\Suministro\SolicitudSuministro.aspx" />
     <Content Include="Paginas\SuperIntendencia\ConsultaPersonas.aspx" />
     <Content Include="scripts\bootstrap.bundle.js" />
     <Content Include="scripts\bootstrap.bundle.min.js" />
@@ -934,6 +937,20 @@
     </Compile>
     <Compile Include="Paginas\SolicitudSeguroLey.aspx.designer.cs">
       <DependentUpon>SolicitudSeguroLey.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Suministro\AdministracionSuministro.aspx.cs">
+      <DependentUpon>AdministracionSuministro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Suministro\AdministracionSuministro.aspx.designer.cs">
+      <DependentUpon>AdministracionSuministro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Suministro\SolicitudSuministro.aspx.cs">
+      <DependentUpon>SolicitudSuministro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Suministro\SolicitudSuministro.aspx.designer.cs">
+      <DependentUpon>SolicitudSuministro.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\SuperIntendencia\ConsultaPersonas.aspx.cs">
       <DependentUpon>ConsultaPersonas.aspx</DependentUpon>
