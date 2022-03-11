@@ -71,6 +71,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BDConexionReportes.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Conexiones\LINQ\BDConexionSuministro.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDConexionSuministro.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Conexiones\LINQ\BDCotizador.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -122,6 +127,14 @@
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>BDConexionReportes.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Conexiones\LINQ\BDConexionSuministro.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>BDConexionSuministro.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Conexiones\LINQ\BDConexionSuministro.dbml.layout">
+      <DependentUpon>BDConexionSuministro.dbml</DependentUpon>
     </None>
     <None Include="Conexiones\LINQ\BDCotizador.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

@@ -120,6 +120,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionMantenimientos\ProcesarInformacionTasaMoneda.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionSeguridad.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionTarjetaAcceso.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionSuministroInventario.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesMontosAcumulados.cs" />
@@ -412,6 +413,7 @@
     <Compile Include="Entidades\Seguridad\EControlTarjetasAcceso.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
+    <Compile Include="Entidades\Suministro\ESuministroInventario.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaInformacionPersonasRegistradasArchivo.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaAseurados.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaProveedor.cs" />
@@ -432,6 +434,7 @@
     <Compile Include="Logica\LogicaReportes\ProduccionPorUsuarioResumido.cs" />
     <Compile Include="Logica\LogicaSeguridad\LogicaSeguridad.cs" />
     <Compile Include="Logica\LogicaSistema.cs" />
+    <Compile Include="Logica\LogicaSuministro\LogicaSuministro.cs" />
     <Compile Include="Logica\LogicaSuperIntendencia\LogicaSuperIntendencia.cs" />
     <Compile Include="ProcesoInformacion\ProcesarInformacionModificarCoberturaPoliza.cs" />
     <Compile Include="ProcesoInformacion\ProcesarInformacionUsuarios.cs" />

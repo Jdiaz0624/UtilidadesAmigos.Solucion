@@ -202,6 +202,13 @@
                     </div>
                 </div>
                 <br />
+                <div class="form-check-inline">
+                    <asp:Label ID="lbEstatusInventario" runat="server" Text="Estatus: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:RadioButton ID="rbEstatusTodos" runat="server" Text="Todos" GroupName="EstatusInventario" />
+                    <asp:RadioButton ID="rbEstatusDisponible" runat="server" Text="Disponible" GroupName="EstatusInventario" />
+                    <asp:RadioButton ID="rbEstatusPocos" runat="server" Text="Pocos" GroupName="EstatusInventario" />
+                    <asp:RadioButton ID="rbEstatusAgotados" runat="server" Text="Agotados" GroupName="EstatusInventario" />
+                </div>
                 <div align="center">
 
                     <asp:ImageButton ID="btnConsultarInventario" runat="server" ToolTip="Buscar Registros" ImageUrl="~/Imagenes/Buscar.png" CssClass="BotonImagen" OnClick="btnConsultarInventario_Click" />
@@ -227,12 +234,12 @@
                         <asp:Repeater ID="rpListadoInventario" runat="server">
                             <ItemTemplate>
                                 <tr>
-                                    <asp:HiddenField ID="hfCodigoArticulo" runat="server" Value='<%# Eval("") %>' />
+                                    <asp:HiddenField ID="hfCodigoArticulo" runat="server" Value='<%# Eval("CodigoArticulo") %>' />
 
-                                    <td> <%# Eval("") %> </td>
-                                    <td> <%# Eval("") %> </td>
-                                    <td> <%#string.Format("{0:N0}", Eval("")) %> </td>
-                                    <td> <%# Eval("") %> </td>
+                                    <td> <%# Eval("Articulo") %> </td>
+                                    <td> <%# Eval("Medida") %> </td>
+                                    <td> <%#string.Format("{0:N0}", Eval("Stock")) %> </td>
+                                    <td> <%# Eval("Estatus") %> </td>
                                     <td> <asp:ImageButton ID="btnSeleccionarArticuloINventario" runat="server" ToolTip="Seleccionar Registro" ImageUrl="~/Imagenes/Seleccionar2.png" CssClass="BotonImagen" OnClick="btnSeleccionarArticuloINventario_Click" /> </td>
                                 </tr>
                             </ItemTemplate>
