@@ -150,6 +150,139 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         }
         #endregion
 
+        #region CONTROL DE PAGINACION DE LAS SOLICITUDES
+        readonly PagedDataSource pagedDataSourceSolicitudes = new PagedDataSource();
+        int _PrimeraPagina_Solicitudes, _UltimaPagina_Solicitudes;
+        private int _TamanioPagina_Solicitudes = 10;
+        private int CurrentPage_Solicitudes
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_Solicitudes(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_Solicitudes = CurrentPage_Solicitudes - 5;
+            if (CurrentPage_Solicitudes > 5)
+                _UltimaPagina_Solicitudes = CurrentPage_Solicitudes + 5;
+            else
+                _UltimaPagina_Solicitudes = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_Solicitudes > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_Solicitudes = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_Solicitudes = _UltimaPagina_Solicitudes - 10;
+            }
+
+            if (_PrimeraPagina_Solicitudes < 0)
+                _PrimeraPagina_Solicitudes = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_Solicitudes;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_Solicitudes; i < _UltimaPagina_Solicitudes; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_Solicitudes(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSourceSolicitudes.DataSource = Listado;
+            pagedDataSourceSolicitudes.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSourceSolicitudes.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSourceSolicitudes.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSourceSolicitudes.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_Solicitudes : _NumeroRegistros);
+            pagedDataSourceSolicitudes.CurrentPageIndex = CurrentPage_Solicitudes;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSourceSolicitudes.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSourceSolicitudes.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSourceSolicitudes.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSourceSolicitudes.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSourceSolicitudes;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_Solicitudes
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_Solicitudes(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+
         #region CONFIGURACION INICIAL DE LA PANTALLA DE INVENTARIO
         private void ConfiguracionInicialPantallaInventario() {
 
@@ -173,6 +306,26 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             CurrentPage_Inventario = 0;
             divPaginacionInventario.Visible = true;
             DesbloquearControlesInventario();
+        }
+        #endregion
+
+        #region CONFIGURACION INICIAL DE LA PANTALLA DE SOLICITUDES
+        private void ConfiguracionInicialSolicitudes() {
+            txtNumeroSolicitudConsulta.Text = string.Empty;
+            txtPersonaConsulta.Text = string.Empty;
+            txtFechaDesdeConsulta.Text = string.Empty;
+            txtFechahastaConsulta.Text = string.Empty;
+
+            rbTodosLosRegistros.Checked = true;
+
+            rpListadoSolicitudes.DataSource = null;
+            rpListadoSolicitudes.DataBind();
+
+            BloqueArticulosSeleccionados.Visible = false;
+
+            rpListadoArticulosSolicitud.DataSource = null;
+            rpListadoArticulosSolicitud.DataBind();
+
         }
         #endregion
 
@@ -265,6 +418,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             txtStockMantenimientoInventario.Enabled = false;
         }
         #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -278,6 +432,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
                 DIVBloqueConsulta.Visible = true;
                 DIVBloqueInventario.Visible = false;
+
+                rbSolicitudes.Checked = true;
+                ConfiguracionInicialSolicitudes();
             }
         }
 
@@ -286,6 +443,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             if (rbSolicitudes.Checked == true) {
                 DIVBloqueConsulta.Visible = true;
                 DIVBloqueInventario.Visible = false;
+                ConfiguracionInicialSolicitudes();
             }
             else {
                 DIVBloqueConsulta.Visible = false;
