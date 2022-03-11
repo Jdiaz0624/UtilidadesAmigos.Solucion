@@ -27,6 +27,41 @@
 
     </style>
 
+    <script type="text/javascript">
+
+        $(function () {
+
+            //VALIDACIONES DEL BOTON GUARDAR EN LA PARTE DE INVENTARIO
+            $("#<%=btnGuardarRegistroMantenimientoInventario.ClientID%>").click(function () {
+
+                var Articulo = $("#<%=txtArticuloMantenimientoInventario.ClientID%>").val().length;
+                if (Articulo < 1) {
+
+                    alert("El campo Articulo no puede estar vacio para realizar esta operación, favor de verificar.");
+                    $("#<%=txtArticuloMantenimientoInventario.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+                    var Medida = $("#<%=ddlSeleccionarMedidaMantenimientoInventario.ClientID%>").val();
+                    if (Medida < 1) {
+
+                        alert("El campo medida no puede estar vacio para realizar esta operación, favor de verificar.");
+                        $("#<%=ddlSeleccionarMedidaMantenimientoInventario.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else {
+                        var Stock = $("#<%=txtStockMantenimientoInventario.ClientID%>").val().length;
+                        if (Stock < 1) {
+                            alert("El campo Stock no puede estar vacio para realizar esta operación, favor de verificar.");
+                            $("#<%=txtStockMantenimientoInventario.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
     <div class="container-fluid">
         <br />
         <div class="form-check-inline">
@@ -189,6 +224,9 @@
     </div>
 
         <div id="DIVBloqueInventario" runat="server">
+            <asp:Label ID="lbCodigoArticuloInventarioSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
+            <asp:Label ID="lbAccionInventario" runat="server" Visible="false" Text=""></asp:Label>
+
             <div id="DIVBloqueConsultaInventario" runat="server">
                 <br />
                 <div class="row">

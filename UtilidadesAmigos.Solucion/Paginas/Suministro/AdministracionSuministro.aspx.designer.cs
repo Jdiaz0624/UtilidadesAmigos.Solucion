@@ -411,6 +411,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueInventario;
 
         /// <summary>
+        /// lbCodigoArticuloInventarioSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoArticuloInventarioSeleccionado;
+
+        /// <summary>
+        /// lbAccionInventario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbAccionInventario;
+
+        /// <summary>
         /// DIVBloqueConsultaInventario control.
         /// </summary>
         /// <remarks>
