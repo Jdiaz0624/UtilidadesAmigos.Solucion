@@ -155,6 +155,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
             DIVBloqueConsultaInventario.Visible = true;
             DIVBloqueMantenimientoInventario.Visible = false;
+            DIVBloqueSuplirInventario.Visible = false;
 
             txtDescripcionConsultaInventario.Text = string.Empty;
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarMedida, ObjData.Value.BuscaListas("SUMINISTROTIPOMEDIDA", null, null), true);
@@ -170,6 +171,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             rpListadoInventario.DataSource = null;
             rpListadoInventario.DataBind();
             CurrentPage_Inventario = 0;
+            divPaginacionInventario.Visible = true;
+            DesbloquearControlesInventario();
         }
         #endregion
 
@@ -205,13 +208,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         #endregion
 
         #region PROCESAR LA INFORMACION DEL INVENTARIO
-        private void ProcesarInformacionInventario(decimal CodigoArticulo, string Accion) {
+        private void ProcesarInformacionInventario(decimal CodigoArticulo, int Stock, string Accion) {
 
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroInventario Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroInventario(
                 CodigoArticulo,
                 txtArticuloMantenimientoInventario.Text,
                 Convert.ToInt32(ddlSeleccionarMedidaMantenimientoInventario.SelectedValue),
-                Convert.ToInt32(txtStockMantenimientoInventario.Text),
+                Stock,
                 (decimal)Session["IdUsuario"],
                 Accion);
             Procesar.ProcesarInformacion();
@@ -245,6 +248,21 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
             Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
 
+        }
+        #endregion
+
+        #region BLOQUEAR Y DESBLOQUEAR CONTROLES DEL INVENTARIO
+        private void DesbloquearControlesInventario() {
+
+            txtArticuloMantenimientoInventario.Enabled = true;
+            ddlSeleccionarMedidaMantenimientoInventario.Enabled = true;
+            txtStockMantenimientoInventario.Enabled = true;
+        }
+
+        private void BloquearControlesInventario() {
+            txtArticuloMantenimientoInventario.Enabled = false;
+            ddlSeleccionarMedidaMantenimientoInventario.Enabled = false;
+            txtStockMantenimientoInventario.Enabled = false;
         }
         #endregion
         protected void Page_Load(object sender, EventArgs e)
@@ -380,13 +398,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         {
             DIVBloqueConsultaInventario.Visible = false;
             DIVBloqueMantenimientoInventario.Visible = true;
+            DIVBloqueSuplirInventario.Visible = false;
             lbAccionInventario.Text = "INSERT";
             lbCodigoArticuloInventarioSeleccionado.Text = "0";
             txtArticuloMantenimientoInventario.Text = string.Empty;
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarMedidaMantenimientoInventario, ObjData.Value.BuscaListas("SUMINISTROTIPOMEDIDA", null, null));
             txtStockMantenimientoInventario.Text = string.Empty;
-            
-
         }
 
         protected void btnReporteInventario_Click(object sender, ImageClickEventArgs e)
@@ -396,27 +413,67 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnSuplirInventario_Click(object sender, ImageClickEventArgs e)
         {
-
+            rbIngresarProductos.Checked = true;
+            lbAccionInventario.Text = "SUPPLIINVENTORY";
+            DIVBloqueConsultaInventario.Visible = false;
+            DIVBloqueMantenimientoInventario.Visible = false;
+            DIVBloqueSuplirInventario.Visible = true;
+            rbIngresarProductos.Checked = true;
+            txtCantidadSupliorSacar.Text = string.Empty;
         }
 
         protected void btnEditarInventario_Click(object sender, ImageClickEventArgs e)
         {
-
+            lbAccionInventario.Text = "UPDATE";
+            DIVBloqueConsultaInventario.Visible = false;
+            DIVBloqueMantenimientoInventario.Visible = true;
+            DIVBloqueSuplirInventario.Visible = false;
         }
 
         protected void btnEliminarInventario_Click(object sender, ImageClickEventArgs e)
         {
-
+            lbAccionInventario.Text = "DELETE";
+            DIVBloqueConsultaInventario.Visible = false;
+            DIVBloqueMantenimientoInventario.Visible = true;
+            DIVBloqueSuplirInventario.Visible = false;
+            BloquearControlesInventario();
         }
 
         protected void btnRestablecerPantalla_Click(object sender, ImageClickEventArgs e)
         {
             ConfiguracionInicialPantallaInventario();
+            CurrentPage_Inventario = 0;
+            MostrarInventario();
         }
 
         protected void btnSeleccionarArticuloINventario_Click(object sender, ImageClickEventArgs e)
         {
+            var CodigoArticulo = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfCodigoArticulo = ((HiddenField)CodigoArticulo.FindControl("hfCodigoArticulo")).Value.ToString();
+            lbCodigoArticuloInventarioSeleccionado.Text = hfCodigoArticulo;
 
+            var BuscarRegistroSeleccionado = ObjDataSuministro.Value.BuscaInventarioSuministro(Convert.ToDecimal(hfCodigoArticulo));
+            foreach (var n in BuscarRegistroSeleccionado) {
+                txtArticuloMantenimientoInventario.Text = n.Articulo;
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarMedidaMantenimientoInventario, ObjData.Value.BuscaListas("SUMINISTROTIPOMEDIDA", null, null));
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarMedidaMantenimientoInventario, n.IdMedida.ToString());
+                txtStockMantenimientoInventario.Text = n.Stock.ToString();
+
+                lbDescripcionArticuloSuplirInventarioVariable.Text = n.Articulo;
+                lbMedidaSuplirInventarioVariable.Text = n.Medida;
+                int Stock = (int)n.Stock;
+                lbStockSuplirInventarioVariable.Text = Stock.ToString("N0");
+            }
+            PaginarInventario(ref rpListadoInventario, BuscarRegistroSeleccionado, 10, ref lbCantidadPaginaVAriableInventario, ref btnkPrimeraPaginaInventario, ref btnAnteriorInventario, ref btnSiguienteInventario, ref btnUltimoInventario);
+            HandlePagingInventario(ref dtPaginacionInventario, ref lbPaginaActualVariableInventario);
+            divPaginacionInventario.Visible = false;
+            btnConsultarInventario.Visible = false;
+            btnNuevoRegistro.Visible = false;
+            btnReporteInventario.Visible = false;
+            btnSuplirInventario.Visible = true;
+            btnEditarInventario.Visible = true;
+            btnEliminarInventario.Visible = true;
+            btnRestablecerPantalla.Visible = true;
         }
 
         protected void btnkPrimeraPaginaInventario_Click(object sender, ImageClickEventArgs e)
@@ -461,7 +518,62 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         {
             ProcesarInformacionInventario(
                 Convert.ToDecimal(lbCodigoArticuloInventarioSeleccionado.Text),
+                Convert.ToInt32(txtStockMantenimientoInventario.Text),
                 lbAccionInventario.Text);
+            ConfiguracionInicialPantallaInventario();
+        }
+
+        protected void rbIngresarProductos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbIngresarProductos.Checked == true) {
+                lbAccionInventario.Text = "SUPPLIINVENTORY";
+            }
+            else { }
+        }
+
+        protected void rbSacarProductos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbSacarProductos.Checked == true) {
+                lbAccionInventario.Text = "LESSINVENTORY";
+            }
+            else { }
+        }
+
+        protected void btnSuplirSacarProductos_Click(object sender, ImageClickEventArgs e)
+        {
+            if (rbIngresarProductos.Checked == true) {
+                ProcesarInformacionInventario(
+                        Convert.ToDecimal(lbCodigoArticuloInventarioSeleccionado.Text),
+                        Convert.ToInt32(txtCantidadSupliorSacar.Text),
+                        lbAccionInventario.Text);
+                ConfiguracionInicialPantallaInventario();
+                CurrentPage_Inventario = 0;
+                txtDescripcionConsultaInventario.Text = lbDescripcionArticuloSuplirInventarioVariable.Text;
+                MostrarInventario();
+            }
+            else if (rbSacarProductos.Checked == true) {
+
+                int Stock = 0, CantidadNueva = 0;
+                Stock = Convert.ToInt32(lbStockSuplirInventarioVariable.Text.Replace(",",""));
+                CantidadNueva = Convert.ToInt32(txtCantidadSupliorSacar.Text);
+
+                if (CantidadNueva > Stock) {
+                    ClientScript.RegisterStartupScript(GetType(), "CantidadSuperiorStock()", "CantidadSuperiorStock();", true);
+                }
+                else {
+                    ProcesarInformacionInventario(
+                    Convert.ToDecimal(lbCodigoArticuloInventarioSeleccionado.Text),
+                    Convert.ToInt32(txtCantidadSupliorSacar.Text),
+                    lbAccionInventario.Text);
+                    ConfiguracionInicialPantallaInventario();
+                    CurrentPage_Inventario = 0;
+                    txtDescripcionConsultaInventario.Text = lbDescripcionArticuloSuplirInventarioVariable.Text;
+                    MostrarInventario();
+                }
+            }
+            else {
+                ClientScript.RegisterStartupScript(GetType(), "OpcionNovalida()", "OpcionNovalida();", true);
+            }
         }
 
         protected void btnVolverAtras_Click(object sender, ImageClickEventArgs e)

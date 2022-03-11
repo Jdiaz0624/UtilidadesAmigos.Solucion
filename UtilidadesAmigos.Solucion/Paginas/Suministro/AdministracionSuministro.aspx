@@ -29,6 +29,12 @@
 
     <script type="text/javascript">
 
+        function OpcionNovalida() {
+            alert("La opción seleccionada no es valida, favor de verificar.");
+        }
+        function CantidadSuperiorStock() {
+            alert("La cantidad que intentas sacar del inventario supera la cantidad en stock, favor de verificar.");
+        }
         $(function () {
 
             //VALIDACIONES DEL BOTON GUARDAR EN LA PARTE DE INVENTARIO
@@ -57,6 +63,15 @@
                             return false;
                         }
                     }
+                }
+            });
+
+            $("#<%=btnSuplirSacarProductos.ClientID%>").click(function () {
+                var Cantidad = $("#<%=txtCantidadSupliorSacar.ClientID%>").val().length;
+                if (Cantidad < 1) {
+                    alert("El campo cantidad no puede estar vacio para realizar esta operación, favor de verificar.");
+                    $("#<%=txtCantidadSupliorSacar.ClientID%>").css("border-color", "red");
+                    return false;
                 }
             });
         });
@@ -338,6 +353,54 @@
                 </div>
                 <br />
             </div>
+
+            <div id="DIVBloqueSuplirInventario" runat="server">
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <asp:Label ID="lbDescripcionArticuloSuplirInventario" runat="server" Text="Articulo: " CssClass="LetrasNegrita"></asp:Label>
+                    </div>
+                     <div class="col-md-9">
+                        <asp:Label ID="lbDescripcionArticuloSuplirInventarioVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
+                    </div>
+
+                     <div class="col-md-3">
+                        <asp:Label ID="lbMedidaSuplirInventario" runat="server" Text="Medida: " CssClass="LetrasNegrita"></asp:Label>
+                    </div>
+                     <div class="col-md-9">
+                        <asp:Label ID="lbMedidaSuplirInventarioVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
+                    </div>
+
+                    <div class="col-md-3">
+                        <asp:Label ID="lbStockSuplirInventario" runat="server" Text="Stock: " CssClass="LetrasNegrita"></asp:Label>
+                    </div>
+                     <div class="col-md-9">
+                        <asp:Label ID="lbStockSuplirInventarioVariable" runat="server" Text="Dato" CssClass="LetrasNegrita"></asp:Label>
+                    </div>
+                    <br />
+                    <br />
+
+                     <div class="col-md-3">
+                        <asp:Label ID="lbCantidad" runat="server" Text="Cantidad: " CssClass="LetrasNegrita"></asp:Label>
+                    </div>
+                     <div class="col-md-3">
+                        <asp:TextBox ID="txtCantidadSupliorSacar" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                    </div>
+
+                </div>
+                <br />
+                <div class="form-check-inline">
+                    <asp:RadioButton ID="rbIngresarProductos" runat="server" Text="Ingresar Producto" CssClass="LetrasNegrita" GroupName="SuplirSacarInventario" AutoPostBack="true" OnCheckedChanged="rbIngresarProductos_CheckedChanged" />
+                     <asp:RadioButton ID="rbSacarProductos" runat="server" Text="Sacar Producto" CssClass="LetrasNegrita" GroupName="SuplirSacarInventario" AutoPostBack="true" OnCheckedChanged="rbSacarProductos_CheckedChanged" />
+                </div>
+                <br />
+                <div align="center">
+                    <asp:ImageButton ID="btnSuplirSacarProductos" runat="server" ImageUrl="~/Imagenes/Procesar.png" CssClass="BotonImagen" OnClick="btnSuplirSacarProductos_Click" ToolTip="Procesar Información" />
+                    <asp:ImageButton ID="btnVolverSuplirSacar" runat="server" ImageUrl="~/Imagenes/volver-flecha.png" CssClass="BotonImagen" OnClick="btnVolverAtras_Click" ToolTip="Volver Atras" />
+                </div>
+                <br />
+            </div>
         </div>
+                    
     </div>
 </asp:Content>
