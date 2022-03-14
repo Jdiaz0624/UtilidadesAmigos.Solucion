@@ -24,19 +24,39 @@
            height: 40px;
           }
 
+       .BotonImagenCompletado {
+        width: 90px;
+        height: 90px;
+       }
 
     </style>
 
     <script type="text/javascript">
         function CantidadAlmacenSuperior() {
-
             alert("La cantidad que intentas solicitar supera el stock actual de este registro en almacen, favor de verificar.");
         }
+
+        function RegistroAgregado() {
+            alert("Este registro ya esta agregado a la solicitud, favor de verificar.");
+        }
+
+        $(function () {
+            $("#<%=btnAgregarRegistro.ClientID%>").click(function () {
+                var Cantidad = $("#<%=txtCantidad.ClientID%>").val().length;
+                if (Cantidad < 1) {
+                    alert("El Campo Cantidad no puede estar vacio para procesar este registro.");
+                    $("#").css("border-color", "red")
+                    return false;
+                }
+
+            });
+        });
     </script>
 
     <div class="container-fluid">
         <asp:Label ID="lbCodigoArtiuloSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
         <asp:Label ID="lbAccionTomar" runat="server" Text="" Visible="false"></asp:Label>
+        <asp:Label ID="lbIdMedidaSeleccionaa" runat="server" Text="0" Visible="false"></asp:Label>
 
         <div id="DIVBloqueConsulta" runat="server" >
             <div class="row">
@@ -132,6 +152,7 @@
                 <thead>
                     <tr>
                         <th scope="col"> Articulo </th>
+                        <th scope="col"> Medida </th>
                         <th scope="col"> Cantidad </th>
                         <th scope="col">  </th>
                     </tr>
@@ -140,8 +161,11 @@
                     <asp:Repeater ID="rpArticulosAgregados" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%#string.Format("{0:N0}", Eval("")) %> </td>
+                                <asp:HiddenField ID="hfEliminarRegistro" runat="server" Value='<%# Eval("CodigoArticulo") %>' />
+
+                                <td> <%# Eval("Descripcion") %> </td>
+                                <td> <%# Eval("Medida") %> </td>
+                                <td> <%#string.Format("{0:N0}", Eval("Cantidad")) %> </td>
                                 <td> <asp:ImageButton ID="btnEliminar" runat="server"  ImageUrl="~/Imagenes/Eliminar.png" CssClass="BotonImagen" OnClick="btnEliminar_Click" ToolTip="Eliminar Registro" /> </td>
                             </tr>
                         </ItemTemplate>
@@ -188,9 +212,11 @@
             <asp:Label ID="lbNumeroFacturaGeneradoCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbNumeroConectorGenerado" runat="server" CssClass="LetrasNegrita" Text="0" Visible="false"></asp:Label>
             <br />
-            <asp:Image ID="IMGCompletado" runat="server" CssClass="BotonImagenCompletado" ImageUrl="~/Imagenes/Completado3.gif" />
+            <asp:Image ID="IMGCompletado" runat="server"  ImageUrl="~/Imagenes/Completado3.gif" />
             <br />
             <br />
+           <asp:ImageButton ID="btnCrearNuevoRegistro" runat="server" ToolTip="Crear Nueva Solicitud" CssClass="BotonImagenCompletado" OnClick="btnCrearNuevoRegistro_Click" ImageUrl="~/Imagenes/Agregar (2).png" />
+           <br />
         </div>
     </div>
 </asp:Content>

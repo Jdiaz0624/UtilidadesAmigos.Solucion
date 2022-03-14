@@ -15,6 +15,7 @@ namespace UtilidadesAmigos.Logica.Entidades.Suministro
 		public string Descripcion {get;set;}
 
 		public System.Nullable<int> IdMedida {get;set;}
+		public string Medida { get; set; }
 
 		public System.Nullable<int> Cantidad {get;set;}
 	}

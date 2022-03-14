@@ -44,17 +44,6 @@
       <Column Name="FechaModifica" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJO" Method="SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJO">
-    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="CodigoArticulo" Parameter="codigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <ElementType Name="SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJOResult">
-      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="CodigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="IdMedida" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_ESPEJO" Method="SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_ESPEJO">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="CodigoArticulo" Parameter="codigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" />
@@ -67,6 +56,18 @@
       <Column Name="CodigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Column Name="IdMedida" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJO" Method="SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoArticulo" Parameter="codigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJOResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CodigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IdMedida" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Medida" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>

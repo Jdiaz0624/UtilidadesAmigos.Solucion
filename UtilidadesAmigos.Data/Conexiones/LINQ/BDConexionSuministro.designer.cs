@@ -76,18 +76,18 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_SUMINISTRO_INVENTARIOResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJO")]
-		public ISingleResult<SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJOResult> SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoArticulo", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoArticulo)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, codigoArticulo);
-			return ((ISingleResult<SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJOResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_ESPEJO")]
 		public ISingleResult<SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_ESPEJOResult> SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_ESPEJO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoArticulo", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoArticulo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(1000)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdMedida", DbType="Int")] System.Nullable<int> idMedida, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cantidad", DbType="Int")] System.Nullable<int> cantidad, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, codigoArticulo, descripcion, idMedida, cantidad, accion);
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_ESPEJOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJO")]
+		public ISingleResult<SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJOResult> SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoArticulo", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoArticulo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, codigoArticulo);
+			return ((ISingleResult<SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJOResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -557,7 +557,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJOResult
+	public partial class SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_ESPEJOResult
 	{
 		
 		private System.Nullable<decimal> _IdUsuario;
@@ -570,7 +570,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<int> _Cantidad;
 		
-		public SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJOResult()
+		public SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_ESPEJOResult()
 		{
 		}
 		
@@ -655,7 +655,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_ESPEJOResult
+	public partial class SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJOResult
 	{
 		
 		private System.Nullable<decimal> _IdUsuario;
@@ -666,9 +666,11 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<int> _IdMedida;
 		
+		private string _Medida;
+		
 		private System.Nullable<int> _Cantidad;
 		
-		public SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_ESPEJOResult()
+		public SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJOResult()
 		{
 		}
 		
@@ -732,6 +734,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._IdMedida != value))
 				{
 					this._IdMedida = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Medida", DbType="VarChar(100)")]
+		public string Medida
+		{
+			get
+			{
+				return this._Medida;
+			}
+			set
+			{
+				if ((this._Medida != value))
+				{
+					this._Medida = value;
 				}
 			}
 		}

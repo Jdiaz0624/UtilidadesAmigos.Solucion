@@ -105,6 +105,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
                                CodigoArticulo=n.CodigoArticulo,
                                Descripcion=n.Descripcion,
                                IdMedida=n.IdMedida,
+                               Medida=n.Medida,
                                Cantidad=n.Cantidad
                            }).ToList();
             return Listado;

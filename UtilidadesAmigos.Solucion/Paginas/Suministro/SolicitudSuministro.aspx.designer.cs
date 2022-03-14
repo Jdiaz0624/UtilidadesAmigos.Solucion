@@ -33,6 +33,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.Label lbAccionTomar;
 
         /// <summary>
+        /// lbIdMedidaSeleccionaa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbIdMedidaSeleccionaa;
+
+        /// <summary>
         /// DIVBloqueConsulta control.
         /// </summary>
         /// <remarks>
@@ -400,5 +409,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image IMGCompletado;
+
+        /// <summary>
+        /// btnCrearNuevoRegistro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnCrearNuevoRegistro;
     }
 }
