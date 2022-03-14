@@ -413,6 +413,7 @@
     <Compile Include="Entidades\Seguridad\EControlTarjetasAcceso.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
+    <Compile Include="Entidades\Suministro\ESuministroEspejo.cs" />
     <Compile Include="Entidades\Suministro\ESuministroInventario.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaInformacionPersonasRegistradasArchivo.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaAseurados.cs" />

@@ -27,7 +27,17 @@
 
     </style>
 
+    <script type="text/javascript">
+        function CantidadAlmacenSuperior() {
+
+            alert("La cantidad que intentas solicitar supera el stock actual de este registro en almacen, favor de verificar.");
+        }
+    </script>
+
     <div class="container-fluid">
+        <asp:Label ID="lbCodigoArtiuloSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
+        <asp:Label ID="lbAccionTomar" runat="server" Text="" Visible="false"></asp:Label>
+
         <div id="DIVBloqueConsulta" runat="server" >
             <div class="row">
                 <div class="col-md-5">
@@ -46,7 +56,7 @@
                         <th scope="col"> Articulo </th>
                         <th scope="col"> Medida </th>
                         <th scope="col"> Stock </th>
-                        <th scope="col"> Comentario </th>
+                        <th scope="col"> Estatus </th>
                         <th scope="col">  </th>
                     </tr>
                 </thead>
@@ -54,10 +64,11 @@
                     <asp:Repeater ID="rbListadoSeleccionarArticulo" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%#string.Format("{0:N0}", Eval("")) %> </td>
-                                <td> <%# Eval("") %> </td>
+                                <asp:HiddenField ID="hfCodigoArticulo" runat="server" Value='<%# Eval("CodigoArticulo") %>' />
+                                <td> <%# Eval("Articulo") %> </td>
+                                <td> <%# Eval("Medida") %> </td>
+                                <td> <%#string.Format("{0:N0}", Eval("Stock")) %> </td>
+                                <td> <%# Eval("Estatus") %> </td>
                                 <td> <asp:ImageButton ID="btnSeleccionarRegistro" runat="server"  ImageUrl="~/Imagenes/Seleccionar2.png" CssClass="BotonImagen" OnClick="btnSeleccionarRegistro_Click" ToolTip="Seleccionar Registro" /> </td>
                             </tr>
                         </ItemTemplate>

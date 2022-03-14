@@ -86,5 +86,64 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
             return Procesar;
         }
         #endregion
+
+        #region MANTENIMIENTO DE SUMINISTRO ESPEJO
+        /// <summary>
+        /// Este metodo es para mostrar los registro que el usuario va a solicitar para los materiales gastables
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="CodigoArticulo"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroEspejo> BuscaSuministroEspejo(decimal? IdUsuario = null, decimal? CodigoArticulo = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJO(IdUsuario, CodigoArticulo)
+                           select new UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroEspejo
+                           {
+                               IdUsuario=n.IdUsuario,
+                               CodigoArticulo=n.CodigoArticulo,
+                               Descripcion=n.Descripcion,
+                               IdMedida=n.IdMedida,
+                               Cantidad=n.Cantidad
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo es para procesar la información del suministro espejo.
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroEspejo ProcesarSolicitudEspejo(UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroEspejo Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroEspejo Procesar = null;
+
+            var SuministroEspejo = ObjData.SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_ESPEJO(
+                Item.IdUsuario,
+                Item.CodigoArticulo,
+                Item.Descripcion,
+                Item.IdMedida,
+                Item.Cantidad,
+                Accion);
+            if (SuministroEspejo != null) {
+
+                Procesar = (from n in SuministroEspejo
+                            select new UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroEspejo
+                            {
+                                IdUsuario=n.IdUsuario,
+                                CodigoArticulo=n.CodigoArticulo,
+                                Descripcion=n.Descripcion,
+                                IdMedida=n.IdMedida,
+                                Cantidad=n.Cantidad
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        
+        }
+        #endregion
     }
 }
