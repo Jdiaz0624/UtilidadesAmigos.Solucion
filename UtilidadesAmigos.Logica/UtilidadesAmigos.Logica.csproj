@@ -120,6 +120,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionMantenimientos\ProcesarInformacionTasaMoneda.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionSeguridad.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionTarjetaAcceso.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionSolicitudSuministroEspejo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionSuministroInventario.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
