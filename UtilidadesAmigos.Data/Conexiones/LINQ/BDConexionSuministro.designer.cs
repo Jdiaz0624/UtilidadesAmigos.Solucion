@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionSuministroDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString7, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
 		{
 			OnCreated();
 		}
@@ -88,6 +88,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, codigoArticulo);
 			return ((ISingleResult<SP_BUSCA_SUMINISTRO_SOLICITUD_ESPEJOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_HEADER")]
+		public ISingleResult<SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_HEADERResult> SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_HEADER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSolicitud", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroSolicitud, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroConector", DbType="VarChar(100)")] string numeroConector, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EstatusSolicitud", DbType="Bit")] System.Nullable<bool> estatusSolicitud, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSolicitud, numeroConector, idUsuario, estatusSolicitud, accion);
+			return ((ISingleResult<SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_HEADERResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_DETALLE")]
+		public ISingleResult<SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_DETALLEResult> SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_DETALLE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SecuenciaDetalle", DbType="Decimal(20,0)")] System.Nullable<decimal> secuenciaDetalle, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroConector", DbType="VarChar(100)")] string numeroConector, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoArticulo", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoArticulo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(1000)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdMedida", DbType="Int")] System.Nullable<int> idMedida, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cantidad", DbType="Int")] System.Nullable<int> cantidad, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), secuenciaDetalle, numeroConector, codigoArticulo, descripcion, idMedida, cantidad, accion);
+			return ((ISingleResult<SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_DETALLEResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -750,6 +764,220 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Medida != value))
 				{
 					this._Medida = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
+		public System.Nullable<int> Cantidad
+		{
+			get
+			{
+				return this._Cantidad;
+			}
+			set
+			{
+				if ((this._Cantidad != value))
+				{
+					this._Cantidad = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_HEADERResult
+	{
+		
+		private System.Nullable<decimal> _NumeroSolicitud;
+		
+		private string _NumeroConector;
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private System.Nullable<System.DateTime> _FechaSolicitud;
+		
+		private System.Nullable<bool> _EstatusSolicitud;
+		
+		public SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_HEADERResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroSolicitud", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> NumeroSolicitud
+		{
+			get
+			{
+				return this._NumeroSolicitud;
+			}
+			set
+			{
+				if ((this._NumeroSolicitud != value))
+				{
+					this._NumeroSolicitud = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroConector", DbType="VarChar(100)")]
+		public string NumeroConector
+		{
+			get
+			{
+				return this._NumeroConector;
+			}
+			set
+			{
+				if ((this._NumeroConector != value))
+				{
+					this._NumeroConector = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaSolicitud", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaSolicitud
+		{
+			get
+			{
+				return this._FechaSolicitud;
+			}
+			set
+			{
+				if ((this._FechaSolicitud != value))
+				{
+					this._FechaSolicitud = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EstatusSolicitud", DbType="Bit")]
+		public System.Nullable<bool> EstatusSolicitud
+		{
+			get
+			{
+				return this._EstatusSolicitud;
+			}
+			set
+			{
+				if ((this._EstatusSolicitud != value))
+				{
+					this._EstatusSolicitud = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_DETALLEResult
+	{
+		
+		private System.Nullable<decimal> _SecuenciaDetalle;
+		
+		private string _NumeroConector;
+		
+		private System.Nullable<decimal> _CodigoArticulo;
+		
+		private string _Descripcion;
+		
+		private System.Nullable<int> _IdMedida;
+		
+		private System.Nullable<int> _Cantidad;
+		
+		public SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_DETALLEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecuenciaDetalle", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> SecuenciaDetalle
+		{
+			get
+			{
+				return this._SecuenciaDetalle;
+			}
+			set
+			{
+				if ((this._SecuenciaDetalle != value))
+				{
+					this._SecuenciaDetalle = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroConector", DbType="VarChar(100)")]
+		public string NumeroConector
+		{
+			get
+			{
+				return this._NumeroConector;
+			}
+			set
+			{
+				if ((this._NumeroConector != value))
+				{
+					this._NumeroConector = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoArticulo", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> CodigoArticulo
+		{
+			get
+			{
+				return this._CodigoArticulo;
+			}
+			set
+			{
+				if ((this._CodigoArticulo != value))
+				{
+					this._CodigoArticulo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(1000)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdMedida", DbType="Int")]
+		public System.Nullable<int> IdMedida
+		{
+			get
+			{
+				return this._IdMedida;
+			}
+			set
+			{
+				if ((this._IdMedida != value))
+				{
+					this._IdMedida = value;
 				}
 			}
 		}

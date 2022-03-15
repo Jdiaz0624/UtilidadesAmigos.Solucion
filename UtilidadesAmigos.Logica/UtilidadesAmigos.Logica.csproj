@@ -120,7 +120,9 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionMantenimientos\ProcesarInformacionTasaMoneda.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionSeguridad.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionTarjetaAcceso.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionDetail.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionSolicitudSuministroEspejo.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionSuministroHeader.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionSuministroInventario.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionCodigosSupervisoresPermitidos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionComisionesIntermediarioSeleccionado.cs" />
@@ -414,7 +416,9 @@
     <Compile Include="Entidades\Seguridad\EControlTarjetasAcceso.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
+    <Compile Include="Entidades\Suministro\ESuministroDetalle.cs" />
     <Compile Include="Entidades\Suministro\ESuministroEspejo.cs" />
+    <Compile Include="Entidades\Suministro\ESuministroHeader.cs" />
     <Compile Include="Entidades\Suministro\ESuministroInventario.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaInformacionPersonasRegistradasArchivo.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaAseurados.cs" />

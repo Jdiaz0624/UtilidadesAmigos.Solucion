@@ -146,5 +146,78 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
         
         }
         #endregion
+
+        #region MANTENIMIENTO DE SUMINISTRO HEADER
+        /// <summary>
+        /// Este metodo es para procesar la informacion de los suministros header
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroHeader ProcesarSuministroHeader(UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroHeader Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroHeader Procesar = null;
+
+            var Header = ObjData.SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_HEADER(
+                Item.NumeroSolicitud,
+                Item.NumeroConector,
+                Item.IdUsuario,
+                Item.EstatusSolicitud,
+                Accion);
+            if (Header != null) {
+
+                Procesar = (from n in Header
+                            select new UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroHeader
+                            {
+                                NumeroSolicitud=n.NumeroSolicitud,
+                                NumeroConector=n.NumeroConector,
+                                IdUsuario=n.IdUsuario,
+                                FechaSolicitud=n.FechaSolicitud,
+                                EstatusSolicitud=n.EstatusSolicitud
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
+
+        #region MANTENIMIENTO DE SUMINISTRO DETALLE
+        /// <summary>
+        /// Este metodo procesa la informacion de los suministros dne detalle la solicitud
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroDetalle ProcesarSuministroDetalle(UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroDetalle Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroDetalle Procesar = null;
+
+            var Detail = ObjData.SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_DETALLE(
+                Item.SecuenciaDetalle,
+                Item.NumeroConector,
+                Item.CodigoArticulo,
+                Item.Descripcion,
+                Item.IdMedida,
+                Item.Cantidad,
+                Accion);
+            if (Detail != null) {
+
+                Procesar = (from n in Detail
+                            select new UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroDetalle
+                            {
+                                SecuenciaDetalle=n.SecuenciaDetalle,
+                                NumeroConector=n.NumeroConector,
+                                CodigoArticulo=n.CodigoArticulo,
+                                Descripcion=n.Descripcion,
+                                IdMedida=n.IdMedida,
+                                Cantidad=n.Cantidad
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }
