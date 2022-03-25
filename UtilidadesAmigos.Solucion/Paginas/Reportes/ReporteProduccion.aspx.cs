@@ -251,6 +251,94 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             MONEDA=7
         }
 
+        private void GenerarReporteFormateado(string RutaReporte, string NombreReporte) {
+            int? _Intermediario = string.IsNullOrEmpty(txtCodIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodIntermediario.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtCodSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodSupervisor.Text);
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _SubRamo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+            string _Concepto = ddlSeleccionarCOncepto.SelectedValue != "-1" ? ddlSeleccionarCOncepto.SelectedItem.Text : null;
+            string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+            int? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarMoneda.SelectedValue) : new Nullable<int>();
+            string _Usuario = ddlSeleccionarUsuario.SelectedValue != "-1" ? ddlSeleccionarUsuario.SelectedItem.Text : null;
+            decimal? _NumeroFactura = string.IsNullOrEmpty(txtNumeroDocumento.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroDocumento.Text);
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
+            Reporte.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHasta.Text));
+            Reporte.SetParameterValue("@Intermediario", _Intermediario);
+            Reporte.SetParameterValue("@Supervisor", _Supervisor);
+            Reporte.SetParameterValue("@Oficina", _Oficina);
+            Reporte.SetParameterValue("@Ramo", _Ramo);
+            Reporte.SetParameterValue("@SubRamo", _SubRamo);
+            Reporte.SetParameterValue("@Usuario", _Usuario);
+            Reporte.SetParameterValue("@Poliza", _Poliza);
+            Reporte.SetParameterValue("@NumeroDocumento", _NumeroFactura);
+            Reporte.SetParameterValue("@Moneda", _Moneda);
+            Reporte.SetParameterValue("@Tipo", new Nullable<int>());
+            Reporte.SetParameterValue("@Concepto", _Concepto);
+            Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+            if (rbPDF.Checked == true) {
+
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
+            else if (rbExcel.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+            }
+        }
+        private void GenerarReporteAgrupadoFormateado(string RutaReporte, string NombreReporte, int TipoAgrupacion) {
+
+            int? _Intermediario = string.IsNullOrEmpty(txtCodIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodIntermediario.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtCodSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodSupervisor.Text);
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _SubRamo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+            string _Concepto = ddlSeleccionarCOncepto.SelectedValue != "-1" ? ddlSeleccionarCOncepto.SelectedItem.Text : null;
+            string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+            int? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarMoneda.SelectedValue) : new Nullable<int>();
+            string _Usuario = ddlSeleccionarUsuario.SelectedValue != "-1" ? ddlSeleccionarUsuario.SelectedItem.Text : null;
+            decimal? _NumeroFactura = string.IsNullOrEmpty(txtNumeroDocumento.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroDocumento.Text);
+            
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@FechaDesde", Convert.ToDateTime(txtFechaDesde.Text));
+            Reporte.SetParameterValue("@FechaHasta", Convert.ToDateTime(txtFechaHasta.Text));
+            Reporte.SetParameterValue("@Intermediario", _Intermediario);
+            Reporte.SetParameterValue("@Supervisor", _Supervisor);
+            Reporte.SetParameterValue("@Oficina", _Oficina);
+            Reporte.SetParameterValue("@Ramo", _Ramo);
+            Reporte.SetParameterValue("@SubRamo", _SubRamo);
+            Reporte.SetParameterValue("@Usuario", _Usuario);
+            Reporte.SetParameterValue("@Poliza", _Poliza);
+            Reporte.SetParameterValue("@NumeroDocumento", _NumeroFactura);
+            Reporte.SetParameterValue("@Moneda", _Moneda);
+            Reporte.SetParameterValue("@Tipo", new Nullable<int>());
+            Reporte.SetParameterValue("@Concepto", _Concepto);
+            Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
+            Reporte.SetParameterValue("@TipoAgrupacion", TipoAgrupacion);
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+            if (rbPDF.Checked == true)
+            {
+
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
+            else if (rbExcel.Checked == true)
+            {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+            }
+        }
         private void GenerarReporteAgrupado(int TipoAgrupacion,string Nombre) {
 
             int? _Intermediario = string.IsNullOrEmpty(txtCodIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodIntermediario.Text);
@@ -422,7 +510,39 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                     }
 
                 }
-                else { }
+                else {
+                    if (rbNoAgruparDatos.Checked == true) {
+                        if (rbReporteDetallado.Checked == true) {
+                            GenerarReporteFormateado(Server.MapPath("ProduccionDetallada.rpt"), NombreReporte + " " + "Detallado");
+                        }
+                        else if (rbReporteResumido.Checked == true) {
+                            GenerarReporteFormateado(Server.MapPath("ProduccionResumido.rpt"), NombreReporte + " " + "Resumido");
+                        }
+                    }
+                    else if (rbAgruparPorConcepto.Checked == true) {
+                        GenerarReporteAgrupadoFormateado(Server.MapPath("ProduccionAgrupado.rpt"), NombreReporte + " " + "Agrupado Por Concepto", (int)TipoAgrupacion.Concepto);
+                    }
+                    else if (rbAgruparPorUsuario.Checked == true) {
+                        GenerarReporteAgrupadoFormateado(Server.MapPath("ProduccionAgrupado.rpt"), NombreReporte + " " + "Agrupado Por Usuario", (int)TipoAgrupacion.Usuario);
+                    }
+                    else if (rbAgruparPorOficina.Checked == true) {
+                        GenerarReporteAgrupadoFormateado(Server.MapPath("ProduccionAgrupado.rpt"), NombreReporte + " " + "Agrupado Por Oficina", (int)TipoAgrupacion.Oficina);
+                    }
+                    else if (rbAgruparPorRamo.Checked == true) {
+                        GenerarReporteAgrupadoFormateado(Server.MapPath("ProduccionAgrupado.rpt"), NombreReporte + " " + "Agrupado Por Ramo", (int)TipoAgrupacion.Ramo);
+                    }
+                    else if (rbAgruparPorIntermediario.Checked == true) {
+                        GenerarReporteAgrupadoFormateado(Server.MapPath("ProduccionAgrupado.rpt"), NombreReporte + " " + "Agrupado Por Intermediario", (int)TipoAgrupacion.Intermediario);
+                    }
+                    else if (rbAgruparPorSupervisor.Checked == true) {
+                        GenerarReporteAgrupadoFormateado(Server.MapPath("ProduccionAgrupado.rpt"), NombreReporte + " " + "Agrupado Por Supervisor", (int)TipoAgrupacion.Supervisor);
+                    }
+                    else if (rbAgruparPorMoneda.Checked == true) {
+                        GenerarReporteAgrupadoFormateado(Server.MapPath("ProduccionAgrupado.rpt"), NombreReporte + " " + "Agrupado Por Moneda", (int)TipoAgrupacion.Moneda);
+                    }
+                
+                
+                }
 
 
             }
