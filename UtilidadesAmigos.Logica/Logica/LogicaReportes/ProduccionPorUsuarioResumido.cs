@@ -1670,85 +1670,108 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         }
         #endregion
 
-
         #region REPORTE DE PRODUCCION NUEVO
         /// <summary>
-        /// Este metodo muestra la Producción segun los parametros ingresados
+        /// Este metodo es para generar el reporte de produccion de manera detallada.
         /// </summary>
         /// <param name="FechaDesde"></param>
         /// <param name="FechaHasta"></param>
-        /// <param name="Tasa"></param>
         /// <param name="Intermediario"></param>
         /// <param name="Supervisor"></param>
         /// <param name="Oficina"></param>
         /// <param name="Ramo"></param>
-        /// <param name="SubRamo"></param>
-        /// <param name="Concepto"></param>
-        /// <param name="Poliza"></param>
-        /// <param name="Moneda"></param>
+        /// <param name="Subramo"></param>
         /// <param name="Usuario"></param>
-        /// <param name="NumeroFactura"></param>
-        /// <param name="UsuarioGeneraReporte"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="NumeroDocumento"></param>
+        /// <param name="Moneda"></param>
+        /// <param name="Tipo"></param>
+        /// <param name="Concepto"></param>
+        /// <param name="GeneradoPor"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EReporteProduccionNuevo> BuscaProduccion(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? Tasa = null, int? Intermediario = null, int? Supervisor = null, int? Oficina = null, int? Ramo = null, int? SubRamo = null, string Concepto = null, string Poliza = null, decimal? Moneda = null, string Usuario = null, decimal? NumeroFactura = null, decimal? UsuarioGeneraReporte = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.ESacarDatosProduccionDetallada> BuscarDatosProduccion(DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Intermediario = null, int? Supervisor = null, int? Oficina = null, int? Ramo = null, int? Subramo = null, string Usuario = null, string Poliza = null, decimal? NumeroDocumento = null, int? Moneda = null,int? Tipo = null, string Concepto = null, decimal? GeneradoPor = null) {
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_REPORTE_PRODUCCION_NUEVO(FechaDesde, FechaHasta, Tasa, Intermediario, Supervisor, Oficina, Ramo, SubRamo, Concepto, Poliza, Moneda, Usuario, NumeroFactura, UsuarioGeneraReporte)
-                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EReporteProduccionNuevo
+            var Listado = (from n in ObjData.SP_SACAR_DATOS_PRODUCCION_DETALLADO(FechaDesde,FechaHasta,Intermediario,Supervisor,Oficina,Ramo,Subramo,Usuario,Poliza,NumeroDocumento,Moneda,Tipo,Concepto,GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.ESacarDatosProduccionDetallada
                            {
-                               CodRamo=n.CodRamo,
-                               SubRamo=n.SubRamo,
-                               Ramo=n.Ramo,
-                               NombreSubRamo=n.NombreSubRamo,
-                               NumeroFactura=n.NumeroFactura,
-                               NumeroFacturaFormateado=n.NumeroFacturaFormateado,
                                Poliza=n.Poliza,
-                               Asegurado=n.Asegurado,
-                               Items=n.Items,
+                               CodigoRamo=n.CodigoRamo,
+                               Ramo=n.Ramo,
+                               CodigoSubramo=n.CodigoSubramo,
+                               SubRamo=n.SubRamo,
+                               Cliente=n.Cliente,
+                               NombreCliente=n.NombreCliente,
+                               Vendedor=n.Vendedor,
+                               NombreVendedor=n.NombreVendedor,
+                               CodigoSupervisor=n.CodigoSupervisor,
                                Supervisor=n.Supervisor,
-                               CodIntermediario=n.CodIntermediario,
-                               CodSupervisor=n.CodSupervisor,
-                               Intermediario=n.Intermediario,
-                               Fecha=n.Fecha,
-                               FechaFormateada=n.FechaFormateada,
-                               Hora=n.Hora,
-                               FechaInicioVigencia=n.FechaInicioVigencia,
-                               FechaFinVigencia=n.FechaFinVigencia,
-                               InicioVigencia=n.InicioVigencia,
-                               FinVigencia=n.FinVigencia,
-                               SumaAsegurada=n.SumaAsegurada,
-                               Estatus=n.Estatus,
-                               CodOficina=n.CodOficina,
+                               Usuario=n.Usuario,
                                Oficina=n.Oficina,
-                               Concepto=n.Concepto,
+                               NombreOficina=n.NombreOficina,
+                               Fecha=n.Fecha,
+                               FechaFactura=n.FechaFactura,
+                               HoraFactura=n.HoraFactura,
                                Ncf=n.Ncf,
-                               Tipo=n.Tipo,
-                               DescripcionTipo=n.DescripcionTipo,
-                               Bruto=n.Bruto,
-                               Impuesto=n.Impuesto,
-                               Neto=n.Neto,
-                               Tasa=n.Tasa,
-                               Cobrado=n.Cobrado,
+                               MontoBruto=n.MontoBruto,
+                               ISC=n.ISC,
+                               MontoNeto=n.MontoNeto,
                                CodMoneda=n.CodMoneda,
                                Moneda=n.Moneda,
-                               TasaUsada=n.TasaUsada,
-                               MontoPesos=n.MontoPesos,
-                               CodigoMes=n.CodigoMes,
-                               CodigoAno=n.CodigoAno,
-                               Mes=n.Mes,
-                               Usuario=n.Usuario,
-                               TipoVehiculo=n.TipoVehiculo,
-                               Marca=n.Marca,
-                               Modelo=n.Modelo,
-                               Ano=n.Ano,
-                               Color=n.Color,
-                               Chasis=n.Chasis,
-                               Placa=n.Placa,
-                               GeneradoPor=n.GeneradoPor
+                               Factura=n.Factura,
+                               Tipo=n.Tipo,
+                               NumeroFactura=n.NumeroFactura,
+                               Concepto=n.Concepto,
+                               GeneradoPor=n.GeneradoPor,
+                               FechaDesde=n.FechaDesde,
+                               FechaHasta=n.FechaHasta
                            }).ToList();
             return Listado;
 
+        }
+
+        /// <summary>
+        /// Este metodo es para generar la data de producción de manera resumida
+        /// </summary>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="Subramo"></param>
+        /// <param name="Usuario"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="NumeroDocumento"></param>
+        /// <param name="Moneda"></param>
+        /// <param name="Tipo"></param>
+        /// <param name="Concepto"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.ESacarDatosProduccionResumido> BuscarDatosProduccionResumido(DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Intermediario = null, int? Supervisor = null, int? Oficina = null, int? Ramo = null, int? Subramo = null, string Usuario = null, string Poliza = null, decimal? NumeroDocumento = null, int? Moneda = null, int? Tipo = null, string Concepto = null, decimal? GeneradoPor = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_SACAR_DATOS_PRODUCCION_RESUMIDO(FechaDesde, FechaHasta, Intermediario, Supervisor, Oficina, Ramo, Subramo, Usuario, Poliza, NumeroDocumento, Moneda, Tipo, Concepto, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.ESacarDatosProduccionResumido
+                           {
+                               CodigoRamo=n.CodigoRamo,
+                               Ramo=n.Ramo,
+                               Vendedor=n.Vendedor,
+                               Intermediario=n.Intermediario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               MontoBruto=n.MontoBruto,
+                               ISC=n.ISC,
+                               MontoNeto=n.MontoNeto,
+                               CodMoneda=n.CodMoneda,
+                               Moneda=n.Moneda,
+                               GeneradoPor=n.GeneradoPor,
+                               FechaDesde=n.FechaDesde,
+                               FechaHasta=n.FechaHasta
+                           }).ToList();
+            return Listado;
         }
         #endregion
 

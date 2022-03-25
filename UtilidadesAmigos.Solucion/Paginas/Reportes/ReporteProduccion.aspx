@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style type="text/css">
-          <style type="text/css">
+
         .jumbotron{
             color:#000000; 
             background:#1E90FF;
@@ -29,10 +29,7 @@
            font-weight:bold;
           }
 
-        th {
-            background-color: #1E90FF;
-            color: #000000;
-        }
+       
 
         .BotonSolicitud {
                width:50px;
@@ -92,14 +89,11 @@
             <asp:RadioButton ID="rbAgruparPorMoneda" runat="server" Text="Por Moneda" AutoPostBack="true" OnCheckedChanged="rbAgruparPorMoneda_CheckedChanged" ToolTip="Agrupar Informacion Por Moneda"  GroupName="Agrupacion" />
             <asp:CheckBox ID="cbInformacionVehiculo" runat="server" Text="Información de Vehiculos" ToolTip="Mostrar el reporte con la información de los vehiculos" />
         </div>
-<%--        <hr id="HRSeparadorTipoReporte" runat="server" />--%>
-
-       <%-- <div id="DIVTipoReporteGenerar" runat="server" class="form-check-inline">--%>
-           <%-- <asp:Label ID="lbTipoReporteGenerar" runat="server" Text="Tipo de Reporte" CssClass="Letranegrita"></asp:Label><br />--%>
-           <%-- <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Reporte Detallado" ToolTip="Generar el reporte detallado" CssClass="form-check-input" GroupName="TipoReporte" />--%>
-            <%--<asp:RadioButton ID="rbReporteResumido" runat="server" Text="Reporte Resumido" ToolTip="Generar el reporte resumido" CssClass="form-check-input" GroupName="TipoReporte" />--%>
-<%--        </div>--%>
-      <%--  <hr />--%>
+        <br />
+        <div id="DIVTipoReporte" runat="server" class="form-check-inline">
+            <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Detallado" ToolTip="Generar Reporte de Producción Detallado" GroupName="TipoReporteGererar" />
+            <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" ToolTip="Generar Reporte de Producción Resumido" GroupName="TipoReporteGererar" />
+        </div>
 
         <div class="row">
             <div class="col-md-6">
@@ -189,34 +183,35 @@
         <hr />
       
         <div align="center">
-            <asp:ImageButton ID="btnBuscarInformacion" runat="server" CssClass="BotonImagen" ToolTip="Consultar Información por pantalla" OnClick="btnBuscarInformacion_Click" ImageUrl="~/Imagenes/Buscar.png" />
+             <asp:ImageButton ID="btnBuscarInformacion" runat="server" CssClass="BotonImagen" ToolTip="Consultar Información por pantalla" OnClick="btnBuscarInformacion_Click" ImageUrl="~/Imagenes/Buscar.png" />
              <asp:ImageButton ID="btnReporteProduccion" runat="server" CssClass="BotonImagen" ToolTip="Generar Reporte" OnClick="btnReporteProduccion_Click" ImageUrl="~/Imagenes/Reporte.png" />
         </div>
         <br />
         <table class="table table-striped">
-            <thead>
+            <thead class="table-dark">
                 <tr>
                     <th scope="col"> Poliza </th>
-                    <th scope="col"> Concepto </th>
-                    <th scope="col"> Valor </th>
+                    <th scope="col"> Factura </th>
                     <th scope="col"> Fecha </th>
-                    <th scope="col"> Hora </th>
-                    <th scope="col"> Detalle </th>
+                    <th scope="col"> Concepto </th>
+                    <th scope="col"> Bruto </th>
+                    <th scope="col"> ISC </th>
+                    <th scope="col"> Neto </th>
+                    
                 </tr>
             </thead>
             <tbody>
                 <asp:Repeater ID="rpListadoProduccion" runat="server">
                     <ItemTemplate>
                         <tr>
-                            <asp:HiddenField ID="hfPoliza" runat="server" Value='<%# Eval("Poliza") %>' />
-                            <asp:HiddenField ID="hfNumeroFactura" runat="server" Value='<%# Eval("NumeroFactura") %>' />
 
                             <td> <%# Eval("Poliza") %> </td>
+                            <td> <%# Eval("NumeroFactura") %> </td>
+                            <td> <%# Eval("FechaFactura") %> </td>
                             <td> <%# Eval("Concepto") %> </td>
-                            <td> <%#string.Format("{0:N2}", Eval("Bruto")) %> </td>
-                            <td> <%# Eval("FechaFormateada") %> </td>
-                            <td> <%# Eval("Hora") %> </td>
-                            <td> <asp:ImageButton ID="btnSeleccionarRegistro" runat="server" ImageUrl="~/Imagenes/escoger.png" CssClass="BotonImagen" ToolTip="Seleccionar Registro" /> </td>
+                            <td> <%#string.Format("{0:N2}", Eval("MontoBruto")) %> </td>
+                            <td> <%#string.Format("{0:N2}", Eval("ISC")) %> </td>
+                            <td> <%#string.Format("{0:N2}", Eval("MontoNeto")) %> </td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
@@ -232,18 +227,19 @@
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:LinkButton ID="LinkPrimeraPaginaPolizasProduccion" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaPolizasProduccion_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkAnteriorPolizasProduccion" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorPolizasProduccion_Click"></asp:LinkButton> </td>
+                    <td> <asp:ImageButton ID="btnPrimeraPaginaPaginacion" runat="server" ToolTip="Ir a la Primera Pagina del Listado" CssClass="BotonImagen" OnClick="btnPrimeraPaginaPaginacion_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaAnteriorPaginacion" runat="server" ToolTip="Ir a la Pagina Anterior del Listado" CssClass="BotonImagen" OnClick="btnPaginaAnteriorPaginacion_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+
                     <td>
                         <asp:DataList ID="dtPaginacionPolizasProduccion" runat="server" OnItemCommand="dtPaginacionPolizasProduccion_ItemCommand" OnItemDataBound="dtPaginacionPolizasProduccion_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionCentralProduccion" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                                <asp:Button ID="btnPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
                             </ItemTemplate>
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:LinkButton ID="LinkSiguienteProduccion" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteProduccion_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkUltimoPolizasProduccion" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoPolizasProduccion_Click"></asp:LinkButton> </td>
+                    <td> <asp:ImageButton ID="btnPaginaSiguientePaginacion" runat="server" ToolTip="Ir a la Siguiente Pagina del Listado" CssClass="BotonImagen" OnClick="btnPaginaSiguientePaginacion_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimaPaginaPaginacion" runat="server" ToolTip="Ir a la Ultima Pagina del Listado" CssClass="BotonImagen" OnClick="btnUltimaPaginaPaginacion_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
                 </tr>
             </table>
         </div>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionReportesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO" Method="SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Sucursal" Parameter="sucursal" Type="System.String" DbType="VarChar(100)" />
@@ -1513,6 +1513,86 @@
     <Parameter Name="Monto" Parameter="monto" Type="System.Decimal" DbType="Decimal(20,2)" />
     <ElementType Name="SP_VALIDAR_DEPOSITOS_PAGADOSResult">
       <Column Name="Validacion" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_DATOS_PRODUCCION_DETALLADO" Method="SP_SACAR_DATOS_PRODUCCION_DETALLADO">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NumeroDocumento" Parameter="numeroDocumento" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Moneda" Parameter="moneda" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Tipo" Parameter="tipo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Concepto" Parameter="concepto" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_SACAR_DATOS_PRODUCCION_DETALLADOResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoSubramo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubRamo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="NombreCliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Vendedor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreVendedor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreOficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaFactura" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="HoraFactura" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Ncf" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MontoBruto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ISC" Type="System.Decimal" DbType="Decimal(21,2)" CanBeNull="true" />
+      <Column Name="MontoNeto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="CodMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Factura" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Tipo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NumeroFactura" Type="System.String" DbType="VarChar(37) NOT NULL" CanBeNull="false" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FechaDesde" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaHasta" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_DATOS_PRODUCCION_RESUMIDO" Method="SP_SACAR_DATOS_PRODUCCION_RESUMIDO">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NumeroDocumento" Parameter="numeroDocumento" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Moneda" Parameter="moneda" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Tipo" Parameter="tipo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Concepto" Parameter="concepto" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_SACAR_DATOS_PRODUCCION_RESUMIDOResult">
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Vendedor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="MontoBruto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="ISC" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="MontoNeto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CodMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FechaDesde" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaHasta" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

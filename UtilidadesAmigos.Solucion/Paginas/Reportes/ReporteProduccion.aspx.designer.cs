@@ -132,6 +132,33 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         protected global::System.Web.UI.WebControls.CheckBox cbInformacionVehiculo;
 
         /// <summary>
+        /// DIVTipoReporte control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVTipoReporte;
+
+        /// <summary>
+        /// rbReporteDetallado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbReporteDetallado;
+
+        /// <summary>
+        /// rbReporteResumido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbReporteResumido;
+
+        /// <summary>
         /// lbFechaDesde control.
         /// </summary>
         /// <remarks>
@@ -510,22 +537,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionPolizasProduccion;
 
         /// <summary>
-        /// LinkPrimeraPaginaPolizasProduccion control.
+        /// btnPrimeraPaginaPaginacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPaginaPolizasProduccion;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaPaginacion;
 
         /// <summary>
-        /// LinkAnteriorPolizasProduccion control.
+        /// btnPaginaAnteriorPaginacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorPolizasProduccion;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnteriorPaginacion;
 
         /// <summary>
         /// dtPaginacionPolizasProduccion control.
@@ -537,22 +564,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         protected global::System.Web.UI.WebControls.DataList dtPaginacionPolizasProduccion;
 
         /// <summary>
-        /// LinkSiguienteProduccion control.
+        /// btnPaginaSiguientePaginacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteProduccion;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaSiguientePaginacion;
 
         /// <summary>
-        /// LinkUltimoPolizasProduccion control.
+        /// btnUltimaPaginaPaginacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoPolizasProduccion;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPaginaPaginacion;
 
         /// <summary>
         /// DIVBloqueDetalleFActura control.
