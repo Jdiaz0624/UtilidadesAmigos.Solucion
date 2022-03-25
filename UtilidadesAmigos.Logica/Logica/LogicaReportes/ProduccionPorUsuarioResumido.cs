@@ -566,7 +566,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Procesar;
         }
         #endregion
-        #region GENERAR REPORTE DE PRODUCCION AGRUPADOS 
+        #region GENERAR REPORTE DE PRODUCCION AGRUPADOS (DESCARTADOS)
         /// <summary>
         /// Este metodo es para mostrar el listado de produccion agrupado por concepto.
         /// </summary>
@@ -1770,6 +1770,42 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                GeneradoPor=n.GeneradoPor,
                                FechaDesde=n.FechaDesde,
                                FechaHasta=n.FechaHasta
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo genera la produccion de manera agrupada
+        /// </summary>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="Subramo"></param>
+        /// <param name="Usuario"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="NumeroDocumento"></param>
+        /// <param name="Moneda"></param>
+        /// <param name="Tipo"></param>
+        /// <param name="Concepto"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <param name="TipoAgrupacion"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.ESacarDatosProduccionAgrupada> BuscaDatosProduccionAgrupada(DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Intermediario = null, int? Supervisor = null, int? Oficina = null, int? Ramo = null, int? Subramo = null, string Usuario = null, string Poliza = null, decimal? NumeroDocumento = null, int? Moneda = null, int? Tipo = null, string Concepto = null, decimal? GeneradoPor = null, int? TipoAgrupacion = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_SACAR_DATOS_PRODUCCION_AGRUPADO(FechaDesde, FechaHasta, Intermediario, Supervisor, Oficina, Ramo, Subramo, Usuario, Poliza, NumeroDocumento, Moneda, Tipo, Concepto, GeneradoPor, TipoAgrupacion)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.ESacarDatosProduccionAgrupada
+                           {
+                               Entidad=n.Entidad,
+                               CodMoneda=n.CodMoneda,
+                               Moneda=n.Moneda,
+                               MontoBruto=n.MontoBruto,
+                               ISC=n.ISC,
+                               MontoNeto=n.MontoNeto
                            }).ToList();
             return Listado;
         }

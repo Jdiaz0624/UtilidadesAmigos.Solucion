@@ -123,15 +123,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         protected global::System.Web.UI.WebControls.RadioButton rbAgruparPorMoneda;
 
         /// <summary>
-        /// cbInformacionVehiculo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbInformacionVehiculo;
-
-        /// <summary>
         /// DIVTipoReporte control.
         /// </summary>
         /// <remarks>

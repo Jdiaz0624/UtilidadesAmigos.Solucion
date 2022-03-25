@@ -239,6 +239,49 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         #endregion
 
         #region GENERAR REPORTE
+
+        enum TiposAgrupaciones {
+
+            CONCEPTO =1,
+            USUARIO=2,
+            OFICINA=3,
+            RAMO=4,
+            INTERMEDIARIO=5,
+            SUPERVISOR=6,
+            MONEDA=7
+        }
+
+        private void GenerarReporteAgrupado(int TipoAgrupacion,string Nombre) {
+
+            int? _Intermediario = string.IsNullOrEmpty(txtCodIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodIntermediario.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtCodSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodSupervisor.Text);
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            int? _SubRamo = ddlSeleccionarSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarSubRamo.SelectedValue) : new Nullable<int>();
+            string _Concepto = ddlSeleccionarCOncepto.SelectedValue != "-1" ? ddlSeleccionarCOncepto.SelectedItem.Text : null;
+            string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+            int? _Moneda = ddlSeleccionarMoneda.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarMoneda.SelectedValue) : new Nullable<int>();
+            string _Usuario = ddlSeleccionarUsuario.SelectedValue != "-1" ? ddlSeleccionarUsuario.SelectedItem.Text : null;
+            decimal? _NumeroFactura = string.IsNullOrEmpty(txtNumeroDocumento.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroDocumento.Text);
+
+            var ReporteAgrupado = ObjDataReportes.Value.BuscaDatosProduccionAgrupada(
+                Convert.ToDateTime(txtFechaDesde.Text),
+                Convert.ToDateTime(txtFechaHasta.Text),
+                _Intermediario,
+                _Supervisor,
+                _Oficina,
+                _Ramo,
+                _SubRamo,
+                _Usuario,
+                _Poliza,
+                _NumeroFactura,
+                _Moneda,
+                null,
+                _Concepto,
+                (decimal)Session["IdUSuario"],
+                TipoAgrupacion);
+            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Producción Agrupado Por" + " " + Nombre, ReporteAgrupado);
+        }
         private void GenerarReporte(string NombreReporte) {
 
             if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
@@ -322,15 +365,61 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
 
                         }
-                        else if (rbReporteResumido.Checked == true) { }
+                        else if (rbReporteResumido.Checked == true) {
+
+                            var ProduccionResumida = (from n in ObjDataReportes.Value.BuscarDatosProduccionResumido(
+                                Convert.ToDateTime(txtFechaDesde.Text),
+                                Convert.ToDateTime(txtFechaHasta.Text),
+                                _Intermediario,
+                                _Supervisor,
+                                _Oficina,
+                                _Ramo,
+                                _SubRamo,
+                                _Usuario,
+                                _Poliza,
+                                _NumeroFactura,
+                                _Moneda,
+                                null,
+                                _Concepto,
+                                (decimal)Session["IdUsuario"])
+                                                      select new
+                                                      {
+                                                          CodigoSupervisor = n.CodigoSupervisor,
+                                                          Supervisor = n.Supervisor,
+                                                          Ramo = n.Ramo,
+                                                          Vendedor = n.Vendedor,
+                                                          Intermediario = n.Intermediario,
+                                                          Moneda = n.Moneda,
+                                                          MontoBruto = n.MontoBruto,
+                                                          ISC = n.ISC,
+                                                          MontoNeto = n.MontoNeto,
+                                                          GeneradoPor = n.GeneradoPor
+                                                      }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(NombreReporte + " " + "Resumido", ProduccionResumida);
+                        }
                     }
-                    else if (rbAgruparPorConcepto.Checked == true) { }
-                    else if (rbAgruparPorUsuario.Checked == true) { }
-                    else if (rbAgruparPorOficina.Checked == true) { }
-                    else if (rbAgruparPorRamo.Checked == true) { }
-                    else if (rbAgruparPorIntermediario.Checked == true) { }
-                    else if (rbAgruparPorSupervisor.Checked == true) { }
-                    else if (rbAgruparPorMoneda.Checked == true) { }
+                    else if (rbAgruparPorConcepto.Checked == true) {
+
+                        GenerarReporteAgrupado((int)TipoAgrupacion.Concepto, "Concepto");
+                    }
+                    else if (rbAgruparPorUsuario.Checked == true) {
+                        GenerarReporteAgrupado((int)TipoAgrupacion.Usuario, "Usuario");
+                    }
+                    else if (rbAgruparPorOficina.Checked == true) {
+                        GenerarReporteAgrupado((int)TipoAgrupacion.Oficina, "Oficina");
+                    }
+                    else if (rbAgruparPorRamo.Checked == true) {
+                        GenerarReporteAgrupado((int)TipoAgrupacion.Ramo, "Ramo");
+                    }
+                    else if (rbAgruparPorIntermediario.Checked == true) {
+                        GenerarReporteAgrupado((int)TipoAgrupacion.Intermediario, "Intermediario");
+                    }
+                    else if (rbAgruparPorSupervisor.Checked == true) {
+                        GenerarReporteAgrupado((int)TipoAgrupacion.Supervisor, "Supervisor");
+                    }
+                    else if (rbAgruparPorMoneda.Checked == true) {
+                        GenerarReporteAgrupado((int)TipoAgrupacion.Moneda, "Moneda");
+                    }
 
                 }
                 else { }

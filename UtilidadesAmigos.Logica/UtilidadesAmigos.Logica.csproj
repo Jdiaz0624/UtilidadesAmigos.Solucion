@@ -409,6 +409,7 @@
     <Compile Include="Entidades\Reportes\EReporteRenovacionMachado.cs" />
     <Compile Include="Entidades\Reportes\EReporteSobreComision.cs" />
     <Compile Include="Entidades\Reportes\ESacarConceptoMediantePAgo.cs" />
+    <Compile Include="Entidades\Reportes\ESacarDatosProduccionAgrupada.cs" />
     <Compile Include="Entidades\Reportes\ESacarDatosProduccionDetallada.cs" />
     <Compile Include="Entidades\Reportes\ESacarDatosProduccionResumido.cs" />
     <Compile Include="Entidades\Reportes\ESacarPorcientoComisionesSupervisores.cs" />

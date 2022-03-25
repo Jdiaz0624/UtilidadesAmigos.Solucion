@@ -87,7 +87,7 @@
             <asp:RadioButton ID="rbAgruparPorIntermediario" runat="server" AutoPostBack="true" OnCheckedChanged="rbAgruparPorIntermediario_CheckedChanged" Text="Por Intermediario" ToolTip="Agrupar Información Por Intermediario"  GroupName="Agrupacion" />
             <asp:RadioButton ID="rbAgruparPorSupervisor" runat="server" AutoPostBack="true" OnCheckedChanged="rbAgruparPorSupervisor_CheckedChanged" Text="Por Supervisor" ToolTip="Agrupar Información por Supervisor"   GroupName="Agrupacion" />
             <asp:RadioButton ID="rbAgruparPorMoneda" runat="server" Text="Por Moneda" AutoPostBack="true" OnCheckedChanged="rbAgruparPorMoneda_CheckedChanged" ToolTip="Agrupar Informacion Por Moneda"  GroupName="Agrupacion" />
-            <asp:CheckBox ID="cbInformacionVehiculo" runat="server" Text="Información de Vehiculos" ToolTip="Mostrar el reporte con la información de los vehiculos" />
+         
         </div>
         <br />
         <div id="DIVTipoReporte" runat="server" class="form-check-inline">
