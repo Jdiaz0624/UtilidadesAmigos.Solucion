@@ -192,7 +192,7 @@
               <div id="DivRepeaterNormal" runat="server" visible="true">
      
                   <table class="table table-striped">
-                      <thead>
+                      <thead class="table table-dark">
                           <tr>
                               <th scope="col"> Poliza </th>
                               <th scope="col"> Recibo </th>
@@ -263,7 +263,7 @@
 
 
                       <table class="table table-striped">
-                          <thead>
+                          <thead class="table table-dark">
                               <tr>
                                   <th scope="col"> Detalle </th>
                                   <th scope="col"> Intermediario </th>
