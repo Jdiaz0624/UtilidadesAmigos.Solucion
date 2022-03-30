@@ -24,10 +24,7 @@
         }
         
 
-        th {
-            background-color: #1E90FF;
-            color: #000000;
-        }
+  
 
                  .BotonImagen {
                    width:50px;
@@ -37,71 +34,45 @@
     </style>
 
     <script type="text/javascript">
-        function CampoTasaVacio() {
-            alert("El campo Tasa no puede estar vacio, favor de verificar");
-            $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
-        }
-        function FechaDesdeComisionesVacio() {
+        function CampoFechaDesdeVacio() {
+
             $("#<%=txtFechaDesdeComisiones.ClientID%>").css("border-color", "red");
         }
+        function CampoFechaHastaVacio() {
 
-        function CamposFechasVacios() {
-            alert("Los campos fechas no pueden estar vacios para realizar esta operación, favor de verificar.");
-        }
-        function FechaHastaComisionesVAcio() {
             $("#<%=txtFechaHastaComisiones.ClientID%>").css("border-color", "red");
         }
-        $(document).ready(function () {
+
+        function CamposFechaVAcios() {
+            alert("El campo Fecha Desde o el Campo Fecha Hasta son necesarios para realizar esta operación, favor de verificar.");
+        }
+
+        $(function () {
+
+            //VALIDAMOS EL BOTON BUSCAR CON EL MONTO MINIMO
             $("#<%=btnConsultarComisionesNuevo.ClientID%>").click(function () {
-                var Tasa = $("#<%=txtTasaDollar.ClientID%>").val().length;
-                if (Tasa < 1) {
-                    alert("El campo tasa no puede estar vacio para realizar esta operación, favor de verificar.");
-                    $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
+                var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
+                if (MontoMinimo < 1) {
+                    alert("El campo Monto minimo no puede estar vacio para buscar esta información, favor de verificar.");
+                    $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
                     return false;
                 }
-                else {
-                    var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
-                    if (MontoMinimo < 1) {
-                        alert("El campo Monto Minimo no puede estar vacio para realizar esta consulta, favor de verificar");
-                        $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
-                        return false;
-                    }
-                }
             });
-            $("#<%=btnExortarComisionesNuevo.ClientID%>").click(function () {
-                var Tasa = $("#<%=txtTasaDollar.ClientID%>").val().length;
-                if (Tasa < 1) {
-                    alert("El campo tasa no puede estar vacio para realizar esta operación, favor de verificar.");
-                    $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
-                    return false;
-                }
-                else {
-                    var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
-                    if (MontoMinimo < 1) {
-                        alert("El campo Monto Minimo no puede estar vacio para exportar esta información, favor de verificar");
-                        $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
-                        return false;
-                    }
-                }
-            });
+
+
+            //VALIDAMOS EL BOTON BUSCAR CON EL MONTO MINIMO
             $("#<%=btnReporteCOmisionesNuevo.ClientID%>").click(function () {
-                var Tasa = $("#<%=txtTasaDollar.ClientID%>").val().length;
-                if (Tasa < 1) {
-                    alert("El campo tasa no puede estar vacio para realizar esta operación, favor de verificar.");
-                    $("#<%=txtTasaDollar.ClientID%>").css("border-color", "red");
+                var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
+                if (MontoMinimo < 1) {
+                    alert("El campo Monto Minimo no puede estar vacio para generar este reporte, favor de verificar.");
+                    $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
                     return false;
                 }
-                else {
-                    var MontoMinimo = $("#<%=txtMontoMinimo.ClientID%>").val().length;
-                    if (MontoMinimo < 1) {
-                        alert("El campo Monto Minimo no puede estar vacio para generar este reporte, favor de verificar");
-                        $("#<%=txtMontoMinimo.ClientID%>").css("border-color", "red");
-                        return false;
-                    }
-                }
             });
-        })
+        });
     </script>
+
+
           <div class="container-fluid">
           <br /><br />
           <br />
@@ -150,39 +121,33 @@
                   <asp:Label ID="lbNumeroFactura" runat="server" Text="No. Factura" CssClass="LetrasNegrita"></asp:Label>
                   <asp:TextBox ID="txtNumeroFactura" runat="server" AutoCompleteType="Disabled" TextMode="Number" CssClass="form-control"></asp:TextBox>
               </div>
-              <div class="col-md-2">
-                  <asp:Label ID="lbTasa" runat="server" Text="Tasa" CssClass="LetrasNegrita"></asp:Label>
-                  <asp:TextBox ID="txtTasaDollar" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
-              </div>
+       
              
           </div>
               <div align="center">
                   <asp:Label ID="lbLeyrtero" runat="server" Text="Seleccionar Tipo de Reporte a Mostrar:" CssClass="LetrasNegrita"></asp:Label>
                   <div class="form-check-inline">
          
-                          <asp:RadioButton ID="rbGenerarReporteResumido" runat="server" Text="Resumido" ToolTip="Generar reporte de comisión resumido" GroupName="Reporte" CssClass="form-check-input LetrasNegrita" />
-                          <asp:RadioButton ID="rbGenerarReporteDetalle" runat="server" Text="Detalle" ToolTip="Generar reporte de comsiion detalle" GroupName="Reporte" CssClass="form-check-input LetrasNegrita" />
-                          <asp:RadioButton ID="rbGenerarReporteInterno" runat="server" Text="Interno" ToolTip="Generar reporte de comisión de intermediario interno" GroupName="Reporte" CssClass="form-check-input LetrasNegrita" />
-             
-
+                          <asp:RadioButton ID="rbGenerarReporteResumido" runat="server" Text="Resumido" ToolTip="Generar reporte de comisión resumido" GroupName="Reporte" />
+                          <asp:RadioButton ID="rbGenerarReporteDetalle" runat="server" Text="Detalle" ToolTip="Generar reporte de comsiion detalle" GroupName="Reporte" />
+                          <asp:RadioButton ID="rbGenerarReporteInterno" runat="server" Text="Interno" ToolTip="Generar reporte de comisión de intermediario interno" GroupName="Reporte" />
               </div>
                   <br />
                   <div class="form-check-inline">
-
                           <asp:Label ID="lbGenerarReporteA" runat="server" Text="Generar Reporte A: " CssClass="LetrasNegrita"></asp:Label>
-                          <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" CssClass="form-check-input" ToolTip="Generar Reporte a PDF" GroupName="Exportar" />
-                          <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" CssClass="form-check-input" ToolTip="Generar Reporte a Excel" GroupName="Exportar" />
-                          <asp:RadioButton ID="rbWord" runat="server" Text="Word" CssClass="form-check-input" ToolTip="Generar Reporte a Word" GroupName="Exportar" />
+                          <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" ToolTip="Generar Reporte a PDF" GroupName="Exportar" />
+                          <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" ToolTip="Generar Reporte a Excel" GroupName="Exportar" />
+                          <asp:RadioButton ID="rbExcelPlano" runat="server" Text="Excel Plano" ToolTip="Generar Reporte a Excel Plano" GroupName="Exportar" />
           
                   </div><br />
                   <div class="form-check-inline">
              
-                          <asp:CheckBox ID="cbMostrarIntermediariosAcumulativos" runat="server" Text="Montos Intermediarios Acumulativos" CssClass="form-check-input" AutoPostBack="true" OnCheckedChanged="cbMostrarIntermediariosAcumulativos_CheckedChanged" />
+                          <asp:CheckBox ID="cbMostrarIntermediariosAcumulativos" runat="server" Text="Montos Intermediarios Acumulativos" AutoPostBack="true" OnCheckedChanged="cbMostrarIntermediariosAcumulativos_CheckedChanged" />
            
                   </div>
+                  <br /><br />
           <div align="center">
               <asp:ImageButton ID="btnConsultarComisionesNuevo" runat="server" ToolTip="Buscar Información" CssClass="BotonImagen" OnClick="btnConsultarComisionesNuevo_Click" ImageUrl="~/Imagenes/Buscar.png" />
-              <asp:ImageButton ID="btnExortarComisionesNuevo" runat="server" ToolTip="Exportar Información a Excel" CssClass="BotonImagen" OnClick="btnExortarComisionesNuevo_Click" ImageUrl="~/Imagenes/excel.png" />
               <asp:ImageButton ID="btnReporteCOmisionesNuevo" runat="server" ToolTip="Generar Reporte de Comisiones" CssClass="BotonImagen" OnClick="btnReporteCOmisionesNuevo_Click" ImageUrl="~/Imagenes/Reporte.png" />
               <asp:ImageButton ID="btnActualizarListadoNuevo" runat="server" ToolTip="Actualizar Montos Acumulados" CssClass="BotonImagen" Visible="false" OnClick="btnActualizarListadoNuevo_Click" ImageUrl="~/Imagenes/auto.png" />
           </div>
@@ -194,14 +159,11 @@
                   <table class="table table-striped">
                       <thead class="table table-dark">
                           <tr>
-                              <th scope="col"> Poliza </th>
-                              <th scope="col"> Recibo </th>
-                              <th scope="col"> Fecha </th>
+                              <th scope="col"> Intermediario </th>
                               <th scope="col"> Bruto </th>
                               <th scope="col"> Neto </th>
-                              <th scope="col"> % </th>
                               <th scope="col"> Comisión </th>
-                              <th scope="col"> Retención </th>
+                              <th scope="col"> Retencion </th>
                               <th scope="col"> Avance </th>
                               <th scope="col"> Liquidar </th>
                           </tr>
@@ -210,16 +172,13 @@
                           <asp:Repeater ID="rpListadoComision" runat="server">
                               <ItemTemplate>
                                   <tr>
-                                      <td> <%# Eval("Poliza") %> </td>
-                                      <td> <%# Eval("Recibo") %> </td>
-                                      <td> <%# Eval("Fecha") %> </td>
+                                      <td> <%# Eval("Intermediario") %> </td>
                                       <td> <%#string.Format("{0:n2}", Eval("Bruto")) %> </td>
                                       <td> <%#string.Format("{0:n2}", Eval("Neto")) %> </td>
-                                      <td> <%#string.Format("{0:n2}", Eval("PorcientoComision")) %> </td>
                                       <td> <%#string.Format("{0:n2}", Eval("Comision")) %> </td>
                                       <td> <%#string.Format("{0:n2}", Eval("Retencion")) %> </td>
                                       <td> <%#string.Format("{0:n2}", Eval("AvanceComision")) %> </td>
-                                      <td> <%#string.Format("{0:n2}", Eval("ALiquidar")) %> </td>
+                                      <td> <%#string.Format("{0:n2}", Eval("Aliquidar")) %> </td>
                                   </tr>
                               </ItemTemplate>
                           </asp:Repeater>
@@ -236,18 +195,19 @@
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:LinkButton ID="LinkPrimeraPagina" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPagina_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkAnterior" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnterior_Click"></asp:LinkButton> </td>
+                    <td> <asp:ImageButton ID="btnPrimeraPaginaComisiones" runat="server" ToolTip="Ir a la Primera Pagina del Listado" CssClass="BotonImagen" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPaginaComisiones_Click" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaAnteriorComisiones" runat="server" ToolTip="Ir a la Pagina Anterior del Listado" CssClass="BotonImagen" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnPaginaAnteriorComisiones_Click" /> </td>
                     <td>
-                        <asp:DataList ID="dtPaginacion" runat="server" OnItemCommand="dtPaginacion_ItemCommand" OnItemDataBound="dtPaginacion_ItemDataBound" RepeatDirection="Horizontal">
+                        <asp:DataList ID="dtPaginacionComisiones" runat="server" OnItemCommand="dtPaginacionComisiones_ItemCommand" OnItemDataBound="dtPaginacionComisiones_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                                <asp:Button ID="btnPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
                             </ItemTemplate>
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:LinkButton ID="LinkSiguiente" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguiente_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkUltimo" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimo_Click"></asp:LinkButton> </td>
+                    
+                    <td> <asp:ImageButton ID="btnPaginaSiguienteComisiones" runat="server" ToolTip="Ir a la Pagina Siguiente del Listado" CssClass="BotonImagen" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnPaginaSiguienteComisiones_Click" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimaPaginaComisiones" runat="server" ToolTip="Ir a la Ultima Pagina del Listado" CssClass="BotonImagen" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimaPaginaComisiones_Click" /> </td>
                 </tr>
             </table>
         </div>
@@ -282,7 +242,7 @@
                                       <tr>
                                           <asp:HiddenField ID="hfCodigoIntermediario" runat="server" Value='<%# Eval("CodigoIntermediario") %>' />
 
-                                          <td> <asp:Button ID="btnDetalleMontoAcumulado" runat="server" Text="Detalle" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Descargar el detalle del registro" OnClick="btnDetalleMontoAcumulado_Click" /> </td>
+                                          <td> <asp:ImageButton ID="btnExportarListadoRecibos" runat="server" ToolTip="Exportar el Listado de los recibos" CssClass="BotonImagen" ImageUrl="~/Imagenes/excel.png" OnClick="btnExportarListadoRecibos_Click" /> </td>
                                           <td> <%# Eval("Intermediario") %> </td>
                                           <td> <%# Eval("Oficina") %> </td>
                                           <td> <%#string.Format("{0:n2}", Eval("ComisionGenerada")) %> </td>
@@ -308,18 +268,19 @@
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:LinkButton ID="LinkPrimeraPaginaDetalle" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaDetalle_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkAnteriorDetalle" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorDetalle_Click"></asp:LinkButton> </td>
+                    <td> <asp:ImageButton ID="btnPrimeraPAginaMontosAcumulados" runat="server" ToolTip="Ir a la Primera Pagina del Listado" CssClass="BotonImagen" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPAginaMontosAcumulados_Click" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaAnteriorMontosAcumulados" runat="server" ToolTip="Ir a la Pagina Anterior del Listado" CssClass="BotonImagen" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnPaginaAnteriorMontosAcumulados_Click" /> </td>
                     <td>
-                        <asp:DataList ID="dtPaginacionDetalle" runat="server" OnItemCommand="dtPaginacionDetalle_ItemCommand" OnItemDataBound="dtPaginacionDetalle_ItemDataBound" RepeatDirection="Horizontal">
+                        <asp:DataList ID="DTPaginacionMontosAcumulados" runat="server" OnItemCommand="DTPaginacionMontosAcumulados_ItemCommand" OnItemDataBound="DTPaginacionMontosAcumulados_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                                <asp:Button ID="btnPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
                             </ItemTemplate>
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:LinkButton ID="LinkSiguienteDetalle" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteDetalle_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkUltimoDetalle" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoDetalle_Click"></asp:LinkButton> </td>
+                    
+                    <td> <asp:ImageButton ID="btnSiguientePaginaMontosAcumulados" runat="server" ToolTip="Ir a la Pagina Siguiente del Listado" CssClass="BotonImagen" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguientePaginaMontosAcumulados_Click" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimaPaginaMontosAcumulados" runat="server" ToolTip="Ir a la Ultima Pagina del Listado" CssClass="BotonImagen" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimaPaginaMontosAcumulados_Click" /> </td>
                 </tr>
             </table>
         </div>

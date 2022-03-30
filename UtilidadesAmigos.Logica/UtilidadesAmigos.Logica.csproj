@@ -150,6 +150,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarMontosSolicitudCheques.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\Reporte\ProcesarInformacionComisionesIntermediariosAlfredo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\Reporte\ProcesarInformacionDatosReporteNuevo.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\Reporte\ProcesarInformacionReporteComisionIntermediariosOrigen.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\SacarUltimoNumeroSolicitudGenerada.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\SuperIntendencia\ProcesarInformacionPersonasArchivoSuperIntenedencia.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\SuperIntendencia\ProcesarInformacionResultadoBusquedaArchivo.cs" />
@@ -389,6 +390,8 @@
     <Compile Include="Entidades\Reportes\EDatosReporteNuevo.cs" />
     <Compile Include="Entidades\Reportes\EDepositosPagados.cs" />
     <Compile Include="Entidades\Reportes\EGenerarInformacionSupervisoresDetalle.cs" />
+    <Compile Include="Entidades\Reportes\EMostrarDatosComisionesIntermediariosDetallado.cs" />
+    <Compile Include="Entidades\Reportes\EMostrarDatosComisionesIntermediariosResumido.cs" />
     <Compile Include="Entidades\Reportes\EPrimaDepositoPendiente.cs" />
     <Compile Include="Entidades\Reportes\EProcesarChequesInformacionImprimir.cs" />
     <Compile Include="Entidades\Reportes\EProcesarDatosReporteIntermediairoInterno.cs" />
@@ -400,9 +403,11 @@
     <Compile Include="Entidades\Reportes\EProcesarInformacionDatosProduccion.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionPolizasARenovar.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionPolizasRenovadas.cs" />
+    <Compile Include="Entidades\Reportes\EProcesarInformacionReporteComisionIntermediarioOrgen.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorUsuarioDetalle.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorusuarioResumido.cs" />
     <Compile Include="Entidades\Reportes\EReclamacionesPagadas.cs" />
+    <Compile Include="Entidades\Reportes\EReporteComisionIntermediarioOrigen.cs" />
     <Compile Include="Entidades\Reportes\EReporteInformacionPersonasAlfredo.cs" />
     <Compile Include="Entidades\Reportes\EReporteProduccionNuevo.cs" />
     <Compile Include="Entidades\Reportes\EReporteProduccionOrigen.cs" />

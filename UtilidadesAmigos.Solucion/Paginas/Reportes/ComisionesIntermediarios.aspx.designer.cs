@@ -213,24 +213,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.TextBox txtNumeroFactura;
 
         /// <summary>
-        /// lbTasa control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTasa;
-
-        /// <summary>
-        /// txtTasaDollar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTasaDollar;
-
-        /// <summary>
         /// lbLeyrtero control.
         /// </summary>
         /// <remarks>
@@ -294,13 +276,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.RadioButton rbExcel;
 
         /// <summary>
-        /// rbWord control.
+        /// rbExcelPlano control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbWord;
+        protected global::System.Web.UI.WebControls.RadioButton rbExcelPlano;
 
         /// <summary>
         /// cbMostrarIntermediariosAcumulativos control.
@@ -319,15 +301,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton btnConsultarComisionesNuevo;
-
-        /// <summary>
-        /// btnExortarComisionesNuevo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnExortarComisionesNuevo;
 
         /// <summary>
         /// btnReporteCOmisionesNuevo control.
@@ -411,49 +384,49 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacion;
 
         /// <summary>
-        /// LinkPrimeraPagina control.
+        /// btnPrimeraPaginaComisiones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPagina;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaComisiones;
 
         /// <summary>
-        /// LinkAnterior control.
+        /// btnPaginaAnteriorComisiones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnterior;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnteriorComisiones;
 
         /// <summary>
-        /// dtPaginacion control.
+        /// dtPaginacionComisiones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dtPaginacion;
+        protected global::System.Web.UI.WebControls.DataList dtPaginacionComisiones;
 
         /// <summary>
-        /// LinkSiguiente control.
+        /// btnPaginaSiguienteComisiones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguiente;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaSiguienteComisiones;
 
         /// <summary>
-        /// LinkUltimo control.
+        /// btnUltimaPaginaComisiones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimo;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPaginaComisiones;
 
         /// <summary>
         /// DivBloqueRepeaterAcumulativo control.
@@ -546,48 +519,48 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionDetalle;
 
         /// <summary>
-        /// LinkPrimeraPaginaDetalle control.
+        /// btnPrimeraPAginaMontosAcumulados control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPaginaDetalle;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPAginaMontosAcumulados;
 
         /// <summary>
-        /// LinkAnteriorDetalle control.
+        /// btnPaginaAnteriorMontosAcumulados control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorDetalle;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnteriorMontosAcumulados;
 
         /// <summary>
-        /// dtPaginacionDetalle control.
+        /// DTPaginacionMontosAcumulados control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dtPaginacionDetalle;
+        protected global::System.Web.UI.WebControls.DataList DTPaginacionMontosAcumulados;
 
         /// <summary>
-        /// LinkSiguienteDetalle control.
+        /// btnSiguientePaginaMontosAcumulados control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteDetalle;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePaginaMontosAcumulados;
 
         /// <summary>
-        /// LinkUltimoDetalle control.
+        /// btnUltimaPaginaMontosAcumulados control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoDetalle;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPaginaMontosAcumulados;
     }
 }

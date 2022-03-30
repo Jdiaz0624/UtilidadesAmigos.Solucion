@@ -2014,5 +2014,285 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         }
         #endregion
 
+        #region REPORTE DE COMISION DE INTERMEDIARIO MEJORADO
+        /// <summary>
+        /// Este metodo saca el origen de los datos para las comisiones de los intermediarios
+        /// </summary>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Idusuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EReporteComisionIntermediarioOrigen> BuscaDateComisionIntermediarioOrigen(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? Idusuario = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_REPORTE_COMISION_INTERMEDIARIO_ORIGEN(FechaDesde, FechaHasta, Idusuario)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EReporteComisionIntermediarioOrigen
+                           {
+                               CodigoSupervisor = n.CodigoSupervisor,
+                               Supervisor = n.Supervisor,
+                               CodigoIntermediario = n.CodigoIntermediario,
+                               Intermediario = n.Intermediario,
+                               NombreOficina = n.NombreOficina,
+                               NumeroIdentificacion = n.NumeroIdentificacion,
+                               NumeroCuenta = n.NumeroCuenta,
+                               TipoCuentaBanco = n.TipoCuentaBanco,
+                               Banco = n.Banco,
+                               NombreBanco = n.NombreBanco,
+                               NumeroRecibo = n.NumeroRecibo,
+                               FechaRecibo0 = n.FechaRecibo0,
+                               FechaRecibo = n.FechaRecibo,
+                               HoraRecibo = n.HoraRecibo,
+                               NumeroReciboFormateado = n.NumeroReciboFormateado,
+                               NumeroFactura = n.NumeroFactura,
+                               NumeroFacturaFormateada = n.NumeroFacturaFormateada,
+                               FechaFactura0 = n.FechaFactura0,
+                               FechaFactura = n.FechaFactura,
+                               HoraFactura = n.HoraFactura,
+                               CodMoneda = n.CodMoneda,
+                               Ramo = n.Ramo,
+                               NombreRamo = n.NombreRamo,
+                               TasaPesos = n.TasaPesos,
+                               TasaDollar = n.TasaDollar,
+                               TasaEuro = n.TasaEuro,
+                               ValorRecibo = n.ValorRecibo,
+                               PorcientoComision = n.PorcientoComision,
+                               Bruto = n.Bruto,
+                               Neto = n.Neto,
+                               Comision = n.Comision,
+                               Retencion = n.Retencion,
+                               AvanceComision = n.AvanceComision,
+                               Aliquidar = n.Aliquidar,
+                               GeneradoPor = n.GeneradoPor,
+                               CodigoUsuario = n.CodigoUsuario,
+                               ValidadoDesde = n.ValidadoDesde,
+                               ValidadoHasta = n.ValidadoHasta,
+                               NoPoliza=n.NoPoliza,
+                               Oficina=n.Oficina
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo es para procesar la informacion del reporte de las comisiones
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionReporteComisionIntermediarioOrgen ProcesarDatosInformacionReporteIntermediarioOrigen(UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionReporteComisionIntermediarioOrgen Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionReporteComisionIntermediarioOrgen Procesar = null;
+
+            var DatosReporte = ObjData.SP_PROCESAR_INFORMACION_REPORTE_COMISION_INTERMEDIARIO_ORIGEN(
+                Item.IdUSuario,
+                Item.CodigoSupervisor,
+                Item.Supervisor,
+                Item.CodigoIntermediario,
+                Item.Intermediario,
+                Item.Oficina,
+                Item.NombreOficina,
+                Item.NumeroIdentificacion,
+                Item.NumeroCuenta,
+                Item.TipoCuentaBanco,
+                Item.Banco,
+                Item.NombreBanco,
+                Item.NumeroRecibo,
+                Item.FechaRecibo0,
+                Item.FechaRecibo,
+                Item.HoraRecibo,
+                Item.NumeroReciboFormateado,
+                Item.NumeroFactura,
+                Item.NumeroFacturaFormateada,
+                Item.FechaFactura0,
+                Item.FechaFactura,
+                Item.HoraFactura,
+                Item.CodMoneda,
+                Item.NoPoliza,
+                Item.Ramo,
+                Item.NombreRamo,
+                Item.TasaPesos,
+                Item.TasaDollar,
+                Item.TasaEuro,
+                Item.ValorRecibo,
+                Item.PorcientoComision,
+                Item.Bruto,
+                Item.Neto,
+                Item.Comision,
+                Item.Retencion,
+                Item.AvanceComision,
+                Item.Aliquidar,
+                Item.GeneradoPor,
+                Item.CodigoUsuario,
+                Item.ValidadoDesde,
+                Item.ValidadoHasta,
+                Accion);
+            if (DatosReporte != null) {
+
+                Procesar = (from n in DatosReporte
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EProcesarInformacionReporteComisionIntermediarioOrgen
+                            {
+
+                                IdUSuario = n.IdUSuario,
+                                CodigoSupervisor = n.CodigoSupervisor,
+                                Supervisor = n.Supervisor,
+                                CodigoIntermediario = n.CodigoIntermediario,
+                                Intermediario = n.Intermediario,
+                                Oficina = n.Oficina,
+                                NombreOficina = n.NombreOficina,
+                                NumeroIdentificacion = n.NumeroIdentificacion,
+                                NumeroCuenta = n.NumeroCuenta,
+                                TipoCuentaBanco = n.TipoCuentaBanco,
+                                Banco = n.Banco,
+                                NombreBanco = n.NombreBanco,
+                                NumeroRecibo = n.NumeroRecibo,
+                                FechaRecibo0 = n.FechaRecibo0,
+                                FechaRecibo = n.FechaRecibo,
+                                HoraRecibo = n.HoraRecibo,
+                                NumeroReciboFormateado = n.NumeroReciboFormateado,
+                                NumeroFactura = n.NumeroFactura,
+                                NumeroFacturaFormateada = n.NumeroFacturaFormateada,
+                                FechaFactura0 = n.FechaFactura0,
+                                FechaFactura = n.FechaFactura,
+                                HoraFactura = n.HoraFactura,
+                                CodMoneda = n.CodMoneda,
+                                NoPoliza = n.NoPoliza,
+                                Ramo = n.Ramo,
+                                NombreRamo = n.NombreRamo,
+                                TasaPesos = n.TasaPesos,
+                                TasaDollar = n.TasaDollar,
+                                TasaEuro = n.TasaEuro,
+                                ValorRecibo = n.ValorRecibo,
+                                PorcientoComision = n.PorcientoComision,
+                                Bruto = n.Bruto,
+                                Neto = n.Neto,
+                                Comision = n.Comision,
+                                Retencion = n.Retencion,
+                                AvanceComision = n.AvanceComision,
+                                Aliquidar = n.Aliquidar,
+                                GeneradoPor = n.GeneradoPor,
+                                CodigoUsuario = n.CodigoUsuario,
+                                ValidadoDesde = n.ValidadoDesde,
+                                ValidadoHasta = n.ValidadoHasta
+
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+
+        /// <summary>
+        /// Este metodo muestra el listado de las comisiones de manera resumida e interna
+        /// </summary>
+        /// <param name="CodigoIntermediario"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="Recibo"></param>
+        /// <param name="Factura"></param>
+        /// <param name="MontoMinimo"></param>
+        /// <param name="IdUsuario"></param>
+        /// <param name="TipoProceso"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EMostrarDatosComisionesIntermediariosResumido> MostrarReporteComisionesIntermediarioResumido_Interno(int? CodigoIntermediario = null, int? Oficina = null, int? Ramo = null, string Poliza = null, decimal? Recibo = null, decimal? Factura = null, decimal? MontoMinimo = null, decimal? IdUsuario = null, int? TipoProceso = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Reporte = (from n in ObjData.SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_RESUMIDO(
+                CodigoIntermediario,
+                Oficina,
+                Ramo,
+                Poliza,
+                Recibo,
+                Factura,
+                MontoMinimo,
+                IdUsuario,
+                TipoProceso)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EMostrarDatosComisionesIntermediariosResumido
+                           {
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               Bruto=n.Bruto,
+                               Neto=n.Neto,
+                               PorcientoComision=n.PorcientoComision,
+                               Comision=n.Comision,
+                               Retencion=n.Retencion,
+                               AvanceComision=n.AvanceComision,
+                               Aliquidar=n.Aliquidar,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta,
+                               GeneradoPor=n.GeneradoPor
+                           }).ToList();
+            return Reporte;
+        }
+
+        /// <summary>
+        /// Este metodo es para mostrar y generar el reporte de comisiones de intermediarios en detalle
+        /// </summary>
+        /// <param name="CodigoIntermediario"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="Recibo"></param>
+        /// <param name="Factura"></param>
+        /// <param name="MontoMinimo"></param>
+        /// <param name="IdUsuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EMostrarDatosComisionesIntermediariosDetallado> MostrarReporteComisionesIntermediario_Detalladp(int? CodigoIntermediario = null, int? Oficina = null, int? Ramo = null, string Poliza = null, decimal? Recibo = null, decimal? Factura = null, decimal? MontoMinimo = null, decimal? IdUsuario = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_DETALLADO(CodigoIntermediario, Oficina, Ramo, Poliza, Recibo, Factura, MontoMinimo, IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EMostrarDatosComisionesIntermediariosDetallado
+                           {
+                               IdUSuario=n.IdUSuario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               Oficina=n.Oficina,
+                               NombreOficina=n.NombreOficina,
+                               NumeroIdentificacion=n.NumeroIdentificacion,
+                               NumeroCuenta=n.NumeroCuenta,
+                               TipoCuentaBanco=n.TipoCuentaBanco,
+                               Banco=n.Banco,
+                               NombreBanco=n.NombreBanco,
+                               NumeroRecibo=n.NumeroRecibo,
+                               FechaRecibo0=n.FechaRecibo0,
+                               FechaRecibo=n.FechaRecibo,
+                               HoraRecibo=n.HoraRecibo,
+                               NumeroReciboFormateado=n.NumeroReciboFormateado,
+                               NumeroFactura=n.NumeroFactura,
+                               NumeroFacturaFormateada=n.NumeroFacturaFormateada,
+                               FechaFactura0=n.FechaFactura0,
+                               FechaFactura=n.FechaFactura,
+                               HoraFactura=n.HoraFactura,
+                               CodMoneda=n.CodMoneda,
+                               Moneda=n.Moneda,
+                               NoPoliza=n.NoPoliza,
+                               Ramo=n.Ramo,
+                               NombreRamo=n.NombreRamo,
+                               TasaPesos=n.TasaPesos,
+                               TasaDollar=n.TasaDollar,
+                               TasaEuro=n.TasaEuro,
+                               TasaUSada=n.TasaUSada,
+                               ValorRecibo=n.ValorRecibo,
+                               PorcientoComision=n.PorcientoComision,
+                               Bruto=n.Bruto,
+                               Neto=n.Neto,
+                               Comision=n.Comision,
+                               Retencion=n.Retencion,
+                               AvanceComision=n.AvanceComision,
+                               Aliquidar=n.Aliquidar,
+                               GeneradoPor=n.GeneradoPor,
+                               CodigoUsuario=n.CodigoUsuario,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }
