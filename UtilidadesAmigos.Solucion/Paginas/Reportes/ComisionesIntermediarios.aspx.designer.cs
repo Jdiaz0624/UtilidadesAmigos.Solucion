@@ -438,33 +438,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueRepeaterAcumulativo;
 
         /// <summary>
-        /// lbcantidadRegistrosEncontradosAcumulativosTitulo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbcantidadRegistrosEncontradosAcumulativosTitulo;
-
-        /// <summary>
-        /// lbcantidadRegistrosEncontradosAcumulativosVariable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbcantidadRegistrosEncontradosAcumulativosVariable;
-
-        /// <summary>
-        /// lbcantidadRegistrosEncontradosAcumulativosCerrar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbcantidadRegistrosEncontradosAcumulativosCerrar;
-
-        /// <summary>
         /// rpListadoMontosIntermediariosAcumulados control.
         /// </summary>
         /// <remarks>

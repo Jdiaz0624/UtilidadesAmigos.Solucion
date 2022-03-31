@@ -159,8 +159,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
-
-
         private void SacarElNombreDelIntermediario() {
             UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor SacarInformacion = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoIntermediarioComisiones.Text);
             txtNombreVendedorComsiiones.Text = SacarInformacion.SacarNombreIntermediario();
@@ -523,8 +521,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
 
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
@@ -533,7 +529,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbNombreUsuario.Text = Nombre.SacarNombreUsuarioConectado();
 
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
-                lbPantalla.Text = "COMISIONES DE INTERMEDIARIOS";
+                lbPantalla.Text = "GENERAR COMISIONES DE INTERMEDIARIOS";
 
                 rbGenerarReporteResumido.Checked = true;
                 rbPDF.Checked = true;
@@ -568,7 +564,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void cbMostrarIntermediariosAcumulativos_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (cbMostrarIntermediariosAcumulativos.Checked == true) {
+                btnActualizarListadoNuevo.Visible = true;
+                DivBloqueRepeaterAcumulativo.Visible = true;
+                DivRepeaterNormal.Visible = false;
+            }
+            else if (cbMostrarIntermediariosAcumulativos.Checked == false) {
+                btnActualizarListadoNuevo.Visible = false;
+                DivBloqueRepeaterAcumulativo.Visible = false;
+                DivRepeaterNormal.Visible = true;
+            }
         }
 
         protected void btnConsultarComisionesNuevo_Click(object sender, ImageClickEventArgs e)
@@ -584,9 +589,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
             }
             else {
-                decimal IdUSuario = (decimal)Session["IdUsuario"];
-                ProcesarInformacionDataComisiones(IdUSuario);
-                ReporteComisionesInterno_Resumido(IdUSuario);
+                if (cbMostrarIntermediariosAcumulativos.Checked == true) {
+                    
+                }
+                else if (cbMostrarIntermediariosAcumulativos.Checked == false) {
+                    decimal IdUSuario = (decimal)Session["IdUsuario"];
+                    ProcesarInformacionDataComisiones(IdUSuario);
+                    ReporteComisionesInterno_Resumido(IdUSuario);
+                }
             }
         }
 
@@ -605,10 +615,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
             }
             else {
-                decimal IdUSuario = (decimal)Session["IdUsuario"];
-                ProcesarInformacionDataComisiones(IdUSuario);
-                string RutaReporte = "";
-                GenerarReporteComisiones(RutaReporte, IdUSuario);
+                if (cbMostrarIntermediariosAcumulativos.Checked == true) { }
+                else if (cbMostrarIntermediariosAcumulativos.Checked == false) {
+                    decimal IdUSuario = (decimal)Session["IdUsuario"];
+                    ProcesarInformacionDataComisiones(IdUSuario);
+                    string RutaReporte = "";
+                    GenerarReporteComisiones(RutaReporte, IdUSuario);
+                }
             }
         }
 
@@ -675,6 +688,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void txtCodigoIntermediarioComisiones_TextChanged(object sender, EventArgs e)
         {
             SacarElNombreDelIntermediario();
+        }
+
+        protected void btnProcesarRegistros_Click(object sender, ImageClickEventArgs e)
+        {
+
         }
 
         protected void ddlSeleccionarSucursalComisiones_SelectedIndexChanged(object sender, EventArgs e)

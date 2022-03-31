@@ -215,25 +215,22 @@
               </div>
 
               <div id="DivBloqueRepeaterAcumulativo" runat="server" visible="false">
-                  <div align="center">
-                      <asp:Label ID="lbcantidadRegistrosEncontradosAcumulativosTitulo" runat="server" Text="Cantidad de registros ( " CssClass="Letranegrita"></asp:Label>
-                      <asp:Label ID="lbcantidadRegistrosEncontradosAcumulativosVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                      <asp:Label ID="lbcantidadRegistrosEncontradosAcumulativosCerrar" runat="server" Text=" )" CssClass="Letranegrita"></asp:Label>
-                  </div>
+            
 
 
                       <table class="table table-striped">
                           <thead class="table table-dark">
                               <tr>
-                                  <th scope="col"> Detalle </th>
+                                  
                                   <th scope="col"> Intermediario </th>
-                                  <th scope="col"> Oficina </th>
                                   <th scope="col"> Comisión </th>
                                   <th scope="col"> Retención </th>
                                   <th scope="col"> Avance </th>
                                   <th scope="col"> A Liquidar </th>
                                   <th scope="col"> Estatus </th>
-                                  <th scope="col"> Cantidad </th>                                
+                                  <th scope="col"> Cantidad </th> 
+                                  <th scope="col"> Detalle </th>
+                                  <th scope="col"> Procesar </th>
                               </tr>
                           </thead>
                           <tbody>
@@ -242,15 +239,16 @@
                                       <tr>
                                           <asp:HiddenField ID="hfCodigoIntermediario" runat="server" Value='<%# Eval("CodigoIntermediario") %>' />
 
-                                          <td> <asp:ImageButton ID="btnExportarListadoRecibos" runat="server" ToolTip="Exportar el Listado de los recibos" CssClass="BotonImagen" ImageUrl="~/Imagenes/excel.png" OnClick="btnExportarListadoRecibos_Click" /> </td>
+                                          
                                           <td> <%# Eval("Intermediario") %> </td>
-                                          <td> <%# Eval("Oficina") %> </td>
                                           <td> <%#string.Format("{0:n2}", Eval("ComisionGenerada")) %> </td>
                                           <td> <%#string.Format("{0:n2}", Eval("Retencion")) %> </td>
                                           <td> <%#string.Format("{0:n2}", Eval("AvanceComision")) %> </td>
                                           <td> <%#string.Format("{0:n2}", Eval("Aliquidar")) %> </td>
                                           <td> <%# Eval("GeneraCheque") %> </td>
                                           <td> <%#string.Format("{0:n0}", Eval("CantiadRegistros")) %> </td>
+                                          <td> <asp:ImageButton ID="btnExportarListadoRecibos" runat="server" ToolTip="Exportar el Listado de los recibos" CssClass="BotonImagen" ImageUrl="~/Imagenes/excel.png" OnClick="btnExportarListadoRecibos_Click" /> </td>
+                                          <td> <asp:ImageButton ID="btnProcesarRegistros" runat="server" ToolTip="Procesar Registros" CssClass="BotonImagen" ImageUrl="~/Imagenes/Procesar.png" OnClick="btnProcesarRegistros_Click" /> </td>
                                       </tr>
                                   </ItemTemplate>
                               </asp:Repeater>
