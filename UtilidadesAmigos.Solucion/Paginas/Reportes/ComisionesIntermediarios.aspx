@@ -43,6 +43,9 @@
             $("#<%=txtFechaHastaComisiones.ClientID%>").css("border-color", "red");
         }
 
+        function RegistroNoAplica() {
+            alert("Este registro no aplica para ser procesado, favor de verificar.");
+        }
         function CamposFechaVAcios() {
             alert("El campo Fecha Desde o el Campo Fecha Hasta son necesarios para realizar esta operación, favor de verificar.");
         }
@@ -242,6 +245,7 @@
                                   <ItemTemplate>
                                       <tr>
                                           <asp:HiddenField ID="hfCodigoIntermediario" runat="server" Value='<%# Eval("CodigoIntermediario") %>' />
+                                          <asp:HiddenField ID="HfEstatus" runat="server" Value='<%# Eval("GeneraCheque") %>' />
 
                                           
                                           <td> <%# Eval("Intermediario") %> </td>

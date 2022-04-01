@@ -733,7 +733,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultarComisionesNuevo_Click(object sender, ImageClickEventArgs e)
         {
-            if (cbMostrarIntermediariosAcumulativos.Checked == true) { MostrarListadoComisionesAcumuladas(); }
+            if (cbMostrarIntermediariosAcumulativos.Checked == true) {
+                CurrentPage_Comisiones_Acumuladas = 0;
+                MostrarListadoComisionesAcumuladas(); }
             else {
                 if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
                 {
@@ -759,7 +761,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnReporteCOmisionesNuevo_Click(object sender, ImageClickEventArgs e)
         {
-            if (cbMostrarIntermediariosAcumulativos.Checked == true) { MostrarListadoComisionesAcumuladas(); }
+            if (cbMostrarIntermediariosAcumulativos.Checked == true) {
+                CurrentPage_Comisiones_Acumuladas = 0;
+                MostrarListadoComisionesAcumuladas(); }
             else {
                 if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
                 {
@@ -899,7 +903,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             var RegistroSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
             var hfCodigoIntermediario = ((HiddenField)RegistroSeleccionado.FindControl("hfCodigoIntermediario")).Value.ToString();
-            string Nombre = "";
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor SacarNombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(hfCodigoIntermediario);
+            string Nombre = SacarNombre.SacarNombreIntermediario();
             var ExportarInformacion = (from n in ObjDataReportes.Value.MostrarListadoRecibosComisionesAcumuladas(Convert.ToInt32(hfCodigoIntermediario))
                                        select new 
                                        {
@@ -916,8 +921,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                            Comision = n.ComisionGenerada,
                                            Retencion = n.Retencion,
                                            Avance = n.AvanceComision,
-                                           ALiquidar = n.ALiquidar,
-                                           Nombre = n.Intemediario
+                                           ALiquidar = n.ALiquidar
                                            
                                        }).ToList();
             UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Recibos Acumulados " + Nombre, ExportarInformacion);
@@ -957,7 +961,25 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnProcesarRegistros_Click(object sender, ImageClickEventArgs e)
         {
+            var RegistroSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfCodigoIntermediario = ((HiddenField)RegistroSeleccionado.FindControl("hfCodigoIntermediario")).Value.ToString();
 
+            var EstatusSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfEstatus = ((HiddenField)EstatusSeleccionado.FindControl("HfEstatus")).Value.ToString();
+
+            if (hfEstatus == "APLICA") {
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesMontosAcumulados Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesMontosAcumulados(
+                 Convert.ToInt32(hfCodigoIntermediario),
+                 0,
+                 DateTime.Now,
+                 0, "", 0, 0, 0, 0, 0, 0, 0, 0, true, 0, "CHANGESTATUS");
+                Procesar.ProcesarInformacion();
+                MostrarListadoComisionesAcumuladas();
+            }
+            else {
+                ClientScript.RegisterStartupScript(GetType(), "RegistroNoAplica()", "RegistroNoAplica();", true);
+            }
+         
         }
 
         protected void ddlSeleccionarSucursalComisiones_SelectedIndexChanged(object sender, EventArgs e)
