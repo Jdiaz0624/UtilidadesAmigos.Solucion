@@ -521,24 +521,25 @@ namespace UtilidadesAmigos.Solucion.Paginas
             else {
                 if (rbPDF.Checked == true) {
                     if (rbGenerarReporteDetalle.Checked == true) {
-                        ReportDocument ReporteInterno = new ReportDocument();
+                        ReportDocument ReporteDetallado = new ReportDocument();
                         string Ruta = Server.MapPath("ReporteComisionIntermediariosDetallado.rpt");
 
 
-                        ReporteInterno.Load(Ruta);
-                        ReporteInterno.Refresh();
+                        ReporteDetallado.Load(Ruta);
+                        ReporteDetallado.Refresh();
 
-                        ReporteInterno.SetParameterValue("@CodigoIntermediario", _Intermediario);
-                        ReporteInterno.SetParameterValue("@Oficina", _Oficina);
-                        ReporteInterno.SetParameterValue("@Ramo", _Ramo);
-                        ReporteInterno.SetParameterValue("@Poliza", _Poliza);
-                        ReporteInterno.SetParameterValue("@Recibo", _NumeroRecibo);
-                        ReporteInterno.SetParameterValue("@Factura", _NumeroFactura);
-                        ReporteInterno.SetParameterValue("@MontoMinimo", Convert.ToDecimal(txtMontoMinimo.Text));
-                        ReporteInterno.SetParameterValue("@IdUsuario", IdUsuario);
+                        ReporteDetallado.SetParameterValue("@CodigoIntermediario", _Intermediario);
+                        ReporteDetallado.SetParameterValue("@Oficina", _Oficina);
+                        ReporteDetallado.SetParameterValue("@Ramo", _Ramo);
+                        ReporteDetallado.SetParameterValue("@Poliza", _Poliza);
+                        ReporteDetallado.SetParameterValue("@Recibo", _NumeroRecibo);
+                        ReporteDetallado.SetParameterValue("@Factura", _NumeroFactura);
+                        ReporteDetallado.SetParameterValue("@MontoMinimo", Convert.ToDecimal(txtMontoMinimo.Text));
+                        ReporteDetallado.SetParameterValue("@IdUsuario", IdUsuario);
+                        ReporteDetallado.SetParameterValue("@TipoOperacion", 1);
 
-                        ReporteInterno.SetDatabaseLogon("sa", "Pa$$W0rd");
-                        ReporteInterno.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Comisiones Intermediario Detallado");
+                        ReporteDetallado.SetDatabaseLogon("sa", "Pa$$W0rd");
+                        ReporteDetallado.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Comisiones Intermediario Detallado");
                     }
                     else if (rbGenerarReporteInterno.Checked == true) {
                         ReportDocument ReporteInterno = new ReportDocument();
@@ -793,8 +794,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
             else
             {
+                //1- CARGAMOS TODA LA INFORMACION DE LAS COMISIONES A GENERAR
                 decimal IdUSuario = (decimal)Session["IdUsuario"];
                 ProcesarInformacionDataComisiones(IdUSuario);
+
+                //2- DE LA INFORMACION YA CARGADA GENERAMOS EL PROCESO PARA LAS COMISIONES DE MANERA DETALLADA
                 MostrarListadoComisionesAcumuladas();
             }
         }

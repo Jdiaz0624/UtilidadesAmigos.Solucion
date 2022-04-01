@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionReportesDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
 		{
 			OnCreated();
 		}
@@ -787,9 +787,9 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_DETALLADO")]
-		public ISingleResult<SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_DETALLADOResult> SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_DETALLADO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Recibo", DbType="Decimal(20,0)")] System.Nullable<decimal> recibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Factura", DbType="Decimal(20,0)")] System.Nullable<decimal> factura, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MontoMinimo", DbType="Decimal(20,2)")] System.Nullable<decimal> montoMinimo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario)
+		public ISingleResult<SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_DETALLADOResult> SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_DETALLADO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Recibo", DbType="Decimal(20,0)")] System.Nullable<decimal> recibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Factura", DbType="Decimal(20,0)")] System.Nullable<decimal> factura, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MontoMinimo", DbType="Decimal(20,2)")] System.Nullable<decimal> montoMinimo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoOperacion", DbType="Int")] System.Nullable<int> tipoOperacion)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoIntermediario, oficina, ramo, poliza, recibo, factura, montoMinimo, idUsuario);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoIntermediario, oficina, ramo, poliza, recibo, factura, montoMinimo, idUsuario, tipoOperacion);
 			return ((ISingleResult<SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_DETALLADOResult>)(result.ReturnValue));
 		}
 	}
@@ -18365,7 +18365,11 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<decimal> _AvanceComision;
 		
+		private System.Nullable<decimal> _Acumulado;
+		
 		private System.Nullable<decimal> _Aliquidar;
+		
+		private System.Nullable<decimal> _Total;
 		
 		private string _ValidadoDesde;
 		
@@ -18537,6 +18541,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Acumulado", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Acumulado
+		{
+			get
+			{
+				return this._Acumulado;
+			}
+			set
+			{
+				if ((this._Acumulado != value))
+				{
+					this._Acumulado = value;
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Aliquidar", DbType="Decimal(38,2)")]
 		public System.Nullable<decimal> Aliquidar
 		{
@@ -18549,6 +18569,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Aliquidar != value))
 				{
 					this._Aliquidar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
 				}
 			}
 		}

@@ -2220,7 +2220,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                Comision=n.Comision,
                                Retencion=n.Retencion,
                                AvanceComision=n.AvanceComision,
+                               Acumulado=n.Acumulado,
                                Aliquidar=n.Aliquidar,
+                               Total=n.Total,
                                ValidadoDesde=n.ValidadoDesde,
                                ValidadoHasta=n.ValidadoHasta,
                                GeneradoPor=n.GeneradoPor
@@ -2240,11 +2242,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         /// <param name="MontoMinimo"></param>
         /// <param name="IdUsuario"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EMostrarDatosComisionesIntermediariosDetallado> MostrarReporteComisionesIntermediario_Detalladp(int? CodigoIntermediario = null, int? Oficina = null, int? Ramo = null, string Poliza = null, decimal? Recibo = null, decimal? Factura = null, decimal? MontoMinimo = null, decimal? IdUsuario = null)
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EMostrarDatosComisionesIntermediariosDetallado> MostrarReporteComisionesIntermediario_Detalladp(int? CodigoIntermediario = null, int? Oficina = null, int? Ramo = null, string Poliza = null, decimal? Recibo = null, decimal? Factura = null, decimal? MontoMinimo = null, decimal? IdUsuario = null, int? TipoOperacion = null)
         {
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_DETALLADO(CodigoIntermediario, Oficina, Ramo, Poliza, Recibo, Factura, MontoMinimo, IdUsuario)
+            var Listado = (from n in ObjData.SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_DETALLADO(CodigoIntermediario, Oficina, Ramo, Poliza, Recibo, Factura, MontoMinimo, IdUsuario, TipoOperacion)
                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EMostrarDatosComisionesIntermediariosDetallado
                            {
                                IdUSuario=n.IdUSuario,

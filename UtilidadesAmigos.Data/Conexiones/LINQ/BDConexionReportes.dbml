@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionReportesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO" Method="SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Sucursal" Parameter="sucursal" Type="System.String" DbType="VarChar(100)" />
@@ -1775,7 +1775,9 @@
       <Column Name="Comision" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="Retencion" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="AvanceComision" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Acumulado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="Aliquidar" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="ValidadoDesde" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Column Name="ValidadoHasta" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
@@ -1790,6 +1792,7 @@
     <Parameter Name="Factura" Parameter="factura" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="MontoMinimo" Parameter="montoMinimo" Type="System.Decimal" DbType="Decimal(20,2)" />
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="TipoOperacion" Parameter="tipoOperacion" Type="System.Int32" DbType="Int" />
     <ElementType Name="SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_DETALLADOResult">
       <Column Name="IdUSuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
       <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />

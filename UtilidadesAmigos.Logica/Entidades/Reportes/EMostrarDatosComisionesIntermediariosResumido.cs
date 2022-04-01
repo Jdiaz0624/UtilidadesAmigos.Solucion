@@ -28,7 +28,11 @@ namespace UtilidadesAmigos.Logica.Entidades.Reportes
 
 		public System.Nullable<decimal> AvanceComision {get;set;}
 
+		public System.Nullable<decimal> Acumulado {get;set;}
+
 		public System.Nullable<decimal> Aliquidar {get;set;}
+
+		public System.Nullable<decimal> Total {get;set;}
 
 		public string ValidadoDesde {get;set;}
 

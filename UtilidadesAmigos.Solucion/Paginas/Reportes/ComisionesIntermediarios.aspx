@@ -165,7 +165,9 @@
                               <th scope="col"> Comisión </th>
                               <th scope="col"> Retencion </th>
                               <th scope="col"> Avance </th>
+                              <th scope="col"> Acumulado </th>
                               <th scope="col"> Liquidar </th>
+                              <th scope="col"> Total </th>
                           </tr>
                       </thead>
                       <tbody>
@@ -178,7 +180,9 @@
                                       <td> <%#string.Format("{0:n2}", Eval("Comision")) %> </td>
                                       <td> <%#string.Format("{0:n2}", Eval("Retencion")) %> </td>
                                       <td> <%#string.Format("{0:n2}", Eval("AvanceComision")) %> </td>
+                                      <td> <%#string.Format("{0:n2}", Eval("Acumulado")) %> </td>
                                       <td> <%#string.Format("{0:n2}", Eval("Aliquidar")) %> </td>
+                                      <td> <%#string.Format("{0:n2}", Eval("Total")) %> </td>
                                   </tr>
                               </ItemTemplate>
                           </asp:Repeater>
