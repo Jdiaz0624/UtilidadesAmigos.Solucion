@@ -2295,6 +2295,41 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                            }).ToList();
             return Listado;
         }
+
+        /// <summary>
+        /// Este metodo es para generar el listado de los recibos
+        /// </summary>
+        /// <param name="CodigoIntermediario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EMostrarListadoRecibosComisionesAcumuladasIntermediarios> MostrarListadoRecibosComisionesAcumuladas(int? CodigoIntermediario = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var listado = (from n in ObjData.SP_MOSTRAR_LISTADO_RECIBOS_COMISIONES_ACUMULADAS_INTERMEDIARIOS(CodigoIntermediario)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EMostrarListadoRecibosComisionesAcumuladasIntermediarios
+                           {
+                               CodigoIntermediario=n.CodigoIntermediario,
+                              Intemediario=n.Intemediario,
+                              NumeroRecibo=n.NumeroRecibo,
+                              FechaRecibo0=n.FechaRecibo0,
+                              FechaRecibo=n.FechaRecibo,
+                              NumeroFacturaAfecta=n.NumeroFacturaAfecta,
+                              Poliza=n.Poliza,
+                              Ramo=n.Ramo,
+                              NombreRamo=n.NombreRamo,
+                              ValorReciboBruto=n.ValorReciboBruto,
+                              ValorReciboNeto=n.ValorReciboNeto,
+                              PorcientoComision=n.PorcientoComision,
+                              ComisionGenerada=n.ComisionGenerada,
+                              Retencion=n.Retencion,
+                              AvanceComision=n.AvanceComision,
+                              ALiquidar=n.ALiquidar,
+                              Estatus=n.Estatus,
+                              Oficina=n.Oficina,
+                              NombreOficina=n.NombreOficina
+                           }).ToList();
+            return listado;
+        }
         #endregion
     }
 }

@@ -733,51 +733,55 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnConsultarComisionesNuevo_Click(object sender, ImageClickEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
-            {
-                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
-                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim())) {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
-                }
-                if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim())) {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
-                }
-            }
+            if (cbMostrarIntermediariosAcumulativos.Checked == true) { MostrarListadoComisionesAcumuladas(); }
             else {
-                if (cbMostrarIntermediariosAcumulativos.Checked == true) {
-                    
+                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
+                    if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                    }
+                    if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                    }
                 }
-                else if (cbMostrarIntermediariosAcumulativos.Checked == false) {
+                else
+                {
                     decimal IdUSuario = (decimal)Session["IdUsuario"];
                     ProcesarInformacionDataComisiones(IdUSuario);
                     ReporteComisionesInterno_Resumido(IdUSuario);
                 }
             }
+            
         }
 
         protected void btnReporteCOmisionesNuevo_Click(object sender, ImageClickEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
-            {
-                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
-                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
-                }
-                if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
-                }
-            }
+            if (cbMostrarIntermediariosAcumulativos.Checked == true) { MostrarListadoComisionesAcumuladas(); }
             else {
-                if (cbMostrarIntermediariosAcumulativos.Checked == true) { }
-                else if (cbMostrarIntermediariosAcumulativos.Checked == false) {
+                if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CamposFechaVAcios()", "CamposFechaVAcios();", true);
+                    if (string.IsNullOrEmpty(txtFechaDesdeComisiones.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                    }
+                    if (string.IsNullOrEmpty(txtFechaHastaComisiones.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                    }
+                }
+                else
+                {
                     decimal IdUSuario = (decimal)Session["IdUsuario"];
                     ProcesarInformacionDataComisiones(IdUSuario);
                     string RutaReporte = "";
                     GenerarReporteComisiones(RutaReporte, IdUSuario);
                 }
             }
+            
         }
 
         protected void btnActualizarListadoNuevo_Click(object sender, ImageClickEventArgs e)
@@ -835,6 +839,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                         case false:
                             //GUARDAMOS EL REGISTRO
+                            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesMontosAcumulados Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionComisionesMontosAcumulados(
+                                (int)n.CodigoIntermediario,
+                                (decimal)n.NumeroRecibo,
+                                (DateTime)n.FechaRecibo0,
+                                (decimal)n.NumeroFactura,
+                                n.NoPoliza,
+                                (int)n.Ramo,
+                                (decimal)n.Bruto,
+                                (decimal)n.Neto,
+                                (decimal)n.PorcientoComision,
+                                (decimal)n.Comision,
+                                (decimal)n.Retencion,
+                                (decimal)n.AvanceComision,
+                                (decimal)n.Aliquidar,
+                                false,
+                                (int)n.Oficina,
+                                "INSERT");
+                            Guardar.ProcesarInformacion();
                             break;
                     }
 
@@ -875,7 +897,30 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnExportarListadoRecibos_Click(object sender, ImageClickEventArgs e)
         {
-
+            var RegistroSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfCodigoIntermediario = ((HiddenField)RegistroSeleccionado.FindControl("hfCodigoIntermediario")).Value.ToString();
+            string Nombre = "";
+            var ExportarInformacion = (from n in ObjDataReportes.Value.MostrarListadoRecibosComisionesAcumuladas(Convert.ToInt32(hfCodigoIntermediario))
+                                       select new 
+                                       {
+                                           Intemediario = n.Intemediario,
+                                           Oficina = n.NombreOficina,
+                                           Recibo = n.NumeroRecibo,
+                                           Fecha = n.FechaRecibo,
+                                           Factura = n.NumeroFacturaAfecta,
+                                           Poliza = n.Poliza,
+                                           Ramo = n.NombreRamo,
+                                           Bruto = n.ValorReciboBruto,
+                                           Neto = n.ValorReciboNeto,
+                                           PorcientoComision = n.PorcientoComision,
+                                           Comision = n.ComisionGenerada,
+                                           Retencion = n.Retencion,
+                                           Avance = n.AvanceComision,
+                                           ALiquidar = n.ALiquidar,
+                                           Nombre = n.Intemediario
+                                           
+                                       }).ToList();
+            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Recibos Acumulados " + Nombre, ExportarInformacion);
         }
 
         protected void btnPrimeraPAginaMontosAcumulados_Click(object sender, ImageClickEventArgs e)
