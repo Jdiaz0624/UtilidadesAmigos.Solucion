@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString7, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1079,13 +1079,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_SACAR_NOMBRE_CLIENTEResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONES")]
-		public ISingleResult<SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONESResult> SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Intermediario", DbType="Int")] System.Nullable<int> intermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MontoMinimo", DbType="Decimal(20,2)")] System.Nullable<decimal> montoMinimo)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), intermediario, oficina, ramo, montoMinimo);
-			return ((ISingleResult<SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONESResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_COMISIONES_INTERMEDIARIOS_MONTOS_ACUMULADOS")]
 		public ISingleResult<SP_PROCESAR_INFORMACION_COMISIONES_INTERMEDIARIOS_MONTOS_ACUMULADOSResult> SP_PROCESAR_INFORMACION_COMISIONES_INTERMEDIARIOS_MONTOS_ACUMULADOS(
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario, 
@@ -1198,6 +1191,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, idOficina, idDepartamento, empleado, numeroTarjeta, secuenciaInterna, idEstatus, idUsuario, accion);
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_TARJETAS_ACCESOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONES")]
+		public ISingleResult<SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONESResult> SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Intermediario", DbType="Int")] System.Nullable<int> intermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRecibo", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRecibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MontoMinimo", DbType="Decimal(20,2)")] System.Nullable<decimal> montoMinimo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoOperacion", DbType="Int")] System.Nullable<int> tipoOperacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), intermediario, oficina, ramo, numeroRecibo, montoMinimo, tipoOperacion);
+			return ((ISingleResult<SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONESResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -31541,212 +31541,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONESResult
-	{
-		
-		private System.Nullable<int> _CodigoIntermediario;
-		
-		private string _Intermediario;
-		
-		private string _Oficina;
-		
-		private System.Nullable<decimal> _ValorReciboBruto;
-		
-		private System.Nullable<decimal> _ValorReciboNeto;
-		
-		private System.Nullable<decimal> _ComisionGenerada;
-		
-		private System.Nullable<decimal> _Retencion;
-		
-		private System.Nullable<decimal> _AvanceComision;
-		
-		private System.Nullable<decimal> _Aliquidar;
-		
-		private string _GeneraCheque;
-		
-		private System.Nullable<int> _CantiadRegistros;
-		
-		public SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONESResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoIntermediario", DbType="Int")]
-		public System.Nullable<int> CodigoIntermediario
-		{
-			get
-			{
-				return this._CodigoIntermediario;
-			}
-			set
-			{
-				if ((this._CodigoIntermediario != value))
-				{
-					this._CodigoIntermediario = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Intermediario", DbType="VarChar(200)")]
-		public string Intermediario
-		{
-			get
-			{
-				return this._Intermediario;
-			}
-			set
-			{
-				if ((this._Intermediario != value))
-				{
-					this._Intermediario = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="VarChar(100)")]
-		public string Oficina
-		{
-			get
-			{
-				return this._Oficina;
-			}
-			set
-			{
-				if ((this._Oficina != value))
-				{
-					this._Oficina = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorReciboBruto", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> ValorReciboBruto
-		{
-			get
-			{
-				return this._ValorReciboBruto;
-			}
-			set
-			{
-				if ((this._ValorReciboBruto != value))
-				{
-					this._ValorReciboBruto = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorReciboNeto", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> ValorReciboNeto
-		{
-			get
-			{
-				return this._ValorReciboNeto;
-			}
-			set
-			{
-				if ((this._ValorReciboNeto != value))
-				{
-					this._ValorReciboNeto = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComisionGenerada", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> ComisionGenerada
-		{
-			get
-			{
-				return this._ComisionGenerada;
-			}
-			set
-			{
-				if ((this._ComisionGenerada != value))
-				{
-					this._ComisionGenerada = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Retencion", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> Retencion
-		{
-			get
-			{
-				return this._Retencion;
-			}
-			set
-			{
-				if ((this._Retencion != value))
-				{
-					this._Retencion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvanceComision", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> AvanceComision
-		{
-			get
-			{
-				return this._AvanceComision;
-			}
-			set
-			{
-				if ((this._AvanceComision != value))
-				{
-					this._AvanceComision = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Aliquidar", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> Aliquidar
-		{
-			get
-			{
-				return this._Aliquidar;
-			}
-			set
-			{
-				if ((this._Aliquidar != value))
-				{
-					this._Aliquidar = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GeneraCheque", DbType="VarChar(9) NOT NULL", CanBeNull=false)]
-		public string GeneraCheque
-		{
-			get
-			{
-				return this._GeneraCheque;
-			}
-			set
-			{
-				if ((this._GeneraCheque != value))
-				{
-					this._GeneraCheque = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantiadRegistros", DbType="Int")]
-		public System.Nullable<int> CantiadRegistros
-		{
-			get
-			{
-				return this._CantiadRegistros;
-			}
-			set
-			{
-				if ((this._CantiadRegistros != value))
-				{
-					this._CantiadRegistros = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_PROCESAR_INFORMACION_COMISIONES_INTERMEDIARIOS_MONTOS_ACUMULADOSResult
 	{
 		
@@ -37668,6 +37462,212 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._FechaModifica != value))
 				{
 					this._FechaModifica = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONESResult
+	{
+		
+		private System.Nullable<int> _CodigoIntermediario;
+		
+		private string _Intermediario;
+		
+		private string _Oficina;
+		
+		private System.Nullable<decimal> _ValorReciboBruto;
+		
+		private System.Nullable<decimal> _ValorReciboNeto;
+		
+		private System.Nullable<decimal> _ComisionGenerada;
+		
+		private System.Nullable<decimal> _Retencion;
+		
+		private System.Nullable<decimal> _AvanceComision;
+		
+		private System.Nullable<decimal> _Aliquidar;
+		
+		private string _GeneraCheque;
+		
+		private System.Nullable<int> _CantiadRegistros;
+		
+		public SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoIntermediario", DbType="Int")]
+		public System.Nullable<int> CodigoIntermediario
+		{
+			get
+			{
+				return this._CodigoIntermediario;
+			}
+			set
+			{
+				if ((this._CodigoIntermediario != value))
+				{
+					this._CodigoIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Intermediario", DbType="VarChar(233)")]
+		public string Intermediario
+		{
+			get
+			{
+				return this._Intermediario;
+			}
+			set
+			{
+				if ((this._Intermediario != value))
+				{
+					this._Intermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="VarChar(100)")]
+		public string Oficina
+		{
+			get
+			{
+				return this._Oficina;
+			}
+			set
+			{
+				if ((this._Oficina != value))
+				{
+					this._Oficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorReciboBruto", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> ValorReciboBruto
+		{
+			get
+			{
+				return this._ValorReciboBruto;
+			}
+			set
+			{
+				if ((this._ValorReciboBruto != value))
+				{
+					this._ValorReciboBruto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorReciboNeto", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> ValorReciboNeto
+		{
+			get
+			{
+				return this._ValorReciboNeto;
+			}
+			set
+			{
+				if ((this._ValorReciboNeto != value))
+				{
+					this._ValorReciboNeto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComisionGenerada", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> ComisionGenerada
+		{
+			get
+			{
+				return this._ComisionGenerada;
+			}
+			set
+			{
+				if ((this._ComisionGenerada != value))
+				{
+					this._ComisionGenerada = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Retencion", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Retencion
+		{
+			get
+			{
+				return this._Retencion;
+			}
+			set
+			{
+				if ((this._Retencion != value))
+				{
+					this._Retencion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvanceComision", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> AvanceComision
+		{
+			get
+			{
+				return this._AvanceComision;
+			}
+			set
+			{
+				if ((this._AvanceComision != value))
+				{
+					this._AvanceComision = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Aliquidar", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Aliquidar
+		{
+			get
+			{
+				return this._Aliquidar;
+			}
+			set
+			{
+				if ((this._Aliquidar != value))
+				{
+					this._Aliquidar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GeneraCheque", DbType="VarChar(9) NOT NULL", CanBeNull=false)]
+		public string GeneraCheque
+		{
+			get
+			{
+				return this._GeneraCheque;
+			}
+			set
+			{
+				if ((this._GeneraCheque != value))
+				{
+					this._GeneraCheque = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantiadRegistros", DbType="Int")]
+		public System.Nullable<int> CantiadRegistros
+		{
+			get
+			{
+				return this._CantiadRegistros;
+			}
+			set
+			{
+				if ((this._CantiadRegistros != value))
+				{
+					this._CantiadRegistros = value;
 				}
 			}
 		}

@@ -664,7 +664,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 _Intermediario,
                 _Oficina,
                 _Ramo,
-                null);
+                null,
+                null,
+                1);
             Paginar_Comisiones_Acumuladas(ref rpListadoMontosIntermediariosAcumulados, ComisionesAcumuladas, 10, ref lbCantidadPaginaVariableDetalle, ref btnPrimeraPAginaMontosAcumulados, ref btnPaginaAnteriorMontosAcumulados, ref btnSiguientePaginaMontosAcumulados, ref btnUltimaPaginaMontosAcumulados);
             HandlePaging_Comisiones_Acumuladas(ref DTPaginacionMontosAcumulados, ref LinkBlbPaginaActualVariavleDetalleutton2);
          
@@ -799,6 +801,44 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 ProcesarInformacionDataComisiones(IdUSuario);
 
                 //2- DE LA INFORMACION YA CARGADA GENERAMOS EL PROCESO PARA LAS COMISIONES DE MANERA DETALLADA
+                var InformacionComisionesDetallada = ObjDataReportes.Value.MostrarReporteComisionesIntermediario_Detalladp(
+                    new Nullable<int>(),
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    500,
+                    (decimal)Session["IdUsuario"],
+                    2);
+                foreach (var n in InformacionComisionesDetallada) {
+
+                    int CodigoIntermediarioValidacion = (int)n.CodigoIntermediario;
+                    decimal NumeroReciboValidacion = (decimal)n.NumeroRecibo;
+                    bool RegistroEncontrado = false;
+                    //3-VALIDAMOS MEDIANTE EL CODIGO DEL INTERMEDIARIO Y EL NUMERO DE RECIBO
+                    var ValidarInformacion = ObjDataConexion.Value.ComisionesAcumuladasIntermediarios(
+                        CodigoIntermediarioValidacion,
+                        null,
+                        null,
+                        NumeroReciboValidacion,
+                        null,
+                        2);
+                    if (ValidarInformacion.Count() < 1) {
+                        RegistroEncontrado = false;
+                    }
+                    else {
+                        RegistroEncontrado = true;
+                    }
+
+                    switch (RegistroEncontrado) {
+
+                        case false:
+                            //GUARDAMOS EL REGISTRO
+                            break;
+                    }
+
+                }
                 MostrarListadoComisionesAcumuladas();
             }
         }

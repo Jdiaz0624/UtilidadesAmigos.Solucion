@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString7" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_LISTA_CARGAR_RAMOS" Method="SP_LISTA_CARGAR_RAMOS">
     <Parameter Name="IdRamo" Parameter="idRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
@@ -2681,25 +2681,6 @@
       <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONES" Method="SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONES">
-    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
-    <Parameter Name="MontoMinimo" Parameter="montoMinimo" Type="System.Decimal" DbType="Decimal(20,2)" />
-    <ElementType Name="SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONESResult">
-      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ValorReciboBruto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="ValorReciboNeto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="ComisionGenerada" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="Retencion" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="AvanceComision" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="Aliquidar" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="GeneraCheque" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
-      <Column Name="CantiadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_PROCESAR_INFORMACION_COMISIONES_INTERMEDIARIOS_MONTOS_ACUMULADOS" Method="SP_PROCESAR_INFORMACION_COMISIONES_INTERMEDIARIOS_MONTOS_ACUMULADOS">
     <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Int32" DbType="Int" />
     <Parameter Name="NumeroRecibo" Parameter="numeroRecibo" Type="System.Decimal" DbType="Decimal(20,0)" />
@@ -3185,6 +3166,27 @@
       <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="IdUsuarioModifica" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
       <Column Name="FechaModifica" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONES" Method="SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONES">
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NumeroRecibo" Parameter="numeroRecibo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="MontoMinimo" Parameter="montoMinimo" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="TipoOperacion" Parameter="tipoOperacion" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONESResult">
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(233)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ValorReciboBruto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="ValorReciboNeto" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="ComisionGenerada" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Retencion" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="AvanceComision" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Aliquidar" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="GeneraCheque" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="CantiadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

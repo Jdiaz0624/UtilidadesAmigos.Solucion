@@ -2162,10 +2162,10 @@ namespace UtilidadesAmigos.Logica.Logica
         /// <param name="Ramo"></param>
         /// <param name="MontoMinimo"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.EComisionesAcumuladosIntermediario> ComisionesAcumuladasIntermediarios(int? Intermediario = null, int? Oficina = null, int? Ramo = null, decimal? MontoMinimo = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.EComisionesAcumuladosIntermediario> ComisionesAcumuladasIntermediarios(int? Intermediario = null, int? Oficina = null, int? Ramo = null,decimal? NumeroRecibo = null,decimal? MontoMinimo = null,int? TipoOperacion = null) {
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONES(Intermediario, Oficina, Ramo, MontoMinimo)
+            var Listado = (from n in Objdata.SP_BUSCAR_ACUMULADO_INTERMEDIARIOS_COMISIONES(Intermediario, Oficina, Ramo, NumeroRecibo, MontoMinimo, TipoOperacion)
                            select new UtilidadesAmigos.Logica.Entidades.EComisionesAcumuladosIntermediario
                            {
                                CodigoIntermediario=n.CodigoIntermediario,
