@@ -734,5 +734,18 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             }
 
         }
+
+        protected void LinkReporteReclamaciones_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Reportes/ReporteReclamaciones.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }
