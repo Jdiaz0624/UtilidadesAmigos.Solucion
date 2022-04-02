@@ -30,14 +30,19 @@
         <div id="DIVBloqueConsulta" runat="server">
             <br />
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <asp:Label ID="lbFechaDesde" runat="server" Text="Fecha Desde" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtFechaDesde" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <asp:Label ID="lbFechaHasta" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtFechaHasta" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                </div>
+
+                <div class="col-md-4">
+                    <asp:Label ID="lbNombreReclamante" runat="server" Text="Reclamante" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtReclamante" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                 </div>
 
                 <div class="col-md-3">
@@ -46,12 +51,12 @@
                 </div>
 
                 <div class="col-md-3">
-                    <asp:Label ID="lbPoliza" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
+                    <asp:Label ID="lbPoliza" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtPoliza" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                 </div>
 
                 <div class="col-md-3">
-                    <asp:Label ID="lbEstatusReclamacion" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
+                    <asp:Label ID="lbEstatusReclamacion" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label>
                     <asp:DropDownList ID="ddlEstatusReclamacion" runat="server"  AutoCompleteType="Disabled" ToolTip="Estatus de Reclamación" CssClass="form-control"></asp:DropDownList>
                 </div>
 
@@ -62,7 +67,7 @@
 
                 <div class="col-md-3">
                     <asp:Label ID="lbCodigoSupervisor" runat="server" Text="Supervisor" CssClass="Letranegrita"></asp:Label>
-                    <asp:TextBox ID="txtCodigoSupervisor" runat="server" AutoCompleteType="Disabled" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigoSupervisor" runat="server" AutoCompleteType="Disabled" AutoPostBack="true" OnTextChanged="txtCodigoSupervisor_TextChanged" TextMode="Number" CssClass="form-control"></asp:TextBox>
                 </div>
 
                 <div class="col-md-3">
@@ -72,7 +77,7 @@
 
                 <div class="col-md-3">
                     <asp:Label ID="lbCodigoIntermediario" runat="server" Text="Intermediario" CssClass="Letranegrita"></asp:Label>
-                    <asp:TextBox ID="txtCodigoIntermediario" runat="server" AutoCompleteType="Disabled" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigoIntermediario" runat="server" AutoCompleteType="Disabled" AutoPostBack="true" OnTextChanged="txtCodigoIntermediario_TextChanged" TextMode="Number" CssClass="form-control"></asp:TextBox>
                 </div>
 
                 <div class="col-md-3">

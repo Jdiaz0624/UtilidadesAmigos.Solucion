@@ -2331,5 +2331,56 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return listado;
         }
         #endregion
+
+        #region LISTADO DE RECLAMACIONES
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EListadoReclamaciones> ListadoReclamaciones(decimal? Reclamacion = null, string Poliza = null, int? Item = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Supervisor = null, int? Intermediario = null, int? IdTipoReclamo = null, int? EstatusReclamo = null, string NombreReclamante = null, int? Ramo = null, int? SubRamo = null, int? Oficina = null, decimal? IdUsuarioGenera = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_LISTADO_RECLAMACIONES(Reclamacion,Poliza,Item,FechaDesde,FechaHasta,Supervisor,Intermediario,IdTipoReclamo,EstatusReclamo,NombreReclamante,Ramo,SubRamo,Oficina,IdUsuarioGenera)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EListadoReclamaciones
+                           {
+                               Reclamacion = n.Reclamacion,
+                               Poliza = n.Poliza,
+                               Item = n.Item,
+                               Ramo = n.Ramo,
+                               NombreRamo = n.NombreRamo,
+                               SubRamo = n.SubRamo,
+                               NombreSubramo = n.NombreSubramo,
+                               Oficina = n.Oficina,
+                               Intermediario = n.Intermediario,
+                               NombreIntermediario = n.NombreIntermediario,
+                               CodigoSupervisor = n.CodigoSupervisor,
+                               NombreSupervisor = n.NombreSupervisor,
+                               FechaApertura0 = n.FechaApertura0,
+                               FechaApertura = n.FechaApertura,
+                               FechaSiniestro0 = n.FechaSiniestro0,
+                               FechaSiniestro = n.FechaSiniestro,
+                               MontoReclamado = n.MontoReclamado,
+                               MontoAjustado = n.MontoAjustado,
+                               Comentario = n.Comentario,
+                               InicioVigencia0 = n.InicioVigencia0,
+                               InicioVigencia = n.InicioVigencia,
+                               FinVigencia0 = n.FinVigencia0,
+                               FinVigencia = n.FinVigencia,
+                               Estatus = n.Estatus,
+                               EstatusReclamacion = n.EstatusReclamacion,
+                               IdTipoReclamacion = n.IdTipoReclamacion,
+                               TipoReclamacion = n.TipoReclamacion,
+                               IdReclamante = n.IdReclamante,
+                               Reclamante = n.Reclamante,
+                               GeneradoPor = n.GeneradoPor,
+                               MotivoReclamo = n.MotivoReclamo,
+                               SegundoEstatus = n.SegundoEstatus,
+                               Campo1 = n.Campo1,
+                               Campo2 = n.Campo2,
+                               Campo3 = n.Campo3,
+                               Campo4 = n.Campo4,
+                               Campo5 = n.Campo5
+
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }

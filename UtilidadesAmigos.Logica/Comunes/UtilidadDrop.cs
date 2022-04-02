@@ -35,7 +35,7 @@ namespace UtilidadesAmigos.Logica.Comunes
                 if (texto != string.Empty)
                     drop.Items.Insert(0, new ListItem(texto, "-1"));
                 else
-                    drop.Items.Insert(0, new ListItem(HttpContext.GetGlobalResourceObject("Traducciones", "Seleccionar").ToString(), "-1"));
+                    drop.Items.Insert(0, new ListItem(HttpContext.GetGlobalResourceObject("Traducciones", "NoFiltrar").ToString(), "-1"));
             }
         }
     }

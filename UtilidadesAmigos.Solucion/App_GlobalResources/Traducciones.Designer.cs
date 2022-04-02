@@ -430,6 +430,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Filtrar.
+        /// </summary>
+        internal static string NoFiltrar {
+            get {
+                return ResourceManager.GetString("NoFiltrar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nombre.
         /// </summary>
         internal static string Nombre {
@@ -516,15 +525,6 @@ namespace Resources {
         internal static string Seguridad {
             get {
                 return ResourceManager.GetString("Seguridad", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Seleccionar.
-        /// </summary>
-        internal static string Seleccionar {
-            get {
-                return ResourceManager.GetString("Seleccionar", resourceCulture);
             }
         }
         

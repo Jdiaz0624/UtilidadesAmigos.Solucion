@@ -240,6 +240,9 @@
   <data name="ModificadoPor" xml:space="preserve">
     <value>Modificated by</value>
   </data>
+  <data name="NoFiltrar" xml:space="preserve">
+    <value>No Filter</value>
+  </data>
   <data name="Nombre" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -269,9 +272,6 @@
   </data>
   <data name="Seguridad" xml:space="preserve">
     <value>Security</value>
-  </data>
-  <data name="Seleccionar" xml:space="preserve">
-    <value>Select</value>
   </data>
   <data name="SeleccionarCoalicionIncendioRobo" xml:space="preserve">
     <value>Seleccionar Coalicion, incendo y robo</value>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionReportesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString7" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO" Method="SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Sucursal" Parameter="sucursal" Type="System.String" DbType="VarChar(100)" />
@@ -1861,6 +1861,61 @@
       <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Oficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="NombreOficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_LISTADO_RECLAMACIONES" Method="SP_LISTADO_RECLAMACIONES">
+    <Parameter Name="Reclamacion" Parameter="reclamacion" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Item" Parameter="item" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdTipoReclamo" Parameter="idTipoReclamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EstatusReclamo" Parameter="estatusReclamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreReclamante" Parameter="nombreReclamante" Type="System.String" DbType="VarChar(300)" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUsuarioGenera" Parameter="idUsuarioGenera" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_LISTADO_RECLAMACIONESResult">
+      <Column Name="Reclamacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Item" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ramo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NombreRamo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SubRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NombreSubramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreIntermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaApertura0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaSiniestro" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FechaSiniestro0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaApertura" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="MontoReclamado" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="MontoAjustado" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="InicioVigencia0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FinVigencia0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EstatusReclamacion" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="IdTipoReclamacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TipoReclamacion" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="IdReclamante" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Reclamante" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="MotivoReclamo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="SegundoEstatus" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Campo1" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Campo2" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Campo3" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Campo4" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Campo5" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

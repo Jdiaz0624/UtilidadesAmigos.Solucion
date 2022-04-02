@@ -390,6 +390,7 @@
     <Compile Include="Entidades\Reportes\EDatosReporteNuevo.cs" />
     <Compile Include="Entidades\Reportes\EDepositosPagados.cs" />
     <Compile Include="Entidades\Reportes\EGenerarInformacionSupervisoresDetalle.cs" />
+    <Compile Include="Entidades\Reportes\EListadoReclamaciones.cs" />
     <Compile Include="Entidades\Reportes\EMostrarDatosComisionesIntermediariosDetallado.cs" />
     <Compile Include="Entidades\Reportes\EMostrarDatosComisionesIntermediariosResumido.cs" />
     <Compile Include="Entidades\Reportes\EMostrarListadoRecibosComisionesAcumuladasIntermediarios.cs" />
