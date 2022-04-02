@@ -191,6 +191,51 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlTipoReclamacion, ObjDataConexion.Value.BuscaListas("TIPORECLAMACIONSYSFLEX", null, null), true);
         }
         #endregion
+
+        #region GENERAR REPORTE DE RECLAMACIONES
+        private void GenerarReporteReclamaciones(string RutaReporte, string NombreReporte) {
+            DateTime? _FechaDesde = string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesde.Text);
+            DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHasta.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHasta.Text);
+            decimal? _Reclamacion = string.IsNullOrEmpty(txtReclamacion.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtReclamacion.Text);
+            string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+            int? _EstatusReclamacion = ddlEstatusReclamacion.SelectedValue != "-1" ? Convert.ToInt32(ddlEstatusReclamacion.SelectedValue) : new Nullable<int>();
+            int? _TipoReclamacion = ddlTipoReclamacion.SelectedValue != "-1" ? Convert.ToInt32(ddlTipoReclamacion.SelectedValue) : new Nullable<int>();
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
+            string _Reclamante = string.IsNullOrEmpty(txtReclamante.Text.Trim()) ? null : txtReclamante.Text.Trim();
+
+            decimal IdUsuario = (decimal)Session["IdUsuario"];
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@Reclamacion", _Reclamacion);
+            Reporte.SetParameterValue("@Poliza", _Poliza);
+            Reporte.SetParameterValue("@Item", new Nullable<int>());
+            Reporte.SetParameterValue("@FechaDesde", _FechaDesde);
+            Reporte.SetParameterValue("@FechaHasta", _FechaHasta);
+            Reporte.SetParameterValue("@Supervisor", _Supervisor);
+            Reporte.SetParameterValue("@Intermediario", _Intermediario);
+            Reporte.SetParameterValue("@IdTipoReclamo", _TipoReclamacion);
+            Reporte.SetParameterValue("@EstatusReclamo", _EstatusReclamacion);
+            Reporte.SetParameterValue("@NombreReclamante", _Reclamante);
+            Reporte.SetParameterValue("@Ramo", new Nullable<int>());
+            Reporte.SetParameterValue("@SubRamo", new Nullable<int>());
+            Reporte.SetParameterValue("@Oficina", new Nullable<int>());
+            Reporte.SetParameterValue("@IdUsuarioGenera", IdUsuario);
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+            if (rbPDF.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
+            else if (rbExcel.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+            }
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -204,6 +249,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
                 ListadoEstatusReclamacion();
                 ListadoTipoReclamacion();
+
+                rbPDF.Checked = true;
             }
         }
 
@@ -215,7 +262,56 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
         {
+            if (rbExelPlano.Checked == true) {
+                DateTime? _FechaDesde = string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesde.Text);
+                DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHasta.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHasta.Text);
+                decimal? _Reclamacion = string.IsNullOrEmpty(txtReclamacion.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtReclamacion.Text);
+                string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+                int? _EstatusReclamacion = ddlEstatusReclamacion.SelectedValue != "-1" ? Convert.ToInt32(ddlEstatusReclamacion.SelectedValue) : new Nullable<int>();
+                int? _TipoReclamacion = ddlTipoReclamacion.SelectedValue != "-1" ? Convert.ToInt32(ddlTipoReclamacion.SelectedValue) : new Nullable<int>();
+                int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+                int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
+                string _Reclamante = string.IsNullOrEmpty(txtReclamante.Text.Trim()) ? null : txtReclamante.Text.Trim();
 
+                var ExportarExcel = (from n in ObjDataReportes.Value.ListadoReclamaciones(
+                    _Reclamacion,
+                    _Poliza,
+                    null,
+                    _FechaDesde,
+                    _FechaHasta,
+                    _Supervisor,
+                    _Intermediario,
+                    _TipoReclamacion,
+                    _EstatusReclamacion,
+                    _Reclamante,
+                    null, null, null, (decimal)Session["IdUsuario"])
+                                     select new
+                                     {
+                                         Reclamacion = n.Reclamacion,
+                                         Poliza = n.Poliza,
+                                         Item = n.Item,
+                                         InicioVigencia = n.InicioVigencia,
+                                         FinVigencia = n.FinVigencia,
+                                         Ramo = n.NombreRamo,
+                                         SubRamo = n.NombreSubramo,
+                                         Oficina = n.Oficina,
+                                         Supervisor = n.NombreSupervisor,
+                                         Intermediario = n.NombreIntermediario,
+                                         FechaApertura = n.FechaApertura,
+                                         FechaSiniestro = n.FechaSiniestro,
+                                         MontoReclamado = n.MontoReclamado,
+                                         MontoAjustado = n.MontoAjustado,
+                                         EstatusReclamacion = n.EstatusReclamacion,
+                                         TipoReclamacion = n.TipoReclamacion,
+                                         CodigoReclamante = n.IdReclamante,
+                                         Reclamante = n.Reclamante,
+                                         Comentario = n.Comentario
+                                     }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Reclamaciones", ExportarExcel);
+            }
+            else {
+                GenerarReporteReclamaciones(Server.MapPath("ReporteReclamaciones.rpt"), "Reporte de Reclamaciones");
+            }
         }
 
         protected void btnDetalleReclamo_Click(object sender, ImageClickEventArgs e)
@@ -225,12 +321,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
         protected void btnPrimeraPaginaReclamaciones_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarListadoReclamaciones();
         }
 
         protected void btnPaginaAnteriorReclamaciones_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarListadoReclamaciones();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavle, ref lbCantidadPaginaVariable);
         }
 
         protected void dtPaginacionReclamaciones_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -240,12 +339,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
         protected void dtPaginacionReclamaciones_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoReclamaciones();
         }
 
         protected void btnPaginaSiguienteReclamaciones_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage += 1;
+            MostrarListadoReclamaciones();
         }
 
         protected void txtCodigoSupervisor_TextChanged(object sender, EventArgs e)
@@ -262,7 +364,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
         protected void btnUltimaPaginaReclamaciones_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoReclamaciones();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavle, ref lbCantidadPaginaVariable);
         }
     }
 }
