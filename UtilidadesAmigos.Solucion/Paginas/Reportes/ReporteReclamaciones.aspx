@@ -111,7 +111,7 @@
                         <th scope="col"> FECHA </th>
                         <th scope="col"> ESTATUS </th>
                         <th scope="col"> TIPO </th>
-                        <th scope="col"> Ver </th>
+            
                     </tr>
                 </thead>
                 <tbody>
@@ -131,7 +131,7 @@
                                 <td> <%# Eval("FechaApertura") %> </td>
                                 <td> <%# Eval("EstatusReclamacion") %> </td>
                                 <td> <%# Eval("TipoReclamacion") %> </td>
-                                <td> <asp:ImageButton ID="btnDetalleReclamo" runat="server" ToolTip="Ver Detalle de Reclamo" CssClass="BotonImagen" ImageUrl="~/Imagenes/pdf.png" OnClick="btnDetalleReclamo_Click" /> </td>
+                                
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>

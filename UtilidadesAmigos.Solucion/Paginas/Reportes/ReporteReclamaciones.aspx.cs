@@ -314,10 +314,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             }
         }
 
-        protected void btnDetalleReclamo_Click(object sender, ImageClickEventArgs e)
-        {
-
-        }
+    
 
         protected void btnPrimeraPaginaReclamaciones_Click(object sender, ImageClickEventArgs e)
         {
