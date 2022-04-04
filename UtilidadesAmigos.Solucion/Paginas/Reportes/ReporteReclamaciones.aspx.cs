@@ -303,7 +303,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                                          MontoAjustado = n.MontoAjustado,
                                          EstatusReclamacion = n.EstatusReclamacion,
                                          TipoReclamacion = n.TipoReclamacion,
-                                         CodigoReclamante = n.IdReclamante,
+                                        // CodigoReclamante = n.IdReclamante,
                                          Reclamante = n.Reclamante
                                        //  Comentario = n.Comentario
                                      }).ToList();

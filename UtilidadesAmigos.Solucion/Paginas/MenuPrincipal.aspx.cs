@@ -68,7 +68,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             JUAN_MARCELINO_MEDINA_DIAZ =1,
             ALFREDO_PIMENTEL=10,
             EDUARD_GARCIA=12,
-            ING_MIGUEL_BERROA=22
+            ING_MIGUEL_BERROA=22,
+            NOELIA_GONZALEZ=28
         }
         private void SacarDatosUsuario(decimal IdUsuario)
         {
@@ -139,7 +140,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     else if (IdUsuarioConectado == (decimal)UsuariosPermiso.ALFREDO_PIMENTEL) { LinkReporteIntermediarioAlfredo.Visible = true; }
                     else if (IdUsuarioConectado == (decimal)UsuariosPermiso.EDUARD_GARCIA) { LinkReporteIntermediarioAlfredo.Visible = true; }
                     else if (IdUsuarioConectado == (decimal)UsuariosPermiso.ING_MIGUEL_BERROA) { LinkReporteIntermediarioAlfredo.Visible = true; }
-
+                    else if (IdUsuarioConectado == (decimal)UsuariosPermiso.NOELIA_GONZALEZ) { LinkReporteIntermediarioAlfredo.Visible = true; }
 
 
 
@@ -152,7 +153,23 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         LinkButton LinkGenerarSOlicitudChequeComisiones = (LinkButton)Master.FindControl("LinkGenerarSOlicitudChequeComisiones");
                         LinkGenerarSOlicitudChequeComisiones.Visible = false;
 
-                        
+                        LinkButton LinkGenerarComisionesIntermediario = (LinkButton)Master.FindControl("LiniComisionesIntermediarios");
+                        LinkGenerarComisionesIntermediario.Visible = false;
+
+                        LinkButton LinkGenerarReporteComisionesSupervisores = (LinkButton)Master.FindControl("LinkComisionesSupervisores");
+                        LinkGenerarReporteComisionesSupervisores.Visible = false;
+
+                        LinkButton LinkGenerarReporteSobreComisiones = (LinkButton)Master.FindControl("LinkSobreComision");
+                        LinkGenerarReporteSobreComisiones.Visible = false;
+
+                        LinkButton LinkGenerarReportePRoduccionDiariaCOntabilidad = (LinkButton)Master.FindControl("LinkProduccionDiariaContabilidad");
+                        LinkGenerarReportePRoduccionDiariaCOntabilidad.Visible = false;
+
+                        LinkButton LinkReportePrimaDeposito = (LinkButton)Master.FindControl("LinkReportePrimaDeposito");
+                        LinkReportePrimaDeposito.Visible = false;
+
+
+
                     }
 
                     if (IdPerfil > 1) {
