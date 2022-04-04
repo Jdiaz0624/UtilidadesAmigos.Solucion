@@ -304,8 +304,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                                          EstatusReclamacion = n.EstatusReclamacion,
                                          TipoReclamacion = n.TipoReclamacion,
                                          CodigoReclamante = n.IdReclamante,
-                                         Reclamante = n.Reclamante,
-                                         Comentario = n.Comentario
+                                         Reclamante = n.Reclamante
+                                       //  Comentario = n.Comentario
                                      }).ToList();
                 UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Reclamaciones", ExportarExcel);
             }
