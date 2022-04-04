@@ -51,6 +51,24 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkInicio;
 
         /// <summary>
+        /// LinkAdministracionSuministro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkAdministracionSuministro;
+
+        /// <summary>
+        /// LinkSolicitud control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkSolicitud;
+
+        /// <summary>
         /// LinkCartera control.
         /// </summary>
         /// <remarks>

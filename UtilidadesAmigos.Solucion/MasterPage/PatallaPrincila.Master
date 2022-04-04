@@ -166,7 +166,7 @@
                    <asp:LinkButton ID="LinkInicio" runat="server" Text="Inicio"  ForeColor="White" CssClass="list-group-item bg-dark list-group-item-action bg-light" OnClick="LinkInicio_Click"></asp:LinkButton>
 
                            <%--MODULO DE SUMINISTRO--%>
-        <%--  <ul class="nav nav-item bg-dark list-group-item list-group-item-action">
+          <ul class="nav nav-item bg-dark list-group-item list-group-item-action">
   <li class="nav-item dropdown">
     <a class="nav-link  dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%" role="button" aria-haspopup="true" aria-expanded="false">Suministro</a>
     <div class="dropdown-menu">
@@ -175,7 +175,7 @@
          
     </div>
   </li>
-</ul>--%>
+</ul>
 
 
                     <%--MODULO DE CONSULTA--%>
