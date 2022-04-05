@@ -601,6 +601,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         ReporteInterno.SetParameterValue("@Factura", _NumeroFactura);
                         ReporteInterno.SetParameterValue("@MontoMinimo", Convert.ToDecimal(txtMontoMinimo.Text));
                         ReporteInterno.SetParameterValue("@IdUsuario", IdUsuario);
+                        ReporteInterno.SetParameterValue("@TipoOperacion", 1);
 
                         ReporteInterno.SetDatabaseLogon("sa", "Pa$$W0rd");
                         ReporteInterno.ExportToHttpResponse(ExportFormatType.Excel, Response, true, "Comisiones Intermediario Detallado");

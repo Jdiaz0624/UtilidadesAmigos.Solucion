@@ -22,15 +22,15 @@
             color: #000000;
         }
           .BotonImagen {
-              width: 50px;
-              height: 50px;
+              width: 40px;
+              height: 40px;
           }
     </style>
 
     <br />
     <div class="form-check-inline">
-        <asp:RadioButton ID="rbCarteraIntermediarios" runat="server" Text="Cartera de Intermediarios" CssClass="form-check-input LetrasNegrita" ToolTip="Sacar la cartera de Intermediarios" AutoPostBack="true" OnCheckedChanged="rbCarteraIntermediarios_CheckedChanged" GroupName="Cartera" />
-         <asp:RadioButton ID="rbCarteraSupervisores" runat="server" Text="Cartera de Supervisores" CssClass="form-check-input LetrasNegrita" AutoPostBack="true" ToolTip="Sacar la cartera de Supervisores" OnCheckedChanged="rbCarteraSupervisores_CheckedChanged" GroupName="Cartera" />
+        <asp:RadioButton ID="rbCarteraIntermediarios" runat="server" Text="Cartera de Intermediarios" CssClass="LetrasNegrita" ToolTip="Sacar la cartera de Intermediarios" AutoPostBack="true" OnCheckedChanged="rbCarteraIntermediarios_CheckedChanged" GroupName="Cartera" />
+         <asp:RadioButton ID="rbCarteraSupervisores" runat="server" Text="Cartera de Supervisores" CssClass="LetrasNegrita" AutoPostBack="true" ToolTip="Sacar la cartera de Supervisores" OnCheckedChanged="rbCarteraSupervisores_CheckedChanged" GroupName="Cartera" />
     </div>
     <div id="DivBloqueIntermediarios" runat="server">
         <div class="row">
@@ -75,12 +75,12 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col"> POLIZA </th>
-                        <th scope="col"> ESTATUS </th>
-                        <th scope="col"> CLIENTE </th>
-                        <th scope="col"> FACTURADO </th>
-                        <th scope="col"> COBRADO </th>
-                        <th scope="col"> BALANCE </th>
+                        <th scope="col"> Poliza </th>
+                        <th scope="col"> Estatus </th>
+                        <th scope="col"> Cliente </th>
+                        <th scope="col"> Facturado </th>
+                        <th scope="col"> Cobrado </th>
+                        <th scope="col"> Balance </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -110,18 +110,18 @@
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:LinkButton ID="LinkPrimeraPaginaCarteraIntermediario" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaCarteraIntermediario_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkAnteriorCarteraIntermediario" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorCarteraIntermediario_Click"></asp:LinkButton> </td>
-                    <td>
+                    <td> <asp:ImageButton ID="btnkPrimeraPaginaCarteraIntermediario" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnkPrimeraPaginaCarteraIntermediario_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnAnteriorCarteraIntermediario" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnAnteriorCarteraIntermediario_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+                    <td align="center" >
                         <asp:DataList ID="dtPaginacionCarteraIntermediario" runat="server" OnItemCommand="dtPaginacionCarteraIntermediario_ItemCommand" OnItemDataBound="dtPaginacionCarteraIntermediario_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionCentralCarteraIntermediario" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                                <asp:Button ID="btnPaginacionCentral" runat="server" CssClass="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
                             </ItemTemplate>
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:LinkButton ID="LinkSiguienteCarteraIntermediario" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteCarteraIntermediario_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkUltimoCarteraIntermediario" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoCarteraIntermediario_Click"></asp:LinkButton> </td>
+                    <td> <asp:ImageButton ID="btnSiguienteCarteraIntermediario" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguienteCarteraIntermediario_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimoCarteraIntermediario" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimoCarteraIntermediario_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
                 </tr>
             </table>
         </div>
@@ -196,18 +196,20 @@
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:LinkButton ID="LinkPrimeraPaginaCarteraSupervisor" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaCarteraSupervisor_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkAnteriorCarteraSupervisor" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorCarteraSupervisor_Click"></asp:LinkButton> </td>
-                    <td>
+                    <td> <asp:ImageButton ID="btnPrimeraPaginaCarteraSupervisor" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPaginaCarteraSupervisor_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnAnteriorCarteraSupervisor" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnAnteriorCarteraSupervisor_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+
+                    <td align="center" >
                         <asp:DataList ID="dtPaginacionCarteraSupervisor" runat="server" OnItemCommand="dtPaginacionCarteraSupervisor_ItemCommand" OnItemDataBound="dtPaginacionCarteraSupervisor_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionCentralCarteraSupervisor" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                                <asp:Button ID="btnPaginacionCentralCarteraSupervisores" runat="server" CssClass="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
                             </ItemTemplate>
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:LinkButton ID="LinkSiguienteCarteraSupervisor" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteCarteraSupervisor_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkUltimoCarteraSupervisor" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoCarteraSupervisor_Click"></asp:LinkButton> </td>
+                    <td> <asp:ImageButton ID="btnSiguienteCarteraSupervisor" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguienteCarteraSupervisor_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimoCarteraSupervisor" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimoCarteraSupervisor_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
+
                 </tr>
             </table>
         </div>

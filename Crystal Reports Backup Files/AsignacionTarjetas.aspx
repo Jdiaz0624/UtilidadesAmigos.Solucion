@@ -2,10 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <style type="text/css">
-        .jumbotron{
+    <style type="text/css">
+       .jumbotron{
             color:#000000; 
-            background:#7BC5FF;
+            background:#1E90FF;
             font-size:30px;
             font-weight:bold;
             font-family:'Gill Sans';
@@ -15,161 +15,215 @@
         .btn-sm{
             width:90px;
         }
-    </style>
 
-    <script type="text/javascript">
-        function Mensajes() {
-            alert("Hola Mundo")
+        .LetrasNegrita {
+        font-weight:bold;
         }
+        table {
+            border-collapse: collapse;
+        }
+        
+
+        th {
+            background-color: #1E90FF;
+            color: #000000;
+        }
+          .BotonImagen {
+              width: 40px;
+              height: 40px;
+          }
+    </style>
+    <script type="text/javascript">
+
+        $(function () {
+            //FUNCION DEL BOTON GAURDAR
+            $("#<%=btnGuardar.ClientID%>").click(function () {
+
+                var Oficina = $("#<%=ddlOficinaMantenimiento.ClientID%>").val();
+                if (Oficina < 1) {
+                    alert("El campo Oficina no puede estar vacio para realizar esta operación, favor de verificar.");
+                    $("#<%=ddlOficinaMantenimiento.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+                    var Departamento = $("#<%=ddlDepartamentoMantenimiento.ClientID%>").val();
+                    if (Departamento < 1) {
+                        alert("El campo Departamento no puede estar vacio para realizar esta operación, favor de verificar.");
+                        $("#<%=ddlOficinaMantenimiento.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else {
+                        var NombreEmpleado = $("#<%=txtEmpleadoMantenimiento.ClientID%>").val().length;
+                        if (NombreEmpleado < 1) {
+                            alert("El campo Nombre de Empleado no puede estar vacio para realizar esta operación, favor de verificar.");
+                            $("#<%=txtEmpleadoMantenimiento.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
+                        else {
+                            var NumeroTarjeta = $("#<%=txtNumeroTarjetaMantenimiento.ClientID%>").val().length;
+                            if (NumeroTarjeta < 1) {
+                                alert("El campo Numero de Tarjeta no puede estar vacio para realizar esta operación, favor de verificar.");
+                                $("#<%=txtNumeroTarjetaMantenimiento.ClientID%>").css("border-color", "red");
+                                return false;
+                            }
+                            else {
+                                var Secuencia = $("#<%=txtSecuenciaInternaMantenimiento.ClientID%>").val().length;
+                                if (Secuencia < 1) {
+                                    alert("El campo Secuencia no puede estar vacio para realizar esta operación, favor de verificar.");
+                                    $("#<%=txtSecuenciaInternaMantenimiento.ClientID%>").css("border-color", "red");
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            });
+
+        });
     </script>
-    <!--AQUI INICIA LA PARTE DEL ENCABEZADO-->
-    <div class="container-fluid">
-        <div class="jumbotron" align="center">
-            <asp:Label ID="lbEncabezado" runat="server" Text="Asignación de tarjetas de acceso"></asp:Label>
-        </div>
-    </div>
-    <div>
-        <asp:Label ID="lbIdMantenimiento" runat="server" Text="IdMantenimiento" Visible="false"></asp:Label>
-                        <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
-    </div>
-    <!--AQUI TERMINA LA PARTE DEL ENCABEZADO-->
 
-    <!--AQUI INICIAN LOS CONTROLES DE BUSQUEDA-->
     <div class="container-fluid">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                      <asp:Label ID="lbOficinaConsulta" runat="server" Text="Seleccionar Oficina"></asp:Label>
-                <asp:DropDownList ID="ddlOficinaConsulta" runat="server" AutoPostBack="true" ToolTip="Seleccionar Oficina" CssClass="form-control" OnSelectedIndexChanged="ddlOficinaConsulta_SelectedIndexChanged"></asp:DropDownList>
-            </div>
-            <div class="form-group col-md-6">
-                <asp:Label ID="lbDepartamentoConsulta" runat="server" Text="Seleccionar Departamento"></asp:Label>
-                <asp:DropDownList ID="ddlDepartamentoConsulta" runat="server" AutoPostBack="true" ToolTip="Seleccionar Departamento" CssClass="form-control" OnSelectedIndexChanged="ddlDepartamentoConsulta_SelectedIndexChanged"></asp:DropDownList>
-            </div>
-            <div class="form-group col-md-6">
-                <asp:Label ID="lbEmpleadoConsulta" runat="server" Text="Seleccionar Colaborador"></asp:Label>
-                <asp:DropDownList ID="ddlEmpleadoConsulta"  runat="server" ToolTip="Seleccionar Colaborador" CssClass="form-control"></asp:DropDownList>
-            </div>
-            <div class="form-group col-md-6">
-                      <asp:Label ID="lbEstatustarjetaConsulta" runat="server" Text="Estatus de Consulta"></asp:Label>
-                <asp:DropDownList ID="ddlSeleccionarEstatustarjetaConsulta" runat="server" AutoPostBack="true" ToolTip="Seleccionar Estatus de Consulta" CssClass="form-control"></asp:DropDownList>
-            </div>
-            <div class="form-group col-md-6">              
-                <asp:Label ID="lbNumeroTarjetaConsulta" runat="server" Text="Numero de tarjeta de Acceso"></asp:Label>
-                <asp:TextBox ID="txtNumerotarjetaConsulta" runat="server" PlaceHolder="Ingrese Numero tarjeta" MaxLength="100" TextMode="Number"  CssClass="form-control"></asp:TextBox>
-            </div>
-        </div>
-        <div class="form-check-inline">
-            <div class="form-group form-check">
-                 <asp:CheckBox ID="cbFiltrarPorRangoFechaConsulta" runat="server" AutoPostBack="true" Text="Filtrar Por Rango de Fecha" CssClass="form-check-input" OnCheckedChanged="cbFiltrarPorRangoFechaConsulta_CheckedChanged" />
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                   <asp:Label ID="lbFechaDesdeConsulta" Visible="false" runat="server" Text="Fecha Desde"></asp:Label>
-                <asp:TextBox ID="txtFechaDesdeConsulta" Visible="false" runat="server" PlaceHolder="Fecha Desde" TextMode="Date" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group col-md-3">
-                  <asp:Label ID="lbFechaHastaConsulta" runat="server" Visible="false" Text="Fecha Hasta"></asp:Label>
-                <asp:TextBox ID="txtFechaHastaConsulta" runat="server" Visible="false" PlaceHolder="Fecha Hasta" TextMode="Date" CssClass="form-control"></asp:TextBox>
-            </div>
-        </div>
-    </div>
-    <!--AQUI TERMINAN LOS CONTROLESD DE BUSQUEDA-->
-
-    <!--AQUI COLOCAMOS LOS BOTONES PARA REALIZAR EL MANTENIMIENTO CORRESPONDIENTE-->
-    <div class="container-fluid">
-        <div>
-            <asp:Button ID="btnConsultar" runat="server" Text="Buscar" ToolTip="Buscar registros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnConsultar_Click" />
-                <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" ToolTip="Crear un nuevo registro" CssClass="btn btn-outline-primary btn-sm" OnClick="btnNuevo_Click" />
-                <asp:Button ID="btnAtras" runat="server" Text="Atras" ToolTip="Volver Atras" CssClass="btn btn-outline-primary btn-sm" OnClick="btnAtras_Click" Enabled="False" />
-        </div>
+        <asp:Label ID="lbIdRegistroSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
+         <asp:Label ID="lbAcionTomar" runat="server" Text="0" Visible="false"></asp:Label>
         <br />
-        <div>
-                <asp:Button ID="btnModificar" runat="server" Text="Actualizar" ToolTip="Actualiza un registro seleccionado" CssClass="btn btn-outline-primary btn-sm" Enabled="False" OnClick="btnModificar_Click" />
-                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" ToolTip="Eliminar un registro seleccionado" CssClass="btn btn-outline-primary btn-sm" Enabled="false" OnClick="btnEliminar_Click" />
-                <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar la data a exel" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportar_Click" />
+        <div id="DIVBloqueConsulta" runat="server">
+            <div class="row">
+                <div class="col-md-4"> 
+                    <asp:Label ID="lbOficinaCOnsulta" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlOficinaCOnsulta" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlOficinaCOnsulta_SelectedIndexChanged" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
+                </div>
+                <div class="col-md-4">
+                       <asp:Label ID="lbDepartamentoConsulta" runat="server" Text="Departamento" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlDepartamentoConsulta" runat="server" ToolTip="Seleccionar Departamento" CssClass="form-control"></asp:DropDownList>
+                </div>
+                <div class="col-md-4">
+                       <asp:Label ID="lbEstatusCOnsulta" runat="server" Text="Estatus" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlEstatusCOnsulta" runat="server" ToolTip="Seleccionar Estatus" CssClass="form-control"></asp:DropDownList>
+                </div>
+                <div class="col-md-4">
+                       <asp:Label ID="lbEmpleadoConsulta" runat="server" Text="Empleado" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtEmpleadoConsulta" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                <div class="col-md-4">
+                      <asp:Label ID="lbNumeroTarjeta" runat="server" Text="No. Tarjeta" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtNumeroTarjeta" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                <div class="col-md-4">
+                      <asp:Label ID="lbSecuenciaInterna" runat="server" Text="Secuencia" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtSecuenciainterna" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+            </div>
+            <br />
+            <div align="center">
+                <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Buscar Registros" CssClass="BotonImagen" OnClick="btnConsultar_Click" ImageUrl="~/Imagenes/Buscar.png" />
+                 <asp:ImageButton ID="btnNuevo" runat="server" ToolTip="Crear Nuevo Registro" CssClass="BotonImagen" OnClick="btnNuevo_Click" ImageUrl="~/Imagenes/Agregar (2).png" />
+                <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Generar Reporte" CssClass="BotonImagen" OnClick="btnReporte_Click" ImageUrl="~/Imagenes/Reporte.png" />
+                 <asp:ImageButton ID="btnEditar" runat="server" ToolTip="Editar Registro Seleccionado" CssClass="BotonImagen" OnClick="btnEditar_Click" ImageUrl="~/Imagenes/Editar.png" />
+                 <asp:ImageButton ID="btnRestabelcer" runat="server" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" OnClick="btnRestabelcer_Click" ImageUrl="~/Imagenes/auto.png" />
+            </div>
+            <br />
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"> Empleado </th>
+                        <th scope="col"> Departamento </th>
+                        <th scope="col"> Secuencia </th>
+                        <th scope="col"> No. Tarjeta </th>
+                        <th scope="col"> Fecha </th>
+                        <th scope="col"> Estatus </th>
+                        <th scope="col">  </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rpListadoTarjetas" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <asp:HiddenField ID="hfIdRegistro" runat="server" Value='<%# Eval("IdRegistro") %>' />
+
+                                <td> <%# Eval("Empleado") %> </td>
+                                <td> <%# Eval("Departamento") %> </td>
+                                <td> <%# Eval("SecuenciaInterna") %> </td>
+                                <td> <%# Eval("NumeroTarjeta") %> </td>
+                                <td> <%# Eval("FechaEntrada") %> </td>
+                                <td> <%# Eval("Estatus") %> </td>
+                                <td> <asp:ImageButton ID="btnSeleccionar" runat="server" CssClass="BotonImagen" ToolTip="Seleccionar Registro" ImageUrl="~/Imagenes/Seleccionar2.png" OnClick="btnSeleccionar_Click" /> </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
+            </table>
+                    <div align="center">
+                <asp:Label ID="lbPaginaActualTituloTarjetaAcceso" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariableTarjetaAcceso" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloTarjetaAcceso" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriableTarjetaAcceso" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="divPaginacionTarjetaAcceso" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:ImageButton ID="btnPrimeraPaginaTarjetaAcceso" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPaginaTarjetaAcceso_Click" /> </td>
+                    <td> <asp:ImageButton ID="btnAnteriorTarjetaAcceso" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnAnteriorTarjetaAcceso_Click" /> </td>
+                    <td align="center">
+                        <asp:DataList ID="dtPaginacionTarjetaAcceso" runat="server" OnItemCommand="dtPaginacionTarjetaAcceso_ItemCommand" OnItemDataBound="dtPaginacionTarjetaAcceso_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:Button ID="btnPaginacionCentralTarjetaAcceso" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:ImageButton ID="btnSiguienteTarjetaAcceso" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguienteTarjetaAcceso_Click" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimoTarjetaAcceso" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimoTarjetaAcceso_Click" /> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+                           <br />
+        </div>
+
+
+        <div id="DIVBloqueMantenimiento" runat="server">
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <asp:Label ID="lbOficinaMantenimiento" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlOficinaMantenimiento" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
+                </div>
+
+                 <div class="col-md-4">
+                    <asp:Label ID="lbDepartamentoMantenimiento" runat="server" Text="Departamento" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlDepartamentoMantenimiento" runat="server" ToolTip="Seleccionar Departamento" CssClass="form-control"></asp:DropDownList>
+                </div>
+
+                 <div class="col-md-4">
+                    <asp:Label ID="lbEmpleadoMantenimiento" runat="server" Text="Empleado" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtEmpleadoMantenimiento" runat="server" AutoCompleteType="Disabled" MaxLength="100" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                 <div class="col-md-4">
+                    <asp:Label ID="lbNumeroTarjetaMAntenimiento" runat="server" Text="No. Tarjeta" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtNumeroTarjetaMantenimiento" runat="server" AutoCompleteType="Disabled" MaxLength="30" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                 <div class="col-md-4">
+                    <asp:Label ID="lbSecuenciaInternaMantenimiento" runat="server" Text="Secuencia" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtSecuenciaInternaMantenimiento" runat="server" AutoCompleteType="Disabled" MaxLength="4" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                 <div class="col-md-4">
+                    <asp:Label ID="lbEstatusMantenimiento" runat="server" Text="Estatus" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlEstatusMantenimiento" runat="server" ToolTip="Seleccionar Estatus" CssClass="form-control"></asp:DropDownList>
+                </div>
+            </div>
+
+            <br />
+            <div align="center">
+                <asp:ImageButton ID="btnGuardar" runat="server" ToolTip="Guardar Registro" CssClass="BotonImagen" OnClick="btnGuardar_Click" ImageUrl="~/Imagenes/salvar.png" />
+                 <asp:ImageButton ID="btnVolverAtras" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen" OnClick="btnVolverAtras_Click" ImageUrl="~/Imagenes/volver-flecha.png" />
+            </div>
+            <br />
         </div>
     </div>
-    <!--AQUI FINALIZAN LOS BOTONES CORRESPONDIENTE AL MANTENIMEINTO-->
-
-    <br />
-
-    <!--AQUI INICIA EL GRID-->
-     <div class="container-fluid">
-            <asp:GridView ID="gvTarjetaAcceso" runat="server" AllowPaging="true" OnPageIndexChanging="gvTarjetaAcceso_PageIndexChanging" OnSelectedIndexChanged="gvTarjetaAcceso_SelectedIndexChanged" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" OnRowDataBound="gvTarjetaAcceso_RowDataBound">
-                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                <Columns>
-                   <%-- <%$ Resources:Traducciones,OrdenNivel %>--%>
-                    <asp:CommandField ButtonType="Button" HeaderStyle-Width="11%" HeaderText="Seleccionar" ControlStyle-CssClass="btn btn-outline-primary btn-sm" SelectText="Ver" ShowSelectButton="True" />
-                    <asp:BoundField DataField="IdTarjetaAcceso" HeaderStyle-Width="11%" HeaderText="ID" />
-                    <asp:BoundField DataField="Oficina" HeaderStyle-Width="11%" HeaderText="Oficina" />
-                    <asp:BoundField DataField="Departamento" HeaderStyle-Width="11%" HeaderText="Departamento" />
-                    <asp:BoundField DataField="Empleado" HeaderStyle-Width="12%" HeaderText="Empleado" />
-                    <asp:BoundField DataField="SecuenciaInterna" HeaderStyle-Width="11%" HeaderText="Secuencia Interna" />
-                    <asp:BoundField DataField="NumeroTarjeta" HeaderStyle-Width="11%" HeaderText="Numero de tarjeta" />
-                    <asp:BoundField DataField="FechaEntrega" HeaderStyle-Width="11%" HeaderText="Fecha" />
-                    <asp:BoundField DataField="Estatus" HeaderStyle-Width="11%" HeaderText="Estatus" />
-                </Columns>
-
-                  <EditRowStyle BackColor="#999999" />
-                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#F7F6F3" HorizontalAlign="Center" ForeColor="#333333" />
-                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-
-            </asp:GridView>
-             
-
-        </div>
-    <!--AQUI TERMINA EL GRID-->
-    <!--AQUI PONEMOS LOS CONTROLES PARA REALIZAR EL MANTENIMIENTO-->
-    <div class="container-fluid">
-        <div class="form-row">
-        <div class="form-group col-md-3">
-            <asp:Label ID="lbOficinaMantenimiento" Visible="false"  runat="server" Text="Seleccionar Oficina"></asp:Label>
-            <asp:DropDownList ID="ddlOficinaMantenimiento" Visible="false" AutoPostBack="true"  runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control" OnSelectedIndexChanged="ddlOficinaMantenimiento_SelectedIndexChanged"></asp:DropDownList>
-        </div>
-            <div class="form-group col-md-3">
-                 <asp:Label ID="lbDepartamentoMantenimiento" runat="server" Visible="false" Text="Seleccionar Departamentos" CssClass="LabelFormularios"></asp:Label>
-            <asp:DropDownList ID="ddlDepartamentoMantenimiento" Visible="false"  AutoPostBack="true" runat="server" CssClass="form-control" ToolTip="Seleccionar Departamentos" OnSelectedIndexChanged="ddlDepartamentoMantenimiento_SelectedIndexChanged"></asp:DropDownList>
-            </div>
-            <div class="form-group col-md-3">
-                    <asp:Label ID="lbEmpleadoMantenimiento" Visible="false" runat="server" Text="Seleccionar Colaborador"></asp:Label>
-                      <asp:DropDownList ID="ddlEmpleadoMantenimiento" Visible="false"   runat="server" CssClass="form-control" ToolTip="Seleccionar Empleado"></asp:DropDownList>
-            </div>
-            <div class="form-group col-md-3">
-                <asp:Label ID="lbSecuenciaInterna" runat="server" Visible="false" Text="Secuencia Interna"></asp:Label>
-                <asp:TextBox ID="txtSecuenciaInterna" runat="server" Visible="false" PlaceHolder="Secuencia Interna" MaxLength="3" TextMode="Number" CssClass="form-control"></asp:TextBox> 
-            </div>
-            <div class="form-group col-md-3">
-                    <asp:Label ID="lbNumeroTarjetraMantenimiento"  runat="server" Visible="false" Text="Numero de tarjeta"></asp:Label>
-                    <asp:TextBox ID="txtNumerotarjetaMantenimiento" Visible="false"  runat="server" CssClass="form-control" PlaceHolder="Ingrese Numero de Tarjeta de Acceso" TextMode="Number" MaxLength="100"></asp:TextBox>
-            </div>
-            <div class="form-group col-md-3">
-                <asp:Label ID="lbFechaEntregaMantenimiento"  runat="server" Visible="false" Text="Fecha de Entrega"></asp:Label>
-                    <asp:TextBox ID="txtFechaEntregaMantenimiento" Visible="false"  runat="server" CssClass="form-control" TextMode="Date" PlaceHolder="Fecha de Entrega"></asp:TextBox>
-            </div>
-             <div class="form-group col-md-3">
-                <asp:Label ID="lbEstatus" runat="server" Visible="false" Text="Estatus de tarjeta"></asp:Label>
-                <asp:DropDownList ID="ddlEstatus" runat="server" Visible="false" ToolTip="Seleccionar estatus de tarjeta" CssClass="form-control"></asp:DropDownList> 
-            </div>
-            <div class="form-group col-md-3">
-                <asp:Label ID="lbClaveSeguridad" Visible="false" runat="server" Text="Clave de Seguridad"></asp:Label>
-                <asp:TextBox ID="txtClaveSeguridad" Visible="false" runat="server" placeholder="Clave de Seguridad" MaxLength="20" TextMode="Password" CssClass="form-control"></asp:TextBox>
-            </div>
-    </div>
-       
-    </div>
-       <div align="Center">
-                        <asp:Button ID="btnGuardarMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Guardar" ToolTip="Guardar Operación" OnClick="btnGuardarMantenimiento_Click" />
-                        <asp:Button ID="btnAtrasMantenimiento" Visible="false" runat="server" CssClass="btn btn-outline-primary btn-sm" Text="Atras" ToolTip="Volver Atras" OnClick="btnAtrasMantenimiento_Click" /><br />
-                        
-                    </div>
-    <!--AQUI FINALIZAN LOS CONTROLES PARA REALIZAR EL MANTENIMIENTO-->
 
 </asp:Content>

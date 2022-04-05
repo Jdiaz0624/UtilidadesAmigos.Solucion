@@ -36,7 +36,6 @@
                  <asp:Label ID="lbTipoOperacion" runat="server" Text="Tipo de Operación: " CssClass="LetrasNegrita"></asp:Label>
                 <asp:RadioButton ID="rbConsultarRegistros" runat="server" Text="Consultar" AutoPostBack="true" CssClass="form-check-input" GroupName="TipoOperacion" />
                 <asp:RadioButton ID="rbProcesarRegistros" runat="server" Text="Procesar" AutoPostBack="true" CssClass="form-check-input" GroupName="TipoOperacion" />
-   
         </div>
     </div>
 </asp:Content>

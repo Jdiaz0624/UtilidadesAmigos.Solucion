@@ -28,6 +28,13 @@
             background-color: #7BC5FF;
             color: #000000;
         }
+
+        
+                 .BotonImagen {
+                   width:40px;
+                   height:40px;
+                 
+                 }
     </style>
 
     <script type="text/javascript">
@@ -42,7 +49,7 @@
         }
 
         $(document).ready(function () {
-            $("#<%=btnConsultarRegistros.ClientID%>").click(function () {
+            $("#<%=btnConsultarRegistrosNuevo.ClientID%>").click(function () {
                 //VALIDAMOS EL CAMPO TASA
                 var Tasa = $("#<%=txtTasaConsulta.ClientID%>").val().length;
                 if (Tasa < 1) {
@@ -53,7 +60,7 @@
 
             });
 
-            $("#<%=btnExportarRegistros.ClientID%>").click(function () {
+            $("#<%=btnReporteCobros.ClientID%>").click(function () {
                 var Tasa = $("#<%=txtTasaConsulta.ClientID%>").val().length;
                 if (Tasa < 1) {
                     alert("El campo tasa no puede estar vacio para exportar la información, favor de verificar");
@@ -71,41 +78,41 @@
         <br />
         <div class="form-check-inline">
       
-                <asp:RadioButton ID="rbNoAgruparDatos" runat="server" Text="No Agrupar" ToolTip="Generar Reporte sin Agrupar datos" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbNoAgruparDatos_CheckedChanged" />
-                <asp:RadioButton ID="rbAgruparPorConcepto" runat="server" Text="Concepto" ToolTip="Generar Reporte Agrupado Por Concepto" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparPorConcepto_CheckedChanged" />
-                <asp:RadioButton ID="rbAgruparTipoPago" runat="server" Text="Tipo de Pago" ToolTip="Generar Reporte Agrupado Por Tipo de Pago" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparTipoPago_CheckedChanged" />
-                <asp:RadioButton ID="rbAgruparIntermediario" runat="server" Text="Intermediario" ToolTip="Generar Reporte Agrupado Por Intermediario" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparIntermediario_CheckedChanged" />
-                <asp:RadioButton ID="rbAgruparSupervisor" runat="server" Text="Supervisor" ToolTip="Generar Reporte Agrupado Por Supervisor" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparSupervisor_CheckedChanged" />
-                <asp:RadioButton ID="rbAgruparPorOficina" runat="server" Text="Oficina" ToolTip="Generar Reporte Agrupado Por Oficina" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparPorOficina_CheckedChanged" />
-                <asp:RadioButton ID="rbAgrupaRamo" runat="server" Text="Ramo" ToolTip="Generar Reporte Agrupado Por Ramo" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgrupaRamo_CheckedChanged" />
-                <asp:RadioButton ID="rbAgruparUsuario" runat="server" Text="Usuario" ToolTip="Generar Reporte Agrupado Por Usuario" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparUsuario_CheckedChanged" />
-                <asp:RadioButton  ID="rbAgrupadoPorDia" runat="server" Text="Por Dia" ToolTip="Generar Reporte Agrupado Por Dia" CssClass="form-check-input Letranegrita" GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgrupadoPorDia_CheckedChanged" />
+                <asp:RadioButton ID="rbNoAgruparDatos" runat="server" Text="No Agrupar" ToolTip="Generar Reporte sin Agrupar datos"  GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbNoAgruparDatos_CheckedChanged" />
+                <asp:RadioButton ID="rbAgruparPorConcepto" runat="server" Text="Concepto" ToolTip="Generar Reporte Agrupado Por Concepto"  GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparPorConcepto_CheckedChanged" />
+                <asp:RadioButton ID="rbAgruparTipoPago" runat="server" Text="Tipo de Pago" ToolTip="Generar Reporte Agrupado Por Tipo de Pago"  GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparTipoPago_CheckedChanged" />
+                <asp:RadioButton ID="rbAgruparIntermediario" runat="server" Text="Intermediario" ToolTip="Generar Reporte Agrupado Por Intermediario"  GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparIntermediario_CheckedChanged" />
+                <asp:RadioButton ID="rbAgruparSupervisor" runat="server" Text="Supervisor" ToolTip="Generar Reporte Agrupado Por Supervisor"  GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparSupervisor_CheckedChanged" />
+                <asp:RadioButton ID="rbAgruparPorOficina" runat="server" Text="Oficina" ToolTip="Generar Reporte Agrupado Por Oficina"  GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparPorOficina_CheckedChanged" />
+                <asp:RadioButton ID="rbAgrupaRamo" runat="server" Text="Ramo" ToolTip="Generar Reporte Agrupado Por Ramo"  GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgrupaRamo_CheckedChanged" />
+                <asp:RadioButton ID="rbAgruparUsuario" runat="server" Text="Usuario" ToolTip="Generar Reporte Agrupado Por Usuario"  GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgruparUsuario_CheckedChanged" />
+                <asp:RadioButton  ID="rbAgrupadoPorDia" runat="server" Text="Por Dia" ToolTip="Generar Reporte Agrupado Por Dia"  GroupName="AgrupacionDatos" AutoPostBack="true" OnCheckedChanged="rbAgrupadoPorDia_CheckedChanged" />
        
         </div><br />
         <asp:Label ID="lbTipoReporte" runat="server" Text="Tipo de Reporte a Generar" CssClass="Letranegrita"></asp:Label><br />
         <div id="divTipoReporte" runat="server" class="form-check-inline">
           
-                <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Detallado" ToolTip="Generar Reporte Detallado" CssClass="form-check-input Letranegrita" GroupName="TipoReporte"/>
-                <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" ToolTip="Generar Reporte Resumido" CssClass="form-check-input Letranegrita" GroupName="TipoReporte"/>
+                <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Detallado" ToolTip="Generar Reporte Detallado"  GroupName="TipoReporte"/>
+                <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" ToolTip="Generar Reporte Resumido"  GroupName="TipoReporte"/>
            
         </div>
         <br />
         <asp:Label ID="lbTipoReportePorDia" runat="server" Text="Tipo de Reporte Por Dia a Generar" CssClass="Letranegrita"></asp:Label><br />
         <div id="DivTipoReportePorDia" runat="server" class="form-check-inline">
          
-                <asp:RadioButton ID="rbReporteResumidoPorDia" runat="server" Text="Resumido" ToolTip="Generar Reporte Resumido Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
-                <asp:RadioButton ID="rbReporteDetalladoPorDia" runat="server" Text="Detallado" ToolTip="Generar Reporte Detallado Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
-                <asp:RadioButton ID="rbReportePorSupervisorPorDia" runat="server" Text="Por Supervisor" ToolTip="Generar Reporte Por Supervisor Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
-                <asp:RadioButton ID="rbReportePorIntermediarioPorDia" runat="server" Text="Por Intermediario" ToolTip="Generar Reporte Por Intermediario Por Dia" CssClass="form-check-input Letranegrita" GroupName="TipoReportePorDia"/>
+                <asp:RadioButton ID="rbReporteResumidoPorDia" runat="server" Text="Resumido" ToolTip="Generar Reporte Resumido Por Dia"  GroupName="TipoReportePorDia"/>
+                <asp:RadioButton ID="rbReporteDetalladoPorDia" runat="server" Text="Detallado" ToolTip="Generar Reporte Detallado Por Dia"  GroupName="TipoReportePorDia"/>
+                <asp:RadioButton ID="rbReportePorSupervisorPorDia" runat="server" Text="Por Supervisor" ToolTip="Generar Reporte Por Supervisor Por Dia"  GroupName="TipoReportePorDia"/>
+                <asp:RadioButton ID="rbReportePorIntermediarioPorDia" runat="server" Text="Por Intermediario" ToolTip="Generar Reporte Por Intermediario Por Dia"  GroupName="TipoReportePorDia"/>
         
         </div>
         <hr />
         <asp:Label ID="lbTipoRecibos" runat="server" Text="Tipo de Recibos a Mostrar" CssClass="Letranegrita"></asp:Label><br />
         <div class="form-check-inline">
      
-                <asp:RadioButton ID="rbTodosRecibos" runat="server" Text="Todos" ToolTip="Mostrar Todos los Recibos (Activos y Anulados)" CssClass="form-check-input Letranegrita" GroupName="Anulado"/>
-                <asp:RadioButton ID="rbRecibosActivos" runat="server" Text="Activos" ToolTip="Mostrar Recibos Activos" CssClass="form-check-input Letranegrita" GroupName="Anulado"/>
-                <asp:RadioButton ID="rbRecibosAnulados" runat="server" Text="Anulados" ToolTip="Mostrar Recibos Anulados" CssClass="form-check-input Letranegrita" GroupName="Anulado" />
+                <asp:RadioButton ID="rbTodosRecibos" runat="server" Text="Todos" ToolTip="Mostrar Todos los Recibos (Activos y Anulados)"  GroupName="Anulado"/>
+                <asp:RadioButton ID="rbRecibosActivos" runat="server" Text="Activos" ToolTip="Mostrar Recibos Activos"  GroupName="Anulado"/>
+                <asp:RadioButton ID="rbRecibosAnulados" runat="server" Text="Anulados" ToolTip="Mostrar Recibos Anulados"  GroupName="Anulado" />
           
         </div>
 
@@ -167,23 +174,23 @@
         <asp:Label ID="lbExportarA" runat="server" Text="Exportar A:" CssClass="Letranegrita"></asp:Label>
         <div class="form-check-inline">
        
-                <asp:RadioButton ID="rbExportarPDF" runat="server" Text="PDF" ToolTip="Exportar Data a PDF" GroupName="ExportarData" CssClass="form-check-input Letranegrita" />
-                <asp:RadioButton ID="rbExportarExcel" runat="server" Text="Excel" ToolTip="Exportar Data a Excel" GroupName="ExportarData" CssClass="form-check-input Letranegrita" />
-                <asp:RadioButton ID="rbExportarWord" runat="server" Text="Word" ToolTip="Exportar Data a Word" GroupName="ExportarData" CssClass="form-check-input Letranegrita" />
-                <asp:RadioButton ID="rbExportarTXT" runat="server" Text="TXT" ToolTip="Exportar Data a TXT" GroupName="ExportarData" CssClass="form-check-input Letranegrita" />
-                <asp:RadioButton ID="rbExportarCSV" runat="server" Text="CSV" ToolTip="Exportar Data a CSV" GroupName="ExportarData" CssClass="form-check-input Letranegrita" />
+                <asp:RadioButton ID="rbExportarPDF" runat="server" Text="PDF" ToolTip="Exportar Data a PDF" GroupName="ExportarData" />
+                <asp:RadioButton ID="rbExportarExcel" runat="server" Text="Excel" ToolTip="Exportar Data a Excel" GroupName="ExportarData" />
+                <asp:RadioButton ID="rbExportarWord" runat="server" Text="Word" ToolTip="Exportar Data a Word" GroupName="ExportarData"  />
+                <asp:RadioButton ID="rbExportarTXT" runat="server" Text="TXT" ToolTip="Exportar Data a TXT" GroupName="ExportarData"  />
+                <asp:RadioButton ID="rbExportarCSV" runat="server" Text="CSV" ToolTip="Exportar Data a CSV" GroupName="ExportarData"  />
        
         </div>
          <div id="divGraficar" runat="server" align="center">
             <div class="form-check-inline"  >
-               <asp:CheckBox ID="cbGraficar" runat="server" Text="Graficar" AutoPostBack="true" OnCheckedChanged="cbGraficar_CheckedChanged"  ToolTip="Graficar Información" CssClass="form-check-input" />
+               <asp:CheckBox ID="cbGraficar" runat="server" Text="Graficar" AutoPostBack="true" OnCheckedChanged="cbGraficar_CheckedChanged"  ToolTip="Graficar Información" />
      
        </div>
        </div><br />
         <div align="center">
 
-            <asp:Button ID="btnConsultarRegistros" runat="server" Text="Consultar" ToolTip="Consultar Registros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnConsultarRegistros_Click" />
-            <asp:Button ID="btnExportarRegistros" runat="server" Text="Reporte" ToolTip="Generar Reporte de Cobros" CssClass="btn btn-outline-primary btn-sm" OnClick="btnExportarRegistros_Click" />
+            <asp:ImageButton ID="btnConsultarRegistrosNuevo" runat="server" ToolTip="Consultar Información por Pantalla" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultarRegistrosNuevo_Click" />
+            <asp:ImageButton ID="btnReporteCobros" runat="server" ToolTip="Generar Reporte de Cobros" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporteCobros_Click" />
      
         <hr />
         <asp:Label ID="lbCantidadRegistrosTitulo" Visible="false" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
@@ -252,10 +259,12 @@
                 <tr>
                     <td>
                         <asp:LinkButton ID="lbPrimeraPagina" runat="server" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la Primera Pagina del listado" Text="Inicio" OnClick="lbPrimeraPagina_Click"></asp:LinkButton>
+                        <asp:ImageButton ID="btnPrimeraPagina" runat="server" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPagina_Click" />
                     </td>
 
                     <td>
                         <asp:LinkButton ID="lbPaginaAnterior" runat="server" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la Pagina anterior del listado" Text="Anterior" OnClick="lbPaginaAnterior_Click"></asp:LinkButton>
+                        <asp:ImageButton ID="btnPaginaAnterior" runat="server" CssClass="BotonImagen" ToolTip="Ir a la Pagina Anterior" OnClick="btnPaginaAnterior_Click" ImageUrl="~/Imagenes/Anterior.png" />
                     </td>
 
                     <td>
@@ -272,10 +281,12 @@
 
                     <td>
                         <asp:LinkButton ID="lbSiguientePagina" runat="server" Text="Siguiente" ToolTip="Ir a la Pagina Siguiente del listado" CssClass="btn btn-outline-success btn-sm" OnClick="lbSiguientePagina_Click"></asp:LinkButton>
+                        <asp:ImageButton ID="btnSiguientePagina" runat="server" ToolTip="Ir a la Siguiente Pagina" CssClass="BotonImagen" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguientePagina_Click" />
                     </td>
 
                     <td>
                          <asp:LinkButton ID="LinkUltimaPagina" runat="server" Text="Final" ToolTip="Ir a la Ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimaPagina_Click"></asp:LinkButton>
+                        <asp:ImageButton ID="btnUltimaPagina" runat="server" ToolTip="Ir a la Ultima Pagina del Listado" CssClass="BotonImagen" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimaPagina_Click" />
                     </td>
 
                     <td>
