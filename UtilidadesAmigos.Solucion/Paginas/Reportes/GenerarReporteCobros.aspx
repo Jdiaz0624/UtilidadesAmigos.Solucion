@@ -217,7 +217,7 @@
                             <th scope="col" > Valor </th>
                             <th scope="col" > Moneda </th>
                             <th scope="col" > Fecha </th>
-                            <th scope="col" > Tipo Pago" </th>
+                            <th scope="col" > Tipo Pago </th>
                         </tr>
                     </thead>
                     <tbody>
