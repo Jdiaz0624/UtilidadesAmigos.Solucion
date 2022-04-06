@@ -13,6 +13,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
     public partial class GenerarSolicitudChequeComisionesIntermediarios : System.Web.UI.Page
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataGeneral = new Lazy<Logica.Logica.LogicaSistema>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido> ObjDataReporte = new Lazy<Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaMantenimientos.LogicaMantenimientos> ObjDataMantenimientos = new Lazy<Logica.Logica.LogicaMantenimientos.LogicaMantenimientos>();
 
 
@@ -341,18 +342,28 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         //PROCESAMOS LA INFORMACION PARA SACAR LOS DATOS DE LOS MONTOS PARA GUARDAR LA SOLICITUD
                         int? _OficinaFiltro = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
                         int? _RamoFiltro = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
-                        string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
+                        int? _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
 
-                        var SacarLosMontosProcesados = ObjDataGeneral.Value.GenerarComisionIntermediario(
+                        //var SacarLosMontosProcesados = ObjDataGeneral.Value.GenerarComisionIntermediario(
+                        //    FechaDesdeParametro,
+                        //    FechaHastaParametro,
+                        //    _CodigoIntermediario,
+                        //    _OficinaFiltro,
+                        //    _RamoFiltro,
+                        //    Convert.ToDecimal(txtMontoMinimo.Text),
+                        //    null, null, null,
+                        //    Convert.ToDecimal(txttasa.Text),
+                        //    null);
+
+                        var SacarLosMontosProcesados = ObjDataReporte.Value.BuscaDateComisionIntermediarioOrigen(
                             FechaDesdeParametro,
                             FechaHastaParametro,
                             _CodigoIntermediario,
                             _OficinaFiltro,
                             _RamoFiltro,
-                            Convert.ToDecimal(txtMontoMinimo.Text),
-                            null, null, null,
-                            Convert.ToDecimal(txttasa.Text),
-                            null);
+                            null, null,
+                            null,
+                            (decimal)Session["IdUsuario"]);
 
 
 
@@ -365,7 +376,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             Comisionsacada = Convert.ToDecimal(nMontos.Comision);
                             Retencionsacada = Convert.ToDecimal(nMontos.Retencion);
                             Avancesacado = Convert.ToDecimal(nMontos.AvanceComision);
-                            ALiquidarSacada = Convert.ToDecimal(nMontos.ALiquidar);
+                            ALiquidarSacada = Convert.ToDecimal(nMontos.Aliquidar);
 
 
 
@@ -554,16 +565,16 @@ namespace UtilidadesAmigos.Solucion.Paginas
             decimal Monto = 0, Acumulado = 0;
             //BUSCAMOS LA INFORMACION Y LA GUARDAMOS DEPENDIENDO SI ES EN LOTE O NORMAL
 
-            var BuscarInformacionComisiones = ObjDataGeneral.Value.GenerarComisionIntermediario(
+            var BuscarInformacionComisiones = ObjDataReporte.Value.BuscaDateComisionIntermediarioOrigen(
                               Convert.ToDateTime(txtFechaDesde.Text),
                               Convert.ToDateTime(txtFechaHasta.Text),
-                              txtCodigoIntermediario.Text, null, null, 500, null, null, null, null, IdUsuario);
+                              Convert.ToInt32(txtCodigoIntermediario.Text),
+                              null, null, null, null, null, IdUsuario);
             foreach (var n in BuscarInformacionComisiones)
             {
-                CodigoIntermediario = (int)n.Codigo;
-                CodigoBAnco = (int)n.CodigoBanco;
-                Monto = (decimal)n.ALiquidar;
-
+                CodigoIntermediario = (int)n.CodigoIntermediario;
+                CodigoBAnco = (int)n.Banco;
+                Monto = (decimal)n.Aliquidar;
                 Acumulado = 0;
 
                 //GUARDAMOS
