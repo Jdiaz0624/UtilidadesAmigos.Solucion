@@ -2022,11 +2022,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         /// <param name="FechaHasta"></param>
         /// <param name="Idusuario"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EReporteComisionIntermediarioOrigen> BuscaDateComisionIntermediarioOrigen(DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? Idusuario = null)
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EReporteComisionIntermediarioOrigen> BuscaDateComisionIntermediarioOrigen(DateTime? FechaDesde = null, DateTime? FechaHasta = null,int? CodigoIntermediario = null,int? Oficina = null,int? Ramo = null,string Poliza = null,decimal? Recibo = null,decimal? Factura = null, decimal? Idusuario = null)
         {
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_REPORTE_COMISION_INTERMEDIARIO_ORIGEN(FechaDesde, FechaHasta, Idusuario)
+            var Listado = (from n in ObjData.SP_REPORTE_COMISION_INTERMEDIARIO_ORIGEN(FechaDesde, FechaHasta,CodigoIntermediario,Oficina,Ramo,Poliza,Recibo,Factura, Idusuario)
                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EReporteComisionIntermediarioOrigen
                            {
                                CodigoSupervisor = n.CodigoSupervisor,

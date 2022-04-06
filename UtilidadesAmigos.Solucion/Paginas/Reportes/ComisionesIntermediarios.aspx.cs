@@ -316,6 +316,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         #region PROCESO DE DE CARGA DE INFORMACION DE LOS DATOS DE  LAS COMISIONES
         private void ProcesarInformacionDataComisiones(decimal IdUSuario) {
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioComisiones.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioComisiones.Text);
+            int? _Oficina = ddlSeleccionaroficinaComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaComisiones.SelectedValue) : new Nullable<int>();
+            int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+            string _Poliza = string.IsNullOrEmpty(txtNumeroPoliza.Text.Trim()) ? null : txtNumeroPoliza.Text.Trim();
+            decimal? _NumeroRecibo = string.IsNullOrEmpty(txtNumeroRecibo.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroRecibo.Text);
+            decimal? _NumeroFactura = string.IsNullOrEmpty(txtNumeroFactura.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroFactura.Text);
+
 
             //ELIMINAMOS LOS DATOS DEL REGISTRO
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionReporteComisionIntermediariosOrigen Eliminar = new Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionReporteComisionIntermediariosOrigen(
@@ -326,6 +333,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
             var Informacion = ObjDataReportes.Value.BuscaDateComisionIntermediarioOrigen(
                 Convert.ToDateTime(txtFechaDesdeComisiones.Text),
                 Convert.ToDateTime(txtFechaHastaComisiones.Text),
+                _Intermediario,
+                _Oficina,
+                _Ramo,
+                _Poliza,
+                _NumeroRecibo,
+                _NumeroFactura,
                 IdUSuario);
             foreach (var n in Informacion) {
 

@@ -166,7 +166,7 @@
                               <th scope="col"> Bruto </th>
                               <th scope="col"> Neto </th>
                               <th scope="col"> Comisión </th>
-                              <th scope="col"> Retencion </th>
+                              <th scope="col"> Retención </th>
                               <th scope="col"> Avance </th>
                               <th scope="col"> Acumulado </th>
                               <th scope="col"> Liquidar </th>

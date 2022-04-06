@@ -3,13 +3,35 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-     <style type="text/css">
-        .btn-sm{width:100px;}
-        .LetrasNegrita {font-weight:bold;}
-        th {
-            background-color: dodgerblue;
-            color: white;
+      <style type="text/css">
+     .jumbotron{
+            color:#000000; 
+            background:#1E90FF;
+            font-size:30px;
+            font-weight:bold;
+            font-family:'Gill Sans';
+            padding:25px;
         }
+
+        .btn-sm{
+            width:90px;
+        }
+
+        .LetrasNegrita {
+        font-weight:bold;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        
+
+  
+
+                 .BotonImagen {
+                   width:50px;
+                   height:50px;
+                 
+                 }
     </style>
 
     <script type="text/javascript">
@@ -40,7 +62,7 @@
 
         $(document).ready(function () {
             //VALIDAMOS EL BOTON CONSULTA
-            $("#<%=btnConsultar.ClientID%>").click(function () {
+            $("#<%=btnConsultarNuevo.ClientID%>").click(function () {
                 var CodigoIntermediario = $("#<%=txtCodigoIntermediario.ClientID%>").val().length;
                 if (CodigoIntermediario < 1) {
                     alert("El campo codigo de intermediario no puede estar vacio para consultar esta informción, favor de verificar.");
@@ -66,7 +88,7 @@
             });
 
             //VALIDAMOS EL BOTON PROCESAR
-            $("#<%=btnProcesar.ClientID%>").click(function () {
+            $("#<%=btnProcesarNuevo.ClientID%>").click(function () {
                 var CodigoIntermediario = $("#<%=txtCodigoIntermediario.ClientID%>").val().length;
                 if (CodigoIntermediario < 1) {
                     alert("El campo codigo de intermediario no puede estar vacio para procesar esta informción, favor de verificar.");
@@ -225,16 +247,15 @@
     </script>
     <div class="container-fluid">
         <br /><br />
+
         <div class="form-check-inline">
- 
-                <asp:RadioButton ID="rbNoEndosable" runat="server" Text="No Endosable" GroupName="TipoCheque" ToolTip="Generar el tipo de cheque de manera no endosable." CssClass="form-check-input LetrasNegrita" />
-                 <asp:RadioButton ID="rbEndosable" runat="server" Text="Endosable" GroupName="TipoCheque" ToolTip="Generar el tipo de cheque de manera endosable." CssClass="form-check-input LetrasNegrita" />
-  
+                 <asp:RadioButton ID="rbNoEndosable" runat="server" Text="No Endosable" GroupName="TipoCheque" ToolTip="Generar el tipo de cheque de manera no endosable." CssClass="LetrasNegrita" />
+                 <asp:RadioButton ID="rbEndosable" runat="server" Text="Endosable" GroupName="TipoCheque" ToolTip="Generar el tipo de cheque de manera endosable." CssClass="LetrasNegrita" />
         </div>
         <br />
          <div class="form-check-inline" id="DivSolicitudChequeLote" runat="server" visible="false">
   
-              <asp:CheckBox ID="cbGenerarSolicitudPorLote" runat="server" Text="Generar Solicitudes por Lote" CssClass="form-check-input LetrasNegrita" AutoPostBack="true" OnCheckedChanged="cbGenerarSolicitudPorLote_CheckedChanged" ToolTip="Generar las solicitudes de cheques por lotes" />
+              <asp:CheckBox ID="cbGenerarSolicitudPorLote" runat="server" Text="Generar Solicitudes por Lote" CssClass="LetrasNegrita" AutoPostBack="true" OnCheckedChanged="cbGenerarSolicitudPorLote_CheckedChanged" ToolTip="Generar las solicitudes de cheques por lotes" />
              <asp:Label ID="lbLetreroRojo" runat="server" Text="Este proceso puede tardar 5 Minutos o mas dependiendo de la cantidad de registros a procesar" Visible="false" CssClass="LetrasNegrita" ForeColor="Red"></asp:Label>
 
         </div>
@@ -286,11 +307,11 @@
                 <asp:TextBox ID="txtFechaHasta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
         </div>
-
+        <br /><br />
         <div align="center">
-            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click" ToolTip="Consultar Información por pantalla." />
-             <asp:Button ID="btnProcesar" runat="server" Text="Procesar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnProcesar_Click" ToolTip="Realizar Proceso de Solicitud de cheques." />
-            <br />
+              <asp:ImageButton ID="btnConsultarNuevo" runat="server" ToolTip="Consultar Información por pantalla" OnClick="btnConsultarNuevo_Click" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" />
+             <asp:ImageButton ID="btnProcesarNuevo" runat="server" ToolTip="Generar Solicitud de Cheque" OnClick="btnProcesarNuevo_Click" CssClass="BotonImagen" ImageUrl="~/Imagenes/Procesar.png" />
+            <br /><br />
             <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCantidadRegistrosVariable" runat="server" Text=" 0 " CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
@@ -299,7 +320,7 @@
 
 
             <table class="table table-striped">
-                <thead>
+                <thead class="table table-dark">
                     <tr>
                         <th scope="col"> Generar </th>
                         <th scope="col"> Nombre </th>

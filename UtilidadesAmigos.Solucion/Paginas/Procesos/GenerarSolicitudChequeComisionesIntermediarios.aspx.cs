@@ -566,7 +566,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 Acumulado = 0;
 
-                //guardamos
+                //GUARDAMOS
                 UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionConsultaInformacionPrPantalla(
                     IdUsuario,
                     CodigoIntermediario,
@@ -762,51 +762,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
             //}
         }
 
-        protected void btnConsultar_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim())) {
-                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
-                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim())) {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
-                }
-                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim())) {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
-                }
-            }
-            else {
-                ConsultarInformacionPantalla();
-            }
-        }
+     
 
 
 
-        protected void btnProcesar_Click(object sender, EventArgs e)
-        {
-            if (ddlSeleccionarBanco.SelectedValue == "-1") {
-                ClientScript.RegisterStartupScript(GetType(), "SeleccionarBanco()", "SeleccionarBanco();", true);
-            }
-            else {
-
-                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
-                    if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
-                    }
-                    if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
-                    }
-                }
-                else
-                {
-                    ProcesarInformacionSOlicitudChqeue();
-                }
-
-
-            }
-        }
 
         protected void LinkPrimeraPagina_Click(object sender, EventArgs e)
         {
@@ -912,6 +871,56 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void txtCodigoIntermediario_TextChanged(object sender, EventArgs e)
         {
             SacarNombreIntermediarioSacardo();
+        }
+
+        protected void btnConsultarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                }
+            }
+            else
+            {
+                ConsultarInformacionPantalla();
+            }
+        }
+
+        protected void btnProcesarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            if (ddlSeleccionarBanco.SelectedValue == "-1")
+            {
+                ClientScript.RegisterStartupScript(GetType(), "SeleccionarBanco()", "SeleccionarBanco();", true);
+            }
+            else
+            {
+
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
+                    if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CampoFechaDesdeVacio()", "CampoFechaDesdeVacio();", true);
+                    }
+                    if (string.IsNullOrEmpty(txtFechaHasta.Text.Trim()))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "CampoFechaHastaVacio()", "CampoFechaHastaVacio();", true);
+                    }
+                }
+                else
+                {
+                    ProcesarInformacionSOlicitudChqeue();
+                }
+
+
+            }
         }
 
         protected void btnSeleccionarSeleccionarRegistro_Click(object sender, EventArgs e)
