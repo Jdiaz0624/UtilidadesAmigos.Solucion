@@ -24,11 +24,6 @@
         }
         
 
-        th {
-            background-color: #7BC5FF;
-            color: #000000;
-        }
-
         
                  .BotonImagen {
                    width:40px;
@@ -127,7 +122,7 @@
                 <asp:TextBox ID="txtFechaHastaConsulta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
             <div class="col-md-2">
-                <asp:Label ID="lbCodigoSupervisorConsulta" runat="server" Text="Codigo de Supervisor" CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCodigoSupervisorConsulta" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoSupervisorConsulta" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoSupervisorConsulta_TextChanged" TextMode="Number" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="col-md-4">
@@ -135,7 +130,7 @@
                 <asp:TextBox ID="txtNombreSupervisorConsulta" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="col-md-2">
-                <asp:Label ID="lbCodigoIntermediarioConsulta" runat="server" Text="ID de Intermediario" CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCodigoIntermediarioConsulta" runat="server" Text="Intermediario" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoIntermediarioConsulta" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoIntermediarioConsulta_TextChanged" TextMode="Number" CssClass="form-control"></asp:TextBox>
             </div>
               <div class="col-md-4">
@@ -176,9 +171,9 @@
        
                 <asp:RadioButton ID="rbExportarPDF" runat="server" Text="PDF" ToolTip="Exportar Data a PDF" GroupName="ExportarData" />
                 <asp:RadioButton ID="rbExportarExcel" runat="server" Text="Excel" ToolTip="Exportar Data a Excel" GroupName="ExportarData" />
-                <asp:RadioButton ID="rbExportarWord" runat="server" Text="Word" ToolTip="Exportar Data a Word" GroupName="ExportarData"  />
-                <asp:RadioButton ID="rbExportarTXT" runat="server" Text="TXT" ToolTip="Exportar Data a TXT" GroupName="ExportarData"  />
-                <asp:RadioButton ID="rbExportarCSV" runat="server" Text="CSV" ToolTip="Exportar Data a CSV" GroupName="ExportarData"  />
+                <asp:RadioButton ID="rbExportarWord" Visible="false" runat="server" Text="Word" ToolTip="Exportar Data a Word" GroupName="ExportarData"  />
+                <asp:RadioButton ID="rbExportarTXT" Visible="false" runat="server" Text="TXT" ToolTip="Exportar Data a TXT" GroupName="ExportarData"  />
+                <asp:RadioButton ID="rbExportarCSV" Visible="false" runat="server" Text="CSV" ToolTip="Exportar Data a CSV" GroupName="ExportarData"  />
        
         </div>
          <div id="divGraficar" runat="server" align="center">
@@ -213,7 +208,7 @@
         <!--INICIO DEL REPEATER-->
         <div>
                 <table class="table table-striped">
-                    <thead>
+                    <thead class="table table-dark">
                         <tr>
                             <th scope="col" > Poliza </th>
                             <th scope="col" > Ramo </th>
@@ -247,58 +242,33 @@
         <!--FIN DEL REPEATER-->
 
          <div align="center">
-                    
-                    <asp:Label ID="lbDeTitulo" runat="server" CssClass="Letranegrita" Text="Total de Paginas "></asp:Label>
-                    <asp:Label ID="lbCantidadPaginasVariable" CssClass="Letranegrita" runat="server" Text=" 0 "></asp:Label>
-                </div>
-
-        <!--PAGINACION-->
-        <div id="divPaginacionrepeater" runat="server" align="center">
-            <div style="margin-top:20px;"></div>
-            <table style="width:600px;">
+                <asp:Label ID="lbPaginaActualTituloCobros" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbPaginaActualVariableCobros" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaTituloCobros" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbCantidadPaginaVAriableCobros" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+            </div>
+             <div id="divPaginacionPolizasProduccion" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
                 <tr>
-                    <td>
-                        <asp:LinkButton ID="lbPrimeraPagina" runat="server" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la Primera Pagina del listado" Text="Inicio" OnClick="lbPrimeraPagina_Click"></asp:LinkButton>
-                        <asp:ImageButton ID="btnPrimeraPagina" runat="server" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPagina_Click" />
-                    </td>
+                    <td> <asp:ImageButton ID="btnPrimeraPaginaPaginacionCobros" runat="server" ToolTip="Ir a la Primera Pagina del Listado" CssClass="BotonImagen" OnClick="btnPrimeraPaginaPaginacionCobros_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaAnteriorPaginacionCobros" runat="server" ToolTip="Ir a la Pagina Anterior del Listado" CssClass="BotonImagen" OnClick="btnPaginaAnteriorPaginacionCobros_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
 
                     <td>
-                        <asp:LinkButton ID="lbPaginaAnterior" runat="server" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la Pagina anterior del listado" Text="Anterior" OnClick="lbPaginaAnterior_Click"></asp:LinkButton>
-                        <asp:ImageButton ID="btnPaginaAnterior" runat="server" CssClass="BotonImagen" ToolTip="Ir a la Pagina Anterior" OnClick="btnPaginaAnterior_Click" ImageUrl="~/Imagenes/Anterior.png" />
-                    </td>
+                        <asp:DataList ID="dtPaginacionPolizasCobros" runat="server" OnItemCommand="dtPaginacionPolizasCobros_ItemCommand" OnItemDataBound="dtPaginacionPolizasCobros_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:Button ID="btnPaginacionCentralCobros" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
+                            </ItemTemplate>
+                        </asp:DataList>
 
-                    <td>
-                        <asp:DataList ID="rptPaging" runat="server"
-                                    OnItemCommand="rptPaging_ItemCommand"
-                                    OnItemDataBound="rptPaging_ItemDataBound" RepeatDirection="Horizontal">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="lbPaging" runat="server"
-                                            CommandArgument='<%# Eval("PageIndex") %>' CommandName="newPage"
-                                            Text='<%# Eval("PageText") %> ' Width="20px"></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:DataList>
                     </td>
-
-                    <td>
-                        <asp:LinkButton ID="lbSiguientePagina" runat="server" Text="Siguiente" ToolTip="Ir a la Pagina Siguiente del listado" CssClass="btn btn-outline-success btn-sm" OnClick="lbSiguientePagina_Click"></asp:LinkButton>
-                        <asp:ImageButton ID="btnSiguientePagina" runat="server" ToolTip="Ir a la Siguiente Pagina" CssClass="BotonImagen" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguientePagina_Click" />
-                    </td>
-
-                    <td>
-                         <asp:LinkButton ID="LinkUltimaPagina" runat="server" Text="Final" ToolTip="Ir a la Ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimaPagina_Click"></asp:LinkButton>
-                        <asp:ImageButton ID="btnUltimaPagina" runat="server" ToolTip="Ir a la Ultima Pagina del Listado" CssClass="BotonImagen" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimaPagina_Click" />
-                    </td>
-
-                    <td>
-                        <asp:Label ID="lbPaginaActual" runat="server" Text="0"></asp:Label>
-                    </td>
-
-                    <td></td>
+                    <td> <asp:ImageButton ID="btnPaginaSiguientePaginacionCobros" runat="server" ToolTip="Ir a la Siguiente Pagina del Listado" CssClass="BotonImagen" OnClick="btnPaginaSiguientePaginacionCobros_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimaPaginaPaginacionCobros" runat="server" ToolTip="Ir a la Ultima Pagina del Listado" CssClass="BotonImagen" OnClick="btnUltimaPaginaPaginacionCobros_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
                 </tr>
             </table>
         </div>
-        <!--FIN DE PAGINACION-->
-        <br />
+        </div>
+                           <br />
         <!--INICIO DE LOS GRAFICOS-->
 
         

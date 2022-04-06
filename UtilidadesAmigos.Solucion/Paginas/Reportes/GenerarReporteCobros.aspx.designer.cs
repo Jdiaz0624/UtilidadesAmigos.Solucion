@@ -672,121 +672,94 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Repeater rpListadoCobro;
 
         /// <summary>
-        /// lbDeTitulo control.
+        /// lbPaginaActualTituloCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDeTitulo;
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloCobros;
 
         /// <summary>
-        /// lbCantidadPaginasVariable control.
+        /// lbPaginaActualVariableCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginasVariable;
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualVariableCobros;
 
         /// <summary>
-        /// divPaginacionrepeater control.
+        /// lbCantidadPaginaTituloCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionrepeater;
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloCobros;
 
         /// <summary>
-        /// lbPrimeraPagina control.
+        /// lbCantidadPaginaVAriableCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbPrimeraPagina;
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVAriableCobros;
 
         /// <summary>
-        /// btnPrimeraPagina control.
+        /// divPaginacionPolizasProduccion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPagina;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionPolizasProduccion;
 
         /// <summary>
-        /// lbPaginaAnterior control.
+        /// btnPrimeraPaginaPaginacionCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbPaginaAnterior;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaPaginacionCobros;
 
         /// <summary>
-        /// btnPaginaAnterior control.
+        /// btnPaginaAnteriorPaginacionCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnterior;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnteriorPaginacionCobros;
 
         /// <summary>
-        /// rptPaging control.
+        /// dtPaginacionPolizasCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList rptPaging;
+        protected global::System.Web.UI.WebControls.DataList dtPaginacionPolizasCobros;
 
         /// <summary>
-        /// lbSiguientePagina control.
+        /// btnPaginaSiguientePaginacionCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbSiguientePagina;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaSiguientePaginacionCobros;
 
         /// <summary>
-        /// btnSiguientePagina control.
+        /// btnUltimaPaginaPaginacionCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePagina;
-
-        /// <summary>
-        /// LinkUltimaPagina control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimaPagina;
-
-        /// <summary>
-        /// btnUltimaPagina control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPagina;
-
-        /// <summary>
-        /// lbPaginaActual control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActual;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPaginaPaginacionCobros;
 
         /// <summary>
         /// divGraficarSupervisores control.

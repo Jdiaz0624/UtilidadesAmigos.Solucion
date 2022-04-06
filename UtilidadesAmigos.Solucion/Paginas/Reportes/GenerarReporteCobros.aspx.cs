@@ -17,7 +17,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido> ObjDataReporte = new Lazy<Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido>();
 
-
+        #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
         int _PrimeraPagina, _UltimaPagina;
         private int _TamanioPagina = 10;
@@ -37,6 +37,118 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
 
         }
+
+
+        private void HandlePaging(ref DataList NombreDataList, ref Label lbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina = CurrentPage - 5;
+            if (CurrentPage > 5)
+                _UltimaPagina = CurrentPage + 5;
+            else
+                _UltimaPagina = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina = _UltimaPagina - 10;
+            }
+
+            if (_PrimeraPagina < 0)
+                _PrimeraPagina = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage;
+            lbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina; i < _UltimaPagina; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton PaginaSiguiente, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource.DataSource = Listado;
+            pagedDataSource.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina : _NumeroRegistros);
+            pagedDataSource.CurrentPageIndex = CurrentPage;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource.IsFirstPage;
+            PaginaSiguiente.Enabled = !pagedDataSource.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource;
+            RptGrid.DataBind();
+
+
+            //  divPaginacionBancos.Visible = true;
+        }
+        enum OpcionesPaginacionValores
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion(int Accion, ref Label lbPaginaActual, ref Label CantidadPagina)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = CantidadPagina.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
 
         #region OCULTAR Y MOSTRAR GRAFICOS
         private void OcultarGraficos() {
@@ -80,125 +192,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
         #region CONSULTAR INFORMACION
-
-        /// <summary>
-        /// Este metodo es para mostrar el numero de paginas y la pagina actual en la que uno se encuentra actualmente.
-        /// </summary>
-        private void HandlePaging()
-        {
-            var dt = new DataTable();
-            dt.Columns.Add("PageIndex"); //Start from 0
-            dt.Columns.Add("PageText"); //Start from 1
-
-            _PrimeraPagina = CurrentPage - 5;
-            if (CurrentPage > 5)
-                _UltimaPagina = CurrentPage + 5;
-            else
-                _UltimaPagina = 10;
-
-            // Check last page is greater than total page then reduced it to total no. of page is last index
-            if (_UltimaPagina > Convert.ToInt32(ViewState["TotalPages"]))
-            {
-                _UltimaPagina = Convert.ToInt32(ViewState["TotalPages"]);
-                _PrimeraPagina = _UltimaPagina - 10;
-            }
-
-            if (_PrimeraPagina < 0)
-                _PrimeraPagina = 0;
-
-            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
-            int NumeroPagina = (int)CurrentPage;
-            lbPaginaActual.Text = (NumeroPagina + 1).ToString();
-            // Now creating page number based on above first and last page index
-            for (var i = _PrimeraPagina; i < _UltimaPagina; i++)
-            {
-                var dr = dt.NewRow();
-                dr[0] = i;
-                dr[1] = i + 1;
-                dt.Rows.Add(dr);
-            }
-
-
-            rptPaging.DataSource = dt;
-            rptPaging.DataBind();
-        }
-        /// <summary>
-        /// Este metodo es para paginar el listado de la consulta mostrada
-        /// </summary>
-        /// <param name="RptGrid"></param>
-        /// <param name="Listado"></param>
-        /// <param name="_NumeroRegistros"></param>
-        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros)
-        {
-            pagedDataSource.DataSource = Listado;
-            pagedDataSource.AllowPaging = true;
-
-            ViewState["TotalPages"] = pagedDataSource.PageCount;
-            // lbNumeroVariable.Text = "1";
-            lbCantidadPaginasVariable.Text = pagedDataSource.PageCount.ToString();
-
-            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
-            pagedDataSource.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina : _NumeroRegistros);
-            pagedDataSource.CurrentPageIndex = CurrentPage;
-
-            //HABILITAMOS LOS BOTONES DE LA PAGINACION
-            lbPrimeraPagina.Enabled = !pagedDataSource.IsFirstPage;
-            lbPaginaAnterior.Enabled = !pagedDataSource.IsFirstPage;
-            lbSiguientePagina.Enabled = !pagedDataSource.IsLastPage;
-            LinkUltimaPagina.Enabled = !pagedDataSource.IsLastPage;
-
-            rpListadoCobro.DataSource = pagedDataSource;
-            rpListadoCobro.DataBind();
-
-
-            divPaginacionrepeater.Visible = true;
-        }
-        enum OpcionesPaginacionValores
-        {
-            PrimeraPagina = 1,
-            SiguientePagina = 2,
-            PaginaAnterior = 3,
-            UltimaPagina = 4
-        }
-        private void MoverValoresPaginacion(int Accion)
-        {
-
-            int PaginaActual = 0;
-            switch (Accion)
-            {
-
-                case 1:
-                    //PRIMERA PAGINA
-                    lbPaginaActual.Text = "1";
-
-                    break;
-
-                case 2:
-                    //SEGUNDA PAGINA
-                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
-                    PaginaActual++;
-                    lbPaginaActual.Text = PaginaActual.ToString();
-                    break;
-
-                case 3:
-                    //PAGINA ANTERIOR
-                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
-                    if (PaginaActual > 1)
-                    {
-                        PaginaActual--;
-                        lbPaginaActual.Text = PaginaActual.ToString();
-                    }
-                    break;
-
-                case 4:
-                    //ULTIMA PAGINA
-                    lbPaginaActual.Text = lbCantidadPaginasVariable.Text;
-                    break;
-
-
-            }
-
-        }
         private void ConsultarInformacionPantalla() {
             if (string.IsNullOrEmpty(txtFechaDesdeConsulta.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()) || string.IsNullOrEmpty(txtTasaConsulta.Text.Trim()))
             {
@@ -266,15 +259,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     lbTotalCobradoDollarVariable.Text = CobradoDollar.ToString("N2");
                     lbPesosDollarConvertidoVariable.Text = ConversionDollar.ToString("N2");
                 }
-                Paginar(ref rpListadoCobro, Buscarregistros, 10);
-
+                Paginar(ref rpListadoCobro, Buscarregistros, 10, ref lbCantidadPaginaVAriableCobros, ref btnPrimeraPaginaPaginacionCobros, ref btnPaginaAnteriorPaginacionCobros, ref btnPaginaSiguientePaginacionCobros, ref btnUltimaPaginaPaginacionCobros);
+                HandlePaging(ref dtPaginacionPolizasCobros, ref lbPaginaActualVariableCobros);
                 //gvListadoCobros.DataSource = Buscarregistros;
                 //gvListadoCobros.DataBind();
 
                 if (cbGraficar.Checked == true) {
                     GenerarGraficos();
                 }
-                HandlePaging();
+                
             }
         }
         #endregion
@@ -1173,6 +1166,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
 
         #endregion
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -1184,7 +1179,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "GENERAR REPORTE DE COBRO";
 
-                divPaginacionrepeater.Visible = false;
+                //divPaginacionrepeater.Visible = false;
                 rbNoAgruparDatos.Checked = true;
                 rbReporteDetallado.Checked = true;
                 rbTodosRecibos.Checked = true;
@@ -1389,41 +1384,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
 
-        protected void lbPrimeraPagina_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            ConsultarInformacionPantalla();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PrimeraPagina);
-        }
+  
 
-        protected void lbPaginaAnterior_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            ConsultarInformacionPantalla();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior);
-        }
+      
 
-        protected void lbSiguientePagina_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
+    
 
-            ConsultarInformacionPantalla();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.SiguientePagina);
-        }
+    
 
-        protected void LinkUltimaPagina_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            ConsultarInformacionPantalla();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina);
-        }
-
-        protected void rptPaging_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-            ConsultarInformacionPantalla();
-        }
+  
 
         protected void rbAgrupadoPorDia_CheckedChanged(object sender, EventArgs e)
         {
@@ -1635,24 +1604,44 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
 
-        protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)
+   
+
+        protected void btnPrimeraPaginaPaginacionCobros_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            ConsultarInformacionPantalla();
+        }
+
+        protected void btnPaginaAnteriorPaginacionCobros_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += -1;
+            ConsultarInformacionPantalla();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableCobros, ref lbCantidadPaginaVAriableCobros);
+        }
+
+        protected void dtPaginacionPolizasCobros_ItemDataBound(object sender, DataListItemEventArgs e)
         {
 
         }
 
-        protected void btnPaginaAnterior_Click(object sender, ImageClickEventArgs e)
+        protected void dtPaginacionPolizasCobros_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            ConsultarInformacionPantalla();
         }
 
-        protected void btnSiguientePagina_Click(object sender, ImageClickEventArgs e)
+        protected void btnPaginaSiguientePaginacionCobros_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage += 1;
+            ConsultarInformacionPantalla();
         }
 
-        protected void btnUltimaPagina_Click(object sender, ImageClickEventArgs e)
+        protected void btnUltimaPaginaPaginacionCobros_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            ConsultarInformacionPantalla();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariableCobros, ref lbCantidadPaginaVAriableCobros);
         }
 
         protected void rptPaging_ItemDataBound(object sender, DataListItemEventArgs e)
