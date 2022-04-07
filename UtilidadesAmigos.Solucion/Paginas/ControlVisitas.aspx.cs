@@ -31,7 +31,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         JuanMarcelino=1,
         AlfredoPimentel=10,
         MiguelBerrora=22,
-        KimailiRazon=35
+        KimailiRazon=35,
+        AngelaDesire=41
         }
         
         #region CONTROL PARA MOSTRAR LA PAGINACION
@@ -461,8 +462,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = true;
                 }
-                else if (IdUsuario == (decimal)PermisoUsuarios.KimailiRazon) {
+                else if (IdUsuario == (decimal)PermisoUsuarios.KimailiRazon)
+                {
 
+                    btnNuevoNuevo.Visible = true;
+                    btnModificarNuevo.Visible = true;
+                    btnEliminarNuevo.Visible = false;
+                }
+                else if (IdUsuario == (decimal)PermisoUsuarios.AngelaDesire) {
                     btnNuevoNuevo.Visible = true;
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
