@@ -230,7 +230,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             DateTime? _FechaDesde = string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesde.Text);
             DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHasta.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHasta.Text);
             decimal? _NumeroDeposito = string.IsNullOrEmpty(txtNumeroDeposito.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroDeposito.Text);
-            decimal? _NumeroRecibo = string.IsNullOrEmpty(txtRecibo.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtRecibo.Text);
+            //decimal? _NumeroRecibo = string.IsNullOrEmpty(txtRecibo.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtRecibo.Text);
             int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
             int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
             string Estatus = "";
@@ -249,20 +249,21 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
             if (rbExelPlano.Checked == true) {
 
-                var Exportar = (from n in ObjData.Value.BuscaListadoPrimaDeposito(
+                var Exportar = (from n in ObjData.Value.BuscaPrimaDeposito(
+                    _NumeroDeposito,
                     _FechaDesde,
                     _FechaHasta,
-                    _NumeroDeposito,
-                    _NumeroRecibo,
                     _Supervisor,
                     _Intermediario,
-                    Estatus)
+                   Estatus,
+                   (decimal)Session["IdUsuario"])
                                 select new
                                 {
-                                    Deposito = n.Numero,
+                                    Deposito = n.NumeroDeposito,
                                     Fecha = n.Fecha,
-                                    Monto = n.Monto,
-                                    Cuenta = n.Cuenta,
+                                    MontoAplicado = n.MontoPagado,
+                                    MontoDeposito = n.MontoDeposito,
+                                    MontoEnPrima = n.MontoPrima,
                                     Supervisor = n.Supervisor,
                                     Intermediario = n.Intermediario,
                                     Estatus = n.Estatus
@@ -277,13 +278,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 Reporte.Load(RutaReporte);
                 Reporte.Refresh();
 
+                Reporte.SetParameterValue("@NumeroDeposito", _NumeroDeposito);
                 Reporte.SetParameterValue("@FechaDesde", _FechaDesde);
                 Reporte.SetParameterValue("@FechaHasta", _FechaHasta);
-                Reporte.SetParameterValue("@NumeroDeposito", _NumeroDeposito);
-                Reporte.SetParameterValue("@NumeroRecibo", _NumeroRecibo);
                 Reporte.SetParameterValue("@Supervisor", _Supervisor);
                 Reporte.SetParameterValue("@Intermediario", _Intermediario);
                 Reporte.SetParameterValue("@Estatus", Estatus);
+                Reporte.SetParameterValue("@Usuario", (decimal)Session["IdUsuario"]);
 
                 Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
 
@@ -315,7 +316,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
         {
-            GenerarReporte(Server.MapPath("PrimaDepositosPendientes.rpt"), "Depositos en prima");
+            GenerarReporte(Server.MapPath("DepositosEnPrima.rpt"), "Depositos en prima");
         }
 
         protected void btnSeleccionar_Click(object sender, ImageClickEventArgs e)

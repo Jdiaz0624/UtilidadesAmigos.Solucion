@@ -94,10 +94,6 @@
                     <asp:TextBox ID="txtNumeroDeposito" runat="server" CssClass="form-control" TextMode="Number" ></asp:TextBox>
                 </div>
 
-                <div class="col-md-3">
-                    <asp:Label ID="lbRecibo" runat="server" Text="Recibo" CssClass="Letranegrita"></asp:Label>
-                    <asp:TextBox ID="txtRecibo" runat="server" CssClass="form-control" TextMode="Number" ></asp:TextBox>
-                </div>
 
             </div>
             <br />

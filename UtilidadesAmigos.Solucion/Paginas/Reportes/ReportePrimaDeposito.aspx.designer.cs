@@ -150,24 +150,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         protected global::System.Web.UI.WebControls.TextBox txtNumeroDeposito;
 
         /// <summary>
-        /// lbRecibo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbRecibo;
-
-        /// <summary>
-        /// txtRecibo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRecibo;
-
-        /// <summary>
         /// lbEstatusRegistro control.
         /// </summary>
         /// <remarks>
