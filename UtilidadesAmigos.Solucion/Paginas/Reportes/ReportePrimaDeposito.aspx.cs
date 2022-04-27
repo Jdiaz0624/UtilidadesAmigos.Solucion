@@ -168,7 +168,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             DateTime? _FechaDesde = string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesde.Text);
             DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHasta.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHasta.Text);
             decimal? _NumeroDeposito = string.IsNullOrEmpty(txtNumeroDeposito.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroDeposito.Text);
-            decimal? _NumeroRecibo = string.IsNullOrEmpty(txtRecibo.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtRecibo.Text);
             int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
             int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
             string Estatus = "";
@@ -182,14 +181,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 Estatus = "Pagado";
             }
 
-            var Listado = ObjData.Value.BuscaListadoPrimaDeposito(
+            var Listado = ObjData.Value.BuscaPrimaDeposito(
+                _NumeroDeposito,
                 _FechaDesde,
                 _FechaHasta,
-                _NumeroDeposito,
-                _NumeroRecibo,
                 _Supervisor,
                 _Intermediario,
-                Estatus);
+                Estatus,
+                (decimal)Session["Idusuario"]);
             if (Listado.Count() < 1) {
                 rpListadoPrimaDeposito.DataSource = null;
                 rpListadoPrimaDeposito.DataBind();

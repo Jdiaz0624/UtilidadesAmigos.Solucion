@@ -2382,5 +2382,39 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Listado;
         }
         #endregion
+
+        #region REPORTE DE PRIMA A DEPOSITO
+        /// <summary>
+        /// Este metodo es para buscar la informacion de la data de la prima a deposito
+        /// </summary>
+        /// <param name="NumeroDeposito"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="Usuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaDepositosPrima> BuscaPrimaDeposito(decimal? NumeroDeposito = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Supervisor = null, int? Intermediario = null,string Estatus = null, decimal? Usuario = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_DEPOSITOS_EN_PRIMA(NumeroDeposito, FechaDesde, FechaHasta, Supervisor, Intermediario, Estatus, Usuario)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaDepositosPrima
+                           {
+                               NumeroDeposito=n.NumeroDeposito,
+                               Fecha=n.Fecha,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               MontoPagado=n.MontoPagado,
+                               MontoDeposito=n.MontoDeposito,
+                               MontoPrima=n.MontoPrima,
+                               Estatus=n.Estatus,
+                               GeneradoPor=n.GeneradoPor
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }

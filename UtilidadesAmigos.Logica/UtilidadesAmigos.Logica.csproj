@@ -376,6 +376,7 @@
     <Compile Include="Entidades\Reportes\EBuscaDataCobradoDetalle.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDatosProduccionNoAgrupadoResumen.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDatosProducionNoAgrupadoDetalle.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaDepositosPrima.cs" />
     <Compile Include="Entidades\Reportes\EBuscaReporteAgrupadoPorUsuario.cs" />
     <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadaSupervisor.cs" />
     <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoOficina.cs" />

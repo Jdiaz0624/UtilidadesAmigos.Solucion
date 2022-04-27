@@ -1925,4 +1925,26 @@
       <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_DEPOSITOS_EN_PRIMA" Method="SP_BUSCA_DEPOSITOS_EN_PRIMA">
+    <Parameter Name="NumeroDeposito" Parameter="numeroDeposito" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCA_DEPOSITOS_EN_PRIMAResult">
+      <Column Name="NumeroDeposito" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="MontoPagado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="MontoDeposito" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="MontoPrima" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

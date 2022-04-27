@@ -122,10 +122,12 @@
                 <thead>
                     <tr>
                         <th scope="col"> Deposito </th>
-                         <th scope="col"> Fecha </th>
-                         <th scope="col"> Monto </th>
+                         <th scope="col"> Fecha </th>     
                          <th scope="col"> Supervisor </th>
                          <th scope="col"> Intermediario </th>
+                        <th scope="col"> Aplicado </th>
+                        <th scope="col"> Deposito </th>
+                        <th scope="col"> Prima </th>
                          <th scope="col"> Estatus </th>
                          <th scope="col">  </th>
                     </tr>
@@ -134,14 +136,16 @@
                     <asp:Repeater ID="rpListadoPrimaDeposito" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <asp:HiddenField ID="hfNumeroDeposito" runat="server" Value='<%# Eval("Numero") %>' />
-                                 <asp:HiddenField ID="hfMontoDeposito" runat="server" Value='<%# Eval("Monto") %>' />
+                                <asp:HiddenField ID="hfNumeroDeposito" runat="server" Value='<%# Eval("NumeroDeposito") %>' />
+                                 <asp:HiddenField ID="hfMontoDeposito" runat="server" Value='<%# Eval("MontoPagado") %>' />
 
-                                <td> <%# Eval("Numero") %> </td>
+                                <td> <%# Eval("NumeroDeposito") %> </td>
                                 <td> <%# Eval("Fecha") %> </td>
-                                <td> <%#string.Format("{0:N2}", Eval("Monto")) %> </td>
                                 <td> <%# Eval("Supervisor") %> </td>
                                 <td> <%# Eval("Intermediario") %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("MontoPagado")) %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("MontoDeposito")) %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("MontoPrima")) %> </td>
                                 <td> <%# Eval("Estatus") %> </td>
                                 <td> <asp:ImageButton ID="btnSeleccionar" runat="server" ToolTip="Seleccionar Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Procesar.png" OnClick="btnSeleccionar_Click" /> </td>
 
