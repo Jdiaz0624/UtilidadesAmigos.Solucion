@@ -445,7 +445,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         _NumeroRecibo,
                         _NumeroFactura,
                         Convert.ToDecimal(txtMontoMinimo.Text),
-                        IdUsuario)
+                        IdUsuario,
+                        1)
                                              select new
                                              {
                                                  Supervisor = n.Supervisor,
