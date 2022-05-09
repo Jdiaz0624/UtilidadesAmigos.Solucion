@@ -447,6 +447,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             txtNombreIntermediario.Text = Nombre.SacarNombreIntermediario();
         }
 
+        protected void btnProcesarInformacionNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
         protected void btnUltimoPrimaDeposito_Click(object sender, ImageClickEventArgs e)
         {
             CurrentPage_PrimaDeposito = (Convert.ToInt32(ViewState["TotalPages"]) - 1);

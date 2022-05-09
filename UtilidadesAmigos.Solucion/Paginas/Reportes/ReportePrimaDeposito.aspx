@@ -108,6 +108,18 @@
                 <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" GroupName="Formato" />
                 <asp:RadioButton ID="rbExelPlano" runat="server" Text="Excel Plano" GroupName="Formato" />
             </div>
+             <div id="DivBloqueValidarData" runat="server">
+            <br />
+            <div id="DivBuscarArchivoExcel" runat="server" class="form-group col-sm-6">
+                                  <label for="FileUpload1">Buscar Archivo en el Equipo</label>
+                                    <asp:FileUpload ID="FIleArchivoPrimaDeposito" CssClass="form-control-file" runat="server" />
+                                </div>
+            <div align="center">
+                <asp:Label ID="lbFormatoExel" runat="server" Text="Formato de Archivo (Columnas)--> Solo el No. Deposito" CssClass="Letranegrita"></asp:Label><br />
+                <asp:ImageButton ID="btnProcesarInformacionNuevo" runat="server" ToolTip="Buscar la Información de los depositos para actualizar" CssClass="BotonImagen" OnClick="btnProcesarInformacionNuevo_Click" ImageUrl="~/Imagenes/Procesar.png" />
+            </div>
+            <br />
+        </div>
             <br />
             <div align="center">
                 <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consultar Registros" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultar_Click" />

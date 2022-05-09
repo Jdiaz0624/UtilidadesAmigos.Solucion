@@ -222,6 +222,51 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         protected global::System.Web.UI.WebControls.RadioButton rbExelPlano;
 
         /// <summary>
+        /// DivBloqueValidarData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueValidarData;
+
+        /// <summary>
+        /// DivBuscarArchivoExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBuscarArchivoExcel;
+
+        /// <summary>
+        /// FIleArchivoPrimaDeposito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FIleArchivoPrimaDeposito;
+
+        /// <summary>
+        /// lbFormatoExel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFormatoExel;
+
+        /// <summary>
+        /// btnProcesarInformacionNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnProcesarInformacionNuevo;
+
+        /// <summary>
         /// btnConsultar control.
         /// </summary>
         /// <remarks>
