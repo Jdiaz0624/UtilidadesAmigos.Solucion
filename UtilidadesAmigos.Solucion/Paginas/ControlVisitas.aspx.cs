@@ -285,6 +285,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     txtCantidadDocumentosMantenimiento.Text = "1";
                     txtCantidadPersonasMantenimiento.Enabled = true;
                     txtCantidadPersonasMantenimiento.Text = "1";
+
+                    txtRemitenteMantenimiento.Enabled = true;
+                    txtRemitenteMantenimiento.Text = string.Empty;
                     break;
 
                 case (int)TipoDeProceso.EntregaDeDocumentos:
@@ -292,6 +295,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     txtCantidadDocumentosMantenimiento.Text = "1";
                     txtCantidadPersonasMantenimiento.Enabled = false;
                     txtCantidadPersonasMantenimiento.Text = "1";
+
+                    txtRemitenteMantenimiento.Enabled = true;
+                    txtRemitenteMantenimiento.Text = string.Empty;
                     break;
 
                 case (int)TipoDeProceso.SalidaDeDocumentos:
@@ -299,6 +305,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     txtCantidadDocumentosMantenimiento.Text = "1";
                     txtCantidadPersonasMantenimiento.Enabled = false;
                     txtCantidadPersonasMantenimiento.Text = "1";
+
+                    txtRemitenteMantenimiento.Enabled = false;
+                    txtRemitenteMantenimiento.Text = "Futuro Seguros";
                     break;
             }
         }
@@ -715,6 +724,20 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnVolverNuevo_Click(object sender, ImageClickEventArgs e)
         {
             VolverAtras();
+        }
+
+   
+
+        protected void txtNombreMantenimiento_TextChanged(object sender, EventArgs e)
+        {
+            int TipoProcesoSeleccionado = Convert.ToInt32(ddlTipoprocesoMantenimiento.SelectedValue);
+            if (TipoProcesoSeleccionado == (int)TipoDeProceso.Visitas)
+            {
+
+                txtRemitenteMantenimiento.Text = txtNombreMantenimiento.Text;
+            }
+            else if (TipoProcesoSeleccionado == (int)TipoDeProceso.EntregaDeDocumentos) { }
+            else if (TipoProcesoSeleccionado == (int)TipoDeProceso.SalidaDeDocumentos) { }
         }
 
         protected void btnSeleccionarRegistros_Click(object sender, EventArgs e)
