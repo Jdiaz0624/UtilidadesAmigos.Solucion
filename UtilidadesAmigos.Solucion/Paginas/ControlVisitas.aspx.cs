@@ -17,6 +17,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
     public partial class ControlVisitas : System.Web.UI.Page
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> Objtatas = new Lazy<Logica.Logica.LogicaSistema>();
+
         enum TipoDeProceso
         {
             Visitas = 1,

@@ -12,7 +12,10 @@ namespace UtilidadesAmigos.Solucion.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack) {
 
+                
+            }
            
         }
 
@@ -247,17 +250,42 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void linkOpcionMenu_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            //MOSTRAR LOS MODULOS DEL SISTEMA
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Seguridad/Modulos.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
 
         protected void linkOpcion_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Seguridad/Pantallas.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
 
         protected void linkBotones_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Seguridad/Opciones.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)

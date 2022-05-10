@@ -9,6 +9,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSeguridad
     public class LogicaSeguridad
     {
         UtilidadesAmigos.Data.Conexiones.LINQ.BDConexionDataContext ObjData = new Data.Conexiones.LINQ.BDConexionDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+        UtilidadesAmigos.Data.Conexiones.LINQ.BDConexionSeguridadDataContext ObjDataSeguridad = new Data.Conexiones.LINQ.BDConexionSeguridadDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
 
         #region MANTENIMEINTO DE PERFILES
         //LISTADO DE PERFILES
@@ -163,6 +164,58 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSeguridad
                                 FechaAdiciona0=n.FechaAdiciona,
                                 IdUsuarioModifica=n.IdUsuarioModifica,
                                 FechaModifica0=n.FechaModifica
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
+
+        #region MANTENIMIENTO DE MODULOS
+        /// <summary>
+        /// Este metodo muestra el listado de los modulos registrados en la base de datos
+        /// </summary>
+        /// <param name="IdModulo"></param>
+        /// <param name="Modulo"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Seguridad.EModulos> Buscamodulos(int? IdModulo = null, string Modulo = null)
+        {
+            ObjDataSeguridad.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjDataSeguridad.SP_BUSCA_MODULOS(IdModulo, Modulo)
+                           select new UtilidadesAmigos.Logica.Entidades.Seguridad.EModulos
+                           {
+                               IdModulo=n.IdModulo,
+                               Modulo=n.Modulo,
+                               Estatus0=n.Estatus0,
+                               Estatus=n.Estatus
+                           }).ToList();
+            return Listado;
+        }
+        /// <summary>
+        /// Este metodo procesa los modulos
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Seguridad.EModulos ProcesarModulos(UtilidadesAmigos.Logica.Entidades.Seguridad.EModulos Item, string Accion) {
+
+            ObjDataSeguridad.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Seguridad.EModulos Procesar = null;
+
+            var Modulos = ObjDataSeguridad.SP_PROCESAR_MODULOS(
+                Item.IdModulo,
+                Item.Modulo,
+                Item.Estatus0,
+                Accion);
+            if (Modulos != null) {
+
+                Procesar = (from n in Modulos
+                            select new UtilidadesAmigos.Logica.Entidades.Seguridad.EModulos
+                            {
+                                IdModulo=n.IdModulo,
+                                Modulo=n.Descripcion,
+                                Estatus0=n.Estatus
                             }).FirstOrDefault();
             }
             return Procesar;

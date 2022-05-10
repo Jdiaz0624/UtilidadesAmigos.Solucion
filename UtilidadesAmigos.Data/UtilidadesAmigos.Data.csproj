@@ -71,6 +71,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BDConexionReportes.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Conexiones\LINQ\BDConexionSeguridad.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDConexionSeguridad.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Conexiones\LINQ\BDConexionSuministro.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -126,6 +131,11 @@
     <None Include="Conexiones\LINQ\BDConexionReportes.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>BDConexionReportes.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Conexiones\LINQ\BDConexionSeguridad.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>BDConexionSeguridad.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Conexiones\LINQ\BDConexionSuministro.dbml">
@@ -192,6 +202,11 @@
   <ItemGroup>
     <None Include="Conexiones\LINQ\BDSuperIntendenciaConexion.dbml.layout">
       <DependentUpon>BDSuperIntendenciaConexion.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Conexiones\LINQ\BDConexionSeguridad.dbml.layout">
+      <DependentUpon>BDConexionSeguridad.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
