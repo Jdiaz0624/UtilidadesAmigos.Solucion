@@ -120,6 +120,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionMantenimientos\ProcesarInformacionAntiguedadSaldo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionMantenimientos\ProcesarInformacionTasaMoneda.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionModulos.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionPantallas.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionSeguridad.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionTarjetaAcceso.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionDetail.cs" />
@@ -429,6 +430,7 @@
     <Compile Include="Entidades\Seguridad\EControlTarjetasAcceso.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EModulos.cs" />
+    <Compile Include="Entidades\Seguridad\EPantallas.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
     <Compile Include="Entidades\Suministro\ESuministroDetalle.cs" />
     <Compile Include="Entidades\Suministro\ESuministroEspejo.cs" />

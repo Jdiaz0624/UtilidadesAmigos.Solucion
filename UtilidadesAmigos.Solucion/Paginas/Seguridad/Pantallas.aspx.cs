@@ -13,6 +13,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
 {
     public partial class Pantallas : System.Web.UI.Page
     {
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSeguridad.LogicaSeguridad> ObjDataSeguridad = new Lazy<Logica.Logica.LogicaSeguridad.LogicaSeguridad>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
 
         #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
@@ -72,7 +74,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
             NombreDataList.DataSource = dt;
             NombreDataList.DataBind();
         }
-        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label CantidadPagina, ref LinkButton PrimeraPagina, ref LinkButton PaginaAnterior, ref LinkButton SiguientePagina, ref LinkButton UltimaPagina)
+        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label CantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
         {
             pagedDataSource.DataSource = Listado;
             pagedDataSource.AllowPaging = true;
@@ -148,6 +150,127 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
 
 
         #endregion
+
+        #region CARGAR LOS MODULOS
+        private void CargarModulos() {
+
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarModulo, ObjData.Value.BuscaListas("MODULOSSISTEMA", null, null), true);
+        }
+        #endregion
+
+        #region MOSTRAR EL LISTADO DE LAS PANTALLAS
+        private void MostarrPantallas() {
+
+            int? _Modulo = ddlSeleccionarModulo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarModulo.SelectedValue) : new Nullable<int>();
+            string _Pantalla = string.IsNullOrEmpty(txtPantallaConsulta.Text.Trim()) ? null : txtPantallaConsulta.Text.Trim();
+
+            var Listado = ObjDataSeguridad.Value.BuscaPantallas(
+                _Modulo,
+                new Nullable<int>(),
+                _Pantalla);
+            if (Listado.Count() < 1) {
+
+                rpListadoPantalla.DataSource = null;
+                rpListadoPantalla.DataBind();
+            }
+            else {
+
+                Paginar(ref rpListadoPantalla, Listado, 10, ref lbCantidadPagina, ref btnPrimeraPagina, ref btnAnterior, ref btnSiguiente, ref btnUltimo);
+                HandlePaging(ref dtPaginacion, ref lbPaginaActual);
+            }
+        }
+        #endregion
+
+        #region PROCESAR LAS PANTALLAS
+        private void ProcesarPantallas(int IdModulo, int IdPantalla, bool Estatus, string Accion) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSeguridad.ProcesarInformacionPantallas Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionSeguridad.ProcesarInformacionPantallas(
+                IdModulo,
+                IdPantalla,
+                "",
+                Estatus,
+                Accion);
+            Procesar.ProcesarInformacion();
+        }
+        #endregion
+        protected void btnBuscar_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            MostarrPantallas();
+        }
+
+        protected void btnReporte_Click(object sender, ImageClickEventArgs e)
+        {
+            int? _Modulo = ddlSeleccionarModulo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarModulo.SelectedValue) : new Nullable<int>();
+            string _Pantalla = string.IsNullOrEmpty(txtPantallaConsulta.Text.Trim()) ? null : txtPantallaConsulta.Text.Trim();
+
+            var Exortar = (from n in ObjDataSeguridad.Value.BuscaPantallas(
+                _Modulo,
+                new Nullable<int>(),
+                _Pantalla)
+                           select new
+                           {
+                               Modulo = n.Modulo,
+                               Pantalla = n.Pantalla,
+                               Estatus=n.Estatus
+                           }).ToList();
+            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Pantallas", Exortar);
+        }
+
+        protected void btnEditar_Click(object sender, ImageClickEventArgs e)
+        {
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+
+            var IdModulo = ((HiddenField)ItemSeleccionado.FindControl("hfIdModulo")).Value.ToString();
+            var IdPantalla = ((HiddenField)ItemSeleccionado.FindControl("hfIdPantalla")).Value.ToString();
+            var Estatus = ((HiddenField)ItemSeleccionado.FindControl("hfEstatus")).Value.ToString();
+
+            ProcesarPantallas(
+                Convert.ToInt32(IdModulo),
+                Convert.ToInt32(IdPantalla),
+                Convert.ToBoolean(Estatus),
+                "UPDATE");
+            MostarrPantallas();
+        }
+
+        protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            MostarrPantallas();
+        }
+
+        protected void btnAnterior_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += -1;
+            MostarrPantallas();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActual, ref lbCantidadPagina);
+        }
+
+        protected void dtPaginacion_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostarrPantallas();
+        }
+
+        protected void btnSiguiente_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += 1;
+            MostarrPantallas();
+        }
+
+        protected void btnUltimo_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostarrPantallas();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActual, ref lbCantidadPagina);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -158,6 +281,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
 
                 Label lbNombrePantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbNombrePantalla.Text = "PANTALLAS DE MODULOS";
+
+                CargarModulos();
+                CurrentPage = 0;
+                MostarrPantallas();
             }
         }
     }

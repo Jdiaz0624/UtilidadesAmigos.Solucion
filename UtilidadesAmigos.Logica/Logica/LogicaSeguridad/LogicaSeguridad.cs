@@ -221,5 +221,62 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSeguridad
             return Procesar;
         }
         #endregion
+        #region MANTENIMIENTO DE PANTALLAS
+        /// <summary>
+        /// Este metodo muestra el listado de las pantallas registradas en el sistema
+        /// </summary>
+        /// <param name="IdModulo"></param>
+        /// <param name="IdPantalla"></param>
+        /// <param name="Pantalla"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Seguridad.EPantallas> BuscaPantallas(int? IdModulo = null, int? IdPantalla = null, string Pantalla = null) {
+
+            ObjDataSeguridad.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjDataSeguridad.SP_BUSCA_MODULOS_PANTALLA(IdModulo, IdPantalla, Pantalla)
+                           select new UtilidadesAmigos.Logica.Entidades.Seguridad.EPantallas
+                           {
+                               IdModulo=n.IdModulo,
+                               Modulo=n.Modulo,
+                               IdPantalla=n.IdPantalla,
+                               Pantalla=n.Pantalla,
+                               Estatus0=n.Estatus0,
+                               Estatus=n.Estatus
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo procesa las pantallas
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Seguridad.EPantallas ProcesarPantallas(UtilidadesAmigos.Logica.Entidades.Seguridad.EPantallas Item, string Accion) {
+
+            ObjDataSeguridad.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Seguridad.EPantallas Procesar = null;
+
+            var Pantallas = ObjDataSeguridad.SP_PROCESAR_PANTALLAS(
+                Item.IdModulo,
+                Item.IdPantalla,
+                Item.Pantalla,
+                Item.Estatus0,
+                Accion);
+            if (Pantallas != null) {
+
+                Procesar = (from n in Pantallas
+                            select new UtilidadesAmigos.Logica.Entidades.Seguridad.EPantallas
+                            {
+                                IdModulo=n.IdModulo,
+                                IdPantalla=n.IdPantalla,
+                                Pantalla=n.Descripcion,
+                                Estatus0=n.Estatus
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }
