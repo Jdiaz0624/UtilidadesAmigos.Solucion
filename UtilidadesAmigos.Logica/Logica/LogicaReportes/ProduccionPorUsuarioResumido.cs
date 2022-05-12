@@ -2274,6 +2274,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                CodMoneda=n.CodMoneda,
                                Moneda=n.Moneda,
                                NoPoliza=n.NoPoliza,
+                               Cliente=n.Cliente,
                                Ramo=n.Ramo,
                                NombreRamo=n.NombreRamo,
                                TasaPesos=n.TasaPesos,
