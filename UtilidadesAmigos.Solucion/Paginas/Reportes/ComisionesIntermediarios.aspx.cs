@@ -919,6 +919,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                                  Hora_Factura = n.HoraFactura,
                                                  Moneda = n.Moneda,
                                                  Poliza = n.NoPoliza,
+                                                 Cliente = n.Cliente,
                                                  Ramo = n.NombreRamo,
                                                  Tasa = n.TasaUSada,
                                                  Valor_Recibo = n.ValorRecibo,

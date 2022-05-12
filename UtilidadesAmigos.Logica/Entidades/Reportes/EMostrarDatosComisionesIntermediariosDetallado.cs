@@ -57,6 +57,7 @@ namespace UtilidadesAmigos.Logica.Entidades.Reportes
 		public string Moneda {get;set;}
 
 		public string NoPoliza {get;set;}
+		public string Cliente { get; set; }
 
 		public System.Nullable<int> Ramo {get;set;}
 
