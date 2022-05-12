@@ -490,6 +490,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (!IsPostBack)
             {
                 rbGenerarTodo.Checked = true;
+                PermisoPerfil();
             }
         }
 

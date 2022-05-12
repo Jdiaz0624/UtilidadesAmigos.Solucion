@@ -1158,6 +1158,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 cbMostrarIntermediariosAcumulativos.Checked = false;
 
                 CargarListasDesplegables();
+                PermisoPerfil();
             }
         }
 

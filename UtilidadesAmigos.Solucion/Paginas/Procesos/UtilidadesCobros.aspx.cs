@@ -549,6 +549,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "UTILIDADES DE COBROS";
+                PermisoPerfil();
             }
         }
 

@@ -2122,6 +2122,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 cbGraficar.Checked = false;
                 cbGraficar.Enabled = false;
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarConcepto, ObjDataGeneral.Value.BuscaListas("CONCEPTOS", null, null), true);
+                PermisoPerfil();
             }
 
            

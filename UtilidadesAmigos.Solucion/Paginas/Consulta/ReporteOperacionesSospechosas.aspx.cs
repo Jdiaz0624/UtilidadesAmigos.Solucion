@@ -1012,6 +1012,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarTipoOperacion, ObjData.Value.BuscaListas("TIPOREPORTEUAF", null, null));
                 DivBloqueDetalle.Visible = false;
                 SacarTasaSistema();
+                PermisoPerfil();
             }
         }
 

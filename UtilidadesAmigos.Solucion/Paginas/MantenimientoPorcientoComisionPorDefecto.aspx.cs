@@ -579,6 +579,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (!IsPostBack) {
                 rbModificarSubRamoSeleccionadoMantenimiento.Checked = true;
                 ConsultarRegistros();
+                PermisoPerfil();
             }
         }
 

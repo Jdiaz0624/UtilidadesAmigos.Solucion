@@ -531,6 +531,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 lbIdUsuario.Text = Session["IdUsuario"].ToString();
                 GenerarNumeroRamdom();
+                PermisoPerfil();
             }
         }
 

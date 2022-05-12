@@ -2016,6 +2016,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.RiselotRojas) { cbProcesarRegistros.Visible = true; }
 
                 ActualizarEstadistica();
+                PermisoPerfil();
             }
         }
 

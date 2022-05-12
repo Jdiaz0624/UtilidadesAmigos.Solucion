@@ -740,6 +740,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
                 CargarModulos();
                 CurrentPage = 0;
                 MostarrPantallas();
+                PermisoPerfil();
             }
         }
     }

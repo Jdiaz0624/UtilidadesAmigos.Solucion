@@ -931,6 +931,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
 
                 DivBloqueBackup.Visible = true;
+                PermisoPerfil();
             }
         }
 

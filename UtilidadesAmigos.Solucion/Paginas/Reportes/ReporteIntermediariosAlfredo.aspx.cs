@@ -714,6 +714,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 lbNombrePantalla.Text = "REPORTE DE INTERMEDIARIOS MOVIMIENTOS";
 
                 rbPDF.Checked = true;
+                PermisoPerfil();
             }
         }
 

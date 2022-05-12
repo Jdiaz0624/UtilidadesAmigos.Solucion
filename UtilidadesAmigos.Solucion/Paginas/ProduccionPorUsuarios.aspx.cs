@@ -653,6 +653,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarOficinas();
                 CargarDepartamentos();
                 CargarUsuarios();
+                PermisoPerfil();
             }
         }
 

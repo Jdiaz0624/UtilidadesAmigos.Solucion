@@ -651,6 +651,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarSubramosProduccion();
                 CargarExliirProduccion();
                 ClientScript.RegisterStartupScript(GetType(), "BloquearBotones", "BloquearBotones();", true);
+                PermisoPerfil();
             }
         }
 

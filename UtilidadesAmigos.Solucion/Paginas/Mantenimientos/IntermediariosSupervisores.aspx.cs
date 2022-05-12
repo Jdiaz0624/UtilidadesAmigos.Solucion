@@ -1448,6 +1448,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 btnModificarNuevo.Visible = false;
                 btnComisionesNuevo.Visible = false;
                 btnRestabelcerNuevo.Visible = false;
+                PermisoPerfil();
             }
             }
 

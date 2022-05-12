@@ -472,6 +472,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 //CARGAMOS LAS LISTAS DESPLEGABLES
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSucursalCOnsulta, ObjData.Value.BuscaListas("SUCURSAL", null, null), true);
+                PermisoPerfil();
             }
         }
 

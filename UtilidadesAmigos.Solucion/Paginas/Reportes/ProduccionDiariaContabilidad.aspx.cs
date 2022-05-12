@@ -2024,6 +2024,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarRamos();
                 CargarOficinas();
                 CargarMeses();
+                PermisoPerfil();
             }
         }
 

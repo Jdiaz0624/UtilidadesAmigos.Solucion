@@ -552,7 +552,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
                 CargarListasCOnsulta();
                 CargarListasMantenimiento();
                 ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
-
+                PermisoPerfil();
             }
         }
 

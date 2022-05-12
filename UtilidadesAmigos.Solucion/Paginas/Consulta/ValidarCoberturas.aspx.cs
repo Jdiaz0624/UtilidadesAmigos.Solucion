@@ -1415,6 +1415,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Cargaroficinas();
                 rbExportarExel.Checked = true;
                 DivBloqueValidarData.Visible = false;
+                PermisoPerfil();
             }
         }
 

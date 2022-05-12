@@ -510,6 +510,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.ProcesoPoliza
                 CargarTipoVehiculoFull();
                 CargarAnoFull();
                 CargarPorcentaje();
+                PermisoPerfil();
             }
         }
 

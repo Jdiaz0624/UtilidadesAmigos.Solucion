@@ -731,6 +731,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 DivRangoCheque.Visible = false;
                 divRangoValor.Visible = false;
                 CargarListadoBancos();
+                PermisoPerfil();
             }
         }
 

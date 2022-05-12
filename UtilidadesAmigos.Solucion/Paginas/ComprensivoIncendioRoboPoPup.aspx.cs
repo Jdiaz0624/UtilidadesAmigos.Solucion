@@ -628,6 +628,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarListasDesplegablesPadreConsulta();
                 CargarListadoTipoCotizadorConsulta();
                 MostrarListadoConsulta();
+                PermisoPerfil();
             }
         }
 

@@ -12,7 +12,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack) {
+                //PermisoPerfil();
+            }
         }
 
         protected void btnBuscarRuta_Click(object sender, EventArgs e)

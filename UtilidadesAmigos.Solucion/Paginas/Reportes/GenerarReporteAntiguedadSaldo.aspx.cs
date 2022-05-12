@@ -737,7 +737,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarTipoMovimientos();
                 CargarOficinas();
                 CargarMonedas();
-            
+                PermisoPerfil();
             }
         }
 

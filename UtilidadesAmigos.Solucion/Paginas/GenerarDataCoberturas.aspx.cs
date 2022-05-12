@@ -532,6 +532,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (!IsPostBack)
             {
                 CargarLosDrops();
+                PermisoPerfil();
             }
         }
 

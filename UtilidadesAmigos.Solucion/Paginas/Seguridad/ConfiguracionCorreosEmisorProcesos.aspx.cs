@@ -654,6 +654,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
             MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack) {
                 IniciarPantalla();
+                PermisoPerfil();
             }
         }
 

@@ -590,6 +590,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 //MOSTRAMOS EL LISTADO
                 MostrarListadoAnoVehiculo();
+                PermisoPerfil();
             }
         }
 

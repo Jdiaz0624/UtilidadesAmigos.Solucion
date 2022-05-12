@@ -524,6 +524,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             if (!IsPostBack)
             {
                 MostrarListado();
+                PermisoPerfil();
             }
         }
 

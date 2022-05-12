@@ -1023,6 +1023,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
                 rbSolicitudes.Checked = true;
                 ConfiguracionInicialSolicitudes();
+                PermisoPerfil();
             }
         }
 

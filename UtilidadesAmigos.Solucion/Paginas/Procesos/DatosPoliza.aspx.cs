@@ -774,6 +774,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Label lbNombrePantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbNombrePantalla.Text = "DATOS DE POLIZA";
                 rbBuscarPorPlaca.Checked = true;
+                PermisoPerfil();
             }
         }
 

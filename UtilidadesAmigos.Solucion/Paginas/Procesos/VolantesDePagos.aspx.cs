@@ -872,7 +872,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantallaActual.Text = "GENERAR VOLANTES DE PAGOS";
                 IniciarPantalla();
-
+                PermisoPerfil();
             }
 
         }

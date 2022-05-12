@@ -951,12 +951,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 rbCodigosPermitidos.Checked = true;
                 DivBloqueCodigosPermitidos.Visible = true;
                 DivBloqueBuscarCodigos.Visible = false;
-               // rbReporteResumido.Checked = true;
+                // rbReporteResumido.Checked = true;
 
                 //rbGenerarReportePDF.Enabled = false;
                 //rbGenerarReporteExcel.Enabled = false;
                 //rbGenerarReporteWord.Enabled = false;
                 //rbGenerarReporteExcel.Checked = true;
+                PermisoPerfil();
             }
         }
 

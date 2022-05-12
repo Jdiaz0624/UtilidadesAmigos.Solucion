@@ -644,6 +644,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 lbPantalla.Text = "REPORTE DE SOBRE COMISION";
 
                 MostrarBeneficiariosSobreComisiones();
+                PermisoPerfil();
             }
         }
 

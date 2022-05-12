@@ -810,6 +810,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 rbNoAgrupar.Checked = true;
                 cbExcluirMotores.Checked = false;
                 cbRetenerInformacion.Checked = false;
+                PermisoPerfil();
             }
         }
 

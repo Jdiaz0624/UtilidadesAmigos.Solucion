@@ -816,6 +816,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "REPORTE DE FIANZAS";
                 CargarSubramo("103");
+                PermisoPerfil();
             }
         }
 

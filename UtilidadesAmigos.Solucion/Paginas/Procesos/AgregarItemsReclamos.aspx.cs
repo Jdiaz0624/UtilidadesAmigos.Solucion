@@ -679,6 +679,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 lbPolizaSeleccionadaProceso.Text = "0";
                 lbReclamoSeleccionadoProceso.Text = "0";
                 lbSecuenciaSeleccionadaProceso.Text = "0";
+                PermisoPerfil();
             }
         }
 

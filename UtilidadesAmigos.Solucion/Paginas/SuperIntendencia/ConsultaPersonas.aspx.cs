@@ -2205,6 +2205,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
                 DivBloqueConsulta.Visible = true;
                 DivBloqueProcesoLote.Visible = false;
                 btnProcesarRegistros.Visible = false;
+                PermisoPerfil();
             }
 
        

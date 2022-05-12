@@ -515,6 +515,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 DesactivarControles();
                 lbSubEncabezadoPermisoPerfil.Visible = false;
                 gbListadoPermisousuarios.Visible = false;
+                PermisoPerfil();
             }
         }
 

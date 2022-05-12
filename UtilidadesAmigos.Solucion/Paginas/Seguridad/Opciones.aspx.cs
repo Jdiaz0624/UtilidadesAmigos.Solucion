@@ -765,6 +765,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
 
                 CargarModulos();
                 CargarPantalla();
+                PermisoPerfil();
             }
         }
     }

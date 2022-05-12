@@ -760,6 +760,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             if (!IsPostBack) {
                 rbPendientes.Checked = true;
                 rbPDF.Checked = true;
+                PermisoPerfil();
             }
         }
 

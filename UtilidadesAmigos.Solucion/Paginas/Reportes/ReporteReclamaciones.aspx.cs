@@ -707,6 +707,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 ListadoTipoReclamacion();
 
                 rbPDF.Checked = true;
+                PermisoPerfil();
             }
         }
 

@@ -506,6 +506,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
                 lbNombreUsuario.Text = SacarNombre.SacarNombreUsuarioConectado();
                 Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantallaActual.Text = "MANTENIMIENTO DE MONEDAS";
+                PermisoPerfil();
             }
         }
 

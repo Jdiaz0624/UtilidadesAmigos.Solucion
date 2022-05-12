@@ -550,6 +550,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarListasConsulta();
                 CargarListasMantenimeinto();
                 ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
+                PermisoPerfil();
             }
         }
 

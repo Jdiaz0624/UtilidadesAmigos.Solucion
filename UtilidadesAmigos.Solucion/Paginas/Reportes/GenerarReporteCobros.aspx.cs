@@ -1648,6 +1648,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarRamos();
                 CargarConceptos();
                 SacarTasa();
+                PermisoPerfil();
             }
         }
 

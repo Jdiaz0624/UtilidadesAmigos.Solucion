@@ -789,6 +789,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "MANTENIMIENTO DE USUARIOS";
+                PermisoPerfil();
             }
         }
 

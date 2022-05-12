@@ -696,7 +696,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 txtPolizaControl.Enabled = true;
                 txtPolizaControl.Focus();
                 DivBloqueIdentificarRamoPoliza.Visible = true;
-               
+                PermisoPerfil();
             }
         }
 

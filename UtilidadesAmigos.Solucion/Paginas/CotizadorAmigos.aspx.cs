@@ -840,6 +840,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarLosDropPadres();
                 CargarDatosTipoCotizador();
                 SacarServicioFijo(1);
+                PermisoPerfil();
             }
         }
 

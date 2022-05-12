@@ -524,6 +524,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarSucursalMantenimiento, ObjdataSistema.Value.BuscaListas("SUCURSAL", null, null));
                 MostrarOficinas();
                 ClientScript.RegisterStartupScript(GetType(), "BloquearControles", "BloquearControles();", true);
+                PermisoPerfil();
             }
         }
 

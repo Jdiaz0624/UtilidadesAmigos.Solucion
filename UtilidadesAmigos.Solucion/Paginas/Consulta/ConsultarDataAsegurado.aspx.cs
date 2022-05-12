@@ -478,6 +478,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "BUSCAR / PROCESAR INFORMACION ASEGURA.DO";
+                PermisoPerfil();
             }
         }
     }

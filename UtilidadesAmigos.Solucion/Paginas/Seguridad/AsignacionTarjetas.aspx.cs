@@ -768,7 +768,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 ConfiguracionInicial((decimal)Session["IdUsuario"]);
 
-              
+                PermisoPerfil();
             }
 
 

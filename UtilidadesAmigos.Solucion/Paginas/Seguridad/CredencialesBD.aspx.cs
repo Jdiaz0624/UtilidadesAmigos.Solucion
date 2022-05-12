@@ -488,6 +488,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
                 lbPantallaActual.Text = "MODIFICAR CREDENCIALES DE BASE DE DATOS";
                 DivBloqueClaveSeguridad.Visible = true;
                 DivBloqueModificarCredencial.Visible = false;
+                PermisoPerfil();
             }
         }
 

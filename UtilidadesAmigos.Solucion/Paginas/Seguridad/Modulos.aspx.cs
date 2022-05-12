@@ -723,6 +723,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Seguridad
 
                 CurrentPage = 0;
                 MostrarModulos();
+                PermisoPerfil();
             }
         }
     }

@@ -848,6 +848,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 rbProcesarDataDetalleHistorico.Checked = true;
                 rbProcesarDataDetalleHistorico.Visible = false;
                 rbProcesarDataResumidaHistorico.Visible = false;
+                PermisoPerfil();
             }
         }
       

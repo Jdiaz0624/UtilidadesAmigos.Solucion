@@ -805,6 +805,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 DIVBloqueCOmpletado.Visible = false;
 
                 ProcesarInformacionSuministroEspejo((decimal)Session["IdUsuario"], 0,0, "DELETEALL");
+                PermisoPerfil();
             }
         }
 

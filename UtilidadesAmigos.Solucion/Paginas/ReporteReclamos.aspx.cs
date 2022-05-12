@@ -1243,6 +1243,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 cbEstatusTipoRecmalo.ForeColor = System.Drawing.Color.Green;
                 lbIdUsuarioConectado.Text = Session["IdUsuario"].ToString();
                 rbBuscarFacturasTodas.Checked = true;
+                PermisoPerfil();
             }
         }
 

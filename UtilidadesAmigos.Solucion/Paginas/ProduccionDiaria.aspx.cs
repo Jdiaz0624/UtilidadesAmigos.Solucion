@@ -595,6 +595,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarRamos();
                 lbSeleccionarRamo.Visible = false;
                 ddlSeleccionarRamo.Visible = false;
+                PermisoPerfil();
             }
           
 

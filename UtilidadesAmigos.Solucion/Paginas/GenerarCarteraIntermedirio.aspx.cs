@@ -517,8 +517,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             {
                 CargarSucursales();
                 CargarOficinasCOnsulta();
+                PermisoPerfil();
 
-               
             }
         }
 

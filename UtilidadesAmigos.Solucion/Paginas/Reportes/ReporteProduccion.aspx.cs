@@ -1081,6 +1081,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
                 decimal Tasa = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2);
                 txtTasa.Text = Tasa.ToString();
+                PermisoPerfil();
             }
         }
 

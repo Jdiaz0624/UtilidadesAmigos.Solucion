@@ -655,6 +655,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 lbNombreUsuario.Text = SacarNombre.SacarNombreUsuarioConectado();
                 Label lbPantallaActual = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantallaActual.Text = "GENERAR RECLAMACIONES PAGADAS";
+                PermisoPerfil();
             }
         }
 

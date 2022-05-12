@@ -1080,6 +1080,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 rbNoEndosable.Checked = true;
                 txttasa.Text = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2).ToString();
                 txtMontoMinimo.Text = "500";
+                PermisoPerfil();
             }
         }
 
