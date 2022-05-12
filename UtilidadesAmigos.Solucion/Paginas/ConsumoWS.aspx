@@ -32,6 +32,7 @@
 
 
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTitulo" runat="server" Text="Consultar Información de Polizas"></asp:Label>
         </div>

@@ -227,6 +227,7 @@
     </script>
 
   <div class="container-fluid">
+      <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div id="DivBloqueConsulta"  runat="server">
             <br />
             <div class="row">

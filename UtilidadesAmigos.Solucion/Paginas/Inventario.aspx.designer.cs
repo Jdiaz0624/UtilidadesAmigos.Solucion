@@ -7,11 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UtilidadesAmigos.Solucion.Paginas {
-    
-    
-    public partial class Inventario {
-        
+namespace UtilidadesAmigos.Solucion.Paginas
+{
+
+
+    public partial class Inventario
+    {
+
+        /// <summary>
+        /// lbIdPerfil control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbIdPerfil;
+
         /// <summary>
         /// lbTituloConsulta control.
         /// </summary>
@@ -20,7 +31,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbTituloConsulta;
-        
+
         /// <summary>
         /// lbArticulo control.
         /// </summary>
@@ -29,7 +40,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbArticulo;
-        
+
         /// <summary>
         /// lbSeleccionarSurcursalConsulta control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbSeleccionarSurcursalConsulta;
-        
+
         /// <summary>
         /// ddlSucursalCOnsulta control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSucursalCOnsulta;
-        
+
         /// <summary>
         /// lbSeleccionarDepartamentoConsulta control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbSeleccionarDepartamentoConsulta;
-        
+
         /// <summary>
         /// ddlDepartamentoConsulta control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlDepartamentoConsulta;
-        
+
         /// <summary>
         /// lbSeleccionarTipoArticuloConsulta control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbSeleccionarTipoArticuloConsulta;
-        
+
         /// <summary>
         /// ddlSeleccionarTipoArticulo control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarTipoArticulo;
-        
+
         /// <summary>
         /// lbDescripcionConsulta control.
         /// </summary>
@@ -92,7 +103,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbDescripcionConsulta;
-        
+
         /// <summary>
         /// txtDescripcionCOnsulta control.
         /// </summary>
@@ -101,7 +112,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescripcionCOnsulta;
-        
+
         /// <summary>
         /// btnConsultar control.
         /// </summary>
@@ -110,7 +121,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConsultar;
-        
+
         /// <summary>
         /// btnExportar control.
         /// </summary>
@@ -119,7 +130,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnExportar;
-        
+
         /// <summary>
         /// btnDeshabilitar control.
         /// </summary>
@@ -128,7 +139,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDeshabilitar;
-        
+
         /// <summary>
         /// gvInventario control.
         /// </summary>

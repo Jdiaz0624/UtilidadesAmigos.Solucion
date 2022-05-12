@@ -135,6 +135,7 @@
     <br />
     <asp:Label ID="lbIdRegistroSeleccionado" runat="server" Text="IdRegistroseleccionado" Visible="false"></asp:Label>
     <asp:Label ID="lbAccionTomarSeleccionado" runat="server" Text="Accion" Visible="false"></asp:Label>
+    <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
 
     <div id="DivBloqueCOnsulta" runat="server">
         <div class="form-check-inline">

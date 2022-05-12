@@ -106,6 +106,7 @@
     <br />
     <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
     <asp:Label ID="lbIdUsuario" runat="server" Text="0" Visible="false"></asp:Label>
+    <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
     <div class="container-fluid">
         <div id="DivBloqueConsulta" runat="server">
            <div class="row">

@@ -89,6 +89,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idModulo, idPantalla, descripcion, estatus, accion);
 			return ((ISingleResult<SP_PROCESAR_PANTALLASResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_OPCION_PANTALLA")]
+		public ISingleResult<SP_BUSCA_OPCION_PANTALLAResult> SP_BUSCA_OPCION_PANTALLA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdModulo", DbType="Int")] System.Nullable<int> idModulo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdPantalla", DbType="Int")] System.Nullable<int> idPantalla, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdOpcion", DbType="Int")] System.Nullable<int> idOpcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(100)")] string descripcion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idModulo, idPantalla, idOpcion, descripcion);
+			return ((ISingleResult<SP_BUSCA_OPCION_PANTALLAResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_OPCION_SISTEMA")]
+		public ISingleResult<SP_PROCESAR_OPCION_SISTEMAResult> SP_PROCESAR_OPCION_SISTEMA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdModulo", DbType="Int")] System.Nullable<int> idModulo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdPantalla", DbType="Int")] System.Nullable<int> idPantalla, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdOpcion", DbType="Int")] System.Nullable<int> idOpcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(100)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="Bit")] System.Nullable<bool> estatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idModulo, idPantalla, idOpcion, descripcion, estatus, accion);
+			return ((ISingleResult<SP_PROCESAR_OPCION_SISTEMAResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_BUSCA_MODULOSResult
@@ -392,6 +406,256 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._IdPantalla != value))
 				{
 					this._IdPantalla = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(100)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Bit")]
+		public System.Nullable<bool> Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_OPCION_PANTALLAResult
+	{
+		
+		private int _IdModulo;
+		
+		private string _Modulo;
+		
+		private int _IdPantalla;
+		
+		private string _Pantalla;
+		
+		private int _IdOpcion;
+		
+		private string _Opcion;
+		
+		private System.Nullable<bool> _Estatus0;
+		
+		private string _Estatus;
+		
+		public SP_BUSCA_OPCION_PANTALLAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdModulo", DbType="Int NOT NULL")]
+		public int IdModulo
+		{
+			get
+			{
+				return this._IdModulo;
+			}
+			set
+			{
+				if ((this._IdModulo != value))
+				{
+					this._IdModulo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Modulo", DbType="VarChar(100)")]
+		public string Modulo
+		{
+			get
+			{
+				return this._Modulo;
+			}
+			set
+			{
+				if ((this._Modulo != value))
+				{
+					this._Modulo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdPantalla", DbType="Int NOT NULL")]
+		public int IdPantalla
+		{
+			get
+			{
+				return this._IdPantalla;
+			}
+			set
+			{
+				if ((this._IdPantalla != value))
+				{
+					this._IdPantalla = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pantalla", DbType="VarChar(100)")]
+		public string Pantalla
+		{
+			get
+			{
+				return this._Pantalla;
+			}
+			set
+			{
+				if ((this._Pantalla != value))
+				{
+					this._Pantalla = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdOpcion", DbType="Int NOT NULL")]
+		public int IdOpcion
+		{
+			get
+			{
+				return this._IdOpcion;
+			}
+			set
+			{
+				if ((this._IdOpcion != value))
+				{
+					this._IdOpcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Opcion", DbType="VarChar(100)")]
+		public string Opcion
+		{
+			get
+			{
+				return this._Opcion;
+			}
+			set
+			{
+				if ((this._Opcion != value))
+				{
+					this._Opcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus0", DbType="Bit")]
+		public System.Nullable<bool> Estatus0
+		{
+			get
+			{
+				return this._Estatus0;
+			}
+			set
+			{
+				if ((this._Estatus0 != value))
+				{
+					this._Estatus0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		public string Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_OPCION_SISTEMAResult
+	{
+		
+		private System.Nullable<int> _IdModulo;
+		
+		private System.Nullable<int> _IdPantalla;
+		
+		private System.Nullable<int> _IdOpcion;
+		
+		private string _Descripcion;
+		
+		private System.Nullable<bool> _Estatus;
+		
+		public SP_PROCESAR_OPCION_SISTEMAResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdModulo", DbType="Int")]
+		public System.Nullable<int> IdModulo
+		{
+			get
+			{
+				return this._IdModulo;
+			}
+			set
+			{
+				if ((this._IdModulo != value))
+				{
+					this._IdModulo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdPantalla", DbType="Int")]
+		public System.Nullable<int> IdPantalla
+		{
+			get
+			{
+				return this._IdPantalla;
+			}
+			set
+			{
+				if ((this._IdPantalla != value))
+				{
+					this._IdPantalla = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdOpcion", DbType="Int")]
+		public System.Nullable<int> IdOpcion
+		{
+			get
+			{
+				return this._IdOpcion;
+			}
+			set
+			{
+				if ((this._IdOpcion != value))
+				{
+					this._IdOpcion = value;
 				}
 			}
 		}

@@ -114,6 +114,7 @@
     </script>
     <!--INICIO DEL ENCABEZADO DE LA PANTALLA-->
    <div class="container-fluid">
+       <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
        <div align="Center" class="jumbotron">
        <asp:Label ID="lbEncabezado" runat="server"  Text="Mantenimiento de Oficinas"></asp:Label>
 

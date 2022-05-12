@@ -118,6 +118,7 @@
         })
     </script>
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <br /><br />
 
         <div class="form-check-inline">

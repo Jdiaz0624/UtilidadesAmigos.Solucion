@@ -177,6 +177,7 @@
     </div>
     <div>
         <asp:Label ID="lbIdEmpleado" runat="server" Text="IdEmpleado" Visible="false"></asp:Label>
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
     </div>
     <!--FIN DEL ENCABEZADO DE LA PANTALLA-->
     <div align="center">

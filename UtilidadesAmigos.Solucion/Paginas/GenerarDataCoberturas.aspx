@@ -16,6 +16,7 @@
             <asp:Label ID="lbPlan" runat="server" Text="Seleccionar Plan" CssClass="Label"></asp:Label>
             <asp:DropDownList ID="ddlSeleccionarPlan" runat="server" CssClass="combobox"></asp:DropDownList>
             <asp:Label ID="lbMes" runat="server" Text="Seleccionar Mes" CssClass="Label"></asp:Label>
+            <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
             <asp:DropDownList ID="ddlSeleccionarMes" runat="server" ToolTip="Seleccionar el Mes para el nombre" CssClass="combobox"></asp:DropDownList>
             <br />
             <asp:Button ID="btnMostrarListado" runat="server" ToolTip="Mostrar el listado de registros procesados" Text="Mostrar Listado" CssClass="Botones" OnClick="btnMostrarListado_Click" />

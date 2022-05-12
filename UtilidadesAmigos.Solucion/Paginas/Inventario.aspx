@@ -18,6 +18,7 @@
     </style>
 
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTituloConsulta" runat="server" Text="Consulta de Inventario"></asp:Label>
              <asp:Label ID="lbArticulo" Visible ="false" runat="server" Text="Consulta de Inventario"></asp:Label>

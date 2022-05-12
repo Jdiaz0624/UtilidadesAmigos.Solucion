@@ -34,6 +34,7 @@
     </style>
 
     <script type="text/javascript">
+        
         function CampoFechaDesdeVacio() {
 
             $("#<%=txtFechaDesdeComisiones.ClientID%>").css("border-color", "red");
@@ -77,6 +78,7 @@
 
 
           <div class="container-fluid">
+              <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
           <br /><br />
           <br />
           <div class="row">

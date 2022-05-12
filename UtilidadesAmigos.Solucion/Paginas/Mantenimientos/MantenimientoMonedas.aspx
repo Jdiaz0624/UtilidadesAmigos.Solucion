@@ -65,6 +65,7 @@
     <br />
 
     <div align="center">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <asp:Label ID="lbTitulo" runat="server" Text="Mantenimiento de Monedas" CssClass="Letranegrita"></asp:Label>
         <asp:Label ID="lbCodigoMoneda" runat="server" Text="0" Visible="false"></asp:Label>
     </div>

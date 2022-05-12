@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UtilidadesAmigos.Solucion.Paginas {
-    
-    
-    public partial class PermisoUsuarios {
-        
+namespace UtilidadesAmigos.Solucion.Paginas
+{
+
+
+    public partial class PermisoUsuarios
+    {
+
         /// <summary>
         /// lbEncabezado control.
         /// </summary>
@@ -20,7 +22,16 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEncabezado;
-        
+
+        /// <summary>
+        /// lbIdPerfil control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbIdPerfil;
+
         /// <summary>
         /// lbClaveSeguridad control.
         /// </summary>
@@ -29,7 +40,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbClaveSeguridad;
-        
+
         /// <summary>
         /// txtClaveSeguridad control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtClaveSeguridad;
-        
+
         /// <summary>
         /// lbUsuario control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbUsuario;
-        
+
         /// <summary>
         /// txtUsuarioFiltro control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUsuarioFiltro;
-        
+
         /// <summary>
         /// btnBuscarRegistros control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBuscarRegistros;
-        
+
         /// <summary>
         /// btnAtras control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAtras;
-        
+
         /// <summary>
         /// btnProcesar control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnProcesar;
-        
+
         /// <summary>
         /// lbSubEncabezadoUsuaruis control.
         /// </summary>
@@ -92,7 +103,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbSubEncabezadoUsuaruis;
-        
+
         /// <summary>
         /// gbListadoUsuarios control.
         /// </summary>
@@ -101,7 +112,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gbListadoUsuarios;
-        
+
         /// <summary>
         /// txtNumeroPagina control.
         /// </summary>
@@ -110,7 +121,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNumeroPagina;
-        
+
         /// <summary>
         /// txtNumeroRegistros control.
         /// </summary>
@@ -119,7 +130,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNumeroRegistros;
-        
+
         /// <summary>
         /// lbSubEncabezadoPermisoPerfil control.
         /// </summary>
@@ -128,7 +139,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbSubEncabezadoPermisoPerfil;
-        
+
         /// <summary>
         /// gbListadoPermisousuarios control.
         /// </summary>

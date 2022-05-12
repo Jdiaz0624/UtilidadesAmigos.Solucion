@@ -79,6 +79,7 @@
     </script>
 
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <br />
         <div class="form-check-inline">
             <asp:RadioButton ID="rbSegurosFull" runat="server" Text="Cotizar Full" CssClass="form-check-input Letranegrita" AutoPostBack="true" OnCheckedChanged="rbSegurosFull_CheckedChanged" GroupName="Cotizador" /> 

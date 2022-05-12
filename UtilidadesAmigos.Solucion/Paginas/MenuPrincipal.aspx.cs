@@ -73,6 +73,54 @@ namespace UtilidadesAmigos.Solucion.Paginas
             ING_MIGUEL_BERROA = 22,
             NOELIA_GONZALEZ = 28
         }
+        private void SacarDatosUsuario(decimal IdUsuario)
+        {
+            Label lbControlUsuarioConectado = (Label)Master.FindControl("lbUsuarioConectado");
+            lbControlUsuarioConectado.Text = "";
+
+            Label lbControlOficinaUsuario = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+            lbControlOficinaUsuario.Text = "";
+
+            var SacarDatos = Objtata.Value.BuscaUsuarios(IdUsuario,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+            foreach (var n in SacarDatos)
+            {
+                lbControlUsuarioConectado.Text = n.Persona;
+                lbControlOficinaUsuario.Text = n.Departamento + " - " + n.Sucursal + " - " + n.Oficina;
+                //lbDepartamento.Text = n.Departamento;
+                //lbSucursal.Text = n.Sucursal;
+                //lbOficina.Text = n.Oficina;
+                lbIdPerfil.Text = n.IdPerfil.ToString();
+            }
+
+            //MOSTRAMOS LAS SUGERENCIAS 
+            int IdPerfil = Convert.ToInt32(lbIdPerfil.Text);
+            if (IdPerfil != 1)
+            {
+                //SACAMOS LOS DATOS DE LOS PERFILES SELECCIONADOS
+                var SacarSugerencias = Objtata.Value.BuscaSugerencias(
+                    new Nullable<decimal>(),
+                    Convert.ToDecimal(Session["IdUsuario"]));
+                gbSugerencia.DataSource = SacarSugerencias;
+                gbSugerencia.DataBind();
+                txtRespuesta.Enabled = false;
+                lbAccion.Text = "INSERT";
+            }
+            else
+            {
+                var SacarSugerencias = Objtata.Value.BuscaSugerencias();
+                gbSugerencia.DataSource = SacarSugerencias;
+                gbSugerencia.DataBind();
+                txtRespuesta.Enabled = true;
+                lbAccion.Text = "INSERT";
+            }
+
+        }
         private void PermisoPerfil()
         {
 
@@ -495,54 +543,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #endregion
 
 
-        private void SacarDatosUsuario(decimal IdUsuario)
-        {
-            Label lbControlUsuarioConectado = (Label)Master.FindControl("lbUsuarioConectado");
-            lbControlUsuarioConectado.Text = "";
-
-            Label lbControlOficinaUsuario = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
-            lbControlOficinaUsuario.Text = "";
-
-            var SacarDatos = Objtata.Value.BuscaUsuarios(IdUsuario,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null);
-            foreach (var n in SacarDatos)
-            {
-                lbControlUsuarioConectado.Text = n.Persona;
-                lbControlOficinaUsuario.Text = n.Departamento + " - " + n.Sucursal + " - " + n.Oficina;
-                //lbDepartamento.Text = n.Departamento;
-                //lbSucursal.Text = n.Sucursal;
-                //lbOficina.Text = n.Oficina;
-                lbIdPerfil.Text = n.IdPerfil.ToString();
-            }
-
-            //MOSTRAMOS LAS SUGERENCIAS 
-            int IdPerfil = Convert.ToInt32(lbIdPerfil.Text);
-            if (IdPerfil != 1)
-            {
-                //SACAMOS LOS DATOS DE LOS PERFILES SELECCIONADOS
-                var SacarSugerencias = Objtata.Value.BuscaSugerencias(
-                    new Nullable<decimal>(),
-                    Convert.ToDecimal(Session["IdUsuario"]));
-                gbSugerencia.DataSource = SacarSugerencias;
-                gbSugerencia.DataBind();
-                txtRespuesta.Enabled = false;
-                lbAccion.Text = "INSERT";
-            }
-            else
-            {
-                var SacarSugerencias = Objtata.Value.BuscaSugerencias();
-                gbSugerencia.DataSource = SacarSugerencias;
-                gbSugerencia.DataBind();
-                txtRespuesta.Enabled = true;
-                lbAccion.Text = "INSERT";
-            }
-            
-        }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

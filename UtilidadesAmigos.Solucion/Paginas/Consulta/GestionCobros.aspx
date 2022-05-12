@@ -80,6 +80,7 @@
     <asp:Label ID="lbAccion" runat="server" Visible="false" Text="INSERT"></asp:Label>
     <asp:Label ID="LBid" runat="server" Visible="false" Text="0"></asp:Label>
     <div id="DivBloquePrincipal" runat="server" class="row g-3">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div  class="col-auto">
           <asp:Label ID="lbIngresarPoliza" runat="server" Text="Ingresar Poliza" CssClass="Letranegrita"></asp:Label>
             <asp:TextBox ID="txtIngresarPoliza" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>

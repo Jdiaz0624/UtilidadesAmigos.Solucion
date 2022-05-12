@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UtilidadesAmigos.Solucion.Paginas {
-    
-    
-    public partial class AnoVehiculo {
-        
+namespace UtilidadesAmigos.Solucion.Paginas
+{
+
+
+    public partial class AnoVehiculo
+    {
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// lbEncabezado control.
         /// </summary>
@@ -29,7 +31,16 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEncabezado;
-        
+
+        /// <summary>
+        /// lbIdPerfil control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbIdPerfil;
+
         /// <summary>
         /// lbTipoCotizadorConsulta control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbTipoCotizadorConsulta;
-        
+
         /// <summary>
         /// ddlTipoCotizadorCnsulta control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoCotizadorCnsulta;
-        
+
         /// <summary>
         /// lbValorVehiculoConsulta control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbValorVehiculoConsulta;
-        
+
         /// <summary>
         /// ddlValorVehiculoCOnsulta control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlValorVehiculoCOnsulta;
-        
+
         /// <summary>
         /// lbAnoVehiculoConsulta control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbAnoVehiculoConsulta;
-        
+
         /// <summary>
         /// txtAnoVehiculoConsulta control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAnoVehiculoConsulta;
-        
+
         /// <summary>
         /// btnConsultar control.
         /// </summary>
@@ -92,7 +103,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConsultar;
-        
+
         /// <summary>
         /// btnNuevo control.
         /// </summary>
@@ -101,7 +112,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnNuevo;
-        
+
         /// <summary>
         /// gvListadoAnoVehiculo control.
         /// </summary>
@@ -110,7 +121,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvListadoAnoVehiculo;
-        
+
         /// <summary>
         /// lbAgregarEditar control.
         /// </summary>
@@ -119,7 +130,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbAgregarEditar;
-        
+
         /// <summary>
         /// lbTipoCotizadorMantenimiento control.
         /// </summary>
@@ -128,7 +139,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbTipoCotizadorMantenimiento;
-        
+
         /// <summary>
         /// ddlTipoCotizadorMantenimiento control.
         /// </summary>
@@ -137,7 +148,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoCotizadorMantenimiento;
-        
+
         /// <summary>
         /// lbValorVehiculoMantenimiento control.
         /// </summary>
@@ -146,7 +157,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbValorVehiculoMantenimiento;
-        
+
         /// <summary>
         /// ddlValorVehiculoMantenimiento control.
         /// </summary>
@@ -155,7 +166,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlValorVehiculoMantenimiento;
-        
+
         /// <summary>
         /// lbAnoVehiculoMantenimiento control.
         /// </summary>
@@ -164,7 +175,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbAnoVehiculoMantenimiento;
-        
+
         /// <summary>
         /// txtAnoVehiculoMantenimiento control.
         /// </summary>
@@ -173,7 +184,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAnoVehiculoMantenimiento;
-        
+
         /// <summary>
         /// cbEstatusMantenimiento control.
         /// </summary>
@@ -182,7 +193,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbEstatusMantenimiento;
-        
+
         /// <summary>
         /// btnGuardarMantenimiento control.
         /// </summary>
@@ -191,7 +202,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardarMantenimiento;
-        
+
         /// <summary>
         /// btnDeshabilitar control.
         /// </summary>
@@ -200,7 +211,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDeshabilitar;
-        
+
         /// <summary>
         /// btnAtras control.
         /// </summary>
@@ -209,7 +220,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAtras;
-        
+
         /// <summary>
         /// lbIdMantenimiento control.
         /// </summary>
@@ -218,7 +229,7 @@ namespace UtilidadesAmigos.Solucion.Paginas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbIdMantenimiento;
-        
+
         /// <summary>
         /// lbAccion control.
         /// </summary>

@@ -37,6 +37,7 @@
     </style>
 
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <br />
         <div class="row">
             <div class="col-md-6">

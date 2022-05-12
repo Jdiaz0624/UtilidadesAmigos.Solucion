@@ -86,7 +86,7 @@
        </div>
        <br />
        <div class="form-check-inline">
-      
+      <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
           <asp:CheckBox ID="cbBusquedaPorLote" runat="server" CssClass="Letranegrita" ToolTip="Buscar informacion de Personas mediante un archio de excel seleccionado del equipo" Text="Buscar Mediante Archivo" AutoPostBack="true" OnCheckedChanged="cbBusquedaPorLote_CheckedChanged" />
 
        </div>

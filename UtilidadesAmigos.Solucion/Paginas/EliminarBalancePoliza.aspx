@@ -23,6 +23,7 @@
         <br />
     <!--COLOCAMOS LOS RADIOS -->
         <div class="form-check-inline">
+            <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
             <div class="form-group form-check">
                 <asp:RadioButton ID="rbGenerarTodo" runat="server" GroupName="Data" Text="Generar Todo" ToolTip="Generar Toda la data ingresada en la data" CssClass="form-check-input"></asp:RadioButton>
             </div>

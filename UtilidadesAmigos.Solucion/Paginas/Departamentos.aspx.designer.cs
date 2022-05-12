@@ -7,11 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
-    
-    
-    public partial class Departamentos {
-        
+namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos
+{
+
+
+    public partial class Departamentos
+    {
+
+        /// <summary>
+        /// lbIdPerfil control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbIdPerfil;
+
         /// <summary>
         /// lbEncabezado control.
         /// </summary>
@@ -20,7 +31,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEncabezado;
-        
+
         /// <summary>
         /// lbCantidadRegistrosTitulo control.
         /// </summary>
@@ -29,7 +40,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosTitulo;
-        
+
         /// <summary>
         /// lbCantidadRegistrosVariable control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosVariable;
-        
+
         /// <summary>
         /// lbCantidadRegistrosCerrar control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCantidadRegistrosCerrar;
-        
+
         /// <summary>
         /// lbIdDepartamento control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbIdDepartamento;
-        
+
         /// <summary>
         /// lbSeleccionarSucursalConsulta control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbSeleccionarSucursalConsulta;
-        
+
         /// <summary>
         /// ddlSeleccionarSucursalCOnsulta control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarSucursalCOnsulta;
-        
+
         /// <summary>
         /// lbOficinaConsulta control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbOficinaConsulta;
-        
+
         /// <summary>
         /// ddloficinaConsulta control.
         /// </summary>
@@ -92,7 +103,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddloficinaConsulta;
-        
+
         /// <summary>
         /// lbDescripcion control.
         /// </summary>
@@ -101,7 +112,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbDescripcion;
-        
+
         /// <summary>
         /// txtDescripcionDepartamento control.
         /// </summary>
@@ -110,7 +121,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescripcionDepartamento;
-        
+
         /// <summary>
         /// btnConsultar control.
         /// </summary>
@@ -119,7 +130,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConsultar;
-        
+
         /// <summary>
         /// btnRestabelcer control.
         /// </summary>
@@ -128,7 +139,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRestabelcer;
-        
+
         /// <summary>
         /// btnExportar control.
         /// </summary>
@@ -137,7 +148,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnExportar;
-        
+
         /// <summary>
         /// gvDepartamentos control.
         /// </summary>
@@ -146,7 +157,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvDepartamentos;
-        
+
         /// <summary>
         /// lbEncabezadoMantenimiento control.
         /// </summary>
@@ -155,7 +166,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEncabezadoMantenimiento;
-        
+
         /// <summary>
         /// ScripManagerDepartamentos control.
         /// </summary>
@@ -164,7 +175,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScripManagerDepartamentos;
-        
+
         /// <summary>
         /// UpdatePanelDepartamentos control.
         /// </summary>
@@ -173,7 +184,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanelDepartamentos;
-        
+
         /// <summary>
         /// lbSeleccionarSucursalMantenimiento control.
         /// </summary>
@@ -182,7 +193,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbSeleccionarSucursalMantenimiento;
-        
+
         /// <summary>
         /// ddlSeleccionarSucursalmantenimiento control.
         /// </summary>
@@ -191,7 +202,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarSucursalmantenimiento;
-        
+
         /// <summary>
         /// lbOficinaMantenimiento control.
         /// </summary>
@@ -200,7 +211,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbOficinaMantenimiento;
-        
+
         /// <summary>
         /// ddlOficinaMantenimiento control.
         /// </summary>
@@ -209,7 +220,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlOficinaMantenimiento;
-        
+
         /// <summary>
         /// lbOficinaDepartamento control.
         /// </summary>
@@ -218,7 +229,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbOficinaDepartamento;
-        
+
         /// <summary>
         /// txtDescripcionDepartamentoMAN control.
         /// </summary>
@@ -227,7 +238,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescripcionDepartamentoMAN;
-        
+
         /// <summary>
         /// lbClaveSeguridad control.
         /// </summary>
@@ -236,7 +247,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbClaveSeguridad;
-        
+
         /// <summary>
         /// txtclaveSeguridad control.
         /// </summary>
@@ -245,7 +256,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtclaveSeguridad;
-        
+
         /// <summary>
         /// cbEstatus control.
         /// </summary>
@@ -254,7 +265,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbEstatus;
-        
+
         /// <summary>
         /// btnGuardarmantenimiento control.
         /// </summary>
@@ -263,7 +274,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Mantenimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardarmantenimiento;
-        
+
         /// <summary>
         /// btnModificarMantenimiento control.
         /// </summary>

@@ -278,5 +278,67 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSeguridad
             return Procesar;
         }
         #endregion
+        #region MANTENIMIENTO DE OPCIONES DE PANTALLAS
+        /// <summary>
+        /// Este metodo es para Buscar las ociones de las pantallas
+        /// </summary>
+        /// <param name="IdModulo"></param>
+        /// <param name="IdPantalla"></param>
+        /// <param name="IdOpcionPantalla"></param>
+        /// <param name="Descripcion"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Seguridad.EOpcionPantalla> BuscaOpcionesPantalla(int? IdModulo = null, int? IdPantalla = null, int? IdOpcionPantalla = null, string Descripcion = null) {
+
+            ObjDataSeguridad.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjDataSeguridad.SP_BUSCA_OPCION_PANTALLA(IdModulo, IdPantalla, IdOpcionPantalla, Descripcion)
+                           select new UtilidadesAmigos.Logica.Entidades.Seguridad.EOpcionPantalla
+                           {
+                               IdModulo=n.IdModulo,
+                               Modulo=n.Modulo,
+                               IdPantalla=n.IdPantalla,
+                               Pantalla=n.Pantalla,
+                               IdOpcion=n.IdOpcion,
+                               Opcion=n.Opcion,
+                               Estatus0=n.Estatus0,
+                               Estatus=n.Estatus
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo es para procesar la informacion de la opciones
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Seguridad.EOpcionPantalla ProcesarOpcionesPantalla(UtilidadesAmigos.Logica.Entidades.Seguridad.EOpcionPantalla Item, string Accion) {
+
+            ObjDataSeguridad.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Seguridad.EOpcionPantalla Procesar = null;
+
+            var Opciones = ObjDataSeguridad.SP_PROCESAR_OPCION_SISTEMA(
+                Item.IdModulo,
+                Item.IdPantalla,
+                Item.IdOpcion,
+                Item.Opcion,
+                Item.Estatus0,
+                Accion);
+            if (Opciones != null) {
+
+                Procesar = (from n in Opciones
+                            select new UtilidadesAmigos.Logica.Entidades.Seguridad.EOpcionPantalla
+                            {
+                                IdModulo=n.IdModulo,
+                                IdPantalla=n.IdPantalla,
+                                IdOpcion=n.IdOpcion,
+                                Opcion=n.Descripcion,
+                                Estatus0=n.Estatus
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }

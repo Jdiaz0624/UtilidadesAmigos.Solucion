@@ -92,7 +92,7 @@
     <br /><br />
    <div class="container-fluid">
         <div class="form-check-inline">
-
+            <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
             <asp:RadioButton ID="rbGenerarBackuup" runat="server" Text="Generar Backup" AutoPostBack="true" CssClass="form-check-input" OnCheckedChanged="rbGenerarBackuup_CheckedChanged" ToolTip="Generar Backup de Base de Datos" GroupName="TipoOperacion" />
             <asp:RadioButton ID="rbHistorialBackup" runat="server" Text="Historial" AutoPostBack="true" CssClass="form-check-input" OnCheckedChanged="rbHistorialBackup_CheckedChanged" ToolTip="Historial de Backup de Base de Datos" GroupName="TipoOperacion" />
             <asp:RadioButton ID="rbConfiguracion" runat="server" Text="Configuración" AutoPostBack="true" CssClass="form-check-input" OnCheckedChanged="rbConfiguracion_CheckedChanged" ToolTip="Configuracion de Base de Datos" GroupName="TipoOperacion" />

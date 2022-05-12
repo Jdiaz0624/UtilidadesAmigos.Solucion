@@ -21,10 +21,7 @@
             border-collapse: collapse;
         }
        
-        th {
-            background-color: #1E90FF;
-            color: #000000;
-        }
+  
           .auto-style1 {
               width: 70%;
               height: 36px;
@@ -34,8 +31,94 @@
               height: 36px;
           }
         .BotonImagen {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
         }
     </style>
+
+    <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <asp:Label ID="lbSeleccionarModulo" runat="server" Text="Modulo" CssClass="Letranegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarModulo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarModulo_SelectedIndexChanged" ToolTip="Seleccionar Modulo" CssClass="form-control"></asp:DropDownList>
+            </div>
+
+             <div class="col-md-4">
+                 <asp:Label ID="lbSeleccionarPantalla" runat="server" Text="Pantalla" CssClass="Letranegrita"></asp:Label>
+                <asp:DropDownList ID="ddlSeleccionarPantalla" runat="server" ToolTip="Seleccionar Pantalla" CssClass="form-control"></asp:DropDownList>
+            </div>
+
+             <div class="col-md-4">
+                 <asp:Label ID="lbOpcion" runat="server" Text="Opción" CssClass="Letranegrita"></asp:Label>
+                 <asp:TextBox ID="txtOpcion" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+            </div>
+        </div>
+        <br />
+        <div align="center">
+            <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consular Registros" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultar_Click" />
+            <asp:ImageButton ID="btnExportar" runat="server" ToolTip="Exportaer Registros" CssClass="BotonImagen" ImageUrl="~/Imagenes/excel.png" OnClick="btnExportar_Click" />
+        </div>
+        <br />
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col"> Modulo </th>
+                    <th scope="col"> Pantalla </th>
+                    <th scope="col"> Opcion </th>
+                    <th scope="col"> Estatus </th>
+                    <th scope="col">  </th>
+                </tr>
+            </thead>
+            <tbody>
+                <asp:Repeater ID="rpListadoOpciones" runat="server">
+                    <ItemTemplate>
+                        <tr>
+                            <asp:HiddenField ID="hfModulo" runat="server" Value='<%# Eval("IdModulo") %>' />
+                            <asp:HiddenField ID="hfPantalla" runat="server" Value='<%# Eval("IdPantalla") %>' />
+                            <asp:HiddenField ID="hfOpcion" runat="server" Value='<%# Eval("IdOpcion") %>' />
+                            <asp:HiddenField ID="hfEstatus" runat="server" Value='<%# Eval("Estatus0") %>' />
+
+                            <td> <%# Eval("Modulo") %> </td>
+                            <td> <%# Eval("Pantalla") %> </td>
+                            <td> <%# Eval("Opcion") %> </td>
+                            <td> <%# Eval("Estatus") %> </td>
+                            <td> <asp:ImageButton ID="btnEditar" runat="server" ToolTip="Editar Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Editar.png" OnClick="btnEditar_Click" /> </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </tbody>
+        </table>
+          <table class="table table-striped">
+            <tfoot class="table-light">
+                <tr>
+                    <td align="right" >Pagina <asp:Label ID="lbPaginaActual" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label> de <asp:Label ID="lbCantidadPagina" runat="server" Text="0" CssClass="Letranegrita"></asp:Label></td>
+                </tr>
+            </tfoot>
+        </table>
+
+             <div id="divPaginacionOpciones" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:ImageButton ID="btnPrimeraPagina" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPagina_Click" /> </td>
+                    <td> <asp:ImageButton ID="btnAnterior" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnAnterior_Click" /> </td>
+                    <td align="center">
+                        <asp:DataList ID="dtPaginacion" runat="server" OnItemCommand="dtPaginacion_ItemCommand" OnItemDataBound="dtPaginacion_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:Button ID="btnPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:ImageButton ID="btnSiguiente" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguiente_Click" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimo" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimo_Click" /> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+                           <br />
+
+    </div>
 </asp:Content>

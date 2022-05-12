@@ -128,6 +128,7 @@
     </script>
     <br /><br />
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div id="DivBloquePrincipal" runat="server">
             <div class="row">
                 <div class="col-md-6">

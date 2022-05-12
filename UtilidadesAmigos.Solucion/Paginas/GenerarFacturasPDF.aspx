@@ -22,6 +22,7 @@
     </style>
      <div class="container-fluid">
         <div align="center" class="jumbotron">
+            <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
             <asp:Label ID="lbEncabezadoPantalla" runat="server" Text="Generar Facturas PDF"></asp:Label>
         </div>
          <div align="center">
