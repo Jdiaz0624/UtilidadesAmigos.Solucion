@@ -28,10 +28,7 @@
            font-weight:bold;
           }
 
-        th {
-            background-color: #1E90FF;
-            color: #000000;
-        }
+    
 
         .BotonSolicitud {
                width:50px;
@@ -122,7 +119,7 @@
           </div>
 
            <asp:ScriptManager ID="ScripManagerGestionCobros" runat="server"></asp:ScriptManager> 
-<button class="btn btn-outline-primary btn-sm BotonEspecial" type="button" id="btnPolizasNoContastadas" data-toggle="collapse" data-target="#PolizasNoContactadas" aria-expanded="false" aria-controls="collapseExample">
+<button class="btn btn-dark btn-sm BotonEspecial" type="button" id="btnPolizasNoContastadas" data-toggle="collapse" data-target="#PolizasNoContactadas" aria-expanded="false" aria-controls="collapseExample">
                   
                   <asp:Label ID="lbPolizasNoContactadas" runat="server" Text="  POLIZAS NO CONTACTADAS" CssClass="Letranegrita"></asp:Label>
                      </button><br />
@@ -150,7 +147,7 @@
            <br />
 
                                <table class="table table-striped">
-                                   <thead>
+                                   <thead class="table-dark">
                                        <tr>
 
                                            <th scope="col"> Poliza </th>
@@ -159,8 +156,8 @@
                                            <th scope="col" class="auto-style1"> Comentario </th>
                                            <th scope="col"> Vigencia </th>
                                            <th scope="col"> Nueva LLamada </th>
-                                           <th scope="col"> Completar </th>
-                                           <th scope="col"> Borrar </th>
+                                           <th scope="col">  </th>
+                                           <th scope="col">  </th>
                                        </tr>
                                    </thead>
                                    <tbody>
@@ -178,21 +175,21 @@
                                                    <td> <%# Eval("Comentario") %> </td>
                                                    <td> <%# Eval("FinVigencia") %> </td>
                                                    <td> <%# Eval("NuevaLLamada") %> </td>
-                                                   <td> <asp:ImageButton ID="btnGestionarPolizasNoContactadasNuevo" runat="server" CssClass="BotonImagen" OnClick="btnGestionarPolizasNoContactadasNuevo_Click" ToolTip="Cambiar estatus de polizas no contactadas en la gestion de cobros" ImageUrl="~/Imagenes/Completar.png" /> </td>
-                                                   <td> <asp:ImageButton ID="btnEliminarRegistrosPolizasGestionadas" runat="server" CssClass="BotonImagen" OnClick="btnEliminarRegistrosPolizasGestionadas_Click" ToolTip="Borrar Registro." ImageUrl="~/Imagenes/Eliminar.png" /> </td>
+                                                   <td align="right"> <asp:ImageButton ID="btnGestionarPolizasNoContactadasNuevo" runat="server" CssClass="BotonImagen" OnClick="btnGestionarPolizasNoContactadasNuevo_Click" ToolTip="Cambiar estatus de polizas no contactadas en la gestion de cobros" ImageUrl="~/Imagenes/Completar.png" /> </td>
+                                                   <td align="right"> <asp:ImageButton ID="btnEliminarRegistrosPolizasGestionadas" runat="server" CssClass="BotonImagen" OnClick="btnEliminarRegistrosPolizasGestionadas_Click" ToolTip="Borrar Registro." ImageUrl="~/Imagenes/Eliminar.png" /> </td>
                                                </tr>
                                            </ItemTemplate>
                                        </asp:Repeater>
                                    </tbody>
                                </table>
-              
+                        <table class="table">
+                          <tfoot class="table-light">
+                                <tr>
+                                <td align="right"><b>Pagina</b> <asp:Label ID="lbPaginaActualVariablePolizasNoContactadas" runat="server" Text=" 0 "></asp:Label> <b>De</b> <asp:Label ID="lbCantidadPaginaVAriablePolizasNoContactadas" runat="server" Text="0"></asp:Label></td>
+                            </tr>
+                          </tfoot>
+                        </table>
 
-                            <div align="center">
-                <asp:Label ID="lbPaginaActualTituloPolizasNoContactadas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariablePolizasNoContactadas" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloPolizasNoContactadas" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriablePolizasNoContactadas" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
              <div id="divPaginacionPolizasNoContactadas" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
@@ -337,7 +334,7 @@
         <!--INICIO DEL GRID-->
       
             <table class="table table-striped">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         
                         <th scope="col"> Poliza </th>
@@ -348,14 +345,14 @@
                         <th scope="col"> Balance </th>
                         <th scope="col"> Fin Vigencia </th>
                         <th scope="col"> Comentarios </th>
-                        <th scope="col"> Gestión </th>
+                        <th scope="col">  </th>
                     </tr>
                 </thead>
                 <tbody>
                     <asp:Repeater ID="rpListadoRenovacion" runat="server">
                         <ItemTemplate>
                             <tr>
-                                 <asp:HiddenField ID="hfPolizaGestionCobros" runat="server" Value='<%# Eval("Poliza") %>' />
+                                 <asp:HiddenField ID="hfPolizaGestionCobros" runat="server" Value='<%# Eval("Poliza") %>' />    
                    <%--     <asp:HiddenField ID="hfFechaFinVigenciaGestionCobros" runat="server" Value='<%# Eval("FechaFinVigencia") %>' />--%>
 
                                 
@@ -367,20 +364,22 @@
                                 <td> <%#string.Format("{0:n2}", Eval("Balance")) %> </td>
                                 <td> <%# Eval("FinVigenciaFormateado") %> </td>
                                 <td> <%# string.Format("{0:n0}", Eval("CantidadComentarios")) %> </td>
-                                <td> <asp:ImageButton ID="btnGestionNuevo" runat="server" CssClass="BotonImagen" OnClick="btnGestionNuevo_Click" ToolTip="Gestion de Cobros" ImageUrl="~/Imagenes/Servicio al Cliente.png" /> </td>
+                                <td align="right"> <asp:ImageButton ID="btnGestionNuevo" runat="server" CssClass="BotonImagen" OnClick="btnGestionNuevo_Click" ToolTip="Gestion de Cobros" ImageUrl="~/Imagenes/Servicio al Cliente.png" /> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
+            <table class="table">
+                <tfoot class="table-light">
+                    <tr>
+                        <td align="right"><b>Pagina</b> <asp:Label ID="lbPaginaActualVariavle" runat="server" Text=" 0 "></asp:Label> <b>De</b> <asp:Label ID="lbCantidadPaginaVAriable" runat="server" Text="0"></asp:Label>  </td>
+                    </tr>
+                </tfoot>
+            </table>
        
 
-        <div align="center">
-                <asp:Label ID="lbPaginaActualTitulo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariavle" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTitulo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
+    
              <div id="divPaginacion" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
@@ -428,7 +427,7 @@
                <br />
          
                    <table class="table table-striped">
-                       <thead>
+                       <thead class="table-dark">
                            <tr>
                                <th scope="col"> Supervisor </th>
                                <th scope="col"> Renovar </th>
@@ -456,13 +455,15 @@
                            </asp:Repeater>
                        </tbody>
                    </table>
+            <table class="table">
+                <tfoot class="table-light">
+                    <tr>
+                        <td align="right"><b>Pagina</b> <asp:Label ID="lbPaginaActualVariavleMachado" runat="server" Text=" 0 "></asp:Label> <b>De</b>  <asp:Label ID="lbCantidadPaginaVAriableMachado" runat="server" Text="0"></asp:Label></td>
+                    </tr>
+                </tfoot>
+            </table>
       
-               <div align="center">
-                <asp:Label ID="lbPaginaActualTituloMachado" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariavleMachado" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloMachado" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriableMachado" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
+
                <div id="divPaginacionProceso" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
@@ -495,7 +496,7 @@
         <div class="container-fluid">
             <br />
             
-              <button class="btn btn-outline-primary btn-sm BotonEspecial" type="button" id="btnInformacionCobertura" data-toggle="collapse" data-target="#InformacionCliente" aria-expanded="false" aria-controls="collapseExample">
+              <button class="btn btn-dark btn-sm BotonEspecial" type="button" id="btnInformacionCobertura" data-toggle="collapse" data-target="#InformacionCliente" aria-expanded="false" aria-controls="collapseExample">
                   
                   <asp:Label ID="lbDetalleGeneralesPolizaSeleccionada" runat="server" Text="  DETALLES GENERALES DE LA POLIZA SELECCIONADA" CssClass="Letranegrita"></asp:Label>
                      </button><br />
@@ -604,11 +605,11 @@
 
               
             </div>
-
+                           <br />
                            <div id="DivDatoVehiculo" runat="server">
                
                                    <table class="table table-striped">
-                                       <thead>
+                                       <thead class="table-dark">
                                            <tr>
                                                <th scope="col"> Item </th>
                                                <th scope="col"> Tipo </th>
@@ -639,13 +640,14 @@
                                        </tbody>
 
                                    </table>
-                          
-                                <div align="center">
-                <asp:Label ID="lbPaginaActualTituloDatoVehiculo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariableDatoVehiculo" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloDatoVehiculo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriableDatoVehiculo" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
+                               <table class="table">
+                                   <tfoot class="table-light">
+                                       <tr>
+                                           <td align="right"><b>Pagina</b><asp:Label ID="lbPaginaActualVariableDatoVehiculo" runat="server" Text=" 0 "></asp:Label> <b>De</b> <asp:Label ID="lbCantidadPaginaVAriableDatoVehiculo" runat="server" Text="0"></asp:Label></td>
+                                       </tr>
+                                   </tfoot>
+                               </table>
+                            
                <div id="divPaginacionDatoVehiculo" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
@@ -712,15 +714,12 @@
             <asp:ImageButton ID="btnGuardarNuevo" runat="server" CssClass="BotonImagen" OnClick="btnGuardarNuevo_Click" ToolTip="Guardar Registro" ImageUrl="~/Imagenes/salvar.png" />
             <asp:ImageButton ID="btnVolverNuevo" runat="server" CssClass="BotonImagen" OnClick="btnVolverNuevo_Click" ToolTip="Volver Atras" ImageUrl="~/Imagenes/volver-flecha.png" />
             <br /><br />
-            <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
-            <asp:Label ID="lbCantidadRegistrosVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" Text=")" CssClass="Letranegrita"></asp:Label>
         </div>
        
         
 
             <table class="table table-striped">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                     <th scope="col"> Esattus </th>
                     <th scope="col"> Concepto </th>
@@ -728,7 +727,6 @@
                     <th scope="col"> Vigencia </th>
                     <th scope="col"> Usuario </th>
                     <th scope="col"> Fecha </th>
-                    <th scope="col"> Hora </th>
                    </tr>
                 </thead>
 
@@ -744,19 +742,20 @@
                         <td> <%# Eval("FechaFinVigencia") %> </td>
                         <td> <%# Eval("Usuario") %> </td>
                         <td> <%# Eval("Fecha") %> </td>
-                        <td> <%# Eval("Hora") %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
-    
-        <div align="center">
-                <asp:Label ID="lbPaginaActualTituloGestionCobros" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariableGestionCobros" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloGestionCobros" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriableGestionCobros" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
+        <table class="table">
+            <tfoot class="table-light">
+                <tr>
+                    <td><b>Cantidad de Registros: </b> <asp:Label ID="lbCantidadRegistrosVariable" runat="server" Text="0"></asp:Label> </td>
+                    <td align="right"><b>Pagina </b><asp:Label ID="lbPaginaActualVariableGestionCobros" runat="server" Text=" 0 "></asp:Label> <b>De </b><asp:Label ID="lbCantidadPaginaVAriableGestionCobros" runat="server" Text="0"></asp:Label></td>
+                </tr>
+
+            </tfoot>
+        </table>
                <div id="divPaginacionGestionCobros" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
@@ -847,9 +846,9 @@
                   <!--INICIO DEL GRID-->
             
                       <table class="table table-striped">
-                          <thead>
+                          <thead class="table-dark">
                               <tr>
-                                  <th scope="col"> Persona  </th>
+                                   <th scope="col"> Persona  </th>
                                    <th scope="col"> Cantidad> </th>
                                    <th scope="col"> Monto </th>
                               </tr>
@@ -866,14 +865,13 @@
                               </asp:Repeater>
                           </tbody>
                       </table>
-              
-
-                  <div align="center">
-                <asp:Label ID="lbPaginaActualTituloEstadistica" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariavleEstadistica" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloEstadistica" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriableEstadistica" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
+              <table class="table">
+                  <tfoot class="table-light">
+                      <tr>
+                          <td align="right" ><b>Pagina <asp:Label ID="lbPaginaActualVariavleEstadistica" runat="server" Text=" 0 "></asp:Label></b> <b>De <asp:Label ID="lbCantidadPaginaVAriableEstadistica" runat="server" Text="0"></asp:Label></b></td>
+                      </tr>
+                  </tfoot>
+              </table>
              <div id="DivPaginacionEstadistica" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">

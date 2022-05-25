@@ -276,35 +276,6 @@
       <Column Name="Hora" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZA" Method="SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZA">
-    <Parameter Name="ID" Parameter="iD" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="FechaFinVigencia" Parameter="fechaFinVigencia" Type="System.String" DbType="VarChar(20)" />
-    <ElementType Name="SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZAResult">
-      <Column Name="ID" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="FechaProceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="IdEstatusLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="EstatusLlamada" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="IdConceptoLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ConceptoLlamada" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="FechaFinVigencia" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="NumeroSeguimiento" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="FechaNuevaLlamada0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FechaLlamada" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="HoraLLamada" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="NuevaLLamada" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
-      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_BUSCA_POLIZAS_PARA_AVISO_GESTION_COBROS" Method="SP_BUSCA_POLIZAS_PARA_AVISO_GESTION_COBROS">
     <Parameter Name="NumeroRegistro" Parameter="numeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
@@ -546,6 +517,34 @@
       <Column Name="Cancelada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
       <Column Name="MontoCancelado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
       <Column Name="Cobrado" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZA" Method="SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZA">
+    <Parameter Name="ID" Parameter="iD" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="FechaFinVigencia" Parameter="fechaFinVigencia" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZAResult">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FechaProceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="IdEstatusLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EstatusLlamada" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdConceptoLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ConceptoLlamada" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="FechaFinVigencia" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NumeroSeguimiento" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="FechaNuevaLlamada0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaLlamada" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Hora1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

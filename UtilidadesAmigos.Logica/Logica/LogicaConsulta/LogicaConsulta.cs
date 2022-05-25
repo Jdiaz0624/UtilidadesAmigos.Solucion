@@ -78,7 +78,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                Usuario=n.Usuario,
                                FechaProceso=n.FechaProceso,
                                Fecha=n.Fecha,
-                               Hora=n.Hora,
+                               HoraLLamada=n.Hora1,
                                IdEstatusLlamada=n.IdEstatusLlamada,
                                EstatusLlamada=n.EstatusLlamada,
                                IdConceptoLlamada=n.IdConceptoLlamada,
@@ -87,8 +87,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                NumeroSeguimiento=n.NumeroSeguimiento,
                                FechaNuevaLlamada0=n.FechaNuevaLlamada0,
                                FechaLlamada=n.FechaLlamada,
-                               HoraLLamada=n.HoraLLamada,
-                               NuevaLLamada=n.NuevaLLamada,
+                               //HoraLLamada=n.HoraLLamada,
+                               //NuevaLLamada=n.NuevaLLamada,
                                CantidadRegistros =n.CantidadRegistros
                            }).ToList();
             return Listado;
