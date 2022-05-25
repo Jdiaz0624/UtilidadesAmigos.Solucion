@@ -2360,7 +2360,15 @@ namespace UtilidadesAmigos.Logica.Logica
                                Mes=n.Mes,
                                Anos=n.Anos,
                                CantidadComentarios=n.CantidadComentarios,
-                               Chasis=n.Chasis
+                               Chasis=n.Chasis,
+                               CantidadReclamaciones=n.CantidadReclamaciones,
+                               UltimaReclamacion=n.UltimaReclamacion,
+                               FechaUltimoComentario=n.FechaUltimoComentario,
+                               HoraUltimoComentario=n.HoraUltimoComentario,
+                               UltimoEstatusLlamada=n.UltimoEstatusLlamada,
+                               UltimoConceptollamada=n.UltimoConceptollamada,
+                               UltimoComentario=n.UltimoComentario,
+                               UsuarioComento=n.UsuarioComento
                            }).ToList();
             return Listado;
         }
