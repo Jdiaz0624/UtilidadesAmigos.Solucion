@@ -36,7 +36,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         MiguelBerrora=22,
         KimailiRazon=35,
         AngelaDesire=41,
-        DarlenPina = 43
+        DarlenPina = 43,
+            glenisbierd=48
         }
         
         #region CONTROL PARA MOSTRAR LA PAGINACION
@@ -868,7 +869,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) {
+            if (!IsPostBack)
+            {
 
                 Label lbNombreUsuarioCOnectado = (Label)Master.FindControl("lbUsuarioConectado");
                 UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario NombreUsuario = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
@@ -937,23 +939,30 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
                 }
-                else if (IdUsuario == (decimal)PermisoUsuarios.AngelaDesire) {
-                    btnNuevoNuevo.Visible = true;
-                    btnModificarNuevo.Visible = true;
-                    btnEliminarNuevo.Visible = false;
-                }
-                else if (IdUsuario == (decimal)PermisoUsuarios.DarlenPina)
+                else if (IdUsuario == (decimal)PermisoUsuarios.AngelaDesire)
                 {
                     btnNuevoNuevo.Visible = true;
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
                 }
-                else
-                {
-                    btnNuevoNuevo.Visible = false;
-                    btnModificarNuevo.Visible = false;
+                else if (IdUsuario == (decimal)PermisoUsuarios.DarlenPina){
+                    btnNuevoNuevo.Visible = true;
+                    btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
-                }
+            }
+            else if (IdUsuario == (decimal)PermisoUsuarios.glenisbierd)
+            {
+
+                btnNuevoNuevo.Visible = true;
+                btnModificarNuevo.Visible = true;
+                btnEliminarNuevo.Visible = false;
+            }
+            else
+            {
+                btnNuevoNuevo.Visible = false;
+                btnModificarNuevo.Visible = false;
+                btnEliminarNuevo.Visible = false;
+            }
                 PermisoPerfil();
 
             }
