@@ -948,7 +948,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 else if (IdUsuario == (decimal)PermisoUsuarios.DarlenPina){
                     btnNuevoNuevo.Visible = true;
                     btnModificarNuevo.Visible = true;
-                    btnEliminarNuevo.Visible = false;
+                    btnEliminarNuevo.Visible = false;                                                                                    
             }
             else if (IdUsuario == (decimal)PermisoUsuarios.glenisbierd)
             {
