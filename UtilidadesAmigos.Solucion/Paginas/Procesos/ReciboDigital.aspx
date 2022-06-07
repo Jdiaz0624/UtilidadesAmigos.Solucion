@@ -66,14 +66,7 @@
                 <asp:RadioButton ID="rbExcelPlano" runat="server" Text="Excel Plano" GroupName="FormatoReporte" ToolTip="Generar Reporte en Excel Plano" />
             </div>
             <br />
-            <div class="form-check-inline">
-                <asp:Label ID="Label1" runat="server" Text="Tipo de Impresioon: " CssClass="LetrasNegrita"></asp:Label>
-                <asp:RadioButton ID="rbPanpalla" runat="server" Text="Pantalla" AutoPostBack="true" OnCheckedChanged="rbPanpalla_CheckedChanged" GroupName="TipoImpresion" ToolTip="Generar el Recibo por Pantalla" />
-                <asp:RadioButton ID="rbDirectoImpresora" runat="server" Text="Directo" AutoPostBack="true" OnCheckedChanged="rbDirectoImpresora_CheckedChanged" GroupName="TipoImpresion" ToolTip="Imprimir el Recibo DIrecto a la Impresora" /><br />
-                <asp:Label ID="lbcantidadImpresiones" runat="server" Text="Cantidad de Impresiones: " CssClass="LetrasNegrita"></asp:Label>
-                <asp:TextBox ID="txtCantidadImpresiones" runat="server" Text="2" TextMode="Number" CssClass="form-control"></asp:TextBox>
-                
-            </div>
+      
             <br />
             <div align="center">
                 <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultar_Click" />
@@ -92,6 +85,7 @@
                         <th scope="col"> Valor </th>
                         <th scope="col"> Tipo </th>
                         <th scope="col">  </th>
+                        <th scope="col">  </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -106,7 +100,8 @@
                                 <td> <%# Eval("Intermediario") %> </td>
                                 <td> <%#string.Format("{0:N2}", Eval("ValorRecibo")) %> </td>
                                 <td> <%# Eval("TipoPago") %> </td>
-                                <td>  <asp:ImageButton ID="btnRecibo" runat="server" ToolTip="Generar Recibo" CssClass="BotonImagen" ImageUrl="~/Imagenes/pdf.png" OnClick="btnRecibo_Click" /> </td>
+                                <td align="right">  <asp:ImageButton ID="btnRecibo" runat="server" ToolTip="Generar Recibo" CssClass="BotonImagen" ImageUrl="~/Imagenes/pdf.png" OnClick="btnRecibo_Click" /> </td>
+                                <td align="right">  <asp:ImageButton ID="DirectoImpresora" runat="server" ToolTip="Imprimir Directo a la Impresora" CssClass="BotonImagen" ImageUrl="~/Imagenes/impresora.png" OnClick="DirectoImpresora_Click" /> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>

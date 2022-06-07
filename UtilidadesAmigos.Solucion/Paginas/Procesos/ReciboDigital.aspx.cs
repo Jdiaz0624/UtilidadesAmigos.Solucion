@@ -221,7 +221,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
 
             rbPDF.Checked = true;
-            rbDirectoImpresora.Checked = true;
+   
             TipoPagoConsulta();
             DIVBloqueReciboDigitalConsulta.Visible = true;
             BloqueReciboDigitalMantenimiento.Visible = false;
@@ -261,38 +261,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             txtNombreSupervisorConsulta.Text = NombreSupervisor.SacarNombreSupervisor();
         }
 
-        protected void rbPanpalla_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbPanpalla.Checked == true)
-            {
+   
 
-                lbcantidadImpresiones.Visible = false;
-                txtCantidadImpresiones.Visible = false;
-            }
-            else
-            {
-                lbcantidadImpresiones.Visible = true;
-                txtCantidadImpresiones.Visible = true;
-                txtCantidadImpresiones.Text = string.Empty;
-                txtCantidadImpresiones.Text = "2";
-            }
-        }
-
-        protected void rbDirectoImpresora_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbDirectoImpresora.Checked == true)
-            {
-                lbcantidadImpresiones.Visible = true;
-                txtCantidadImpresiones.Visible = true;
-                txtCantidadImpresiones.Text = string.Empty;
-                txtCantidadImpresiones.Text = "2";
-            }
-            else
-            {
-                lbcantidadImpresiones.Visible = false;
-                txtCantidadImpresiones.Visible = false;
-            }
-        } 
+      
 
         protected void btnConsultar_Click(object sender, ImageClickEventArgs e)
         {
@@ -403,16 +374,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
 
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Recibo de Ingreso");
 
-            if (rbDirectoImpresora.Checked == true)
-            {
-                int CantidadCopias = string.IsNullOrEmpty(txtCantidadImpresiones.Text.Trim()) ? 2 : Convert.ToInt32(txtCantidadImpresiones.Text);
-                Reporte.PrintToPrinter(CantidadCopias, true, 0, 2);
-            }
-            else
-            {
-                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Recibo de Ingreso");
-            }
+         
         }
 
         protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)
@@ -464,6 +428,28 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             ProcesarInformacion(
                 Convert.ToDecimal(lbIdRegistroSeleccionado.Text),
                 lbAccionTomar.Text);
+        }
+
+        protected void DirectoImpresora_Click(object sender, ImageClickEventArgs e)
+        {
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var NumeroRecibo = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroRecibo")).Value.ToString();
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(Server.MapPath("Recibos.rpt"));
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@NumeroRecibo", Convert.ToDecimal(NumeroRecibo));
+            Reporte.SetParameterValue("@CodigoIntermediario", new Nullable<int>());
+            Reporte.SetParameterValue("@CodigoSupervisor", new Nullable<int>());
+            Reporte.SetParameterValue("@FechaDesde", new Nullable<DateTime>());  
+            Reporte.SetParameterValue("@FechaHasta", new Nullable<DateTime>());
+            Reporte.SetParameterValue("@IdTipoPago", new Nullable<int>());
+            Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+            Reporte.PrintToPrinter(2, true, 0, 2);
         }
 
         protected void btnVolver_Click(object sender, ImageClickEventArgs e)

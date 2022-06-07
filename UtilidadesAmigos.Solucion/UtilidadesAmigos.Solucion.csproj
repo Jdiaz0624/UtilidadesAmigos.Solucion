@@ -184,6 +184,7 @@
     <Content Include="Imagenes\Eliminar.png" />
     <Content Include="Imagenes\escoger.png" />
     <Content Include="Imagenes\excel.png" />
+    <Content Include="Imagenes\impresora.png" />
     <Content Include="Imagenes\Iniciales.ico" />
     <Content Include="Imagenes\login.jpg" />
     <Content Include="Imagenes\Logo.ico" />
