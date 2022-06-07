@@ -775,5 +775,18 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkReciboDigital_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Procesos/ReciboDigital.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }
