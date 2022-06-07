@@ -224,7 +224,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             rbDirectoImpresora.Checked = true;
             TipoPagoConsulta();
             DIVBloqueReciboDigitalConsulta.Visible = true;
-            BloqueReciboDigitalMantenimiento.Visible = true;
+            BloqueReciboDigitalMantenimiento.Visible = false;
 
             rpListadoREcibos.DataSource = null;
             rpListadoREcibos.DataBind();
