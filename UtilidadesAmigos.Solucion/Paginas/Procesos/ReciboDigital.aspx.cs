@@ -292,7 +292,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 lbcantidadImpresiones.Visible = false;
                 txtCantidadImpresiones.Visible = false;
             }
-        }
+        } 
 
         protected void btnConsultar_Click(object sender, ImageClickEventArgs e)
         {
