@@ -84,6 +84,7 @@
     </script>
 
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <asp:Label ID="lbIdRegistroSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
          <asp:Label ID="lbAcionTomar" runat="server" Text="0" Visible="false"></asp:Label>
         <br />

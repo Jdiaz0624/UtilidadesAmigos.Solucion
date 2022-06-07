@@ -52,6 +52,7 @@
     </script>
 
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <br /><br />
           <asp:Label ID="lbIdusuario" Visible="false" runat="server" Text="GENERAR MARBETES"></asp:Label>
         <div align="center">

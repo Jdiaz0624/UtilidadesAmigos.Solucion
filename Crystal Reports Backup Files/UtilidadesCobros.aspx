@@ -85,6 +85,7 @@
 
     <br />
     <asp:Label ID="lbNumeroreciboSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
+    <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
     <div class="row">
         <div class="d-inline-flex col-md-6">
            <asp:Label ID="lbCorreirPolizaSonPagos" runat="server" Text="Corregir Poliza sin cobro" CssClass="Letranegrita"></asp:Label>

@@ -54,6 +54,7 @@
     </script>
 
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <asp:Label ID="lbCodigoArtiuloSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
         <asp:Label ID="lbAccionTomar" runat="server" Text="" Visible="false"></asp:Label>
         <asp:Label ID="lbIdMedidaSeleccionaa" runat="server" Text="0" Visible="false"></asp:Label>

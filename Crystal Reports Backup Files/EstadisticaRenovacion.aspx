@@ -55,6 +55,7 @@
 
     <div class="container-fluid">
         <br />
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div id="DIVBloqueConsultaPrincipal" runat="server">
             <div class="row">
                  <div class="col-md-6">

@@ -76,6 +76,7 @@
     <asp:Label ID="lbTasaValidacion" runat="server" Text="0" Visible="false"></asp:Label>
 
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div class="form-check-inline">
             <asp:Label ID="lbAgruparDatos" runat="server" Text="Agrupar Datos" CssClass="Letranegrita"></asp:Label>
             <br />

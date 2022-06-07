@@ -78,6 +78,7 @@
     </script>
 
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <br />
         <div class="form-check-inline">
             <asp:RadioButton ID="rbSolicitudes" runat="server" CssClass="LetrasNegrita" ToolTip="Mostrar las solicitudes" AutoPostBack="true" OnCheckedChanged="rbSolicitudes_CheckedChanged" GroupName="TipoOperacion" Text="Solicitudes" />

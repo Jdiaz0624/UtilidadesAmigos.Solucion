@@ -69,6 +69,7 @@
         })
     </script>
    <div class="container-fluid">
+       <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
        <br /><br />
        <asp:Label ID="lbFechaDesdeValidacion" runat="server" Visible="false" Text="Fecha Desde Validacion"></asp:Label>
             <asp:Label ID="lbFechaHastaValidacion" runat="server" Visible="false" Text="Fecha Hasta Validacion"></asp:Label>

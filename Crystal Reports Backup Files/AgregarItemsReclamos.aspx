@@ -84,6 +84,7 @@
     <asp:Label ID="lbPolizaSeleccionadaProceso" runat="server" Text="Poliza" Visible="false"></asp:Label>
     <asp:Label ID="lbReclamoSeleccionadoProceso" runat="server" Text="Reclamo" Visible="false"></asp:Label>
     <asp:Label ID="lbSecuenciaSeleccionadaProceso" runat="server" Text="Secuencia" Visible="false"></asp:Label>
+    <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
     <asp:Label ID="lbAccion" runat="server" Text="Accion" Visible="false"></asp:Label>
 
    <div id="DivBloqueConsulta" runat="server">

@@ -57,6 +57,7 @@
 
     <br />
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div id="DivBloqueProceso" runat="server">
         <div class="row">
             <div class="col-md-2">

@@ -101,6 +101,7 @@
       <!--INICIO DE ENCABEZADO-->
       <div class="container-fluid">
      <br /><br />
+          <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
 
           <div class="row">
               <div class="col-md-3">

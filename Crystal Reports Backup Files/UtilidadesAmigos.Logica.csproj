@@ -107,6 +107,7 @@
     <Compile Include="Comunes\ExportarReportePDF.cs" />
     <Compile Include="Comunes\GuardarRegistrosReporteIntermediario.cs" />
     <Compile Include="Comunes\Mail.cs" />
+    <Compile Include="Comunes\PermisoPerfiles.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionBackupBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionCorreosENviar.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionRutaBackupBD.cs" />
@@ -118,6 +119,9 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionValidacionCoberturaSistema.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionMantenimientos\ProcesarInformacionAntiguedadSaldo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionMantenimientos\ProcesarInformacionTasaMoneda.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionModulos.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionOpcionesPantallas.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionPantallas.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionSeguridad.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionTarjetaAcceso.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionDetail.cs" />
@@ -142,6 +146,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCredencialesBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionFormaPago.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionItemReclamaciones.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionREcibosDigitales.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProveedoresSolicitud.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionRegistrosSolicitudChequeLote.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionReporteAntiguedadSaldo.cs" />
@@ -369,6 +374,7 @@
     <Compile Include="Entidades\Procesos\EModificarFormaPago.cs" />
     <Compile Include="Entidades\Procesos\EProcesarHistoricoImprsionMarbete.cs" />
     <Compile Include="Entidades\Procesos\EProcesarInformacionMarbetes.cs" />
+    <Compile Include="Entidades\Procesos\EReciboDigital.cs" />
     <Compile Include="Entidades\Procesos\ESacarNombreReclamante.cs" />
     <Compile Include="Entidades\Procesos\ESacarRutaArchivoGaurdado.cs" />
     <Compile Include="Entidades\ProduccionPorUsuario.cs" />
@@ -376,6 +382,7 @@
     <Compile Include="Entidades\Reportes\EBuscaDataCobradoDetalle.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDatosProduccionNoAgrupadoResumen.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDatosProducionNoAgrupadoDetalle.cs" />
+    <Compile Include="Entidades\Reportes\EBuscaDepositosPrima.cs" />
     <Compile Include="Entidades\Reportes\EBuscaReporteAgrupadoPorUsuario.cs" />
     <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadaSupervisor.cs" />
     <Compile Include="Entidades\Reportes\EBuscaReporteProduccionAgrupadoOficina.cs" />
@@ -425,6 +432,9 @@
     <Compile Include="Entidades\Reportes\EValidarPolizasRenovadas.cs" />
     <Compile Include="Entidades\Seguridad\EControlTarjetasAcceso.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
+    <Compile Include="Entidades\Seguridad\EModulos.cs" />
+    <Compile Include="Entidades\Seguridad\EOpcionPantalla.cs" />
+    <Compile Include="Entidades\Seguridad\EPantallas.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
     <Compile Include="Entidades\Suministro\ESuministroDetalle.cs" />
     <Compile Include="Entidades\Suministro\ESuministroEspejo.cs" />

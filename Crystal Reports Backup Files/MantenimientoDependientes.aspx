@@ -69,6 +69,8 @@
         })
     </script>
     <div class="container-fluid">
+        <asp:Label ID="Label1" runat="server" Text="" Visible="false"></asp:Label>
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div id="DIVBloqueCOnsulta" runat="server">
             <br />
             <div class="row">

@@ -72,6 +72,7 @@
     </div>
 
     <div align="center">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div class="container">
             
                      <div class="form-group col-md-3">

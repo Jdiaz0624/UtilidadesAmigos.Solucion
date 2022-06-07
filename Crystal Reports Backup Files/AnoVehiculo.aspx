@@ -12,6 +12,7 @@
       <div class="ResponsiveDesing">
           <header>
               <h1><asp:Label ID="lbEncabezado" runat="server" Text="Mantenimiento de Año de Vehiculo" CssClass="Label-Encabezado"></asp:Label></h1>
+              <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
           </header>
           <hr />
           <div>

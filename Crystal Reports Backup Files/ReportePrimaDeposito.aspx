@@ -56,6 +56,8 @@
     </script>
 
     <div class="container-fluid">
+        <asp:Label ID="Label1" runat="server" Text="" Visible="false"></asp:Label>
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <br />
         <div id="DIVBloqueConsulta" runat="server">
             <div class="row">
@@ -94,10 +96,6 @@
                     <asp:TextBox ID="txtNumeroDeposito" runat="server" CssClass="form-control" TextMode="Number" ></asp:TextBox>
                 </div>
 
-                <div class="col-md-3">
-                    <asp:Label ID="lbRecibo" runat="server" Text="Recibo" CssClass="Letranegrita"></asp:Label>
-                    <asp:TextBox ID="txtRecibo" runat="server" CssClass="form-control" TextMode="Number" ></asp:TextBox>
-                </div>
 
             </div>
             <br />
@@ -112,6 +110,18 @@
                 <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" GroupName="Formato" />
                 <asp:RadioButton ID="rbExelPlano" runat="server" Text="Excel Plano" GroupName="Formato" />
             </div>
+             <div id="DivBloqueValidarData" runat="server">
+            <br />
+            <div id="DivBuscarArchivoExcel" runat="server" class="form-group col-sm-6">
+                                  <label for="FileUpload1">Buscar Archivo en el Equipo</label>
+                                    <asp:FileUpload ID="FIleArchivoPrimaDeposito" CssClass="form-control-file" runat="server" />
+                                </div>
+            <div align="center">
+                <asp:Label ID="lbFormatoExel" runat="server" Text="Formato de Archivo (Columnas)--> Solo el No. Deposito" CssClass="Letranegrita"></asp:Label><br />
+                <asp:ImageButton ID="btnProcesarInformacionNuevo" runat="server" ToolTip="Buscar la Información de los depositos para actualizar" CssClass="BotonImagen" OnClick="btnProcesarInformacionNuevo_Click" ImageUrl="~/Imagenes/Procesar.png" />
+            </div>
+            <br />
+        </div>
             <br />
             <div align="center">
                 <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consultar Registros" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultar_Click" />
@@ -122,10 +132,12 @@
                 <thead>
                     <tr>
                         <th scope="col"> Deposito </th>
-                         <th scope="col"> Fecha </th>
-                         <th scope="col"> Monto </th>
+                         <th scope="col"> Fecha </th>     
                          <th scope="col"> Supervisor </th>
                          <th scope="col"> Intermediario </th>
+                        <th scope="col"> Aplicado </th>
+                        <th scope="col"> Deposito </th>
+                        <th scope="col"> Prima </th>
                          <th scope="col"> Estatus </th>
                          <th scope="col">  </th>
                     </tr>
@@ -134,14 +146,16 @@
                     <asp:Repeater ID="rpListadoPrimaDeposito" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <asp:HiddenField ID="hfNumeroDeposito" runat="server" Value='<%# Eval("Numero") %>' />
-                                 <asp:HiddenField ID="hfMontoDeposito" runat="server" Value='<%# Eval("Monto") %>' />
+                                <asp:HiddenField ID="hfNumeroDeposito" runat="server" Value='<%# Eval("NumeroDeposito") %>' />
+                                 <asp:HiddenField ID="hfMontoDeposito" runat="server" Value='<%# Eval("MontoPagado") %>' />
 
-                                <td> <%# Eval("Numero") %> </td>
+                                <td> <%# Eval("NumeroDeposito") %> </td>
                                 <td> <%# Eval("Fecha") %> </td>
-                                <td> <%#string.Format("{0:N2}", Eval("Monto")) %> </td>
                                 <td> <%# Eval("Supervisor") %> </td>
                                 <td> <%# Eval("Intermediario") %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("MontoPagado")) %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("MontoDeposito")) %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("MontoPrima")) %> </td>
                                 <td> <%# Eval("Estatus") %> </td>
                                 <td> <asp:ImageButton ID="btnSeleccionar" runat="server" ToolTip="Seleccionar Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Procesar.png" OnClick="btnSeleccionar_Click" /> </td>
 

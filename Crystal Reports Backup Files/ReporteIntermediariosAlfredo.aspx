@@ -48,6 +48,8 @@
     <br />
 
     <div id="DivBloqueReporte" runat="server">
+        <asp:Label ID="Label1" runat="server" Text="" Visible="false"></asp:Label>
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
        <div class="row">
            <div class="col-md-3">
                <asp:Label ID="lbFechaDesdeReporte" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>

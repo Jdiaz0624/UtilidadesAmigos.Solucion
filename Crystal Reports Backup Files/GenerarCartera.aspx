@@ -101,6 +101,7 @@
         <div align="Center">
             <asp:Label ID="lbComisionPagar" Text="Comision a Pagar: " CssClass="Comision" runat="server" Visible="false"></asp:Label>
             <asp:Label ID="lbMontoComisionPagar" Text="000000" CssClass="Comision" runat="server" Visible="false"></asp:Label>
+            <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         </div>
     </div>
     <!--FIN DEL ENCABEZADO-->

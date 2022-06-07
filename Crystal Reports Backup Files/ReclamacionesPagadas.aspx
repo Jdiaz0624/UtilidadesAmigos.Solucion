@@ -51,6 +51,7 @@
     </script>
     <br />
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div class="row">
             <div class="col-md-3">
                 <asp:Label ID="lbCodigoBeneficiario" runat="server" Text="Codigo de Beneficiario" CssClass="LetrasNegrita"></asp:Label>

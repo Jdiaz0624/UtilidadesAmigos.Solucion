@@ -366,6 +366,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 if (rbPDF.Checked == true)
                 {
                     //Reporte.PrintToPrinter(200, false, 0, 0);
+                    //crystalReport.PrintOptions.PrinterName = GetDefaultPrinter();
+                    //cprPrinter.PrinterSettings.PrinterName;
+                    Reporte.PrintOptions.PrinterName = Reporte.PrintOptions.PrinterName;
                     Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Reporte de Recibos");
                 }
                 else if (rbExcel.Checked == true)

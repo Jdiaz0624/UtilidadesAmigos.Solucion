@@ -34,6 +34,7 @@
     </style>
 
     <script type="text/javascript">
+        
         function CampoFechaDesdeVacio() {
 
             $("#<%=txtFechaDesdeComisiones.ClientID%>").css("border-color", "red");
@@ -77,6 +78,7 @@
 
 
           <div class="container-fluid">
+              <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
           <br /><br />
           <br />
           <div class="row">
@@ -166,7 +168,7 @@
                               <th scope="col"> Bruto </th>
                               <th scope="col"> Neto </th>
                               <th scope="col"> Comisión </th>
-                              <th scope="col"> Retencion </th>
+                              <th scope="col"> Retención </th>
                               <th scope="col"> Avance </th>
                               <th scope="col"> Acumulado </th>
                               <th scope="col"> Liquidar </th>

@@ -46,9 +46,11 @@
     </script>
     <div class="container-fluid">
         <div class="jumbotron" align="center">
+
             <asp:Label ID="lbTituloCOnsulta" runat="server" Text="Generar Cartera de Intermediario"></asp:Label>
              <asp:Label ID="lbGenerarCodifoIntermediario" runat="server" Text="Codigo Intermediario" Visible="false"></asp:Label>
             <asp:Label ID="lbCodigoUsuario" runat="server" Text="Codigo Usuario" Visible="False"></asp:Label>
+            <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">

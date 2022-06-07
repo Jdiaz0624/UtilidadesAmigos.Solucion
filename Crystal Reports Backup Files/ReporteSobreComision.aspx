@@ -41,7 +41,7 @@
 
     <br />
     <div class="container-fluid">
-
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
       <div id="DivBloqueConsulta" runat="server">
           <asp:Label ID="lbCodigobeneficiarioSeleccionado" Text="0" Visible="false" runat="server"></asp:Label>
            <asp:Label ID="lbPorcientoComisionBeneficiario" Text="0" Visible="false" runat="server"></asp:Label>

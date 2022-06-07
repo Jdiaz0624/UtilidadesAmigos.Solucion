@@ -113,14 +113,14 @@
                                             $("#<%=txtCantidadPersonasMantenimiento.ClientID%>").css("border-color", "red");
                                             return false;
                                         }
-                                        else {
+                                       <%-- else {
                                             var Comentario = $("#<%=txtComentarioMantenimiento.ClientID%>").val().length;
                                             if (Comentario < 1) {
                                                 alert("El campo Comentario / Descripción no puede estar vacio para realizar esta operación, favor de verificar.");
                                                 $("#<%=txtComentarioMantenimiento.ClientID%>").css("border-color", "red");
                                                 return false;
                                             }
-                                        }
+                                        }--%>
                                     }
                                 }
                             }
@@ -135,6 +135,7 @@
     <br />
     <asp:Label ID="lbIdRegistroSeleccionado" runat="server" Text="IdRegistroseleccionado" Visible="false"></asp:Label>
     <asp:Label ID="lbAccionTomarSeleccionado" runat="server" Text="Accion" Visible="false"></asp:Label>
+    <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
 
     <div id="DivBloqueCOnsulta" runat="server">
         <div class="form-check-inline">
@@ -150,7 +151,7 @@
 
             <div class="col-md-4">
                 <asp:Label ID="lbNombreConsulta" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtNombreConsulta" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                <asp:TextBox ID="txtNombreConsulta" runat="server"  CssClass="form-control" MaxLength="100"></asp:TextBox>
             </div>
 
             <div class="col-md-4">
@@ -322,7 +323,7 @@
 
               <div class="col-md-4">
                 <asp:Label ID="lbNombreMantenimiento" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtNombreMantenimiento" runat="server" MaxLength="100" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtNombreMantenimiento" runat="server" AutoPostBack="true" OnTextChanged="txtNombreMantenimiento_TextChanged" MaxLength="100" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
 
              <div class="col-md-4">

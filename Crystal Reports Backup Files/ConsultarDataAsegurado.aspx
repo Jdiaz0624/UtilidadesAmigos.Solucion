@@ -32,6 +32,7 @@
 
     <div class="container-fluid">
         <br /><br />
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div class="form-check">
                  <asp:Label ID="lbTipoOperacion" runat="server" Text="Tipo de Operación: " CssClass="LetrasNegrita"></asp:Label>
                 <asp:RadioButton ID="rbConsultarRegistros" runat="server" Text="Consultar" AutoPostBack="true" CssClass="form-check-input" GroupName="TipoOperacion" />

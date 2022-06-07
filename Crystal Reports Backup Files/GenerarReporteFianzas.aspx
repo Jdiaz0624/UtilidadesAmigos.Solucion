@@ -51,6 +51,7 @@
    
     </script>
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <br /><br />
         <div align="center">
             <asp:Label ID="lbCantidadEncontradaTitulo" runat="server" Text="Cantidad de registros encontrados ( " CssClass="LetrasNegrita"></asp:Label>

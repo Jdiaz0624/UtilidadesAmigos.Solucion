@@ -16,7 +16,7 @@
         </div>
 
     <div align="right">
-    
+    <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
      <asp:Button ID="btnTipoCotizador" runat="server" Text="Tipo de Cotizador" ToolTip="Tipo de Cotizador" CssClass=" btn btn-outline-primary" Width="250px" OnClick="btnTipoCotizador_Click" />
         <asp:Button ID="btnValorVehiculo" runat="server" Text="Valor del Vehiculo" ToolTip="Valor del Vehiculo" CssClass=" btn btn-outline-primary" Width="250px" OnClick="btnValorVehiculo_Click" />
         <asp:Button ID="btnAnoVehiculo" runat="server"  Text="Año de Vehiculo" ToolTip="Año del Vehiculo" CssClass=" btn btn-outline-primary" Width="250px" OnClick="btnAnoVehiculo_Click" /><br />

@@ -27,6 +27,7 @@
         }
     </script>
 <div class="container-fluid">
+    <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div class="jumbotron" align="center">
         <asp:Label ID="lbTituloPantallaProduccionConUsuario" runat="server" Text="Producción Por Usuario"></asp:Label>
     </div>

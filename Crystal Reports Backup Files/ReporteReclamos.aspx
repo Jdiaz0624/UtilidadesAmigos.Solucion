@@ -335,6 +335,7 @@
         });
     </script>
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTitulo" runat="server" Text="Reporte de Reclamos"></asp:Label>
             <asp:Label ID="lbIdMantenimiento" runat="server" Text="Numero de Reclamos" Visible="false"></asp:Label>
