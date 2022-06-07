@@ -615,5 +615,82 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
 
         }
         #endregion
+
+        #region MANTENIMIENTO DE RECIBOS DIGITALES
+        /// <summary>
+        /// Este metodo muestra el listado de los recibos registrados en la base de datos
+        /// </summary>
+        /// <param name="NumeroRecibo"></param>
+        /// <param name="CodigoIntermediario"></param>
+        /// <param name="CodigoSupervisor"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="IdTipoPago"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EReciboDigital> BuscaReciboDigital(decimal? NumeroRecibo = null, int? CodigoIntermediario = null, int? CodigoSupervisor = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? IdTipoPago = null, decimal? GeneradoPor = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_RECIBO_DIGITAL(NumeroRecibo, CodigoIntermediario, CodigoSupervisor, FechaDesde, FechaHasta, IdTipoPago, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.EReciboDigital
+                           {
+                               NumeroRecibo = n.NumeroRecibo,
+                               CodigoIntermediario = n.CodigoIntermediario,
+                               Intermediario = n.Intermediario,
+                               CodigoSupervisor = n.CodigoSupervisor,
+                               NombreIntermediario = n.Intermediario,
+                               FechaRecibo0 = n.FechaRecibo0,
+                               Fecha = n.Fecha,
+                               Hora = n.Hora,
+                               ValorRecibo = n.ValorRecibo,
+                               IdTipoPago = n.IdTipoPago,
+                               TipoPago = n.TipoPago,
+                               Detalle = n.Detalle,
+                               CreadoPor = n.CreadoPor,
+                               CreadoPor0 = n.CreadoPor0,
+                               GeneradoPor = n.GeneradoPor
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo procesa los recibos digitales
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Procesos.EReciboDigital ProcesarReciboDigital(UtilidadesAmigos.Logica.Entidades.Procesos.EReciboDigital Item, string Accion)
+        {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.EReciboDigital Procesar = null;
+
+            var ReciboDigital = ObjData.SP_PROCESAR_RECIBO_DIGITAL(
+                Item.NumeroRecibo,
+                Item.CodigoIntermediario,
+                Item.ValorRecibo,
+                Item.IdTipoPago,
+                Item.Detalle,
+                Item.CreadoPor0,
+                Accion);
+            if (ReciboDigital != null)
+            {
+
+                Procesar = (from n in ReciboDigital
+                            select new UtilidadesAmigos.Logica.Entidades.Procesos.EReciboDigital
+                            {
+                                NumeroRecibo = n.NumeroRecibo,
+                                CodigoIntermediario = n.CodigoIntermediario,
+                                FechaRecibo0 = n.FechaRecibo,
+                                ValorRecibo = n.ValorRecibo,
+                                IdTipoPago = n.IdTipoPago,
+                                Detalle = n.Detalle,
+                                CreadoPor0 = n.CreadoPor
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }
