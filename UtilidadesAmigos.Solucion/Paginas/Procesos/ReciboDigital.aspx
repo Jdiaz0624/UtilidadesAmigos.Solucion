@@ -22,6 +22,32 @@
        }
     </style>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var Letrero = "no puede estar vacio para guardar este registro";
+            $("#<%=btnGuardar.ClientID%>").click(function () {
+
+                var Intermediario = $("#<%=txtCodigoIntermediario.ClientID%>").val().length;
+                if (Intermediario < 1) {
+                    alert("El campo Intermediario " + Letrero);
+                    $("#<%=txtCodigoIntermediario.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+
+                    var Valor = $("#<%=txtValorAplicar.ClientID%>").val().length;
+                    if (Valor < 1) {
+                        alert("El campo Valor " + Letrero);
+                        $("#<%=txtValorAplicar.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                }
+
+            });
+        })
+    </script>
+
     <div class="container-fluid">
         <br />
         <div id="DIVBloqueReciboDigitalConsulta" runat="server">
