@@ -339,7 +339,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     //Reporte.PrintToPrinter(200, false, 0, 0);
                     //crystalReport.PrintOptions.PrinterName = GetDefaultPrinter();
                     //cprPrinter.PrinterSettings.PrinterName;
-                    Reporte.PrintOptions.PrinterName = Reporte.PrintOptions.PrinterName;
+                    
                     Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Reporte de Recibos");
                 }
                 else if (rbExcel.Checked == true)
@@ -449,6 +449,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
 
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+            Reporte.PrintOptions.PrinterName = Reporte.PrintOptions.PrinterName;
             Reporte.PrintToPrinter(2, true, 0, 2);
         }
 
