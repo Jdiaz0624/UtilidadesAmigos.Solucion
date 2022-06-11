@@ -16,10 +16,6 @@
         }
         
 
-        th {
-            background-color: #0094ff;
-            color: #000000;
-        }
 
           .BotonImagen {
                 width:40px;
