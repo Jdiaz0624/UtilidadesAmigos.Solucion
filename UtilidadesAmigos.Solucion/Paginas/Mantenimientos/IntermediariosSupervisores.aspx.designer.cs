@@ -96,6 +96,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.ImageButton btnConsultarNuevo;
 
         /// <summary>
+        /// btnExportarInformacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnExportarInformacion;
+
+        /// <summary>
         /// btnNuevoNuevo control.
         /// </summary>
         /// <remarks>
@@ -141,15 +150,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Repeater rpListado;
 
         /// <summary>
-        /// lbPaginaActualTituloIntermediariosSupervisores control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloIntermediariosSupervisores;
-
-        /// <summary>
         /// lbPaginaActualVariavleIntermediariosSupervisores control.
         /// </summary>
         /// <remarks>
@@ -157,15 +157,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPaginaActualVariavleIntermediariosSupervisores;
-
-        /// <summary>
-        /// lbCantidadPaginaTituloIntermediariosSupervisores control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloIntermediariosSupervisores;
 
         /// <summary>
         /// lbCantidadPaginaVariableIntermediariosSupervisores control.

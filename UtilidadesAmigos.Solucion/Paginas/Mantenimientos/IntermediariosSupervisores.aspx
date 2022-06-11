@@ -250,6 +250,7 @@
              <div align="center">
                 
                  <asp:ImageButton ID="btnConsultarNuevo" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultarNuevo_Click" />
+                 <asp:ImageButton ID="btnExportarInformacion" runat="server" ToolTip="Exportar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/excel.png" OnClick="btnExportarInformacion_Click" />
                  <asp:ImageButton ID="btnNuevoNuevo" runat="server" ToolTip="Crear Nuevo Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Agregar (2).png" OnClick="btnNuevoNuevo_Click" />
                  <asp:ImageButton ID="btnModificarNuevo" runat="server" ToolTip="Modificar Registro Seleccionado" CssClass="BotonImagen" ImageUrl="~/Imagenes/ojo.png" OnClick="btnModificarNuevo_Click" />
                  <asp:ImageButton ID="btnComisionesNuevo" runat="server" ToolTip="Ver el % de Comisión del registro seleccionado" CssClass="BotonImagen" ImageUrl="~/Imagenes/comision.png" OnClick="btnComisionesNuevo_Click" />
@@ -258,7 +259,7 @@
             <br />
          
                 <table class="table table-striped">
-                    <thead>
+                    <thead class="table-dark">
                         <tr>
                             <th scope="col">Codigo</th>
                             <th scope="col">Nombre</th>
@@ -289,14 +290,15 @@
                         
                     </tbody>
                 </table>
+            <table class="table">
+                <tfoot class="table-light">
+                    <tr>
+                        <td align="right"><b>Pagina </b> <asp:Label ID="lbPaginaActualVariavleIntermediariosSupervisores" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label><b>De </b><asp:Label ID="lbCantidadPaginaVariableIntermediariosSupervisores" runat="server" Text="0" CssClass="Letranegrita"></asp:Label></td>
+                    </tr>
+                </tfoot>
+            </table>
          
             <br />
-            <div align="center">
-               <asp:Label ID="lbPaginaActualTituloIntermediariosSupervisores" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariavleIntermediariosSupervisores" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloIntermediariosSupervisores" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVariableIntermediariosSupervisores" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
              <div id="DivPaginacion" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table   style="width: 600px">

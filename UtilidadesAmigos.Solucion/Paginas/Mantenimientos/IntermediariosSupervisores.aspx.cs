@@ -1839,6 +1839,48 @@ namespace UtilidadesAmigos.Solucion.Paginas
             DivBloqueInternoComision.Visible = false;
         }
 
+        protected void btnExportarInformacion_Click(object sender, ImageClickEventArgs e)
+        {
+            string _Codigo = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? null : txtCodigoIntermediarioConsulta.Text.Trim();
+            string _Nombre = string.IsNullOrEmpty(txtNombreIntermediarioConsulta.Text.Trim()) ? null : txtNombreIntermediarioConsulta.Text.Trim();
+            int? _Oficina = ddlSeleccionarOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficinaConsulta.SelectedValue) : new Nullable<int>();
+
+            var Exportar = (from n in Objdatamantenimientos.BuscaListadoIntermediario(
+                _Codigo,
+                _Nombre,
+                null,
+                null,
+                _Oficina)
+                            select new
+                            {
+
+                                Codigo = n.Codigo,
+                                DescripcionTipoRNC = n.DescripcionTipoRNC,
+                                Rnc = n.Rnc,
+                                NombreVendedor = n.NombreVendedor,
+                                CodigoSupervisor = n.CodigoSupervisor,
+                                Estatus = n.Estatus,
+                                FechaEntrada = n.FechaEntrada,
+                                tipo_Intermediario = n.tipo_Intermediario,
+                                Agencia = n.Agencia,
+                                PagoComPor = n.PagoComPor,
+                                NombreBanco = n.NombreBanco,
+                                CtaBanco = n.CtaBanco,
+                                VendedorCrea = n.VendedorCrea,
+                                Supervisor = n.Supervisor,
+                                Direccion = n.Direccion,
+                                DescripcionUbicacion = n.DescripcionUbicacion,
+                                Telefono = n.Telefono,
+                                TelefonoOficina = n.TelefonoOficina,
+                                Celular = n.Celular,
+                                Email = n.Email,
+                                LicenciaSeguro = n.LicenciaSeguro,
+                                NombreOficina = n.NombreOficina,
+                                TipoCuentaBco = n.TipoCuentaBco
+                            }).ToList();
+            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Listado de Intermediarios", Exportar);
+        }
+
         protected void btnVolverAtrasComisionesNuevo_Click(object sender, ImageClickEventArgs e)
         {
             VolverAtras();
