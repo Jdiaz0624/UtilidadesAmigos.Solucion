@@ -1408,6 +1408,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "GENERAR DATA DE COBERTURAS";
+
                 CargarCoberturas();
                 MostrarCoberturas();
                 ListadoPlanCoberturas();
