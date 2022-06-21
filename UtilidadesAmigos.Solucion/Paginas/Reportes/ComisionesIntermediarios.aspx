@@ -3,14 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
              <style type="text/css">
-     .jumbotron{
-            color:#000000; 
-            background:#1E90FF;
-            font-size:30px;
-            font-weight:bold;
-            font-family:'Gill Sans';
-            padding:25px;
-        }
+   
 
         .btn-sm{
             width:90px;
@@ -24,11 +17,9 @@
         }
         
 
-  
-
                  .BotonImagen {
-                   width:50px;
-                   height:50px;
+                   width:40px;
+                   height:40px;
                  
                  }
     </style>

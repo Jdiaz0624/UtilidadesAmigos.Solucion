@@ -477,7 +477,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
             if (Session["Idusuario"] != null)
             {
-                Response.Redirect("~/Paginas/Reportes/GenerarReporteAntiguedadSaldo.aspx");
+                Response.Redirect("~/Paginas/Reportes/AntiguedadSaldo.aspx");
             }
             else {
                 FormsAuthentication.SignOut();

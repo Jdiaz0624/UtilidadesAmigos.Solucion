@@ -257,6 +257,7 @@
     <Content Include="Paginas\Procesos\UtilidadesCobros.aspx" />
     <Content Include="Paginas\Procesos\VolantesDePagos.aspx" />
     <Content Include="Paginas\ReporteReclamos.aspx" />
+    <Content Include="Paginas\Reportes\AntiguedadSaldo.aspx" />
     <Content Include="Paginas\Reportes\ComisionesIntermediarios.aspx" />
     <Content Include="Paginas\Reportes\ComisionesSupervisores.aspx" />
     <Content Include="Paginas\Reportes\GenerarMarbetes.aspx" />
@@ -794,6 +795,13 @@
     </Compile>
     <Compile Include="Paginas\ReporteReclamos.aspx.designer.cs">
       <DependentUpon>ReporteReclamos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\AntiguedadSaldo.aspx.cs">
+      <DependentUpon>AntiguedadSaldo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\AntiguedadSaldo.aspx.designer.cs">
+      <DependentUpon>AntiguedadSaldo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Reportes\ComisionesIntermediarios.aspx.cs">
       <DependentUpon>ComisionesIntermediarios.aspx</DependentUpon>
