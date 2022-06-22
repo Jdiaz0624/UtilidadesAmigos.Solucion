@@ -824,6 +824,48 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                            }).ToList();
             return Listado;
         }
+
+        /// <summary>
+        /// Este metodo es para mostrar el listado de las polizas que no se le ha impreso marbetes
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="SubRamo"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EPolizasSinImpresionMarbete> BuscaPolziasSinMarbete(string Poliza = null, int? Supervisor = null, int? Intermediario = null, int? Oficina = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Ramo = null, int? SubRamo = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_MOSTRAR_POLIZAS_SIN_IMPRESION_MARBETE(Poliza, Supervisor, Intermediario, Oficina, FechaDesde, FechaHasta, Ramo, SubRamo)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EPolizasSinImpresionMarbete
+                           {
+                               Poliza=n.Poliza,
+                               Cotizacion=n.Cotizacion,
+                               Prima=n.Prima,
+                               Estatus=n.Estatus,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Supervisor=n.Supervisor,
+                               Intermediario=n.Intermediario,
+                               CodigoOficina=n.CodigoOficina,
+                               Oficina=n.Oficina,
+                               UsuarioAdiciona=n.UsuarioAdiciona,
+                               FechaCreado=n.FechaCreado,
+                               FechaCreadoFormateada=n.FechaCreadoFormateada,
+                               CodigoRamo=n.CodigoRamo,
+                               Ramo=n.Ramo,
+                               CodigoSubramo=n.CodigoSubramo,
+                               SubRamo=n.SubRamo
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
     }

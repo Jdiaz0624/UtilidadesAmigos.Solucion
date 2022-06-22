@@ -152,8 +152,111 @@
         </div>
 
 
-        <div id="DIVBloquePolziaSinMarbete" visible="true" runat="server">
+        <div id="DIVBloquePolziaSinMarbete" visible="false" runat="server">
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                     <asp:Label ID="lbPolizaPolizaSinImpresion" runat="server" Text="Poliza" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtPolizaPolziaSinImpresion" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+          
+                <div class="col-md-3">
+                        <asp:Label ID="lbfechaDesdePolizasSinImpresion" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtfechaDesdePolizaSinImpresion" runat="server" CssClass="form-control" TextMode="Date" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
 
+                <div class="col-md-3">
+                        <asp:Label ID="lbFechaHastaPolziasSinMarbete" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtFechaHAstaPolizaSinMarbete" runat="server" CssClass="form-control" TextMode="Date" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+
+
+                <div class="col-md-3">
+                    <asp:Label ID="lbFechaHastaPolizasSinImpresion" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddloficinaPolziaSinImpresion" runat="server" ToolTip="Seleccionar oficina" CssClass="form-control"></asp:DropDownList>
+                </div>
+
+
+                <div class="col-md-1">
+                     <asp:Label ID="lbCodigoSupervisorPolizaSinMarbete" runat="server" Text="Supervisor" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtCodigoSupervisorPolizaSinMarbete" runat="server" CssClass="form-control" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                <div class="col-md-5">
+                    <asp:Label ID="lbNombreSupervisorPolizaSinMarbete" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtNombreSupervisorPolizaSinMarbete" runat="server" CssClass="form-control" Enabled="false" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                <div class="col-md-1">
+                      <asp:Label ID="lbCodigoIntermediarioPolizaSinMarbete" runat="server" Text="Intermediario" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtCodigoIntermediarioPolizaSinMarbete" runat="server" CssClass="form-control" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                <div class="col-md-5">
+                     <asp:Label ID="lbNombreIntermediarioPolizaSinMarbete" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtNombreIntermediarioPolizaSinMarbete" runat="server" CssClass="form-control" Enabled="false" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+
+                 <div class="col-md-6">
+                     <asp:Label ID="lbProductiPolizaSinMarbete" runat="server" Text="Sub Ramo" CssClass="LetrasNegrita"></asp:Label>
+                     <asp:DropDownList ID="ddlSubRamoPolizasSinMarbete" runat="server" ToolTip="Seleccionar Producto" CssClass="form-control"></asp:DropDownList>
+                </div>
+
+
+            </div>
+            <br />
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                         <th scope="col"> Poliza </th>
+                         <th scope="col"> Prima </th>
+                         <th scope="col"> Supervisor </th>
+                         <th scope="col"> Intermediario </th>
+                         <th scope="col"> Producto </th>
+                         <th scope="col"> Fecha </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rpListadoPolizaSinMarbete" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                  <td> <%# Eval("Poliza") %> </td>
+                                  <td> <%# Eval("Prima") %> </td>
+                                  <td> <%# Eval("Supervisor") %> </td>
+                                  <td> <%# Eval("Intermediario") %> </td>
+                                  <td> <%# Eval("SubRamo") %> </td>
+                                  <td> <%# Eval("FechaCreadoFormateada") %> </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
+            </table>
+             <table class="table">
+                <tfoot class="table-light">
+                    <tr>
+                        <td align="right"><b>Pagina </b> <asp:Label ID="lbPaginaActualPolizaSinMarbete" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label> <b>De </b>   <asp:Label ID="lbCantidadPaginaPolizaSinMarbete" runat="server" Text="0" CssClass="Letranegrita"></asp:Label> </td>
+                    </tr>
+                </tfoot>
+            </table>
+              <div id="DivBloquePaginacionPolizasSinMarbete" runat="server" align="center" >
+                <div style="margin-top=20px;">
+                    <table style="width:600px;">
+                        <tr>
+                            <td> <asp:ImageButton ID="btnPrimeraPaginaPolizaSinMarbete" runat="server" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPaginaPolizaSinMarbete_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnPaginaAnteriorPolizaSinMarbete" runat="server" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnPaginaAnteriorPolizaSinMarbete_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td align="center">
+                                <asp:DataList ID="dtPaginacionListadoPrincipalPolizaSinMarbete" runat="server" OnCancelCommand="dtPaginacionListadoPrincipalPolizaSinMarbete_CancelCommand" OnItemDataBound="dtPaginacionListadoPrincipalPolizaSinMarbete_ItemDataBound" RepeatDirection="Horizontal" >
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnPaginacionCentralPolizaSinMarbete" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
+                                    </ItemTemplate>
+                                </asp:DataList>
+
+                            </td>
+                            <td> <asp:ImageButton ID="btnSiguientePaginaPolizaSinMarbete" runat="server" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguientePaginaPolizaSinMarbete_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnUltimaPaginaPolizaSinMarbete" runat="server" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimaPaginaPolizaSinMarbete_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                           
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        <br />
         </div>
         <br />
         

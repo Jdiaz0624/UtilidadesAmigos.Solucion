@@ -204,6 +204,7 @@
     <Compile Include="Entidades\Consulta\EMostrarDataCargadaEstadisticaRenovacion.cs" />
     <Compile Include="Entidades\Consulta\EMostrarDetalleEstadisticaRenovacion.cs" />
     <Compile Include="Entidades\Consulta\EPolizasAvisoGestionCobros.cs" />
+    <Compile Include="Entidades\Consulta\EPolizasSinImpresionMarbete.cs" />
     <Compile Include="Entidades\Consulta\EProcesarDatosEstadistocaRenovacion.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionReporteComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionArchivo.cs" />

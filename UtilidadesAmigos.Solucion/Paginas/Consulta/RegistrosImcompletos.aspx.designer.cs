@@ -364,5 +364,248 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloquePolziaSinMarbete;
+
+        /// <summary>
+        /// lbPolizaPolizaSinImpresion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPolizaPolizaSinImpresion;
+
+        /// <summary>
+        /// txtPolizaPolziaSinImpresion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPolizaPolziaSinImpresion;
+
+        /// <summary>
+        /// lbfechaDesdePolizasSinImpresion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbfechaDesdePolizasSinImpresion;
+
+        /// <summary>
+        /// txtfechaDesdePolizaSinImpresion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtfechaDesdePolizaSinImpresion;
+
+        /// <summary>
+        /// lbFechaHastaPolziasSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaHastaPolziasSinMarbete;
+
+        /// <summary>
+        /// txtFechaHAstaPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaHAstaPolizaSinMarbete;
+
+        /// <summary>
+        /// lbFechaHastaPolizasSinImpresion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaHastaPolizasSinImpresion;
+
+        /// <summary>
+        /// ddloficinaPolziaSinImpresion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddloficinaPolziaSinImpresion;
+
+        /// <summary>
+        /// lbCodigoSupervisorPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoSupervisorPolizaSinMarbete;
+
+        /// <summary>
+        /// txtCodigoSupervisorPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoSupervisorPolizaSinMarbete;
+
+        /// <summary>
+        /// lbNombreSupervisorPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNombreSupervisorPolizaSinMarbete;
+
+        /// <summary>
+        /// txtNombreSupervisorPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombreSupervisorPolizaSinMarbete;
+
+        /// <summary>
+        /// lbCodigoIntermediarioPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoIntermediarioPolizaSinMarbete;
+
+        /// <summary>
+        /// txtCodigoIntermediarioPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoIntermediarioPolizaSinMarbete;
+
+        /// <summary>
+        /// lbNombreIntermediarioPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNombreIntermediarioPolizaSinMarbete;
+
+        /// <summary>
+        /// txtNombreIntermediarioPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombreIntermediarioPolizaSinMarbete;
+
+        /// <summary>
+        /// lbProductiPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbProductiPolizaSinMarbete;
+
+        /// <summary>
+        /// ddlSubRamoPolizasSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubRamoPolizasSinMarbete;
+
+        /// <summary>
+        /// rpListadoPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpListadoPolizaSinMarbete;
+
+        /// <summary>
+        /// lbPaginaActualPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualPolizaSinMarbete;
+
+        /// <summary>
+        /// lbCantidadPaginaPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaPolizaSinMarbete;
+
+        /// <summary>
+        /// DivBloquePaginacionPolizasSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloquePaginacionPolizasSinMarbete;
+
+        /// <summary>
+        /// btnPrimeraPaginaPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaPolizaSinMarbete;
+
+        /// <summary>
+        /// btnPaginaAnteriorPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnteriorPolizaSinMarbete;
+
+        /// <summary>
+        /// dtPaginacionListadoPrincipalPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dtPaginacionListadoPrincipalPolizaSinMarbete;
+
+        /// <summary>
+        /// btnSiguientePaginaPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePaginaPolizaSinMarbete;
+
+        /// <summary>
+        /// btnUltimaPaginaPolizaSinMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPaginaPolizaSinMarbete;
     }
 }

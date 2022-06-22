@@ -10,8 +10,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
     public partial class RegistrosImcompletos : System.Web.UI.Page
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaConsulta.LogicaConsulta> ObjDataConsulta = new Lazy<Logica.Logica.LogicaConsulta.LogicaConsulta>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjdataComun = new Lazy<Logica.Logica.LogicaSistema>();
 
-        #region CONTROL DE PAGINACION DE LOS RECIBOS DIGITALES
+        #region CONTROL DE PAGINACION DE LOS CLIENTES SIN POLIZA
         readonly PagedDataSource pagedDataSource_ClienteSinPolizas = new PagedDataSource();
         int _PrimeraPagina_ClienteSinPolizas, _UltimaPagina_ClienteSinPolizas;
         private int _TamanioPagina_ClienteSinPolizas = 10;
@@ -144,6 +145,139 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         }
         #endregion
 
+        #region CONTROL DE PAGINACION DE LAS POLIZAS SIN MARBETES
+        readonly PagedDataSource pagedDataSource_PolizaSinMarbete = new PagedDataSource();
+        int _PrimeraPagina_PolizaSinMarbete, _UltimaPagina_PolizaSinMarbete;
+        private int _TamanioPagina_PolizaSinMarbete = 10;
+        private int CurrentPage_PolizaSinMarbete
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_PolizaSinMarbete(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_PolizaSinMarbete = CurrentPage_PolizaSinMarbete - 5;
+            if (CurrentPage_PolizaSinMarbete > 5)
+                _UltimaPagina_PolizaSinMarbete = CurrentPage_PolizaSinMarbete + 5;
+            else
+                _UltimaPagina_PolizaSinMarbete = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_PolizaSinMarbete > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_PolizaSinMarbete = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_PolizaSinMarbete = _UltimaPagina_PolizaSinMarbete - 10;
+            }
+
+            if (_PrimeraPagina_PolizaSinMarbete < 0)
+                _PrimeraPagina_PolizaSinMarbete = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_PolizaSinMarbete;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_PolizaSinMarbete; i < _UltimaPagina_PolizaSinMarbete; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_PolizaSinMarbete(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_PolizaSinMarbete.DataSource = Listado;
+            pagedDataSource_PolizaSinMarbete.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_PolizaSinMarbete.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_PolizaSinMarbete.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_PolizaSinMarbete.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_PolizaSinMarbete : _NumeroRegistros);
+            pagedDataSource_PolizaSinMarbete.CurrentPageIndex = CurrentPage_PolizaSinMarbete;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_PolizaSinMarbete.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_PolizaSinMarbete.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_PolizaSinMarbete.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_PolizaSinMarbete.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_PolizaSinMarbete;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_PolizaSinMarbete
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_PolizaSinMarbete(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+
         #region MOSTRAR EL LISTADO DE LOS CLIENTES SIN POOLIZA
         private void MostrarListadoClienteSinpolizas() {
 
@@ -218,6 +352,85 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Clientes Sin polizas", Exportar);
         }
         #endregion
+
+        #region MOSTRAR EL LISTADO DE LAS POLIZAS SIN MARBETES
+        private void MostrarPolizasSinMarbetes() {
+
+            string _Poliza = string.IsNullOrEmpty(txtPolizaPolziaSinImpresion.Text.Trim()) ? null : txtPolizaPolziaSinImpresion.Text.Trim();
+            DateTime? _FechaDesde = string.IsNullOrEmpty(txtfechaDesdePolizaSinImpresion.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtfechaDesdePolizaSinImpresion.Text);
+            DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHAstaPolizaSinMarbete.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHAstaPolizaSinMarbete.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisorPolizaSinMarbete.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisorPolizaSinMarbete.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioPolizaSinMarbete.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioPolizaSinMarbete.Text);
+            int? _SubRamo = ddlSubRamoPolizasSinMarbete.SelectedValue != "-1" ? Convert.ToInt32(ddlSubRamoPolizasSinMarbete.SelectedValue)  : new Nullable<int>();
+
+            var Listado = ObjDataConsulta.Value.BuscaPolziasSinMarbete(
+                _Poliza,
+                _Supervisor,
+                _Intermediario,
+                null,
+                _FechaDesde,
+                _FechaHasta,
+                106,
+                _SubRamo);
+            if (Listado.Count() < 1) {
+                rpListadoPolizaSinMarbete.DataSource = null;
+                rpListadoPolizaSinMarbete.DataBind();
+            }
+            else {
+                Paginar_PolizaSinMarbete(ref rpListadoPolizaSinMarbete, Listado, 10, ref lbCantidadPaginaPolizaSinMarbete, ref btnPrimeraPaginaPolizaSinMarbete, ref btnPaginaAnteriorPolizaSinMarbete, ref btnSiguientePaginaPolizaSinMarbete, ref btnUltimaPaginaPolizaSinMarbete);
+                HandlePaging_PolizaSinMarbete(ref dtPaginacionListadoPrincipalPolizaSinMarbete, ref lbPaginaActualPolizaSinMarbete);
+            }
+        }
+        #endregion
+
+        #region EXPORTAR LAS POLIZAS SIN IMPRESIOND E MARBETES
+        private void ExportarPolizasSinImpresion() {
+
+            string _Poliza = string.IsNullOrEmpty(txtPolizaPolziaSinImpresion.Text.Trim()) ? null : txtPolizaPolziaSinImpresion.Text.Trim();
+            DateTime? _FechaDesde = string.IsNullOrEmpty(txtfechaDesdePolizaSinImpresion.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtfechaDesdePolizaSinImpresion.Text);
+            DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHAstaPolizaSinMarbete.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHAstaPolizaSinMarbete.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisorPolizaSinMarbete.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisorPolizaSinMarbete.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioPolizaSinMarbete.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioPolizaSinMarbete.Text);
+            int? _SubRamo = ddlSubRamoPolizasSinMarbete.SelectedValue != "-1" ? Convert.ToInt32(ddlSubRamoPolizasSinMarbete.SelectedValue) : new Nullable<int>();
+
+            var Exportar = (from n in ObjDataConsulta.Value.BuscaPolziasSinMarbete(
+                _Poliza,
+                _Supervisor,
+                _Intermediario,
+                null,
+                _FechaDesde,
+                _FechaHasta,
+                106,
+                _SubRamo)
+                            select new
+                            {
+                                Poliza = n.Poliza,
+                                Prima = n.Prima,
+                                Estatus = n.Estatus,
+                                InicioVigencia = n.InicioVigencia,
+                                FinVigencia = n.FinVigencia,
+                                Supervisor = n.Supervisor,
+                                Intermediario = n.Intermediario,
+                                Oficina = n.Oficina,
+                                Usuario = n.UsuarioAdiciona,
+                                FechaCreado = n.FechaCreado,
+                                FechaCreadoFormateada = n.FechaCreadoFormateada,
+                                Ramo = n.Ramo,
+                                SubRamo = n.SubRamo
+                            }).ToList();
+            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Polizas Sin Impresión de Marbetes", Exportar);
+        }
+        #endregion
+
+        #region CARGAR LISTAS DESPLEGABLES
+        private void CargarOficinas() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddloficinaPolziaSinImpresion, ObjdataComun.Value.BuscaListas("OFICINAS", null, null), true);
+        }
+        private void CargarSunramos() {
+            int Ramo = 106;
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSubRamoPolizasSinMarbete, ObjdataComun.Value.BuscaListas("SUBRAMO", Ramo.ToString(), null), true);
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -229,7 +442,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "REGISTROS IMCOMPLETOS";
 
+                rbCLientesSinPolizas.Checked = true;
                 DIVBloqueClientesSinPoliza.Visible = true;
+                DivBloquePaginacionPolizasSinMarbete.Visible = false;
             }
         }
 
@@ -250,6 +465,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             if (rbPolizasSInImpresionMarbete.Checked == true) {
                 DIVBloqueClientesSinPoliza.Visible = false;
                 DIVBloquePolziaSinMarbete.Visible = true;
+                CargarOficinas();
+                CargarSunramos();
             }
             else {
                 DIVBloqueClientesSinPoliza.Visible = false;
@@ -263,7 +480,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 CurrentPage_ClienteSinPolizas = 0;
                 MostrarListadoClienteSinpolizas();
             }
-            else if (rbPolizasSInImpresionMarbete.Checked == true) { }
+            else if (rbPolizasSInImpresionMarbete.Checked == true) {
+                CurrentPage_PolizaSinMarbete = 0;
+                MostrarPolizasSinMarbetes();
+            }
         }
 
         protected void btnExportarExel_Click(object sender, ImageClickEventArgs e)
@@ -271,7 +491,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             if (rbCLientesSinPolizas.Checked == true) {
                 ExportarClientesSinPolizas();
             }
-            else if (rbPolizasSInImpresionMarbete.Checked == true) { }
+            else if (rbPolizasSInImpresionMarbete.Checked == true) {
+                ExportarPolizasSinImpresion();
+            }
         }
 
         protected void btnPrimeraPaginaClientesSinPoliza_Click(object sender, ImageClickEventArgs e)
@@ -311,6 +533,46 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         {
             UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Supervisor = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoSupervisorClienteSinPoliza.Text);
             txtNombreSupervisorClienteSinPoliza.Text = Supervisor.SacarNombreSupervisor();
+        }
+
+        protected void btnPrimeraPaginaPolizaSinMarbete_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_PolizaSinMarbete = 0;
+            MostrarPolizasSinMarbetes();
+        }
+
+        protected void btnPaginaAnteriorPolizaSinMarbete_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_PolizaSinMarbete += -1;
+            MostrarPolizasSinMarbetes();
+            MoverValoresPaginacion_PolizaSinMarbete((int)OpcionesPaginacionValores_PolizaSinMarbete.PaginaAnterior, ref lbPaginaActualPolizaSinMarbete, ref lbCantidadPaginaPolizaSinMarbete);
+        }
+
+        protected void dtPaginacionListadoPrincipalPolizaSinMarbete_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+           
+        }
+
+        protected void btnSiguientePaginaPolizaSinMarbete_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_PolizaSinMarbete += 1;
+            MostrarPolizasSinMarbetes();
+
+        }
+
+        protected void btnUltimaPaginaPolizaSinMarbete_Click(object sender, ImageClickEventArgs e)
+        {
+
+            CurrentPage_PolizaSinMarbete = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarPolizasSinMarbetes();
+            MoverValoresPaginacion_PolizaSinMarbete((int)OpcionesPaginacionValores_PolizaSinMarbete.UltimaPagina, ref lbPaginaActualPolizaSinMarbete, ref lbCantidadPaginaPolizaSinMarbete);
+        }
+
+        protected void dtPaginacionListadoPrincipalPolizaSinMarbete_CancelCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_PolizaSinMarbete = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarPolizasSinMarbetes();
         }
 
         protected void txtCodigoIntermediarioClienteSinPoliza_TextChanged(object sender, EventArgs e)

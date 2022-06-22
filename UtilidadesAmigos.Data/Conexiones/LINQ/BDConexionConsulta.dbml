@@ -579,4 +579,35 @@
       <Column Name="ClaseCliente" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_MOSTRAR_POLIZAS_SIN_IMPRESION_MARBETE" Method="SP_MOSTRAR_POLIZAS_SIN_IMPRESION_MARBETE">
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_MOSTRAR_POLIZAS_SIN_IMPRESION_MARBETEResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Prima" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="UsuarioAdiciona" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FechaCreado" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaCreadoFormateada" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(83) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoSubramo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubRamo" Type="System.String" DbType="NVarChar(83) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>
