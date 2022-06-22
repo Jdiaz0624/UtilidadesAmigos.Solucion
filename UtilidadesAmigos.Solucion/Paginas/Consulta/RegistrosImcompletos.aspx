@@ -179,7 +179,7 @@
 
                 <div class="col-md-1">
                      <asp:Label ID="lbCodigoSupervisorPolizaSinMarbete" runat="server" Text="Supervisor" CssClass="LetrasNegrita"></asp:Label>
-                    <asp:TextBox ID="txtCodigoSupervisorPolizaSinMarbete" runat="server" CssClass="form-control" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigoSupervisorPolizaSinMarbete" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoSupervisorPolizaSinMarbete_TextChanged" CssClass="form-control" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
                 <div class="col-md-5">
                     <asp:Label ID="lbNombreSupervisorPolizaSinMarbete" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
@@ -187,7 +187,7 @@
                 </div>
                 <div class="col-md-1">
                       <asp:Label ID="lbCodigoIntermediarioPolizaSinMarbete" runat="server" Text="Intermediario" CssClass="LetrasNegrita"></asp:Label>
-                    <asp:TextBox ID="txtCodigoIntermediarioPolizaSinMarbete" runat="server" CssClass="form-control" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigoIntermediarioPolizaSinMarbete" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoIntermediarioPolizaSinMarbete_TextChanged" CssClass="form-control" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
                 <div class="col-md-5">
                      <asp:Label ID="lbNombreIntermediarioPolizaSinMarbete" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>

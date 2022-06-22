@@ -575,6 +575,18 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             MostrarPolizasSinMarbetes();
         }
 
+        protected void txtCodigoSupervisorPolizaSinMarbete_TextChanged(object sender, EventArgs e)
+        {
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Supervisor = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoSupervisorPolizaSinMarbete.Text);
+            txtNombreSupervisorPolizaSinMarbete.Text = Supervisor.SacarNombreSupervisor();
+        }
+
+        protected void txtCodigoIntermediarioPolizaSinMarbete_TextChanged(object sender, EventArgs e)
+        {
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Intermediario = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoIntermediarioPolizaSinMarbete.Text);
+            txtNombreIntermediarioPolizaSinMarbete.Text = Intermediario.SacarNombreSupervisor();
+        }
+
         protected void txtCodigoIntermediarioClienteSinPoliza_TextChanged(object sender, EventArgs e)
         {
             UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Intermediario = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoIntermediarioClienteSinPoliza.Text);
