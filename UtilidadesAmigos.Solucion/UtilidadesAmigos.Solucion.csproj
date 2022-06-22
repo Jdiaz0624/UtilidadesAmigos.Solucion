@@ -230,6 +230,7 @@
     <Content Include="Paginas\Consulta\GenerarReporteFianzas.aspx" />
     <Content Include="Paginas\Consulta\GestionCobros.aspx" />
     <Content Include="Paginas\Consulta\ListadoRenovacion.aspx" />
+    <Content Include="Paginas\Consulta\RegistrosImcompletos.aspx" />
     <Content Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx" />
     <Content Include="Paginas\Consulta\SacarCarteraIntermediariosSupervisor.aspx" />
     <Content Include="Paginas\Consulta\ValidarCoberturas.aspx" />
@@ -502,6 +503,13 @@
     </Compile>
     <Compile Include="Paginas\Consulta\ListadoRenovacion.aspx.designer.cs">
       <DependentUpon>ListadoRenovacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Consulta\RegistrosImcompletos.aspx.cs">
+      <DependentUpon>RegistrosImcompletos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Consulta\RegistrosImcompletos.aspx.designer.cs">
+      <DependentUpon>RegistrosImcompletos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx.cs">
       <DependentUpon>ReporteOperacionesSospechosas.aspx</DependentUpon>

@@ -1,0 +1,161 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/PatallaPrincila.Master" AutoEventWireup="true" CodeBehind="RegistrosImcompletos.aspx.cs" Inherits="UtilidadesAmigos.Solucion.Paginas.Consulta.RegistrosImcompletos" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <style type="text/css">
+
+        .btn-sm{
+            width:90px;
+        }
+
+        .LetrasNegrita {
+        font-weight:bold;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        
+       .BotonImagen {
+         width:40px;
+         height:40px;
+       
+       }
+    </style>
+
+    <div class="container-fluid">
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <asp:Label ID="lbCantidadClientesSinPoliza" runat="server" Text="Clientes Sin Poliza" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtClientesSinPolizaRecuento" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+            </div>
+
+             <div class="col-md-3">
+                <asp:Label ID="lbPolizasSinmarbetesRecuento" runat="server" Text="Poliza Sin Marbetes" CssClass="LetrasNegrita"></asp:Label>
+                <asp:TextBox ID="txtPolizasSInMarbeteRecuento" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+            </div>
+        </div>
+        <hr />
+        <div class="form-check-inline">
+            <asp:Label ID="lbTipoDeDataGenerar" runat="server" CssClass="LetrasNegrita" Text="Tipo Data a Mosrar: "></asp:Label>
+            <asp:RadioButton ID="rbCLientesSinPolizas" runat="server" Text="Clientes Sin Polizas" GroupName="TipoInformacion" AutoPostBack="true" OnCheckedChanged="rbCLientesSinPolizas_CheckedChanged" ToolTip="Mostrar el lsitado de los clientes que no tienen poliza asignada" />
+            <asp:RadioButton ID="rbPolizasSInImpresionMarbete" runat="server" Text="Polizas Sin Impresion de Marbetes" GroupName="TipoInformacion" AutoPostBack="true" OnCheckedChanged="rbPolizasSInImpresionMarbete_CheckedChanged" ToolTip="Mostrar el listado de las polizas que no tiene marbete impreso" />
+        </div>
+        <br />
+         <div align="center">
+                <asp:ImageButton ID="btnConsultar" runat="server" CssClass="BotonImagen" ToolTip="Consultar información" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultar_Click" />
+                <asp:ImageButton ID="btnExportarExel" runat="server" CssClass="BotonImagen" ToolTip="Exportar información" ImageUrl="~/Imagenes/excel.png" OnClick="btnExportarExel_Click" />
+            </div>
+            <br />
+        <div id="DIVBloqueClientesSinPoliza" visible="true" runat="server">
+            <br />
+            <div align="center">
+                <asp:Label ID="lbCientesSinPolizaTitulo" runat="server" Text="Clientes Sin Polizas Asignada" CssClass="LetrasNegrita"></asp:Label>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    <asp:Label ID="lbCodigoClienteClienteSinPoliza" runat="server" Text="Cod Ciente" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtCodigoClienteSinPoliza" runat="server" CssClass="form-control" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                <div class="col-md-3">
+                      <asp:Label ID="lbNumeroidentidicacionClienteSinpoliza" runat="server" Text="No. identificación" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtNumeroIdentificacionClienteSinPoliza" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                <div class="col-md-3">
+                      <asp:Label ID="lbFechaDesdeClienteSinPoliza" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtFechaDesdeClienteSinPoliza" runat="server" CssClass="form-control" TextMode="Date" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                <div class="col-md-3">
+                      <asp:Label ID="lbFechaHastaClienteSinPoloiza" runat="server" Text="Fecha Hasta" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtFechaHastaClienteSinPoliza" runat="server" CssClass="form-control" TextMode="Date" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+
+                <div class="col-md-1">
+                      <asp:Label ID="lbCodigoSupervisorClienteSinPoliza" runat="server" Text="Supervisor" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtCodigoSupervisorClienteSinPoliza" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoSupervisorClienteSinPoliza_TextChanged" CssClass="form-control" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                <div class="col-md-5">
+                      <asp:Label ID="lbNombreSupervisorClienteSinPoliza" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtNombreSupervisorClienteSinPoliza" runat="server" CssClass="form-control" Enabled="false" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                <div class="col-md-1">
+                      <asp:Label ID="lbCodigoIntermediarioClienteSinPoliza" runat="server" Text="Vendedor" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtCodigoIntermediarioClienteSinPoliza" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoIntermediarioClienteSinPoliza_TextChanged" CssClass="form-control" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                <div class="col-md-5">
+                      <asp:Label ID="lbNombreIntermediarioClienteSinpOliza" runat="server" Text="Cod Ciente" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtNombreIntermediarioClienteSinPoliza" runat="server" CssClass="form-control" Enabled="false" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+
+                <div class="col-md-6">
+                      <asp:Label ID="lbNombreClienteClienteSinPoliza" runat="server" Text="Nombre Cliente" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtNombreClienteClienteSinPoliza" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+            </div>
+            <br />
+           <table class="table table-striped">
+               <thead class="table-dark">
+                   <tr>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Supervisor</th>
+                        <th scope="col">Intermediario</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Tipo RNC</th>
+                        <th scope="col">Identificación</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <asp:Repeater ID="rpListadoClienteSinPolizas" runat="server">
+                       <ItemTemplate>
+                           <tr>
+                               <td> <%# Eval("Cliente") %> </td>
+                               <td> <%# Eval("Supervisor") %> </td>
+                               <td> <%# Eval("Intermediario") %> </td>
+                               <td> <%# Eval("Fecha") %> </td>
+                               <td> <%# Eval("TipoIdentificacion") %> </td>
+                               <td> <%# Eval("RNC") %> </td>
+                           </tr>
+                       </ItemTemplate>
+                   </asp:Repeater>
+               </tbody>
+           </table>
+             <table class="table">
+                <tfoot class="table-light">
+                    <tr>
+                        <td align="right"><b>Pagina </b> <asp:Label ID="lbPaginaActualClientesSinPoliza" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label> <b>De </b>   <asp:Label ID="lbCantidadPaginaClientesSinPoliza" runat="server" Text="0" CssClass="Letranegrita"></asp:Label> </td>
+                    </tr>
+                </tfoot>
+            </table>
+             <div id="DivPaginacionListadoPrincipal" runat="server" align="center" >
+                <div style="margin-top=20px;">
+                    <table style="width:600px;">
+                        <tr>
+                            <td> <asp:ImageButton ID="btnPrimeraPaginaClientesSinPoliza" runat="server" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPaginaClientesSinPoliza_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnPaginaAnteriorClientesSinPoliza" runat="server" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnPaginaAnteriorClientesSinPoliza_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td align="center">
+                                <asp:DataList ID="dtPaginacionListadoPrincipalClientesSinPoliza" runat="server" OnCancelCommand="dtPaginacionListadoPrincipalClientesSinPoliza_CancelCommand" OnItemDataBound="dtPaginacionListadoPrincipalClientesSinPoliza_ItemDataBound" RepeatDirection="Horizontal" >
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnPaginacionCentralClientesSinPoliza" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
+                                    </ItemTemplate>
+                                </asp:DataList>
+
+                            </td>
+                            <td> <asp:ImageButton ID="btnSiguientePaginaClientesSinPoliza" runat="server" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguientePaginaClientesSinPoliza_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnUltimaPaginaClientesSinPoliza" runat="server" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimaPaginaClientesSinPoliza_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                           
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br />
+        </div>
+
+
+        <div id="DIVBloquePolziaSinMarbete" visible="true" runat="server">
+
+        </div>
+        <br />
+        
+    </div>
+</asp:Content>

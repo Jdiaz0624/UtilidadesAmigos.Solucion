@@ -780,5 +780,51 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         }
         #endregion
 
+
+        #region MANTENIMIENTO DE REGISTROS IMCOMPLETOS
+        /// <summary>
+        /// Este Metodo es para buscar la información de los clientes que esta registrados sin polizas asignadas.
+        /// </summary>
+        /// <param name="CodigoCliente"></param>
+        /// <param name="Numeroidentificacion"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="NombreCliente"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EClientesSinPoliza> BuscaClientesSinPolizas(decimal? CodigoCliente = null, string Numeroidentificacion = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Supervisor = null, int? Intermediario = null, string NombreCliente = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_CLIENTE_SIN_POLIZAS(CodigoCliente, Numeroidentificacion, FechaDesde, FechaHasta, Supervisor, Intermediario, NombreCliente)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EClientesSinPoliza
+                           {
+                               Codigo=n.Codigo,
+                               TipoIdentificacion=n.TipoIdentificacion,
+                               RNC=n.RNC,
+                               Cliente=n.Cliente,
+                               Direccion=n.Direccion,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Supervisor=n.Supervisor,
+                               Intermediario=n.Intermediario,
+                               Cobrador=n.Cobrador,
+                               UsuarioAdiciona=n.UsuarioAdiciona,
+                               fecha0=n.fecha0,
+                               Fecha=n.Fecha,
+                               TelefonoResidencia=n.TelefonoResidencia,
+                               TelefonoOficina=n.TelefonoOficina,
+                               Celular=n.Celular,
+                               fax=n.fax,
+                               Beeper=n.Beeper,
+                               Comprobante=n.Comprobante,
+                               Nacionalidad=n.Nacionalidad,
+                               ClaseCliente=n.ClaseCliente,
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
+
     }
 }

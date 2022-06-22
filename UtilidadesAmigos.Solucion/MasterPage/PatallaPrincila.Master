@@ -199,6 +199,7 @@
             <%--<asp:LinkButton ID="LinkConsumoWS" runat="server"  Text="Consultar Dato Poliza (WS)" OnClick="LinkConsumoWS_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>--%>
             <asp:LinkButton ID="LinkControlVisitas" runat="server" Text="Control de Visitas" OnClick="LinkControlVisitas_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
            <asp:LinkButton ID="LinkConsultarInformacionAsegurado" runat="server" Text="Información Asegura.do" OnClick="LinkConsultarInformacionAsegurado_Click" CssClass="list-group-item list-group-item-action bg-light" ToolTip="Mostrar y procesar data del proceso de Asegua.do"></asp:LinkButton>
+        <asp:LinkButton ID="LinkCLientesSinPolizaPolizaSinMarbete" runat="server" Text="Registros Incompletos" OnClick="LinkCLientesSinPolizaPolizaSinMarbete_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
        <%-- <asp:LinkButton ID="LinkGestionCObros" runat="server" Text="Gestión de Cobros" OnClick="LinkGestionCObros_Click" CssClass="list-group-item list-group-item-action bg-light" ToolTip="Gestion de Cobro de Polizas"></asp:LinkButton>--%>
     </div>
   </li>
