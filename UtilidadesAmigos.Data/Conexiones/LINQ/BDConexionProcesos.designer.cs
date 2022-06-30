@@ -275,18 +275,18 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_AGREGAR_EDITAR_ELIMINAR_ITEMS_RECLAMACIONESResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_INFORMACION_RECIBO_DIGITAL")]
-		public ISingleResult<SP_BUSCA_INFORMACION_RECIBO_DIGITALResult> SP_BUSCA_INFORMACION_RECIBO_DIGITAL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRecibo", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRecibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Int")] System.Nullable<int> codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoPago", DbType="Int")] System.Nullable<int> idTipoPago, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="GeneradoPor", DbType="Decimal(20,0)")] System.Nullable<decimal> generadoPor)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroRecibo, codigoIntermediario, codigoSupervisor, fechaDesde, fechaHasta, idTipoPago, oficina, generadoPor);
-			return ((ISingleResult<SP_BUSCA_INFORMACION_RECIBO_DIGITALResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_RECIBO_DIGITAL")]
 		public ISingleResult<SP_PROCESAR_RECIBO_DIGITALResult> SP_PROCESAR_RECIBO_DIGITAL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRecibo", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRecibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorRecibo", DbType="Decimal(20,2)")] System.Nullable<decimal> valorRecibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoPago", DbType="Int")] System.Nullable<int> idTipoPago, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Detalle", DbType="VarChar(8000)")] string detalle, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreadoPor", DbType="Decimal(20,0)")] System.Nullable<decimal> creadoPor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroRecibo, codigoIntermediario, valorRecibo, idTipoPago, detalle, creadoPor, oficina, accion);
 			return ((ISingleResult<SP_PROCESAR_RECIBO_DIGITALResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_INFORMACION_RECIBO_DIGITAL")]
+		public ISingleResult<SP_BUSCA_INFORMACION_RECIBO_DIGITALResult> SP_BUSCA_INFORMACION_RECIBO_DIGITAL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRecibo", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRecibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Int")] System.Nullable<int> codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoPago", DbType="Int")] System.Nullable<int> idTipoPago, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="GeneradoPor", DbType="Decimal(20,0)")] System.Nullable<decimal> generadoPor)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroRecibo, codigoIntermediario, codigoSupervisor, fechaDesde, fechaHasta, idTipoPago, oficina, generadoPor);
+			return ((ISingleResult<SP_BUSCA_INFORMACION_RECIBO_DIGITALResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -4824,6 +4824,158 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
+	public partial class SP_PROCESAR_RECIBO_DIGITALResult
+	{
+		
+		private System.Nullable<decimal> _NumeroRecibo;
+		
+		private System.Nullable<int> _CodigoIntermediario;
+		
+		private System.Nullable<System.DateTime> _FechaRecibo;
+		
+		private System.Nullable<decimal> _ValorRecibo;
+		
+		private System.Nullable<int> _IdTipoPago;
+		
+		private string _Detalle;
+		
+		private System.Nullable<decimal> _CreadoPor;
+		
+		private System.Nullable<int> _Oficina;
+		
+		public SP_PROCESAR_RECIBO_DIGITALResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroRecibo", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> NumeroRecibo
+		{
+			get
+			{
+				return this._NumeroRecibo;
+			}
+			set
+			{
+				if ((this._NumeroRecibo != value))
+				{
+					this._NumeroRecibo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoIntermediario", DbType="Int")]
+		public System.Nullable<int> CodigoIntermediario
+		{
+			get
+			{
+				return this._CodigoIntermediario;
+			}
+			set
+			{
+				if ((this._CodigoIntermediario != value))
+				{
+					this._CodigoIntermediario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaRecibo", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaRecibo
+		{
+			get
+			{
+				return this._FechaRecibo;
+			}
+			set
+			{
+				if ((this._FechaRecibo != value))
+				{
+					this._FechaRecibo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorRecibo", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ValorRecibo
+		{
+			get
+			{
+				return this._ValorRecibo;
+			}
+			set
+			{
+				if ((this._ValorRecibo != value))
+				{
+					this._ValorRecibo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTipoPago", DbType="Int")]
+		public System.Nullable<int> IdTipoPago
+		{
+			get
+			{
+				return this._IdTipoPago;
+			}
+			set
+			{
+				if ((this._IdTipoPago != value))
+				{
+					this._IdTipoPago = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Detalle", DbType="VarChar(8000)")]
+		public string Detalle
+		{
+			get
+			{
+				return this._Detalle;
+			}
+			set
+			{
+				if ((this._Detalle != value))
+				{
+					this._Detalle = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreadoPor", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> CreadoPor
+		{
+			get
+			{
+				return this._CreadoPor;
+			}
+			set
+			{
+				if ((this._CreadoPor != value))
+				{
+					this._CreadoPor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="Int")]
+		public System.Nullable<int> Oficina
+		{
+			get
+			{
+				return this._Oficina;
+			}
+			set
+			{
+				if ((this._Oficina != value))
+				{
+					this._Oficina = value;
+				}
+			}
+		}
+	}
+	
 	public partial class SP_BUSCA_INFORMACION_RECIBO_DIGITALResult
 	{
 		
@@ -4862,6 +5014,16 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		private string _Oficina;
 		
 		private string _GeneradoPor;
+		
+		private System.Nullable<decimal> _TotalEfectivo;
+		
+		private System.Nullable<decimal> _TotalTransferencia;
+		
+		private System.Nullable<decimal> _TotalDeposito;
+		
+		private System.Nullable<decimal> _TotalCheque;
+		
+		private System.Nullable<decimal> _TotalOtro;
 		
 		public SP_BUSCA_INFORMACION_RECIBO_DIGITALResult()
 		{
@@ -5154,155 +5316,83 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				}
 			}
 		}
-	}
-	
-	public partial class SP_PROCESAR_RECIBO_DIGITALResult
-	{
 		
-		private System.Nullable<decimal> _NumeroRecibo;
-		
-		private System.Nullable<int> _CodigoIntermediario;
-		
-		private System.Nullable<System.DateTime> _FechaRecibo;
-		
-		private System.Nullable<decimal> _ValorRecibo;
-		
-		private System.Nullable<int> _IdTipoPago;
-		
-		private string _Detalle;
-		
-		private System.Nullable<decimal> _CreadoPor;
-		
-		private System.Nullable<int> _Oficina;
-		
-		public SP_PROCESAR_RECIBO_DIGITALResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroRecibo", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> NumeroRecibo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalEfectivo", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> TotalEfectivo
 		{
 			get
 			{
-				return this._NumeroRecibo;
+				return this._TotalEfectivo;
 			}
 			set
 			{
-				if ((this._NumeroRecibo != value))
+				if ((this._TotalEfectivo != value))
 				{
-					this._NumeroRecibo = value;
+					this._TotalEfectivo = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoIntermediario", DbType="Int")]
-		public System.Nullable<int> CodigoIntermediario
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalTransferencia", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> TotalTransferencia
 		{
 			get
 			{
-				return this._CodigoIntermediario;
+				return this._TotalTransferencia;
 			}
 			set
 			{
-				if ((this._CodigoIntermediario != value))
+				if ((this._TotalTransferencia != value))
 				{
-					this._CodigoIntermediario = value;
+					this._TotalTransferencia = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaRecibo", DbType="DateTime")]
-		public System.Nullable<System.DateTime> FechaRecibo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalDeposito", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> TotalDeposito
 		{
 			get
 			{
-				return this._FechaRecibo;
+				return this._TotalDeposito;
 			}
 			set
 			{
-				if ((this._FechaRecibo != value))
+				if ((this._TotalDeposito != value))
 				{
-					this._FechaRecibo = value;
+					this._TotalDeposito = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorRecibo", DbType="Decimal(20,2)")]
-		public System.Nullable<decimal> ValorRecibo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalCheque", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> TotalCheque
 		{
 			get
 			{
-				return this._ValorRecibo;
+				return this._TotalCheque;
 			}
 			set
 			{
-				if ((this._ValorRecibo != value))
+				if ((this._TotalCheque != value))
 				{
-					this._ValorRecibo = value;
+					this._TotalCheque = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTipoPago", DbType="Int")]
-		public System.Nullable<int> IdTipoPago
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalOtro", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> TotalOtro
 		{
 			get
 			{
-				return this._IdTipoPago;
+				return this._TotalOtro;
 			}
 			set
 			{
-				if ((this._IdTipoPago != value))
+				if ((this._TotalOtro != value))
 				{
-					this._IdTipoPago = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Detalle", DbType="VarChar(8000)")]
-		public string Detalle
-		{
-			get
-			{
-				return this._Detalle;
-			}
-			set
-			{
-				if ((this._Detalle != value))
-				{
-					this._Detalle = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreadoPor", DbType="Decimal(20,0)")]
-		public System.Nullable<decimal> CreadoPor
-		{
-			get
-			{
-				return this._CreadoPor;
-			}
-			set
-			{
-				if ((this._CreadoPor != value))
-				{
-					this._CreadoPor = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="Int")]
-		public System.Nullable<int> Oficina
-		{
-			get
-			{
-				return this._Oficina;
-			}
-			set
-			{
-				if ((this._Oficina != value))
-				{
-					this._Oficina = value;
+					this._TotalOtro = value;
 				}
 			}
 		}

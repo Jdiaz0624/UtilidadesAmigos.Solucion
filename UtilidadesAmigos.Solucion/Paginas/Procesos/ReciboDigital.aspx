@@ -67,7 +67,7 @@
                 </div>
 
                  <div class="col-md-3">
-                    <asp:Label ID="lbFechaHAstaCOnsulta" runat="server" Text="HAsta" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbFechaHAstaCOnsulta" runat="server" Text="Hasta" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtFechaHastaConsulta" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
                 </div>
                   <div class="col-md-2">
@@ -146,6 +146,21 @@
                     <tr>
                         <td align="right"><b>Pagina </b> <asp:Label ID="lbPaginaActual" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label> <b>De </b>   <asp:Label ID="lbCantidadPagina" runat="server" Text="0" CssClass="Letranegrita"></asp:Label> </td>
                     </tr>
+                    <tr>
+                        <td><b>Total Efectivo:  </b><asp:Label ID="lbTotalEfectivo" runat="server" Text="0"></asp:Label></td>
+                    </tr>
+                    <tr>
+                        <td><b>Total Transferencia: </b><asp:Label ID="lbTotalTransferencia" runat="server" Text="0"></asp:Label></td>
+                    </tr>
+                    <tr>
+                        <td><b>Total Deposito: </b><asp:Label ID="lbTotalDeposito" runat="server" Text="0"></asp:Label></td>
+                    </tr>
+                    <tr>
+                        <td><b>Total Cheque: </b><asp:Label ID="lbTotalCheque" runat="server" Text="0"></asp:Label></td>
+                    </tr>
+                    <tr>
+                        <td><b>Total Otros: </b><asp:Label ID="lbTotalOtros" runat="server" Text="0"></asp:Label></td>
+                    </tr>
                 </tfoot>
             </table>
               <div id="DivPaginacionListadoPrincipal" runat="server" align="center" >
@@ -155,7 +170,7 @@
                             <td> <asp:ImageButton ID="btnPrimeraPagina" runat="server" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
                             <td> <asp:ImageButton ID="btnPaginaAnterior" runat="server" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnPaginaAnterior_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
                             <td align="center">
-                                <asp:DataList ID="dtPaginacionListadoPrincipal" runat="server" OnCancelCommand="dtPaginacionListadoPrincipal_CancelCommand" OnItemDataBound="dtPaginacionListadoPrincipal_ItemDataBound" RepeatDirection="Horizontal" >
+                                <asp:DataList ID="dtPaginacionListadoPrincipal" runat="server" OnCancelCommand="dtPaginacionListadoPrincipal_CancelCommand1" OnItemDataBound="dtPaginacionListadoPrincipal_ItemDataBound" RepeatDirection="Horizontal" >
                                     <ItemTemplate>
                                         <asp:Button ID="btnPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
                                     </ItemTemplate>

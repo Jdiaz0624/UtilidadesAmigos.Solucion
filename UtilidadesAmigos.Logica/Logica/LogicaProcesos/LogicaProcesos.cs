@@ -651,7 +651,12 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
                                CreadoPor0 = n.CreadoPor0,
                                IdOficina=(int)n.IdOficina,
                                Oficina=n.Oficina,
-                               GeneradoPor = n.GeneradoPor
+                               GeneradoPor = n.GeneradoPor,
+                               TotalEfectivo=n.TotalEfectivo,
+                               TotalTransferencia=n.TotalTransferencia,
+                               TotalDeposito=n.TotalDeposito,
+                               TotalCheque=n.TotalCheque,
+                               TotalOtro=n.TotalOtro
                            }).ToList();
             return Listado;
         }

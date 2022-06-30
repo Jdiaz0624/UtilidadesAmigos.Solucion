@@ -180,8 +180,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 new Nullable<decimal>(),
                 _Intermediario,
                 _Supervisor,
-                _FechaHasta,
                 _FechaDesde,
+                _FechaHasta,
                 _IdTipoPago,
                 _Oficina
                 );
@@ -194,8 +194,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             else
             {
 
+                decimal Efectivo = 0, Transferencia = 0, Deposito = 0, Cheque = 0, Otros = 0;
+                foreach (var n in MostrarListado) {
+                    Efectivo = (decimal)n.TotalEfectivo;
+                    Transferencia = (decimal)n.TotalTransferencia;
+                    Deposito = (decimal)n.TotalDeposito;
+                    Cheque = (decimal)n.TotalCheque;
+                    Otros = (decimal)n.TotalOtro;
+                }
+
+
+                lbTotalEfectivo.Text = Efectivo.ToString("N2");
+                lbTotalTransferencia.Text = Transferencia.ToString("N2");
+                lbTotalDeposito.Text = Deposito.ToString("N2");
+                lbTotalCheque.Text = Cheque.ToString("N2");
+                lbTotalOtros.Text = Otros.ToString("N2");
+
                 Paginar_ReciboDigital(ref rpListadoREcibos, MostrarListado, 10, ref lbCantidadPagina, ref btnPrimeraPagina, ref btnPaginaAnterior, ref btnSiguientePagina, ref btnUltimaPagina);
-                HandlePaging_ReciboDigital(ref dtPaginacionListadoPrincipal, ref lbCantidadPagina);
+                HandlePaging_ReciboDigital(ref dtPaginacionListadoPrincipal, ref lbPaginaActual);
             }
         }
         #endregion
@@ -489,6 +505,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
             //Reporte.PrintOptions.PrinterName = Reporte.PrintOptions.PrinterName;
             Reporte.PrintToPrinter(2, true, 0, 2);
+        }
+
+        protected void dtPaginacionListadoPrincipal_CancelCommand1(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_ReciboDigital = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListado();
         }
 
         protected void btnVolver_Click(object sender, ImageClickEventArgs e)

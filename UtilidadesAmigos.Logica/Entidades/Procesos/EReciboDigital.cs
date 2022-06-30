@@ -43,5 +43,14 @@ namespace UtilidadesAmigos.Logica.Entidades.Procesos
 		public string Oficina { get; set; }
 
 		public string GeneradoPor { get; set; }
+		public System.Nullable<decimal> TotalEfectivo { get; set; }
+
+		public System.Nullable<decimal> TotalTransferencia { get; set; }
+
+		public System.Nullable<decimal> TotalDeposito { get; set; }
+
+		public System.Nullable<decimal> TotalCheque { get; set; }
+
+		public System.Nullable<decimal> TotalOtro { get; set; }
 	}
 }

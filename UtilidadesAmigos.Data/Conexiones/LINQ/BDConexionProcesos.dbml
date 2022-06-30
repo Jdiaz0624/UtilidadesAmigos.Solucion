@@ -463,6 +463,26 @@
       <Column Name="IdEjecutivoReclamacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_PROCESAR_RECIBO_DIGITAL" Method="SP_PROCESAR_RECIBO_DIGITAL">
+    <Parameter Name="NumeroRecibo" Parameter="numeroRecibo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ValorRecibo" Parameter="valorRecibo" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="IdTipoPago" Parameter="idTipoPago" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Detalle" Parameter="detalle" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="CreadoPor" Parameter="creadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_RECIBO_DIGITALResult">
+      <Column Name="NumeroRecibo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaRecibo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ValorRecibo" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="IdTipoPago" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Detalle" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="CreadoPor" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="Utililades.SP_BUSCA_INFORMACION_RECIBO_DIGITAL" Method="SP_BUSCA_INFORMACION_RECIBO_DIGITAL">
     <Parameter Name="NumeroRecibo" Parameter="numeroRecibo" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Int32" DbType="Int" />
@@ -491,26 +511,11 @@
       <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_PROCESAR_RECIBO_DIGITAL" Method="SP_PROCESAR_RECIBO_DIGITAL">
-    <Parameter Name="NumeroRecibo" Parameter="numeroRecibo" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ValorRecibo" Parameter="valorRecibo" Type="System.Decimal" DbType="Decimal(20,2)" />
-    <Parameter Name="IdTipoPago" Parameter="idTipoPago" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Detalle" Parameter="detalle" Type="System.String" DbType="VarChar(8000)" />
-    <Parameter Name="CreadoPor" Parameter="creadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
-    <ElementType Name="SP_PROCESAR_RECIBO_DIGITALResult">
-      <Column Name="NumeroRecibo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FechaRecibo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ValorRecibo" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
-      <Column Name="IdTipoPago" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Detalle" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-      <Column Name="CreadoPor" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Oficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalEfectivo" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TotalTransferencia" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TotalDeposito" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TotalCheque" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="TotalOtro" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
