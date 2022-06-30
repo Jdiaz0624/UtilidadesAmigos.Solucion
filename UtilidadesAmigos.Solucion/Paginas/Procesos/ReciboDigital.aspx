@@ -116,7 +116,7 @@
                         <th scope="col"> Valor </th>
                         <th scope="col"> Tipo </th>
                         <th scope="col">  </th>
-                        <th scope="col">  </th>
+                      <%--  <th scope="col">  </th>--%>
                     </tr>
                 </thead>
                 <tbody>
@@ -134,7 +134,7 @@
                                 <td> <%#string.Format("{0:N2}", Eval("ValorRecibo")) %> </td>
                                 <td> <%# Eval("TipoPago") %> </td>
                                 <td align="right">  <asp:ImageButton ID="btnRecibo" runat="server" ToolTip="Generar Recibo" CssClass="BotonImagen" ImageUrl="~/Imagenes/pdf.png" OnClick="btnRecibo_Click" /> </td>
-                                <td align="right">  <asp:ImageButton ID="DirectoImpresora" runat="server" ToolTip="Imprimir Directo a la Impresora" CssClass="BotonImagen" ImageUrl="~/Imagenes/impresora.png" OnClick="DirectoImpresora_Click" /> </td>
+                                <%--<td align="right">  <asp:ImageButton ID="DirectoImpresora" runat="server" ToolTip="Imprimir Directo a la Impresora" CssClass="BotonImagen" ImageUrl="~/Imagenes/impresora.png" OnClick="DirectoImpresora_Click" /> </td>--%>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
