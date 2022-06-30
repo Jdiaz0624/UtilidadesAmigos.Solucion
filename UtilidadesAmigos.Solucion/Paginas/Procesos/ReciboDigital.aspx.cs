@@ -15,6 +15,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaProcesos.LogicaProcesos> ObjDataProceso = new Lazy<Logica.Logica.LogicaProcesos.LogicaProcesos>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataComun = new Lazy<Logica.Logica.LogicaSistema>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSeguridad.LogicaSeguridad> ObjDataSeguridad = new Lazy<Logica.Logica.LogicaSeguridad.LogicaSeguridad>();
 
         #region CONTROL DE PAGINACION DE LOS RECIBOS DIGITALES
         readonly PagedDataSource pagedDataSource_ReciboDigital = new PagedDataSource();
@@ -158,6 +159,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarTipoPago, ObjDataComun.Value.BuscaListas("TIPOPAGORECIBO", null, null));
         }
+
+        private void Oficinas()
+        {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionaroficina, ObjDataComun.Value.BuscaListas("OFICINASINSUCURSAL", null, null),true);
+        }
         #endregion
 
         #region MOSTRAR EL LISTADO 
@@ -169,14 +175,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             DateTime? _FechaDesde = string.IsNullOrEmpty(txtFechaDesdeCosulta.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesdeCosulta.Text);
             DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHastaConsulta.Text);
             int? _IdTipoPago = ddlTipoPagoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlTipoPagoConsulta.SelectedValue) : new Nullable<int>();
-
+            int? _Oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
             var MostrarListado = ObjDataProceso.Value.BuscaReciboDigital(
                 new Nullable<decimal>(),
                 _Intermediario,
                 _Supervisor,
                 _FechaHasta,
                 _FechaDesde,
-                _IdTipoPago);
+                _IdTipoPago,
+                _Oficina
+                );
             if (MostrarListado.Count() < 1)
             {
                 rpListadoREcibos.DataSource = null;
@@ -192,9 +200,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         }
         #endregion
 
+        #region SACAR LA OFICINA DE LOS USUARIOS
+        private int SacaroficinaUsuario(decimal IdUsuario) {
+            int CodigoOficina = 0;
+
+            var SacarInformacion = ObjDataComun.Value.BuscaUsuarios(IdUsuario);
+            foreach (var n in SacarInformacion) {
+                CodigoOficina = (int)n.IdOficina;
+            }
+            return CodigoOficina;
+        }
+        #endregion
+
         #region PROCESAR INFORMACION
         private void ProcesarInformacion(decimal IdRegistro, string Accion)
         {
+            decimal IdUsuario = (decimal)Session["IdUsuario"];
+            int IdOficina = SacaroficinaUsuario(IdUsuario);
+            
 
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionREcibosDigitales Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionREcibosDigitales(
                 IdRegistro,
@@ -203,7 +226,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 Convert.ToDecimal(txtValorAplicar.Text),
                 Convert.ToInt32(ddlSeleccionarTipoPago.SelectedValue),
                 txtDetalle.Text,
-                (decimal)Session["IdUsuario"],
+                IdUsuario,
+                IdOficina,
                 Accion);
             Procesar.ProcesarInformacion();
             ConfigurarcionInicial();
@@ -223,6 +247,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             rbPDF.Checked = true;
    
             TipoPagoConsulta();
+            Oficinas();
             DIVBloqueReciboDigitalConsulta.Visible = true;
             BloqueReciboDigitalMantenimiento.Visible = false;
 
@@ -246,6 +271,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 lbPantalla.Text = "RECIBO DIGITAL";
 
                 ConfigurarcionInicial();
+
+                DateTime _FechaDesde = DateTime.Now, _FechaHasta = DateTime.Now;
+                txtFechaDesdeCosulta.Text = _FechaDesde.ToString("yyyy-MM-dd");
+                txtFechaHastaConsulta.Text = _FechaHasta.ToString("yyyy-MM-dd");
+                CurrentPage_ReciboDigital = 0;
+                MostrarListado();
             }
         }
 
@@ -291,6 +322,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             DateTime? _FechaDesde = string.IsNullOrEmpty(txtFechaDesdeCosulta.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesdeCosulta.Text);
             DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHastaConsulta.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHastaConsulta.Text);
             int? _IdTipoPago = ddlTipoPagoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlTipoPagoConsulta.SelectedValue) : new Nullable<int>();
+            int? _oficina = ddlSeleccionaroficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficina.SelectedValue) : new Nullable<int>();
 
             if (rbExcelPlano.Checked == true)
             {
@@ -301,7 +333,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     _Supervisor,
                     _FechaDesde,
                     _FechaHasta,
-                    _IdTipoPago)
+                    _IdTipoPago,
+                    _oficina)
                                 select new
                                 {
                                     NumeroRecibo = n.NumeroRecibo,
@@ -330,6 +363,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 Reporte.SetParameterValue("@FechaDesde", _FechaDesde);
                 Reporte.SetParameterValue("@FechaHasta", _FechaHasta);
                 Reporte.SetParameterValue("@IdTipoPago", _IdTipoPago);
+                Reporte.SetParameterValue("@Oficina", _oficina);
                 Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
 
                 Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
@@ -359,6 +393,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         {
             var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
             var NumeroRecibo = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroRecibo")).Value.ToString();
+            var Oficina = ((HiddenField)ItemSeleccionado.FindControl("hfIdOficina")).Value.ToString();
 
             ReportDocument Reporte = new ReportDocument();
 
@@ -371,6 +406,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Reporte.SetParameterValue("@FechaDesde", new Nullable<DateTime>());
             Reporte.SetParameterValue("@FechaHasta", new Nullable<DateTime>());
             Reporte.SetParameterValue("@IdTipoPago", new Nullable<int>());
+            Reporte.SetParameterValue("@Oficina", Convert.ToInt32(Oficina));
             Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
 
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
@@ -434,6 +470,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         {
             var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
             var NumeroRecibo = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroRecibo")).Value.ToString();
+            var Oficina = ((HiddenField)ItemSeleccionado.FindControl("hfIdOficina")).Value.ToString();
 
             ReportDocument Reporte = new ReportDocument();
 
@@ -446,10 +483,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Reporte.SetParameterValue("@FechaDesde", new Nullable<DateTime>());  
             Reporte.SetParameterValue("@FechaHasta", new Nullable<DateTime>());
             Reporte.SetParameterValue("@IdTipoPago", new Nullable<int>());
+            Reporte.SetParameterValue("@Oficina", Convert.ToInt32(Oficina));
             Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
 
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
-            Reporte.PrintOptions.PrinterName = Reporte.PrintOptions.PrinterName;
+            //Reporte.PrintOptions.PrinterName = Reporte.PrintOptions.PrinterName;
             Reporte.PrintToPrinter(2, true, 0, 2);
         }
 

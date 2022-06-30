@@ -25,6 +25,7 @@ namespace UtilidadesAmigos.Logica.Entidades.Procesos
 		public string Hora { get; set; }
 
 		public System.Nullable<decimal> ValorRecibo { get; set; }
+
 		public string ValorReciboLetra { get; set; }
 
 		public System.Nullable<int> IdTipoPago { get; set; }
@@ -36,6 +37,11 @@ namespace UtilidadesAmigos.Logica.Entidades.Procesos
 		public System.Nullable<decimal> CreadoPor0 { get; set; }
 
 		public string CreadoPor { get; set; }
+
+		public int? IdOficina { get; set; }
+
+		public string Oficina { get; set; }
+
 		public string GeneradoPor { get; set; }
 	}
 }

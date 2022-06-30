@@ -17,6 +17,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInforma
         private int IdTipoPago = 0;
         private string Detalle = "";
         private decimal CreadoPor = 0;
+        private int Oficina = 0;
         private string Accion = "";
 
         public ProcesarInformacionREcibosDigitales(
@@ -27,6 +28,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInforma
         int IdTipoPagoCON,
         string DetalleCON,
         decimal CreadoPorCON,
+        int OficinaCON,
         string AccionCON)
         {
             NumeroRecibo = NumeroReciboCON;
@@ -36,6 +38,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInforma
             IdTipoPago = IdTipoPagoCON;
             Detalle = DetalleCON;
             CreadoPor = CreadoPorCON;
+            Oficina = OficinaCON;
             Accion = AccionCON;
 
         }
@@ -51,6 +54,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInforma
             Procesar.IdTipoPago = IdTipoPago;
             Procesar.Detalle = Detalle;
             Procesar.CreadoPor0 = CreadoPor;
+            Procesar.IdOficina = Oficina;
 
             var MAN = ObjDAta.ProcesarReciboDigital(Procesar, Accion);
         }

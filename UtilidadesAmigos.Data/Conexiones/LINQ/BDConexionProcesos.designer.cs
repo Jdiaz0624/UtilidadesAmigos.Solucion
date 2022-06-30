@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionProcesosDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString19, mappingSource)
 		{
 			OnCreated();
 		}
@@ -276,16 +276,16 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_INFORMACION_RECIBO_DIGITAL")]
-		public ISingleResult<SP_BUSCA_INFORMACION_RECIBO_DIGITALResult> SP_BUSCA_INFORMACION_RECIBO_DIGITAL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRecibo", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRecibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Int")] System.Nullable<int> codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoPago", DbType="Int")] System.Nullable<int> idTipoPago, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="GeneradoPor", DbType="Decimal(20,0)")] System.Nullable<decimal> generadoPor)
+		public ISingleResult<SP_BUSCA_INFORMACION_RECIBO_DIGITALResult> SP_BUSCA_INFORMACION_RECIBO_DIGITAL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRecibo", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRecibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoSupervisor", DbType="Int")] System.Nullable<int> codigoSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoPago", DbType="Int")] System.Nullable<int> idTipoPago, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="GeneradoPor", DbType="Decimal(20,0)")] System.Nullable<decimal> generadoPor)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroRecibo, codigoIntermediario, codigoSupervisor, fechaDesde, fechaHasta, idTipoPago, generadoPor);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroRecibo, codigoIntermediario, codigoSupervisor, fechaDesde, fechaHasta, idTipoPago, oficina, generadoPor);
 			return ((ISingleResult<SP_BUSCA_INFORMACION_RECIBO_DIGITALResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_RECIBO_DIGITAL")]
-		public ISingleResult<SP_PROCESAR_RECIBO_DIGITALResult> SP_PROCESAR_RECIBO_DIGITAL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRecibo", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRecibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorRecibo", DbType="Decimal(20,2)")] System.Nullable<decimal> valorRecibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoPago", DbType="Int")] System.Nullable<int> idTipoPago, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Detalle", DbType="VarChar(8000)")] string detalle, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreadoPor", DbType="Decimal(20,0)")] System.Nullable<decimal> creadoPor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		public ISingleResult<SP_PROCESAR_RECIBO_DIGITALResult> SP_PROCESAR_RECIBO_DIGITAL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRecibo", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRecibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoIntermediario", DbType="Int")] System.Nullable<int> codigoIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorRecibo", DbType="Decimal(20,2)")] System.Nullable<decimal> valorRecibo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoPago", DbType="Int")] System.Nullable<int> idTipoPago, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Detalle", DbType="VarChar(8000)")] string detalle, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CreadoPor", DbType="Decimal(20,0)")] System.Nullable<decimal> creadoPor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroRecibo, codigoIntermediario, valorRecibo, idTipoPago, detalle, creadoPor, accion);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroRecibo, codigoIntermediario, valorRecibo, idTipoPago, detalle, creadoPor, oficina, accion);
 			return ((ISingleResult<SP_PROCESAR_RECIBO_DIGITALResult>)(result.ReturnValue));
 		}
 	}
@@ -4857,6 +4857,10 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private string _CreadoPor;
 		
+		private decimal _IdOficina;
+		
+		private string _Oficina;
+		
 		private string _GeneradoPor;
 		
 		public SP_BUSCA_INFORMACION_RECIBO_DIGITALResult()
@@ -5087,7 +5091,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreadoPor", DbType="VarChar(1000)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreadoPor", DbType="VarChar(150)")]
 		public string CreadoPor
 		{
 			get
@@ -5099,6 +5103,38 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CreadoPor != value))
 				{
 					this._CreadoPor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdOficina", DbType="Decimal(18,0) NOT NULL")]
+		public decimal IdOficina
+		{
+			get
+			{
+				return this._IdOficina;
+			}
+			set
+			{
+				if ((this._IdOficina != value))
+				{
+					this._IdOficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="VarChar(100)")]
+		public string Oficina
+		{
+			get
+			{
+				return this._Oficina;
+			}
+			set
+			{
+				if ((this._Oficina != value))
+				{
+					this._Oficina = value;
 				}
 			}
 		}
@@ -5136,6 +5172,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		private string _Detalle;
 		
 		private System.Nullable<decimal> _CreadoPor;
+		
+		private System.Nullable<int> _Oficina;
 		
 		public SP_PROCESAR_RECIBO_DIGITALResult()
 		{
@@ -5249,6 +5287,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CreadoPor != value))
 				{
 					this._CreadoPor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="Int")]
+		public System.Nullable<int> Oficina
+		{
+			get
+			{
+				return this._Oficina;
+			}
+			set
+			{
+				if ((this._Oficina != value))
+				{
+					this._Oficina = value;
 				}
 			}
 		}

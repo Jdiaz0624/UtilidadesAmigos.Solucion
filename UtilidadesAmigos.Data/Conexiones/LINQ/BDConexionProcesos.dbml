@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionProcesosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString19" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_GENERAR_DATOS_PARA_MARBETE_VEHICULO" Method="SP_GENERAR_DATOS_PARA_MARBETE_VEHICULO">
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="Item" Parameter="item" Type="System.String" DbType="VarChar(50)" />
@@ -470,6 +470,7 @@
     <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
     <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
     <Parameter Name="IdTipoPago" Parameter="idTipoPago" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
     <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
     <ElementType Name="SP_BUSCA_INFORMACION_RECIBO_DIGITALResult">
       <Column Name="NumeroRecibo" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
@@ -486,7 +487,9 @@
       <Column Name="TipoPago" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Detalle" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
       <Column Name="CreadoPor0" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="CreadoPor" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="CreadoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
     </ElementType>
   </Function>
@@ -497,6 +500,7 @@
     <Parameter Name="IdTipoPago" Parameter="idTipoPago" Type="System.Int32" DbType="Int" />
     <Parameter Name="Detalle" Parameter="detalle" Type="System.String" DbType="VarChar(8000)" />
     <Parameter Name="CreadoPor" Parameter="creadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
     <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
     <ElementType Name="SP_PROCESAR_RECIBO_DIGITALResult">
       <Column Name="NumeroRecibo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
@@ -506,6 +510,7 @@
       <Column Name="IdTipoPago" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Detalle" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
       <Column Name="CreadoPor" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

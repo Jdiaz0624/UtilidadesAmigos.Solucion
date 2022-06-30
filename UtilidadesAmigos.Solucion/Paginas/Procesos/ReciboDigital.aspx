@@ -79,9 +79,13 @@
                     <asp:Label ID="lbNombreSupervisorConsulta" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtNombreSupervisorConsulta" runat="server"  CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <asp:Label ID="lbTipoPagoConsulta" runat="server" Text="Tipo de Pago" CssClass="LetrasNegrita"></asp:Label>
                     <asp:DropDownList ID="ddlTipoPagoConsulta" runat="server" ToolTip="Seleccionar el Tipo de Pago" CssClass="form-control"></asp:DropDownList>
+                </div>
+                 <div class="col-md-3">
+                    <asp:Label ID="lbOficinaConsulta" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlSeleccionaroficina" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
                 </div>
             </div>
             <br />
@@ -105,6 +109,7 @@
                 <thead class="table table-dark">
                     <tr>
                         <th scope="col"> No. </th>
+                        <th scope="col"> Oficina </th>
                         <th scope="col"> Fecha </th>
                         <th scope="col"> Hora </th>
                         <th scope="col"> Intermediario </th>
@@ -119,8 +124,10 @@
                         <ItemTemplate>
                             <tr>
                                 <asp:HiddenField ID="hfNumeroRecibo" runat="server" Value='<%# Eval("NumeroRecibo") %>' />
+                                <asp:HiddenField ID="hfIdOficina" runat="server" Value='<%# Eval("IdOficina") %>' />
 
                                 <td> <%# Eval("NumeroRecibo") %> </td>
+                                <td> <%# Eval("Oficina") %> </td>
                                 <td> <%# Eval("Fecha") %> </td>
                                 <td> <%# Eval("Hora") %> </td>
                                 <td> <%# Eval("Intermediario") %> </td>

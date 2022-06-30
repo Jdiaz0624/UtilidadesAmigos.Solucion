@@ -627,11 +627,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
         /// <param name="FechaHasta"></param>
         /// <param name="IdTipoPago"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EReciboDigital> BuscaReciboDigital(decimal? NumeroRecibo = null, int? CodigoIntermediario = null, int? CodigoSupervisor = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? IdTipoPago = null, decimal? GeneradoPor = null)
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EReciboDigital> BuscaReciboDigital(decimal? NumeroRecibo = null, int? CodigoIntermediario = null, int? CodigoSupervisor = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? IdTipoPago = null, int? Oficina = null, decimal? GeneradoPor = null)
         {
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_RECIBO_DIGITAL(NumeroRecibo, CodigoIntermediario, CodigoSupervisor, FechaDesde, FechaHasta, IdTipoPago, GeneradoPor)
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_RECIBO_DIGITAL(NumeroRecibo, CodigoIntermediario, CodigoSupervisor, FechaDesde, FechaHasta, IdTipoPago, Oficina, GeneradoPor)
                            select new UtilidadesAmigos.Logica.Entidades.Procesos.EReciboDigital
                            {
                                NumeroRecibo = n.NumeroRecibo,
@@ -643,11 +643,14 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
                                Fecha = n.Fecha,
                                Hora = n.Hora,
                                ValorRecibo = n.ValorRecibo,
+                               ValorReciboLetra=n.ValorReciboLetra,
                                IdTipoPago = n.IdTipoPago,
                                TipoPago = n.TipoPago,
                                Detalle = n.Detalle,
                                CreadoPor = n.CreadoPor,
                                CreadoPor0 = n.CreadoPor0,
+                               IdOficina=(int)n.IdOficina,
+                               Oficina=n.Oficina,
                                GeneradoPor = n.GeneradoPor
                            }).ToList();
             return Listado;
@@ -673,6 +676,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
                 Item.IdTipoPago,
                 Item.Detalle,
                 Item.CreadoPor0,
+                (int)Item.IdOficina,
                 Accion);
             if (ReciboDigital != null)
             {
@@ -686,7 +690,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
                                 ValorRecibo = n.ValorRecibo,
                                 IdTipoPago = n.IdTipoPago,
                                 Detalle = n.Detalle,
-                                CreadoPor0 = n.CreadoPor
+                                CreadoPor0 = n.CreadoPor,
+                                IdOficina=n.Oficina
                             }).FirstOrDefault();
             }
             return Procesar;
