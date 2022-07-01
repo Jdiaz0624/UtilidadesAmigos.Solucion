@@ -25,5 +25,7 @@ namespace UtilidadesAmigos.Logica.Comunes
             }
             return NombreCliente;
         }
+
+    
     }
 }

@@ -294,15 +294,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Repeater rpListadoControlVisitas;
 
         /// <summary>
-        /// lbPaginaActualTituloControlVisistas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloControlVisistas;
-
-        /// <summary>
         /// lbPaginaActualVariableControlVisistas control.
         /// </summary>
         /// <remarks>
@@ -310,15 +301,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPaginaActualVariableControlVisistas;
-
-        /// <summary>
-        /// lbCantidadPaginaTituloControlVisistas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloControlVisistas;
 
         /// <summary>
         /// lbCantidadPaginaVAriableControlVisistas control.

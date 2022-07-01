@@ -223,6 +223,7 @@
          <%--<asp:LinkButton ID="LinkImpresionCheques" runat="server" Text="Impresión de Cheques" ToolTip="Imprimir Cheques" OnClick="LinkImpresionCheques_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>--%>
       <asp:LinkButton ID="LinkReporteReclamaciones" runat="server" Text="Reporte Reclamaciones" ToolTip="Genera Reporte de Reclamaciones" OnClick="LinkReporteReclamaciones_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
         <asp:LinkButton ID="LinkReclamacionesPagadas" runat="server" Text="Reclamaciones Pagadas" ToolTip="Reporte de Reclamaciones Pagadas" OnClick="LinkReclamacionesPagadas_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+        <asp:LinkButton ID="LinkReporteImpresionMarbetes" runat="server" Text="Impresión de Marbetes" ToolTip="Reporte de Marbetes Impresos" OnClick="LinkReporteImpresionMarbetes_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
     </div>
   </li>
 </ul>

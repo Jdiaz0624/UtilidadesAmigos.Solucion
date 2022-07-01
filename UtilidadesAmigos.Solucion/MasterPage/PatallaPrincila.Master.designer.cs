@@ -294,6 +294,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkReclamacionesPagadas;
 
         /// <summary>
+        /// LinkReporteImpresionMarbetes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkReporteImpresionMarbetes;
+
+        /// <summary>
         /// LinkBakupBD control.
         /// </summary>
         /// <remarks>

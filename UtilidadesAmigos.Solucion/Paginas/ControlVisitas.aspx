@@ -225,14 +225,13 @@
                 </tbody>
             </table>
 
-
-
-         <div align="center">
-                <asp:Label ID="lbPaginaActualTituloControlVisistas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariableControlVisistas" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloControlVisistas" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriableControlVisistas" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
+        <table class="table">
+            <tfoot class="table-light">
+                <tr>
+                    <td align="right"><b>Pagina <asp:Label ID="lbPaginaActualVariableControlVisistas" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label></b>  <b> De </b><asp:Label ID="lbCantidadPaginaVAriableControlVisistas" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label></td>
+                </tr>
+            </tfoot>
+        </table>
              <div id="divPaginacionControlVisistas" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
