@@ -117,12 +117,13 @@
            <table class="table">
                 <tfoot class="table-light">
                     <tr>
-                        <td align="right"><b>Pagina </b> <asp:Label ID="lbPaginaActual" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label> <b>De </b>   <asp:Label ID="lbCantidadPagina" runat="server" Text="0" CssClass="Letranegrita"></asp:Label> </td>
+                        <td align="left"><b>Impresiones </b> <asp:Label ID="lbCantidadImpresiones" runat="server" Text=" 0 "></asp:Label></td>
+                        <td align="right"><b>Pagina </b> <asp:Label ID="lbPaginaActual" runat="server" Text=" 0 "></asp:Label> <b>De </b>   <asp:Label ID="lbCantidadPagina" runat="server" Text="0"></asp:Label> </td>
                     </tr>
                 </tfoot>
             </table>
               <div id="DivPaginacionListadoPrincipal" runat="server" align="center" >
-                <div style="margin-top=20px;">
+                <div style="margin-top:20px;">
                     <table style="width:600px;">
                         <tr>
                             <td> <asp:ImageButton ID="btnPrimeraPagina" runat="server" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>

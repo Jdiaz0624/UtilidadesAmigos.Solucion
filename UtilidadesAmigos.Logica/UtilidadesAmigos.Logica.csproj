@@ -419,6 +419,7 @@
     <Compile Include="Entidades\Reportes\EProduccionPorusuarioResumido.cs" />
     <Compile Include="Entidades\Reportes\EReclamacionesPagadas.cs" />
     <Compile Include="Entidades\Reportes\EReporteComisionIntermediarioOrigen.cs" />
+    <Compile Include="Entidades\Reportes\EReporteImpresionmarbete.cs" />
     <Compile Include="Entidades\Reportes\EReporteInformacionPersonasAlfredo.cs" />
     <Compile Include="Entidades\Reportes\EReporteProduccionNuevo.cs" />
     <Compile Include="Entidades\Reportes\EReporteProduccionOrigen.cs" />

@@ -2417,5 +2417,58 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Listado;
         }
         #endregion
+
+        #region GENERAR REPORTE DE IMPRESION DE MARBETES
+        /// <summary>
+        /// Este metodo es para mostrar los datos para generar el reporte de las polizas a las que se les ha impreso un Marbete.
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="Cliente"></param>
+        /// <param name="CodigoSupervisor"></param>
+        /// <param name="CodigoIntermediario"></param>
+        /// <param name="CodigoOficina"></param>
+        /// <param name="CodigoRamo"></param>
+        /// <param name="CodigoSubRamo"></param>
+        /// <param name="FechaImpresionDesde"></param>
+        /// <param name="FechaImpresionHasta"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EReporteImpresionmarbete> ReporteImpresionMarbete(string Poliza = null, decimal? Cliente = null, int? CodigoSupervisor = null, int? CodigoIntermediario = null, int? CodigoOficina = null, int? CodigoRamo = null, int? CodigoSubRamo = null, DateTime? FechaImpresionDesde = null, DateTime? FechaImpresionHasta = null, decimal? GeneradoPor = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_REPORTE_IMPRESION_MARBETE(Poliza, Cliente, CodigoSupervisor, CodigoIntermediario, CodigoOficina, CodigoRamo, CodigoSubRamo, FechaImpresionDesde, FechaImpresionHasta, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EReporteImpresionmarbete
+                           {
+                               Poliza=n.Poliza,
+                               Estatus=n.Estatus,
+                               Prima=n.Prima,
+                               UltimoMovimiento=n.UltimoMovimiento,
+                               FechaMovimiento=n.FechaMovimiento,
+                               CodigoCliente=n.CodigoCliente,
+                               Cliente=n.Cliente,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               Intermediario=n.Intermediario,
+                               CodigoOficina=n.CodigoOficina,
+                               Oficina=n.Oficina,
+                               CodigoRamo=n.CodigoRamo,
+                               Ramo=n.Ramo,
+                               CodigoSubRamo=n.CodigoSubRamo,
+                               Ramo1=n.Ramo1, //(SUB RAMO)
+                               Cotizacion=n.Cotizacion,
+                               Fecha=n.Fecha,
+                               FechaImpresion=n.FechaImpresion,
+                               HoraImpresion=n.HoraImpresion,
+                               Usuario=n.Usuario,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta,
+                               GeneradoPor=n.GeneradoPor,
+                               CantidadImpresiones=n.CantidadImpresiones
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }
