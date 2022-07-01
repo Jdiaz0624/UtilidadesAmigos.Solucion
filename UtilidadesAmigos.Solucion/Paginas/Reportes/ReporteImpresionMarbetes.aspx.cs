@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 {
@@ -247,9 +249,38 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                                     Usuario = n.Usuario
 
                                 }).ToList();
-                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Impresion de Marbetes", Exportar);
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Impresión de Marbetes Plano", Exportar);
             }
-            else { }
+            else {
+
+
+                ReportDocument Reporte = new ReportDocument();
+
+                Reporte.Load(Server.MapPath("ReporteImpresionMarbete.rpt"));
+                Reporte.Refresh();
+
+                Reporte.SetParameterValue("@Poliza", _Poliza);
+                Reporte.SetParameterValue("@Cliente", _Cliente);
+                Reporte.SetParameterValue("@CodigoSupervisor", _Supervisor);
+                Reporte.SetParameterValue("@CodigoIntermediario", _Intermediario);
+                Reporte.SetParameterValue("@CodigoOficina", _Oficina);
+                Reporte.SetParameterValue("@CodigoRamo", _Ramo);
+                Reporte.SetParameterValue("@CodigoSubRamo", _Subramo);
+                Reporte.SetParameterValue("@FechaImpresionDesde", _FechaDesde);
+                Reporte.SetParameterValue("@FechaImpresionHasta", _FechaHasta);
+                Reporte.SetParameterValue("@GeneradoPor", IdUsuario);
+
+                Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+                if (rbFormatoReporte.Checked == true) {
+                    Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Impresión de Marbetes PDF");
+                }
+                else if (rbFormatoExcel.Checked == true) {
+                    Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, "Impresión de Marbetes Excel");
+                }
+
+
+            }
         }
         #endregion
         protected void Page_Load(object sender, EventArgs e)
