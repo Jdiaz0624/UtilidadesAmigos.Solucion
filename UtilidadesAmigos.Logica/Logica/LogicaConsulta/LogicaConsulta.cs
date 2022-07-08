@@ -826,6 +826,89 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         }
 
         /// <summary>
+        /// Este metodo muestra le listado de los clientes sin polizas asignadas de manera detallada
+        /// </summary>
+        /// <param name="CodigoCliente"></param>
+        /// <param name="Numeroidentificacion"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="NombreCliente"></param>
+        /// <param name="CodigoOficina"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EClientesSinPolizaDetallado> BuscaClientesSinPolizasDetallado(decimal? CodigoCliente = null, string Numeroidentificacion = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Supervisor = null, int? Intermediario = null, string NombreCliente = null, int? CodigoOficina = null, decimal? GeneradoPor = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_CLIENTES_SIN_POLIZA_DETALLADO(CodigoCliente, Numeroidentificacion, FechaDesde, FechaHasta, Supervisor, Intermediario, NombreCliente, CodigoOficina, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EClientesSinPolizaDetallado
+                           {
+                               Codigo = n.Codigo,
+                               TipoIdentificacion = n.TipoIdentificacion,
+                               RNC = n.RNC,
+                               Cliente = n.Cliente,
+                               Direccion = n.Direccion,
+                               CodigoSupervisor = n.CodigoSupervisor,
+                               CodigoIntermediario = n.CodigoIntermediario,
+                               Supervisor = n.Supervisor,
+                               Intermediario = n.Intermediario,
+                               Cobrador = n.Cobrador,
+                               UsuarioAdiciona = n.UsuarioAdiciona,
+                               fecha0 = n.fecha0,
+                               Fecha = n.Fecha,
+                               Hora = n.Hora,
+                               CodigoMes = n.CodigoMes,
+                               CodigoAno = n.CodigoAno,
+                               Mes = n.Mes,
+                               TelefonoResidencia = n.TelefonoResidencia,
+                               TelefonoOficina = n.TelefonoOficina,
+                               Celular = n.Celular,
+                               fax = n.fax,
+                               Beeper = n.Beeper,
+                               Comprobante = n.Comprobante,
+                               Nacionalidad = n.Nacionalidad,
+                               ClaseCliente = n.ClaseCliente,
+                               CantidadPolizas = n.CantidadPolizas,
+                               CodigoOficina = n.CodigoOficina,
+                               Oficina = n.Oficina,
+                               GeneradoPor=n.GeneradoPor
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo muestra la cantidad de los clientes sin poliza de manera resumida
+        /// </summary>
+        /// <param name="CodigoCliente"></param>
+        /// <param name="Numeroidentificacion"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="NombreCliente"></param>
+        /// <param name="CodigoOficina"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EClienteSinPolizaResumido> BuscaClientesSinPolizaResumido(decimal? CodigoCliente = null, string Numeroidentificacion = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Supervisor = null, int? Intermediario = null, string NombreCliente = null, int? CodigoOficina = null, decimal? GeneradoPor = null)
+        {
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_CLIENTES_SIN_POLIZA_RESUMIDO(CodigoCliente, Numeroidentificacion, FechaDesde, FechaHasta, Supervisor, Intermediario, NombreCliente, CodigoOficina, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EClienteSinPolizaResumido
+                           {
+                               Mes = n.Mes,
+                               CodigoMes=n.CodigoMes,
+                               CodigoAno=n.CodigoAno,
+                               CodigoOficina=n.CodigoOficina,
+                               Oficina=n.Oficina,
+                               Cantidad=n.Cantidad,
+                               GeneradoPor=n.GeneradoPor
+                           }).ToList();
+            return Listado;
+        }
+        /// <summary>
         /// Este metodo es para mostrar el listado de las polizas que no se le ha impreso marbetes
         /// </summary>
         /// <param name="Poliza"></param>

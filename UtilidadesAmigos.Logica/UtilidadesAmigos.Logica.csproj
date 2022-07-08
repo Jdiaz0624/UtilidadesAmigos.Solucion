@@ -194,7 +194,9 @@
     <Compile Include="Entidades\Consulta\EBuscarInformacionPolizasGestionCobros.cs" />
     <Compile Include="Entidades\Consulta\ECarteraEjecutivos.cs" />
     <Compile Include="Entidades\Consulta\ECarteraIntermediarios.cs" />
+    <Compile Include="Entidades\Consulta\EClienteSinPolizaResumido.cs" />
     <Compile Include="Entidades\Consulta\EClientesSinPoliza.cs" />
+    <Compile Include="Entidades\Consulta\EClientesSinPolizaDetallado.cs" />
     <Compile Include="Entidades\Consulta\EComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Consulta\EConceptoLLamadas.cs" />
     <Compile Include="Entidades\Consulta\EDetalleEstadisticaRenovacion.cs" />
