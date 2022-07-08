@@ -78,6 +78,69 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.RadioButton rbPolizasSInImpresionMarbete;
 
         /// <summary>
+        /// lbFormaReporte control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFormaReporte;
+
+        /// <summary>
+        /// rbReporteResumido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbReporteResumido;
+
+        /// <summary>
+        /// rbReporteDetallado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbReporteDetallado;
+
+        /// <summary>
+        /// lbFormatoReporte control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFormatoReporte;
+
+        /// <summary>
+        /// rbPDF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbPDF;
+
+        /// <summary>
+        /// rbExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbExcel;
+
+        /// <summary>
+        /// rbExcelPlano control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbExcelPlano;
+
+        /// <summary>
         /// btnConsultar control.
         /// </summary>
         /// <remarks>
@@ -87,13 +150,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.ImageButton btnConsultar;
 
         /// <summary>
-        /// btnExportarExel control.
+        /// btnReporte control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnExportarExel;
+        protected global::System.Web.UI.WebControls.ImageButton btnReporte;
 
         /// <summary>
         /// DIVBloqueClientesSinPoliza control.
@@ -274,6 +337,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombreClienteClienteSinPoliza;
+
+        /// <summary>
+        /// lbSeleccionaroficinaClienteSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeleccionaroficinaClienteSinPoliza;
+
+        /// <summary>
+        /// ddlSeleccionaroficinaClienteSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionaroficinaClienteSinPoliza;
 
         /// <summary>
         /// rpListadoClienteSinPolizas control.

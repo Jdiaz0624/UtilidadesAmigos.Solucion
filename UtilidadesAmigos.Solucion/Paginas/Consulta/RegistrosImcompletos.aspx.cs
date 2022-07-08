@@ -430,6 +430,132 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             int Ramo = 106;
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSubRamoPolizasSinMarbete, ObjdataComun.Value.BuscaListas("SUBRAMO", Ramo.ToString(), null), true);
         }
+
+        private void CargaroficinaClienteSinPoliza() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionaroficinaClienteSinPoliza, ObjdataComun.Value.BuscaListas("OFICINAS", null, null), true);
+        }
+
+
+        #endregion
+
+        #region MOSTRAR EL LISTADO DE LOS CIENTES SIN POLIZA DETALLADO Y RESIMIDO
+        private void ClientesSinPolizaDetallada() {
+
+            decimal? _CodigoCliente = string.IsNullOrEmpty(txtCodigoClienteSinPoliza.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtCodigoClienteSinPoliza.Text);
+            string _NumeroIdentificacion = string.IsNullOrEmpty(txtNumeroIdentificacionClienteSinPoliza.Text.Trim()) ? null : txtNumeroIdentificacionClienteSinPoliza.Text.Trim();
+            DateTime? _FechaDesde = string.IsNullOrEmpty(txtFechaDesdeClienteSinPoliza.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesdeClienteSinPoliza.Text);
+            DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHastaClienteSinPoliza.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHastaClienteSinPoliza.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisorClienteSinPoliza.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisorClienteSinPoliza.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioClienteSinPoliza.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioClienteSinPoliza.Text);
+            string _NombreCliente = string.IsNullOrEmpty(txtNombreClienteClienteSinPoliza.Text.Trim()) ? null : txtNombreClienteClienteSinPoliza.Text.Trim();
+            int? _oficina = ddlSeleccionaroficinaClienteSinPoliza.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaClienteSinPoliza.SelectedValue) : new Nullable<int>();
+
+            var BuscarListado = ObjDataConsulta.Value.BuscaClientesSinPolizasDetallado(
+                _CodigoCliente,
+                _NumeroIdentificacion,
+                _FechaDesde,
+                _FechaHasta,
+                _Supervisor,
+                _Intermediario,
+                _NombreCliente,
+                _oficina,
+                (decimal)Session["IdUsuario"]);
+            if (BuscarListado.Count() < 1) {
+                rpListadoClienteSinPolizas.DataSource = null;
+                rpListadoClienteSinPolizas.DataBind();
+                CurrentPage_ClienteSinPolizas = 0;
+            }
+            else {
+                Paginar_ClienteSinPolizas(ref rpListadoClienteSinPolizas, BuscarListado, 10, ref lbCantidadPaginaClientesSinPoliza, ref btnPrimeraPaginaClientesSinPoliza, ref btnPaginaAnteriorClientesSinPoliza, ref btnSiguientePaginaClientesSinPoliza, ref btnUltimaPaginaClientesSinPoliza);
+                HandlePaging_ClienteSinPolizas(ref dtPaginacionListadoPrincipalClientesSinPoliza, ref lbPaginaActualClientesSinPoliza);
+            }
+        }
+
+        #endregion
+
+        #region GENERAR REPORTE DE CLIENTES SIN POLIZA
+        private void GenerarReporteClientesSinPolizas() {
+            decimal? _CodigoCliente = string.IsNullOrEmpty(txtCodigoClienteSinPoliza.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtCodigoClienteSinPoliza.Text);
+            string _NumeroIdentificacion = string.IsNullOrEmpty(txtNumeroIdentificacionClienteSinPoliza.Text.Trim()) ? null : txtNumeroIdentificacionClienteSinPoliza.Text.Trim();
+            DateTime? _FechaDesde = string.IsNullOrEmpty(txtFechaDesdeClienteSinPoliza.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesdeClienteSinPoliza.Text);
+            DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHastaClienteSinPoliza.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHastaClienteSinPoliza.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisorClienteSinPoliza.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisorClienteSinPoliza.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioClienteSinPoliza.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioClienteSinPoliza.Text);
+            string _NombreCliente = string.IsNullOrEmpty(txtNombreClienteClienteSinPoliza.Text.Trim()) ? null : txtNombreClienteClienteSinPoliza.Text.Trim();
+            int? _oficina = ddlSeleccionaroficinaClienteSinPoliza.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaClienteSinPoliza.SelectedValue) : new Nullable<int>();
+
+            if (rbExcelPlano.Checked == true)
+            {
+                if (rbReporteResumido.Checked == true)
+                {
+                    var ExportarResumido = (from n in ObjDataConsulta.Value.BuscaClientesSinPolizaResumido(
+                        _CodigoCliente,
+                        _NumeroIdentificacion,
+                        _FechaDesde,
+                        _FechaHasta,
+                        _Supervisor,
+                        _Intermediario,
+                        _NombreCliente,
+                        _oficina,
+                        (decimal)Session["IdUsuario"])
+                                            select new
+                                            {
+                                                Mes = n.Mes,
+                                                CodigoMes = n.CodigoMes,
+                                                CodigoAno = n.CodigoAno,
+                                                CodigoOficina = n.CodigoOficina,
+                                                Oficina = n.Oficina,
+                                                Cantidad = n.Cantidad
+                                            }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Clientes Sin Poliza Resummido", ExportarResumido);
+
+                }
+                else if (rbReporteDetallado.Checked == true) {
+
+                    var ExportarDetallado = (from n in ObjDataConsulta.Value.BuscaClientesSinPolizasDetallado(
+                        _CodigoCliente,
+                        _NumeroIdentificacion,
+                        _FechaDesde,
+                        _FechaHasta,
+                        _Supervisor,
+                        _Intermediario,
+                        _NombreCliente,
+                        _oficina,
+                        (decimal)Session["IdUsuario"])
+                                             select new
+                                             {
+                                                 Cliente = n.Cliente,
+                                                 TipoIdentificacion = n.TipoIdentificacion,
+                                                 RNC = n.RNC,
+                                                 Direccion = n.Direccion,
+                                                 Supervisor = n.Supervisor,
+                                                 Intermediario = n.Intermediario,
+                                                 Cobrador = n.Cobrador,
+                                                 Usuario = n.UsuarioAdiciona,
+                                                 Fecha = n.fecha0,
+                                                 FechaFormateada = n.Fecha,
+                                                 Hora = n.Hora,
+                                                 Mes = n.Mes,
+                                                 TelefonoResidencia = n.TelefonoResidencia,
+                                                 TelefonoOficina = n.TelefonoOficina,
+                                                 Celular = n.Celular,
+                                                 fax = n.fax,
+                                                 Beeper = n.Beeper,
+                                                 Comprobante = n.Comprobante,
+                                                 Nacionalidad = n.Nacionalidad,
+                                                 ClaseCliente = n.ClaseCliente,
+                                                 CantidadPolizas = n.CantidadPolizas,
+                                                 CodigoOficina = n.CodigoOficina,
+                                                 Oficina = n.Oficina,
+                                                 GeneradoPor = n.GeneradoPor
+                                             }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Clientes Sin Poliza Detallado", ExportarDetallado);
+                }
+            }
+            else { }
+
+
+        }
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -443,8 +569,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 lbPantalla.Text = "REGISTROS IMCOMPLETOS";
 
                 rbCLientesSinPolizas.Checked = true;
+                rbReporteResumido.Checked = true;
+                rbPDF.Checked = true;
                 DIVBloqueClientesSinPoliza.Visible = true;
                 DivBloquePaginacionPolizasSinMarbete.Visible = false;
+                CargaroficinaClienteSinPoliza();
+                
             }
         }
 
@@ -453,6 +583,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             if (rbCLientesSinPolizas.Checked == true) {
                 DIVBloqueClientesSinPoliza.Visible = true;
                 DIVBloquePolziaSinMarbete.Visible = false;
+                CargaroficinaClienteSinPoliza();
             }
             else {
                 DIVBloqueClientesSinPoliza.Visible = false;
@@ -478,7 +609,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         {
             if (rbCLientesSinPolizas.Checked == true) {
                 CurrentPage_ClienteSinPolizas = 0;
-                MostrarListadoClienteSinpolizas();
+                ClientesSinPolizaDetallada();
             }
             else if (rbPolizasSInImpresionMarbete.Checked == true) {
                 CurrentPage_PolizaSinMarbete = 0;
@@ -585,6 +716,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         {
             UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Intermediario = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoIntermediarioPolizaSinMarbete.Text);
             txtNombreIntermediarioPolizaSinMarbete.Text = Intermediario.SacarNombreSupervisor();
+        }
+
+        protected void btnReporte_Click(object sender, ImageClickEventArgs e)
+        {
+            if (rbCLientesSinPolizas.Checked == true)
+            {
+                GenerarReporteClientesSinPolizas();
+            }
+            //POLIZAS SIN MARBETE
+            else if (rbPolizasSInImpresionMarbete.Checked == true) { }
         }
 
         protected void txtCodigoIntermediarioClienteSinPoliza_TextChanged(object sender, EventArgs e)

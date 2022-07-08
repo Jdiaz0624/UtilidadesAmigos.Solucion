@@ -40,11 +40,20 @@
             <asp:Label ID="lbTipoDeDataGenerar" runat="server" CssClass="LetrasNegrita" Text="Tipo Data a Mosrar: "></asp:Label>
             <asp:RadioButton ID="rbCLientesSinPolizas" runat="server" Text="Clientes Sin Polizas" GroupName="TipoInformacion" AutoPostBack="true" OnCheckedChanged="rbCLientesSinPolizas_CheckedChanged" ToolTip="Mostrar el lsitado de los clientes que no tienen poliza asignada" />
             <asp:RadioButton ID="rbPolizasSInImpresionMarbete" runat="server" Text="Polizas Sin Impresion de Marbetes" GroupName="TipoInformacion" AutoPostBack="true" OnCheckedChanged="rbPolizasSInImpresionMarbete_CheckedChanged" ToolTip="Mostrar el listado de las polizas que no tiene marbete impreso" />
+            <br />
+            <asp:Label ID="lbFormaReporte" runat="server" CssClass="LetrasNegrita" Text="Forma de Reporte: "></asp:Label>
+            <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Reporte Resumido" GroupName="FormaReporte"  ToolTip="Genera el Reporte de Manera Resumida" />
+            <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Reporte Detallado" GroupName="FormaReporte"  ToolTip="Genera el Reporte de Manera Detallada" />
+            <br />
+            <asp:Label ID="lbFormatoReporte" runat="server" CssClass="LetrasNegrita" Text="Formato de Reporte: "></asp:Label>
+            <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" GroupName="FormatoReporte"  ToolTip="Generar Reporte en PDF" />
+            <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" GroupName="FormatoReporte"  ToolTip="Generar Reporte en Excel" />
+            <asp:RadioButton ID="rbExcelPlano" runat="server" Text="Excel Plano" GroupName="FormatoReporte"  ToolTip="Generar el Reporte en Excel Sin Formato" />
         </div>
         <br />
          <div align="center">
                 <asp:ImageButton ID="btnConsultar" runat="server" CssClass="BotonImagen" ToolTip="Consultar información" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultar_Click" />
-                <asp:ImageButton ID="btnExportarExel" runat="server" CssClass="BotonImagen" ToolTip="Exportar información" ImageUrl="~/Imagenes/excel.png" OnClick="btnExportarExel_Click" />
+                <asp:ImageButton ID="btnReporte" runat="server" CssClass="BotonImagen" ToolTip="Generar Reporte" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
             </div>
             <br />
         <div id="DIVBloqueClientesSinPoliza" visible="true" runat="server">
@@ -91,6 +100,10 @@
                 <div class="col-md-6">
                       <asp:Label ID="lbNombreClienteClienteSinPoliza" runat="server" Text="Nombre Cliente" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtNombreClienteClienteSinPoliza" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                 <div class="col-md-6">
+                     <asp:Label ID="lbSeleccionaroficinaClienteSinPoliza" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
+                     <asp:DropDownList ID="ddlSeleccionaroficinaClienteSinPoliza" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
                 </div>
             </div>
             <br />
