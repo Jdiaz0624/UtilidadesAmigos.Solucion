@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+
 namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 {
     public partial class RegistrosImcompletos : System.Web.UI.Page
@@ -552,11 +555,62 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                     UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Clientes Sin Poliza Detallado", ExportarDetallado);
                 }
             }
-            else { }
+            else {
+                ReporteClienteSinPoliza();
+            }
 
 
         }
+
+        private void ReporteClienteSinPoliza() {
+            decimal? _CodigoCliente = string.IsNullOrEmpty(txtCodigoClienteSinPoliza.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtCodigoClienteSinPoliza.Text);
+            string _NumeroIdentificacion = string.IsNullOrEmpty(txtNumeroIdentificacionClienteSinPoliza.Text.Trim()) ? null : txtNumeroIdentificacionClienteSinPoliza.Text.Trim();
+            DateTime? _FechaDesde = string.IsNullOrEmpty(txtFechaDesdeClienteSinPoliza.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesdeClienteSinPoliza.Text);
+            DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaHastaClienteSinPoliza.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHastaClienteSinPoliza.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisorClienteSinPoliza.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisorClienteSinPoliza.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioClienteSinPoliza.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioClienteSinPoliza.Text);
+            string _NombreCliente = string.IsNullOrEmpty(txtNombreClienteClienteSinPoliza.Text.Trim()) ? null : txtNombreClienteClienteSinPoliza.Text.Trim();
+            int? _oficina = ddlSeleccionaroficinaClienteSinPoliza.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaClienteSinPoliza.SelectedValue) : new Nullable<int>();
+            string RutaReporte = "";
+            string NombreReporte = "";
+            if (rbReporteDetallado.Checked == true)
+            {
+                RutaReporte = Server.MapPath("ReporteClientesSinPolizaDetallado.rpt");
+                NombreReporte = "Reporte Clientes Sin Poliza Detallado";
+            }
+            else if (rbReporteResumido.Checked == true) {
+                RutaReporte = Server.MapPath("ReporteClientesSinPolizasResumido.rpt");
+                NombreReporte = "Reporte Clientes Sin Poliza Resumido";
+            }
+
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@CodigoCliente", _CodigoCliente);
+            Reporte.SetParameterValue("@Numeroidentificacion", _NumeroIdentificacion);
+            Reporte.SetParameterValue("@FechaDesde", _FechaDesde);
+            Reporte.SetParameterValue("@FechaHasta", _FechaHasta);
+            Reporte.SetParameterValue("@Supervisor", _Supervisor);
+            Reporte.SetParameterValue("@Intermediario", _Intermediario);
+            Reporte.SetParameterValue("@NombreCliente", _NombreCliente);
+            Reporte.SetParameterValue("@CodigoOficina", _oficina);
+            Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+            if (rbPDF.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
+            else if (rbExcel.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+            }
+        }
         #endregion
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
