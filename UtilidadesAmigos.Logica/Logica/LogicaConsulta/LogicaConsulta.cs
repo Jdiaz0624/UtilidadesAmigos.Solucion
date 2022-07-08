@@ -949,6 +949,88 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                            }).ToList();
             return Listado;
         }
+
+
+        /// <summary>
+        /// Este metodo es para mostrar las polizas sin marbete de manera detallada
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="SubRamo"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EPolizasSInMarbeteDetallado> BuscaPolziasSinMarbeteDetallado(string Poliza = null, int? Supervisor = null, int? Intermediario = null, int? Oficina = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Ramo = null, int? SubRamo = null, decimal? GeneradoPor = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_POLIZAS_SIN_IMPRESION_MARBETES_DETALLADO(Poliza, Supervisor, Intermediario, Oficina, FechaDesde, FechaHasta, Ramo, SubRamo, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EPolizasSInMarbeteDetallado
+                           {
+                               Poliza = n.Poliza,
+                               Cotizacion = n.Cotizacion,
+                               Prima = n.Prima,
+                               Estatus = n.Estatus,
+                               InicioVigencia = n.InicioVigencia,
+                               FinVigencia = n.FinVigencia,
+                               CodigoSupervisor = n.CodigoSupervisor,
+                               CodigoIntermediario = n.CodigoIntermediario,
+                               Supervisor = n.Supervisor,
+                               Intermediario = n.Intermediario,
+                               CodigoOficina = n.CodigoOficina,
+                               Oficina = n.Oficina,
+                               UsuarioAdiciona = n.UsuarioAdiciona,
+                                FechaCreado = n.FechaCreado,
+                               FechaCreadoFormateada = n.FechaCreadoFormateada,
+                               HoraCreadoFormateada = n.HoraCreadoFormateada,
+                               CodigoAno = n.CodigoAno,
+                               CodigoMes = n.CodigoMes,
+                               Mes = n.Mes,
+                               CodigoRamo = n.CodigoRamo,
+                               Ramo = n.Ramo,
+                               CodigoSubramo = n.CodigoSubramo,
+                               SubRamo = n.SubRamo,
+                               GeneradoPor=n.GeneradoPor
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo es para mostrar las polizas sin marbetes de manera resumida
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="SubRamo"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EPolizasSinMarbeteResumido> BuscaPolizasSinMarbetesResumido(string Poliza = null, int? Supervisor = null, int? Intermediario = null, int? Oficina = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Ramo = null, int? SubRamo = null, decimal? GeneradoPor = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_POLIZAS_SIN_IMPRESION_MARBETES_RESUMIDO(Poliza, Supervisor, Intermediario, Oficina, FechaDesde, FechaHasta, Ramo, SubRamo, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EPolizasSinMarbeteResumido
+                           {
+                               Mes = n.Mes,
+                               CodigoRamo = n.CodigoRamo,
+                               CodigoSubramo = n.CodigoSubramo,
+                               Ramo = n.Ramo,
+                               SubRamo = n.SubRamo,
+                               CodigoOficina = n.CodigoOficina,
+                               Oficina = n.Oficina,
+                               Cantidad=n.Cantidad,
+                               GeneradoPor=n.GeneradoPor
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
     }

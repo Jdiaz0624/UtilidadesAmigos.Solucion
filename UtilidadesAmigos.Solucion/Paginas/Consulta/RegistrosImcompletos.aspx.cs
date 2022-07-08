@@ -610,6 +610,106 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         }
         #endregion
 
+        #region MOSTRAR LAS POLIZAS SIN MARBETES
+        private void MostrarPolizasSinMarbetesDetallado() {
+
+            string _Poliza = string.IsNullOrEmpty(txtPolizaPolziaSinImpresion.Text.Trim()) ? null : txtPolizaPolziaSinImpresion.Text.Trim();
+            DateTime? _FechaDesde = string.IsNullOrEmpty(txtfechaDesdePolizaSinImpresion.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtfechaDesdePolizaSinImpresion.Text);
+            DateTime? _fechaHasta = string.IsNullOrEmpty(txtFechaHAstaPolizaSinMarbete.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHAstaPolizaSinMarbete.Text);
+            int? _oficina = ddloficinaPolziaSinImpresion.SelectedValue != "-1" ? Convert.ToInt32(ddloficinaPolziaSinImpresion.SelectedValue) : new Nullable<int>();
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisorPolizaSinMarbete.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisorPolizaSinMarbete.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioPolizaSinMarbete.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioPolizaSinMarbete.Text);
+            int? _Ramo = ddlSubRamoPolizasSinMarbete.SelectedValue != "-1" ? Convert.ToInt32(ddlSubRamoPolizasSinMarbete.SelectedValue) : new Nullable<int>();
+
+            var Listado = ObjDataConsulta.Value.BuscaPolziasSinMarbeteDetallado(
+                _Poliza,
+                _Supervisor,
+                _Intermediario,
+                _oficina,
+                _FechaDesde,
+                _fechaHasta,
+                _Ramo,
+                null,
+                (decimal)Session["IdUsuario"]);
+            if (Listado.Count() < 1) {
+                rpListadoPolizaSinMarbete.DataSource = null;
+                rpListadoPolizaSinMarbete.DataBind();
+                CurrentPage_PolizaSinMarbete = 0;
+            }
+            else {
+                Paginar_PolizaSinMarbete(ref rpListadoPolizaSinMarbete, Listado, 10, ref lbCantidadPaginaPolizaSinMarbete, ref btnPrimeraPaginaPolizaSinMarbete, ref btnPaginaAnteriorPolizaSinMarbete, ref btnSiguientePaginaPolizaSinMarbete, ref btnUltimaPaginaPolizaSinMarbete);
+                HandlePaging_PolizaSinMarbete(ref dtPaginacionListadoPrincipalPolizaSinMarbete, ref lbPaginaActualPolizaSinMarbete);
+            }
+        }
+
+        private void GenerarReportePolizaSinMarbete() {
+
+            string _Poliza = string.IsNullOrEmpty(txtPolizaPolziaSinImpresion.Text.Trim()) ? null : txtPolizaPolziaSinImpresion.Text.Trim();
+            DateTime? _FechaDesde = string.IsNullOrEmpty(txtfechaDesdePolizaSinImpresion.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtfechaDesdePolizaSinImpresion.Text);
+            DateTime? _fechaHasta = string.IsNullOrEmpty(txtFechaHAstaPolizaSinMarbete.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHAstaPolizaSinMarbete.Text);
+            int? _oficina = ddloficinaPolziaSinImpresion.SelectedValue != "-1" ? Convert.ToInt32(ddloficinaPolziaSinImpresion.SelectedValue) : new Nullable<int>();
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisorPolizaSinMarbete.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisorPolizaSinMarbete.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioPolizaSinMarbete.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioPolizaSinMarbete.Text);
+            int? _Ramo = ddlSubRamoPolizasSinMarbete.SelectedValue != "-1" ? Convert.ToInt32(ddlSubRamoPolizasSinMarbete.SelectedValue) : new Nullable<int>();
+
+            if (rbExcelPlano.Checked == true) {
+
+                if (rbReporteDetallado.Checked == true) {
+                    var Detallado = (from n in ObjDataConsulta.Value.BuscaPolziasSinMarbeteDetallado(
+                        _Poliza,
+                        _Supervisor,
+                        _Intermediario,
+                        _oficina,
+                        _FechaDesde,
+                        _fechaHasta,
+                        _Ramo,
+                        null,
+                        (decimal)Session["IdUsuario"])
+                                     select new
+                                     {
+                                         Poliza = n.Poliza,
+                                         Prima = n.Prima,
+                                         Estatus = n.Estatus,
+                                         InicioVigencia = n.InicioVigencia,
+                                         FinVigencia = n.FinVigencia,
+                                         Supervisor = n.Supervisor,
+                                         Intermediario = n.Intermediario,
+                                         Oficina = n.Oficina,
+                                         CreadoPor = n.UsuarioAdiciona,
+                                         FechaCreadoFormateada = n.FechaCreadoFormateada,
+                                         HoraCreadoFormateada = n.HoraCreadoFormateada,
+                                         Mes = n.Mes,
+                                         Ramo = n.Ramo,
+                                         SubRamo = n.SubRamo
+                                     }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de Polizas Sin Marbete Detallado", Detallado);
+                }
+                else if (rbReporteResumido.Checked == true) {
+                    var Resumido = (from n in ObjDataConsulta.Value.BuscaPolizasSinMarbetesResumido(
+                        _Poliza,
+                        _Supervisor,
+                        _Intermediario,
+                        _oficina,
+                        _FechaDesde,
+                        _fechaHasta,
+                        _Ramo,
+                        null,
+                        (decimal)Session["IdUsuario"])
+                                    select new
+                                    {
+                                        Mes = n.Mes,
+                                        Ramo = n.Ramo,
+                                        SubRamo = n.SubRamo,
+                                        Oficina = n.Oficina,
+                                        Cantidad = n.Cantidad
+                                    }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de Polizas Sin Marbete Resumido", Resumido);
+                }
+            }
+            else { }
+        }
+        #endregion
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -667,7 +767,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             }
             else if (rbPolizasSInImpresionMarbete.Checked == true) {
                 CurrentPage_PolizaSinMarbete = 0;
-                MostrarPolizasSinMarbetes();
+                MostrarPolizasSinMarbetesDetallado();
             }
         }
 
@@ -779,7 +879,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 GenerarReporteClientesSinPolizas();
             }
             //POLIZAS SIN MARBETE
-            else if (rbPolizasSInImpresionMarbete.Checked == true) { }
+            else if (rbPolizasSInImpresionMarbete.Checked == true) {
+                GenerarReportePolizaSinMarbete();
+            }
         }
 
         protected void txtCodigoIntermediarioClienteSinPoliza_TextChanged(object sender, EventArgs e)
