@@ -651,6 +651,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisorPolizaSinMarbete.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisorPolizaSinMarbete.Text);
             int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioPolizaSinMarbete.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioPolizaSinMarbete.Text);
             int? _Ramo = ddlSubRamoPolizasSinMarbete.SelectedValue != "-1" ? Convert.ToInt32(ddlSubRamoPolizasSinMarbete.SelectedValue) : new Nullable<int>();
+            string RutaReporte = "", NombeReporte = "";
 
             if (rbExcelPlano.Checked == true) {
 
@@ -706,7 +707,17 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                     UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de Polizas Sin Marbete Resumido", Resumido);
                 }
             }
-            else { }
+            else {
+
+                if (rbReporteDetallado.Checked == true) {
+                    NombeReporte = "Reporte de Polizas Sin Marbete Detallado";
+                    RutaReporte = Server.MapPath("ReportePolizasSinMarbeteDetallado.rpt");
+                }
+                else if (rbReporteResumido.Checked == true) {
+                    NombeReporte = "Reporte de Polizas Sin Marbete Resumido";
+                    RutaReporte = Server.MapPath("ReportePolizaSinImpresionMarbeteResumido.rpt");
+                }
+            }
         }
         #endregion
 
