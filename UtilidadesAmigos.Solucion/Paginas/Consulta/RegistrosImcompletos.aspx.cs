@@ -504,9 +504,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                                             select new
                                             {
                                                 Mes = n.Mes,
-                                                CodigoMes = n.CodigoMes,
-                                                CodigoAno = n.CodigoAno,
-                                                CodigoOficina = n.CodigoOficina,
                                                 Oficina = n.Oficina,
                                                 Cantidad = n.Cantidad
                                             }).ToList();
@@ -716,6 +713,30 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 else if (rbReporteResumido.Checked == true) {
                     NombeReporte = "Reporte de Polizas Sin Marbete Resumido";
                     RutaReporte = Server.MapPath("ReportePolizaSinImpresionMarbeteResumido.rpt");
+                }
+
+                ReportDocument Reporte = new ReportDocument();
+
+                Reporte.Load(RutaReporte);
+                Reporte.Refresh();
+
+                Reporte.SetParameterValue("@Poliza", _Poliza);
+                Reporte.SetParameterValue("@Supervisor", _Supervisor);
+                Reporte.SetParameterValue("@Intermediario", _Intermediario);
+                Reporte.SetParameterValue("@Oficina", _oficina);
+                Reporte.SetParameterValue("@FechaDesde", _FechaDesde);
+                Reporte.SetParameterValue("@FechaHasta", _fechaHasta);
+                Reporte.SetParameterValue("@Ramo", _Ramo);
+                Reporte.SetParameterValue("@SubRamo", new Nullable<int>());
+                Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["Idusuario"]);
+
+                Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+                if (rbPDF.Checked == true) {
+                    Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombeReporte);
+                }
+                else if (rbExcel.Checked == true) {
+                    Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombeReporte);
                 }
             }
         }
