@@ -9,9 +9,33 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 {
     public partial class Endosos : System.Web.UI.Page
     {
+
+
+        private void ConfiguracionInicial() {
+            txtPolizaConsulta.Text = string.Empty;
+            txtNumeroItenComsulta.Text = string.Empty;
+            txtCedulaConductorUnico.Text = string.Empty;
+            txtNombreConductorUnico.Text = string.Empty;
+            txtNumeroLicenciaExtranjero.Text = string.Empty;
+         
+            DIVBloqueDetallePoliza.Visible = false;
+            DIVBloqueHistorico.Visible = false;
+            DIVBloqueNuevoRegistro.Visible = false;
+            txtNumeroItenComsulta.Text = "1";
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
+            MaintainScrollPositionOnPostBack = true;
+            if (!IsPostBack) {
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Nombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
+                lbNombreUsuario.Text = Nombre.SacarNombreUsuarioConectado();
 
+                Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbPantalla.Text = "GENERAR ENDOSOS";
+
+                ConfiguracionInicial();
+            }
         }
 
         protected void btnConsultar_Click(object sender, ImageClickEventArgs e)
@@ -21,7 +45,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         protected void btnRestablecerPantalla_Click(object sender, ImageClickEventArgs e)
         {
-
+            ConfiguracionInicial();
         }
 
         protected void rbHistoricoEndoso_CheckedChanged(object sender, EventArgs e)

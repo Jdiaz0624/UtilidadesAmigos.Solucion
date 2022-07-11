@@ -21,17 +21,43 @@
        
        }
     </style>
+
+    <script type="text/javascript">
+        function RegistroNoEncontrado() {
+            alert("Los datos ingresados no concuerdan con algun registro en el sistema, favor de verificar los datos de entrada.");
+        }
+        $(function () {
+            
+            //VALIDAR EL BOTON BUSCAR
+            $("#<%=btnConsultar.ClientID%>").click(function () {
+                var Poliza = $("#<%=txtPolizaConsulta.ClientID%>").val().length;
+                if (Poliza < 1) {
+                    alert("El campo poliza no puede estar vacio para buscar un registro, favor de verificar.");
+                    $("#<%=txtPolizaConsulta.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+                    var Item = $("#<%=txtNumeroItenComsulta.ClientID%>").val().length;
+                    if (Item < 1) {
+                        alert("El campo Item no puede estar vacio para buscar un registro, favor de verificar.");
+                        $("#<%=txtNumeroItenComsulta.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                }
+            });
+        })
+    </script>
     <div class="container-fluid">
         <asp:ScriptManager ID="ScripManagerEndosos" runat="server"></asp:ScriptManager>
         <br />
         <div class="row">
            <div class="col-md-6">
                 <asp:Label ID="lbPolizaConsulta" runat="server" Text="Poliza" CssClass="LetrasNegrita"></asp:Label>
-            <asp:TextBox ID="txtPolizaConsulta" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtPolizaConsulta" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
            </div>
              <div class="col-md-6">
                 <asp:Label ID="lbNumeroItemConsulta" runat="server" Text="Item No." CssClass="LetrasNegrita"></asp:Label>
-            <asp:TextBox ID="txtNumeroItenComsulta" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtNumeroItenComsulta" runat="server" AutoCompleteType="Disabled" TextMode="Number" CssClass="form-control"></asp:TextBox>
            </div>
         </div>
         <br />
@@ -40,6 +66,7 @@
             <asp:ImageButton ID="btnRestablecerPantalla" runat="server" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" ImageUrl="~/Imagenes/auto.png" OnClick="btnRestablecerPantalla_Click" />
         </div>
         <br />
+
         <div id="DIVBloqueDetallePoliza" runat="server">
             <div class="row">
              <div class="col-md-3">
@@ -171,9 +198,7 @@
                 <asp:RadioButton ID="rbEndosoAclaratorioPAraCodundorUnico" runat="server" Text="Endoso de Conductor Unico" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso Para Conductor Unico" OnCheckedChanged="rbEndosoAclaratorioPAraCodundorUnico_CheckedChanged" />
                 <asp:RadioButton ID="rbENdosoAuxilioVial" runat="server" Text="Endoso Auxilio Vial" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso de Auxilio Vial" OnCheckedChanged="rbENdosoAuxilioVial_CheckedChanged" />
             </div>
-            <br />
-        </div>
-        <br />
+             <br />
         <div class="row">
             <div class="col-md-4">
                 <asp:Label ID="lbNumeroLicenciaExtrajero" runat="server" Text="Licencia Extrajero" CssClass="LetrasNegrita"></asp:Label>
@@ -192,10 +217,13 @@
                 ErrorTooltipEnabled="True"  ID="MaskedEditExtender1" />
             </div>
         </div>
+        <br />
          <div align="center">
             <asp:ImageButton ID="btnCompletar" runat="server" ToolTip="Completar Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Completar.png" OnClick="btnCompletar_Click" />
             <asp:ImageButton ID="btnVolverAtras" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen" ImageUrl="~/Imagenes/volver-flecha.png" OnClick="btnVolverAtras_Click" />
         </div>
+        </div>
+       
             <br />
        
     </div>
