@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\..\..\..\..\..\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
     </Reference>
@@ -250,6 +253,7 @@
     <Content Include="Paginas\ProcesoPoliza\Cotizador.aspx" />
     <Content Include="Paginas\Procesos\AgregarItemsReclamos.aspx" />
     <Content Include="Paginas\Procesos\DatosPoliza.aspx" />
+    <Content Include="Paginas\Procesos\Endosos.aspx" />
     <Content Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx" />
     <Content Include="Paginas\Procesos\GenerarBakupBD.aspx" />
     <Content Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx" />
@@ -734,6 +738,13 @@
     </Compile>
     <Compile Include="Paginas\Procesos\DatosPoliza.aspx.designer.cs">
       <DependentUpon>DatosPoliza.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\Endosos.aspx.cs">
+      <DependentUpon>Endosos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\Endosos.aspx.designer.cs">
+      <DependentUpon>Endosos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx.cs">
       <DependentUpon>GenerarBackupBaseDatos.aspx</DependentUpon>

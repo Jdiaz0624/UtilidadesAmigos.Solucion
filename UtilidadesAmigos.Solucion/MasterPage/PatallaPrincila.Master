@@ -234,8 +234,9 @@
     <div class="dropdown-menu">
          <asp:LinkButton ID="LinkBakupBD" runat="server" Text="Generar Bakup de BD" OnClick="LinkBakupBD_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
          <asp:LinkButton ID="LinkGenerarSOlicitudChequeComisiones" runat="server" Text="Solicitud de Cheques Intermediario" OnClick="LinkGenerarSOlicitudChequeComisiones_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
-         <asp:LinkButton ID="LinkProcesarDataAsegurado" runat="server" Text="Procesar Data Asegura.do" OnClick="LinkProcesarDataAsegurado_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkProcesarDataAsegurado" Visible="false" runat="server" Text="Procesar Data Asegura.do" OnClick="LinkProcesarDataAsegurado_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
          <asp:LinkButton ID="LinkCorregirValorDeclarativa" runat="server" Text="Dato Poliza" OnClick="LinkCorregirValorDeclarativa_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkGenerarEndoso" runat="server" Text="Endosos" OnClick="LinkGenerarEndoso_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
          <asp:LinkButton ID="LinkCorregirLimites" runat="server" Visible="false" ForeColor="Red" Text="Corregir Limites" OnClick="LinkCorregirLimites_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
          <asp:LinkButton ID="LinkEnvioCorreo" runat="server" Visible="false" ForeColor="Red" Text="Envio de Correo" OnClick="LinkEnvioCorreo_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
          <asp:LinkButton ID="LinkEliminarBalance" runat="server"  ForeColor="Red" Visible="false" Text="Eliminar Balance" OnClick="LinkEliminarBalance_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>

@@ -15,10 +15,7 @@
         }
         
 
-        th {
-            background-color: #00ffff;
-            color: #000000;
-        }
+      
 
 
     </style>
@@ -141,6 +138,7 @@
                     <asp:TextBox ID="txtIngresarItemConsulta" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
+            <br />
             <div align="center">
                 <asp:Button ID="btnConsultarRegistros" runat="server" Text="Consultar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Consultar Registros" OnClick="btnConsultarRegistros_Click" />
                 <button type="button" id="btnOtrosFiltros" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target=".OtrosFiltros">Otros Filtros</button>
@@ -153,7 +151,7 @@
             <br /><br />
        
                 <table class="table table-striped">
-                    <thead>
+                    <thead class="table-dark">
                         <tr>
                              <th scope="col"> Detalle </th>
                              <th scope="col"> Poliza </th>
