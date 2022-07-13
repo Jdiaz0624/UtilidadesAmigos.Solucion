@@ -26,6 +26,12 @@
         function RegistroNoEncontrado() {
             alert("Los datos ingresados no concuerdan con algun registro en el sistema, favor de verificar los datos de entrada.");
         }
+        function PolizaCancelada() {
+            alert("No es posible sacar esta información por que esta poliza esta cancelada.");
+        }
+        function PolizaNoAplica() {
+            alert("Esta poliza no aplica para ningun endoso, favor de verificar las condiciones Particulares.");
+        }
         $(function () {
             
             //VALIDAR EL BOTON BUSCAR
@@ -109,21 +115,32 @@
                   <asp:Label ID="lbClienteDetalleFijo" runat="server" Text="Cliente: " CssClass="LetrasNegrita"></asp:Label>
                  <asp:Label ID="lbClienteDetalleVariable" runat="server" Text="Dato"></asp:Label>
              </div>
+                <div class="col-md-3">
+                  <asp:Label ID="lbTipoSeguroFijo" runat="server" Text="Tipo: " CssClass="LetrasNegrita"></asp:Label>
+                 <asp:Label ID="lbTipoSeguroVariable" runat="server" Text="Dato"></asp:Label>
+             </div>
+                </div>
+                <div class="col-md-3">
+                  <asp:Label ID="lbGruaFijo" runat="server" Text="Grua: " CssClass="LetrasNegrita"></asp:Label>
+                 <asp:Label ID="lbGruaVariable" runat="server" Text="Dato"></asp:Label>
+                    <asp:Label ID="lbCodigoGruaVariable" runat="server" Visible="false" Text="Dato"></asp:Label>
+             </div>
                 
         </div>
-             <br />
+            <div id="DIVBloqueOperacionRealizar" runat="server">
+                 <br />
         <div class="form-check-inline">
             <asp:Label ID="lbOperacionREalizar" runat="server" Text="Operación a Realizar: " CssClass="LetrasNegrita"></asp:Label>
             <asp:RadioButton ID="rbHistoricoEndoso" runat="server" Text="Historico" AutoPostBack="true" OnCheckedChanged="rbHistoricoEndoso_CheckedChanged" GroupName="TipoOperacion" />
             <asp:RadioButton ID="rbGenerarNuevoEndoso" runat="server" Text="Nuevo Registro" AutoPostBack="true" OnCheckedChanged="rbGenerarNuevoEndoso_CheckedChanged" GroupName="TipoOperacion" />
         </div>
         <br />
-        </div>
         <br />
+            </div>
         <div id="DIVBloqueHistorico" runat="server">
             <br />
              <div align="center">
-            <asp:ImageButton ID="btnNuevoRegistro" runat="server" ToolTip="Nuevo Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Agregar (2).png" OnClick="btnNuevoRegistro_Click" />
+           
             <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Reporte de Impresión de Endoso" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
         </div>
             <br />
@@ -191,7 +208,7 @@
         </div>
         <div id="DIVBloqueNuevoRegistro" runat="server">
             <br />
-            <div class="form-check-inline">
+            <div class="form-check-inline" id="DIVBloqueTiposEndosos" runat="server">
                 <asp:Label ID="lbTipoEndosoGenerar" runat="server" Text="Tipo de Endoso a Generar" CssClass="LetrasNegrita"></asp:Label><br />
                 <asp:RadioButton ID="rbEndosoAclaratorio" runat="server" Text="Endoso Aclaratorio" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso Aclaratorio" OnCheckedChanged="rbEndosoAclaratorio_CheckedChanged" />
                 <asp:RadioButton ID="rbEndosoLicenciaExtragero" runat="server" Text="Endoso de Licencia de Extragero" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso De Licencia de Extragero" OnCheckedChanged="rbEndosoLicenciaExtragero_CheckedChanged" />
@@ -200,15 +217,15 @@
             </div>
              <br />
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" id="DIVBloqueLicenciaExtrajero" runat="server">
                 <asp:Label ID="lbNumeroLicenciaExtrajero" runat="server" Text="Licencia Extrajero" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtNumeroLicenciaExtranjero" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" id="DIVBloqueNombre" runat="server">
                 <asp:Label ID="lbNombreConductorUnico" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreConductorUnico" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" id="DIVBloqueCedula" runat="server">
                 <asp:Label ID="lbCedulaConductorUnico" runat="server" Text="Cedula" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtCedulaConductorUnico" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
                 <ajaxToolkit:MaskedEditExtender runat="server" TargetControlID="txtCedulaConductorUnico" Mask="999-9999999-9"

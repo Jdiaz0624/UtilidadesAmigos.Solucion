@@ -370,6 +370,7 @@
     <Compile Include="Entidades\Procesos\EBuscaDatoReclamacionesAgregarItems.cs" />
     <Compile Include="Entidades\Procesos\EBuscaFormaPagoCobros.cs" />
     <Compile Include="Entidades\Procesos\EBuscaHistoricoImpresionMarbetes.cs" />
+    <Compile Include="Entidades\Procesos\EBuscaPolizaEndosos.cs" />
     <Compile Include="Entidades\Procesos\EBuscarInformacionVolantesPagos.cs" />
     <Compile Include="Entidades\Procesos\ECodigoEmpleadosVolantePagos.cs" />
     <Compile Include="Entidades\Procesos\ECorreosEmisonesSistema.cs" />

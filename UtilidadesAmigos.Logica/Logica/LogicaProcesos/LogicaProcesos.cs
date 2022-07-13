@@ -702,5 +702,51 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
             return Procesar;
         }
         #endregion
+
+        #region BUSCA POLIZA ENDOSOS
+        /// <summary>
+        /// Este metodo muestra el listado de las polizas a las que se les genera endosos
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="Item"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaPolizaEndosos> BuscaPolizaEndosos(string Poliza = null, int? Item = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_POLIZA_ENDOSOS(Poliza, Item)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaPolizaEndosos
+                           {
+                               Poliza=n.Poliza,
+                               Item=n.Item,
+                               Estatus=n.Estatus,
+                               SubRamo=n.SubRamo,
+                               NombreRamo=n.NombreRamo,
+                               NombreSubRamo=n.NombreSubRamo,
+                               TipoSeguro=n.TipoSeguro,
+                               Supervisor=n.Supervisor,
+                               Intermediario=n.Intermediario,
+                               NombreCliente=n.NombreCliente,
+                               TipoIdentificacion=n.TipoIdentificacion,
+                               NumeroIdentificacion=n.NumeroIdentificacion,
+                               Direccion=n.Direccion,
+                               TelefonoResidencia=n.TelefonoResidencia,
+                               TelefonoOficina=n.TelefonoOficina,
+                               Celular=n.Celular,
+                               fax=n.fax,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               Marca=n.Marca,
+                               Modelo=n.Modelo,
+                               Chasis=n.Chasis,
+                               Placa=n.Placa,
+                               Color=n.Color,
+                               Ano=n.Ano,
+                               Grua=n.Grua,
+                               CodigoGrua=n.CodigoGrua
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }

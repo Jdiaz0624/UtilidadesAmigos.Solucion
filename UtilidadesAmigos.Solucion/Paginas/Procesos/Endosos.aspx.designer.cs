@@ -267,6 +267,60 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.Label lbClienteDetalleVariable;
 
         /// <summary>
+        /// lbTipoSeguroFijo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTipoSeguroFijo;
+
+        /// <summary>
+        /// lbTipoSeguroVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTipoSeguroVariable;
+
+        /// <summary>
+        /// lbGruaFijo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbGruaFijo;
+
+        /// <summary>
+        /// lbGruaVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbGruaVariable;
+
+        /// <summary>
+        /// lbCodigoGruaVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoGruaVariable;
+
+        /// <summary>
+        /// DIVBloqueOperacionRealizar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueOperacionRealizar;
+
+        /// <summary>
         /// lbOperacionREalizar control.
         /// </summary>
         /// <remarks>
@@ -301,15 +355,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueHistorico;
-
-        /// <summary>
-        /// btnNuevoRegistro control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnNuevoRegistro;
 
         /// <summary>
         /// btnReporte control.
@@ -420,6 +465,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueNuevoRegistro;
 
         /// <summary>
+        /// DIVBloqueTiposEndosos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueTiposEndosos;
+
+        /// <summary>
         /// lbTipoEndosoGenerar control.
         /// </summary>
         /// <remarks>
@@ -465,6 +519,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.RadioButton rbENdosoAuxilioVial;
 
         /// <summary>
+        /// DIVBloqueLicenciaExtrajero control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueLicenciaExtrajero;
+
+        /// <summary>
         /// lbNumeroLicenciaExtrajero control.
         /// </summary>
         /// <remarks>
@@ -483,6 +546,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.TextBox txtNumeroLicenciaExtranjero;
 
         /// <summary>
+        /// DIVBloqueNombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueNombre;
+
+        /// <summary>
         /// lbNombreConductorUnico control.
         /// </summary>
         /// <remarks>
@@ -499,6 +571,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombreConductorUnico;
+
+        /// <summary>
+        /// DIVBloqueCedula control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueCedula;
 
         /// <summary>
         /// lbCedulaConductorUnico control.
