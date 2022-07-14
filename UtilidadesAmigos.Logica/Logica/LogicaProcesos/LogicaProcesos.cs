@@ -747,6 +747,157 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
                            }).ToList();
             return Listado;
         }
+
+        /// <summary>
+        /// Este metodo muestra el listado de endosos impresos a una poliza
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="Item"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EInformacionEndosos> BuscaInformacionEndosos(string Poliza = null, int? Item = null, decimal? GeneradoPor = null,int? CodigoTipoEndoso = null,int? Secuencia=null, int? TipoEndoso = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_ENDOSOS(Poliza, Item, GeneradoPor, CodigoTipoEndoso, Secuencia, TipoEndoso)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.EInformacionEndosos
+                           {
+                               NumeroRegistro=n.NumeroRegistro,
+                               Poliza=n.Poliza,
+                               Secuencia=n.Secuencia,
+                               Item=n.Item,
+                               Cliente=n.Cliente,
+                               TipoRnc=n.TipoRnc,
+                               TipoIdentificacion=n.TipoIdentificacion,
+                               NumeroRnc=n.NumeroRnc,
+                               Direccion=n.Direccion,
+                               TelefonoResidencia=n.TelefonoResidencia,
+                               TelefonoOficina=n.TelefonoOficina,
+                               Celular=n.Celular,
+                               fax=n.fax,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               Estatus=n.Estatus,
+                               Marca=n.Marca,
+                               Modelo=n.Modelo,
+                               Chasis=n.Chasis,
+                               Placa=n.Placa,
+                               Color=n.Color,
+                               CodigoTipoEndoso=n.CodigoTipoEndoso,
+                               TipoEndoso=n.TipoEndoso,
+                               LicenciaExtrajero=n.LicenciaExtrajero,
+                               NombreConductorUnico=n.NombreConductorUnico,
+                               CedulaConductorUnico=n.CedulaConductorUnico,
+                               CodigoTipoGrua=n.CodigoTipoGrua,
+                               SecuenciaGrua=n.SecuenciaGrua,
+                               CodigoGruaSistema=n.CodigoGruaSistema,
+                               DescripcionGrua=n.DescripcionGrua,
+                               PlanGrua=n.PlanGrua,
+                               TipoAsistenciaPunto=n.TipoAsistenciaPunto,
+                               TipoAsistenciaSubPunto=n.TipoAsistenciaSubPunto,
+                               LimiteEventos=n.LimiteEventos,
+                               LimiteCobertura=n.LimiteCobertura,
+                               PrimaNeta=n.PrimaNeta,
+                               Impuesto=n.Impuesto,
+                               PrimaBruta=n.PrimaBruta,
+                               Fecha0=n.Fecha0,
+                               Fecha=n.Fecha,
+                               Hora=n.Hora,
+                               DiaNumerico=n.DiaNumerico,
+                               DiaLetra=n.DiaLetra,
+                               Mes=n.Mes,
+                               Ano=n.Ano,
+                               AnoLetra=n.AnoLetra,
+                               IdUsuario=n.IdUsuario,
+                               CreadoPor=n.CreadoPor,
+                               GeneradoPor=n.GeneradoPor,
+                               EndosadoA=n.EndosadoA,
+                               CantidadEndosoAclaratorio=n.CantidadEndosoAclaratorio,
+                               CantidadEndosoLicenciaExtranjero=n.CantidadEndosoLicenciaExtranjero,
+                               CantidadEndosoConductorUnico=n.CantidadEndosoConductorUnico,
+                               CantidadEndosoAuxilioVial=n.CantidadEndosoAuxilioVial
+
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo procesa la informacion de los endosos
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Procesos.EInformacionEndosos InformacionEndosos(UtilidadesAmigos.Logica.Entidades.Procesos.EInformacionEndosos Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.EInformacionEndosos Procesar = null;
+
+            var Endosos = ObjData.SP_PROCESAR_INFORMACION_ENDOSOS(
+                Item.NumeroRegistro,
+                Item.Poliza,
+                Item.Secuencia,
+                Item.Item,
+                Item.Cliente,
+                Item.TipoRnc,
+                Item.NumeroRnc,
+                Item.Direccion,
+                Item.TelefonoResidencia,
+                Item.TelefonoOficina,
+                Item.Celular,
+                Item.fax,
+                Item.InicioVigencia,
+                Item.FinVigencia,
+                Item.Estatus,
+                Item.Marca,
+                Item.Modelo,
+                Item.Chasis,
+                Item.Placa,
+                Item.Color,
+                Item.CodigoTipoEndoso,
+                Item.LicenciaExtrajero,
+                Item.NombreConductorUnico,
+                Item.CedulaConductorUnico,
+                Item.CodigoTipoGrua,
+                Item.IdUsuario,
+                Accion);
+            if (Endosos != null) {
+
+                Procesar = (from n in Endosos
+                            select new UtilidadesAmigos.Logica.Entidades.Procesos.EInformacionEndosos
+                            {
+                                NumeroRegistro=n.NumeroRegistro,
+                                Poliza=n.Poliza,
+                                Secuencia=n.Secuencia,
+                                Item=n.Item,
+                                Cliente=n.Cliente,
+                                TipoRnc=n.TipoRnc,
+                                NumeroRnc=n.NumeroRnc,
+                                Direccion=n.Direccion,
+                                TelefonoResidencia=n.TelefonoResidencia,
+                                TelefonoOficina=n.TelefonoOficina,
+                                Celular=n.Celular,
+                                fax=n.fax,
+                                InicioVigencia=n.InicioVigencia,
+                                FinVigencia=n.FinVigencia,
+                                Estatus=n.Estatus,
+                                Marca=n.Marca,
+                                Modelo=n.Modelo,
+                                Chasis=n.Chasis,
+                                Placa=n.Placa,
+                                Color=n.Color,
+                                CodigoTipoEndoso=n.TipoEndoso,
+                                LicenciaExtrajero=n.LicenciaExtrajero,
+                                NombreConductorUnico=n.NombreConductorUnico,
+                                CedulaConductorUnico=n.CedulaConductorUnico,
+                                CodigoTipoGrua=n.TipoGrua,
+                                Fecha0=n.Fecha,
+                                IdUsuario=n.IdUsuario
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
         #endregion
+   
     }
 }

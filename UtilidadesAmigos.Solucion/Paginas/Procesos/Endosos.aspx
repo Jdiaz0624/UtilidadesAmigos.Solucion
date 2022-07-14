@@ -32,6 +32,16 @@
         function PolizaNoAplica() {
             alert("Esta poliza no aplica para ningun endoso, favor de verificar las condiciones Particulares.");
         }
+        function LicenciaExtrajero() {
+            alert("El campo de Licencia de Extrajero es obligatoria para generar este endoso, favor de verificar.");
+            $("#<%=txtNumeroLicenciaExtranjero.ClientID%>").css("border-color", "red");
+        }
+
+        function CamposVaciosConductorUnico() {
+            alert("El campo nombre o el campo cedula no pueden estar vacios para generar este endoso, favor de verificar.");
+        }
+        function CampoNombreVacioConductorUnico() { $("#<%=txtNombreConductorUnico.ClientID%>").css("border-color", "red"); }
+        function CampoCedulaVacioConductorUnico() { $("#<%=txtCedulaConductorUnico.ClientID%>").css("border-color", "red"); }
         $(function () {
             
             //VALIDAR EL BOTON BUSCAR
@@ -160,12 +170,12 @@
                     <asp:Repeater ID="rpListadoEndososImpresos" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
+                                <td> <%# Eval("TipoEndoso") %> </td>
+                                <td> <%# Eval("Poliza") %> </td>
+                                <td> <%#string.Format("{0:N0}", Eval("Item")) %> </td>
+                                <td> <%# Eval("Fecha") %> </td>
+                                <td> <%# Eval("Hora") %> </td>
+                                <td> <%# Eval("CreadoPor") %> </td>
                                 <td align="right"> <asp:ImageButton ID="btnReImprimirEndoso" runat="server" ToolTip="GenerarEndoso" CssClass="BotonImagen" ImageUrl="~/Imagenes/impresora.png" OnClick="btnReImprimirEndoso_Click" /> </td>
                             </tr>
                         </ItemTemplate>
@@ -178,7 +188,16 @@
                         <td align="right"><b>Pagina </b> <asp:Label ID="lbPaginaActual" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label> <b>De </b>   <asp:Label ID="lbCantidadPagina" runat="server" Text="0" CssClass="Letranegrita"></asp:Label> </td>
                     </tr>
                     <tr>
-                        <td><b>Endosos Creados:  </b><asp:Label ID="lbTotalEndosos" runat="server" Text="0"></asp:Label></td>
+                        <td><b>Endosos Aclaratorios:  </b><asp:Label ID="lbTotalEndososAclaratorios" runat="server" Text="0"></asp:Label></td>
+                    </tr>
+                    <tr>
+                        <td><b>Endosos Licencia de Extrajeros:  </b><asp:Label ID="lbTotalEndososLicenciaExtrajero" runat="server" Text="0"></asp:Label></td>
+                    </tr>
+                    <tr>
+                        <td><b>Endosos Conductor Unico:  </b><asp:Label ID="lbTotalEndososConductorUnico" runat="server" Text="0"></asp:Label></td>
+                    </tr>
+                    <tr>
+                        <td><b>Endosos Auxilio Vial:  </b><asp:Label ID="lbTotalEndososAuxilioVial" runat="server" Text="0"></asp:Label></td>
                     </tr>
                 
                 </tfoot>

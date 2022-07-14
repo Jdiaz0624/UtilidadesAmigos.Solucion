@@ -393,13 +393,40 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.Label lbCantidadPagina;
 
         /// <summary>
-        /// lbTotalEndosos control.
+        /// lbTotalEndososAclaratorios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalEndosos;
+        protected global::System.Web.UI.WebControls.Label lbTotalEndososAclaratorios;
+
+        /// <summary>
+        /// lbTotalEndososLicenciaExtrajero control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTotalEndososLicenciaExtrajero;
+
+        /// <summary>
+        /// lbTotalEndososConductorUnico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTotalEndososConductorUnico;
+
+        /// <summary>
+        /// lbTotalEndososAuxilioVial control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTotalEndososAuxilioVial;
 
         /// <summary>
         /// DivPaginacionListadoPrincipal control.

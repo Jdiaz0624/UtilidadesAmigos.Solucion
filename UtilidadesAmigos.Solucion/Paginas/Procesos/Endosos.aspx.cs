@@ -6,12 +6,27 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Web.Security;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportSource;
+using CrystalDecisions.Shared;
 
 namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 {
     public partial class Endosos : System.Web.UI.Page
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaProcesos.LogicaProcesos> ObjDataProcesos = new Lazy<Logica.Logica.LogicaProcesos.LogicaProcesos>();
+
+        enum TiposEndosos { 
+        EndosoAclaratorioInfraseguro=1,
+        EndosoAclaratorioLicenciaExtrajera=2,
+        EndosoAclaratorioConductorUnico=3,
+        EndosoAclaratorioAuxilioVial=4
+        }
+        enum TipoGruaEnumeracion { 
+        GruaPremium=32,
+        GruaSuperior=37,
+        GruaBasica=38
+        }
 
         #region CONTROL DE PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
@@ -225,6 +240,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                             rbEndosoLicenciaExtragero.Visible = false;
                             rbENdosoAuxilioVial.Checked = true;
                         }
+                        MostrarListadoEndosos();
                     }
                 }
 
@@ -233,6 +249,179 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         }
         #endregion
 
+        #region MOSTRAR EL LISTADO DE ENDOSOS
+        private void MostrarListadoEndosos() {
+
+            int EndososAclaratorios = 0, EndosoLienciaEntrajero = 0, EndosoConductorUnico = 0, EndosoAuxilioVial = 0;
+
+            var MostrarEndosos = ObjDataProcesos.Value.BuscaInformacionEndosos(lbPolizaDetalleVariable.Text, Convert.ToInt32(lbItemNoDetalleVariable.Text), (decimal)Session["IdUsuario"],1, 1);
+            if (MostrarEndosos.Count() < 1) {
+                rpListadoEndososImpresos.DataSource = null;
+                rpListadoEndososImpresos.DataBind();
+                lbTotalEndososAclaratorios.Text = "0";
+                lbTotalEndososLicenciaExtrajero.Text = "0";
+                lbTotalEndososConductorUnico.Text = "0";
+                lbTotalEndososAuxilioVial.Text = "0";
+            }
+            else {
+                foreach (var n in MostrarEndosos) {
+                    EndososAclaratorios = (int)n.CantidadEndosoAclaratorio;
+                    EndosoLienciaEntrajero = (int)n.CantidadEndosoLicenciaExtranjero;
+                    EndosoConductorUnico = (int)n.CantidadEndosoConductorUnico;
+                    EndosoAuxilioVial = (int)n.CantidadEndosoAuxilioVial;
+                }
+                Paginar(ref rpListadoEndososImpresos, MostrarEndosos, 10, ref lbCantidadPagina, ref btnPrimeraPagina, ref btnPaginaAnterior, ref btnSiguientePagina, ref btnUltimaPagina);
+                HandlePaging(ref dtPaginacionListadoPrincipal, ref lbPaginaActual);
+                lbTotalEndososAclaratorios.Text = EndososAclaratorios.ToString("N0");
+                lbTotalEndososLicenciaExtrajero.Text = EndosoLienciaEntrajero.ToString("N0");
+                lbTotalEndososConductorUnico.Text = EndosoConductorUnico.ToString("N0");
+                lbTotalEndososAuxilioVial.Text = EndosoAuxilioVial.ToString("N0");
+            }
+        }
+        #endregion
+
+        #region PROCESAR ENDOSOS
+
+        private void GaurdarInformacion(int CodigoENdoso, int TipoGrua) {
+
+            string _LicenciaExtrajera = string.IsNullOrEmpty(txtNumeroLicenciaExtranjero.Text.Trim()) ? "" : txtNumeroLicenciaExtranjero.Text.Trim();
+            string _NombreConductorUnico = string.IsNullOrEmpty(txtNombreConductorUnico.Text.Trim()) ? "" : txtNombreConductorUnico.Text.Trim();
+            string _CedulaConductorUnico = string.IsNullOrEmpty(txtCedulaConductorUnico.Text.Trim()) ? "" : txtCedulaConductorUnico.Text.Trim();
+
+            //BUSCAMOS LA INFORMACION
+            var BuscarInformacion = ObjDataProcesos.Value.BuscaPolizaEndosos(
+                lbPolizaDetalleVariable.Text,
+                Convert.ToInt32(lbItemNoDetalleVariable.Text));
+            foreach (var n in BuscarInformacion) {
+
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionEndosos Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionEndosos(
+                    0,
+                    n.Poliza,
+                    0,
+                    (int)n.Item,
+                    n.NombreCliente,
+                    1,
+                    n.NumeroIdentificacion,
+                    n.Direccion,
+                    n.TelefonoResidencia,
+                    n.TelefonoOficina,
+                    n.Celular,
+                    n.fax,
+                    n.InicioVigencia,
+                    n.FinVigencia,
+                    n.Estatus,
+                    n.Marca,
+                    n.Modelo,
+                    n.Chasis,
+                    n.Placa,
+                    n.Color,
+                    CodigoENdoso,
+                    _LicenciaExtrajera,
+                    _NombreConductorUnico,
+                    _CedulaConductorUnico,
+                    TipoGrua,
+                    DateTime.Now,
+                    (decimal)Session["IdUsuario"],
+                    "INSERT");
+                Guardar.ProcesarInformacion();
+
+            }
+
+        }
+        private void ProcesarEndoso() {
+
+            int CodigoENdoso = 0;
+            int TipoGruaSistema = Convert.ToInt32(lbCodigoGruaVariable.Text);
+            int TipoGrua = 0;
+            switch (TipoGruaSistema) {
+
+                case (int)TipoGruaEnumeracion.GruaPremium:
+                    TipoGrua = 1;
+                    break;
+
+                case (int)TipoGruaEnumeracion.GruaSuperior:
+                    TipoGrua = 2;
+                    break;
+
+                case (int)TipoGruaEnumeracion.GruaBasica:
+                    TipoGrua = 3;
+                    break;
+            }
+     
+
+            if (rbEndosoAclaratorio.Checked == true) {
+                CodigoENdoso = (int)TiposEndosos.EndosoAclaratorioInfraseguro;
+             
+                GaurdarInformacion(CodigoENdoso, TipoGrua);
+                GenerarEndoso(lbPolizaDetalleVariable.Text,Convert.ToInt32(lbItemNoDetalleVariable.Text), (decimal)Session["IdUsuario"],(int)TiposEndosos.EndosoAclaratorioInfraseguro, new Nullable<int>(), 1, Server.MapPath("EndodoAclaratorioInfraseguro.rpt"), "Endoso Infraseguro");
+            }
+            else if (rbEndosoLicenciaExtragero.Checked == true) {
+
+                if (string.IsNullOrEmpty(txtNumeroLicenciaExtranjero.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "LicenciaExtrajero()", "LicenciaExtrajero();", true);
+                }
+                else {
+                    CodigoENdoso = (int)TiposEndosos.EndosoAclaratorioLicenciaExtrajera;
+           
+                    GaurdarInformacion(CodigoENdoso, TipoGrua);
+                    GenerarEndoso(lbPolizaDetalleVariable.Text, Convert.ToInt32(lbItemNoDetalleVariable.Text), (decimal)Session["IdUsuario"], (int)TiposEndosos.EndosoAclaratorioLicenciaExtrajera, new Nullable<int>(), 1, Server.MapPath("EndodoAclaratorioLicenciaExtrajero.rpt"), "Endoso Licencia Extrajera");
+                }
+            }
+            else if (rbEndosoAclaratorioPAraCodundorUnico.Checked == true) {
+
+                if (string.IsNullOrEmpty(txtNombreConductorUnico.Text.Trim()) || string.IsNullOrEmpty(txtCedulaConductorUnico.Text.Trim())) {
+                    ClientScript.RegisterStartupScript(GetType(), "CamposVaciosConductorUnico()", "CamposVaciosConductorUnico();", true);
+                    if (string.IsNullOrEmpty(txtNombreConductorUnico.Text.Trim())) {
+                        ClientScript.RegisterStartupScript(GetType(), "CampoNombreVacioConductorUnico()", "CampoNombreVacioConductorUnico();", true);
+                    }
+                    if (string.IsNullOrEmpty(txtCedulaConductorUnico.Text.Trim())) {
+                        ClientScript.RegisterStartupScript(GetType(), "CampoCedulaVacioConductorUnico()", "CampoCedulaVacioConductorUnico();", true);
+                    }
+                }
+                else {
+                    CodigoENdoso = (int)TiposEndosos.EndosoAclaratorioConductorUnico;
+           
+                    GaurdarInformacion(CodigoENdoso, TipoGrua);
+                    GenerarEndoso(lbPolizaDetalleVariable.Text, Convert.ToInt32(lbItemNoDetalleVariable.Text), (decimal)Session["IdUsuario"], (int)TiposEndosos.EndosoAclaratorioConductorUnico, new Nullable<int>(), 1, Server.MapPath("EndodoAclaratorioConductorUnico.rpt"), "Endoso Conductor Unico");
+                }
+            }
+            else if (rbENdosoAuxilioVial.Checked == true) {
+
+                CodigoENdoso = (int)TiposEndosos.EndosoAclaratorioAuxilioVial;
+     
+                GaurdarInformacion(CodigoENdoso, TipoGrua);
+                GenerarEndoso(lbPolizaDetalleVariable.Text, Convert.ToInt32(lbItemNoDetalleVariable.Text), (decimal)Session["IdUsuario"], (int)TiposEndosos.EndosoAclaratorioAuxilioVial, new Nullable<int>(), 2, Server.MapPath("EndodoAclaratorioAuxilioVial.rpt"), "Endoso Auxilio Vial");
+            }
+
+          
+
+
+        }
+        #endregion
+
+        #region GENERAR REPORTE
+        
+        private void GenerarEndoso(string Poliza,int Item, decimal GeneradoPor,int CodigoTipoEndoso,int? Secuencia, int TipoEndoso,string RutaReporte,string NombreEndoso) {
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@Poliza", Poliza);
+            Reporte.SetParameterValue("@Item", Item);
+            Reporte.SetParameterValue("@GeneradoPor", GeneradoPor);
+            Reporte.SetParameterValue("@CodigoTipoEndoso", CodigoTipoEndoso);
+            Reporte.SetParameterValue("@Secuencia", Secuencia);
+            Reporte.SetParameterValue("@TipoEndoso", TipoEndoso);
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreEndoso);
+
+
+        }
+        #endregion
         private void ConfiguracionInicial() {
             rbHistoricoEndoso.Checked = true;
             txtPolizaConsulta.Text = string.Empty;
@@ -291,10 +480,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             else if (rbGenerarNuevoEndoso.Checked == true) {
                 DIVBloqueHistorico.Visible = false;
 
-
                 DIVBloqueNuevoRegistro.Visible = true;
 
-             
                 rbEndosoAclaratorio.Checked = true;
                 DIVBloqueLicenciaExtrajero.Visible = false;
                 DIVBloqueNombre.Visible = false;
@@ -446,7 +633,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         protected void btnCompletar_Click(object sender, ImageClickEventArgs e)
         {
-
+            ProcesarEndoso();
         }
 
         protected void btnVolverAtras_Click(object sender, ImageClickEventArgs e)

@@ -551,4 +551,126 @@
       <Column Name="CodigoGrua" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_ENDOSOS" Method="SP_PROCESAR_INFORMACION_ENDOSOS">
+    <Parameter Name="NumeroRegistro" Parameter="numeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Secuencia" Parameter="secuencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Item" Parameter="item" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cliente" Parameter="cliente" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TipoRnc" Parameter="tipoRnc" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NumeroRnc" Parameter="numeroRnc" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="TelefonoResidencia" Parameter="telefonoResidencia" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="TelefonoOficina" Parameter="telefonoOficina" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Celular" Parameter="celular" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="fax" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="InicioVigencia" Parameter="inicioVigencia" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="FinVigencia" Parameter="finVigencia" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Estatus" Parameter="estatus" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Marca" Parameter="marca" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Modelo" Parameter="modelo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Chasis" Parameter="chasis" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Placa" Parameter="placa" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Color" Parameter="color" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TipoEndoso" Parameter="tipoEndoso" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LicenciaExtrajero" Parameter="licenciaExtrajero" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="NombreConductorUnico" Parameter="nombreConductorUnico" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CedulaConductorUnico" Parameter="cedulaConductorUnico" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TipoGrua" Parameter="tipoGrua" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_ENDOSOSResult">
+      <Column Name="NumeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Secuencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Item" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoRnc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumeroRnc" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="TelefonoResidencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Celular" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Marca" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Modelo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Chasis" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Placa" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TipoEndoso" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LicenciaExtrajero" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NombreConductorUnico" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CedulaConductorUnico" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoGrua" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_INFORMACION_ENDOSOS" Method="SP_BUSCA_INFORMACION_ENDOSOS">
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Item" Parameter="item" Type="System.Int32" DbType="Int" />
+    <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoTipoEndoso" Parameter="codigoTipoEndoso" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Secuencia" Parameter="secuencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TipoEndoso" Parameter="tipoEndoso" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_INFORMACION_ENDOSOSResult">
+      <Column Name="NumeroRegistro" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Secuencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Item" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoRnc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NumeroRnc" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="TelefonoResidencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Celular" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Marca" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Modelo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Chasis" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Placa" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoTipoEndoso" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoEndoso" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LicenciaExtrajero" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NombreConductorUnico" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CedulaConductorUnico" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoTipoGrua" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SecuenciaGrua" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodigoGruaSistema" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DescripcionGrua" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="PlanGrua" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TipoAsistenciaPunto" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TipoAsistenciaSubPunto" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="LimiteEventos" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="LimiteCobertura" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="PrimaNeta" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Impuesto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="PrimaBruta" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Fecha0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="DiaNumerico" Type="System.String" DbType="VarChar(31)" CanBeNull="true" />
+      <Column Name="DiaLetra" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Mes" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Ano" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="AnoLetra" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CreadoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="EndosadoA" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CantidadEndosoAclaratorio" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadEndosoLicenciaExtranjero" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadEndosoConductorUnico" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadEndosoAuxilioVial" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -144,6 +144,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCodigosEmpleadosVolantesPagos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCorreosEmisoresSistema.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCredencialesBD.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionEndosos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionFormaPago.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionItemReclamaciones.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionREcibosDigitales.cs" />
@@ -378,6 +379,7 @@
     <Compile Include="Entidades\Procesos\EEMpleados.cs" />
     <Compile Include="Entidades\Procesos\EGenerarDatosMarbeteVehiculo.cs" />
     <Compile Include="Entidades\Procesos\EHistoricoImpresionResumido.cs" />
+    <Compile Include="Entidades\Procesos\EInformacionEndosos.cs" />
     <Compile Include="Entidades\Procesos\EModificarFormaPago.cs" />
     <Compile Include="Entidades\Procesos\EProcesarHistoricoImprsionMarbete.cs" />
     <Compile Include="Entidades\Procesos\EProcesarInformacionMarbetes.cs" />
