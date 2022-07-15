@@ -64,6 +64,7 @@
         })
     </script>
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Visible="false" Text="0" ></asp:Label>
         <asp:ScriptManager ID="ScripManagerEndosos" runat="server"></asp:ScriptManager>
         <br />
         <div class="row">

@@ -45,6 +45,9 @@
     </script>
 </head>
 <body>
+    <asp:Label ID="lbIdPerfil" runat="server" Visible="false" Text="0"></asp:Label>
+    <asp:Label ID="lbControlUsuarioConectado" runat="server" Visible="false" Text="0"></asp:Label>
+    <asp:Label ID="lbControlOficinaUsuario" runat="server" Visible="false" Text="0"></asp:Label>
       <form id="form1" runat="server">   
          <%-- <div class="container-fluid">
                 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">

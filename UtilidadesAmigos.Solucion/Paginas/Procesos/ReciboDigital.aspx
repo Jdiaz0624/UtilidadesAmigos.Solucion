@@ -49,6 +49,7 @@
     </script>
 
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="0" Visible="false"></asp:Label>
         <br />
         <div id="DIVBloqueReciboDigitalConsulta" runat="server">
             <br />
