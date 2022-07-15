@@ -254,7 +254,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             int EndososAclaratorios = 0, EndosoLienciaEntrajero = 0, EndosoConductorUnico = 0, EndosoAuxilioVial = 0;
 
-            var MostrarEndosos = ObjDataProcesos.Value.BuscaInformacionEndosos(lbPolizaDetalleVariable.Text, Convert.ToInt32(lbItemNoDetalleVariable.Text), (decimal)Session["IdUsuario"],1, 1);
+            var MostrarEndosos = ObjDataProcesos.Value.BuscaInformacionEndosos(
+                lbPolizaDetalleVariable.Text,
+                Convert.ToInt32(lbItemNoDetalleVariable.Text),
+                null, null, null, 1);
             if (MostrarEndosos.Count() < 1) {
                 rpListadoEndososImpresos.DataSource = null;
                 rpListadoEndososImpresos.DataBind();
@@ -422,6 +425,26 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         }
         #endregion
+
+        #region REPORTE DE ENDOSOS IMPRESOS
+        private void GenerarListadoEndososImpresos() {
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(Server.MapPath("ReporteImpresionEndosos.rpt"));
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@Poliza", lbPolizaDetalleVariable.Text);
+            Reporte.SetParameterValue("@Item", new Nullable<int>());
+            Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
+            Reporte.SetParameterValue("@CodigoTipoEndoso", new Nullable<int>());
+            Reporte.SetParameterValue("@Secuencia", new Nullable<int>());
+            Reporte.SetParameterValue("@TipoEndoso", 1);
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Reporte de Impresion Endosos");
+        }
+        #endregion
         private void ConfiguracionInicial() {
             rbHistoricoEndoso.Checked = true;
             txtPolizaConsulta.Text = string.Empty;
@@ -531,17 +554,62 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         protected void btnReImprimirEndoso_Click(object sender, ImageClickEventArgs e)
         {
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
 
+            var Poliza = ((HiddenField)ItemSeleccionado.FindControl("hfPoliza")).Value.ToString();
+            var Item = ((HiddenField)ItemSeleccionado.FindControl("hfItem")).Value.ToString();
+            var IdUsuario = ((HiddenField)ItemSeleccionado.FindControl("hfIdUsuario")).Value.ToString();
+            var CodigoTipoEndoso = ((HiddenField)ItemSeleccionado.FindControl("hfCodigoTipoEndoso")).Value.ToString();
+            var Secuencia = ((HiddenField)ItemSeleccionado.FindControl("hfSecuencia")).Value.ToString();
+            int TipoOperacion = 0;
+            string RutaReporte = "";
+            string NombreEndoso = "";
+
+            if (CodigoTipoEndoso == "1") {
+                TipoOperacion = 1;
+                RutaReporte = Server.MapPath("EndodoAclaratorioInfraseguro.rpt");
+                NombreEndoso = "Endoso De Infraseguro";
+            }
+            else if (CodigoTipoEndoso == "2") {
+                TipoOperacion = 1;
+                RutaReporte = Server.MapPath("EndodoAclaratorioLicenciaExtrajero.rpt");
+                NombreEndoso = "Endoso de Licencia Extrajera";
+            }
+            else if (CodigoTipoEndoso == "3") {
+                TipoOperacion = 1;
+                RutaReporte = Server.MapPath("EndodoAclaratorioConductorUnico.rpt");
+                NombreEndoso = "Endoso de Conductor Unico";
+            }
+            else if (CodigoTipoEndoso == "4") {
+                TipoOperacion = 2;
+                RutaReporte = Server.MapPath("EndodoAclaratorioAuxilioVial.rpt");
+                NombreEndoso = "Endoso de Auxilio Vial";
+            }
+
+            MostrarListadoEndosos();
+
+            GenerarEndoso(
+                Poliza, 
+                Convert.ToInt32(Item), 
+                Convert.ToDecimal(IdUsuario), 
+                Convert.ToInt32(CodigoTipoEndoso), 
+                Convert.ToInt32(Secuencia), 
+                TipoOperacion,
+                RutaReporte, 
+                NombreEndoso);
         }
 
         protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage = 0;
+            MostrarListadoEndosos();
         }
 
         protected void btnPaginaAnterior_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage += -1;
+            MostrarListadoEndosos();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActual, ref lbCantidadPagina);
         }
 
         protected void dtPaginacionListadoPrincipal_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -551,17 +619,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         protected void dtPaginacionListadoPrincipal_CancelCommand(object source, DataListCommandEventArgs e)
         {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoEndosos();
 
         }
 
         protected void btnSiguientePagina_Click(object sender, ImageClickEventArgs e)
         {
+            CurrentPage += 1;
+            MostrarListadoEndosos();
 
         }
 
         protected void btnUltimaPagina_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListadoEndosos();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActual, ref lbCantidadPagina);
         }
 
         protected void rbEndosoAclaratorio_CheckedChanged(object sender, EventArgs e)
@@ -621,14 +696,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             }
         }
 
-        protected void btnNuevoRegistro_Click(object sender, ImageClickEventArgs e)
-        {
-
-        }
-
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
         {
-
+            GenerarListadoEndososImpresos();
         }
 
         protected void btnCompletar_Click(object sender, ImageClickEventArgs e)
@@ -636,9 +706,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             ProcesarEndoso();
         }
 
-        protected void btnVolverAtras_Click(object sender, ImageClickEventArgs e)
-        {
 
-        }
     }
 }

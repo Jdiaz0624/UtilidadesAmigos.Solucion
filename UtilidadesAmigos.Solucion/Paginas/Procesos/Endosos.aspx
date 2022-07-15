@@ -160,6 +160,7 @@
                          <th scope="col"> Endoso </th>
                          <th scope="col"> Poliza </th>
                          <th scope="col"> Item </th>
+                        <th scope="col"> Secuencia </th>
                          <th scope="col"> Fecha </th>
                          <th scope="col"> Hora </th>
                          <th scope="col"> Usuario </th>
@@ -170,9 +171,18 @@
                     <asp:Repeater ID="rpListadoEndososImpresos" runat="server">
                         <ItemTemplate>
                             <tr>
+                                <asp:HiddenField ID="hfPoliza" runat="server" Value='<%# Eval("Poliza") %>' />
+                                <asp:HiddenField ID="hfItem" runat="server" Value='<%# Eval("Item") %>' />
+                                <asp:HiddenField ID="hfIdUsuario" runat="server" Value='<%# Eval("IdUsuario") %>' />
+                                <asp:HiddenField ID="hfCodigoTipoEndoso" runat="server" Value='<%# Eval("CodigoTipoEndoso") %>' />
+                                <asp:HiddenField ID="hfSecuencia" runat="server" Value='<%# Eval("Secuencia") %>' />
+
+
+
                                 <td> <%# Eval("TipoEndoso") %> </td>
                                 <td> <%# Eval("Poliza") %> </td>
                                 <td> <%#string.Format("{0:N0}", Eval("Item")) %> </td>
+                                <td> <%# Eval("Secuencia") %> </td>
                                 <td> <%# Eval("Fecha") %> </td>
                                 <td> <%# Eval("Hora") %> </td>
                                 <td> <%# Eval("CreadoPor") %> </td>
@@ -256,7 +266,6 @@
         <br />
          <div align="center">
             <asp:ImageButton ID="btnCompletar" runat="server" ToolTip="Completar Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Completar.png" OnClick="btnCompletar_Click" />
-            <asp:ImageButton ID="btnVolverAtras" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen" ImageUrl="~/Imagenes/volver-flecha.png" OnClick="btnVolverAtras_Click" />
         </div>
         </div>
        
