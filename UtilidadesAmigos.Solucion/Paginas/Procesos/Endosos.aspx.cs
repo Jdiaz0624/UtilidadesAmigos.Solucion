@@ -478,7 +478,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         EndosoAclaratorioInfraseguro=1,
         EndosoAclaratorioLicenciaExtrajera=2,
         EndosoAclaratorioConductorUnico=3,
-        EndosoAclaratorioAuxilioVial=4
+        EndosoAclaratorioAuxilioVial=4,
+        EndosoAclaratorioCasaConductor=5
         }
         enum TipoGruaEnumeracion { 
         GruaPremium=32,
@@ -657,49 +658,41 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     ConfiguracionInicial();
                 }
                 else {
-                    if (CodigoGrua == 1) {
-                        ClientScript.RegisterStartupScript(GetType(), "PolizaNoAplica()", "PolizaNoAplica();", true);
+                    DIVBloqueDetallePoliza.Visible = true;
+                    DIVBloqueOperacionRealizar.Visible = true;
+                    rbHistoricoEndoso.Checked = true;
+                    DIVBloqueHistorico.Visible = true;
+                    lbPolizaDetalleVariable.Text = Poliza;
+                    lbItemNoDetalleVariable.Text = Item.ToString("N0");
+                    lbInicioVigenciaDetalleVariable.Text = InicioVigencia;
+                    lbFinVIgenciaDetalleVariable.Text = FinVigencia;
+                    lbSupervisorDetalleVariable.Text = Supervisor;
+                    lbIntermediarioDetalleVariable.Text = Intrmediario;
+                    lbEstatusDetalleVariable.Text = Estatus;
+                    lbRamoDetalleVariable.Text = Ramo;
+                    lbSubRamoDetalleVariable.Text = SubRamo;
+                    lbClienteDetalleVariable.Text = Cliente;
+                    lbTipoSeguroVariable.Text = TipoSeguro;
+                    lbGruaVariable.Text = Grua;
+                    lbCodigoGruaVariable.Text = CodigoGrua.ToString();
+
+                    if (lbTipoSeguroVariable.Text == "Seguro Full")
+                    {
+                        rbEndosoAclaratorio.Visible = true;
+                        rbEndosoAclaratorioPAraCodundorUnico.Visible = true;
+                        rbENdosoAuxilioVial.Visible = true;
+                        rbEndosoLicenciaExtragero.Visible = true;
+                        rbEndosoAclaratorio.Checked = true;
                     }
-                    else {
-
-                       
-
-                        DIVBloqueDetallePoliza.Visible = true;
-                        DIVBloqueOperacionRealizar.Visible = true;
-                        rbHistoricoEndoso.Checked = true;
-                        DIVBloqueHistorico.Visible = true;
-                        lbPolizaDetalleVariable.Text = Poliza;
-                        lbItemNoDetalleVariable.Text = Item.ToString("N0");
-                        lbInicioVigenciaDetalleVariable.Text = InicioVigencia;
-                        lbFinVIgenciaDetalleVariable.Text = FinVigencia;
-                        lbSupervisorDetalleVariable.Text = Supervisor;
-                        lbIntermediarioDetalleVariable.Text = Intrmediario;
-                        lbEstatusDetalleVariable.Text = Estatus;
-                        lbRamoDetalleVariable.Text = Ramo;
-                        lbSubRamoDetalleVariable.Text = SubRamo;
-                        lbClienteDetalleVariable.Text = Cliente;
-                        lbTipoSeguroVariable.Text = TipoSeguro;
-                        lbGruaVariable.Text = Grua;
-                        lbCodigoGruaVariable.Text = CodigoGrua.ToString();
-
-                        if (lbTipoSeguroVariable.Text == "Seguro Full")
-                        {
-                            rbEndosoAclaratorio.Visible = true;
-                            rbEndosoAclaratorioPAraCodundorUnico.Visible = true;
-                            rbENdosoAuxilioVial.Visible = true;
-                            rbEndosoLicenciaExtragero.Visible = true;
-                            rbEndosoAclaratorio.Checked = true;
-                        }
-                        else
-                        {
-                            rbEndosoAclaratorio.Visible = false;
-                            rbEndosoAclaratorioPAraCodundorUnico.Visible = false;
-                            rbENdosoAuxilioVial.Visible = true;
-                            rbEndosoLicenciaExtragero.Visible = false;
-                            rbENdosoAuxilioVial.Checked = true;
-                        }
-                        MostrarListadoEndosos();
+                    else
+                    {
+                        rbEndosoAclaratorio.Visible = false;
+                        rbEndosoAclaratorioPAraCodundorUnico.Visible = false;
+                        rbENdosoAuxilioVial.Visible = true;
+                        rbEndosoLicenciaExtragero.Visible = false;
+                        rbENdosoAuxilioVial.Checked = true;
                     }
+                    MostrarListadoEndosos();
                 }
 
             }
@@ -808,50 +801,67 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     TipoGrua = 3;
                     break;
             }
-     
 
-            if (rbEndosoAclaratorio.Checked == true) {
+
+            if (rbEndosoAclaratorio.Checked == true)
+            {
                 CodigoENdoso = (int)TiposEndosos.EndosoAclaratorioInfraseguro;
-             
-                GaurdarInformacion(CodigoENdoso, TipoGrua);
-                GenerarEndoso(lbPolizaDetalleVariable.Text,Convert.ToInt32(lbItemNoDetalleVariable.Text), (decimal)Session["IdUsuario"],(int)TiposEndosos.EndosoAclaratorioInfraseguro, new Nullable<int>(), 1, Server.MapPath("EndodoAclaratorioInfraseguro.rpt"), "Endoso Infraseguro");
-            }
-            else if (rbEndosoLicenciaExtragero.Checked == true) {
 
-                if (string.IsNullOrEmpty(txtNumeroLicenciaExtranjero.Text.Trim())) {
+                GaurdarInformacion(CodigoENdoso, TipoGrua);
+                GenerarEndoso(lbPolizaDetalleVariable.Text, Convert.ToInt32(lbItemNoDetalleVariable.Text), (decimal)Session["IdUsuario"], (int)TiposEndosos.EndosoAclaratorioInfraseguro, new Nullable<int>(), 1, Server.MapPath("EndodoAclaratorioInfraseguro.rpt"), "Endoso Infraseguro");
+            }
+            else if (rbEndosoLicenciaExtragero.Checked == true)
+            {
+
+                if (string.IsNullOrEmpty(txtNumeroLicenciaExtranjero.Text.Trim()))
+                {
                     ClientScript.RegisterStartupScript(GetType(), "LicenciaExtrajero()", "LicenciaExtrajero();", true);
                 }
-                else {
+                else
+                {
                     CodigoENdoso = (int)TiposEndosos.EndosoAclaratorioLicenciaExtrajera;
-           
+
                     GaurdarInformacion(CodigoENdoso, TipoGrua);
                     GenerarEndoso(lbPolizaDetalleVariable.Text, Convert.ToInt32(lbItemNoDetalleVariable.Text), (decimal)Session["IdUsuario"], (int)TiposEndosos.EndosoAclaratorioLicenciaExtrajera, new Nullable<int>(), 1, Server.MapPath("EndodoAclaratorioLicenciaExtrajero.rpt"), "Endoso Licencia Extrajera");
                 }
             }
-            else if (rbEndosoAclaratorioPAraCodundorUnico.Checked == true) {
+            else if (rbEndosoAclaratorioPAraCodundorUnico.Checked == true)
+            {
 
-                if (string.IsNullOrEmpty(txtNombreConductorUnico.Text.Trim()) || string.IsNullOrEmpty(txtCedulaConductorUnico.Text.Trim())) {
+                if (string.IsNullOrEmpty(txtNombreConductorUnico.Text.Trim()) || string.IsNullOrEmpty(txtCedulaConductorUnico.Text.Trim()))
+                {
                     ClientScript.RegisterStartupScript(GetType(), "CamposVaciosConductorUnico()", "CamposVaciosConductorUnico();", true);
-                    if (string.IsNullOrEmpty(txtNombreConductorUnico.Text.Trim())) {
+                    if (string.IsNullOrEmpty(txtNombreConductorUnico.Text.Trim()))
+                    {
                         ClientScript.RegisterStartupScript(GetType(), "CampoNombreVacioConductorUnico()", "CampoNombreVacioConductorUnico();", true);
                     }
-                    if (string.IsNullOrEmpty(txtCedulaConductorUnico.Text.Trim())) {
+                    if (string.IsNullOrEmpty(txtCedulaConductorUnico.Text.Trim()))
+                    {
                         ClientScript.RegisterStartupScript(GetType(), "CampoCedulaVacioConductorUnico()", "CampoCedulaVacioConductorUnico();", true);
                     }
                 }
-                else {
+                else
+                {
                     CodigoENdoso = (int)TiposEndosos.EndosoAclaratorioConductorUnico;
-           
+
                     GaurdarInformacion(CodigoENdoso, TipoGrua);
                     GenerarEndoso(lbPolizaDetalleVariable.Text, Convert.ToInt32(lbItemNoDetalleVariable.Text), (decimal)Session["IdUsuario"], (int)TiposEndosos.EndosoAclaratorioConductorUnico, new Nullable<int>(), 1, Server.MapPath("EndodoAclaratorioConductorUnico.rpt"), "Endoso Conductor Unico");
                 }
             }
-            else if (rbENdosoAuxilioVial.Checked == true) {
+            else if (rbENdosoAuxilioVial.Checked == true)
+            {
 
                 CodigoENdoso = (int)TiposEndosos.EndosoAclaratorioAuxilioVial;
-     
+
                 GaurdarInformacion(CodigoENdoso, TipoGrua);
                 GenerarEndoso(lbPolizaDetalleVariable.Text, Convert.ToInt32(lbItemNoDetalleVariable.Text), (decimal)Session["IdUsuario"], (int)TiposEndosos.EndosoAclaratorioAuxilioVial, new Nullable<int>(), 2, Server.MapPath("EndodoAclaratorioAuxilioVial.rpt"), "Endoso Auxilio Vial");
+            }
+            else if (rbEndosoCasaConductor.Checked == true) {
+
+                CodigoENdoso = (int)TiposEndosos.EndosoAclaratorioCasaConductor;
+
+                GaurdarInformacion(CodigoENdoso, TipoGrua);
+                GenerarEndoso(lbPolizaDetalleVariable.Text, Convert.ToInt32(lbItemNoDetalleVariable.Text), (decimal)Session["IdUsuario"], (int)TiposEndosos.EndosoAclaratorioCasaConductor, new Nullable<int>(), 1, Server.MapPath("EndosoAclaratorioCasaConductor.rpt"), "Endoso Casa del Conductor");
             }
 
           
@@ -1026,25 +1036,34 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             string RutaReporte = "";
             string NombreEndoso = "";
 
-            if (CodigoTipoEndoso == "1") {
+            if (CodigoTipoEndoso == "1")
+            {
                 TipoOperacion = 1;
                 RutaReporte = Server.MapPath("EndodoAclaratorioInfraseguro.rpt");
                 NombreEndoso = "Endoso De Infraseguro";
             }
-            else if (CodigoTipoEndoso == "2") {
+            else if (CodigoTipoEndoso == "2")
+            {
                 TipoOperacion = 1;
                 RutaReporte = Server.MapPath("EndodoAclaratorioLicenciaExtrajero.rpt");
                 NombreEndoso = "Endoso de Licencia Extrajera";
             }
-            else if (CodigoTipoEndoso == "3") {
+            else if (CodigoTipoEndoso == "3")
+            {
                 TipoOperacion = 1;
                 RutaReporte = Server.MapPath("EndodoAclaratorioConductorUnico.rpt");
                 NombreEndoso = "Endoso de Conductor Unico";
             }
-            else if (CodigoTipoEndoso == "4") {
+            else if (CodigoTipoEndoso == "4")
+            {
                 TipoOperacion = 2;
                 RutaReporte = Server.MapPath("EndodoAclaratorioAuxilioVial.rpt");
                 NombreEndoso = "Endoso de Auxilio Vial";
+            }
+            else if (CodigoTipoEndoso == "5") {
+                TipoOperacion = 1;
+                RutaReporte = Server.MapPath("EndosoAclaratorioCasaConductor.rpt");
+                NombreEndoso = "Endoso de Casa del Conductor";
             }
 
             MostrarListadoEndosos();
@@ -1160,6 +1179,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
         {
             GenerarListadoEndososImpresos();
+        }
+
+        protected void rbEndosoCasaConductor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbEndosoCasaConductor.Checked == true)
+            {
+                DIVBloqueLicenciaExtrajero.Visible = false;
+                DIVBloqueNombre.Visible = false;
+                DIVBloqueCedula.Visible = false;
+            }
+            else
+            {
+                DIVBloqueLicenciaExtrajero.Visible = false;
+                DIVBloqueNombre.Visible = false;
+                DIVBloqueCedula.Visible = false;
+            }
         }
 
         protected void btnCompletar_Click(object sender, ImageClickEventArgs e)
