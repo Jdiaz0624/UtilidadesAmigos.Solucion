@@ -383,6 +383,8 @@
     <Compile Include="Entidades\Procesos\EModificarFormaPago.cs" />
     <Compile Include="Entidades\Procesos\EProcesarHistoricoImprsionMarbete.cs" />
     <Compile Include="Entidades\Procesos\EProcesarInformacionMarbetes.cs" />
+    <Compile Include="Entidades\Procesos\EProcesoEmisionDetail.cs" />
+    <Compile Include="Entidades\Procesos\EProcesoEmisionHeader.cs" />
     <Compile Include="Entidades\Procesos\EReciboDigital.cs" />
     <Compile Include="Entidades\Procesos\ESacarNombreReclamante.cs" />
     <Compile Include="Entidades\Procesos\ESacarRutaArchivoGaurdado.cs" />

@@ -943,6 +943,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
                 ConfiguracionInicial();
                 PermisoPerfil();
+              
             }
         }
 

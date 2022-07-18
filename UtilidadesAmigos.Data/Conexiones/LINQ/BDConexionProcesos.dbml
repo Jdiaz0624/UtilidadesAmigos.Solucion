@@ -673,4 +673,43 @@
       <Column Name="CantidadEndosoAuxilioVial" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_PROCESO_EMISION_HEADER" Method="SP_PROCESAR_INFORMACION_PROCESO_EMISION_HEADER">
+    <Parameter Name="NumeroRegistro" Parameter="numeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="NumeroConector" Parameter="numeroConector" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ClienteCreado" Parameter="clienteCreado" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="CodigoCliente" Parameter="codigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="DocumentosEntregadoATecnico" Parameter="documentosEntregadoATecnico" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="PolizaEmitida" Parameter="polizaEmitida" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NumeroPoliza" Parameter="numeroPoliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="SegundaRevision" Parameter="segundaRevision" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="ImpresionMarbete" Parameter="impresionMarbete" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Despachada" Parameter="despachada" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_PROCESO_EMISION_HEADERResult">
+      <Column Name="NumeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NumeroConector" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ClienteCreado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="DocumentosEntregadoATecnico" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PolizaEmitida" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NumeroPoliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SegundaRevision" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ImpresionMarbete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Despachada" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_PROCES_EMISION_DETAIL" Method="SP_PROCESAR_INFORMACION_PROCES_EMISION_DETAIL">
+    <Parameter Name="NumeroConector" Parameter="numeroConector" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Secuencia" Parameter="secuencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEstatusProcesoEmison" Parameter="idEstatusProcesoEmison" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_PROCES_EMISION_DETAILResult">
+      <Column Name="NumeroConector" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Secuencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdEstatusProcesoEmison" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

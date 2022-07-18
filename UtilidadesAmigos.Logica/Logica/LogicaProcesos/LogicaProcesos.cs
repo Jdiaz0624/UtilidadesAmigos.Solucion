@@ -898,6 +898,52 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
             return Procesar;
         }
         #endregion
-   
+
+        #region PROCESO DE EMISION DE POLIZA
+        /// <summary>
+        /// Este Metodo procesa la informacion para el proceso de emision header
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Procesos.EProcesoEmisionHeader ProcesoEmisonPolizaHeader(UtilidadesAmigos.Logica.Entidades.Procesos.EProcesoEmisionHeader Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.EProcesoEmisionHeader Procesar = null;
+
+            var ProcesoEmision = ObjData.SP_PROCESAR_INFORMACION_PROCESO_EMISION_HEADER(
+                Item.NumeroRegistro,
+                Item.NumeroConector,
+                Item.ClienteCreado,
+                Item.CodigoCliente,
+                Item.DocumentosEntregadoATecnico,
+                Item.PolizaEmitida,
+                Item.NumeroPoliza,
+                Item.SegundaRevision,
+                Item.ImpresionMarbete,
+                Item.Despachada,
+                Accion);
+            if (ProcesoEmision != null) {
+
+                Procesar = (from n in ProcesoEmision
+                            select new UtilidadesAmigos.Logica.Entidades.Procesos.EProcesoEmisionHeader
+                            {
+                                NumeroRegistro=n.NumeroRegistro,
+                                NumeroConector=n.NumeroConector,
+                                ClienteCreado=n.ClienteCreado,
+                                CodigoCliente=n.CodigoCliente,
+                                DocumentosEntregadoATecnico=n.DocumentosEntregadoATecnico,
+                                PolizaEmitida=n.PolizaEmitida,
+                                NumeroPoliza=n.NumeroPoliza,
+                                SegundaRevision=n.SegundaRevision,
+                                ImpresionMarbete=n.ImpresionMarbete,
+                                Despachada=n.Despachada
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
+
     }
 }

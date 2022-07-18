@@ -336,6 +336,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, item, generadoPor, codigoTipoEndoso, secuencia, tipoEndoso);
 			return ((ISingleResult<SP_BUSCA_INFORMACION_ENDOSOSResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_PROCESO_EMISION_HEADER")]
+		public ISingleResult<SP_PROCESAR_INFORMACION_PROCESO_EMISION_HEADERResult> SP_PROCESAR_INFORMACION_PROCESO_EMISION_HEADER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRegistro", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroConector", DbType="VarChar(100)")] string numeroConector, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ClienteCreado", DbType="Bit")] System.Nullable<bool> clienteCreado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoCliente", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoCliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DocumentosEntregadoATecnico", DbType="Bit")] System.Nullable<bool> documentosEntregadoATecnico, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PolizaEmitida", DbType="Bit")] System.Nullable<bool> polizaEmitida, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroPoliza", DbType="VarChar(50)")] string numeroPoliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SegundaRevision", DbType="Bit")] System.Nullable<bool> segundaRevision, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ImpresionMarbete", DbType="Bit")] System.Nullable<bool> impresionMarbete, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Despachada", DbType="Bit")] System.Nullable<bool> despachada, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroRegistro, numeroConector, clienteCreado, codigoCliente, documentosEntregadoATecnico, polizaEmitida, numeroPoliza, segundaRevision, impresionMarbete, despachada, accion);
+			return ((ISingleResult<SP_PROCESAR_INFORMACION_PROCESO_EMISION_HEADERResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_PROCES_EMISION_DETAIL")]
+		public ISingleResult<SP_PROCESAR_INFORMACION_PROCES_EMISION_DETAILResult> SP_PROCESAR_INFORMACION_PROCES_EMISION_DETAIL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroConector", DbType="VarChar(100)")] string numeroConector, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Int")] System.Nullable<int> secuencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstatusProcesoEmison", DbType="Int")] System.Nullable<int> idEstatusProcesoEmison, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroConector, secuencia, idEstatusProcesoEmison, idUsuario, accion);
+			return ((ISingleResult<SP_PROCESAR_INFORMACION_PROCES_EMISION_DETAILResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_GENERAR_DATOS_PARA_MARBETE_VEHICULOResult
@@ -7409,6 +7423,292 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadEndosoAuxilioVial != value))
 				{
 					this._CantidadEndosoAuxilioVial = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_INFORMACION_PROCESO_EMISION_HEADERResult
+	{
+		
+		private System.Nullable<decimal> _NumeroRegistro;
+		
+		private string _NumeroConector;
+		
+		private System.Nullable<bool> _ClienteCreado;
+		
+		private System.Nullable<decimal> _CodigoCliente;
+		
+		private System.Nullable<bool> _DocumentosEntregadoATecnico;
+		
+		private System.Nullable<bool> _PolizaEmitida;
+		
+		private string _NumeroPoliza;
+		
+		private System.Nullable<bool> _SegundaRevision;
+		
+		private System.Nullable<bool> _ImpresionMarbete;
+		
+		private System.Nullable<bool> _Despachada;
+		
+		public SP_PROCESAR_INFORMACION_PROCESO_EMISION_HEADERResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroRegistro", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> NumeroRegistro
+		{
+			get
+			{
+				return this._NumeroRegistro;
+			}
+			set
+			{
+				if ((this._NumeroRegistro != value))
+				{
+					this._NumeroRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroConector", DbType="VarChar(100)")]
+		public string NumeroConector
+		{
+			get
+			{
+				return this._NumeroConector;
+			}
+			set
+			{
+				if ((this._NumeroConector != value))
+				{
+					this._NumeroConector = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClienteCreado", DbType="Bit")]
+		public System.Nullable<bool> ClienteCreado
+		{
+			get
+			{
+				return this._ClienteCreado;
+			}
+			set
+			{
+				if ((this._ClienteCreado != value))
+				{
+					this._ClienteCreado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoCliente", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> CodigoCliente
+		{
+			get
+			{
+				return this._CodigoCliente;
+			}
+			set
+			{
+				if ((this._CodigoCliente != value))
+				{
+					this._CodigoCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocumentosEntregadoATecnico", DbType="Bit")]
+		public System.Nullable<bool> DocumentosEntregadoATecnico
+		{
+			get
+			{
+				return this._DocumentosEntregadoATecnico;
+			}
+			set
+			{
+				if ((this._DocumentosEntregadoATecnico != value))
+				{
+					this._DocumentosEntregadoATecnico = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PolizaEmitida", DbType="Bit")]
+		public System.Nullable<bool> PolizaEmitida
+		{
+			get
+			{
+				return this._PolizaEmitida;
+			}
+			set
+			{
+				if ((this._PolizaEmitida != value))
+				{
+					this._PolizaEmitida = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroPoliza", DbType="VarChar(50)")]
+		public string NumeroPoliza
+		{
+			get
+			{
+				return this._NumeroPoliza;
+			}
+			set
+			{
+				if ((this._NumeroPoliza != value))
+				{
+					this._NumeroPoliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SegundaRevision", DbType="Bit")]
+		public System.Nullable<bool> SegundaRevision
+		{
+			get
+			{
+				return this._SegundaRevision;
+			}
+			set
+			{
+				if ((this._SegundaRevision != value))
+				{
+					this._SegundaRevision = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImpresionMarbete", DbType="Bit")]
+		public System.Nullable<bool> ImpresionMarbete
+		{
+			get
+			{
+				return this._ImpresionMarbete;
+			}
+			set
+			{
+				if ((this._ImpresionMarbete != value))
+				{
+					this._ImpresionMarbete = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Despachada", DbType="Bit")]
+		public System.Nullable<bool> Despachada
+		{
+			get
+			{
+				return this._Despachada;
+			}
+			set
+			{
+				if ((this._Despachada != value))
+				{
+					this._Despachada = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_INFORMACION_PROCES_EMISION_DETAILResult
+	{
+		
+		private string _NumeroConector;
+		
+		private System.Nullable<int> _Secuencia;
+		
+		private System.Nullable<int> _IdEstatusProcesoEmison;
+		
+		private System.Nullable<System.DateTime> _Fecha;
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		public SP_PROCESAR_INFORMACION_PROCES_EMISION_DETAILResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroConector", DbType="VarChar(100)")]
+		public string NumeroConector
+		{
+			get
+			{
+				return this._NumeroConector;
+			}
+			set
+			{
+				if ((this._NumeroConector != value))
+				{
+					this._NumeroConector = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int")]
+		public System.Nullable<int> Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdEstatusProcesoEmison", DbType="Int")]
+		public System.Nullable<int> IdEstatusProcesoEmison
+		{
+			get
+			{
+				return this._IdEstatusProcesoEmison;
+			}
+			set
+			{
+				if ((this._IdEstatusProcesoEmison != value))
+				{
+					this._IdEstatusProcesoEmison = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this._Fecha = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
 				}
 			}
 		}

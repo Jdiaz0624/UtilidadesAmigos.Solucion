@@ -64,6 +64,9 @@
         })
     </script>
     <div class="container-fluid">
+        <div class="progress">
+  <asp:UpdateProgress ID="progress" runat="server"></asp:UpdateProgress>
+</div>
         <asp:Label ID="lbIdPerfil" runat="server" Visible="false" Text="0" ></asp:Label>
         <asp:ScriptManager ID="ScripManagerEndosos" runat="server"></asp:ScriptManager>
         <br />
