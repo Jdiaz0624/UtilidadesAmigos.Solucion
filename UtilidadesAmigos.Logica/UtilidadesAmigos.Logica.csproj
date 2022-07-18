@@ -144,9 +144,11 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCodigosEmpleadosVolantesPagos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCorreosEmisoresSistema.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionCredencialesBD.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionEmisionesHeader.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionEndosos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionFormaPago.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionItemReclamaciones.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionProcesoEmisionDetail.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProcesos\ProcesarInformacionREcibosDigitales.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProveedoresSolicitud.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionRegistrosSolicitudChequeLote.cs" />

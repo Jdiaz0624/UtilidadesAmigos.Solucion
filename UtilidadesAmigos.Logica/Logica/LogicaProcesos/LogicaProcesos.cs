@@ -544,7 +544,6 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
             return Modificar;
         }
         #endregion
-
         #region RECLAMACIONES AGREGAR ITEMS
         public List<UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaDatoReclamacionesAgregarItems> BuscaDatosReclamacionesAgregarItems(string Poliza = null,decimal? NumeroReclamo = null,int? Secuencia=null) {
 
@@ -615,7 +614,6 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
 
         }
         #endregion
-
         #region MANTENIMIENTO DE RECIBOS DIGITALES
         /// <summary>
         /// Este metodo muestra el listado de los recibos registrados en la base de datos
@@ -702,7 +700,6 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
             return Procesar;
         }
         #endregion
-
         #region BUSCA POLIZA ENDOSOS
         /// <summary>
         /// Este metodo muestra el listado de las polizas a las que se les genera endosos
@@ -898,7 +895,6 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
             return Procesar;
         }
         #endregion
-
         #region PROCESO DE EMISION DE POLIZA
         /// <summary>
         /// Este Metodo procesa la informacion para el proceso de emision header
@@ -939,6 +935,39 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
                                 SegundaRevision=n.SegundaRevision,
                                 ImpresionMarbete=n.ImpresionMarbete,
                                 Despachada=n.Despachada
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+
+        /// <summary>
+        /// Este Metodo procesa la informacion para el proceso de emision detail
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Procesos.EProcesoEmisionDetail ProcesarEmisionPolizaDetail(UtilidadesAmigos.Logica.Entidades.Procesos.EProcesoEmisionDetail Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.EProcesoEmisionDetail Procesar = null;
+
+            var ProcesarDetail = ObjData.SP_PROCESAR_INFORMACION_PROCES_EMISION_DETAIL(
+                Item.NumeroConector,
+                Item.Secuencia,
+                Item.IdEstatusProcesoEmison,
+                Item.IdUsuario,
+                Accion);
+            if (ProcesarDetail != null) {
+
+                Procesar = (from n in ProcesarDetail
+                            select new UtilidadesAmigos.Logica.Entidades.Procesos.EProcesoEmisionDetail
+                            {
+                                NumeroConector=n.NumeroConector,
+                                Secuencia=n.Secuencia,
+                                IdEstatusProcesoEmison=n.IdEstatusProcesoEmison,
+                                Fecha=n.Fecha,
+                                IdUsuario=n.IdUsuario
                             }).FirstOrDefault();
             }
             return Procesar;

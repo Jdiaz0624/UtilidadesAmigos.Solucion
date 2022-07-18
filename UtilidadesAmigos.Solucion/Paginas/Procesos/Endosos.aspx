@@ -243,10 +243,10 @@
             <br />
             <div class="form-check-inline" id="DIVBloqueTiposEndosos" runat="server">
                 <asp:Label ID="lbTipoEndosoGenerar" runat="server" Text="Tipo de Endoso a Generar" CssClass="LetrasNegrita"></asp:Label><br />
-                <asp:RadioButton ID="rbEndosoAclaratorio" runat="server" Text="Endoso Aclaratorio" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso Aclaratorio" OnCheckedChanged="rbEndosoAclaratorio_CheckedChanged" />
-                <asp:RadioButton ID="rbEndosoLicenciaExtragero" runat="server" Text="Endoso de Licencia de Extragero" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso De Licencia de Extragero" OnCheckedChanged="rbEndosoLicenciaExtragero_CheckedChanged" />
-                <asp:RadioButton ID="rbEndosoAclaratorioPAraCodundorUnico" runat="server" Text="Endoso de Conductor Unico" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso Para Conductor Unico" OnCheckedChanged="rbEndosoAclaratorioPAraCodundorUnico_CheckedChanged" />
-                <asp:RadioButton ID="rbENdosoAuxilioVial" runat="server" Text="Endoso Auxilio Vial" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso de Auxilio Vial" OnCheckedChanged="rbENdosoAuxilioVial_CheckedChanged" />
+                <asp:RadioButton ID="rbEndosoAclaratorio" runat="server" Text="Endoso Aclaratorio" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso Aclaratorio" OnCheckedChanged="rbEndosoAclaratorio_CheckedChanged" /><br />
+                <asp:RadioButton ID="rbEndosoLicenciaExtragero" runat="server" Text="Endoso de Licencia de Extragero" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso De Licencia de Extragero" OnCheckedChanged="rbEndosoLicenciaExtragero_CheckedChanged" /><br />
+                <asp:RadioButton ID="rbEndosoAclaratorioPAraCodundorUnico" runat="server" Text="Endoso de Conductor Unico" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso Para Conductor Unico" OnCheckedChanged="rbEndosoAclaratorioPAraCodundorUnico_CheckedChanged" /><br />
+                <asp:RadioButton ID="rbENdosoAuxilioVial" runat="server" Text="Endoso Auxilio Vial" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso de Auxilio Vial" OnCheckedChanged="rbENdosoAuxilioVial_CheckedChanged" /><br />
                 <asp:RadioButton ID="rbEndosoCasaConductor" runat="server" Text="Casa Del Conductor" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso de Casa Del Conductor" OnCheckedChanged="rbEndosoCasaConductor_CheckedChanged" />
             </div>
              <br />
