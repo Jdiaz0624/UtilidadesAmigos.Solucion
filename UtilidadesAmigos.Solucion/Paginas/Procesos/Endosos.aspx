@@ -124,6 +124,7 @@
              <div class="col-md-3">
                   <asp:Label ID="lbSubRamoDetalleFijo" runat="server" Text="Sub Ramo: " CssClass="LetrasNegrita"></asp:Label>
                  <asp:Label ID="lbSubRamoDetalleVariable" runat="server" Text="Dato"></asp:Label>
+                 <asp:Label ID="LBCodigoSubramoVariable" Visible="false" runat="server" Text="Dato"></asp:Label>
              </div>
              <div class="col-md-3">
                   <asp:Label ID="lbClienteDetalleFijo" runat="server" Text="Cliente: " CssClass="LetrasNegrita"></asp:Label>
@@ -247,7 +248,8 @@
                 <asp:RadioButton ID="rbEndosoLicenciaExtragero" runat="server" Text="Endoso de Licencia de Extragero" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso De Licencia de Extragero" OnCheckedChanged="rbEndosoLicenciaExtragero_CheckedChanged" /><br />
                 <asp:RadioButton ID="rbEndosoAclaratorioPAraCodundorUnico" runat="server" Text="Endoso de Conductor Unico" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso Para Conductor Unico" OnCheckedChanged="rbEndosoAclaratorioPAraCodundorUnico_CheckedChanged" /><br />
                 <asp:RadioButton ID="rbENdosoAuxilioVial" runat="server" Text="Endoso Auxilio Vial" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso de Auxilio Vial" OnCheckedChanged="rbENdosoAuxilioVial_CheckedChanged" /><br />
-                <asp:RadioButton ID="rbEndosoCasaConductor" runat="server" Text="Casa Del Conductor" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso de Casa Del Conductor" OnCheckedChanged="rbEndosoCasaConductor_CheckedChanged" />
+                <asp:RadioButton ID="rbEndosoCasaConductor" runat="server" Text="Casa Del Conductor" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso de Casa Del Conductor" OnCheckedChanged="rbEndosoCasaConductor_CheckedChanged" /><br />
+                <asp:RadioButton ID="rbEndosoDVL" runat="server" Text="Endoso de DVL" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso DVL" OnCheckedChanged="rbEndosoDVL_CheckedChanged" />
             </div>
              <br />
         <div class="row">

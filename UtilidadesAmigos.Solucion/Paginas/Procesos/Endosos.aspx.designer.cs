@@ -267,6 +267,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.Label lbSubRamoDetalleVariable;
 
         /// <summary>
+        /// LBCodigoSubramoVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBCodigoSubramoVariable;
+
+        /// <summary>
         /// lbClienteDetalleFijo control.
         /// </summary>
         /// <remarks>
@@ -571,6 +580,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rbEndosoCasaConductor;
+
+        /// <summary>
+        /// rbEndosoDVL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbEndosoDVL;
 
         /// <summary>
         /// DIVBloqueLicenciaExtrajero control.

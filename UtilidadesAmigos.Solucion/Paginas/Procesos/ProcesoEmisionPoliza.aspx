@@ -143,7 +143,7 @@
                 </div>
             </div>
             <br />
-            <div class="form-check-inline">
+            <div class="form-check form-switch">
                 <asp:Label ID="lbSeguimiento" runat="server" Text="Seguimiento de Caso" CssClass="LetrasNegrita"></asp:Label> <br /><hr />
                 <asp:CheckBox ID="cbClienteCreadoEditar" runat="server" Text="Cliente Creado" CssClass="LetrasNegrita" ToolTip="Cliente Creado" /> <br />
                 <asp:CheckBox ID="cbDocumentosRevisados" runat="server" AutoPostBack="true" OnCheckedChanged="cbDocumentosRevisados_CheckedChanged" Text="Documentos Revisados" CssClass="LetrasNegrita" ToolTip="Documentos Recibidos" /> <br />
