@@ -1052,8 +1052,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     }
 
                     if (rbENdosoAuxilioVial.Visible == true && rbEndosoDVL.Visible == true) { rbENdosoAuxilioVial.Checked = true; }
-                    else if (rbENdosoAuxilioVial.Visible == false && rbEndosoDVL.Visible == true) { rbEndosoDVL.Checked = true; }
-                    else if (rbENdosoAuxilioVial.Visible == true && rbEndosoDVL.Visible == false) { rbENdosoAuxilioVial.Checked = true; }
+                    else if (rbENdosoAuxilioVial.Visible == false && rbEndosoDVL.Visible == true) { rbEndosoDVL.Checked = true; rbENdosoAuxilioVial.Checked = false; }
+                    else if (rbENdosoAuxilioVial.Visible == true && rbEndosoDVL.Visible == false) { rbENdosoAuxilioVial.Checked = true; rbEndosoDVL.Checked = false; }
                     else {
                         rbEndosoAclaratorio.Checked = false;
                         rbEndosoLicenciaExtragero.Checked = false;
