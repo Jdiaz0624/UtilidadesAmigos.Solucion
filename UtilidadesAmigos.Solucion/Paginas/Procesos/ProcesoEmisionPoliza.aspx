@@ -21,22 +21,69 @@
        
        }
     </style>
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            $("#<%=btnGaurdarNuevoRegistro.ClientID%>").click(function () {
+
+                var CodigoCliente = $("#<%=txtCodigoClienteNuevoRegistro.ClientID%>").val().length;
+                if (CodigoCliente < 1) {
+
+                    alert("El campo Codigo de CLiente no puede estar vacio para crear un nuevo registro, favor de verificar.");
+                    $("#<%=txtCodigoClienteNuevoRegistro.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
+
+        })
+    </script>
     <div class="container-fluid">
         <br />
         <div id="DIVBloqueConsulta" runat="server">
             <br />
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <asp:Label ID="lbNumeroRegistroConsulta" runat="server" Text="No. Registro" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtNumeroRegistroConsulyta" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                 </div>
-                 <div class="col-md-4">
+                 <div class="col-md-2">
                     <asp:Label ID="lbCodigoClienteConsulta" runat="server" Text="Cliente" CssClass="LetrasNegrita"></asp:Label>
-                    <asp:TextBox ID="txtCodigoClienteConsulta" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigoClienteConsulta" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtCodigoClienteConsulta_TextChanged" TextMode="Number"></asp:TextBox>
+                </div>
+                <div class="col-md-4">
+                    <asp:Label ID="lbNombreClienteConsulta" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtNombreClienteConsulta" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
                  <div class="col-md-4">
                     <asp:Label ID="lbPolizaConsulta" runat="server" Text="Poliza" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtPolizaconsulta" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="col-md-2">
+                    <asp:Label ID="lbCodigoIntermediario" runat="server" Text="Intermediario" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtCodigoIntermediarioConsulta" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtCodigoIntermediarioConsulta_TextChanged" TextMode="Number"></asp:TextBox>
+                </div>
+                <div class="col-md-4">
+                    <asp:Label ID="lbNombreIntermedairio" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtNombreIntermediarioConsulta" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="col-md-2">
+                    <asp:Label ID="lbCodigoSupervisorConsulta" runat="server" Text="Supervisor" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtCodigoSupervisorConsulta" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtCodigoSupervisorConsulta_TextChanged" TextMode="Number"></asp:TextBox>
+                </div>
+                <div class="col-md-4">
+                    <asp:Label ID="lbNombreSupervisorConsulta" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:TextBox ID="txtNombreSupervisorConsulta" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+                <div class="col-md-4">
+                    <asp:Label ID="lbEstatusRegistro" runat="server" Text="Estatus" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlSeleccionarEstatusConsulta" runat="server" ToolTip="Seleccionar Estatus para Consultar" CssClass="form-control"></asp:DropDownList>
+                </div>
+                <div class="col-md-4">
+                    <asp:Label ID="lbOficinaConsulta" runat="server" Text="Oficina" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlOficinaConsulta" runat="server" ToolTip="Seleccionar Oficina para Consultar" CssClass="form-control"></asp:DropDownList>
                 </div>
             </div>
             <br />
@@ -60,12 +107,13 @@
                     <asp:Repeater ID="rpProcesoEmisionEncabezado" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <asp:HiddenField ID="hfNumeroRegistroEncabezado" runat="server" Value='<%# Eval("") %>' />
+                                <asp:HiddenField ID="hfNumeroRegistroEncabezado" runat="server" Value='<%# Eval("NumeroRegistro") %>' />
+                                <asp:HiddenField ID="hfNumeroConectorEncabezado" runat="server" Value='<%# Eval("NumeroConector") %>' />
 
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
+                                <td> <%# Eval("NumeroRegistro") %> </td>
+                                <td> <%# Eval("Cliente") %> </td>
+                                <td> <%# Eval("Poliza") %> </td>
+                                <td> <%# Eval("Estatus") %> </td>
                                 <td> <asp:ImageButton ID="btnEditarRegistro" runat="server" ToolTip="Editar Registro" ImageUrl="~/Imagenes/Editar.png" CssClass="BotonImagen" OnClick="btnEditarRegistro_Click" /> </td>
                             </tr>
                         </ItemTemplate>
@@ -102,6 +150,8 @@
             </div>
         <br />
         </div>
+
+
         <div id="DIVBloqueNuevoRegistro" runat="server">
             <br />
             <div class="row">
@@ -122,7 +172,9 @@
             </div>
             <br />
         </div>
-        <div id="DIvBloqueModificarRegistro" runat="server">
+
+
+        <div id="DIVSeguimientoCaso" runat="server">
             <br />
             <div class="row">
                 <div class="col-md-3">

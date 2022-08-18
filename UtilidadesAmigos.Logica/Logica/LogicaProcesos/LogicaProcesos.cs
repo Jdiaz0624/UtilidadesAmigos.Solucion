@@ -972,6 +972,53 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
             }
             return Procesar;
         }
+
+        /// <summary>
+        /// Busca la cabecera de los registros de emision de poliza
+        /// </summary>
+        /// <param name="NumeroRegistro"></param>
+        /// <param name="CodigoCliente"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Oficina"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaInformacionProcesoEmisionHeader> BuscaProcesoEmisionHeader(decimal? NumeroRegistro = null, decimal? CodigoCliente = null, string Poliza = null, int? Intermediario = null, int? Supervisor = null, int? Oficina = null,int? CodigoEstatus = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_PROCESO_EMISION_POLIZA_HEADER(NumeroRegistro, CodigoCliente, Poliza, Intermediario, Supervisor, Oficina, CodigoEstatus)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaInformacionProcesoEmisionHeader
+                           {
+                               NumeroRegistro = n.NumeroRegistro,
+                               NumeroConector=n.NumeroConector,
+                               ClienteCreado0=n.ClienteCreado0,
+                               ClienteCreado=n.ClienteCreado,
+                               CodigoCliente=n.CodigoCliente,
+                               Cliente=n.Cliente,
+                               DocumentosEntregadoATecnico0=n.DocumentosEntregadoATecnico0,
+                               DocumentosEntregadoATecnico=n.DocumentosEntregadoATecnico,
+                               PolizaEmitida0=n.PolizaEmitida0,
+                               PolizaEmitida=n.PolizaEmitida,
+                               NumeroPoliza=n.NumeroPoliza,
+                               Poliza=n.Poliza,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               CodigoOficina=n.CodigoOficina,
+                               Oficina=n.Oficina,
+                               SegundaRevision0=n.SegundaRevision0,
+                               SegundaRevision=n.SegundaRevision,
+                               ImpresionMarbete0=n.ImpresionMarbete0,
+                               ImpresionMarbete=n.ImpresionMarbete,
+                               Despachada0=n.Despachada0,
+                               Despachada=n.Despachada,
+                               CodigoEstatus = n.CodigoEstatus,
+                               Estatus=n.Estatus
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
     }

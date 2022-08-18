@@ -60,6 +60,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.TextBox txtCodigoClienteConsulta;
 
         /// <summary>
+        /// lbNombreClienteConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNombreClienteConsulta;
+
+        /// <summary>
+        /// txtNombreClienteConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombreClienteConsulta;
+
+        /// <summary>
         /// lbPolizaConsulta control.
         /// </summary>
         /// <remarks>
@@ -76,6 +94,114 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPolizaconsulta;
+
+        /// <summary>
+        /// lbCodigoIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoIntermediario;
+
+        /// <summary>
+        /// txtCodigoIntermediarioConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoIntermediarioConsulta;
+
+        /// <summary>
+        /// lbNombreIntermedairio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNombreIntermedairio;
+
+        /// <summary>
+        /// txtNombreIntermediarioConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombreIntermediarioConsulta;
+
+        /// <summary>
+        /// lbCodigoSupervisorConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoSupervisorConsulta;
+
+        /// <summary>
+        /// txtCodigoSupervisorConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoSupervisorConsulta;
+
+        /// <summary>
+        /// lbNombreSupervisorConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNombreSupervisorConsulta;
+
+        /// <summary>
+        /// txtNombreSupervisorConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombreSupervisorConsulta;
+
+        /// <summary>
+        /// lbEstatusRegistro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEstatusRegistro;
+
+        /// <summary>
+        /// ddlSeleccionarEstatusConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarEstatusConsulta;
+
+        /// <summary>
+        /// lbOficinaConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbOficinaConsulta;
+
+        /// <summary>
+        /// ddlOficinaConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlOficinaConsulta;
 
         /// <summary>
         /// btnConsultar control.
@@ -249,13 +375,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.ImageButton btnVolverAtras;
 
         /// <summary>
-        /// DIvBloqueModificarRegistro control.
+        /// DIVSeguimientoCaso control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIvBloqueModificarRegistro;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVSeguimientoCaso;
 
         /// <summary>
         /// lbNumeroRegistroEditar control.

@@ -712,4 +712,41 @@
       <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_INFORMACION_PROCESO_EMISION_POLIZA_HEADER" Method="SP_BUSCA_INFORMACION_PROCESO_EMISION_POLIZA_HEADER">
+    <Parameter Name="NumeroRegistro" Parameter="numeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoCliente" Parameter="codigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoEstatus" Parameter="codigoEstatus" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_INFORMACION_PROCESO_EMISION_POLIZA_HEADERResult">
+      <Column Name="NumeroRegistro" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="NumeroConector" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ClienteCreado0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ClienteCreado" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="DocumentosEntregadoATecnico0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DocumentosEntregadoATecnico" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="PolizaEmitida0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PolizaEmitida" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="NumeroPoliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SegundaRevision0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SegundaRevision" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="ImpresionMarbete0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ImpresionMarbete" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Despachada0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Despachada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoEstatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

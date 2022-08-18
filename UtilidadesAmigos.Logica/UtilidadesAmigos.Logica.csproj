@@ -373,6 +373,7 @@
     <Compile Include="Entidades\Procesos\EBuscaDatoReclamacionesAgregarItems.cs" />
     <Compile Include="Entidades\Procesos\EBuscaFormaPagoCobros.cs" />
     <Compile Include="Entidades\Procesos\EBuscaHistoricoImpresionMarbetes.cs" />
+    <Compile Include="Entidades\Procesos\EBuscaInformacionProcesoEmisionHeader.cs" />
     <Compile Include="Entidades\Procesos\EBuscaPolizaEndosos.cs" />
     <Compile Include="Entidades\Procesos\EBuscarInformacionVolantesPagos.cs" />
     <Compile Include="Entidades\Procesos\ECodigoEmpleadosVolantePagos.cs" />
