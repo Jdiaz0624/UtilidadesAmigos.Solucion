@@ -1197,16 +1197,16 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkProcesoEmision_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
-            //if (Session["IdUsuario"] != null)
-            //{
-            //    Response.Redirect("~/Paginas/Procesos/ProcesoEmisionPoliza.aspx");
-            //}
-            //else
-            //{
-            //    FormsAuthentication.SignOut();
-            //    FormsAuthentication.RedirectToLoginPage();
-            //}
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Procesos/ProcesoEmisionPoliza.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
     }
 }

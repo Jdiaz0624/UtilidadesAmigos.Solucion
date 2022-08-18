@@ -20,9 +20,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// </summary>
         private void IngresarSistema()
         {
-          
-
-
             try
             {
                 //validamos los campos vacios

@@ -1952,7 +1952,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 {
                     GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoSupervisor.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado Por Supervisor");
                 }
-                else if (rbAgruparPorOficina.Checked == true)
+                else if (rbAgruparPorOficina.Checked == true)   
                 {
                     GenerarReporteCobro(IdUsuarioProcesa, Server.MapPath("ReporteCobradoAgrupadoOficina.rpt"), "sa", "Pa$$W0rd", "Reporte Cobrado Agrupado por Oficina");
                 }
