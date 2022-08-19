@@ -714,6 +714,7 @@
   </Function>
   <Function Name="Utililades.SP_BUSCA_INFORMACION_PROCESO_EMISION_POLIZA_HEADER" Method="SP_BUSCA_INFORMACION_PROCESO_EMISION_POLIZA_HEADER">
     <Parameter Name="NumeroRegistro" Parameter="numeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="NumeroConector" Parameter="numeroConector" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="CodigoCliente" Parameter="codigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
@@ -747,6 +748,22 @@
       <Column Name="Despachada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
       <Column Name="CodigoEstatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Estatus" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_INFORMACION_PROCESO_EMISION_DETALLE" Method="SP_BUSCA_INFORMACION_PROCESO_EMISION_DETALLE">
+    <Parameter Name="NumeroConector" Parameter="numeroConector" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Secuencia" Parameter="secuencia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEstatusProcesoEmision" Parameter="idEstatusProcesoEmision" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_INFORMACION_PROCESO_EMISION_DETALLEResult">
+      <Column Name="NumeroConector" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Secuencia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdEstatusProcesoEmison" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Fecha0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CreadoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

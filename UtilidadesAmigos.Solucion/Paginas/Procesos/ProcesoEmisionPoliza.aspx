@@ -23,8 +23,16 @@
     </style>
 
     <script type="text/javascript">
+        function CodigoCLienteNoValido() {
+            alert("El codigo de cliente ingresado no es valido, favor de verificar.");
+        }
 
+        function ProcesoCompletado() {
+            alert("Proceso Realizado con Exito.");
+        }
         $(function () {
+
+          
 
             $("#<%=btnGaurdarNuevoRegistro.ClientID%>").click(function () {
 
@@ -99,7 +107,7 @@
                         <th scope="col"> Registro </th>
                         <th scope="col"> Cliente </th>
                         <th scope="col"> Poliza </th>
-                        <th scope="col"> Estatus </th>
+                        <th scope="col"> Ultimo Estatus  </th>
                         <th scope="col">  </th>
                     </tr>
                 </thead>
@@ -179,6 +187,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <asp:Label ID="lbNumeroRegistroEditar" runat="server" Text="Registro no." CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbNumeroConectorEditar" runat="server" Text="Conector" Visible="false" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtNumeroregistroEditar" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
                 <div class="col-md-3">
@@ -213,7 +222,7 @@
             <table class="table table-striped">
                 <thead class="table-dark">
                     <tr>
-                        <th scope="col"> Registro </th>
+                        <th scope="col"> Secuencia </th>
                         <th scope="col"> Estatus </th>
                         <th scope="col"> Fecha </th>
                         <th scope="col"> Hora </th>
@@ -224,11 +233,11 @@
                     <asp:Repeater ID="rpProcesoEmisionDetalle" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
+                                <td> <%# Eval("Secuencia") %> </td>
+                                <td> <%# Eval("Estatus") %> </td>
+                                <td> <%# Eval("Fecha") %> </td>
+                                <td> <%# Eval("Hora") %> </td>
+                                <td> <%# Eval("CreadoPor") %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -237,7 +246,7 @@
              <table class="table">
                 <tfoot class="table-light">
                     <tr>
-                        <td align="right"><b>Pagina </b> <asp:Label ID="lbPaginaActualDetalle" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label> <b>De </b>   <asp:Label ID="Label1" runat="server" Text="0" CssClass="Letranegrita"></asp:Label> </td>
+                        <td align="right"><b>Pagina </b> <asp:Label ID="lbPaginaActualDetalle" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label> <b>De </b>   <asp:Label ID="lbCantidadPaginaDetalle" runat="server" Text="0" CssClass="Letranegrita"></asp:Label> </td>
                     </tr>
                 </tfoot>
             </table>

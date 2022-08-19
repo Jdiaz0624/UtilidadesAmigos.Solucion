@@ -352,10 +352,17 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_INFORMACION_PROCESO_EMISION_POLIZA_HEADER")]
-		public ISingleResult<SP_BUSCA_INFORMACION_PROCESO_EMISION_POLIZA_HEADERResult> SP_BUSCA_INFORMACION_PROCESO_EMISION_POLIZA_HEADER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRegistro", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoCliente", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoCliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Intermediario", DbType="Int")] System.Nullable<int> intermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Supervisor", DbType="Int")] System.Nullable<int> supervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoEstatus", DbType="Int")] System.Nullable<int> codigoEstatus)
+		public ISingleResult<SP_BUSCA_INFORMACION_PROCESO_EMISION_POLIZA_HEADERResult> SP_BUSCA_INFORMACION_PROCESO_EMISION_POLIZA_HEADER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroRegistro", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroConector", DbType="VarChar(100)")] string numeroConector, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoCliente", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoCliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Intermediario", DbType="Int")] System.Nullable<int> intermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Supervisor", DbType="Int")] System.Nullable<int> supervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoEstatus", DbType="Int")] System.Nullable<int> codigoEstatus)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroRegistro, codigoCliente, poliza, intermediario, supervisor, oficina, codigoEstatus);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroRegistro, numeroConector, codigoCliente, poliza, intermediario, supervisor, oficina, codigoEstatus);
 			return ((ISingleResult<SP_BUSCA_INFORMACION_PROCESO_EMISION_POLIZA_HEADERResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_INFORMACION_PROCESO_EMISION_DETALLE")]
+		public ISingleResult<SP_BUSCA_INFORMACION_PROCESO_EMISION_DETALLEResult> SP_BUSCA_INFORMACION_PROCESO_EMISION_DETALLE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroConector", DbType="VarChar(100)")] string numeroConector, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Int")] System.Nullable<int> secuencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstatusProcesoEmision", DbType="Int")] System.Nullable<int> idEstatusProcesoEmision)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroConector, secuencia, idEstatusProcesoEmision);
+			return ((ISingleResult<SP_BUSCA_INFORMACION_PROCESO_EMISION_DETALLEResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -8192,6 +8199,176 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Estatus != value))
 				{
 					this._Estatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_INFORMACION_PROCESO_EMISION_DETALLEResult
+	{
+		
+		private string _NumeroConector;
+		
+		private int _Secuencia;
+		
+		private System.Nullable<int> _IdEstatusProcesoEmison;
+		
+		private string _Estatus;
+		
+		private System.Nullable<System.DateTime> _Fecha0;
+		
+		private string _Fecha;
+		
+		private string _Hora;
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private string _CreadoPor;
+		
+		public SP_BUSCA_INFORMACION_PROCESO_EMISION_DETALLEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroConector", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string NumeroConector
+		{
+			get
+			{
+				return this._NumeroConector;
+			}
+			set
+			{
+				if ((this._NumeroConector != value))
+				{
+					this._NumeroConector = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int NOT NULL")]
+		public int Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdEstatusProcesoEmison", DbType="Int")]
+		public System.Nullable<int> IdEstatusProcesoEmison
+		{
+			get
+			{
+				return this._IdEstatusProcesoEmison;
+			}
+			set
+			{
+				if ((this._IdEstatusProcesoEmison != value))
+				{
+					this._IdEstatusProcesoEmison = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(500)")]
+		public string Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha0
+		{
+			get
+			{
+				return this._Fecha0;
+			}
+			set
+			{
+				if ((this._Fecha0 != value))
+				{
+					this._Fecha0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="NVarChar(4000)")]
+		public string Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this._Fecha = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hora", DbType="NVarChar(4000)")]
+		public string Hora
+		{
+			get
+			{
+				return this._Hora;
+			}
+			set
+			{
+				if ((this._Hora != value))
+				{
+					this._Hora = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreadoPor", DbType="VarChar(150)")]
+		public string CreadoPor
+		{
+			get
+			{
+				return this._CreadoPor;
+			}
+			set
+			{
+				if ((this._CreadoPor != value))
+				{
+					this._CreadoPor = value;
 				}
 			}
 		}

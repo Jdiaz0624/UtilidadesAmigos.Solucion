@@ -983,11 +983,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
         /// <param name="Supervisor"></param>
         /// <param name="Oficina"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaInformacionProcesoEmisionHeader> BuscaProcesoEmisionHeader(decimal? NumeroRegistro = null, decimal? CodigoCliente = null, string Poliza = null, int? Intermediario = null, int? Supervisor = null, int? Oficina = null,int? CodigoEstatus = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaInformacionProcesoEmisionHeader> BuscaProcesoEmisionHeader(decimal? NumeroRegistro = null,string NumeroConector=null, decimal? CodigoCliente = null, string Poliza = null, int? Intermediario = null, int? Supervisor = null, int? Oficina = null,int? CodigoEstatus = null) {
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_PROCESO_EMISION_POLIZA_HEADER(NumeroRegistro, CodigoCliente, Poliza, Intermediario, Supervisor, Oficina, CodigoEstatus)
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_PROCESO_EMISION_POLIZA_HEADER(NumeroRegistro, NumeroConector,CodigoCliente, Poliza, Intermediario, Supervisor, Oficina, CodigoEstatus)
                            select new UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaInformacionProcesoEmisionHeader
                            {
                                NumeroRegistro = n.NumeroRegistro,
@@ -1016,6 +1016,33 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
                                Despachada=n.Despachada,
                                CodigoEstatus = n.CodigoEstatus,
                                Estatus=n.Estatus
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Muestra el listado del detalle del proceso seleccionado
+        /// </summary>
+        /// <param name="NumeroConector"></param>
+        /// <param name="Secuencia"></param>
+        /// <param name="IdEstatusProceso"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaInformacionProcesoEmisionDetail> BuscaProcesoEmisionDetail(string NumeroConector = null, int? Secuencia = null, int? IdEstatusProceso = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_PROCESO_EMISION_DETALLE(NumeroConector, Secuencia, IdEstatusProceso)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaInformacionProcesoEmisionDetail
+                           {
+                               NumeroConector=n.NumeroConector,
+                               Secuencia=n.Secuencia,
+                               IdEstatusProcesoEmison=n.IdEstatusProcesoEmison,
+                               Estatus=n.Estatus,
+                               Fecha0=n.Fecha0,
+                               Fecha=n.Fecha,
+                               Hora=n.Hora,
+                               IdUsuario=n.IdUsuario,
+                               CreadoPor=n.CreadoPor
                            }).ToList();
             return Listado;
         }
