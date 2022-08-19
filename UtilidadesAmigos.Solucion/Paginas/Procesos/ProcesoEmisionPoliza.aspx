@@ -30,6 +30,10 @@
         function ProcesoCompletado() {
             alert("Proceso Realizado con Exito.");
         }
+
+        function PolizaNoCreada() {
+            alert("No es posible seleccionar esta opción por que este cliente no tiene poliza creada en el sistema.");
+        }
         $(function () {
 
           

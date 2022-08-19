@@ -899,13 +899,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         {
             if (cbEmisionPoliza.Checked == true)
             {
-                cbEmisionPoliza.ForeColor = System.Drawing.Color.Green;
-                cbClienteCreadoEditar.Enabled = false;
-                cbDocumentosRevisados.Enabled = false;
-                cbEmisionPoliza.Enabled = false;
-                cbSegundaRevision.Enabled = true;
-                cbImpresiónMarbete.Enabled = false;
-                cbPolizaDespachada.Enabled = false;
+                string Poliza = txtPolizaEditar.Text;
+
+                if (Poliza == "N/A") {
+                    ClientScript.RegisterStartupScript(GetType(), "PolizaNoCreada()", "PolizaNoCreada();", true);
+                    cbEmisionPoliza.Checked = false;
+
+                 
+                }
+                else {
+                    cbEmisionPoliza.ForeColor = System.Drawing.Color.Green;
+                    cbClienteCreadoEditar.Enabled = false;
+                    cbDocumentosRevisados.Enabled = false;
+                    cbEmisionPoliza.Enabled = false;
+                    cbSegundaRevision.Enabled = true;
+                    cbImpresiónMarbete.Enabled = false;
+                    cbPolizaDespachada.Enabled = false;
+                }
+             
             }
             else if (cbEmisionPoliza.Checked == false)
             {
