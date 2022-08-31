@@ -381,6 +381,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                                 CodigoIntermediario = n.Intermediario,
                                 Intermediario = n.NombreVendedor,
                                 EstatusIntermediario = n.EstatusIntermediario,
+                                Direccion = n.Direccion,
+                                Ubicacion = n.Ubicacion,
+                                Telefono = n.Telefono,
+                                Telefono_Oficina = n.TelefonoOficina,
+                                Celular = n.Celular,
+                                Beeper = n.Beeper,
+                                Fax = n.Fax,
                                 Facturado = n.Facturado,
                                 Cobrado = n.Cobrado,
                                 Balance = n.Balance
@@ -433,7 +440,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                                 Supervisor = n.NombreSupervisor,
                                 Codigo_Intermediario = n.IdIntermediario,
                                 Intermediario = n.NombreIntermediario,
-                                Estatus_Intermediario = n.EstatusVendedor
+                                Estatus_Intermediario = n.EstatusVendedor,
+                                Direccion=n.Direccion,
+                                Ubicacion=n.Ubicacion,
+                                Telefono=n.Telefono,
+                                Telefono_Oficina=n.TelefonoOficina,
+                                Celular=n.Celular,
+                                Beeper=n.Beeper,
+                                Fax=n.Fax
                             }).ToList();
             UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Cartera de Supervisores", Exportar);
         }

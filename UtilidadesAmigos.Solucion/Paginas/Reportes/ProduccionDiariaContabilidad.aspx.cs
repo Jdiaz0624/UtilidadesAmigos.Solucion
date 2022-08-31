@@ -265,27 +265,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             _LlevaIntermediario);
                         foreach (var n in CargarListado)
                         {
-                            decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
-                            lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+                            //decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                            //lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
 
-                            decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
-                            lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+                            //decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                            //lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
 
-                            decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
-                            lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+                            //decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                            //lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
 
-                            decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
-                            lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+                            //decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                            //lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
 
-                            decimal FacturadoTotal = Convert.ToDecimal(n.Total);
-                            LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+                            //decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                            //LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
 
-                            decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
-                            lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+                            //decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                            //lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
 
                         }
-                        gvGridSinIntermediario.DataSource = CargarListado;
-                        gvGridSinIntermediario.DataBind();
+                        //gvGridSinIntermediario.DataSource = CargarListado;
+                        //gvGridSinIntermediario.DataBind();
 
                     }
                     //EN CASO DE QUE LLEVE INTERMEDIARIO
@@ -307,27 +307,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         _LlevaIntermediario);
                             foreach (var n in CargarListado)
                             {
-                                decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
-                                lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+                                //decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                                //lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
 
-                                decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
-                                lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+                                //decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                                //lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
 
-                                decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
-                                lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+                                //decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                                //lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
 
-                                decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
-                                lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+                                //decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                                //lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
 
-                                decimal FacturadoTotal = Convert.ToDecimal(n.Total);
-                                LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+                                //decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                                //LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
 
-                                decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
-                                lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+                                //decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                                //lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
 
                             }
-                            gvGridConIntermediario.DataSource = CargarListado;
-                            gvGridConIntermediario.DataBind();
+                            //gvGridConIntermediario.DataSource = CargarListado;
+                            //gvGridConIntermediario.DataBind();
                         }
                         //VALIDAMOS UN INTERMEDIARIO EN ESPESIFICO
                         else
@@ -350,27 +350,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                            _LlevaIntermediario);
                                 foreach (var n in CargarListado)
                                 {
-                                    decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
-                                    lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+                                    //decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                                    //lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
 
-                                    decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
-                                    lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+                                    //decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                                    //lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
 
-                                    decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
-                                    lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+                                    //decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                                    //lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
 
-                                    decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
-                                    lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+                                    //decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                                    //lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
 
-                                    decimal FacturadoTotal = Convert.ToDecimal(n.Total);
-                                    LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+                                    //decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                                    //LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
 
-                                    decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
-                                    lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+                                    //decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                                    //lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
 
                                 }
-                                gvGridConIntermediario.DataSource = CargarListado;
-                                gvGridConIntermediario.DataBind();
+                                //gvGridConIntermediario.DataSource = CargarListado;
+                                //gvGridConIntermediario.DataBind();
                             }
                         }
 
@@ -409,15 +409,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
 
 
-                            lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
-                            lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
-                            lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
-                            lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
-                            lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
-                            lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                            //lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
+                            //lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
+                            //lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
+                            //lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
+                            //lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
+                            //lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
                         }
-                        gbCobradoSinIntermediario.DataSource = MostrarListado;
-                        gbCobradoSinIntermediario.DataBind();
+                        //gbCobradoSinIntermediario.DataSource = MostrarListado;
+                        //gbCobradoSinIntermediario.DataBind();
                     }
                     //EN CASO DE QUE LLEVE INTERMEDIARIO
                     if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 2)
@@ -446,15 +446,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                 CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
 
 
-                                lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
-                                lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
-                                lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
-                                lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
-                                lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
-                                lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                                //lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
+                                //lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
+                                //lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
+                                //lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
+                                //lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
+                                //lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
                             }
-                            gbCobradoSinIntermediario.DataSource = MostrarListado;
-                            gbCobradoSinIntermediario.DataBind();
+                            //gbCobradoSinIntermediario.DataSource = MostrarListado;
+                            //gbCobradoSinIntermediario.DataBind();
                         }
                         //VALIDAMOS UN INTERMEDIARIO EN ESPESIFICO
                         else
@@ -486,15 +486,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                     CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
 
 
-                                    lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
-                                    lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
-                                    lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
-                                    lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
-                                    lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
-                                    lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                                    //lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
+                                    //lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
+                                    //lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
+                                    //lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
+                                    //lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
+                                    //lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
                                 }
-                                gbCobradoSinIntermediario.DataSource = MostrarListado;
-                                gbCobradoSinIntermediario.DataBind();
+                                //gbCobradoSinIntermediario.DataSource = MostrarListado;
+                                //gbCobradoSinIntermediario.DataBind();
                             }
                         }
 
@@ -532,27 +532,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             _LlevaIntermediario);
                         foreach (var n in CargarListado)
                         {
-                            decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
-                            lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+                            //decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                            //lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
 
-                            decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
-                            lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+                            //decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                            //lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
 
-                            decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
-                            lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+                            //decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                            //lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
 
-                            decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
-                            lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+                            //decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                            //lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
 
-                            decimal FacturadoTotal = Convert.ToDecimal(n.Total);
-                            LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+                            //decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                            //LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
 
-                            decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
-                            lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+                            //decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                            //lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
 
                         }
-                        gvGridSinIntermediario.DataSource = CargarListado;
-                        gvGridSinIntermediario.DataBind();
+                        //gvGridSinIntermediario.DataSource = CargarListado;
+                        //gvGridSinIntermediario.DataBind();
 
                     }
                     //EN CASO DE QUE LLEVE INTERMEDIARIO
@@ -574,27 +574,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         _LlevaIntermediario);
                             foreach (var n in CargarListado)
                             {
-                                decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
-                                lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+                                //decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                                //lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
 
-                                decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
-                                lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+                                //decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                                //lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
 
-                                decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
-                                lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+                                //decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                                //lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
 
-                                decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
-                                lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+                                //decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                                //lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
 
-                                decimal FacturadoTotal = Convert.ToDecimal(n.Total);
-                                LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+                                //decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                                //LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
 
-                                decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
-                                lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+                                //decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                                //lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
 
                             }
-                            gvGridConIntermediario.DataSource = CargarListado;
-                            gvGridConIntermediario.DataBind();
+                            //gvGridConIntermediario.DataSource = CargarListado;
+                            //gvGridConIntermediario.DataBind();
                         }
                         //VALIDAMOS UN INTERMEDIARIO EN ESPESIFICO
                         else
@@ -617,27 +617,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                            _LlevaIntermediario);
                                 foreach (var n in CargarListado)
                                 {
-                                    decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
-                                    lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+                                    //decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                                    //lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
 
-                                    decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
-                                    lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+                                    //decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                                    //lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
 
-                                    decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
-                                    lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+                                    //decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                                    //lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
 
-                                    decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
-                                    lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+                                    //decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                                    //lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
 
-                                    decimal FacturadoTotal = Convert.ToDecimal(n.Total);
-                                    LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+                                    //decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                                    //LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
 
-                                    decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
-                                    lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+                                    //decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                                    //lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
 
                                 }
-                                gvGridConIntermediario.DataSource = CargarListado;
-                                gvGridConIntermediario.DataBind();
+                                //gvGridConIntermediario.DataSource = CargarListado;
+                                //gvGridConIntermediario.DataBind();
                             }
                         }
 
@@ -676,15 +676,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
 
 
-                            lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
-                            lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
-                            lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
-                            lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
-                            lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
-                            lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                            //lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
+                            //lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
+                            //lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
+                            //lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
+                            //lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
+                            //lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
                         }
-                        gbCobradoSinIntermediario.DataSource = MostrarListado;
-                        gbCobradoSinIntermediario.DataBind();
+                        //gbCobradoSinIntermediario.DataSource = MostrarListado;
+                        //gbCobradoSinIntermediario.DataBind();
                     }
                     //EN CASO DE QUE LLEVE INTERMEDIARIO
                     if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 2)
@@ -713,15 +713,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                 CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
 
 
-                                lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
-                                lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
-                                lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
-                                lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
-                                lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
-                                lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                                //lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
+                                //lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
+                                //lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
+                                //lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
+                                //lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
+                                //lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
                             }
-                            gbCobradoSinIntermediario.DataSource = MostrarListado;
-                            gbCobradoSinIntermediario.DataBind();
+                            //gbCobradoSinIntermediario.DataSource = MostrarListado;
+                            //gbCobradoSinIntermediario.DataBind();
                         }
                         //VALIDAMOS UN INTERMEDIARIO EN ESPESIFICO
                         else
@@ -753,15 +753,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                     CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
 
 
-                                    lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
-                                    lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
-                                    lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
-                                    lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
-                                    lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
-                                    lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                                    //lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
+                                    //lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
+                                    //lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
+                                    //lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
+                                    //lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
+                                    //lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
                                 }
-                                gbCobradoSinIntermediario.DataSource = MostrarListado;
-                                gbCobradoSinIntermediario.DataBind();
+                                //gbCobradoSinIntermediario.DataSource = MostrarListado;
+                                //gbCobradoSinIntermediario.DataBind();
                             }
                         }
 
@@ -1452,104 +1452,104 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region OCULTAR Y MOSTRAR CONTROLES
         private void ModoFacturracion()
         {
-            lbFacturadoHoyTitulo.Visible = true;
-            lbFacturadoHoyVariable.Visible = true;
-            lbFacturadoHoyCerrar.Visible = true;
-            Label1.Visible = true;
-            lbTotalDebitosTitulo.Visible = true;
-            lbCantidadDebitosVariable.Visible = true;
-            lbCantidadDebitosCerrar.Visible = true;
-            Label2.Visible = true;
-            lbTotalCreditosTitulo.Visible = true;
-            lbTotalCretitoVariable.Visible = true;
-            lbCantidadCreditosCerrar.Visible = true;
-            lbOtrosTitulo.Visible = true;
-            lbOtrosVariable.Visible = true;
-            lbOtrosCerrar.Visible = true;
-            Label3.Visible = true;
-            lbTotalTitulo.Visible = true;
-            LablbTotalVariableel7.Visible = true;
-            Label8.Visible = true;
-            Label9.Visible = true;
-            lbMesAnteriorTitulo.Visible = true;
-            lbMesAnteriorvariable.Visible = true;
-            Label4.Visible = true;
-            gvGridConIntermediario.Visible = true;
-            gvGridSinIntermediario.Visible = true;
+            //lbFacturadoHoyTitulo.Visible = true;
+            //lbFacturadoHoyVariable.Visible = true;
+            //lbFacturadoHoyCerrar.Visible = true;
+            //Label1.Visible = true;
+            //lbTotalDebitosTitulo.Visible = true;
+            //lbCantidadDebitosVariable.Visible = true;
+            //lbCantidadDebitosCerrar.Visible = true;
+            //Label2.Visible = true;
+            //lbTotalCreditosTitulo.Visible = true;
+            //lbTotalCretitoVariable.Visible = true;
+            //lbCantidadCreditosCerrar.Visible = true;
+            //lbOtrosTitulo.Visible = true;
+            //lbOtrosVariable.Visible = true;
+            //lbOtrosCerrar.Visible = true;
+            //Label3.Visible = true;
+            //lbTotalTitulo.Visible = true;
+            //LablbTotalVariableel7.Visible = true;
+            //Label8.Visible = true;
+            //Label9.Visible = true;
+            //lbMesAnteriorTitulo.Visible = true;
+            //lbMesAnteriorvariable.Visible = true;
+            //Label4.Visible = true;
+            //gvGridConIntermediario.Visible = true;
+            //gvGridSinIntermediario.Visible = true;
 
 
 
-            lbCobradoMesAnteriorCerrar.Visible = false;
-            lbCobradoMesAnteriorVariable.Visible = false;
-            lbCobradoMesAnteriorTitulo.Visible = false;
-            lbTotalCobradoCerrar.Visible = false;
-            lbTotalCobradoVariable.Visible = false;
-            lbTotalCobradoTitulo.Visible = false;
-            lbCobradoOtrosCerrar.Visible = false;
-            lbCobradoOtrosVariable.Visible = false;
-            lbCobradoOtrosTitulo.Visible = false;
-            lbCobradoSantiagoCerrar.Visible = false;
-            lbCobradoSantiagoVariable.Visible = false;
-            lbCobradoSantiagoTitulo.Visible = false;
-            lbCobradoSantoDomingoCerrar.Visible = false;
-            lbCobradoSantoDomingoVariable.Visible = false;
-            lbCobradoSantoDomingoTitulo.Visible = false;
-            lbCobradoHoyTitulo.Visible = false;
-            lbCobradoHoyVariable.Visible = false;
-            lbCobradoHoyCerrar.Visible = false;
-            gbCobradoConIntermediario.Visible = false;
-            gbCobradoSinIntermediario.Visible = false;
+            //lbCobradoMesAnteriorCerrar.Visible = false;
+            //lbCobradoMesAnteriorVariable.Visible = false;
+            //lbCobradoMesAnteriorTitulo.Visible = false;
+            //lbTotalCobradoCerrar.Visible = false;
+            //lbTotalCobradoVariable.Visible = false;
+            //lbTotalCobradoTitulo.Visible = false;
+            //lbCobradoOtrosCerrar.Visible = false;
+            //lbCobradoOtrosVariable.Visible = false;
+            //lbCobradoOtrosTitulo.Visible = false;
+            //lbCobradoSantiagoCerrar.Visible = false;
+            //lbCobradoSantiagoVariable.Visible = false;
+            //lbCobradoSantiagoTitulo.Visible = false;
+            //lbCobradoSantoDomingoCerrar.Visible = false;
+            //lbCobradoSantoDomingoVariable.Visible = false;
+            //lbCobradoSantoDomingoTitulo.Visible = false;
+            //lbCobradoHoyTitulo.Visible = false;
+            //lbCobradoHoyVariable.Visible = false;
+            //lbCobradoHoyCerrar.Visible = false;
+            //gbCobradoConIntermediario.Visible = false;
+            //gbCobradoSinIntermediario.Visible = false;
         }
         private void ModoCobrado()
         {
 
-            lbFacturadoHoyTitulo.Visible = false;
-            lbFacturadoHoyVariable.Visible = false;
-            lbFacturadoHoyCerrar.Visible = false;
-            Label1.Visible = false;
-            lbTotalDebitosTitulo.Visible = false;
-            lbCantidadDebitosVariable.Visible = false;
-            lbCantidadDebitosCerrar.Visible = false;
-            Label2.Visible = false;
-            lbTotalCreditosTitulo.Visible = false;
-            lbTotalCretitoVariable.Visible = false;
-            lbCantidadCreditosCerrar.Visible = false;
-            lbOtrosTitulo.Visible = false;
-            lbOtrosVariable.Visible = false;
-            lbOtrosCerrar.Visible = false;
-            Label3.Visible = false;
-            lbTotalTitulo.Visible = false;
-            LablbTotalVariableel7.Visible = false;
-            Label8.Visible = false;
-            Label9.Visible = false;
-            lbMesAnteriorTitulo.Visible = false;
-            lbMesAnteriorvariable.Visible = false;
-            Label4.Visible = false;
-            gvGridConIntermediario.Visible = false;
-            gvGridSinIntermediario.Visible = false;
+            //lbFacturadoHoyTitulo.Visible = false;
+            //lbFacturadoHoyVariable.Visible = false;
+            //lbFacturadoHoyCerrar.Visible = false;
+            //Label1.Visible = false;
+            //lbTotalDebitosTitulo.Visible = false;
+            //lbCantidadDebitosVariable.Visible = false;
+            //lbCantidadDebitosCerrar.Visible = false;
+            //Label2.Visible = false;
+            //lbTotalCreditosTitulo.Visible = false;
+            //lbTotalCretitoVariable.Visible = false;
+            //lbCantidadCreditosCerrar.Visible = false;
+            //lbOtrosTitulo.Visible = false;
+            //lbOtrosVariable.Visible = false;
+            //lbOtrosCerrar.Visible = false;
+            //Label3.Visible = false;
+            //lbTotalTitulo.Visible = false;
+            //LablbTotalVariableel7.Visible = false;
+            //Label8.Visible = false;
+            //Label9.Visible = false;
+            //lbMesAnteriorTitulo.Visible = false;
+            //lbMesAnteriorvariable.Visible = false;
+            //Label4.Visible = false;
+            //gvGridConIntermediario.Visible = false;
+            //gvGridSinIntermediario.Visible = false;
 
 
 
-            lbCobradoMesAnteriorCerrar.Visible = true;
-            lbCobradoMesAnteriorVariable.Visible = true;
-            lbCobradoMesAnteriorTitulo.Visible = true;
-            lbTotalCobradoCerrar.Visible = true;
-            lbTotalCobradoVariable.Visible = true;
-            lbTotalCobradoTitulo.Visible = true;
-            lbCobradoOtrosCerrar.Visible = true;
-            lbCobradoOtrosVariable.Visible = true;
-            lbCobradoOtrosTitulo.Visible = true;
-            lbCobradoSantiagoCerrar.Visible = true;
-            lbCobradoSantiagoVariable.Visible = true;
-            lbCobradoSantiagoTitulo.Visible = true;
-            lbCobradoSantoDomingoCerrar.Visible = true;
-            lbCobradoSantoDomingoVariable.Visible = true;
-            lbCobradoSantoDomingoTitulo.Visible = true;
-            lbCobradoHoyTitulo.Visible = true;
-            lbCobradoHoyVariable.Visible = true;
-            lbCobradoHoyCerrar.Visible = true;
-            gbCobradoConIntermediario.Visible = true;
-            gbCobradoSinIntermediario.Visible = true;
+            //lbCobradoMesAnteriorCerrar.Visible = true;
+            //lbCobradoMesAnteriorVariable.Visible = true;
+            //lbCobradoMesAnteriorTitulo.Visible = true;
+            //lbTotalCobradoCerrar.Visible = true;
+            //lbTotalCobradoVariable.Visible = true;
+            //lbTotalCobradoTitulo.Visible = true;
+            //lbCobradoOtrosCerrar.Visible = true;
+            //lbCobradoOtrosVariable.Visible = true;
+            //lbCobradoOtrosTitulo.Visible = true;
+            //lbCobradoSantiagoCerrar.Visible = true;
+            //lbCobradoSantiagoVariable.Visible = true;
+            //lbCobradoSantiagoTitulo.Visible = true;
+            //lbCobradoSantoDomingoCerrar.Visible = true;
+            //lbCobradoSantoDomingoVariable.Visible = true;
+            //lbCobradoSantoDomingoTitulo.Visible = true;
+            //lbCobradoHoyTitulo.Visible = true;
+            //lbCobradoHoyVariable.Visible = true;
+            //lbCobradoHoyCerrar.Visible = true;
+            //gbCobradoConIntermediario.Visible = true;
+            //gbCobradoSinIntermediario.Visible = true;
 
         }
         #endregion
@@ -2028,150 +2028,154 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
 
-        protected void ddlSeleccionarTipoReporte_SelectedIndexChanged(object sender, EventArgs e)
+        protected void cbModoComparativo_CheckedChanged(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 1)
-            {
-                ModoFacturracion();
-            }
-            else if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 2)
-            {
-                ModoCobrado();
-            }
-        }
 
-        protected void ddlLlevaIntermediario_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 2)
-            {
-                lbIntermediario.Visible = true;
-                txtCodigoIntermediario.Visible = true;
-                cbTodosLosIntermediarios.Visible = true;
-                txtCodigoIntermediario.Text = string.Empty;
-                gvGridConIntermediario.Visible = true;
-                gvGridSinIntermediario.Visible = false;
-            }
-            else
-            {
-                lbIntermediario.Visible = false;
-                txtCodigoIntermediario.Visible = false;
-                cbTodosLosIntermediarios.Visible = false;
-                gvGridConIntermediario.Visible = false;
-                gvGridSinIntermediario.Visible = true;
-            }
         }
 
         protected void cbTodosLosIntermediarios_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbTodosLosIntermediarios.Checked)
-            {
-                lbLetreroTodosIntermediairos.Visible = true;
-                ClientScript.RegisterStartupScript(GetType(), "DesactivarCodigoIntermediario", "DesactivarCodigoIntermediario();", true);
-            }
-            else
-            {
-                lbLetreroTodosIntermediairos.Visible = false;
-                ClientScript.RegisterStartupScript(GetType(), "ActivarCodigoIntermediario", "ActivarCodigoIntermediario()", true);
-            }
+
         }
 
-        protected void gvGridSinIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            if (cbModoComparativo.Checked)
-            {
-                gvGridConIntermediario.PageIndex = e.NewPageIndex;
-                CargarListadoModoCOmparativo();
-            }
-            else
-            {
-                gvGridSinIntermediario.PageIndex = e.NewPageIndex;
-                CargarListado();
-            }
-        }
-
-        protected void gvGridConIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            if (cbModoComparativo.Checked)
-            {
-                gvGridConIntermediario.PageIndex = e.NewPageIndex;
-                CargarListadoModoCOmparativo();
-            }
-            else
-            {
-                gvGridConIntermediario.PageIndex = e.NewPageIndex;
-                CargarListado();
-            }
-        }
-
-        protected void btnConsultar_Click(object sender, EventArgs e)
-        {
-            if (cbModoComparativo.Checked)
-            {
-                CargarListadoModoCOmparativo();
-            }
-            else
-            {
-                CargarListado();
-            }
-        }
-
-        protected void btnExportar_Click(object sender, EventArgs e)
-        {
-            if (cbModoComparativo.Checked)
-            {
-                ExportarDataModoCOmparativo();
-            }
-            else
-            {
-                ExportarDataExel();
-            }
-        }
-
-        protected void gbCobradoConIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void ddlSeleccionarTipoReporte_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        protected void gbCobradoSinIntermediario_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void ddlLlevaIntermediario_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        protected void cbModoComparativo_CheckedChanged(object sender, EventArgs e)
+        protected void btnConsultarNuevo_Click(object sender, ImageClickEventArgs e)
         {
-            if (cbModoComparativo.Checked == true)
-            {
 
-                lbFechaDesdeModoComparativo.Visible = true;
-                txtFechaDesdeModoComparativo.Visible = true;
-                lbFechaHastaModoCOmparativo.Visible = true;
-                txtFechaHastaModoComparativo.Visible = true;
-                lbFechaDesdeMesAnteriorModoComparativo.Visible = true;
-                txtFechaDesdeMesAnteriorModoComparativo.Visible = true;
-                lbFechaHastaMesAnteriorModoComparativo.Visible = true;
-                txtFechaHastaMesAnteriorModoCOmparativo.Visible = true;
+        }
 
-                lbSeleccionarMes.Enabled = false;
-                ddlSeleccionarMes.Enabled = false;
-                lbAno.Enabled = false;
-                txtAno.Enabled = false;
-            }
-            else
-            {
-                lbFechaDesdeModoComparativo.Visible = false;
-                txtFechaDesdeModoComparativo.Visible = false;
-                lbFechaHastaModoCOmparativo.Visible = false;
-                txtFechaHastaModoComparativo.Visible = false;
-                lbFechaDesdeMesAnteriorModoComparativo.Visible = false;
-                txtFechaDesdeMesAnteriorModoComparativo.Visible = false;
-                lbFechaHastaMesAnteriorModoComparativo.Visible = false;
-                txtFechaHastaMesAnteriorModoCOmparativo.Visible = false;
+        protected void btnExportarNuevo_Click(object sender, ImageClickEventArgs e)
+        {
 
-                lbSeleccionarMes.Enabled = true;
-                ddlSeleccionarMes.Enabled = true;
-                lbAno.Enabled = true;
-                txtAno.Enabled = true;
-            }
+        }
+
+        protected void dtPaginacion_ProduccionSinIntermediario_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_ProduccionSinIntermediario_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void btnSiguientePagina_ProduccionSinIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnUltimaPagina_ProduccionSinIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPrimeraPagina_ProduccionSinIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPaginaAnterior_ProduccionSinIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPrimeraPagina_ProduccionConIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPaginaAnterior_ProduccionConIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_ProduccionConIntermediario_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_ProduccionConIntermediario_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void btnSiguientePagina_ProduccionConIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnUltimaPagina_ProduccionConIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPrimeraPagina_CobradoSinIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPaginaAnterior_CobradoSinIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_CobradoSinIntermediario_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_CobradoSinIntermediario_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void btnSiguientePagina_CobradoSinIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnUltimaPagina_CobradoSinIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPrimeraPagina_CobradoConIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPaginaAnterior_CobradoConIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_CobradoConIntermediario_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_CobradoConIntermediario_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void btnSiguientePagina_CobradoConIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnUltimaPagina_CobradoConIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+
         }
     }
 }

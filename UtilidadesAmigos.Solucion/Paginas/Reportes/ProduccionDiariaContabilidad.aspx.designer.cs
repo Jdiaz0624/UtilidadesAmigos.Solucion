@@ -24,6 +24,33 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbIdPerfil;
 
         /// <summary>
+        /// cbModoComparativo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbModoComparativo;
+
+        /// <summary>
+        /// cbTodosLosIntermediarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbTodosLosIntermediarios;
+
+        /// <summary>
+        /// lbLetreroTodosIntermediairos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbLetreroTodosIntermediairos;
+
+        /// <summary>
         /// lbTipoReporte control.
         /// </summary>
         /// <remarks>
@@ -40,15 +67,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionarTipoReporte;
-
-        /// <summary>
-        /// cbModoComparativo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbModoComparativo;
 
         /// <summary>
         /// lbFechaDesdeModoComparativo control.
@@ -231,435 +249,597 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.TextBox txtCodigoIntermediario;
 
         /// <summary>
-        /// cbTodosLosIntermediarios control.
+        /// btnConsultarNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbTodosLosIntermediarios;
+        protected global::System.Web.UI.WebControls.ImageButton btnConsultarNuevo;
 
         /// <summary>
-        /// lbLetreroTodosIntermediairos control.
+        /// btnExportarNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbLetreroTodosIntermediairos;
+        protected global::System.Web.UI.WebControls.ImageButton btnExportarNuevo;
 
         /// <summary>
-        /// btnConsultar control.
+        /// DivProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConsultar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivProduccionSinIntermediario;
 
         /// <summary>
-        /// btnExportar control.
+        /// rpProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportar;
+        protected global::System.Web.UI.WebControls.Repeater rpProduccionSinIntermediario;
 
         /// <summary>
-        /// gvGridSinIntermediario control.
+        /// lbPaginaActual_ProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvGridSinIntermediario;
+        protected global::System.Web.UI.WebControls.Label lbPaginaActual_ProduccionSinIntermediario;
 
         /// <summary>
-        /// gvGridConIntermediario control.
+        /// lbCantidadPagina_ProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvGridConIntermediario;
+        protected global::System.Web.UI.WebControls.Label lbCantidadPagina_ProduccionSinIntermediario;
 
         /// <summary>
-        /// lbFacturadoHoyTitulo control.
+        /// lbFacturadoHoy_ProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFacturadoHoyTitulo;
+        protected global::System.Web.UI.WebControls.Label lbFacturadoHoy_ProduccionSinIntermediario;
 
         /// <summary>
-        /// lbFacturadoHoyVariable control.
+        /// lbCantidadDebitos_ProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFacturadoHoyVariable;
+        protected global::System.Web.UI.WebControls.Label lbCantidadDebitos_ProduccionSinIntermediario;
 
         /// <summary>
-        /// lbFacturadoHoyCerrar control.
+        /// lbCantidadCreditos_ProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFacturadoHoyCerrar;
+        protected global::System.Web.UI.WebControls.Label lbCantidadCreditos_ProduccionSinIntermediario;
 
         /// <summary>
-        /// Label1 control.
+        /// lbOtros_ProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbOtros_ProduccionSinIntermediario;
 
         /// <summary>
-        /// lbTotalDebitosTitulo control.
+        /// lbTotal_ProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalDebitosTitulo;
+        protected global::System.Web.UI.WebControls.Label lbTotal_ProduccionSinIntermediario;
 
         /// <summary>
-        /// lbCantidadDebitosVariable control.
+        /// lbTotalMesAnterior_ProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadDebitosVariable;
+        protected global::System.Web.UI.WebControls.Label lbTotalMesAnterior_ProduccionSinIntermediario;
 
         /// <summary>
-        /// lbCantidadDebitosCerrar control.
+        /// DivPaginacio_ProduccionSinIntermediarion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadDebitosCerrar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacio_ProduccionSinIntermediarion;
 
         /// <summary>
-        /// Label2 control.
+        /// btnPrimeraPagina_ProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPagina_ProduccionSinIntermediario;
 
         /// <summary>
-        /// lbTotalCreditosTitulo control.
+        /// btnPaginaAnterior_ProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalCreditosTitulo;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnterior_ProduccionSinIntermediario;
 
         /// <summary>
-        /// lbTotalCretitoVariable control.
+        /// dtPaginacion_ProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalCretitoVariable;
+        protected global::System.Web.UI.WebControls.DataList dtPaginacion_ProduccionSinIntermediario;
 
         /// <summary>
-        /// lbCantidadCreditosCerrar control.
+        /// btnSiguientePagina_ProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadCreditosCerrar;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePagina_ProduccionSinIntermediario;
 
         /// <summary>
-        /// lbOtrosTitulo control.
+        /// btnUltimaPagina_ProduccionSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbOtrosTitulo;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPagina_ProduccionSinIntermediario;
 
         /// <summary>
-        /// lbOtrosVariable control.
+        /// DivProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbOtrosVariable;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivProduccionConIntermediario;
 
         /// <summary>
-        /// lbOtrosCerrar control.
+        /// rpProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbOtrosCerrar;
+        protected global::System.Web.UI.WebControls.Repeater rpProduccionConIntermediario;
 
         /// <summary>
-        /// Label3 control.
+        /// lbPaginaActual_ProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label lbPaginaActual_ProduccionConIntermediario;
 
         /// <summary>
-        /// lbTotalTitulo control.
+        /// lbCantidadPagina_ProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalTitulo;
+        protected global::System.Web.UI.WebControls.Label lbCantidadPagina_ProduccionConIntermediario;
 
         /// <summary>
-        /// LablbTotalVariableel7 control.
+        /// lbFacturadoHoy_ProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LablbTotalVariableel7;
+        protected global::System.Web.UI.WebControls.Label lbFacturadoHoy_ProduccionConIntermediario;
 
         /// <summary>
-        /// Label8 control.
+        /// lbCantidadDebitos_ProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.Label lbCantidadDebitos_ProduccionConIntermediario;
 
         /// <summary>
-        /// Label9 control.
+        /// lbCantidadCreditos_ProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
+        protected global::System.Web.UI.WebControls.Label lbCantidadCreditos_ProduccionConIntermediario;
 
         /// <summary>
-        /// lbMesAnteriorTitulo control.
+        /// lbOtros_ProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMesAnteriorTitulo;
+        protected global::System.Web.UI.WebControls.Label lbOtros_ProduccionConIntermediario;
 
         /// <summary>
-        /// lbMesAnteriorvariable control.
+        /// lbTotal_ProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMesAnteriorvariable;
+        protected global::System.Web.UI.WebControls.Label lbTotal_ProduccionConIntermediario;
 
         /// <summary>
-        /// Label4 control.
+        /// lbTotalMesAnterior_ProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label lbTotalMesAnterior_ProduccionConIntermediario;
 
         /// <summary>
-        /// gbCobradoSinIntermediario control.
+        /// DivPaginacio_ProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gbCobradoSinIntermediario;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacio_ProduccionConIntermediario;
 
         /// <summary>
-        /// gbCobradoConIntermediario control.
+        /// btnPrimeraPagina_ProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gbCobradoConIntermediario;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPagina_ProduccionConIntermediario;
 
         /// <summary>
-        /// lbCobradoSantoDomingoTitulo control.
+        /// btnPaginaAnterior_ProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoSantoDomingoTitulo;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnterior_ProduccionConIntermediario;
 
         /// <summary>
-        /// lbCobradoSantoDomingoVariable control.
+        /// dtPaginacion_ProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoSantoDomingoVariable;
+        protected global::System.Web.UI.WebControls.DataList dtPaginacion_ProduccionConIntermediario;
 
         /// <summary>
-        /// lbCobradoSantoDomingoCerrar control.
+        /// btnSiguientePagina_ProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoSantoDomingoCerrar;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePagina_ProduccionConIntermediario;
 
         /// <summary>
-        /// lbCobradoSantiagoTitulo control.
+        /// btnUltimaPagina_ProduccionConIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoSantiagoTitulo;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPagina_ProduccionConIntermediario;
 
         /// <summary>
-        /// lbCobradoSantiagoVariable control.
+        /// DivCobroSinIntermedairio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoSantiagoVariable;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivCobroSinIntermedairio;
 
         /// <summary>
-        /// lbCobradoSantiagoCerrar control.
+        /// rpCobradoSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoSantiagoCerrar;
+        protected global::System.Web.UI.WebControls.Repeater rpCobradoSinIntermediario;
 
         /// <summary>
-        /// lbCobradoOtrosTitulo control.
+        /// lbPaginaActual_CobradoSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoOtrosTitulo;
+        protected global::System.Web.UI.WebControls.Label lbPaginaActual_CobradoSinIntermediario;
 
         /// <summary>
-        /// lbCobradoOtrosVariable control.
+        /// lbCantidadPagina_CobradoSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoOtrosVariable;
+        protected global::System.Web.UI.WebControls.Label lbCantidadPagina_CobradoSinIntermediario;
 
         /// <summary>
-        /// lbCobradoOtrosCerrar control.
+        /// lbCobradoSantoDomingo_CobradoSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoOtrosCerrar;
+        protected global::System.Web.UI.WebControls.Label lbCobradoSantoDomingo_CobradoSinIntermediario;
 
         /// <summary>
-        /// lbTotalCobradoTitulo control.
+        /// lbCobradoSantiago_CobradoSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalCobradoTitulo;
+        protected global::System.Web.UI.WebControls.Label lbCobradoSantiago_CobradoSinIntermediario;
 
         /// <summary>
-        /// lbTotalCobradoVariable control.
+        /// lbCobradoOtros_CobradoSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalCobradoVariable;
+        protected global::System.Web.UI.WebControls.Label lbCobradoOtros_CobradoSinIntermediario;
 
         /// <summary>
-        /// lbTotalCobradoCerrar control.
+        /// lbTotalCobrado_CobradoSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalCobradoCerrar;
+        protected global::System.Web.UI.WebControls.Label lbTotalCobrado_CobradoSinIntermediario;
 
         /// <summary>
-        /// lbCobradoHoyTitulo control.
+        /// lbCobradoHoy_CobradoSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoHoyTitulo;
+        protected global::System.Web.UI.WebControls.Label lbCobradoHoy_CobradoSinIntermediario;
 
         /// <summary>
-        /// lbCobradoHoyVariable control.
+        /// lbCobradoMesAnterior_CobradoSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoHoyVariable;
+        protected global::System.Web.UI.WebControls.Label lbCobradoMesAnterior_CobradoSinIntermediario;
 
         /// <summary>
-        /// lbCobradoHoyCerrar control.
+        /// DivPaginacio_CobradoSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoHoyCerrar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacio_CobradoSinIntermediario;
 
         /// <summary>
-        /// lbCobradoMesAnteriorTitulo control.
+        /// btnPrimeraPagina_CobradoSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoMesAnteriorTitulo;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPagina_CobradoSinIntermediario;
 
         /// <summary>
-        /// lbCobradoMesAnteriorVariable control.
+        /// btnPaginaAnterior_CobradoSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoMesAnteriorVariable;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnterior_CobradoSinIntermediario;
 
         /// <summary>
-        /// lbCobradoMesAnteriorCerrar control.
+        /// dtPaginacion_CobradoSinIntermediario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCobradoMesAnteriorCerrar;
+        protected global::System.Web.UI.WebControls.DataList dtPaginacion_CobradoSinIntermediario;
+
+        /// <summary>
+        /// btnSiguientePagina_CobradoSinIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePagina_CobradoSinIntermediario;
+
+        /// <summary>
+        /// btnUltimaPagina_CobradoSinIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPagina_CobradoSinIntermediario;
+
+        /// <summary>
+        /// DivCobrosConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivCobrosConIntermediario;
+
+        /// <summary>
+        /// rpCobradoConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpCobradoConIntermediario;
+
+        /// <summary>
+        /// lbPaginaActual_CobradoConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActual_CobradoConIntermediario;
+
+        /// <summary>
+        /// lbCantidadPagina_CobradoConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPagina_CobradoConIntermediario;
+
+        /// <summary>
+        /// lbCobradoSantoDomingo_CobradoConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCobradoSantoDomingo_CobradoConIntermediario;
+
+        /// <summary>
+        /// lbCobradoSantiago_CobradoConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCobradoSantiago_CobradoConIntermediario;
+
+        /// <summary>
+        /// lbCobradoOtros_CobradoConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCobradoOtros_CobradoConIntermediario;
+
+        /// <summary>
+        /// lbTotalCobrado_CobradoConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTotalCobrado_CobradoConIntermediario;
+
+        /// <summary>
+        /// lbCobradoHoy_CobradoConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCobradoHoy_CobradoConIntermediario;
+
+        /// <summary>
+        /// lbCobradoMesAnterior_CobradoConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCobradoMesAnterior_CobradoConIntermediario;
+
+        /// <summary>
+        /// Div1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+
+        /// <summary>
+        /// btnPrimeraPagina_CobradoConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPagina_CobradoConIntermediario;
+
+        /// <summary>
+        /// btnPaginaAnterior_CobradoConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnterior_CobradoConIntermediario;
+
+        /// <summary>
+        /// dtPaginacion_CobradoConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dtPaginacion_CobradoConIntermediario;
+
+        /// <summary>
+        /// btnSiguientePagina_CobradoConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePagina_CobradoConIntermediario;
+
+        /// <summary>
+        /// btnUltimaPagina_CobradoConIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPagina_CobradoConIntermediario;
     }
 }

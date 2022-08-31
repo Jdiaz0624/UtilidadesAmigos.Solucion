@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionConsultaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_BUSCAR_INFORMACION_POLIZA_GESTION_COBRO" Method="SP_BUSCAR_INFORMACION_POLIZA_GESTION_COBRO">
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="CodigoCliente" Parameter="codigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" />
@@ -213,41 +213,6 @@
       <Column Name="NoLLevaRangoFecha0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="NoLlevaRangoFecha" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
       <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_SACAR_CARTERA_EJECUTIVOS" Method="SP_SACAR_CARTERA_EJECUTIVOS">
-    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Int32" DbType="Int" />
-    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_SACAR_CARTERA_EJECUTIVOSResult">
-      <Column Name="IdIntermediarioSupervisa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="IdIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="NombreIntermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="EstatusVendedor" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
-      <Column Name="TotalIntermediarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_SACAR_CARTERA_INTERMEDIARIOS" Method="SP_SACAR_CARTERA_INTERMEDIARIOS">
-    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
-    <Parameter Name="EstatusPoliza" Parameter="estatusPoliza" Type="System.String" DbType="VarChar(20)" />
-    <ElementType Name="SP_SACAR_CARTERA_INTERMEDIARIOSResult">
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="EstatusPoliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SumaAsegurada" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Intermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NombreVendedor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="EstatusIntermediario" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
-      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="Cobrado" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="PolizasActivas" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PolizasCanceladas" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PolizasTransito" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PolizasExclusion" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="Utililades.SP_PROCESAR_COMENTARIO_POLIZA" Method="SP_PROCESAR_COMENTARIO_POLIZA">
@@ -729,6 +694,57 @@
       <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_CARTERA_EJECUTIVOS" Method="SP_SACAR_CARTERA_EJECUTIVOS">
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SACAR_CARTERA_EJECUTIVOSResult">
+      <Column Name="IdIntermediarioSupervisa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="IdIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NombreIntermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="EstatusVendedor" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Ubicacion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Telefono1" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Celular" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Beeper" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TotalIntermediarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_SACAR_CARTERA_INTERMEDIARIOS" Method="SP_SACAR_CARTERA_INTERMEDIARIOS">
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EstatusPoliza" Parameter="estatusPoliza" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="SP_SACAR_CARTERA_INTERMEDIARIOSResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EstatusPoliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SumaAsegurada" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreVendedor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Ubicacion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Telefono1" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Celular" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Beeper" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="EstatusIntermediario" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="PolizasActivas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PolizasCanceladas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PolizasTransito" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PolizasExclusion" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

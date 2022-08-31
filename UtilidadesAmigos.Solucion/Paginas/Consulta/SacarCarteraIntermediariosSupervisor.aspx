@@ -17,10 +17,7 @@
         }
         
 
-        th {
-            background-color: #1E90FF;
-            color: #000000;
-        }
+        
           .BotonImagen {
               width: 40px;
               height: 40px;
@@ -74,7 +71,7 @@
         <br />
        
             <table class="table table-striped">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th scope="col"> Poliza </th>
                         <th scope="col"> Estatus </th>
@@ -156,7 +153,7 @@
                 <asp:TextBox ID="txtNombreIntermediarioSupervisor" runat="server" Enabled="false" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
         </div>
-
+        <br />
         <div align="center">
             <asp:ImageButton ID="btnBuscarSupervisores" runat="server" ToolTip="Buscar Información" CssClass="BotonImagen" OnClick="btnBuscarSupervisores_Click" ImageUrl="~/Imagenes/Buscar.png" />
             <asp:ImageButton ID="btnExportarSupervisores" runat="server" ToolTip="Exportar Información" CssClass="BotonImagen" OnClick="btnExportarSupervisores_Click" ImageUrl="~/Imagenes/excel.png" />
@@ -167,11 +164,11 @@
         </div>
         
             <table class="table table-striped">
-                <thead>
+                <thead class="table-dark">
                     <tr>
-                        <th scope="col"> CODIGO </th>
-                         <th scope="col"> NOMBRE </th>
-                         <th scope="col"> ESTATUS </th>
+                        <th scope="col"> Codigo </th>
+                         <th scope="col"> Nombre </th>
+                         <th scope="col"> Estatus </th>
                     </tr>
                 </thead>
                 <tbody>
