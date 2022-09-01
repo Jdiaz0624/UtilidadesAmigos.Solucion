@@ -2651,7 +2651,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnExportarNuevo_Click(object sender, ImageClickEventArgs e)
         {
-
+            if (cbModoComparativo.Checked)
+            {
+                ExportarDataModoCOmparativo();
+            }
+            else
+            {
+                ExportarDataExel();
+            }
         }
 
         protected void dtPaginacion_ProduccionSinIntermediario_ItemDataBound(object sender, DataListItemEventArgs e)
