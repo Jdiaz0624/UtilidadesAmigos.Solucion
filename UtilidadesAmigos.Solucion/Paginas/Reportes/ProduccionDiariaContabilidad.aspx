@@ -120,31 +120,31 @@
          <%--  MODO COMPARATIVO--%>
         <div class="row">
              
-            <div class="col-md-2">
-                <asp:Label ID="lbFechaDesdeModoComparativo" runat="server" Visible="false" Text="Fecha Desde" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtFechaDesdeModoComparativo" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
+            <div class="col-md-3" id="DivfechaDesdeComoarativo" runat="server" >
+                <asp:Label ID="lbFechaDesdeModoComparativo" runat="server"  Text="Fecha Desde" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaDesdeModoComparativo" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
-             <div class="col-md-2">
-                 <asp:Label ID="lbFechaHastaModoCOmparativo" runat="server" Visible="false" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtFechaHastaModoComparativo" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
+             <div class="col-md-3" id="DivFechaHAstaComparativo" runat="server">
+                 <asp:Label ID="lbFechaHastaModoCOmparativo" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaHastaModoComparativo" runat="server"  TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
-             <div class="col-md-2">
-                 <asp:Label ID="lbFechaDesdeMesAnteriorModoComparativo" runat="server" Visible="false" Text="Desde Mes Anterior" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtFechaDesdeMesAnteriorModoComparativo" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
+             <div class="col-md-3" id="DivFechaDesdeMesAnteriorComparativo" runat="server">
+                 <asp:Label ID="lbFechaDesdeMesAnteriorModoComparativo" runat="server"  Text="Desde Mes Anterior" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaDesdeMesAnteriorModoComparativo" runat="server"  TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
-             <div class="col-md-2">
-                 <asp:Label ID="lbFechaHastaMesAnteriorModoComparativo" runat="server" Visible="false" Text="Hasta Mes Anterior" CssClass="Letranegrita"></asp:Label>
-                <asp:TextBox ID="txtFechaHastaMesAnteriorModoCOmparativo" runat="server" Visible="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
+             <div class="col-md-3" id="DivFechaHastaMesAnteriorComparativo" runat="server">
+                 <asp:Label ID="lbFechaHastaMesAnteriorModoComparativo" runat="server"  Text="Hasta Mes Anterior" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaHastaMesAnteriorModoCOmparativo" runat="server"  TextMode="Date" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
         <%--  MODO NORMAL--%>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3" id="DivMes" runat="server">
                 <asp:Label ID="lbSeleccionarMes" runat="server" Text="Seleccionar Mes" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarMes" runat="server" ToolTip="Seleccionar el mes a validar" CssClass="form-control">
                 </asp:DropDownList>
             </div>
-             <div class="col-md-3">
+             <div class="col-md-3" id="DivAno" runat="server">
                  <asp:Label ID="lbAno" runat="server" Text="Año" CssClass="Letranegrita"></asp:Label>
                  <asp:TextBox ID="txtAno" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
@@ -173,7 +173,7 @@
                  <asp:TextBox ID="txtCodigoIntermediario" Visible="false" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
         </div>
-
+        <br />
         <!--BOTONES-->
         <div align="center">
             <asp:ImageButton ID="btnConsultarNuevo" runat="server" ToolTip="Consultar Información" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultarNuevo_Click" CssClass="BotonImagen" />
@@ -199,11 +199,11 @@
               <asp:Repeater ID="rpProduccionSinIntermediario" runat="server">
                   <ItemTemplate>
                       <tr>
-                           <td> <%# Eval("") %> </td>
-                           <td> <%# Eval("") %> </td>
-                           <td> <%# Eval("") %> </td>
-                           <td> <%# Eval("") %> </td>
-                           <td> <%#string.Format("{0:N2}", Eval("")) %> </td>
+                           <td> <%# Eval("Descripcion") %> </td>
+                           <td> <%# Eval("DescripcionTipo") %> </td>
+                           <td> <%# Eval("Oficina") %> </td>
+                           <td> <%# Eval("Concepto") %> </td>
+                           <td> <%#string.Format("{0:N2}", Eval("FacturadoMes")) %> </td>
                       </tr>
                   </ItemTemplate>
               </asp:Repeater>
@@ -272,12 +272,12 @@
               <asp:Repeater ID="rpProduccionConIntermediario" runat="server">
                   <ItemTemplate>
                       <tr>
-                           <td> <%# Eval("") %> </td>
-                           <td> <%# Eval("") %> </td>
-                           <td> <%# Eval("") %> </td>
-                           <td> <%# Eval("") %> </td>
-                           <td> <%# Eval("") %> </td>
-                           <td> <%#string.Format("{0:N2}", Eval("")) %> </td>
+                           <td> <%# Eval("Intermediario") %> </td>
+                           <td> <%# Eval("Descripcion") %> </td>
+                           <td> <%# Eval("DescripcionTipo") %> </td>
+                           <td> <%# Eval("Oficina") %> </td>
+                           <td> <%# Eval("Concepto") %> </td>
+                           <td> <%#string.Format("{0:N2}", Eval("FacturadoMes")) %> </td>
                       </tr>
                   </ItemTemplate>
               </asp:Repeater>

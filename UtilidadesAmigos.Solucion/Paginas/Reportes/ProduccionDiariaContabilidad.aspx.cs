@@ -8,12 +8,549 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Speech.Synthesis;
 using System.Threading;
+using System.Data;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 {
     public partial class ProduccionDiariaContabilidad : System.Web.UI.Page
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
+
+        enum TipoDeReporte { 
+        
+            Produccion=1,
+            Cobros=2
+        }
+
+        #region CONTROL DE PAGINACION PRODUCCION SIN INTERMEDIARIO
+        readonly PagedDataSource pagedDataSource_ProduccionSinIntermediario = new PagedDataSource();
+        int _PrimeraPagina_ProduccionSinIntermediario, _UltimaPagina_ProduccionSinIntermediario;
+        private int _TamanioPagina_ProduccionSinIntermediario = 10;
+        private int CurrentPage_ProduccionSinIntermediario
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_ProduccionSinIntermediario(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_ProduccionSinIntermediario = CurrentPage_ProduccionSinIntermediario - 5;
+            if (CurrentPage_ProduccionSinIntermediario > 5)
+                _UltimaPagina_ProduccionSinIntermediario = CurrentPage_ProduccionSinIntermediario + 5;
+            else
+                _UltimaPagina_ProduccionSinIntermediario = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_ProduccionSinIntermediario > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_ProduccionSinIntermediario = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_ProduccionSinIntermediario = _UltimaPagina_ProduccionSinIntermediario - 10;
+            }
+
+            if (_PrimeraPagina_ProduccionSinIntermediario < 0)
+                _PrimeraPagina_ProduccionSinIntermediario = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_ProduccionSinIntermediario;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_ProduccionSinIntermediario; i < _UltimaPagina_ProduccionSinIntermediario; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_ProduccionSinIntermediario(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_ProduccionSinIntermediario.DataSource = Listado;
+            pagedDataSource_ProduccionSinIntermediario.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_ProduccionSinIntermediario.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_ProduccionSinIntermediario.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_ProduccionSinIntermediario.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_ProduccionSinIntermediario : _NumeroRegistros);
+            pagedDataSource_ProduccionSinIntermediario.CurrentPageIndex = CurrentPage_ProduccionSinIntermediario;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_ProduccionSinIntermediario.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_ProduccionSinIntermediario.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_ProduccionSinIntermediario.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_ProduccionSinIntermediario.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_ProduccionSinIntermediario;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_ProduccionSinIntermediario
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_ProduccionSinIntermediario(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+        #region CONTROL DE PAGINACION PRODUCCION CON INTERMEDIARIO
+        readonly PagedDataSource pagedDataSource_ProduccionConIntermediario = new PagedDataSource();
+        int _PrimeraPagina_ProduccionConIntermediario, _UltimaPagina_ProduccionConIntermediario;
+        private int _TamanioPagina_ProduccionConIntermediario = 10;
+        private int CurrentPage_ProduccionConIntermediario
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_ProduccionConIntermediario(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_ProduccionConIntermediario = CurrentPage_ProduccionConIntermediario - 5;
+            if (CurrentPage_ProduccionConIntermediario > 5)
+                _UltimaPagina_ProduccionConIntermediario = CurrentPage_ProduccionConIntermediario + 5;
+            else
+                _UltimaPagina_ProduccionConIntermediario = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_ProduccionConIntermediario > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_ProduccionConIntermediario = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_ProduccionConIntermediario = _UltimaPagina_ProduccionConIntermediario - 10;
+            }
+
+            if (_PrimeraPagina_ProduccionConIntermediario < 0)
+                _PrimeraPagina_ProduccionConIntermediario = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_ProduccionConIntermediario;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_ProduccionConIntermediario; i < _UltimaPagina_ProduccionConIntermediario; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_ProduccionConIntermediario(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_ProduccionConIntermediario.DataSource = Listado;
+            pagedDataSource_ProduccionConIntermediario.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_ProduccionConIntermediario.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_ProduccionConIntermediario.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_ProduccionConIntermediario.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_ProduccionConIntermediario : _NumeroRegistros);
+            pagedDataSource_ProduccionConIntermediario.CurrentPageIndex = CurrentPage_ProduccionConIntermediario;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_ProduccionConIntermediario.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_ProduccionConIntermediario.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_ProduccionConIntermediario.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_ProduccionConIntermediario.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_ProduccionConIntermediario;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_ProduccionConIntermediario
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_ProduccionConIntermediario(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+        #region CONTROL DE PAGINACION COBROS SIN INTERMEDIARIO
+        readonly PagedDataSource pagedDataSource_CobroSinIntermedairio = new PagedDataSource();
+        int _PrimeraPagina_CobroSinIntermedairio, _UltimaPagina_CobroSinIntermedairio;
+        private int _TamanioPagina_CobroSinIntermedairio = 10;
+        private int CurrentPage_CobroSinIntermedairio
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_CobroSinIntermedairio(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_CobroSinIntermedairio = CurrentPage_CobroSinIntermedairio - 5;
+            if (CurrentPage_CobroSinIntermedairio > 5)
+                _UltimaPagina_CobroSinIntermedairio = CurrentPage_CobroSinIntermedairio + 5;
+            else
+                _UltimaPagina_CobroSinIntermedairio = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_CobroSinIntermedairio > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_CobroSinIntermedairio = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_CobroSinIntermedairio = _UltimaPagina_CobroSinIntermedairio - 10;
+            }
+
+            if (_PrimeraPagina_CobroSinIntermedairio < 0)
+                _PrimeraPagina_CobroSinIntermedairio = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_CobroSinIntermedairio;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_CobroSinIntermedairio; i < _UltimaPagina_CobroSinIntermedairio; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_CobroSinIntermedairio(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_CobroSinIntermedairio.DataSource = Listado;
+            pagedDataSource_CobroSinIntermedairio.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_CobroSinIntermedairio.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_CobroSinIntermedairio.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_CobroSinIntermedairio.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_CobroSinIntermedairio : _NumeroRegistros);
+            pagedDataSource_CobroSinIntermedairio.CurrentPageIndex = CurrentPage_CobroSinIntermedairio;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_CobroSinIntermedairio.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_CobroSinIntermedairio.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_CobroSinIntermedairio.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_CobroSinIntermedairio.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_CobroSinIntermedairio;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_CobroSinIntermedairio
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_CobroSinIntermedairio(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+        #region CONTROL DE PAGINACION COBROS CON INTERMEDIARIO
+        readonly PagedDataSource pagedDataSource_CobroConIntermedairio = new PagedDataSource();
+        int _PrimeraPagina_CobroConIntermedairio, _UltimaPagina_CobroConIntermedairio;
+        private int _TamanioPagina_CobroConIntermedairio = 10;
+        private int CurrentPage_CobroConIntermedairio
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_CobroConIntermedairio(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_CobroConIntermedairio = CurrentPage_CobroConIntermedairio - 5;
+            if (CurrentPage_CobroConIntermedairio > 5)
+                _UltimaPagina_CobroConIntermedairio = CurrentPage_CobroConIntermedairio + 5;
+            else
+                _UltimaPagina_CobroConIntermedairio = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_CobroConIntermedairio > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_CobroConIntermedairio = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_CobroConIntermedairio = _UltimaPagina_CobroConIntermedairio - 10;
+            }
+
+            if (_PrimeraPagina_CobroConIntermedairio < 0)
+                _PrimeraPagina_CobroConIntermedairio = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_CobroConIntermedairio;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_CobroConIntermedairio; i < _UltimaPagina_CobroConIntermedairio; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_CobroConIntermedairio(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_CobroConIntermedairio.DataSource = Listado;
+            pagedDataSource_CobroConIntermedairio.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_CobroConIntermedairio.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_CobroConIntermedairio.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_CobroConIntermedairio.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_CobroConIntermedairio : _NumeroRegistros);
+            pagedDataSource_CobroConIntermedairio.CurrentPageIndex = CurrentPage_CobroConIntermedairio;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_CobroConIntermedairio.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_CobroConIntermedairio.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_CobroConIntermedairio.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_CobroConIntermedairio.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_CobroConIntermedairio;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_CobroConIntermedairio
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_CobroConIntermedairio(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+
 
         #region CARGAR LOS RAMOS
         private void CargarRamos()
@@ -242,7 +779,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
                 //VERIFICAMOS EL TIPO DE REPORTE QUE SE VA A USAR
                 //REPORTE DE PRODUCCION
-                if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 1)
+                if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == (int)TipoDeReporte.Produccion)
                 {
                     int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
                     int? _Oficina = ddlSeleccionarOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarOficina.SelectedValue) : new Nullable<int>();
@@ -251,7 +788,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                     //VERIFICAMOS SI LA CONSULTA LLEVA INTERMEDARIOS
                     //EN CASO DE QUE NO LLEVE INTERMEDIARIO
-                    if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 1)
+                    if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == (int)LlevaIntermediarios.SinIntermediario)
                     {
                         var CargarListado = ObjData.Value.SacarProduccionDiariaContabilidad(
                             FechaDesde,
@@ -265,31 +802,31 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             _LlevaIntermediario);
                         foreach (var n in CargarListado)
                         {
-                            //decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
-                            //lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+                            decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                            lbFacturadoHoy_ProduccionSinIntermediario.Text = FacturadoHoy.ToString("N2");
 
-                            //decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
-                            //lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+                            decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                            lbCantidadDebitos_ProduccionSinIntermediario.Text = FacturadoDebitos.ToString("N2");
 
-                            //decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
-                            //lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+                            decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                            lbCantidadCreditos_ProduccionSinIntermediario.Text = FacturadoCredito.ToString("N2");
 
-                            //decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
-                            //lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+                            decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                            lbOtros_ProduccionSinIntermediario.Text = FacturadoOtros.ToString("N2");
 
-                            //decimal FacturadoTotal = Convert.ToDecimal(n.Total);
-                            //LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+                            decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                            lbTotal_ProduccionSinIntermediario.Text = FacturadoTotal.ToString("N2");
 
-                            //decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
-                            //lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+                            decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                            lbTotalMesAnterior_ProduccionSinIntermediario.Text = FacturadoMesAnterior.ToString("N2");
 
                         }
-                        //gvGridSinIntermediario.DataSource = CargarListado;
-                        //gvGridSinIntermediario.DataBind();
+                        Paginar_ProduccionSinIntermediario(ref rpProduccionSinIntermediario, CargarListado, 10, ref lbCantidadPagina_ProduccionSinIntermediario, ref btnPrimeraPagina_ProduccionSinIntermediario, ref btnPaginaAnterior_ProduccionSinIntermediario, ref btnSiguientePagina_ProduccionSinIntermediario, ref btnUltimaPagina_ProduccionSinIntermediario);
+                        HandlePaging_ProduccionSinIntermediario(ref dtPaginacion_ProduccionSinIntermediario, ref lbPaginaActual_ProduccionSinIntermediario);
 
                     }
                     //EN CASO DE QUE LLEVE INTERMEDIARIO
-                    if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 2)
+                    if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == (int)LlevaIntermediarios.ConIntermediario)
                     {
                         //VALIDAMOS SI SE VAN A FILTRAR TODOS LOS INTERMEDIARIOS O SOLO 1
                         //VALIDAMOS TODOS LOS INTERMEDIAIOS
@@ -307,27 +844,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         _LlevaIntermediario);
                             foreach (var n in CargarListado)
                             {
-                                //decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
-                                //lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+                                decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                                lbFacturadoHoy_ProduccionConIntermediario.Text = FacturadoHoy.ToString("N2");
 
-                                //decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
-                                //lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+                                decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                                lbCantidadDebitos_ProduccionConIntermediario.Text = FacturadoDebitos.ToString("N2");
 
-                                //decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
-                                //lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+                                decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                                lbCantidadCreditos_ProduccionConIntermediario.Text = FacturadoCredito.ToString("N2");
 
-                                //decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
-                                //lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+                                decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                                lbOtros_ProduccionConIntermediario.Text = FacturadoOtros.ToString("N2");
 
-                                //decimal FacturadoTotal = Convert.ToDecimal(n.Total);
-                                //LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+                                decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                                lbTotal_ProduccionConIntermediario.Text = FacturadoTotal.ToString("N2");
 
-                                //decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
-                                //lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+                                decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                                lbTotalMesAnterior_ProduccionConIntermediario.Text = FacturadoMesAnterior.ToString("N2");
 
                             }
-                            //gvGridConIntermediario.DataSource = CargarListado;
-                            //gvGridConIntermediario.DataBind();
+                            Paginar_ProduccionConIntermediario(ref rpProduccionConIntermediario, CargarListado, 10, ref lbCantidadPagina_ProduccionConIntermediario, ref btnPrimeraPagina_ProduccionConIntermediario, ref btnPaginaAnterior_ProduccionConIntermediario, ref btnSiguientePagina_ProduccionConIntermediario, ref btnUltimaPagina_ProduccionConIntermediario);
+                            HandlePaging_ProduccionConIntermediario(ref dtPaginacion_ProduccionConIntermediario, ref lbPaginaActual_ProduccionConIntermediario);
                         }
                         //VALIDAMOS UN INTERMEDIARIO EN ESPESIFICO
                         else
@@ -350,27 +887,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                            _LlevaIntermediario);
                                 foreach (var n in CargarListado)
                                 {
-                                    //decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
-                                    //lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+                                    decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                                    lbFacturadoHoy_ProduccionConIntermediario.Text = FacturadoHoy.ToString("N2");
 
-                                    //decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
-                                    //lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+                                    decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                                    lbCantidadDebitos_ProduccionConIntermediario.Text = FacturadoDebitos.ToString("N2");
 
-                                    //decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
-                                    //lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+                                    decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                                    lbCantidadCreditos_ProduccionConIntermediario.Text = FacturadoCredito.ToString("N2");
 
-                                    //decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
-                                    //lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+                                    decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                                    lbOtros_ProduccionConIntermediario.Text = FacturadoOtros.ToString("N2");
 
-                                    //decimal FacturadoTotal = Convert.ToDecimal(n.Total);
-                                    //LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+                                    decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                                    lbTotal_ProduccionConIntermediario.Text = FacturadoTotal.ToString("N2");
 
-                                    //decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
-                                    //lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+                                    decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                                    lbTotalMesAnterior_ProduccionConIntermediario.Text = FacturadoMesAnterior.ToString("N2");
 
                                 }
-                                //gvGridConIntermediario.DataSource = CargarListado;
-                                //gvGridConIntermediario.DataBind();
+                                Paginar_ProduccionConIntermediario(ref rpProduccionConIntermediario, CargarListado, 10, ref lbCantidadPagina_ProduccionConIntermediario, ref btnPrimeraPagina_ProduccionConIntermediario, ref btnPaginaAnterior_ProduccionConIntermediario, ref btnSiguientePagina_ProduccionConIntermediario, ref btnUltimaPagina_ProduccionConIntermediario);
+                                HandlePaging_ProduccionConIntermediario(ref dtPaginacion_ProduccionConIntermediario, ref lbPaginaActual_ProduccionConIntermediario);
                             }
                         }
 
@@ -378,7 +915,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 }
 
                 //REPORTE DE COBROS
-                if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 2)
+                if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == (int)TipoDeReporte.Cobros)
                 {
                     //VERIFICAMOS SI LA CONSULTA LLEVA INTERMEDARIOS
                     //EN CASO DE QUE NO LLEVE INTERMEDIARIO
@@ -517,6 +1054,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     string _CodigoIntermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? null : txtCodigoIntermediario.Text.Trim();
 
                     //VERIFICAMOS SI LA CONSULTA LLEVA INTERMEDARIOS
+
                     //EN CASO DE QUE NO LLEVE INTERMEDIARIO
                     if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 1)
                     {
@@ -532,27 +1070,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             _LlevaIntermediario);
                         foreach (var n in CargarListado)
                         {
-                            //decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
-                            //lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+                            decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                            lbFacturadoHoy_ProduccionSinIntermediario.Text = FacturadoHoy.ToString("N2");
 
-                            //decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
-                            //lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+                            decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                            lbCantidadDebitos_ProduccionSinIntermediario.Text = FacturadoDebitos.ToString("N2");
 
-                            //decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
-                            //lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+                            decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                            lbCantidadCreditos_ProduccionSinIntermediario.Text = FacturadoCredito.ToString("N2");
 
-                            //decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
-                            //lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+                            decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                            lbOtros_ProduccionSinIntermediario.Text = FacturadoOtros.ToString("N2");
 
-                            //decimal FacturadoTotal = Convert.ToDecimal(n.Total);
-                            //LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+                            decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                            lbTotal_ProduccionSinIntermediario.Text = FacturadoTotal.ToString("N2");
 
-                            //decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
-                            //lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+                            decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                            lbTotalMesAnterior_ProduccionSinIntermediario.Text = FacturadoMesAnterior.ToString("N2");
 
                         }
-                        //gvGridSinIntermediario.DataSource = CargarListado;
-                        //gvGridSinIntermediario.DataBind();
+                        Paginar_ProduccionSinIntermediario(ref rpProduccionSinIntermediario, CargarListado, 10, ref lbCantidadPagina_ProduccionSinIntermediario, ref btnPrimeraPagina_ProduccionSinIntermediario, ref btnPaginaAnterior_ProduccionSinIntermediario, ref btnSiguientePagina_ProduccionSinIntermediario, ref btnUltimaPagina_ProduccionSinIntermediario);
+                        HandlePaging_ProduccionSinIntermediario(ref dtPaginacion_ProduccionSinIntermediario, ref lbPaginaActual_ProduccionSinIntermediario);
 
                     }
                     //EN CASO DE QUE LLEVE INTERMEDIARIO
@@ -574,27 +1112,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         _LlevaIntermediario);
                             foreach (var n in CargarListado)
                             {
-                                //decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
-                                //lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+                                decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                                lbFacturadoHoy_ProduccionConIntermediario.Text = FacturadoHoy.ToString("N2");
 
-                                //decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
-                                //lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+                                decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                                lbCantidadDebitos_ProduccionConIntermediario.Text = FacturadoDebitos.ToString("N2");
 
-                                //decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
-                                //lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+                                decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                                lbCantidadCreditos_ProduccionConIntermediario.Text = FacturadoCredito.ToString("N2");
 
-                                //decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
-                                //lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+                                decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                                lbOtros_ProduccionConIntermediario.Text = FacturadoOtros.ToString("N2");
 
-                                //decimal FacturadoTotal = Convert.ToDecimal(n.Total);
-                                //LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+                                decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                                lbTotal_ProduccionConIntermediario.Text = FacturadoTotal.ToString("N2");
 
-                                //decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
-                                //lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+                                decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                                lbTotalMesAnterior_ProduccionConIntermediario.Text = FacturadoMesAnterior.ToString("N2");
 
                             }
-                            //gvGridConIntermediario.DataSource = CargarListado;
-                            //gvGridConIntermediario.DataBind();
+                            Paginar_ProduccionConIntermediario(ref rpProduccionConIntermediario, CargarListado, 10, ref lbCantidadPagina_ProduccionConIntermediario, ref btnPrimeraPagina_ProduccionConIntermediario, ref btnPaginaAnterior_ProduccionConIntermediario, ref btnSiguientePagina_ProduccionConIntermediario, ref btnUltimaPagina_ProduccionConIntermediario);
+                            HandlePaging_ProduccionConIntermediario(ref dtPaginacion_ProduccionConIntermediario, ref lbPaginaActual_ProduccionConIntermediario);
                         }
                         //VALIDAMOS UN INTERMEDIARIO EN ESPESIFICO
                         else
@@ -617,27 +1155,27 @@ namespace UtilidadesAmigos.Solucion.Paginas
                            _LlevaIntermediario);
                                 foreach (var n in CargarListado)
                                 {
-                                    //decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
-                                    //lbFacturadoHoyVariable.Text = FacturadoHoy.ToString("N2");
+                                    decimal FacturadoHoy = Convert.ToDecimal(n.Hoy);
+                                    lbFacturadoHoy_ProduccionConIntermediario.Text = FacturadoHoy.ToString("N2");
 
-                                    //decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
-                                    //lbCantidadDebitosVariable.Text = FacturadoDebitos.ToString("N2");
+                                    decimal FacturadoDebitos = Convert.ToDecimal(n.TotalDebito);
+                                    lbCantidadDebitos_ProduccionConIntermediario.Text = FacturadoDebitos.ToString("N2");
 
-                                    //decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
-                                    //lbTotalCretitoVariable.Text = FacturadoCredito.ToString("N2");
+                                    decimal FacturadoCredito = Convert.ToDecimal(n.TotalCredito);
+                                    lbCantidadCreditos_ProduccionConIntermediario.Text = FacturadoCredito.ToString("N2");
 
-                                    //decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
-                                    //lbOtrosVariable.Text = FacturadoOtros.ToString("N2");
+                                    decimal FacturadoOtros = Convert.ToDecimal(n.TotalOtros);
+                                    lbOtros_ProduccionConIntermediario.Text = FacturadoOtros.ToString("N2");
 
-                                    //decimal FacturadoTotal = Convert.ToDecimal(n.Total);
-                                    //LablbTotalVariableel7.Text = FacturadoTotal.ToString("N2");
+                                    decimal FacturadoTotal = Convert.ToDecimal(n.Total);
+                                    lbTotal_ProduccionConIntermediario.Text = FacturadoTotal.ToString("N2");
 
-                                    //decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
-                                    //lbMesAnteriorvariable.Text = FacturadoMesAnterior.ToString("N2");
+                                    decimal FacturadoMesAnterior = Convert.ToDecimal(n.MesAnterior);
+                                    lbTotalMesAnterior_ProduccionConIntermediario.Text = FacturadoMesAnterior.ToString("N2");
 
                                 }
-                                //gvGridConIntermediario.DataSource = CargarListado;
-                                //gvGridConIntermediario.DataBind();
+                                Paginar_ProduccionConIntermediario(ref rpProduccionConIntermediario, CargarListado, 10, ref lbCantidadPagina_ProduccionConIntermediario, ref btnPrimeraPagina_ProduccionConIntermediario, ref btnPaginaAnterior_ProduccionConIntermediario, ref btnSiguientePagina_ProduccionConIntermediario, ref btnUltimaPagina_ProduccionConIntermediario);
+                                HandlePaging_ProduccionConIntermediario(ref dtPaginacion_ProduccionConIntermediario, ref lbPaginaActual_ProduccionConIntermediario);
                             }
                         }
 
@@ -1450,106 +1988,54 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
         #endregion
         #region OCULTAR Y MOSTRAR CONTROLES
+        enum LlevaIntermediarios { 
+        SinIntermediario=1,
+        ConIntermediario=2,
+        }
         private void ModoFacturracion()
         {
-            //lbFacturadoHoyTitulo.Visible = true;
-            //lbFacturadoHoyVariable.Visible = true;
-            //lbFacturadoHoyCerrar.Visible = true;
-            //Label1.Visible = true;
-            //lbTotalDebitosTitulo.Visible = true;
-            //lbCantidadDebitosVariable.Visible = true;
-            //lbCantidadDebitosCerrar.Visible = true;
-            //Label2.Visible = true;
-            //lbTotalCreditosTitulo.Visible = true;
-            //lbTotalCretitoVariable.Visible = true;
-            //lbCantidadCreditosCerrar.Visible = true;
-            //lbOtrosTitulo.Visible = true;
-            //lbOtrosVariable.Visible = true;
-            //lbOtrosCerrar.Visible = true;
-            //Label3.Visible = true;
-            //lbTotalTitulo.Visible = true;
-            //LablbTotalVariableel7.Visible = true;
-            //Label8.Visible = true;
-            //Label9.Visible = true;
-            //lbMesAnteriorTitulo.Visible = true;
-            //lbMesAnteriorvariable.Visible = true;
-            //Label4.Visible = true;
-            //gvGridConIntermediario.Visible = true;
-            //gvGridSinIntermediario.Visible = true;
+            int LlevaIntermediario = Convert.ToInt32(ddlLlevaIntermediario.SelectedValue);
 
+            switch (LlevaIntermediario) {
 
+                case (int)LlevaIntermediarios.ConIntermediario:
+                    DivProduccionSinIntermediario.Visible = false;
+                    DivProduccionConIntermediario.Visible = true;
+                    DivCobroSinIntermedairio.Visible = false;
+                    DivCobrosConIntermediario.Visible = false;
+                    break;
 
-            //lbCobradoMesAnteriorCerrar.Visible = false;
-            //lbCobradoMesAnteriorVariable.Visible = false;
-            //lbCobradoMesAnteriorTitulo.Visible = false;
-            //lbTotalCobradoCerrar.Visible = false;
-            //lbTotalCobradoVariable.Visible = false;
-            //lbTotalCobradoTitulo.Visible = false;
-            //lbCobradoOtrosCerrar.Visible = false;
-            //lbCobradoOtrosVariable.Visible = false;
-            //lbCobradoOtrosTitulo.Visible = false;
-            //lbCobradoSantiagoCerrar.Visible = false;
-            //lbCobradoSantiagoVariable.Visible = false;
-            //lbCobradoSantiagoTitulo.Visible = false;
-            //lbCobradoSantoDomingoCerrar.Visible = false;
-            //lbCobradoSantoDomingoVariable.Visible = false;
-            //lbCobradoSantoDomingoTitulo.Visible = false;
-            //lbCobradoHoyTitulo.Visible = false;
-            //lbCobradoHoyVariable.Visible = false;
-            //lbCobradoHoyCerrar.Visible = false;
-            //gbCobradoConIntermediario.Visible = false;
-            //gbCobradoSinIntermediario.Visible = false;
+                case (int)LlevaIntermediarios.SinIntermediario:
+                    DivProduccionSinIntermediario.Visible = true;
+                    DivProduccionConIntermediario.Visible = false;
+                    DivCobroSinIntermedairio.Visible = false;
+                    DivCobrosConIntermediario.Visible = false;
+                    break;
+            }
+          
         }
         private void ModoCobrado()
         {
+            int LlevaIntermediario = Convert.ToInt32(ddlLlevaIntermediario.SelectedValue);
 
-            //lbFacturadoHoyTitulo.Visible = false;
-            //lbFacturadoHoyVariable.Visible = false;
-            //lbFacturadoHoyCerrar.Visible = false;
-            //Label1.Visible = false;
-            //lbTotalDebitosTitulo.Visible = false;
-            //lbCantidadDebitosVariable.Visible = false;
-            //lbCantidadDebitosCerrar.Visible = false;
-            //Label2.Visible = false;
-            //lbTotalCreditosTitulo.Visible = false;
-            //lbTotalCretitoVariable.Visible = false;
-            //lbCantidadCreditosCerrar.Visible = false;
-            //lbOtrosTitulo.Visible = false;
-            //lbOtrosVariable.Visible = false;
-            //lbOtrosCerrar.Visible = false;
-            //Label3.Visible = false;
-            //lbTotalTitulo.Visible = false;
-            //LablbTotalVariableel7.Visible = false;
-            //Label8.Visible = false;
-            //Label9.Visible = false;
-            //lbMesAnteriorTitulo.Visible = false;
-            //lbMesAnteriorvariable.Visible = false;
-            //Label4.Visible = false;
-            //gvGridConIntermediario.Visible = false;
-            //gvGridSinIntermediario.Visible = false;
+            switch (LlevaIntermediario)
+            {
 
+                case (int)LlevaIntermediarios.ConIntermediario:
+                    DivProduccionSinIntermediario.Visible = false;
+                    DivProduccionConIntermediario.Visible = false;
+                    DivCobroSinIntermedairio.Visible = false;
+                    DivCobrosConIntermediario.Visible = true;
+                    break;
 
-
-            //lbCobradoMesAnteriorCerrar.Visible = true;
-            //lbCobradoMesAnteriorVariable.Visible = true;
-            //lbCobradoMesAnteriorTitulo.Visible = true;
-            //lbTotalCobradoCerrar.Visible = true;
-            //lbTotalCobradoVariable.Visible = true;
-            //lbTotalCobradoTitulo.Visible = true;
-            //lbCobradoOtrosCerrar.Visible = true;
-            //lbCobradoOtrosVariable.Visible = true;
-            //lbCobradoOtrosTitulo.Visible = true;
-            //lbCobradoSantiagoCerrar.Visible = true;
-            //lbCobradoSantiagoVariable.Visible = true;
-            //lbCobradoSantiagoTitulo.Visible = true;
-            //lbCobradoSantoDomingoCerrar.Visible = true;
-            //lbCobradoSantoDomingoVariable.Visible = true;
-            //lbCobradoSantoDomingoTitulo.Visible = true;
-            //lbCobradoHoyTitulo.Visible = true;
-            //lbCobradoHoyVariable.Visible = true;
-            //lbCobradoHoyCerrar.Visible = true;
-            //gbCobradoConIntermediario.Visible = true;
-            //gbCobradoSinIntermediario.Visible = true;
+                case (int)LlevaIntermediarios.SinIntermediario:
+                    DivProduccionSinIntermediario.Visible = false;
+                    DivProduccionConIntermediario.Visible = false;
+                    DivCobroSinIntermedairio.Visible = true;
+                    DivCobrosConIntermediario.Visible = false;
+                    break;
+            }
+          
 
         }
         #endregion
@@ -2009,6 +2495,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
             }
         }
         #endregion
+        #region CONSULTAR DATA
+        private void ConsultarData() {
+            if (cbModoComparativo.Checked)
+            {
+                CargarListadoModoCOmparativo();
+            }
+            else
+            {
+                CargarListado();
+            }
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -2025,32 +2523,128 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 CargarOficinas();
                 CargarMeses();
                 PermisoPerfil();
+
+                DivProduccionSinIntermediario.Visible = true;
+                DivProduccionConIntermediario.Visible = false;
+                DivCobroSinIntermedairio.Visible = false;
+                DivCobrosConIntermediario.Visible = false;
+
+                DivfechaDesdeComoarativo.Visible = false;
+                DivFechaHAstaComparativo.Visible = false;
+                DivFechaDesdeMesAnteriorComparativo.Visible = false;
+                DivFechaHastaMesAnteriorComparativo.Visible = false;
             }
         }
 
         protected void cbModoComparativo_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (cbModoComparativo.Checked == true) {
+                DivfechaDesdeComoarativo.Visible = true;
+                DivFechaHAstaComparativo.Visible = true;
+                DivFechaDesdeMesAnteriorComparativo.Visible = true;
+                DivFechaHastaMesAnteriorComparativo.Visible = true;
+                ddlSeleccionarMes.Enabled = false;
+                txtAno.Enabled = false;
+            }
+            else {
+                DivfechaDesdeComoarativo.Visible = false;
+                DivFechaHAstaComparativo.Visible = false;
+                DivFechaDesdeMesAnteriorComparativo.Visible = false;
+                DivFechaHastaMesAnteriorComparativo.Visible = false;
+                ddlSeleccionarMes.Enabled = true;
+                txtAno.Enabled = true;
+            }
         }
 
         protected void cbTodosLosIntermediarios_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (cbTodosLosIntermediarios.Checked)
+            {
+                lbLetreroTodosIntermediairos.Visible = true;
+                ClientScript.RegisterStartupScript(GetType(), "DesactivarCodigoIntermediario", "DesactivarCodigoIntermediario();", true);
+            }
+            else
+            {
+                lbLetreroTodosIntermediairos.Visible = false;
+                ClientScript.RegisterStartupScript(GetType(), "ActivarCodigoIntermediario", "ActivarCodigoIntermediario()", true);
+            }
         }
 
         protected void ddlSeleccionarTipoReporte_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 1)
+            {
+                ModoFacturracion();
+            }
+            else if (Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue) == 2)
+            {
+                ModoCobrado();
+            }
         }
 
         protected void ddlLlevaIntermediario_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == (int)LlevaIntermediarios.ConIntermediario)
+            {
+                lbIntermediario.Visible = true;
+                txtCodigoIntermediario.Visible = true;
+                cbTodosLosIntermediarios.Visible = true;
+                txtCodigoIntermediario.Text = string.Empty;
 
+                int TipoReporte = Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue);
+
+                switch (TipoReporte) {
+
+                    case (int)TipoDeReporte.Produccion:
+                        DivProduccionSinIntermediario.Visible = false;
+                        DivProduccionConIntermediario.Visible = true;
+                        DivCobroSinIntermedairio.Visible = false;
+                        DivCobrosConIntermediario.Visible = false;
+                        break;
+
+
+                    case (int)TipoDeReporte.Cobros:
+                        DivProduccionSinIntermediario.Visible = false;
+                        DivProduccionConIntermediario.Visible = false;
+                        DivCobroSinIntermedairio.Visible = false;
+                        DivCobrosConIntermediario.Visible = true;
+                        break;
+                }
+            }
+            else
+            {
+                lbIntermediario.Visible = false;
+                txtCodigoIntermediario.Visible = false;
+                cbTodosLosIntermediarios.Visible = false;
+
+                int TipoReporte = Convert.ToInt32(ddlSeleccionarTipoReporte.SelectedValue);
+
+                switch (TipoReporte)
+                {
+
+                    case (int)TipoDeReporte.Produccion:
+                        DivProduccionSinIntermediario.Visible = true;
+                        DivProduccionConIntermediario.Visible = false;
+                        DivCobroSinIntermedairio.Visible = false;
+                        DivCobrosConIntermediario.Visible = false;
+                        break;
+
+
+                    case (int)TipoDeReporte.Cobros:
+                        DivProduccionSinIntermediario.Visible = false;
+                        DivProduccionConIntermediario.Visible = false;
+                        DivCobroSinIntermedairio.Visible = true;
+                        DivCobrosConIntermediario.Visible = false;
+                        break;
+                }
+
+
+            }
         }
 
         protected void btnConsultarNuevo_Click(object sender, ImageClickEventArgs e)
         {
-
+            ConsultarData();
         }
 
         protected void btnExportarNuevo_Click(object sender, ImageClickEventArgs e)
@@ -2066,36 +2660,49 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void dtPaginacion_ProduccionSinIntermediario_ItemCommand(object source, DataListCommandEventArgs e)
         {
 
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_ProduccionSinIntermediario = Convert.ToInt32(e.CommandArgument.ToString());
+            ConsultarData();
         }
 
         protected void btnSiguientePagina_ProduccionSinIntermediario_Click(object sender, ImageClickEventArgs e)
         {
 
+            CurrentPage_ProduccionSinIntermediario += 1;
+            ConsultarData();
         }
 
         protected void btnUltimaPagina_ProduccionSinIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_ProduccionSinIntermediario = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            ConsultarData();
+            MoverValoresPaginacion_ProduccionSinIntermediario((int)OpcionesPaginacionValores_ProduccionSinIntermediario.UltimaPagina, ref lbPaginaActual_ProduccionSinIntermediario, ref lbCantidadPagina_ProduccionSinIntermediario);
         }
 
         protected void btnPrimeraPagina_ProduccionSinIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_ProduccionSinIntermediario = 0;
+            ConsultarData();
         }
 
         protected void btnPaginaAnterior_ProduccionSinIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_ProduccionSinIntermediario += -1;
+            ConsultarData();
+            MoverValoresPaginacion_ProduccionSinIntermediario((int)OpcionesPaginacionValores_ProduccionSinIntermediario.PaginaAnterior, ref lbPaginaActual_ProduccionSinIntermediario, ref lbCantidadPagina_ProduccionSinIntermediario);
         }
 
         protected void btnPrimeraPagina_ProduccionConIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_ProduccionConIntermediario = 0;
+            ConsultarData();
         }
 
         protected void btnPaginaAnterior_ProduccionConIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_ProduccionConIntermediario += -1;
+            ConsultarData();
+            MoverValoresPaginacion_ProduccionConIntermediario((int)OpcionesPaginacionValores_ProduccionConIntermediario.PaginaAnterior, ref lbPaginaActual_ProduccionConIntermediario, ref lbCantidadPagina_ProduccionConIntermediario);
         }
 
         protected void dtPaginacion_ProduccionConIntermediario_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -2106,16 +2713,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void dtPaginacion_ProduccionConIntermediario_ItemCommand(object source, DataListCommandEventArgs e)
         {
 
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_ProduccionConIntermediario = Convert.ToInt32(e.CommandArgument.ToString());
+            CargarListado();
         }
 
         protected void btnSiguientePagina_ProduccionConIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_ProduccionConIntermediario += 1;
+            ConsultarData();
         }
 
         protected void btnUltimaPagina_ProduccionConIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_ProduccionConIntermediario = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            ConsultarData();
+            MoverValoresPaginacion_ProduccionConIntermediario((int)OpcionesPaginacionValores_ProduccionConIntermediario.UltimaPagina, ref lbPaginaActual_ProduccionConIntermediario, ref lbCantidadPagina_ProduccionConIntermediario);
         }
 
         protected void btnPrimeraPagina_CobradoSinIntermediario_Click(object sender, ImageClickEventArgs e)
