@@ -343,9 +343,9 @@
               <asp:Repeater ID="rpCobradoSinIntermediario" runat="server">
                   <ItemTemplate>
                       <tr>
-                           <td> <%# Eval("") %> </td>
-                           <td> <%# Eval("") %> </td>
-                           <td> <%#string.Format("{0:N2}", Eval("")) %> </td>
+                           <td> <%# Eval("Ramo") %> </td>
+                           <td> <%# Eval("Oficina") %> </td>
+                           <td> <%#string.Format("{0:N2}", Eval("Cobrado")) %> </td>
                       </tr>
                   </ItemTemplate>
               </asp:Repeater>
@@ -412,10 +412,10 @@
               <asp:Repeater ID="rpCobradoConIntermediario" runat="server">
                   <ItemTemplate>
                       <tr>
-                           <td> <%# Eval("") %> </td>
-                           <td> <%# Eval("") %> </td>
-                           <td> <%# Eval("") %> </td>
-                           <td> <%#string.Format("{0:N2}", Eval("")) %> </td>
+                           <td> <%# Eval("Intermediario") %> </td>
+                           <td> <%# Eval("Ramo") %> </td>
+                           <td> <%# Eval("Oficina") %> </td>
+                           <td> <%#string.Format("{0:N2}", Eval("Cobrado")) %> </td>
                       </tr>
                   </ItemTemplate>
               </asp:Repeater>

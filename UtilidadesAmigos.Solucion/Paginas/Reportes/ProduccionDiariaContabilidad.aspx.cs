@@ -946,15 +946,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
 
 
-                            //lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
-                            //lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
-                            //lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
-                            //lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
-                            //lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
-                            //lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                            lbCobradoSantoDomingo_CobradoSinIntermediario.Text = CobradoSantoDomingo.ToString("N2");
+                            lbCobradoSantiago_CobradoSinIntermediario.Text = CobradoSantiago.ToString("N2");
+                            lbCobradoOtros_CobradoSinIntermediario.Text = CobradoOtros.ToString("N2");
+                            lbTotalCobrado_CobradoSinIntermediario.Text = TotalCobrado.ToString("N2");
+                            lbCobradoHoy_CobradoSinIntermediario.Text = CobradoHoy.ToString("N2");
+                            lbCobradoMesAnterior_CobradoSinIntermediario.Text = CobredoMesAnterior.ToString("N2");
                         }
-                        //gbCobradoSinIntermediario.DataSource = MostrarListado;
-                        //gbCobradoSinIntermediario.DataBind();
+                        Paginar_CobroSinIntermedairio(ref rpCobradoSinIntermediario, MostrarListado, 10, ref lbCantidadPagina_CobradoSinIntermediario, ref btnPrimeraPagina_CobradoSinIntermediario, ref btnPaginaAnterior_CobradoSinIntermediario, ref btnSiguientePagina_CobradoSinIntermediario, ref btnUltimaPagina_CobradoSinIntermediario);
+                        HandlePaging_CobroSinIntermedairio(ref dtPaginacion_CobradoSinIntermediario, ref lbPaginaActual_CobradoSinIntermediario);
                     }
                     //EN CASO DE QUE LLEVE INTERMEDIARIO
                     if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 2)
@@ -983,15 +983,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                 CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
 
 
-                                //lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
-                                //lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
-                                //lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
-                                //lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
-                                //lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
-                                //lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                                lbCobradoSantoDomingo_CobradoConIntermediario.Text = CobradoSantoDomingo.ToString("N2");
+                                lbCobradoSantiago_CobradoConIntermediario.Text = CobradoSantiago.ToString("N2");
+                                lbCobradoOtros_CobradoConIntermediario.Text = CobradoOtros.ToString("N2");
+                                lbTotalCobrado_CobradoConIntermediario.Text = TotalCobrado.ToString("N2");
+                                lbCobradoHoy_CobradoConIntermediario.Text = CobradoHoy.ToString("N2");
+                                lbCobradoMesAnterior_CobradoConIntermediario.Text = CobredoMesAnterior.ToString("N2");
                             }
-                            //gbCobradoSinIntermediario.DataSource = MostrarListado;
-                            //gbCobradoSinIntermediario.DataBind();
+                            Paginar_CobroConIntermedairio(ref rpCobradoConIntermediario, MostrarListado, 10, ref lbCantidadPagina_CobradoConIntermediario, ref btnPrimeraPagina_CobradoConIntermediario, ref btnPaginaAnterior_CobradoConIntermediario, ref btnSiguientePagina_CobradoConIntermediario, ref btnUltimaPagina_CobradoConIntermediario);
+                            HandlePaging_CobroConIntermedairio(ref dtPaginacion_CobradoConIntermediario, ref lbPaginaActual_CobradoConIntermediario);
                         }
                         //VALIDAMOS UN INTERMEDIARIO EN ESPESIFICO
                         else
@@ -1023,15 +1023,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                     CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
 
 
-                                    //lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
-                                    //lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
-                                    //lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
-                                    //lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
-                                    //lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
-                                    //lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                                    lbCobradoSantoDomingo_CobradoConIntermediario.Text = CobradoSantoDomingo.ToString("N2");
+                                    lbCobradoSantiago_CobradoConIntermediario.Text = CobradoSantiago.ToString("N2");
+                                    lbCobradoOtros_CobradoConIntermediario.Text = CobradoOtros.ToString("N2");
+                                    lbTotalCobrado_CobradoConIntermediario.Text = TotalCobrado.ToString("N2");
+                                    lbCobradoHoy_CobradoConIntermediario.Text = CobradoHoy.ToString("N2");
+                                    lbCobradoMesAnterior_CobradoConIntermediario.Text = CobredoMesAnterior.ToString("N2");
                                 }
-                                //gbCobradoSinIntermediario.DataSource = MostrarListado;
-                                //gbCobradoSinIntermediario.DataBind();
+                                Paginar_CobroConIntermedairio(ref rpCobradoConIntermediario, MostrarListado, 10, ref lbCantidadPagina_CobradoConIntermediario, ref btnPrimeraPagina_CobradoConIntermediario, ref btnPaginaAnterior_CobradoConIntermediario, ref btnSiguientePagina_CobradoConIntermediario, ref btnUltimaPagina_CobradoConIntermediario);
+                                HandlePaging_CobroConIntermedairio(ref dtPaginacion_CobradoConIntermediario, ref lbPaginaActual_CobradoConIntermediario);
                             }
                         }
 
@@ -1214,15 +1214,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
                             CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
 
 
-                            //lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
-                            //lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
-                            //lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
-                            //lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
-                            //lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
-                            //lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+
+
+                            lbCobradoSantoDomingo_CobradoSinIntermediario.Text = CobradoSantoDomingo.ToString("N2");
+                            lbCobradoSantiago_CobradoSinIntermediario.Text = CobradoSantiago.ToString("N2");
+                            lbCobradoOtros_CobradoSinIntermediario.Text = CobradoOtros.ToString("N2");
+                            lbTotalCobrado_CobradoSinIntermediario.Text = TotalCobrado.ToString("N2");
+                            lbCobradoHoy_CobradoSinIntermediario.Text = CobradoHoy.ToString("N2");
+                            lbCobradoMesAnterior_CobradoSinIntermediario.Text = CobredoMesAnterior.ToString("N2");
                         }
-                        //gbCobradoSinIntermediario.DataSource = MostrarListado;
-                        //gbCobradoSinIntermediario.DataBind();
+                        Paginar_CobroSinIntermedairio(ref rpCobradoSinIntermediario, MostrarListado, 10, ref lbCantidadPagina_CobradoSinIntermediario, ref btnPrimeraPagina_CobradoSinIntermediario, ref btnPaginaAnterior_CobradoSinIntermediario, ref btnSiguientePagina_CobradoSinIntermediario, ref btnUltimaPagina_CobradoSinIntermediario);
+                        HandlePaging_CobroSinIntermedairio(ref dtPaginacion_CobradoSinIntermediario, ref lbPaginaActual_CobradoSinIntermediario);
                     }
                     //EN CASO DE QUE LLEVE INTERMEDIARIO
                     if (Convert.ToInt32(ddlLlevaIntermediario.SelectedValue) == 2)
@@ -1232,7 +1234,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         if (cbTodosLosIntermediarios.Checked)
                         {
                             var MostrarListado = ObjData.Value.ReporteCobradoCOntabilidad(
-                          Convert.ToDateTime(txtFechaDesdeModoComparativo.Text),
+                            Convert.ToDateTime(txtFechaDesdeModoComparativo.Text),
                             Convert.ToDateTime(txtFechaHastaModoComparativo.Text),
                             Convert.ToDateTime(txtFechaDesdeMesAnteriorModoComparativo.Text),
                             Convert.ToDateTime(txtFechaHastaMesAnteriorModoCOmparativo.Text),
@@ -1251,15 +1253,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                 CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
 
 
-                                //lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
-                                //lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
-                                //lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
-                                //lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
-                                //lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
-                                //lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                                lbCobradoSantoDomingo_CobradoConIntermediario.Text = CobradoSantoDomingo.ToString("N2");
+                                lbCobradoSantiago_CobradoConIntermediario.Text = CobradoSantiago.ToString("N2");
+                                lbCobradoOtros_CobradoConIntermediario.Text = CobradoOtros.ToString("N2");
+                                lbTotalCobrado_CobradoConIntermediario.Text = TotalCobrado.ToString("N2");
+                                lbCobradoHoy_CobradoConIntermediario.Text = CobradoHoy.ToString("N2");
+                                lbCobradoMesAnterior_CobradoConIntermediario.Text = CobredoMesAnterior.ToString("N2");
                             }
-                            //gbCobradoSinIntermediario.DataSource = MostrarListado;
-                            //gbCobradoSinIntermediario.DataBind();
+                            Paginar_CobroConIntermedairio(ref rpCobradoConIntermediario, MostrarListado, 10, ref lbCantidadPagina_CobradoConIntermediario, ref btnPrimeraPagina_CobradoConIntermediario, ref btnPaginaAnterior_CobradoConIntermediario, ref btnSiguientePagina_CobradoConIntermediario, ref btnUltimaPagina_CobradoConIntermediario);
+                            HandlePaging_CobroConIntermedairio(ref dtPaginacion_CobradoConIntermediario, ref lbPaginaActual_CobradoConIntermediario);
                         }
                         //VALIDAMOS UN INTERMEDIARIO EN ESPESIFICO
                         else
@@ -1291,15 +1293,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                     CobradoHoy = Convert.ToDecimal(n.CobradoHoy);
 
 
-                                    //lbCobradoSantoDomingoVariable.Text = CobradoSantoDomingo.ToString("N2");
-                                    //lbCobradoSantiagoVariable.Text = CobradoSantiago.ToString("N2");
-                                    //lbCobradoOtrosVariable.Text = CobradoOtros.ToString("N2");
-                                    //lbTotalCobradoVariable.Text = TotalCobrado.ToString("N2");
-                                    //lbCobradoMesAnteriorVariable.Text = CobredoMesAnterior.ToString("N2");
-                                    //lbCobradoHoyVariable.Text = CobradoHoy.ToString("N2");
+                                    lbCobradoSantoDomingo_CobradoConIntermediario.Text = CobradoSantoDomingo.ToString("N2");
+                                    lbCobradoSantiago_CobradoConIntermediario.Text = CobradoSantiago.ToString("N2");
+                                    lbCobradoOtros_CobradoConIntermediario.Text = CobradoOtros.ToString("N2");
+                                    lbTotalCobrado_CobradoConIntermediario.Text = TotalCobrado.ToString("N2");
+                                    lbCobradoHoy_CobradoConIntermediario.Text = CobradoHoy.ToString("N2");
+                                    lbCobradoMesAnterior_CobradoConIntermediario.Text = CobredoMesAnterior.ToString("N2");
                                 }
-                                //gbCobradoSinIntermediario.DataSource = MostrarListado;
-                                //gbCobradoSinIntermediario.DataBind();
+                                Paginar_CobroConIntermedairio(ref rpCobradoConIntermediario, MostrarListado, 10, ref lbCantidadPagina_CobradoConIntermediario, ref btnPrimeraPagina_CobradoConIntermediario, ref btnPaginaAnterior_CobradoConIntermediario, ref btnSiguientePagina_CobradoConIntermediario, ref btnUltimaPagina_CobradoConIntermediario);
+                                HandlePaging_CobroConIntermedairio(ref dtPaginacion_CobradoConIntermediario, ref lbPaginaActual_CobradoConIntermediario);
                             }
                         }
 
@@ -2733,12 +2735,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnPrimeraPagina_CobradoSinIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CobroSinIntermedairio = 0;
+            ConsultarData();
         }
 
         protected void btnPaginaAnterior_CobradoSinIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CobroSinIntermedairio += -1;
+            ConsultarData();
+            MoverValoresPaginacion_CobroSinIntermedairio((int)OpcionesPaginacionValores_CobroSinIntermedairio.PaginaAnterior, ref lbPaginaActual_CobradoSinIntermediario, ref lbCantidadPagina_CobradoSinIntermediario);
         }
 
         protected void dtPaginacion_CobradoSinIntermediario_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -2748,27 +2753,35 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void dtPaginacion_CobradoSinIntermediario_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_CobroSinIntermedairio = Convert.ToInt32(e.CommandArgument.ToString());
+            ConsultarData();
         }
 
         protected void btnSiguientePagina_CobradoSinIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CobroSinIntermedairio += 1;
+            ConsultarData();
         }
 
         protected void btnUltimaPagina_CobradoSinIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CobroSinIntermedairio = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            ConsultarData();
+            MoverValoresPaginacion_CobroSinIntermedairio((int)OpcionesPaginacionValores_CobroSinIntermedairio.UltimaPagina, ref lbPaginaActual_CobradoSinIntermediario, ref lbCantidadPagina_CobradoSinIntermediario);
         }
 
         protected void btnPrimeraPagina_CobradoConIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CobroConIntermedairio = 0;
+            ConsultarData();
         }
 
         protected void btnPaginaAnterior_CobradoConIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CobroConIntermedairio += -1;
+            ConsultarData();
+            MoverValoresPaginacion_CobroConIntermedairio((int)OpcionesPaginacionValores_CobroConIntermedairio.PaginaAnterior, ref lbPaginaActual_CobradoConIntermediario, ref lbCantidadPagina_CobradoConIntermediario);
         }
 
         protected void dtPaginacion_CobradoConIntermediario_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -2778,17 +2791,22 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void dtPaginacion_CobradoConIntermediario_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_CobroConIntermedairio = Convert.ToInt32(e.CommandArgument.ToString());
+            ConsultarData();
         }
 
         protected void btnSiguientePagina_CobradoConIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CobroConIntermedairio += 1;
+            ConsultarData();
         }
 
         protected void btnUltimaPagina_CobradoConIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CobroConIntermedairio = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            ConsultarData();
+            MoverValoresPaginacion_CobroConIntermedairio((int)OpcionesPaginacionValores_CobroConIntermedairio.UltimaPagina, ref lbPaginaActual_CobradoConIntermediario, ref lbCantidadPagina_CobradoConIntermediario);
         }
     }
 }
