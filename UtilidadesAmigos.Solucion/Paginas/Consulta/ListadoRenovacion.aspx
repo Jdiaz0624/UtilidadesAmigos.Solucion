@@ -721,7 +721,7 @@
             <table class="table table-striped">
                 <thead class="table-dark">
                     <tr>
-                    <th scope="col"> Esattus </th>
+                    <th scope="col"> Estatus </th>
                     <th scope="col"> Concepto </th>
                     <th scope="col"> Comentario </th>
                     <th scope="col"> Vigencia </th>

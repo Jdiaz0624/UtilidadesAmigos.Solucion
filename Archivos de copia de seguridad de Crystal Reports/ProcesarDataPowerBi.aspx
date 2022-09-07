@@ -7,6 +7,7 @@
 
     <div  align="center">
         <h1><asp:Label ID="lbProcesarDataPowerbi" class="Label-Encabezado" Text="Procesar Data Power Bi" runat="server"></asp:Label></h1>
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
     </div>
 
          </header>

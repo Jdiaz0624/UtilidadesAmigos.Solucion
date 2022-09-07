@@ -178,6 +178,7 @@
     <Content Include="Imagenes\Buscar.png" />
     <Content Include="Imagenes\CampoImagen.jpg" />
     <Content Include="Imagenes\cancelado.png" />
+    <Content Include="Imagenes\Cobros.png" />
     <Content Include="Imagenes\comision.png" />
     <Content Include="Imagenes\Completado3.gif" />
     <Content Include="Imagenes\Completar.png" />

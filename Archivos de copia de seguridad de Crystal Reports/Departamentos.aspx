@@ -29,6 +29,15 @@
         .LetraNegrita {
         font-weight:bold;
         }
+        table {
+            border-collapse: collapse;
+        }
+        
+
+        th {
+            background-color: #0094ff;
+            color: #000000;
+        }
     </style>
 
     <script type="text/javascript">
@@ -155,6 +164,7 @@
 
 <!--INICIO DEL ENCABEZADO DE LA PANTALLA-->
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
     <div align="Center" class="jumbotron">
         <asp:Label ID="lbEncabezado" runat="server" Text="Mantenimiento de Departamentos"></asp:Label>
     </div>
@@ -170,18 +180,18 @@
 
 
 <!--INICIO DE LOS CONTROLES PARA REALIZAR LA CONSULTA-->
-            <div class="form-row">
-         <div class="form-group col-md-3">
+            <div class="row">
+         <div class="col-md-3">
              <asp:Label ID="lbSeleccionarSucursalConsulta" CssClass="LetraNegrita" runat="server" Text="Sucursal"></asp:Label>
             <asp:DropDownList ID="ddlSeleccionarSucursalCOnsulta" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarSucursalCOnsulta_SelectedIndexChanged" CssClass="form-control" ToolTip="Seleccionar Sucursal"></asp:DropDownList>
         </div>
 
-        <div class="form-group col-md-3">
+        <div class="col-md-3">
              <asp:Label ID="lbOficinaConsulta" runat="server" CssClass="LetraNegrita" Text="Oficina"></asp:Label>
             <asp:DropDownList ID="ddloficinaConsulta" runat="server" CssClass="form-control" ToolTip="Seleccionar Oficina"></asp:DropDownList>
         </div>
         
-        <div class="form-group col-md-3">
+        <div class="col-md-3">
                <asp:Label ID="lbDescripcion" Text="Departamento" CssClass="LetraNegrita" runat="server"></asp:Label>
             <asp:TextBox ID="txtDescripcionDepartamento" runat="server" CssClass="form-control" AutoCompleteType="Disabled" Palceholder="Departamento" MaxLength="100"></asp:TextBox>
         </div>
@@ -247,31 +257,31 @@
        <asp:ScriptManager ID="ScripManagerDepartamentos" runat="server"></asp:ScriptManager>
             <asp:UpdatePanel ID="UpdatePanelDepartamentos" runat="server">
                 <ContentTemplate>
-                     <div class="form-row">
-             <div class="form-group col-md-4">
+                     <div class="row">
+             <div class="col-md-4">
                   <asp:Label ID="lbSeleccionarSucursalMantenimiento" Visible="true" CssClass="LetraNegrita" runat="server"  Text="Sucursal"></asp:Label>
         <asp:DropDownList ID="ddlSeleccionarSucursalmantenimiento" Visible="true" runat="server" OnSelectedIndexChanged="ddlSeleccionarSucursalmantenimiento_SelectedIndexChanged"  CssClass="form-control" AutoPostBack="true" ToolTip="Sucursal"></asp:DropDownList>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                   <asp:Label ID="lbOficinaMantenimiento" Visible="true" CssClass="LetraNegrita" runat="server"  Text="Oficina"></asp:Label>
         <asp:DropDownList ID="ddlOficinaMantenimiento" Visible="true" runat="server"  CssClass="form-control" ToolTip="Oficina"></asp:DropDownList>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                  <asp:Label ID="lbOficinaDepartamento" Visible="true" runat="server" CssClass="LetraNegrita"  Text="Departamento"></asp:Label>
         <asp:TextBox ID="txtDescripcionDepartamentoMAN" runat="server" Visible="true"  AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
-          <div class="form-group col-md-4">
+          <div class="col-md-4">
                <asp:Label ID="lbClaveSeguridad" Visible="true" runat="server" CssClass="LetraNegrita" Text="Clave de Seguridad"></asp:Label>
                <asp:TextBox ID="txtclaveSeguridad" runat="server" TextMode="Password" Visible="true"  AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
            
         </div>
          <div class="form-check-inline">
-                <div class="form-group form-check">
+
                     <asp:CheckBox ID="cbEstatus" runat="server"  Text="Estatus" Visible="true" CssClass="form-check-input" ToolTip="Estatus" />
                     
-                </div>
+
         
             </div>
                 </ContentTemplate>

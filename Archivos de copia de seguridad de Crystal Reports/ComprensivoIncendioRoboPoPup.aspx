@@ -12,6 +12,7 @@
         <form id="form1" runat="server">
         <header>
             <h1><asp:Label ID="lbEncabezado" runat="server" Text="Comprensivo Incendio y Robo" CssClass="Label-Encabezado"></asp:Label></h1>
+            <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         </header>
             <hr />
             <%-- AGREGAMOS LOS CONTROLES PARA REALIZAR LAS BUSQUEDAS --%>

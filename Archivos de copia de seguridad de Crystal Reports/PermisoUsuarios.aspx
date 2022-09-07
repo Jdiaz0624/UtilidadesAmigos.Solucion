@@ -7,6 +7,7 @@
     </header>
     <hr class="hr" />
     <div class="Contenedor" >
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div class="Bloque-Izquierda" >
             <asp:Label ID="lbClaveSeguridad" runat="server" CssClass="LabelFormularios" Text="Clave de Seguridad"></asp:Label>
             <asp:TextBox ID="txtClaveSeguridad" runat="server" CssClass="Texto" placeholder="IngreseClaveSeguridad" TextMode="Password"></asp:TextBox><br />

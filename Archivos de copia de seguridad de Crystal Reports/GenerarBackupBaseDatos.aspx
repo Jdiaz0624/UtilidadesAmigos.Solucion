@@ -25,8 +25,8 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #1E90FF;
+            color: #000000;
         }
     </style>
 
@@ -92,22 +92,22 @@
     <br /><br />
    <div class="container-fluid">
         <div class="form-check-inline">
-        <div class="form-group form-check">
+            <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
             <asp:RadioButton ID="rbGenerarBackuup" runat="server" Text="Generar Backup" AutoPostBack="true" CssClass="form-check-input" OnCheckedChanged="rbGenerarBackuup_CheckedChanged" ToolTip="Generar Backup de Base de Datos" GroupName="TipoOperacion" />
             <asp:RadioButton ID="rbHistorialBackup" runat="server" Text="Historial" AutoPostBack="true" CssClass="form-check-input" OnCheckedChanged="rbHistorialBackup_CheckedChanged" ToolTip="Historial de Backup de Base de Datos" GroupName="TipoOperacion" />
             <asp:RadioButton ID="rbConfiguracion" runat="server" Text="Configuración" AutoPostBack="true" CssClass="form-check-input" OnCheckedChanged="rbConfiguracion_CheckedChanged" ToolTip="Configuracion de Base de Datos" GroupName="TipoOperacion" />
-        </div>
+
     </div>
     <!--INICIO DEL BLOQUE DE BACKUP DE BASE DE DATOS-->
     <div id="DivBloqueBackup" runat="server" visible="false">
    
-            <div class="form-row">
-                <div class="form-group col-md-3" >
+            <div class="row">
+                <div class="col-md-3" >
                     <asp:Label ID="lbClaveSeguridadGenerarBackup"  runat="server" Text="Clave de Seguridad" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtClaveSeguridadGenerarBackup" align="center" runat="server" CssClass="form-control" AutoCompleteType="Disabled" TextMode="Password"></asp:TextBox>
                 </div>
 
-                 <div class="form-group col-md-3" >
+                 <div class="col-md-3" >
                     <asp:Label ID="lbNombreArchivo"  runat="server" Text="Nombre de Archivo" CssClass="LetrasNegrita"></asp:Label>
                     <asp:TextBox ID="txtNombreArchivo" align="center" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
@@ -122,29 +122,29 @@
 
     <!--INICIO DEL BLOQUE DE HISTORIAL DE BACKUP DE BASE DE DATOS-->
     <div id="DivBloqueHistorialBaseDatos" runat="server" visible="false">
-        <div class="form-row">
-            <div class="form-group col-md-4">
+        <div class="row">
+            <div class="col-md-4">
                 <asp:Label id="lbFechaDesdeHistoerial" runat="server" Text="Fecha Desde" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaDesdeHistorial" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label id="lbFechaHastaHistorial" runat="server" Text="Fecha Hasta" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaHastaHistorial" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label id="lbNombreUsuarioHistorial" runat="server" Text="Usuario" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreUsuarioHistorial" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
         </div>
         <div class="form-check-inline">
-            <div class="form-group form-check">
+
                 <asp:Label ID="lbTipoReporte" runat="server" Text="Tipo de Reporte: " CssClass="LetrasNegrita"></asp:Label>
                 <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" GroupName="TipoReporte" CssClass="form-check-input" />
                 <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" GroupName="TipoReporte" CssClass="form-check-input" />
                 <asp:RadioButton ID="rbWord" runat="server" Text="Word" GroupName="TipoReporte" CssClass="form-check-input" />
-            </div>
+ 
         </div>
 
         <div align="center">
@@ -158,36 +158,36 @@
             <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" Text=" ) " CssClass="LetrasNegrita"></asp:Label>
         </div>
         <br />
-        <div class="table-responsive">
-            <table class="table table-hover">
+
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbNombreArchivoHeaderRepeater" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label> </th>
-                        <th style="width:22%" align="left"> <asp:Label ID="lbDescripcionHeaderRepeater" runat="server" Text="Descripcion" CssClass="LetrasNegrita"></asp:Label> </th>
-                        <th style="width:16%" align="left"> <asp:Label ID="lbusuarioHeaderRepeater" runat="server" Text="Usuario" CssClass="LetrasNegrita"></asp:Label> </th>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbFechaHeaderRepeater" runat="server" Text="Fecha" CssClass="LetrasNegrita"></asp:Label> </th>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbHoraHEaderRepeater" runat="server" Text="Hora" CssClass="LetrasNegrita"></asp:Label> </th>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbEstatusHeaderRepeater" runat="server" Text="Estatus" CssClass="LetrasNegrita"></asp:Label> </th>
-                        <th style="width:22%" align="left"> <asp:Label ID="lbObservacionGeaderrepeater" runat="server" Text="Observación" CssClass="LetrasNegrita"></asp:Label> </th>
+                        <th scope="col"> Nombre </th>
+                        <th scope="col"> Descripción</th>
+                        <th scope="col"> Usuario</th>
+                        <th scope="col"> Fecha </th>
+                        <th scope="col"> Hora </th>
+                        <th scope="col"> Estatus </th>
+                        <th scope="col"> Observación </th>
                     </tr>
                 </thead>
                 <tbody>
                     <asp:Repeater ID="rpListado" runat="server">
                         <ItemTemplate>
                             <tr>
-                                 <td style="width:10%"> <%# Eval("NombreArchivo") %> </td>
-                                 <td style="width:22%"> <%# Eval("Descripcion") %> </td>
-                                 <td style="width:16%"> <%# Eval("Usuario") %> </td>
-                                 <td style="width:10%"> <%# Eval("Fecha") %> </td>
-                                 <td style="width:10%"> <%# Eval("Hora") %> </td>
-                                 <td style="width:10%"> <%# Eval("Estatus") %> </td>
-                                 <td style="width:22%"> <%# Eval("Comentario") %> </td>
+                                 <td> <%# Eval("NombreArchivo") %> </td>
+                                 <td> <%# Eval("Descripcion") %> </td>
+                                 <td> <%# Eval("Usuario") %> </td>
+                                 <td> <%# Eval("Fecha") %> </td>
+                                 <td> <%# Eval("Hora") %> </td>
+                                 <td> <%# Eval("Estatus") %> </td>
+                                 <td> <%# Eval("Comentario") %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
-        </div>
+ 
 
          <div align="center">
                 <asp:Label ID="lbPaginaActualTitulo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
@@ -222,34 +222,34 @@
     <!--INICIO DEL BLOQUE DE CONFIGURACION DE BACKUP DE BASE DE DATOS-->
     <div id="DivBloqueConfiguracionBaseDatos"  runat="server" visible="false">
         <div class="form-check-inline">
-                <div class="form-group form-check">
+  
                     <asp:RadioButton ID="rbConfigurarRutaBackup" runat="server" AutoPostBack="true" OnCheckedChanged="rbConfigurarRutaBackup_CheckedChanged" Text="Configurar Ruta" ToolTip="Configurar la Ruta donde se va a guardar el backup." GroupName="Tipo" CssClass="form-check-input LetrasNegrita " />
                     <asp:RadioButton ID="rbConfigurarCorreosBackup" runat="server" AutoPostBack="true" OnCheckedChanged="rbConfigurarCorreosBackup_CheckedChanged" Text="Configurar Correos" ToolTip="Configurar los correos a los que el sistema enviara notificación una vez realizado el backup." GroupName="Tipo" CssClass="form-check-input LetrasNegrita" />
-                </div>
+
             </div>
             <br />
-        <div class="form-row" >
+        <div class="row" >
             <asp:Label ID="lbIdCorreoEnviarConfiguracion" runat="server" Text="IdCorreoEnviar" Visible="false"></asp:Label>
             <asp:Label ID="lbIdProcesoConfiguracion" runat="server" Text="IdProceso" Visible="false"></asp:Label>
 
 
-             <div class="form-group col-md-6">
+             <div class="col-md-6">
                 <asp:Label ID="lbClaveSeguridadConfiguracion" runat="server" Text="Clave de Seguridad" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtClaveSeguridadConfiguracion" runat="server" CssClass="form-control" TextMode="Password" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
-            <div class="form-group col-md-6">
+            <div class="col-md-6">
                 <asp:Label ID="lbRutaArchivoConfiguracion" runat="server" Text="Ruta de Archivo" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtRutaArchivoConfiguracion" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
-            <div class="form-group col-md-6">
+            <div class="col-md-6">
                 <asp:Label ID="lbCorreoElectronico" runat="server" Text="Correo Electronico" CssClass="LetrasNegrita"></asp:Label>
                 <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="form-control" TextMode="Email" AutoCompleteType="Disabled"></asp:TextBox>
             </div>
         </div>
         <div class="form-check-inline">
-            <div class="form-group form-check">
+
                 <asp:CheckBox ID="cbEstatusCorreo" runat="server" Text="Estatus" CssClass="form-check-input LetrasNegrita" ToolTip="Estatus de Correo" />
-            </div>
+  
         </div>
         <br />
         <div align="center">
@@ -264,13 +264,13 @@
 
         </div>
         <br />
-        <div class="table-responsive">
-            <table class="table table-hover">
+
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th style="width:10%" align="center"> Eliminar </th>
-                        <th style="width:80%" align="center"> Correo </th>
-                        <th style="width:10%" align="center"> Estatus </th>
+                        <th scope="col"> Eliminar </th>
+                        <th scope="col"> Correo </th>
+                        <th scope="col"> Estatus </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -288,7 +288,7 @@
                     </asp:Repeater>
                 </tbody>
             </table>
-        </div>
+
         <div align="center">
                 <asp:Label ID="lbPaginaActualConfiguracionTitulo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
                 <asp:Label ID="LinkBlbPaginaActualConfiguracionVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>

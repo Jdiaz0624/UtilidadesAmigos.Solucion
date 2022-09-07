@@ -18,6 +18,15 @@
         .Custom{
             width: 78px;
         }
+          table {
+            border-collapse: collapse;
+        }
+        
+
+        th {
+            background-color: #0094ff;
+            color: #000000;
+        }
     </style>
     <script type="text/javascript">
         function ClaveSeguridadNoValida() {
@@ -53,6 +62,7 @@
     </script>
 
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <div class="jumbotron" align="center">
             <asp:Label ID="lbTitulo" runat="server" Text="Mantenimiento de Comisiones por defecto"></asp:Label>
         </div>
@@ -61,22 +71,22 @@
         </asp:ScriptManager>
 
       
-        <div class="form-row">
+        <div class="row">
 
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbCodigoRamoConsulta" runat="server" Text="Codigo de Ramo" CssClass="letraNegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoRamoConsulta" runat="server" CssClass="form-control" AutoCompleteType="Disabled" TextMode="Number" AutoPostBack="true" OnTextChanged="txtCodigoRamoConsulta_TextChanged"></asp:TextBox>
             </div>
-             <div class="form-group col-md-3">
+             <div class="col-md-3">
                 <asp:Label ID="lbDescripcionRamoConsulta" runat="server" Text="Descripción de Ramo" CssClass="letraNegrita"></asp:Label>
                 <asp:TextBox ID="txtDescripcionRamoConsulta" Enabled="false" runat="server" CssClass="form-control" ></asp:TextBox>
             </div>
 
-              <div class="form-group col-md-3">
+              <div class="col-md-3">
                 <asp:Label ID="lbCodigoSubramoConsulta" runat="server" Text="Codigo de SubRamo" CssClass="letraNegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoSubramoConsulta" runat="server" CssClass="form-control" TextMode="Number" AutoCompleteType="Disabled" AutoPostBack="true" OnTextChanged="txtCodigoSubramoConsulta_TextChanged"></asp:TextBox>
             </div>
-             <div class="form-group col-md-3">
+             <div class="col-md-3">
                 <asp:Label ID="lbDescripcionSunramoConsulta" runat="server" Text="Descripción de SubRamo" CssClass="letraNegrita"></asp:Label>
                 <asp:TextBox ID="txtDescripcionSubramoConsulta" Enabled="false" runat="server" CssClass="form-control" ></asp:TextBox>
             </div>
@@ -117,34 +127,34 @@
 
         <!--MANTENIMIENTO DE PORCIENTO DE COMISIONES-->
         <div class="form-check-inline">
-            <div class="form-group form-check">
+
                 <asp:Label ID="lbTipoPrceso" runat="server" Text="Seleccionar Tipo de Modificación" Visible="false" CssClass="letraNegrita"></asp:Label><br />
                 <asp:RadioButton ID="rbModificarSubRamoSeleccionadoMantenimiento" Visible="false" runat="server" Text="Modificar Sub Ramo Seleccionado" CssClass="form-check-input" ToolTip="Modificar el % de Comisión del subramo seleccionado" GroupName="Modificar" />
                  <asp:RadioButton ID="rbModificarTodoRamoSeleccionado" runat="server" Visible="false" Text="Modificar Todo el Ramo" CssClass="form-check-input" ToolTip="Modificar el % de Comisión de todo el ramo" GroupName="Modificar" />
-            </div>
+     
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-3">
+        <div class="row">
+            <div class="col-md-3">
                 <asp:Label ID="lbCodigoRamoMantenimiento" runat="server" Text="Codigo de Ramo" Visible="false" CssClass="letraNegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoRamoMantenimiento" runat="server" CssClass="form-control" Visible="false" Enabled="false"></asp:TextBox>
             </div>
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbDescripcionRamomantenimiento" runat="server" Text="Descripción de Ramo" Visible="false" CssClass="letraNegrita"></asp:Label>
                 <asp:TextBox ID="txtDescripcionRamoMantenimiento" runat="server" CssClass="form-control" Visible="false" Enabled="false"></asp:TextBox>
             </div>
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbCodigoSubRamoMantenimiento" runat="server" Text="Codigo de SubRamo" Visible="false" CssClass="letraNegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoSubramoMantenimiento" runat="server" CssClass="form-control" Visible="false" Enabled="false"></asp:TextBox>
             </div>
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbDescripcionSubramoMantenimiento" runat="server" Text="Descripción de SubRamo" Visible="false" CssClass="letraNegrita"></asp:Label>
                 <asp:TextBox ID="txtDescripcionSubramoMantenimiento" runat="server" Visible="false" CssClass="form-control" Enabled="false"></asp:TextBox>
             </div>
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbPorcientoComisionMantenimiento" runat="server" Visible="false" Text="% de Comisión" CssClass="letraNegrita"></asp:Label>
                 <asp:TextBox ID="txtPorcientoComision" runat="server" Visible="false" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Number" step="0.01" ></asp:TextBox>
             </div>
-             <div class="form-group col-md-3">
+             <div class="col-md-3">
                 <asp:Label ID="lbClaveSeguridad" runat="server" Visible="false" Text="Clave de Seguridad" CssClass="letraNegrita"></asp:Label>
                 <asp:TextBox ID="txtClaveSeguridad" runat="server" Visible="false" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Password" ></asp:TextBox>
             </div>

@@ -25,9 +25,14 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #1E90FF;
+            color: #000000;
         }
+
+              .BotonImgen {
+              width:40px;
+              height:40px;
+              }
     </style>
     <script type="text/javascript">
       function OcultarControlesCoberturas() {
@@ -42,6 +47,10 @@
         function MostrarControlesCoberturas() {
             $("#<%=cbEstatus.ClientID%>").show();
             $("#<%=txtCoberturaMantenimiento.ClientID%>").removeAttr("disabled", true);
+        }
+
+        function RegistrosNoEncontrados() {
+            alert("No se encontrarón registros para validar.");
         }
 
         function ActivarControlesPlanCobertura() {
@@ -104,7 +113,7 @@
 
             })
 
-            $("#<%=btnGuardarCobertura.ClientID%>").click(function () {
+            $("#<%=btnGuardarCoberturaNuevo.ClientID%>").click(function () {
                 var DescripcionCobertura = $('#<%=txtCoberturaMantenimiento.ClientID%>').val().length;
                 if (DescripcionCobertura < 1) {
                     alert("El campo Descripción no puede estar vacio")
@@ -116,7 +125,7 @@
 
 
             //CONTROLAMOS EL EVENTO CLICK DEL BOTON CONSULTA
-            $("#<%=btnConsultar.ClientID%>").click(function () {
+            $("#<%=btnConsultarNuevo.ClientID%>").click(function () {
                 //VALIDAMOS EL CAMPO COBERTURA
                 var Cobertura = $("#<%=ddlSeleccionarCpbertura.ClientID%>").val();
                 if (Cobertura < 1) {
@@ -144,115 +153,115 @@
     </script>
 <!--INICIO DEL ENCABEZADO-->
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
     </div>
 <!--FIN DEL ENCABEZADO-->
 
 <!--INICIO DE LOS MENUS DESPLEGABLES Y CONTROLES DE BUSQUEDA-->
     <div class="container-fluid">
         <br /><br />
-        <div class="form-row">
-            <div class="form-group col-md-4">
+        <div class="row">
+            <div class="col-md-4">
                 <asp:Label ID="lbSeleccionarCobertura" runat="server" CssClass="Letranegrita" Text="Seleccionar Cobertura"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarCpbertura" runat="server" AutoPostBack="true" CssClass="form-control" ToolTip="Seleccionar Cobertura" OnSelectedIndexChanged="ddlSeleccionarCpbertura_SelectedIndexChanged"></asp:DropDownList>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbSeleccionarPlanCobertura" runat="server" CssClass="Letranegrita" Text="Seleccionar Plan"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarPlanCobertura" runat="server" ToolTip="Seleccionar un plan Segun la cobertura seleccionada" CssClass="form-control"></asp:DropDownList>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbPolizaFiltro" runat="server" CssClass="Letranegrita" Text="Poliza"></asp:Label>
                 <asp:TextBox ID="txtPolizaFiltro" runat="server" AutoCompleteType="Disabled"  MaxLength="20" CssClass="form-control"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbSeleccionarSucursal" runat="server" CssClass="Letranegrita" Text="Seleccionar Sucursal"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarSucursal" runat="server" ToolTip="Seleccionar Surcursal" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarSucursal_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbSeleccionaroficina" runat="server" Text="Seleccionar Oficina" CssClass="Letranegrita" ></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionaroficina" runat="server" ToolTip="Seleccionar la Oficina para el filtro" CssClass="form-control"></asp:DropDownList>
             </div>
 
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                
             </div>
-              <div class="form-group col-md-4">
+              <div class="col-md-4">
                     <asp:Label ID="lbFechaDesde" runat="server" CssClass="Letranegrita" Text="Fecha Desde"></asp:Label>
                     <asp:TextBox ID="txtFechaDesde" runat="server" ToolTip="Inicio de Rango de fecha" TextMode="Date" CssClass="form-control" ></asp:TextBox>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="col-md-4">
                     <asp:Label ID="lbFechaHasta" runat="server" CssClass="Letranegrita" Text="Fecha Hasta"></asp:Label>
                     <asp:TextBox ID="txtFechaHasta" runat="server" ToolTip="Fin de Rango de fecha" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </div>
         </div>
         <!--FIN DE LOS MENUS DESPLEGABLES Y CONTROLES DE BUSQUEDA-->
         <br />
-
-        <!--INICIO DE LOS RADIOS PARA EXPORTAR-->
         <div class="form-check-inline">
-                <div class="form-group form-check">
+                <asp:CheckBox ID="cbValidarDataCobertura" runat="server" Text="Validar Data" ToolTip="Validar la data de cobertura" CssClass="Letranegrita" AutoPostBack="true" OnCheckedChanged="cbValidarDataCobertura_CheckedChanged" />
+        
+        </div>
+<div id="DIVBloqueConsulta" runat="server">
+            <!--INICIO DE LOS RADIOS PARA EXPORTAR-->
+        <div class="form-check-inline">
+      
                     <asp:Label ID="lbExportarA" runat="server" Text="Exportar A:" CssClass="Letranegrita"></asp:Label>
-                    <asp:RadioButton ID="rbExportarExel" runat="server" Text="Excel" CssClass="form-check-input" ToolTip="Exportar a Formato de Excel" GroupName="Exportar" />
-                    <asp:RadioButton ID="rbExportarcsv" runat="server" Text="CSV" CssClass="form-check-input"  ToolTip="Exportar a Formato CSV" GroupName="Exportar" />
-                    <asp:RadioButton ID="rbExportartxt" runat="server" Text="TXT" CssClass="form-check-input" ToolTip="Exportar a formato de texto" GroupName="Exportar" />
-                    <asp:RadioButton ID="rbExportarPDF" runat="server" Text="PDF" CssClass="form-check-input" ToolTip="Exportar a formato PDF" GroupName="Exportar" />
-                </div>
-                <div class="form-group form-check">
-                    
-                </div>
-                <div class="form-group form-check">
-                    
-                </div>
+                    <asp:RadioButton ID="rbExportarExel" runat="server" Text="Excel" ToolTip="Exportar a Formato de Excel" GroupName="Exportar" />
+                    <asp:RadioButton ID="rbExportarcsv" runat="server" Text="CSV"   ToolTip="Exportar a Formato CSV" GroupName="Exportar" />
+                    <asp:RadioButton ID="rbExportartxt" runat="server" Text="TXT"  ToolTip="Exportar a formato de texto" GroupName="Exportar" />
+                    <asp:RadioButton ID="rbExportarPDF" runat="server" Text="PDF"  ToolTip="Exportar a formato PDF" GroupName="Exportar" />
+        
+              
             </div>
         <!--FIN DE LOS RADIOS PARA EXPORTAR-->
-
         <!--INICIO DE LOS BOTONES-->
         <div align="center" >
-            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" CssClass="btn btn-outline-secondary btn-sm Letranegrita" ToolTip="Consultar Registros" OnClick="btnConsultar_Click" />
-            <asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="btn btn-outline-secondary btn-sm Letranegrita" ToolTip="Exportar Registros" OnClick="btnExportar_Click" />
+            <asp:ImageButton ID="btnConsultarNuevo" runat="server" ToolTip="Consultar Registros" CssClass="BotonImgen" OnClick="btnConsultarNuevo_Click" ImageUrl="~/Imagenes/Buscar.png" />
+            <asp:ImageButton ID="btnExportarExcelNuevo" runat="server" ToolTip="Exportar Registros a Excel" CssClass="BotonImgen" OnClick="btnExportarExcelNuevo_Click" ImageUrl="~/Imagenes/excel.png" />
+            <asp:ImageButton ID="btnReporteNuevo" runat="server" ToolTip="Generar Reporte de Coberturas" CssClass="BotonImgen" OnClick="btnReporteNuevo_Click" ImageUrl="~/Imagenes/Reporte.png" />
+
+          <br />
                 <button type="button" id="btnCobertura" class="btn btn-outline-secondary btn-sm Letranegrita" data-toggle="modal" data-target=".bd-example-modal-lg">Coberturas</button>
              <button type="button" id="btnPlan" class="btn btn-outline-secondary btn-sm Letranegrita" data-toggle="modal" data-target=".PlanCobertura">Plan</button>
-            <asp:Button ID="btnReporte" runat="server" Text="Reporte" CssClass="btn btn-outline-secondary btn-sm Letranegrita" ToolTip="Reporte de Cobertura" OnClick="btnReporte_Click" />
             <br /><br />
             <asp:Label ID="lbCantidadRegistrosListadoGeneralTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
             <asp:Label ID="lbCantidadRegistrosListadoGeneralVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
             <asp:Label ID="lbCantidadRegistrosListadoGeneralCerrar" runat="server" Text=" ) " CssClass="Letranegrita"></asp:Label>
         </div>
-        <br />
-        
+        <br />       
         <!--FIN DE LOS BOTONES-->
      <!--INICIO DEL GRID-->
-        <div class="table-responsive">
-            <table class="table table-hover">
+       
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbPolizaHeaderCoberturas" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbEstatusHeaderCoberturas" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:15%" align="left"> <asp:Label ID="lbInicioVigenciaHeaderCoberturas" runat="server" Text="Inicio" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:15%" align="left"> <asp:Label ID="lbFinVigenciaHeaderCoberturas" runat="server" Text="Fin" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbFechaProcesoHeaderCoberturas" runat="server" Text="Proceso" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:25%" align="left"> <asp:Label ID="lbCoberturaHeaderCobertutras" runat="server" Text="Cobertura" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:15%" align="left"> <asp:Label ID="lbTipoMovimientoHeaderCoberturas" runat="server" Text="Movimiento" CssClass="Letranegrita"></asp:Label> </th>
+                        <th scope="col"> Poliza </th>
+                        <th scope="col"> Estatus </th>
+                        <th scope="col"> Inicio </th>
+                        <th scope="col"> Fin </th>
+                        <th scope="col"> Proceso </th>
+                        <th scope="col"> Cobertura </th>
+                        <th scope="col"> Movimiento </th>
                     </tr>
                 </thead>
                 <tbody>
                     <asp:Repeater ID="rpListadoCoberturasPrincipal" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <td style="width:10%"> <%# Eval("Poliza") %> </td>
-                                <td style="width:10%"> <%# Eval("Estatus") %> </td>
-                                <td style="width:15%"> <%# Eval("InicioVigencia") %> </td>
-                                <td style="width:15%"> <%# Eval("FinVigencia") %> </td>
-                                <td style="width:10%"> <%# Eval("FechaProceso") %> </td>
-                                <td style="width:25%"> <%# Eval("Cobertura") %> </td>
-                                <td style="width:15%"> <%# Eval("TipoMovimiento") %> </td>
+                                <td> <%# Eval("Poliza") %> </td>
+                                <td> <%# Eval("Estatus") %> </td>
+                                <td> <%# Eval("InicioVigencia") %> </td>
+                                <td> <%# Eval("FinVigencia") %> </td>
+                                <td> <%# Eval("FechaProceso") %> </td>
+                                <td> <%# Eval("Cobertura") %> </td>
+                                <td> <%# Eval("TipoMovimiento") %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
-        </div>
+    
 
          <div align="center">
                 <asp:Label ID="lbPaginaActualTituloListadoPrincipal" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
@@ -265,18 +274,18 @@
                 <div style="margin-top=20px;">
                     <table style="width:600px;">
                         <tr>
-                            <td> <asp:LinkButton ID="LinkPrimeraListadoPrincipal" runat="server" Text="Primero" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraListadoPrincipal_Click" CssClass="btn btn-outline-success btn-sm"  ></asp:LinkButton> </td>
-                            <td> <asp:LinkButton ID="LinkAnteriorListadoPrincipal" runat="server" Text="Anterior" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorListadoPrincipal_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
-                            <td>
+                            <td> <asp:ImageButton ID="btnPrimeraPaginaListado" runat="server" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPaginaListado_Click" CssClass="BotonImgen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnPaginaAnteriorListado" runat="server" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnPaginaAnteriorListado_Click" CssClass="BotonImgen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td align="center">
                                 <asp:DataList ID="dtPaginacionListadoPrincipal" runat="server" OnCancelCommand="dtPaginacionListadoPrincipal_CancelCommand" OnItemDataBound="dtPaginacionListadoPrincipal_ItemDataBound" RepeatDirection="Horizontal" >
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="LinkIndiceListadoPrincipal" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="NuevaPagina" Text='<%# Eval("TextoPagina")%>' Width="20px"></asp:LinkButton>
+                                        <asp:Button ID="btnPaginacionCentralListadoGeneral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
                                     </ItemTemplate>
                                 </asp:DataList>
 
                             </td>
-                            <td> <asp:LinkButton ID="LinkSiguienteListadoPrincipal" runat="server" Text="Siguiente" ToolTip="Ir la Siguiente pagina del listado" OnClick="LinkSiguienteListadoPrincipal_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
-                            <td> <asp:LinkButton ID="LinkUltimoListadoPrincipal" runat="server" Text="Ultmo" ToolTip="Ir a la Ultima Pagina del listado" OnClick="LinkUltimoListadoPrincipal_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td> <asp:ImageButton ID="btnSiguientePaginaListado" runat="server" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguientePaginaListado_Click" CssClass="BotonImgen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnUltimaPaginaListado" runat="server" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimaPaginaListado_Click" CssClass="BotonImgen" ToolTip="Ir a la Primera Pagina" /> </td>
                            
                         </tr>
                     </table>
@@ -310,6 +319,21 @@
     </div>
 
 
+        <div id="DivBloqueValidarData" runat="server">
+            <br />
+            <div id="DivBuscarArchivoExcel" runat="server" class="form-group col-sm-6">
+                                  <label for="FileUpload1">Buscar Archivo en el equipo</label>
+                                    <asp:FileUpload ID="FIleArchivoCobertura" CssClass="form-control-file" runat="server" />
+                                </div>
+            <div align="center">
+                <asp:Label ID="lbEjemeploFormatoExel" runat="server" Text="Formato de Archivo (Columnas)--> Poliza|Chasis|Placa|Cobertura" CssClass="Letranegrita"></asp:Label><br />
+                <asp:ImageButton ID="btnProcesarInformacionNuevo" runat="server" ToolTip="Validar la información de cobertura" CssClass="BotonImgen" OnClick="btnProcesarInformacionNuevo_Click" ImageUrl="~/Imagenes/Procesar.png" />
+            </div>
+            <br />
+        </div>
+</div>
+
+
 
         <!--INICIO DEL POPO DE LAS COBERTURAS-->
 
@@ -325,26 +349,27 @@
          <asp:ScriptManager ID="CoberturasScript" runat="server"></asp:ScriptManager>
           <asp:UpdatePanel ID="UpdatePanelCoberturas" runat="server" Visible="true">
               <ContentTemplate>
-                   <div class="form-row">
-              <div class="form-group col-md-12">
+                   <div class="row">
+              <div class="col-md-12">
                   <asp:Label ID="Cobertura" runat="server" Text="Cobertura"></asp:Label>
                   <asp:TextBox ID="txtCoberturaMantenimiento" runat="server" MaxLength="100" CssClass="form-control"></asp:TextBox>
               </div>
           </div>
           <div class="form-check-inline">
-              <div class="form-group form-check">
+
                   <asp:CheckBox ID="cbEstatus" runat="server" Text="Estatus" CssClass="form-check-input Letranegrita" />
-              </div>
+           
           </div>
                   <br />
                        <!--INICIO DEL GRID-->
-                        <div class="table-responsive">
-                            <table class="table table-hover">
+
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="width:10%" align="left"> <asp:Label ID="lbSeleccionarCoberturaHeaderCobertura" runat="server" Text="Seleccionar" CssClass="Letranegrita"></asp:Label> </th>
-                                        <th style="width:80%" align="left"> <asp:Label ID="lbCoberturaHeaderCobertura" runat="server" Text="Cobertura" CssClass="Letranegrita"></asp:Label> </th>
-                                        <th style="width:10%" align="left"> <asp:Label ID="lbEstatusHeaderCobertura" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
+                                        
+                                        <th scope="col"> Cobertura </th>
+                                        <th scope="col"> Estatus </th>
+                                        <th scope="col"> Seleccionar </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -352,15 +377,15 @@
                                         <ItemTemplate>
                                             <tr>
                                                 <asp:HiddenField ID="hfIdCobertura" runat="server" Value='<%# Eval("IdCobertura") %>' />
-                                                <td style="width:10%"> <asp:Button ID="btnSeleccionarCobertura" runat="server" Text="Seleccionar" CssClass="btn btn-outline-secondary btn-sm Letranegrita" ToolTip="Seleccionar Cobertura" OnClick="btnSeleccionarCobertura_Click" /> </td>
-                                                <td style="width:10%"> <%# Eval("Descripcion") %> </td>
-                                                <td style="width:10%"> <%# Eval("Estatus") %> </td>
+                                                <td> <%# Eval("Descripcion") %> </td>
+                                                <td> <%# Eval("Estatus") %> </td>
+                                                <td> <asp:ImageButton ID="btnSeleccioanrCoberturaNuevo" runat="server" ToolTip="Seleccionar" CssClass="BotonImgen" ImageUrl="~/Imagenes/Seleccionar2.png" OnClick="btnSeleccioanrCoberturaNuevo_Click" /> </td>
                                             </tr>
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </tbody>
                             </table>
-                        </div>
+                  
 
                    <div align="center">
                 <asp:Label ID="lbPaginaActualTituloCoberturas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
@@ -373,18 +398,19 @@
                 <div style="margin-top=20px;">
                     <table style="width:600px;">
                         <tr>
-                            <td> <asp:LinkButton ID="LinkPrimeroCoberturas" runat="server" Text="Primero" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroCoberturas_Click" CssClass="btn btn-outline-success btn-sm"  ></asp:LinkButton> </td>
-                            <td> <asp:LinkButton ID="LinkAnteriorCoberturas" runat="server" Text="Anterior" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorCoberturas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
-                            <td>
+                            <td> <asp:ImageButton ID="btnPriemraPaginaCoberturas" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImgen" OnClick="btnPriemraPaginaCoberturas_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
+                            <td> <asp:ImageButton ID="btnPaginaAnteriorCobertura" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImgen" OnClick="btnPaginaAnteriorCobertura_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+
+                            <td align="center">
                                 <asp:DataList ID="dtPaginacionCoberturas" runat="server" OnCancelCommand="dtPaginacionCoberturas_CancelCommand" OnItemDataBound="dtPaginacionCoberturas_ItemDataBound" RepeatDirection="Horizontal" >
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="LinkIndiceListadoCoberturas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="NuevaPagina" Text='<%# Eval("TextoPagina")%>' Width="20px"></asp:LinkButton>
+                                        <asp:Button ID="btnPaginacionCentralCoberturas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
                                     </ItemTemplate>
                                 </asp:DataList>
 
                             </td>
-                            <td> <asp:LinkButton ID="LinkSiguienteCoberturas" runat="server" Text="Siguiente" ToolTip="Ir la Siguiente pagina del listado" OnClick="LinkSiguienteCoberturas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
-                            <td> <asp:LinkButton ID="LinkUltimoCoberturas" runat="server" Text="Ultmo" ToolTip="Ir a la Ultima Pagina del listado" OnClick="LinkUltimoCoberturas_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td> <asp:ImageButton ID="btnPaginaSiguienteCobertura" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImgen" OnClick="btnPaginaSiguienteCobertura_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
+                            <td> <asp:ImageButton ID="btnUltimaPaginaCobertura" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImgen" OnClick="btnUltimaPaginaCobertura_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
                            
                         </tr>
                     </table>
@@ -397,7 +423,7 @@
                   
 
                     <div align="center">
-              <asp:Button ID="btnGuardarCobertura" runat="server" Text="Guardar" CssClass="btn btn-outline-secondary btn-sm Letranegrita" OnClick="btnGuardarCobertura_Click" />
+                        <asp:ImageButton ID="btnGuardarCoberturaNuevo" runat="server" ToolTip="Guardar Información" CssClass="BotonImgen" ImageUrl="~/Imagenes/salvar.png" OnClick="btnGuardarCoberturaNuevo_Click" />
           </div>
                   <br />
               </ContentTemplate>
@@ -425,35 +451,36 @@
       
           <asp:UpdatePanel ID="PlanCoberturaUpdatePanel" runat="server" Visible="true">
               <ContentTemplate>
-                   <div class="form-row">
-              <div class="form-group col-md-12">
+                   <div class="row">
+              <div class="col-md-12">
                   <asp:Label ID="lbCoberturaPlanCobertura" runat="server" Text="Cobertura"></asp:Label>
                   <asp:DropDownList ID="ddlCoberturaPlanCobertura" runat="server" ToolTip="Seleccionar Cobertura" CssClass="form-control"></asp:DropDownList>
               </div>
-              <div class="form-group col-md-6">
+              <div class="col-md-6">
                   <asp:Label ID="lbCodigoCobertura" runat="server" Text="Codigo de Cobertura"></asp:Label>
                   <asp:TextBox ID="txtCodigoCoberturaPlanCobertura" runat="server" MaxLength="5" TextMode="Number" CssClass="form-control" ></asp:TextBox>
               </div>
-              <div class="form-group col-md-6">
+              <div class="col-md-6">
                   <asp:Label ID="lbPlanCobertura" runat="server" Text="Plan de Cobertura"></asp:Label>
                   <asp:TextBox ID="txtPlanCobertura" runat="server" MaxLength="150" CssClass="form-control"></asp:TextBox>
               </div>
           </div>
           <div class="form-check-inline">
-              <div class="form-group form-check">
+     
                   <asp:CheckBox ID="cbEstatusPlanCobertura" runat="server" Text="Estatus" CssClass="form-check-input" />
-              </div>
+         
           </div>
           <br />
-          <div class="table-responsive">
-              <table class="table table-hover">
+       
+              <table class="table table-striped">
                   <thead>
                       <tr>
-                          <th style="width:10%" align="left"> <asp:Label ID="lbSeleccionarHeaderPlanCobertura" runat="server" Text="Seleccionar" CssClass="Letranegrita"></asp:Label> </th>
-                          <th style="width:30%" align="left"> <asp:Label ID="lbCoberturaHeaderPlanCobertura" runat="server" Text="Cobertura" CssClass="Letranegrita"></asp:Label> </th>
-                          <th style="width:10%" align="left"> <asp:Label ID="lbCodigoCobertutaHeaderPlanCobertura" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label> </th>
-                          <th style="width:40%" align="left"> <asp:Label ID="lbPlanCoberturaHeaderPlanCobertura" runat="server" Text="Plan" CssClass="Letranegrita"></asp:Label> </th>
-                          <th style="width:10%" align="left"> <asp:Label ID="lbEstatusHeaderPlanCobertura" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
+                         
+                          <th scope="col"> Cobertura </th>
+                          <th scope="col"> Codigo </th>
+                          <th scope="col"> Plan </th>
+                          <th scope="col"> Estatus </th>
+                           <th scope="col"> Seleccionar </th>
                       </tr>
                   </thead>
                   <tbody>
@@ -462,17 +489,17 @@
                               <tr>
                                   <asp:HiddenField ID="hfIdPlanCobertura" runat="server" Value='<%# Eval("IdPlanCobertura") %>' />
 
-                                  <td style="width:10%"> <asp:Button ID="btnSeleccionarPlanCobertura" runat="server" Text="Seleccionar" ToolTip="Seleccionar Plan Cobertura" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarPlanCobertura_Click" /> </td>
-                                  <td style="width:30%"> <%# Eval("Cobertura") %> </td>
-                                  <td style="width:10%"> <%# Eval("CodigoCobertura") %> </td>
-                                  <td style="width:40%"> <%# Eval("PlanCobertura") %> </td>
-                                  <td style="width:10%"> <%# Eval("Estatus") %> </td>
+                                  <td> <%# Eval("Cobertura") %> </td>
+                                  <td> <%# Eval("CodigoCobertura") %> </td>
+                                  <td> <%# Eval("PlanCobertura") %> </td>
+                                  <td> <%# Eval("Estatus") %> </td>
+                                  <td> <asp:ImageButton ID="btnSeleccionarPlanCoberturaNuevo" runat="server" ToolTip="Seleccionar Registro" CssClass="BotonImgen" ImageUrl="~/Imagenes/Seleccionar2.png" OnClick="btnSeleccionarPlanCoberturaNuevo_Click" /> </td>
                               </tr>
                           </ItemTemplate>
                       </asp:Repeater>
                   </tbody>
               </table>
-          </div>
+      
 
                       <div align="center">
                 <asp:Label ID="lbPaginaActualTituloPlanCoberturas" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
@@ -485,18 +512,18 @@
                 <div style="margin-top=20px;">
                     <table style="width:600px;">
                         <tr>
-                            <td> <asp:LinkButton ID="LinkPrimeroPlanCobertura" runat="server" Text="Primero" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeroPlanCobertura_Click" CssClass="btn btn-outline-success btn-sm"  ></asp:LinkButton> </td>
-                            <td> <asp:LinkButton ID="LinkAnteriorPlanCobertura" runat="server" Text="Anterior" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorPlanCobertura_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
-                            <td>
+                            <td> <asp:ImageButton ID="btnPrimeraPaginaPlanCobertura" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImgen" OnClick="btnPrimeraPaginaPlanCobertura_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
+                            <td> <asp:ImageButton ID="btnPaginaAnteriorPlanCobertura" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImgen" OnClick="btnPaginaAnteriorPlanCobertura_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+                            <td align="center">
                                 <asp:DataList ID="dlPlanCobertura" runat="server" OnCancelCommand="dlPlanCobertura_CancelCommand" OnItemDataBound="dlPlanCobertura_ItemDataBound" RepeatDirection="Horizontal" >
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="LinkIndiceListadoCoberturas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="NuevaPagina" Text='<%# Eval("TextoPagina")%>' Width="20px"></asp:LinkButton>
+                                        <asp:Button ID="btnPAginacionCentralPlanCoberturas" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
                                     </ItemTemplate>
                                 </asp:DataList>
 
                             </td>
-                            <td> <asp:LinkButton ID="LinkSiguientePlanCobertura" runat="server" Text="Siguiente" ToolTip="Ir la Siguiente pagina del listado" OnClick="LinkSiguientePlanCobertura_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
-                            <td> <asp:LinkButton ID="LinkUltimoPlanCobertura" runat="server" Text="Ultmo" ToolTip="Ir a la Ultima Pagina del listado" OnClick="LinkUltimoPlanCobertura_Click" CssClass="btn btn-outline-success btn-sm"></asp:LinkButton> </td>
+                            <td> <asp:ImageButton ID="btnPaginaSiguientePlanCobertura" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImgen" OnClick="btnPaginaSiguientePlanCobertura_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
+                            <td> <asp:ImageButton ID="btnUltimoPlanCobertura" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImgen" OnClick="btnUltimoPlanCobertura_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
                            
                         </tr>
                     </table>
@@ -504,7 +531,7 @@
             </div>
                   <br />
                   <div align="center">
-              <asp:Button ID="btnGuardarPlanCobertura" runat="server" Text="Guardar" CssClass="btn btn-outline-primary btn-sm" OnClick="btnGuardarPlanCobertura_Click" ToolTip="Guardar Registro" />
+                      <asp:ImageButton ID="btnGuardarPlanCoberturaNuevo" runat="server" CssClass="BotonImgen" ToolTip="Guardar Información" OnClick="btnGuardarPlanCoberturaNuevo_Click" ImageUrl="~/Imagenes/salvar.png" />
     </div>
               </ContentTemplate>
           </asp:UpdatePanel>

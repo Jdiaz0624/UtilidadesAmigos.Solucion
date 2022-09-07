@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.4.2.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.4.2.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -16,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UtilidadesAmigos.Solucion</RootNamespace>
     <AssemblyName>UtilidadesAmigos.Solucion</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -47,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\..\..\..\..\..\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
     </Reference>
@@ -59,44 +61,76 @@
     <Reference Include="CrystalDecisions.Web">
       <HintPath>..\..\..\..\..\..\..\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.Web.dll</HintPath>
     </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.17.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.17.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\..\..\Downloads\itextsharp\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.20.0.103, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.20.0\lib\net452\Microsoft.AI.DependencyCollector.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.20.0.103, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.20.0\lib\net452\Microsoft.AI.PerfCounterCollector.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.20.0.103, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.20.0\lib\net452\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.AI.Web, Version=2.20.0.103, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.20.0\lib\net452\Microsoft.AI.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.20.0.103, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.20.0\lib\net452\Microsoft.AI.WindowsServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.20.0.103, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.20.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.8\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SpreadsheetLight, Version=3.5.0.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpreadsheetLight.3.5.0\lib\netstandard2.0\SpreadsheetLight.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.6.0.0\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.6.0.0\lib\net461\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Speech" />
@@ -116,6 +150,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cargando.gif" />
@@ -137,13 +172,41 @@
     <Content Include="Imagenes\07.jpg" />
     <Content Include="Imagenes\08.jpg" />
     <Content Include="Imagenes\155805d262d9564.jpg" />
+    <Content Include="Imagenes\Agregar %282%29.png" />
+    <Content Include="Imagenes\Anterior.png" />
+    <Content Include="Imagenes\auto.png" />
+    <Content Include="Imagenes\Buscar.png" />
     <Content Include="Imagenes\CampoImagen.jpg" />
+    <Content Include="Imagenes\cancelado.png" />
+    <Content Include="Imagenes\comision.png" />
+    <Content Include="Imagenes\Completado3.gif" />
+    <Content Include="Imagenes\Completar.png" />
+    <Content Include="Imagenes\comprobar.png" />
+    <Content Include="Imagenes\Cotizar.png" />
+    <Content Include="Imagenes\Editar.png" />
+    <Content Include="Imagenes\Eliminar.png" />
+    <Content Include="Imagenes\escoger.png" />
+    <Content Include="Imagenes\excel.png" />
+    <Content Include="Imagenes\impresora.png" />
     <Content Include="Imagenes\Iniciales.ico" />
     <Content Include="Imagenes\login.jpg" />
     <Content Include="Imagenes\Logo.ico" />
+    <Content Include="Imagenes\modificar.png" />
+    <Content Include="Imagenes\ojo.png" />
+    <Content Include="Imagenes\pdf.png" />
+    <Content Include="Imagenes\png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
+    <Content Include="Imagenes\Primera Pagina.png" />
+    <Content Include="Imagenes\Procesar.png" />
+    <Content Include="Imagenes\Reporte.png" />
+    <Content Include="Imagenes\salvar.png" />
     <Content Include="Imagenes\Seguro de Ley.jpg" />
     <Content Include="Imagenes\SeguroFull.jpg" />
+    <Content Include="Imagenes\Seleccionar2.png" />
+    <Content Include="Imagenes\Servicio al Cliente.png" />
+    <Content Include="Imagenes\Siguiente.png" />
     <Content Include="Imagenes\tDYC1tp.jpg" />
+    <Content Include="Imagenes\Ultima Pagina.png" />
+    <Content Include="Imagenes\volver-flecha.png" />
     <Content Include="JS\Mask.js" />
     <Content Include="JS\Utililades.js" />
     <Content Include="packages.config" />
@@ -151,6 +214,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MasterPage\PatallaPrincila.Master" />
+    <Content Include="libman.json" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-reboot.min.css.map" />
@@ -165,27 +229,41 @@
     <None Include="Properties\PublishProfiles\FolderProfile9.pubxml" />
     <None Include="Properties\PublishProfiles\Prueba.pubxml" />
     <Content Include="Paginas\Consulta\ConsultarDataAsegurado.aspx" />
+    <Content Include="Paginas\Consulta\EstadisticaRenovacion.aspx" />
     <Content Include="Paginas\Consulta\GenerarReporteFianzas.aspx" />
+    <Content Include="Paginas\Consulta\GestionCobros.aspx" />
     <Content Include="Paginas\Consulta\ListadoRenovacion.aspx" />
+    <Content Include="Paginas\Consulta\RegistrosImcompletos.aspx" />
     <Content Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx" />
+    <Content Include="Paginas\Consulta\SacarCarteraIntermediariosSupervisor.aspx" />
     <Content Include="Paginas\Consulta\ValidarCoberturas.aspx" />
     <Content Include="Paginas\ConsumoWS.aspx" />
+    <Content Include="Paginas\ControlVisitas.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
     <Content Include="Paginas\LoginSistema.aspx" />
     <Content Include="Paginas\MantenimeintoPerfiles.aspx" />
     <Content Include="Paginas\MantenimientoClaveSeguridad.aspx" />
-    <Content Include="Paginas\MantenimientoDependientes.aspx" />
     <Content Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx" />
     <Content Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx" />
+    <Content Include="Paginas\Mantenimientos\MantenimientoDependientes.aspx" />
+    <Content Include="Paginas\Mantenimientos\MantenimientoMonedas.aspx" />
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
+    <Content Include="Paginas\ProcesoPoliza\Cotizador.aspx" />
+    <Content Include="Paginas\Procesos\AgregarItemsReclamos.aspx" />
     <Content Include="Paginas\Procesos\DatosPoliza.aspx" />
+    <Content Include="Paginas\Procesos\Endosos.aspx" />
     <Content Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx" />
     <Content Include="Paginas\Procesos\GenerarBakupBD.aspx" />
     <Content Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx" />
     <Content Include="Paginas\Procesos\Logo.jpg" />
+    <Content Include="Paginas\Procesos\ProcesoEmisionPoliza.aspx" />
+    <Content Include="Paginas\Procesos\ReciboDigital.aspx" />
+    <Content Include="Paginas\Procesos\UtilidadesCobros.aspx" />
+    <Content Include="Paginas\Procesos\VolantesDePagos.aspx" />
     <Content Include="Paginas\ReporteReclamos.aspx" />
+    <Content Include="Paginas\Reportes\AntiguedadSaldo.aspx" />
     <Content Include="Paginas\Reportes\ComisionesIntermediarios.aspx" />
     <Content Include="Paginas\Reportes\ComisionesSupervisores.aspx" />
     <Content Include="Paginas\Reportes\GenerarMarbetes.aspx" />
@@ -193,11 +271,26 @@
     <Content Include="Paginas\Reportes\GenerarReporteCobros.aspx" />
     <Content Include="Paginas\Reportes\ImpresionCheques.aspx" />
     <Content Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx" />
+    <Content Include="Paginas\Reportes\ReclamacionesPagadas.aspx" />
+    <Content Include="Paginas\Reportes\ReporteImpresionMarbetes.aspx" />
+    <Content Include="Paginas\Reportes\ReporteIntermediariosAlfredo.aspx" />
+    <Content Include="Paginas\Reportes\ReportePrimaDeposito.aspx" />
+    <Content Include="Paginas\Reportes\ReporteProduccion.aspx" />
     <Content Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx" />
+    <Content Include="Paginas\Reportes\ReporteReclamaciones.aspx" />
+    <Content Include="Paginas\Reportes\ReporteSobreComision.aspx" />
+    <Content Include="Paginas\Seguridad\AsignacionTarjetas.aspx" />
+    <Content Include="Paginas\Seguridad\ConfiguracionCorreosEmisorProcesos.aspx" />
+    <Content Include="Paginas\Seguridad\CredencialesBD.aspx" />
     <Content Include="Paginas\Seguridad\MantenimientoUsuarios.aspx" />
+    <Content Include="Paginas\Seguridad\Modulos.aspx" />
+    <Content Include="Paginas\Seguridad\Opciones.aspx" />
+    <Content Include="Paginas\Seguridad\Pantallas.aspx" />
     <Content Include="Paginas\SistemaTicket.aspx" />
     <Content Include="Paginas\SolicitudEmisionPoliza.aspx" />
     <Content Include="Paginas\SolicitudSeguroLey.aspx" />
+    <Content Include="Paginas\Suministro\AdministracionSuministro.aspx" />
+    <Content Include="Paginas\Suministro\SolicitudSuministro.aspx" />
     <Content Include="Paginas\SuperIntendencia\ConsultaPersonas.aspx" />
     <Content Include="scripts\bootstrap.bundle.js" />
     <Content Include="scripts\bootstrap.bundle.min.js" />
@@ -207,11 +300,21 @@
     <Content Include="scripts\esm\popper-utils.min.js" />
     <Content Include="scripts\esm\popper.js" />
     <Content Include="scripts\esm\popper.min.js" />
+    <Content Include="scripts\bootstrap.min.js.map" />
+    <Content Include="scripts\bootstrap.js.map" />
+    <Content Include="scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="scripts\bootstrap.bundle.js.map" />
+    <None Include="scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="scripts\inputmask\bindings\inputmask.binding.js" />
+    <Content Include="scripts\inputmask\inputmask.es6.js" />
     <Content Include="scripts\inputmask\inputmask.js" />
     <Content Include="scripts\inputmask\inputmask.min.js" />
     <Content Include="scripts\inputmask\jquery.inputmask.js" />
     <Content Include="scripts\inputmask\jquery.inputmask.min.js" />
+    <Content Include="scripts\jquery-3.6.0.js" />
+    <Content Include="scripts\jquery-3.6.0.min.js" />
+    <Content Include="scripts\jquery-3.6.0.slim.js" />
+    <Content Include="scripts\jquery-3.6.0.slim.min.js" />
     <Content Include="scripts\jquery.maskedinput.js" />
     <Content Include="scripts\jquery.maskedinput.min.js" />
     <Content Include="scripts\MensajesPagina.js" />
@@ -301,10 +404,8 @@
     <Content Include="scripts\esm\popper.js.map" />
     <Content Include="scripts\esm\popper-utils.min.js.map" />
     <Content Include="scripts\esm\popper-utils.js.map" />
-    <Content Include="scripts\bootstrap.min.js.map" />
-    <Content Include="scripts\bootstrap.js.map" />
-    <Content Include="scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="scripts\bootstrap.bundle.js.map" />
+    <Content Include="scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="scripts\jquery-3.6.0.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -316,7 +417,6 @@
     <Content Include="Estilos\EstilosMaster.css" />
     <Content Include="Imagenes\Logo.jpg" />
     <Content Include="Paginas\AnoVehiculo.aspx" />
-    <Content Include="Paginas\AsignacionTarjetas.aspx" />
     <Content Include="Paginas\ComprensivoIncendioRoboPoPup.aspx" />
     <Content Include="Paginas\CotizadorAmigos.aspx" />
     <Content Include="Paginas\Empleados.aspx" />
@@ -369,13 +469,6 @@
     <Compile Include="Paginas\AnoVehiculo.aspx.designer.cs">
       <DependentUpon>AnoVehiculo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\AsignacionTarjetas.aspx.cs">
-      <DependentUpon>AsignacionTarjetas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\AsignacionTarjetas.aspx.designer.cs">
-      <DependentUpon>AsignacionTarjetas.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paginas\ComprensivoIncendioRoboPoPup.aspx.cs">
       <DependentUpon>ComprensivoIncendioRoboPoPup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -390,12 +483,26 @@
     <Compile Include="Paginas\Consulta\ConsultarDataAsegurado.aspx.designer.cs">
       <DependentUpon>ConsultarDataAsegurado.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Consulta\EstadisticaRenovacion.aspx.cs">
+      <DependentUpon>EstadisticaRenovacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Consulta\EstadisticaRenovacion.aspx.designer.cs">
+      <DependentUpon>EstadisticaRenovacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Consulta\GenerarReporteFianzas.aspx.cs">
       <DependentUpon>GenerarReporteFianzas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Consulta\GenerarReporteFianzas.aspx.designer.cs">
       <DependentUpon>GenerarReporteFianzas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Consulta\GestionCobros.aspx.cs">
+      <DependentUpon>GestionCobros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Consulta\GestionCobros.aspx.designer.cs">
+      <DependentUpon>GestionCobros.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Consulta\ListadoRenovacion.aspx.cs">
       <DependentUpon>ListadoRenovacion.aspx</DependentUpon>
@@ -404,12 +511,26 @@
     <Compile Include="Paginas\Consulta\ListadoRenovacion.aspx.designer.cs">
       <DependentUpon>ListadoRenovacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Consulta\RegistrosImcompletos.aspx.cs">
+      <DependentUpon>RegistrosImcompletos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Consulta\RegistrosImcompletos.aspx.designer.cs">
+      <DependentUpon>RegistrosImcompletos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx.cs">
       <DependentUpon>ReporteOperacionesSospechosas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Consulta\ReporteOperacionesSospechosas.aspx.designer.cs">
       <DependentUpon>ReporteOperacionesSospechosas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Consulta\SacarCarteraIntermediariosSupervisor.aspx.cs">
+      <DependentUpon>SacarCarteraIntermediariosSupervisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Consulta\SacarCarteraIntermediariosSupervisor.aspx.designer.cs">
+      <DependentUpon>SacarCarteraIntermediariosSupervisor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Consulta\ValidarCoberturas.aspx.cs">
       <DependentUpon>ValidarCoberturas.aspx</DependentUpon>
@@ -424,6 +545,13 @@
     </Compile>
     <Compile Include="Paginas\ConsumoWS.aspx.designer.cs">
       <DependentUpon>ConsumoWS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\ControlVisitas.aspx.cs">
+      <DependentUpon>ControlVisitas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\ControlVisitas.aspx.designer.cs">
+      <DependentUpon>ControlVisitas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\CotizadorAmigos.aspx.cs">
       <DependentUpon>CotizadorAmigos.aspx</DependentUpon>
@@ -522,13 +650,6 @@
     <Compile Include="Paginas\MantenimientoClaveSeguridad.aspx.designer.cs">
       <DependentUpon>MantenimientoClaveSeguridad.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\MantenimientoDependientes.aspx.cs">
-      <DependentUpon>MantenimientoDependientes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\MantenimientoDependientes.aspx.designer.cs">
-      <DependentUpon>MantenimientoDependientes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paginas\MantenimientoPorcientoComisionPorDefecto.aspx.cs">
       <DependentUpon>MantenimientoPorcientoComisionPorDefecto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -538,9 +659,24 @@
     </Compile>
     <Compile Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx.cs">
       <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Mantenimientos\IntermediariosSupervisores.aspx.designer.cs">
       <DependentUpon>IntermediariosSupervisores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Mantenimientos\MantenimientoDependientes.aspx.cs">
+      <DependentUpon>MantenimientoDependientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Mantenimientos\MantenimientoDependientes.aspx.designer.cs">
+      <DependentUpon>MantenimientoDependientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Mantenimientos\MantenimientoMonedas.aspx.cs">
+      <DependentUpon>MantenimientoMonedas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Mantenimientos\MantenimientoMonedas.aspx.designer.cs">
+      <DependentUpon>MantenimientoMonedas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Oficinas.aspx.cs">
       <DependentUpon>Oficinas.aspx</DependentUpon>
@@ -584,11 +720,33 @@
     <Compile Include="Paginas\ProcesarDataPowerBi.aspx.designer.cs">
       <DependentUpon>ProcesarDataPowerBi.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\ProcesoPoliza\Cotizador.aspx.cs">
+      <DependentUpon>Cotizador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\ProcesoPoliza\Cotizador.aspx.designer.cs">
+      <DependentUpon>Cotizador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\AgregarItemsReclamos.aspx.cs">
+      <DependentUpon>AgregarItemsReclamos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\AgregarItemsReclamos.aspx.designer.cs">
+      <DependentUpon>AgregarItemsReclamos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Procesos\DatosPoliza.aspx.cs">
       <DependentUpon>DatosPoliza.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Procesos\DatosPoliza.aspx.designer.cs">
       <DependentUpon>DatosPoliza.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\Endosos.aspx.cs">
+      <DependentUpon>Endosos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\Endosos.aspx.designer.cs">
+      <DependentUpon>Endosos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx.cs">
       <DependentUpon>GenerarBackupBaseDatos.aspx</DependentUpon>
@@ -610,6 +768,34 @@
     </Compile>
     <Compile Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx.designer.cs">
       <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\ProcesoEmisionPoliza.aspx.cs">
+      <DependentUpon>ProcesoEmisionPoliza.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\ProcesoEmisionPoliza.aspx.designer.cs">
+      <DependentUpon>ProcesoEmisionPoliza.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\ReciboDigital.aspx.cs">
+      <DependentUpon>ReciboDigital.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\ReciboDigital.aspx.designer.cs">
+      <DependentUpon>ReciboDigital.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\UtilidadesCobros.aspx.cs">
+      <DependentUpon>UtilidadesCobros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\UtilidadesCobros.aspx.designer.cs">
+      <DependentUpon>UtilidadesCobros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\VolantesDePagos.aspx.cs">
+      <DependentUpon>VolantesDePagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\VolantesDePagos.aspx.designer.cs">
+      <DependentUpon>VolantesDePagos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ProduccionDiaria.aspx.cs">
       <DependentUpon>ProduccionDiaria.aspx</DependentUpon>
@@ -639,6 +825,13 @@
     <Compile Include="Paginas\ReporteReclamos.aspx.designer.cs">
       <DependentUpon>ReporteReclamos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Reportes\AntiguedadSaldo.aspx.cs">
+      <DependentUpon>AntiguedadSaldo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\AntiguedadSaldo.aspx.designer.cs">
+      <DependentUpon>AntiguedadSaldo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Reportes\ComisionesIntermediarios.aspx.cs">
       <DependentUpon>ComisionesIntermediarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -653,6 +846,7 @@
     <Compile Include="Paginas\Reportes\ComisionesSupervisores.aspx.designer.cs">
       <DependentUpon>ComisionesSupervisores.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Reportes\ExcelData.cs" />
     <Compile Include="Paginas\Reportes\GenerarMarbetes.aspx.cs">
       <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -681,12 +875,48 @@
     <Compile Include="Paginas\Reportes\ImpresionCheques.aspx.designer.cs">
       <DependentUpon>ImpresionCheques.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Reportes\List.cs" />
     <Compile Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx.cs">
       <DependentUpon>ProduccionDiariaContabilidad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx.designer.cs">
       <DependentUpon>ProduccionDiariaContabilidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReclamacionesPagadas.aspx.cs">
+      <DependentUpon>ReclamacionesPagadas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReclamacionesPagadas.aspx.designer.cs">
+      <DependentUpon>ReclamacionesPagadas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteImpresionMarbetes.aspx.cs">
+      <DependentUpon>ReporteImpresionMarbetes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteImpresionMarbetes.aspx.designer.cs">
+      <DependentUpon>ReporteImpresionMarbetes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteIntermediariosAlfredo.aspx.cs">
+      <DependentUpon>ReporteIntermediariosAlfredo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteIntermediariosAlfredo.aspx.designer.cs">
+      <DependentUpon>ReporteIntermediariosAlfredo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReportePrimaDeposito.aspx.cs">
+      <DependentUpon>ReportePrimaDeposito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReportePrimaDeposito.aspx.designer.cs">
+      <DependentUpon>ReportePrimaDeposito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteProduccion.aspx.cs">
+      <DependentUpon>ReporteProduccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteProduccion.aspx.designer.cs">
+      <DependentUpon>ReporteProduccion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx.cs">
       <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
@@ -695,6 +925,20 @@
     <Compile Include="Paginas\Reportes\ReporteProduccionIntermediarioSupervisor.aspx.designer.cs">
       <DependentUpon>ReporteProduccionIntermediarioSupervisor.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Reportes\ReporteReclamaciones.aspx.cs">
+      <DependentUpon>ReporteReclamaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteReclamaciones.aspx.designer.cs">
+      <DependentUpon>ReporteReclamaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteSobreComision.aspx.cs">
+      <DependentUpon>ReporteSobreComision.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteSobreComision.aspx.designer.cs">
+      <DependentUpon>ReporteSobreComision.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\SacarDataCoberturas.aspx.cs">
       <DependentUpon>SacarDataCoberturas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -702,11 +946,54 @@
     <Compile Include="Paginas\SacarDataCoberturas.aspx.designer.cs">
       <DependentUpon>SacarDataCoberturas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Seguridad\AsignacionTarjetas.aspx.cs">
+      <DependentUpon>AsignacionTarjetas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\AsignacionTarjetas.aspx.designer.cs">
+      <DependentUpon>AsignacionTarjetas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\ConfiguracionCorreosEmisorProcesos.aspx.cs">
+      <DependentUpon>ConfiguracionCorreosEmisorProcesos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\ConfiguracionCorreosEmisorProcesos.aspx.designer.cs">
+      <DependentUpon>ConfiguracionCorreosEmisorProcesos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\CredencialesBD.aspx.cs">
+      <DependentUpon>CredencialesBD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\CredencialesBD.aspx.designer.cs">
+      <DependentUpon>CredencialesBD.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Seguridad\MantenimientoUsuarios.aspx.cs">
       <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Seguridad\MantenimientoUsuarios.aspx.designer.cs">
       <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\Modulos.aspx.cs">
+      <DependentUpon>Modulos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\Modulos.aspx.designer.cs">
+      <DependentUpon>Modulos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\Opciones.aspx.cs">
+      <DependentUpon>Opciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\Opciones.aspx.designer.cs">
+      <DependentUpon>Opciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\Pantallas.aspx.cs">
+      <DependentUpon>Pantallas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Seguridad\Pantallas.aspx.designer.cs">
+      <DependentUpon>Pantallas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ServiciosFijos.aspx.cs">
       <DependentUpon>ServiciosFijos.aspx</DependentUpon>
@@ -735,6 +1022,20 @@
     </Compile>
     <Compile Include="Paginas\SolicitudSeguroLey.aspx.designer.cs">
       <DependentUpon>SolicitudSeguroLey.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Suministro\AdministracionSuministro.aspx.cs">
+      <DependentUpon>AdministracionSuministro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Suministro\AdministracionSuministro.aspx.designer.cs">
+      <DependentUpon>AdministracionSuministro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Suministro\SolicitudSuministro.aspx.cs">
+      <DependentUpon>SolicitudSuministro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Suministro\SolicitudSuministro.aspx.designer.cs">
+      <DependentUpon>SolicitudSuministro.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\SuperIntendencia\ConsultaPersonas.aspx.cs">
       <DependentUpon>ConsultaPersonas.aspx</DependentUpon>
@@ -839,13 +1140,24 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.4.2.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.4.2.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.20.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.20.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.20.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.20.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.WindowsServer.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.WindowsServer.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.Web.2.20.0\build\Microsoft.ApplicationInsights.Web.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.Web.2.20.0\build\Microsoft.ApplicationInsights.Web.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.20.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.20.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.20.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.20.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.WindowsServer.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.WindowsServer.2.20.0\build\Microsoft.ApplicationInsights.WindowsServer.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.Web.2.20.0\build\Microsoft.ApplicationInsights.Web.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.Web.2.20.0\build\Microsoft.ApplicationInsights.Web.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

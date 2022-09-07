@@ -25,9 +25,14 @@
         
 
         th {
-            background-color: dodgerblue;
-            color: white;
+            background-color: #1E90FF;
+            color: #000000;
         }
+            .BotonImagen {
+            
+                width:50px;
+                height:50px;
+            }
     </style>
 
     <script type="text/javascript">
@@ -60,96 +65,106 @@
         })
     </script>
     <div class="container-fluid">
+        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <br /><br />
 
-        <div class="form-row">
-            <div class="form-group col-md-3">
+        <div class="row">
+            <div class="col-md-3">
                 <asp:Label ID="lbFechaDesdeConsulta" runat="server" Text="Fecha Desde" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaDesdeConsulta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbFechaHastaConsulta" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaHastaConsulta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbCodigoSupervisorConsulta" runat="server" Text="Codigo de Supervisor" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtCodigoSupervisorConsulta" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoSupervisorConsulta_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbNombreSupervisorConsulta" runat="server" Text="Nombre de Supervisor" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreSupervisorConsulta" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbSeleccionarSucursalConsulta" runat="server" Text="Sucursal" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarSucursalConsulta" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSeleccionarSucursalConsulta_SelectedIndexChanged" ToolTip="Seleccionar Sucursal" CssClass="form-control"></asp:DropDownList>
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="col-md-3">
                 <asp:Label ID="lbSeleccionarOficinaConsulta" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionaroficinaConsulta" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
             </div>
         </div>
 
         <div class="form-check-inline">
-            <div class="form-group form-check">
+     
                 <asp:Label ID="lbGenerarReporteA" runat="server" Text="Generar Reporte A: " CssClass="Letranegrita"></asp:Label>
                 <asp:RadioButton ID="rbGenerarReportePDF" runat="server" CssClass="form-check-input" Text="PDF" ToolTip="Generar Reporte a PDF" GroupName="Reporte" />
                 <asp:RadioButton ID="rbGenerarReporteExcel" runat="server" CssClass="form-check-input" Text="Excel" ToolTip="Generar Reporte a Excel" GroupName="Reporte" />
                 <asp:RadioButton ID="rbGenerarReporteWord" runat="server" CssClass="form-check-input" Text="Word" ToolTip="Generar Reporte a Word" GroupName="Reporte" /><br />
                 <asp:Label ID="lbTipoReporteGenerar" runat="server" Text="Tipo de Reporte: " CssClass="Letranegrita"></asp:Label>
-                <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" CssClass="form-check-input" AutoPostBack="true" OnCheckedChanged="rbReporteResumido_CheckedChanged" GroupName="TipoReporteGenerar" ToolTip="Generar el reporte resumido" />
-                <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Detalle" CssClass="form-check-input" GroupName="TipoReporteGenerar" AutoPostBack="true" OnCheckedChanged="rbReporteDetallado_CheckedChanged" ToolTip="Generar el reporte detallado" />
-            </div>
+                <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" CssClass="form-check-input" GroupName="TipoReporteGenerar" ToolTip="Generar el reporte resumido" />
+                <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Detalle" CssClass="form-check-input" GroupName="TipoReporteGenerar" ToolTip="Generar el reporte detallado" />
+         
         </div>
 
         <div align="center">
-            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Registros Por Pantalla" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click" />
-             <asp:Button ID="btnExportar" runat="server" Text="Exportar" ToolTip="Exportar Listado a Excel" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnExportar_Click" />
-             <asp:Button ID="btnReporte" runat="server" Text="Reporte" ToolTip="Generar Reporte de Comisiones" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnReporte_Click" />
+       
+
+            <asp:ImageButton ID="btnConsultarNuevo" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" OnClick="btnConsultarNuevo_Click" ImageUrl="~/Imagenes/Buscar.png" />
+            <asp:ImageButton ID="btnExportarNuevo" runat="server" ToolTip="Exportar Información a Excel" CssClass="BotonImagen" OnClick="btnExportarNuevo_Click" ImageUrl="~/Imagenes/excel.png" />
+            <asp:ImageButton ID="btnReporteNuevo" runat="server" ToolTip="Generar Reporte" CssClass="BotonImagen" OnClick="btnReporteNuevo_Click" ImageUrl="~/Imagenes/Reporte.png" />
+            <br />
             <button type="button" id="btnCodigosPermitidos" class="btn btn-outline-secondary btn-sm Custom" data-toggle="modal" data-target=".CodigosPermitidos">Codigos</button>
             <br />
             <asp:Label ID="lbCantidadRegistrosEncontradosTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
             <asp:Label ID="lbCantidadRegistrosEncontradosVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
             <asp:Label ID="lbCantidadRegistrosEncontradosCerrar" runat="server" Text=" ) " CssClass="Letranegrita"></asp:Label>
+
+             <asp:Label ID="lbCobradoBrutoTitulo" runat="server" Text="Cobrado Bruto ( " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCobradBrutoVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCobradoBrutoCerrer" runat="server" Text=" ) " CssClass="Letranegrita"></asp:Label>
+
+             <asp:Label ID="lbCobradoNetoTitulo" runat="server" Text="Cobrado Neto ( " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCobradoNetoVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+            <asp:Label ID="lbCobradoNetoCerrar" runat="server" Text=" ) " CssClass="Letranegrita"></asp:Label>
         </div>
         <br />
 
-        <div class="table-responsive">
-           <table class="table table-hover">
+
+           <table class="table table-striped">
                <thead>
                    <tr>
-                   <th style="width:30%" align="left"> <asp:Label ID="lbSupervisorHeaderRepeater" runat="server" Text="Supervisor" CssClass="Letranegrita"></asp:Label> </th>
-                   <th style="width:10%" align="left"> <asp:Label ID="lbPolizaHeaderRepeater" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label> </th>
-                   <th style="width:10%" align="left"> <asp:Label ID="lbNumeroFacturaHeaderRepeater" runat="server" Text="Factura" CssClass="Letranegrita"></asp:Label> </th>
-                   <th style="width:10%" align="left"> <asp:Label ID="lbfechaHeaderRepeater" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label> </th>
-                   <th style="width:10%" align="left"> <asp:Label ID="lbValorHeaderRepeater" runat="server" Text="Valor" CssClass="Letranegrita"></asp:Label> </th>
-                   <th style="width:10%" align="left"> <asp:Label ID="lbPorcientoComisionHeaderRepeater" runat="server" Text="%" CssClass="Letranegrita"></asp:Label> </th>
-                   <th style="width:10%" align="left"> <asp:Label ID="lbComisionPagarHeaderRepeater" runat="server" Text="Liquidar" CssClass="Letranegrita"></asp:Label> </th>
-                   <th style="width:10%" align="left"> <asp:Label ID="lbOficinaHeaderRepeater" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label> </th>
+                   <th scope="col">Supervisor</th>
+                   <th sscope="col">Recibo</th>
+                   <th sscope="col">Fecha</th>
+                   <th sscope="col">Neto</th>
+                   <th sscope="col">Concepto</th>
+                   <th sscope="col">%</th>
+                   <th sscope="col">A Pagar</th>
                </tr>
                </thead>
                <tbody>
                    <asp:Repeater ID="rpListadoComisionesSupervisores" runat="server">
                        <ItemTemplate>
                            <tr>
-                               <td style="width:30%"> <%# Eval("Supervisor") %> </td>
-                               <td style="width:10%"> <%# Eval("Poliza") %> </td>
-                               <td style="width:10%"> <%# Eval("NumeroFactura") %> </td>
-                               <td style="width:10%"> <%# Eval("Fecha") %> </td>
-                               <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Valor")) %> </td>
-                               <td style="width:10%"> <%#string.Format("{0:n2}", Eval("PorcuentoComision")) %> </td>
-                               <td style="width:10%"> <%#string.Format("{0:n2}", Eval("ComisionPagar")) %> </td>
-                               <td style="width:10%"> <%# Eval("Oficina") %> </td>
+                               <td> <%# Eval("NombreSupervisor") %> </td>
+                               <td> <%# Eval("ReciboFormateado") %> </td>
+                               <td> <%# Eval("FechaPagoFormateado") %> </td>                               
+                               <td> <%#string.Format("{0:n2}", Eval("Neto")) %> </td>
+                               <td> <%# Eval("ConceptoFactura") %> </td>
+                               <td> <%#string.Format("{0:n2}", Eval("PorcientoComisionIntermediario")) %> </td>
+                               <td> <%#string.Format("{0:n2}", Eval("ComisionPagar")) %> </td>
                            </tr>
                        </ItemTemplate>
                    </asp:Repeater>
                </tbody>
            </table>
-        </div>
+
 
         <div align="center">
                 <asp:Label ID="lbPaginaActualTituloPrincipal" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
@@ -194,22 +209,22 @@
            <asp:UpdatePanel ID="UpdatePanelCodigos" runat="server">
                <ContentTemplate>
                      <div class="form-check-inline">
-               <div class="form-group form-check">
+
                    <asp:Label ID="lbTipoInformacionMostrar" runat="server" Text="Tipo de Información: " CssClass="Letranegrita"></asp:Label>
                    <asp:RadioButton ID="rbCodigosPermitidos" runat="server" Text="Codigos Permitidos" ToolTip="Mostrar los codigos permitidos para generar comisión" CssClass="form-check-input" AutoPostBack="true" OnCheckedChanged="rbCodigosPermitidos_CheckedChanged" GroupName="TipoInformacion" />
                    <asp:RadioButton ID="rbBuscarCodigos" runat="server" Text="Buscar Codigos" ToolTip="Buscar Codigos de supervisores para agregar" CssClass="form-check-input" AutoPostBack="true" OnCheckedChanged="rbBuscarCodigos_CheckedChanged" GroupName="TipoInformacion" />
-               </div>
+         
                      
            </div>
 
-                   <div class="form-row">
-                       <div class="form-group col-md-6">
+                   <div class="row">
+                       <div class="col-md-6">
                            <asp:Label ID="lbIdCodigoCodigospermitidos" runat="server" Text="Codigo de Supervisor" CssClass="Letranegrita"></asp:Label>
                            <asp:TextBox ID="txtCodigoCodigospermitidos" runat="server" CssClass="form-control" TextMode="Number" MaxLength="4" AutoCompleteType="Disabled"></asp:TextBox>
                            
                        </div>
 
-                       <div class="form-group col-md-6">
+                       <div class="col-md-6">
                            <asp:Label ID="lbNombreSupervisorCodigosPermitidos" runat="server" Text="Nombre de Supervisor" CssClass="Letranegrita"></asp:Label>
                             <asp:TextBox ID="txtNombreSupervisorPopop" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                        </div>
@@ -225,15 +240,15 @@
                    <br />
 
                        <div id="DivBloqueCodigosPermitidos" runat="server">
-                          <div class="table-responsive">
-                              <table class="table table-hover">
+      
+                              <table class="table table-striped">
                                   <thead>
                                       <tr>
-                                          <th style="width:10%" align="left"> <asp:Label ID="lbSeleccionarSupervisoresHeaderrepeaterPOPOP" runat="server" Text="Seleccionar" CssClass="Letranegrita"></asp:Label> </th>
-                                          <th style="width:10%" align="left"> <asp:Label ID="lbCodigoSupervisorHeaderRepeaterPOPOP" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label> </th>
-                                          <th style="width:50%" align="left"> <asp:Label ID="lbNombreSupervisorHeaderRepeaterPOPOP" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label> </th>
-                                          <th style="width:10%" align="left"> <asp:Label ID="lbFechaAgregadoHeaderRepeaterPOPOP" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label> </th>
-                                          <th style="width:20%" align="left"> <asp:Label ID="lbOficinaHEaderRepeaterPOPOP" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label> </th>
+                                          <th scope="col"> Seleccionar </th>
+                                          <th scope="col"> Codigo </th>
+                                          <th scope="col"> Nombre </th>
+                                          <th scope="col"> Fecha </th>
+                                          <th scope="col"> Oficina </th>
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -242,17 +257,17 @@
                                               <tr>
                                                   <asp:HiddenField ID="hfIdRegistroSeleccionado" runat="server" Value='<%# Eval("IdRegistro") %>' />
 
-                                                  <td style="width:10%"> <asp:Button ID="btnSeleccionarregistroAgregadoHEaderRpeaterPOPOP" runat="server" Text="Seleccionar" ToolTip="Seleccionar registro" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarregistroAgregadoHEaderRpeaterPOPOP_Click" /> </td>
-                                                  <td style="width:10%"> <%# Eval("CodigoSupervisor") %> </td>
-                                                  <td style="width:50%"> <%# Eval("Nombre") %> </td>
-                                                  <td style="width:10%"> <%# Eval("FechaAgregado") %> </td>
-                                                  <td style="width:20%"> <%# Eval("Oficina") %> </td>
+                                                  <td> <asp:Button ID="btnSeleccionarregistroAgregadoHEaderRpeaterPOPOP" runat="server" Text="Seleccionar" ToolTip="Seleccionar registro" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnSeleccionarregistroAgregadoHEaderRpeaterPOPOP_Click" /> </td>
+                                                  <td> <%# Eval("CodigoSupervisor") %> </td>
+                                                  <td> <%# Eval("Nombre") %> </td>
+                                                  <td> <%# Eval("FechaAgregado") %> </td>
+                                                  <td> <%# Eval("Oficina") %> </td>
                                               </tr>
                                           </ItemTemplate>
                                       </asp:Repeater>
                                   </tbody>
                               </table>
-                          </div>
+                  
 
                              <div align="center">
                 <asp:Label ID="lbPaginaActualTituloCodigosPermitidos" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
@@ -283,28 +298,28 @@
                            <br />
 
                            <div id="DivControlesCodigoPermitidos" runat="server">
-                               <div class="form-row">
+                               <div class="row">
                                    <asp:Label ID="IdRegistroSeleccionadoCodigoPermitidos" runat="server" Text="IdRegistroSeleccionado" Visible="false"></asp:Label>
-                                   <div class="form-group col-md-4">
+                                   <div class="col-md-4">
                                        <asp:Label ID="lbCodigoSupervisorControlesPermitido" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label>
                                        <asp:TextBox ID="txtCodigoSupervisorControlesPermitidos" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                    </div>
 
-                                    <div class="form-group col-md-4">
+                                    <div class="col-md-4">
                                        <asp:Label ID="lbNombreSupervisorControlesPermitidos" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
                                        <asp:TextBox ID="txtNombreSupervisorControlesPermitidos" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                    </div>
 
-                                    <div class="form-group col-md-4">
+                                    <div class="col-md-4">
                                        <asp:Label ID="lbFechaAgregadoCOntrolesPermitidos" runat="server" Text="Fecha Agregado" CssClass="Letranegrita"></asp:Label>
                                        <asp:TextBox ID="txtFechaAgregadosControlesPermitidos" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                    </div>
 
-                                    <div class="form-group col-md-4">
+                                    <div class="col-md-4">
                                        <asp:Label ID="lboficinaSupervisorControlesPermitidos" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
                                        <asp:TextBox ID="txtOficinaSupervisorCOntrolesPermitidos" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                    </div>
-                                    <div class="form-group col-md-4">
+                                    <div class="col-md-4">
                                        <asp:Label ID="lbClaveSeguridadControlesPermitifdosd" runat="server" Text="Clave de Seguridad" CssClass="Letranegrita"></asp:Label>
                                        <asp:TextBox ID="txtClaveSeguridadControlesPermitidos" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                                    </div>
@@ -322,23 +337,22 @@
                          <div id="DivBloqueBuscarCodigos" runat="server">
 
                              <div align="center">
-                                 <div class="form-row">
-                                     <div class="form-group col-md-6">
+                                 <div class="row">
+                                     <div class="col-md-6">
                                          <asp:Label ID="lbClaveSeguridadBuscarCodigo" runat="server" Text="Clave de Seguridad" CssClass="Letranegrita"></asp:Label>
                                          <asp:TextBox ID="txtClaveSeguridadBuscarCodigo" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
                                      </div>
                                  </div>
                              </div>
 
-                            <div class="table-responsive">
-                                <table class="table table-hover">
+                                <table class="table table-striped">
                                    <thead>
                                         <tr>
-                                        <th style="width:10%" align="left"> <asp:Label ID="lbGuardarBuscarCodigo" runat="server" Text="Guardar" CssClass="Letranegrita"></asp:Label> </th>
-                                        <th style="width:10%" align="left"> <asp:Label ID="lbCodigoSupervisorBuscarCodigo" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label> </th>
-                                        <th style="width:50%" align="left"> <asp:Label ID="lbNombreSupervisorBuscarCodigo" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label> </th>
-                                        <th style="width:10%" align="left"> <asp:Label ID="lbEstatusSupervisorBuscarCodigo" runat="server" Text="Estatus" CssClass="Letranegrita"></asp:Label> </th>
-                                        <th style="width:20%" align="left"> <asp:Label ID="lbOficinaSupervisorBuscarCodigo" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label> </th>
+                                        <th scope="col"> Guardar </th>
+                                        <th scope="col"> Codigo </th>
+                                        <th scope="col"> Nombre </th>
+                                        <th scope="col"> Estatus </th>
+                                        <th scope="col"> Oficina </th>
                                     </tr>
                                    </thead>
                                     <tbody>
@@ -346,18 +360,18 @@
                                             <ItemTemplate>
                                                 <tr>
                                                     <asp:HiddenField ID="hfCodigoSupervisor" runat="server" Value='<%# Eval("Codigo") %>' />
-                                                <td style="width:10%"> <asp:Button ID="btnGuardarBuscarCodigo" runat="server" Text="Guardar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Guardar Registro" OnClick="btnGuardarBuscarCodigo_Click" /> </td>
-                                                <td style="width:10%"> <%# Eval("Codigo") %> </td>
-                                                <td style="width:50%"> <%# Eval("Nombre") %> </td>
-                                                <td style="width:10%"> <%# Eval("Estatus") %> </td>
-                                                <td style="width:20%"> <%# Eval("Oficina") %> </td>
+                                                <td> <asp:Button ID="btnGuardarBuscarCodigo" runat="server" Text="Guardar" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Guardar Registro" OnClick="btnGuardarBuscarCodigo_Click" /> </td>
+                                                <td> <%# Eval("Codigo") %> </td>
+                                                <td> <%# Eval("Nombre") %> </td>
+                                                <td> <%# Eval("Estatus") %> </td>
+                                                <td> <%# Eval("Oficina") %> </td>
                                                 </tr>
                                             </ItemTemplate>
                                         </asp:Repeater>
                                     </tbody>
                                 </table>
 
-                            </div>
+                       
 
                                <div align="center">
                 <asp:Label ID="lbPaginaActualTituloBuscarCodigos" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>

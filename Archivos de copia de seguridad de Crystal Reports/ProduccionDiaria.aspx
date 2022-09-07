@@ -38,6 +38,7 @@
         }
     </script>
 <div class="container-fluid">
+    <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
     <div class="jumbotron">
         <asp:Label ID="lbEncabezado" runat="server" Text="Producción diaria"></asp:Label>
     </div>

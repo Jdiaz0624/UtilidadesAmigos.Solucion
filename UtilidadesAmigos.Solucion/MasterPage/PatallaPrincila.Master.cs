@@ -1208,5 +1208,19 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkGestionCobros_Click1(object sender, EventArgs e)
+        {
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Consulta/GestionCobros.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }

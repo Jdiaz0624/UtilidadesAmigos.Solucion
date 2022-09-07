@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Utilidades Amigos</title>
+    <title>Utilidades Futuro Seguros</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
     <link rel="icon" type="image/png" href="Recursos/Facturación-Electrónica-Icono-1024x1024.ico" />
     
@@ -269,6 +269,7 @@ body { background-color: #465268; }
     		<div class="lock-head">
     			<asp:Label ID="NombreEmpresa" runat="server" Text="Ingresar Datos de Acceso"></asp:Label>
                 <asp:Label ID="lbContador" Visible="false" runat="server" Text="0"></asp:Label>
+                
     		</div>
     		<div class="lock-body" >
     			

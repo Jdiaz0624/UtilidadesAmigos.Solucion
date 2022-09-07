@@ -49,116 +49,7 @@
     <asp:Label ID="lbControlUsuarioConectado" runat="server" Visible="false" Text="0"></asp:Label>
     <asp:Label ID="lbControlOficinaUsuario" runat="server" Visible="false" Text="0"></asp:Label>
       <form id="form1" runat="server">   
-         <%-- <div class="container-fluid">
-                <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-                        <!-- Brand -->
-                        
-                      
-                        <!-- Links -->
-                        <ul class="navbar-nav">
-                          <li class="nav-item">
-                            <asp:LinkButton ID="LinkInicio" runat="server"  class="nav-link active" OnClick="LinkInicio_Click">   <img width="90px" src="/Imagenes/Logo.png" /></asp:LinkButton>
-                          </li>
-                          <li class="nav-item">
-                            <asp:LinkButton ID="linkTicket" runat="server" Visible="false" ForeColor="Red" Text="Ticket" OnClick="linkTicket_Click" class="nav-link active"></asp:LinkButton>
-                          </li>
-                      
-                          <!-- Dropdown -->
-                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle"  href="#" id="navbardrop" data-toggle="dropdown">
-                              Consultas
-                            </a>
-                            <div class="dropdown-menu">
-                                <asp:LinkButton ID="LinkConsultarPersonas" runat="server" ToolTip="Consultar Pesonas Super Intendencia" Text="Consultar Personas" OnClick="LinkConsultarPersonas_Click" class="dropdown-item"></asp:LinkButton>
-                               <asp:LinkButton ID="linkProduccionPorUsuarios" runat="server" Visible="false" ToolTip="Muestra la Producción por usuarios con movimientos en Cobros, Producción y Reclamaciones" Text="Produccion Por Usuario" OnClick="linkProduccionPorUsuarios_Click" class="dropdown-item"></asp:LinkButton>
-                               <asp:LinkButton ID="linkProduccionDiaria" runat="server" Visible="false" ToolTip="Mostrar la Producción, lo Cobrado y lo reclamado" Text="Produccion - Cobrado - Reclamado" OnClick="linkProduccionDiaria_Click" class="dropdown-item"></asp:LinkButton>
-                               <asp:LinkButton ID="linkGenerarCartera" runat="server" Visible="false" ToolTip="Generar Cartera de Supervisores" Text="Generar Cartera Supervisores" OnClick="linkGenerarCartera_Click" class="dropdown-item"></asp:LinkButton>
-                               <asp:LinkButton ID="linkCarteraIntermediarios" runat="server" Visible="false" Text="Generar Cartera Intermediario" OnClick="linkCarteraIntermediarios_Click" class="dropdown-item"></asp:LinkButton>
-                                <asp:LinkButton ID="linkComisionesCobrador" runat="server" Text="Listado de Renovacion" OnClick="linkComisionesCobrador_Click" CssClass="dropdown-item"></asp:LinkButton>
-                               <asp:LinkButton ID="linkValidarCoberturas" runat="server" Text="Sacar Data Coberturas" OnClick="linkValidarCoberturas_Click" class="dropdown-item"></asp:LinkButton>
-                               <asp:LinkButton ID="linkGenerarReporteUAF" runat="server" Text="Generar Reporte para la UAF" OnClick="linkGenerarReporteUAF_Click" class="dropdown-item"></asp:LinkButton>
-                                <asp:LinkButton ID="LinkReporteFianzas" runat="server" Text="Reporte de Fianzas" OnClick="LinkReporteFianzas_Click" class="dropdown-item"></asp:LinkButton>
-                                <asp:LinkButton ID="LinkReporteReclamos" runat="server" Visible="false" Text="Reporte de Reclamos" OnClick="LinkReporteReclamos_Click" class="dropdown-item"></asp:LinkButton>
-                                 <asp:LinkButton ID="LinkConsumoWS" runat="server"  Text="Consultar Dato Poliza (WS)" OnClick="LinkConsumoWS_Click" class="dropdown-item"></asp:LinkButton>
-                                <asp:LinkButton ID="LinkConsultarInformacionAsegurado" runat="server" Text="Información Asegura.do" OnClick="LinkConsultarInformacionAsegurado_Click" CssClass="dropdown-item" ToolTip="Mostrar y procesar data del proceso de Asegua.do"></asp:LinkButton>
-                                
-                                
-                            </div>
-                          </li>
-
-                            <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                              Reportes
-                            </a>
-                            <div class="dropdown-menu">
-                                <asp:LinkButton ID="LinkProduccionIntermediarioSupervisor" runat="server" Text="Reporte de Producción" ToolTip="Generar Reporte de Produccion de Intermediarios y Supervisores" OnClick="LinkProduccionIntermediarioSupervisor_Click" class="dropdown-item"></asp:LinkButton>
-                                <asp:LinkButton ID="LinkReporteCobrado" runat="server" Text="Reporte de Cobro" ToolTip="Generar Reporte de Cobros" OnClick="LinkReporteCobrado_Click" class="dropdown-item"></asp:LinkButton>
-                               <asp:LinkButton ID="LinkGenerarMarbetesBehiculo" runat="server" ToolTip="Genera Marbetes" Text="Impresión de Marbetes" OnClick="LinkGenerarMarbetesBehiculo_Click" class="dropdown-item"></asp:LinkButton>
-                                <asp:LinkButton ID="LiniComisionesIntermediarios" runat="server" Text="Generar Comisiones de Intermediario" OnClick="LiniComisionesIntermediarios_Click" class="dropdown-item"></asp:LinkButton>
-                                <asp:LinkButton ID="LinkComisionesSupervisores" runat="server" Text="Generar Comisiones de Supervisores" OnClick="LinkComisionesSupervisores_Click" class="dropdown-item"></asp:LinkButton>
-                                <asp:LinkButton ID="LinkProduccionDiariaContabilidad" runat="server" Text="Producción diaria Contabilidad" ToolTip="Mostrar la Producción diaria para contablidad" OnClick="LinkProduccionDiariaContabilidad_Click" class="dropdown-item"></asp:LinkButton>
-                                <asp:LinkButton ID="LinkAntiguedadSaldo" runat="server" Text="Antiguedad de Saldo" ToolTip="Generar Reporte de antiguedad de saldo" OnClick="LinkAntiguedadSaldo_Click" class="dropdown-item"></asp:LinkButton>
-                                <asp:LinkButton ID="LinkImpresionCheques" runat="server" Text="Impresión de Cheques" ToolTip="Imprimir Cheques" OnClick="LinkImpresionCheques_Click" class="dropdown-item"></asp:LinkButton>
-                            </div>
-                          </li>
-
-                          <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                  Procesos
-                                </a>
-                                <div class="dropdown-menu">
-                                    <asp:LinkButton ID="LinkBakupBD" runat="server" Text="Generar Bakup de BD" OnClick="LinkBakupBD_Click" CssClass="dropdown-item"></asp:LinkButton>
-                                     <asp:LinkButton ID="LinkGenerarSOlicitudChequeComisiones" runat="server" Text="Solicitud de Cheques Intermediario" OnClick="LinkGenerarSOlicitudChequeComisiones_Click" CssClass="dropdown-item"></asp:LinkButton>
-                                  <asp:LinkButton ID="LinkProcesarDataAsegurado" runat="server" Text="Procesar Data Asegura.do" OnClick="LinkProcesarDataAsegurado_Click" CssClass="dropdown-item"></asp:LinkButton>
-                                    <asp:LinkButton ID="LinkCorregirValorDeclarativa" runat="server" Text="Dato Poliza" OnClick="LinkCorregirValorDeclarativa_Click" CssClass="dropdown-item"></asp:LinkButton>
-                                    <asp:LinkButton ID="LinkCorregirLimites" runat="server" Visible="false" ForeColor="Red" Text="Corregir Limites" OnClick="LinkCorregirLimites_Click" CssClass="dropdown-item"></asp:LinkButton>
-                                    <asp:LinkButton ID="LinkEnvioCorreo" runat="server" Visible="false" ForeColor="Red" Text="Envio de Correo" OnClick="LinkEnvioCorreo_Click" CssClass="dropdown-item"></asp:LinkButton>
-                                    <asp:LinkButton ID="LinkEliminarBalance" runat="server"  ForeColor="Red" Visible="false" Text="Eliminar Balance" OnClick="LinkEliminarBalance_Click" CssClass="dropdown-item"></asp:LinkButton>
-                                    <asp:LinkButton ID="LinkGenerarFacturasPDF" runat="server" Visible="false" Text="Generar Facturas PDF" OnClick="LinkGenerarFacturasPDF_Click" CssClass="dropdown-item"></asp:LinkButton>
-                                </div>
-                              </li>
-                              <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                      Mantenimientos
-                                    </a>
-                                    <div class="dropdown-menu">
-                                        <asp:LinkButton ID="LinkClientes" runat="server" Text="Clientes" OnClick="LinkClientes_Click1" class="dropdown-item"></asp:LinkButton>
-                                        <asp:LinkButton ID="LinkIntermediariosSupervisores" runat="server" Text="Intermediarios / Supervisores" OnClick="LinkIntermediariosSupervisores_Click" class="dropdown-item"></asp:LinkButton>
-                                        <asp:LinkButton ID="linkOficinas" runat="server" Text="Oficinas" OnClick="linkOficinas_Click" class="dropdown-item"></asp:LinkButton>
-                                        <asp:LinkButton ID="linkDeprtamentos" runat="server" Text="Departamentos" OnClick="linkDeprtamentos_Click" class="dropdown-item"></asp:LinkButton>
-                                        <asp:LinkButton ID="linkEmpleados" runat="server" Text="Empleados" OnClick="linkEmpleados_Click" class="dropdown-item"></asp:LinkButton>
-                                        <asp:LinkButton ID="linkInventario" runat="server" ForeColor="Red" Text="Inventario" OnClick="linkInventario_Click" class="dropdown-item"></asp:LinkButton>
-                                        <asp:LinkButton ID="LinkDependientes" runat="server" Text="Dependientes" OnClick="LinkDependientes_Click" class="dropdown-item"></asp:LinkButton>
-                                        <asp:LinkButton ID="LinkCorreoElectronicos" runat="server" Visible="false" ForeColor="Red" Text="Correo Electronico" OnClick="LinkCorreoElectronicos_Click" class="dropdown-item"></asp:LinkButton>
-                                        <asp:LinkButton ID="LinkMantenimientoPorcientoComisionPorDefecto" runat="server" Text="Porciento Comisión" OnClick="LinkMantenimientoPorcientoComisionPorDefecto_Click" CssClass="dropdown-item"></asp:LinkButton>
-                                    </div>
-                                  </li>
-                            <asp:LinkButton ID="LinkSolicitudEmision" runat="server" ForeColor="Red" Text="Solicitud" OnClick="LinkSolicitudEmision_Click1" class="nav-link active"></asp:LinkButton>
-                          </li>
-                                      <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                              Seguridad
-                                            </a>
-                                            <div class="dropdown-menu">
-                                              <asp:LinkButton ID="linkUsuarios" runat="server" ToolTip="Mantenimiento de Usuarios" Text="Usuarios" OnClick="linkUsuarios_Click" class="dropdown-item"></asp:LinkButton>
-                                              <asp:LinkButton ID="linkPerfilesUsuarios" runat="server" Text="Perfiles de Usuarios" ToolTip="Mantenimiento de Perfiles de Usuarios" OnClick="linkPerfilesUsuarios_Click" class="dropdown-item"></asp:LinkButton>
-                                              <asp:LinkButton ID="linkClaveSeguridad" runat="server" Text="Clave de Seguridad" OnClick="linkClaveSeguridad_Click" ToolTip="Mantenimiento de clave de seguridad" class="dropdown-item"></asp:LinkButton>
-                                              <asp:LinkButton ID="linkMovimientoUsuarios" runat="server" ForeColor="Red" Text="Movimiento Usuario" OnClick="linkMovimientoUsuarios_Click" ToolTip="Movimiento de Usuarios" class="dropdown-item"></asp:LinkButton>
-                                              <asp:LinkButton ID="linkTarjetasAccesos" runat="server" Text="Tarjetas de Accesos" OnClick="linkTarjetasAccesos_Click" ToolTip="Mantenimiento de tarjetas de Acceso" class="dropdown-item"></asp:LinkButton>
-                                              <asp:LinkButton ID="linkOpcionMenu" runat="server" ForeColor="Red" Text="Opcion Menu" OnClick="linkOpcionMenu_Click" ToolTip="Mantenimiento de Opciones de Menu" class="dropdown-item"></asp:LinkButton>
-                                              <asp:LinkButton ID="linkOpcion" runat="server" ForeColor="Red" Text="Opciones" OnClick="linkOpcion_Click" ToolTip="Mantenimiento de Opciones" class="dropdown-item"></asp:LinkButton>
-                                              <asp:LinkButton ID="linkBotones" runat="server" ForeColor="Red" Text="Botones" OnClick="linkBotones_Click" ToolTip="Mantenimiento de Botones" class="dropdown-item"></asp:LinkButton>
-                                                <asp:LinkButton ID="linkPermisoUsuarios" runat="server" ForeColor="Red" Text="Permisos Usuarios" OnClick="linkPermisoUsuarios_Click" ToolTip="Mantenimiento de Permiso de usuarios" class="dropdown-item"></asp:LinkButton>
-                                            </div>
-                                          </li>
-                            <li class="nav-item">
-                                <asp:LinkButton ID="linkCerrarCesion" runat="server" ToolTip="Cerrar Sesión" Text="Cerrar Sesión" OnClick="linkCerrarCesion_Click"  class="nav-link active" OnClientClick="return confirm('¿Quieres Cerrar Sesión?');"></asp:LinkButton>
-                            </li>
-                        </ul>
-            
-                      </nav>
-               <hr class="hr" />
-        </div>--%>
+      
          
        <div class="d-flex" id="wrapper">
            <div class="bg-dark  border-right" id="sidebar-wrapper">
@@ -193,6 +84,7 @@
           <asp:LinkButton ID="linkGenerarCartera" runat="server" Visible="false" ToolTip="Generar Cartera de Supervisores" Text="Generar Cartera Supervisores" OnClick="linkGenerarCartera_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
           <asp:LinkButton ID="linkCarteraIntermediarios" runat="server" Visible="false" Text="Generar Cartera Intermediario" OnClick="linkCarteraIntermediarios_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
            <asp:LinkButton ID="linkComisionesCobrador" runat="server" Text="Listado de Renovacion" OnClick="linkComisionesCobrador_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
+         <asp:LinkButton ID="LinkGestionCobros" runat="server" Text="Gestión de Cobros" ToolTip="Gestión de Cobros" OnClick="LinkGestionCobros_Click1" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
            <asp:LinkButton ID="LinkEstadisticaRenovacion" runat="server" Text="Estadistica de Renovacion" OnClick="LinkEstadisticaRenovacion_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
 
           <asp:LinkButton ID="linkValidarCoberturas" runat="server" Text="Sacar Data Coberturas" OnClick="linkValidarCoberturas_Click" CssClass="list-group-item list-group-item-action bg-light"></asp:LinkButton>
