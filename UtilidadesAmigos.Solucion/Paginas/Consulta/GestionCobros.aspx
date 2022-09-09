@@ -27,8 +27,8 @@
                height:50px;
            }
         .BotonImagen {
-               width:50px;
-               height:50px;
+               width:40px;
+               height:40px;
            }
     </style>
 
@@ -40,24 +40,21 @@
             </div>
             <br />
             <div class="row">
-                <div class="col-md-3">
-                    <asp:Label ID="lbFechaDesdeConsulta" runat="server" Text="Fecha Desde" CssClass="Letranegrita"></asp:Label>
-                    <asp:TextBox ID="txtFechaDesdeConsulta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                <div class="col-md-4">
+                    <asp:Label ID="lbFechaDesdeConsulta" runat="server" Text="Fecha Corte" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtFechaCorte" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </div>
 
-                <div class="col-md-3">
-                     <asp:Label ID="lbFechaHastaConsulta" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
-                    <asp:TextBox ID="txtFechaHastaConsulta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
-                </div>
+               
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <asp:Label ID="lbRamoConsulta" runat="server" Text="Ramo" CssClass="Letranegrita"></asp:Label>
                     <asp:DropDownList ID="ddlRamoConsulta" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlRamoConsulta_SelectedIndexChanged" ToolTip="Seleccionar Ramo" CssClass="form-control"></asp:DropDownList>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <asp:Label ID="lbSuvRamoConsulta" runat="server" Text="Sub Ramo" CssClass="Letranegrita"></asp:Label>
-                    <asp:DropDownList ID="ddlSubRamoConsulta" runat="server" AutoPostBack="true" on ToolTip="Seleccionar Sub Ramo" CssClass="form-control"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlSubRamoConsulta" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSubRamoConsulta_SelectedIndexChanged"  ToolTip="Seleccionar Sub Ramo" CssClass="form-control"></asp:DropDownList>
                 </div>
 
                 <div class="col-md-2">
@@ -112,6 +109,9 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Poliza</th>
+                        <th scope="col">Facturado</th>
+                        <th scope="col">Cobrado</th>
+                        <th scope="col">Dias</th>
                         <th scope="col">0-10</th>
                         <th scope="col">11-30</th>
                         <th scope="col">31-60</th>
@@ -125,15 +125,18 @@
                     <asp:Repeater ID="rpAntiguedadSaldo" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <asp:HiddenField ID="hfPoliza" runat="server" Value='<%# Eval("") %>' />
+                                <asp:HiddenField ID="hfPoliza" runat="server" Value='<%# Eval("Poliza") %>' />
 
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
+                                <td> <%# Eval("Poliza") %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("Facturado")) %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("Cobrado")) %> </td>
+                                <td> <%#string.Format("{0:N0}", Eval("CantidadDias")) %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("SA010")) %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("SA1130")) %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("SA3160")) %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("SA6190")) %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("SA91120")) %> </td>
+                                <td> <%#string.Format("{0:N2}", Eval("SA121MAS")) %> </td>
                                 <td> <asp:ImageButton ID="btnGestionCobros" runat="server" ToolTip="Gestion de Cobros" CssClass="BotonImagen" ImageUrl="~/Imagenes/Cobros.png" OnClick="btnGestionCobros_Click" /> </td>
                             </tr>
                         </ItemTemplate>

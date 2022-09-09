@@ -42,31 +42,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.Label lbFechaDesdeConsulta;
 
         /// <summary>
-        /// txtFechaDesdeConsulta control.
+        /// txtFechaCorte control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaDesdeConsulta;
-
-        /// <summary>
-        /// lbFechaHastaConsulta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFechaHastaConsulta;
-
-        /// <summary>
-        /// txtFechaHastaConsulta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaHastaConsulta;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaCorte;
 
         /// <summary>
         /// lbRamoConsulta control.

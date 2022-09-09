@@ -1049,5 +1049,40 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         }
         #endregion
 
+        #region MANTENIMIENTO DE GESTION DE COBROS
+        /// <summary>
+        /// Muestra el listado de la gestion de cobros header
+        /// </summary>
+        /// <param name="FechaCorte"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="SubRamo"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="CodSupervisor"></param>
+        /// <param name="CodIntermediario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EGestionCobrosHeader> BuscaGestionCobrosheader(DateTime? FechaCorte = null, int? Ramo = null, int? SubRamo = null, string Poliza = null, int? Oficina = null, int? CodSupervisor = null, int? CodIntermediario = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADER(FechaCorte, Ramo, SubRamo, Poliza, Oficina, CodSupervisor, CodIntermediario)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EGestionCobrosHeader
+                           {
+                               Poliza=n.Poliza,
+                               Facturado=n.Facturado,
+                               Cobrado=n.Cobrado,
+                               Balance=n.Balance,
+                               CantidadDias=n.CantidadDias,
+                               SA010=n.SA0_10,
+                               SA1130=n.SA11_30,
+                               SA3160=n.SA31_60,
+                               SA6190=n.SA61_90,
+                               SA91120=n.SA91_120,
+                               SA121MAS=n.SA121_MAS
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
+
     }
 }
