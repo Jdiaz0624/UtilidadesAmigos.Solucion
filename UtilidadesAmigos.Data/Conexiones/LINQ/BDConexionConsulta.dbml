@@ -769,4 +769,69 @@
       <Column Name="SA121_MAS" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_MOSTRAR_ULTIMO_COMENTARIO_LISTADO_RENOVACION" Method="SP_MOSTRAR_ULTIMO_COMENTARIO_LISTADO_RENOVACION">
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_MOSTRAR_ULTIMO_COMENTARIO_LISTADO_RENOVACIONResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ConceptoLlamada" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="EstatusLlamada" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_COMENTARIOS_GESTION_COBROS_ANTIGUEDAD_SALDO" Method="SP_PROCESAR_COMENTARIOS_GESTION_COBROS_ANTIGUEDAD_SALDO">
+    <Parameter Name="NumeroRegistro" Parameter="numeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="IdEstatusLlamada" Parameter="idEstatusLlamada" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdConceptoLlamada" Parameter="idConceptoLlamada" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Comentario" Parameter="comentario" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="FechaNuevaLlamada" Parameter="fechaNuevaLlamada" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="HoraNuevaLlamada" Parameter="horaNuevaLlamada" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoUsuario" Parameter="codigoUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="ACCION" Parameter="aCCION" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_PROCESAR_COMENTARIOS_GESTION_COBROS_ANTIGUEDAD_SALDOResult">
+      <Column Name="NumeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IdEstatusLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdConceptoLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="FechaNuevaLlamada" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HoraNuevaLlamada" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="FechaProceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_COMENTARIOS_GESTION_COBROS_ANTIGUEDAD_SALDO" Method="SP_BUSCA_COMENTARIOS_GESTION_COBROS_ANTIGUEDAD_SALDO">
+    <Parameter Name="NumeroRegistro" Parameter="numeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="IdEstatusLlamada" Parameter="idEstatusLlamada" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdConceptoLlamada" Parameter="idConceptoLlamada" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaProcesoDesde" Parameter="fechaProcesoDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaProcesoHasta" Parameter="fechaProcesoHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCA_COMENTARIOS_GESTION_COBROS_ANTIGUEDAD_SALDOResult">
+      <Column Name="NumeroRegistro" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IdEstatusLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EstatusLlamada" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdConceptoLlamada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ConceptoLlamada" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Comentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="FechaNuevaLlamada0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaNuevaLlamada" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="HoraFechaNuevaLlamada" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="HoraNuevaLlamada" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FechaProceso0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaProceso" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="HoraFechaProceso" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

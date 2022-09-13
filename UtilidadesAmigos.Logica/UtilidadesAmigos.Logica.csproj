@@ -113,6 +113,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionRutaBackupBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionComentarioGestionCObros.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionEstadisticaRenovacion.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionGestionCobrosAntiguedadSaldo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionPolizasAvisosGestionCobros.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionReporteComentarioGestionCobros.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionValidacionCoberturaArchivo.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Entidades\Consulta\EClientesSinPoliza.cs" />
     <Compile Include="Entidades\Consulta\EClientesSinPolizaDetallado.cs" />
     <Compile Include="Entidades\Consulta\EComentarioGestionCobro.cs" />
+    <Compile Include="Entidades\Consulta\EComentariosGestionCobrosAntigueadSaldo.cs" />
     <Compile Include="Entidades\Consulta\EConceptoLLamadas.cs" />
     <Compile Include="Entidades\Consulta\EDetalleEstadisticaRenovacion.cs" />
     <Compile Include="Entidades\Consulta\EEstadisticaRenovacionAgrupada.cs" />
@@ -209,6 +211,7 @@
     <Compile Include="Entidades\Consulta\EGestionCobrosHeader.cs" />
     <Compile Include="Entidades\Consulta\EMostrarDataCargadaEstadisticaRenovacion.cs" />
     <Compile Include="Entidades\Consulta\EMostrarDetalleEstadisticaRenovacion.cs" />
+    <Compile Include="Entidades\Consulta\EMostrarUltimoComentarioListadoRenovacion.cs" />
     <Compile Include="Entidades\Consulta\EPolizasAvisoGestionCobros.cs" />
     <Compile Include="Entidades\Consulta\EPolizasSinImpresionMarbete.cs" />
     <Compile Include="Entidades\Consulta\EPolizasSInMarbeteDetallado.cs" />

@@ -1084,5 +1084,115 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         }
         #endregion
 
+        #region MOSTRAR EL ULTIMO COMENTARIO LISTADO DE RENOVACION
+        /// <summary>
+        /// Este metodo es para mostrar el ultimo comentario realizado a una poliza en la gestion de listado de renovacion.
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EMostrarUltimoComentarioListadoRenovacion> MostrarUltimoComentarioPolizaListadoRenovacion(string Poliza) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_MOSTRAR_ULTIMO_COMENTARIO_LISTADO_RENOVACION(Poliza)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EMostrarUltimoComentarioListadoRenovacion
+                           {
+                               Poliza=n.Poliza,
+                               ConceptoLlamada=n.ConceptoLlamada,
+                               EstatusLlamada=n.EstatusLlamada,
+                               Usuario=n.Usuario,
+                               Fecha=n.Fecha,
+                               Hora=n.Hora,
+                               Comentario=n.Comentario
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
+
+        #region COMENTARIOS DE GESTION DE COBROS DE ANTIGUEDAD DE SALDO
+        /// <summary>
+        /// Este metodo muestra todos los comentarios realizado en la gestion de antiguedad de saldo
+        /// </summary>
+        /// <param name="NumeroRegistro"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="IdEstatusLlamada"></param>
+        /// <param name="IdConceptoLlamada"></param>
+        /// <param name="FechaProcesoDesde"></param>
+        /// <param name="FechaProcesoHasta"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EComentariosGestionCobrosAntigueadSaldo> BuscaComentariosAntiguedadSaldogestionCobros(decimal? NumeroRegistro = null, string Poliza = null, int? IdEstatusLlamada = null, int? IdConceptoLlamada = null, DateTime? FechaProcesoDesde = null, DateTime? FechaProcesoHasta = null, decimal? GeneradoPor = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_COMENTARIOS_GESTION_COBROS_ANTIGUEDAD_SALDO(NumeroRegistro, Poliza, IdEstatusLlamada, IdConceptoLlamada, FechaProcesoDesde, FechaProcesoHasta, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EComentariosGestionCobrosAntigueadSaldo
+                           {
+                               NumeroRegistro=n.NumeroRegistro,
+                               Poliza=n.Poliza,
+                               IdEstatusLlamada=n.IdEstatusLlamada,
+                               EstatusLlamada=n.EstatusLlamada,
+                               IdConceptoLlamada=n.IdConceptoLlamada,
+                               ConceptoLlamada=n.ConceptoLlamada,
+                               Comentario=n.Comentario,
+                               FechaNuevaLlamada0=n.FechaNuevaLlamada0,
+                               FechaNuevaLlamada=n.FechaNuevaLlamada,
+                               HoraFechaNuevaLlamada=n.HoraFechaNuevaLlamada,
+                               HoraNuevaLlamada=n.HoraNuevaLlamada,
+                               CodigoUsuario=n.CodigoUsuario,
+                               Usuario=n.Usuario,
+                               FechaProceso0=n.FechaProceso0,
+                               FechaProceso=n.FechaProceso,
+                               HoraFechaProceso=n.HoraFechaProceso,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta,
+                               GeneradoPor=n.GeneradoPor,
+                               CantidadRegistros=n.CantidadRegistros
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Procesa la información de los comentarios de la gestión de cobros de antiguedad de saldo
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Consulta.EComentariosGestionCobrosAntigueadSaldo ProcesarComentariosAntiguedadSaldoCobros(UtilidadesAmigos.Logica.Entidades.Consulta.EComentariosGestionCobrosAntigueadSaldo Item, string Accion)
+        {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Consulta.EComentariosGestionCobrosAntigueadSaldo Procesar = null;
+
+            var Comentario = ObjData.SP_PROCESAR_COMENTARIOS_GESTION_COBROS_ANTIGUEDAD_SALDO(
+                Item.NumeroRegistro,
+                Item.Poliza,
+                Item.IdEstatusLlamada,
+                Item.IdConceptoLlamada,
+                Item.Comentario,
+                Item.FechaNuevaLlamada0,
+                Item.HoraNuevaLlamada,
+                Item.CodigoUsuario,
+                Accion);
+            if (Comentario != null) {
+
+                Procesar = (from n in Comentario
+                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EComentariosGestionCobrosAntigueadSaldo
+                            {
+                                NumeroRegistro=n.NumeroRegistro,
+                                Poliza=n.Poliza,
+                                IdEstatusLlamada=n.IdEstatusLlamada,
+                                IdConceptoLlamada=n.IdConceptoLlamada,
+                                Comentario=n.Comentario,
+                                FechaNuevaLlamada0=n.FechaNuevaLlamada,
+                                HoraNuevaLlamada=n.HoraNuevaLlamada,
+                                CodigoUsuario=n.CodigoUsuario,
+                                FechaProceso0=n.FechaProceso
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }

@@ -2782,9 +2782,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnGestionNuevo_Click(object sender, ImageClickEventArgs e)
         {
-
-
-
             var PolizaSeleccionadaGestionCobros = (RepeaterItem)((ImageButton)sender).NamingContainer;
             var hfPolizaSeleccionadaGestionCobros = ((HiddenField)PolizaSeleccionadaGestionCobros.FindControl("hfPolizaGestionCobros")).Value.ToString();
 

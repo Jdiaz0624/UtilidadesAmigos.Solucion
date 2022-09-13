@@ -32,6 +32,12 @@
            }
     </style>
 
+    <script type="text/javascript">
+        function ComentarioGuardado() {
+            alert("Registro guardado con exito");
+        }
+    </script>
+
     <div class="container-fluid">
         <div id="DIVBloqueConsulta" runat="server">
             <br />
@@ -54,7 +60,7 @@
 
                 <div class="col-md-4">
                     <asp:Label ID="lbSuvRamoConsulta" runat="server" Text="Sub Ramo" CssClass="Letranegrita"></asp:Label>
-                    <asp:DropDownList ID="ddlSubRamoConsulta" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSubRamoConsulta_SelectedIndexChanged"  ToolTip="Seleccionar Sub Ramo" CssClass="form-control"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlSubRamoConsulta" runat="server"  ToolTip="Seleccionar Sub Ramo" CssClass="form-control"></asp:DropDownList>
                 </div>
 
                 <div class="col-md-2">
@@ -80,16 +86,6 @@
                 <div class="col-md-3">
                     <asp:Label ID="lbOficina" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
                     <asp:DropDownList ID="ddloficina" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
-                </div>
-
-                <div class="col-md-3">
-                    <asp:Label ID="lbValidarBalance" runat="server" Text="Validar Balance" CssClass="Letranegrita"></asp:Label>
-                    <asp:DropDownList ID="ddlValidarBalance" runat="server" ToolTip="Validar Balance" CssClass="form-control"></asp:DropDownList>
-                </div>
-
-                <div class="col-md-3" id="DivExcluirMotores" runat="server" >
-                    <asp:Label ID="lbExcluirMotores" runat="server" Text="Excluir Motores" CssClass="Letranegrita"></asp:Label>
-                    <asp:DropDownList ID="ddlExcluirMotores" runat="server" ToolTip="Excluir Motores" CssClass="form-control"></asp:DropDownList>
                 </div>
 
                 <div class="col-md-3">
@@ -284,7 +280,7 @@
                     <asp:TextBox ID="txtTotalReclamacionesGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
                                <br /> <br /> <br /> <br />
-                 <asp:Label ID="lbLetreroUltimoComentario" runat="server" Text="Datos del ultimo comentario agregado en el listado de renovacion" CssClass="Letranegrita" align="center"></asp:Label>
+                 <asp:Label ID="lbLetreroUltimoComentario" runat="server" Text="Datos del último comentario agregado en el listado de renovación" CssClass="Letranegrita" align="center"></asp:Label>
                                <hr />
 
                 <div class="col-md-6">
@@ -294,7 +290,22 @@
 
                <div class="col-md-6">
                     <asp:Label ID="lbUltimoEstatus" runat="server" Text="Ultimo Estatus de Llamada" CssClass="Letranegrita"></asp:Label>
-                    <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="txtUltimoEstatus" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                               <div class="col-md-4">
+                    <asp:Label ID="lbUltimoUsuarioComento" runat="server" Text="Usuario" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtUltimoUsuarioComento" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                               <div class="col-md-4">
+                    <asp:Label ID="lbUltimaFechaComentario" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtUltimafechaComentario" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                               <div class="col-md-4">
+                    <asp:Label ID="lbUltimaHoraComento" runat="server" Text="Hora" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtUltimaHoraComentario" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
 
                 <div class="col-md-12">
@@ -421,9 +432,9 @@
                     <th scope="col"> Estatus </th>
                     <th scope="col"> Concepto </th>
                     <th scope="col"> Comentario </th>
-                    <th scope="col"> Vigencia </th>
                     <th scope="col"> Usuario </th>
                     <th scope="col"> Fecha </th>
+                    <th scope="col"> Hora </th>
                    </tr>
                 </thead>
 
@@ -433,12 +444,12 @@
                             <tr>
                        
 
-                        <td> <%# Eval("") %> </td>
-                        <td> <%# Eval("") %> </td>
-                        <td> <%# Eval("") %> </td>
-                        <td> <%# Eval("") %> </td>
-                        <td> <%# Eval("") %> </td>
-                        <td> <%# Eval("") %> </td>
+                        <td> <%# Eval("EstatusLlamada") %> </td>
+                        <td> <%# Eval("ConceptoLlamada") %> </td>
+                        <td> <%# Eval("Comentario") %> </td>
+                        <td> <%# Eval("Usuario") %> </td>
+                        <td> <%# Eval("FechaProceso") %> </td>
+                        <td> <%# Eval("HoraFechaProceso") %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>

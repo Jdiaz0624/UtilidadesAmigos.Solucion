@@ -177,51 +177,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.DropDownList ddloficina;
 
         /// <summary>
-        /// lbValidarBalance control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbValidarBalance;
-
-        /// <summary>
-        /// ddlValidarBalance control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlValidarBalance;
-
-        /// <summary>
-        /// DivExcluirMotores control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivExcluirMotores;
-
-        /// <summary>
-        /// lbExcluirMotores control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbExcluirMotores;
-
-        /// <summary>
-        /// ddlExcluirMotores control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlExcluirMotores;
-
-        /// <summary>
         /// lbPoliza control.
         /// </summary>
         /// <remarks>
@@ -744,13 +699,67 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.Label lbUltimoEstatus;
 
         /// <summary>
-        /// TextBox2 control.
+        /// txtUltimoEstatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtUltimoEstatus;
+
+        /// <summary>
+        /// lbUltimoUsuarioComento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbUltimoUsuarioComento;
+
+        /// <summary>
+        /// txtUltimoUsuarioComento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUltimoUsuarioComento;
+
+        /// <summary>
+        /// lbUltimaFechaComentario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbUltimaFechaComentario;
+
+        /// <summary>
+        /// txtUltimafechaComentario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUltimafechaComentario;
+
+        /// <summary>
+        /// lbUltimaHoraComento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbUltimaHoraComento;
+
+        /// <summary>
+        /// txtUltimaHoraComentario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUltimaHoraComentario;
 
         /// <summary>
         /// lbUltimoComentario control.
