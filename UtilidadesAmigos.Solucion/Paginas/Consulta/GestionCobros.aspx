@@ -98,13 +98,14 @@
             <div align="center">
                 <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultar_Click" />
                  <asp:ImageButton ID="btnExportarExcel" runat="server" ToolTip="Exportar a Excel" CssClass="BotonImagen" ImageUrl="~/Imagenes/excel.png" OnClick="btnExportarExcel_Click" />
-                 <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Reporte de Antiguedad" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
+                 <asp:ImageButton ID="btnReporte" runat="server" Visible="false" ToolTip="Reporte de Antiguedad" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
             </div>
             <br />
             <table class="table table-striped">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Poliza</th>
+                        <th scope="col">Comentarios</th>
                         <th scope="col">Facturado</th>
                         <th scope="col">Cobrado</th>
                         <th scope="col">Dias</th>
@@ -124,6 +125,7 @@
                                 <asp:HiddenField ID="hfPoliza" runat="server" Value='<%# Eval("Poliza") %>' />
 
                                 <td> <%# Eval("Poliza") %> </td>
+                                <td> <%#string.Format("{0:N0}", Eval("Comentarios")) %> </td>
                                 <td> <%#string.Format("{0:N2}", Eval("Facturado")) %> </td>
                                 <td> <%#string.Format("{0:N2}", Eval("Cobrado")) %> </td>
                                 <td> <%#string.Format("{0:N0}", Eval("CantidadDias")) %> </td>

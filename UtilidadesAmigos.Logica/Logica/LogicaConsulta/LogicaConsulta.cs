@@ -1069,6 +1069,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EGestionCobrosHeader
                            {
                                Poliza=n.Poliza,
+                               Comentarios=n.Comentarios,
                                Facturado=n.Facturado,
                                Cobrado=n.Cobrado,
                                Balance=n.Balance,

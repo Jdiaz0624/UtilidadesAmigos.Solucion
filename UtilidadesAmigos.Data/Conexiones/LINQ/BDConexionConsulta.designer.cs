@@ -276,13 +276,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_SACAR_CARTERA_INTERMEDIARIOSResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADER")]
-		public ISingleResult<SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADERResult> SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaCorte", DbType="Date")] System.Nullable<System.DateTime> fechaCorte, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubRamo", DbType="Int")] System.Nullable<int> subRamo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodSupervisor", DbType="Int")] System.Nullable<int> codSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodIntermediario", DbType="Int")] System.Nullable<int> codIntermediario)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaCorte, ramo, subRamo, poliza, oficina, codSupervisor, codIntermediario);
-			return ((ISingleResult<SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADERResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MOSTRAR_ULTIMO_COMENTARIO_LISTADO_RENOVACION")]
 		public ISingleResult<SP_MOSTRAR_ULTIMO_COMENTARIO_LISTADO_RENOVACIONResult> SP_MOSTRAR_ULTIMO_COMENTARIO_LISTADO_RENOVACION([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(100)")] string poliza)
 		{
@@ -302,6 +295,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroRegistro, poliza, idEstatusLlamada, idConceptoLlamada, fechaProcesoDesde, fechaProcesoHasta, generadoPor);
 			return ((ISingleResult<SP_BUSCA_COMENTARIOS_GESTION_COBROS_ANTIGUEDAD_SALDOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADER")]
+		public ISingleResult<SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADERResult> SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaCorte", DbType="Date")] System.Nullable<System.DateTime> fechaCorte, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubRamo", DbType="Int")] System.Nullable<int> subRamo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodSupervisor", DbType="Int")] System.Nullable<int> codSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodIntermediario", DbType="Int")] System.Nullable<int> codIntermediario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaCorte, ramo, subRamo, poliza, oficina, codSupervisor, codIntermediario);
+			return ((ISingleResult<SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADERResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -8767,212 +8767,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADERResult
-	{
-		
-		private string _Poliza;
-		
-		private System.Nullable<decimal> _Facturado;
-		
-		private System.Nullable<decimal> _Cobrado;
-		
-		private System.Nullable<decimal> _Balance;
-		
-		private System.Nullable<int> _CantidadDias;
-		
-		private System.Nullable<decimal> _SA0_10;
-		
-		private System.Nullable<decimal> _SA11_30;
-		
-		private System.Nullable<decimal> _SA31_60;
-		
-		private System.Nullable<decimal> _SA61_90;
-		
-		private System.Nullable<decimal> _SA91_120;
-		
-		private System.Nullable<decimal> _SA121_MAS;
-		
-		public SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADERResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
-		public string Poliza
-		{
-			get
-			{
-				return this._Poliza;
-			}
-			set
-			{
-				if ((this._Poliza != value))
-				{
-					this._Poliza = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Facturado", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> Facturado
-		{
-			get
-			{
-				return this._Facturado;
-			}
-			set
-			{
-				if ((this._Facturado != value))
-				{
-					this._Facturado = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cobrado", DbType="Money")]
-		public System.Nullable<decimal> Cobrado
-		{
-			get
-			{
-				return this._Cobrado;
-			}
-			set
-			{
-				if ((this._Cobrado != value))
-				{
-					this._Cobrado = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Balance", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> Balance
-		{
-			get
-			{
-				return this._Balance;
-			}
-			set
-			{
-				if ((this._Balance != value))
-				{
-					this._Balance = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadDias", DbType="Int")]
-		public System.Nullable<int> CantidadDias
-		{
-			get
-			{
-				return this._CantidadDias;
-			}
-			set
-			{
-				if ((this._CantidadDias != value))
-				{
-					this._CantidadDias = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SA0_10", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> SA0_10
-		{
-			get
-			{
-				return this._SA0_10;
-			}
-			set
-			{
-				if ((this._SA0_10 != value))
-				{
-					this._SA0_10 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SA11_30", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> SA11_30
-		{
-			get
-			{
-				return this._SA11_30;
-			}
-			set
-			{
-				if ((this._SA11_30 != value))
-				{
-					this._SA11_30 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SA31_60", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> SA31_60
-		{
-			get
-			{
-				return this._SA31_60;
-			}
-			set
-			{
-				if ((this._SA31_60 != value))
-				{
-					this._SA31_60 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SA61_90", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> SA61_90
-		{
-			get
-			{
-				return this._SA61_90;
-			}
-			set
-			{
-				if ((this._SA61_90 != value))
-				{
-					this._SA61_90 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SA91_120", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> SA91_120
-		{
-			get
-			{
-				return this._SA91_120;
-			}
-			set
-			{
-				if ((this._SA91_120 != value))
-				{
-					this._SA91_120 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SA121_MAS", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> SA121_MAS
-		{
-			get
-			{
-				return this._SA121_MAS;
-			}
-			set
-			{
-				if ((this._SA121_MAS != value))
-				{
-					this._SA121_MAS = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_MOSTRAR_ULTIMO_COMENTARIO_LISTADO_RENOVACIONResult
 	{
 		
@@ -9640,6 +9434,230 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CantidadRegistros != value))
 				{
 					this._CantidadRegistros = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADERResult
+	{
+		
+		private string _Poliza;
+		
+		private System.Nullable<int> _Comentarios;
+		
+		private System.Nullable<decimal> _Facturado;
+		
+		private System.Nullable<decimal> _Cobrado;
+		
+		private System.Nullable<decimal> _Balance;
+		
+		private System.Nullable<int> _CantidadDias;
+		
+		private System.Nullable<decimal> _SA0_10;
+		
+		private System.Nullable<decimal> _SA11_30;
+		
+		private System.Nullable<decimal> _SA31_60;
+		
+		private System.Nullable<decimal> _SA61_90;
+		
+		private System.Nullable<decimal> _SA91_120;
+		
+		private System.Nullable<decimal> _SA121_MAS;
+		
+		public SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADERResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comentarios", DbType="Int")]
+		public System.Nullable<int> Comentarios
+		{
+			get
+			{
+				return this._Comentarios;
+			}
+			set
+			{
+				if ((this._Comentarios != value))
+				{
+					this._Comentarios = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Facturado", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Facturado
+		{
+			get
+			{
+				return this._Facturado;
+			}
+			set
+			{
+				if ((this._Facturado != value))
+				{
+					this._Facturado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cobrado", DbType="Money")]
+		public System.Nullable<decimal> Cobrado
+		{
+			get
+			{
+				return this._Cobrado;
+			}
+			set
+			{
+				if ((this._Cobrado != value))
+				{
+					this._Cobrado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Balance", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Balance
+		{
+			get
+			{
+				return this._Balance;
+			}
+			set
+			{
+				if ((this._Balance != value))
+				{
+					this._Balance = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadDias", DbType="Int")]
+		public System.Nullable<int> CantidadDias
+		{
+			get
+			{
+				return this._CantidadDias;
+			}
+			set
+			{
+				if ((this._CantidadDias != value))
+				{
+					this._CantidadDias = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SA0_10", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> SA0_10
+		{
+			get
+			{
+				return this._SA0_10;
+			}
+			set
+			{
+				if ((this._SA0_10 != value))
+				{
+					this._SA0_10 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SA11_30", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> SA11_30
+		{
+			get
+			{
+				return this._SA11_30;
+			}
+			set
+			{
+				if ((this._SA11_30 != value))
+				{
+					this._SA11_30 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SA31_60", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> SA31_60
+		{
+			get
+			{
+				return this._SA31_60;
+			}
+			set
+			{
+				if ((this._SA31_60 != value))
+				{
+					this._SA31_60 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SA61_90", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> SA61_90
+		{
+			get
+			{
+				return this._SA61_90;
+			}
+			set
+			{
+				if ((this._SA61_90 != value))
+				{
+					this._SA61_90 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SA91_120", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> SA91_120
+		{
+			get
+			{
+				return this._SA91_120;
+			}
+			set
+			{
+				if ((this._SA91_120 != value))
+				{
+					this._SA91_120 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SA121_MAS", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> SA121_MAS
+		{
+			get
+			{
+				return this._SA121_MAS;
+			}
+			set
+			{
+				if ((this._SA121_MAS != value))
+				{
+					this._SA121_MAS = value;
 				}
 			}
 		}

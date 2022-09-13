@@ -718,12 +718,26 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void btnExportarExcel_Click(object sender, ImageClickEventArgs e)
         {
-
+            if (cbReporteComentaro.Checked == true) { 
+            
+                //REPORTE DE COMENTARIOS
+            }
+            else {
+                //REPORTE DE GESTION DE COBROS
+               
+            }
         }
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
         {
-
+            if (cbReporteComentaro.Checked == true)
+            {
+                //REPORTE DE COMENTARIOS
+            }
+            else
+            {
+                //REPORTE DE GESTION DE COBROS
+            }
         }
 
         protected void btnGestionCobros_Click(object sender, ImageClickEventArgs e)
@@ -733,10 +747,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
             SacarInformacionPoliza(Poliza);
             SacarUltimoComentarioPoliza(Poliza);
+            CurrentPage_ListadoVehiculosPoliza = 0;
             BuscaDatosVehiculos(Poliza);
             CargarEstatusLlamada();
             CargarConceptoLlamada();
             LlamarMasTarde();
+            CurrentPage_ComentariosAgregados = 0;
             MostrarComentariosAgregados(Poliza);
             DIVBloqueConsulta.Visible = false;
             DIVBloqueProceso.Visible = true;
@@ -744,12 +760,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void btnPrimeraPagina_Antiguedad_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_GestionCobrosHeader = 0;
+            MostrarGestionCobrosHeader();
         }
 
         protected void btnPaginaAnterior_Antiguedad_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_GestionCobrosHeader += -1;
+            MostrarGestionCobrosHeader();
+            MoverValoresPaginacion_GestionCobrosHeader((int)OpcionesPaginacionValores_GestionCobrosHeader.PaginaAnterior, ref lbPaginaActual_Antiguedad, ref lbCantidadPaginaVariable_Antiguedad);
         }
 
         protected void dtPaginacion_Antiguedad_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -760,26 +779,36 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected void dtPaginacion_Antiguedad_ItemCommand(object source, DataListCommandEventArgs e)
         {
 
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_GestionCobrosHeader = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarGestionCobrosHeader();
         }
 
         protected void btnPaginaSiguiente_Antiguedad_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_GestionCobrosHeader += 1;
+            MostrarGestionCobrosHeader();
         }
 
         protected void btnUltimaPagina_Antiguedad_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_GestionCobrosHeader = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarGestionCobrosHeader();
+            MoverValoresPaginacion_GestionCobrosHeader((int)OpcionesPaginacionValores_GestionCobrosHeader.UltimaPagina, ref lbPaginaActual_Antiguedad, ref lbCantidadPaginaVariable_Antiguedad);
         }
 
         protected void btnPrimeraPagina_DatoVehiculo_Click(object sender, ImageClickEventArgs e)
         {
+            CurrentPage_ListadoVehiculosPoliza = 0;
+            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
 
         }
 
         protected void btnPaginaAnterior_DatoVehiculo_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_ListadoVehiculosPoliza += -1;
+            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
+            MoverValoresPaginacion_ListadoVehiculosPoliza((int)OpcionesPaginacionValores_ListadoVehiculosPoliza.PaginaAnterior, ref lbPaginaActual_DatoVehiculo, ref lbCantidadPagina_DatoVehiculo);
         }
 
         protected void dtPaginacion_DatoVehiculo_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -789,17 +818,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void dtPaginacion_DatoVehiculo_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_ListadoVehiculosPoliza = Convert.ToInt32(e.CommandArgument.ToString());
+            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
         }
 
         protected void btnSiguientePagina_DatoVehiculo_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_ListadoVehiculosPoliza += 1;
+            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
         }
 
         protected void btnUltimaPagina_DatoVehiculo_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_ListadoVehiculosPoliza = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            BuscaDatosVehiculos(txtPolizaGestionCObros.Text);
+            MoverValoresPaginacion_ListadoVehiculosPoliza((int)OpcionesPaginacionValores_ListadoVehiculosPoliza.UltimaPagina, ref lbPaginaActual_DatoVehiculo, ref lbCantidadPagina_DatoVehiculo);
         }
 
         protected void ddlSeleccionarEstatusLLamadaGestionCobros_SelectedIndexChanged(object sender, EventArgs e)
@@ -833,12 +867,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void btnPrimeraPagina_Comentarios_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_ComentariosAgregados = 0;
+            MostrarComentariosAgregados(txtPolizaGestionCObros.Text); 
         }
 
         protected void btnPaginaAnterior_Comentarios_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_ComentariosAgregados += -1;
+            MostrarComentariosAgregados(txtPolizaGestionCObros.Text);
+            MoverValoresPaginacion_ComentariosAgregados((int)OpcionesPaginacionValores_ComentariosAgregados.PaginaAnterior, ref lbPaginaActual_Comentarios, ref lbCantidadPagina_Comentarios);
         }
 
         protected void dtPaginacion_Comentarios_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -848,17 +885,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void btnPaginaSiguiente_Comentarios_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_ComentariosAgregados += 1;
+            MostrarComentariosAgregados(txtPolizaGestionCObros.Text);
         }
 
         protected void btnUltimaPagina_Comentarios_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_ComentariosAgregados = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarComentariosAgregados(txtPolizaGestionCObros.Text);
+            MoverValoresPaginacion_ComentariosAgregados((int)OpcionesPaginacionValores_ComentariosAgregados.UltimaPagina, ref lbPaginaActual_Comentarios, ref lbCantidadPagina_Comentarios);
         }
 
         protected void dtPaginacion_Comentarios_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_ComentariosAgregados = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarComentariosAgregados(txtPolizaGestionCObros.Text);
         }
 
 
