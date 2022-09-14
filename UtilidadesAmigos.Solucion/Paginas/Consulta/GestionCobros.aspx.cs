@@ -718,13 +718,87 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void btnExportarExcel_Click(object sender, ImageClickEventArgs e)
         {
-            if (cbReporteComentaro.Checked == true) { 
-            
+            if (cbReporteComentaro.Checked == true) {
+
                 //REPORTE DE COMENTARIOS
+                string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+
+                var Exportar = (from n in ObjDataConsulta.Value.BuscaComentariosAntiguedadSaldogestionCobros(
+                    new Nullable<decimal>(),
+                    _Poliza,
+                    null, null, null, null, null)
+                                select new
+                                {
+                                    NumeroRegistro = n.NumeroRegistro,
+                                    Poliza = n.Poliza,
+                                    EstatusLlamada = n.EstatusLlamada,
+                                    ConceptoLlamada = n.ConceptoLlamada,
+                                    Comentario = n.Comentario,
+                                    FechaNuevaLlamada = n.FechaNuevaLlamada,
+                                    HoraFechaNuevaLlamada = n.HoraFechaNuevaLlamada,
+                                    Usuario = n.Usuario,
+                                    FechaProceso = n.FechaProceso,
+                                    HoraFechaProceso = n.HoraFechaProceso
+                                }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comentarios", Exportar);
             }
             else {
                 //REPORTE DE GESTION DE COBROS
-               
+
+                DateTime? _FechaCorte = string.IsNullOrEmpty(txtFechaCorte.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaCorte.Text);
+                int? _Ramo = ddlRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlRamoConsulta.SelectedValue) : new Nullable<int>();
+                int? _SubRamo = ddlSubRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSubRamoConsulta.SelectedValue) : new Nullable<int>();
+                string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+                int? _oficina = ddloficina.SelectedValue != "-1" ? Convert.ToInt32(ddloficina.SelectedValue) : new Nullable<int>();
+                int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+                int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioConsulta.Text);
+
+                var Exportar = (from n in ObjDataConsulta.Value.MostrarGestionCobrosAntiguedadSaldoDetalle(
+                    _FechaCorte,
+                    _Ramo,
+                    _SubRamo,
+                    _Poliza,
+                    _oficina,
+                    _Supervisor,
+                    _Intermediario)
+                                select new
+                                {
+                                    Poliza = n.Poliza,
+                                    InicioVigencia = n.InicioVigencia,
+                                    FinVigencia = n.FinVigencia,
+                                    CantidadReclamaciones = n.CantidadReclamaciones,
+                                    UltimaReclamacion = n.UltimaReclamacion,
+                                    FechaUltimoComentario = n.FechaUltimoComentario,
+                                    Hora = n.Hora,
+                                    UltimoEstatusLlamada = n.UltimoEstatusLlamada,
+                                    UltimoConceptoLlamada = n.UltimoConceptoLlamada,
+                                    UltimoComentario = n.UltimoComentario,
+                                    Usuario = n.Usuario,
+                                    Estatus = n.Estatus,
+                                    SumaAsegurada = n.SumaAsegurada,
+                                    Prima = n.Prima,
+                                    CodigoRamo = n.CodigoRamo,
+                                    Ramo = n.Ramo,
+                                    CodigoAsegurado = n.Cliente,
+                                    Asegurado = n.Asegurado,
+                                    TelefonoResidencia = n.TelefonoResidencia,
+                                    Celular = n.Celular,
+                                    TelefonoOficina = n.TelefonoOficina,
+                                    CodigoSupervisor = n.CodigoSupervisor,
+                                    Supervisor = n.Supervisor,
+                                    Codigointermediario = n.Codigointermediario,
+                                    Intermediario = n.Intermediario,
+                                    Oficina = n.Oficina,
+                                    NombreOficina = n.NombreOficina,
+                                    CantidadDias = n.CantidadDias,
+                                    SA0_10 = n.SA0_10,
+                                    SA11_30 = n.SA11_30,
+                                    SA31_60 = n.SA31_60,
+                                    SA61_90 = n.SA61_90,
+                                    SA91_120 = n.SA91_120,
+                                    SA121_MAS = n.SA121_MAS
+                                }).ToList();
+                UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Antiguedad de Saldo", Exportar);
             }
         }
 

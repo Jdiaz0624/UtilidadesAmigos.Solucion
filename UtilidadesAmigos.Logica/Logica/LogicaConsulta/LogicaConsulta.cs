@@ -1195,5 +1195,65 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
             return Procesar;
         }
         #endregion
+
+        #region MOSTRAR EL DETALLE DE LA GESTION DE COBROS ANTIGUEDAD DE SALDO
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FechaCorte"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="SubRamo"></param>
+        /// <param name="poliza"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="CodigoSupervisor"></param>
+        /// <param name="CodigoIntermediario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EMostrarListadoGestionCobrosDetail> MostrarGestionCobrosAntiguedadSaldoDetalle(DateTime? FechaCorte = null, int? Ramo = null, int? SubRamo = null, string poliza = null, int? Oficina = null, int? CodigoSupervisor = null, int? CodigoIntermediario = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_MOSTRAR_LISTADO_GESTION_COBROS_DETAIL(FechaCorte, Ramo, SubRamo, poliza, Oficina, CodigoSupervisor, CodigoIntermediario)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EMostrarListadoGestionCobrosDetail
+                           {
+                               Poliza=n.Poliza,
+                               FechaInicioVigencia=n.FechaInicioVigencia,
+                               InicioVigencia=n.InicioVigencia,
+                               FechaFinVigencia=n.FechaFinVigencia,
+                               FinVigencia=n.FinVigencia,
+                               CantidadReclamaciones=n.CantidadReclamaciones,
+                               UltimaReclamacion=n.UltimaReclamacion,
+                               FechaUltimoComentario=n.FechaUltimoComentario,
+                               Hora=n.Hora,
+                               UltimoEstatusLlamada=n.UltimoEstatusLlamada,
+                               UltimoConceptoLlamada=n.UltimoConceptoLlamada,
+                               UltimoComentario=n.UltimoComentario,
+                               Usuario=n.Usuario,
+                               Estatus=n.Estatus,
+                               SumaAsegurada=n.SumaAsegurada,
+                               Prima=n.Prima,
+                               CodigoRamo=n.CodigoRamo,
+                               Ramo=n.Ramo,
+                               Cliente=n.Cliente,
+                               Asegurado=n.Asegurado,
+                               TelefonoResidencia=n.TelefonoResidencia,
+                               Celular=n.Celular,
+                               TelefonoOficina=n.TelefonoOficina,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               Codigointermediario=n.Codigointermediario,
+                               Intermediario=n.Intermediario,
+                               Oficina=n.Oficina,
+                               NombreOficina=n.NombreOficina,
+                               CantidadDias=n.CantidadDias,
+                               SA0_10=n.SA0_10,
+                               SA11_30=n.SA11_30,
+                               SA31_60=n.SA31_60,
+                               SA61_90=n.SA61_90,
+                               SA91_120=n.SA91_120,
+                               SA121_MAS=n.SA121_MAS
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }
