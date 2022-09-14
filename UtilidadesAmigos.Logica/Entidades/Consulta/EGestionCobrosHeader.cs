@@ -9,6 +9,7 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
     public class EGestionCobrosHeader
     {
 		public string Poliza {get;set;}
+		public decimal? Factura { get; set; }
 		public System.Nullable<int> Comentarios { get; set; }
 
 		public System.Nullable<decimal> Facturado {get;set;}

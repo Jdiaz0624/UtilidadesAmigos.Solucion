@@ -9,6 +9,7 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
     public class EMostrarListadoGestionCobrosDetail
     {
 		public string Poliza { get; set; }
+		public decimal Factura { get; set; }
 
 		public System.Nullable<System.DateTime> FechaInicioVigencia { get; set; }
 

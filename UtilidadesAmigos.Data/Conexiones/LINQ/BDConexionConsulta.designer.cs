@@ -9451,6 +9451,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private string _Poliza;
 		
+		private decimal _Factura;
+		
 		private System.Nullable<int> _Comentarios;
 		
 		private System.Nullable<decimal> _Facturado;
@@ -9489,6 +9491,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Poliza != value))
 				{
 					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Factura", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Factura
+		{
+			get
+			{
+				return this._Factura;
+			}
+			set
+			{
+				if ((this._Factura != value))
+				{
+					this._Factura = value;
 				}
 			}
 		}
@@ -9675,6 +9693,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private string _Poliza;
 		
+		private decimal _Factura;
+		
 		private System.Nullable<System.DateTime> _FechaInicioVigencia;
 		
 		private string _InicioVigencia;
@@ -9761,6 +9781,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Poliza != value))
 				{
 					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Factura", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Factura
+		{
+			get
+			{
+				return this._Factura;
+			}
+			set
+			{
+				if ((this._Factura != value))
+				{
+					this._Factura = value;
 				}
 			}
 		}

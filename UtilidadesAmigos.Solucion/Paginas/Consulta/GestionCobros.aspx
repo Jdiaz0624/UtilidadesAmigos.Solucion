@@ -105,9 +105,8 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Poliza</th>
+                        <th scope="col">Factura</th>
                         <th scope="col">Comentarios</th>
-                        <th scope="col">Facturado</th>
-                        <th scope="col">Cobrado</th>
                         <th scope="col">Dias</th>
                         <th scope="col">0-10</th>
                         <th scope="col">11-30</th>
@@ -125,9 +124,8 @@
                                 <asp:HiddenField ID="hfPoliza" runat="server" Value='<%# Eval("Poliza") %>' />
 
                                 <td> <%# Eval("Poliza") %> </td>
+                                <td> <%# Eval("Factura") %> </td>
                                 <td> <%#string.Format("{0:N0}", Eval("Comentarios")) %> </td>
-                                <td> <%#string.Format("{0:N2}", Eval("Facturado")) %> </td>
-                                <td> <%#string.Format("{0:N2}", Eval("Cobrado")) %> </td>
                                 <td> <%#string.Format("{0:N0}", Eval("CantidadDias")) %> </td>
                                 <td> <%#string.Format("{0:N2}", Eval("SA010")) %> </td>
                                 <td> <%#string.Format("{0:N2}", Eval("SA1130")) %> </td>

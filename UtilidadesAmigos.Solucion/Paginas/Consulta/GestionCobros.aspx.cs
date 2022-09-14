@@ -764,6 +764,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                                 select new
                                 {
                                     Poliza = n.Poliza,
+                                    Factura=n.Factura,
                                     InicioVigencia = n.InicioVigencia,
                                     FinVigencia = n.FinVigencia,
                                     CantidadReclamaciones = n.CantidadReclamaciones,

@@ -822,6 +822,7 @@
     <Parameter Name="CodIntermediario" Parameter="codIntermediario" Type="System.Int32" DbType="Int" />
     <ElementType Name="SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADERResult">
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Factura" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Column Name="Comentarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="Cobrado" Type="System.Decimal" DbType="Money" CanBeNull="true" />
@@ -845,6 +846,7 @@
     <Parameter Name="CodIntermediario" Parameter="codIntermediario" Type="System.Int32" DbType="Int" />
     <ElementType Name="SP_MOSTRAR_LISTADO_GESTION_COBROS_DETAILResult">
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Factura" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Column Name="FechaInicioVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
       <Column Name="FechaFinVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />

@@ -1069,6 +1069,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EGestionCobrosHeader
                            {
                                Poliza=n.Poliza,
+                               Factura=n.Factura,
                                Comentarios=n.Comentarios,
                                Facturado=n.Facturado,
                                Cobrado=n.Cobrado,
@@ -1216,7 +1217,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EMostrarListadoGestionCobrosDetail
                            {
                                Poliza=n.Poliza,
-                               FechaInicioVigencia=n.FechaInicioVigencia,
+                               Factura=n.Factura,
+                               FechaInicioVigencia =n.FechaInicioVigencia,
                                InicioVigencia=n.InicioVigencia,
                                FechaFinVigencia=n.FechaFinVigencia,
                                FinVigencia=n.FinVigencia,
