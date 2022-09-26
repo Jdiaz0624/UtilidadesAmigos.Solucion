@@ -1988,4 +1988,48 @@
       <Column Name="CantidadImpresiones" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_SACAR_NOMBRE_PROVEEDOR" Method="SP_SACAR_NOMBRE_PROVEEDOR">
+    <Parameter Name="Codigo" Parameter="codigo" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SACAR_NOMBRE_PROVEEDORResult">
+      <Column Name="Proveedor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_ANTIGUEDAD_CXP" Method="SP_ANTIGUEDAD_CXP">
+    <Parameter Name="FechaCorte" Parameter="fechaCorte" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Proveedor" Parameter="proveedor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoDia" Parameter="codigoDia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TipoDocumento" Parameter="tipoDocumento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NumeroFactura" Parameter="numeroFactura" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaFacturaDesde" Parameter="fechaFacturaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaFacturaHasta" Parameter="fechaFacturaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="NCF" Parameter="nCF" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_ANTIGUEDAD_CXPResult">
+      <Column Name="Proveedor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreProveedor" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="CodigoDia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DescripcionDias" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Tipo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Siglas" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Factura" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Dias" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FacturaProveedor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ncf" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Reclamacion" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TotalDeuda" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Proveedor1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumeroQuePaga" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NumeroCheque" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CXP_0_30" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CXP_31_60" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CXP_61_90" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CXP_91_120" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CXP_121_MAS" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -2470,5 +2470,76 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Listado;
         }
         #endregion
+
+        #region SACAR NOMBRE DE PROVEEDOR
+        /// <summary>
+        /// Este metodo saca el nombre del proveedor mediante el codigo
+        /// </summary>
+        /// <param name="CodigoProveedor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.ESacarNombreProveedor> SacarNombreProveedor(int? CodigoProveedor = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Informacion = (from n in ObjData.SP_SACAR_NOMBRE_PROVEEDOR(CodigoProveedor)
+                               select new UtilidadesAmigos.Logica.Entidades.Reportes.ESacarNombreProveedor
+                               {
+                                   Proveedor=n.Proveedor
+                               }).ToList();
+            return Informacion;
+        }
+        #endregion
+
+        #region MOSTRAR EL LISTADO DE LA ENTIGUEDAD DE SALDO CXP
+        /// <summary>
+        /// Muestra el listado de la antiguedad de saldo de cxp
+        /// </summary>
+        /// <param name="FechaCorte"></param>
+        /// <param name="Proveedor"></param>
+        /// <param name="CodigoDia"></param>
+        /// <param name="TipoDocumento"></param>
+        /// <param name="NumeroFactura"></param>
+        /// <param name="FechaFacturaDesde"></param>
+        /// <param name="FechaFacturaHasta"></param>
+        /// <param name="NCF"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EAntiguedadSaldoCXP> BuscaAntiguedadsaldoCXP(DateTime? FechaCorte = null, int? Proveedor = null, int? CodigoDia = null, int? TipoDocumento = null, int? NumeroFactura = null, DateTime? FechaFacturaDesde = null, DateTime? FechaFacturaHasta = null, string NCF = null, decimal? GeneradoPor = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_ANTIGUEDAD_CXP(FechaCorte, Proveedor, CodigoDia, TipoDocumento, NumeroFactura, FechaFacturaDesde, FechaFacturaHasta, NCF, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EAntiguedadSaldoCXP
+                           {
+                               Proveedor=n.Proveedor,
+                               NombreProveedor=n.NombreProveedor,
+                               CodigoDia=n.CodigoDia,
+                               DescripcionDias=n.DescripcionDias,
+                               Tipo=n.Tipo,
+                               Siglas=n.Siglas,
+                               Descripcion=n.Descripcion,
+                               Factura=n.Factura,
+                               Fecha0=n.Fecha0,
+                               Fecha=n.Fecha,
+                               Dias=n.Dias,
+                               FacturaProveedor=n.FacturaProveedor,
+                               Ncf=n.Ncf,
+                               Reclamacion=n.Reclamacion,
+                               TotalDeuda=n.TotalDeuda,
+                               Valor=n.Valor,
+                               Proveedor1=n.Proveedor1,
+                               NumeroQuePaga=n.NumeroQuePaga,
+                               NumeroCheque=n.NumeroCheque,
+                               CXP_0_30=n.CXP_0_30,
+                               CXP_31_60=n.CXP_31_60,
+                               CXP_61_90=n.CXP_61_90,
+                               CXP_91_120=n.CXP_91_120,
+                               CXP_121_MAS=n.CXP_121_MAS,
+                               GeneradoPor=n.GeneradoPor
+                           }).ToList();
+            return Listado;
+        
+        }
+        #endregion
     }
 }

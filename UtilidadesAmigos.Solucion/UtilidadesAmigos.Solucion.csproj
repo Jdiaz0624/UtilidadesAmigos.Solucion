@@ -184,10 +184,12 @@
     <Content Include="Imagenes\Completar.png" />
     <Content Include="Imagenes\comprobar.png" />
     <Content Include="Imagenes\Cotizar.png" />
+    <Content Include="Imagenes\Dias.png" />
     <Content Include="Imagenes\Editar.png" />
     <Content Include="Imagenes\Eliminar.png" />
     <Content Include="Imagenes\escoger.png" />
     <Content Include="Imagenes\excel.png" />
+    <Content Include="Imagenes\Excluir.png" />
     <Content Include="Imagenes\impresora.png" />
     <Content Include="Imagenes\Iniciales.ico" />
     <Content Include="Imagenes\login.jpg" />
@@ -265,6 +267,7 @@
     <Content Include="Paginas\Procesos\VolantesDePagos.aspx" />
     <Content Include="Paginas\ReporteReclamos.aspx" />
     <Content Include="Paginas\Reportes\AntiguedadSaldo.aspx" />
+    <Content Include="Paginas\Reportes\AntiguedadSaldoCXP.aspx" />
     <Content Include="Paginas\Reportes\ComisionesIntermediarios.aspx" />
     <Content Include="Paginas\Reportes\ComisionesSupervisores.aspx" />
     <Content Include="Paginas\Reportes\GenerarMarbetes.aspx" />
@@ -832,6 +835,13 @@
     </Compile>
     <Compile Include="Paginas\Reportes\AntiguedadSaldo.aspx.designer.cs">
       <DependentUpon>AntiguedadSaldo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\AntiguedadSaldoCXP.aspx.cs">
+      <DependentUpon>AntiguedadSaldoCXP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\AntiguedadSaldoCXP.aspx.designer.cs">
+      <DependentUpon>AntiguedadSaldoCXP.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Reportes\ComisionesIntermediarios.aspx.cs">
       <DependentUpon>ComisionesIntermediarios.aspx</DependentUpon>

@@ -398,6 +398,7 @@
     <Compile Include="Entidades\Procesos\ESacarNombreReclamante.cs" />
     <Compile Include="Entidades\Procesos\ESacarRutaArchivoGaurdado.cs" />
     <Compile Include="Entidades\ProduccionPorUsuario.cs" />
+    <Compile Include="Entidades\Reportes\EAntiguedadSaldoCXP.cs" />
     <Compile Include="Entidades\Reportes\EBuscaBeneficiariosSobreComisiones.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDataCobradoDetalle.cs" />
     <Compile Include="Entidades\Reportes\EBuscaDatosProduccionNoAgrupadoResumen.cs" />
@@ -447,6 +448,7 @@
     <Compile Include="Entidades\Reportes\ESacarDatosProduccionAgrupada.cs" />
     <Compile Include="Entidades\Reportes\ESacarDatosProduccionDetallada.cs" />
     <Compile Include="Entidades\Reportes\ESacarDatosProduccionResumido.cs" />
+    <Compile Include="Entidades\Reportes\ESacarNombreProveedor.cs" />
     <Compile Include="Entidades\Reportes\ESacarPorcientoComisionesSupervisores.cs" />
     <Compile Include="Entidades\Reportes\EvalidarDepositosPagados.cs" />
     <Compile Include="Entidades\Reportes\EValidarInformacionPolizasRenovar.cs" />

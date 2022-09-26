@@ -1222,5 +1222,19 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkAntiguedadSaldoCXP_Click(object sender, EventArgs e)
+        {
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Reportes/AntiguedadSaldoCXP.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }
