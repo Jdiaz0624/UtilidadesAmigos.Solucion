@@ -246,8 +246,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             Reporte.SetParameterValue("@CodigoDia", _Dias);
             Reporte.SetParameterValue("@TipoDocumento", _TipoDocumento);
             Reporte.SetParameterValue("@NumeroFactura", _NumeroFactura);
-            Reporte.SetParameterValue("@FechaFacturaDesde", new Nullable<DateTime>());
-            Reporte.SetParameterValue("@FechaFacturaHasta", new Nullable<DateTime>());
+            Reporte.SetParameterValue("@FechaFacturaDesde", _FechaDesde);
+            Reporte.SetParameterValue("@FechaFacturaHasta", _FechaHasta);
             Reporte.SetParameterValue("@NCF", _NCF);
             Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
 
@@ -262,8 +262,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         {
             MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack) {
-                //DateTime Hoy = DateTime.Now;
-                //txtFechaCorte.Text = Hoy.ToString("yyyy-MM-dd");
+                DateTime Hoy = DateTime.Now;
+                txtFechaCorte.Text = Hoy.ToString("yyyy-MM-dd");
 
                 cbAgregarRangoFecha.Checked = false;
                 DivFechaDesde.Visible = false;
