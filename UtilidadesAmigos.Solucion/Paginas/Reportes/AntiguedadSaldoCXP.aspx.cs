@@ -217,12 +217,53 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         }
         #endregion
 
+        #region GENERAR REPORTE DE ANTIGUEDAD
+        private void GenerarReporteAntiguedad() {
+
+            string  RutaReporte = "", NombreReporte = "";
+
+       
+            RutaReporte = Server.MapPath("AntiguedadSaldoCXP.rpt");
+            NombreReporte = "Antiguedad CXP";
+
+            //FILTROS
+            DateTime _FechaCorte = Convert.ToDateTime(txtFechaCorte.Text);
+            int? _CodigoProveedor = string.IsNullOrEmpty(txtCodigoProveedor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoProveedor.Text);
+            int? _Dias = ddlDias.SelectedValue != "-1" ? Convert.ToInt32(ddlDias.SelectedValue) : new Nullable<int>();
+            int? _TipoDocumento = ddlTipoDocumento.SelectedValue != "-1" ? Convert.ToInt32(ddlTipoDocumento.SelectedValue) : new Nullable<int>();
+            int? _NumeroFactura = string.IsNullOrEmpty(txtNumeroFactura.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtNumeroFactura.Text);
+            DateTime? _FechaDesde = cbAgregarRangoFecha.Checked == false ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesde.Text);
+            DateTime? _FechaHasta = cbAgregarRangoFecha.Checked == false ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaHasta.Text);
+            string _NCF = string.IsNullOrEmpty(txtNCF.Text.Trim()) ? null : txtNCF.Text.Trim();
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@FechaCorte", Convert.ToDateTime(txtFechaCorte.Text));
+            Reporte.SetParameterValue("@Proveedor", _CodigoProveedor);
+            Reporte.SetParameterValue("@CodigoDia", _Dias);
+            Reporte.SetParameterValue("@TipoDocumento", _TipoDocumento);
+            Reporte.SetParameterValue("@NumeroFactura", _NumeroFactura);
+            Reporte.SetParameterValue("@FechaFacturaDesde", new Nullable<DateTime>());
+            Reporte.SetParameterValue("@FechaFacturaHasta", new Nullable<DateTime>());
+            Reporte.SetParameterValue("@NCF", _NCF);
+            Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack) {
-                DateTime Hoy = DateTime.Now;
-                txtFechaCorte.Text = Hoy.ToString("yyyy-MM-dd");
+                //DateTime Hoy = DateTime.Now;
+                //txtFechaCorte.Text = Hoy.ToString("yyyy-MM-dd");
 
                 cbAgregarRangoFecha.Checked = false;
                 DivFechaDesde.Visible = false;
@@ -326,7 +367,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
         {
-
+            GenerarReporteAntiguedad();
         }
 
         protected void btnGrupo_Click(object sender, ImageClickEventArgs e)
