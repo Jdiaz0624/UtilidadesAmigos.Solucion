@@ -20,7 +20,6 @@
            font-weight:bold;
           }
 
-       
 
         .BotonSolicitud {
                width:50px;
@@ -93,7 +92,6 @@
                         <th scope="col"> Tipo </th>
                         <th scope="col"> Fecha </th>
                         <th scope="col"> Valor </th>
-                        <th scope="col">  </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -110,7 +108,6 @@
                                 <td> <%# Eval("Descripcion") %> </td>
                                 <td> <%# Eval("Fecha") %> </td>
                                 <td> <%#string.Format("{0:N2}", Eval("Valor")) %> </td>
-                                <td align="left" > <asp:ImageButton ID="btnSeleccionar" runat="server" ToolTip="Seleccionar Registro" CssClass="BotonImagen" OnClick="btnSeleccionar_Click" ImageUrl="~/Imagenes/Seleccionar2.png" /> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -147,6 +144,122 @@
                            <br />
         </div>
 
-        <div id="DIVBloqueProceso" runat="server"></div>
+        <div id="DIVBloqueProceso" runat="server">
+            <br />
+            <div id="DivConsultaProceso" runat="server">
+                <div class="row">
+                    <div class="col-md-3">
+                        <asp:Label ID="lbCodigoProveedorConsultaProceso" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label>
+                        <asp:TextBox ID="txtCodigoproveedorConsultaProceso" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoproveedorConsultaProceso_TextChanged" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:Label ID="lbProveedorConsultaProceso" runat="server" Text="Proveedor" CssClass="Letranegrita"></asp:Label>
+                        <asp:TextBox ID="txtProveedorConsultaProceso" runat="server" AutoPostBack="true" OnTextChanged="txtProveedorConsultaProceso_TextChanged" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:Label ID="lbTipoProveedorConsultaProceso" runat="server" Text="Tipo Proveedor" CssClass="Letranegrita"></asp:Label>
+                        <asp:DropDownList ID="ddlTipoproveedorConsultaProceso" runat="server" ToolTip="Seleccionar el Tipo de Proveedor" CssClass="form-control"></asp:DropDownList>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:Label ID="lbDiasConsultaProceso" runat="server" Text="Categoria" CssClass="Letranegrita"></asp:Label>
+                        <asp:DropDownList ID="ddlDiasConsultaProceso" runat="server" ToolTip="Seleccionar Categoria" CssClass="form-control"></asp:DropDownList>
+                    </div>
+                </div>
+                <br />
+                <div align="center">
+                    <asp:ImageButton ID="btnConsultarProveedoresConsultaproceso" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultarProveedoresConsultaproceso_Click" />
+                    <asp:ImageButton ID="btnReporteProveedoresConsultaproceso" runat="server" ToolTip="Generar Reporte" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporteProveedoresConsultaproceso_Click" />
+                    <asp:ImageButton ID="btnRestablecerProveedoresConsultaproceso" runat="server" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" ImageUrl="~/Imagenes/volver-flecha.png" OnClick="btnRestablecerProveedoresConsultaproceso_Click" />
+                </div>
+                <br />
+                <table class="table table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col"> Codigo </th>
+                            <th scope="col"> Tipo </th>
+                            <th scope="col"> Proveedor </th>
+                            <th scope="col"> Dia </th>
+                            <th scope="col">  </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Repeater ID="rpConsultaProveedorConsultaPRoceso" runat="server">
+                            <ItemTemplate>
+                                <tr>
+                                    <asp:HiddenField ID="hfIdProveedorConsultaProceso" runat="server" Value='<%# Eval("IdProveedor") %>' />
+
+                            <td> <%# Eval("IdProveedor") %> </td>
+                            <td> <%# Eval("Tipo") %> </td>
+                            <td> <%# Eval("Proveedor") %> </td>
+                            <td> <%# Eval("Dia") %> </td>
+                            <td align="right"> <asp:ImageButton ID="btnEditarDia" runat="server" ToolTip="Editar Dia" CssClass="BotonImagen" ImageUrl="~/Imagenes/Editar.png" OnClick="btnEditarDia_Click" /> </td>
+                        </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+
+                 <table class="table">
+                 <tfoot class="table-light">
+                    <tr>
+                        <td align="right"><b>Pagina</b> <asp:Label ID="lbPaginaActual_ConsultaProceso" runat="server" Text=" 0 "></asp:Label> <b>de</b> <asp:Label ID="lbCantidadPaginaVariable_ConsultaProceso" runat="server" Text="0"></asp:Label></td>
+                    </tr>
+                </tfoot>
+            </table>
+              <div id="div1" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:ImageButton ID="btnPrimeraPagina_ConsultaProceso" runat="server" ToolTip="Ir a la Primera Pagina del Listado" CssClass="BotonImagen" OnClick="btnPrimeraPagina_ConsultaProceso_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaAnterior_ConsultaProceso" runat="server" ToolTip="Ir a la Pagina Anterior del Listado" CssClass="BotonImagen" OnClick="btnPaginaAnterior_ConsultaProceso_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+
+                    <td>
+                        <asp:DataList ID="dtPaginacion_ConsultaProceso" runat="server" OnItemCommand="dtPaginacion_ConsultaProceso_ItemCommand" OnItemDataBound="dtPaginacion_ConsultaProceso_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:Button ID="btnPaginacionCentral_ConsultaProceso" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:ImageButton ID="btnPaginaSiguiente_ConsultaProceso" runat="server" ToolTip="Ir a la Siguiente Pagina del Listado" CssClass="BotonImagen" OnClick="btnPaginaSiguiente_ConsultaProceso_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimaPagina_ConsultaProceso" runat="server" ToolTip="Ir a la Ultima Pagina del Listado" CssClass="BotonImagen" OnClick="btnUltimaPagina_ConsultaProceso_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+                           <br />
+
+
+            </div>
+            <div id="DIVMantenimientoProceso" runat="server">
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <asp:Label ID="lbCodigoProveedorMantenimientoProceso" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label>
+                        <asp:TextBox ID="txtCodigoProveedorMantanimientoProceso" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                     <div class="col-md-3">
+                        <asp:Label ID="lbProveedorMantenimientoProceso" runat="server" Text="Proveedor" CssClass="Letranegrita"></asp:Label>
+                        <asp:TextBox ID="txtProvvedormantenimientoProceso" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+
+                     <div class="col-md-3">
+                        <asp:Label ID="lbTipoProveedorMantenimientoProceso" runat="server" Text="Tipo" CssClass="Letranegrita"></asp:Label>
+                        <asp:TextBox ID="txtTipoProveedorMantenimientoProceso" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                     <div class="col-md-3">
+                        <asp:Label ID="lbCategoriaMantenimientoProceso" runat="server" Text="Categoria Actual" CssClass="Letranegrita"></asp:Label>
+                        <asp:DropDownList ID="ddlCategoriaMantenimientoProceso" runat="server" ToolTip="Seleccionar Categoria" CssClass="form-control"></asp:DropDownList>
+                    </div>
+                </div>
+                <br />
+                <div align="center">
+                    <asp:ImageButton ID="btnModificarCategoria" runat="server" ToolTip="Modificar Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/salvar.png" OnClick="btnModificarCategoria_Click" />
+                    <asp:ImageButton ID="btnVolverAtrasMantenimientoProceso" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen" ImageUrl="~/Imagenes/volver-flecha.png" OnClick="btnVolverAtrasMantenimientoProceso_Click" />
+                </div>
+                <br />
+            </div>
+        </div>
     </div>
 </asp:Content>

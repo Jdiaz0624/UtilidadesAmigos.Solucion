@@ -834,6 +834,27 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaCorte, proveedor, codigoDia, tipoDocumento, numeroFactura, fechaFacturaDesde, fechaFacturaHasta, nCF, generadoPor);
 			return ((ISingleResult<SP_ANTIGUEDAD_CXPResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_ENLACE_PROVEEDORES")]
+		public ISingleResult<SP_BUSCA_ENLACE_PROVEEDORESResult> SP_BUSCA_ENLACE_PROVEEDORES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProveedor", DbType="Int")] System.Nullable<int> idProveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RNC", DbType="VarChar(20)")] string rNC, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Proveedor", DbType="VarChar(1000)")] string proveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoProveedor", DbType="Int")] System.Nullable<int> tipoProveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoDia", DbType="Int")] System.Nullable<int> codigoDia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="GeneradoPor", DbType="Decimal(20,0)")] System.Nullable<decimal> generadoPor)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProveedor, rNC, proveedor, tipoProveedor, codigoDia, generadoPor);
+			return ((ISingleResult<SP_BUSCA_ENLACE_PROVEEDORESResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MODIFICAR_ENLACE_PROVEEDORES")]
+		public ISingleResult<SP_MODIFICAR_ENLACE_PROVEEDORESResult> SP_MODIFICAR_ENLACE_PROVEEDORES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProveedor", DbType="Int")] System.Nullable<int> idProveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoDia", DbType="Int")] System.Nullable<int> codigoDia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(50)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProveedor, codigoDia, accion);
+			return ((ISingleResult<SP_MODIFICAR_ENLACE_PROVEEDORESResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_PROVEEDORES_NO_AGREGADOS")]
+		public ISingleResult<SP_BUSCAR_PROVEEDORES_NO_AGREGADOSResult> SP_BUSCAR_PROVEEDORES_NO_AGREGADOS()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_BUSCAR_PROVEEDORES_NO_AGREGADOSResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDOResult
@@ -21683,6 +21704,246 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._GeneradoPor != value))
 				{
 					this._GeneradoPor = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_ENLACE_PROVEEDORESResult
+	{
+		
+		private System.Nullable<int> _IdProveedor;
+		
+		private System.Nullable<byte> _TipoRnc;
+		
+		private string _RNC;
+		
+		private string _Proveedor;
+		
+		private System.Nullable<int> _TipoProveedor;
+		
+		private string _Tipo;
+		
+		private System.Nullable<int> _CodigoDia;
+		
+		private string _Dia;
+		
+		private string _GeneradoPor;
+		
+		public SP_BUSCA_ENLACE_PROVEEDORESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProveedor", DbType="Int")]
+		public System.Nullable<int> IdProveedor
+		{
+			get
+			{
+				return this._IdProveedor;
+			}
+			set
+			{
+				if ((this._IdProveedor != value))
+				{
+					this._IdProveedor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoRnc", DbType="TinyInt")]
+		public System.Nullable<byte> TipoRnc
+		{
+			get
+			{
+				return this._TipoRnc;
+			}
+			set
+			{
+				if ((this._TipoRnc != value))
+				{
+					this._TipoRnc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RNC", DbType="VarChar(50)")]
+		public string RNC
+		{
+			get
+			{
+				return this._RNC;
+			}
+			set
+			{
+				if ((this._RNC != value))
+				{
+					this._RNC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Proveedor", DbType="VarChar(100)")]
+		public string Proveedor
+		{
+			get
+			{
+				return this._Proveedor;
+			}
+			set
+			{
+				if ((this._Proveedor != value))
+				{
+					this._Proveedor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoProveedor", DbType="Int")]
+		public System.Nullable<int> TipoProveedor
+		{
+			get
+			{
+				return this._TipoProveedor;
+			}
+			set
+			{
+				if ((this._TipoProveedor != value))
+				{
+					this._TipoProveedor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(255)")]
+		public string Tipo
+		{
+			get
+			{
+				return this._Tipo;
+			}
+			set
+			{
+				if ((this._Tipo != value))
+				{
+					this._Tipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoDia", DbType="Int")]
+		public System.Nullable<int> CodigoDia
+		{
+			get
+			{
+				return this._CodigoDia;
+			}
+			set
+			{
+				if ((this._CodigoDia != value))
+				{
+					this._CodigoDia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Dia", DbType="VarChar(100)")]
+		public string Dia
+		{
+			get
+			{
+				return this._Dia;
+			}
+			set
+			{
+				if ((this._Dia != value))
+				{
+					this._Dia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GeneradoPor", DbType="VarChar(150)")]
+		public string GeneradoPor
+		{
+			get
+			{
+				return this._GeneradoPor;
+			}
+			set
+			{
+				if ((this._GeneradoPor != value))
+				{
+					this._GeneradoPor = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MODIFICAR_ENLACE_PROVEEDORESResult
+	{
+		
+		private System.Nullable<int> _IdProveedor;
+		
+		private System.Nullable<int> _CodigoDia;
+		
+		public SP_MODIFICAR_ENLACE_PROVEEDORESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProveedor", DbType="Int")]
+		public System.Nullable<int> IdProveedor
+		{
+			get
+			{
+				return this._IdProveedor;
+			}
+			set
+			{
+				if ((this._IdProveedor != value))
+				{
+					this._IdProveedor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoDia", DbType="Int")]
+		public System.Nullable<int> CodigoDia
+		{
+			get
+			{
+				return this._CodigoDia;
+			}
+			set
+			{
+				if ((this._CodigoDia != value))
+				{
+					this._CodigoDia = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCAR_PROVEEDORES_NO_AGREGADOSResult
+	{
+		
+		private int _Codigo;
+		
+		public SP_BUSCAR_PROVEEDORES_NO_AGREGADOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codigo", DbType="Int NOT NULL")]
+		public int Codigo
+		{
+			get
+			{
+				return this._Codigo;
+			}
+			set
+			{
+				if ((this._Codigo != value))
+				{
+					this._Codigo = value;
 				}
 			}
 		}

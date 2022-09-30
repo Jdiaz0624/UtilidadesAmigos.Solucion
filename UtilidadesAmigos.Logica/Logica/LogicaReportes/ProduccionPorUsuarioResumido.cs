@@ -2541,5 +2541,82 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         
         }
         #endregion
+
+        #region MANTENIMIENTO DE ENLACE DE PROVEEDORES
+        /// <summary>
+        /// Busca la data del enlace de los proveedores con los dias
+        /// </summary>
+        /// <param name="IdProveedor"></param>
+        /// <param name="RNC"></param>
+        /// <param name="Proveedor"></param>
+        /// <param name="IdTipoProveedor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaEnlaceProveedores> BuscaEnlaceProveedores(int? IdProveedor = null, string RNC = null, string Proveedor = null, int? IdTipoProveedor = null,int? CodigoDia=null, decimal? GeneradoPor=null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_ENLACE_PROVEEDORES(IdProveedor, RNC, Proveedor, IdTipoProveedor,CodigoDia, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EBuscaEnlaceProveedores
+                           {
+                               IdProveedor=n.IdProveedor,
+                               TipoRnc=n.TipoRnc,
+                               RNC=n.RNC,
+                               Proveedor=n.Proveedor,
+                               TipoProveedor=n.TipoProveedor,
+                               Tipo=n.Tipo,
+                               CodigoDia=n.CodigoDia,
+                               Dia=n.Dia,
+                               GeneradoPor=n.GeneradoPor
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Moificar el enlace de los proveedores
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EModificarEnlaceProveedores ProcesarEnlaceProveedores(UtilidadesAmigos.Logica.Entidades.Reportes.EModificarEnlaceProveedores Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EModificarEnlaceProveedores Procesar = null;
+
+            var EnlaceProveedores = ObjData.SP_MODIFICAR_ENLACE_PROVEEDORES(
+                Item.IdProveedor,
+                Item.CodigoDia,
+                Accion);
+            if (EnlaceProveedores != null) {
+
+                Procesar = (from n in EnlaceProveedores
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EModificarEnlaceProveedores
+                            {
+                                IdProveedor=n.IdProveedor,
+                                CodigoDia=n.CodigoDia
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+
+        
+        /// <summary>
+        /// Busca los codigos que no esten agregados en la tabla de enlace de proveedores
+        /// </summary>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EProveedoresNoAgregados> ProveedoresNoAgregados() {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Buscar = (from n in ObjData.SP_BUSCAR_PROVEEDORES_NO_AGREGADOS()
+                          select new UtilidadesAmigos.Logica.Entidades.Reportes.EProveedoresNoAgregados
+                          {
+                              Codigo=n.Codigo
+                          }).ToList();
+            return Buscar;
+        }
+        #endregion
+
+     
     }
 }
