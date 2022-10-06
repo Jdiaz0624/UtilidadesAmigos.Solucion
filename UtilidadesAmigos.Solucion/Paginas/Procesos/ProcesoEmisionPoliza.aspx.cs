@@ -155,6 +155,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         }
         #endregion
+
         #region CONTROL DE PAGINACION DETAIL
         readonly PagedDataSource pagedDataSource_Detail = new PagedDataSource();
         int _PrimeraPagina_Detail, _UltimaPagina_Detail;

@@ -78,13 +78,22 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkInicio;
 
         /// <summary>
-        /// LinkAdministracionSuministro control.
+        /// DivModuloSuministro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAdministracionSuministro;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivModuloSuministro;
+
+        /// <summary>
+        /// LinkAdministracion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkAdministracion;
 
         /// <summary>
         /// LinkSolicitud control.
@@ -96,6 +105,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkSolicitud;
 
         /// <summary>
+        /// DivModuloConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivModuloConsulta;
+
+        /// <summary>
         /// LinkCartera control.
         /// </summary>
         /// <remarks>
@@ -105,58 +123,22 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkCartera;
 
         /// <summary>
-        /// LinkConsultarPersonas control.
+        /// LinkConsultaPersonas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkConsultarPersonas;
+        protected global::System.Web.UI.WebControls.LinkButton LinkConsultaPersonas;
 
         /// <summary>
-        /// linkProduccionPorUsuarios control.
+        /// LinkListadoRenovacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkProduccionPorUsuarios;
-
-        /// <summary>
-        /// linkProduccionDiaria control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkProduccionDiaria;
-
-        /// <summary>
-        /// linkGenerarCartera control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkGenerarCartera;
-
-        /// <summary>
-        /// linkCarteraIntermediarios control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkCarteraIntermediarios;
-
-        /// <summary>
-        /// linkComisionesCobrador control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkComisionesCobrador;
+        protected global::System.Web.UI.WebControls.LinkButton LinkListadoRenovacion;
 
         /// <summary>
         /// LinkGestionCobros control.
@@ -177,31 +159,22 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkEstadisticaRenovacion;
 
         /// <summary>
-        /// linkValidarCoberturas control.
+        /// LinkSacarDataCoberturas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkValidarCoberturas;
+        protected global::System.Web.UI.WebControls.LinkButton LinkSacarDataCoberturas;
 
         /// <summary>
-        /// linkGenerarReporteUAF control.
+        /// LinkGenerarReporteUAF control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkGenerarReporteUAF;
-
-        /// <summary>
-        /// LinkReporteReclamos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkReporteReclamos;
+        protected global::System.Web.UI.WebControls.LinkButton LinkGenerarReporteUAF;
 
         /// <summary>
         /// LinkControlVisitas control.
@@ -213,58 +186,67 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkControlVisitas;
 
         /// <summary>
-        /// LinkConsultarInformacionAsegurado control.
+        /// LinkInformacionAsegurado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkConsultarInformacionAsegurado;
+        protected global::System.Web.UI.WebControls.LinkButton LinkInformacionAsegurado;
 
         /// <summary>
-        /// LinkCLientesSinPolizaPolizaSinMarbete control.
+        /// LinkRegistrosInconpletos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkCLientesSinPolizaPolizaSinMarbete;
+        protected global::System.Web.UI.WebControls.LinkButton LinkRegistrosInconpletos;
 
         /// <summary>
-        /// LinkProduccionIntermediarioSupervisor control.
+        /// DivModuloReportes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkProduccionIntermediarioSupervisor;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivModuloReportes;
 
         /// <summary>
-        /// LinkReporteCobrado control.
+        /// LinkReporteProduccion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkReporteCobrado;
+        protected global::System.Web.UI.WebControls.LinkButton LinkReporteProduccion;
 
         /// <summary>
-        /// LinkReporteAlfredoIntermediarios control.
+        /// LinkReporteCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkReporteAlfredoIntermediarios;
+        protected global::System.Web.UI.WebControls.LinkButton LinkReporteCobros;
 
         /// <summary>
-        /// LiniComisionesIntermediarios control.
+        /// LinkReporteProduccionIntermediarioAlfredo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LiniComisionesIntermediarios;
+        protected global::System.Web.UI.WebControls.LinkButton LinkReporteProduccionIntermediarioAlfredo;
+
+        /// <summary>
+        /// LinkComisionesIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkComisionesIntermediario;
 
         /// <summary>
         /// LinkComisionesSupervisores control.
@@ -285,13 +267,13 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkSobreComision;
 
         /// <summary>
-        /// LinkProduccionDiariaContabilidad control.
+        /// LinkProduccionDiaria control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkProduccionDiariaContabilidad;
+        protected global::System.Web.UI.WebControls.LinkButton LinkProduccionDiaria;
 
         /// <summary>
         /// LinkAntiguedadSaldoCXP control.
@@ -303,22 +285,22 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkAntiguedadSaldoCXP;
 
         /// <summary>
-        /// LinkReporteCuuentasProveedores control.
+        /// LinkReporteCuentaProveedores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkReporteCuuentasProveedores;
+        protected global::System.Web.UI.WebControls.LinkButton LinkReporteCuentaProveedores;
 
         /// <summary>
-        /// LinkReportePrimaDeposito control.
+        /// LinkDepositosPrima control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkReportePrimaDeposito;
+        protected global::System.Web.UI.WebControls.LinkButton LinkDepositosPrima;
 
         /// <summary>
         /// LinkAntiguedadSaldo control.
@@ -330,13 +312,13 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkAntiguedadSaldo;
 
         /// <summary>
-        /// LinkReporteReclamaciones control.
+        /// LinkReporteREclmaciones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkReporteReclamaciones;
+        protected global::System.Web.UI.WebControls.LinkButton LinkReporteREclmaciones;
 
         /// <summary>
         /// LinkReclamacionesPagadas control.
@@ -348,31 +330,40 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkReclamacionesPagadas;
 
         /// <summary>
-        /// LinkReporteImpresionMarbetes control.
+        /// LinkImpresionMarbetes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkReporteImpresionMarbetes;
+        protected global::System.Web.UI.WebControls.LinkButton LinkImpresionMarbetes;
 
         /// <summary>
-        /// LinkBakupBD control.
+        /// DivModuloProcesos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkBakupBD;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivModuloProcesos;
 
         /// <summary>
-        /// LinkGenerarSOlicitudChequeComisiones control.
+        /// LinkGenerarBAckupBD control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkGenerarSOlicitudChequeComisiones;
+        protected global::System.Web.UI.WebControls.LinkButton LinkGenerarBAckupBD;
+
+        /// <summary>
+        /// LinkSolicitudesCheques control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkSolicitudesCheques;
 
         /// <summary>
         /// LinkProcesarDataAsegurado control.
@@ -384,22 +375,22 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkProcesarDataAsegurado;
 
         /// <summary>
-        /// LinkCorregirValorDeclarativa control.
+        /// LinkDatoPoliza control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkCorregirValorDeclarativa;
+        protected global::System.Web.UI.WebControls.LinkButton LinkDatoPoliza;
 
         /// <summary>
-        /// LinkGenerarEndoso control.
+        /// LinkEndosos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkGenerarEndoso;
+        protected global::System.Web.UI.WebControls.LinkButton LinkEndosos;
 
         /// <summary>
         /// LinkProcesoEmision control.
@@ -411,76 +402,49 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkProcesoEmision;
 
         /// <summary>
-        /// LinkCorregirLimites control.
+        /// LinkVolantePagos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkCorregirLimites;
+        protected global::System.Web.UI.WebControls.LinkButton LinkVolantePagos;
 
         /// <summary>
-        /// LinkEnvioCorreo control.
+        /// LinkUtilidadesCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkEnvioCorreo;
+        protected global::System.Web.UI.WebControls.LinkButton LinkUtilidadesCobros;
 
         /// <summary>
-        /// LinkEliminarBalance control.
+        /// LinkAgregarItemsReclamos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkEliminarBalance;
+        protected global::System.Web.UI.WebControls.LinkButton LinkAgregarItemsReclamos;
 
         /// <summary>
-        /// LinkGenerarFacturasPDF control.
+        /// LinkReciboIngreso control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkGenerarFacturasPDF;
+        protected global::System.Web.UI.WebControls.LinkButton LinkReciboIngreso;
 
         /// <summary>
-        /// LinkVolantePago control.
+        /// DivModuloMantenimiento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkVolantePago;
-
-        /// <summary>
-        /// linkUtilidadesCobros control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkUtilidadesCobros;
-
-        /// <summary>
-        /// LinkAgregarDPAReclamos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAgregarDPAReclamos;
-
-        /// <summary>
-        /// LinkReciboDigital control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkReciboDigital;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivModuloMantenimiento;
 
         /// <summary>
         /// LinkClientes control.
@@ -501,40 +465,40 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkIntermediariosSupervisores;
 
         /// <summary>
-        /// linkOficinas control.
+        /// LinkOficinas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkOficinas;
+        protected global::System.Web.UI.WebControls.LinkButton LinkOficinas;
 
         /// <summary>
-        /// linkDeprtamentos control.
+        /// LinkDepartamentos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkDeprtamentos;
+        protected global::System.Web.UI.WebControls.LinkButton LinkDepartamentos;
 
         /// <summary>
-        /// linkEmpleados control.
+        /// LinkEmpleados control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkEmpleados;
+        protected global::System.Web.UI.WebControls.LinkButton LinkEmpleados;
 
         /// <summary>
-        /// linkInventario control.
+        /// LinkInventario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkInventario;
+        protected global::System.Web.UI.WebControls.LinkButton LinkInventario;
 
         /// <summary>
         /// LinkDependientes control.
@@ -546,139 +510,121 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkDependientes;
 
         /// <summary>
-        /// LinkCorreoElectronicos control.
+        /// LinkPorcientoComision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkCorreoElectronicos;
+        protected global::System.Web.UI.WebControls.LinkButton LinkPorcientoComision;
 
         /// <summary>
-        /// LinkMantenimientoPorcientoComisionPorDefecto control.
+        /// LinkMonedas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkMantenimientoPorcientoComisionPorDefecto;
+        protected global::System.Web.UI.WebControls.LinkButton LinkMonedas;
 
         /// <summary>
-        /// LinkMantenimientoMonedas control.
+        /// DivModuloSeguridad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkMantenimientoMonedas;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivModuloSeguridad;
 
         /// <summary>
-        /// LinkSolicitudEmision control.
+        /// LinkUsuarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSolicitudEmision;
+        protected global::System.Web.UI.WebControls.LinkButton LinkUsuarios;
 
         /// <summary>
-        /// LinkCotizador control.
+        /// LinkPerfilesUsuarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkCotizador;
+        protected global::System.Web.UI.WebControls.LinkButton LinkPerfilesUsuarios;
 
         /// <summary>
-        /// linkUsuarios control.
+        /// LinkClaveSeguridad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkUsuarios;
+        protected global::System.Web.UI.WebControls.LinkButton LinkClaveSeguridad;
 
         /// <summary>
-        /// linkPerfilesUsuarios control.
+        /// LinkConfiguracionCorreos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkPerfilesUsuarios;
+        protected global::System.Web.UI.WebControls.LinkButton LinkConfiguracionCorreos;
 
         /// <summary>
-        /// linkClaveSeguridad control.
+        /// LinkMovimientoUsuarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkClaveSeguridad;
+        protected global::System.Web.UI.WebControls.LinkButton LinkMovimientoUsuarios;
 
         /// <summary>
-        /// LinkCorreosEmisoresProcesos control.
+        /// LinkTarjetaAcceso control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkCorreosEmisoresProcesos;
+        protected global::System.Web.UI.WebControls.LinkButton LinkTarjetaAcceso;
 
         /// <summary>
-        /// linkMovimientoUsuarios control.
+        /// LinkModulos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkMovimientoUsuarios;
+        protected global::System.Web.UI.WebControls.LinkButton LinkModulos;
 
         /// <summary>
-        /// linkTarjetasAccesos control.
+        /// LinkPantallas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkTarjetasAccesos;
+        protected global::System.Web.UI.WebControls.LinkButton LinkPantallas;
 
         /// <summary>
-        /// linkOpcionMenu control.
+        /// LinkOpciones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkOpcionMenu;
+        protected global::System.Web.UI.WebControls.LinkButton LinkOpciones;
 
         /// <summary>
-        /// linkOpcion control.
+        /// LinkPermisoUsuarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkOpcion;
-
-        /// <summary>
-        /// linkBotones control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkBotones;
-
-        /// <summary>
-        /// linkPermisoUsuarios control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkPermisoUsuarios;
+        protected global::System.Web.UI.WebControls.LinkButton LinkPermisoUsuarios;
 
         /// <summary>
         /// LinkCredencialesBD control.
