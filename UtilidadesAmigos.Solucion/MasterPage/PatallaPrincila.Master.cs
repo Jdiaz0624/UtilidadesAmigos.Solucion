@@ -1236,5 +1236,19 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 FormsAuthentication.RedirectToLoginPage();
             }
         }
+
+        protected void LinkReporteCuuentasProveedores_Click(object sender, EventArgs e)
+        {
+            
+                if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Reportes/ReporteCuentasProveedores.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
     }
 }
