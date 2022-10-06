@@ -642,7 +642,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = false;
-                    LinkIntermediariosSupervisores.Visible = false;
+                    LinkIntermediariosSupervisores.Visible = true;
                     LinkOficinas.Visible = false;
                     LinkDepartamentos.Visible = false;
                     LinkEmpleados.Visible = false;
