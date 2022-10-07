@@ -842,8 +842,8 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkGenerarBAckupBD.Visible = false;
                     LinkSolicitudesCheques.Visible = false;
                     LinkProcesarDataAsegurado.Visible = true;
-                    LinkDatoPoliza.Visible = false;
-                    LinkEndosos.Visible = false;
+                    LinkDatoPoliza.Visible = true;
+                    LinkEndosos.Visible = true;
                     LinkProcesoEmision.Visible = true;
                     LinkVolantePagos.Visible = false;
                     LinkUtilidadesCobros.Visible = false;
