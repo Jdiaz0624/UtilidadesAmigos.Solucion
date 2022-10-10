@@ -386,7 +386,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             ARCHIVO = 8,
             RECEPCION = 9,
             COBROS = 10,
-            CUMPLIMIENTO=11
+            CUMPLIMIENTO=11,
+            COBROSESPECIAL=12,
+            TECNICOESPECIAL=13
         }
 
         #region APLCIAR PERMISOS A PERFILES
@@ -500,6 +502,23 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     break;
 
+                case (int)PefilesUsuarios.COBROSESPECIAL:
+                    DivModuloSuministro.Visible = true;
+                    DivModuloConsulta.Visible = true;
+                    DivModuloReportes.Visible = true;
+                    DivModuloProcesos.Visible = true;
+                    DivModuloMantenimiento.Visible = false;
+                    DivModuloSeguridad.Visible = false;
+                    break;
+
+                case (int)PefilesUsuarios.TECNICOESPECIAL:
+                    DivModuloSuministro.Visible = true;
+                    DivModuloConsulta.Visible = true;
+                    DivModuloReportes.Visible = true;
+                    DivModuloProcesos.Visible = true;
+                    DivModuloMantenimiento.Visible = true;
+                    DivModuloSeguridad.Visible = false;
+                    break;
 
                 default:
                     DivModuloSuministro.Visible = false;
@@ -1295,7 +1314,145 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkCredencialesBD.Visible = false;
                     break;
 
+                case (int)PefilesUsuarios.COBROSESPECIAL:
+                    //SUMINISTRO
+                    LinkAdministracion.Visible = false;
+                    LinkSolicitud.Visible = true;
 
+                    //CONSULTAS
+                    LinkCartera.Visible = false;
+                    LinkConsultaPersonas.Visible = true;
+                    LinkListadoRenovacion.Visible = true;
+                    LinkGestionCobros.Visible = true;
+                    LinkEstadisticaRenovacion.Visible = true;
+                    LinkSacarDataCoberturas.Visible = false;
+                    LinkGenerarReporteUAF.Visible = false;
+                    LinkControlVisitas.Visible = true;
+                    LinkInformacionAsegurado.Visible = false;
+                    LinkRegistrosInconpletos.Visible = false;
+
+                    //REPORTES
+                    LinkReporteProduccion.Visible = false;
+                    LinkReporteCobros.Visible = true;
+                    LinkReporteProduccionIntermediarioAlfredo.Visible = false;
+                    LinkComisionesIntermediario.Visible = true;
+                    LinkComisionesSupervisores.Visible = true;
+                    LinkSobreComision.Visible = true;
+                    LinkProduccionDiaria.Visible = false;
+                    LinkAntiguedadSaldoCXP.Visible = false;
+                    LinkReporteCuentaProveedores.Visible = false;
+                    LinkDepositosPrima.Visible = false;
+                    LinkAntiguedadSaldo.Visible = true;
+                    LinkReporteREclmaciones.Visible = false;
+                    LinkReclamacionesPagadas.Visible = false;
+                    LinkImpresionMarbetes.Visible = false;
+
+                    //PROCESOS
+                    LinkGenerarBAckupBD.Visible = false;
+                    LinkSolicitudesCheques.Visible = false;
+                    LinkProcesarDataAsegurado.Visible = false;
+                    LinkDatoPoliza.Visible = false;
+                    LinkEndosos.Visible = false;
+                    LinkProcesoEmision.Visible = false;
+                    LinkVolantePagos.Visible = false;
+                    LinkUtilidadesCobros.Visible = true;
+                    LinkAgregarItemsReclamos.Visible = false;
+                    LinkReciboIngreso.Visible = true;
+
+                    //MANTENIMIENTO
+                    LinkClientes.Visible = false;
+                    LinkIntermediariosSupervisores.Visible = false;
+                    LinkOficinas.Visible = false;
+                    LinkDepartamentos.Visible = false;
+                    LinkEmpleados.Visible = false;
+                    LinkInventario.Visible = false;
+                    LinkDependientes.Visible = false;
+                    LinkPorcientoComision.Visible = false;
+                    LinkMonedas.Visible = false;
+
+                    //SEGURIDAD
+                    LinkUsuarios.Visible = false;
+                    LinkPerfilesUsuarios.Visible = false;
+                    LinkClaveSeguridad.Visible = false;
+                    LinkConfiguracionCorreos.Visible = false;
+                    LinkMovimientoUsuarios.Visible = false;
+                    LinkTarjetaAcceso.Visible = false;
+                    LinkModulos.Visible = false;
+                    LinkPantallas.Visible = false;
+                    LinkOpciones.Visible = false;
+                    LinkPermisoUsuarios.Visible = false;
+                    LinkCredencialesBD.Visible = false;
+                    break;
+
+                case (int)PefilesUsuarios.TECNICOESPECIAL:
+                    //SUMINISTRO
+                    LinkAdministracion.Visible = false;
+                    LinkSolicitud.Visible = true;
+
+                    //CONSULTAS
+                    LinkCartera.Visible = true;
+                    LinkConsultaPersonas.Visible = false;
+                    LinkListadoRenovacion.Visible = false;
+                    LinkGestionCobros.Visible = false;
+                    LinkEstadisticaRenovacion.Visible = false;
+                    LinkSacarDataCoberturas.Visible = true;
+                    LinkGenerarReporteUAF.Visible = false;
+                    LinkControlVisitas.Visible = false;
+                    LinkInformacionAsegurado.Visible = false;
+                    LinkRegistrosInconpletos.Visible = true;
+
+                    //REPORTES
+                    LinkReporteProduccion.Visible = true;
+                    LinkReporteCobros.Visible = true;
+                    LinkReporteProduccionIntermediarioAlfredo.Visible = true;
+                    LinkComisionesIntermediario.Visible = true;
+                    LinkComisionesSupervisores.Visible = true;
+                    LinkSobreComision.Visible = true;
+                    LinkProduccionDiaria.Visible = false;
+                    LinkAntiguedadSaldoCXP.Visible = false;
+                    LinkReporteCuentaProveedores.Visible = true;
+                    LinkDepositosPrima.Visible = false;
+                    LinkAntiguedadSaldo.Visible = true;
+                    LinkReporteREclmaciones.Visible = false;
+                    LinkReclamacionesPagadas.Visible = false;
+                    LinkImpresionMarbetes.Visible = false;
+
+                    //PROCESOS
+                    LinkGenerarBAckupBD.Visible = false;
+                    LinkSolicitudesCheques.Visible = false;
+                    LinkProcesarDataAsegurado.Visible = true;
+                    LinkDatoPoliza.Visible = true;
+                    LinkEndosos.Visible = true;
+                    LinkProcesoEmision.Visible = true;
+                    LinkVolantePagos.Visible = false;
+                    LinkUtilidadesCobros.Visible = false;
+                    LinkAgregarItemsReclamos.Visible = false;
+                    LinkReciboIngreso.Visible = false;
+
+                    //MANTENIMIENTO
+                    LinkClientes.Visible = false;
+                    LinkIntermediariosSupervisores.Visible = true;
+                    LinkOficinas.Visible = false;
+                    LinkDepartamentos.Visible = false;
+                    LinkEmpleados.Visible = false;
+                    LinkInventario.Visible = false;
+                    LinkDependientes.Visible = false;
+                    LinkPorcientoComision.Visible = false;
+                    LinkMonedas.Visible = false;
+
+                    //SEGURIDAD
+                    LinkUsuarios.Visible = false;
+                    LinkPerfilesUsuarios.Visible = false;
+                    LinkClaveSeguridad.Visible = false;
+                    LinkConfiguracionCorreos.Visible = false;
+                    LinkMovimientoUsuarios.Visible = false;
+                    LinkTarjetaAcceso.Visible = false;
+                    LinkModulos.Visible = false;
+                    LinkPantallas.Visible = false;
+                    LinkOpciones.Visible = false;
+                    LinkPermisoUsuarios.Visible = false;
+                    LinkCredencialesBD.Visible = false;
+                    break;
                 default:
         
                     break;
