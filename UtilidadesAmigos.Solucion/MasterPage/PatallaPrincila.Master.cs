@@ -932,7 +932,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkSolicitudesCheques.Visible = false;
                     LinkProcesarDataAsegurado.Visible = false;
                     LinkDatoPoliza.Visible = false;
-                    LinkEndosos.Visible = false;
+                    LinkEndosos.Visible = true;
                     LinkProcesoEmision.Visible = false;
                     LinkVolantePagos.Visible = false;
                     LinkUtilidadesCobros.Visible = false;
