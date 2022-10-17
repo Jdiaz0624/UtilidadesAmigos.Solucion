@@ -580,6 +580,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = true;
                     LinkSolicitudesCheques.Visible = true;
+                    LinkImpresionCheques.Visible = true;
                     LinkProcesarDataAsegurado.Visible = true;
                     LinkDatoPoliza.Visible = true;
                     LinkEndosos.Visible = true;
@@ -650,6 +651,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
                     LinkSolicitudesCheques.Visible = true;
+                    LinkImpresionCheques.Visible = true;
                     LinkProcesarDataAsegurado.Visible = false;
                     LinkDatoPoliza.Visible = false;
                     LinkEndosos.Visible = false;
@@ -720,6 +722,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
                     LinkSolicitudesCheques.Visible = false;
+                    LinkImpresionCheques.Visible = false;
                     LinkProcesarDataAsegurado.Visible = false;
                     LinkDatoPoliza.Visible = false;
                     LinkEndosos.Visible = false;
@@ -790,6 +793,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
                     LinkSolicitudesCheques.Visible = false;
+                    LinkImpresionCheques.Visible = false;
                     LinkProcesarDataAsegurado.Visible = true;
                     LinkDatoPoliza.Visible = false;
                     LinkEndosos.Visible = false;
@@ -860,6 +864,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
                     LinkSolicitudesCheques.Visible = false;
+                    LinkImpresionCheques.Visible = false;
                     LinkProcesarDataAsegurado.Visible = true;
                     LinkDatoPoliza.Visible = true;
                     LinkEndosos.Visible = true;
@@ -930,6 +935,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
                     LinkSolicitudesCheques.Visible = false;
+                    LinkImpresionCheques.Visible = false;
                     LinkProcesarDataAsegurado.Visible = false;
                     LinkDatoPoliza.Visible = false;
                     LinkEndosos.Visible = true;
@@ -1000,6 +1006,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
                     LinkSolicitudesCheques.Visible = false;
+                    LinkImpresionCheques.Visible = false;
                     LinkProcesarDataAsegurado.Visible = false;
                     LinkDatoPoliza.Visible = false;
                     LinkEndosos.Visible = false;
@@ -1070,6 +1077,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
                     LinkSolicitudesCheques.Visible = false;
+                    LinkImpresionCheques.Visible = false;
                     LinkProcesarDataAsegurado.Visible = false;
                     LinkDatoPoliza.Visible = false;
                     LinkEndosos.Visible = false;
@@ -1140,6 +1148,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
                     LinkSolicitudesCheques.Visible = false;
+                    LinkImpresionCheques.Visible = false;
                     LinkProcesarDataAsegurado.Visible = false;
                     LinkDatoPoliza.Visible = false;
                     LinkEndosos.Visible = false;
@@ -1210,6 +1219,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
                     LinkSolicitudesCheques.Visible = false;
+                    LinkImpresionCheques.Visible = false;
                     LinkProcesarDataAsegurado.Visible = false;
                     LinkDatoPoliza.Visible = false;
                     LinkEndosos.Visible = false;
@@ -1280,6 +1290,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
                     LinkSolicitudesCheques.Visible = false;
+                    LinkImpresionCheques.Visible = false;
                     LinkProcesarDataAsegurado.Visible = true;
                     LinkDatoPoliza.Visible = true;
                     LinkEndosos.Visible = true;
@@ -1350,6 +1361,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
                     LinkSolicitudesCheques.Visible = false;
+                    LinkImpresionCheques.Visible = false;
                     LinkProcesarDataAsegurado.Visible = false;
                     LinkDatoPoliza.Visible = false;
                     LinkEndosos.Visible = false;
@@ -1420,6 +1432,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
                     LinkSolicitudesCheques.Visible = false;
+                    LinkImpresionCheques.Visible = false;
                     LinkProcesarDataAsegurado.Visible = true;
                     LinkDatoPoliza.Visible = true;
                     LinkEndosos.Visible = true;
@@ -2330,6 +2343,19 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                 if (Session["IdUsuario"] != null)
             {
                 Response.Redirect("~/Paginas/Reportes/ReporteCuentasProveedores.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
+
+        protected void LinkImpresionCheques_Click1(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Procesos/ImpresionCheques.aspx");
             }
             else
             {

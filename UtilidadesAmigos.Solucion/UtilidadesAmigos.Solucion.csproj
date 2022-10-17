@@ -260,6 +260,7 @@
     <Content Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx" />
     <Content Include="Paginas\Procesos\GenerarBakupBD.aspx" />
     <Content Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx" />
+    <Content Include="Paginas\Procesos\ImpresionCheques.aspx" />
     <Content Include="Paginas\Procesos\Logo.jpg" />
     <Content Include="Paginas\Procesos\ProcesoEmisionPoliza.aspx" />
     <Content Include="Paginas\Procesos\ReciboDigital.aspx" />
@@ -273,7 +274,6 @@
     <Content Include="Paginas\Reportes\GenerarMarbetes.aspx" />
     <Content Include="Paginas\Reportes\GenerarReporteAntiguedadSaldo.aspx" />
     <Content Include="Paginas\Reportes\GenerarReporteCobros.aspx" />
-    <Content Include="Paginas\Reportes\ImpresionCheques.aspx" />
     <Content Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx" />
     <Content Include="Paginas\Reportes\ReclamacionesPagadas.aspx" />
     <Content Include="Paginas\Reportes\ReporteCuentasProveedores.aspx" />
@@ -774,6 +774,13 @@
     <Compile Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx.designer.cs">
       <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Procesos\ImpresionCheques.aspx.cs">
+      <DependentUpon>ImpresionCheques.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\ImpresionCheques.aspx.designer.cs">
+      <DependentUpon>ImpresionCheques.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Procesos\ProcesoEmisionPoliza.aspx.cs">
       <DependentUpon>ProcesoEmisionPoliza.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -879,13 +886,6 @@
     </Compile>
     <Compile Include="Paginas\Reportes\GenerarReporteCobros.aspx.designer.cs">
       <DependentUpon>GenerarReporteCobros.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Paginas\Reportes\ImpresionCheques.aspx.cs">
-      <DependentUpon>ImpresionCheques.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\Reportes\ImpresionCheques.aspx.designer.cs">
-      <DependentUpon>ImpresionCheques.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Reportes\List.cs" />
     <Compile Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx.cs">

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
+using System.Drawing.Printing;
 
 namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 {
@@ -73,7 +74,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             NombreDataList.DataSource = dt;
             NombreDataList.DataBind();
         }
-        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref LinkButton PrimeraPagina, ref LinkButton PaginaAnterior, ref LinkButton SiguientePagina, ref LinkButton UltimaPagina)
+        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
         {
             pagedDataSource.DataSource = Listado;
             pagedDataSource.AllowPaging = true;
@@ -96,7 +97,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             RptGrid.DataBind();
 
 
-            DivPaginacion.Visible = true;
+           // DivPaginacion.Visible = true;
         }
         enum OpcionesPaginacionValores
         {
@@ -223,8 +224,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 _Anulado);
             int CantidadRegistros = Buscar.Count;
             lbCantidadRegistrosVariable.Text = CantidadRegistros.ToString("N0");
-            Paginar(ref rbListadoCheques, Buscar, 10, ref lbCantidadPaginaVariable, ref LinkPrimeraPagina, ref LinkAnterior, ref LinkSiguiente, ref LinkUltimo);
-            HandlePaging(ref dtPaginacion, ref lbPaginaActualVariavle);
+            Paginar(ref rbListadoCheques, Buscar, 10, ref lbCantidadPagina, ref btnPrimeraPagina, ref btnPaginaAnterior, ref btnSiguientePagina, ref btnUltimaPagina);
+            HandlePaging(ref dtPaginacionListadoPrincipal, ref lbPaginaActual);
                 
         }
         //GenerarInformacionCheque
@@ -242,14 +243,19 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             Cheque.SetParameterValue("@IdUsuario", Idusuario);
             Cheque.SetParameterValue("@NumeroCheque", NumeroCheque);
             Cheque.SetDatabaseLogon("sa", "Pa$$W0rd");
+
             if (rbPDF.Checked == true) {
-                Cheque.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreCheque);
+                //Cheque.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, NombreCheque);
+                // Cheque.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, NombreCheque);
+                // Cheque.PrintOptions.PrinterName = GetDefaultPrinter();
+                Cheque.PrintOptions.PrinterName = ddlImpresoras.SelectedItem.Text;
+                Cheque.PrintToPrinter(1, false, 0, 0);
             }
             else if (rbExcel.Checked == true) {
-                Cheque.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreCheque);
+                Cheque.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, NombreCheque);
             }
             else if (rbWord.Checked == true) {
-                Cheque.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreCheque);
+                Cheque.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, NombreCheque);
             }
 
 
@@ -277,6 +283,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 divRangoValor.Visible = false;
                 CargarListadoBancos();
 
+                DIVFormatos.Visible = false;
+
+                foreach (String strPrinter in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+                {
+                    ddlImpresoras.Items.Add(strPrinter.ToString());
+                }
             }
         }
 
@@ -336,43 +348,44 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             }
         }
 
-        protected void btnConsultar_Click(object sender, EventArgs e)
+
+        protected void btnConsultarRegistros_Click(object sender, ImageClickEventArgs e)
         {
             MostarrListado();
         }
 
-        protected void LinkPrimeraPagina_Click(object sender, EventArgs e)
+        protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)
         {
             CurrentPage = 0;
             MostarrListado();
         }
 
-        protected void LinkAnterior_Click(object sender, EventArgs e)
+        protected void btnPaginaAnterior_Click(object sender, ImageClickEventArgs e)
         {
             CurrentPage += -1;
             MostarrListado();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavle, ref lbCantidadPaginaVariable);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActual, ref lbCantidadPagina);
         }
 
-        protected void dtPaginacion_ItemDataBound(object sender, DataListItemEventArgs e)
+        protected void dtPaginacionListadoPrincipal_ItemDataBound(object sender, DataListItemEventArgs e)
         {
 
         }
 
-        protected void dtPaginacion_ItemCommand(object source, DataListCommandEventArgs e)
+        protected void dtPaginacionListadoPrincipal_CancelCommand(object source, DataListCommandEventArgs e)
         {
             if (!e.CommandName.Equals("newPage")) return;
             CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
             MostarrListado();
         }
 
-        protected void LinkSiguiente_Click(object sender, EventArgs e)
+        protected void btnSiguientePagina_Click(object sender, ImageClickEventArgs e)
         {
             CurrentPage += 1;
             MostarrListado();
         }
 
-        protected void btnGenerarCheque_Click(object sender, EventArgs e)
+        protected void btnImprimir_Click(object sender, ImageClickEventArgs e)
         {
             decimal IdUsuario = Session["IdUsuario"] != null ? (decimal)Session["IdUsuario"] : 0;
 
@@ -380,7 +393,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 IdUsuario, 0, DateTime.Now, "", 0, "", "", "", "", "", "DELETE");
             Eliminar.ProcesarInformacion();
 
-            var ItemSeleccionado = (RepeaterItem)((Button)sender).NamingContainer;
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
             var hfNumeroChequeSeleccionado = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroChqeue")).Value.ToString();
 
             var BuscarRegistros = ObjDataReportes.Value.GenerarInformacionCheque(
@@ -388,7 +401,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 null, null, null, null, null, null, null, null, null);
             string NombreCheque = "";
             string ValorLetras = "";
-            foreach (var n in BuscarRegistros) {
+            decimal NumeroCheque = 0;
+            foreach (var n in BuscarRegistros)
+            {
                 ValorLetras = UtilidadesAmigos.Logica.Comunes.ConvertirNumeroLetras.NumeroALetras(Convert.ToDecimal(n.Valor));
 
                 UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionChequesImprimir Procesar = new Logica.Comunes.Reportes.ProcesarInformacionChequesImprimir(
@@ -404,19 +419,19 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                     n.AnoCheque.ToString(),
                     "INSERT");
                 Procesar.ProcesarInformacion();
-
+                NumeroCheque = (decimal)n.NumeroCheque;
                 NombreCheque = n.Beneficiario1 + " - " + n.Valor.ToString();
-
-                GenerarCheque((decimal)n.NumeroCheque, Server.MapPath("Cheque.rpt"), NombreCheque);
-
             }
+            GenerarCheque(NumeroCheque, Server.MapPath("Cheque.rpt"), NombreCheque);
         }
 
-        protected void LinkUltimo_Click(object sender, EventArgs e)
+        protected void btnUltimaPagina_Click(object sender, ImageClickEventArgs e)
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostarrListado();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavle, ref lbCantidadPaginaVariable);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActual, ref lbCantidadPagina);
         }
+
+       
     }
 }

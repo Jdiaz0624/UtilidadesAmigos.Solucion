@@ -338,6 +338,7 @@ display: block;
         <ul>
             <li> <asp:LinkButton ID="LinkGenerarBAckupBD" runat="server" Text="Generar Backup BD" ToolTip="Generar Backup de Base de Datos" OnClick="LinkBakupBD_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkSolicitudesCheques" runat="server" Text="Solicitudes de Cheques" ToolTip="Generar Solicitudes de Cheques" OnClick="LinkGenerarSOlicitudChequeComisiones_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkImpresionCheques" runat="server" Text="Impresión de Cheques" ToolTip="Imprimir Cheques" OnClick="LinkImpresionCheques_Click1"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkProcesarDataAsegurado" runat="server" Text="Procesar Data Asegura.do" ToolTip="Procesar Data Asegura.do" OnClick="LinkProcesarDataAsegurado_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkDatoPoliza" runat="server" Text="Dato Poliza" ToolTip="Dato Polizz" OnClick="LinkCorregirValorDeclarativa_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkEndosos" runat="server" Text="Endosos" ToolTip="Generar Endosos" OnClick="LinkGenerarEndoso_Click"></asp:LinkButton> </li>
