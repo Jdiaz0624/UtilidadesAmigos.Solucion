@@ -465,6 +465,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.TextBox txtSupervisorGEstionCobros;
 
         /// <summary>
+        /// lbTelefonoSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTelefonoSupervisor;
+
+        /// <summary>
+        /// txtTelefonoSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTelefonoSupervisor;
+
+        /// <summary>
         /// lbIntermediarioGEstionCobros control.
         /// </summary>
         /// <remarks>
@@ -483,6 +501,42 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.TextBox txtIntermediarioGestionCobro;
 
         /// <summary>
+        /// lbTelefonoIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTelefonoIntermediario;
+
+        /// <summary>
+        /// txtTelefonoIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTelefonoIntermediario;
+
+        /// <summary>
+        /// lbCantidadReclamacionesIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadReclamacionesIntermediario;
+
+        /// <summary>
+        /// txtCantidadReclamosIntermdiario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadReclamosIntermdiario;
+
+        /// <summary>
         /// lbLicenciaGestionCobros control.
         /// </summary>
         /// <remarks>
@@ -499,24 +553,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLicencia;
-
-        /// <summary>
-        /// lbFechaCreadaGestionCobros control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFechaCreadaGestionCobros;
-
-        /// <summary>
-        /// txtFechaCreadaGestionCobros control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaCreadaGestionCobros;
 
         /// <summary>
         /// lbInicioVigenciaGestionCObros control.
@@ -555,6 +591,114 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.TextBox txtFInVigenciaGestionCobros;
 
         /// <summary>
+        /// lbFacturaGestionCobros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFacturaGestionCobros;
+
+        /// <summary>
+        /// txtFActuraGestionCobros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFActuraGestionCobros;
+
+        /// <summary>
+        /// lbValorFacturaGestionCobros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbValorFacturaGestionCobros;
+
+        /// <summary>
+        /// txtValorFacturaGEstionCobros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtValorFacturaGEstionCobros;
+
+        /// <summary>
+        /// lbBalanceGestionCobros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbBalanceGestionCobros;
+
+        /// <summary>
+        /// txtBalanceGestionCobros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBalanceGestionCobros;
+
+        /// <summary>
+        /// lbfechaUltimoPagoGestionCobros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbfechaUltimoPagoGestionCobros;
+
+        /// <summary>
+        /// txtfechaUltimoPagoFestionCobros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtfechaUltimoPagoFestionCobros;
+
+        /// <summary>
+        /// lbMontoUltimoPagoGestionCObros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbMontoUltimoPagoGestionCObros;
+
+        /// <summary>
+        /// txtValorUltimoPagoGestionCObros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtValorUltimoPagoGestionCObros;
+
+        /// <summary>
+        /// lbCoberturaHAstaGestionCobros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCoberturaHAstaGestionCobros;
+
+        /// <summary>
+        /// txtCoberturaHAstaGestionCobros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCoberturaHAstaGestionCobros;
+
+        /// <summary>
         /// lbTotalFActuradoGestionCobros control.
         /// </summary>
         /// <remarks>
@@ -591,22 +735,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.TextBox txtTotalCobradoGestionCobros;
 
         /// <summary>
-        /// lbBalanceGestionCobros control.
+        /// lbFechaCreadaGestionCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbBalanceGestionCobros;
+        protected global::System.Web.UI.WebControls.Label lbFechaCreadaGestionCobros;
 
         /// <summary>
-        /// txtBalanceGestionCobros control.
+        /// txtFechaCreadaGestionCobros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBalanceGestionCobros;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaCreadaGestionCobros;
 
         /// <summary>
         /// lbTotalFacturasGestionCobros control.

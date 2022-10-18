@@ -518,7 +518,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 txtTelefonosGestonCobros.Text = n.Telefonos;
                 txtDireccionGestionCobros.Text = n.Direccion;
                 txtSupervisorGEstionCobros.Text = n.Supervisor;
+                txtTelefonoSupervisor.Text = n.TelefonoSupervisor;
                 txtIntermediarioGestionCobro.Text = n.Intermediario;
+                int CantidadReclamosIntermediario = (int)n.CantidadReclamacionesIntermediario;
+                txtCantidadReclamosIntermdiario.Text = CantidadReclamosIntermediario.ToString("N0");
                 txtLicencia.Text = n.LicenciaSeguro;
                 txtFechaCreadaGestionCobros.Text = n.FechaCreada;
                 txtInicioVigencia.Text = n.InicioVigencia;
@@ -535,6 +538,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 txtTotalRecibosGestionCobros.Text = TotalRecibos.ToString("N0");
                 int TotalReclamaciones = (int)n.TotalReclamaciones;
                 txtTotalReclamacionesGestionCobros.Text = TotalReclamaciones.ToString("N0");
+                txtfechaUltimoPagoFestionCobros.Text = n.FechaUltimoPago;
+                decimal MontoIltimoPago = (decimal)n.MontoUltimoPago;
+                txtValorUltimoPagoGestionCObros.Text = MontoIltimoPago.ToString("N0");
 
                 string Ramo = txtRamoGestionCobros.Text;
 

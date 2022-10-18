@@ -24,7 +24,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
             var Listado = (from n in ObjData.SP_BUSCAR_INFORMACION_POLIZA_GESTION_COBRO(Poliza, CodigoCliente)
                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EBuscarInformacionPolizasGestionCobros
                            {
-                               Poliza=n.Poliza,
+                              Poliza=n.Poliza,
                                Ramo=n.Ramo,
                                Subramo=n.Subramo,
                                CodigoRamo=n.CodigoRamo,
@@ -37,9 +37,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                Telefonos=n.Telefonos,
                                CodigoIntermediario=n.CodigoIntermediario,
                                Intermediario=n.Intermediario,
+                               CantidadReclamacionesIntermediario=n.CantidadReclamacionesIntermediario,
                                LicenciaSeguro=n.LicenciaSeguro,
                                CodigoSupervisor=n.CodigoSupervisor,
                                Supervisor=n.Supervisor,
+                               TelefonoSupervisor=n.TelefonoSupervisor,
                                FechaAdiciona=n.FechaAdiciona,
                                FechaCreada=n.FechaCreada,
                                FechaInicioVigencia=n.FechaInicioVigencia,
@@ -51,9 +53,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                Balance=n.Balance,
                                TotalFacturas=n.TotalFacturas,
                                TotalRecibos=n.TotalRecibos,
-                               TotalReclamaciones=n.TotalReclamaciones
-
-
+                               TotalReclamaciones=n.TotalReclamaciones,
+                               FechaUltimoPago=n.FechaUltimoPago,
+                               MontoUltimoPago=n.MontoUltimoPago
                            }).ToList();
             return Listado;
         }
@@ -1069,7 +1071,14 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EGestionCobrosHeader
                            {
                                Poliza=n.Poliza,
-                               Factura=n.Factura,
+                               InicioVigencia=n.InicioVigencia,
+                               FechaProceso=n.FechaProceso,
+                               ValorAnual=n.ValorAnual,
+                               ValorPorDia=n.ValorPorDia,
+                               ValorPagado=n.ValorPagado,
+                               CantidadDiasAsegurado=n.CantidadDiasAsegurado,
+                               CoberturaHasta=n.CoberturaHasta,
+                               Factura =n.Factura,
                                Comentarios=n.Comentarios,
                                Facturado=n.Facturado,
                                Cobrado=n.Cobrado,

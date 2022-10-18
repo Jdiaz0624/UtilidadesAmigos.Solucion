@@ -105,7 +105,7 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Poliza</th>
-                        <th scope="col">Factura</th>
+                        <th scope="col">Cobierto Hasta</th>
                         <th scope="col">Comentarios</th>
                         <th scope="col">Dias</th>
                         <th scope="col">0-10</th>
@@ -124,7 +124,7 @@
                                 <asp:HiddenField ID="hfPoliza" runat="server" Value='<%# Eval("Poliza") %>' />
 
                                 <td> <%# Eval("Poliza") %> </td>
-                                <td> <%# Eval("Factura") %> </td>
+                                <td> <%# Eval("CoberturaHasta") %> </td>
                                 <td> <%#string.Format("{0:N0}", Eval("Comentarios")) %> </td>
                                 <td> <%#string.Format("{0:N0}", Eval("CantidadDias")) %> </td>
                                 <td> <%#string.Format("{0:N2}", Eval("SA010")) %> </td>
@@ -133,7 +133,7 @@
                                 <td> <%#string.Format("{0:N2}", Eval("SA6190")) %> </td>
                                 <td> <%#string.Format("{0:N2}", Eval("SA91120")) %> </td>
                                 <td> <%#string.Format("{0:N2}", Eval("SA121MAS")) %> </td>
-                                <td> <asp:ImageButton ID="btnGestionCobros" runat="server" ToolTip="Gestion de Cobros" CssClass="BotonImagen" ImageUrl="~/Imagenes/Cobros.png" OnClick="btnGestionCobros_Click" /> </td>
+                                <td align="right"> <asp:ImageButton ID="btnGestionCobros" runat="server" ToolTip="Gestion de Cobros" CssClass="BotonImagen" ImageUrl="~/Imagenes/Cobros.png" OnClick="btnGestionCobros_Click" /> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -184,7 +184,8 @@
                    <asp:UpdatePanel ID="UpdatePanelCliente" runat="server">
                        <ContentTemplate>
                            <div class="row">
-                <div class="col-md-4">
+                               <!--PRIMERA FILA-->
+                 <div class="col-md-4">
                     <asp:Label ID="lbPolizaGestionCobro" runat="server"  Text="Poliza" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtPolizaGestionCObros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
@@ -199,8 +200,8 @@
                     <asp:TextBox ID="txtRamoGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
 
-                <!--SEGUNDA LINEA-->
-                <div class="col-md-4">
+                           <!--SEGUNDA FILA-->
+                 <div class="col-md-4">
                     <asp:Label ID="lbClienteGestionCobros" runat="server" Text="Cliente" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtClienteGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
@@ -214,31 +215,39 @@
                     <asp:Label ID="lbDireccionGestionCobros" runat="server" Text="Dirección" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtDireccionGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
-
-                <!--TERCERA FILA-->
-
-                 <div class="col-md-4">
+                 <!--TERCERA FILA-->
+                   <div class="col-md-4">
                     <asp:Label ID="lbSupervisorGestionCobros" runat="server" Text="Supervisor" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtSupervisorGEstionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
 
-                <div class="col-md-4">
+                 <div class="col-md-8">
+                    <asp:Label ID="lbTelefonoSupervisor" runat="server" Text="Tel. Supervisor" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtTelefonoSupervisor" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+              <!--CUARTA FILA-->
+                 <div class="col-md-4">
                     <asp:Label ID="lbIntermediarioGEstionCobros" runat="server" Text="Intermediario" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtIntermediarioGestionCobro" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
 
                 <div class="col-md-4">
+                    <asp:Label ID="lbTelefonoIntermediario" runat="server" Text="Tel. Intermediario" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtTelefonoIntermediario" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="col-md-4">
+                    <asp:Label ID="lbCantidadReclamacionesIntermediario" runat="server" Text="Reclamos. Intermediario" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtCantidadReclamosIntermdiario" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+               <!--QUINTA FILA-->
+                 <div class="col-md-4">
                     <asp:Label ID="lbLicenciaGestionCobros" runat="server" Text="Licencia" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtLicencia" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
 
-                <!--CUARTA FILA-->
                  <div class="col-md-4">
-                    <asp:Label ID="lbFechaCreadaGestionCobros" runat="server" Text="Fecha Creada" CssClass="Letranegrita"></asp:Label>
-                    <asp:TextBox ID="txtFechaCreadaGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                </div>
-
-                <div class="col-md-4">
                     <asp:Label ID="lbInicioVigenciaGestionCObros" runat="server" Text="Inicio de Vigencia" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtInicioVigencia" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
@@ -247,8 +256,37 @@
                     <asp:Label ID="lbFInVigenciaGestionCobros" runat="server" Text="Fin de Vigencia" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtFInVigenciaGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
+              <!--SEXTA LINEA-->
+                  <div class="col-md-4">
+                    <asp:Label ID="lbFacturaGestionCobros" runat="server" Text="Factura" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtFActuraGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
 
-                <!--QUINTA FILA-->
+                 <div class="col-md-4">
+                    <asp:Label ID="lbValorFacturaGestionCobros" runat="server" Text="Valor" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtValorFacturaGEstionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="col-md-4">
+                    <asp:Label ID="lbBalanceGestionCobros" runat="server" Text="Balance" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtBalanceGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+            <!--SEPTIMA LINEA-->
+                 <div class="col-md-4">
+                    <asp:Label ID="lbfechaUltimoPagoGestionCobros" runat="server" Text="Fecha Ultimo Pago" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtfechaUltimoPagoFestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                 <div class="col-md-4">
+                    <asp:Label ID="lbMontoUltimoPagoGestionCObros" runat="server" Text="Valor Ultimo Pago" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtValorUltimoPagoGestionCObros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+
+                <div class="col-md-4">
+                    <asp:Label ID="lbCoberturaHAstaGestionCobros" runat="server" Text="Cobertura Hasta" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtCoberturaHAstaGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+              <!--OCTAVA FILA-->
                  <div class="col-md-4">
                     <asp:Label ID="lbTotalFActuradoGestionCobros" runat="server" Text="Total Facturado" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtTotalFacturado" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
@@ -260,12 +298,12 @@
                 </div>
 
                 <div class="col-md-4">
-                    <asp:Label ID="lbBalanceGestionCobros" runat="server" Text="Balance" CssClass="Letranegrita"></asp:Label>
-                    <asp:TextBox ID="txtBalanceGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    <asp:Label ID="lbFechaCreadaGestionCobros" runat="server" Text="Fecha Creada" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtFechaCreadaGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
 
-                <!--SEXTA FILA-->
-                 <div class="col-md-4">
+                <!--NOVENA FILA-->
+                <div class="col-md-4">
                     <asp:Label ID="lbTotalFacturasGestionCobros" runat="server" Text="Facturas" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtTotalFacturasGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
@@ -279,6 +317,7 @@
                     <asp:Label ID="lbTotalReclamaciones" runat="server" Text="Reclamaciones" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtTotalReclamacionesGestionCobros" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
+
                                <br /> <br /> <br /> <br />
                  <asp:Label ID="lbLetreroUltimoComentario" runat="server" Text="Datos del último comentario agregado en el listado de renovación" CssClass="Letranegrita" align="center"></asp:Label>
                                <hr />

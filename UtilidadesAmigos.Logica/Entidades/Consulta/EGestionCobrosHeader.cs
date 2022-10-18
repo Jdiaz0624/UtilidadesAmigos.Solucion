@@ -8,28 +8,44 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 {
     public class EGestionCobrosHeader
     {
-		public string Poliza {get;set;}
-		public decimal? Factura { get; set; }
+		public string Poliza { get; set; }
+
+		public string InicioVigencia { get; set; }
+
+		public string FechaProceso { get; set; }
+
+		public System.Nullable<decimal> ValorAnual { get; set; }
+
+		public System.Nullable<decimal> ValorPorDia { get; set; }
+
+		public System.Nullable<decimal> ValorPagado { get; set; }
+
+		public System.Nullable<decimal> CantidadDiasAsegurado { get; set; }
+
+		public string CoberturaHasta { get; set; }
+
+		public decimal Factura { get; set; }
+
 		public System.Nullable<int> Comentarios { get; set; }
 
-		public System.Nullable<decimal> Facturado {get;set;}
+		public System.Nullable<decimal> Facturado { get; set; }
 
-		public System.Nullable<decimal> Cobrado {get;set;}
+		public System.Nullable<decimal> Cobrado { get; set; }
 
-		public System.Nullable<decimal> Balance {get;set;}
+		public System.Nullable<decimal> Balance { get; set; }
 
-		public System.Nullable<int> CantidadDias {get;set;}
+		public System.Nullable<int> CantidadDias { get; set; }
 
-		public System.Nullable<decimal> SA010 {get;set;}
+		public System.Nullable<decimal> SA010 { get; set; }
 
-		public System.Nullable<decimal> SA1130 {get;set;}
+		public System.Nullable<decimal> SA1130 { get; set; }
 
-		public System.Nullable<decimal> SA3160 {get;set;}
+		public System.Nullable<decimal> SA3160 { get; set; }
 
-		public System.Nullable<decimal> SA6190 {get;set;}
+		public System.Nullable<decimal> SA6190 { get; set; }
 
-		public System.Nullable<decimal> SA91120 {get;set;}
+		public System.Nullable<decimal> SA91120 { get; set; }
 
-		public System.Nullable<decimal> SA121MAS {get;set;}
+		public System.Nullable<decimal> SA121MAS { get; set; }
 	}
 }
