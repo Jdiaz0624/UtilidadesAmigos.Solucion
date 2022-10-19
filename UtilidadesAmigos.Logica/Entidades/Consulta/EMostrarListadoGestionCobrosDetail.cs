@@ -9,6 +9,7 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
     public class EMostrarListadoGestionCobrosDetail
     {
 		public string Poliza { get; set; }
+
 		public decimal Factura { get; set; }
 
 		public System.Nullable<System.DateTime> FechaInicioVigencia { get; set; }
@@ -18,6 +19,21 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 		public System.Nullable<System.DateTime> FechaFinVigencia { get; set; }
 
 		public string FinVigencia { get; set; }
+
+		public string FechaProceso { get; set; }
+
+		public System.Nullable<decimal> ValorAnual { get; set; }
+
+		public System.Nullable<decimal> ValorPorDia { get; set; }
+
+		public System.Nullable<decimal> ValorPagado { get; set; }
+
+		public System.Nullable<decimal> CantidadDiasAsegurado { get; set; }
+		public string FechaUltimoPago { get; set; }
+
+		public System.Nullable<decimal> MontoUltimoPago { get; set; }
+
+		public string CoberturaHasta { get; set; }
 
 		public System.Nullable<int> CantidadReclamaciones { get; set; }
 

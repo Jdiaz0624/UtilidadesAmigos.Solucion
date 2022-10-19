@@ -778,54 +778,6 @@
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_MOSTRAR_LISTADO_GESTION_COBROS_DETAIL" Method="SP_MOSTRAR_LISTADO_GESTION_COBROS_DETAIL">
-    <Parameter Name="FechaCorte" Parameter="fechaCorte" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
-    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
-    <Parameter Name="CodSupervisor" Parameter="codSupervisor" Type="System.Int32" DbType="Int" />
-    <Parameter Name="CodIntermediario" Parameter="codIntermediario" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_MOSTRAR_LISTADO_GESTION_COBROS_DETAILResult">
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Factura" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="FechaInicioVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
-      <Column Name="FechaFinVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
-      <Column Name="CantidadReclamaciones" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="UltimaReclamacion" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="FechaUltimoComentario" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
-      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
-      <Column Name="UltimoEstatusLlamada" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="UltimoConceptoLlamada" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="UltimoComentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SumaAsegurada" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Prima" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Cliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Asegurado" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="TelefonoResidencia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Celular" Type="System.String" DbType="Char(50)" CanBeNull="true" />
-      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Codigointermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Oficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NombreOficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="CantidadDias" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SA0_10" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="SA11_30" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="SA31_60" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="SA61_90" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="SA91_120" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="SA121_MAS" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADER" Method="SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADER">
     <Parameter Name="FechaCorte" Parameter="fechaCorte" Type="System.DateTime" DbType="Date" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
@@ -894,6 +846,62 @@
       <Column Name="TotalReclamaciones" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="FechaUltimoPago" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="MontoUltimoPago" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MOSTRAR_LISTADO_GESTION_COBROS_DETAIL" Method="SP_MOSTRAR_LISTADO_GESTION_COBROS_DETAIL">
+    <Parameter Name="FechaCorte" Parameter="fechaCorte" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodSupervisor" Parameter="codSupervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodIntermediario" Parameter="codIntermediario" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_MOSTRAR_LISTADO_GESTION_COBROS_DETAILResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Factura" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaInicioVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaFinVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaProceso" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ValorAnual" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ValorPorDia" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ValorPagado" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CantidadDiasAsegurado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="FechaUltimoPago" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="MontoUltimoPago" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CoberturaHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="CantidadReclamaciones" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UltimaReclamacion" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FechaUltimoComentario" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="UltimoEstatusLlamada" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="UltimoConceptoLlamada" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="UltimoComentario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SumaAsegurada" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Prima" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Asegurado" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="TelefonoResidencia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Celular" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Codigointermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreOficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CantidadDias" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SA0_10" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="SA11_30" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="SA31_60" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="SA61_90" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="SA91_120" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="SA121_MAS" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
