@@ -506,7 +506,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         #region MOSTRAR EL DETALLE GENERAL DE LA POLIZA
         private void SacarInformacionPoliza(string Poliza)
         {
-
             var SacarInformacion = ObjDataConsulta.Value.BuscaPolizaGestionCobros(
                 Poliza, null);
             foreach (var n in SacarInformacion)
@@ -522,6 +521,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 txtIntermediarioGestionCobro.Text = n.Intermediario;
                 int CantidadReclamosIntermediario = (int)n.CantidadReclamacionesIntermediario;
                 txtCantidadReclamosIntermdiario.Text = CantidadReclamosIntermediario.ToString("N0");
+                txtTelefonoIntermediario.Text = n.TelefonoIntermediario;
                 txtLicencia.Text = n.LicenciaSeguro;
                 txtFechaCreadaGestionCobros.Text = n.FechaCreada;
                 txtInicioVigencia.Text = n.InicioVigencia;
@@ -553,6 +553,19 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 {
                     DivDatoVehiculo.Visible = false;
                 }
+            }
+            var SacarInformacionHeader = ObjDataConsulta.Value.BuscaGestionCobrosheader(
+                DateTime.Now,
+                null,
+                null,
+                Poliza,
+                null, null, null);
+            foreach (var n2 in SacarInformacionHeader) {
+
+                txtFActuraGestionCobros.Text = n2.Factura.ToString();
+                decimal ValorFactura = (decimal)n2.ValorAnual;
+                txtValorFacturaGEstionCobros.Text = ValorFactura.ToString("N2");
+                txtCoberturaHAstaGestionCobros.Text = n2.CoberturaHasta;
             }
         }
         #endregion

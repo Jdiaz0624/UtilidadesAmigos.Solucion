@@ -10007,6 +10007,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<int> _CantidadReclamacionesIntermediario;
 		
+		private string _TelefonoIntermediario;
+		
 		private string _LicenciaSeguro;
 		
 		private int _CodigoSupervisor;
@@ -10271,6 +10273,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TelefonoIntermediario", DbType="VarChar(96) NOT NULL", CanBeNull=false)]
+		public string TelefonoIntermediario
+		{
+			get
+			{
+				return this._TelefonoIntermediario;
+			}
+			set
+			{
+				if ((this._TelefonoIntermediario != value))
+				{
+					this._TelefonoIntermediario = value;
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LicenciaSeguro", DbType="VarChar(50)")]
 		public string LicenciaSeguro
 		{
@@ -10319,7 +10337,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TelefonoSupervisor", DbType="VarChar(63) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TelefonoSupervisor", DbType="VarChar(96) NOT NULL", CanBeNull=false)]
 		public string TelefonoSupervisor
 		{
 			get

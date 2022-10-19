@@ -38,6 +38,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                CodigoIntermediario=n.CodigoIntermediario,
                                Intermediario=n.Intermediario,
                                CantidadReclamacionesIntermediario=n.CantidadReclamacionesIntermediario,
+                               TelefonoIntermediario=n.TelefonoIntermediario,
                                LicenciaSeguro=n.LicenciaSeguro,
                                CodigoSupervisor=n.CodigoSupervisor,
                                Supervisor=n.Supervisor,

@@ -35,6 +35,7 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 		public string Intermediario { get; set; }
 
 		public System.Nullable<int> CantidadReclamacionesIntermediario { get; set; }
+		public string TelefonoIntermediario { get; set; }
 
 		public string LicenciaSeguro { get; set; }
 
