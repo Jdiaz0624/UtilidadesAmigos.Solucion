@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionProcesosDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -363,6 +363,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroConector, secuencia, idEstatusProcesoEmision);
 			return ((ISingleResult<SP_BUSCA_INFORMACION_PROCESO_EMISION_DETALLEResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_GENERAR_CHEQUE")]
+		public ISingleResult<SP_GENERAR_CHEQUEResult> SP_GENERAR_CHEQUE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroCheque", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroCheque, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ConceptoCheque", DbType="VarChar(8000)")] string conceptoCheque, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorCheque", DbType="Decimal(20,2)")] System.Nullable<decimal> valorCheque, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Beneficiario", DbType="VarChar(8000)")] string beneficiario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, numeroCheque, conceptoCheque, valorCheque, beneficiario);
+			return ((ISingleResult<SP_GENERAR_CHEQUEResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -8369,6 +8376,338 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CreadoPor != value))
 				{
 					this._CreadoPor = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_GENERAR_CHEQUEResult
+	{
+		
+		private System.Nullable<decimal> _IdUsuarioProcesa;
+		
+		private System.Nullable<decimal> _NumeroCheque;
+		
+		private string _FechaCheque;
+		
+		private string _ConceptoCheque;
+		
+		private System.Nullable<decimal> _ValorCheque;
+		
+		private string _Beneficiario;
+		
+		private string _MontoChqeueLetras;
+		
+		private string _DiaCheque;
+		
+		private string _PrimerDigitoDia;
+		
+		private string _SegundoDigitoDia;
+		
+		private string _MesCheque;
+		
+		private string _PrimerDigitoMes;
+		
+		private string _SegundoDigitoMes;
+		
+		private string _AnoCheque;
+		
+		private string _PrimerDigitoAno;
+		
+		private string _SegundoDigitoAno;
+		
+		private string _TercerDigitoAno;
+		
+		private string _CuartoDigitoAno;
+		
+		public SP_GENERAR_CHEQUEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuarioProcesa", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuarioProcesa
+		{
+			get
+			{
+				return this._IdUsuarioProcesa;
+			}
+			set
+			{
+				if ((this._IdUsuarioProcesa != value))
+				{
+					this._IdUsuarioProcesa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroCheque", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> NumeroCheque
+		{
+			get
+			{
+				return this._NumeroCheque;
+			}
+			set
+			{
+				if ((this._NumeroCheque != value))
+				{
+					this._NumeroCheque = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCheque", DbType="NVarChar(4000)")]
+		public string FechaCheque
+		{
+			get
+			{
+				return this._FechaCheque;
+			}
+			set
+			{
+				if ((this._FechaCheque != value))
+				{
+					this._FechaCheque = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConceptoCheque", DbType="VarChar(8000)")]
+		public string ConceptoCheque
+		{
+			get
+			{
+				return this._ConceptoCheque;
+			}
+			set
+			{
+				if ((this._ConceptoCheque != value))
+				{
+					this._ConceptoCheque = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorCheque", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> ValorCheque
+		{
+			get
+			{
+				return this._ValorCheque;
+			}
+			set
+			{
+				if ((this._ValorCheque != value))
+				{
+					this._ValorCheque = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Beneficiario", DbType="VarChar(500)")]
+		public string Beneficiario
+		{
+			get
+			{
+				return this._Beneficiario;
+			}
+			set
+			{
+				if ((this._Beneficiario != value))
+				{
+					this._Beneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoChqeueLetras", DbType="VarChar(8000)")]
+		public string MontoChqeueLetras
+		{
+			get
+			{
+				return this._MontoChqeueLetras;
+			}
+			set
+			{
+				if ((this._MontoChqeueLetras != value))
+				{
+					this._MontoChqeueLetras = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiaCheque", DbType="VarChar(2)")]
+		public string DiaCheque
+		{
+			get
+			{
+				return this._DiaCheque;
+			}
+			set
+			{
+				if ((this._DiaCheque != value))
+				{
+					this._DiaCheque = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimerDigitoDia", DbType="VarChar(1)")]
+		public string PrimerDigitoDia
+		{
+			get
+			{
+				return this._PrimerDigitoDia;
+			}
+			set
+			{
+				if ((this._PrimerDigitoDia != value))
+				{
+					this._PrimerDigitoDia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SegundoDigitoDia", DbType="VarChar(1)")]
+		public string SegundoDigitoDia
+		{
+			get
+			{
+				return this._SegundoDigitoDia;
+			}
+			set
+			{
+				if ((this._SegundoDigitoDia != value))
+				{
+					this._SegundoDigitoDia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MesCheque", DbType="VarChar(2)")]
+		public string MesCheque
+		{
+			get
+			{
+				return this._MesCheque;
+			}
+			set
+			{
+				if ((this._MesCheque != value))
+				{
+					this._MesCheque = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimerDigitoMes", DbType="VarChar(1)")]
+		public string PrimerDigitoMes
+		{
+			get
+			{
+				return this._PrimerDigitoMes;
+			}
+			set
+			{
+				if ((this._PrimerDigitoMes != value))
+				{
+					this._PrimerDigitoMes = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SegundoDigitoMes", DbType="VarChar(1)")]
+		public string SegundoDigitoMes
+		{
+			get
+			{
+				return this._SegundoDigitoMes;
+			}
+			set
+			{
+				if ((this._SegundoDigitoMes != value))
+				{
+					this._SegundoDigitoMes = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnoCheque", DbType="VarChar(4)")]
+		public string AnoCheque
+		{
+			get
+			{
+				return this._AnoCheque;
+			}
+			set
+			{
+				if ((this._AnoCheque != value))
+				{
+					this._AnoCheque = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimerDigitoAno", DbType="VarChar(1)")]
+		public string PrimerDigitoAno
+		{
+			get
+			{
+				return this._PrimerDigitoAno;
+			}
+			set
+			{
+				if ((this._PrimerDigitoAno != value))
+				{
+					this._PrimerDigitoAno = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SegundoDigitoAno", DbType="VarChar(1)")]
+		public string SegundoDigitoAno
+		{
+			get
+			{
+				return this._SegundoDigitoAno;
+			}
+			set
+			{
+				if ((this._SegundoDigitoAno != value))
+				{
+					this._SegundoDigitoAno = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TercerDigitoAno", DbType="VarChar(1)")]
+		public string TercerDigitoAno
+		{
+			get
+			{
+				return this._TercerDigitoAno;
+			}
+			set
+			{
+				if ((this._TercerDigitoAno != value))
+				{
+					this._TercerDigitoAno = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CuartoDigitoAno", DbType="VarChar(1)")]
+		public string CuartoDigitoAno
+		{
+			get
+			{
+				return this._CuartoDigitoAno;
+			}
+			set
+			{
+				if ((this._CuartoDigitoAno != value))
+				{
+					this._CuartoDigitoAno = value;
 				}
 			}
 		}

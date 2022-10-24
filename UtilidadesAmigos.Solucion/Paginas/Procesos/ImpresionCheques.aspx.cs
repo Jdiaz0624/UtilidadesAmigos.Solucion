@@ -231,7 +231,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         //GenerarInformacionCheque
         #endregion
         #region GENERAR CHEQUE
-        private void GenerarCheque(decimal NumeroCheque, string RutaCheque, string NombreCheque) {
+        private void GenerarCheque(decimal NumeroCheque, string RutaCheque, string NombreCheque,string Concepto,decimal Valor,string Benerificario) {
 
             decimal Idusuario = Session["IdUsuario"] != null ? Convert.ToDecimal(Session["IdUsuario"]) : 0;
             
@@ -242,6 +242,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
             Cheque.SetParameterValue("@IdUsuario", Idusuario);
             Cheque.SetParameterValue("@NumeroCheque", NumeroCheque);
+            Cheque.SetParameterValue("@ConceptoCheque", Concepto);
+            Cheque.SetParameterValue("@ValorCheque", Valor);
+            Cheque.SetParameterValue("@Beneficiario", Benerificario);
             Cheque.SetDatabaseLogon("sa", "Pa$$W0rd");
 
             if (rbPDF.Checked == true) {
@@ -395,15 +398,23 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
             var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
             var hfNumeroChequeSeleccionado = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroChqeue")).Value.ToString();
+            var hfBeneficiario = ((HiddenField)ItemSeleccionado.FindControl("hfBeneficiario")).Value.ToString();
+            var hfBanco = ((HiddenField)ItemSeleccionado.FindControl("hfBanco")).Value.ToString();
 
             var BuscarRegistros = ObjDataReportes.Value.GenerarInformacionCheque(
                 hfNumeroChequeSeleccionado,
-                null, null, null, null, null, null, null, null, null);
+                hfBeneficiario, null, null, null, null, null, null, Convert.ToInt32(hfBanco), null);
             string NombreCheque = "";
             string ValorLetras = "";
             decimal NumeroCheque = 0;
+            string Concepto = "", Beneficiario = "";
+            decimal ValorCheque = 0;
             foreach (var n in BuscarRegistros)
             {
+                Concepto = n.Concepto1;
+                ValorCheque = (decimal)n.Valor;
+                Beneficiario = n.Beneficiario1;
+
                 ValorLetras = UtilidadesAmigos.Logica.Comunes.ConvertirNumeroLetras.NumeroALetras(Convert.ToDecimal(n.Valor));
 
                 UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarInformacionChequesImprimir Procesar = new Logica.Comunes.Reportes.ProcesarInformacionChequesImprimir(
@@ -422,7 +433,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 NumeroCheque = (decimal)n.NumeroCheque;
                 NombreCheque = n.Beneficiario1 + " - " + n.Valor.ToString();
             }
-            GenerarCheque(NumeroCheque, Server.MapPath("Cheque.rpt"), NombreCheque);
+            GenerarCheque(NumeroCheque, Server.MapPath("Cheque.rpt"), NombreCheque, Concepto, ValorCheque, Beneficiario);
         }
 
         protected void btnUltimaPagina_Click(object sender, ImageClickEventArgs e)

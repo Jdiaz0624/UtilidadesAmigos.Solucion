@@ -153,6 +153,8 @@
                         <ItemTemplate>
                             <tr>
                                 <asp:HiddenField ID="hfNumeroChqeue" runat="server" Value='<%# Eval("NumeroCheque") %>' />
+                                <asp:HiddenField ID="hfBeneficiario" runat="server" Value='<%# Eval("Beneficiario1") %>' />
+                                <asp:HiddenField ID="hfBanco" runat="server" Value='<%# Eval("CtaBanco") %>' />
 
                                 
                                 <td> <%# Eval("NumeroCheque") %> </td>

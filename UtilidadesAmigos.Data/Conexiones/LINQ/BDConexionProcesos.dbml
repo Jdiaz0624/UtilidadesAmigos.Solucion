@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionProcesosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_GENERAR_DATOS_PARA_MARBETE_VEHICULO" Method="SP_GENERAR_DATOS_PARA_MARBETE_VEHICULO">
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="Item" Parameter="item" Type="System.String" DbType="VarChar(50)" />
@@ -764,6 +764,33 @@
       <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
       <Column Name="CreadoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_GENERAR_CHEQUE" Method="SP_GENERAR_CHEQUE">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="NumeroCheque" Parameter="numeroCheque" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="ConceptoCheque" Parameter="conceptoCheque" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="ValorCheque" Parameter="valorCheque" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Beneficiario" Parameter="beneficiario" Type="System.String" DbType="VarChar(8000)" />
+    <ElementType Name="SP_GENERAR_CHEQUEResult">
+      <Column Name="IdUsuarioProcesa" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NumeroCheque" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="FechaCheque" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ConceptoCheque" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="ValorCheque" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Beneficiario" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="MontoChqeueLetras" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="DiaCheque" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="PrimerDigitoDia" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="SegundoDigitoDia" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="MesCheque" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="PrimerDigitoMes" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="SegundoDigitoMes" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="AnoCheque" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="PrimerDigitoAno" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="SegundoDigitoAno" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="TercerDigitoAno" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="CuartoDigitoAno" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
