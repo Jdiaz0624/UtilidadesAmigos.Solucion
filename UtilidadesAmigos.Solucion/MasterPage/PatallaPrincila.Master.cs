@@ -1404,7 +1404,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //CONSULTAS
                     LinkCartera.Visible = true;
                     LinkConsultaPersonas.Visible = false;
-                    LinkListadoRenovacion.Visible = false;
+                    LinkListadoRenovacion.Visible = true;
                     LinkGestionCobros.Visible = false;
                     LinkEstadisticaRenovacion.Visible = false;
                     LinkSacarDataCoberturas.Visible = true;
