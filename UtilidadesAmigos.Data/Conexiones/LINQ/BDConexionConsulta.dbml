@@ -478,38 +478,6 @@
       <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_BUSCA_CLIENTE_SIN_POLIZAS" Method="SP_BUSCA_CLIENTE_SIN_POLIZAS">
-    <Parameter Name="CodigoCliente" Parameter="codigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Numeroidentificacion" Parameter="numeroidentificacion" Type="System.String" DbType="VarChar(30)" />
-    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
-    <Parameter Name="NombreCliente" Parameter="nombreCliente" Type="System.String" DbType="VarChar(100)" />
-    <ElementType Name="SP_BUSCA_CLIENTE_SIN_POLIZASResult">
-      <Column Name="Codigo" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="RNC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Cliente" Type="System.String" DbType="VarChar(288) NOT NULL" CanBeNull="false" />
-      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
-      <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
-      <Column Name="Cobrador" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
-      <Column Name="UsuarioAdiciona" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="fecha0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="TelefonoResidencia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Celular" Type="System.String" DbType="Char(50)" CanBeNull="true" />
-      <Column Name="fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Beeper" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Comprobante" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Nacionalidad" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ClaseCliente" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_MOSTRAR_POLIZAS_SIN_IMPRESION_MARBETE" Method="SP_MOSTRAR_POLIZAS_SIN_IMPRESION_MARBETE">
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(30)" />
     <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
@@ -539,48 +507,6 @@
       <Column Name="Ramo" Type="System.String" DbType="NVarChar(83) NOT NULL" CanBeNull="false" />
       <Column Name="CodigoSubramo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="SubRamo" Type="System.String" DbType="NVarChar(83) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_BUSCA_CLIENTES_SIN_POLIZA_DETALLADO" Method="SP_BUSCA_CLIENTES_SIN_POLIZA_DETALLADO">
-    <Parameter Name="CodigoCliente" Parameter="codigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Numeroidentificacion" Parameter="numeroidentificacion" Type="System.String" DbType="VarChar(30)" />
-    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
-    <Parameter Name="NombreCliente" Parameter="nombreCliente" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="CodigoOficina" Parameter="codigoOficina" Type="System.Int32" DbType="Int" />
-    <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <ElementType Name="SP_BUSCA_CLIENTES_SIN_POLIZA_DETALLADOResult">
-      <Column Name="Codigo" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="RNC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Cliente" Type="System.String" DbType="VarChar(288) NOT NULL" CanBeNull="false" />
-      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
-      <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
-      <Column Name="Cobrador" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
-      <Column Name="UsuarioAdiciona" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="fecha0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
-      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
-      <Column Name="CodigoMes" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CodigoAno" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Mes" Type="System.String" DbType="VarChar(43) NOT NULL" CanBeNull="false" />
-      <Column Name="TelefonoResidencia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Celular" Type="System.String" DbType="Char(50)" CanBeNull="true" />
-      <Column Name="fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Beeper" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Comprobante" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Nacionalidad" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ClaseCliente" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="CantidadPolizas" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="Utililades.SP_BUSCA_CLIENTES_SIN_POLIZA_RESUMIDO" Method="SP_BUSCA_CLIENTES_SIN_POLIZA_RESUMIDO">
@@ -902,6 +828,88 @@
       <Column Name="SA61_90" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="SA91_120" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
       <Column Name="SA121_MAS" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_CLIENTE_SIN_POLIZAS" Method="SP_BUSCA_CLIENTE_SIN_POLIZAS">
+    <Parameter Name="CodigoCliente" Parameter="codigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Numeroidentificacion" Parameter="numeroidentificacion" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreCliente" Parameter="nombreCliente" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_BUSCA_CLIENTE_SIN_POLIZASResult">
+      <Column Name="Codigo" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RNC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(288) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="Cobrador" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="UsuarioAdiciona" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fecha0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="TelefonoResidencia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Celular" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Beeper" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Comprobante" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Nacionalidad" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ClaseCliente" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CantidadPolizas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SiglaEstatus" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoEstatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_CLIENTES_SIN_POLIZA_DETALLADO" Method="SP_BUSCA_CLIENTES_SIN_POLIZA_DETALLADO">
+    <Parameter Name="CodigoCliente" Parameter="codigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Numeroidentificacion" Parameter="numeroidentificacion" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreCliente" Parameter="nombreCliente" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoOficina" Parameter="codigoOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCA_CLIENTES_SIN_POLIZA_DETALLADOResult">
+      <Column Name="Codigo" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RNC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(288) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="Cobrador" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="UsuarioAdiciona" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fecha0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoMes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodigoAno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Mes" Type="System.String" DbType="VarChar(43) NOT NULL" CanBeNull="false" />
+      <Column Name="TelefonoResidencia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Celular" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Beeper" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Comprobante" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Nacionalidad" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ClaseCliente" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CantidadPolizas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CantidadPolizas1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SiglaEstatus" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoEstatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

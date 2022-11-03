@@ -18,9 +18,9 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 
 		public string Direccion {get;set;}
 
-		public int? CodigoSupervisor {get;set;}
+		public System.Nullable<int> CodigoSupervisor {get;set;}
 
-		public int? CodigoIntermediario {get;set;}
+		public System.Nullable<int> CodigoIntermediario {get;set;}
 
 		public string Supervisor {get;set;}
 
@@ -49,5 +49,13 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 		public string Nacionalidad {get;set;}
 
 		public string ClaseCliente {get;set;}
+
+		public System.Nullable<int> CantidadPolizas { get; set; }
+
+		public string SiglaEstatus { get; set; }
+
+		public string Estatus { get; set; }
+
+		public System.Nullable<int> CodigoEstatus { get; set; }
 	}
 }

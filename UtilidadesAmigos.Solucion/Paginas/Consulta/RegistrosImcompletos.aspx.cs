@@ -916,6 +916,55 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             }
         }
 
+        protected void btnProcesar_Click(object sender, ImageClickEventArgs e)
+        {
+
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var CodigoCliente = ((HiddenField)ItemSeleccionado.FindControl("hfCodigoClienteProceso")).Value.ToString();
+            var CodigoEstatus = ((HiddenField)ItemSeleccionado.FindControl("hfCodigoEstatus")).Value.ToString();
+
+            //VALIDAMOS EL USUARIO Y SACAMOS EL CODIGO DEL PERFIL DEL USUARIO EN SI
+            UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Perfil = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+            int PerfilUsuario = Perfil.SacarPerfilUsuarioConectado();
+
+            switch (PerfilUsuario) {
+
+                case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.ADMINISTRADOR:
+
+                    break;
+
+
+                case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.TECNICO:
+
+                    break;
+
+                case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.Tecnico_Especial:
+
+                    break;
+
+                case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.NEGOCIOS:
+
+                    break;
+
+                default:
+
+                    if (CodigoEstatus == UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Negocios.ToString())
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "PerfilSinPermisoNegocios()", "PerfilSinPermisoNegocios();", true);
+                    }
+                    else if (CodigoEstatus == UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Tecnico.ToString())
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "PerfilSinPermisoSuscripcion()", "PerfilSinPermisoSuscripcion();", true);
+                    }
+                    else if (CodigoEstatus == UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Devuelto.ToString()) {
+                        ClientScript.RegisterStartupScript(GetType(), "PerfilSinPermisoNegocios()", "PerfilSinPermisoNegocios();", true);
+                    }
+
+
+                    break;
+            }
+        }
+
         protected void txtCodigoIntermediarioClienteSinPoliza_TextChanged(object sender, EventArgs e)
         {
             UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Intermediario = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoIntermediarioClienteSinPoliza.Text);

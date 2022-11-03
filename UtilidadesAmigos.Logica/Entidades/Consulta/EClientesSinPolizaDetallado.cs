@@ -65,5 +65,12 @@ namespace UtilidadesAmigos.Logica.Entidades.Consulta
 		public string Oficina {get;set;}
 
 		public string GeneradoPor {get;set;}
+		public System.Nullable<int> CantidadPolizas1 { get; set; }
+
+		public string SiglaEstatus { get; set; }
+
+		public string Estatus { get; set; }
+
+		public System.Nullable<int> CodigoEstatus { get; set; }
 	}
 }

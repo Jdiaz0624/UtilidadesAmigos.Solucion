@@ -840,6 +840,10 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                Comprobante=n.Comprobante,
                                Nacionalidad=n.Nacionalidad,
                                ClaseCliente=n.ClaseCliente,
+                               CantidadPolizas=n.CantidadPolizas,
+                               SiglaEstatus=n.SiglaEstatus,
+                               CodigoEstatus=n.CodigoEstatus,
+                               Estatus=n.Estatus
                            }).ToList();
             return Listado;
         }
@@ -892,7 +896,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                CantidadPolizas = n.CantidadPolizas,
                                CodigoOficina = n.CodigoOficina,
                                Oficina = n.Oficina,
-                               GeneradoPor=n.GeneradoPor
+                               GeneradoPor=n.GeneradoPor,
+                               CantidadPolizas1=n.CantidadPolizas1,
+                               SiglaEstatus=n.SiglaEstatus,
+                               CodigoEstatus=n.CodigoEstatus,
+                               Estatus=n.Estatus
                            }).ToList();
             return Listado;
         }

@@ -22,6 +22,17 @@
        }
     </style>
 
+    <script type="text/javascript">
+        function PerfilSinPermisoNegocios() {
+
+            alert("No tienes permiso para realizar este proceso, favor de contactar a una persona del departamento de Negocios.");
+        }
+        function PerfilSinPermisoSuscripcion() {
+
+            alert("No tienes permiso para realizar este proceso, favor de contactar a una persona del departamento de Suscripción.");
+        }
+    </script>
+
     <div class="container-fluid">
         <br />
         <div class="row">
@@ -114,20 +125,25 @@
                         <th scope="col">Supervisor</th>
                         <th scope="col">Intermediario</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col">Tipo RNC</th>
-                        <th scope="col">Identificación</th>
+                        <th scope="col">Sigla</th>
+                        <th scope="col">Estatus</th>
+                        <th scope="col">  </th>
                    </tr>
                </thead>
                <tbody>
                    <asp:Repeater ID="rpListadoClienteSinPolizas" runat="server">
                        <ItemTemplate>
                            <tr>
+                               <asp:HiddenField ID="hfCodigoClienteProceso" runat="server" Value='<%# Eval("Codigo") %>' />
+                               <asp:HiddenField ID="hfCodigoEstatus" runat="server" Value='<%# Eval("CodigoEstatus") %>' />
+
                                <td> <%# Eval("Cliente") %> </td>
                                <td> <%# Eval("Supervisor") %> </td>
                                <td> <%# Eval("Intermediario") %> </td>
                                <td> <%# Eval("Fecha") %> </td>
-                               <td> <%# Eval("TipoIdentificacion") %> </td>
-                               <td> <%# Eval("RNC") %> </td>
+                               <td> <%# Eval("SiglaEstatus") %> </td>
+                               <td> <%# Eval("Estatus") %> </td>
+                               <td> <asp:ImageButton ID="btnProcesar" runat="server" ToolTip="Procesar Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Procesar.png" OnClick="btnProcesar_Click" /> </td>
                            </tr>
                        </ItemTemplate>
                    </asp:Repeater>
@@ -162,6 +178,67 @@
                 </div>
             </div>
             <br />
+
+            <div id="DIVBloqueProcesoClienteSinPoliza" runat="server">
+                <div class="row">
+                    <div class="col-md-4">
+                        <asp:Label ID="lbCodigoClienteProcesoClienteSinPoliza" runat="server" Text="Codigo de Cliente" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtCodigoClienteProcesoClienteSinPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-md-8">
+                        <asp:Label ID="lbNombreClienteProcesoClienteSinPoliza" runat="server" Text="Nombre de Cliente" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtNombreClienteProcesoClienteSinPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:Label ID="lbTipoIdentificacionProcesoCLienteSinPoliza" runat="server" Text="Tipo Identificación" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtTipoIdentificacionProcesoClientesSinPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:Label ID="lbNumeroIdentificacionProcesoClientesSinPoliza" runat="server" Text="Identificación" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtNumeroIdentificacionProcesoClientesSinPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:Label ID="lbFechaProcesoClienteSinPoliza" runat="server" Text="Fecha" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtFechaProcesoClientesSinPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:Label ID="lbHoraProcesoClientesSinPoliza" runat="server" Text="Hora" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtHoraProcesoClientesSinPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-md-12">
+                        <asp:Label ID="lbDireccionProcesoClientesSinPoliza" runat="server" Text="Dirección" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtDireccionProcesoClientesSInPolizs" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-md-4">
+                        <asp:Label ID="lbTelefonoProcesoClienteSinPoliza" runat="server" Text="Telefono" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtTelefonoProcesoClientesSinPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-md-4">
+                        <asp:Label ID="lbTelefonosOficinaProcesoClientesSInPoliza" runat="server" Text="Telefono Oficina" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtTelefonoOficinaProcesoCLienteSinPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-md-4">
+                        <asp:Label ID="lbCelularProcesoClienteSinPoliza" runat="server" Text="Celular" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtCelularProcesoClientesSinPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Label ID="lbSupervisorProcesoClientesSinpOliza" runat="server" Text="Supervisor" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtSupervisorProcesoClientesSinPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Label ID="lbIntermediarioProcesoClientesSinPoliza" runat="server" Text="Intermediario" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtIntermediarioProcesoClientesSinPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Label ID="lbUsuarioProcesoClientesSinPoliza" runat="server" Text="Creado Por" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtUsuarioProcesoClientesSinPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Label ID="lbEstatusProcesoClientesSinPoliza" runat="server" Text="Estatus" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:TextBox ID="txtEstatusProcesoClientesSinPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                </div>
+            </div>
         </div>
 
 

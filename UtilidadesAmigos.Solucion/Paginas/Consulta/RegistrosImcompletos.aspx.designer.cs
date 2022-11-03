@@ -438,6 +438,267 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.ImageButton btnUltimaPaginaClientesSinPoliza;
 
         /// <summary>
+        /// DIVBloqueProcesoClienteSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueProcesoClienteSinPoliza;
+
+        /// <summary>
+        /// lbCodigoClienteProcesoClienteSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoClienteProcesoClienteSinPoliza;
+
+        /// <summary>
+        /// txtCodigoClienteProcesoClienteSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoClienteProcesoClienteSinPoliza;
+
+        /// <summary>
+        /// lbNombreClienteProcesoClienteSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNombreClienteProcesoClienteSinPoliza;
+
+        /// <summary>
+        /// txtNombreClienteProcesoClienteSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombreClienteProcesoClienteSinPoliza;
+
+        /// <summary>
+        /// lbTipoIdentificacionProcesoCLienteSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTipoIdentificacionProcesoCLienteSinPoliza;
+
+        /// <summary>
+        /// txtTipoIdentificacionProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTipoIdentificacionProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// lbNumeroIdentificacionProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNumeroIdentificacionProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// txtNumeroIdentificacionProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroIdentificacionProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// lbFechaProcesoClienteSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaProcesoClienteSinPoliza;
+
+        /// <summary>
+        /// txtFechaProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// lbHoraProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbHoraProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// txtHoraProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtHoraProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// lbDireccionProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDireccionProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// txtDireccionProcesoClientesSInPolizs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDireccionProcesoClientesSInPolizs;
+
+        /// <summary>
+        /// lbTelefonoProcesoClienteSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTelefonoProcesoClienteSinPoliza;
+
+        /// <summary>
+        /// txtTelefonoProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTelefonoProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// lbTelefonosOficinaProcesoClientesSInPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTelefonosOficinaProcesoClientesSInPoliza;
+
+        /// <summary>
+        /// txtTelefonoOficinaProcesoCLienteSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTelefonoOficinaProcesoCLienteSinPoliza;
+
+        /// <summary>
+        /// lbCelularProcesoClienteSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCelularProcesoClienteSinPoliza;
+
+        /// <summary>
+        /// txtCelularProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCelularProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// lbSupervisorProcesoClientesSinpOliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSupervisorProcesoClientesSinpOliza;
+
+        /// <summary>
+        /// txtSupervisorProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSupervisorProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// lbIntermediarioProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbIntermediarioProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// txtIntermediarioProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIntermediarioProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// lbUsuarioProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbUsuarioProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// txtUsuarioProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUsuarioProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// lbEstatusProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEstatusProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// txtEstatusProcesoClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEstatusProcesoClientesSinPoliza;
+
+        /// <summary>
         /// DIVBloquePolziaSinMarbete control.
         /// </summary>
         /// <remarks>

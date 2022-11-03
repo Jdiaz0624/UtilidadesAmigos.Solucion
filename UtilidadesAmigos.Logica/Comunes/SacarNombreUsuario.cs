@@ -24,5 +24,18 @@ namespace UtilidadesAmigos.Logica.Comunes
             }
             return NombreUsuario;
         }
+
+        public int SacarPerfilUsuarioConectado()
+        {
+            int Perfil = 0;
+            var Buscar = Objdata.BuscaUsuarios(IdUsuario);
+            foreach (var n in Buscar)
+            {
+                Perfil =(int)n.IdPerfil;
+            }
+            return Perfil;
+        }
+
+
     }
 }
