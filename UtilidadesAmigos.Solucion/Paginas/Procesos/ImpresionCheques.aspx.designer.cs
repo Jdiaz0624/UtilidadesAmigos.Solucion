@@ -105,6 +105,33 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         protected global::System.Web.UI.WebControls.RadioButton rbTodos;
 
         /// <summary>
+        /// lbPlanillaBancoutilizar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPlanillaBancoutilizar;
+
+        /// <summary>
+        /// rbPlantillaReservas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbPlantillaReservas;
+
+        /// <summary>
+        /// rbPlanillaPromerica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbPlanillaPromerica;
+
+        /// <summary>
         /// lbParametrosEspeciales control.
         /// </summary>
         /// <remarks>

@@ -15,6 +15,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
     {
 
         /// <summary>
+        /// DivClienteSinPolzaRecuento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivClienteSinPolzaRecuento;
+
+        /// <summary>
         /// lbCantidadClientesSinPoliza control.
         /// </summary>
         /// <remarks>
@@ -33,6 +42,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.TextBox txtClientesSinPolizaRecuento;
 
         /// <summary>
+        /// DIVPolizaSinMArbeteRecuento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVPolizaSinMArbeteRecuento;
+
+        /// <summary>
         /// lbPolizasSinmarbetesRecuento control.
         /// </summary>
         /// <remarks>
@@ -49,6 +67,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPolizasSInMarbeteRecuento;
+
+        /// <summary>
+        /// DivRadios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivRadios;
 
         /// <summary>
         /// lbTipoDeDataGenerar control.
@@ -141,6 +168,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.RadioButton rbExcelPlano;
 
         /// <summary>
+        /// DIVBotones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBotones;
+
+        /// <summary>
         /// btnConsultar control.
         /// </summary>
         /// <remarks>
@@ -166,6 +202,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueClientesSinPoliza;
+
+        /// <summary>
+        /// DivBloqueListadoClienteSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueListadoClienteSinPoliza;
 
         /// <summary>
         /// lbCientesSinPolizaTitulo control.
@@ -355,6 +400,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSeleccionaroficinaClienteSinPoliza;
+
+        /// <summary>
+        /// lbEstatusCliente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEstatusCliente;
+
+        /// <summary>
+        /// ddlEstatusCliente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEstatusCliente;
 
         /// <summary>
         /// rpListadoClienteSinPolizas control.
@@ -697,6 +760,141 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEstatusProcesoClientesSinPoliza;
+
+        /// <summary>
+        /// cbAgregarComentario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAgregarComentario;
+
+        /// <summary>
+        /// DivBloqueComentarioProcesoClienteSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueComentarioProcesoClienteSinPoliza;
+
+        /// <summary>
+        /// LbComentarioProceso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbComentarioProceso;
+
+        /// <summary>
+        /// txtComentario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtComentario;
+
+        /// <summary>
+        /// btnProcesarInformacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnProcesarInformacion;
+
+        /// <summary>
+        /// btnVolverAtrasCLienteSinnPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnVolverAtrasCLienteSinnPoliza;
+
+        /// <summary>
+        /// rpListadoComentariosClientesSinPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpListadoComentariosClientesSinPoliza;
+
+        /// <summary>
+        /// lbPaginaActualComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualComentarios;
+
+        /// <summary>
+        /// lbCantidadPaginaComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaComentarios;
+
+        /// <summary>
+        /// Div1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+
+        /// <summary>
+        /// btnPrimeraPaginaComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPaginaComentarios;
+
+        /// <summary>
+        /// btnPaginaAnteriorComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnteriorComentarios;
+
+        /// <summary>
+        /// dtPaginacionListadoPrincipalComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dtPaginacionListadoPrincipalComentarios;
+
+        /// <summary>
+        /// btnSiguientePaginaComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePaginaComentarios;
+
+        /// <summary>
+        /// btnUltimaPaginaComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPaginaComentarios;
 
         /// <summary>
         /// DIVBloquePolziaSinMarbete control.

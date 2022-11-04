@@ -287,6 +287,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 CargarListadoBancos();
 
                 DIVFormatos.Visible = false;
+                rbPlantillaReservas.Checked = true;
 
                 foreach (String strPrinter in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
                 {
@@ -433,7 +434,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 NumeroCheque = (decimal)n.NumeroCheque;
                 NombreCheque = n.Beneficiario1 + " - " + n.Valor.ToString();
             }
-            GenerarCheque(NumeroCheque, Server.MapPath("Cheque.rpt"), NombreCheque, Concepto, ValorCheque, Beneficiario);
+
+            string RutaReporte = "";
+            if (rbPlantillaReservas.Checked == true) {
+                RutaReporte = Server.MapPath("Cheque.rpt");
+            }
+            else if (rbPlanillaPromerica.Checked == true) {
+                RutaReporte = Server.MapPath("PlantillaChequePromerica.rpt");
+            }
+            GenerarCheque(NumeroCheque, RutaReporte, NombreCheque, Concepto, ValorCheque, Beneficiario);
         }
 
         protected void btnUltimaPagina_Click(object sender, ImageClickEventArgs e)

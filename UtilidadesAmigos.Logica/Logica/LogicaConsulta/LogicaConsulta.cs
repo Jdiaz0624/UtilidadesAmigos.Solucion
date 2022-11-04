@@ -812,11 +812,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         /// <param name="Intermediario"></param>
         /// <param name="NombreCliente"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EClientesSinPoliza> BuscaClientesSinPolizas(decimal? CodigoCliente = null, string Numeroidentificacion = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Supervisor = null, int? Intermediario = null, string NombreCliente = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EClientesSinPoliza> BuscaClientesSinPolizas(decimal? CodigoCliente = null, string Numeroidentificacion = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Supervisor = null, int? Intermediario = null, string NombreCliente = null,int? CodigoEstatusProceso = null) {
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_BUSCA_CLIENTE_SIN_POLIZAS(CodigoCliente, Numeroidentificacion, FechaDesde, FechaHasta, Supervisor, Intermediario, NombreCliente)
+            var Listado = (from n in ObjData.SP_BUSCA_CLIENTE_SIN_POLIZAS(CodigoCliente, Numeroidentificacion, FechaDesde, FechaHasta, Supervisor, Intermediario, NombreCliente, CodigoEstatusProceso)
                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EClientesSinPoliza
                            {
                                Codigo=n.Codigo,
@@ -861,11 +861,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         /// <param name="CodigoOficina"></param>
         /// <param name="GeneradoPor"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EClientesSinPolizaDetallado> BuscaClientesSinPolizasDetallado(decimal? CodigoCliente = null, string Numeroidentificacion = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Supervisor = null, int? Intermediario = null, string NombreCliente = null, int? CodigoOficina = null, decimal? GeneradoPor = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EClientesSinPolizaDetallado> BuscaClientesSinPolizasDetallado(decimal? CodigoCliente = null, string Numeroidentificacion = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Supervisor = null, int? Intermediario = null, string NombreCliente = null, int? CodigoOficina = null, decimal? GeneradoPor = null,int? CodigoEstatusProceso = null) {
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_BUSCA_CLIENTES_SIN_POLIZA_DETALLADO(CodigoCliente, Numeroidentificacion, FechaDesde, FechaHasta, Supervisor, Intermediario, NombreCliente, CodigoOficina, GeneradoPor)
+            var Listado = (from n in ObjData.SP_BUSCA_CLIENTES_SIN_POLIZA_DETALLADO(CodigoCliente, Numeroidentificacion, FechaDesde, FechaHasta, Supervisor, Intermediario, NombreCliente, CodigoOficina, GeneradoPor, CodigoEstatusProceso)
                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EClientesSinPolizaDetallado
                            {
                                Codigo = n.Codigo,
@@ -1057,6 +1057,63 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                GeneradoPor=n.GeneradoPor
                            }).ToList();
             return Listado;
+        }
+
+        /// <summary>
+        /// Muestra los comentairos realizados a un cliente
+        /// </summary>
+        /// <param name="CodigoCliente"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EComentariosProcesoClientesSinPoliza> BuscaComentariosProcesoClienteSinPoliza(decimal? CodigoCliente = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_MOSTRAR_COMENTARIOS_PROCESO_CLIENTES_SIN_POLIZA(CodigoCliente)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EComentariosProcesoClientesSinPoliza
+                           {
+                               NumeroRegistro=n.NumeroRegistro,
+                               CodigoCliente=n.CodigoCliente,
+                               IdUsuario=n.IdUsuario,
+                               Usuario=n.Usuario,
+                               Fecha0=n.Fecha0,
+                               Fecha=n.Fecha,
+                               Hora=n.Hora,
+                               Comentario = n.Comentario
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Procesa los comentarios de los clientes sin poliza
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Consulta.EComentariosProcesoClientesSinPoliza ProcesarComentariosClientesSinPolizas(UtilidadesAmigos.Logica.Entidades.Consulta.EComentariosProcesoClientesSinPoliza Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Consulta.EComentariosProcesoClientesSinPoliza Procesar = null;
+
+            var ComentarioClienteSinPoliza = ObjData.SP_PROCESAR_COMENTARIOS_PROCESO_CLIENTES_SIN_POLIZA(
+                Item.NumeroRegistro,
+                Item.CodigoCliente,
+                Item.IdUsuario,
+                Item.Comentario,
+                Accion);
+            if (ComentarioClienteSinPoliza != null) {
+
+                Procesar = (from n in ComentarioClienteSinPoliza
+                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EComentariosProcesoClientesSinPoliza
+                            {
+                                NumeroRegistro=n.NumeroRegistro,
+                                CodigoCliente=n.CodigoCliente,
+                                IdUsuario = n.IdUsuario,
+                                Fecha0=n.Fecha,
+                                Comentario=n.Comentario
+                            }).FirstOrDefault();
+            }
+            return Procesar;
         }
         #endregion
 

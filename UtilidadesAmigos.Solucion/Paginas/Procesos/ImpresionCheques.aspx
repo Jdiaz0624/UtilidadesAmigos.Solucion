@@ -59,6 +59,11 @@
         </div>
         <br />
         <div class="form-check-inline">
+            <asp:Label ID="lbPlanillaBancoutilizar" runat="server" CssClass="Letranegrita" Text="Plantilla a Utilizar"></asp:Label>
+            <asp:RadioButton ID="rbPlantillaReservas" runat="server" Text="Reservas" ToolTip="Generar con formato de Banreservas" GroupName="PlanillaBanco" />
+            <asp:RadioButton ID="rbPlanillaPromerica" runat="server" Text="Promerica" ToolTip="Generar Cheque con formato de Promerica" GroupName="PlanillaBanco" />
+        </div>
+        <div class="form-check-inline">
                 <asp:Label ID="lbParametrosEspeciales" runat="server" Text="Otros Parametros: " CssClass="Letranegrita"></asp:Label>
                 <asp:RadioButton ID="rbSinParametros" runat="server" Text="No Aplicar"  AutoPostBack="true" OnCheckedChanged="rbSinParametros_CheckedChanged" ToolTip="No Aplicar PArametros" GroupName="Parametros" />
                 <asp:RadioButton ID="rbRangoFecha" runat="server" Text="Rango de Fecha"  AutoPostBack="true" OnCheckedChanged="rbRangoFecha_CheckedChanged" ToolTip="Agregar filtro por rango de fecha" GroupName="Parametros" />

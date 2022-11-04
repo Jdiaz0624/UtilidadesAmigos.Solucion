@@ -281,6 +281,139 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         }
         #endregion
 
+        #region CONTROL DE PAGINACION DE LOS COMENTARIOS
+        readonly PagedDataSource pagedDataSource_Comentarios = new PagedDataSource();
+        int _PrimeraPagina_Comentarios, _UltimaPagina_Comentarios;
+        private int _TamanioPagina_Comentarios = 10;
+        private int CurrentPage_Comentarios
+        {
+            get
+            {
+                if (ViewState["CurrentPage"] == null)
+                {
+                    return 0;
+                }
+                return ((int)ViewState["CurrentPage"]);
+            }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+
+        private void HandlePaging_Comentarios(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina_Comentarios = CurrentPage_Comentarios - 5;
+            if (CurrentPage_Comentarios > 5)
+                _UltimaPagina_Comentarios = CurrentPage_Comentarios + 5;
+            else
+                _UltimaPagina_Comentarios = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina_Comentarios > Convert.ToInt32(ViewState["TotalPages"]))
+            {
+                _UltimaPagina_Comentarios = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina_Comentarios = _UltimaPagina_Comentarios - 10;
+            }
+
+            if (_PrimeraPagina_Comentarios < 0)
+                _PrimeraPagina_Comentarios = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage_Comentarios;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina_Comentarios; i < _UltimaPagina_Comentarios; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+
+        private void Paginar_Comentarios(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource_Comentarios.DataSource = Listado;
+            pagedDataSource_Comentarios.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource_Comentarios.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource_Comentarios.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource_Comentarios.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina_Comentarios : _NumeroRegistros);
+            pagedDataSource_Comentarios.CurrentPageIndex = CurrentPage_Comentarios;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource_Comentarios.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource_Comentarios.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource_Comentarios.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource_Comentarios.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource_Comentarios;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores_Comentarios
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion_Comentarios(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
+                    {
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
+                    }
+                    break;
+
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
+
+
+            }
+
+        }
+        #endregion
+
         #region MOSTRAR EL LISTADO DE LOS CLIENTES SIN POOLIZA
         private void MostrarListadoClienteSinpolizas() {
 
@@ -452,6 +585,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioClienteSinPoliza.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioClienteSinPoliza.Text);
             string _NombreCliente = string.IsNullOrEmpty(txtNombreClienteClienteSinPoliza.Text.Trim()) ? null : txtNombreClienteClienteSinPoliza.Text.Trim();
             int? _oficina = ddlSeleccionaroficinaClienteSinPoliza.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaClienteSinPoliza.SelectedValue) : new Nullable<int>();
+            int? _Estatus = ddlEstatusCliente.SelectedValue != "-1" ? Convert.ToInt32(ddlEstatusCliente.SelectedValue) : new Nullable<int>();
 
             var BuscarListado = ObjDataConsulta.Value.BuscaClientesSinPolizasDetallado(
                 _CodigoCliente,
@@ -462,7 +596,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 _Intermediario,
                 _NombreCliente,
                 _oficina,
-                (decimal)Session["IdUsuario"]);
+                (decimal)Session["IdUsuario"],
+                _Estatus);
             if (BuscarListado.Count() < 1) {
                 rpListadoClienteSinPolizas.DataSource = null;
                 rpListadoClienteSinPolizas.DataBind();
@@ -743,6 +878,84 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         #endregion
 
 
+        #region SACAR LOS DATOS DEL CLIENTE
+        private void SacarInformacionCliente(decimal CodigoCliente) {
+
+            var SacarInformacionCliente = ObjDataConsulta.Value.BuscaClientesSinPolizas(CodigoCliente);
+            foreach (var n in SacarInformacionCliente) {
+
+                txtCodigoClienteProcesoClienteSinPoliza.Text = n.Codigo.ToString();
+                txtNombreClienteProcesoClienteSinPoliza.Text = n.Cliente;
+                txtTipoIdentificacionProcesoClientesSinPoliza.Text = n.TipoIdentificacion;
+                txtNumeroIdentificacionProcesoClientesSinPoliza.Text = n.RNC;
+                txtFechaProcesoClientesSinPoliza.Text = n.Fecha;
+                //txtHoraProcesoClientesSinPoliza.Text=
+                txtDireccionProcesoClientesSInPolizs.Text = n.Direccion;
+                txtTelefonoProcesoClientesSinPoliza.Text = n.TelefonoResidencia;
+                txtTelefonoOficinaProcesoCLienteSinPoliza.Text = n.TelefonoOficina;
+                txtCelularProcesoClientesSinPoliza.Text = n.Celular;
+                txtSupervisorProcesoClientesSinPoliza.Text = n.Supervisor;
+                txtIntermediarioProcesoClientesSinPoliza.Text = n.Intermediario;
+                txtUsuarioProcesoClientesSinPoliza.Text = n.UsuarioAdiciona;
+                txtEstatusProcesoClientesSinPoliza.Text = n.Estatus;
+            }
+            DIVBloqueProcesoClienteSinPoliza.Visible = true;
+            DivBloqueListadoClienteSinPoliza.Visible = false;
+            DivClienteSinPolzaRecuento.Visible = false;
+            DIVPolizaSinMArbeteRecuento.Visible = false;
+            DivRadios.Visible = false;
+            DIVBotones.Visible = false;
+
+            //VALIDSMOS SI TIENE COMENTARIOS ACTIVOS
+            var Comentarios = ObjDataConsulta.Value.BuscaComentariosProcesoClienteSinPoliza(Convert.ToDecimal(txtCodigoClienteProcesoClienteSinPoliza.Text));
+            if (Comentarios.Count() < 1) {
+
+                cbAgregarComentario.Checked = false;
+                DivBloqueComentarioProcesoClienteSinPoliza.Visible = false;
+                txtComentario.Text = string.Empty;
+            }
+            else {
+
+                //MOSTRAMOS LOS COMENTARIOS
+                cbAgregarComentario.Checked = true;
+                DivBloqueComentarioProcesoClienteSinPoliza.Visible = true;
+                CurrentPage_Comentarios = 0;
+                Paginar_Comentarios(ref rpListadoComentariosClientesSinPoliza, Comentarios, 10, ref lbCantidadPaginaComentarios, ref btnPrimeraPaginaComentarios, ref btnPaginaAnteriorComentarios, ref btnSiguientePaginaComentarios, ref btnUltimaPaginaComentarios);
+                HandlePaging_Comentarios(ref dtPaginacionListadoPrincipalComentarios, ref lbPaginaActualComentarios);
+            }
+        }
+        #endregion
+
+        #region MOSTRAR LOS COMENTARIOS PARA LA PAGINACION
+        private void MostrarComentarios() {
+            var Comentarios = ObjDataConsulta.Value.BuscaComentariosProcesoClienteSinPoliza(Convert.ToDecimal(txtCodigoClienteProcesoClienteSinPoliza.Text));
+            Paginar_Comentarios(ref rpListadoComentariosClientesSinPoliza, Comentarios, 10, ref lbCantidadPaginaComentarios, ref btnPrimeraPaginaComentarios, ref btnPaginaAnteriorComentarios, ref btnSiguientePaginaComentarios, ref btnUltimaPaginaComentarios);
+            HandlePaging_Comentarios(ref dtPaginacionListadoPrincipalComentarios, ref lbPaginaActualComentarios);
+        }
+        #endregion
+
+
+        #region CARGAR ESTATUS DE CLIENTES SIN POLIZA
+        private void CargarEstatusClientesSinPOliza() {
+
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlEstatusCliente, ObjdataComun.Value.BuscaListas("ESTATUSCLIENTESINPOLIZA", null, null), true);
+        }
+        #endregion
+
+        #region PROCESAR COMENTARIOS DE CLIENTES SIN POLIZA
+        private void ProcesarComentariosClientesSinPoliza(decimal CodigoCliente) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionComentariosClientesSinPoliza Guardar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionComentariosClientesSinPoliza(
+                0,
+                CodigoCliente,
+                (decimal)Session["IdUsuario"],
+                DateTime.Now,
+                txtComentario.Text,
+                "INSERT");
+            Guardar.ProcesarInformacion();
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -760,7 +973,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 DIVBloqueClientesSinPoliza.Visible = true;
                 DivBloquePaginacionPolizasSinMarbete.Visible = false;
                 CargaroficinaClienteSinPoliza();
-                
+                DIVBloqueProcesoClienteSinPoliza.Visible = false;
+                DivBloqueListadoClienteSinPoliza.Visible = true;
+                DivClienteSinPolzaRecuento.Visible = true;
+                DIVPolizaSinMArbeteRecuento.Visible = true;
+                DivRadios.Visible = true;
+                DIVBotones.Visible = true;
+                CargarEstatusClientesSinPOliza();
             }
         }
 
@@ -770,6 +989,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 DIVBloqueClientesSinPoliza.Visible = true;
                 DIVBloquePolziaSinMarbete.Visible = false;
                 CargaroficinaClienteSinPoliza();
+                DIVBloqueProcesoClienteSinPoliza.Visible = false;
+                DivBloqueListadoClienteSinPoliza.Visible = true;
+                DivClienteSinPolzaRecuento.Visible = true;
+                DIVPolizaSinMArbeteRecuento.Visible = true;
+                DivRadios.Visible = true;
+                DIVBotones.Visible = true;
             }
             else {
                 DIVBloqueClientesSinPoliza.Visible = false;
@@ -833,7 +1058,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void dtPaginacionListadoPrincipalClientesSinPoliza_CancelCommand(object source, DataListCommandEventArgs e)
         {
-
             if (!e.CommandName.Equals("newPage")) return;
             CurrentPage_ClienteSinPolizas = Convert.ToInt32(e.CommandArgument.ToString());
             MostrarListadoClienteSinpolizas();
@@ -841,7 +1065,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void btnSiguientePaginaClientesSinPoliza_Click(object sender, ImageClickEventArgs e)
         {
-
             CurrentPage_ClienteSinPolizas += 1;
             MostrarListadoClienteSinpolizas();
         }
@@ -874,12 +1097,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         {
             CurrentPage_PolizaSinMarbete += 1;
             MostrarPolizasSinMarbetes();
-
         }
 
         protected void btnUltimaPaginaPolizaSinMarbete_Click(object sender, ImageClickEventArgs e)
         {
-
             CurrentPage_PolizaSinMarbete = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostrarPolizasSinMarbetes();
             MoverValoresPaginacion_PolizaSinMarbete((int)OpcionesPaginacionValores_PolizaSinMarbete.UltimaPagina, ref lbPaginaActualPolizaSinMarbete, ref lbCantidadPaginaPolizaSinMarbete);
@@ -918,10 +1139,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void btnProcesar_Click(object sender, ImageClickEventArgs e)
         {
-
             var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
             var CodigoCliente = ((HiddenField)ItemSeleccionado.FindControl("hfCodigoClienteProceso")).Value.ToString();
             var CodigoEstatus = ((HiddenField)ItemSeleccionado.FindControl("hfCodigoEstatus")).Value.ToString();
+            int Estatus = Convert.ToInt32(CodigoEstatus);
 
             //VALIDAMOS EL USUARIO Y SACAMOS EL CODIGO DEL PERFIL DEL USUARIO EN SI
             UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Perfil = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
@@ -930,39 +1151,121 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             switch (PerfilUsuario) {
 
                 case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.ADMINISTRADOR:
-
+                    SacarInformacionCliente(Convert.ToDecimal(CodigoCliente));
                     break;
 
 
                 case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.TECNICO:
 
+
+                    if (Estatus == (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Tecnico)
+                    {
+                        SacarInformacionCliente(Convert.ToDecimal(CodigoCliente));
+                    }
+                    else {
+                        ClientScript.RegisterStartupScript(GetType(), "AccesoDenegadoNegocios()", "AccesoDenegadoNegocios();", true);
+                    }
+
                     break;
 
                 case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.Tecnico_Especial:
-
-                    break;
+                    if (Estatus == (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Tecnico)
+                    {
+                        SacarInformacionCliente(Convert.ToDecimal(CodigoCliente));
+                    }
+                    else
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "AccesoDenegadoNegocios()", "AccesoDenegadoNegocios();", true);
+                    }
+                    break;  
 
                 case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.NEGOCIOS:
-
+                    if (Estatus == (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Negocios || Estatus == (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Devuelto)
+                    {
+                        SacarInformacionCliente(Convert.ToDecimal(CodigoCliente));
+                    }
+                    else
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "AccesoDenegadoTecnico()", "AccesoDenegadoTecnico();", true);
+                    }
                     break;
 
                 default:
 
-                    if (CodigoEstatus == UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Negocios.ToString())
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "PerfilSinPermisoNegocios()", "PerfilSinPermisoNegocios();", true);
-                    }
-                    else if (CodigoEstatus == UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Tecnico.ToString())
-                    {
-                        ClientScript.RegisterStartupScript(GetType(), "PerfilSinPermisoSuscripcion()", "PerfilSinPermisoSuscripcion();", true);
-                    }
-                    else if (CodigoEstatus == UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Devuelto.ToString()) {
-                        ClientScript.RegisterStartupScript(GetType(), "PerfilSinPermisoNegocios()", "PerfilSinPermisoNegocios();", true);
-                    }
-
+                    ClientScript.RegisterStartupScript(GetType(), "AccesoDenegado()", "AccesoDenegado();", true);
 
                     break;
             }
+        }
+
+
+
+        protected void btnProcesarInformacion_Click(object sender, ImageClickEventArgs e)
+        {
+            if (cbAgregarComentario.Checked == true) {
+                ProcesarComentariosClientesSinPoliza(Convert.ToDecimal(txtCodigoClienteProcesoClienteSinPoliza.Text));
+            }
+        }
+
+        protected void btnVolverAtrasCLienteSinnPoliza_Click(object sender, ImageClickEventArgs e)
+        {
+            DIVBloqueProcesoClienteSinPoliza.Visible = false;
+            DivBloqueListadoClienteSinPoliza.Visible = true;
+            DivClienteSinPolzaRecuento.Visible = true;
+            DIVPolizaSinMArbeteRecuento.Visible = true;
+            DivRadios.Visible = true;
+            DIVBotones.Visible = true;
+        }
+
+        protected void cbAgregarComentario_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAgregarComentario.Checked == true)
+            {
+                DivBloqueComentarioProcesoClienteSinPoliza.Visible = true;
+                txtComentario.Text = string.Empty;
+            }
+            else {
+
+                DivBloqueComentarioProcesoClienteSinPoliza.Visible = false;
+            }
+        }
+
+        protected void btnPrimeraPaginaComentarios_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Comentarios = 0;
+            MostrarComentarios();
+        }
+
+        protected void btnPaginaAnteriorComentarios_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Comentarios += -1;
+            MostrarComentarios();
+            MoverValoresPaginacion_Comentarios((int)OpcionesPaginacionValores_Comentarios.PaginaAnterior, ref lbPaginaActualComentarios, ref lbCantidadPaginaComentarios);
+        }
+
+        protected void dtPaginacionListadoPrincipalComentarios_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacionListadoPrincipalComentarios_CancelCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_Comentarios = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarComentarios();
+        }
+
+        protected void btnSiguientePaginaComentarios_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Comentarios += 1;
+            MostrarComentarios();
+        }
+
+        protected void btnUltimaPaginaComentarios_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage_Comentarios = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarComentarios();
+            MoverValoresPaginacion_Comentarios((int)OpcionesPaginacionValores_Comentarios.UltimaPagina, ref lbPaginaActualComentarios, ref lbCantidadPaginaComentarios);
         }
 
         protected void txtCodigoIntermediarioClienteSinPoliza_TextChanged(object sender, EventArgs e)
