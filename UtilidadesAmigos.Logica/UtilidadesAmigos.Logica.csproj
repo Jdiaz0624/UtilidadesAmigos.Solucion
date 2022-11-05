@@ -112,6 +112,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionBackupBD.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionCorreosENviar.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionAdministrador\ProcesarInformacionRutaBackupBD.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionAsignacionEstatus.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionComentarioGestionCObros.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionComentariosClientesSinPoliza.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionConsulta\ProcesarInformacionEstadisticaRenovacion.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Comunes\VariablesPowerBi.cs" />
     <Compile Include="Comunes\VozVeronica.cs" />
     <Compile Include="Entidades\ComisionesIntermediarioDetalle.cs" />
+    <Compile Include="Entidades\Consulta\EAsignacionTarjetas.cs" />
     <Compile Include="Entidades\Consulta\EBuscaDatosVehiculoGestionCobros.cs" />
     <Compile Include="Entidades\Consulta\EBuscarInformacionPolizasGestionCobros.cs" />
     <Compile Include="Entidades\Consulta\ECarteraEjecutivos.cs" />

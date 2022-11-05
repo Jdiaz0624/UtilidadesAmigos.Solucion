@@ -1340,5 +1340,64 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
             return Listado;
         }
         #endregion
+
+        #region MANTENIMIENTO DE ASIGNACION DE ESTATUS
+        /// <summary>
+        /// Muestra el listado de la asignacion de tarjetas
+        /// </summary>
+        /// <param name="IdRegistro"></param>
+        /// <param name="CodigoCliente"></param>
+        /// <param name="IdEstatus"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EAsignacionTarjetas> ListadoAsignacionEstatus(decimal? IdRegistro = null, decimal? CodigoCliente = null, int? IdEstatus = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_REGISTROS_ASIGNACION_ESTATUS_PROCES_CLIENTES_SIN_POLIZA(IdRegistro, CodigoCliente, IdEstatus)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EAsignacionTarjetas
+                           {
+                               IdRegistro=n.IdRegistro,
+                               CodigoCliente=n.CodigoCliente,
+                               Cliente=n.Cliente,
+                               IdEstatus=n.IdEstatus,
+                               Estatus=n.Estatus,
+                               Fecha0=n.Fecha0,
+                               Fecha=n.Fecha,
+                               Hora=n.Hora
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Procesa la Informacion de la asignacion de tarjetas
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Consulta.EAsignacionTarjetas ProcesarAsignacionTarjetas(UtilidadesAmigos.Logica.Entidades.Consulta.EAsignacionTarjetas Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Consulta.EAsignacionTarjetas Procesar = null;
+
+            var Asignacion = ObjData.SP_PROCESAR_INFORMACION_ASIGNACION_ESTATUS_CLIENTES_SIN_POLIZA(
+                Item.IdRegistro,
+                Item.CodigoCliente,
+                Item.IdEstatus,
+                Accion);
+            if (Asignacion != null) {
+
+                Procesar = (from n in Asignacion
+                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EAsignacionTarjetas
+                            {
+                                IdRegistro=n.IdRegistro,
+                                CodigoCliente=n.CodigoCliente,
+                                IdEstatus=n.IdEstatus,
+                                Fecha0=n.Fecha
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }
