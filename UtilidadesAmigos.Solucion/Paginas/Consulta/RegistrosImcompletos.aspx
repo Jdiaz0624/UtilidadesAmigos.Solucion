@@ -36,10 +36,14 @@
         }
 
         function AccesoDenegadoNegocios() {
-            alert("No tienes acceso a este registro por actualmente este proceso esa en Negocios.");
+            alert("No tienes acceso a este registro por que actualmente este proceso esa en Negocios.");
         }
         function AccesoDenegadoTecnico() {
-            alert("No tienes acceso a este registro por actualmente este proceso esa en Tecnico.");
+            alert("No tienes acceso a este registro por que actualmente este proceso esa en Tecnico.");
+        }
+
+        function ProcesoCompletadoConExito() {
+            alert("Proceso Completado con Exito.");
         }
     </script>
 
@@ -251,6 +255,7 @@
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lbEstatusProcesoClientesSinPoliza" runat="server" Text="Estatus" CssClass="LetrasNegrita"></asp:Label>
+                        <asp:Label ID="lbCodigoEstatusClienteSinPoliza" runat="server" Text="0" CssClass="LetrasNegrita" Visible="false"></asp:Label>
                         <asp:TextBox ID="txtEstatusProcesoClientesSinPoliza" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
                    

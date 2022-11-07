@@ -682,7 +682,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                                                  CantidadPolizas = n.CantidadPolizas,
                                                  CodigoOficina = n.CodigoOficina,
                                                  Oficina = n.Oficina,
-                                                 GeneradoPor = n.GeneradoPor
+                                                 GeneradoPor = n.GeneradoPor,
+                                                 SiglaEstatus=n.SiglaEstatus,
+                                                 Estatus=n.Estatus
                                              }).ToList();
                     UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Clientes Sin Poliza Detallado", ExportarDetallado);
                 }
@@ -898,6 +900,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 txtIntermediarioProcesoClientesSinPoliza.Text = n.Intermediario;
                 txtUsuarioProcesoClientesSinPoliza.Text = n.UsuarioAdiciona;
                 txtEstatusProcesoClientesSinPoliza.Text = n.Estatus;
+                lbCodigoEstatusClienteSinPoliza.Text = n.CodigoEstatus.ToString();
             }
             DIVBloqueProcesoClienteSinPoliza.Visible = true;
             DivBloqueListadoClienteSinPoliza.Visible = false;
@@ -956,6 +959,60 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         }
         #endregion
 
+        #region VOLVER ATRAS CLIENTES SIN POLIZA
+        private void VolverAtrasClienteSinPoliza() {
+
+            DIVBloqueProcesoClienteSinPoliza.Visible = false;
+            DivBloqueListadoClienteSinPoliza.Visible = true;
+            DivClienteSinPolzaRecuento.Visible = true;
+            DIVPolizaSinMArbeteRecuento.Visible = true;
+            DivRadios.Visible = true;
+            DIVBotones.Visible = true;
+        }
+        #endregion
+
+
+        #region ASIGNACION DE ESTATUS
+        private void AsignacionEstatus(int Estatus,string Accion) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionAsignacionEstatus Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionAsignacionEstatus(
+                   0,
+                   Convert.ToDecimal(txtCodigoClienteProcesoClienteSinPoliza.Text),
+                   Estatus,
+                   DateTime.Now,
+                   Accion);
+            Procesar.ProcesarInformacion();
+
+            VolverAtrasClienteSinPoliza();
+
+            CurrentPage_ClienteSinPolizas = 0;
+            var BuscarListado = ObjDataConsulta.Value.BuscaClientesSinPolizasDetallado(
+               Convert.ToDecimal(txtCodigoClienteProcesoClienteSinPoliza.Text),
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               (decimal)Session["IdUsuario"],
+               null);
+            if (BuscarListado.Count() < 1)
+            {
+                rpListadoClienteSinPolizas.DataSource = null;
+                rpListadoClienteSinPolizas.DataBind();
+                CurrentPage_ClienteSinPolizas = 0;
+            }
+            else
+            {
+                Paginar_ClienteSinPolizas(ref rpListadoClienteSinPolizas, BuscarListado, 10, ref lbCantidadPaginaClientesSinPoliza, ref btnPrimeraPaginaClientesSinPoliza, ref btnPaginaAnteriorClientesSinPoliza, ref btnSiguientePaginaClientesSinPoliza, ref btnUltimaPaginaClientesSinPoliza);
+                HandlePaging_ClienteSinPolizas(ref dtPaginacionListadoPrincipalClientesSinPoliza, ref lbPaginaActualClientesSinPoliza);
+            }
+
+
+            ClientScript.RegisterStartupScript(GetType(), "ProcesoCompletadoConExito()", "ProcesoCompletadoConExito();", true);
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -1203,18 +1260,55 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected void btnProcesarInformacion_Click(object sender, ImageClickEventArgs e)
         {
             if (cbAgregarComentario.Checked == true) {
-                ProcesarComentariosClientesSinPoliza(Convert.ToDecimal(txtCodigoClienteProcesoClienteSinPoliza.Text));
+                if (string.IsNullOrEmpty(txtComentario.Text.Trim())) { }
+                else {
+                    ProcesarComentariosClientesSinPoliza(Convert.ToDecimal(txtCodigoClienteProcesoClienteSinPoliza.Text));
+                }
+            }
+
+            //VALIDAMOS SI HAY REGISTROS GUARDADOS CON ESTE REGISTRO
+            var ValidarRegistro = ObjDataConsulta.Value.ListadoAsignacionEstatus(
+                new Nullable<decimal>(),
+                Convert.ToDecimal(txtCodigoClienteProcesoClienteSinPoliza.Text),
+                null);
+            if (ValidarRegistro.Count() < 1)
+            {
+                //CREAMOS ESTE REGISTRO
+
+                AsignacionEstatus(
+                    (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Tecnico,
+                    "INSERT");
+            }
+            else {
+                //MODIFICAMOS EL REGISTRO
+                int CodigoEstatus = Convert.ToInt32(lbCodigoEstatusClienteSinPoliza.Text); 
+
+                switch (CodigoEstatus) {
+
+                    case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Negocios:
+                        AsignacionEstatus(
+                    (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Tecnico,
+                    "UPDATE");
+                        break;
+
+                    case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Tecnico:
+                        AsignacionEstatus(
+                    (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Devuelto,
+                    "UPDATE");
+                        break;
+
+                    case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Devuelto:
+                        AsignacionEstatus(
+                    (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.CodigoEstatusClientesSinPoliza.Tecnico,
+                    "UPDATE");
+                        break;
+                }
             }
         }
 
         protected void btnVolverAtrasCLienteSinnPoliza_Click(object sender, ImageClickEventArgs e)
         {
-            DIVBloqueProcesoClienteSinPoliza.Visible = false;
-            DivBloqueListadoClienteSinPoliza.Visible = true;
-            DivClienteSinPolzaRecuento.Visible = true;
-            DIVPolizaSinMArbeteRecuento.Visible = true;
-            DivRadios.Visible = true;
-            DIVBotones.Visible = true;
+            VolverAtrasClienteSinPoliza();
         }
 
         protected void cbAgregarComentario_CheckedChanged(object sender, EventArgs e)
@@ -1276,7 +1370,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 
         protected void btnUltimaPaginaClientesSinPoliza_Click(object sender, ImageClickEventArgs e)
         {
-
             CurrentPage_ClienteSinPolizas = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostrarListadoClienteSinpolizas();
             MoverValoresPaginacion_ClienteSinPolizas((int)OpcionesPaginacionValores_ClienteSinPolizas.UltimaPagina, ref lbPaginaActualClientesSinPoliza, ref lbCantidadPaginaClientesSinPoliza);
