@@ -705,6 +705,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioClienteSinPoliza.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioClienteSinPoliza.Text);
             string _NombreCliente = string.IsNullOrEmpty(txtNombreClienteClienteSinPoliza.Text.Trim()) ? null : txtNombreClienteClienteSinPoliza.Text.Trim();
             int? _oficina = ddlSeleccionaroficinaClienteSinPoliza.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaClienteSinPoliza.SelectedValue) : new Nullable<int>();
+            int? _CodigoEstatus = ddlEstatusCliente.SelectedValue != "-1" ? Convert.ToInt32(ddlEstatusCliente.SelectedValue) : new Nullable<int>();
+
+
             string RutaReporte = "";
             string NombreReporte = "";
             if (rbReporteDetallado.Checked == true)
@@ -732,6 +735,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             Reporte.SetParameterValue("@NombreCliente", _NombreCliente);
             Reporte.SetParameterValue("@CodigoOficina", _oficina);
             Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
+            if (rbReporteDetallado.Checked == true) {
+                Reporte.SetParameterValue("@CodigoEstatusProceso", _CodigoEstatus);
+            }
 
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
 
