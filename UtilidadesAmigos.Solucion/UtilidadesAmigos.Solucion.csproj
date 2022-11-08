@@ -271,6 +271,7 @@
     <Content Include="Paginas\Reportes\AntiguedadSaldoCXP.aspx" />
     <Content Include="Paginas\Reportes\ComisionesIntermediarios.aspx" />
     <Content Include="Paginas\Reportes\ComisionesSupervisores.aspx" />
+    <Content Include="Paginas\Reportes\FichaTecnica.aspx" />
     <Content Include="Paginas\Reportes\GenerarMarbetes.aspx" />
     <Content Include="Paginas\Reportes\GenerarReporteAntiguedadSaldo.aspx" />
     <Content Include="Paginas\Reportes\GenerarReporteCobros.aspx" />
@@ -866,6 +867,13 @@
       <DependentUpon>ComisionesSupervisores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Reportes\ExcelData.cs" />
+    <Compile Include="Paginas\Reportes\FichaTecnica.aspx.cs">
+      <DependentUpon>FichaTecnica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\FichaTecnica.aspx.designer.cs">
+      <DependentUpon>FichaTecnica.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Reportes\GenerarMarbetes.aspx.cs">
       <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -330,6 +330,7 @@ display: block;
             <li> <asp:LinkButton ID="LinkReporteREclmaciones" runat="server" Text="Reporte de Reclamaciones" ToolTip="Generar Reporte de Reclamaciones" OnClick="LinkReporteReclamaciones_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkReclamacionesPagadas" runat="server" Text="Reclamaciones Pagadas" ToolTip="Generar Reporte de Reclamaciones Pagadas" OnClick="LinkReclamacionesPagadas_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkImpresionMarbetes" runat="server" Text="Impresion de Marbetes" ToolTip="Impresión de Marbetes" OnClick="LinkReporteImpresionMarbetes_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkFichatecnica" runat="server" Text="Ficha Tecnica" ToolTip="Ficha tecnica de Supervisores / Intermediarios" OnClick="LinkFichatecnica_Click"></asp:LinkButton> </li>
         </ul>
         </li>
 

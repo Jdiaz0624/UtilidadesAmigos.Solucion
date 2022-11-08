@@ -339,6 +339,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkImpresionMarbetes;
 
         /// <summary>
+        /// LinkFichatecnica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkFichatecnica;
+
+        /// <summary>
         /// DivModuloProcesos control.
         /// </summary>
         /// <remarks>

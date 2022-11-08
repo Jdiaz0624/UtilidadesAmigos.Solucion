@@ -453,7 +453,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloConsulta.Visible = true;
                     DivModuloReportes.Visible = true;
                     DivModuloProcesos.Visible = true;
-                    DivModuloMantenimiento.Visible = false;
+                    DivModuloMantenimiento.Visible = true;
                     DivModuloSeguridad.Visible = false;
                     break;
 
@@ -576,6 +576,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReporteREclmaciones.Visible = true;
                     LinkReclamacionesPagadas.Visible = true;
                     LinkImpresionMarbetes.Visible = true;
+                    LinkFichatecnica.Visible = true;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = true;
@@ -647,6 +648,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReporteREclmaciones.Visible = false;
                     LinkReclamacionesPagadas.Visible = true;
                     LinkImpresionMarbetes.Visible = false;
+                    LinkFichatecnica.Visible = true;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -718,6 +720,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReporteREclmaciones.Visible = true;
                     LinkReclamacionesPagadas.Visible = true;
                     LinkImpresionMarbetes.Visible = false;
+                    LinkFichatecnica.Visible = true;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -789,6 +792,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReporteREclmaciones.Visible = false;
                     LinkReclamacionesPagadas.Visible = false;
                     LinkImpresionMarbetes.Visible = false;
+                    LinkFichatecnica.Visible = true;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -860,6 +864,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReporteREclmaciones.Visible = false;
                     LinkReclamacionesPagadas.Visible = false;
                     LinkImpresionMarbetes.Visible = false;
+                    LinkFichatecnica.Visible = false;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -931,6 +936,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReporteREclmaciones.Visible = true;
                     LinkReclamacionesPagadas.Visible = true;
                     LinkImpresionMarbetes.Visible = false;
+                    LinkFichatecnica.Visible = false;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -952,7 +958,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkDepartamentos.Visible = false;
                     LinkEmpleados.Visible = false;
                     LinkInventario.Visible = false;
-                    LinkDependientes.Visible = false;
+                    LinkDependientes.Visible = true;
                     LinkPorcientoComision.Visible = false;
                     LinkMonedas.Visible = false;
 
@@ -1002,6 +1008,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReporteREclmaciones.Visible = false;
                     LinkReclamacionesPagadas.Visible = false;
                     LinkImpresionMarbetes.Visible = false;
+                    LinkFichatecnica.Visible = false;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -1073,6 +1080,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReporteREclmaciones.Visible = false;
                     LinkReclamacionesPagadas.Visible = false;
                     LinkImpresionMarbetes.Visible = false;
+                    LinkFichatecnica.Visible = false;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -1144,6 +1152,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReporteREclmaciones.Visible = false;
                     LinkReclamacionesPagadas.Visible = false;
                     LinkImpresionMarbetes.Visible = false;
+                    LinkFichatecnica.Visible = false;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -1215,6 +1224,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReporteREclmaciones.Visible = false;
                     LinkReclamacionesPagadas.Visible = false;
                     LinkImpresionMarbetes.Visible = false;
+                    LinkFichatecnica.Visible = false;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -1286,6 +1296,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReporteREclmaciones.Visible = false;
                     LinkReclamacionesPagadas.Visible = false;
                     LinkImpresionMarbetes.Visible = false;
+                    LinkFichatecnica.Visible = false;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -1357,6 +1368,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReporteREclmaciones.Visible = false;
                     LinkReclamacionesPagadas.Visible = false;
                     LinkImpresionMarbetes.Visible = false;
+                    LinkFichatecnica.Visible = false;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -1428,6 +1440,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReporteREclmaciones.Visible = false;
                     LinkReclamacionesPagadas.Visible = false;
                     LinkImpresionMarbetes.Visible = false;
+                    LinkFichatecnica.Visible = false;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -2356,6 +2369,19 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             if (Session["IdUsuario"] != null)
             {
                 Response.Redirect("~/Paginas/Procesos/ImpresionCheques.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
+
+        protected void LinkFichatecnica_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Reportes/FichaTecnica.aspx");
             }
             else
             {
