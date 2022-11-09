@@ -1198,7 +1198,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkSolicitud.Visible = true;
 
                     //CONSULTAS
-                    LinkCartera.Visible = false;
+                    LinkCartera.Visible = true;
                     LinkConsultaPersonas.Visible = true;
                     LinkListadoRenovacion.Visible = true;
                     LinkGestionCobros.Visible = true;
@@ -1342,7 +1342,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkSolicitud.Visible = true;
 
                     //CONSULTAS
-                    LinkCartera.Visible = false;
+                    LinkCartera.Visible = true;
                     LinkConsultaPersonas.Visible = true;
                     LinkListadoRenovacion.Visible = true;
                     LinkGestionCobros.Visible = true;
