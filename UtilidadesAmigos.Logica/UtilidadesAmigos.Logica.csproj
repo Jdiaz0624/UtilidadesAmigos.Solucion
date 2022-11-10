@@ -424,6 +424,7 @@
     <Compile Include="Entidades\Reportes\EDatosProduccionReporte.cs" />
     <Compile Include="Entidades\Reportes\EDatosReporteNuevo.cs" />
     <Compile Include="Entidades\Reportes\EDepositosPagados.cs" />
+    <Compile Include="Entidades\Reportes\EFichaTecnicaSupervisores.cs" />
     <Compile Include="Entidades\Reportes\EGenerarInformacionSupervisoresDetalle.cs" />
     <Compile Include="Entidades\Reportes\EListadoReclamaciones.cs" />
     <Compile Include="Entidades\Reportes\EModificarEnlaceProveedores.cs" />

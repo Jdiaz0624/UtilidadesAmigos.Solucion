@@ -2617,6 +2617,74 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
         }
         #endregion
 
-     
+        #region MANTENIMIENTO DE FICHA TECNICA DE SUPERVISORES
+        /// <summary>
+        /// Muestra el listado de las fichas tecnicas de los supervisores.
+        /// </summary>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EFichaTecnicaSupervisores> BuscaFichaTecnicaSupervisores(DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Supervisor = null, int? Oficina = null, decimal? GeneradoPor = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_FICHA_TECNICA_SUPERVISORES(FechaDesde, FechaHasta, Supervisor, Oficina, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EFichaTecnicaSupervisores
+                           {
+                               NumeroRegistro=n.NumeroRegistro,
+                               CodigoEmpleado=n.CodigoEmpleado,
+                               Nombre=n.Nombre,
+                               Salario=n.Salario,
+                               Telefono=n.Telefono,
+                               Direccion=n.Direccion,
+                               Cedula=n.Cedula,
+                               Celular=n.Celular,
+                               CuentaBanco=n.CuentaBanco,
+                               CodigoBanco=n.CodigoBanco,
+                               FechaIngreso0=n.FechaIngreso0,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta,
+                               FechaIngreso=n.FechaIngreso,
+                               FechaIngresoLetra=n.FechaIngresoLetra,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               CodigoOficina=n.CodigoOficina,
+                               Oficina=n.Oficina,
+                               Combustible=n.Combustible,
+                               Mantenimiento=n.Mantenimiento,
+                               GeneradoPor=n.GeneradoPor,
+                               ProduccionGlobal_Emisiones_RangoFecha=n.ProduccionGlobal_Emisiones_RangoFecha,
+                               ProduccionGlobal_Renovaciones_RangoFecha=n.ProduccionGlobal_Renovaciones_RangoFecha,
+                               ProduccionGlobal_Inclusiones_RangoFecha=n.ProduccionGlobal_Inclusiones_RangoFecha,
+                               ProduccionGlobal_Cancelaciones_RangoFecha=n.ProduccionGlobal_Cancelaciones_RangoFecha,
+                               ProduccionGlobal_Emisiones_RangoFecha_SeisMeses=n.ProduccionGlobal_Emisiones_RangoFecha_SeisMeses,
+                               ProduccionGlobal_Emisiones_RangoFecha_DoceMeses=n.ProduccionGlobal_Emisiones_RangoFecha_DoceMeses,
+                               CobradoGlobalPor_Emisiones_RangoFecha=n.CobradoGlobalPor_Emisiones_RangoFecha,
+                               CobradoGlobalPor_Renovaciones_RangoFecha=n.CobradoGlobalPor_Renovaciones_RangoFecha,
+                               CobradoGlobalPor_Inclusiones_RangoFecha=n.CobradoGlobalPor_Inclusiones_RangoFecha,
+                               CobradoGlobalPor_Cancelaciones_RangoFecha=n.CobradoGlobalPor_Cancelaciones_RangoFecha,
+                               CobradoGlobalPor_Emisiones_RangoFecha_Seis_Meses=n.CobradoGlobalPor_Emisiones_RangoFecha_Seis_Meses,
+                               CobradoGlobalPor_Emisiones_RangoFecha_Doce_Meses=n.CobradoGlobalPor_Emisiones_RangoFecha_Doce_Meses,
+                               CantidadReclamacionesRangoFecha=n.CantidadReclamacionesRangoFecha,
+                               CantidadReclamacionesRangoFechaSeisMeses=n.CantidadReclamacionesRangoFechaSeisMeses,
+                               CantidadReclamacionesRangoFechaDoceMeses=n.CantidadReclamacionesRangoFechaDoceMeses,
+                               MontoReclamadoTotal_RangoFecha=n.MontoReclamadoTotal_RangoFecha,
+                               MontoReclamadoTotal_RangoFechaSeisMeses=n.MontoReclamadoTotal_RangoFechaSeisMeses,
+                               MontoReclamadoTotal_RangoFechaDoceMeses=n.MontoReclamadoTotal_RangoFechaDoceMeses,
+                               MontoAjustadoTotal_RangoFecha=n.MontoAjustadoTotal_RangoFecha,
+                               MontoAjustadoTotal_RangoFechaSeisMeses=n.MontoAjustadoTotal_RangoFechaSeisMeses,
+                               MontoAjustadoTotal_RangoFechaDoceMeses=n.MontoAjustadoTotal_RangoFechaDoceMeses,
+                               IntermediariosActivos=n.IntermediariosActivos,
+                               IntermediariosInactivos=n.IntermediariosInactivos,
+                               IntermediariosOtroEstatus=n.IntermediariosOtroEstatus,
+                               PorcientoComisionEmisiones=n.PorcientoComisionEmisiones,
+                               PorcientoComisionRenovaciones=n.PorcientoComisionRenovaciones,
+                               PorcientoComisionInclusiones=n.PorcientoComisionInclusiones
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }
