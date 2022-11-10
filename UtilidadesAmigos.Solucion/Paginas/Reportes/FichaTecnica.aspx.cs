@@ -273,7 +273,53 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
         protected void btnReporteUnico_Click(object sender, ImageClickEventArgs e)
         {
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var CodigoSuprvisor = ((HiddenField)ItemSeleccionado.FindControl("hfCodigoSupervisor")).Value.ToString();
+            var NombreSupervisor = ((HiddenField)ItemSeleccionado.FindControl("hfNombreSupervisor")).Value.ToString();
 
+            //GENERAMOS EL REPORTE
+
+            if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) || string.IsNullOrEmpty(txtFechaTasta.Text.Trim()))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CamposFechaVacios()", "CamposFechaVacios();", true);
+
+                if (string.IsNullOrEmpty(txtFechaDesde.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeVacio()", "FechaDesdeVacio();", true);
+                }
+                if (string.IsNullOrEmpty(txtFechaTasta.Text.Trim()))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "FechaHastaVacio()", "FechaHastaVacio();", true);
+                }
+            }
+            else
+            {
+
+                DateTime? _FechaDesde = string.IsNullOrEmpty(txtFechaDesde.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaDesde.Text);
+                DateTime? _FechaHasta = string.IsNullOrEmpty(txtFechaTasta.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaTasta.Text);
+
+                string NombreReporte = "", RutaReporte = "", UsuarioBD = "", ClaveBD = "";
+
+                NombreReporte = "Ficha Tecnica de " + NombreSupervisor;
+                RutaReporte = Server.MapPath("FichaSupervisor.rpt");
+                UsuarioBD = "sa";
+                ClaveBD = "Pa$$W0rd";
+
+                ReportDocument Ficha = new ReportDocument();
+
+                Ficha.Load(RutaReporte);
+                Ficha.Refresh();
+
+                Ficha.SetParameterValue("@FechaDesde", _FechaDesde);
+                Ficha.SetParameterValue("@FechaHasta", _FechaHasta);
+                Ficha.SetParameterValue("@Supervisor", Convert.ToInt32(CodigoSuprvisor));
+                Ficha.SetParameterValue("@Oficina", new Nullable<int>());
+                Ficha.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
+
+                Ficha.SetDatabaseLogon(UsuarioBD, ClaveBD);
+
+                Ficha.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
         }
 
         protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)

@@ -73,6 +73,10 @@
                 <asp:Repeater ID="rpListadoSupervisores" runat="server">
                     <ItemTemplate>
                         <tr>
+
+                            <asp:HiddenField ID="hfCodigoSupervisor" runat="server" Value='<%# Eval("CodigoSupervisor") %>' />
+                            <asp:HiddenField ID="hfNombreSupervisor" runat="server" Value='<%# Eval("Nombre") %>' />
+
                             <td> <%# Eval("CodigoSupervisor") %> </td>
                             <td> <%# Eval("Nombre") %> </td>
                             <td align="right" > <asp:ImageButton ID="btnReporteUnico" runat="server" ToolTip="Reporte Unico de Supervisores" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporteUnico_Click" /> </td>
