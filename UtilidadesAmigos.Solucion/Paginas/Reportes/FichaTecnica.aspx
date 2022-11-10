@@ -20,6 +20,18 @@
            }
     </style>
 
+    <script type="text/javascript">
+        function CamposFechaVacios() {
+            alert("Los campos de fecha no pueden estar vacio para realizar este proceso, favor de verificar.");
+        }
+        function FechaDesdeVacio() {
+            $("#<%=txtFechaDesde.ClientID%>").css("border-color", "red");
+        }
+        function FechaHastaVacio() {
+            $("#<%=txtFechaTasta.ClientID%>").css("border-color", "red");
+        }
+    </script>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
@@ -61,8 +73,8 @@
                 <asp:Repeater ID="rpListadoSupervisores" runat="server">
                     <ItemTemplate>
                         <tr>
-                            <td> <%# Eval("") %> </td>
-                            <td> <%# Eval("") %> </td>
+                            <td> <%# Eval("CodigoSupervisor") %> </td>
+                            <td> <%# Eval("Nombre") %> </td>
                             <td align="right" > <asp:ImageButton ID="btnReporteUnico" runat="server" ToolTip="Reporte Unico de Supervisores" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporteUnico_Click" /> </td>
                         </tr>
                     </ItemTemplate>
