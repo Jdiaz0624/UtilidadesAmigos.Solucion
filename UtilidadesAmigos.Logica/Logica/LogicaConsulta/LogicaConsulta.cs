@@ -684,6 +684,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                FinVigencia=n.FinVigencia,
                                Poliza=n.Poliza,
                                Estatus=n.Estatus,
+                               UltimoMovimiento=n.UltimoMovimiento,
+                               FechaCancelacion=n.FechaCancelacion,
+                               Motor=n.Motor,
                                Cliente=n.Cliente,
                                TelefonoResidencia=n.TelefonoResidencia,
                                TelefonoOficina=n.TelefonoOficina,
@@ -710,7 +713,13 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                                CantidadCanceladas=n.CantidadCanceladas,
                                Cancelada=n.Cancelada,
                                MontoCancelado=n.MontoCancelado,
-                               Cobrado=n.Cobrado
+                               Cobrado=n.Cobrado,
+                               UltimoComentarioGestionCobros=n.UltimoComentarioGestionCobros,
+                               UltimoEstatusLLamdaGestionCobros=n.UltimoEstatusLLamdaGestionCobros,
+                               UltimoConceptoLlamadaGestionCobros=n.UltimoConceptoLlamadaGestionCobros,
+                               UltimoComentarioGestionCobros_AntiguedadSaldo=n.UltimoComentarioGestionCobros_AntiguedadSaldo,
+                               UltimoEstatusLLamdaGestionCobros_AntiguedadSaldo=n.UltimoEstatusLLamdaGestionCobros_AntiguedadSaldo,
+                               UltimoConceptoLlamadaGestionCobros_AntiguedadSaldo=n.UltimoConceptoLlamadaGestionCobros_AntiguedadSaldo
                            }).ToList();
             return Detalle;
         }

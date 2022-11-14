@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionConsultaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_PROCESAR_INFORMACON_REPORTE_COMENTARIO_GESTION_COBRO" Method="SP_PROCESAR_INFORMACON_REPORTE_COMENTARIO_GESTION_COBRO">
     <Parameter Name="NumeroRegistro" Parameter="numeroRegistro" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
@@ -409,45 +409,6 @@
       <Column Name="Cobrado" Type="System.Decimal" DbType="Money" CanBeNull="true" />
       <Column Name="CantidadPendiente" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MontoPendienteRenovar" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="Utililades.SP_MOSTRAR_DETALLE_ESTADISTICA_RENOVACION" Method="SP_MOSTRAR_DETALLE_ESTADISTICA_RENOVACION">
-    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <ElementType Name="SP_MOSTRAR_DETALLE_ESTADISTICA_RENOVACIONResult">
-      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="TelefonoResidencia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Celular" Type="System.String" DbType="Char(50)" CanBeNull="true" />
-      <Column Name="fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Ramo" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NombreRamo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Prima" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
-      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ValidadoDesde0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="ValidadoHasta0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
-      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
-      <Column Name="ExcluirMotores0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ExcluirMotores" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
-      <Column Name="CantidadRenovadas" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Renovada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="MontoRenovado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="CantidadCanceladas" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Cancelada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="MontoCancelado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
-      <Column Name="Cobrado" Type="System.Decimal" DbType="Money" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="Utililades.SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZA" Method="SP_BUSCA_GESTION_COBROS_COMENTARIO_POLIZA">
@@ -966,6 +927,54 @@
       <Column Name="CodigoCliente" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
       <Column Name="IdEstatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MOSTRAR_DETALLE_ESTADISTICA_RENOVACION" Method="SP_MOSTRAR_DETALLE_ESTADISTICA_RENOVACION">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_MOSTRAR_DETALLE_ESTADISTICA_RENOVACIONResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Motor" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UltimoMovimiento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaCancelacion" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="TelefonoResidencia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TelefonoOficina" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Celular" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreRamo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Prima" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ValidadoDesde0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ValidadoHasta0" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ValidadoDesde" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="ValidadoHasta" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="ExcluirMotores0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ExcluirMotores" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="CantidadRenovadas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Renovada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="MontoRenovado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CantidadCanceladas" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cancelada" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="MontoCancelado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="UltimoComentarioGestionCobros" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="UltimoEstatusLLamdaGestionCobros" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="UltimoConceptoLlamadaGestionCobros" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="UltimoComentarioGestionCobros_AntiguedadSaldo" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="UltimoEstatusLLamdaGestionCobros_AntiguedadSaldo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="UltimoConceptoLlamadaGestionCobros_AntiguedadSaldo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

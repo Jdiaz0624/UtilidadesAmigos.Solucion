@@ -306,6 +306,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                            {
                                Poliza = n.Poliza,
                                Estatus = n.Estatus,
+                               UltimoMovimiento = n.UltimoMovimiento,
+                               FechaCancelacion = n.FechaCancelacion,
                                InicioVigencia = n.InicioVigencia,
                                FinVigencia = n.FinVigencia,
                                Cliente = n.Cliente,
@@ -329,7 +331,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                                CantidadCanceladas = n.CantidadCanceladas,
                                Cancelada = n.Cancelada,
                                MontoCancelado = n.MontoCancelado,
-                               Cobrado = n.Cobrado
+                               Cobrado = n.Cobrado,
+                               UltimoComentarioGestionCobros = n.UltimoComentarioGestionCobros,
+                               UltimoEstatusLLamdaGestionCobros = n.UltimoEstatusLLamdaGestionCobros,
+                               UltimoConceptoLlamadaGestionCobros = n.UltimoConceptoLlamadaGestionCobros,
+                               UltimoComentarioGestionCobros_AntiguedadSaldo = n.UltimoComentarioGestionCobros_AntiguedadSaldo,
+                               UltimoEstatusLLamdaGestionCobros_AntiguedadSaldo = n.UltimoEstatusLLamdaGestionCobros_AntiguedadSaldo,
+                               UltimoConceptoLlamadaGestionCobros_AntiguedadSaldo = n.UltimoConceptoLlamadaGestionCobros_AntiguedadSaldo
                            }).ToList();
             UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Detalle de Estadistica de Renovacion", Detalle);
         }
