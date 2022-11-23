@@ -180,6 +180,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.Text.Trim()) ? null : txtNombreConsulta.Text.Trim();
             string _Remitente = string.IsNullOrEmpty(txtRemitenteConsulta.Text.Trim()) ? null : txtRemitenteConsulta.Text.Trim();
             string _Destinatario = string.IsNullOrEmpty(txtDestinatario.Text.Trim()) ? null : txtDestinatario.Text.Trim();
+            decimal? _Usuario = ddlUsuarioDigita.SelectedValue != "-1" ? Convert.ToDecimal(ddlUsuarioDigita.SelectedValue) : new Nullable<decimal>();
 
             DateTime? _FechaDesde = cbAgregarRangoFecha.Checked == true ? Convert.ToDateTime(txtFechaDesde.Text) : new Nullable<DateTime>();
             DateTime? _FechaHasta = cbAgregarRangoFecha.Checked == true ? Convert.ToDateTime(txtFechaHAsta.Text) : new Nullable<DateTime>();
@@ -190,7 +191,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 _Nombre,
                 _Remitente,
                 _Destinatario,
-                null,
+                _Usuario,
                 _FechaDesde,
                 _FechaHasta,
                 null);
@@ -319,11 +320,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #region REPORTE DE CONTROL DE VISITAS
         private void GenerarReporte(string RutaReporte, string NombreArchivo,decimal UsuarioGenera) {
             decimal? _NoRegistro = new Nullable<decimal>();
-            decimal? _UsuarioDigita = new Nullable<decimal>();
             int? _TipoProceso = ddlSeleccionarTipoProcesoCOnsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarTipoProcesoCOnsulta.SelectedValue) : new Nullable<int>();
             string _Nombre = string.IsNullOrEmpty(txtNombreConsulta.Text.Trim()) ? null : txtNombreConsulta.Text.Trim();
             string _Remitente = string.IsNullOrEmpty(txtRemitenteConsulta.Text.Trim()) ? null : txtRemitenteConsulta.Text.Trim();
             string _Destinatario = string.IsNullOrEmpty(txtDestinatario.Text.Trim()) ? null : txtDestinatario.Text.Trim();
+            decimal? _Usuario = ddlUsuarioDigita.SelectedValue != "-1" ? Convert.ToDecimal(ddlUsuarioDigita.SelectedValue) : new Nullable<decimal>();
 
             DateTime? _FechaDesde = cbAgregarRangoFecha.Checked == true ? Convert.ToDateTime(txtFechaDesde.Text) : new Nullable<DateTime>();
             DateTime? _FechaHasta = cbAgregarRangoFecha.Checked == true ? Convert.ToDateTime(txtFechaHAsta.Text) : new Nullable<DateTime>();
@@ -337,7 +338,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             Reporte.SetParameterValue("@Nombre", _Nombre);
             Reporte.SetParameterValue("@Remitente", _Remitente);
             Reporte.SetParameterValue("@Destinatario", _Destinatario);
-            Reporte.SetParameterValue("@UsuarioDigita", _UsuarioDigita);
+            Reporte.SetParameterValue("@UsuarioDigita", _Usuario);
             Reporte.SetParameterValue("@FechaDigitaDesde", _FechaDesde);
             Reporte.SetParameterValue("@FechaDigitaHasta", _FechaHasta);
             Reporte.SetParameterValue("@UsuarioGenera", UsuarioGenera);
@@ -409,7 +410,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
             GraControlVisitas.Series["Serie"].Points.DataBindXY(NombreProceso, CantidadRegistros);
         }
         #endregion
+        #region CARGAR LOS USUARIOS
+        private void CargarUsuarios() {
 
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlUsuarioDigita, ObjData.Value.BuscaListas("USUARIOCONTROLVISITA", null, null), true);
+        }
+        #endregion
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -429,6 +435,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 CargarTipoProcesoCOsnsulta();
                 CargarTipoProcesoMantenimiento();
+                CargarUsuarios();
                 MostrarListadoControlCisitas();
                 cbAgregarRangoFecha.Checked = false;
                 rbPDF.Checked = true;

@@ -173,6 +173,10 @@
                 <asp:Label ID="lbFechaHasta" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtFechaHAsta" runat="server" TextMode="Date" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </div>
+             <div class="col-md-6" id="Div1" runat="server">
+                <asp:Label ID="lbUsuario" runat="server" Text="Usuario" CssClass="Letranegrita"></asp:Label>
+                <asp:DropDownList ID="ddlUsuarioDigita" runat="server" ToolTip="Seleccionar Usuario para filtro" CssClass="form-control"></asp:DropDownList>
+            </div>
         </div>
         <br />
         <div class="form-check-inline">
