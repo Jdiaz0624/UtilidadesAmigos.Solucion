@@ -388,6 +388,8 @@
     <Compile Include="Entidades\Procesos\EBuscaInformacionProcesoEmisionHeader.cs" />
     <Compile Include="Entidades\Procesos\EBuscaPolizaEndosos.cs" />
     <Compile Include="Entidades\Procesos\EBuscarInformacionVolantesPagos.cs" />
+    <Compile Include="Entidades\Procesos\ECartaCancelacionAsegurado.cs" />
+    <Compile Include="Entidades\Procesos\ECartaCancelacionIntermediario.cs" />
     <Compile Include="Entidades\Procesos\ECodigoEmpleadosVolantePagos.cs" />
     <Compile Include="Entidades\Procesos\ECorreosEmisonesSistema.cs" />
     <Compile Include="Entidades\Procesos\ECredencialesBD.cs" />

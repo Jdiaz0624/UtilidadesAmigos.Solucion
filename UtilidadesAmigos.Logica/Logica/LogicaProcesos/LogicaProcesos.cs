@@ -1047,6 +1047,76 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
             return Listado;
         }
         #endregion
+        #region CARTA DE CANCELACION DE ASEGURADOS E INTERMEDIARIOS
+        /// <summary>
+        /// Muestra el listado de las cartas de cancelaciones de asegurados
+        /// </summary>
+        /// <param name="Supervisor"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="Cliente"></param>
+        /// <param name="Poliza"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ECartaCancelacionAsegurado> BuscaCartaCancelacionAsegurado(int? Supervisor = null, int? Intermediario = null, decimal? Cliente = null, string Poliza = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_CARTA_CANCELACION_ASEGURADO(Supervisor, Intermediario, Cliente, Poliza)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.ECartaCancelacionAsegurado
+                           {
+                               FechaCarta=n.FechaCarta,
+                               Oficina=n.Oficina,
+                               CodigoAsegurado=n.CodigoAsegurado,
+                               Asegurado=n.Asegurado,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               Poliza=n.Poliza,
+                               BalanceNumerico=n.BalanceNumerico,
+                               BalanceLetra=n.BalanceLetra,
+                               Moneda=n.Moneda,
+                               Siglas=n.Siglas,
+                               EncargadaCobros=n.EncargadaCobros,
+                               Cargo=n.Cargo,
+                               Telefono=n.Telefono,
+                               Celular=n.Celular
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Muestra el listado de las cartas de cancelaciones de Intermediarios
+        /// </summary>
+        /// <param name="Supervisor"></param>
+        /// <param name="Intermediario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ECartaCancelacionIntermediario> BuscaCartaCancelacionIntermediario(int? Supervisor = null, int? Intermediario = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_CARTA_CANCELACION_INTERMEDIARIO(Supervisor, Intermediario)
+                           select new UtilidadesAmigos.Logica.Entidades.Procesos.ECartaCancelacionIntermediario
+                           {
+                               FechaCarta=n.FechaCarta,
+                               Oficina=n.Oficina,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               Referencia=n.Referencia,
+                               CantidadPolizasBalancePendiente=n.CantidadPolizasBalancePendiente,
+                               SumatoriaPolizasBalancePendientePesos=n.SumatoriaPolizasBalancePendientePesos,
+                               SumatoriaPolizasBalancePendientePesosLetra=n.SumatoriaPolizasBalancePendientePesosLetra,
+                               SumatoriaPolizasBalancePendienteDolar=n.SumatoriaPolizasBalancePendienteDolar,
+                               SumatoriaPolizasBalancePendienteDolarLetra=n.SumatoriaPolizasBalancePendienteDolarLetra,
+                               EncargadaCobros=n.EncargadaCobros,
+                               Cargo=n.Cargo,
+                               Telefono=n.Telefono,
+                               Celular=n.Celular
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
 
     }
 }

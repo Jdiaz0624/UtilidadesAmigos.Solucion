@@ -195,22 +195,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.Repeater rpListadoCartaAsegurado;
 
         /// <summary>
-        /// lbPaginaActual_Antiguedad control.
+        /// lbPaginaActual_CartaAsegurado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActual_Antiguedad;
+        protected global::System.Web.UI.WebControls.Label lbPaginaActual_CartaAsegurado;
 
         /// <summary>
-        /// lbCantidadPaginaVariable_Antiguedad control.
+        /// lbCantidadPaginaVariable_CartaAsegurado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVariable_Antiguedad;
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVariable_CartaAsegurado;
 
         /// <summary>
         /// divPaginacion_CartaAsegurado control.
@@ -274,5 +274,167 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueCartaCancelacionIntermediario;
+
+        /// <summary>
+        /// lbCodigoSupervisor_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoSupervisor_CartaIntermediario;
+
+        /// <summary>
+        /// txtCodigoSupervisor_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoSupervisor_CartaIntermediario;
+
+        /// <summary>
+        /// lbNombreSupervisor_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNombreSupervisor_CartaIntermediario;
+
+        /// <summary>
+        /// txtNombreSupervisor_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombreSupervisor_CartaIntermediario;
+
+        /// <summary>
+        /// lbCodigoIntermediario_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoIntermediario_CartaIntermediario;
+
+        /// <summary>
+        /// txtCodigoIntermediario_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoIntermediario_CartaIntermediario;
+
+        /// <summary>
+        /// lbNombreIntermedirio_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNombreIntermedirio_CartaIntermediario;
+
+        /// <summary>
+        /// txtNombreIntermediario_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombreIntermediario_CartaIntermediario;
+
+        /// <summary>
+        /// btnConsukltar_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnConsukltar_CartaIntermediario;
+
+        /// <summary>
+        /// rpListadoCartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpListadoCartaIntermediario;
+
+        /// <summary>
+        /// lbPaginaActual_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPaginaActual_CartaIntermediario;
+
+        /// <summary>
+        /// lbCantidadPaginaVariable_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVariable_CartaIntermediario;
+
+        /// <summary>
+        /// divPaginacion_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacion_CartaIntermediario;
+
+        /// <summary>
+        /// btnPrimeraPagina_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPagina_CartaIntermediario;
+
+        /// <summary>
+        /// btnPaginaAnterior_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnterior_CartaIntermediario;
+
+        /// <summary>
+        /// dtPaginacion_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dtPaginacion_CartaIntermediario;
+
+        /// <summary>
+        /// btnPaginaSiguiente_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaSiguiente_CartaIntermediario;
+
+        /// <summary>
+        /// btnUltimaPagina_CartaIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPagina_CartaIntermediario;
     }
 }

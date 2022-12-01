@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionProcesosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_GENERAR_DATOS_PARA_MARBETE_VEHICULO" Method="SP_GENERAR_DATOS_PARA_MARBETE_VEHICULO">
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="Item" Parameter="item" Type="System.String" DbType="VarChar(50)" />
@@ -791,6 +791,53 @@
       <Column Name="SegundoDigitoAno" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
       <Column Name="TercerDigitoAno" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
       <Column Name="CuartoDigitoAno" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_CARTA_CANCELACION_ASEGURADO" Method="SP_CARTA_CANCELACION_ASEGURADO">
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cliente" Parameter="cliente" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_CARTA_CANCELACION_ASEGURADOResult">
+      <Column Name="FechaCarta" Type="System.String" DbType="VarChar(83) NOT NULL" CanBeNull="false" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(26) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoAsegurado" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Asegurado" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BalanceNumerico" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="BalanceLetra" Type="System.String" DbType="VarChar(158) NOT NULL" CanBeNull="false" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Siglas" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="EncargadaCobros" Type="System.String" DbType="VarChar(17) NOT NULL" CanBeNull="false" />
+      <Column Name="Cargo" Type="System.String" DbType="VarChar(29) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(22) NOT NULL" CanBeNull="false" />
+      <Column Name="Celular" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_CARTA_CANCELACION_INTERMEDIARIO" Method="SP_CARTA_CANCELACION_INTERMEDIARIO">
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_CARTA_CANCELACION_INTERMEDIARIOResult">
+      <Column Name="FechaCarta" Type="System.String" DbType="VarChar(83) NOT NULL" CanBeNull="false" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(26) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="Referencia" Type="System.String" DbType="VarChar(29) NOT NULL" CanBeNull="false" />
+      <Column Name="CantidadPolizasBalancePendiente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SumatoriaPolizasBalancePendientePesos" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="SumatoriaPolizasBalancePendientePesosLetra" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="SumatoriaPolizasBalancePendienteDolar" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="SumatoriaPolizasBalancePendienteDolarLetra" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="EncargadaCobros" Type="System.String" DbType="VarChar(17) NOT NULL" CanBeNull="false" />
+      <Column Name="Cargo" Type="System.String" DbType="VarChar(29) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(22) NOT NULL" CanBeNull="false" />
+      <Column Name="Celular" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>
