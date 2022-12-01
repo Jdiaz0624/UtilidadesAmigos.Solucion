@@ -12,6 +12,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 {
     public partial class CartaCancelacion : System.Web.UI.Page
     {
+
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaProcesos.LogicaProcesos> ObjDataProcesos = new Lazy<Logica.Logica.LogicaProcesos.LogicaProcesos>();
+
         #region CONTROL DE PAGINACION DE CARTA DE CANCELACION DE ASEGURADO	
         readonly PagedDataSource pagedDataSource_CartaAsegurado = new PagedDataSource();
         int _PrimeraPagina_CartaAsegurado, _UltimaPagina_CartaAsegurado;
@@ -276,44 +279,175 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         }
         #endregion
+        #region LISTADO DE CARTA DE CANCELACIONES DE ASEGURADOS E INTERMEDIARIOS
+        private void ListadoCartaAsegurado() {
+
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor_CartaAsegurado.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor_CartaAsegurado.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario_CartaAsegurado.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario_CartaAsegurado.Text);
+            decimal? _Asegurado = string.IsNullOrEmpty(txtCodigoAsegurado_CartaAsegurado.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtCodigoAsegurado_CartaAsegurado.Text);
+            string _Poliza = string.IsNullOrEmpty(txtPoliza_CartaAsegurado.Text.Trim()) ? null : txtPoliza_CartaAsegurado.Text.Trim();
+
+            var Listado = ObjDataProcesos.Value.BuscaCartaCancelacionAsegurado(
+                _Supervisor,
+                _Intermediario,
+                _Asegurado,
+                _Poliza);
+            if (Listado.Count() < 1) {
+                rpListadoCartaAsegurado.DataSource = null;
+                rpListadoCartaAsegurado.DataBind();
+            }
+            else {
+
+                Paginar_CartaAsegurado(ref rpListadoCartaAsegurado, Listado, 10, ref lbCantidadPaginaVariable_CartaAsegurado, ref btnPrimeraPagina_CartaAsegurado, ref btnPaginaAnterior_CartaAsegurado, ref btnPaginaSiguiente_CartaAsegurado, ref btnUltimaPagina_CartaAsegurado);
+                HandlePaging_CartaAsegurado(ref dtPaginacion_CartaAsegurado, ref lbPaginaActual_CartaAsegurado);
+            }
+        }
+
+        private void ListadoCartaIntermediario() {
+
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor_CartaIntermediario.Text) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario_CartaIntermediario.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario_CartaIntermediario.Text) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario_CartaIntermediario.Text);
+
+            var Listado = ObjDataProcesos.Value.BuscaCartaCancelacionIntermediario(
+                _Supervisor,
+                _Intermediario);
+            if (Listado.Count() < 1) {
+
+                rpListadoCartaIntermediario.DataSource = null;
+                rpListadoCartaIntermediario.DataBind();
+            }
+            else {
+
+                Paginar_CartaIntermediario(ref rpListadoCartaIntermediario, Listado, 10, ref lbCantidadPaginaVariable_CartaIntermediario, ref btnPrimeraPagina_CartaIntermediario, ref btnPaginaAnterior_CartaIntermediario, ref btnPaginaSiguiente_CartaIntermediario, ref btnUltimaPagina_CartaIntermediario);
+                HandlePaging_CartaIntermediario(ref dtPaginacion_CartaIntermediario, ref lbPaginaActual_CartaIntermediario);
+            }
+        }
+        #endregion
+        #region GENERAR REPORTE DE CARTA DE CANCELACION DE ASEGURADOS E INTERMEDIARIOS
+        private void CartaCancelacionAsegurado(int Supervisor, int Intermediario, decimal Cliente, string Poliza,string Asegurado) {
+
+            string RutaReporte = "", UsuarioBD = "", ClaveBD = "", NombreCarta = "";
+
+            RutaReporte = Server.MapPath("CartaCancelacionAsegurado.rpt");
+            UsuarioBD = "sa";
+            ClaveBD = "Pa$$W0rd";
+            NombreCarta = "Carta de Cancelación de " + Asegurado;
+
+            ReportDocument Carta = new ReportDocument();
+
+            Carta.Load(RutaReporte);
+            Carta.Refresh();
+
+            Carta.SetParameterValue("@Supervisor", Supervisor);
+            Carta.SetParameterValue("@Intermediario", Intermediario);
+            Carta.SetParameterValue("@Cliente", Cliente);
+            Carta.SetParameterValue("@Poliza", Poliza);
+
+            Carta.SetDatabaseLogon(UsuarioBD, ClaveBD);
+
+            Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreCarta);
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            MaintainScrollPositionOnPostBack = true;
+            if (!IsPostBack) {
 
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Nombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["Idusuario"]);
+                Label lbUsuarioConectado = (Label)Master.FindControl("lbUsuarioConectado");
+                Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+
+                lbUsuarioConectado.Text = Nombre.SacarNombreUsuarioConectado();
+                lbPantalla.Text = "Carta de Cancelación de Asegurados / Intermediarios";
+
+                rbCartaCancelacionAsegurado.Checked = true;
+                DivBloqueCartaCancelacionAsegurado.Visible = true;
+                DIVBloqueCartaCancelacionIntermediario.Visible = false;
+            }
         }
 
         protected void rbCartaCancelacionAsegurado_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (rbCartaCancelacionAsegurado.Checked == true) {
+                DivBloqueCartaCancelacionAsegurado.Visible = true;
+                DIVBloqueCartaCancelacionIntermediario.Visible = false;
+            }
+            else {
+                DivBloqueCartaCancelacionAsegurado.Visible = false;
+                DIVBloqueCartaCancelacionIntermediario.Visible = false;
+            }
         }
 
         protected void rbCartaCancelacionIntermediario_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (rbCartaCancelacionIntermediario.Checked == true) {
+                DivBloqueCartaCancelacionAsegurado.Visible = false;
+                DIVBloqueCartaCancelacionIntermediario.Visible = true;
+            }
+            else {
+                DivBloqueCartaCancelacionAsegurado.Visible = false;
+                DIVBloqueCartaCancelacionIntermediario.Visible = false;
+            }
         }
 
         protected void btnConsultar_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CartaAsegurado = 0;
+            ListadoCartaAsegurado();
         }
 
         protected void txtCodigoSupervisor_CartaAsegurado_TextChanged(object sender, EventArgs e)
         {
+            try {
 
+                UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoSupervisor_CartaAsegurado.Text);
+                txtNombreSupervisor_CartaAsegurado.Text = Nombre.SacarNombreSupervisor();
+            }
+            catch (Exception) {
+                txtNombreSupervisor_CartaAsegurado.Text = string.Empty;
+            }
         }
 
         protected void txtCodigoIntermediario_CartaAsegurado_TextChanged(object sender, EventArgs e)
         {
-
+            try {
+                UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoIntermediario_CartaAsegurado.Text);
+                txtNombreIntermediario_CartaAsegurado.Text = Nombre.SacarNombreIntermediario();
+            }
+            catch (Exception) {
+                txtNombreIntermediario_CartaAsegurado.Text = string.Empty;
+            }
         }
 
         protected void txtCodigoAsegurado_CartaAsegurado_TextChanged(object sender, EventArgs e)
         {
+            try {
 
+                UtilidadesAmigos.Logica.Comunes.ESacarNombreCliente Nombre = new Logica.Comunes.ESacarNombreCliente(txtCodigoAsegurado_CartaAsegurado.Text);
+                txtNombreAsegurado_CartaAsegurado.Text = Nombre.SacarCodigoCLiente();
+            }
+            catch (Exception) {
+                txtNombreAsegurado_CartaAsegurado.Text = string.Empty;
+            }
         }
 
         protected void btnCartaAsegurado_Click(object sender, ImageClickEventArgs e)
         {
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
 
+            var Supervisor = ((HiddenField)ItemSeleccionado.FindControl("hfSupervisor_CartaAsegurado")).Value.ToString();
+            var Intermediario = ((HiddenField)ItemSeleccionado.FindControl("hfIntermediario_CargaAsegurado")).Value.ToString();
+            var Asegurado = ((HiddenField)ItemSeleccionado.FindControl("hfAsegurado_CartaIAsegurado")).Value.ToString();
+            var Poliza = ((HiddenField)ItemSeleccionado.FindControl("hfPoliza_CartaAsegurado")).Value.ToString();
+            var NombreAsegurado = ((HiddenField)ItemSeleccionado.FindControl("hfNombreAsegurado_CartaAsegurado")).Value.ToString();
+
+            CartaCancelacionAsegurado(
+                Convert.ToInt32(Supervisor),
+                Convert.ToInt32(Intermediario),
+                Convert.ToDecimal(Asegurado),
+                Poliza,
+                NombreAsegurado);
         }
 
         protected void btnPrimeraPagina_CartaAsegurado_Click(object sender, ImageClickEventArgs e)
@@ -348,12 +482,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         protected void txtCodigoSupervisor_CartaIntermediario_TextChanged(object sender, EventArgs e)
         {
-
+            try { }
+            catch (Exception) { }
         }
 
         protected void txtCodigoIntermediario_CartaIntermediario_TextChanged(object sender, EventArgs e)
         {
-
+            try { }
+            catch (Exception) { }
         }
 
         protected void btnConsukltar_CartaIntermediario_Click(object sender, ImageClickEventArgs e)

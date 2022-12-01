@@ -95,6 +95,8 @@
                                  <asp:HiddenField ID="hfIntermediario_CargaAsegurado" runat="server" Value='<%# Eval("CodigoIntermediario") %>' />
                                  <asp:HiddenField ID="hfAsegurado_CartaIAsegurado" runat="server" Value='<%# Eval("CodigoAsegurado") %>' />
                                  <asp:HiddenField ID="hfPoliza_CartaAsegurado" runat="server" Value='<%# Eval("Poliza") %>' />
+                                <asp:HiddenField ID="hfNombreAsegurado_CartaAsegurado" runat="server" Value='<%# Eval("Asegurado") %>' />
+
 
                                  <td> <%# Eval("Asegurado") %> </td>
                                  <td> <%# Eval("Poliza") %> </td>
