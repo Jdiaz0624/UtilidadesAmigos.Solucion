@@ -590,6 +590,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkUtilidadesCobros.Visible = true;
                     LinkAgregarItemsReclamos.Visible = true;
                     LinkReciboIngreso.Visible = true;
+                    LinkCartaCancelacion.Visible = true;
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = true;
@@ -662,6 +663,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkUtilidadesCobros.Visible = false;
                     LinkAgregarItemsReclamos.Visible = false;
                     LinkReciboIngreso.Visible = true;
+                    LinkCartaCancelacion.Visible = false;
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = false;
@@ -733,7 +735,8 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkVolantePagos.Visible = false;
                     LinkUtilidadesCobros.Visible = false;
                     LinkAgregarItemsReclamos.Visible = false;
-                    LinkReciboIngreso.Visible = true;
+                    LinkReciboIngreso.Visible = false;
+                    LinkCartaCancelacion.Visible = false;
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = false;
@@ -806,6 +809,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkUtilidadesCobros.Visible = false;
                     LinkAgregarItemsReclamos.Visible = false;
                     LinkReciboIngreso.Visible = false;
+                    LinkCartaCancelacion.Visible = false;
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = false;
@@ -878,6 +882,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkUtilidadesCobros.Visible = false;
                     LinkAgregarItemsReclamos.Visible = false;
                     LinkReciboIngreso.Visible = false;
+                    LinkCartaCancelacion.Visible = false;
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = false;
@@ -950,6 +955,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkUtilidadesCobros.Visible = false;
                     LinkAgregarItemsReclamos.Visible = true;
                     LinkReciboIngreso.Visible = false;
+                    LinkCartaCancelacion.Visible = false;
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = false;
@@ -1022,6 +1028,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkUtilidadesCobros.Visible = false;
                     LinkAgregarItemsReclamos.Visible = false;
                     LinkReciboIngreso.Visible = false;
+                    LinkCartaCancelacion.Visible = false;
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = false;
@@ -1094,6 +1101,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkUtilidadesCobros.Visible = false;
                     LinkAgregarItemsReclamos.Visible = false;
                     LinkReciboIngreso.Visible = false;
+                    LinkCartaCancelacion.Visible = false;
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = false;
@@ -1166,6 +1174,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkUtilidadesCobros.Visible = false;
                     LinkAgregarItemsReclamos.Visible = false;
                     LinkReciboIngreso.Visible = false;
+                    LinkCartaCancelacion.Visible = false;
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = false;
@@ -1238,6 +1247,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkUtilidadesCobros.Visible = true;
                     LinkAgregarItemsReclamos.Visible = false;
                     LinkReciboIngreso.Visible = true;
+                    LinkCartaCancelacion.Visible = true;
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = false;
@@ -1310,6 +1320,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkUtilidadesCobros.Visible = false;
                     LinkAgregarItemsReclamos.Visible = false;
                     LinkReciboIngreso.Visible = false;
+                    LinkCartaCancelacion.Visible = false;
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = false;
@@ -1382,6 +1393,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkUtilidadesCobros.Visible = true;
                     LinkAgregarItemsReclamos.Visible = false;
                     LinkReciboIngreso.Visible = true;
+                    LinkCartaCancelacion.Visible = true;
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = false;
@@ -1454,6 +1466,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkUtilidadesCobros.Visible = false;
                     LinkAgregarItemsReclamos.Visible = false;
                     LinkReciboIngreso.Visible = false;
+                    LinkCartaCancelacion.Visible = false;
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = false;
@@ -2382,6 +2395,20 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             if (Session["IdUsuario"] != null)
             {
                 Response.Redirect("~/Paginas/Reportes/FichaTecnica.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
+
+        protected void LinkCartaCancelacion_Click(object sender, EventArgs e)
+        {
+            
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Procesos/CartaCancelacion.aspx");
             }
             else
             {

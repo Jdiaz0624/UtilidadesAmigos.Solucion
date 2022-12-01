@@ -105,7 +105,7 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Poliza</th>
-                        <th scope="col">Cobierto Hasta</th>
+                        <th scope="col">Cubierto Hasta</th>
                         <th scope="col">Comentarios</th>
                         <th scope="col">Dias</th>
                         <th scope="col">0-10</th>

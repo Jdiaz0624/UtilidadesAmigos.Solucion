@@ -255,6 +255,7 @@
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
     <Content Include="Paginas\ProcesoPoliza\Cotizador.aspx" />
     <Content Include="Paginas\Procesos\AgregarItemsReclamos.aspx" />
+    <Content Include="Paginas\Procesos\CartaCancelacion.aspx" />
     <Content Include="Paginas\Procesos\DatosPoliza.aspx" />
     <Content Include="Paginas\Procesos\Endosos.aspx" />
     <Content Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx" />
@@ -739,6 +740,13 @@
     </Compile>
     <Compile Include="Paginas\Procesos\AgregarItemsReclamos.aspx.designer.cs">
       <DependentUpon>AgregarItemsReclamos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\CartaCancelacion.aspx.cs">
+      <DependentUpon>CartaCancelacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\CartaCancelacion.aspx.designer.cs">
+      <DependentUpon>CartaCancelacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Procesos\DatosPoliza.aspx.cs">
       <DependentUpon>DatosPoliza.aspx</DependentUpon>

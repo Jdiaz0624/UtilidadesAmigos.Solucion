@@ -348,6 +348,7 @@ display: block;
             <li> <asp:LinkButton ID="LinkUtilidadesCobros" runat="server" Text="Utilidades de Cobros" ToolTip="Utilidades de Cobros" OnClick="linkUtilidadesCobros_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkAgregarItemsReclamos" runat="server" Text="Agregar Items Reclamos" ToolTip="Agregar o Sacar Items de Reclamos" OnClick="LinkAgregarDPAReclamos_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkReciboIngreso" runat="server" Text="Recibo de Ingreso" ToolTip="Recibo de Ingresos" OnClick="LinkReciboDigital_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkCartaCancelacion" runat="server" Text="Carta de Cancelación" ToolTip="Generar Carta de Cancelación de Asegurados / Intermediarios" OnClick="LinkCartaCancelacion_Click"></asp:LinkButton> </li>
         </ul>
         </li>
 
