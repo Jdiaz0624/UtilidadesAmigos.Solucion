@@ -305,7 +305,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         private void ListadoCartaIntermediario() {
 
-            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor_CartaIntermediario.Text) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario_CartaIntermediario.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor_CartaIntermediario.Text) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor_CartaIntermediario.Text);
             int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario_CartaIntermediario.Text) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario_CartaIntermediario.Text);
 
             var Listado = ObjDataProcesos.Value.BuscaCartaCancelacionIntermediario(
@@ -346,6 +346,28 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Carta.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
             Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreCarta);
+        }
+
+        private void CartaCancelacionIntermediario(int Supervisor, int Intermediario, string NombreIntermediario) {
+
+            string RutaReporte = "", UsuarioBD = "", ClaveBD = "", NombreReporte = "";
+
+            RutaReporte = Server.MapPath("CartaCancelacionIntermediarios.rpt");
+            UsuarioBD = "sa";
+            ClaveBD = "Pa$$W0rd";
+            NombreReporte = "Carta de Cancelación de " + NombreIntermediario;
+
+            ReportDocument Carta = new ReportDocument();
+
+            Carta.Load(RutaReporte);
+            Carta.Refresh();
+
+            Carta.SetParameterValue("@Supervisor", Supervisor);
+            Carta.SetParameterValue("@Intermediario", Intermediario);
+
+            Carta.SetDatabaseLogon(UsuarioBD, ClaveBD);
+
+            Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
         }
         #endregion
 
@@ -452,12 +474,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         protected void btnPrimeraPagina_CartaAsegurado_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CartaAsegurado = 0;
+            ListadoCartaAsegurado(); 
         }
 
         protected void btnPaginaAnterior_CartaAsegurado_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CartaAsegurado += -1;
+            ListadoCartaAsegurado();
+            MoverValoresPaginacion_CartaAsegurado((int)OpcionesPaginacionValores_CartaAsegurado.PaginaAnterior, ref lbPaginaActual_CartaAsegurado, ref lbCantidadPaginaVariable_CartaAsegurado);
         }
 
         protected void dtPaginacion_CartaAsegurado_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -467,44 +492,62 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         protected void dtPaginacion_CartaAsegurado_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_CartaAsegurado = Convert.ToInt32(e.CommandArgument.ToString());
+            ListadoCartaAsegurado();
         }
 
         protected void btnPaginaSiguiente_CartaAsegurado_Click(object sender, ImageClickEventArgs e)
         {
+            CurrentPage_CartaAsegurado += 1;
+            ListadoCartaAsegurado();
 
         }
 
         protected void btnUltimaPagina_CartaAsegurado_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CartaAsegurado = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            ListadoCartaAsegurado();
+            MoverValoresPaginacion_CartaAsegurado((int)OpcionesPaginacionValores_CartaAsegurado.UltimaPagina, ref lbPaginaActual_CartaAsegurado, ref lbCantidadPaginaVariable_CartaAsegurado);
         }
 
         protected void txtCodigoSupervisor_CartaIntermediario_TextChanged(object sender, EventArgs e)
         {
-            try { }
-            catch (Exception) { }
+            try {
+                UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoSupervisor_CartaIntermediario.Text);
+                txtNombreSupervisor_CartaIntermediario.Text = Nombre.SacarNombreSupervisor();
+            }
+            catch (Exception) {
+                txtNombreSupervisor_CartaIntermediario.Text = string.Empty;
+            }
         }
 
         protected void txtCodigoIntermediario_CartaIntermediario_TextChanged(object sender, EventArgs e)
         {
-            try { }
+            try {
+                UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Nombre = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoIntermediario_CartaIntermediario.Text);
+                txtNombreIntermediario_CartaIntermediario.Text = Nombre.SacarNombreIntermediario();
+            }
             catch (Exception) { }
         }
 
         protected void btnConsukltar_CartaIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CartaIntermediario = 0;
+            ListadoCartaIntermediario();
         }
 
         protected void btnPrimeraPagina_CartaIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CartaIntermediario = 0;
+            ListadoCartaIntermediario();
         }
 
         protected void btnPaginaAnterior_CartaIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CartaIntermediario += -1;
+            ListadoCartaIntermediario();
+            MoverValoresPaginacion_CartaIntermediario((int)OpcionesPaginacionValores_CartaIntermediario.PaginaAnterior, ref lbPaginaActual_CartaIntermediario, ref lbCantidadPaginaVariable_CartaIntermediario);
         }
 
         protected void dtPaginacion_CartaIntermediario_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -514,17 +557,36 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         protected void dtPaginacion_CartaIntermediario_ItemCommand(object source, DataListCommandEventArgs e)
         {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_CartaIntermediario = Convert.ToInt32(e.CommandArgument.ToString());
+            ListadoCartaIntermediario();
+        }
 
+        protected void btnCartaIntermediario_Click(object sender, ImageClickEventArgs e)
+        {
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+
+            var Supervisor = ((HiddenField)ItemSeleccionado.FindControl("hfSupervisor_CartaIntermediario")).Value.ToString();
+            var Intermediario = ((HiddenField)ItemSeleccionado.FindControl("hfIntermediario_CartaIntermediario")).Value.ToString();
+            var NombreIntermediario = ((HiddenField)ItemSeleccionado.FindControl("hfNombreIntermediario")).Value.ToString();
+
+            CartaCancelacionIntermediario(
+                Convert.ToInt32(Supervisor),
+                Convert.ToInt32(Intermediario),
+                NombreIntermediario);
         }
 
         protected void btnPaginaSiguiente_CartaIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CartaIntermediario += 1;
+            ListadoCartaIntermediario();
         }
 
         protected void btnUltimaPagina_CartaIntermediario_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_CartaIntermediario = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            ListadoCartaIntermediario();
+            MoverValoresPaginacion_CartaIntermediario((int)OpcionesPaginacionValores_CartaIntermediario.UltimaPagina, ref lbPaginaActual_CartaIntermediario, ref lbCantidadPaginaVariable_CartaIntermediario);
         }
     }
 }

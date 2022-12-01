@@ -178,12 +178,13 @@
                             <tr>
                                  <asp:HiddenField ID="hfSupervisor_CartaIntermediario" runat="server" Value='<%# Eval("CodigoSupervisor") %>' />
                                  <asp:HiddenField ID="hfIntermediario_CartaIntermediario" runat="server" Value='<%# Eval("CodigoIntermediario") %>' />
+                                <asp:HiddenField ID="hfNombreIntermediario" runat="server" Value='<%# Eval("Intermediario") %>' />
 
 
                                  <td> <%# Eval("Supervisor") %> </td>
                                  <td> <%# Eval("Intermediario") %> </td>
                                  <td> <%#string.Format("{0:n2}", Eval("SumatoriaPolizasBalancePendientePesos")) %> </td>
-                                 <td>  <asp:ImageButton ID="btnCartaAsegurado" runat="server" ToolTip="Generar Carta de Cancelación de Asegurado" ImageUrl="~/Imagenes/Reporte.png" CssClass="BotonImagen" OnClick="btnCartaAsegurado_Click" /> </td>
+                                 <td>  <asp:ImageButton ID="btnCartaIntermediario" runat="server" ToolTip="Generar Carta de Cancelación de Asegurado" ImageUrl="~/Imagenes/Reporte.png" CssClass="BotonImagen" OnClick="btnCartaIntermediario_Click" /> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
