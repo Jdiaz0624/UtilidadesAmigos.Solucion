@@ -434,6 +434,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             ReportDocument Reporte = new ReportDocument();
 
+           
+
+
             Reporte.Load(RutaReporte);
             Reporte.Refresh();
 
@@ -448,7 +451,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreEndoso);
 
-
+            Reporte.Close();
+            Reporte.Dispose();
         }
         #endregion
 
@@ -456,6 +460,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         private void GenerarListadoEndososImpresos() {
 
             ReportDocument Reporte = new ReportDocument();
+
+          
 
             Reporte.Load(Server.MapPath("ReporteImpresionEndosos.rpt"));
             Reporte.Refresh();
@@ -469,6 +475,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
             Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Reporte de Impresion Endosos");
+
+            Reporte.Close();
+            Reporte.Dispose();
         }
         #endregion
 

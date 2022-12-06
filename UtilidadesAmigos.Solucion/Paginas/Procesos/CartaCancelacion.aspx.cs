@@ -346,6 +346,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Carta.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
             Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreCarta);
+
+            Carta.Close();
+            Carta.Dispose();
         }
 
         private void CartaCancelacionIntermediario(int Supervisor, int Intermediario, string NombreIntermediario) {
@@ -368,6 +371,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Carta.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
             Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+
+            Carta.Close();
+            Carta.Dispose();
         }
         #endregion
 

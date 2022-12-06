@@ -3,14 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style type="text/css">
-        .jumbotron{
-            color:#000000;
-            background:#7BC5FF;
-            font-size:20px;
-            font-weight:bold;
-            font-family:'Gill Sans';
-            padding:25px;
-        }
 
         /*.Imagenesxx {
         width:300px;
@@ -37,46 +29,104 @@
       width: 100%;
 
 }
-    </style>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#btnSugerencia").click(function () {
-                $("#<%=txtSugerencia.ClientID%>").val("");
-                $("#<%=txtRespuesta.ClientID%>").val("");
-            });
 
-        });
-    </script>
+        .Cobros {
+        
+        width:350px;
+        height:350px;
+        border:dotted;
+        }
+
+        /*#fobd {
+margin-top: 70px !important;
+margin-bottom: -35px !important;
+padding-top: 10px !important;
+padding-bottom: 70px !important;*/
+/*background:#ff0000;*/
+/*background-position: 0 0 !important;
+background-repeat: no-repeat !important;
+}*/
+.container {
+    width: 100%;
+    height: 300px;
+    border: 1px solid black;
+    display: -webkit-flex;  /*Safari*/ 
+    display: flex;
+    margin: auto;
+}
+
+.center {
+text-align: center;
+}
+
+.four-column {
+position: relative;
+min-height: 1px;
+padding-right: 15px;
+padding-left: 15px;
+}
+.frame-item {
+	padding: 1em;
+    border: 1px solid #B2B2B2;
+    -webkit-flex: 1;  /* Safari 6.1+ */
+    -ms-flex: 1;  /* IE 10 */    
+    flex: 1;
+}
+
+/*@media (min-width: 1200px){
+.container {
+width: 1170px;
+}}
+@media (min-width: 992px){
+.container {
+width: 970px;
+}}
+@media (min-width: 768px){
+.container {
+width: 750px;
+}}
+
+@media (min-width: 992px){
+.four-column {
+float: left;
+width: 25%;
+}}*/
+
+        h4 {
+        text-align:center;
+        font-size:20px;
+        }
+
+        p {
+        text-align:center;              
+        font-size:100px;
+        
+        }
+
+        .BotonEstadistica {
+        
+        width:100%;
+        height:100%;
+        font-size:100px;
+        border:none;
+        background:#ffffff;
+        }
+
+        .Rojo {
+        color:#ff0000;
+        }
+
+        .Verde {
+        color:green;
+        }
+    </style>
+
 
     <div class="container-fluid">
-   <br /><br />
-        <div id="DivPrimero" runat="server" visible="false" align="center">
-            <asp:Label ID="lbCantidadTicketTitulo" runat="server" Text="Cantidad de Ticket Abiertos (" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadTicketVariable" runat="server" ForeColor="Blue" Text=" 0 " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadTicketCerrar" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
 
-            <asp:Label ID="Label7" runat="server" Text=" " CssClass="LetrasNegrita"></asp:Label>
 
-            <asp:Label ID="lbCantidadTicketCerradosTitulo" runat="server" Text="Cantidad de Ticket Cerrados (" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadTicketCerradosVariables" ForeColor="Green" runat="server" Text=" 0 " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadTicketCerradosCerrar" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
-
-            <asp:Label ID="Label8" runat="server" Text=" " CssClass="LetrasNegrita"></asp:Label>
-
-             <asp:Label ID="lbCantidadTicketDeclinadosTitulo" runat="server" Text="Cantidad de Ticket Declinados (" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadTicketDeclinadosVariable" runat="server" ForeColor="Red" Text=" 0 " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadTicketDeclinadosCerrar" runat="server" Text=" )" CssClass="LetrasNegrita"></asp:Label>
-
-            <asp:Label ID="lbAccion" runat="server" Visible="false" Text=" )" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbIdMantenimiento" runat="server" Visible="false" Text=" )" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbIdPerfil" runat="server" Visible="false" Text=" )" CssClass="LetrasNegrita"></asp:Label>
-        </div>
-    </div>
     <br /><br />
-     <div id="DivSegundo" runat="server" visible="false" align="center">
-        <button type="button" id="btnSugerencia" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-xl">Sugerencias</button>
-    </div>
-    <br />
+
 <div class="container-fluid Imagenesxx">
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
@@ -102,65 +152,80 @@
 
 
 </div>
-   <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-      <div class="container-fluid">
-          <div class="jumbotron" align="center">
-              <asp:Label ID="lbSugerencias" runat="server" Text="Sugerencias" CssClass="LetrasNegrita"></asp:Label>
-          </div>
-      </div>
-        <asp:ScriptManager ID="ScripManagerSugerencia" runat="server"></asp:ScriptManager>
-        <asp:UpdatePanel ID="UpdatePanelSugerencias" runat="server">
-            <ContentTemplate>
-               <div class="container-fluid">
-                    <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <asp:Label ID="lbSugerenciaMantenimiento" runat="server" Text="Sugerencia" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtSugerencia" AutoCompleteType="Disabled" runat="server" CssClass="form-control" MaxLength="8000"></asp:TextBox>
-                    </div>
-                    <div class="form-group col-md-6">
-                          <asp:Label ID="lbRespuesta" runat="server"  Text="Respuesta" CssClass="LetrasNegrita"></asp:Label>
-                        <asp:TextBox ID="txtRespuesta" AutoCompleteType="Disabled" runat="server" CssClass="form-control" MaxLength="8000"></asp:TextBox>
-                    </div>
-                </div>
-               </div>
-                <br />
-                   <div class="container-fluid">
-            <asp:GridView id="gbSugerencia" runat="server" AllowPaging="True" OnPageIndexChanging="gbSugerencia_PageIndexChanging"  AutoGenerateColumns="False" CellPadding="3" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" Width="100%" OnSelectedIndexChanged="gbSugerencia_SelectedIndexChanged">
-                <AlternatingRowStyle BackColor="#DCDCDC" />
-                <Columns>
-                    <asp:BoundField DataField="IdSugerencia" HeaderText="ID" />
-                    <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
-                    <asp:BoundField DataField="Sugerencia" HeaderText="Sugerencia" />
-                    <asp:BoundField DataField="Respuesta" HeaderText="Respuesta" />
-                    <asp:CommandField ButtonType="Button" HeaderText="Detalle" SelectText="Select" ControlStyle-CssClass="btn btn-outline-primary btn-sm" ShowSelectButton="True" />
-                </Columns>
-               <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <HeaderStyle BackColor="#7BC5FF" HorizontalAlign="Center" Font-Bold="True" ForeColor="Black" />
-                <PagerStyle BackColor="#7BC5FF" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EEEEEE" HorizontalAlign="Center" ForeColor="Black" />
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#000065" />
-            </asp:GridView>
-                   
 
+        <br />
+        <br />
+       <div id="fobd">
+  
+  <div class="container">
+    <div class="frame-item">
+      <h4>
+        Sin Pago Inicial (0-10)
+      </h4>
+        <hr />
 
+        <div>
+            <asp:Button ID="btnSinPagoInicial" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnSinPagoInicial_Click" CssClass="BotonEstadistica Rojo" />
         </div>
-                <br />
-              <div align="center">
-                    <asp:Button ID="btnAccion" class="btn btn-outline-primary btn-sm" runat="server" ToolTip="Guardar Operación" Text="Guardar" OnClick="btnAccion_Click" />
-                <asp:Button ID="btnCancelar" class="btn btn-outline-primary btn-sm" runat="server" ToolTip="Cancelar" Text="Cancelar" OnClick="btnCancelar_Click" />
-                   <asp:Button ID="btnEliminar" class="btn btn-outline-primary btn-sm" runat="server" ToolTip="Cancelar" Text="Eliminar" Visible="false" OnClick="btnEliminar_Click" />
-              </div>
-                <br />
-            </ContentTemplate>
-        </asp:UpdatePanel>
+    </div>
+
+    <div class="frame-item">
+      <h4>
+        Primer Pago Sin Cobro (11-30)
+      </h4>
+        <hr />
+        <div>
+            <asp:Button ID="btnPrimerPagoSinCobros" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnPrimerPagoSinCobros_Click" CssClass="BotonEstadistica Verde" />
+        </div>
+    </div>
+
+    <div class="frame-item">
+      <h4>
+        Segundo Pago Sin Cobro (31-60) 
+      </h4>
+        <hr />
+        <div>
+            <asp:Button ID="btnSegundoPagoSinCobros" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnSegundoPagoSinCobros_Click" CssClass="BotonEstadistica Verde" />
+        </div>
     </div>
   </div>
+
+           <br />
+             <div class="container">
+    <div class="frame-item">
+      <h4>
+        Tercer Pago Sin Cobro (60-90)
+      </h4>
+        <hr />
+
+        <div>
+            <asp:Button ID="btnTercerPagoSinCobros" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnTercerPagoSinCobros_Click" CssClass="BotonEstadistica Verde" />
+        </div>
+    </div>
+
+    <div class="frame-item">
+      <h4>
+        Cuarto Pago Sin Cobro (91-120)
+      </h4>
+        <hr />
+        <div>
+            <asp:Button ID="btnCuartoPagoSinCobros" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnCuartoPagoSinCobros_Click" CssClass="BotonEstadistica Verde" />
+        </div>
+    </div>
+
+    <div class="frame-item">
+      <h4>
+        Mas de 120 dias Sin Cobro 
+      </h4>
+        <hr />
+        <div>
+            <asp:Button ID="btnMasDeCientoVeinteDiasSinCobros" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnMasDeCientoVeinteDiasSinCobros_Click" CssClass="BotonEstadistica Verde" />
+        </div>
+    </div>
+  </div>
+           <br />
+  
 </div>
+     </div>
 
 </asp:Content>
