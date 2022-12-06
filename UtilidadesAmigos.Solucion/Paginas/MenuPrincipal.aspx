@@ -119,7 +119,23 @@ width: 25%;
         .Verde {
         color:green;
         }
+
+         .BotonImagen {
+              width: 60px;
+              height: 60px;
+          }
+
+        .Tamaniocb {
+        
+        font-size:larger;
+        }
     </style>
+
+    <script type="text/javascript">
+        function Mensaje() {
+            alert("Tienes que seleccionar una opción para realizar actualizar esta información.");
+        }
+    </script>
 
 
     <div class="container-fluid">
@@ -155,8 +171,26 @@ width: 25%;
 
         <br />
         <br />
+      <div id="DivBloqueEstadistica" runat="server">
+            <div align="center">
+            <div align="center">
+                <asp:ImageButton ID="btnActualizar" runat="server" ToolTip="Actualizar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/auto.png" OnClick="btnActualizar_Click" />
+                <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Generar Reporte de Estadistica de Polizas Sin Pagos" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
+                <br /><br />
+                <div class="form-check-inline">
+                    <asp:Label ID="lbInformacionValidar" runat="server" Text="Información a Validar" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:CheckBox ID="cbTodos" runat="server" Text="Todos" CssClass="form-check-inline pe-auto" AutoPostBack="true" OnCheckedChanged="cbTodos_CheckedChanged" />
+                    <asp:CheckBox ID="cbSinInicial" runat="server" Text="Sin Inicial" CssClass="form-check-inline" AutoPostBack="true" OnCheckedChanged="cbSinInicial_CheckedChanged" />
+                    <asp:CheckBox ID="cbPrimerPago" runat="server" Text="de 11 a 30 Dias" CssClass="form-check-inline" AutoPostBack="true" OnCheckedChanged="cbPrimerPago_CheckedChanged" />
+                    <asp:CheckBox ID="cbSegundoPago" runat="server" Text="de 31 a 60 Dias" CssClass="form-check-inline" AutoPostBack="true" OnCheckedChanged="cbSegundoPago_CheckedChanged" />
+                    <asp:CheckBox ID="cbTercerpago" runat="server" Text="de 61 a 90 Dias" CssClass="form-check-inline" AutoPostBack="true" OnCheckedChanged="cbTercerpago_CheckedChanged" />
+                    <asp:CheckBox ID="cbCuartoPago" runat="server" Text="de 91 a 120 Dias" CssClass="form-check-inline" AutoPostBack="true" OnCheckedChanged="cbCuartoPago_CheckedChanged" />
+                    <asp:CheckBox ID="cbQuintoPago" runat="server" Text="de 121 o mas" CssClass="form-check-inline" AutoPostBack="true" OnCheckedChanged="cbQuintoPago_CheckedChanged"  />
+                </div>
+            </div>
+        </div>
        <div id="fobd">
-  
+  <h1 align="center" class="alert">Estadistica de Polizas Sin pagos</h1>
   <div class="container">
     <div class="frame-item">
       <h4>
@@ -171,7 +205,7 @@ width: 25%;
 
     <div class="frame-item">
       <h4>
-        Primer Pago Sin Cobro (11-30)
+        Sin Pago de 11 a 30 Dias
       </h4>
         <hr />
         <div>
@@ -181,7 +215,7 @@ width: 25%;
 
     <div class="frame-item">
       <h4>
-        Segundo Pago Sin Cobro (31-60) 
+        Sin pago de 31 a 60 Dias 
       </h4>
         <hr />
         <div>
@@ -194,7 +228,7 @@ width: 25%;
              <div class="container">
     <div class="frame-item">
       <h4>
-        Tercer Pago Sin Cobro (60-90)
+        Sin Pago de 61 a 90 Dias
       </h4>
         <hr />
 
@@ -205,7 +239,7 @@ width: 25%;
 
     <div class="frame-item">
       <h4>
-        Cuarto Pago Sin Cobro (91-120)
+        Sin Pago de 91 a 120 Dias
       </h4>
         <hr />
         <div>
@@ -215,7 +249,7 @@ width: 25%;
 
     <div class="frame-item">
       <h4>
-        Mas de 120 dias Sin Cobro 
+        Sin pagos de mas de 120 Dias
       </h4>
         <hr />
         <div>
@@ -226,6 +260,7 @@ width: 25%;
            <br />
   
 </div>
+      </div>
      </div>
 
 </asp:Content>

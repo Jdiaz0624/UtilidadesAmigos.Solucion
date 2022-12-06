@@ -3899,5 +3899,71 @@ namespace UtilidadesAmigos.Logica.Logica
                            }).ToList();
             return Listado;
         }
+
+
+        #region ESTADISTICA DE POLIZAS SIN PAGOS
+        /// <summary>
+        /// Muestra la cantidad de estadistica de las polizas sin pagos cantidad
+        /// </summary>
+        /// <param name="CodigoProceso"></param>
+        /// <param name="Ramo"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscaEstadisticaPagosPolizaCantidad> BuscaEstadisticaPolizasSinPagosCantidad(int? CodigoProceso = null, int? Ramo = null) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDAD(CodigoProceso, Ramo)
+                           select new UtilidadesAmigos.Logica.Entidades.EBuscaEstadisticaPagosPolizaCantidad
+                           {
+                               Cantidad=n.Cantidad
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Muestra la estadistica de polizas sin pagos Registros
+        /// </summary>
+        /// <param name="CodigoProceso"></param>
+        /// <param name="Ramo"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.EEEstadisticaPolizaRegistros> BuscaEstadisticaPolizaSinPagosRegistros(int? CodigoProceso = null, int? Ramo = null) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_REGISTROS(CodigoProceso, Ramo)
+                           select new UtilidadesAmigos.Logica.Entidades.EEEstadisticaPolizaRegistros
+                           {
+                               Poliza=n.Poliza,
+                               Numero=n.Numero,
+                               Tipo=n.Tipo,
+                               CodigoRamo=n.CodigoRamo,
+                               Ramo=n.Ramo,
+                               CodigoSubRamo=n.CodigoSubRamo,
+                               SubRamo=n.SubRamo,
+                               CodigoAsegurado=n.CodigoAsegurado,
+                               Asegurado=n.Asegurado,
+                               CodigoVendedor=n.CodigoVendedor,
+                               Vendedor=n.Vendedor,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               Codigooficina=n.Codigooficina,
+                               Oficina=n.Oficina,
+                               Fecha0=n.Fecha0,
+                               Fecha=n.Fecha,
+                               Hora=n.Hora,
+                               DiasTranscurridos=n.DiasTranscurridos,
+                               Ncf=n.Ncf,
+                               MontoBruto=n.MontoBruto,
+                               ISC=n.ISC,
+                               MontoNeto=n.MontoNeto,
+                               Cobrado=n.Cobrado,
+                               CodMoneda=n.CodMoneda,
+                               Moneda=n.Moneda,
+                               Siglas=n.Siglas,
+                               Concepto=n.Concepto
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }

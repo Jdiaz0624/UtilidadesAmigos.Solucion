@@ -241,6 +241,7 @@
     <Compile Include="Entidades\EBuscaDetalleFacturacion.cs" />
     <Compile Include="Entidades\EBuscaDetalleReclamaciones.cs" />
     <Compile Include="Entidades\EBuscaDetallesCobros.cs" />
+    <Compile Include="Entidades\EBuscaEstadisticaPagosPolizaCantidad.cs" />
     <Compile Include="Entidades\EBuscaEstatusReclamacion.cs" />
     <Compile Include="Entidades\EBuscaFActurasPagadasReclamacion.cs" />
     <Compile Include="Entidades\EBuscaFechaReclamos.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="Entidades\EDetalleCobrado.cs" />
     <Compile Include="Entidades\EDetalleInformacionEncabezado.cs" />
     <Compile Include="Entidades\EDetalleProduccionDiaria.cs" />
+    <Compile Include="Entidades\EEEstadisticaPolizaRegistros.cs" />
     <Compile Include="Entidades\EEstadisticaRenovacion.cs" />
     <Compile Include="Entidades\EEstatusTarjeta.cs" />
     <Compile Include="Entidades\EExportarComisiones.cs" />
