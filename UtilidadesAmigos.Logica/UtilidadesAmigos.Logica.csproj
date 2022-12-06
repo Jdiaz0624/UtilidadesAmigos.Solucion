@@ -157,6 +157,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionProveedoresSolicitud.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionRegistrosSolicitudChequeLote.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionReporteAntiguedadSaldo.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionReporteEstadisticaPolizasSinPagos.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionSolicitudCheques.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionSolicitudCuentas.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarMontosSolicitudCheques.cs" />
@@ -315,6 +316,7 @@
     <Compile Include="Entidades\EReporteCobradoContabilidad.cs" />
     <Compile Include="Entidades\EReporteComisionSupervisorResumido.cs" />
     <Compile Include="Entidades\EReporteDetalleComisionSupervisores.cs" />
+    <Compile Include="Entidades\EReporteEstadisticaPolizasSinPagos.cs" />
     <Compile Include="Entidades\ESacarCarteraIntermediario.cs" />
     <Compile Include="Entidades\ESacarCobrado.cs" />
     <Compile Include="Entidades\ESacarCodigoIntermediarios.cs" />

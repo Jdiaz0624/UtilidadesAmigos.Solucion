@@ -3964,6 +3964,90 @@ namespace UtilidadesAmigos.Logica.Logica
                            }).ToList();
             return Listado;
         }
+
+        /// <summary>
+        /// Procesar la informacion para generar el reporte de estadistica de polizas sin pagos.
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.EReporteEstadisticaPolizasSinPagos ProcesarEstadisticaPolizasSinPagos(UtilidadesAmigos.Logica.Entidades.EReporteEstadisticaPolizasSinPagos Item, string Accion) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.EReporteEstadisticaPolizasSinPagos Procesar = null;
+
+            var Estadistica = Objdata.SP_PROCESAR_INFORMACION_REPORTE_ESTADISTICA_POLIZAS_SIN_PAGOS(
+                Item.IdUsuario,
+                Item.Poliza,
+                Item.NumeroFactura,
+                Item.Tipo,
+                Item.CodigoRamo,
+                Item.Ramo,
+                Item.CodigoSubRamo,
+                Item.SubRamo,
+                Item.CodigoAsegurado,
+                Item.NombreAsegurado,
+                Item.CodigoVendedor,
+                Item.NombreVendedor,
+                Item.CodigoSupervisor,
+                Item.NombreSupervisor,
+                Item.CodigoOficina,
+                Item.NombreOficina,
+                Item.Fecha,
+                Item.FechaFormateada,
+                Item.Hora,
+                Item.DiasTranscurridos,
+                Item.Ncf,
+                Item.MontoBruto,
+                Item.ISC,
+                Item.MontoNeto,
+                Item.Cobrado,
+                Item.CodMoneda,
+                Item.Moneda,
+                Item.Siglas,
+                Item.Concepto,
+                Item.CodigoEstatus,
+                Accion);
+            if (Estadistica != null) {
+
+                Procesar = (from n in Estadistica
+                            select new UtilidadesAmigos.Logica.Entidades.EReporteEstadisticaPolizasSinPagos
+                            {
+                                IdUsuario=n.IdUsuario,
+                                Poliza = n.Poliza,
+                                NumeroFactura = n.NumeroFactura,
+                                Tipo = n.Tipo,
+                                CodigoRamo = n.CodigoRamo,
+                                Ramo = n.Ramo,
+                                CodigoSubRamo = n.CodigoSubRamo,
+                                SubRamo = n.SubRamo,
+                                CodigoAsegurado = n.CodigoAsegurado,
+                                NombreAsegurado = n.NombreAsegurado,
+                                CodigoVendedor = n.CodigoVendedor,
+                                NombreVendedor = n.NombreVendedor,
+                                CodigoSupervisor = n.CodigoSupervisor,
+                                NombreSupervisor = n.NombreSupervisor,
+                                CodigoOficina = n.CodigoOficina,
+                                NombreOficina = n.NombreOficina,
+                                Fecha = n.Fecha,
+                                FechaFormateada = n.FechaFormateada,
+                                Hora = n.Hora,
+                                DiasTranscurridos = n.DiasTranscurridos,
+                                Ncf = n.Ncf,
+                                MontoBruto = n.MontoBruto,
+                                ISC = n.ISC,
+                                MontoNeto = n.MontoNeto,
+                                Cobrado = n.Cobrado,
+                                CodMoneda = n.CodMoneda,
+                                Moneda = n.Moneda,
+                                Siglas = n.Siglas,
+                                Concepto = n.Concepto,
+                                CodigoEstatus=n.CodigoEstatus
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
         #endregion
     }
 }

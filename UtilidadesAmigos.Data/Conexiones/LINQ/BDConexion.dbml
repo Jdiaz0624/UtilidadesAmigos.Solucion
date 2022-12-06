@@ -3238,4 +3238,69 @@
       <Column Name="Concepto" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_REPORTE_ESTADISTICA_POLIZAS_SIN_PAGOS" Method="SP_PROCESAR_INFORMACION_REPORTE_ESTADISTICA_POLIZAS_SIN_PAGOS">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NumeroFactura" Parameter="numeroFactura" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Tipo" Parameter="tipo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoRamo" Parameter="codigoRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoSubRamo" Parameter="codigoSubRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoAsegurado" Parameter="codigoAsegurado" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="NombreAsegurado" Parameter="nombreAsegurado" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="CodigoVendedor" Parameter="codigoVendedor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreVendedor" Parameter="nombreVendedor" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoSupervisor" Parameter="codigoSupervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreSupervisor" Parameter="nombreSupervisor" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoOficina" Parameter="codigoOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreOficina" Parameter="nombreOficina" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Fecha" Parameter="fecha" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaFormateada" Parameter="fechaFormateada" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Hora" Parameter="hora" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="DiasTranscurridos" Parameter="diasTranscurridos" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ncf" Parameter="ncf" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MontoBruto" Parameter="montoBruto" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="ISC" Parameter="iSC" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="MontoNeto" Parameter="montoNeto" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Cobrado" Parameter="cobrado" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="CodMoneda" Parameter="codMoneda" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Moneda" Parameter="moneda" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Siglas" Parameter="siglas" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Concepto" Parameter="concepto" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="CodigoEstatus" Parameter="codigoEstatus" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_REPORTE_ESTADISTICA_POLIZAS_SIN_PAGOSResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NumeroFactura" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Tipo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoSubRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubRamo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoAsegurado" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NombreAsegurado" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoVendedor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreVendedor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreOficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaFormateada" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DiasTranscurridos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ncf" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MontoBruto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ISC" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="MontoNeto" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="CodMoneda" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Siglas" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Concepto" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="CodigoEstatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

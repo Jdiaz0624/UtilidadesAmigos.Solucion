@@ -79,7 +79,60 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
 
-        
+        private void ProcesarInformacionEstadisticaPolizasSinPagos(int Codigoproceso, int Ramo, decimal IdUsuario, int CodigoEstatus, string Accion) {
+
+            
+            //BUSCAMOS LA INFORMACION A PROCESAR
+
+            var Informacion = Objtata.Value.BuscaEstadisticaPolizaSinPagosRegistros(Codigoproceso, Ramo);
+            foreach (var n in Informacion) {
+
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteEstadisticaPolizasSinPagos Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteEstadisticaPolizasSinPagos(
+                    IdUsuario,
+                    n.Poliza,
+                    (decimal)n.Numero,
+                    (int)n.Tipo,
+                    (int)n.CodigoRamo,
+                    n.Ramo,
+                    (int)n.CodigoSubRamo,
+                    n.SubRamo,
+                    (decimal)n.CodigoAsegurado,
+                    n.Asegurado,
+                    (int)n.CodigoVendedor,
+                    n.Vendedor,
+                    (int)n.CodigoSupervisor,
+                    n.Supervisor,
+                    (int)n.Codigooficina,
+                    n.Oficina,
+                    (DateTime)n.Fecha0,
+                    n.Fecha,
+                    n.Hora,
+                    (int)n.DiasTranscurridos,
+                    n.Ncf,
+                    (decimal)n.MontoBruto,
+                    (decimal)n.ISC,
+                    (decimal)n.MontoNeto,
+                    (decimal)n.Cobrado,
+                    (int)n.CodMoneda,
+                    n.Moneda,
+                    n.Siglas,
+                    n.Concepto,
+                    CodigoEstatus,
+                    Accion);
+                Guardar.ProcesarInformacion();
+            }
+        }
+
+        private void EliminarInformacion(decimal IdUsuario, string Accion) {
+            //ELIMIMSMOS LOS REGISTROS
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteEstadisticaPolizasSinPagos Eliminar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionReporteEstadisticaPolizasSinPagos(
+                IdUsuario,
+                "", 0, 0, 0, "", 0, "", 0, "", 0, "", 0, "", 0, "", DateTime.Now, "", "", 0, "", 0, 0, 0, 0, 0, "", "", "",0, Accion);
+            Eliminar.ProcesarInformacion();
+        }
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -223,14 +276,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     btnMasDeCientoVeinteDiasSinCobros.Text = "0";
                     btnMasDeCientoVeinteDiasSinCobros.Enabled = false;
                 }
-
-
-                
-                
-                
-                
-                
-               
             }
 
         }
@@ -382,7 +427,60 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
         {
+            if (cbSinInicial.Checked == false &&
+                cbPrimerPago.Checked == false &&
+                cbSegundoPago.Checked == false &&
+                cbTercerpago.Checked == false &&
+                cbCuartoPago.Checked == false &&
+                cbQuintoPago.Checked == false)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "Mensaje()", "Mensaje();", true);
+            }
+            else
+            {
 
+                decimal IdUsuario = (decimal)Session["IdUsuario"];
+                int CodigoEstatus = 0;
+
+                EliminarInformacion(IdUsuario, "DELETE");
+
+                if (cbSinInicial.Checked == true)
+                {
+                    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Poliza_Sin_Pago_Inicial;
+                    ProcesarInformacionEstadisticaPolizasSinPagos(CodigoEstatus, 106, IdUsuario, CodigoEstatus, "INSERT");
+                }
+
+                if (cbPrimerPago.Checked == true)
+                {
+                    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polzias_11_30;
+                    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polzias_11_30, 106, IdUsuario, CodigoEstatus, "INSERT");
+                }
+
+                if (cbSegundoPago.Checked == true)
+                {
+                    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_31_60;
+                    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_31_60, 106, IdUsuario, CodigoEstatus, "INSERT");
+                }
+
+                if (cbTercerpago.Checked == true)
+                {
+                    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_61_90;
+                    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_61_90, 106, IdUsuario, CodigoEstatus, "INSERT");
+                }
+
+                if (cbCuartoPago.Checked == true)
+                {
+                    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_91_120;
+                    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_91_120, 106, IdUsuario, CodigoEstatus, "INSERT");
+                }
+
+                if (cbQuintoPago.Checked == true)
+                {
+                    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_121_mas;
+                    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_121_mas, 106, IdUsuario, CodigoEstatus, "INSERT");
+                }
+
+            }
         }
     }
 }
