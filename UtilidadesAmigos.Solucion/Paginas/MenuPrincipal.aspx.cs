@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using System.Speech.Synthesis;
 using System.Threading;
 using System.Web.Security;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.ReportSource;
+using CrystalDecisions.Shared;
 
 namespace UtilidadesAmigos.Solucion.Paginas
 
@@ -131,6 +134,25 @@ namespace UtilidadesAmigos.Solucion.Paginas
             Eliminar.ProcesarInformacion();
         }
 
+        private void GenerarReporteEstadisticaPolizasSinPagos() {
+
+            decimal IdUsuario = (decimal)Session["IdUsuario"];
+            string RutaReporte = Server.MapPath("ReporteEstadisticaPolizaSinPago.rpt");
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@IdUsuario", IdUsuario);
+
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Reporte Polizas Sin Pagos");
+
+            Reporte.Clone();
+            Reporte.Dispose();
+        }
+
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -151,6 +173,36 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 btnTercerPagoSinCobros.Enabled = false;
                 btnCuartoPagoSinCobros.Enabled = false;
                 btnMasDeCientoVeinteDiasSinCobros.Enabled = false;
+
+                int IdPerfil = 0;
+                DivBloqueEstadistica.Visible = false;
+
+                var SacarPerfiles = Objtata.Value.BuscaUsuarios((decimal)Session["IdUsuario"]);
+                foreach (var n in SacarPerfiles) {
+
+                    IdPerfil = (int)n.IdPerfil;
+                }
+
+                switch (IdPerfil) {
+
+                    case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.ADMINISTRADOR:
+                        DivBloqueEstadistica.Visible = true;
+                        break;
+
+                    case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.COBROS:
+                        DivBloqueEstadistica.Visible = true;
+                        break;
+
+                    case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.Cobros_Especial:
+                        DivBloqueEstadistica.Visible = true;
+                        break;
+
+                    case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.NEGOCIOS:
+                        DivBloqueEstadistica.Visible = true;
+                        break;
+
+
+                }
             }
           
         }
@@ -479,7 +531,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_121_mas;
                     ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_121_mas, 106, IdUsuario, CodigoEstatus, "INSERT");
                 }
-
+                GenerarReporteEstadisticaPolizasSinPagos();
             }
         }
     }
