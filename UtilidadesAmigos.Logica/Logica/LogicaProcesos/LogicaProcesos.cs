@@ -1056,22 +1056,26 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
         /// <param name="Cliente"></param>
         /// <param name="Poliza"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ECartaCancelacionAsegurado> BuscaCartaCancelacionAsegurado(int? Supervisor = null, int? Intermediario = null, decimal? Cliente = null, string Poliza = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ECartaCancelacionAsegurado> BuscaCartaCancelacionAsegurado(int? Supervisor = null, int? Intermediario = null, decimal? Cliente = null, string Poliza = null, int? CantidadDIas = null) {
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_CARTA_CANCELACION_ASEGURADO(Supervisor, Intermediario, Cliente, Poliza)
+            var Listado = (from n in ObjData.SP_CARTA_CANCELACION_ASEGURADO(Supervisor, Intermediario, Cliente, Poliza,CantidadDIas)
                            select new UtilidadesAmigos.Logica.Entidades.Procesos.ECartaCancelacionAsegurado
                            {
                                FechaCarta=n.FechaCarta,
+                               SegundaFechaCarta=n.SegundaFechaCarta,
                                Oficina=n.Oficina,
                                CodigoAsegurado=n.CodigoAsegurado,
                                Asegurado=n.Asegurado,
+                               Direccion=n.Direccion,
+                               Ubicacion=n.Ubicacion,
                                CodigoSupervisor=n.CodigoSupervisor,
                                Supervisor=n.Supervisor,
                                CodigoIntermediario=n.CodigoIntermediario,
                                Intermediario=n.Intermediario,
                                Poliza=n.Poliza,
+                               Estatus=n.Estatus,
                                BalanceNumerico=n.BalanceNumerico,
                                BalanceLetra=n.BalanceLetra,
                                Moneda=n.Moneda,
@@ -1079,7 +1083,16 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
                                EncargadaCobros=n.EncargadaCobros,
                                Cargo=n.Cargo,
                                Telefono=n.Telefono,
-                               Celular=n.Celular
+                               Celular=n.Celular,
+                               PrimerParrafo=n.PrimerParrafo,
+                               SegundoParrado=n.SegundoParrado,
+                               TercerParrafo=n.TercerParrafo,
+                               CuartoParrafo=n.CuartoParrafo,
+                               QuintoParrafo=n.QuintoParrafo,
+                               CantidadDias=n.CantidadDias,
+                               FechaFactura=n.FechaFactura,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia
                            }).ToList();
             return Listado;
         }

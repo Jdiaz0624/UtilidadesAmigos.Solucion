@@ -67,9 +67,13 @@
                     <asp:Label ID="lbNombreAsegurado_CartaAsegurado" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtNombreAsegurado_CartaAsegurado" runat="server" Enabled="false" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <asp:Label ID="lbPoliza_CartaAsegurado" runat="server" Text="Póliza" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtPoliza_CartaAsegurado" runat="server"  CssClass="form-control"  AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                <div class="col-md-2">
+                    <asp:Label ID="lbCantidadDias_CartaAsegurado" runat="server" Text="Dias" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtDias_CartaAsegurado" runat="server" TextMode="Number" CssClass="form-control"  AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
             </div>
             <br />
@@ -84,6 +88,9 @@
                          <th scope="col"> Poliza </th>
                          <th scope="col"> Balance </th>
                          <th scope="col"> Vendedor </th>
+                        <th scope="col"> Inicio </th>
+                        <th scope="col"> Fin </th>
+                        <th scope="col"> Dias </th>
                          <th scope="col">  </th>
                     </tr>
                 </thead>
@@ -91,10 +98,10 @@
                     <asp:Repeater ID="rpListadoCartaAsegurado" runat="server">
                         <ItemTemplate>
                             <tr>
-                                 <asp:HiddenField ID="hfSupervisor_CartaAsegurado" runat="server" Value='<%# Eval("CodigoSupervisor") %>' />
-                                 <asp:HiddenField ID="hfIntermediario_CargaAsegurado" runat="server" Value='<%# Eval("CodigoIntermediario") %>' />
-                                 <asp:HiddenField ID="hfAsegurado_CartaIAsegurado" runat="server" Value='<%# Eval("CodigoAsegurado") %>' />
-                                 <asp:HiddenField ID="hfPoliza_CartaAsegurado" runat="server" Value='<%# Eval("Poliza") %>' />
+                                <asp:HiddenField ID="hfSupervisor_CartaAsegurado" runat="server" Value='<%# Eval("CodigoSupervisor") %>' />
+                                <asp:HiddenField ID="hfIntermediario_CargaAsegurado" runat="server" Value='<%# Eval("CodigoIntermediario") %>' />
+                                <asp:HiddenField ID="hfAsegurado_CartaIAsegurado" runat="server" Value='<%# Eval("CodigoAsegurado") %>' />
+                                <asp:HiddenField ID="hfPoliza_CartaAsegurado" runat="server" Value='<%# Eval("Poliza") %>' />
                                 <asp:HiddenField ID="hfNombreAsegurado_CartaAsegurado" runat="server" Value='<%# Eval("Asegurado") %>' />
 
 
@@ -102,6 +109,9 @@
                                  <td> <%# Eval("Poliza") %> </td>
                                  <td> <%#string.Format("{0:n2}", Eval("BalanceNumerico")) %> </td>
                                  <td> <%# Eval("Intermediario") %> </td>
+                                <td> <%# Eval("InicioVigencia") %> </td>
+                                <td> <%# Eval("FinVigencia") %> </td>
+                                <td> <%#string.Format("{0:n0}", Eval("CantidadDias")) %> </td>
                                  <td>  <asp:ImageButton ID="btnCartaAsegurado" runat="server" ToolTip="Generar Carta de Cancelación de Asegurado" ImageUrl="~/Imagenes/Reporte.png" CssClass="BotonImagen" OnClick="btnCartaAsegurado_Click" /> </td>
                             </tr>
                         </ItemTemplate>

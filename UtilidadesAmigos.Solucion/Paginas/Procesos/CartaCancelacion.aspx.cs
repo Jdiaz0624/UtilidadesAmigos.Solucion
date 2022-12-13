@@ -286,12 +286,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario_CartaAsegurado.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario_CartaAsegurado.Text);
             decimal? _Asegurado = string.IsNullOrEmpty(txtCodigoAsegurado_CartaAsegurado.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtCodigoAsegurado_CartaAsegurado.Text);
             string _Poliza = string.IsNullOrEmpty(txtPoliza_CartaAsegurado.Text.Trim()) ? null : txtPoliza_CartaAsegurado.Text.Trim();
+            int? _CantidadDias = string.IsNullOrEmpty(txtDias_CartaAsegurado.Text.Trim()) ? 0 : Convert.ToInt32(txtDias_CartaAsegurado.Text);
+
 
             var Listado = ObjDataProcesos.Value.BuscaCartaCancelacionAsegurado(
                 _Supervisor,
                 _Intermediario,
                 _Asegurado,
-                _Poliza);
+                _Poliza,
+                _CantidadDias);
             if (Listado.Count() < 1) {
                 rpListadoCartaAsegurado.DataSource = null;
                 rpListadoCartaAsegurado.DataBind();
@@ -323,6 +326,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             }
         }
         #endregion
+
         #region GENERAR REPORTE DE CARTA DE CANCELACION DE ASEGURADOS E INTERMEDIARIOS
         private void CartaCancelacionAsegurado(int Supervisor, int Intermediario, decimal Cliente, string Poliza,string Asegurado) {
 
@@ -342,6 +346,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Carta.SetParameterValue("@Intermediario", Intermediario);
             Carta.SetParameterValue("@Cliente", Cliente);
             Carta.SetParameterValue("@Poliza", Poliza);
+            Carta.SetParameterValue("@CantidadDIas", new Nullable<int>());
 
             Carta.SetDatabaseLogon(UsuarioBD, ClaveBD);
 

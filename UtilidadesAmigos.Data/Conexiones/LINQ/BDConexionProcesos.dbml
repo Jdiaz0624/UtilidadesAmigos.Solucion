@@ -793,31 +793,6 @@
       <Column Name="CuartoDigitoAno" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_CARTA_CANCELACION_ASEGURADO" Method="SP_CARTA_CANCELACION_ASEGURADO">
-    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Cliente" Parameter="cliente" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
-    <ElementType Name="SP_CARTA_CANCELACION_ASEGURADOResult">
-      <Column Name="FechaCarta" Type="System.String" DbType="VarChar(83) NOT NULL" CanBeNull="false" />
-      <Column Name="Oficina" Type="System.String" DbType="VarChar(26) NOT NULL" CanBeNull="false" />
-      <Column Name="CodigoAsegurado" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Asegurado" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Supervisor" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Intermediario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
-      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="BalanceNumerico" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
-      <Column Name="BalanceLetra" Type="System.String" DbType="VarChar(158) NOT NULL" CanBeNull="false" />
-      <Column Name="Moneda" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Siglas" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="EncargadaCobros" Type="System.String" DbType="VarChar(17) NOT NULL" CanBeNull="false" />
-      <Column Name="Cargo" Type="System.String" DbType="VarChar(29) NOT NULL" CanBeNull="false" />
-      <Column Name="Telefono" Type="System.String" DbType="VarChar(22) NOT NULL" CanBeNull="false" />
-      <Column Name="Celular" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_CARTA_CANCELACION_INTERMEDIARIO" Method="SP_CARTA_CANCELACION_INTERMEDIARIO">
     <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
     <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
@@ -838,6 +813,45 @@
       <Column Name="Cargo" Type="System.String" DbType="VarChar(29) NOT NULL" CanBeNull="false" />
       <Column Name="Telefono" Type="System.String" DbType="VarChar(22) NOT NULL" CanBeNull="false" />
       <Column Name="Celular" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_CARTA_CANCELACION_ASEGURADO" Method="SP_CARTA_CANCELACION_ASEGURADO">
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cliente" Parameter="cliente" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CantidadDIas" Parameter="cantidadDIas" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_CARTA_CANCELACION_ASEGURADOResult">
+      <Column Name="FechaCarta" Type="System.String" DbType="VarChar(83) NOT NULL" CanBeNull="false" />
+      <Column Name="SegundaFechaCarta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(26) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoAsegurado" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Asegurado" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Ubicacion" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BalanceNumerico" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="BalanceLetra" Type="System.String" DbType="VarChar(158) NOT NULL" CanBeNull="false" />
+      <Column Name="Moneda" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Siglas" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="EncargadaCobros" Type="System.String" DbType="VarChar(17) NOT NULL" CanBeNull="false" />
+      <Column Name="Cargo" Type="System.String" DbType="VarChar(29) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(22) NOT NULL" CanBeNull="false" />
+      <Column Name="Celular" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="PrimerParrafo" Type="System.String" DbType="VarChar(231) NOT NULL" CanBeNull="false" />
+      <Column Name="SegundoParrado" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="TercerParrafo" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="CuartoParrafo" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="QuintoParrafo" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="CantidadDias" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaFactura" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
