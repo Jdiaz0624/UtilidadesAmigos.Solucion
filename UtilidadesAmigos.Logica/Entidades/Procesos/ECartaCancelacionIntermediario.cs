@@ -8,36 +8,30 @@ namespace UtilidadesAmigos.Logica.Entidades.Procesos
 {
     public class ECartaCancelacionIntermediario
     {
-		public string FechaCarta {get;set;}
+		public string FechaCarta { get; set; }
 
-		public string Oficina {get;set;}
+		public string Oficina { get; set; }
 
-		public int? CodigoSupervisor {get;set;}
+		public int? CodigoSupervisor { get; set; }
 
-		public string Supervisor {get;set;}
+		public string Supervisor { get; set; }
 
-		public int? CodigoIntermediario {get;set;}
+		public int? CodigoIntermediario { get; set; }
 
-		public string Intermediario {get;set;}
+		public string Intermediario { get; set; }
 
-		public string Referencia {get;set;}
+		public string Referencia { get; set; }
 
-		public System.Nullable<int> CantidadPolizasBalancePendiente {get;set;}
+		public string CantidadPolizasBalancePendiente { get; set; }
 
-		public System.Nullable<decimal> SumatoriaPolizasBalancePendientePesos {get;set;}
+		public System.Nullable<decimal> Balance { get; set; }
 
-		public string SumatoriaPolizasBalancePendientePesosLetra {get;set;}
+		public string EncargadaCobros { get; set; }
 
-		public System.Nullable<decimal> SumatoriaPolizasBalancePendienteDolar {get;set;}
+		public string Cargo { get; set; }
 
-		public string SumatoriaPolizasBalancePendienteDolarLetra {get;set;}
+		public string Telefono { get; set; }
 
-		public string EncargadaCobros {get;set;}
-
-		public string Cargo {get;set;}
-
-		public string Telefono {get;set;}
-
-		public string Celular {get;set;}
+		public string Celular { get; set; }
 	}
 }

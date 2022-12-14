@@ -174,10 +174,15 @@
                     <asp:Label ID="lbNombreIntermedirio_CartaIntermediario" runat="server" Text="Nombre" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtNombreIntermediario_CartaIntermediario" runat="server" Enabled="false" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
+                 <div class="col-md-4">
+                    <asp:Label ID="lbCantidadDias_CartaIntermediarios" runat="server" Text="Dias" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtCantidadDias_CartaIntermediarios" runat="server" TextMode="Number" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
             </div>
             <br />
             <div align="center">
                 <asp:ImageButton ID="btnConsukltar_CartaIntermediario" runat="server" ToolTip="Buscar Información" ImageUrl="~/Imagenes/Buscar.png" CssClass="BotonImagen" OnClick="btnConsukltar_CartaIntermediario_Click" />
+                <asp:ImageButton ID="btnCartaLotes_CartaIntermediarios" runat="server" ToolTip="Generar las Cartas de Cancelaciones de los Intermediarios en Lote" ImageUrl="~/Imagenes/Reporte.png" CssClass="BotonImagen" OnClick="btnCartaLotes_CartaIntermediarios_Click" />
             </div>
             <br />
               <table class="table table-striped">
@@ -185,6 +190,7 @@
                     <tr>
                         <th scope="col"> Supervisor </th>
                          <th scope="col"> Vendedor </th>
+                        <th scope="col"> Polizas </th>
                          <th scope="col"> Balance </th>
                          <th scope="col">  </th>
                     </tr>
@@ -195,12 +201,13 @@
                             <tr>
                                  <asp:HiddenField ID="hfSupervisor_CartaIntermediario" runat="server" Value='<%# Eval("CodigoSupervisor") %>' />
                                  <asp:HiddenField ID="hfIntermediario_CartaIntermediario" runat="server" Value='<%# Eval("CodigoIntermediario") %>' />
-                                <asp:HiddenField ID="hfNombreIntermediario" runat="server" Value='<%# Eval("Intermediario") %>' />
+                                 <asp:HiddenField ID="hfNombreIntermediario" runat="server" Value='<%# Eval("Intermediario") %>' />
 
 
                                  <td> <%# Eval("Supervisor") %> </td>
                                  <td> <%# Eval("Intermediario") %> </td>
-                                 <td> <%#string.Format("{0:n2}", Eval("SumatoriaPolizasBalancePendientePesos")) %> </td>
+                                <td> <%#string.Format("{0:n0}", Eval("CantidadPolizasBalancePendiente")) %> </td>
+                                 <td> <%#string.Format("{0:n2}", Eval("Balance")) %> </td>
                                  <td>  <asp:ImageButton ID="btnCartaIntermediario" runat="server" ToolTip="Generar Carta de Cancelación de Asegurado" ImageUrl="~/Imagenes/Reporte.png" CssClass="BotonImagen" OnClick="btnCartaIntermediario_Click" /> </td>
                             </tr>
                         </ItemTemplate>

@@ -310,10 +310,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor_CartaIntermediario.Text) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor_CartaIntermediario.Text);
             int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario_CartaIntermediario.Text) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario_CartaIntermediario.Text);
+            int? _CantidadDias = string.IsNullOrEmpty(txtCantidadDias_CartaIntermediarios.Text.Trim()) ? 0 : Convert.ToInt32(txtCantidadDias_CartaIntermediarios.Text);
 
             var Listado = ObjDataProcesos.Value.BuscaCartaCancelacionIntermediario(
                 _Supervisor,
-                _Intermediario);
+                _Intermediario,
+                _CantidadDias);
             if (Listado.Count() < 1) {
 
                 rpListadoCartaIntermediario.DataSource = null;
@@ -365,6 +367,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             ClaveBD = "Pa$$W0rd";
             NombreReporte = "Carta de Cancelación de " + NombreIntermediario;
 
+            //int? _CantidadDias = string.IsNullOrEmpty(txtCantidadDias_CartaIntermediarios.Text.Trim()) ? 0 : Convert.ToInt32(txtCantidadDias_CartaIntermediarios.Text);
+            int? _CantidadDias = 0;
+
             ReportDocument Carta = new ReportDocument();
 
             Carta.Load(RutaReporte);
@@ -372,6 +377,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             Carta.SetParameterValue("@Supervisor", Supervisor);
             Carta.SetParameterValue("@Intermediario", Intermediario);
+            Carta.SetParameterValue("@CantidadDias", _CantidadDias);
 
             Carta.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
@@ -398,7 +404,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 DivBloqueCartaCancelacionAsegurado.Visible = true;
                 DIVBloqueCartaCancelacionIntermediario.Visible = false;
 
-                rbCartaCancelacionIntermediario.Enabled = false;
+                //rbCartaCancelacionIntermediario.Enabled = false;
             }
         }
 
@@ -618,6 +624,36 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Carta.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
             Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreCarta);
+
+            Carta.Close();
+            Carta.Dispose();
+        }
+
+        protected void btnCartaLotes_CartaIntermediarios_Click(object sender, ImageClickEventArgs e)
+        {
+            string RutaReporte = "", UsuarioBD = "", ClaveBD = "", NombreReporte = "";
+
+            RutaReporte = Server.MapPath("CartaCancelacionIntermediarios.rpt");
+            UsuarioBD = "sa";
+            ClaveBD = "Pa$$W0rd";
+            NombreReporte = "Carta de Cancelación de Intermediarios en lote";
+
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor_CartaIntermediario.Text) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor_CartaIntermediario.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario_CartaIntermediario.Text) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario_CartaIntermediario.Text);
+            int? _CantidadDias = string.IsNullOrEmpty(txtCantidadDias_CartaIntermediarios.Text.Trim()) ? 0 : Convert.ToInt32(txtCantidadDias_CartaIntermediarios.Text);
+
+            ReportDocument Carta = new ReportDocument();
+
+            Carta.Load(RutaReporte);
+            Carta.Refresh();
+
+            Carta.SetParameterValue("@Supervisor", _Supervisor);
+            Carta.SetParameterValue("@Intermediario", _Intermediario);
+            Carta.SetParameterValue("@CantidadDias", _CantidadDias);
+
+            Carta.SetDatabaseLogon(UsuarioBD, ClaveBD);
+
+            Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
 
             Carta.Close();
             Carta.Dispose();

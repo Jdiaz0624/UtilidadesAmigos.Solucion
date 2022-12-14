@@ -375,6 +375,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.TextBox txtNombreIntermediario_CartaIntermediario;
 
         /// <summary>
+        /// lbCantidadDias_CartaIntermediarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadDias_CartaIntermediarios;
+
+        /// <summary>
+        /// txtCantidadDias_CartaIntermediarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadDias_CartaIntermediarios;
+
+        /// <summary>
         /// btnConsukltar_CartaIntermediario control.
         /// </summary>
         /// <remarks>
@@ -382,6 +400,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton btnConsukltar_CartaIntermediario;
+
+        /// <summary>
+        /// btnCartaLotes_CartaIntermediarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnCartaLotes_CartaIntermediarios;
 
         /// <summary>
         /// rpListadoCartaIntermediario control.

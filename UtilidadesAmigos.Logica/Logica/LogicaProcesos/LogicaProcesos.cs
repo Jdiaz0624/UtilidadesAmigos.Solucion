@@ -1103,29 +1103,26 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
         /// <param name="Supervisor"></param>
         /// <param name="Intermediario"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ECartaCancelacionIntermediario> BuscaCartaCancelacionIntermediario(int? Supervisor = null, int? Intermediario = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Procesos.ECartaCancelacionIntermediario> BuscaCartaCancelacionIntermediario(int? Supervisor = null, int? Intermediario = null,int? CantidadDias = null) {
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_CARTA_CANCELACION_INTERMEDIARIO(Supervisor, Intermediario)
+            var Listado = (from n in ObjData.SP_CARTA_CANCELACION_INTERMEDIARIO(Supervisor, Intermediario, CantidadDias)
                            select new UtilidadesAmigos.Logica.Entidades.Procesos.ECartaCancelacionIntermediario
                            {
-                               FechaCarta=n.FechaCarta,
-                               Oficina=n.Oficina,
-                               CodigoSupervisor=n.CodigoSupervisor,
-                               Supervisor=n.Supervisor,
-                               CodigoIntermediario=n.CodigoIntermediario,
-                               Intermediario=n.Intermediario,
-                               Referencia=n.Referencia,
-                               CantidadPolizasBalancePendiente=n.CantidadPolizasBalancePendiente,
-                               SumatoriaPolizasBalancePendientePesos=n.SumatoriaPolizasBalancePendientePesos,
-                               SumatoriaPolizasBalancePendientePesosLetra=n.SumatoriaPolizasBalancePendientePesosLetra,
-                               SumatoriaPolizasBalancePendienteDolar=n.SumatoriaPolizasBalancePendienteDolar,
-                               SumatoriaPolizasBalancePendienteDolarLetra=n.SumatoriaPolizasBalancePendienteDolarLetra,
-                               EncargadaCobros=n.EncargadaCobros,
-                               Cargo=n.Cargo,
-                               Telefono=n.Telefono,
-                               Celular=n.Celular
+                              FechaCarta=n.FechaCarta,
+                              Oficina=n.Oficina,
+                              CodigoSupervisor=n.CodigoSupervisor,
+                              Supervisor=n.Supervisor,
+                              CodigoIntermediario=n.CodigoIntermediario,
+                              Intermediario=n.Intermediario,
+                              Referencia=n.Referencia,
+                              CantidadPolizasBalancePendiente=n.CantidadPolizasBalancePendiente,
+                              Balance=n.Balance,
+                              EncargadaCobros=n.EncargadaCobros,
+                              Cargo=n.Cargo,
+                              Telefono=n.Telefono,
+                              Celular=n.Celular
                            }).ToList();
             return Listado;
         }
