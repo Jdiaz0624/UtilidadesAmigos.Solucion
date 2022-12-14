@@ -32,6 +32,12 @@
            }
     </style>
 
+    <script type="text/javascript">
+        function BloqueNoDisponible() {
+            alert("Este parte de la Pantalla esta siendo modificado, se le avisara una vez este disponible nuevamente.");
+        }
+    </script>
+
     <div class="container-fluid">
         <br />
         <div class="form-check-inline">
@@ -52,7 +58,7 @@
                     <asp:TextBox ID="txtNombreSupervisor_CartaAsegurado" runat="server" Enabled="false" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
                 <div class="col-md-2">
-                    <asp:Label ID="lbCodigoIntermediario_CartaAsegurado" runat="server" Text="Vendedor" CssClass="Letranegrita"></asp:Label>
+                    <asp:Label ID="lbCodigoIntermediario_CartaAsegurado" runat="server" Text="Intermediario" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtCodigoIntermediario_CartaAsegurado" runat="server" TextMode="Number" AutoPostBack="true" OnTextChanged="txtCodigoIntermediario_CartaAsegurado_TextChanged" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
                 <div class="col-md-4">
@@ -88,7 +94,7 @@
                         <th scope="col"> Asegurado </th>
                          <th scope="col"> Poliza </th>
                          <th scope="col"> Balance </th>
-                         <th scope="col"> Vendedor </th>
+                         <th scope="col"> Intermediario </th>
                         <th scope="col"> Inicio </th>
                         <th scope="col"> Fin </th>
                         <th scope="col"> Dias </th>

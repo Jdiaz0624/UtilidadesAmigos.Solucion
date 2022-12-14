@@ -397,6 +397,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 rbCartaCancelacionAsegurado.Checked = true;
                 DivBloqueCartaCancelacionAsegurado.Visible = true;
                 DIVBloqueCartaCancelacionIntermediario.Visible = false;
+
+                rbCartaCancelacionIntermediario.Enabled = false;
             }
         }
 
