@@ -79,6 +79,7 @@
             <br />
             <div align="center">
                 <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Buscar Información" ImageUrl="~/Imagenes/Buscar.png" CssClass="BotonImagen" OnClick="btnConsultar_Click" />
+                <asp:ImageButton ID="btnCartasEnLote" runat="server" ToolTip="Generar Cartas en Lote" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnCartasEnLote_Click" />
             </div>
             <br />
             <table class="table table-striped">

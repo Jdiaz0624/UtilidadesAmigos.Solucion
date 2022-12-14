@@ -587,6 +587,40 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 NombreIntermediario);
         }
 
+        protected void btnCartasEnLote_Click(object sender, ImageClickEventArgs e)
+        {
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor_CartaAsegurado.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor_CartaAsegurado.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario_CartaAsegurado.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario_CartaAsegurado.Text);
+            decimal? _Asegurado = string.IsNullOrEmpty(txtCodigoAsegurado_CartaAsegurado.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtCodigoAsegurado_CartaAsegurado.Text);
+            string _Poliza = string.IsNullOrEmpty(txtPoliza_CartaAsegurado.Text.Trim()) ? null : txtPoliza_CartaAsegurado.Text.Trim();
+            int? _CantidadDias = string.IsNullOrEmpty(txtDias_CartaAsegurado.Text.Trim()) ? 0 : Convert.ToInt32(txtDias_CartaAsegurado.Text);
+
+            string RutaReporte = "", UsuarioBD = "", ClaveBD = "", NombreCarta = "";
+
+            RutaReporte = Server.MapPath("CartaCancelacionAsegurado.rpt");
+            UsuarioBD = "sa";
+            ClaveBD = "Pa$$W0rd";
+            NombreCarta = "Carta de Cancelaciónes en Lote";
+
+            ReportDocument Carta = new ReportDocument();
+
+            Carta.Load(RutaReporte);
+            Carta.Refresh();
+
+            Carta.SetParameterValue("@Supervisor", _Supervisor);
+            Carta.SetParameterValue("@Intermediario", _Intermediario);
+            Carta.SetParameterValue("@Cliente", _Asegurado);
+            Carta.SetParameterValue("@Poliza", _Poliza);
+            Carta.SetParameterValue("@CantidadDIas", _CantidadDias);
+
+            Carta.SetDatabaseLogon(UsuarioBD, ClaveBD);
+
+            Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreCarta);
+
+            Carta.Close();
+            Carta.Dispose();
+        }
+
         protected void btnPaginaSiguiente_CartaIntermediario_Click(object sender, ImageClickEventArgs e)
         {
             CurrentPage_CartaIntermediario += 1;

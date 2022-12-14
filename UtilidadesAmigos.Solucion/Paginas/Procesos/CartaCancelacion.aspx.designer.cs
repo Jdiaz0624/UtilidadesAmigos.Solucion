@@ -204,6 +204,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.ImageButton btnConsultar;
 
         /// <summary>
+        /// btnCartasEnLote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnCartasEnLote;
+
+        /// <summary>
         /// rpListadoCartaAsegurado control.
         /// </summary>
         /// <remarks>
