@@ -368,7 +368,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             NombreReporte = "Carta de Cancelación de " + NombreIntermediario;
 
             //int? _CantidadDias = string.IsNullOrEmpty(txtCantidadDias_CartaIntermediarios.Text.Trim()) ? 0 : Convert.ToInt32(txtCantidadDias_CartaIntermediarios.Text);
-            int? _CantidadDias = 0;
+            int? _CantidadDias = string.IsNullOrEmpty(txtCantidadDias_CartaIntermediarios.Text.Trim()) ? 0 : Convert.ToInt32(txtCantidadDias_CartaIntermediarios.Text);
 
             ReportDocument Carta = new ReportDocument();
 
