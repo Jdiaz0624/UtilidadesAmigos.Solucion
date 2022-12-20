@@ -19,6 +19,7 @@ namespace UtilidadesAmigos.Logica.Entidades
 		public System.Nullable<int> E_121_150 { get; set; }
 
 		public System.Nullable<int> E_151_MAS { get; set; }
+		public System.Nullable<int> E_DIAS_NEGATIVOS { get; set; }
 
 		public System.Nullable<decimal> CantidadAcumulada { get; set; }
 	}

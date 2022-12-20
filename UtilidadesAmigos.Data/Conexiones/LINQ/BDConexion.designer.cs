@@ -39031,6 +39031,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<int> _E_151_MAS;
 		
+		private System.Nullable<int> _E_DIAS_NEGATIVOS;
+		
 		private System.Nullable<decimal> _CantidadAcumulada;
 		
 		public SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDADResult()
@@ -39129,6 +39131,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._E_151_MAS != value))
 				{
 					this._E_151_MAS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_DIAS_NEGATIVOS", DbType="Int")]
+		public System.Nullable<int> E_DIAS_NEGATIVOS
+		{
+			get
+			{
+				return this._E_DIAS_NEGATIVOS;
+			}
+			set
+			{
+				if ((this._E_DIAS_NEGATIVOS != value))
+				{
+					this._E_DIAS_NEGATIVOS = value;
 				}
 			}
 		}

@@ -276,6 +276,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lbMas_150_Dias_PrimerPago;
 
         /// <summary>
+        /// lbPolizasDiasNegativosPrimerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPolizasDiasNegativosPrimerPago;
+
+        /// <summary>
+        /// lbDiasNegativosPrimerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDiasNegativosPrimerPago;
+
+        /// <summary>
         /// lbOctavoRenglonPrimerPago control.
         /// </summary>
         /// <remarks>
@@ -409,6 +427,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb151_Mas_SegundoPago;
+
+        /// <summary>
+        /// lbPolizasDiasNegativosSegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPolizasDiasNegativosSegundoPago;
+
+        /// <summary>
+        /// lbDiasNegativosSegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDiasNegativosSegundoPago;
 
         /// <summary>
         /// lbOctavoRenglonSegundoPago control.
@@ -546,6 +582,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lb151_Mas_TercerPago;
 
         /// <summary>
+        /// lbPolizasDiasNegativosTercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPolizasDiasNegativosTercerPago;
+
+        /// <summary>
+        /// lbDiasNegativosTercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDiasNegativosTercerPago;
+
+        /// <summary>
         /// lbOctavoRenglonTercerPago control.
         /// </summary>
         /// <remarks>
@@ -679,6 +733,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb151_Mas_CuartoPago;
+
+        /// <summary>
+        /// lbPolizasDiasNegativosCuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPolizasDiasNegativosCuartoPago;
+
+        /// <summary>
+        /// lbDiasNegativosCuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDiasNegativosCuartoPago;
 
         /// <summary>
         /// lbOctavoRenglonCuartoPago control.
@@ -816,6 +888,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.Label lb151_Mas_QuintoPago;
 
         /// <summary>
+        /// lbPolizasDiasNegativosQuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPolizasDiasNegativosQuintoPago;
+
+        /// <summary>
+        /// lbDiasNegativosQuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDiasNegativosQuintoPago;
+
+        /// <summary>
         /// lbOctavoRenglonQuintoPago control.
         /// </summary>
         /// <remarks>
@@ -949,6 +1039,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb151_Mas_Mas_Cinco_Pagos;
+
+        /// <summary>
+        /// lbPolizasDiasNegativosMasDeCincoPagos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPolizasDiasNegativosMasDeCincoPagos;
+
+        /// <summary>
+        /// lbDiasNegativosMasDeCincoPagos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDiasNegativosMasDeCincoPagos;
 
         /// <summary>
         /// lbOctavoRenglonMasCintoPago control.

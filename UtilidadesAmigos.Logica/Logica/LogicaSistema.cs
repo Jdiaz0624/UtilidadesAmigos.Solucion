@@ -4071,6 +4071,7 @@ namespace UtilidadesAmigos.Logica.Logica
                                E_91_120=n.E_91_120,
                                E_121_150=n.E_121_150,
                                E_151_MAS=n.E_151_MAS,
+                               E_DIAS_NEGATIVOS=n.E_DIAS_NEGATIVOS,
                                CantidadAcumulada=n.CantidadAcumulada
                            }).ToList();
             return Listado;

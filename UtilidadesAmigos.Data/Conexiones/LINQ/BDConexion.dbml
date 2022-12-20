@@ -3316,6 +3316,7 @@
       <Column Name="E_91_120" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="E_121_150" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="E_151_MAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="E_DIAS_NEGATIVOS" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CantidadAcumulada" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
     </ElementType>
   </Function>

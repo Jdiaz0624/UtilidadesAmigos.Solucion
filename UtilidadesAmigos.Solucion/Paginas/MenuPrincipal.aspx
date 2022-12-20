@@ -196,8 +196,8 @@ width: 25%;
           <br /><br />
             <div align="center">
             <div align="center">
-                <asp:ImageButton ID="btnActualizar" runat="server" ToolTip="Actualizar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/auto.png" OnClick="btnActualizar_Click" />
-                <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Generar Reporte de Estadistica de Polizas Sin Pagos" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
+                <asp:ImageButton ID="btnActualizar" runat="server" ToolTip="Actualizar Información" Visible="false" CssClass="BotonImagen" ImageUrl="~/Imagenes/auto.png" OnClick="btnActualizar_Click" />
+                <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Generar Reporte de Estadistica de Polizas Sin Pagos" Visible="false" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
                 <br /><br />
                 <div id="DivBloqueCheck" runat="server" class="form-check-inline">
                     <asp:Label ID="lbInformacionValidar" runat="server" Text="Información a Validar" CssClass="LetrasNegrita"></asp:Label>
@@ -282,7 +282,11 @@ width: 25%;
                     <asp:Label ID="lbSeptimoRenglonPrimerPago" runat="server" Text="151-Mas: " CssClass="LetrasNegrita"></asp:Label>
                     <asp:Label ID="lbMas_150_Dias_PrimerPago" runat="server" Text="0"></asp:Label>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
+                    <asp:Label ID="lbPolizasDiasNegativosPrimerPago" runat="server" Text="-0: " ToolTip="Este registro representa la cantidad de polizas que se renovaron por adelantado o no ha llegado el dia de inicio de vigencia" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbDiasNegativosPrimerPago" runat="server" ForeColor="Red" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
                     <asp:Label ID="lbOctavoRenglonPrimerPago" runat="server" Text="RD$: " CssClass="LetrasNegrita"></asp:Label>
                     <asp:Label ID="lbCantidadAcumuladaPrimerPago" runat="server" Text="0"></asp:Label>
                 </div>
@@ -323,7 +327,11 @@ width: 25%;
                     <asp:Label ID="lbSeptimoRenglonSegundoPago" runat="server" Text="151-Mas: " CssClass="LetrasNegrita"></asp:Label>
                     <asp:Label ID="lb151_Mas_SegundoPago" runat="server" Text="0"></asp:Label>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
+                    <asp:Label ID="lbPolizasDiasNegativosSegundoPago" runat="server" Text="-0: " ToolTip="Este registro representa la cantidad de polizas que se renovaron por adelantado o no ha llegado el dia de inicio de vigencia" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbDiasNegativosSegundoPago" runat="server" ForeColor="Red" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
                     <asp:Label ID="lbOctavoRenglonSegundoPago" runat="server" Text="RD$: " CssClass="LetrasNegrita"></asp:Label>
                     <asp:Label ID="lbCantidadAcumulada_SegundoPago" runat="server" Text="0"></asp:Label>
                 </div>
@@ -363,7 +371,11 @@ width: 25%;
                     <asp:Label ID="lbSeptimoRenglonTercerPago" runat="server" Text="151-Mas: " CssClass="LetrasNegrita"></asp:Label>
                     <asp:Label ID="lb151_Mas_TercerPago" runat="server" Text="0"></asp:Label>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
+                    <asp:Label ID="lbPolizasDiasNegativosTercerPago" runat="server" Text="-0: " ToolTip="Este registro representa la cantidad de polizas que se renovaron por adelantado o no ha llegado el dia de inicio de vigencia" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbDiasNegativosTercerPago" runat="server" ForeColor="Red" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
                     <asp:Label ID="lbOctavoRenglonTercerPago" runat="server" Text="RD$: " CssClass="LetrasNegrita"></asp:Label>
                     <asp:Label ID="lbCantidadAcumulada_TercerPago" runat="server" Text="0"></asp:Label>
                 </div>
@@ -407,7 +419,11 @@ width: 25%;
                     <asp:Label ID="lbSeptimoRenglonCuartoPago" runat="server" Text="151-Mas: " CssClass="LetrasNegrita"></asp:Label>
                     <asp:Label ID="lb151_Mas_CuartoPago" runat="server" Text="0"></asp:Label>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
+                    <asp:Label ID="lbPolizasDiasNegativosCuartoPago" runat="server" Text="-0: " ToolTip="Este registro representa la cantidad de polizas que se renovaron por adelantado o no ha llegado el dia de inicio de vigencia" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbDiasNegativosCuartoPago" runat="server" ForeColor="Red" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
                     <asp:Label ID="lbOctavoRenglonCuartoPago" runat="server" Text="RD$: " CssClass="LetrasNegrita"></asp:Label>
                     <asp:Label ID="lbCantidadAcumulada_CuartoPago" runat="server" Text="0"></asp:Label>
                 </div>
@@ -449,7 +465,11 @@ width: 25%;
                     <asp:Label ID="lbSeptimoRenglonQuintoPago" runat="server" Text="151-Mas: " CssClass="LetrasNegrita"></asp:Label>
                     <asp:Label ID="lb151_Mas_QuintoPago" runat="server" Text="0"></asp:Label>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
+                    <asp:Label ID="lbPolizasDiasNegativosQuintoPago" runat="server" Text="-0: " ToolTip="Este registro representa la cantidad de polizas que se renovaron por adelantado o no ha llegado el dia de inicio de vigencia" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbDiasNegativosQuintoPago" runat="server" ForeColor="Red" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
                     <asp:Label ID="lbOctavoRenglonQuintoPago" runat="server" Text="RD$: " CssClass="LetrasNegrita"></asp:Label>
                     <asp:Label ID="lbCantidadAcumulada_QuintoPago" runat="server" Text="0"></asp:Label>
                 </div>
@@ -488,6 +508,10 @@ width: 25%;
                 <div class="col-md-6">
                     <asp:Label ID="lbSeptimoRenglonMasCintoPago" runat="server" Text="151-Mas: " CssClass="LetrasNegrita"></asp:Label>
                     <asp:Label ID="lb151_Mas_Mas_Cinco_Pagos" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbPolizasDiasNegativosMasDeCincoPagos" runat="server" Text="-0: " ToolTip="Este registro representa la cantidad de polizas que se renovaron por adelantado o no ha llegado el dia de inicio de vigencia" CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbDiasNegativosMasDeCincoPagos" runat="server" ForeColor="Red" Text="0"></asp:Label>
                 </div>
                 <div class="col-md-6">
                     <asp:Label ID="lbOctavoRenglonMasCintoPago" runat="server" Text="RD$: " CssClass="LetrasNegrita"></asp:Label>

@@ -183,14 +183,33 @@ namespace UtilidadesAmigos.Solucion.Paginas
             btnCuartoPago.Text = CuartoPago.ToString("N0");
             btnQuintoPago.Text = QuintoPago.ToString("N0");
             btnMasDeCincoPagos.Text = MasDeCincoPago.ToString("N0");
+
+            AntigudadPrimerPago();
+            AntiguedadSegundoPago();
+            AntiguedadTercerPago();
+            AntiguedadCuartoPago();
+            AntiguedadQuintoPago();
+            AntiguedadMasDeCincoPagos();
         }
 
 
         #region INFORMACION DE ANTIGUEDAD
         private void AntigudadPrimerPago() {
 
-            int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0;
+            int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
             decimal CantidadAcumulada = 0;
+
+            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnPrimerPagoAplicado, 106);
+            foreach (var n in SacarInformacion) {
+                E_0_30 = (int)n.E_0_30;
+                E_31_60 = (int)n.E_31_60;
+                E_61_90 = (int)n.E_61_90;
+                E_91_120 = (int)n.E_91_120;
+                E_121_150 = (int)n.E_121_150;
+                E_151_MAS = (int)n.E_151_MAS;
+                DiasNegativos = (int)n.E_DIAS_NEGATIVOS;
+                CantidadAcumulada = (decimal)n.CantidadAcumulada;
+            }
 
             lb0_30_PrimerPago.Text = E_0_30.ToString("N0");
             lb31_60_PrimerPago.Text = E_31_60.ToString("N0");
@@ -198,7 +217,140 @@ namespace UtilidadesAmigos.Solucion.Paginas
             lb91_120_PrimerPago.Text = E_91_120.ToString("N0");
             lb121_150_PrimerPago.Text = E_121_150.ToString("N0");
             lbMas_150_Dias_PrimerPago.Text = E_151_MAS.ToString("N0");
+            lbDiasNegativosPrimerPago.Text = DiasNegativos.ToString("N0");
             lbCantidadAcumuladaPrimerPago.Text = CantidadAcumulada.ToString("N2");
+        }
+
+        private void AntiguedadSegundoPago() {
+
+            int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
+            decimal CantidadAcumulada = 0;
+
+            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnSegundoPagoAplicado, 106);
+            foreach (var n in SacarInformacion)
+            {
+                E_0_30 = (int)n.E_0_30;
+                E_31_60 = (int)n.E_31_60;
+                E_61_90 = (int)n.E_61_90;
+                E_91_120 = (int)n.E_91_120;
+                E_121_150 = (int)n.E_121_150;
+                E_151_MAS = (int)n.E_151_MAS;
+                DiasNegativos = (int)n.E_DIAS_NEGATIVOS;
+                CantidadAcumulada = (decimal)n.CantidadAcumulada;
+            }
+
+            lb0_30_SegundoPago.Text = E_0_30.ToString("N0");
+            lb31_60_SegundoPago.Text = E_31_60.ToString("N0");
+            lb61_90_SegundoPago.Text = E_61_90.ToString("N0");
+            lb91_120_SegundoPago.Text = E_91_120.ToString("N0");
+            lb121_150_SegundoPago.Text = E_121_150.ToString("N0");
+            lb151_Mas_SegundoPago.Text = E_151_MAS.ToString("N0");
+            lbDiasNegativosSegundoPago.Text = DiasNegativos.ToString("N0");
+            lbCantidadAcumulada_SegundoPago.Text = CantidadAcumulada.ToString("N2");
+        }
+        private void AntiguedadTercerPago() {
+            int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
+            decimal CantidadAcumulada = 0;
+
+            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnTercerPagoAplicado, 106);
+            foreach (var n in SacarInformacion)
+            {
+                E_0_30 = (int)n.E_0_30;
+                E_31_60 = (int)n.E_31_60;
+                E_61_90 = (int)n.E_61_90;
+                E_91_120 = (int)n.E_91_120;
+                E_121_150 = (int)n.E_121_150;
+                E_151_MAS = (int)n.E_151_MAS;
+                DiasNegativos = (int)n.E_DIAS_NEGATIVOS;
+                CantidadAcumulada = (decimal)n.CantidadAcumulada;
+            }
+
+            lb0_30_TercerPago.Text = E_0_30.ToString("N0");
+            lb31_60_TercerPago.Text = E_31_60.ToString("N0");
+            lb61_90_TercerPago.Text = E_61_90.ToString("N0");
+            lb91_120_TercerPago.Text = E_91_120.ToString("N0");
+            lb121_150_TercerPago.Text = E_121_150.ToString("N0");
+            lb151_Mas_TercerPago.Text = E_151_MAS.ToString("N0");
+            lbDiasNegativosTercerPago.Text = DiasNegativos.ToString("N0");
+            lbCantidadAcumulada_TercerPago.Text = CantidadAcumulada.ToString("N2");
+        }
+        private void AntiguedadCuartoPago() {
+            int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
+            decimal CantidadAcumulada = 0;
+
+            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnCuartoPagoAplicado, 106);
+            foreach (var n in SacarInformacion)
+            {
+                E_0_30 = (int)n.E_0_30;
+                E_31_60 = (int)n.E_31_60;
+                E_61_90 = (int)n.E_61_90;
+                E_91_120 = (int)n.E_91_120;
+                E_121_150 = (int)n.E_121_150;
+                E_151_MAS = (int)n.E_151_MAS;
+                DiasNegativos = (int)n.E_DIAS_NEGATIVOS;
+                CantidadAcumulada = (decimal)n.CantidadAcumulada;
+            }
+
+            lb0_30_CuartoPago.Text = E_0_30.ToString("N0");
+            lb31_60_CuartoPago.Text = E_31_60.ToString("N0");
+            lb61_90_CuartoPago.Text = E_61_90.ToString("N0");
+            lb91_120_CuartoPago.Text = E_91_120.ToString("N0");
+            lb121_150_CuartoPago.Text = E_121_150.ToString("N0");
+            lb151_Mas_CuartoPago.Text = E_151_MAS.ToString("N0");
+            lbDiasNegativosCuartoPago.Text = DiasNegativos.ToString("N0");
+            lbCantidadAcumulada_CuartoPago.Text = CantidadAcumulada.ToString("N2");
+        }
+        private void AntiguedadQuintoPago() {
+            int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
+            decimal CantidadAcumulada = 0;
+
+            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnQuintoPagoAplicado, 106);
+            foreach (var n in SacarInformacion)
+            {
+                E_0_30 = (int)n.E_0_30;
+                E_31_60 = (int)n.E_31_60;
+                E_61_90 = (int)n.E_61_90;
+                E_91_120 = (int)n.E_91_120;
+                E_121_150 = (int)n.E_121_150;
+                E_151_MAS = (int)n.E_151_MAS;
+                DiasNegativos = (int)n.E_DIAS_NEGATIVOS;
+                CantidadAcumulada = (decimal)n.CantidadAcumulada;
+            }
+
+            lb0_30_QuintoPago.Text = E_0_30.ToString("N0");
+            lb31_60_QuintoPago.Text = E_31_60.ToString("N0");
+            lb61_90_QuintoPago.Text = E_61_90.ToString("N0");
+            lb91_120_QuintoPago.Text = E_91_120.ToString("N0");
+            lb121_150_QuintoPago.Text = E_121_150.ToString("N0");
+            lb151_Mas_QuintoPago.Text = E_151_MAS.ToString("N0");
+            lbDiasNegativosQuintoPago.Text = DiasNegativos.ToString("N0");
+            lbCantidadAcumulada_QuintoPago.Text = CantidadAcumulada.ToString("N2");
+        }
+        private void AntiguedadMasDeCincoPagos() {
+            int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
+            decimal CantidadAcumulada = 0;
+
+            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConMasDeCintoPagosAplicados, 106);
+            foreach (var n in SacarInformacion)
+            {
+                E_0_30 = (int)n.E_0_30;
+                E_31_60 = (int)n.E_31_60;
+                E_61_90 = (int)n.E_61_90;
+                E_91_120 = (int)n.E_91_120;
+                E_121_150 = (int)n.E_121_150;
+                E_151_MAS = (int)n.E_151_MAS;
+                DiasNegativos = (int)n.E_DIAS_NEGATIVOS;
+                CantidadAcumulada = (decimal)n.CantidadAcumulada;
+            }
+
+            lb0_30_Mas_Cinco_Pagos.Text = E_0_30.ToString("N0");
+            lb31_60_Mas_Cinco_Pagos.Text = E_31_60.ToString("N0");
+            lb61_90_Mas_Cinco_Pagos.Text = E_61_90.ToString("N0");
+            lb91_120_Mas_Cinco_Pagos.Text = E_91_120.ToString("N0");
+            lb121_150_Mas_Cinco_Pagos.Text = E_121_150.ToString("N0");
+            lb151_Mas_Mas_Cinco_Pagos.Text = E_151_MAS.ToString("N0");
+            lbDiasNegativosMasDeCincoPagos.Text = DiasNegativos.ToString("N0");
+            lbCantidadAcumulada_Mas_Cinco_Pagos.Text = CantidadAcumulada.ToString("N2");
         }
         #endregion
 
@@ -530,8 +682,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnPrimerPAgoAplicado_Click(object sender, EventArgs e)
         {
             ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnPrimerPagoAplicado, 106, "Polizas Con un Primer Pago Aplicado");
-
             
+
+
         }
 
         protected void btnSinInicialTercero_Click(object sender, EventArgs e)
