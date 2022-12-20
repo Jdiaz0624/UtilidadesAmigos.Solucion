@@ -48,11 +48,20 @@ background-repeat: no-repeat !important;
 }*/
 .container {
     width: 100%;
-    height: 300px;
+    height: 350px;
     border: 1px solid black;
     display: -webkit-flex;  /*Safari*/ 
     display: flex;
     margin: auto;
+}
+
+.Segundocontainer {
+    width: 100%;
+    height: 300px;
+    border: 1px solid black;
+    display: -webkit-flex;  /*Safari*/ 
+    display: flex;
+    margin:unset;
 }
 
 .center {
@@ -73,6 +82,14 @@ padding-left: 15px;
     flex: 1;
 }
 
+
+.frame-item2 {
+	padding: 1em;
+    border: 1px solid #B2B2B2;
+    -webkit-flex: 1;  /* Safari 6.1+ */
+    -ms-flex: 1;  /* IE 10 */    
+    flex: 1;
+}
 /*@media (min-width: 1200px){
 .container {
 width: 1170px;
@@ -140,7 +157,9 @@ width: 25%;
 
     <div class="container-fluid">
 
+        <div id="DIVBloqueImagen" runat="server">
 
+        
     <br /><br />
 
 <div class="container-fluid Imagenesxx">
@@ -150,8 +169,6 @@ width: 25%;
      <div class="carousel-item active">
       <img src="../Imagenes/Logo.jpg" class="d-block w-100" alt="..." />
     </div>
-
-
   </div>
 
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -171,13 +188,18 @@ width: 25%;
 
         <br />
         <br />
+
+            </div>
+
+
       <div id="DivBloqueEstadistica" runat="server">
+          <br /><br />
             <div align="center">
             <div align="center">
                 <asp:ImageButton ID="btnActualizar" runat="server" ToolTip="Actualizar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/auto.png" OnClick="btnActualizar_Click" />
                 <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Generar Reporte de Estadistica de Polizas Sin Pagos" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
                 <br /><br />
-                <div class="form-check-inline">
+                <div id="DivBloqueCheck" runat="server" class="form-check-inline">
                     <asp:Label ID="lbInformacionValidar" runat="server" Text="Información a Validar" CssClass="LetrasNegrita"></asp:Label>
                     <asp:CheckBox ID="cbTodos" runat="server" Text="Todos" CssClass="form-check-inline pe-auto" AutoPostBack="true" OnCheckedChanged="cbTodos_CheckedChanged" />
                     <asp:CheckBox ID="cbSinInicial" runat="server" Text="Sin Inicial" CssClass="form-check-inline" AutoPostBack="true" OnCheckedChanged="cbSinInicial_CheckedChanged" />
@@ -194,12 +216,12 @@ width: 25%;
   <div class="container">
     <div class="frame-item">
       <h4>
-        Sin Pago Inicial (0-10)
+        Sin Pago 0-10 Dias
       </h4>
         <hr />
 
         <div>
-            <asp:Button ID="btnSinPagoInicial" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnSinPagoInicial_Click" CssClass="BotonEstadistica Rojo" />
+            <asp:Button ID="btnSinInicialPrimero" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnSinInicialPrimero_Click" CssClass="BotonEstadistica Rojo" />
         </div>
     </div>
 
@@ -209,17 +231,17 @@ width: 25%;
       </h4>
         <hr />
         <div>
-            <asp:Button ID="btnPrimerPagoSinCobros" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnPrimerPagoSinCobros_Click" CssClass="BotonEstadistica Verde" />
+            <asp:Button ID="btnSinInicialSegundo" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnSinInicialSegundo_Click" CssClass="BotonEstadistica Rojo" />
         </div>
     </div>
 
     <div class="frame-item">
       <h4>
-        Sin pago de 31 a 60 Dias 
+        Sin pago de mas de 30 Dias 
       </h4>
         <hr />
         <div>
-            <asp:Button ID="btnSegundoPagoSinCobros" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnSegundoPagoSinCobros_Click" CssClass="BotonEstadistica Verde" />
+            <asp:Button ID="btnSinInicialTercero" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnSinInicialTercero_Click" CssClass="BotonEstadistica Rojo" />
         </div>
     </div>
   </div>
@@ -228,32 +250,250 @@ width: 25%;
              <div class="container">
     <div class="frame-item">
       <h4>
-        Sin Pago de 61 a 90 Dias
+        Primer Pago Aplicado
       </h4>
         <hr />
 
         <div>
-            <asp:Button ID="btnTercerPagoSinCobros" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnTercerPagoSinCobros_Click" CssClass="BotonEstadistica Verde" />
+            <asp:Button ID="btnPrimerPAgoAplicado" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnPrimerPAgoAplicado_Click" CssClass="BotonEstadistica Verde" />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <asp:Label ID="lbPrimerRenglonPrimerPagoAplicado" runat="server" Text="0-30: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb0_30_PrimerPago" runat="server" Text="0"></asp:Label>
+                </div>
+                 <div class="col-md-6">
+                    <asp:Label ID="lbSegundoReglonPrimerPago" runat="server" Text="31-60: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb31_60_PrimerPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbCuartoRenglonPrimerPago" runat="server" Text="61-90: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb61_90_PrimerPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbQuintoRenglonPrimerPago" runat="server" Text="91-120: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb91_120_PrimerPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbSextoRenglonPrimerPago" runat="server" Text="121-150: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb121_150_PrimerPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbSeptimoRenglonPrimerPago" runat="server" Text="151-Mas: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbMas_150_Dias_PrimerPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-12">
+                    <asp:Label ID="lbOctavoRenglonPrimerPago" runat="server" Text="RD$: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbCantidadAcumuladaPrimerPago" runat="server" Text="0"></asp:Label>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="frame-item">
       <h4>
-        Sin Pago de 91 a 120 Dias
+        Segundo Pago Aplicado
       </h4>
         <hr />
         <div>
-            <asp:Button ID="btnCuartoPagoSinCobros" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnCuartoPagoSinCobros_Click" CssClass="BotonEstadistica Verde" />
+            <asp:Button ID="btnSegundoPagoAplicado" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnSegundoPagoAplicado_Click" CssClass="BotonEstadistica Verde" />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <asp:Label ID="lbPrimerRenglonSegundoPagoAplicado" runat="server" Text="0-30: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb0_30_SegundoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                 <div class="col-md-6">
+                    <asp:Label ID="lbSegundoReglonSegundoPago" runat="server" Text="31-60: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb31_60_SegundoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbCuartoRenglonSegundoPago" runat="server" Text="61-90: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb61_90_SegundoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbQuintoRenglonSegundoPago" runat="server" Text="91-120: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb91_120_SegundoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbSextoRenglonSegundoPago" runat="server" Text="121-150: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb121_150_SegundoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbSeptimoRenglonSegundoPago" runat="server" Text="151-Mas: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb151_Mas_SegundoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-12">
+                    <asp:Label ID="lbOctavoRenglonSegundoPago" runat="server" Text="RD$: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbCantidadAcumulada_SegundoPago" runat="server" Text="0"></asp:Label>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="frame-item">
       <h4>
-        Sin pagos de mas de 120 Dias
+        Tercer Pago Aplicado
       </h4>
         <hr />
         <div>
-            <asp:Button ID="btnMasDeCientoVeinteDiasSinCobros" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnMasDeCientoVeinteDiasSinCobros_Click" CssClass="BotonEstadistica Verde" />
+            <asp:Button ID="btnTercerPagoAplicado" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnTercerPagoAplicado_Click" CssClass="BotonEstadistica Verde" />
+            <div class="row">
+                <div class="col-md-6">
+                    <asp:Label ID="lbPrimerRenglonTercerPagoAplicado" runat="server" Text="0-30: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb0_30_TercerPago" runat="server" Text="0"></asp:Label>
+                </div>
+                 <div class="col-md-6">
+                    <asp:Label ID="lbSegundoReglonTercerPago" runat="server" Text="31-60: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb31_60_TercerPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbCuartoRenglonTercerPago" runat="server" Text="61-90: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb61_90_TercerPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbQuintoRenglonTercerPago" runat="server" Text="91-120: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb91_120_TercerPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbSextoRenglonTercerPago" runat="server" Text="120-150: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb121_150_TercerPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbSeptimoRenglonTercerPago" runat="server" Text="151-Mas: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb151_Mas_TercerPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-12">
+                    <asp:Label ID="lbOctavoRenglonTercerPago" runat="server" Text="RD$: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbCantidadAcumulada_TercerPago" runat="server" Text="0"></asp:Label>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+           <br />
+             <div class="container">
+    <div class="frame-item">
+      <h4>
+        Cuarto Pago Aplicado
+      </h4>
+        <hr />
+
+        <div>
+            <asp:Button ID="btnCuartoPago" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnCuartoPago_Click" CssClass="BotonEstadistica Verde" />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <asp:Label ID="lbPrimerRenglonCuartoPagoAplicado" runat="server" Text="0-30: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb0_30_CuartoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                 <div class="col-md-6">
+                    <asp:Label ID="lbSegundoReglonCuartoPago" runat="server" Text="31-60: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb31_60_CuartoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbCuartoRenglonCuartoPago" runat="server" Text="61-90: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb61_90_CuartoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbQuintoRenglonCuartoPago" runat="server" Text="91-120: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb91_120_CuartoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbSextoRenglonCuartoPago" runat="server" Text="121-150: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb121_150_CuartoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbSeptimoRenglonCuartoPago" runat="server" Text="151-Mas: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb151_Mas_CuartoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-12">
+                    <asp:Label ID="lbOctavoRenglonCuartoPago" runat="server" Text="RD$: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbCantidadAcumulada_CuartoPago" runat="server" Text="0"></asp:Label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="frame-item">
+      <h4>
+        Quinto Pago Aplicado
+      </h4>
+        <hr />
+        <div>
+            <asp:Button ID="btnQuintoPago" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnQuintoPago_Click" CssClass="BotonEstadistica Verde" />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <asp:Label ID="lbPrimerRenglonQuintoPagoAplicado" runat="server" Text="0-30: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb0_30_QuintoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                 <div class="col-md-6">
+                    <asp:Label ID="lbSegundoReglonQuintoPago" runat="server" Text="31-60: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb31_60_QuintoPago" runat="server" Text="0"></asp:Label>
+                </div>
+         
+                <div class="col-md-6">
+                    <asp:Label ID="lbCuartoRenglonQuintoPago" runat="server" Text="61-90: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb61_90_QuintoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbQuintoRenglonQuintoPago" runat="server" Text="91-120: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb91_120_QuintoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbSextoRenglonQuintoPago" runat="server" Text="121-150: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb121_150_QuintoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbSeptimoRenglonQuintoPago" runat="server" Text="151-Mas: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb151_Mas_QuintoPago" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-12">
+                    <asp:Label ID="lbOctavoRenglonQuintoPago" runat="server" Text="RD$: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbCantidadAcumulada_QuintoPago" runat="server" Text="0"></asp:Label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="frame-item">
+      <h4>
+        Mas de 5 Pagos
+      </h4>
+        <hr />
+        <div>
+            <asp:Button ID="btnMasDeCincoPagos" runat="server" Text="0" ToolTip="Click Para Descargar el Listado" OnClick="btnMasDeCincoPagos_Click" CssClass="BotonEstadistica Verde" />
+            <div class="row">
+                <div class="col-md-6">
+                    <asp:Label ID="lbPrimerRenglonMasCintoPagoPagoAplicado" runat="server" Text="0-30: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb0_30_Mas_Cinco_Pagos" runat="server" Text="0"></asp:Label>
+                </div>
+                 <div class="col-md-6">
+                    <asp:Label ID="lbSegundoReglonMasCintoPago" runat="server" Text="31-60: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb31_60_Mas_Cinco_Pagos" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbCuartoRenglonMasCintoPago" runat="server" Text="61-90: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb61_90_Mas_Cinco_Pagos" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbQuintoRenglonMasCintoPago" runat="server" Text="91-120: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb91_120_Mas_Cinco_Pagos" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbSextoRenglonMasCintoPago" runat="server" Text="121-150: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb121_150_Mas_Cinco_Pagos" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbSeptimoRenglonMasCintoPago" runat="server" Text="151-Mas: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lb151_Mas_Mas_Cinco_Pagos" runat="server" Text="0"></asp:Label>
+                </div>
+                <div class="col-md-6">
+                    <asp:Label ID="lbOctavoRenglonMasCintoPago" runat="server" Text="RD$: " CssClass="LetrasNegrita"></asp:Label>
+                    <asp:Label ID="lbCantidadAcumulada_Mas_Cinco_Pagos" runat="server" Text="0"></asp:Label>
+                </div>
+            </div>
         </div>
     </div>
   </div>
@@ -261,6 +501,11 @@ width: 25%;
   
 </div>
       </div>
+
+        <div id="DIvBloqueRemodelacion" runat="server">
+            <h1>Se estan realizando algunos ajustes a la parte de estadistica de renovación, se notificara una vez este disponible.</h1>
+             <img src="../Imagenes/remodelacion.jpg" class="d-block w-100" alt="..." />
+        </div>
      </div>
 
 </asp:Content>

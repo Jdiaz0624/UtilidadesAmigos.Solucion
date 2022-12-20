@@ -15,6 +15,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
     {
 
         /// <summary>
+        /// DIVBloqueImagen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueImagen;
+
+        /// <summary>
         /// DivBloqueEstadistica control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton btnReporte;
+
+        /// <summary>
+        /// DivBloqueCheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueCheck;
 
         /// <summary>
         /// lbInformacionValidar control.
@@ -114,57 +132,849 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected global::System.Web.UI.WebControls.CheckBox cbQuintoPago;
 
         /// <summary>
-        /// btnSinPagoInicial control.
+        /// btnSinInicialPrimero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSinPagoInicial;
+        protected global::System.Web.UI.WebControls.Button btnSinInicialPrimero;
 
         /// <summary>
-        /// btnPrimerPagoSinCobros control.
+        /// btnSinInicialSegundo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPrimerPagoSinCobros;
+        protected global::System.Web.UI.WebControls.Button btnSinInicialSegundo;
 
         /// <summary>
-        /// btnSegundoPagoSinCobros control.
+        /// btnSinInicialTercero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSegundoPagoSinCobros;
+        protected global::System.Web.UI.WebControls.Button btnSinInicialTercero;
 
         /// <summary>
-        /// btnTercerPagoSinCobros control.
+        /// btnPrimerPAgoAplicado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTercerPagoSinCobros;
+        protected global::System.Web.UI.WebControls.Button btnPrimerPAgoAplicado;
 
         /// <summary>
-        /// btnCuartoPagoSinCobros control.
+        /// lbPrimerRenglonPrimerPagoAplicado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCuartoPagoSinCobros;
+        protected global::System.Web.UI.WebControls.Label lbPrimerRenglonPrimerPagoAplicado;
 
         /// <summary>
-        /// btnMasDeCientoVeinteDiasSinCobros control.
+        /// lb0_30_PrimerPago control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMasDeCientoVeinteDiasSinCobros;
+        protected global::System.Web.UI.WebControls.Label lb0_30_PrimerPago;
+
+        /// <summary>
+        /// lbSegundoReglonPrimerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSegundoReglonPrimerPago;
+
+        /// <summary>
+        /// lb31_60_PrimerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb31_60_PrimerPago;
+
+        /// <summary>
+        /// lbCuartoRenglonPrimerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCuartoRenglonPrimerPago;
+
+        /// <summary>
+        /// lb61_90_PrimerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb61_90_PrimerPago;
+
+        /// <summary>
+        /// lbQuintoRenglonPrimerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbQuintoRenglonPrimerPago;
+
+        /// <summary>
+        /// lb91_120_PrimerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb91_120_PrimerPago;
+
+        /// <summary>
+        /// lbSextoRenglonPrimerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSextoRenglonPrimerPago;
+
+        /// <summary>
+        /// lb121_150_PrimerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb121_150_PrimerPago;
+
+        /// <summary>
+        /// lbSeptimoRenglonPrimerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeptimoRenglonPrimerPago;
+
+        /// <summary>
+        /// lbMas_150_Dias_PrimerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbMas_150_Dias_PrimerPago;
+
+        /// <summary>
+        /// lbOctavoRenglonPrimerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbOctavoRenglonPrimerPago;
+
+        /// <summary>
+        /// lbCantidadAcumuladaPrimerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadAcumuladaPrimerPago;
+
+        /// <summary>
+        /// btnSegundoPagoAplicado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSegundoPagoAplicado;
+
+        /// <summary>
+        /// lbPrimerRenglonSegundoPagoAplicado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPrimerRenglonSegundoPagoAplicado;
+
+        /// <summary>
+        /// lb0_30_SegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb0_30_SegundoPago;
+
+        /// <summary>
+        /// lbSegundoReglonSegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSegundoReglonSegundoPago;
+
+        /// <summary>
+        /// lb31_60_SegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb31_60_SegundoPago;
+
+        /// <summary>
+        /// lbCuartoRenglonSegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCuartoRenglonSegundoPago;
+
+        /// <summary>
+        /// lb61_90_SegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb61_90_SegundoPago;
+
+        /// <summary>
+        /// lbQuintoRenglonSegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbQuintoRenglonSegundoPago;
+
+        /// <summary>
+        /// lb91_120_SegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb91_120_SegundoPago;
+
+        /// <summary>
+        /// lbSextoRenglonSegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSextoRenglonSegundoPago;
+
+        /// <summary>
+        /// lb121_150_SegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb121_150_SegundoPago;
+
+        /// <summary>
+        /// lbSeptimoRenglonSegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeptimoRenglonSegundoPago;
+
+        /// <summary>
+        /// lb151_Mas_SegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb151_Mas_SegundoPago;
+
+        /// <summary>
+        /// lbOctavoRenglonSegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbOctavoRenglonSegundoPago;
+
+        /// <summary>
+        /// lbCantidadAcumulada_SegundoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadAcumulada_SegundoPago;
+
+        /// <summary>
+        /// btnTercerPagoAplicado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnTercerPagoAplicado;
+
+        /// <summary>
+        /// lbPrimerRenglonTercerPagoAplicado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPrimerRenglonTercerPagoAplicado;
+
+        /// <summary>
+        /// lb0_30_TercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb0_30_TercerPago;
+
+        /// <summary>
+        /// lbSegundoReglonTercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSegundoReglonTercerPago;
+
+        /// <summary>
+        /// lb31_60_TercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb31_60_TercerPago;
+
+        /// <summary>
+        /// lbCuartoRenglonTercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCuartoRenglonTercerPago;
+
+        /// <summary>
+        /// lb61_90_TercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb61_90_TercerPago;
+
+        /// <summary>
+        /// lbQuintoRenglonTercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbQuintoRenglonTercerPago;
+
+        /// <summary>
+        /// lb91_120_TercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb91_120_TercerPago;
+
+        /// <summary>
+        /// lbSextoRenglonTercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSextoRenglonTercerPago;
+
+        /// <summary>
+        /// lb121_150_TercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb121_150_TercerPago;
+
+        /// <summary>
+        /// lbSeptimoRenglonTercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeptimoRenglonTercerPago;
+
+        /// <summary>
+        /// lb151_Mas_TercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb151_Mas_TercerPago;
+
+        /// <summary>
+        /// lbOctavoRenglonTercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbOctavoRenglonTercerPago;
+
+        /// <summary>
+        /// lbCantidadAcumulada_TercerPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadAcumulada_TercerPago;
+
+        /// <summary>
+        /// btnCuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCuartoPago;
+
+        /// <summary>
+        /// lbPrimerRenglonCuartoPagoAplicado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPrimerRenglonCuartoPagoAplicado;
+
+        /// <summary>
+        /// lb0_30_CuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb0_30_CuartoPago;
+
+        /// <summary>
+        /// lbSegundoReglonCuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSegundoReglonCuartoPago;
+
+        /// <summary>
+        /// lb31_60_CuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb31_60_CuartoPago;
+
+        /// <summary>
+        /// lbCuartoRenglonCuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCuartoRenglonCuartoPago;
+
+        /// <summary>
+        /// lb61_90_CuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb61_90_CuartoPago;
+
+        /// <summary>
+        /// lbQuintoRenglonCuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbQuintoRenglonCuartoPago;
+
+        /// <summary>
+        /// lb91_120_CuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb91_120_CuartoPago;
+
+        /// <summary>
+        /// lbSextoRenglonCuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSextoRenglonCuartoPago;
+
+        /// <summary>
+        /// lb121_150_CuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb121_150_CuartoPago;
+
+        /// <summary>
+        /// lbSeptimoRenglonCuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeptimoRenglonCuartoPago;
+
+        /// <summary>
+        /// lb151_Mas_CuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb151_Mas_CuartoPago;
+
+        /// <summary>
+        /// lbOctavoRenglonCuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbOctavoRenglonCuartoPago;
+
+        /// <summary>
+        /// lbCantidadAcumulada_CuartoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadAcumulada_CuartoPago;
+
+        /// <summary>
+        /// btnQuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnQuintoPago;
+
+        /// <summary>
+        /// lbPrimerRenglonQuintoPagoAplicado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPrimerRenglonQuintoPagoAplicado;
+
+        /// <summary>
+        /// lb0_30_QuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb0_30_QuintoPago;
+
+        /// <summary>
+        /// lbSegundoReglonQuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSegundoReglonQuintoPago;
+
+        /// <summary>
+        /// lb31_60_QuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb31_60_QuintoPago;
+
+        /// <summary>
+        /// lbCuartoRenglonQuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCuartoRenglonQuintoPago;
+
+        /// <summary>
+        /// lb61_90_QuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb61_90_QuintoPago;
+
+        /// <summary>
+        /// lbQuintoRenglonQuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbQuintoRenglonQuintoPago;
+
+        /// <summary>
+        /// lb91_120_QuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb91_120_QuintoPago;
+
+        /// <summary>
+        /// lbSextoRenglonQuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSextoRenglonQuintoPago;
+
+        /// <summary>
+        /// lb121_150_QuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb121_150_QuintoPago;
+
+        /// <summary>
+        /// lbSeptimoRenglonQuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeptimoRenglonQuintoPago;
+
+        /// <summary>
+        /// lb151_Mas_QuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb151_Mas_QuintoPago;
+
+        /// <summary>
+        /// lbOctavoRenglonQuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbOctavoRenglonQuintoPago;
+
+        /// <summary>
+        /// lbCantidadAcumulada_QuintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadAcumulada_QuintoPago;
+
+        /// <summary>
+        /// btnMasDeCincoPagos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMasDeCincoPagos;
+
+        /// <summary>
+        /// lbPrimerRenglonMasCintoPagoPagoAplicado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPrimerRenglonMasCintoPagoPagoAplicado;
+
+        /// <summary>
+        /// lb0_30_Mas_Cinco_Pagos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb0_30_Mas_Cinco_Pagos;
+
+        /// <summary>
+        /// lbSegundoReglonMasCintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSegundoReglonMasCintoPago;
+
+        /// <summary>
+        /// lb31_60_Mas_Cinco_Pagos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb31_60_Mas_Cinco_Pagos;
+
+        /// <summary>
+        /// lbCuartoRenglonMasCintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCuartoRenglonMasCintoPago;
+
+        /// <summary>
+        /// lb61_90_Mas_Cinco_Pagos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb61_90_Mas_Cinco_Pagos;
+
+        /// <summary>
+        /// lbQuintoRenglonMasCintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbQuintoRenglonMasCintoPago;
+
+        /// <summary>
+        /// lb91_120_Mas_Cinco_Pagos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb91_120_Mas_Cinco_Pagos;
+
+        /// <summary>
+        /// lbSextoRenglonMasCintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSextoRenglonMasCintoPago;
+
+        /// <summary>
+        /// lb121_150_Mas_Cinco_Pagos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb121_150_Mas_Cinco_Pagos;
+
+        /// <summary>
+        /// lbSeptimoRenglonMasCintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSeptimoRenglonMasCintoPago;
+
+        /// <summary>
+        /// lb151_Mas_Mas_Cinco_Pagos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb151_Mas_Mas_Cinco_Pagos;
+
+        /// <summary>
+        /// lbOctavoRenglonMasCintoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbOctavoRenglonMasCintoPago;
+
+        /// <summary>
+        /// lbCantidadAcumulada_Mas_Cinco_Pagos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadAcumulada_Mas_Cinco_Pagos;
+
+        /// <summary>
+        /// DIvBloqueRemodelacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIvBloqueRemodelacion;
     }
 }

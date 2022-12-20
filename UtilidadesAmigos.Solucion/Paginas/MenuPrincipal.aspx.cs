@@ -21,13 +21,15 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         enum OpcionesEstadisticaPolizasSinPagos
         {
-
-            Poliza_Sin_Pago_Inicial = 1,
-            Polzias_11_30 = 2,
-            Polizas_31_60 = 3,
-            Polizas_61_90 = 4,
-            Polizas_91_120 = 5,
-            Polizas_121_mas = 6
+            PolizasSinPagoInicialPrimero=1, 
+            PolizasSinPagoInicialSegundo=2, 
+            PolizasSinPagoInicialTercero=3, 
+            PolizasConUnPrimerPagoAplicado=4,
+            PolizasConUnSegundoPagoAplicado=5,
+            PolizasConUnTercerPagoAplicado=6, 
+            PolizasConUnCuartoPagoAplicado=7, 
+            PolizasConUnQuintoPagoAplicado=8, 
+            PolizasConMasDeCintoPagosAplicados=9
         }
         private int MostrarEstadisticaPolizasSinPolizaCantidad(int Codigoproceso, int Ramo) {
 
@@ -48,12 +50,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
 
-        private void ExportarInformacionEstadisticaPolizasSinPagosRegistros(int CodigoProceso, int Ramo, string Nombre  ) {
+        private void ExportarInformacionEstadisticaPolizasSinPagosRegistros(int CodigoProceso, int Ramo, string Nombre) {
 
             var Exportar = (from n in Objtata.Value.BuscaEstadisticaPolizaSinPagosRegistros(CodigoProceso, Ramo)
                             select new
                             {
                                 Poliza = n.Poliza,
+                                InicioVigencia=n.InicioVigencia,
+                                FinVigencia=n.FinVigencia,
                                 No_Factura = n.Numero,
                                 Codigo_Ramo = n.CodigoRamo,
                                 Ramo = n.Ramo,
@@ -76,6 +80,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                 Cobrado = n.Cobrado,
                                 Moneda = n.Moneda,
                                 Siglas = n.Siglas,
+                                Factura=n.Numero,
+                                BalancePendiente=n.Balance,
                                 Concepto = n.Concepto
                             }).ToList();
             UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(Nombre, Exportar);
@@ -153,6 +159,49 @@ namespace UtilidadesAmigos.Solucion.Paginas
             Reporte.Dispose();
         }
 
+        private void ActualizarInformacionEstadistica() {
+
+            int PolizasSinInicialPrimero = 0, PolizasSinInicialSegundo = 0, PolizasSinInicialTercero = 0, PrimerPago = 0, SegundoPago = 0, TercerPago = 0, CuartoPago = 0, QuintoPago = 0, MasDeCincoPago = 0;
+
+            PolizasSinInicialPrimero = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasSinPagoInicialPrimero, 106);
+            PolizasSinInicialSegundo = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasSinPagoInicialSegundo, 106);
+            PolizasSinInicialTercero = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasSinPagoInicialTercero, 106);
+            PrimerPago = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnPrimerPagoAplicado, 106);
+            SegundoPago = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnSegundoPagoAplicado, 106);
+            TercerPago = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnTercerPagoAplicado, 106);
+            CuartoPago = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnCuartoPagoAplicado, 106);
+            QuintoPago = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnQuintoPagoAplicado, 106);
+            MasDeCincoPago = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConMasDeCintoPagosAplicados, 106);
+
+
+            btnSinInicialPrimero.Text = PolizasSinInicialPrimero.ToString("N0");
+            btnSinInicialSegundo.Text = PolizasSinInicialSegundo.ToString("N0");
+            btnSinInicialTercero.Text = PolizasSinInicialTercero.ToString("N0");
+            btnPrimerPAgoAplicado.Text = PrimerPago.ToString("N0");
+            btnSegundoPagoAplicado.Text = SegundoPago.ToString("N0");
+            btnTercerPagoAplicado.Text = TercerPago.ToString("N0");
+            btnCuartoPago.Text = CuartoPago.ToString("N0");
+            btnQuintoPago.Text = QuintoPago.ToString("N0");
+            btnMasDeCincoPagos.Text = MasDeCincoPago.ToString("N0");
+        }
+
+
+        #region INFORMACION DE ANTIGUEDAD
+        private void AntigudadPrimerPago() {
+
+            int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0;
+            decimal CantidadAcumulada = 0;
+
+            lb0_30_PrimerPago.Text = E_0_30.ToString("N0");
+            lb31_60_PrimerPago.Text = E_31_60.ToString("N0");
+            lb61_90_PrimerPago.Text = E_61_90.ToString("N0");
+            lb91_120_PrimerPago.Text = E_91_120.ToString("N0");
+            lb121_150_PrimerPago.Text = E_121_150.ToString("N0");
+            lbMas_150_Dias_PrimerPago.Text = E_151_MAS.ToString("N0");
+            lbCantidadAcumuladaPrimerPago.Text = CantidadAcumulada.ToString("N2");
+        }
+        #endregion
+
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -167,15 +216,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 lbUsuarioConectado.Text = Nombre.SacarNombreUsuarioConectado();
                 lbPantalla.Text = "Menu Principal";
 
-                btnSinPagoInicial.Enabled = false;
-                btnPrimerPagoSinCobros.Enabled = false;
-                btnSegundoPagoSinCobros.Enabled = false;
-                btnTercerPagoSinCobros.Enabled = false;
-                btnCuartoPagoSinCobros.Enabled = false;
-                btnMasDeCientoVeinteDiasSinCobros.Enabled = false;
 
                 int IdPerfil = 0;
                 DivBloqueEstadistica.Visible = false;
+                DIVBloqueImagen.Visible = true;
+                DIvBloqueRemodelacion.Visible = false;
 
                 var SacarPerfiles = Objtata.Value.BuscaUsuarios((decimal)Session["IdUsuario"]);
                 foreach (var n in SacarPerfiles) {
@@ -187,149 +232,86 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                     case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.ADMINISTRADOR:
                         DivBloqueEstadistica.Visible = true;
+                        DIVBloqueImagen.Visible = false;
+                        DIvBloqueRemodelacion.Visible = false;
+
+                        ActualizarInformacionEstadistica();
                         break;
 
                     case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.COBROS:
                         DivBloqueEstadistica.Visible = true;
+                        DIVBloqueImagen.Visible = false;
+                        DIvBloqueRemodelacion.Visible = false;
+
+                        ActualizarInformacionEstadistica();
                         break;
 
                     case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.Cobros_Especial:
                         DivBloqueEstadistica.Visible = true;
+                        DIVBloqueImagen.Visible = false;
+                        DIvBloqueRemodelacion.Visible = false;
+
+                        ActualizarInformacionEstadistica();
                         break;
 
                     case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.NEGOCIOS:
                         DivBloqueEstadistica.Visible = true;
+                        DIVBloqueImagen.Visible = false;
+                        DIvBloqueRemodelacion.Visible = false;
+
+                        ActualizarInformacionEstadistica();
                         break;
-
-
                 }
+                DivBloqueCheck.Visible = false;
+                cbSinInicial.Checked = true;
+                cbPrimerPago.Checked = true;
+                cbSegundoPago.Checked = true;
+                cbTercerpago.Checked = true;
+                cbCuartoPago.Checked = true;
+                cbQuintoPago.Checked = true;
+                ActualizarInformacionEstadistica();
             }
           
         }
 
         protected void LinkSinPagoInicial_Click(object sender, EventArgs e)
         {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Poliza_Sin_Pago_Inicial, 106,"Polizas SIn Pago Inicial");
+        //    ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Poliza_Sin_Pago_Inicial, 106,"Polizas SIn Pago Inicial");
         }
 
         protected void btnSinPagoInicial_Click(object sender, EventArgs e)
         {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Poliza_Sin_Pago_Inicial, 106,"Polizas Sin Pago Inicial");
+            //ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Poliza_Sin_Pago_Inicial, 106,"Polizas Sin Pago Inicial");
         }
 
         protected void btnPrimerPagoSinCobros_Click(object sender, EventArgs e)
         {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polzias_11_30,106,"Polizas Sin Pagos de 11 a 30 Dias");
+            //ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polzias_11_30,106,"Polizas Sin Pagos de 11 a 30 Dias");
         }
 
         protected void btnSegundoPagoSinCobros_Click(object sender, EventArgs e)
         {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polizas_31_60,106, "Polizas Sin Pagos de 31 a 60 Dias");
+            //ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polizas_31_60,106, "Polizas Sin Pagos de 31 a 60 Dias");
         }
 
         protected void btnTercerPagoSinCobros_Click(object sender, EventArgs e)
         {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polizas_61_90,106, "Polizas Sin Pagos de 61 a 90 Dias");
+            //ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polizas_61_90,106, "Polizas Sin Pagos de 61 a 90 Dias");
         }
 
         protected void btnCuartoPagoSinCobros_Click(object sender, EventArgs e)
         {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polizas_91_120, 106, "Polizas Sin Pagos de 91 a 120 Dias");
+            //ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polizas_91_120, 106, "Polizas Sin Pagos de 91 a 120 Dias");
         }
 
         protected void btnMasDeCientoVeinteDiasSinCobros_Click(object sender, EventArgs e)
         {
-            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polizas_121_mas, 106, "Polizas Sin Pagos mas de 120 Dias");
+          //  ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.Polizas_121_mas, 106, "Polizas Sin Pagos mas de 120 Dias");
         }
 
         protected void btnActualizar_Click(object sender, ImageClickEventArgs e)
         {
-            if (cbSinInicial.Checked == false &&
-                cbPrimerPago.Checked == false &&
-                cbSegundoPago.Checked == false &&
-                cbTercerpago.Checked == false &&
-                cbCuartoPago.Checked == false &&
-                cbQuintoPago.Checked == false)
-            {
-                ClientScript.RegisterStartupScript(GetType(), "Mensaje()", "Mensaje();", true);
-            }
-            else {
-
-                if (cbSinInicial.Checked == true)
-                {
-                    btnSinPagoInicial.Enabled = true;
-                    btnSinPagoInicial.Text = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.Poliza_Sin_Pago_Inicial, 106).ToString("N0");
-                }
-                else
-                {
-                    btnSinPagoInicial.Text = "0";
-                    btnSinPagoInicial.Enabled = false;
-                }
-
-
-                if (cbPrimerPago.Checked == true)
-                {
-                    btnPrimerPagoSinCobros.Enabled = true;
-                    btnPrimerPagoSinCobros.Text = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.Polzias_11_30, 106).ToString("N0");
-                }
-                else
-                {
-                    btnPrimerPagoSinCobros.Text = "0";
-                    btnPrimerPagoSinCobros.Enabled = false;
-                }
-
-
-                if (cbSegundoPago.Checked == true)
-                {
-                    btnSegundoPagoSinCobros.Enabled = true;
-                    btnSegundoPagoSinCobros.Text = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.Polizas_31_60, 106).ToString("N0");
-                }
-                else
-                {
-                    btnSegundoPagoSinCobros.Text = "0";
-                    btnSegundoPagoSinCobros.Enabled = false;
-                }
-
-
-
-                if (cbTercerpago.Checked == true)
-                {
-                    btnTercerPagoSinCobros.Enabled = true;
-                    btnTercerPagoSinCobros.Text = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.Polizas_61_90, 106).ToString("N0");
-                }
-                else
-                {
-                    btnTercerPagoSinCobros.Text = "0";
-                    btnTercerPagoSinCobros.Enabled = false;
-                }
-
-
-
-                if (cbCuartoPago.Checked == true)
-                {
-                    btnCuartoPagoSinCobros.Enabled = true;
-                    btnCuartoPagoSinCobros.Text = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.Polizas_91_120, 106).ToString("N0");
-                }
-                else
-                {
-                    btnCuartoPagoSinCobros.Text = "0";
-                    btnCuartoPagoSinCobros.Enabled = false;
-                }
-
-
-
-                if (cbQuintoPago.Checked == true)
-                {
-                    btnMasDeCientoVeinteDiasSinCobros.Enabled = true;
-                    btnMasDeCientoVeinteDiasSinCobros.Text = MostrarEstadisticaPolizasSinPolizaCantidad((int)OpcionesEstadisticaPolizasSinPagos.Polizas_121_mas, 106).ToString("N0");
-                }
-                else
-                {
-                    btnMasDeCientoVeinteDiasSinCobros.Text = "0";
-                    btnMasDeCientoVeinteDiasSinCobros.Enabled = false;
-                }
-            }
-
+            ActualizarInformacionEstadistica();
         }
 
         protected void cbTodos_CheckedChanged(object sender, EventArgs e)
@@ -491,48 +473,95 @@ namespace UtilidadesAmigos.Solucion.Paginas
             else
             {
 
-                decimal IdUsuario = (decimal)Session["IdUsuario"];
-                int CodigoEstatus = 0;
+                //decimal IdUsuario = (decimal)Session["IdUsuario"];
+                //int CodigoEstatus = 0;
 
-                EliminarInformacion(IdUsuario, "DELETE");
+                //EliminarInformacion(IdUsuario, "DELETE");
 
-                if (cbSinInicial.Checked == true)
-                {
-                    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Poliza_Sin_Pago_Inicial;
-                    ProcesarInformacionEstadisticaPolizasSinPagos(CodigoEstatus, 106, IdUsuario, CodigoEstatus, "INSERT");
-                }
+                //if (cbSinInicial.Checked == true)
+                //{
+                //    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Poliza_Sin_Pago_Inicial;
+                //    ProcesarInformacionEstadisticaPolizasSinPagos(CodigoEstatus, 106, IdUsuario, CodigoEstatus, "INSERT");
+                //}
 
-                if (cbPrimerPago.Checked == true)
-                {
-                    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polzias_11_30;
-                    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polzias_11_30, 106, IdUsuario, CodigoEstatus, "INSERT");
-                }
+                //if (cbPrimerPago.Checked == true)
+                //{
+                //    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polzias_11_30;
+                //    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polzias_11_30, 106, IdUsuario, CodigoEstatus, "INSERT");
+                //}
 
-                if (cbSegundoPago.Checked == true)
-                {
-                    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_31_60;
-                    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_31_60, 106, IdUsuario, CodigoEstatus, "INSERT");
-                }
+                //if (cbSegundoPago.Checked == true)
+                //{
+                //    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_31_60;
+                //    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_31_60, 106, IdUsuario, CodigoEstatus, "INSERT");
+                //}
 
-                if (cbTercerpago.Checked == true)
-                {
-                    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_61_90;
-                    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_61_90, 106, IdUsuario, CodigoEstatus, "INSERT");
-                }
+                //if (cbTercerpago.Checked == true)
+                //{
+                //    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_61_90;
+                //    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_61_90, 106, IdUsuario, CodigoEstatus, "INSERT");
+                //}
 
-                if (cbCuartoPago.Checked == true)
-                {
-                    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_91_120;
-                    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_91_120, 106, IdUsuario, CodigoEstatus, "INSERT");
-                }
+                //if (cbCuartoPago.Checked == true)
+                //{
+                //    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_91_120;
+                //    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_91_120, 106, IdUsuario, CodigoEstatus, "INSERT");
+                //}
 
-                if (cbQuintoPago.Checked == true)
-                {
-                    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_121_mas;
-                    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_121_mas, 106, IdUsuario, CodigoEstatus, "INSERT");
-                }
-                GenerarReporteEstadisticaPolizasSinPagos();
+                //if (cbQuintoPago.Checked == true)
+                //{
+                //    CodigoEstatus = (int)OpcionesEstadisticaPolizasSinPagos.Polizas_121_mas;
+                //    ProcesarInformacionEstadisticaPolizasSinPagos((int)OpcionesEstadisticaPolizasSinPagos.Polizas_121_mas, 106, IdUsuario, CodigoEstatus, "INSERT");
+                //}
+                //GenerarReporteEstadisticaPolizasSinPagos();
             }
+        }
+
+        protected void btnTercerPagoAplicado_Click(object sender, EventArgs e)
+        {
+            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnTercerPagoAplicado, 106, "Polizas Con un Tercer Pago Aplicado");
+        }
+
+        protected void btnSegundoPagoAplicado_Click(object sender, EventArgs e)
+        {
+            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnSegundoPagoAplicado, 106, "Polizas Con un Segundo Pago Aplicado");
+        }
+
+        protected void btnPrimerPAgoAplicado_Click(object sender, EventArgs e)
+        {
+            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnPrimerPagoAplicado, 106, "Polizas Con un Primer Pago Aplicado");
+
+            
+        }
+
+        protected void btnSinInicialTercero_Click(object sender, EventArgs e)
+        {
+            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasSinPagoInicialTercero, 106, "Polizas Sin Pagos de Mas de 30 Dias");
+        }
+
+        protected void btnSinInicialSegundo_Click(object sender, EventArgs e)
+        {
+            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasSinPagoInicialSegundo, 106, "Polizas Sin Pagos de 11 a 30 Dias");
+        }
+
+        protected void btnSinInicialPrimero_Click(object sender, EventArgs e)
+        {
+            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasSinPagoInicialPrimero, 106, "Polizas Sin Pagos de 0 a 11 Dias");
+        }
+
+        protected void btnCuartoPago_Click(object sender, EventArgs e)
+        {
+            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnCuartoPagoAplicado, 106, "Polizas Con un Cuarto Pago Aplicado");
+        }
+
+        protected void btnQuintoPago_Click(object sender, EventArgs e)
+        {
+            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnQuintoPagoAplicado, 106, "Polizas Con un Quinto Pago Aplicado");
+        }
+
+        protected void btnMasDeCincoPagos_Click(object sender, EventArgs e)
+        {
+            ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasConMasDeCintoPagosAplicados, 106, "Polizas Con Mas de Cinco Pagos Aplicados");
         }
     }
 }

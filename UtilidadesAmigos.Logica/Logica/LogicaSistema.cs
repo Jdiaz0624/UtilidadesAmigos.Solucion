@@ -3934,7 +3934,10 @@ namespace UtilidadesAmigos.Logica.Logica
                            select new UtilidadesAmigos.Logica.Entidades.EEEstadisticaPolizaRegistros
                            {
                                Poliza=n.Poliza,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
                                Numero=n.Numero,
+                               Balance=n.Balance,
                                Tipo=n.Tipo,
                                CodigoRamo=n.CodigoRamo,
                                Ramo=n.Ramo,
@@ -4047,6 +4050,30 @@ namespace UtilidadesAmigos.Logica.Logica
                             }).FirstOrDefault();
             }
             return Procesar;
+        }
+
+        /// <summary>
+        /// Este metodo muestra los datos de la estadistica de cobros por antiguedad
+        /// </summary>
+        /// <param name="CodigoProceso"></param>
+        /// <param name="Ramo"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.EEstadisticaCobrosPolizasAntiguedad> BuscaEstadisticaCobrosAntiguedad(int? CodigoProceso = null, int? Ramo = null) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDAD(CodigoProceso, Ramo)
+                           select new UtilidadesAmigos.Logica.Entidades.EEstadisticaCobrosPolizasAntiguedad
+                           {
+                               E_0_30=n.E_0_30,
+                               E_31_60=n.E_31_60,
+                               E_61_90=n.E_61_90,
+                               E_91_120=n.E_91_120,
+                               E_121_150=n.E_121_150,
+                               E_151_MAS=n.E_151_MAS,
+                               CantidadAcumulada=n.CantidadAcumulada
+                           }).ToList();
+            return Listado;
         }
         #endregion
     }

@@ -276,6 +276,7 @@
     <Compile Include="Entidades\EDetalleInformacionEncabezado.cs" />
     <Compile Include="Entidades\EDetalleProduccionDiaria.cs" />
     <Compile Include="Entidades\EEEstadisticaPolizaRegistros.cs" />
+    <Compile Include="Entidades\EEstadisticaCobrosPolizasAntiguedad.cs" />
     <Compile Include="Entidades\EEstadisticaRenovacion.cs" />
     <Compile Include="Entidades\EEstatusTarjeta.cs" />
     <Compile Include="Entidades\EExportarComisiones.cs" />
