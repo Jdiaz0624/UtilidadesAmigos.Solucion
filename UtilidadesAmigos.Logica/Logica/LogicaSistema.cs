@@ -3908,11 +3908,11 @@ namespace UtilidadesAmigos.Logica.Logica
         /// <param name="CodigoProceso"></param>
         /// <param name="Ramo"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.EBuscaEstadisticaPagosPolizaCantidad> BuscaEstadisticaPolizasSinPagosCantidad(int? CodigoProceso = null, int? Ramo = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.EBuscaEstadisticaPagosPolizaCantidad> BuscaEstadisticaPolizasSinPagosCantidad(int? CodigoProceso = null, int? Ramo = null, int? Supervisor = null, int? Intermediario = null) {
 
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDAD(CodigoProceso, Ramo)
+            var Listado = (from n in Objdata.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDAD(CodigoProceso, Ramo,Supervisor,Intermediario)
                            select new UtilidadesAmigos.Logica.Entidades.EBuscaEstadisticaPagosPolizaCantidad
                            {
                                Cantidad=n.Cantidad
@@ -3926,11 +3926,11 @@ namespace UtilidadesAmigos.Logica.Logica
         /// <param name="CodigoProceso"></param>
         /// <param name="Ramo"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.EEEstadisticaPolizaRegistros> BuscaEstadisticaPolizaSinPagosRegistros(int? CodigoProceso = null, int? Ramo = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.EEEstadisticaPolizaRegistros> BuscaEstadisticaPolizaSinPagosRegistros(int? CodigoProceso = null, int? Ramo = null, int? Supervisor = null, int? Intermediario = null) {
 
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_REGISTROS(CodigoProceso, Ramo)
+            var Listado = (from n in Objdata.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_REGISTROS(CodigoProceso, Ramo,Supervisor,Intermediario)
                            select new UtilidadesAmigos.Logica.Entidades.EEEstadisticaPolizaRegistros
                            {
                                Poliza=n.Poliza,
@@ -4058,11 +4058,11 @@ namespace UtilidadesAmigos.Logica.Logica
         /// <param name="CodigoProceso"></param>
         /// <param name="Ramo"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.EEstadisticaCobrosPolizasAntiguedad> BuscaEstadisticaCobrosAntiguedad(int? CodigoProceso = null, int? Ramo = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.EEstadisticaCobrosPolizasAntiguedad> BuscaEstadisticaCobrosAntiguedad(int? CodigoProceso = null, int? Ramo = null,int? Supervisor = null,int? Intermediario = null) {
 
             Objdata.CommandTimeout = 999999999;
 
-            var Listado = (from n in Objdata.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDAD(CodigoProceso, Ramo)
+            var Listado = (from n in Objdata.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDAD(CodigoProceso, Ramo,Supervisor,Intermediario)
                            select new UtilidadesAmigos.Logica.Entidades.EEstadisticaCobrosPolizasAntiguedad
                            {
                                E_0_30=n.E_0_30,
@@ -4073,6 +4073,26 @@ namespace UtilidadesAmigos.Logica.Logica
                                E_151_MAS=n.E_151_MAS,
                                E_DIAS_NEGATIVOS=n.E_DIAS_NEGATIVOS,
                                CantidadAcumulada=n.CantidadAcumulada
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Muestra los supervisores por defecto segun el usuario
+        /// </summary>
+        /// <param name="CodigoUsuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.ESupervisoresPorDefectoPolizasSinPagos> BuscaSupervisoresPorDefectoPolizasSinPagos(decimal? CodigoUsuario = null) {
+
+            Objdata.CommandTimeout = 999999999;
+
+            var Listado = (from n in Objdata.SP_BUSCA_SUPERVISORES_POR_DEFECTO_POLIZAS_SIN_PAGOS(CodigoUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.ESupervisoresPorDefectoPolizasSinPagos
+                           {
+                               CodigoUsuario=n.CodigoUsuario,
+                               Usuario=n.Usuario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor
                            }).ToList();
             return Listado;
         }

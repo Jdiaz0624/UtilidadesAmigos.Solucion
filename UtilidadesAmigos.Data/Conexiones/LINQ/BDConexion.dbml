@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString7" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_LISTA_CARGAR_RAMOS" Method="SP_LISTA_CARGAR_RAMOS">
     <Parameter Name="IdRamo" Parameter="idRamo" Type="System.Int32" DbType="Int" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.String" DbType="VarChar(100)" />
@@ -3197,13 +3197,6 @@
       <Column Name="UsuarioComento" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDAD" Method="SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDAD">
-    <Parameter Name="CodigoProceso" Parameter="codigoProceso" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDADResult">
-      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_PROCESAR_INFORMACION_REPORTE_ESTADISTICA_POLIZAS_SIN_PAGOS" Method="SP_PROCESAR_INFORMACION_REPORTE_ESTADISTICA_POLIZAS_SIN_PAGOS">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
@@ -3269,9 +3262,36 @@
       <Column Name="CodigoEstatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDAD" Method="SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDAD">
+    <Parameter Name="CodigoProceso" Parameter="codigoProceso" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDADResult">
+      <Column Name="E_0_30" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="E_31_60" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="E_61_90" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="E_91_120" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="E_121_150" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="E_151_MAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="E_DIAS_NEGATIVOS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadAcumulada" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDAD" Method="SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDAD">
+    <Parameter Name="CodigoProceso" Parameter="codigoProceso" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDADResult">
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="Utililades.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_REGISTROS" Method="SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_REGISTROS">
     <Parameter Name="CodigoProceso" Parameter="codigoProceso" Type="System.Int32" DbType="Int" />
     <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
     <ElementType Name="SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_REGISTROSResult">
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
@@ -3306,18 +3326,13 @@
       <Column Name="Concepto" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDAD" Method="SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDAD">
-    <Parameter Name="CodigoProceso" Parameter="codigoProceso" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDADResult">
-      <Column Name="E_0_30" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="E_31_60" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="E_61_90" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="E_91_120" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="E_121_150" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="E_151_MAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="E_DIAS_NEGATIVOS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CantidadAcumulada" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+  <Function Name="Utililades.SP_BUSCA_SUPERVISORES_POR_DEFECTO_POLIZAS_SIN_PAGOS" Method="SP_BUSCA_SUPERVISORES_POR_DEFECTO_POLIZAS_SIN_PAGOS">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCA_SUPERVISORES_POR_DEFECTO_POLIZAS_SIN_PAGOSResult">
+      <Column Name="CodigoUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

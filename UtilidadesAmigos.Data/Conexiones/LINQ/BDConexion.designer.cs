@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString7, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1200,13 +1200,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_MOSTRAR_LISTADO_RENOVACIONResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDAD")]
-		public ISingleResult<SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDADResult> SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDAD([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoProceso", DbType="Int")] System.Nullable<int> codigoProceso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoProceso, ramo);
-			return ((ISingleResult<SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDADResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_REPORTE_ESTADISTICA_POLIZAS_SIN_PAGOS")]
 		public ISingleResult<SP_PROCESAR_INFORMACION_REPORTE_ESTADISTICA_POLIZAS_SIN_PAGOSResult> SP_PROCESAR_INFORMACION_REPORTE_ESTADISTICA_POLIZAS_SIN_PAGOS(
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, 
@@ -1245,18 +1238,32 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_REPORTE_ESTADISTICA_POLIZAS_SIN_PAGOSResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_REGISTROS")]
-		public ISingleResult<SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_REGISTROSResult> SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_REGISTROS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoProceso", DbType="Int")] System.Nullable<int> codigoProceso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDAD")]
+		public ISingleResult<SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDADResult> SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDAD([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoProceso", DbType="Int")] System.Nullable<int> codigoProceso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Supervisor", DbType="Int")] System.Nullable<int> supervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Intermediario", DbType="Int")] System.Nullable<int> intermediario)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoProceso, ramo);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoProceso, ramo, supervisor, intermediario);
+			return ((ISingleResult<SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDADResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDAD")]
+		public ISingleResult<SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDADResult> SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDAD([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoProceso", DbType="Int")] System.Nullable<int> codigoProceso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Supervisor", DbType="Int")] System.Nullable<int> supervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Intermediario", DbType="Int")] System.Nullable<int> intermediario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoProceso, ramo, supervisor, intermediario);
+			return ((ISingleResult<SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDADResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_REGISTROS")]
+		public ISingleResult<SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_REGISTROSResult> SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_REGISTROS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoProceso", DbType="Int")] System.Nullable<int> codigoProceso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Supervisor", DbType="Int")] System.Nullable<int> supervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Intermediario", DbType="Int")] System.Nullable<int> intermediario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoProceso, ramo, supervisor, intermediario);
 			return ((ISingleResult<SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_REGISTROSResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDAD")]
-		public ISingleResult<SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDADResult> SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDAD([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoProceso", DbType="Int")] System.Nullable<int> codigoProceso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_SUPERVISORES_POR_DEFECTO_POLIZAS_SIN_PAGOS")]
+		public ISingleResult<SP_BUSCA_SUPERVISORES_POR_DEFECTO_POLIZAS_SIN_PAGOSResult> SP_BUSCA_SUPERVISORES_POR_DEFECTO_POLIZAS_SIN_PAGOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoProceso, ramo);
-			return ((ISingleResult<SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDADResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
+			return ((ISingleResult<SP_BUSCA_SUPERVISORES_POR_DEFECTO_POLIZAS_SIN_PAGOSResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -37876,32 +37883,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDADResult
-	{
-		
-		private System.Nullable<int> _Cantidad;
-		
-		public SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDADResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
-		public System.Nullable<int> Cantidad
-		{
-			get
-			{
-				return this._Cantidad;
-			}
-			set
-			{
-				if ((this._Cantidad != value))
-				{
-					this._Cantidad = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_PROCESAR_INFORMACION_REPORTE_ESTADISTICA_POLIZAS_SIN_PAGOSResult
 	{
 		
@@ -38445,6 +38426,184 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._CodigoEstatus != value))
 				{
 					this._CodigoEstatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDADResult
+	{
+		
+		private System.Nullable<int> _E_0_30;
+		
+		private System.Nullable<int> _E_31_60;
+		
+		private System.Nullable<int> _E_61_90;
+		
+		private System.Nullable<int> _E_91_120;
+		
+		private System.Nullable<int> _E_121_150;
+		
+		private System.Nullable<int> _E_151_MAS;
+		
+		private System.Nullable<int> _E_DIAS_NEGATIVOS;
+		
+		private System.Nullable<decimal> _CantidadAcumulada;
+		
+		public SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDADResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_0_30", DbType="Int")]
+		public System.Nullable<int> E_0_30
+		{
+			get
+			{
+				return this._E_0_30;
+			}
+			set
+			{
+				if ((this._E_0_30 != value))
+				{
+					this._E_0_30 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_31_60", DbType="Int")]
+		public System.Nullable<int> E_31_60
+		{
+			get
+			{
+				return this._E_31_60;
+			}
+			set
+			{
+				if ((this._E_31_60 != value))
+				{
+					this._E_31_60 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_61_90", DbType="Int")]
+		public System.Nullable<int> E_61_90
+		{
+			get
+			{
+				return this._E_61_90;
+			}
+			set
+			{
+				if ((this._E_61_90 != value))
+				{
+					this._E_61_90 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_91_120", DbType="Int")]
+		public System.Nullable<int> E_91_120
+		{
+			get
+			{
+				return this._E_91_120;
+			}
+			set
+			{
+				if ((this._E_91_120 != value))
+				{
+					this._E_91_120 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_121_150", DbType="Int")]
+		public System.Nullable<int> E_121_150
+		{
+			get
+			{
+				return this._E_121_150;
+			}
+			set
+			{
+				if ((this._E_121_150 != value))
+				{
+					this._E_121_150 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_151_MAS", DbType="Int")]
+		public System.Nullable<int> E_151_MAS
+		{
+			get
+			{
+				return this._E_151_MAS;
+			}
+			set
+			{
+				if ((this._E_151_MAS != value))
+				{
+					this._E_151_MAS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_DIAS_NEGATIVOS", DbType="Int")]
+		public System.Nullable<int> E_DIAS_NEGATIVOS
+		{
+			get
+			{
+				return this._E_DIAS_NEGATIVOS;
+			}
+			set
+			{
+				if ((this._E_DIAS_NEGATIVOS != value))
+				{
+					this._E_DIAS_NEGATIVOS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadAcumulada", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> CantidadAcumulada
+		{
+			get
+			{
+				return this._CantidadAcumulada;
+			}
+			set
+			{
+				if ((this._CantidadAcumulada != value))
+				{
+					this._CantidadAcumulada = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDADResult
+	{
+		
+		private System.Nullable<int> _Cantidad;
+		
+		public SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_CANTIDADResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
+		public System.Nullable<int> Cantidad
+		{
+			get
+			{
+				return this._Cantidad;
+			}
+			set
+			{
+				if ((this._Cantidad != value))
+				{
+					this._Cantidad = value;
 				}
 			}
 		}
@@ -39016,153 +39175,81 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDADResult
+	public partial class SP_BUSCA_SUPERVISORES_POR_DEFECTO_POLIZAS_SIN_PAGOSResult
 	{
 		
-		private System.Nullable<int> _E_0_30;
+		private System.Nullable<decimal> _CodigoUsuario;
 		
-		private System.Nullable<int> _E_31_60;
+		private string _Usuario;
 		
-		private System.Nullable<int> _E_61_90;
+		private System.Nullable<int> _CodigoSupervisor;
 		
-		private System.Nullable<int> _E_91_120;
+		private string _Supervisor;
 		
-		private System.Nullable<int> _E_121_150;
-		
-		private System.Nullable<int> _E_151_MAS;
-		
-		private System.Nullable<int> _E_DIAS_NEGATIVOS;
-		
-		private System.Nullable<decimal> _CantidadAcumulada;
-		
-		public SP_BUSCA_ESTADISTICA_COBROS_POLIZAS_ANTIGUEDADResult()
+		public SP_BUSCA_SUPERVISORES_POR_DEFECTO_POLIZAS_SIN_PAGOSResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_0_30", DbType="Int")]
-		public System.Nullable<int> E_0_30
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> CodigoUsuario
 		{
 			get
 			{
-				return this._E_0_30;
+				return this._CodigoUsuario;
 			}
 			set
 			{
-				if ((this._E_0_30 != value))
+				if ((this._CodigoUsuario != value))
 				{
-					this._E_0_30 = value;
+					this._CodigoUsuario = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_31_60", DbType="Int")]
-		public System.Nullable<int> E_31_60
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(150)")]
+		public string Usuario
 		{
 			get
 			{
-				return this._E_31_60;
+				return this._Usuario;
 			}
 			set
 			{
-				if ((this._E_31_60 != value))
+				if ((this._Usuario != value))
 				{
-					this._E_31_60 = value;
+					this._Usuario = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_61_90", DbType="Int")]
-		public System.Nullable<int> E_61_90
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoSupervisor", DbType="Int")]
+		public System.Nullable<int> CodigoSupervisor
 		{
 			get
 			{
-				return this._E_61_90;
+				return this._CodigoSupervisor;
 			}
 			set
 			{
-				if ((this._E_61_90 != value))
+				if ((this._CodigoSupervisor != value))
 				{
-					this._E_61_90 = value;
+					this._CodigoSupervisor = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_91_120", DbType="Int")]
-		public System.Nullable<int> E_91_120
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Supervisor", DbType="VarChar(200)")]
+		public string Supervisor
 		{
 			get
 			{
-				return this._E_91_120;
+				return this._Supervisor;
 			}
 			set
 			{
-				if ((this._E_91_120 != value))
+				if ((this._Supervisor != value))
 				{
-					this._E_91_120 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_121_150", DbType="Int")]
-		public System.Nullable<int> E_121_150
-		{
-			get
-			{
-				return this._E_121_150;
-			}
-			set
-			{
-				if ((this._E_121_150 != value))
-				{
-					this._E_121_150 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_151_MAS", DbType="Int")]
-		public System.Nullable<int> E_151_MAS
-		{
-			get
-			{
-				return this._E_151_MAS;
-			}
-			set
-			{
-				if ((this._E_151_MAS != value))
-				{
-					this._E_151_MAS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_DIAS_NEGATIVOS", DbType="Int")]
-		public System.Nullable<int> E_DIAS_NEGATIVOS
-		{
-			get
-			{
-				return this._E_DIAS_NEGATIVOS;
-			}
-			set
-			{
-				if ((this._E_DIAS_NEGATIVOS != value))
-				{
-					this._E_DIAS_NEGATIVOS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadAcumulada", DbType="Decimal(20,2)")]
-		public System.Nullable<decimal> CantidadAcumulada
-		{
-			get
-			{
-				return this._CantidadAcumulada;
-			}
-			set
-			{
-				if ((this._CantidadAcumulada != value))
-				{
-					this._CantidadAcumulada = value;
+					this._Supervisor = value;
 				}
 			}
 		}

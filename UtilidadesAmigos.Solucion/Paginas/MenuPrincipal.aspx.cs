@@ -34,8 +34,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private int MostrarEstadisticaPolizasSinPolizaCantidad(int Codigoproceso, int Ramo) {
 
             int Cantidad = 0;
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
 
-            var SacarInformacion = Objtata.Value.BuscaEstadisticaPolizasSinPagosCantidad(Codigoproceso, Ramo);
+            var SacarInformacion = Objtata.Value.BuscaEstadisticaPolizasSinPagosCantidad(Codigoproceso, Ramo, _Supervisor, _Intermediario);
             if (SacarInformacion.Count() < 1) {
 
                 Cantidad = 0;
@@ -198,8 +200,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
             decimal CantidadAcumulada = 0;
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
 
-            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnPrimerPagoAplicado, 106);
+            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnPrimerPagoAplicado, 106, _Supervisor, _Intermediario);
             foreach (var n in SacarInformacion) {
                 E_0_30 = (int)n.E_0_30;
                 E_31_60 = (int)n.E_31_60;
@@ -225,8 +229,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
             decimal CantidadAcumulada = 0;
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
 
-            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnSegundoPagoAplicado, 106);
+            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnSegundoPagoAplicado, 106, _Supervisor, _Intermediario);
             foreach (var n in SacarInformacion)
             {
                 E_0_30 = (int)n.E_0_30;
@@ -251,8 +257,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void AntiguedadTercerPago() {
             int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
             decimal CantidadAcumulada = 0;
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
 
-            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnTercerPagoAplicado, 106);
+            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnTercerPagoAplicado, 106, _Supervisor, _Intermediario);
             foreach (var n in SacarInformacion)
             {
                 E_0_30 = (int)n.E_0_30;
@@ -277,8 +285,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void AntiguedadCuartoPago() {
             int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
             decimal CantidadAcumulada = 0;
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
 
-            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnCuartoPagoAplicado, 106);
+            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnCuartoPagoAplicado, 106, _Supervisor, _Intermediario);
             foreach (var n in SacarInformacion)
             {
                 E_0_30 = (int)n.E_0_30;
@@ -303,8 +313,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void AntiguedadQuintoPago() {
             int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
             decimal CantidadAcumulada = 0;
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
 
-            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnQuintoPagoAplicado, 106);
+            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConUnQuintoPagoAplicado, 106, _Supervisor, _Intermediario);
             foreach (var n in SacarInformacion)
             {
                 E_0_30 = (int)n.E_0_30;
@@ -329,8 +341,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
         private void AntiguedadMasDeCincoPagos() {
             int E_0_30 = 0, E_31_60 = 0, E_61_90 = 0, E_91_120 = 0, E_121_150 = 0, E_151_MAS = 0, DiasNegativos = 0;
             decimal CantidadAcumulada = 0;
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
 
-            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConMasDeCintoPagosAplicados, 106);
+            var SacarInformacion = Objtata.Value.BuscaEstadisticaCobrosAntiguedad((int)OpcionesEstadisticaPolizasSinPagos.PolizasConMasDeCintoPagosAplicados, 106, _Supervisor, _Intermediario);
             foreach (var n in SacarInformacion)
             {
                 E_0_30 = (int)n.E_0_30;
@@ -387,7 +401,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         DIVBloqueImagen.Visible = false;
                         DIvBloqueRemodelacion.Visible = false;
 
-                        ActualizarInformacionEstadistica();
+                       // ActualizarInformacionEstadistica();
                         break;
 
                     case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.COBROS:
@@ -395,7 +409,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         DIVBloqueImagen.Visible = false;
                         DIvBloqueRemodelacion.Visible = false;
 
-                        ActualizarInformacionEstadistica();
+                        
+
+                       // ActualizarInformacionEstadistica();
                         break;
 
                     case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.Cobros_Especial:
@@ -403,7 +419,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         DIVBloqueImagen.Visible = false;
                         DIvBloqueRemodelacion.Visible = false;
 
-                        ActualizarInformacionEstadistica();
+                        //ActualizarInformacionEstadistica();
                         break;
 
                     case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.PerfilesUsuarios.NEGOCIOS:
@@ -411,7 +427,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         DIVBloqueImagen.Visible = false;
                         DIvBloqueRemodelacion.Visible = false;
 
-                        ActualizarInformacionEstadistica();
+                        
                         break;
                 }
                 DivBloqueCheck.Visible = false;
@@ -421,7 +437,24 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 cbTercerpago.Checked = true;
                 cbCuartoPago.Checked = true;
                 cbQuintoPago.Checked = true;
-                ActualizarInformacionEstadistica();
+                //ActualizarInformacionEstadistica();
+
+
+                decimal IdUsuario = (decimal)Session["IdUsuario"];
+            
+                var ValidarInformmacion = Objtata.Value.BuscaSupervisoresPorDefectoPolizasSinPagos(IdUsuario);
+                if (ValidarInformmacion.Count() < 1) {
+                
+                }
+                else {
+                    foreach (var n in ValidarInformmacion) {
+
+                        txtCodigoSupervisor.Text = n.CodigoSupervisor.ToString();
+                        txtNombreSupervisor.Text = n.Supervisor;
+                    }
+
+                    ActualizarInformacionEstadistica();
+                }
             }
           
         }
@@ -715,6 +748,18 @@ namespace UtilidadesAmigos.Solucion.Paginas
         protected void btnMasDeCincoPagos_Click(object sender, EventArgs e)
         {
             ExportarInformacionEstadisticaPolizasSinPagosRegistros((int)OpcionesEstadisticaPolizasSinPagos.PolizasConMasDeCintoPagosAplicados, 106, "Polizas Con Mas de Cinco Pagos Aplicados");
+        }
+
+        protected void txtCodigoSupervisor_TextChanged(object sender, EventArgs e)
+        {
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor NombreSupervisor = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoSupervisor.Text);
+            txtNombreSupervisor.Text = NombreSupervisor.SacarNombreSupervisor();
+        }
+
+        protected void txtCodigoIntermediario_TextChanged(object sender, EventArgs e)
+        {
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor NombreIntermediario = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtCodigoIntermediario.Text);
+            txtNombreIntermediario.Text = NombreIntermediario.SacarNombreIntermediario();
         }
     }
 }

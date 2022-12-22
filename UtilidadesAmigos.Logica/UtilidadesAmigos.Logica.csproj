@@ -344,6 +344,7 @@
     <Compile Include="Entidades\ESacarreclamaciones.cs" />
     <Compile Include="Entidades\ESacarSubramoDetalle.cs" />
     <Compile Include="Entidades\ESugerencias.cs" />
+    <Compile Include="Entidades\ESupervisoresPorDefectoPolizasSinPagos.cs" />
     <Compile Include="Entidades\ETipoReclamacion.cs" />
     <Compile Include="Entidades\ETransaccionesEfectivo.cs" />
     <Compile Include="Entidades\EUsuarios.cs" />
