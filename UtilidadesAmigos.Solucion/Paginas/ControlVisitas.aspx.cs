@@ -358,6 +358,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Reporte.ExportToHttpResponse(ExportFormatType.Text, Response, true, NombreArchivo);
             }
 
+            Reporte.Close();
+            Reporte.Dispose();
         }
         #endregion
         #region GRAFICOS

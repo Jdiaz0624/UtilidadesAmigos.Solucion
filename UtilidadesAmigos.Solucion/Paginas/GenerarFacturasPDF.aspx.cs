@@ -61,6 +61,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Factura.SetParameterValue("@IdComprobante", IdComprobante);
                 Factura.SetDatabaseLogon(UsuaruoBD, ClaveBD);
                 Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+                Factura.Close();
+                Factura.Dispose();
 
                 //  Factura.PrintToPrinter(1, false, 0, 1);
                 //  crystalReportViewer1.ReportSource = Factura;
