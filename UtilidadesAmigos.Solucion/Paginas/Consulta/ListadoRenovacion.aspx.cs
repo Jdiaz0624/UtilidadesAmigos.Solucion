@@ -1184,6 +1184,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             else if (rbReporteWordMachado.Checked == true) {
                 Reporte.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreReporte);
             }
+
+            Reporte.Close();
+            Reporte.Dispose();
         }
 
         #endregion
@@ -1515,6 +1518,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 if (rbFormatoPDFGestion.Checked == true) { ReporteGestion.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte); }
                 else if (rbFormatoExcelGestion.Checked == true) { ReporteGestion.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte); }
+
+                ReporteGestion.Close();
+                ReporteGestion.Dispose();
             }
 
         }
@@ -2575,6 +2581,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             ReporteGestion.SetDatabaseLogon("sa", "Pa$$W0rd");
 
             ReporteGestion.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Reporte Polizas Aviso Gestion");
+
+            ReporteGestion.Close();
+            ReporteGestion.Dispose();
         }
 
         protected void cbGenerarReporteGestionCobros_CheckedChanged(object sender, EventArgs e)

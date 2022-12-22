@@ -296,6 +296,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
             Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+
+            Reporte.Close();
+            Reporte.Dispose();
         }
         #endregion
 

@@ -555,6 +555,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                         ReporteDetallado.SetDatabaseLogon("sa", "Pa$$W0rd");
                         ReporteDetallado.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Comisiones Intermediario Detallado");
+
+                        ReporteDetallado.Close();
+                        ReporteDetallado.Dispose();
                     }
                     else if (rbGenerarReporteInterno.Checked == true) {
                         ReportDocument ReporteInterno = new ReportDocument();
@@ -576,6 +579,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                         ReporteInterno.SetDatabaseLogon("sa", "Pa$$W0rd");
                         ReporteInterno.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Comisiones Intermediario Interno");
+
+                        ReporteInterno.Close();
+                        ReporteInterno.Dispose();
                     }
                     else if (rbGenerarReporteResumido.Checked == true) {
                         ReportDocument ReporteInterno = new ReportDocument();
@@ -597,6 +603,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                         ReporteInterno.SetDatabaseLogon("sa", "Pa$$W0rd");
                         ReporteInterno.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Comisiones Intermediario Resumido");
+
+                        ReporteInterno.Close();
+                        ReporteInterno.Dispose();
                     }
                 }
                 else if (rbExcel.Checked == true) {
@@ -620,6 +629,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                         ReporteInterno.SetDatabaseLogon("sa", "Pa$$W0rd");
                         ReporteInterno.ExportToHttpResponse(ExportFormatType.Excel, Response, true, "Comisiones Intermediario Detallado");
+
+                        ReporteInterno.Close();
+                        ReporteInterno.Dispose();
                     }
                     else if (rbGenerarReporteInterno.Checked == true) {
                         ReportDocument ReporteInterno = new ReportDocument();
@@ -641,6 +653,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                         ReporteInterno.SetDatabaseLogon("sa", "Pa$$W0rd");
                         ReporteInterno.ExportToHttpResponse(ExportFormatType.Excel, Response, true, "Comisiones Intermediario Interno");
+
+                        ReporteInterno.Close();
+                        ReporteInterno.Dispose();
                     }
                     else if (rbGenerarReporteResumido.Checked == true) {
                         ReportDocument ReporteInterno = new ReportDocument();
@@ -662,6 +677,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                         ReporteInterno.SetDatabaseLogon("sa", "Pa$$W0rd");
                         ReporteInterno.ExportToHttpResponse(ExportFormatType.Excel, Response, true, "Comisiones Intermediario Resumido");
+
+                        ReporteInterno.Close();
+                        ReporteInterno.Dispose();
                     }
                 }
             }

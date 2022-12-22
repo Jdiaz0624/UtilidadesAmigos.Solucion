@@ -402,6 +402,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
                     Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, "Reporte de Recibos");
                 }
+
+                Reporte.Close();
+                Reporte.Dispose();
             }
         }
 
@@ -433,7 +436,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
             Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Recibo de Ingreso");
 
-         
+            Reporte.Close();
+            Reporte.Dispose();
+
         }
 
         protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)
@@ -510,6 +515,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
             //Reporte.PrintOptions.PrinterName = Reporte.PrintOptions.PrinterName;
             Reporte.PrintToPrinter(2, true, 0, 2);
+
+            Reporte.Close();
+            Reporte.Dispose();
         }
 
         protected void dtPaginacionListadoPrincipal_CancelCommand1(object source, DataListCommandEventArgs e)

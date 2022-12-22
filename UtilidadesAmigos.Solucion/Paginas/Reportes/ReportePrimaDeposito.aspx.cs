@@ -296,6 +296,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 {
                     Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
                 }
+
+                Reporte.Close();
+                Reporte.Dispose();
             }
         }
         #endregion

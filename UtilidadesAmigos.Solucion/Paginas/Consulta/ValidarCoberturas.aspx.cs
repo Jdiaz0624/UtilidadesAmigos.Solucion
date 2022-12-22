@@ -70,7 +70,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Reporte.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreReporte);
             }
 
-
+            Reporte.Close();
+            Reporte.Dispose();
         }
         #endregion
 
@@ -1528,6 +1529,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                         Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
 
                         Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Validación " + NombreCobertura);
+
+                        Reporte.Close();
+                        Reporte.Dispose();
                     }
 
                 }

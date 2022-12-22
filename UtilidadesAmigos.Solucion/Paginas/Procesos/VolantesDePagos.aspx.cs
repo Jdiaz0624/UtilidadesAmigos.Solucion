@@ -243,10 +243,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             VolantePagoTXT = @"" + Rutaarchivo + NombreArchivo + ".pdf";
             Volante.ExportToDisk(ExportFormatType.PortableDocFormat, VolantePagoTXT);
+
+
+
             Volante.Close();
-
-
-
+            Volante.Dispose();
         }
         #endregion
 

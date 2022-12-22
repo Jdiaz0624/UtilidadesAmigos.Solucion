@@ -235,6 +235,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             else if (rbExcel.Checked == true) {
                 Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
             }
+
+            Reporte.Close();
+            Reporte.Dispose();
         }
         #endregion
         protected void Page_Load(object sender, EventArgs e)

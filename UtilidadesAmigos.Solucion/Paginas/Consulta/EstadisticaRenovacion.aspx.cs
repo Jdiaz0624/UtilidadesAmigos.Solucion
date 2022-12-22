@@ -294,7 +294,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             else if (rbWord.Checked == true) {
                 Reporte.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreReporte);
             }
-
+            Reporte.Close();
+            Reporte.Dispose();
         }
         #endregion
 

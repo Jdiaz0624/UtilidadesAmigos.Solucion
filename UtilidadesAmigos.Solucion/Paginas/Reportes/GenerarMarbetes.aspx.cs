@@ -249,6 +249,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 //Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
 
                 Factura.PrintToPrinter(1, true, 0, 2);
+
+                Factura.Close();
+                Factura.Dispose();
                 //  crystalReportViewer1.ReportSource = Factura;
             }
             catch (Exception) { }
@@ -273,6 +276,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Factura.SetDatabaseLogon(UsuarioBD, ClaveBD);
                 Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, Nombrearchivo);
 
+                Factura.Close();
+                Factura.Dispose();
                 //Factura.PrintToPrinter(1, true, 0, 2);
                 //  crystalReportViewer1.ReportSource = Factura;
             }

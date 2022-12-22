@@ -1163,6 +1163,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             else if (rbExportarCSV.Checked == true) {
                 ReporteNoAgrupadoDetalle.ExportToHttpResponse(ExportFormatType.CharacterSeparatedValues, Response, true, NombreReporte);
             }
+
+            ReporteNoAgrupadoDetalle.Close();
+            ReporteNoAgrupadoDetalle.Dispose();
         }
 
         #endregion

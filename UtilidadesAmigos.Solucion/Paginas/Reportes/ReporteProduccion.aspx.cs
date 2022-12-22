@@ -292,6 +292,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             else if (rbExcel.Checked == true) {
                 Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
             }
+
+            Reporte.Close();
+            Reporte.Dispose();
         }
         private void GenerarReporteAgrupadoFormateado(string RutaReporte, string NombreReporte, int TipoAgrupacion) {
 
@@ -338,6 +341,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             {
                 Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
             }
+
+            Reporte.Close();
+            Reporte.Dispose();
         }
         private void GenerarReporteAgrupado(int TipoAgrupacion,string Nombre) {
 

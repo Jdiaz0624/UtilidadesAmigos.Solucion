@@ -261,6 +261,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 Cheque.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, NombreCheque);
             }
 
+            Cheque.Close();
+            Cheque.Dispose();
 
 
 

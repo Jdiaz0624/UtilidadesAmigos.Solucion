@@ -434,9 +434,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             ReportDocument Reporte = new ReportDocument();
 
-           
-
-
             Reporte.Load(RutaReporte);
             Reporte.Refresh();
 
@@ -461,7 +458,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             ReportDocument Reporte = new ReportDocument();
 
-          
 
             Reporte.Load(Server.MapPath("ReporteImpresionEndosos.rpt"));
             Reporte.Refresh();

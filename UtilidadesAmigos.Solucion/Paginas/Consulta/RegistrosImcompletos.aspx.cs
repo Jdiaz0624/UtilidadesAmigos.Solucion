@@ -747,6 +747,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             else if (rbExcel.Checked == true) {
                 Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
             }
+
+            Reporte.Close();
+            Reporte.Dispose();
         }
         #endregion
 
@@ -881,6 +884,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 else if (rbExcel.Checked == true) {
                     Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombeReporte);
                 }
+
+                Reporte.Close();
+                Reporte.Dispose();
             }
         }
         #endregion

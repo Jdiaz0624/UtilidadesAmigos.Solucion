@@ -285,7 +285,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
             else if (rbGenerarReporteWord.Checked == true) {
                 Reporte.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreArchivo);
             }
-        
+            Reporte.Close();
+            Reporte.Dispose();
         }
         #endregion
         #region MOSTRAR EL LISTADO DE LOS CODIGOS PERMITIDOS PARA MOSTRAR LA COMISION

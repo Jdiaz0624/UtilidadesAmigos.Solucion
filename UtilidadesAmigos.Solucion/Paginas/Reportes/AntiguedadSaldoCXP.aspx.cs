@@ -401,6 +401,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
             Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
 
+            Reporte.Close();
+            Reporte.Dispose();
         }
         #endregion
 
@@ -458,6 +460,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             Repirte.SetDatabaseLogon("sa", "Pa$$W0rd");
 
             Repirte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+
+            Repirte.Close();
+            Repirte.Dispose();
         }
         #endregion
         private void ConfiguracionInicial() {

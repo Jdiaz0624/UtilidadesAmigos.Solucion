@@ -279,7 +279,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                     Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, "Impresión de Marbetes Excel");
                 }
 
-
+                Reporte.Close();
+                Reporte.Dispose();
             }
         }
         #endregion

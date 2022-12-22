@@ -232,6 +232,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 Ficha.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
                 Ficha.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+
+                Ficha.Close();
+                Ficha.Dispose();
             }
         }
 
@@ -319,6 +322,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                 Ficha.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
                 Ficha.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+
+                Ficha.Close();
+                Ficha.Dispose();
+
             }
         }
 
