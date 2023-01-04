@@ -54,7 +54,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         private void ExportarInformacionEstadisticaPolizasSinPagosRegistros(int CodigoProceso, int Ramo, string Nombre) {
 
-            var Exportar = (from n in Objtata.Value.BuscaEstadisticaPolizaSinPagosRegistros(CodigoProceso, Ramo)
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediario.Text);
+
+            var Exportar = (from n in Objtata.Value.BuscaEstadisticaPolizaSinPagosRegistros(CodigoProceso, Ramo,_Supervisor,_Intermediario)
                             select new
                             {
                                 Poliza = n.Poliza,
