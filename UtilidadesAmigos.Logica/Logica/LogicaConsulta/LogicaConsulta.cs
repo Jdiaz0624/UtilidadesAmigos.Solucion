@@ -9,6 +9,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
     public class LogicaConsulta
     {
         UtilidadesAmigos.Data.Conexiones.LINQ.BDConexionConsultaDataContext ObjData = new Data.Conexiones.LINQ.BDConexionConsultaDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["UtilidadesAmigosConexion"].ConnectionString);
+        
 
         #region MANTENIMIENTO DE GESTION DE COBROS
         /// <summary>
@@ -1406,6 +1407,22 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
                             }).FirstOrDefault();
             }
             return Procesar;
+        }
+        #endregion
+
+        #region LISTADO DE RENOVACION RESUMEN
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EListadoRenovacionResumen> BuscaListadoRenovacionResumen(DateTime? FechaDesde = null, DateTime? FechaFin = null, int? Ramo = null, int? SubRamo = null, string Poliza = null, decimal? Cotizacion = null, int? Oficina = null, string CodSupervisor = null, string CodIntermediario = null, int? ValidarBalance = null, int? ExcluirRegistros = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_MOSTRAR_LISTADO_RENOVACION_RESUMEN(FechaDesde, FechaFin, Ramo, SubRamo, Poliza, Cotizacion, Oficina, CodIntermediario, CodIntermediario, ValidarBalance, ExcluirRegistros)
+                           select new UtilidadesAmigos.Logica.Entidades.Consulta.EListadoRenovacionResumen
+                           {
+                               EstatusLlamada=n.EstatusLlamada,
+                               ConceptoLLamada=n.ConceptoLLamada,
+                               Cantidad=n.Cantidad
+                           }).ToList();
+            return Listado;
         }
         #endregion
     }

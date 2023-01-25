@@ -223,6 +223,7 @@
                <div class="form-check-inline">
                    <asp:CheckBox ID="cbProcesarRegistros" runat="server" Text="Procesar Registros" CssClass="Letranegrita" AutoPostBack="true" OnCheckedChanged="cbProcesarRegistros_CheckedChanged" ToolTip="Procesar Registros de las renovaciones" />
                    <asp:CheckBox ID="cbGenerarReporteGestionCobros" runat="server" Text="Reporte de Gestión de Cobros" ToolTip="Generar Reporte de los comentarios de la gestion de cobro" CssClass="Letranegrita" AutoPostBack="true" OnCheckedChanged="cbGenerarReporteGestionCobros_CheckedChanged" />
+                   <asp:CheckBox ID="cbExportarDataResumida" runat="server" Text="Exportar Data Resumida" ToolTip="Exportar los concepto de comentarios resumidos" CssClass="Letranegrita" />
                </div>
 
         <div class="row">

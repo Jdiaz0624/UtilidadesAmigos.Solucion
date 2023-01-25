@@ -977,4 +977,22 @@
       <Column Name="UltimoConceptoLlamadaGestionCobros_AntiguedadSaldo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_MOSTRAR_LISTADO_RENOVACION_RESUMEN" Method="SP_MOSTRAR_LISTADO_RENOVACION_RESUMEN">
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaFin" Parameter="fechaFin" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Cotizacion" Parameter="cotizacion" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodSupervisor" Parameter="codSupervisor" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="CodIntermediario" Parameter="codIntermediario" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="ValidarBalance" Parameter="validarBalance" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ExcluirRegistros" Parameter="excluirRegistros" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_MOSTRAR_LISTADO_RENOVACION_RESUMENResult">
+      <Column Name="EstatusLlamada" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ConceptoLLamada" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

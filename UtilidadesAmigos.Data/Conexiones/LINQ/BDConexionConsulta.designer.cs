@@ -338,6 +338,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
 			return ((ISingleResult<SP_MOSTRAR_DETALLE_ESTADISTICA_RENOVACIONResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MOSTRAR_LISTADO_RENOVACION_RESUMEN")]
+		public ISingleResult<SP_MOSTRAR_LISTADO_RENOVACION_RESUMENResult> SP_MOSTRAR_LISTADO_RENOVACION_RESUMEN([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaFin", DbType="Date")] System.Nullable<System.DateTime> fechaFin, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ramo", DbType="Int")] System.Nullable<int> ramo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SubRamo", DbType="Int")] System.Nullable<int> subRamo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cotizacion", DbType="Decimal(20,0)")] System.Nullable<decimal> cotizacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Oficina", DbType="Int")] System.Nullable<int> oficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodSupervisor", DbType="VarChar(10)")] string codSupervisor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodIntermediario", DbType="VarChar(10)")] string codIntermediario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValidarBalance", DbType="Int")] System.Nullable<int> validarBalance, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ExcluirRegistros", DbType="Int")] System.Nullable<int> excluirRegistros)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaFin, ramo, subRamo, poliza, cotizacion, oficina, codSupervisor, codIntermediario, validarBalance, excluirRegistros);
+			return ((ISingleResult<SP_MOSTRAR_LISTADO_RENOVACION_RESUMENResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_PROCESAR_INFORMACON_REPORTE_COMENTARIO_GESTION_COBROResult
@@ -11533,6 +11540,68 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._UltimoConceptoLlamadaGestionCobros_AntiguedadSaldo != value))
 				{
 					this._UltimoConceptoLlamadaGestionCobros_AntiguedadSaldo = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MOSTRAR_LISTADO_RENOVACION_RESUMENResult
+	{
+		
+		private string _EstatusLlamada;
+		
+		private string _ConceptoLLamada;
+		
+		private System.Nullable<int> _Cantidad;
+		
+		public SP_MOSTRAR_LISTADO_RENOVACION_RESUMENResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EstatusLlamada", DbType="VarChar(100)")]
+		public string EstatusLlamada
+		{
+			get
+			{
+				return this._EstatusLlamada;
+			}
+			set
+			{
+				if ((this._EstatusLlamada != value))
+				{
+					this._EstatusLlamada = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConceptoLLamada", DbType="VarChar(1000)")]
+		public string ConceptoLLamada
+		{
+			get
+			{
+				return this._ConceptoLLamada;
+			}
+			set
+			{
+				if ((this._ConceptoLLamada != value))
+				{
+					this._ConceptoLLamada = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
+		public System.Nullable<int> Cantidad
+		{
+			get
+			{
+				return this._Cantidad;
+			}
+			set
+			{
+				if ((this._Cantidad != value))
+				{
+					this._Cantidad = value;
 				}
 			}
 		}

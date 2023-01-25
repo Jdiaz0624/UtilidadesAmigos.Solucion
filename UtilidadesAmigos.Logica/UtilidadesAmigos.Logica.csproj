@@ -216,6 +216,7 @@
     <Compile Include="Entidades\Consulta\EEstadisticaRenovacionOrigen.cs" />
     <Compile Include="Entidades\Consulta\EGenerarReporteCobroFinal.cs" />
     <Compile Include="Entidades\Consulta\EGestionCobrosHeader.cs" />
+    <Compile Include="Entidades\Consulta\EListadoRenovacionResumen.cs" />
     <Compile Include="Entidades\Consulta\EMostrarDataCargadaEstadisticaRenovacion.cs" />
     <Compile Include="Entidades\Consulta\EMostrarDetalleEstadisticaRenovacion.cs" />
     <Compile Include="Entidades\Consulta\EMostrarListadoGestionCobrosDetail.cs" />
