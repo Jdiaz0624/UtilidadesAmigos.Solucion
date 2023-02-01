@@ -352,7 +352,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             Carta.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
-            Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreCarta);
+            Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, NombreCarta);
 
             Carta.Close();
             Carta.Dispose();
@@ -381,7 +381,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             Carta.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
-            Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, NombreReporte);
 
             Carta.Close();
             Carta.Dispose();
@@ -623,7 +623,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             Carta.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
-            Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreCarta);
+            Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, NombreCarta);
 
             Carta.Close();
             Carta.Dispose();
@@ -653,7 +653,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             Carta.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
-            Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            Carta.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, NombreReporte);
 
             Carta.Close();
             Carta.Dispose();

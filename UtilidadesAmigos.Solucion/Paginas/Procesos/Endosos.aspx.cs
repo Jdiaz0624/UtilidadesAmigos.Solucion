@@ -446,7 +446,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
 
-            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreEndoso);
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, NombreEndoso);
 
             Reporte.Close();
             Reporte.Dispose();
@@ -470,7 +470,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Reporte.SetParameterValue("@TipoEndoso", 1);
 
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
-            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Reporte de Impresion Endosos");
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, "Reporte de Impresion Endosos");
 
             Reporte.Close();
             Reporte.Dispose();
