@@ -433,6 +433,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         private void GenerarEndoso(string Poliza,int Item, decimal GeneradoPor,int CodigoTipoEndoso,int? Secuencia, int TipoEndoso,string RutaReporte,string NombreEndoso) {
 
             ReportDocument Reporte = new ReportDocument();
+            Reporte.Close();
+          //  Reporte.Dispose();
 
             Reporte.Load(RutaReporte);
             Reporte.Refresh();
@@ -446,9 +448,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
 
-            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, NombreEndoso);
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreEndoso);
 
-            Reporte.Close();
+           // Reporte.Close();
             Reporte.Dispose();
         }
         #endregion
@@ -457,7 +459,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         private void GenerarListadoEndososImpresos() {
 
             ReportDocument Reporte = new ReportDocument();
-
+            Reporte.Close();
+           // Reporte.Dispose();
 
             Reporte.Load(Server.MapPath("ReporteImpresionEndosos.rpt"));
             Reporte.Refresh();
@@ -470,9 +473,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Reporte.SetParameterValue("@TipoEndoso", 1);
 
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
-            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, false, "Reporte de Impresion Endosos");
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Reporte de Impresion Endosos");
 
-            Reporte.Close();
+        //    Reporte.Close();
             Reporte.Dispose();
         }
         #endregion
