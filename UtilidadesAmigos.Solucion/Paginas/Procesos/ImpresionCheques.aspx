@@ -58,11 +58,15 @@
                 <asp:RadioButton ID="rbTodos" runat="server" Text="Todos"  ToolTip="Mostrar todos los cheques" GroupName="Estatus" />
         </div>
         <br />
+        
         <div class="form-check-inline">
-            <asp:Label ID="lbPlanillaBancoutilizar" runat="server" CssClass="Letranegrita" Text="Plantilla a Utilizar"></asp:Label>
+            <asp:Label ID="lbPlanillaBancoutilizar" runat="server" ForeColor="Red" CssClass="Letranegrita" Text="Plantilla a Utilizar: "></asp:Label>
             <asp:RadioButton ID="rbPlantillaReservas" runat="server" Text="Reservas" ToolTip="Generar con formato de Banreservas" GroupName="PlanillaBanco" />
-            <asp:RadioButton ID="rbPlanillaPromerica" runat="server" Text="Promerica" ToolTip="Generar Cheque con formato de Promerica" GroupName="PlanillaBanco" />
+            <asp:RadioButton ID="rbSegundaPlantillaReservas" runat="server" Visible="false" Text="Reservas Plantilla 2" ToolTip="Generar con formato de Banreservas Segunda Plantilla y Banco de Reservas del Banco 5" GroupName="PlanillaBanco" />
+            <asp:RadioButton ID="rbPlanillaPromerica" runat="server" Text="Promerica y Reservas Banco 5" ToolTip="Generar Cheque con formato de Promerica" GroupName="PlanillaBanco" />
         </div>
+        <br />
+        <hr />
         <div class="form-check-inline">
                 <asp:Label ID="lbParametrosEspeciales" runat="server" Text="Otros Parametros: " CssClass="Letranegrita"></asp:Label>
                 <asp:RadioButton ID="rbSinParametros" runat="server" Text="No Aplicar"  AutoPostBack="true" OnCheckedChanged="rbSinParametros_CheckedChanged" ToolTip="No Aplicar PArametros" GroupName="Parametros" />

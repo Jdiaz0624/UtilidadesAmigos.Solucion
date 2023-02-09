@@ -438,10 +438,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             }
 
             string RutaReporte = "";
-            if (rbPlantillaReservas.Checked == true) {
+            if (rbPlantillaReservas.Checked == true)
+            {
                 RutaReporte = Server.MapPath("Cheque.rpt");
             }
-            else if (rbPlanillaPromerica.Checked == true) {
+            else if (rbSegundaPlantillaReservas.Checked == true) {
+
+                RutaReporte = Server.MapPath("SegundaPlantillaReservas.rpt");
+            }
+            else if (rbPlanillaPromerica.Checked == true)
+            {
                 RutaReporte = Server.MapPath("PlantillaChequePromerica.rpt");
             }
             GenerarCheque(NumeroCheque, RutaReporte, NombreCheque, Concepto, ValorCheque, Beneficiario);
