@@ -36,6 +36,30 @@
         function ComentarioGuardado() {
             alert("Registro guardado con exito");
         }
+
+        function ProcesoCompletado() {
+
+            alert("Proceso Completado con exito.");
+        }
+
+        function NoseEncontraronRegistros() {
+            alert("No se le encontrarón registros al codigo ingresado, favor de validar e intentarlo nuevamente.");
+        }
+
+        $(function () {
+            $("#<%=btnComentarioPorLote.ClientID%>").click(function () {
+
+                var Capacidad = $("#<%=txtCodigoIntermediarioConsulta.ClientID%>").val().length;
+                if (Capacidad < 1) {
+
+                    alert("El codigo de intermediario es obligatorio para realizar este proceso, favor de verificar.");
+                    $("#<%=txtCodigoIntermediarioConsulta.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
+
+
+        })
     </script>
 
     <div class="container-fluid">
@@ -97,8 +121,9 @@
             <br />
             <div align="center">
                 <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultar_Click" />
-                 <asp:ImageButton ID="btnExportarExcel" runat="server" ToolTip="Exportar a Excel" CssClass="BotonImagen" ImageUrl="~/Imagenes/excel.png" OnClick="btnExportarExcel_Click" />
-                 <asp:ImageButton ID="btnReporte" runat="server" Visible="false" ToolTip="Reporte de Antiguedad" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
+                <asp:ImageButton ID="btnExportarExcel" runat="server" ToolTip="Exportar a Excel" CssClass="BotonImagen" ImageUrl="~/Imagenes/excel.png" OnClick="btnExportarExcel_Click" />
+                <asp:ImageButton ID="btnComentarioPorLote" runat="server" ToolTip="Comentario Por Lote" CssClass="BotonImagen"  ImageUrl="~/Imagenes/ComentarioLote.png" OnClick="btnComentarioPorLote_Click" OnClientClick="return confirm('¿Quieres Proceder con este proceso?');" />
+                <asp:ImageButton ID="btnReporte" runat="server" Visible="false" ToolTip="Reporte de Antiguedad" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
             </div>
             <br />
             <table class="table table-striped">

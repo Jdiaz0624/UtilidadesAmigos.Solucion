@@ -8,6 +8,7 @@ using System.Data;
 //using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using CrystalDecisions.CrystalReports.Engine;
+using DocumentFormat.OpenXml.Drawing;
 
 namespace UtilidadesAmigos.Solucion.Paginas.Consulta
 {
@@ -18,12 +19,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaConsulta.LogicaConsulta> ObjDataConsulta = new Lazy<Logica.Logica.LogicaConsulta.LogicaConsulta>();
 
 
-        enum EstatusLlamada { 
+        enum EstatusLlamadaGestion { 
         
             ClienteNoContactado=1,
             ClienteContactado=2
         }
-        enum ConceptosDeLlamada
+        enum ConceptosDeLlamadaGestion
         {
             Cliente_va_a_Pagar = 7,
             Cliente_no_va_a_Pagar = 8,
@@ -33,7 +34,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             El_Cliente_ya_Pago_su_Poliza = 12,
             Cliente_Quiere_Cancelar_Su_Poliza = 13,
             Cancelar_Poliza_por_cambio_de_compañia = 14,
-            Cliente_no_puede_recibir_llamada, _llamar_mas_tarde = 15
+            Cliente_no_puede_recibir_llamada, _llamar_mas_tarde = 15,
+            GestionViaIntermediario=18
         }
 
         #region ENUMERACIONES
@@ -623,7 +625,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             DateTime _Hoy = DateTime.Now;
             txtFechaNuevaLLamada.Text = _Hoy.ToString("yyyy-MM-dd");
 
-            if (Estatus == (int)EstatusLlamada.ClienteContactado && Concepto == (int)ConceptosDeLlamada.Llamar_mas_tarde) {
+            if (Estatus == (int)EstatusLlamadaGestion.ClienteContactado && Concepto == (int)ConceptosDeLlamadaGestion.Llamar_mas_tarde) {
                 DivFechaLlamada.Visible = true;
                 DIVHoraLLamada.Visible = true;
           
@@ -983,6 +985,70 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected void dtPaginacion_Comentarios_ItemDataBound(object sender, DataListItemEventArgs e)
         {
 
+        }
+
+        protected void btnComentarioPorLote_Click(object sender, ImageClickEventArgs e)
+        {
+            DateTime? _FechaCorte = string.IsNullOrEmpty(txtFechaCorte.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaCorte.Text);
+            int? _Ramo = ddlRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlRamoConsulta.SelectedValue) : new Nullable<int>();
+            int? _SubRamo = ddlSubRamoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSubRamoConsulta.SelectedValue) : new Nullable<int>();
+            string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+            int? _oficina = ddloficina.SelectedValue != "-1" ? Convert.ToInt32(ddloficina.SelectedValue) : new Nullable<int>();
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioConsulta.Text);
+
+
+            var Informacion = ObjDataConsulta.Value.BuscaGestionCobrosheader(
+                _FechaCorte,
+                _Ramo,
+                _SubRamo,
+                _Poliza,
+                _oficina,
+                _Supervisor,
+                _Intermediario);
+            if (Informacion.Count() < 1)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "NoseEncontraronRegistros()", "NoseEncontraronRegistros();", true);
+
+            }
+            else
+            {
+
+                string Poliza = "";
+                const int EstatusLlamada = (int)EstatusLlamadaGestion.ClienteContactado;
+                const int ConceptoLlamada = (int)ConceptosDeLlamadaGestion.GestionViaIntermediario;
+                string Comentario = "Proceso realizado de manera masiva.";
+                DateTime FechaNuevaLLamdada = DateTime.Now;
+                string Hora = ".";
+                decimal IdUsuario = (decimal)Session["IdUsuario"];
+
+                foreach (var n in Informacion) {
+
+
+                    //CARGAMOS LAS VARIABLES
+
+                    Poliza = n.Poliza;
+
+                    //GUARDAMOS AL INFORMACION
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionGestionCobrosAntiguedadSaldo GuardarComentario = new Logica.Comunes.ProcesarMantenimientos.InformacionConsulta.ProcesarInformacionGestionCobrosAntiguedadSaldo(
+                        0,
+                        Poliza,
+                        EstatusLlamada,
+                        ConceptoLlamada,
+                        Comentario,
+                        FechaNuevaLLamdada,
+                        Hora,
+                        IdUsuario,
+                        DateTime.Now,
+                        "INSERT");
+                    GuardarComentario.ProcesarInformacion();
+                }
+                //ACTUALIZAMOS EL LISTADO
+                ClientScript.RegisterStartupScript(GetType(), "ProcesoCompletado()", "ProcesoCompletado();", true);
+
+                CurrentPage_GestionCobrosHeader = 0;
+                MostrarGestionCobrosHeader();
+            }
         }
 
         protected void btnPaginaSiguiente_Comentarios_Click(object sender, ImageClickEventArgs e)
