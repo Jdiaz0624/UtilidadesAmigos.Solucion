@@ -278,6 +278,7 @@
     <Content Include="Paginas\Reportes\GenerarMarbetes.aspx" />
     <Content Include="Paginas\Reportes\GenerarReporteAntiguedadSaldo.aspx" />
     <Content Include="Paginas\Reportes\GenerarReporteCobros.aspx" />
+    <Content Include="Paginas\Reportes\PolizasConBalancesPorAntiguedad.aspx" />
     <Content Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx" />
     <Content Include="Paginas\Reportes\ReclamacionesPagadas.aspx" />
     <Content Include="Paginas\Reportes\ReporteCuentasProveedores.aspx" />
@@ -906,6 +907,13 @@
       <DependentUpon>GenerarReporteCobros.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Reportes\List.cs" />
+    <Compile Include="Paginas\Reportes\PolizasConBalancesPorAntiguedad.aspx.cs">
+      <DependentUpon>PolizasConBalancesPorAntiguedad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\PolizasConBalancesPorAntiguedad.aspx.designer.cs">
+      <DependentUpon>PolizasConBalancesPorAntiguedad.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx.cs">
       <DependentUpon>ProduccionDiariaContabilidad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
