@@ -11,7 +11,18 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            MaintainScrollPositionOnPostBack = true;
+            if (!IsPostBack) {
 
+                ReportesAgrupados.Visible = false;
+                rbReporteDetallado.Checked = true;
+                rbPDF.Checked = true;
+                rbAgrupadoPorRamo.Checked = true;
+  
+                DateTime DiaActual = DateTime.Now;
+     
+                txtFechaCorte.Text = DiaActual.ToString("yyyy-MM-dd");
+            }
         }
 
         protected void rbReporteDetallado_CheckedChanged(object sender, EventArgs e)
