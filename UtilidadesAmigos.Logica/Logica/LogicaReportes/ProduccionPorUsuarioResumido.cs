@@ -2686,5 +2686,109 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Listado;
         }
         #endregion
+
+
+        #region REPORTE DE POLIZAS CON BALANCE CON ANTIGUEDAD 
+        /// <summary>
+        /// Muestra el listado de las polias con Balance con antiguedad de dias
+        /// </summary>
+        /// <param name="FechaCorte"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="SubRamo"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="CodigoSupervisor"></param>
+        /// <param name="CodigoIntermediario"></param>
+        /// <param name="EscluirMotores"></param>
+        /// <param name="CantidadDias"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EReportePolizasConBalancePorAntiguedadDetallado> BuscaPolizasConBalanceAntiguedadDetallado(DateTime? FechaCorte = null, int? Ramo = null, int? SubRamo = null, string Poliza = null, int? Oficina = null, int? CodigoSupervisor = null, int? CodigoIntermediario = null, bool? EscluirMotores = null, int? CantidadDias = null,decimal? GeneradoPor = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_LISTADO_POLIZAS_CON_BALANCE_POR_ANTIGUEDAD_DETALLADO(FechaCorte, Ramo, SubRamo, Poliza, Oficina, CodigoSupervisor, CodigoIntermediario, EscluirMotores, CantidadDias, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EReportePolizasConBalancePorAntiguedadDetallado
+                           {
+                               Poliza=n.Poliza,
+                               OficinaFiltro=n.OficinaFiltro,
+                               Motores=n.Motores,
+                               Oficina=n.Oficina,
+                               NombreOficina=n.NombreOficina,
+                               Cliente=n.Cliente,
+                               NombreCliente=n.NombreCliente,
+                               CodigoSupervisor = n.CodigoSupervisor,
+                               NombreSupervisor = n.NombreSupervisor,
+                               Supervisor=n.Supervisor,
+                               Asegurado=n.Asegurado,
+                               Vendedor=n.Vendedor,
+                               NombreVendedor=n.NombreVendedor,
+                               Intermediario=n.Intermediario,
+                               CodigoRamo=n.CodigoRamo,
+                               CodigoSubramo=n.CodigoSubramo,
+                               NombreRamo=n.NombreRamo,
+                               NombreSubRamo=n.NombreSubRamo,
+                               InicioVigencia=n.InicioVigencia,
+                               FechaProceso=n.FechaProceso,
+                               ValorAnual=n.ValorAnual,
+                               ValorPorDia=n.ValorPorDia,
+                               ValorPagado=n.ValorPagado,
+                               CoberturaHasta=n.CoberturaHasta,
+                               DiasDiferencia=n.DiasDiferencia,
+                               Estatus=n.Estatus,
+                               Factura=n.Factura,
+                               Comentarios=n.Comentarios,
+                               Facturado=n.Facturado,
+                               Cobrado=n.Cobrado,
+                               Balance=n.Balance,
+                               CantidadDias=n.CantidadDias,
+                               GeneradoPor=n.GeneradoPor,
+                               CortadoA=n.CortadoA,
+                               TipoReporteGenerado=n.TipoReporteGenerado
+
+                           }).ToList();
+            return Listado;
+        }
+
+        public UtilidadesAmigos.Logica.Entidades.Reportes.EprocesarInformacionPolizasConBalanceAgrupada ProcesarInformacionPolizasConBalanceAgrupada(UtilidadesAmigos.Logica.Entidades.Reportes.EprocesarInformacionPolizasConBalanceAgrupada item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Reportes.EprocesarInformacionPolizasConBalanceAgrupada Procesar = null;
+
+            var InformacionAgrupada = ObjData.SP_PROCESAR_INFORMACION_POLIZAS_CON_BALANCE_AGRUPADA(
+                item.IdUsuario,
+                item.CodigoAgrupacion,
+                item.NombreAgrupacion,
+                item.Facturado,
+                item.Cobrado,
+                item.Balance,
+                item.OficinaFiltro,
+                item.Motores,
+                item.CortadoA,
+                item.GeneradoPor,
+                item.TipoReporteGenerado,
+                Accion);
+            if (InformacionAgrupada != null) {
+
+                Procesar = (from n in InformacionAgrupada
+                            select new UtilidadesAmigos.Logica.Entidades.Reportes.EprocesarInformacionPolizasConBalanceAgrupada
+                            {
+                                IdUsuario=n.IdUsuario,
+                                CodigoAgrupacion=n.CodigoAgrupacion,
+                                NombreAgrupacion=n.NombreAgrupacion,
+                                Facturado=n.Facturado,
+                                Cobrado=n.Cobrado,
+                                Balance=n.Balance,
+                                OficinaFiltro=n.OficinaFiltro,
+                                Motores=n.Motores,
+                                CortadoA=n.CortadoA,
+                                GeneradoPor=n.GeneradoPor,
+                                TipoReporteGenerado=n.TipoReporteGenerado
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }

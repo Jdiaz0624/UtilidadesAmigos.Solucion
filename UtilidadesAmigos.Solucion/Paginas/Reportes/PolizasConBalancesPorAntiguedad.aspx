@@ -26,7 +26,6 @@
         <div class="form-check-inline">
             <asp:Label ID="lbTipoReporteGererar" runat="server" Text="Tipo de Reporte: " CssClass="LetrasNegrita"></asp:Label>
             <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Detallado" AutoPostBack="true" OnCheckedChanged="rbReporteDetallado_CheckedChanged" ToolTip="Generar Reporte Detallado" GroupName="TipoReporte" />
-            <asp:RadioButton ID="rbReporteResumido" runat="server" Text="Resumido" AutoPostBack="true" OnCheckedChanged="rbReporteResumido_CheckedChanged" ToolTip="Generar Reporte Resumido" GroupName="TipoReporte" />
             <asp:RadioButton ID="rbReporteAgrupado" runat="server" Text="Agrupado" AutoPostBack="true" OnCheckedChanged="rbReporteAgrupado_CheckedChanged" ToolTip="Generar Reporte Agrupado" GroupName="TipoReporte" />
             <br />
             <asp:Label ID="lbFormatoReporte" runat="server" Text="Formato de Reporte: " CssClass="LetrasNegrita"></asp:Label>
@@ -43,6 +42,8 @@
                 <asp:RadioButton ID="rbAgrupadoPorIntermediario" runat="server" Text="Por Intermediario" ToolTip="Generar Reporte En Excel Plano" GroupName="FormatoReporte" />
             </div>
             <br />
+            <asp:CheckBox ID="cbExcluirMotores" runat="server" Text="Excluir Motores" CssClass="LetrasNegrita" Visible="false" ToolTip="Excluir Motores" />
+             </div>
             <div class="row">
                 <div class="col-md-3">
                     <asp:Label ID="lbFechaCorte" runat="server" Text="Fecha Corte" CssClass="LetrasNegrita"></asp:Label>
@@ -70,7 +71,7 @@
                 </div>
                 <div class="col-md-2">
                     <asp:Label ID="lbCodigoIntermediario" runat="server" Text="Intermediario" CssClass="LetrasNegrita"></asp:Label>
-                    <asp:TextBox ID="txtIntermediario" runat="server" TextMode="Number" OnTextChanged="txtIntermediario_TextChanged"  CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtIntermediario" runat="server" TextMode="Number" AutoPostBack="true" OnTextChanged="txtIntermediario_TextChanged"  CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="col-md-4">
                     <asp:Label ID="lbNombreIntermediario" runat="server" Text="Nombre" CssClass="LetrasNegrita"></asp:Label>
@@ -90,6 +91,6 @@
                 <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Generar Reporte" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
             </div>
             <br />
-        </div>
+       
     </div>
 </asp:Content>

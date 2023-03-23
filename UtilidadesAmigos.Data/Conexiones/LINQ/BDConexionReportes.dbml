@@ -2122,4 +2122,80 @@
       <Column Name="PorcientoComisionInclusiones" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_LISTADO_POLIZAS_CON_BALANCE_POR_ANTIGUEDAD_DETALLADO" Method="SP_LISTADO_POLIZAS_CON_BALANCE_POR_ANTIGUEDAD_DETALLADO">
+    <Parameter Name="FechaCorte" Parameter="fechaCorte" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SubRamo" Parameter="subRamo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodSupervisor" Parameter="codSupervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodIntermediario" Parameter="codIntermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ExcluirMotores" Parameter="excluirMotores" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="CantidadDias" Parameter="cantidadDias" Type="System.Int32" DbType="Int" />
+    <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_LISTADO_POLIZAS_CON_BALANCE_POR_ANTIGUEDAD_DETALLADOResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OficinaFiltro" Type="System.String" DbType="VarChar(21) NOT NULL" CanBeNull="false" />
+      <Column Name="Motores" Type="System.String" DbType="VarChar(19) NOT NULL" CanBeNull="false" />
+      <Column Name="Oficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreOficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="NombreCliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NombreSupervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="Asegurado" Type="System.String" DbType="VarChar(288) NOT NULL" CanBeNull="false" />
+      <Column Name="Vendedor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreVendedor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(233) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoRamo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodigoSubramo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreRamo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NombreSubRamo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FechaProceso" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="ValorAnual" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ValorPorDia" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ValorPagado" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CoberturaHasta" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="DiasDiferencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="Factura" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Comentarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="CantidadDias" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CortadoA" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="TipoReporteGenerado" Type="System.String" DbType="VarChar(59) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_POLIZAS_CON_BALANCE_AGRUPADA" Method="SP_PROCESAR_INFORMACION_POLIZAS_CON_BALANCE_AGRUPADA">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoAgrupacion" Parameter="codigoAgrupacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreAgrupacion" Parameter="nombreAgrupacion" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="Facturado" Parameter="facturado" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Cobrado" Parameter="cobrado" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="Balance" Parameter="balance" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="OficinaFiltro" Parameter="oficinaFiltro" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="Motores" Parameter="motores" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="CortadoA" Parameter="cortadoA" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TipoReporteGenerado" Parameter="tipoReporteGenerado" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_POLIZAS_CON_BALANCE_AGRUPADAResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CodigoAgrupacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreAgrupacion" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="OficinaFiltro" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Motores" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="CortadoA" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoReporteGenerado" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

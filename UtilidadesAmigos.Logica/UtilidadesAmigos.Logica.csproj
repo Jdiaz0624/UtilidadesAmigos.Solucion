@@ -162,6 +162,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarInformacionSolicitudCuentas.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\ProcesarMontosSolicitudCheques.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\Reporte\ProcesarInformacionComisionesIntermediariosAlfredo.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\Reporte\ProcesarInformacionConBalanceAgrupada.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\Reporte\ProcesarInformacionDatosReporteNuevo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\Reporte\ProcesarInformacionEnlaceProveedores.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\Reporte\ProcesarInformacionReporteComisionIntermediariosOrigen.cs" />
@@ -450,6 +451,7 @@
     <Compile Include="Entidades\Reportes\EProcesarInformacionDatosGraficos.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionDatosProduccion.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionPolizasARenovar.cs" />
+    <Compile Include="Entidades\Reportes\EprocesarInformacionPolizasConBalanceAgrupada.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionPolizasRenovadas.cs" />
     <Compile Include="Entidades\Reportes\EProcesarInformacionReporteComisionIntermediarioOrgen.cs" />
     <Compile Include="Entidades\Reportes\EProduccionPorUsuarioDetalle.cs" />
@@ -459,6 +461,7 @@
     <Compile Include="Entidades\Reportes\EReporteComisionIntermediarioOrigen.cs" />
     <Compile Include="Entidades\Reportes\EReporteImpresionmarbete.cs" />
     <Compile Include="Entidades\Reportes\EReporteInformacionPersonasAlfredo.cs" />
+    <Compile Include="Entidades\Reportes\EReportePolizasConBalancePorAntiguedadDetallado.cs" />
     <Compile Include="Entidades\Reportes\EReporteProduccionNuevo.cs" />
     <Compile Include="Entidades\Reportes\EReporteProduccionOrigen.cs" />
     <Compile Include="Entidades\Reportes\EReporteRenovacionMachado.cs" />

@@ -33,15 +33,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         protected global::System.Web.UI.WebControls.RadioButton rbReporteDetallado;
 
         /// <summary>
-        /// rbReporteResumido control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbReporteResumido;
-
-        /// <summary>
         /// rbReporteAgrupado control.
         /// </summary>
         /// <remarks>
@@ -148,6 +139,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rbAgrupadoPorIntermediario;
+
+        /// <summary>
+        /// cbExcluirMotores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbExcluirMotores;
 
         /// <summary>
         /// lbFechaCorte control.
