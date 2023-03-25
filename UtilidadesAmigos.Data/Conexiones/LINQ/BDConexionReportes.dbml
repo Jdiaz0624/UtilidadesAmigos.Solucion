@@ -2183,6 +2183,8 @@
     <Parameter Name="CortadoA" Parameter="cortadoA" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="TipoReporteGenerado" Parameter="tipoReporteGenerado" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="TipoReporteGenerar" Parameter="tipoReporteGenerar" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(100)" />
     <ElementType Name="SP_PROCESAR_INFORMACION_POLIZAS_CON_BALANCE_AGRUPADAResult">
       <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
@@ -2196,6 +2198,8 @@
       <Column Name="CortadoA" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="TipoReporteGenerado" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="TipoReporteGenerar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

@@ -2768,6 +2768,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                 item.CortadoA,
                 item.GeneradoPor,
                 item.TipoReporteGenerado,
+                item.TipoReporteGenerar,
+                item.Poliza,
                 Accion);
             if (InformacionAgrupada != null) {
 
@@ -2784,7 +2786,9 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                 Motores=n.Motores,
                                 CortadoA=n.CortadoA,
                                 GeneradoPor=n.GeneradoPor,
-                                TipoReporteGenerado=n.TipoReporteGenerado
+                                TipoReporteGenerado=n.TipoReporteGenerado,
+                                TipoReporteGenerar=n.TipoReporteGenerar,
+                                Poliza=n.Poliza
                             }).FirstOrDefault();
             }
             return Procesar;

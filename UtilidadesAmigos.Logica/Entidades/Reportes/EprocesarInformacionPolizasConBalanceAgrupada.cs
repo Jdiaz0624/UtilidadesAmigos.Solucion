@@ -29,5 +29,8 @@ namespace UtilidadesAmigos.Logica.Entidades.Reportes
         public string GeneradoPor { get; set; }
 
         public string TipoReporteGenerado { get; set; }
+        public System.Nullable<int> TipoReporteGenerar { get; set; }
+
+        public string Poliza { get; set; }
     }
 }

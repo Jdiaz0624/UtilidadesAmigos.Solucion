@@ -871,9 +871,9 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_POLIZAS_CON_BALANCE_AGRUPADA")]
-		public ISingleResult<SP_PROCESAR_INFORMACION_POLIZAS_CON_BALANCE_AGRUPADAResult> SP_PROCESAR_INFORMACION_POLIZAS_CON_BALANCE_AGRUPADA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoAgrupacion", DbType="Int")] System.Nullable<int> codigoAgrupacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreAgrupacion", DbType="VarChar(1000)")] string nombreAgrupacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Facturado", DbType="Decimal(20,2)")] System.Nullable<decimal> facturado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cobrado", DbType="Decimal(20,2)")] System.Nullable<decimal> cobrado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Balance", DbType="Decimal(20,2)")] System.Nullable<decimal> balance, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OficinaFiltro", DbType="VarChar(1000)")] string oficinaFiltro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Motores", DbType="VarChar(1000)")] string motores, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CortadoA", DbType="VarChar(100)")] string cortadoA, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="GeneradoPor", DbType="VarChar(100)")] string generadoPor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoReporteGenerado", DbType="VarChar(500)")] string tipoReporteGenerado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(100)")] string accion)
+		public ISingleResult<SP_PROCESAR_INFORMACION_POLIZAS_CON_BALANCE_AGRUPADAResult> SP_PROCESAR_INFORMACION_POLIZAS_CON_BALANCE_AGRUPADA([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoAgrupacion", DbType="Int")] System.Nullable<int> codigoAgrupacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreAgrupacion", DbType="VarChar(1000)")] string nombreAgrupacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Facturado", DbType="Decimal(20,2)")] System.Nullable<decimal> facturado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cobrado", DbType="Decimal(20,2)")] System.Nullable<decimal> cobrado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Balance", DbType="Decimal(20,2)")] System.Nullable<decimal> balance, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OficinaFiltro", DbType="VarChar(1000)")] string oficinaFiltro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Motores", DbType="VarChar(1000)")] string motores, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CortadoA", DbType="VarChar(100)")] string cortadoA, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="GeneradoPor", DbType="VarChar(100)")] string generadoPor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoReporteGenerado", DbType="VarChar(500)")] string tipoReporteGenerado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoReporteGenerar", DbType="Int")] System.Nullable<int> tipoReporteGenerar, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(100)")] string accion)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, codigoAgrupacion, nombreAgrupacion, facturado, cobrado, balance, oficinaFiltro, motores, cortadoA, generadoPor, tipoReporteGenerado, accion);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, codigoAgrupacion, nombreAgrupacion, facturado, cobrado, balance, oficinaFiltro, motores, cortadoA, generadoPor, tipoReporteGenerado, tipoReporteGenerar, poliza, accion);
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_POLIZAS_CON_BALANCE_AGRUPADAResult>)(result.ReturnValue));
 		}
 	}
@@ -23505,6 +23505,10 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private string _TipoReporteGenerado;
 		
+		private System.Nullable<int> _TipoReporteGenerar;
+		
+		private string _Poliza;
+		
 		public SP_PROCESAR_INFORMACION_POLIZAS_CON_BALANCE_AGRUPADAResult()
 		{
 		}
@@ -23681,6 +23685,38 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._TipoReporteGenerado != value))
 				{
 					this._TipoReporteGenerado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoReporteGenerar", DbType="Int")]
+		public System.Nullable<int> TipoReporteGenerar
+		{
+			get
+			{
+				return this._TipoReporteGenerar;
+			}
+			set
+			{
+				if ((this._TipoReporteGenerar != value))
+				{
+					this._TipoReporteGenerar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this._Poliza = value;
 				}
 			}
 		}

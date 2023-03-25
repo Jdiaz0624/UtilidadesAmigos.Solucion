@@ -35,11 +35,11 @@
             <br />
             <div id="ReportesAgrupados" runat="server">
                 <asp:Label ID="lbTipoAgrupacion" runat="server" Text="Tipo de Agrupación" CssClass="LetrasNegrita"></asp:Label><br />
-                <asp:RadioButton ID="rbAgrupadoPorRamo" runat="server" Text="Por Ramo" ToolTip="Generar Reporte En Excel Plano" GroupName="FormatoReporte" /><br />
-                <asp:RadioButton ID="rbAgrupadoPorSubramo" runat="server" Text="Por SubRamo" ToolTip="Generar Reporte En Excel Plano" GroupName="FormatoReporte" /><br />
-                <asp:RadioButton ID="rbAgrupadoPorOficina" runat="server" Text="Por Oficina" ToolTip="Generar Reporte En Excel Plano" GroupName="FormatoReporte" /><br />
-                <asp:RadioButton ID="rbAgrupadoPorSupervisor" runat="server" Text="Por Supervisor" ToolTip="Generar Reporte En Excel Plano" GroupName="FormatoReporte" /><br />
-                <asp:RadioButton ID="rbAgrupadoPorIntermediario" runat="server" Text="Por Intermediario" ToolTip="Generar Reporte En Excel Plano" GroupName="FormatoReporte" />
+                <asp:RadioButton ID="rbAgrupadoPorRamo" runat="server" Text="Por Ramo" ToolTip="Generar Reporte En Excel Plano" GroupName="TipoAgrupacion" /><br />
+                <asp:RadioButton ID="rbAgrupadoPorSubramo" runat="server" Text="Por SubRamo" ToolTip="Generar Reporte En Excel Plano" GroupName="TipoAgrupacion" /><br />
+                <asp:RadioButton ID="rbAgrupadoPorOficina" runat="server" Text="Por Oficina" ToolTip="Generar Reporte En Excel Plano" GroupName="TipoAgrupacion" /><br />
+                <asp:RadioButton ID="rbAgrupadoPorSupervisor" runat="server" Text="Por Supervisor" ToolTip="Generar Reporte En Excel Plano" GroupName="TipoAgrupacion" /><br />
+                <asp:RadioButton ID="rbAgrupadoPorIntermediario" runat="server" Text="Por Intermediario" ToolTip="Generar Reporte En Excel Plano" GroupName="TipoAgrupacion" />
             </div>
             <br />
             <asp:CheckBox ID="cbExcluirMotores" runat="server" Text="Excluir Motores" CssClass="LetrasNegrita" Visible="false" ToolTip="Excluir Motores" />

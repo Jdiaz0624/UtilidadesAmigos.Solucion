@@ -22,6 +22,8 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte
         private string CortadoA = "";
         private string GeneradoPor = "";
         private string TipoReporteGenerado = "";
+        private int TipoReporteGenerar = 0;
+        private string Poliza = "";
         private string Accion = "";
 
         public ProcesarInformacionConBalanceAgrupada(
@@ -36,6 +38,8 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte
         string CortadoACON,
         string GeneradoPorCON,
         string TipoReporteGeneradoCON,
+        int TipoReporteGenerarCON,
+        string PolizaCON,
         string AccionCON)
         {
             IdUsuario = IdUsuarioCON;
@@ -49,6 +53,8 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte
             CortadoA = CortadoACON;
             GeneradoPor = GeneradoPorCON;
             TipoReporteGenerado = TipoReporteGeneradoCON;
+            TipoReporteGenerar = TipoReporteGenerarCON;
+            Poliza = PolizaCON;
             Accion = AccionCON;
         }
 
@@ -67,6 +73,8 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte
             Procesar.CortadoA = CortadoA;
             Procesar.GeneradoPor = GeneradoPor;
             Procesar.TipoReporteGenerado = TipoReporteGenerado;
+            Procesar.TipoReporteGenerar = TipoReporteGenerar;
+            Procesar.Poliza = Poliza;
 
             var MAN = ObjData.ProcesarInformacionPolizasConBalanceAgrupada(Procesar, Accion);
         }

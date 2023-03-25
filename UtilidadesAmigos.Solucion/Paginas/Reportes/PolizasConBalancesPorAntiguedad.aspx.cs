@@ -13,6 +13,17 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataComun = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido> ObjdataReporte = new Lazy<Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido>();
 
+        #region ENUMERACIONES DE LA PANTALLA
+        enum TipoReporteGenerarEnumeracion { 
+        
+            AgrupadoPorRamo=1,
+            AgrupadoPorSubRamo=2,
+            AgrupadoPorOficina=3,
+            AgrupadoPorSupervisor=4,
+            AgrupadoPorIntermediario=5
+        }
+        #endregion
+
         #region CARGAR LAS LISTAS DESPLEGABLES
         private void CargarListasDesplegables() {
 
@@ -34,6 +45,89 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         }
         private void ListaDias() {
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDias, ObjDataComun.Value.BuscaListas("DIASANTIGEUDAD", null, null));
+        }
+        #endregion
+
+        #region PROCESAR LA INFORMACION PARA GENERAR EL REPORTE AGRUPADO
+        private void CargarDataReporteAgrupado(decimal IdUsuario) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionConBalanceAgrupada Eliminear = new Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionConBalanceAgrupada(
+                IdUsuario, 0, "", 0, 0, 0, "", "", "", "", "", 0,"", "DELETE");
+            Eliminear.ProcesarInformacion();
+
+            DateTime ? _FechaCorte = string.IsNullOrEmpty(txtFechaCorte.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaCorte.Text);
+            int? _Ramo = ddlRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlRamo.SelectedValue) : new Nullable<int>();
+            int? _SubRamo = ddlSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSubRamo.SelectedValue) : new Nullable<int>();
+            string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+            int? _oficina = ddlOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlOficina.SelectedValue) : new Nullable<int>();
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtIntermediario.Text);
+            bool? _ExcluirMotores = cbExcluirMotores.Visible == false ? false : cbExcluirMotores.Checked;
+            int? _Cantidadias = ddlDias.SelectedValue != "-1" ? Convert.ToInt32(ddlDias.SelectedValue) : new Nullable<int>();
+            
+
+            int CodigoEntidad = 0, TipoReporteGenerar = 0;
+            string NombreEntidad = "";
+
+            var SacarInformacion = ObjdataReporte.Value.BuscaPolizasConBalanceAntiguedadDetallado(
+                _FechaCorte,
+                _Ramo,
+                _SubRamo,
+                _Poliza,
+                _oficina,
+                _Supervisor,
+                _Intermediario,
+                _ExcluirMotores,
+                _Cantidadias,
+                IdUsuario);
+            foreach (var n in SacarInformacion) {
+
+                //VALIDAMOS EL TIPO DE ENUMERACION
+                if (rbAgrupadoPorRamo.Checked == true) {
+
+                    CodigoEntidad = (int)n.CodigoRamo;
+                    NombreEntidad = n.NombreRamo;
+                    TipoReporteGenerar = (int)TipoReporteGenerarEnumeracion.AgrupadoPorRamo;
+                }
+                else if (rbAgrupadoPorSubramo.Checked == true) {
+                    CodigoEntidad = (int)n.CodigoSubramo;
+                    NombreEntidad = n.NombreSubRamo;
+                    TipoReporteGenerar = (int)TipoReporteGenerarEnumeracion.AgrupadoPorSubRamo;
+                }
+                else if (rbAgrupadoPorOficina.Checked == true) {
+                    CodigoEntidad = (int)n.Oficina;
+                    NombreEntidad = n.NombreOficina;
+                    TipoReporteGenerar = (int)TipoReporteGenerarEnumeracion.AgrupadoPorOficina;
+                }
+                else if (rbAgrupadoPorSupervisor.Checked == true) {
+
+                    CodigoEntidad = (int)n.CodigoSupervisor;
+                    NombreEntidad = n.Supervisor;
+                    TipoReporteGenerar = (int)TipoReporteGenerarEnumeracion.AgrupadoPorSupervisor;
+                }
+                else if (rbAgrupadoPorIntermediario.Checked == true) {
+                    CodigoEntidad = (int)n.Vendedor;
+                    NombreEntidad = n.Intermediario;
+                    TipoReporteGenerar = (int)TipoReporteGenerarEnumeracion.AgrupadoPorSubRamo;
+                }
+
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionConBalanceAgrupada Guardar = new Logica.Comunes.ProcesarMantenimientos.Reporte.ProcesarInformacionConBalanceAgrupada(
+                    IdUsuario,
+                    CodigoEntidad,
+                    NombreEntidad,
+                    (decimal)n.Facturado,
+                    (decimal)n.Cobrado,
+                    (decimal)n.Balance,
+                    n.OficinaFiltro,
+                    n.Motores,
+                    n.CortadoA,
+                    n.GeneradoPor,
+                    n.TipoReporteGenerado,
+                    TipoReporteGenerar,
+                    n.Poliza,
+                    "INSERT");
+                Guardar.ProcesarInformacion();
+            }
         }
         #endregion
 
@@ -183,7 +277,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             }
             else if (rbReporteAgrupado.Checked == true) {
                 if (rbExcelPlano.Checked == true) {
-                
+                    CargarDataReporteAgrupado((decimal)Session["IdUsuario"]);
                 }
                 else { }
             }
