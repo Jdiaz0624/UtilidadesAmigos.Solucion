@@ -2750,6 +2750,12 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
             return Listado;
         }
 
+        /// <summary>
+        /// Procesa la Informacion de los registros de las polizas con balance.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
         public UtilidadesAmigos.Logica.Entidades.Reportes.EprocesarInformacionPolizasConBalanceAgrupada ProcesarInformacionPolizasConBalanceAgrupada(UtilidadesAmigos.Logica.Entidades.Reportes.EprocesarInformacionPolizasConBalanceAgrupada item, string Accion) {
 
             ObjData.CommandTimeout = 999999999;
@@ -2792,6 +2798,36 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                             }).FirstOrDefault();
             }
             return Procesar;
+        }
+
+        /// <summary>
+        /// Muestra el resultado de la informacion agrupada
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EMostrarPolizasConBalanceAgrupado> MostrarPolizasConBalanceAgrupado(decimal? IdUsuario = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_MOSTRAR_POLIZAS_CON_BALANCE_AGRUPADO(IdUsuario)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EMostrarPolizasConBalanceAgrupado
+                           {
+                               IdUsuario=n.IdUsuario,
+                               CodigoAgrupacion=n.CodigoAgrupacion,
+                               NombreAgrupacion=n.NombreAgrupacion,
+                               OficinaFiltro=n.OficinaFiltro,
+                               Motores=n.Motores,
+                               CortadoA=n.CortadoA,
+                               GeneradoPor=n.GeneradoPor,
+                               TipoReporteGenerado=n.TipoReporteGenerado,
+                               TipoReporteGenerar=n.TipoReporteGenerar,
+                               TituloReporte=n.TituloReporte,
+                               NombreColumna=n.NombreColumna,
+                               Facturado=n.Facturado,
+                               Cobrado=n.Cobrado,
+                               Balance=n.Balance
+                           }).ToList();
+            return Listado;
         }
         #endregion
     }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 {
@@ -131,11 +133,88 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         }
         #endregion
 
+        #region REPORTES
+        private void ReporteAgrupado() {
+
+            string  RutaReporte = "", NombreReporte = "";
+            decimal IdUsuario = (decimal)Session["IdUsuario"];
+
+            RutaReporte = Server.MapPath("ReportePolizasConBalanceAgrupado.rpt");
+            NombreReporte = "Reporte Agrupado";
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@IdUsuario", IdUsuario);
+
+            Reporte.SetDatabaseLogon("sa", "!@Pa$$W0rd!@0624-");
+
+            if (rbPDF.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
+            else if (rbExcel.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+            }
+        }
+
+        private void ReporteDetallado() {
+
+            DateTime? _FechaCorte = string.IsNullOrEmpty(txtFechaCorte.Text.Trim()) ? new Nullable<DateTime>() : Convert.ToDateTime(txtFechaCorte.Text);
+            int? _Ramo = ddlRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlRamo.SelectedValue) : new Nullable<int>();
+            int? _SubRamo = ddlSubRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSubRamo.SelectedValue) : new Nullable<int>();
+            string _Poliza = string.IsNullOrEmpty(txtPoliza.Text.Trim()) ? null : txtPoliza.Text.Trim();
+            int? _oficina = ddlOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlOficina.SelectedValue) : new Nullable<int>();
+            int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtIntermediario.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtIntermediario.Text);
+            bool? _ExcluirMotores = cbExcluirMotores.Visible == false ? false : cbExcluirMotores.Checked;
+            int? _Cantidadias = ddlDias.SelectedValue != "-1" ? Convert.ToInt32(ddlDias.SelectedValue) : new Nullable<int>();
+            decimal? _GeneradlPor = (decimal)Session["IdUsuario"];
+
+            string RutaReporte = "", NombreReporte = "";
+
+            RutaReporte = Server.MapPath("ReportePolizasConBalanceDetalle.rpt");
+            NombreReporte = "Polizas Con Balance Detallado";
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@FechaCorte", _FechaCorte);
+            Reporte.SetParameterValue("@Ramo", _Ramo);
+            Reporte.SetParameterValue("@SubRamo", _SubRamo);
+            Reporte.SetParameterValue("@Poliza", _Poliza);
+            Reporte.SetParameterValue("@Oficina", _oficina);
+            Reporte.SetParameterValue("@CodSupervisor", _Supervisor);
+            Reporte.SetParameterValue("@CodIntermediario", _Intermediario);
+            Reporte.SetParameterValue("@ExcluirMotores", _ExcluirMotores);
+            Reporte.SetParameterValue("@CantidadDias", _Cantidadias);
+            Reporte.SetParameterValue("@GeneradoPor", _GeneradlPor);
+
+            Reporte.SetDatabaseLogon("sa", "!@Pa$$W0rd!@0624-");
+
+            if (rbPDF.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
+            else if (rbExcel.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+            }
+        }
+        #endregion
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack) {
+                Label lbNombreUsuarioCOnectado = (Label)Master.FindControl("lbUsuarioConectado");
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario NombreUsuario = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                lbNombreUsuarioCOnectado.Text = NombreUsuario.SacarNombreUsuarioConectado();
+
+                Label lbNombrePantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbNombrePantalla.Text = "REPORTE DE POLIZAS CON BALANCE PENDIENTE";
 
                 ReportesAgrupados.Visible = false;
                 rbReporteDetallado.Checked = true;
@@ -272,14 +351,38 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                                            }).ToList();
                     UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Polizas Con Balance Detallado", ExportarDetalle);
                 }
-                else { }
+                else {
+                    ReporteDetallado();
+                }
             
             }
             else if (rbReporteAgrupado.Checked == true) {
                 if (rbExcelPlano.Checked == true) {
-                    CargarDataReporteAgrupado((decimal)Session["IdUsuario"]);
+                    decimal IdUsuario = (decimal)Session["IdUsuario"];
+                    CargarDataReporteAgrupado(IdUsuario);
+                    var ExportarInformacionAgrupada = (from n in ObjdataReporte.Value.MostrarPolizasConBalanceAgrupado(IdUsuario)
+                                                       select new
+                                                       {
+                                                           Codigo = n.CodigoAgrupacion,
+                                                           Nombre = n.NombreAgrupacion,
+                                                           Motores = n.Motores,
+                                                           CortadoA = n.CortadoA,
+                                                           GeneradoPor = n.GeneradoPor,
+                                                           TipoReporteGenerado = n.TipoReporteGenerado,
+                                                           Facturado = n.Facturado,
+                                                           Cobrado = n.Cobrado,
+                                                           Balance = n.Balance
+                                                       }).ToList();
+                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Polizas Con Balance Agrupado", ExportarInformacionAgrupada);
+
+
+
                 }
-                else { }
+                else {
+                    decimal IdUsuario = (decimal)Session["IdUsuario"];
+                    CargarDataReporteAgrupado(IdUsuario);
+                    ReporteAgrupado();
+                }
             }
         }
     }

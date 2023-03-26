@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionReportesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO" Method="SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Sucursal" Parameter="sucursal" Type="System.String" DbType="VarChar(100)" />
@@ -2200,6 +2200,25 @@
       <Column Name="TipoReporteGenerado" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Column Name="TipoReporteGenerar" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_MOSTRAR_POLIZAS_CON_BALANCE_AGRUPADO" Method="SP_MOSTRAR_POLIZAS_CON_BALANCE_AGRUPADO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_MOSTRAR_POLIZAS_CON_BALANCE_AGRUPADOResult">
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CodigoAgrupacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreAgrupacion" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="OficinaFiltro" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Motores" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="CortadoA" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoReporteGenerado" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="TipoReporteGenerar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TituloReporte" Type="System.String" DbType="VarChar(34) NOT NULL" CanBeNull="false" />
+      <Column Name="NombreColumna" Type="System.String" DbType="VarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="Facturado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Cobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

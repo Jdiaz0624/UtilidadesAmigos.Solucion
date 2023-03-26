@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionReportesDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
 		{
 			OnCreated();
 		}
@@ -875,6 +875,13 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, codigoAgrupacion, nombreAgrupacion, facturado, cobrado, balance, oficinaFiltro, motores, cortadoA, generadoPor, tipoReporteGenerado, tipoReporteGenerar, poliza, accion);
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_POLIZAS_CON_BALANCE_AGRUPADAResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_MOSTRAR_POLIZAS_CON_BALANCE_AGRUPADO")]
+		public ISingleResult<SP_MOSTRAR_POLIZAS_CON_BALANCE_AGRUPADOResult> SP_MOSTRAR_POLIZAS_CON_BALANCE_AGRUPADO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Decimal(20,0)")] System.Nullable<decimal> idUsuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
+			return ((ISingleResult<SP_MOSTRAR_POLIZAS_CON_BALANCE_AGRUPADOResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -23717,6 +23724,266 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Poliza != value))
 				{
 					this._Poliza = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_MOSTRAR_POLIZAS_CON_BALANCE_AGRUPADOResult
+	{
+		
+		private System.Nullable<decimal> _IdUsuario;
+		
+		private System.Nullable<int> _CodigoAgrupacion;
+		
+		private string _NombreAgrupacion;
+		
+		private string _OficinaFiltro;
+		
+		private string _Motores;
+		
+		private string _CortadoA;
+		
+		private string _GeneradoPor;
+		
+		private string _TipoReporteGenerado;
+		
+		private System.Nullable<int> _TipoReporteGenerar;
+		
+		private string _TituloReporte;
+		
+		private string _NombreColumna;
+		
+		private System.Nullable<decimal> _Facturado;
+		
+		private System.Nullable<decimal> _Cobrado;
+		
+		private System.Nullable<decimal> _Balance;
+		
+		public SP_MOSTRAR_POLIZAS_CON_BALANCE_AGRUPADOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Decimal(20,0)")]
+		public System.Nullable<decimal> IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoAgrupacion", DbType="Int")]
+		public System.Nullable<int> CodigoAgrupacion
+		{
+			get
+			{
+				return this._CodigoAgrupacion;
+			}
+			set
+			{
+				if ((this._CodigoAgrupacion != value))
+				{
+					this._CodigoAgrupacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreAgrupacion", DbType="VarChar(1000)")]
+		public string NombreAgrupacion
+		{
+			get
+			{
+				return this._NombreAgrupacion;
+			}
+			set
+			{
+				if ((this._NombreAgrupacion != value))
+				{
+					this._NombreAgrupacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OficinaFiltro", DbType="VarChar(1000)")]
+		public string OficinaFiltro
+		{
+			get
+			{
+				return this._OficinaFiltro;
+			}
+			set
+			{
+				if ((this._OficinaFiltro != value))
+				{
+					this._OficinaFiltro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Motores", DbType="VarChar(1000)")]
+		public string Motores
+		{
+			get
+			{
+				return this._Motores;
+			}
+			set
+			{
+				if ((this._Motores != value))
+				{
+					this._Motores = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CortadoA", DbType="VarChar(100)")]
+		public string CortadoA
+		{
+			get
+			{
+				return this._CortadoA;
+			}
+			set
+			{
+				if ((this._CortadoA != value))
+				{
+					this._CortadoA = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GeneradoPor", DbType="VarChar(100)")]
+		public string GeneradoPor
+		{
+			get
+			{
+				return this._GeneradoPor;
+			}
+			set
+			{
+				if ((this._GeneradoPor != value))
+				{
+					this._GeneradoPor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoReporteGenerado", DbType="VarChar(500)")]
+		public string TipoReporteGenerado
+		{
+			get
+			{
+				return this._TipoReporteGenerado;
+			}
+			set
+			{
+				if ((this._TipoReporteGenerado != value))
+				{
+					this._TipoReporteGenerado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoReporteGenerar", DbType="Int")]
+		public System.Nullable<int> TipoReporteGenerar
+		{
+			get
+			{
+				return this._TipoReporteGenerar;
+			}
+			set
+			{
+				if ((this._TipoReporteGenerar != value))
+				{
+					this._TipoReporteGenerar = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TituloReporte", DbType="VarChar(34) NOT NULL", CanBeNull=false)]
+		public string TituloReporte
+		{
+			get
+			{
+				return this._TituloReporte;
+			}
+			set
+			{
+				if ((this._TituloReporte != value))
+				{
+					this._TituloReporte = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreColumna", DbType="VarChar(13) NOT NULL", CanBeNull=false)]
+		public string NombreColumna
+		{
+			get
+			{
+				return this._NombreColumna;
+			}
+			set
+			{
+				if ((this._NombreColumna != value))
+				{
+					this._NombreColumna = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Facturado", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Facturado
+		{
+			get
+			{
+				return this._Facturado;
+			}
+			set
+			{
+				if ((this._Facturado != value))
+				{
+					this._Facturado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cobrado", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Cobrado
+		{
+			get
+			{
+				return this._Cobrado;
+			}
+			set
+			{
+				if ((this._Cobrado != value))
+				{
+					this._Cobrado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Balance", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> Balance
+		{
+			get
+			{
+				return this._Balance;
+			}
+			set
+			{
+				if ((this._Balance != value))
+				{
+					this._Balance = value;
 				}
 			}
 		}
