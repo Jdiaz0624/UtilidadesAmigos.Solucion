@@ -149,7 +149,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
             Reporte.SetParameterValue("@IdUsuario", IdUsuario);
 
-            Reporte.SetDatabaseLogon("sa", "!@Pa$$W0rd!@0624-");
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
 
             if (rbPDF.Checked == true) {
                 Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
@@ -193,7 +193,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             Reporte.SetParameterValue("@CantidadDias", _Cantidadias);
             Reporte.SetParameterValue("@GeneradoPor", _GeneradlPor);
 
-            Reporte.SetDatabaseLogon("sa", "!@Pa$$W0rd!@0624-");
+            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
 
             if (rbPDF.Checked == true) {
                 Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);

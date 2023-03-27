@@ -127,6 +127,7 @@
                           <asp:RadioButton ID="rbGenerarReporteResumido" runat="server" Text="Resumido" ToolTip="Generar reporte de comisión resumido" GroupName="Reporte" />
                           <asp:RadioButton ID="rbGenerarReporteDetalle" runat="server" Text="Detalle" ToolTip="Generar reporte de comsiion detalle" GroupName="Reporte" />
                           <asp:RadioButton ID="rbGenerarReporteInterno" runat="server" Text="Interno" ToolTip="Generar reporte de comisión de intermediario interno" GroupName="Reporte" />
+                          <asp:RadioButton ID="rbReporteSuperIntendencia" runat="server" Text="Super" ToolTip="Generar Reporte para la Super Intendencia de Seguros" GroupName="Reporte" />
               </div>
                   <br />
                   <div class="form-check-inline">

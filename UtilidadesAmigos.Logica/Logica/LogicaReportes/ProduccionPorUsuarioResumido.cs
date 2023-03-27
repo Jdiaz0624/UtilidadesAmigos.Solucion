@@ -2331,6 +2331,43 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                            }).ToList();
             return listado;
         }
+
+        /// <summary>
+        /// Muestra el listado de las comisiones de los intermediario en el formato solicitada por la super intendencia de seguros.
+        /// </summary>
+        /// <param name="CodigoIntermediario"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="Recibo"></param>
+        /// <param name="Factura"></param>
+        /// <param name="MontoMinimo"></param>
+        /// <param name="IdUsuario"></param>
+        /// <param name="TipoOperacion"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Reportes.EMostrarDatosComisionesIntermediarioSuperIntendencia> MostrarDatosComisionesIntermediariosSuperIntendencia(int? CodigoIntermediario = null, int? Oficina = null, int? Ramo = null, string Poliza = null, decimal? Recibo = null, decimal? Factura = null, decimal? MontoMinimo = null, decimal? IdUsuario = null, int? TipoOperacion = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_SUPER_INTENDENCIA(CodigoIntermediario, Oficina, Ramo, Poliza, Recibo, Factura, MontoMinimo, IdUsuario, TipoOperacion)
+                           select new UtilidadesAmigos.Logica.Entidades.Reportes.EMostrarDatosComisionesIntermediarioSuperIntendencia
+                           {
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               RNC_Cedula=n.RNC_Cedula,
+                               NoPoliza=n.NoPoliza,
+                               Comision=n.Comision,
+                               Retencion=n.Retencion,
+                               AvanceComision=n.AvanceComision,
+                               ComisionPagada=n.ComisionPagada,
+                               NumeroRecibo=n.NumeroRecibo,
+                               FechaPago=n.FechaPago,
+                               Ramo=n.Ramo,TipoCuentaBanco=n.TipoCuentaBanco,
+                               FormaPago=n.FormaPago,
+                               Licencia=n.Licencia
+                           }).ToList();
+            return Listado;
+        }
         #endregion
 
         #region LISTADO DE RECLAMACIONES

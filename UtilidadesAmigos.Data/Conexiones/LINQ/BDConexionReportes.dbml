@@ -2221,4 +2221,31 @@
       <Column Name="Balance" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_SUPER_INTENDENCIA" Method="SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_SUPER_INTENDENCIA">
+    <Parameter Name="CodigoIntermediario" Parameter="codigoIntermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ramo" Parameter="ramo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Recibo" Parameter="recibo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Factura" Parameter="factura" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="MontoMinimo" Parameter="montoMinimo" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="TipoOperacion" Parameter="tipoOperacion" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_SUPER_INTENDENCIAResult">
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="RNC_Cedula" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NoPoliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Comision" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="Retencion" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="AvanceComision" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="ComisionPagada" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="NumeroRecibo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="FechaPago" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Ramo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoCuentaBanco" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FormaPago" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Licencia" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

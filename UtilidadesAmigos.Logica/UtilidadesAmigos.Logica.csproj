@@ -440,6 +440,7 @@
     <Compile Include="Entidades\Reportes\EModificarEnlaceProveedores.cs" />
     <Compile Include="Entidades\Reportes\EMostrarDatosComisionesIntermediariosDetallado.cs" />
     <Compile Include="Entidades\Reportes\EMostrarDatosComisionesIntermediariosResumido.cs" />
+    <Compile Include="Entidades\Reportes\EMostrarDatosComisionesIntermediarioSuperIntendencia.cs" />
     <Compile Include="Entidades\Reportes\EMostrarListadoRecibosComisionesAcumuladasIntermediarios.cs" />
     <Compile Include="Entidades\Reportes\EMostrarPolizasConBalanceAgrupado.cs" />
     <Compile Include="Entidades\Reportes\EPrimaDepositoPendiente.cs" />

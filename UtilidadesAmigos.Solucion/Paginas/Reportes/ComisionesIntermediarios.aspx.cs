@@ -532,6 +532,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Reporte de Comisiones Resumido", Reporte_Resumido);
 
                 }
+
             }
             else {
                 if (rbPDF.Checked == true) {
@@ -817,7 +818,89 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     decimal IdUSuario = (decimal)Session["IdUsuario"];
                     ProcesarInformacionDataComisiones(IdUSuario);
                     string RutaReporte = "";
-                    GenerarReporteComisiones(RutaReporte, IdUSuario);
+
+                    if (rbReporteSuperIntendencia.Checked == true) {
+
+                        //COLOCAMOS LOS FILTROS
+                        int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioComisiones.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioComisiones.Text);
+                        int? _Oficina = ddlSeleccionaroficinaComisiones.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionaroficinaComisiones.SelectedValue) : new Nullable<int>();
+                        int? _Ramo = ddlSeleccionarRamo.SelectedValue != "-1" ? Convert.ToInt32(ddlSeleccionarRamo.SelectedValue) : new Nullable<int>();
+                        string _Poliza = string.IsNullOrEmpty(txtNumeroPoliza.Text.Trim()) ? null : txtNumeroPoliza.Text.Trim();
+                        decimal? _NumeroRecibo = string.IsNullOrEmpty(txtNumeroRecibo.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroRecibo.Text);
+                        decimal? _NumeroFactura = string.IsNullOrEmpty(txtNumeroFactura.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroFactura.Text);
+
+
+                        if (rbExcelPlano.Checked == true) {
+
+                            var ExportarInformacion = (from n in ObjDataReportes.Value.MostrarDatosComisionesIntermediariosSuperIntendencia(
+                                _Intermediario,
+                                _Oficina,
+                                _Ramo,
+                                _Poliza,
+                                _NumeroRecibo,
+                                _NumeroFactura,
+                                Convert.ToDecimal(txtMontoMinimo.Text),
+                                (decimal)Session["IdUsuario"],
+                                1)
+                                                       select new
+                                                       {
+                                                           
+                                                           Intermediario = n.Intermediario,
+                                                           RNC_Cedula = n.RNC_Cedula,
+                                                           NoPoliza = n.NoPoliza,
+                                                           Comision = n.Comision,
+                                                           Retencion = n.Retencion,
+                                                           AvanceComision = n.AvanceComision,
+                                                           ComisionPagada = n.ComisionPagada,
+                                                           NumeroRecibo = n.NumeroRecibo,
+                                                           FechaPago = n.FechaPago,
+                                                           Ramo = n.Ramo,
+                                                           TipoCuentaBanco = n.TipoCuentaBanco,
+                                                           FormaPago = n.FormaPago,
+                                                           Licencia = n.Licencia
+                                                       }).ToList();
+                            UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Comisiones Pagadas", ExportarInformacion);
+
+                            
+                        }
+                        else {
+
+                            string RutaReporteSuper = "", NombreReporteSuper = "";
+                            RutaReporteSuper = Server.MapPath("ReporteComisionesSuperIntendencia.rpt");
+                            NombreReporteSuper = "Reporte Comisiones Pagadas";
+
+                            ReportDocument Reporte = new ReportDocument();
+
+                            Reporte.Load(RutaReporteSuper);
+                            Reporte.Refresh();
+
+                            Reporte.SetParameterValue("@CodigoIntermediario", _Intermediario);
+                            Reporte.SetParameterValue("@Oficina", _Oficina);
+                            Reporte.SetParameterValue("@Ramo", _Ramo);
+                            Reporte.SetParameterValue("@Poliza", _Poliza);
+                            Reporte.SetParameterValue("@Recibo", _NumeroRecibo);
+                            Reporte.SetParameterValue("@Factura", _NumeroFactura);
+                            Reporte.SetParameterValue("@MontoMinimo", Convert.ToDecimal(txtMontoMinimo.Text));
+                            Reporte.SetParameterValue("@IdUsuario", (decimal)Session["IdUsuario"]);
+                            Reporte.SetParameterValue("@TipoOperacion", 1);
+
+                            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+
+                            if (rbPDF.Checked == true) {
+
+                                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporteSuper);
+                            }
+                            else if (rbExcel.Checked == true) {
+                                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporteSuper);
+                            }
+
+
+                        }
+                    }
+                    else {
+                       
+                        GenerarReporteComisiones(RutaReporte, IdUSuario);
+                    }
                 }
             }
             
