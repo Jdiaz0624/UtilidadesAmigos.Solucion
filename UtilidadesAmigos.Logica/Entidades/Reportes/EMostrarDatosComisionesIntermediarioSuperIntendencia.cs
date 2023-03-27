@@ -8,7 +8,7 @@ namespace UtilidadesAmigos.Logica.Entidades.Reportes
 {
     public class EMostrarDatosComisionesIntermediarioSuperIntendencia
     {
-        public System.Nullable<int> CodigoIntermediario { get; set; }
+        public System.Nullable<int> CodigoIntermediario;
 
         public string Intermediario { get; set; }
 
@@ -28,11 +28,14 @@ namespace UtilidadesAmigos.Logica.Entidades.Reportes
 
         public string FechaPago { get; set; }
 
-        public System.Nullable<int> Ramo { get; set; }
+        public string Ramo { get; set; }
 
         public string TipoCuentaBanco { get; set; }
+
         public string FormaPago { get; set; }
 
         public string Licencia { get; set; }
+
+        public string GeneradoPor { get; set; }
     }
 }

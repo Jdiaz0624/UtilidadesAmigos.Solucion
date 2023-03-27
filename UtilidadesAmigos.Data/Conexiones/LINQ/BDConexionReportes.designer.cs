@@ -24019,13 +24019,15 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private string _FechaPago;
 		
-		private System.Nullable<int> _Ramo;
+		private string _Ramo;
 		
 		private string _TipoCuentaBanco;
 		
 		private string _FormaPago;
 		
 		private string _Licencia;
+		
+		private string _GeneradoPor;
 		
 		public SP_MOSTRAR_DATOS_COMISIONES_INTERMEDIARIOS_SUPER_INTENDENCIAResult()
 		{
@@ -24191,8 +24193,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ramo", DbType="Int")]
-		public System.Nullable<int> Ramo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ramo", DbType="NVarChar(50)")]
+		public string Ramo
 		{
 			get
 			{
@@ -24239,7 +24241,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Licencia", DbType="VarChar(10)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Licencia", DbType="VarChar(50)")]
 		public string Licencia
 		{
 			get
@@ -24251,6 +24253,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Licencia != value))
 				{
 					this._Licencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GeneradoPor", DbType="VarChar(100)")]
+		public string GeneradoPor
+		{
+			get
+			{
+				return this._GeneradoPor;
+			}
+			set
+			{
+				if ((this._GeneradoPor != value))
+				{
+					this._GeneradoPor = value;
 				}
 			}
 		}
