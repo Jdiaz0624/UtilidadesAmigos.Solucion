@@ -718,6 +718,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "GENERAR COMISIONES DE INTERMEDIARIOS";
 
+                DateTime date = DateTime.Now;
+                //Asi obtenemos el primer dia del mes actual
+                DateTime PrimerDia = new DateTime(date.Year, date.Month, 1);
+                DateTime DiaActual = DateTime.Now;
+                txtFechaDesdeComisiones.Text = PrimerDia.ToString("yyyy-MM-dd");
+                txtFechaHastaComisiones.Text = DiaActual.ToString("yyyy-MM-dd");
+
                 rbGenerarReporteResumido.Checked = true;
                 rbPDF.Checked = true;
                 cbMostrarIntermediariosAcumulativos.Checked = false;
