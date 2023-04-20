@@ -161,6 +161,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DisenoMasterPage.css" />
     <Content Include="Estilos\EstiloMenuPrincipal.css" />
     <Content Include="Estilos\EstilosPaginas.css" />
     <Content Include="Imagenes\01.jpg" />
@@ -244,6 +245,11 @@
     <Content Include="Paginas\Consulta\ValidarCoberturas.aspx" />
     <Content Include="Paginas\ConsumoWS.aspx" />
     <Content Include="Paginas\ControlVisitas.aspx" />
+    <Content Include="Paginas\Correcciones\CambioCliente.aspx" />
+    <Content Include="Paginas\Correcciones\CambioIntermediario.aspx" />
+    <Content Include="Paginas\Correcciones\EliminarEntodoso.aspx" />
+    <Content Include="Paginas\Correcciones\ModificarDatosCliente.aspx" />
+    <Content Include="Paginas\Correcciones\PolizaTransito.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
@@ -562,6 +568,41 @@
     </Compile>
     <Compile Include="Paginas\ControlVisitas.aspx.designer.cs">
       <DependentUpon>ControlVisitas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\CambioCliente.aspx.cs">
+      <DependentUpon>CambioCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\CambioCliente.aspx.designer.cs">
+      <DependentUpon>CambioCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\CambioIntermediario.aspx.cs">
+      <DependentUpon>CambioIntermediario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\CambioIntermediario.aspx.designer.cs">
+      <DependentUpon>CambioIntermediario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\EliminarEntodoso.aspx.cs">
+      <DependentUpon>EliminarEntodoso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\EliminarEntodoso.aspx.designer.cs">
+      <DependentUpon>EliminarEntodoso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\ModificarDatosCliente.aspx.cs">
+      <DependentUpon>ModificarDatosCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\ModificarDatosCliente.aspx.designer.cs">
+      <DependentUpon>ModificarDatosCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\PolizaTransito.aspx.cs">
+      <DependentUpon>PolizaTransito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\PolizaTransito.aspx.designer.cs">
+      <DependentUpon>PolizaTransito.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\CotizadorAmigos.aspx.cs">
       <DependentUpon>CotizadorAmigos.aspx</DependentUpon>

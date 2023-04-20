@@ -402,15 +402,6 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkProcesarDataAsegurado;
 
         /// <summary>
-        /// LinkDatoPoliza control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkDatoPoliza;
-
-        /// <summary>
         /// LinkEndosos control.
         /// </summary>
         /// <remarks>
@@ -472,6 +463,69 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkCartaCancelacion;
+
+        /// <summary>
+        /// DivModuloCorrecciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivModuloCorrecciones;
+
+        /// <summary>
+        /// LinkEliminarEndosos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkEliminarEndosos;
+
+        /// <summary>
+        /// LinkPolizaTransito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkPolizaTransito;
+
+        /// <summary>
+        /// LinkCambioIntermediario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkCambioIntermediario;
+
+        /// <summary>
+        /// LinkCambioCliente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkCambioCliente;
+
+        /// <summary>
+        /// LinkModificarDatosCliente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkModificarDatosCliente;
+
+        /// <summary>
+        /// LinkDatoPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkDatoPoliza;
 
         /// <summary>
         /// DivModuloMantenimiento control.

@@ -9,6 +9,7 @@
 
     <link href="../Estilos/EstilosMaster.css" rel="stylesheet" type="text/css" />
     <link href="../Estilos/EstiloMenuPrincipal.css" rel="stylesheet" type="text/css" />
+    
 
 
     <link type="text/css" href="../Content/bootstrap.min.css" rel="stylesheet" />
@@ -30,193 +31,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
-
+     <link rel="stylesheet" href="../Content/DisenoMasterPage.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">    
     </asp:ContentPlaceHolder>
  
 
-       <style type="text/css">
-
-        *{
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-
-
-a{
-    text-decoration: none;
-    color: #fff;
-}
-
-        .ColorLink {
-        text-decoration: none;
-        color: #ff6a00;
-    
-        }
-
-.btn-menu{
-    display: none;
-    padding: 20px;
-    background: #ff6a00;
-    color: #fff;
-}
-
-.btn-menu .icono{
-float: left;
-}
-
-.contenedor-menu{
-
-    width: 20%;
-    min-width: 240px;
-    /*margin: 50px;*/
-    display: inline-block;
-    /*font-family: 'roboto',sans-serif;*/
-    line-height: 18px;
-}
-
-.contenedor-menu .menu{
-width: 100%;
-
-}
-
-.contenedor-menu ul{
-
-    list-style: none;
-}
-
-.contenedor-menu .menu li a{
-
-    color: #fff; /*Este es el color de las letras*/
-    display: block;
-    padding: 15px 20px;
-    background: #212529; /*Este es el color del backgroun del menu*/
-}
-
-.contenedor-menu .menu li a:hover{
-background: #fff; /*Este es el color que se pone al colocar el cursor*/
-color: #000000;
-
-}
-
-.contenedor-menu .menu .icono{
-
-    font-size: 12px;
-    line-height: 18px;
-}
-
-.contenedor-menu .menu .icono.izquierda{
-
-    float: left;
-    margin-right: 10px;
-}
-
-.contenedor-menu .menu .icono.derecha{
-
-    float: left;
-   
-}
-
-.contenedor-menu .menu ul{
-display: none;
-
-}
-
-.contenedor-menu .menu ul li a{
-background: #424242;
-color: #e9e9e9;
-}
-
-.contenedor-menu .menu .activado > a{
-
-    background: #fff; /*Este es el color del fondo del menu interno del menu al seleccionar el registro*/
-    color: #000000; /*Este es el color de las letras del menu interno al seleccionar el registro*/
-}
-
-@media screen and (max-width: 450px){
-body{
-padding-top: 80px;
-
-}
-.contenedor-menu{
-margin: 0;
-width: 100%;
-position: fixed;
-top: 0;
-z-index: 1000;
-}
-.btn-menu{
-display: block;
-
-}
-.contenedor-menu .menu{
-
-    display: none;
-}
-
-}
-
-
-        .dropdown-toggle {
-        color: #ffffff;
-        }
-
-
-        #wrapper {
-    overflow-x: hidden;
-    color: #12093D;
-}
-
-#sidebar-wrapper {
-    min-height: 100vh;
-    margin-left: -15rem;
-    -webkit-transition: margin .25s ease-out;
-    -moz-transition: margin .25s ease-out;
-    -o-transition: margin .25s ease-out;
-    transition: margin .25s ease-out;
-}
-
-    #sidebar-wrapper .sidebar-heading {
-        padding: 0.875rem 1.25rem;
-        font-size: 1.2rem;
-    }
-
-    #sidebar-wrapper .list-group {
-        width: 15rem;
-    }
-
-#page-content-wrapper {
-    min-width: 100vw;
-}
-
-#wrapper.toggled #sidebar-wrapper {
-    margin-left: 0;
-}
-
-@media (min-width: 768px) {
-    #sidebar-wrapper {
-        margin-left: 0;
-    }
-
-    #page-content-wrapper {
-        min-width: 0;
-        width: 100%;
-    }
-
-    #wrapper.toggled #sidebar-wrapper {
-        margin-left: -15rem;
-    }
-
-    .sidebar-heading {
-        color: white;
-    }
-}
-
-    </style>
+       
 
        <script type="text/javascript">
           function disableBackButton() {
@@ -342,7 +162,6 @@ display: block;
             <li> <asp:LinkButton ID="LinkSolicitudesCheques" runat="server" Text="Solicitudes de Cheques" ToolTip="Generar Solicitudes de Cheques" OnClick="LinkGenerarSOlicitudChequeComisiones_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkImpresionCheques" runat="server" Text="Impresión de Cheques" ToolTip="Imprimir Cheques" OnClick="LinkImpresionCheques_Click1"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkProcesarDataAsegurado" runat="server" Text="Procesar Data Asegura.do" ToolTip="Procesar Data Asegura.do" OnClick="LinkProcesarDataAsegurado_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkDatoPoliza" runat="server" Text="Dato Poliza" ToolTip="Dato Polizz" OnClick="LinkCorregirValorDeclarativa_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkEndosos" runat="server" Text="Endosos" ToolTip="Generar Endosos" OnClick="LinkGenerarEndoso_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkProcesoEmision" runat="server" Text="Proceso de Emision" ToolTip="Proceso de Emisión de Polizas" OnClick="LinkProcesoEmision_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkVolantePagos" runat="server" Text="Volantes de Pagos" ToolTip="Generar Volantes de Pagos" OnClick="LinkVolantePago_Click"></asp:LinkButton> </li>
@@ -350,6 +169,18 @@ display: block;
             <li> <asp:LinkButton ID="LinkAgregarItemsReclamos" runat="server" Text="Agregar Items Reclamos" ToolTip="Agregar o Sacar Items de Reclamos" OnClick="LinkAgregarDPAReclamos_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkReciboIngreso" runat="server" Text="Recibo de Ingreso" ToolTip="Recibo de Ingresos" OnClick="LinkReciboDigital_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkCartaCancelacion" runat="server" Text="Carta de Cancelación" ToolTip="Generar Carta de Cancelación de Asegurados / Intermediarios" OnClick="LinkCartaCancelacion_Click"></asp:LinkButton> </li>
+        </ul>
+        </li>
+
+         <!--MODULO DE CORRECCIONES-->
+        <li id="DivModuloCorrecciones" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-cogs"></i>Correcciones<i class="icono derecha fa fa-chevron-down"></i></a>
+        <ul>
+            <li> <asp:LinkButton ID="LinkEliminarEndosos" runat="server" Text="Eliminar Endoso" ToolTip="Eliminar Endoso a Poliza" OnClick="LinkEliminarEndosos_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkPolizaTransito" runat="server" Text="Poliza en Transito" ToolTip="Corregor valor de Poliza colgada en Transito" OnClick="LinkPolizaTransito_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkCambioIntermediario" runat="server" Text="Cambio de Intermediario" ToolTip="Cambiar Intermediario a Poliza" OnClick="LinkCambioIntermediario_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkCambioCliente" runat="server" Text="Cambio de Cliente" ToolTip="Cambiar Cliente a Poliza" OnClick="LinkCambioCliente_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkModificarDatosCliente" runat="server" Text="Modificar Cliente" ToolTip="Modificar Cliente" OnClick="LinkModificarDatosCliente_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkDatoPoliza" runat="server" Text="Dato Poliza" ToolTip="Dato Poliza" OnClick="LinkCorregirValorDeclarativa_Click"></asp:LinkButton> </li>
         </ul>
         </li>
 

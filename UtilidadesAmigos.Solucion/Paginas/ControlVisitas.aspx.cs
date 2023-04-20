@@ -37,7 +37,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
         KimailiRazon=35,
         AngelaDesire=41,
         MariaGiron = 49,
-        glenisbierd=48
+        glenisbierd=48,
+        AngelaGenoveva=82
+
         }
         
         #region CONTROL PARA MOSTRAR LA PAGINACION
@@ -450,73 +452,38 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
                 decimal IdUsuario = (decimal)Session["IdUsuario"];
 
-                if (IdUsuario == (decimal)PermisoUsuarios.CarlosMercado)
+                if (IdUsuario == (decimal)PermisoUsuarios.JuanMarcelino)
                 {
                     btnNuevoNuevo.Visible = true;
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
                 }
-                else if (IdUsuario == (decimal)PermisoUsuarios.ErikSonVeras)
+                else if (IdUsuario == (decimal)PermisoUsuarios.MariaGiron)
                 {
                     btnNuevoNuevo.Visible = true;
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
                 }
-                else if (IdUsuario == (decimal)PermisoUsuarios.AdalgisaAlmonte)
-                {
-                    btnNuevoNuevo.Visible = true;
-                    btnModificarNuevo.Visible = true;
-                    btnEliminarNuevo.Visible = false;
-                }
-                else if (IdUsuario == (decimal)PermisoUsuarios.JuanMarcelino)
-                {
-                    btnNuevoNuevo.Visible = true;
-                    btnModificarNuevo.Visible = true;
-                    btnEliminarNuevo.Visible = true;
-                }
-                else if (IdUsuario == (decimal)PermisoUsuarios.AlfredoPimentel)
-                {
-                    btnNuevoNuevo.Visible = true;
-                    btnModificarNuevo.Visible = true;
-                    btnEliminarNuevo.Visible = true;
-                }
-                else if (IdUsuario == (decimal)PermisoUsuarios.MiguelBerrora)
-                {
-                    btnNuevoNuevo.Visible = true;
-                    btnModificarNuevo.Visible = true;
-                    btnEliminarNuevo.Visible = true;
-                }
-                else if (IdUsuario == (decimal)PermisoUsuarios.KimailiRazon)
+                else if (IdUsuario == (decimal)PermisoUsuarios.glenisbierd)
                 {
 
                     btnNuevoNuevo.Visible = true;
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
                 }
-                else if (IdUsuario == (decimal)PermisoUsuarios.AngelaDesire)
+                else if (IdUsuario == (decimal)PermisoUsuarios.AngelaGenoveva)
                 {
+
                     btnNuevoNuevo.Visible = true;
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
                 }
-                else if (IdUsuario == (decimal)PermisoUsuarios.MariaGiron){
-                    btnNuevoNuevo.Visible = true;
-                    btnModificarNuevo.Visible = true;
-                    btnEliminarNuevo.Visible = false;                                                                                    
-            }
-            else if (IdUsuario == (decimal)PermisoUsuarios.glenisbierd)
-            {
-
-                btnNuevoNuevo.Visible = true;
-                btnModificarNuevo.Visible = true;
-                btnEliminarNuevo.Visible = false;
-            }
-            else
-            {
-                btnNuevoNuevo.Visible = false;
-                btnModificarNuevo.Visible = false;
-                btnEliminarNuevo.Visible = false;
-            }
+                else
+                {
+                    btnNuevoNuevo.Visible = false;
+                    btnModificarNuevo.Visible = false;
+                    btnEliminarNuevo.Visible = false;
+                }
             
 
             }
