@@ -1594,7 +1594,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
-                    LinkDatoPoliza.Visible = false;
+                    LinkDatoPoliza.Visible = true;
 
                     //MANTENIMIENTO
                     LinkClientes.Visible = false;
