@@ -71,6 +71,12 @@
             <asp:RadioButton ID="rbReporteDetallado" runat="server" Text="Detallado" GroupName="TipoReporte" ToolTip="Generar Reporte de Cuentas a Proveedores Detallado" />
         </div>
         <br />
+         <div class="form-check-inline">
+            <asp:Label ID="lbFormatoreporte" runat="server" Text="Formato de Reporte" CssClass="Letranegrita"></asp:Label>
+            <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" GroupName="FormatoReporte" ToolTip="Generar Reporte en PDF" />
+            <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" GroupName="FormatoReporte" ToolTip="Generar Reporte en Excel" />
+        </div>
+        <br />
         <div align="center">
             <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Generar Reporte" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
         </div>

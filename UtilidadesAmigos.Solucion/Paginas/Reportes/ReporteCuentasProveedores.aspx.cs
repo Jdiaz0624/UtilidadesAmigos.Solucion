@@ -21,6 +21,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
             if (!IsPostBack) {
 
                 rbReporteResumido.Checked = true;
+                rbPDF.Checked = true;
             }
         }
 
@@ -46,7 +47,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
             Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
 
-            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            if (rbPDF.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
+            else if (rbExcel.Checked == true) {
+                Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+            }
 
             Reporte.Close();
             Reporte.Dispose();
