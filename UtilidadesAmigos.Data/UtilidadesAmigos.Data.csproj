@@ -56,6 +56,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BDConexionConsulta.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Conexiones\LINQ\BDConexionCorrecciones.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDConexionCorrecciones.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Conexiones\LINQ\BDConexionMantenimientos.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -117,6 +122,14 @@
     </None>
     <None Include="Conexiones\LINQ\BDConexionConsulta.dbml.layout">
       <DependentUpon>BDConexionConsulta.dbml</DependentUpon>
+    </None>
+    <None Include="Conexiones\LINQ\BDConexionCorrecciones.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>BDConexionCorrecciones.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Conexiones\LINQ\BDConexionCorrecciones.dbml.layout">
+      <DependentUpon>BDConexionCorrecciones.dbml</DependentUpon>
     </None>
     <None Include="Conexiones\LINQ\BDConexionMantenimientos.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

@@ -176,11 +176,11 @@
         <li id="DivModuloCorrecciones" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-cogs"></i>Correcciones<i class="icono derecha fa fa-chevron-down"></i></a>
         <ul>
             <li> <asp:LinkButton ID="LinkEliminarEndosos" runat="server" Text="Eliminar Endoso" ToolTip="Eliminar Endoso a Poliza" OnClick="LinkEliminarEndosos_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkPolizaTransito" runat="server" Text="Poliza en Transito" ToolTip="Corregor valor de Poliza colgada en Transito" OnClick="LinkPolizaTransito_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkCambioIntermediario" runat="server" Text="Cambio de Intermediario" ToolTip="Cambiar Intermediario a Poliza" OnClick="LinkCambioIntermediario_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkCambioCliente" runat="server" Text="Cambio de Cliente" ToolTip="Cambiar Cliente a Poliza" OnClick="LinkCambioCliente_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkModificarDatosCliente" runat="server" Text="Modificar Cliente" ToolTip="Modificar Cliente" OnClick="LinkModificarDatosCliente_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkDatoPoliza" runat="server" Text="Dato Poliza" ToolTip="Dato Poliza" OnClick="LinkCorregirValorDeclarativa_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkPolizaTransito" runat="server" Text="Poliza en Transito" ForeColor="Red" ToolTip="Corregor valor de Poliza colgada en Transito" OnClick="LinkPolizaTransito_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkCambioIntermediario" runat="server" Text="Cambio de Intermediario" ForeColor="Red" ToolTip="Cambiar Intermediario a Poliza" OnClick="LinkCambioIntermediario_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkCambioCliente" runat="server" Text="Cambio de Cliente" ForeColor="Red" ToolTip="Cambiar Cliente a Poliza" OnClick="LinkCambioCliente_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkModificarDatosCliente" runat="server" Text="Modificar Cliente" ForeColor="Red" ToolTip="Modificar Cliente" OnClick="LinkModificarDatosCliente_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkDatoPoliza" runat="server" Text="Dato Poliza" ToolTip="Dato Poliza" ForeColor="Red" OnClick="LinkCorregirValorDeclarativa_Click"></asp:LinkButton> </li>
         </ul>
         </li>
 

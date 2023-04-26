@@ -230,6 +230,7 @@
     <Compile Include="Entidades\Consulta\EProcesarInformacionReporteComentarioGestionCobro.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionArchivo.cs" />
     <Compile Include="Entidades\Consulta\EProcesarInformacionValidacionCoberturaSistema.cs" />
+    <Compile Include="Entidades\Correcciones\EEliminarEndoso.cs" />
     <Compile Include="Entidades\Cotizador\EAnoVehiculo.cs" />
     <Compile Include="Entidades\Cotizador\EComprensivoIncendioRobo.cs" />
     <Compile Include="Entidades\Cotizador\EServiciosFijos.cs" />
@@ -500,6 +501,7 @@
     <Compile Include="Entidades\SuperIntendencia\EProcesarInformacionComisionesIntermediarioAlfredo.cs" />
     <Compile Include="Entidades\SuperIntendencia\EResultadoBusquedaPersonasSuperIntendencia.cs" />
     <Compile Include="Logica\LogicaConsulta\LogicaConsulta.cs" />
+    <Compile Include="Logica\LogicaCorrecciones\LogicaCorrecciones.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
     <Compile Include="Logica\LogicaOpcionesAdministrador\LogicaOpcionesdministrador.cs" />

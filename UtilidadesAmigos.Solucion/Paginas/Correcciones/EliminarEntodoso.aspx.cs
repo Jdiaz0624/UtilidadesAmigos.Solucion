@@ -13,5 +13,45 @@ namespace UtilidadesAmigos.Solucion.Paginas.Correcciones
         {
 
         }
+
+        protected void btnSeleccionar_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPrimeraPagina_Header_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPaginaAnterior_Header_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_Header_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_Header_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+        }
+
+        protected void btnSiguientePagina_Header_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnUltimaPagina_Header_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnBuscar_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
     }
 }
