@@ -75,6 +75,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), compania, cotizacion, secuencia, idBeneficiario, nombreBeneficiario, valorEndosoCesion, usuarioAdiciona, fechaAdiciona, accion);
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_ENDOSOS_POLIZASResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_INFORMACION_ENDOSOS_ELIMINADOS")]
+		public ISingleResult<SP_BUSCAR_INFORMACION_ENDOSOS_ELIMINADOSResult> SP_BUSCAR_INFORMACION_ENDOSOS_ELIMINADOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Decimal(31,0)")] System.Nullable<decimal> idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Int")] System.Nullable<int> secuencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaBorradoDesde", DbType="Date")] System.Nullable<System.DateTime> fechaBorradoDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaBorradoHasta", DbType="Date")] System.Nullable<System.DateTime> fechaBorradoHasta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, poliza, secuencia, fechaBorradoDesde, fechaBorradoHasta);
+			return ((ISingleResult<SP_BUSCAR_INFORMACION_ENDOSOS_ELIMINADOSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_HISTORICO_ENDOSOS")]
+		public ISingleResult<SP_PROCESAR_INFORMACION_HISTORICO_ENDOSOSResult> SP_PROCESAR_INFORMACION_HISTORICO_ENDOSOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Decimal(31,0)")] System.Nullable<decimal> idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Compania", DbType="TinyInt")] System.Nullable<byte> compania, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cotizacion", DbType="Decimal(18,0)")] System.Nullable<decimal> cotizacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Int")] System.Nullable<int> secuencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdBeneficiario", DbType="Int")] System.Nullable<int> idBeneficiario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreBeneficiario", DbType="VarChar(100)")] string nombreBeneficiario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ValorEndosoCesion", DbType="Decimal(18,2)")] System.Nullable<decimal> valorEndosoCesion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioAdiciona", DbType="VarChar(50)")] string usuarioAdiciona, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaAdiciona", DbType="DateTime")] System.Nullable<System.DateTime> fechaAdiciona, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioElimina", DbType="Decimal(31,0)")] System.Nullable<decimal> usuarioElimina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaProcesoElimina", DbType="DateTime")] System.Nullable<System.DateTime> fechaProcesoElimina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estatus", DbType="Bit")] System.Nullable<bool> estatus, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, compania, cotizacion, secuencia, idBeneficiario, nombreBeneficiario, valorEndosoCesion, usuarioAdiciona, fechaAdiciona, usuarioElimina, fechaProcesoElimina, estatus, accion);
+			return ((ISingleResult<SP_PROCESAR_INFORMACION_HISTORICO_ENDOSOSResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class SP_BUSCA_ENDOSO_SESIONResult
@@ -574,6 +588,526 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._FechaAdiciona != value))
 				{
 					this._FechaAdiciona = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCAR_INFORMACION_ENDOSOS_ELIMINADOSResult
+	{
+		
+		private decimal _IdRegistro;
+		
+		private System.Nullable<byte> _Compania;
+		
+		private string _Poliza;
+		
+		private System.Nullable<decimal> _Cotizacion;
+		
+		private System.Nullable<int> _Secuencia;
+		
+		private System.Nullable<int> _IdBeneficiario;
+		
+		private string _NombreBeneficiario;
+		
+		private System.Nullable<decimal> _ValorEndosoCesion;
+		
+		private string _UsuarioAdiciona;
+		
+		private System.Nullable<System.DateTime> _FechaAdiciona;
+		
+		private System.Nullable<decimal> _UsuarioElimina;
+		
+		private System.Nullable<System.DateTime> _FechaProcesoElimina0;
+		
+		private string _FechaProcesoElimina;
+		
+		private string _HoraProcesoElimina;
+		
+		private System.Nullable<bool> _Estatus0;
+		
+		private string _Estatus;
+		
+		public SP_BUSCAR_INFORMACION_ENDOSOS_ELIMINADOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Decimal(31,0) NOT NULL")]
+		public decimal IdRegistro
+		{
+			get
+			{
+				return this._IdRegistro;
+			}
+			set
+			{
+				if ((this._IdRegistro != value))
+				{
+					this._IdRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Compania", DbType="TinyInt")]
+		public System.Nullable<byte> Compania
+		{
+			get
+			{
+				return this._Compania;
+			}
+			set
+			{
+				if ((this._Compania != value))
+				{
+					this._Compania = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50)")]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cotizacion", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Cotizacion
+		{
+			get
+			{
+				return this._Cotizacion;
+			}
+			set
+			{
+				if ((this._Cotizacion != value))
+				{
+					this._Cotizacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int")]
+		public System.Nullable<int> Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBeneficiario", DbType="Int")]
+		public System.Nullable<int> IdBeneficiario
+		{
+			get
+			{
+				return this._IdBeneficiario;
+			}
+			set
+			{
+				if ((this._IdBeneficiario != value))
+				{
+					this._IdBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreBeneficiario", DbType="VarChar(100)")]
+		public string NombreBeneficiario
+		{
+			get
+			{
+				return this._NombreBeneficiario;
+			}
+			set
+			{
+				if ((this._NombreBeneficiario != value))
+				{
+					this._NombreBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorEndosoCesion", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> ValorEndosoCesion
+		{
+			get
+			{
+				return this._ValorEndosoCesion;
+			}
+			set
+			{
+				if ((this._ValorEndosoCesion != value))
+				{
+					this._ValorEndosoCesion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioAdiciona", DbType="VarChar(50)")]
+		public string UsuarioAdiciona
+		{
+			get
+			{
+				return this._UsuarioAdiciona;
+			}
+			set
+			{
+				if ((this._UsuarioAdiciona != value))
+				{
+					this._UsuarioAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaAdiciona
+		{
+			get
+			{
+				return this._FechaAdiciona;
+			}
+			set
+			{
+				if ((this._FechaAdiciona != value))
+				{
+					this._FechaAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioElimina", DbType="Decimal(31,0)")]
+		public System.Nullable<decimal> UsuarioElimina
+		{
+			get
+			{
+				return this._UsuarioElimina;
+			}
+			set
+			{
+				if ((this._UsuarioElimina != value))
+				{
+					this._UsuarioElimina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaProcesoElimina0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaProcesoElimina0
+		{
+			get
+			{
+				return this._FechaProcesoElimina0;
+			}
+			set
+			{
+				if ((this._FechaProcesoElimina0 != value))
+				{
+					this._FechaProcesoElimina0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaProcesoElimina", DbType="NVarChar(4000)")]
+		public string FechaProcesoElimina
+		{
+			get
+			{
+				return this._FechaProcesoElimina;
+			}
+			set
+			{
+				if ((this._FechaProcesoElimina != value))
+				{
+					this._FechaProcesoElimina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoraProcesoElimina", DbType="NVarChar(4000)")]
+		public string HoraProcesoElimina
+		{
+			get
+			{
+				return this._HoraProcesoElimina;
+			}
+			set
+			{
+				if ((this._HoraProcesoElimina != value))
+				{
+					this._HoraProcesoElimina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus0", DbType="Bit")]
+		public System.Nullable<bool> Estatus0
+		{
+			get
+			{
+				return this._Estatus0;
+			}
+			set
+			{
+				if ((this._Estatus0 != value))
+				{
+					this._Estatus0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="VarChar(9) NOT NULL", CanBeNull=false)]
+		public string Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_INFORMACION_HISTORICO_ENDOSOSResult
+	{
+		
+		private System.Nullable<decimal> _IdRegistro;
+		
+		private System.Nullable<byte> _Compania;
+		
+		private System.Nullable<decimal> _Cotizacion;
+		
+		private System.Nullable<int> _Secuencia;
+		
+		private System.Nullable<int> _IdBeneficiario;
+		
+		private string _NombreBeneficiario;
+		
+		private System.Nullable<decimal> _ValorEndosoCesion;
+		
+		private string _UsuarioAdiciona;
+		
+		private System.Nullable<System.DateTime> _FechaAdiciona;
+		
+		private System.Nullable<decimal> _UsuarioElimina;
+		
+		private System.Nullable<System.DateTime> _FechaProcesoElimina;
+		
+		private System.Nullable<bool> _Estatus;
+		
+		public SP_PROCESAR_INFORMACION_HISTORICO_ENDOSOSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Decimal(31,0)")]
+		public System.Nullable<decimal> IdRegistro
+		{
+			get
+			{
+				return this._IdRegistro;
+			}
+			set
+			{
+				if ((this._IdRegistro != value))
+				{
+					this._IdRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Compania", DbType="TinyInt")]
+		public System.Nullable<byte> Compania
+		{
+			get
+			{
+				return this._Compania;
+			}
+			set
+			{
+				if ((this._Compania != value))
+				{
+					this._Compania = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cotizacion", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Cotizacion
+		{
+			get
+			{
+				return this._Cotizacion;
+			}
+			set
+			{
+				if ((this._Cotizacion != value))
+				{
+					this._Cotizacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int")]
+		public System.Nullable<int> Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBeneficiario", DbType="Int")]
+		public System.Nullable<int> IdBeneficiario
+		{
+			get
+			{
+				return this._IdBeneficiario;
+			}
+			set
+			{
+				if ((this._IdBeneficiario != value))
+				{
+					this._IdBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreBeneficiario", DbType="VarChar(100)")]
+		public string NombreBeneficiario
+		{
+			get
+			{
+				return this._NombreBeneficiario;
+			}
+			set
+			{
+				if ((this._NombreBeneficiario != value))
+				{
+					this._NombreBeneficiario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorEndosoCesion", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> ValorEndosoCesion
+		{
+			get
+			{
+				return this._ValorEndosoCesion;
+			}
+			set
+			{
+				if ((this._ValorEndosoCesion != value))
+				{
+					this._ValorEndosoCesion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioAdiciona", DbType="VarChar(50)")]
+		public string UsuarioAdiciona
+		{
+			get
+			{
+				return this._UsuarioAdiciona;
+			}
+			set
+			{
+				if ((this._UsuarioAdiciona != value))
+				{
+					this._UsuarioAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaAdiciona
+		{
+			get
+			{
+				return this._FechaAdiciona;
+			}
+			set
+			{
+				if ((this._FechaAdiciona != value))
+				{
+					this._FechaAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioElimina", DbType="Decimal(31,0)")]
+		public System.Nullable<decimal> UsuarioElimina
+		{
+			get
+			{
+				return this._UsuarioElimina;
+			}
+			set
+			{
+				if ((this._UsuarioElimina != value))
+				{
+					this._UsuarioElimina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaProcesoElimina", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaProcesoElimina
+		{
+			get
+			{
+				return this._FechaProcesoElimina;
+			}
+			set
+			{
+				if ((this._FechaProcesoElimina != value))
+				{
+					this._FechaProcesoElimina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Bit")]
+		public System.Nullable<bool> Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
 				}
 			}
 		}

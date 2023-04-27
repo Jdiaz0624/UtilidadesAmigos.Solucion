@@ -4,7 +4,25 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
 
-    <div id="DIVBloqueConsulta">
+    <script type="text/javascript">
+        function PolizaNoEncontrada() {
+            alert("No se encontraron registros con el numero de poliza ingresado, favor de verificar.");
+        }
+        $(function () {
+
+            $("#<%=btnBuscar.ClientID%>").click(function () {
+
+                var Poliza = $("#<%=txtPolizaConsulta.ClientID%>").val().length;
+                if (Poliza < 1) {
+                    alert("El campo Poliza no puede estar vacio para buscar este registro, favor de verificar.");
+                    $("#<%=txtPolizaConsulta.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
+        })
+    </script>
+
+    <div id="DIVBloqueConsulta" runat="server">
         <br />
         <div class="row">
             <div class="col-md-3">
@@ -17,8 +35,9 @@
             </div>
         </div>
         <br />
-        <div class="ContenidoCentrado">
+        <div class="ContenidoCentro">
             <asp:ImageButton ID="btnBuscar" runat="server" ToolTip="Buscar registros" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" OnClick="btnBuscar_Click" />
+            <asp:ImageButton ID="btnHistorico" runat="server" ToolTip="Buscar Historico de Borrado de Endosos" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" OnClick="btnHistorico_Click" />
         </div>
         <br />
         <table class="table table-striped">
@@ -46,8 +65,8 @@
                             <td> <%# Eval("Ramo") %> </td>
                             <td> <%# Eval("Subramo") %> </td>
                             <td> <%# Eval("NombreBeneficiario") %> </td>
-                            <td> <%#string.Format("{0:N2}", Eval("ValorEndosoCesion")) %> </td>
-                            <td> <asp:ImageButton ID="btnSeleccionar" runat="server" ToolTip="Ingresar al registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/hacer-clic.png" OnClick="btnSeleccionar_Click" /> </td>
+                            <td class="ContenidoDerecha"> <%#string.Format("{0:N2}", Eval("ValorEndosoCesion")) %> </td>
+                            <td class="ContenidoDerecha"> <asp:ImageButton ID="btnSeleccionar" runat="server" ToolTip="Ingresar al registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/hacer-clic.png" OnClick="btnSeleccionar_Click" /> </td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
@@ -93,6 +112,48 @@
             </div>
     <br />
     </div>
-    <div id="DivBloqueProceso"></div>
-    <div id="DivBloqueHistorico"></div>
+    <div id="DivBloqueProceso" runat="server">
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <asp:Label ID="lbPolizaProceso" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtPolizaProceso" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+            </div>
+            <div class="col-md-3">
+                 <asp:Label ID="lbRamoProceso" runat="server" Text="Ramo" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtRamoProceso" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+            </div>
+            <div class="col-md-3">
+                 <asp:Label ID="lbSubRamoProceso" runat="server" Text="Sub Ramo" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtSubRamoProceso" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+            </div>
+            <div class="col-md-3">
+                 <asp:Label ID="lbItemProceso" runat="server" Text="Item" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtItemProceso" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+            </div>
+            <div class="col-md-3">
+                 <asp:Label ID="lbfechaInicioVigenciaProceso" runat="server" Text="Inicio Vigencia" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaInicioVigenciaProceso" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+            </div>
+            <div class="col-md-3">
+                 <asp:Label ID="lbFechaFinVigenciaProceso" runat="server" Text="Fin Vigencia" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaFinVigenciaProceso" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+            </div>
+            <div class="col-md-3">
+                 <asp:Label ID="lbBeneficiarioProceso" runat="server" Text="Beneficiario" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtBeneficiarioProceso" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+            </div>
+            <div class="col-md-3">
+                 <asp:Label ID="lbValorEndosoProceso" runat="server" Text="Valor Endoso" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtValorEndosoProceso" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+            </div>
+        </div>
+        <br />
+        <div class="ContenidoCentro">
+            <asp:ImageButton ID="btnEliminar" runat="server" ToolTip="Borrar Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/borrar.png" OnClick="btnEliminar_Click" />
+             <asp:ImageButton ID="btnVolverAtras" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolverAtras_Click" />
+        </div>
+        <br />
+    </div>
+    <div id="DivBloqueHistorico" runat="server"></div>
 </asp:Content>

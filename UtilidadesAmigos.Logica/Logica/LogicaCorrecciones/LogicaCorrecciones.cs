@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UtilidadesAmigos.Logica.Logica.LogicaCorrecciones
 {
@@ -46,6 +48,84 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaCorrecciones
                            }).ToList();
             return Listado;
         
+        }
+
+        /// <summary>
+        /// Procesa la Informacion de Eliminar Endoso
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Correcciones.EEliminarEndoso ProcesarEliminarEndosos(UtilidadesAmigos.Logica.Entidades.Correcciones.EEliminarEndoso Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Correcciones.EEliminarEndoso Procesar = null;
+
+            var EliminarEndoso = ObjData.SP_PROCESAR_INFORMACION_ENDOSOS_POLIZAS(
+                Item.Compania,
+                Item.Cotizacion,
+                Item.Item,
+                Item.IdBeneficiario,
+                Item.NombreBeneficiario,
+                Item.ValorEndosoCesion,
+                Item.UsuarioAdiciona,
+                Item.FechaAdiciona0,
+                Accion);
+            if (EliminarEndoso != null) {
+
+                Procesar = (from n in EliminarEndoso
+                            select new UtilidadesAmigos.Logica.Entidades.Correcciones.EEliminarEndoso
+                            {
+                                Compania=n.Compania,
+                                Cotizacion=n.Cotizacion,
+                                Item=n.Secuencia,
+                                IdBeneficiario=n.IdBeneficiario,
+                                NombreBeneficiario=n.NombreBeneficiario,
+                                ValorEndosoCesion=n.ValorEndosoCesion,
+                                UsuarioAdiciona=n.UsuarioAdiciona,
+                                FechaAdiciona0=n.FechaAdiciona
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
+
+        #region HISTORICO DE ELIMINACION DE ENDOSOS
+        /// <summary>
+        /// Muestra el listado de los endosos eliminados
+        /// </summary>
+        /// <param name="IdRegistro"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="Secuencia"></param>
+        /// <param name="FechaBorradoDesde"></param>
+        /// <param name="FechaBorradoHasta"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Correcciones.EEndososEliminados> BuscaHistoricoEndosos(decimal? IdRegistro = null, string Poliza = null, int? Secuencia = null, DateTime? FechaBorradoDesde = null, DateTime? FechaBorradoHasta = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCAR_INFORMACION_ENDOSOS_ELIMINADOS(IdRegistro, Poliza, Secuencia, FechaBorradoDesde, FechaBorradoHasta)
+                           select new UtilidadesAmigos.Logica.Entidades.Correcciones.EEndososEliminados
+                           {
+                               IdRegistro=n.IdRegistro,
+                               Compania=n.Compania,
+                               Poliza=n.Poliza,
+                               Cotizacion=n.Cotizacion,
+                               Secuencia=n.Secuencia,
+                               IdBeneficiario=n.IdBeneficiario,
+                               NombreBeneficiario=n.NombreBeneficiario,
+                               ValorEndosoCesion=n.ValorEndosoCesion,
+                               UsuarioAdiciona=n.UsuarioAdiciona,
+                               FechaAdiciona=n.FechaAdiciona,
+                               UsuarioElimina=n.UsuarioElimina,
+                               FechaProcesoElimina0=n.FechaProcesoElimina0,
+                               FechaProcesoElimina=n.FechaProcesoElimina,
+                               HoraProcesoElimina=n.HoraProcesoElimina,
+                               Estatus0=n.Estatus0,
+                               Estatus=n.Estatus
+                           }).ToList();
+            return Listado;
         }
         #endregion
     }
