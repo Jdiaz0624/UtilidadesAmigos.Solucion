@@ -8,6 +8,18 @@
         function PolizaNoEncontrada() {
             alert("No se encontraron registros con el numero de poliza ingresado, favor de verificar.");
         }
+        function EndosoEliminado() {
+            alert("Endoso Eliminado Con Exito.");
+        }
+
+        function RegistroDevuelto() {
+            alert("Este registro ya fue restaurado.");
+        }
+        function RegistroRestaurado() {
+            alert("Registro Restaurado con Exito.");
+        }
+
+
         $(function () {
 
             $("#<%=btnBuscar.ClientID%>").click(function () {
@@ -113,6 +125,9 @@
     <br />
     </div>
     <div id="DivBloqueProceso" runat="server">
+        <asp:Label ID="lbCotizacion_Proceso" runat="server" Text="0" Visible="false"></asp:Label>
+        <asp:Label ID="lbSecuencia_Proceso" runat="server" Text="0" Visible="false"></asp:Label>
+        <asp:Label ID="lbIdbeneficiario_Proceso" runat="server" Text="0" Visible="false"></asp:Label>
         <br />
         <div class="row">
             <div class="col-md-3">
@@ -150,10 +165,107 @@
         </div>
         <br />
         <div class="ContenidoCentro">
-            <asp:ImageButton ID="btnEliminar" runat="server" ToolTip="Borrar Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/borrar.png" OnClick="btnEliminar_Click" />
+            <asp:ImageButton ID="btnEliminar" runat="server" ToolTip="Borrar Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/borrar.png" OnClick="btnEliminar_Click" OnClientClick="return confirm('¿Quieres Eliminar Este Registro?');" />
              <asp:ImageButton ID="btnVolverAtras" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolverAtras_Click" />
         </div>
         <br />
     </div>
-    <div id="DivBloqueHistorico" runat="server"></div>
+    <div id="DivBloqueHistorico" runat="server">
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <asp:Label ID="lbPoliza_Historial" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtPoliza_Historial" runat="server" CssClass="form-control" AutoCompleteType="Disabled" ></asp:TextBox>
+            </div>
+            <div class="col-md-3">
+                 <asp:Label ID="lbItem_Historial" runat="server" Text="No. Item" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtItem_Historial" runat="server" CssClass="form-control" TextMode="Number" AutoCompleteType="Disabled" ></asp:TextBox>
+            </div>
+            <div class="col-md-3">
+                 <asp:Label ID="lbfechaDesde_Historial" runat="server" Text="Fecha Desde" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaDesde_Historial" runat="server" CssClass="form-control" TextMode="Date" AutoCompleteType="Disabled" ></asp:TextBox>
+            </div>
+            <div class="col-md-3">
+                 <asp:Label ID="lbFechaHasta_Historial" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaHasta_Historial" runat="server" CssClass="form-control" TextMode="Date" AutoCompleteType="Disabled" ></asp:TextBox>
+            </div>
+        </div>
+        <br />
+        <div class="ContenidoCentro">
+            <asp:ImageButton ID="btnBuscar_Historial" runat="server" ToolTip="Buscar Registros" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" OnClick="btnBuscar_Historial_Click" />
+             <asp:ImageButton ID="btnVolver_Historial" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolverAtras_Click" />
+        </div>
+        <br />
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col"> Poliza </th>
+                    <th scope="col"> Item </th>
+                    <th scope="col"> Beneficiario </th>
+                    <th scope="col" class="ContenidoDerecha"> Valor </th>
+                    <th scope="col"> Elimino </th>
+                    <th scope="col"> Fecha </th>
+                    <th scope="col"> Estatus </th>
+                    <th scope="col" class="ContenidoDerecha" > Restaurar </th>
+                </tr>
+            </thead>
+            <tbody>
+                <asp:Repeater ID="rpHistorial" runat="server">
+                    <ItemTemplate>
+                        <tr>
+
+                            <asp:HiddenField ID="hfIdRegistroHistorial" runat="server" Value='<%# Eval("IdRegistro") %>' />
+
+                             <td> <%# Eval("Poliza") %> </td>
+                             <td> <%# Eval("Secuencia") %> </td>
+                             <td> <%# Eval("NombreBeneficiario") %> </td>
+                             <td class="ContenidoDerecha"> <%#string.Format("{0:N2}", Eval("ValorEndosoCesion")) %> </td>
+                             <td> <%# Eval("EliminadoPor") %> </td>
+                             <td> <%# Eval("FechaProcesoElimina") %> </td>
+                             <td> <%# Eval("Estatus") %> </td>
+                             <td class="ContenidoDerecha"> <asp:ImageButton ID="btnRestaurar_Historial" runat="server" ToolTip="Restaurar Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Restaurar.png" OnClick="btnRestaurar_Historial_Click" OnClientClick="return confirm('¿Quieres Restaurar Este Registro?');" /> </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </tbody>
+        </table>
+         <table class="table">
+                <tfoot class="table-light">
+                    <tr>
+                        <td class="ContenidoDerecha">Pag
+                            <asp:Label ID="lbPaginaActualVariable_Historial" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                            de
+                            <asp:Label ID="lbCantidadPaginaVariable_Historial" runat="server" Text="0" CssClass="Letranegrita"></asp:Label></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div id="DivPaginacion_Historial" runat="server" align="center">
+                <div style="margin-top: 20px;">
+                    <table style="width: 600px">
+                        <tr>
+                            <td>
+                                <asp:ImageButton ID="btnPrimeraPagina_Historial" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPagina_Historial_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" />
+                            </td>
+                            <td>
+                                <asp:ImageButton ID="btnPaginaAnterior_Historial" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnPaginaAnterior_Historial_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" />
+                            </td>
+                            <td class="ContenidoCentrado">
+                                <asp:DataList ID="dtPaginacion_Historial" runat="server" OnItemCommand="dtPaginacion_Historial_ItemCommand" OnItemDataBound="dtPaginacion_Historial_ItemDataBound" RepeatDirection="Horizontal">
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnPaginacionCentral_Historial" runat="server" class="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
+                                    </ItemTemplate>
+                                </asp:DataList>
+
+                            </td>
+                            <td>
+                                <asp:ImageButton ID="btnSiguientePagina_Historial" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguientePagina_Historial_Click" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" />
+                            </td>
+                            <td>
+                                <asp:ImageButton ID="btnUltimaPagina_Historial" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimaPagina_Historial_Click" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+    </div>
 </asp:Content>

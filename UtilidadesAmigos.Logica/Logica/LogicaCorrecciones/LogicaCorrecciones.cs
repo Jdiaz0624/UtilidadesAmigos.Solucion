@@ -119,6 +119,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaCorrecciones
                                UsuarioAdiciona=n.UsuarioAdiciona,
                                FechaAdiciona=n.FechaAdiciona,
                                UsuarioElimina=n.UsuarioElimina,
+                               EliminadoPor=n.EliminadoPor,
                                FechaProcesoElimina0=n.FechaProcesoElimina0,
                                FechaProcesoElimina=n.FechaProcesoElimina,
                                HoraProcesoElimina=n.HoraProcesoElimina,
@@ -126,6 +127,56 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaCorrecciones
                                Estatus=n.Estatus
                            }).ToList();
             return Listado;
+        }
+
+        /// <summary>
+        /// Procesa la Informacion de los endosos eliminados
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Correcciones.EEndososEliminados ProcesarEndosoEliminados(UtilidadesAmigos.Logica.Entidades.Correcciones.EEndososEliminados Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Correcciones.EEndososEliminados Procesar = null;
+
+            var EliminarEndoso = ObjData.SP_PROCESAR_INFORMACION_HISTORICO_ENDOSOS(
+                Item.IdRegistro,
+                Item.Compania,
+                Item.Cotizacion,
+                Item.Secuencia,
+                Item.IdBeneficiario,
+                Item.NombreBeneficiario,
+                Item.ValorEndosoCesion,
+                Item.UsuarioAdiciona,
+                Item.FechaAdiciona,
+                Item.UsuarioElimina,
+                Item.FechaProcesoElimina0,
+                Item.Estatus0,
+                Accion);
+            if (EliminarEndoso != null) {
+
+                Procesar = (from n in EliminarEndoso
+                            select new UtilidadesAmigos.Logica.Entidades.Correcciones.EEndososEliminados
+                            {
+                                IdRegistro=n.IdRegistro,
+                                Compania=n.Compania,
+                                Cotizacion=n.Cotizacion,
+                                Secuencia=n.Secuencia,
+                                IdBeneficiario=n.IdBeneficiario,
+                                NombreBeneficiario=n.NombreBeneficiario,
+                                ValorEndosoCesion=n.ValorEndosoCesion,
+                                UsuarioAdiciona=n.UsuarioAdiciona,
+                                FechaAdiciona=n.FechaAdiciona,
+                                UsuarioElimina=n.UsuarioElimina,
+                                FechaProcesoElimina0=n.FechaProcesoElimina,
+                                Estatus0=n.Estatus
+                            }).FirstOrDefault();
+
+
+            }
+            return Procesar;
         }
         #endregion
     }

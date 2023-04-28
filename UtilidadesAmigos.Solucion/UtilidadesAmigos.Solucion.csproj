@@ -191,6 +191,7 @@
     <Content Include="ImagenesBotones\ReporteComisiones.png" />
     <Content Include="ImagenesBotones\Reporte_Nuevo.png" />
     <Content Include="ImagenesBotones\Restablecer_Nuevo.png" />
+    <Content Include="ImagenesBotones\Restaurar.png" />
     <Content Include="ImagenesBotones\Siguiente_Nuevo.png" />
     <Content Include="ImagenesBotones\transferir-datos.png" />
     <Content Include="ImagenesBotones\UltimaPagina_Nuevo.png" />

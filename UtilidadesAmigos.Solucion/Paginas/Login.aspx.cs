@@ -123,7 +123,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (!IsPostBack)
             {
-         
+              //  UtilidadesAmigos.Logica.Comunes.VozVeronica.Hablar("Hola Como Estas");
 
             }
         }

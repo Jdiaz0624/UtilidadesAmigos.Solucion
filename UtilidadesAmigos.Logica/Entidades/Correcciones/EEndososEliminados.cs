@@ -29,6 +29,7 @@ namespace UtilidadesAmigos.Logica.Entidades.Correcciones
         public System.Nullable<System.DateTime> FechaAdiciona {get;set;}
 
         public System.Nullable<decimal> UsuarioElimina {get;set;}
+        public string EliminadoPor { get; set; }
 
         public System.Nullable<System.DateTime> FechaProcesoElimina0 {get;set;}
 

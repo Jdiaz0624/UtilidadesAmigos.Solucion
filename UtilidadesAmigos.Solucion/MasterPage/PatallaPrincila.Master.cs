@@ -2576,7 +2576,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             if (Session["IdUsuario"] != null)
             {
                 //Response.Redirect("~/Paginas/Correcciones/PolizaTransito.aspx");
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Que Degraciación con ustedes los humanos, si la opcion esta en roja es por que no esta en funcionamiento.');", true);
             }
             else
             {
@@ -2590,7 +2590,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             if (Session["IdUsuario"] != null)
             {
                 //Response.Redirect("~/Paginas/Correcciones/CambioIntermediario.aspx");
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Que Degraciación con ustedes los humanos, si la opcion esta en roja es por que no esta en funcionamiento.');", true);
             }
             else
             {
@@ -2604,7 +2604,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             if (Session["IdUsuario"] != null)
             {
                 //Response.Redirect("~/Paginas/Correcciones/CambioCliente.aspx");
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Que Degraciación con ustedes los humanos, si la opcion esta en roja es por que no esta en funcionamiento.');", true);
             }
             else
             {
@@ -2618,7 +2618,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             if (Session["IdUsuario"] != null)
             {
                 //Response.Redirect("~/Paginas/Correcciones/ModificarDatosCliente.aspx");
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Esta Pantalla no esta disponible por el momento');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Que Degraciación con ustedes los humanos, si la opcion esta en roja es por que no esta en funcionamiento.');", true);
             }
             else
             {
