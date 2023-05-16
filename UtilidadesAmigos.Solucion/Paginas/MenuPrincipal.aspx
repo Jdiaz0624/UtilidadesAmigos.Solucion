@@ -4,11 +4,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style type="text/css">
 
-        /*.Imagenesxx {
-        width:300px;
-        height:100px;
-        text-align:center;
-        }*/
 
         .carousel {
         border-color:blue;
@@ -37,15 +32,6 @@
         border:dotted;
         }
 
-        /*#fobd {
-margin-top: 70px !important;
-margin-bottom: -35px !important;
-padding-top: 10px !important;
-padding-bottom: 70px !important;*/
-/*background:#ff0000;*/
-/*background-position: 0 0 !important;
-background-repeat: no-repeat !important;
-}*/
 .container {
     width: 100%;
     height: 350px;
@@ -90,24 +76,7 @@ padding-left: 15px;
     -ms-flex: 1;  /* IE 10 */    
     flex: 1;
 }
-/*@media (min-width: 1200px){
-.container {
-width: 1170px;
-}}
-@media (min-width: 992px){
-.container {
-width: 970px;
-}}
-@media (min-width: 768px){
-.container {
-width: 750px;
-}}
 
-@media (min-width: 992px){
-.four-column {
-float: left;
-width: 25%;
-}}*/
 
         h4 {
         text-align:center;
