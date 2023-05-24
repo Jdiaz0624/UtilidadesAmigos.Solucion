@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,43 +11,53 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSumi
     {
         readonly UtilidadesAmigos.Logica.Logica.LogicaSuministro.LogicaSuministro Objdata = new Logica.LogicaSuministro.LogicaSuministro();
 
-        private decimal CodigoArticulo = 0;
-        private string Articulo = "";
-        private int IdMedida = 0;
+        private decimal IdRegistro = 0;
+        private int IdSucursal = 0;
+        private int IdOficina = 0;
+        private int IdCategoria = 0;
+        private int IdUnidadMedida = 0;
+        private string Descripcion = "";
         private int Stock = 0;
-        private decimal IdUsuario = 0;
+        private int StockMinimo = 0;
         private string Accion = "";
 
         public ProcesarInformacionSuministroInventario(
-            decimal CodigoArticuloCON,
-            string ArticuloCON,
-            int IdMedidaCON,
-            int StockCON,
-            decimal IdUsuarioCON,
-            string AccionCON)
+        decimal IdRegistroCON,
+        int IdSucursalCON,
+        int IdOficinaCON,
+        int IdCategoriaCON,
+        int IdUnidadMedidaCON,
+        string DescripcionCON,
+        int StockCON,
+        int StockMinimoCON,
+        string AccionCON)
         {
-            CodigoArticulo = CodigoArticuloCON;
-            Articulo = ArticuloCON;
-            IdMedida = IdMedidaCON;
+            IdRegistro = IdRegistroCON;
+            IdSucursal = IdSucursalCON;
+            IdOficina = IdOficinaCON;
+            IdCategoria = IdCategoriaCON;
+            IdUnidadMedida = IdUnidadMedidaCON;
+            Descripcion = DescripcionCON;
             Stock = StockCON;
-            IdUsuario = IdUsuarioCON;
+            StockMinimo = StockMinimoCON;
             Accion = AccionCON;
         }
 
         public void ProcesarInformacion() {
 
-            UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroInventario Procesar = new Entidades.Suministro.ESuministroInventario();
+            UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroInventarioFinal Procesar = new Entidades.Suministro.ESuministroInventarioFinal();
 
-            Procesar.CodigoArticulo = CodigoArticulo;
-            Procesar.Articulo = Articulo;
-            Procesar.IdMedida = IdMedida;
+            Procesar.IdRegistro = IdRegistro;
+            Procesar.IdSucursal = IdSucursal;
+            Procesar.IdOficina = IdOficina;
+            Procesar.IdCategoria = IdCategoria;
+            Procesar.IdUnidadMedida = IdUnidadMedida;
+            Procesar.Articulo = Descripcion;
             Procesar.Stock = Stock;
-            Procesar.UsuarioCrea = IdUsuario;
-            Procesar.FechaCrea0 = DateTime.Now;
-            Procesar.UsuarioModifica = IdUsuario;
-            Procesar.FechaModifica0 = DateTime.Now;
+            Procesar.StockMinimo = StockMinimo;
+            Procesar.FechaIngreso0 = DateTime.Now;
 
-            var MAN = Objdata.ProcesarSuministroInventario(Procesar, Accion);
+            var MAN = Objdata.ProcesarInventario(Procesar, Accion);
         }
     }
 }

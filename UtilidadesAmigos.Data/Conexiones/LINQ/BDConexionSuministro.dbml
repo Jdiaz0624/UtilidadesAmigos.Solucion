@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionSuministroDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_BUSCA_SUMINISTRO_INVENTARIO" Method="SP_BUSCA_SUMINISTRO_INVENTARIO">
     <Parameter Name="CodigoArticulo" Parameter="codigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Articulo" Parameter="articulo" Type="System.String" DbType="VarChar(1000)" />
@@ -100,6 +100,60 @@
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Column Name="IdMedida" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_SUMINISTRO_INVENTARIO_FINAL" Method="SP_BUSCA_SUMINISTRO_INVENTARIO_FINAL">
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Decimal" DbType="Decimal(31,0)" />
+    <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdCategoria" Parameter="idCategoria" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUnidadMedida" Parameter="idUnidadMedida" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="Stock" Parameter="stock" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCA_SUMINISTRO_INVENTARIO_FINALResult">
+      <Column Name="IdRegistro" Type="System.Decimal" DbType="Decimal(31,0)" CanBeNull="true" />
+      <Column Name="IdSucursal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Sucursal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdCategoria" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Categoria" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IdUnidadMedida" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UnidadMedida" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Articulo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Stock" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StockMinimo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaIngreso0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadRegistrosAgotadosAgotados" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_SUMINISTROS_INVENTARIO" Method="SP_PROCESAR_INFORMACION_SUMINISTROS_INVENTARIO">
+    <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Decimal" DbType="Decimal(31,0)" />
+    <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdCategoria" Parameter="idCategoria" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUnidadMedida" Parameter="idUnidadMedida" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="Stock" Parameter="stock" Type="System.Int32" DbType="Int" />
+    <Parameter Name="StockMinimo" Parameter="stockMinimo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_SUMINISTROS_INVENTARIOResult">
+      <Column Name="IdRegistro" Type="System.Decimal" DbType="Decimal(31,0)" CanBeNull="true" />
+      <Column Name="IdSucursal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdCategoria" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdUnidadMedida" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Stock" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StockMinimo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FechaIngreso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

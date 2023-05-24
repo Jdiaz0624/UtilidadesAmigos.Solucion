@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionSuministroDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString9, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -102,6 +102,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), secuenciaDetalle, numeroConector, codigoArticulo, descripcion, idMedida, cantidad, accion);
 			return ((ISingleResult<SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_DETALLEResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_SUMINISTRO_INVENTARIO_FINAL")]
+		public ISingleResult<SP_BUSCA_SUMINISTRO_INVENTARIO_FINALResult> SP_BUSCA_SUMINISTRO_INVENTARIO_FINAL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Decimal(31,0)")] System.Nullable<decimal> idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSucursal", DbType="Int")] System.Nullable<int> idSucursal, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdOficina", DbType="Int")] System.Nullable<int> idOficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCategoria", DbType="Int")] System.Nullable<int> idCategoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUnidadMedida", DbType="Int")] System.Nullable<int> idUnidadMedida, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(1000)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Stock", DbType="Int")] System.Nullable<int> stock, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDesde", DbType="Date")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaHasta", DbType="Date")] System.Nullable<System.DateTime> fechaHasta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="GeneradoPor", DbType="Decimal(20,0)")] System.Nullable<decimal> generadoPor)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, idSucursal, idOficina, idCategoria, idUnidadMedida, descripcion, stock, fechaDesde, fechaHasta, generadoPor);
+			return ((ISingleResult<SP_BUSCA_SUMINISTRO_INVENTARIO_FINALResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_INFORMACION_SUMINISTROS_INVENTARIO")]
+		public ISingleResult<SP_PROCESAR_INFORMACION_SUMINISTROS_INVENTARIOResult> SP_PROCESAR_INFORMACION_SUMINISTROS_INVENTARIO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRegistro", DbType="Decimal(31,0)")] System.Nullable<decimal> idRegistro, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSucursal", DbType="Int")] System.Nullable<int> idSucursal, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdOficina", DbType="Int")] System.Nullable<int> idOficina, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCategoria", DbType="Int")] System.Nullable<int> idCategoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUnidadMedida", DbType="Int")] System.Nullable<int> idUnidadMedida, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(1000)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Stock", DbType="Int")] System.Nullable<int> stock, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StockMinimo", DbType="Int")] System.Nullable<int> stockMinimo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(100)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRegistro, idSucursal, idOficina, idCategoria, idUnidadMedida, descripcion, stock, stockMinimo, accion);
+			return ((ISingleResult<SP_PROCESAR_INFORMACION_SUMINISTROS_INVENTARIOResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -994,6 +1008,508 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Cantidad != value))
 				{
 					this._Cantidad = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_SUMINISTRO_INVENTARIO_FINALResult
+	{
+		
+		private System.Nullable<decimal> _IdRegistro;
+		
+		private System.Nullable<int> _IdSucursal;
+		
+		private string _Sucursal;
+		
+		private System.Nullable<int> _IdOficina;
+		
+		private string _Oficina;
+		
+		private System.Nullable<int> _IdCategoria;
+		
+		private string _Categoria;
+		
+		private System.Nullable<int> _IdUnidadMedida;
+		
+		private string _UnidadMedida;
+		
+		private string _Articulo;
+		
+		private System.Nullable<int> _Stock;
+		
+		private System.Nullable<int> _StockMinimo;
+		
+		private System.Nullable<System.DateTime> _FechaIngreso0;
+		
+		private string _Fecha;
+		
+		private string _Hora;
+		
+		private string _GeneradoPor;
+		
+		private System.Nullable<int> _CantidadRegistros;
+		
+		private System.Nullable<int> _CantidadRegistrosAgotadosAgotados;
+		
+		public SP_BUSCA_SUMINISTRO_INVENTARIO_FINALResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Decimal(31,0)")]
+		public System.Nullable<decimal> IdRegistro
+		{
+			get
+			{
+				return this._IdRegistro;
+			}
+			set
+			{
+				if ((this._IdRegistro != value))
+				{
+					this._IdRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdSucursal", DbType="Int")]
+		public System.Nullable<int> IdSucursal
+		{
+			get
+			{
+				return this._IdSucursal;
+			}
+			set
+			{
+				if ((this._IdSucursal != value))
+				{
+					this._IdSucursal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sucursal", DbType="VarChar(100)")]
+		public string Sucursal
+		{
+			get
+			{
+				return this._Sucursal;
+			}
+			set
+			{
+				if ((this._Sucursal != value))
+				{
+					this._Sucursal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdOficina", DbType="Int")]
+		public System.Nullable<int> IdOficina
+		{
+			get
+			{
+				return this._IdOficina;
+			}
+			set
+			{
+				if ((this._IdOficina != value))
+				{
+					this._IdOficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Oficina", DbType="VarChar(100)")]
+		public string Oficina
+		{
+			get
+			{
+				return this._Oficina;
+			}
+			set
+			{
+				if ((this._Oficina != value))
+				{
+					this._Oficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCategoria", DbType="Int")]
+		public System.Nullable<int> IdCategoria
+		{
+			get
+			{
+				return this._IdCategoria;
+			}
+			set
+			{
+				if ((this._IdCategoria != value))
+				{
+					this._IdCategoria = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Categoria", DbType="VarChar(1000)")]
+		public string Categoria
+		{
+			get
+			{
+				return this._Categoria;
+			}
+			set
+			{
+				if ((this._Categoria != value))
+				{
+					this._Categoria = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUnidadMedida", DbType="Int")]
+		public System.Nullable<int> IdUnidadMedida
+		{
+			get
+			{
+				return this._IdUnidadMedida;
+			}
+			set
+			{
+				if ((this._IdUnidadMedida != value))
+				{
+					this._IdUnidadMedida = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnidadMedida", DbType="VarChar(100)")]
+		public string UnidadMedida
+		{
+			get
+			{
+				return this._UnidadMedida;
+			}
+			set
+			{
+				if ((this._UnidadMedida != value))
+				{
+					this._UnidadMedida = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Articulo", DbType="VarChar(1000)")]
+		public string Articulo
+		{
+			get
+			{
+				return this._Articulo;
+			}
+			set
+			{
+				if ((this._Articulo != value))
+				{
+					this._Articulo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stock", DbType="Int")]
+		public System.Nullable<int> Stock
+		{
+			get
+			{
+				return this._Stock;
+			}
+			set
+			{
+				if ((this._Stock != value))
+				{
+					this._Stock = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockMinimo", DbType="Int")]
+		public System.Nullable<int> StockMinimo
+		{
+			get
+			{
+				return this._StockMinimo;
+			}
+			set
+			{
+				if ((this._StockMinimo != value))
+				{
+					this._StockMinimo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaIngreso0", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaIngreso0
+		{
+			get
+			{
+				return this._FechaIngreso0;
+			}
+			set
+			{
+				if ((this._FechaIngreso0 != value))
+				{
+					this._FechaIngreso0 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="NVarChar(4000)")]
+		public string Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this._Fecha = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hora", DbType="NVarChar(4000)")]
+		public string Hora
+		{
+			get
+			{
+				return this._Hora;
+			}
+			set
+			{
+				if ((this._Hora != value))
+				{
+					this._Hora = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GeneradoPor", DbType="VarChar(150)")]
+		public string GeneradoPor
+		{
+			get
+			{
+				return this._GeneradoPor;
+			}
+			set
+			{
+				if ((this._GeneradoPor != value))
+				{
+					this._GeneradoPor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadRegistros", DbType="Int")]
+		public System.Nullable<int> CantidadRegistros
+		{
+			get
+			{
+				return this._CantidadRegistros;
+			}
+			set
+			{
+				if ((this._CantidadRegistros != value))
+				{
+					this._CantidadRegistros = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CantidadRegistrosAgotadosAgotados", DbType="Int")]
+		public System.Nullable<int> CantidadRegistrosAgotadosAgotados
+		{
+			get
+			{
+				return this._CantidadRegistrosAgotadosAgotados;
+			}
+			set
+			{
+				if ((this._CantidadRegistrosAgotadosAgotados != value))
+				{
+					this._CantidadRegistrosAgotadosAgotados = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_PROCESAR_INFORMACION_SUMINISTROS_INVENTARIOResult
+	{
+		
+		private System.Nullable<decimal> _IdRegistro;
+		
+		private System.Nullable<int> _IdSucursal;
+		
+		private System.Nullable<int> _IdOficina;
+		
+		private System.Nullable<int> _IdCategoria;
+		
+		private System.Nullable<int> _IdUnidadMedida;
+		
+		private string _Descripcion;
+		
+		private System.Nullable<int> _Stock;
+		
+		private System.Nullable<int> _StockMinimo;
+		
+		private System.Nullable<System.DateTime> _FechaIngreso;
+		
+		public SP_PROCESAR_INFORMACION_SUMINISTROS_INVENTARIOResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRegistro", DbType="Decimal(31,0)")]
+		public System.Nullable<decimal> IdRegistro
+		{
+			get
+			{
+				return this._IdRegistro;
+			}
+			set
+			{
+				if ((this._IdRegistro != value))
+				{
+					this._IdRegistro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdSucursal", DbType="Int")]
+		public System.Nullable<int> IdSucursal
+		{
+			get
+			{
+				return this._IdSucursal;
+			}
+			set
+			{
+				if ((this._IdSucursal != value))
+				{
+					this._IdSucursal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdOficina", DbType="Int")]
+		public System.Nullable<int> IdOficina
+		{
+			get
+			{
+				return this._IdOficina;
+			}
+			set
+			{
+				if ((this._IdOficina != value))
+				{
+					this._IdOficina = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCategoria", DbType="Int")]
+		public System.Nullable<int> IdCategoria
+		{
+			get
+			{
+				return this._IdCategoria;
+			}
+			set
+			{
+				if ((this._IdCategoria != value))
+				{
+					this._IdCategoria = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUnidadMedida", DbType="Int")]
+		public System.Nullable<int> IdUnidadMedida
+		{
+			get
+			{
+				return this._IdUnidadMedida;
+			}
+			set
+			{
+				if ((this._IdUnidadMedida != value))
+				{
+					this._IdUnidadMedida = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(1000)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stock", DbType="Int")]
+		public System.Nullable<int> Stock
+		{
+			get
+			{
+				return this._Stock;
+			}
+			set
+			{
+				if ((this._Stock != value))
+				{
+					this._Stock = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockMinimo", DbType="Int")]
+		public System.Nullable<int> StockMinimo
+		{
+			get
+			{
+				return this._StockMinimo;
+			}
+			set
+			{
+				if ((this._StockMinimo != value))
+				{
+					this._StockMinimo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaIngreso", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaIngreso
+		{
+			get
+			{
+				return this._FechaIngreso;
+			}
+			set
+			{
+				if ((this._FechaIngreso != value))
+				{
+					this._FechaIngreso = value;
 				}
 			}
 		}

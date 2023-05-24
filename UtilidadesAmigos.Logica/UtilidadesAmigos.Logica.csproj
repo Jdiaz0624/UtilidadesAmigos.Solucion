@@ -492,6 +492,7 @@
     <Compile Include="Entidades\Suministro\ESuministroEspejo.cs" />
     <Compile Include="Entidades\Suministro\ESuministroHeader.cs" />
     <Compile Include="Entidades\Suministro\ESuministroInventario.cs" />
+    <Compile Include="Entidades\Suministro\ESuministroInventarioFinal.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaInformacionPersonasRegistradasArchivo.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaAseurados.cs" />
     <Compile Include="Entidades\SuperIntendencia\EBuscaPersonaProveedor.cs" />

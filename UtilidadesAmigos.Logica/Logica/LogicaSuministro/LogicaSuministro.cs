@@ -12,75 +12,86 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
 
         #region MANTENIMIENTO DE SUMINISTRO INVENTARIO
         /// <summary>
-        /// Este metodo muestra los registros guardados en la base de datos para manupular el inventario de suministro
+        /// Muestra el listado de Inventario
         /// </summary>
-        /// <param name="CodigoArticulo"></param>
-        /// <param name="Articulo"></param>
-        /// <param name="IdMedida"></param>
-        /// <param name="Estatus"></param>
+        /// <param name="IdRegistro"></param>
+        /// <param name="IdSucursal"></param>
+        /// <param name="Idoficina"></param>
+        /// <param name="IdCategoria"></param>
+        /// <param name="IdUnidadMedida"></param>
+        /// <param name="Descripcion"></param>
+        /// <param name="Stock"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
         /// <param name="GeneradoPor"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroInventario> BuscaInventarioSuministro(decimal? CodigoArticulo = null, string Articulo = null, int? IdMedida = null, string Estatus = null, decimal? GeneradoPor = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroInventarioFinal> BuscaInventario(decimal? IdRegistro = null, int? IdSucursal = null, int? Idoficina = null, int? IdCategoria = null, int? IdUnidadMedida = null, string Descripcion = null, int? Stock = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, decimal? GeneradoPor = null) {
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_BUSCA_SUMINISTRO_INVENTARIO(CodigoArticulo, Articulo, IdMedida, Estatus, GeneradoPor)
-                           select new UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroInventario
+            var Listado = (from n in ObjData.SP_BUSCA_SUMINISTRO_INVENTARIO_FINAL(IdRegistro, IdSucursal, Idoficina, IdCategoria, IdUnidadMedida, Descripcion, Stock, FechaDesde, FechaHasta, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroInventarioFinal
                            {
-                               CodigoArticulo=n.CodigoArticulo,
+                               IdRegistro=n.IdRegistro,
+                               IdSucursal=n.IdSucursal,
+                               Sucursal=n.Sucursal,
+                               IdOficina=n.IdOficina,
+                               Oficina=n.Oficina,
+                               IdCategoria=n.IdCategoria,
+                               Categoria=n.Categoria,
+                               IdUnidadMedida=n.IdUnidadMedida,
+                               UnidadMedida=n.UnidadMedida,
                                Articulo=n.Articulo,
-                               IdMedida=n.IdMedida,
-                               Medida=n.Medida,
                                Stock=n.Stock,
-                               Estatus=n.Estatus,
-                               UsuarioCrea=n.UsuarioCrea,
-                               CreadoPor=n.CreadoPor,
-                               FechaCrea0=n.FechaCrea0,
-                               FechaCreado=n.FechaCreado,
-                               HoraCreado=n.HoraCreado,
-                               UsuarioModifica=n.UsuarioModifica,
-                               ModificadoPor=n.ModificadoPor,
-                               FechaModifica0=n.FechaModifica0,
-                               FechaModificado=n.FechaModificado,
-                               HoraModificado=n.HoraModificado,
-                               GeneradoPor=n.GeneradoPor
+                               StockMinimo=n.StockMinimo,
+                               FechaIngreso0=n.FechaIngreso0,
+                               Fecha=n.Fecha,
+                               Hora=n.Hora,
+                               GeneradoPor=n.GeneradoPor,
+                               CantidadRegistros=n.CantidadRegistros,
+                               CantidadRegistrosAgotadosAgotados=n.CantidadRegistrosAgotadosAgotados
 
                            }).ToList();
             return Listado;
         }
 
+
         /// <summary>
-        /// Este metodo procesa la informaición del inventario de suministro
+        /// Procesar la Informacion del Inventario
         /// </summary>
         /// <param name="Item"></param>
         /// <param name="Accion"></param>
         /// <returns></returns>
-        public UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroInventario ProcesarSuministroInventario(UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroInventario Item, string Accion) {
+        public UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroInventarioFinal ProcesarInventario(UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroInventarioFinal Item, string Accion) {
 
             ObjData.CommandTimeout = 999999999;
 
-            UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroInventario Procesar = null;
+            UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroInventarioFinal Procesar = null;
 
-            var Inventario = ObjData.SP_PROCESAR_INFORMACION_SUMINISTRO_INVENTARIO(
-                Item.CodigoArticulo,
+            var Inventario = ObjData.SP_PROCESAR_INFORMACION_SUMINISTROS_INVENTARIO(
+                Item.IdRegistro,
+                Item.IdSucursal,
+                Item.IdOficina,
+                Item.IdCategoria,
+                Item.IdUnidadMedida,
                 Item.Articulo,
-                Item.IdMedida,
                 Item.Stock,
-                Item.UsuarioCrea,
+                Item.StockMinimo,
                 Accion);
             if (Inventario != null) {
 
                 Procesar = (from n in Inventario
-                            select new UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroInventario
+                            select new UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroInventarioFinal
                             {
-                                CodigoArticulo=n.CodigoArticulo,
-                                Articulo=n.Articulo,
-                                IdMedida=n.IdMedida,
+                                IdRegistro=n.IdRegistro,
+                                IdSucursal=n.IdSucursal,
+                                IdOficina=n.IdOficina,
+                                IdCategoria=n.IdCategoria,
+                                IdUnidadMedida=n.IdUnidadMedida,
+                                Articulo=n.Descripcion,
                                 Stock=n.Stock,
-                                UsuarioCrea=n.UsuarioCrea,
-                                FechaCrea0=n.FechaCrea,
-                                UsuarioModifica=n.UsuarioModifica,
-                                FechaModifica0=n.FechaModifica
+                                StockMinimo=n.StockMinimo,
+                                FechaIngreso0=n.FechaIngreso,
                             }).FirstOrDefault();
             }
             return Procesar;
