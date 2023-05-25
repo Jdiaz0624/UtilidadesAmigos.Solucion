@@ -8,6 +8,7 @@ using System.Data;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.ReportSource;
 using CrystalDecisions.Shared;
+using UtilidadesAmigos.Logica.Entidades;
 
 namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 {
@@ -310,10 +311,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             int? _Categoria = ddlCategoriaInventarioConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlCategoriaInventarioConsulta.SelectedValue) : new Nullable<int>();
             int? _UnidadMedida = ddlMedidaInventarioConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlMedidaInventarioConsulta.SelectedValue) : new Nullable<int>();
             string _Descripcion = string.IsNullOrEmpty(txtArticuloInventarioConsulta.Text.Trim()) ? null : txtArticuloInventarioConsulta.Text.Trim();
+            decimal? _Codigo = string.IsNullOrEmpty(txtCodigoItem.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtCodigoItem.Text);
             int CantidadRegistros = 0, RegistrosAgotados = 0;
 
             var Listado = ObjDataSuministro.Value.BuscaInventario(
-                new Nullable<decimal>(),
+                _Codigo,
                 _Sucursal,
                 _oficina,
                 _Categoria,
@@ -346,6 +348,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             ListaDesplegablesConsultaInventario();
             DivSubBloqueInventarioConsulta.Visible = true;
             DivSubBloqueInventarioMantenimiento.Visible = false;
+            DIVSubBloqueSuplirSacar.Visible = false;
             btnConsultarInventarioConsulta.Visible = true;
             btnNuevoRegistroInventarioConsulta.Visible = true;
             btnReporteInventarioConsulta.Visible = true;
@@ -354,6 +357,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             btnBorrarInventarioCOnsulta.Visible = false;
             btnRestablecerInventarioConsulta.Visible = false;
             txtArticuloInventarioConsulta.Text = string.Empty;
+            txtCodigoItem.Text = string.Empty;
             CurrentPage_InventarioConsulta = 0;
             MostrarInventario();
         }
@@ -379,7 +383,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         }
         #endregion
         #region PROCESAR INFORMACION INVENTARIO
-        private void ProcesarInformacionInventario(decimal IdRegistro, string Accion) {
+        private void ProcesarInformacionInventario(decimal IdRegistro,int Stock, string Accion) {
 
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroInventario Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroInventario(
                 IdRegistro,
@@ -388,7 +392,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 Convert.ToInt32(ddlCategoriaMantenimiento.SelectedValue),
                 Convert.ToInt32(ddlMedidaMantenimiento.SelectedValue),
                 txtDescripcionMantenimiento.Text,
-                Convert.ToInt32(txtStockMantenimiento.Text),
+                Stock,
                 Convert.ToInt32(txtStockMinimoMantenimiento.Text),
                 Accion);
             Procesar.ProcesarInformacion();
@@ -404,6 +408,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             int? _Categoria = ddlCategoriaInventarioConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlCategoriaInventarioConsulta.SelectedValue) : new Nullable<int>();
             int? _UnidadMedida = ddlMedidaInventarioConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlMedidaInventarioConsulta.SelectedValue) : new Nullable<int>();
             string _Descripcion = string.IsNullOrEmpty(txtArticuloInventarioConsulta.Text.Trim()) ? null : txtArticuloInventarioConsulta.Text.Trim();
+            decimal? _Codigo = string.IsNullOrEmpty(txtCodigoItem.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtCodigoItem.Text);
 
             RutaReporte = Server.MapPath("ReporteInventario.rpt");
             NombreReporte = "Reporte de Inventario";
@@ -416,7 +421,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             Reporte.Load(RutaReporte);
             Reporte.Refresh();
 
-            Reporte.SetParameterValue("@IdRegistro", new Nullable<decimal>());
+            Reporte.SetParameterValue("@IdRegistro", _Codigo);
             Reporte.SetParameterValue("@IdSucursal", _Sucursal);
             Reporte.SetParameterValue("@IdOficina", _oficina);
             Reporte.SetParameterValue("@IdCategoria", _Categoria);
@@ -581,12 +586,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         {
             DivSubBloqueInventarioConsulta.Visible = false;
             DivSubBloqueInventarioMantenimiento.Visible = true;
+            DIVSubBloqueSuplirSacar.Visible = false;
             ListasDesplegablesPantallaMantenimiento();
             txtDescripcionMantenimiento.Text = string.Empty;
             txtStockMantenimiento.Text = "1";
             txtStockMinimoMantenimiento.Text = "1";
             lbIdregistroSeleccionado.Text = "0";
             lbAccionTomarInventario.Text = "INSERT";
+            txtStockMantenimiento.Enabled = true;
+            txtStockMinimoMantenimiento.Enabled = true;
         }
 
         protected void btnReporteInventarioConsulta_Click(object sender, ImageClickEventArgs e)
@@ -598,22 +606,30 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         {
             DivSubBloqueInventarioConsulta.Visible = false;
             DivSubBloqueInventarioMantenimiento.Visible = true;
+            DIVSubBloqueSuplirSacar.Visible = false;
             lbAccionTomarInventario.Text = "UPDATE";
+            txtStockMantenimiento.Enabled = false;
+            txtStockMinimoMantenimiento.Enabled = false;
         }
 
         protected void btnBorrarInventarioCOnsulta_Click(object sender, ImageClickEventArgs e)
         {
-
+            ProcesarInformacionInventario(Convert.ToInt32(lbIdregistroSeleccionado.Text), 0, "DELETE");
+            ClientScript.RegisterStartupScript(GetType(), "ProcesoCompletado()", "ProcesoCompletado();", true);
+            ConfiguracionInicialConsultaInventario();
         }
 
         protected void btnRestablecerInventarioConsulta_Click(object sender, ImageClickEventArgs e)
         {
-
+            ConfiguracionInicialConsultaInventario();
         }
 
         protected void btnSuplirInventarioConsulta_Click(object sender, ImageClickEventArgs e)
         {
-
+            DivSubBloqueInventarioConsulta.Visible = false;
+            DivSubBloqueInventarioMantenimiento.Visible = false;
+            DIVSubBloqueSuplirSacar.Visible = true;
+            
         }
 
         protected void btnPrimeraPagina_InventarioConsulta_Click(object sender, ImageClickEventArgs e)
@@ -668,12 +684,90 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnVerItemInventario_Click(object sender, ImageClickEventArgs e)
         {
+            var ArticuloSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
 
+            var IdArticulo = ((HiddenField)ArticuloSeleccionado.FindControl("hfIdArticulo")).Value.ToString();
+            lbIdregistroSeleccionado.Text = IdArticulo;
+            var SacarInformacion = ObjDataSuministro.Value.BuscaInventario(Convert.ToDecimal(IdArticulo));
+            foreach (var n in SacarInformacion) {
+                ListadoSucursalesMantenimientoInventario();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSucursalMantenimiento, n.IdSucursal.ToString());
+                ListadoOficinasMantenimientoInventario();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlOficinaMantenimiento, n.IdOficina.ToString());
+                ListadoCategoriasMantenimientoInventario();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlCategoriaMantenimiento, n.IdCategoria.ToString());
+                ListadoUnidadMedidaMantenimientoInventario();
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlMedidaMantenimiento, n.IdUnidadMedida.ToString());
+                txtDescripcionMantenimiento.Text = n.Articulo;
+                txtStockMantenimiento.Text = n.Stock.ToString();
+                txtStockMinimoMantenimiento.Text = n.StockMinimo.ToString();
+                txtDescripcion_Suplir_Sacar.Text = n.Articulo;
+                txtStockActual_Suplir_Sacar.Text = n.Stock.ToString();
+                txtStockNuevo_Suplir_Sacar.Text = "1";
+            }
+            Paginar_InventarioConsulta(ref rpListadoInventario, SacarInformacion, 10, ref lbCantidadPaginaVariable_InventarioConsulta, ref btnPrimeraPagina_InventarioConsulta, ref btnPaginaAnterior_InventarioConsulta, ref btnSiguientePagina_InventarioConsulta, ref btnUltimaPagina_InventarioConsulta);
+            HandlePaging_InventarioConsulta(ref dtInventarioConsulta, ref lbPaginaActualVariable_InventarioConsulta);
+            lbCantidadRegistros_InventarioConsulta.Text = "1";
+            lbregistrosAgotados_InventarioConsulta.Text = "1";
+            btnConsultarInventarioConsulta.Visible = false;
+            btnNuevoRegistroInventarioConsulta.Visible = false;
+            btnReporteInventarioConsulta.Visible = false;
+            btnSuplirInventarioConsulta.Visible = true;
+            btnEditarReporteInventarioCOnsulta.Visible = true;
+            btnBorrarInventarioCOnsulta.Visible = true;
+            btnRestablecerInventarioConsulta.Visible = true;
+            rbAgregarItems.Checked = true;
+        }
+
+        protected void btnGuardar_Suplir_Sacar_Click(object sender, ImageClickEventArgs e)
+        {
+            string Accion = "";
+            if (rbAgregarItems.Checked == true) {
+                Accion = "ADDITEM";
+            }
+            else if (rbSacaritems.Checked == true) {
+                Accion = "LESSITEM";
+            }
+            else {
+                Accion = "";
+            }
+
+            if (Accion == "LESSITEM") {
+
+                int StockActual = Convert.ToInt32(txtStockActual_Suplir_Sacar.Text);
+                int StockNuevo = Convert.ToInt32(txtStockNuevo_Suplir_Sacar.Text);
+
+                if (StockNuevo > StockActual)
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "CantidadMayor()", "CantidadMayor();", true);
+                }
+                else {
+                    ProcesarInformacionInventario(Convert.ToInt32(lbIdregistroSeleccionado.Text), Convert.ToInt32(txtStockNuevo_Suplir_Sacar.Text), Accion);
+                    ClientScript.RegisterStartupScript(GetType(), "ProcesoCompletado()", "ProcesoCompletado();", true);
+                    ConfiguracionInicialConsultaInventario();
+                }
+            }
+            else {
+                ProcesarInformacionInventario(Convert.ToInt32(lbIdregistroSeleccionado.Text), Convert.ToInt32(txtStockNuevo_Suplir_Sacar.Text), Accion);
+                ClientScript.RegisterStartupScript(GetType(), "ProcesoCompletado()", "ProcesoCompletado();", true);
+                ConfiguracionInicialConsultaInventario();
+            }
+        }
+
+        protected void btnVolverAtras_Suplir_Sacar_Click(object sender, ImageClickEventArgs e)
+        {
+            ConfiguracionInicialConsultaInventario();
+        }
+
+        protected void txtCodigoItem_TextChanged(object sender, EventArgs e)
+        {
+            CurrentPage_InventarioConsulta = 0;
+            MostrarInventario();
         }
 
         protected void btnGuardar_Click(object sender, ImageClickEventArgs e)
         {
-            ProcesarInformacionInventario(Convert.ToInt32(lbIdregistroSeleccionado.Text), lbAccionTomarInventario.Text);
+            ProcesarInformacionInventario(Convert.ToInt32(lbIdregistroSeleccionado.Text),Convert.ToInt32(txtStockMantenimiento.Text), lbAccionTomarInventario.Text);
             ConfiguracionInicialConsultaInventario();
         }
 

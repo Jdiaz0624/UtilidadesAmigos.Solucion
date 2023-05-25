@@ -6,6 +6,12 @@
     <script type="text/javascript">
         var Mensaje = " no puede estar vacio para realziar esta operación, favor de verificar.";
 
+        function CantidadMayor() {
+            alert("La cantidad que intentas sacar de inventario supera la cantidad que tienes en almacen, favor de validar.");
+        }
+        function ProcesoCompletado() {
+            alert("Proceso completado con exito.");
+        }
         $(function () {
 
             $("#<%=btnGuardar.ClientID%>").click(function () {
@@ -68,6 +74,17 @@
                 }
             });
 
+
+            $("#<%=btnGuardar_Suplir_Sacar.ClientID%>").click(function () {
+
+                var Stock = $("#<%=txtStockNuevo_Suplir_Sacar.ClientID%>").val().length;
+                if (Stock < 1) {
+                    alert("El campo Stock Nuevo" + Mensaje);
+                    $("#<%=txtStockNuevo_Suplir_Sacar.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
+
         })
         
     </script>
@@ -80,6 +97,7 @@
             <asp:RadioButton ID="rbSolicitudes" runat="server" Text="Solicitudes" AutoPostBack="true" OnCheckedChanged="rbSolicitudes_CheckedChanged" ToolTip="Mostrar las Solicitudes realziadas" GroupName="TipoOperacion" />
             <asp:RadioButton ID="rbAdministracionInventario" runat="server" Text="Inventario" AutoPostBack="true" OnCheckedChanged="rbAdministracionInventario_CheckedChanged" ToolTip="Administración de Inventario" GroupName="TipoOperacion" />
         </div>
+          <hr />
      <div id="DIVBloqueSolicitudes" runat="server">
          <br />
          <div class="form-check form-switch">
@@ -281,7 +299,11 @@
                         <asp:Label ID="lbMedidaInventarioConsulta" runat="server" Text="Medida" CssClass="Letranegrita"></asp:Label>
                      <asp:DropDownList ID="ddlMedidaInventarioConsulta" runat="server" ToolTip="Seleccionar Unidad de Medida" CssClass="form-control"></asp:DropDownList>
                  </div>
-                 <div class="col-md-12">
+                 <div class="col-md-2">
+                     <asp:Label ID="lbIdItem" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label>
+                     <asp:TextBox ID="txtCodigoItem" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtCodigoItem_TextChanged" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
+                 </div>
+                 <div class="col-md-10">
                      <asp:Label ID="lbArticuloInventarioConsulta" runat="server" Text="Descripción" CssClass="Letranegrita"></asp:Label>
                      <asp:TextBox ID="txtArticuloInventarioConsulta" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtArticuloInventarioConsulta_TextChanged" AutoCompleteType="Disabled"></asp:TextBox>
                  </div>
@@ -293,7 +315,7 @@
                  <asp:ImageButton ID="btnReporteInventarioConsulta" runat="server" ToolTip="Reporte de Inventario" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" OnClick="btnReporteInventarioConsulta_Click" />
                  <asp:ImageButton ID="btnSuplirInventarioConsulta" runat="server" ToolTip="Suplir Inventario" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/inventario.png" OnClick="btnSuplirInventarioConsulta_Click" />
                  <asp:ImageButton ID="btnEditarReporteInventarioCOnsulta" runat="server" ToolTip="Editar Registro Seleccionado" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Editar_Nuevo.png" OnClick="btnEditarReporteInventarioCOnsulta_Click" />
-                 <asp:ImageButton ID="btnBorrarInventarioCOnsulta" runat="server" ToolTip="Borrar Registro Seleccionado" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/borrar.png" OnClick="btnBorrarInventarioCOnsulta_Click" />
+                 <asp:ImageButton ID="btnBorrarInventarioCOnsulta" runat="server"  ToolTip="Borrar Registro Seleccionado" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/borrar.png" OnClick="btnBorrarInventarioCOnsulta_Click" OnClientClick="return confirm('¿Quieres Borrar Este Registro?');" />
                  <asp:ImageButton ID="btnRestablecerInventarioConsulta" runat="server" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Restablecer_Nuevo.png" OnClick="btnRestablecerInventarioConsulta_Click" />
              </div>
              <br />
@@ -302,6 +324,7 @@
                      <tr>
                      <th scope="col"> Sucursal </th>
                      <th scope="col"> Oficina </th>
+                         <th scope="col"> ID </th>
                      <th scope="col"> Descripción </th>
                      <th scope="col"> Categoria </th>
                      <th scope="col"> Medida </th>
@@ -317,6 +340,7 @@
 
                                  <td> <%# Eval("Sucursal") %> </td>
                                  <td> <%# Eval("Oficina") %> </td>
+                                 <td> <%# Eval("IdRegistro") %> </td>
                                  <td> <%# Eval("Articulo") %> </td>
                                  <td> <%# Eval("Categoria") %> </td>
                                  <td> <%# Eval("UnidadMedida") %> </td>
@@ -415,6 +439,37 @@
              <div class="ContenidoCentro">
                  <asp:ImageButton ID="btnGuardar" runat="server" ToolTip="Guardar Información" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Nuevo_Nuevo.png" OnClick="btnGuardar_Click" />
                  <asp:ImageButton ID="btnVolver" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolver_Click" />
+             </div>
+             <br />
+         </div>
+
+         <div id="DIVSubBloqueSuplirSacar" runat="server">
+             <br />
+             <div class="form-check-inline">
+                 <asp:Label ID="lbTipoOperacionAgregarSacar" runat="server" Text="Tipo de Operación: " CssClass="Letranegrita"></asp:Label>
+                 <asp:RadioButton ID="rbAgregarItems" runat="server" Text="Agregar Items" ToolTip="Agregar Cantidad al registro Seleccionado" GroupName="SuplirSacar" />
+                 <asp:RadioButton ID="rbSacaritems" runat="server" Text="Sacar Items" ToolTip="Sacar Cantidad al registro Seleccionado" GroupName="SuplirSacar" />
+             </div>
+             <br />
+             <div class="row">
+                 <div class="col-md-8">
+                     <asp:Label ID="lbDescripcion_Suplir_Sacar" runat="server" Text="Descripción" CssClass="Letranegrita"></asp:Label>
+                     <asp:TextBox ID="txtDescripcion_Suplir_Sacar" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                 </div>
+                 <div class="col-md-2">
+                      <asp:Label ID="lbStockActual_Suplir_Sacar" runat="server" Text="Stock Actual" CssClass="Letranegrita"></asp:Label>
+                     <asp:TextBox ID="txtStockActual_Suplir_Sacar" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                 </div>
+                 <div class="col-md-2">
+                      <asp:Label ID="lbStockNuevo_Suplir_Sacar" runat="server" Text="Stock Nuevo" CssClass="Letranegrita"></asp:Label>
+                     <asp:Label ID="lbAsretisco_Suplir_Sacar" runat="server" Text=" *" ForeColor="Red"></asp:Label>
+                     <asp:TextBox ID="txtStockNuevo_Suplir_Sacar" runat="server" CssClass="form-control" ></asp:TextBox>
+                 </div>
+             </div>
+             <br />
+             <div class="ContenidoCentro">
+                 <asp:ImageButton ID="btnGuardar_Suplir_Sacar" runat="server" ToolTip="Completar Proceso" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Completado.png" OnClick="btnGuardar_Suplir_Sacar_Click" />
+                  <asp:ImageButton ID="btnVolverAtras_Suplir_Sacar" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolverAtras_Suplir_Sacar_Click" />
              </div>
              <br />
          </div>

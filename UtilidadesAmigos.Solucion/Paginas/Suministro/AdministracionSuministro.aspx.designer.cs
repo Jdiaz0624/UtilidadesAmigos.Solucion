@@ -501,6 +501,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.DropDownList ddlMedidaInventarioConsulta;
 
         /// <summary>
+        /// lbIdItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbIdItem;
+
+        /// <summary>
+        /// txtCodigoItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoItem;
+
+        /// <summary>
         /// lbArticuloInventarioConsulta control.
         /// </summary>
         /// <remarks>
@@ -913,5 +931,122 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton btnVolver;
+
+        /// <summary>
+        /// DIVSubBloqueSuplirSacar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVSubBloqueSuplirSacar;
+
+        /// <summary>
+        /// lbTipoOperacionAgregarSacar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTipoOperacionAgregarSacar;
+
+        /// <summary>
+        /// rbAgregarItems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbAgregarItems;
+
+        /// <summary>
+        /// rbSacaritems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbSacaritems;
+
+        /// <summary>
+        /// lbDescripcion_Suplir_Sacar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDescripcion_Suplir_Sacar;
+
+        /// <summary>
+        /// txtDescripcion_Suplir_Sacar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescripcion_Suplir_Sacar;
+
+        /// <summary>
+        /// lbStockActual_Suplir_Sacar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbStockActual_Suplir_Sacar;
+
+        /// <summary>
+        /// txtStockActual_Suplir_Sacar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtStockActual_Suplir_Sacar;
+
+        /// <summary>
+        /// lbStockNuevo_Suplir_Sacar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbStockNuevo_Suplir_Sacar;
+
+        /// <summary>
+        /// lbAsretisco_Suplir_Sacar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbAsretisco_Suplir_Sacar;
+
+        /// <summary>
+        /// txtStockNuevo_Suplir_Sacar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtStockNuevo_Suplir_Sacar;
+
+        /// <summary>
+        /// btnGuardar_Suplir_Sacar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnGuardar_Suplir_Sacar;
+
+        /// <summary>
+        /// btnVolverAtras_Suplir_Sacar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnVolverAtras_Suplir_Sacar;
     }
 }
