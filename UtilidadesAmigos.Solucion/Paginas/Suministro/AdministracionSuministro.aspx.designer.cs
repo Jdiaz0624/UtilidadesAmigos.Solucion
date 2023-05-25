@@ -600,31 +600,31 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVariable_InventarioConsulta;
 
         /// <summary>
-        /// Label1 control.
+        /// lbPaginaActualVariable_InventarioConsulta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualVariable_InventarioConsulta;
 
         /// <summary>
-        /// lbCantidadSolicitudes_InventarioConsulta control.
+        /// lbCantidadRegistros_InventarioConsulta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadSolicitudes_InventarioConsulta;
+        protected global::System.Web.UI.WebControls.Label lbCantidadRegistros_InventarioConsulta;
 
         /// <summary>
-        /// lbSolicitudesActivas_InventarioConsulta control.
+        /// lbregistrosAgotados_InventarioConsulta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSolicitudesActivas_InventarioConsulta;
+        protected global::System.Web.UI.WebControls.Label lbregistrosAgotados_InventarioConsulta;
 
         /// <summary>
         /// DivPaginacionInventarioCOnsulta control.
@@ -654,13 +654,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnterior_InventarioConsulta;
 
         /// <summary>
-        /// DataList1 control.
+        /// dtInventarioConsulta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList DataList1;
+        protected global::System.Web.UI.WebControls.DataList dtInventarioConsulta;
 
         /// <summary>
         /// btnSiguientePagina_InventarioConsulta control.

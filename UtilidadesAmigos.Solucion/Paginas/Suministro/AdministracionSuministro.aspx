@@ -197,7 +197,7 @@
              <div class="row">
                  <div class="col-md-3">
                      <asp:Label ID="lbSucursalInventarioConsulta" runat="server" Text="Sucursal" CssClass="Letranegrita"></asp:Label>
-                     <asp:DropDownList ID="ddlSucursalInventarioConsulta" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSucursalInventarioConsulta_SelectedIndexChanged1"></asp:DropDownList>
+                     <asp:DropDownList ID="ddlSucursalInventarioConsulta" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSucursalInventarioConsulta_SelectedIndexChanged"></asp:DropDownList>
                  </div>
                  <div class="col-md-3">
                         <asp:Label ID="lboficinaInventarioConsulta" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
@@ -213,7 +213,7 @@
                  </div>
                  <div class="col-md-12">
                      <asp:Label ID="lbArticuloInventarioConsulta" runat="server" Text="Descripción" CssClass="Letranegrita"></asp:Label>
-                     <asp:TextBox ID="txtArticuloInventarioConsulta" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                     <asp:TextBox ID="txtArticuloInventarioConsulta" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtArticuloInventarioConsulta_TextChanged" AutoCompleteType="Disabled"></asp:TextBox>
                  </div>
              </div>
              <br />
@@ -261,17 +261,17 @@
                 <tfoot class="table-light">
                     <tr>
                         <td class="ContenidoDerecha">
-                            <b>Pagina </b> <asp:Label ID="lbCantidadPaginaVariable_InventarioConsulta" runat="server" Text="0" CssClass="Letranegrita"></asp:Label> <b>de </b>  <asp:Label ID="Label1" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                            <b>Pagina </b> <asp:Label ID="lbCantidadPaginaVariable_InventarioConsulta" runat="server" Text="0" CssClass="Letranegrita"></asp:Label> <b>de </b>  <asp:Label ID="lbPaginaActualVariable_InventarioConsulta" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
                         </td>
                     </tr>
                     <tr>
                         <td class="ContenidoIzquierda">
-                            <b>Total de Registros: </b> <asp:Label ID="lbCantidadSolicitudes_InventarioConsulta" runat="server" Text="0"></asp:Label>
+                            <b>Total de Registros: </b> <asp:Label ID="lbCantidadRegistros_InventarioConsulta" runat="server" Text="0"></asp:Label>
                         </td>
                     </tr>
                     <tr>
                         <td class="ContenidoIzquierda">
-                            <b>Solicitudes Agotados: </b> <asp:Label ID="lbSolicitudesActivas_InventarioConsulta" runat="server" Text="0"></asp:Label>
+                            <b>Solicitudes Agotados: </b> <asp:Label ID="lbregistrosAgotados_InventarioConsulta" runat="server" Text="0"></asp:Label>
                         </td>
                     </tr>
                 </tfoot>
@@ -282,8 +282,8 @@
                 <tr>
                     <td> <asp:ImageButton ID="btnPrimeraPagina_InventarioConsulta" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPagina_InventarioConsulta_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" /> </td>
                     <td> <asp:ImageButton ID="btnPaginaAnterior_InventarioConsulta" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnPaginaAnterior_InventarioConsulta_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" />  </td>
-                    <td align="center">
-                        <asp:DataList ID="DataList1" runat="server" OnItemCommand="DataList1_ItemCommand" OnItemDataBound="DataList1_ItemDataBound" RepeatDirection="Horizontal">
+                    <td class="ContenidoCentro">
+                        <asp:DataList ID="dtInventarioConsulta" runat="server" OnItemCommand="DataList1_ItemCommand" OnItemDataBound="DataList1_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
                                 <asp:Button ID="btnPaginacionCentral_SolicitudesHeader" runat="server" class="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
                             </ItemTemplate>
