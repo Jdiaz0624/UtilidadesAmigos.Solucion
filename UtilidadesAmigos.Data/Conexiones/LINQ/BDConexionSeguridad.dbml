@@ -78,4 +78,23 @@
       <Column Name="Estatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="Utililades.SP_BUSCA_CREDENCIALES_BD" Method="SP_BUSCA_CREDENCIALES_BD">
+    <Parameter Name="IdCredencial" Parameter="idCredencial" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_CREDENCIALES_BDResult">
+      <Column Name="IdCredencial" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UsuarioBD" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_CREDENCIALES_BD" Method="SP_PROCESAR_INFORMACION_CREDENCIALES_BD">
+    <Parameter Name="IdCredencial" Parameter="idCredencial" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UsuarioBD" Parameter="usuarioBD" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Clave" Parameter="clave" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_CREDENCIALES_BDResult">
+      <Column Name="IdCredencial" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioBD" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

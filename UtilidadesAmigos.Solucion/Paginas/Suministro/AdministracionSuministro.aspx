@@ -2,6 +2,76 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <script type="text/javascript">
+        var Mensaje = " no puede estar vacio para realziar esta operación, favor de verificar.";
+
+        $(function () {
+
+            $("#<%=btnGuardar.ClientID%>").click(function () {
+
+                var Sucursal = $("#<%=ddlSucursalMantenimiento.ClientID%>").val();
+                if (Sucursal < 1) {
+                    alert("El campo sucursal" + Mensaje);
+                    $("#<%=ddlSucursalMantenimiento.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+                else {
+
+                    var Oficina = $("#<%=ddlOficinaMantenimiento.ClientID%>").val();
+                    if (Oficina < 1) {
+                        alert("El campo Oficina" + Mensaje);
+                        $("#<%=ddlOficinaMantenimiento.ClientID%>").css("border-color", "red");
+                        return false;
+                    }
+                    else {
+
+                        var Categoria = $("#<%=ddlCategoriaMantenimiento.ClientID%>").val();
+                        if (Categoria < 1) {
+                            alert("El campo Categoria" + Mensaje);
+                            $("#<%=ddlCategoriaMantenimiento.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
+                        else {
+                            var UnidadMedida = $("#<%=ddlMedidaMantenimiento.ClientID%>").val();
+                            if (UnidadMedida < 1) {
+                                alert("El campo Unidad de Medida" + Mensaje);
+                                $("#<%=ddlMedidaMantenimiento.ClientID%>").css("border-color", "red");
+                                return false;
+                            }
+                            else {
+                                var Descripcion = $("#<%=txtDescripcionMantenimiento.ClientID%>").val().length;
+                                if (Descripcion < 1) {
+                                    alert("El campo Descripción" + Mensaje);
+                                    $("#<%=txtDescripcionMantenimiento.ClientID%>").css("border-color", "red");
+                                    return false;
+                                }
+                                else {
+                                    var Stock = $("#<%=txtStockMantenimiento.ClientID%>").val().length;
+                                    if (Stock < 1) {
+                                        alert("El campo Stock" + Mensaje);
+                                        $("#<%=txtStockMantenimiento.ClientID%>").css("border-color", "red");
+                                        return false;
+                                    }
+                                    else {
+                                        var StockMinimo = $("#<%=txtStockMinimoMantenimiento.ClientID%>").val().length;
+                                        if (StockMinimo < 1) {
+                                            alert("El campo Stock Minimo" + Mensaje);
+                                            $("#<%=txtStockMinimoMantenimiento.ClientID%>").css("border-color", "red");
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+        })
+        
+    </script>
+
     <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
       <div class="container-fluid">
         <br />
@@ -95,7 +165,7 @@
                 <tfoot class="table-light">
                     <tr>
                         <td class="ContenidoDerecha">
-                            <b>Pagina </b> <asp:Label ID="lbCantidadPaginaVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label> <b>de </b>  <asp:Label ID="lbPaginaActualVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                            <b>Página </b> <asp:Label ID="lbCantidadPaginaVariable" runat="server" Text="0" ></asp:Label> <b>de </b>  <asp:Label ID="lbPaginaActualVariable" runat="server" Text=" 0 "></asp:Label>
                         </td>
                     </tr>
                     <tr>
@@ -236,7 +306,7 @@
                      <th scope="col"> Categoria </th>
                      <th scope="col"> Medida </th>
                      <th class="ContenidoCentro" scope="col"> Stock </th>
-                     <th class="ContenidoDerecha" scope="col"> Ver </th>
+                     <th class="ContenidoDerecha" scope="col"> Seleccionar </th>
                  </tr>
                 </thead>
                  <tbody>
@@ -251,7 +321,7 @@
                                  <td> <%# Eval("Categoria") %> </td>
                                  <td> <%# Eval("UnidadMedida") %> </td>
                                  <td class="ContenidoCentro" > <%#string.Format("{0:N0}", Eval("Stock")) %> </td>
-                                 <td class="ContenidoDerecha" ></td>
+                                 <td class="ContenidoDerecha" > <asp:ImageButton ID="btnVerItemInventario" runat="server" ToolTip="Seleccionar este registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/hacer-clic.png" OnClick="btnVerItemInventario_Click" />     </td>
                              </tr>
                          </ItemTemplate>
                      </asp:Repeater>
@@ -261,7 +331,7 @@
                 <tfoot class="table-light">
                     <tr>
                         <td class="ContenidoDerecha">
-                            <b>Pagina </b> <asp:Label ID="lbCantidadPaginaVariable_InventarioConsulta" runat="server" Text="0" CssClass="Letranegrita"></asp:Label> <b>de </b>  <asp:Label ID="lbPaginaActualVariable_InventarioConsulta" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
+                            <b>Página </b> <asp:Label ID="lbCantidadPaginaVariable_InventarioConsulta" runat="server" Text="0" ></asp:Label> <b>de </b>  <asp:Label ID="lbPaginaActualVariable_InventarioConsulta" runat="server" Text=" 0 " ></asp:Label>
                         </td>
                     </tr>
                     <tr>
@@ -301,36 +371,44 @@
          <div id="DivSubBloqueInventarioMantenimiento" runat="server">
              <br />
              <asp:Label ID="lbIdregistroSeleccionado" runat="server" Text="0" Visible="false" CssClass="Letranegrita"></asp:Label>
+             <asp:Label ID="lbAccionTomarInventario" runat="server" Text="0" Visible="false"></asp:Label>
              <div class="row">
                  <div class="col-md-3">
                      <asp:Label ID="lbSucursalMantenimiento" runat="server" Text="Sucursal" CssClass="Letranegrita"></asp:Label>
+                     <asp:Label ID="Astericso" runat="server" Text=" *" ForeColor="Red"></asp:Label>
                      <asp:DropDownList ID="ddlSucursalMantenimiento" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSucursalMantenimiento_SelectedIndexChanged" ></asp:DropDownList>
                  </div>
                   <div class="col-md-3">
                       <asp:Label ID="lbOficinaMantenimiento" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
+                       <asp:Label ID="Label1" runat="server" Text=" *" ForeColor="Red"></asp:Label>
                      <asp:DropDownList ID="ddlOficinaMantenimiento" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control"></asp:DropDownList>
                  </div>
                   <div class="col-md-3">
                       <asp:Label ID="lbCategoriaMantenimeinto" runat="server" Text="Categoria" CssClass="Letranegrita"></asp:Label>
+                       <asp:Label ID="Label5" runat="server" Text=" *" ForeColor="Red"></asp:Label>
                      <asp:DropDownList ID="ddlCategoriaMantenimiento" runat="server" ToolTip="Seleccionar Categoria" CssClass="form-control"></asp:DropDownList>
                  </div>
                   <div class="col-md-3">
                       <asp:Label ID="lbMedidaMantenimiento" runat="server" Text="Medida" CssClass="Letranegrita"></asp:Label>
+                       <asp:Label ID="Label7" runat="server" Text=" *" ForeColor="Red"></asp:Label>
                      <asp:DropDownList ID="ddlMedidaMantenimiento" runat="server" ToolTip="Seleccionar Medida" CssClass="form-control"></asp:DropDownList>
                  </div>
 
                   <div class="col-md-6">
                       <asp:Label ID="lbDescripcionMantenimiento" runat="server" Text="Descripción" CssClass="Letranegrita"></asp:Label>
+                       <asp:Label ID="Label8" runat="server" Text=" *" ForeColor="Red"></asp:Label>
                       <asp:TextBox ID="txtDescripcionMantenimiento" runat="server" MaxLength="1000" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                  </div>
                   <div class="col-md-3">
                       <asp:Label ID="lbStockMantenimiento" runat="server" Text="Stock" CssClass="Letranegrita"></asp:Label>
+                       <asp:Label ID="Label9" runat="server" Text=" *" ForeColor="Red"></asp:Label>
                       <asp:TextBox ID="txtStockMantenimiento" runat="server"  CssClass="form-control" TextMode="Number"></asp:TextBox>
 
                  </div>
                   <div class="col-md-3">
-                      <asp:Label ID="Label6" runat="server" Text="Descripción" CssClass="Letranegrita"></asp:Label>
-                      <asp:TextBox ID="TextBox2" runat="server"  CssClass="form-control" TextMode="Number"></asp:TextBox>
+                      <asp:Label ID="lbStockMinimoMantenimiento" runat="server" Text="Stock Minimo" CssClass="Letranegrita"></asp:Label>
+                       <asp:Label ID="Label10" runat="server" Text=" *" ForeColor="Red"></asp:Label>
+                      <asp:TextBox ID="txtStockMinimoMantenimiento" runat="server"  CssClass="form-control" TextMode="Number"></asp:TextBox>
                  </div>
              </div>
              <br />

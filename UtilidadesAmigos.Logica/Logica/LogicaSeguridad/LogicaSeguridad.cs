@@ -340,5 +340,54 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSeguridad
             return Procesar;
         }
         #endregion
+        #region MANTENIMIENTO DE CREDENCIALES DE BASE DE DATOS
+        /// <summary>
+        /// Mostrar la informacion de la clave de seguridad
+        /// </summary>
+        /// <param name="IdCredencial"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Seguridad.ECredencialesBD> BuscaCredencialesBD(int? IdCredencial = null) {
+
+            ObjDataSeguridad.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjDataSeguridad.SP_BUSCA_CREDENCIALES_BD(IdCredencial)
+                           select new UtilidadesAmigos.Logica.Entidades.Seguridad.ECredencialesBD
+                           {
+                               IdCredencial=n.IdCredencial,
+                               UsuarioBD=n.UsuarioBD,
+                               Clave=n.Clave
+                           }).ToList();
+            return Listado;
+        }
+        /// <summary>
+        /// Procesar la informacion de las credenciales de base de datos
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Seguridad.ECredencialesBD ProcesarClaveSeguridad(UtilidadesAmigos.Logica.Entidades.Seguridad.ECredencialesBD Item, string Accion) {
+
+            ObjDataSeguridad.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Seguridad.ECredencialesBD Procesar = null;
+
+            var Credenciales = ObjDataSeguridad.SP_PROCESAR_INFORMACION_CREDENCIALES_BD(
+                Item.IdCredencial,
+                Item.UsuarioBD,
+                Item.Clave,
+                Accion);
+            if (Credenciales != null) {
+
+                Procesar = (from n in Credenciales
+                            select new UtilidadesAmigos.Logica.Entidades.Seguridad.ECredencialesBD
+                            {
+                                IdCredencial=n.IdCredencial,
+                                UsuarioBD=n.UsuarioBD,
+                                Clave=n.Clave
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }

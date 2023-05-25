@@ -330,7 +330,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             else {
 
                 Paginar_InventarioConsulta(ref rpListadoInventario, Listado, 10, ref lbCantidadPaginaVariable_InventarioConsulta, ref btnPrimeraPagina_InventarioConsulta, ref btnPaginaAnterior_InventarioConsulta, ref btnSiguientePagina_InventarioConsulta, ref btnUltimaPagina_InventarioConsulta);
-                HandlePaging_InventarioConsulta(ref dtInventarioConsulta, ref lbPaginaActualVariable);
+                HandlePaging_InventarioConsulta(ref dtInventarioConsulta, ref lbPaginaActualVariable_InventarioConsulta);
                 foreach (var n in Listado) {
 
                     CantidadRegistros = (int)n.CantidadRegistros;
@@ -341,10 +341,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             }
         }
         #endregion
-
         #region CONFIGURACION INICIAL CONSULTA INVENTARIO
         private void ConfiguracionInicialConsultaInventario() {
             ListaDesplegablesConsultaInventario();
+            DivSubBloqueInventarioConsulta.Visible = true;
+            DivSubBloqueInventarioMantenimiento.Visible = false;
             btnConsultarInventarioConsulta.Visible = true;
             btnNuevoRegistroInventarioConsulta.Visible = true;
             btnReporteInventarioConsulta.Visible = true;
@@ -352,8 +353,83 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             btnEditarReporteInventarioCOnsulta.Visible = false;
             btnBorrarInventarioCOnsulta.Visible = false;
             btnRestablecerInventarioConsulta.Visible = false;
+            txtArticuloInventarioConsulta.Text = string.Empty;
             CurrentPage_InventarioConsulta = 0;
             MostrarInventario();
+        }
+        #endregion
+        #region CARGAR LAS LISTAS DESPLEGABLES DE LA PANTALLA DE MANTENIMIENTO 
+        private void ListasDesplegablesPantallaMantenimiento() {
+            ListadoSucursalesMantenimientoInventario();
+            ListadoOficinasMantenimientoInventario();
+            ListadoCategoriasMantenimientoInventario();
+            ListadoUnidadMedidaMantenimientoInventario();
+        }
+        private void ListadoSucursalesMantenimientoInventario() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSucursalMantenimiento, ObjData.Value.BuscaListas("SUCURSAL", null, null));
+        }
+        private void ListadoOficinasMantenimientoInventario() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaMantenimiento, ObjData.Value.BuscaListas("OFICINA", ddlSucursalMantenimiento.SelectedValue.ToString(), null));
+        }
+        private void ListadoCategoriasMantenimientoInventario() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlCategoriaMantenimiento, ObjData.Value.BuscaListas("SUMINISTROCATEGORIA", null, null));
+        }
+        private void ListadoUnidadMedidaMantenimientoInventario() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlMedidaMantenimiento, ObjData.Value.BuscaListas("SUMINISTROTIPOMEDIDA", null, null));
+        }
+        #endregion
+        #region PROCESAR INFORMACION INVENTARIO
+        private void ProcesarInformacionInventario(decimal IdRegistro, string Accion) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroInventario Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroInventario(
+                IdRegistro,
+                Convert.ToInt32(ddlSucursalMantenimiento.SelectedValue),
+                Convert.ToInt32(ddlOficinaMantenimiento.SelectedValue),
+                Convert.ToInt32(ddlCategoriaMantenimiento.SelectedValue),
+                Convert.ToInt32(ddlMedidaMantenimiento.SelectedValue),
+                txtDescripcionMantenimiento.Text,
+                Convert.ToInt32(txtStockMantenimiento.Text),
+                Convert.ToInt32(txtStockMinimoMantenimiento.Text),
+                Accion);
+            Procesar.ProcesarInformacion();
+        }
+        #endregion
+        #region GENERAR REPORTE DE INVENTARIO
+        private void GenerarReporteInventario() {
+
+            //ReporteInventario.rpt
+            string RutaReporte = "", NombreReporte = "", UsuarioBD = "", ClaveBD = "";
+            int? _Sucursal = ddlSucursalInventarioConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSucursalInventarioConsulta.SelectedValue) : new Nullable<int>();
+            int? _oficina = ddlOficinaInventarioConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlOficinaInventarioConsulta.SelectedValue) : new Nullable<int>();
+            int? _Categoria = ddlCategoriaInventarioConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlCategoriaInventarioConsulta.SelectedValue) : new Nullable<int>();
+            int? _UnidadMedida = ddlMedidaInventarioConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlMedidaInventarioConsulta.SelectedValue) : new Nullable<int>();
+            string _Descripcion = string.IsNullOrEmpty(txtArticuloInventarioConsulta.Text.Trim()) ? null : txtArticuloInventarioConsulta.Text.Trim();
+
+            RutaReporte = Server.MapPath("ReporteInventario.rpt");
+            NombreReporte = "Reporte de Inventario";
+            UtilidadesAmigos.Logica.Comunes.SacarCredencialesBD Credenciales = new Logica.Comunes.SacarCredencialesBD(1);
+            UsuarioBD = Credenciales.SacarUsuario();
+            ClaveBD = Credenciales.SacarClaveBD();
+
+            ReportDocument Reporte = new ReportDocument();
+
+            Reporte.Load(RutaReporte);
+            Reporte.Refresh();
+
+            Reporte.SetParameterValue("@IdRegistro", new Nullable<decimal>());
+            Reporte.SetParameterValue("@IdSucursal", _Sucursal);
+            Reporte.SetParameterValue("@IdOficina", _oficina);
+            Reporte.SetParameterValue("@IdCategoria", _Categoria);
+            Reporte.SetParameterValue("@IdUnidadMedida", _UnidadMedida);
+            Reporte.SetParameterValue("@Descripcion", _Descripcion);
+            Reporte.SetParameterValue("@Stock", new Nullable<int>());
+            Reporte.SetParameterValue("@FechaDesde", new Nullable<DateTime>());
+            Reporte.SetParameterValue("@FechaHasta", new Nullable<DateTime>());
+            Reporte.SetParameterValue("@GeneradoPor", (decimal)Session["IdUsuario"]);
+
+            Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
+
+            Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
         }
         #endregion
         protected void Page_Load(object sender, EventArgs e)
@@ -503,17 +579,26 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnNuevoRegistroInventarioConsulta_Click(object sender, ImageClickEventArgs e)
         {
-
+            DivSubBloqueInventarioConsulta.Visible = false;
+            DivSubBloqueInventarioMantenimiento.Visible = true;
+            ListasDesplegablesPantallaMantenimiento();
+            txtDescripcionMantenimiento.Text = string.Empty;
+            txtStockMantenimiento.Text = "1";
+            txtStockMinimoMantenimiento.Text = "1";
+            lbIdregistroSeleccionado.Text = "0";
+            lbAccionTomarInventario.Text = "INSERT";
         }
 
         protected void btnReporteInventarioConsulta_Click(object sender, ImageClickEventArgs e)
         {
-
+            GenerarReporteInventario();
         }
 
         protected void btnEditarReporteInventarioCOnsulta_Click(object sender, ImageClickEventArgs e)
         {
-
+            DivSubBloqueInventarioConsulta.Visible = false;
+            DivSubBloqueInventarioMantenimiento.Visible = true;
+            lbAccionTomarInventario.Text = "UPDATE";
         }
 
         protected void btnBorrarInventarioCOnsulta_Click(object sender, ImageClickEventArgs e)
@@ -572,7 +657,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void ddlSucursalMantenimiento_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ListadoOficinasMantenimientoInventario();
         }
 
         protected void txtArticuloInventarioConsulta_TextChanged(object sender, EventArgs e)
@@ -581,14 +666,20 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             MostrarInventario();
         }
 
-        protected void btnGuardar_Click(object sender, ImageClickEventArgs e)
+        protected void btnVerItemInventario_Click(object sender, ImageClickEventArgs e)
         {
 
         }
 
+        protected void btnGuardar_Click(object sender, ImageClickEventArgs e)
+        {
+            ProcesarInformacionInventario(Convert.ToInt32(lbIdregistroSeleccionado.Text), lbAccionTomarInventario.Text);
+            ConfiguracionInicialConsultaInventario();
+        }
+
         protected void btnVolver_Click(object sender, ImageClickEventArgs e)
         {
-
+            ConfiguracionInicialConsultaInventario();
         }
     }
 }

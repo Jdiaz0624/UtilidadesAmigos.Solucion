@@ -185,6 +185,7 @@
     <Compile Include="Comunes\Reportes\ProcesarInformacionProduccuinPorUsuarioDetalle.cs" />
     <Compile Include="Comunes\Reportes\ProcesarInformacionReporteComisionIntermediario.cs" />
     <Compile Include="Comunes\Reportes\ProcesarProduccionPorUsuarioResumido.cs" />
+    <Compile Include="Comunes\SacarCredencialesBD.cs" />
     <Compile Include="Comunes\SacarNombreIntermediarioSupervisor.cs" />
     <Compile Include="Comunes\SacarNombreUsuario.cs" />
     <Compile Include="Comunes\SacarNumeroCotizacionPoliza.cs" />
@@ -483,6 +484,7 @@
     <Compile Include="Entidades\Reportes\EValidarInformacionPolizasRenovar.cs" />
     <Compile Include="Entidades\Reportes\EValidarPolizasRenovadas.cs" />
     <Compile Include="Entidades\Seguridad\EControlTarjetasAcceso.cs" />
+    <Compile Include="Entidades\Seguridad\ECredencialesBD.cs" />
     <Compile Include="Entidades\Seguridad\EMantenimientoClaveSeguridad.cs" />
     <Compile Include="Entidades\Seguridad\EModulos.cs" />
     <Compile Include="Entidades\Seguridad\EOpcionPantalla.cs" />
