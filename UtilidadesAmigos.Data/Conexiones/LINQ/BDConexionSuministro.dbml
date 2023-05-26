@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionSuministroDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=juan.diaz" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString21" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_BUSCA_SUMINISTRO_INVENTARIO" Method="SP_BUSCA_SUMINISTRO_INVENTARIO">
     <Parameter Name="CodigoArticulo" Parameter="codigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Articulo" Parameter="articulo" Type="System.String" DbType="VarChar(1000)" />
@@ -154,6 +154,150 @@
       <Column Name="Stock" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="StockMinimo" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="FechaIngreso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_SUMINISTRO_SOLICITUDES" Method="SP_BUSCA_SUMINISTRO_SOLICITUDES">
+    <Parameter Name="NumeroSolicitud" Parameter="numeroSolicitud" Type="System.Decimal" DbType="Decimal(31,0)" />
+    <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoArticulo" Parameter="codigoArticulo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DescripcionArticulo" Parameter="descripcionArticulo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="IdCategoria" Parameter="idCategoria" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUnidadMedida" Parameter="idUnidadMedida" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="IdEstatusSolicitud" Parameter="idEstatusSolicitud" Type="System.Int32" DbType="Int" />
+    <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCA_SUMINISTRO_SOLICITUDESResult">
+      <Column Name="NumeroSolicitud" Type="System.Decimal" DbType="Decimal(31,0) NOT NULL" CanBeNull="false" />
+      <Column Name="IdSucursal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Sucursal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdDepartamento" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Departamento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CodigoArticulo" Type="System.Decimal" DbType="Decimal(31,0)" CanBeNull="true" />
+      <Column Name="DescripcionArticulo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IdCategoria" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Categoria" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IdUnidadMedida" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UnidadMedida" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fecha0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="IdEstatusSolicitud" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CantidadSolicitudes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SolicitudesActivas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SolicitudesProcesadas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SolicitudesCanceladas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SolicitudesRechazadas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUDES" Method="SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUDES">
+    <Parameter Name="NumeroSolicitud" Parameter="numeroSolicitud" Type="System.Decimal" DbType="Decimal(31,0)" />
+    <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoArticulo" Parameter="codigoArticulo" Type="System.Decimal" DbType="Decimal(31,0)" />
+    <Parameter Name="DescripcionArticulo" Parameter="descripcionArticulo" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="IdCategoria" Parameter="idCategoria" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUnidadMedida" Parameter="idUnidadMedida" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cantidad" Parameter="cantidad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEstatusSolicitud" Parameter="idEstatusSolicitud" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUDESResult">
+      <Column Name="NumeroSolicitud" Type="System.Decimal" DbType="Decimal(31,0)" CanBeNull="true" />
+      <Column Name="IdSucursal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdDepartamento" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CodigoArticulo" Type="System.Decimal" DbType="Decimal(31,0)" CanBeNull="true" />
+      <Column Name="DescripcionArticulo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IdCategoria" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdUnidadMedida" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IdEstatusSolicitud" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_SUMINISTRO_SOLICITUDES" Method="SP_BUSCA_SUMINISTRO_SOLICITUDES1">
+    <Parameter Name="NumeroSolicitud" Parameter="numeroSolicitud" Type="System.Decimal" DbType="Decimal(31,0)" />
+    <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoArticulo" Parameter="codigoArticulo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DescripcionArticulo" Parameter="descripcionArticulo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="IdCategoria" Parameter="idCategoria" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUnidadMedida" Parameter="idUnidadMedida" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="IdEstatusSolicitud" Parameter="idEstatusSolicitud" Type="System.Int32" DbType="Int" />
+    <Parameter Name="GeneradoPor" Parameter="generadoPor" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="SP_BUSCA_SUMINISTRO_SOLICITUDESResult1">
+      <Column Name="NumeroSolicitud" Type="System.Decimal" DbType="Decimal(31,0) NOT NULL" CanBeNull="false" />
+      <Column Name="IdSucursal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Sucursal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdDepartamento" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Departamento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CodigoArticulo" Type="System.Decimal" DbType="Decimal(31,0)" CanBeNull="true" />
+      <Column Name="DescripcionArticulo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IdCategoria" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Categoria" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IdUnidadMedida" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UnidadMedida" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fecha0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="IdEstatusSolicitud" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CantidadSolicitudes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SolicitudesActivas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SolicitudesProcesadas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SolicitudesCanceladas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SolicitudesRechazadas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUDES_ESPEJO" Method="SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUDES_ESPEJO">
+    <Parameter Name="Secuencial" Parameter="secuencial" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdDepartamento" Parameter="idDepartamento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="CodigoArticulo" Parameter="codigoArticulo" Type="System.Decimal" DbType="Decimal(31,0)" />
+    <Parameter Name="DescripcionArticulo" Parameter="descripcionArticulo" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="IdCategoria" Parameter="idCategoria" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdUnidadMedida" Parameter="idUnidadMedida" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cantidad" Parameter="cantidad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEstatusSolicitud" Parameter="idEstatusSolicitud" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUDES_ESPEJOResult">
+      <Column Name="Secuencial" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdSucursal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdDepartamento" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CodigoArticulo" Type="System.Decimal" DbType="Decimal(31,0)" CanBeNull="true" />
+      <Column Name="DescripcionArticulo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IdCategoria" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdUnidadMedida" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IdEstatusSolicitud" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

@@ -437,6 +437,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
         }
         #endregion
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
