@@ -16,6 +16,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaProcesos.LogicaProcesos> ObjDataProceso = new Lazy<Logica.Logica.LogicaProcesos.LogicaProcesos>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaSeguridad.LogicaSeguridad> ObjDataSeguridad = new Lazy<Logica.Logica.LogicaSeguridad.LogicaSeguridad>();
 
    
         private string GenerarNombreArchivo(string NombreEmpleado)
@@ -279,44 +280,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             }
         }
-        /* private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP, string Cuerpo) {
-
-
-            UtilidadesAmigos.Logica.Comunes.EnvioCorreos Mail = new Logica.Comunes.EnvioCorreos
-            {
-                Mail = CorreoEmisor,
-                Alias = Alias,
-                Asunto = Asunto,
-                Clave = ClaveCorreo,
-                Puerto = Puerto,
-                smtp = SMTP,
-                RutaImagen = Server.MapPath("LogoReducido.jpg"),
-                Cuerpo = Cuerpo,
-                Destinatarios = new List<string>(),
-                Adjuntos = new List<string>()
-            };
-
-
-            var MandarCorreos = ObjDataAdministrador.Value.BuscaCorreosEnviar(
-                        new Nullable<decimal>(),
-                        1, null, true);
-            foreach (var n in MandarCorreos) {
-                Mail.Destinatarios.Add(n.Correo);
-            }
-
-            //List<string> Logo = new List<string>();
-            //Logo.Add(Server.MapPath("Logo.jpg"));
-
-            //foreach (var n2 in Logo) {
-            //    Mail.Adjuntos.Add(n2);
-            //}
-
-
-
-            if (Mail.Enviar(Mail)) {
-
-            }
-        }*/
+ 
         #endregion
 
         #region GENERAR EL CUERPO DEL CORREO
@@ -467,10 +431,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
             //SACAMOS LAS CREDENCIALES DE LA BASE DE DATOS, EL USUARIO Y LA CLAVE DEL SERVIDOR
             string UsuarioBD = "", ClaveBD = "";
-            var SacarCredenciales = ObjDataProceso.Value.SacarCredencialesBD(1);
+            var SacarCredenciales = ObjDataSeguridad.Value.BuscaCredencialesBD(1);
             foreach (var nCredenciales in SacarCredenciales)
             {
-                UsuarioBD = nCredenciales.Usuario;
+                UsuarioBD = nCredenciales.UsuarioBD;
                 ClaveBD = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(nCredenciales.Clave);
             }
 

@@ -230,5 +230,109 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
             return Procesar;
         }
         #endregion
+
+        #region MANTENIMIENTO DE SUMINISTRO SOLICITUD
+        /// <summary>
+        /// Muestra el listado de las solicitudes
+        /// </summary>
+        /// <param name="NumeroSolicitud"></param>
+        /// <param name="IdSucursal"></param>
+        /// <param name="IdOficina"></param>
+        /// <param name="IdDepartamento"></param>
+        /// <param name="IdUsuario"></param>
+        /// <param name="CodigoArticulo"></param>
+        /// <param name="DescripcionArticulo"></param>
+        /// <param name="IdCategoria"></param>
+        /// <param name="IdUnidadMedida"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="IdEstatusSolicitud"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroSolicitud> BuscaSuministroSulicitud(decimal? NumeroSolicitud = null, int? IdSucursal = null, int? IdOficina = null, int? IdDepartamento = null, decimal? IdUsuario = null, int? CodigoArticulo = null, string DescripcionArticulo = null, int? IdCategoria = null, int? IdUnidadMedida = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? IdEstatusSolicitud = null, decimal? GeneradoPor = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_SUMINISTRO_SOLICITUDES(NumeroSolicitud, IdSucursal, IdOficina, IdDepartamento, IdUsuario, CodigoArticulo, DescripcionArticulo, IdCategoria, IdUnidadMedida, FechaDesde, FechaHasta, IdEstatusSolicitud, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroSolicitud
+                           {
+                               NumeroSolicitud=n.NumeroSolicitud,
+                               IdSucursal=n.IdSucursal,
+                               Sucursal=n.Sucursal,
+                               IdOficina=n.IdOficina,
+                               Oficina=n.Oficina,
+                               IdDepartamento=n.IdDepartamento,
+                               Departamento=n.Departamento,
+                               IdUsuario=n.IdUsuario,
+                               Usuario=n.Usuario,
+                               CodigoArticulo=n.CodigoArticulo,
+                               DescripcionArticulo=n.DescripcionArticulo,
+                               IdCategoria=n.IdCategoria,
+                               Categoria=n.Categoria,
+                               IdUnidadMedida=n.IdUnidadMedida,
+                               UnidadMedida=n.UnidadMedida,
+                               Cantidad=n.Cantidad,
+                               Fecha0=n.Fecha0,
+                               Fecha=n.Fecha,
+                               Hora=n.Hora,
+                               IdEstatusSolicitud=n.IdEstatusSolicitud,
+                               Estatus=n.Estatus,
+                               GeneradoPor=n.GeneradoPor,
+                               CantidadSolicitudes=n.CantidadSolicitudes,
+                               SolicitudesActivas=n.SolicitudesActivas,
+                               SolicitudesProcesadas=n.SolicitudesProcesadas,
+                               SolicitudesCanceladas=n.SolicitudesCanceladas,
+                               SolicitudesRechazadas=n.SolicitudesRechazadas
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Procesar la Informacion de las solicitudes de inventario
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroSolicitud ProcesarSuministroSolicitudes(UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroSolicitud Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroSolicitud Procesar = null;
+
+            var SuministroSolicitud = ObjData.SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUDES(
+                Item.NumeroSolicitud,
+                Item.IdSucursal,
+                Item.IdOficina,
+                Item.IdDepartamento,
+                Item.IdUsuario,
+                Item.CodigoArticulo,
+                Item.DescripcionArticulo,
+                Item.IdCategoria,
+                Item.IdUnidadMedida,
+                Item.Cantidad,
+                Item.IdEstatusSolicitud,
+                Accion);
+            if (SuministroSolicitud != null) {
+
+                Procesar = (from n in SuministroSolicitud
+                            select new UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroSolicitud
+                            {
+                                  NumeroSolicitud =n.NumeroSolicitud,
+                                  IdSucursal = n.IdSucursal,
+                                  IdOficina = n.IdOficina,
+                                  IdDepartamento = n.IdDepartamento,
+                                  IdUsuario = n.IdUsuario,
+                                  CodigoArticulo = n.CodigoArticulo,
+                                  DescripcionArticulo = n.DescripcionArticulo,
+                                  IdCategoria = n.IdCategoria,
+                                  IdUnidadMedida = n.IdUnidadMedida,
+                                  Cantidad = n.Cantidad,
+                                  Fecha0 = n.Fecha,
+                                  IdEstatusSolicitud = n.IdEstatusSolicitud
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }
