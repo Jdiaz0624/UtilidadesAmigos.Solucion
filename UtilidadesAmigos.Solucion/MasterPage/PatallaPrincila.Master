@@ -180,7 +180,7 @@
             <li> <asp:LinkButton ID="LinkCambioIntermediario" runat="server" Text="Cambio de Intermediario" ForeColor="Red" ToolTip="Cambiar Intermediario a Poliza" OnClick="LinkCambioIntermediario_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkCambioCliente" runat="server" Text="Cambio de Cliente" ForeColor="Red" ToolTip="Cambiar Cliente a Poliza" OnClick="LinkCambioCliente_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkModificarDatosCliente" runat="server" Text="Modificar Cliente" ForeColor="Red" ToolTip="Modificar Cliente" OnClick="LinkModificarDatosCliente_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkDatoPoliza" runat="server" Text="Dato Poliza" ToolTip="Dato Poliza" ForeColor="Red" OnClick="LinkCorregirValorDeclarativa_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkDatoPoliza" runat="server" Text="Dato Poliza" ToolTip="Dato Poliza"  OnClick="LinkCorregirValorDeclarativa_Click"></asp:LinkButton> </li>
         </ul>
         </li>
 

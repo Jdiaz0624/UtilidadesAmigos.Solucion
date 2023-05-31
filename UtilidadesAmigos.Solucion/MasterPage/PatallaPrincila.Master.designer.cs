@@ -474,6 +474,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivModuloCorrecciones;
 
         /// <summary>
+        /// LinkDatoPoliza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkDatoPoliza;
+
+        /// <summary>
         /// LinkEliminarEndosos control.
         /// </summary>
         /// <remarks>
@@ -517,15 +526,6 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkModificarDatosCliente;
-
-        /// <summary>
-        /// LinkDatoPoliza control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkDatoPoliza;
 
         /// <summary>
         /// DivModuloMantenimiento control.
