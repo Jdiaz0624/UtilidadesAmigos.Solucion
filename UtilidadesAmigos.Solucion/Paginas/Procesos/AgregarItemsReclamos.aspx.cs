@@ -269,8 +269,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 txtPolizaSeleccionada.Text = n.Poliza;
                 txtSecuencia.Text = n.Secuencia.ToString();
                 txtReclamacionSeleccionada.Text = n.Reclamacion.ToString();
-                DateTime FechaSiniestro = (DateTime)n.FechaApertura;
-                txtFechaReclamo.Text = FechaSiniestro.ToString("yyyy-MM-dd");
+                DateTime Fecha = (DateTime)n.FechaApertura;
+                txtFechaReclamo.Text = Fecha.ToString("yyyy-MM-dd");
             }
         }
 
@@ -344,8 +344,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarTipoReclamo, n.IdTipoReclamacion.ToString());
                 txtCodigoReclamante.Text = n.IdReclamante;
                 txtNombreReclamante.Text = n.Reclamante;
-                DateTime FechaSiniestro = (DateTime)n.FechaApertura;
-                txtFechaReclamo.Text = FechaSiniestro.ToString("yyyy-MM-dd");
+                DateTime Fecha = (DateTime)n.FechaAdiciona;
+                txtFechaReclamo.Text = Fecha.ToString("yyyy-MM-dd");
             }
 
 
