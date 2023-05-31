@@ -545,20 +545,34 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
         }
         #endregion
         #region RECLAMACIONES AGREGAR ITEMS
+        /// <summary>
+        /// Saca los datos de los items de la Reclamacion
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="NumeroReclamo"></param>
+        /// <param name="Secuencia"></param>
+        /// <returns></returns>
         public List<UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaDatoReclamacionesAgregarItems> BuscaDatosReclamacionesAgregarItems(string Poliza = null,decimal? NumeroReclamo = null,int? Secuencia=null) {
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMS(Poliza,NumeroReclamo,Secuencia)
+            var Listado = (from n in ObjData.SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMS(Poliza, NumeroReclamo, Secuencia)
                            select new UtilidadesAmigos.Logica.Entidades.Procesos.EBuscaDatoReclamacionesAgregarItems
                            {
-                               Poliza=n.Poliza,
-                               Reclamacion=n.Reclamacion,
-                               Secuencia=n.Secuencia,
-                               IdTipoReclamacion=n.IdTipoReclamacion,
-                               TipoReclamacion=n.TipoReclamacion,
-                               IdReclamante=n.IdReclamante,
-                               Reclamante=n.Reclamante
+                               Poliza = n.Poliza,
+                               Reclamacion = n.Reclamacion,
+                               Secuencia = n.Secuencia,
+                               IdTipoReclamacion = n.IdTipoReclamacion,
+                               TipoReclamacion = n.TipoReclamacion,
+                               IdReclamante = n.IdReclamante,
+                               Reclamante = n.Reclamante,
+                               FechaAdiciona = n.FechaAdiciona,
+                               FechaModifica = n.FechaModifica,
+                               FechaApertura = n.FechaApertura,
+                               Fecha = n.Fecha,
+                               FechaSiniestro = n.FechaSiniestro,
+                               FechaNotificacion = n.FechaNotificacion,
+                               FechaCierre = n.FechaCierre
                            }).ToList();
             return Listado;
         }
@@ -587,6 +601,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaProcesos
                 Item.Secuencia,
                 Item.IdReclamante,
                 Item.IdTipoReclamacion,
+                Item.FechaAdiciona,
                 Accion);
             if (ItemsReclamaciones != null) {
                 AgregarModificarEliminar = (from n in ItemsReclamaciones

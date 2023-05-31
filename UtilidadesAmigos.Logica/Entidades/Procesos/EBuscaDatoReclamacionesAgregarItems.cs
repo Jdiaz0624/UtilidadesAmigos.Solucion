@@ -21,5 +21,18 @@ namespace UtilidadesAmigos.Logica.Entidades.Procesos
 		public string IdReclamante { get; set; }
 
 		public string Reclamante { get; set; }
-	}
+
+        public System.Nullable<System.DateTime> FechaAdiciona { get; set; }
+
+        public System.Nullable<System.DateTime> FechaModifica { get; set; }
+
+        public System.Nullable<System.DateTime> FechaApertura { get; set; }
+        public string Fecha { get; set; }
+
+        public System.Nullable<System.DateTime> FechaSiniestro { get; set; }
+
+        public System.Nullable<System.DateTime> FechaNotificacion { get; set; }
+
+        public System.Nullable<System.DateTime> FechaCierre { get; set; }
+    }
 }

@@ -251,13 +251,13 @@
                     <asp:Repeater ID="rpListadoInventario" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <asp:HiddenField ID="hfCodigoInventario" runat="server" Value='<%# Eval("") %>' />
+                                <asp:HiddenField ID="hfCodigoInventario" runat="server" Value='<%# Eval("IdRegistro") %>' />
 
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td> <%# Eval("") %> </td>
-                                <td class="ContenidoCentro" > <%#string.Format("{0:N0}", Eval("")) %> </td>
+                                <td> <%# Eval("IdRegistro") %> </td>
+                                <td> <%# Eval("Articulo") %> </td>
+                                <td> <%# Eval("Categoria") %> </td>
+                                <td> <%# Eval("UnidadMedida") %> </td>
+                                <td class="ContenidoCentro" > <%#string.Format("{0:N0}", Eval("Stock")) %> </td>
                                 <td class="ContenidoDerecha" ><asp:ImageButton ID="btnSeleccionarInventario" runat="server" ImageUrl="~/ImagenesBotones/hacer-clic.png" CssClass="BotonImagen" OnClick="btnSeleccionarInventario_Click" /> </td>
                             </tr>
                         </ItemTemplate>

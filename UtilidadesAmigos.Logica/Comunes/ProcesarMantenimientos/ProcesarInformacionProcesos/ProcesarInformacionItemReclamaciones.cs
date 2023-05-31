@@ -14,6 +14,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInforma
         private int Secuencia = 0;
         private string IdReclamante = "";
         private int IdTipoReclamacion = 0;
+        private DateTime FechaProceso = DateTime.Now;
         private string Accion = "";
 
         public ProcesarInformacionItemReclamaciones(
@@ -21,12 +22,14 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInforma
             int SecuenciaCON,
             string IdReclamanteCON,
             int IdTipoReclamacionCON,
+            DateTime FechaAdicionaCON,
             string AccionCON)
         {
             Reclamacion = ReclamacionCON;
             Secuencia = SecuenciaCON;
             IdReclamante = IdReclamanteCON;
             IdTipoReclamacion = IdTipoReclamacionCON;
+            FechaProceso = FechaAdicionaCON;
             Accion = AccionCON;
         }
 
@@ -41,6 +44,20 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInforma
             Procesar.Secuencia = Secuencia;
             Procesar.IdReclamante = IdReclamante;
             Procesar.IdTipoReclamacion = IdTipoReclamacion;
+            Procesar.FechaAdiciona = FechaProceso;
+
+            var MAN = ObjData.ProcesarItemsReclamaciones(Procesar, Accion);
+        }
+
+        public void ProcesarInformacionItems() {
+
+            UtilidadesAmigos.Logica.Entidades.Procesos.AgregarEditarEliminarItemsReclamos Procesar = new Entidades.Procesos.AgregarEditarEliminarItemsReclamos();
+
+            Procesar.Reclamacion = Reclamacion;
+            Procesar.Secuencia = Secuencia;
+            Procesar.IdReclamante = IdReclamante;
+            Procesar.IdTipoReclamacion = IdTipoReclamacion;
+            Procesar.FechaAdiciona = FechaProceso;
 
             var MAN = ObjData.ProcesarItemsReclamaciones(Procesar, Accion);
         }

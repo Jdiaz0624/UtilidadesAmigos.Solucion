@@ -2,47 +2,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <style type="text/css">
-        .jumbotron{
-            color:#000000; 
-            background:#1E90FF;
-            font-size:30px;
-            font-weight:bold;
-            font-family:'Gill Sans';
-            padding:25px;
-        }
-
-        .btn-sm{
-            width:90px;
-        }
-
-        .Letranegrita {
-        font-weight:bold;
-        }
-        table {
-            border-collapse: collapse;
-        }
-        
-        .BotonEspecial {
-           width:100%;
-           font-weight:bold;
-          }
-
-        th {
-            background-color: #1E90FF;
-            color: #000000;
-        }
-
-        .BotonImagen {
-                width:40px;
-               height:40px;
-           }
-    </style>
+    <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
 
     <script type="text/javascript">
         function NombreReclamanteNovalido() {
             alert("El codigo de reclamante no existe, favor de verificar.");
             $("#<%=txtCodigoReclamante.ClientID%>").css("border-color", "red");
+        }
+
+        function ReclamacionNoEncontrada() {
+            alert("El numero de reclamación ingresado no es valido, favor de valdiar.");
         }
 
         $(document).ready(function () {
@@ -91,23 +60,24 @@
         <div class="row">
         <div class="d-inline-flex col-md-6">
             <asp:Label ID="lbNumeroReclamoCOnsulta" runat="server" Text="Numero de Reclamo" CssClass="Letranegrita"></asp:Label>
-            <asp:TextBox ID="txtNumeroReclamoConsulta" runat="server" TextMode="Number" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
-            <asp:ImageButton ID="btnConsultarReclamo" runat="server" CssClass="BotonImagen" OnClick="btnConsultarReclamo_Click1" ToolTip="Buscar Registro" ImageUrl="~/Imagenes/Buscar.png" />
+            <asp:TextBox ID="txtNumeroReclamoConsulta" runat="server" TextMode="Number" AutoCompleteType="Disabled" AutoPostBack="true" OnTextChanged="txtNumeroReclamoConsulta_TextChanged" CssClass="form-control"></asp:TextBox>
+            <asp:ImageButton ID="btnConsultarReclamo" runat="server" CssClass="BotonImagen" OnClick="btnConsultarReclamo_Click1" ToolTip="Buscar Registro" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" />
         </div>
     </div>
     <br />
 
-        <table class="table table-hover">
-            <thead>
+        <table class="table table-striped">
+            <thead class="table-dark">
                 <tr>
-                    <th style="width:10%" align="left"> Poliza </th>
-                    <th style="width:10%" align="left"> Reclamo </th>
-                    <th style="width:10%" align="left"> Secuencia </th>
-                    <th style="width:30%" align="left"> Tipo </th>
-                    <th style="width:25%" align="left"> Reclamante </th>
-                    <th style="width:5%" align="left">  </th>
-                    <th style="width:5%" align="left">  </th>
-                    <th style="width:5%" align="left">  </th>
+                    <th scope="col"> Poliza </th>
+                    <th scope="col"> Reclamo </th>
+                    <th class="ContenidoCentro" scope="col"> Secuencia </th>
+                    <th scope="col"> Tipo </th>
+                    <th scope="col"> Reclamante </th>
+                    <th scope="col"> Fecha </th>
+                    <th class="ContenidoDerecha" scope="col"> Nuevo </th>
+                    <th class="ContenidoDerecha" scope="col"> Editar </th>
+                    <th class="ContenidoDerecha" scope="col"> Borrar </th>
                 </tr>
             </thead>
             <tbody>
@@ -120,49 +90,58 @@
 
                             <td> <%# Eval("Poliza") %> </td>
                             <td> <%# Eval("Reclamacion") %> </td>
-                            <td> <%# Eval("Secuencia") %> </td>
+                            <td class="ContenidoCentro" > <%# Eval("Secuencia") %> </td>
                             <td> <%# Eval("TipoReclamacion") %> </td>
                             <td> <%# Eval("Reclamante") %> </td>
-                            <td> <asp:ImageButton ID="btnAgregar" runat="server" CssClass="BotonImagen" OnClick="btnAgregar_Click" ToolTip="Agregar Nuevo Registro" ImageUrl="~/Imagenes/Agregar (2).png" /> </td>
-                            <td> <asp:ImageButton ID="btnEditarRegistro" runat="server" CssClass="BotonImagen" OnClick="btnEditarRegistro_Click" ToolTip="Editar Registro Seleccionado" ImageUrl="~/Imagenes/Editar.png" /> </td>
-                            <td> <asp:ImageButton ID="btnEliminar" runat="server" CssClass="BotonImagen" OnClick="btnEliminar_Click" ToolTip="Eliminar Registro Seleccionado" ImageUrl="~/Imagenes/Eliminar.png" /> </td>
+                             <td> <%# Eval("Fecha") %> </td>
+                            <td class="ContenidoDerecha" > <asp:ImageButton ID="btnAgregar" runat="server" CssClass="BotonImagen" OnClick="btnAgregar_Click" ToolTip="Agregar Nuevo Registro" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" /> </td>
+                            <td class="ContenidoDerecha" > <asp:ImageButton ID="btnEditarRegistro" runat="server" CssClass="BotonImagen" OnClick="btnEditarRegistro_Click" ToolTip="Editar Registro Seleccionado" ImageUrl="~/ImagenesBotones/Editar_Nuevo.png" /> </td>
+                            <td class="ContenidoDerecha" > <asp:ImageButton ID="btnEliminar" runat="server" CssClass="BotonImagen" OnClick="btnEliminar_Click" ToolTip="Eliminar Registro Seleccionado" ImageUrl="~/ImagenesBotones/borrar.png" OnClientClick="return confirm('¿Quieres Borrar Este Registro?');" /> </td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
             </tbody>
         </table>
 
-    <div align="center">
-                <asp:Label ID="lbPaginaActualTituloAgregarItemReclamo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariableAgregarItemReclamo" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloAgregarItemReclamo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriableAgregarItemReclamo" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
-             <div id="divPaginacionAgregarItemReclamo" runat="server" align="center">
+   <table class="table">
+                <tfoot class="table-light">
+                    <tr>
+                        <td class="ContenidoDerecha">
+                            <b>Página </b> <asp:Label ID="lbCantidadPaginaVariable" runat="server" Text="0" ></asp:Label> <b>de </b>  <asp:Label ID="lbPaginaActualVariable" runat="server" Text=" 0 "></asp:Label>
+                        </td>
+                    </tr>
+
+                </tfoot>
+            </table>
+              <div id="DivPaginacion" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:LinkButton ID="LinkPrimeraPaginaAgregarItemReclamo" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaAgregarItemReclamo_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkAnteriorAgregarItemReclamo" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorAgregarItemReclamo_Click"></asp:LinkButton> </td>
-                    <td>
-                        <asp:DataList ID="dtPaginacionAgregarItemReclamo" runat="server" OnItemCommand="dtPaginacionAgregarItemReclamo_ItemCommand" OnItemDataBound="dtPaginacionAgregarItemReclamo_ItemDataBound" RepeatDirection="Horizontal">
+                    <td> <asp:ImageButton ID="btnPrimeraPagina" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPagina_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaAnterior" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnPaginaAnterior_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" />  </td>
+                    <td class="ContenidoCentro">
+                        <asp:DataList ID="dtPaginacion" runat="server" OnItemCommand="dtPaginacion_ItemCommand" OnItemDataBound="dtPaginacion_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionCentralAgregarItemReclamo" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
+                                <asp:Button ID="btnPaginacionCentral" runat="server" class="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
                             </ItemTemplate>
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:LinkButton ID="LinkSiguienteAgregarItemReclamo" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteAgregarItemReclamo_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkUltimoAgregarItemReclamo" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoAgregarItemReclamo_Click"></asp:LinkButton> </td>
+                    <td> <asp:ImageButton ID="btnSiguientePagina" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguientePagina_Click" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" />  </td>
+                    <td> <asp:ImageButton ID="btnUltimaPagina" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimaPagina_Click" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" />  </td>
                 </tr>
             </table>
         </div>
         </div>
+            <br />
    </div>
                            <br />
 
 
     <div id="DivBloqueAgregarEditar" runat="server" visible="false">
+        <br />
+        <h3 class="ContenidoCentro"><asp:Label ID="lbTitulo" runat="server" Text="Titulo" CssClass="Letranegrita"></asp:Label></h3>
+        <hr />
         <br />
         <div class="row">
             <div class="form-group col-md-4">
@@ -174,7 +153,7 @@
                 <asp:TextBox ID="txtSecuencia" runat="server" AutoCompleteType="Disabled" CssClass="form-control" Enabled="false"></asp:TextBox>
             </div>
             <div class="col-md-4">
-                <asp:Label ID="lbReclamante" runat="server" Text="Reclamacion" CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbReclamante" runat="server" Text="Reclamación" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtReclamacionSeleccionada" Enabled="false" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="col-md-4">
@@ -186,15 +165,19 @@
                 <asp:TextBox ID="txtCodigoReclamante" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoReclamante_TextChanged" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="col-md-4">
-                <asp:Label ID="lbNombreReclamante" runat="server" Text="Nombre Reclamante" CssClass="Letranegrita"></asp:Label>
+                <asp:Label ID="lbNombreReclamante" runat="server" Text="Nombre del Reclamante" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNombreReclamante" runat="server" AutoCompleteType="Disabled" CssClass="form-control" Enabled="false"></asp:TextBox>
             </div>
+            <div class="col-md-4">
+                <asp:Label ID="lbFechaReclamo" runat="server" Text="Fecha de Reclamo" CssClass="Letranegrita"></asp:Label>
+                <asp:TextBox ID="txtFechaReclamo" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Date" ></asp:TextBox>
+            </div>
         </div>
-
+        <br />
         <div align="center">
-            <asp:ImageButton ID="btnGuardar" runat="server" CssClass="BotonImagen" OnClick="btnGuardar_Click" ToolTip="Guardar Registro" ImageUrl="~/Imagenes/salvar.png" />
-            <asp:ImageButton ID="btnModificar" runat="server" CssClass="BotonImagen" OnClick="btnModificar_Click" ToolTip="Modificar Registro" ImageUrl="~/Imagenes/modificar.png" />
-            <asp:ImageButton ID="btnVolver" runat="server" CssClass="BotonImagen" OnClick="btnVolver_Click" ToolTip="Volver Atras" ImageUrl="~/Imagenes/volver-flecha.png" />
+            <asp:ImageButton ID="btnGuardar" runat="server" CssClass="BotonImagen" OnClick="btnGuardar_Click" ToolTip="Guardar Registro" ImageUrl="~/ImagenesBotones/Nuevo_Nuevo.png" />
+            <asp:ImageButton ID="btnModificar" runat="server" CssClass="BotonImagen" OnClick="btnModificar_Click" ToolTip="Modificar Registro" ImageUrl="~/ImagenesBotones/Nuevo_Nuevo.png" />
+            <asp:ImageButton ID="btnVolver" runat="server" CssClass="BotonImagen" OnClick="btnVolver_Click" ToolTip="Volver Atras" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" />
         </div>
         <br />
     </div>

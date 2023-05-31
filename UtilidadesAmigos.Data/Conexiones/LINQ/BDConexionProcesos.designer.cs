@@ -33,7 +33,7 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
     #endregion
 		
 		public BDConexionProcesosDataContext() : 
-				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString2, mappingSource)
+				base(global::UtilidadesAmigos.Data.Properties.Settings.Default.SysFlexSegurosConnectionString21, mappingSource)
 		{
 			OnCreated();
 		}
@@ -254,25 +254,11 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 			return ((ISingleResult<SP_MODIFICAR_FORMA_PAGO_RECIBOResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMS")]
-		public ISingleResult<SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMSResult> SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroReclamo", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroReclamo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Int")] System.Nullable<int> secuencia)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, numeroReclamo, secuencia);
-			return ((ISingleResult<SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMSResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCAR_NOMBRE_RECLAMANTE")]
 		public ISingleResult<SP_BUSCAR_NOMBRE_RECLAMANTEResult> SP_BUSCAR_NOMBRE_RECLAMANTE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodigoReclamante", DbType="Decimal(20,0)")] System.Nullable<decimal> codigoReclamante)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigoReclamante);
 			return ((ISingleResult<SP_BUSCAR_NOMBRE_RECLAMANTEResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_AGREGAR_EDITAR_ELIMINAR_ITEMS_RECLAMACIONES")]
-		public ISingleResult<SP_AGREGAR_EDITAR_ELIMINAR_ITEMS_RECLAMACIONESResult> SP_AGREGAR_EDITAR_ELIMINAR_ITEMS_RECLAMACIONES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Reclamacion", DbType="Decimal(20,0)")] System.Nullable<decimal> reclamacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Int")] System.Nullable<int> secuencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdReclamante", DbType="VarChar(50)")] string idReclamante, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoReclamacion", DbType="Int")] System.Nullable<int> idTipoReclamacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), reclamacion, secuencia, idReclamante, idTipoReclamacion, accion);
-			return ((ISingleResult<SP_AGREGAR_EDITAR_ELIMINAR_ITEMS_RECLAMACIONESResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_PROCESAR_RECIBO_DIGITAL")]
@@ -384,6 +370,20 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), supervisor, intermediario, cantidadDias);
 			return ((ISingleResult<SP_CARTA_CANCELACION_INTERMEDIARIOResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMS")]
+		public ISingleResult<SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMSResult> SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Poliza", DbType="VarChar(50)")] string poliza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroReclamo", DbType="Decimal(20,0)")] System.Nullable<decimal> numeroReclamo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Int")] System.Nullable<int> secuencia)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poliza, numeroReclamo, secuencia);
+			return ((ISingleResult<SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="Utililades.SP_AGREGAR_EDITAR_ELIMINAR_ITEMS_RECLAMACIONES")]
+		public ISingleResult<SP_AGREGAR_EDITAR_ELIMINAR_ITEMS_RECLAMACIONESResult> SP_AGREGAR_EDITAR_ELIMINAR_ITEMS_RECLAMACIONES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Reclamacion", DbType="Decimal(20,0)")] System.Nullable<decimal> reclamacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Secuencia", DbType="Int")] System.Nullable<int> secuencia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdReclamante", DbType="VarChar(50)")] string idReclamante, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoReclamacion", DbType="Int")] System.Nullable<int> idTipoReclamacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaAgregado", DbType="DateTime")] System.Nullable<System.DateTime> fechaAgregado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Accion", DbType="VarChar(150)")] string accion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), reclamacion, secuencia, idReclamante, idTipoReclamacion, fechaAgregado, accion);
+			return ((ISingleResult<SP_AGREGAR_EDITAR_ELIMINAR_ITEMS_RECLAMACIONESResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -4465,140 +4465,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		}
 	}
 	
-	public partial class SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMSResult
-	{
-		
-		private string _Poliza;
-		
-		private decimal _Reclamacion;
-		
-		private int _Secuencia;
-		
-		private int _IdTipoReclamacion;
-		
-		private string _TipoReclamacion;
-		
-		private string _IdReclamante;
-		
-		private string _Reclamante;
-		
-		public SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMSResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Poliza
-		{
-			get
-			{
-				return this._Poliza;
-			}
-			set
-			{
-				if ((this._Poliza != value))
-				{
-					this._Poliza = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reclamacion", DbType="Decimal(18,0) NOT NULL")]
-		public decimal Reclamacion
-		{
-			get
-			{
-				return this._Reclamacion;
-			}
-			set
-			{
-				if ((this._Reclamacion != value))
-				{
-					this._Reclamacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int NOT NULL")]
-		public int Secuencia
-		{
-			get
-			{
-				return this._Secuencia;
-			}
-			set
-			{
-				if ((this._Secuencia != value))
-				{
-					this._Secuencia = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTipoReclamacion", DbType="Int NOT NULL")]
-		public int IdTipoReclamacion
-		{
-			get
-			{
-				return this._IdTipoReclamacion;
-			}
-			set
-			{
-				if ((this._IdTipoReclamacion != value))
-				{
-					this._IdTipoReclamacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoReclamacion", DbType="VarChar(250)")]
-		public string TipoReclamacion
-		{
-			get
-			{
-				return this._TipoReclamacion;
-			}
-			set
-			{
-				if ((this._TipoReclamacion != value))
-				{
-					this._TipoReclamacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdReclamante", DbType="VarChar(50)")]
-		public string IdReclamante
-		{
-			get
-			{
-				return this._IdReclamante;
-			}
-			set
-			{
-				if ((this._IdReclamante != value))
-				{
-					this._IdReclamante = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reclamante", DbType="VarChar(100)")]
-		public string Reclamante
-		{
-			get
-			{
-				return this._Reclamante;
-			}
-			set
-			{
-				if ((this._Reclamante != value))
-				{
-					this._Reclamante = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_BUSCAR_NOMBRE_RECLAMANTEResult
 	{
 		
@@ -4638,284 +4504,6 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._NombreReclamante != value))
 				{
 					this._NombreReclamante = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_AGREGAR_EDITAR_ELIMINAR_ITEMS_RECLAMACIONESResult
-	{
-		
-		private System.Nullable<int> _Compania;
-		
-		private System.Nullable<decimal> _Reclamacion;
-		
-		private System.Nullable<int> _Secuencia;
-		
-		private System.Nullable<int> _IdTipoReclamacion;
-		
-		private string _IdReclamante;
-		
-		private System.Nullable<decimal> _MontoReclamado;
-		
-		private System.Nullable<decimal> _MontoAjustado;
-		
-		private System.Nullable<decimal> _MontoReserva;
-		
-		private System.Nullable<decimal> _MontoDeducible;
-		
-		private string _UsuarioAdiciona;
-		
-		private System.Nullable<System.DateTime> _FechaAdiciona;
-		
-		private string _UsuarioModifica;
-		
-		private System.Nullable<System.DateTime> _FechaModifica;
-		
-		private System.Nullable<int> _Estatus;
-		
-		private System.Nullable<int> _IdEjecutivoReclamacion;
-		
-		public SP_AGREGAR_EDITAR_ELIMINAR_ITEMS_RECLAMACIONESResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Compania", DbType="Int")]
-		public System.Nullable<int> Compania
-		{
-			get
-			{
-				return this._Compania;
-			}
-			set
-			{
-				if ((this._Compania != value))
-				{
-					this._Compania = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reclamacion", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> Reclamacion
-		{
-			get
-			{
-				return this._Reclamacion;
-			}
-			set
-			{
-				if ((this._Reclamacion != value))
-				{
-					this._Reclamacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int")]
-		public System.Nullable<int> Secuencia
-		{
-			get
-			{
-				return this._Secuencia;
-			}
-			set
-			{
-				if ((this._Secuencia != value))
-				{
-					this._Secuencia = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTipoReclamacion", DbType="Int")]
-		public System.Nullable<int> IdTipoReclamacion
-		{
-			get
-			{
-				return this._IdTipoReclamacion;
-			}
-			set
-			{
-				if ((this._IdTipoReclamacion != value))
-				{
-					this._IdTipoReclamacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdReclamante", DbType="VarChar(50)")]
-		public string IdReclamante
-		{
-			get
-			{
-				return this._IdReclamante;
-			}
-			set
-			{
-				if ((this._IdReclamante != value))
-				{
-					this._IdReclamante = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoReclamado", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> MontoReclamado
-		{
-			get
-			{
-				return this._MontoReclamado;
-			}
-			set
-			{
-				if ((this._MontoReclamado != value))
-				{
-					this._MontoReclamado = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoAjustado", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> MontoAjustado
-		{
-			get
-			{
-				return this._MontoAjustado;
-			}
-			set
-			{
-				if ((this._MontoAjustado != value))
-				{
-					this._MontoAjustado = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoReserva", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> MontoReserva
-		{
-			get
-			{
-				return this._MontoReserva;
-			}
-			set
-			{
-				if ((this._MontoReserva != value))
-				{
-					this._MontoReserva = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoDeducible", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> MontoDeducible
-		{
-			get
-			{
-				return this._MontoDeducible;
-			}
-			set
-			{
-				if ((this._MontoDeducible != value))
-				{
-					this._MontoDeducible = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioAdiciona", DbType="NVarChar(100)")]
-		public string UsuarioAdiciona
-		{
-			get
-			{
-				return this._UsuarioAdiciona;
-			}
-			set
-			{
-				if ((this._UsuarioAdiciona != value))
-				{
-					this._UsuarioAdiciona = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona", DbType="DateTime")]
-		public System.Nullable<System.DateTime> FechaAdiciona
-		{
-			get
-			{
-				return this._FechaAdiciona;
-			}
-			set
-			{
-				if ((this._FechaAdiciona != value))
-				{
-					this._FechaAdiciona = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioModifica", DbType="NVarChar(100)")]
-		public string UsuarioModifica
-		{
-			get
-			{
-				return this._UsuarioModifica;
-			}
-			set
-			{
-				if ((this._UsuarioModifica != value))
-				{
-					this._UsuarioModifica = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaModifica", DbType="DateTime")]
-		public System.Nullable<System.DateTime> FechaModifica
-		{
-			get
-			{
-				return this._FechaModifica;
-			}
-			set
-			{
-				if ((this._FechaModifica != value))
-				{
-					this._FechaModifica = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Int")]
-		public System.Nullable<int> Estatus
-		{
-			get
-			{
-				return this._Estatus;
-			}
-			set
-			{
-				if ((this._Estatus != value))
-				{
-					this._Estatus = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdEjecutivoReclamacion", DbType="Int")]
-		public System.Nullable<int> IdEjecutivoReclamacion
-		{
-			get
-			{
-				return this._IdEjecutivoReclamacion;
-			}
-			set
-			{
-				if ((this._IdEjecutivoReclamacion != value))
-				{
-					this._IdEjecutivoReclamacion = value;
 				}
 			}
 		}
@@ -9512,6 +9100,544 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._Celular != value))
 				{
 					this._Celular = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMSResult
+	{
+		
+		private string _Poliza;
+		
+		private decimal _Reclamacion;
+		
+		private int _Secuencia;
+		
+		private int _IdTipoReclamacion;
+		
+		private string _TipoReclamacion;
+		
+		private string _IdReclamante;
+		
+		private string _Reclamante;
+		
+		private System.Nullable<System.DateTime> _FechaAdiciona;
+		
+		private System.Nullable<System.DateTime> _FechaModifica;
+		
+		private System.Nullable<System.DateTime> _FechaApertura;
+		
+		private string _Fecha;
+		
+		private System.Nullable<System.DateTime> _FechaSiniestro;
+		
+		private System.Nullable<System.DateTime> _FechaNotificacion;
+		
+		private System.Nullable<System.DateTime> _FechaCierre;
+		
+		public SP_BUSCA_DATO_RECLAMACION_AGREGAR_ITEMSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Poliza", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Poliza
+		{
+			get
+			{
+				return this._Poliza;
+			}
+			set
+			{
+				if ((this._Poliza != value))
+				{
+					this._Poliza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reclamacion", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Reclamacion
+		{
+			get
+			{
+				return this._Reclamacion;
+			}
+			set
+			{
+				if ((this._Reclamacion != value))
+				{
+					this._Reclamacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int NOT NULL")]
+		public int Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTipoReclamacion", DbType="Int NOT NULL")]
+		public int IdTipoReclamacion
+		{
+			get
+			{
+				return this._IdTipoReclamacion;
+			}
+			set
+			{
+				if ((this._IdTipoReclamacion != value))
+				{
+					this._IdTipoReclamacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipoReclamacion", DbType="VarChar(250)")]
+		public string TipoReclamacion
+		{
+			get
+			{
+				return this._TipoReclamacion;
+			}
+			set
+			{
+				if ((this._TipoReclamacion != value))
+				{
+					this._TipoReclamacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdReclamante", DbType="VarChar(50)")]
+		public string IdReclamante
+		{
+			get
+			{
+				return this._IdReclamante;
+			}
+			set
+			{
+				if ((this._IdReclamante != value))
+				{
+					this._IdReclamante = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reclamante", DbType="VarChar(100)")]
+		public string Reclamante
+		{
+			get
+			{
+				return this._Reclamante;
+			}
+			set
+			{
+				if ((this._Reclamante != value))
+				{
+					this._Reclamante = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaAdiciona
+		{
+			get
+			{
+				return this._FechaAdiciona;
+			}
+			set
+			{
+				if ((this._FechaAdiciona != value))
+				{
+					this._FechaAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaModifica", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaModifica
+		{
+			get
+			{
+				return this._FechaModifica;
+			}
+			set
+			{
+				if ((this._FechaModifica != value))
+				{
+					this._FechaModifica = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaApertura", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaApertura
+		{
+			get
+			{
+				return this._FechaApertura;
+			}
+			set
+			{
+				if ((this._FechaApertura != value))
+				{
+					this._FechaApertura = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="NVarChar(4000)")]
+		public string Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this._Fecha = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaSiniestro", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaSiniestro
+		{
+			get
+			{
+				return this._FechaSiniestro;
+			}
+			set
+			{
+				if ((this._FechaSiniestro != value))
+				{
+					this._FechaSiniestro = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaNotificacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaNotificacion
+		{
+			get
+			{
+				return this._FechaNotificacion;
+			}
+			set
+			{
+				if ((this._FechaNotificacion != value))
+				{
+					this._FechaNotificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCierre", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaCierre
+		{
+			get
+			{
+				return this._FechaCierre;
+			}
+			set
+			{
+				if ((this._FechaCierre != value))
+				{
+					this._FechaCierre = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_AGREGAR_EDITAR_ELIMINAR_ITEMS_RECLAMACIONESResult
+	{
+		
+		private System.Nullable<int> _Compania;
+		
+		private System.Nullable<decimal> _Reclamacion;
+		
+		private System.Nullable<int> _Secuencia;
+		
+		private System.Nullable<int> _IdTipoReclamacion;
+		
+		private string _IdReclamante;
+		
+		private System.Nullable<decimal> _MontoReclamado;
+		
+		private System.Nullable<decimal> _MontoAjustado;
+		
+		private System.Nullable<decimal> _MontoReserva;
+		
+		private System.Nullable<decimal> _MontoDeducible;
+		
+		private string _UsuarioAdiciona;
+		
+		private System.Nullable<System.DateTime> _FechaAdiciona;
+		
+		private string _UsuarioModifica;
+		
+		private System.Nullable<System.DateTime> _FechaModifica;
+		
+		private System.Nullable<int> _Estatus;
+		
+		private System.Nullable<int> _IdEjecutivoReclamacion;
+		
+		public SP_AGREGAR_EDITAR_ELIMINAR_ITEMS_RECLAMACIONESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Compania", DbType="Int")]
+		public System.Nullable<int> Compania
+		{
+			get
+			{
+				return this._Compania;
+			}
+			set
+			{
+				if ((this._Compania != value))
+				{
+					this._Compania = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reclamacion", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Reclamacion
+		{
+			get
+			{
+				return this._Reclamacion;
+			}
+			set
+			{
+				if ((this._Reclamacion != value))
+				{
+					this._Reclamacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Secuencia", DbType="Int")]
+		public System.Nullable<int> Secuencia
+		{
+			get
+			{
+				return this._Secuencia;
+			}
+			set
+			{
+				if ((this._Secuencia != value))
+				{
+					this._Secuencia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTipoReclamacion", DbType="Int")]
+		public System.Nullable<int> IdTipoReclamacion
+		{
+			get
+			{
+				return this._IdTipoReclamacion;
+			}
+			set
+			{
+				if ((this._IdTipoReclamacion != value))
+				{
+					this._IdTipoReclamacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdReclamante", DbType="VarChar(50)")]
+		public string IdReclamante
+		{
+			get
+			{
+				return this._IdReclamante;
+			}
+			set
+			{
+				if ((this._IdReclamante != value))
+				{
+					this._IdReclamante = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoReclamado", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> MontoReclamado
+		{
+			get
+			{
+				return this._MontoReclamado;
+			}
+			set
+			{
+				if ((this._MontoReclamado != value))
+				{
+					this._MontoReclamado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoAjustado", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> MontoAjustado
+		{
+			get
+			{
+				return this._MontoAjustado;
+			}
+			set
+			{
+				if ((this._MontoAjustado != value))
+				{
+					this._MontoAjustado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoReserva", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> MontoReserva
+		{
+			get
+			{
+				return this._MontoReserva;
+			}
+			set
+			{
+				if ((this._MontoReserva != value))
+				{
+					this._MontoReserva = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoDeducible", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> MontoDeducible
+		{
+			get
+			{
+				return this._MontoDeducible;
+			}
+			set
+			{
+				if ((this._MontoDeducible != value))
+				{
+					this._MontoDeducible = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioAdiciona", DbType="NVarChar(100)")]
+		public string UsuarioAdiciona
+		{
+			get
+			{
+				return this._UsuarioAdiciona;
+			}
+			set
+			{
+				if ((this._UsuarioAdiciona != value))
+				{
+					this._UsuarioAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaAdiciona", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaAdiciona
+		{
+			get
+			{
+				return this._FechaAdiciona;
+			}
+			set
+			{
+				if ((this._FechaAdiciona != value))
+				{
+					this._FechaAdiciona = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioModifica", DbType="NVarChar(100)")]
+		public string UsuarioModifica
+		{
+			get
+			{
+				return this._UsuarioModifica;
+			}
+			set
+			{
+				if ((this._UsuarioModifica != value))
+				{
+					this._UsuarioModifica = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaModifica", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaModifica
+		{
+			get
+			{
+				return this._FechaModifica;
+			}
+			set
+			{
+				if ((this._FechaModifica != value))
+				{
+					this._FechaModifica = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estatus", DbType="Int")]
+		public System.Nullable<int> Estatus
+		{
+			get
+			{
+				return this._Estatus;
+			}
+			set
+			{
+				if ((this._Estatus != value))
+				{
+					this._Estatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdEjecutivoReclamacion", DbType="Int")]
+		public System.Nullable<int> IdEjecutivoReclamacion
+		{
+			get
+			{
+				return this._IdEjecutivoReclamacion;
+			}
+			set
+			{
+				if ((this._IdEjecutivoReclamacion != value))
+				{
+					this._IdEjecutivoReclamacion = value;
 				}
 			}
 		}

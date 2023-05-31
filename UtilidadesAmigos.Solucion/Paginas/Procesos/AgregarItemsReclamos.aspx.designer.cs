@@ -105,94 +105,76 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.Repeater rpListadoReclamos;
 
         /// <summary>
-        /// lbPaginaActualTituloAgregarItemReclamo control.
+        /// lbCantidadPaginaVariable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloAgregarItemReclamo;
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVariable;
 
         /// <summary>
-        /// lbPaginaActualVariableAgregarItemReclamo control.
+        /// lbPaginaActualVariable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActualVariableAgregarItemReclamo;
+        protected global::System.Web.UI.WebControls.Label lbPaginaActualVariable;
 
         /// <summary>
-        /// lbCantidadPaginaTituloAgregarItemReclamo control.
+        /// DivPaginacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloAgregarItemReclamo;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacion;
 
         /// <summary>
-        /// lbCantidadPaginaVAriableAgregarItemReclamo control.
+        /// btnPrimeraPagina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVAriableAgregarItemReclamo;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPagina;
 
         /// <summary>
-        /// divPaginacionAgregarItemReclamo control.
+        /// btnPaginaAnterior control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaginacionAgregarItemReclamo;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnterior;
 
         /// <summary>
-        /// LinkPrimeraPaginaAgregarItemReclamo control.
+        /// dtPaginacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkPrimeraPaginaAgregarItemReclamo;
+        protected global::System.Web.UI.WebControls.DataList dtPaginacion;
 
         /// <summary>
-        /// LinkAnteriorAgregarItemReclamo control.
+        /// btnSiguientePagina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkAnteriorAgregarItemReclamo;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePagina;
 
         /// <summary>
-        /// dtPaginacionAgregarItemReclamo control.
+        /// btnUltimaPagina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dtPaginacionAgregarItemReclamo;
-
-        /// <summary>
-        /// LinkSiguienteAgregarItemReclamo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkSiguienteAgregarItemReclamo;
-
-        /// <summary>
-        /// LinkUltimoAgregarItemReclamo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkUltimoAgregarItemReclamo;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPagina;
 
         /// <summary>
         /// DivBloqueAgregarEditar control.
@@ -202,6 +184,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBloqueAgregarEditar;
+
+        /// <summary>
+        /// lbTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTitulo;
 
         /// <summary>
         /// lbPolizaSeleccionada control.
@@ -310,6 +301,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombreReclamante;
+
+        /// <summary>
+        /// lbFechaReclamo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFechaReclamo;
+
+        /// <summary>
+        /// txtFechaReclamo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaReclamo;
 
         /// <summary>
         /// btnGuardar control.

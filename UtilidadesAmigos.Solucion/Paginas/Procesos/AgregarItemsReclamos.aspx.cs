@@ -71,7 +71,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             NombreDataList.DataSource = dt;
             NombreDataList.DataBind();
         }
-        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref LinkButton PrimeraPagina, ref LinkButton PaginaAnterior, ref LinkButton SiguientePagina, ref LinkButton UltimaPagina)
+        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
         {
             pagedDataSource.DataSource = Listado;
             pagedDataSource.AllowPaging = true;
@@ -146,17 +146,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
 
         #region MOSTRAR LISTADO DE RECLAMO
         private void BuscarReclamo(decimal? _Reclamacion) {
-
-            
-
             var BuscarInformacion = ObjDAta.Value.BuscaDatosReclamacionesAgregarItems(null, _Reclamacion, null);
             if (BuscarInformacion.Count() < 1) {
                 rpListadoReclamos.DataSource = null;
                 rpListadoReclamos.DataBind();
+                ClientScript.RegisterStartupScript(GetType(), "ReclamacionNoEncontrada()", "ReclamacionNoEncontrada();", true);
             }
             else {
-                Paginar(ref rpListadoReclamos, BuscarInformacion, 10, ref lbCantidadPaginaVAriableAgregarItemReclamo, ref LinkPrimeraPaginaAgregarItemReclamo, ref LinkAnteriorAgregarItemReclamo, ref LinkSiguienteAgregarItemReclamo, ref LinkUltimoAgregarItemReclamo);
-                HandlePaging(ref dtPaginacionAgregarItemReclamo, ref lbPaginaActualVariableAgregarItemReclamo);
+                Paginar(ref rpListadoReclamos, BuscarInformacion, 10, ref lbCantidadPaginaVariable, ref btnPrimeraPagina, ref btnPaginaAnterior, ref btnSiguientePagina, ref btnUltimaPagina);
+                HandlePaging(ref dtPaginacion, ref lbPaginaActualVariable);
             }
         }
         #endregion
@@ -164,13 +162,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         #region PROCESAR LA INFORMACION DE LOS ITEMS DE RECLAMACIONES
         private void ProcesarItemsREclamos(decimal Reclamaciones, int Secuencia,int IdTipoReclamacion, string Accion) {
 
+            DateTime FechaReclamo = string.IsNullOrEmpty(txtFechaReclamo.Text.Trim()) ? DateTime.Now : Convert.ToDateTime(txtFechaReclamo.Text);
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionItemReclamaciones Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionItemReclamaciones(
                 Reclamaciones,
                 Secuencia,
                 txtCodigoReclamante.Text,
                 IdTipoReclamacion,
+                FechaReclamo,
                 Accion);
-            Procesar.ProcesarInformacion();
+            Procesar.ProcesarInformacionItems();
             BuscarReclamo(Convert.ToDecimal(lbReclamoSeleccionadoProceso.Text));
             VolverAtras();
         }
@@ -227,17 +227,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         
             }
         }
-
-        protected void btnConsultarReclamo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnSeleccionar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnEliminar_Click(object sender, ImageClickEventArgs e)
         {
             var Reclamacion = (RepeaterItem)((ImageButton)sender).NamingContainer;
@@ -258,14 +247,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             btnGuardar.Visible = true;
             btnModificar.Visible = false;
 
-            var Poliza = (RepeaterItem)((ImageButton)sender).NamingContainer;
-            var hfPoliza = ((HiddenField)Poliza.FindControl("hfPoliza")).Value.ToString();
+            lbTitulo.Text = "Agregar Nuevo Registro";
 
-            var Reclamo = (RepeaterItem)((ImageButton)sender).NamingContainer;
-            var hfReclamo = ((HiddenField)Reclamo.FindControl("hfReclamo")).Value.ToString();
-
-            var Secuencia = (RepeaterItem)((ImageButton)sender).NamingContainer;
-            var hfSecuencia = ((HiddenField)Secuencia.FindControl("hfsecuencia")).Value.ToString();
+            var RegistroSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfPoliza = ((HiddenField)RegistroSeleccionado.FindControl("hfPoliza")).Value.ToString();
+            var hfReclamo = ((HiddenField)RegistroSeleccionado.FindControl("hfReclamo")).Value.ToString();
+            var hfSecuencia = ((HiddenField)RegistroSeleccionado.FindControl("hfsecuencia")).Value.ToString();
 
             lbPolizaSeleccionadaProceso.Text = hfPoliza;
             lbSecuenciaSeleccionadaProceso.Text = hfSecuencia;
@@ -282,51 +269,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 txtPolizaSeleccionada.Text = n.Poliza;
                 txtSecuencia.Text = n.Secuencia.ToString();
                 txtReclamacionSeleccionada.Text = n.Reclamacion.ToString();
+                DateTime FechaSiniestro = (DateTime)n.FechaApertura;
+                txtFechaReclamo.Text = FechaSiniestro.ToString("yyyy-MM-dd");
             }
-        }
-
-        protected void LinkPrimeraPaginaAgregarItemReclamo_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            decimal? _Numeroreclamo = string.IsNullOrEmpty(txtNumeroReclamoConsulta.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroReclamoConsulta.Text);
-            BuscarReclamo(_Numeroreclamo);
-        }
-
-        protected void LinkAnteriorAgregarItemReclamo_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            decimal? _Numeroreclamo = string.IsNullOrEmpty(txtNumeroReclamoConsulta.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroReclamoConsulta.Text);
-            BuscarReclamo(_Numeroreclamo);
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableAgregarItemReclamo, ref lbCantidadPaginaVAriableAgregarItemReclamo);
-        }
-
-        protected void dtPaginacionAgregarItemReclamo_ItemDataBound(object sender, DataListItemEventArgs e)
-        {
-
-        }
-
-        protected void dtPaginacionAgregarItemReclamo_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-
-            if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-            decimal? _Numeroreclamo = string.IsNullOrEmpty(txtNumeroReclamoConsulta.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroReclamoConsulta.Text);
-            BuscarReclamo(_Numeroreclamo);
-        }
-
-        protected void LinkSiguienteAgregarItemReclamo_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            decimal? _Numeroreclamo = string.IsNullOrEmpty(txtNumeroReclamoConsulta.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroReclamoConsulta.Text);
-            BuscarReclamo(_Numeroreclamo);
-        }
-
-        protected void LinkUltimoAgregarItemReclamo_Click(object sender, EventArgs e)
-        {
-            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            decimal? _Numeroreclamo = string.IsNullOrEmpty(txtNumeroReclamoConsulta.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroReclamoConsulta.Text);
-            BuscarReclamo(_Numeroreclamo);
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableAgregarItemReclamo, ref lbCantidadPaginaVAriableAgregarItemReclamo);
         }
 
         protected void btnGuardar_Click(object sender, ImageClickEventArgs e)
@@ -375,14 +320,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             btnGuardar.Visible = false;
             btnModificar.Visible = true;
 
-            var Poliza = (RepeaterItem)((ImageButton)sender).NamingContainer;
-            var hfPoliza = ((HiddenField)Poliza.FindControl("hfPoliza")).Value.ToString();
+            lbTitulo.Text = "Editar Registro Seleccionado";
 
-            var Reclamo = (RepeaterItem)((ImageButton)sender).NamingContainer;
-            var hfReclamo = ((HiddenField)Reclamo.FindControl("hfReclamo")).Value.ToString();
-
-            var Secuencia = (RepeaterItem)((ImageButton)sender).NamingContainer;
-            var hfSecuencia = ((HiddenField)Secuencia.FindControl("hfsecuencia")).Value.ToString();
+            var RegistroSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var hfPoliza = ((HiddenField)RegistroSeleccionado.FindControl("hfPoliza")).Value.ToString();
+            var hfReclamo = ((HiddenField)RegistroSeleccionado.FindControl("hfReclamo")).Value.ToString();
+            var hfSecuencia = ((HiddenField)RegistroSeleccionado.FindControl("hfsecuencia")).Value.ToString();
 
             lbPolizaSeleccionadaProceso.Text = hfPoliza;
             lbSecuenciaSeleccionadaProceso.Text = hfSecuencia;
@@ -401,6 +344,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListSeleccionar(ref ddlSeleccionarTipoReclamo, n.IdTipoReclamacion.ToString());
                 txtCodigoReclamante.Text = n.IdReclamante;
                 txtNombreReclamante.Text = n.Reclamante;
+                DateTime FechaSiniestro = (DateTime)n.FechaApertura;
+                txtFechaReclamo.Text = FechaSiniestro.ToString("yyyy-MM-dd");
             }
 
 
@@ -410,6 +355,58 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         {
             decimal? _CodigoReclamante = string.IsNullOrEmpty(txtCodigoReclamante.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtCodigoReclamante.Text);
             SacarNombreReclamante(_CodigoReclamante);
+        }
+
+        protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            decimal? _Numeroreclamo = string.IsNullOrEmpty(txtNumeroReclamoConsulta.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroReclamoConsulta.Text);
+            BuscarReclamo(_Numeroreclamo);
+        }
+
+        protected void btnPaginaAnterior_Click(object sender, ImageClickEventArgs e)
+        {
+
+            CurrentPage += -1;
+            decimal? _Numeroreclamo = string.IsNullOrEmpty(txtNumeroReclamoConsulta.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroReclamoConsulta.Text);
+            BuscarReclamo(_Numeroreclamo);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariable, ref lbCantidadPaginaVariable);
+        }
+
+        protected void dtPaginacion_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            
+        }
+
+        protected void dtPaginacion_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            decimal? _Numeroreclamo = string.IsNullOrEmpty(txtNumeroReclamoConsulta.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroReclamoConsulta.Text);
+            BuscarReclamo(_Numeroreclamo);
+        }
+
+        protected void btnSiguientePagina_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += 1;
+            decimal? _Numeroreclamo = string.IsNullOrEmpty(txtNumeroReclamoConsulta.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroReclamoConsulta.Text);
+            BuscarReclamo(_Numeroreclamo);
+        }
+
+        protected void btnUltimaPagina_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            decimal? _Numeroreclamo = string.IsNullOrEmpty(txtNumeroReclamoConsulta.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroReclamoConsulta.Text);
+            BuscarReclamo(_Numeroreclamo);
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariable, ref lbCantidadPaginaVariable);
+        }
+
+        protected void txtNumeroReclamoConsulta_TextChanged(object sender, EventArgs e)
+        {
+            decimal? _Numeroreclamo = string.IsNullOrEmpty(txtNumeroReclamoConsulta.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroReclamoConsulta.Text);
+
+            CurrentPage = 0;
+            BuscarReclamo(_Numeroreclamo);
         }
 
         protected void btnConsultarReclamo_Click1(object sender, ImageClickEventArgs e)
