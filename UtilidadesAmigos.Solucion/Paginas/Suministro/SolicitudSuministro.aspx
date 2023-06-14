@@ -180,8 +180,6 @@
                                </asp:Repeater>
                            </tbody>
                        </table>
-
-               
                     </ContentTemplate>
                    </asp:UpdatePanel>
                 </div>
@@ -268,28 +266,28 @@
                 <tfoot class="table-light">
                     <tr>
                         <td class="ContenidoDerecha">
-                            <b>Página </b> <asp:Label ID="lbCantidadPaginaVariable_ProcesoSolicitud" runat="server" Text="0" ></asp:Label> <b>de </b>  <asp:Label ID="Label1" runat="server" Text=" 0 "></asp:Label>
+                            <b>Página </b> <asp:Label ID="lbCantidadPaginaVariable_Inventario" runat="server" Text="0" ></asp:Label> <b>de </b>  <asp:Label ID="lbPaginaActual_Inventario" runat="server" Text=" 0 "></asp:Label>
                         </td>
                     </tr>
 
                 </tfoot>
             </table>
-              <div id="DivPaginacion_ProcesoSolicitud" runat="server" align="center">
+              <div id="DivPaginacion_Inventario" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:ImageButton ID="btnPrimeraPagina_ProcesoSolicitud" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPagina_ProcesoSolicitud_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" /> </td>
-                    <td> <asp:ImageButton ID="btnPaginaAnterior_ProcesoSolicitud" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnPaginaAnterior_ProcesoSolicitud_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" />  </td>
+                    <td> <asp:ImageButton ID="btnPrimeraPagina_Inventario" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPagina_Inventario_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaAnterior_Inventario" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnPaginaAnterior_Inventario_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" />  </td>
                     <td class="ContenidoCentro">
-                        <asp:DataList ID="dtPaginacion_ProcesoSolicitud" runat="server" OnItemCommand="dtPaginacion_ProcesoSolicitud_ItemCommand" OnItemDataBound="dtPaginacion_ProcesoSolicitud_ItemDataBound" RepeatDirection="Horizontal">
+                        <asp:DataList ID="dtPaginacion_Inventario" runat="server" OnItemCommand="dtPaginacion_Inventario_ItemCommand" OnItemDataBound="dtPaginacion_Inventario_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:Button ID="btnPaginacionCentral_ProcesoSolicitud" runat="server" class="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
+                                <asp:Button ID="btnPaginacionCentral_Inventario" runat="server" class="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
                             </ItemTemplate>
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:ImageButton ID="btnSiguientePagina_ProcesoSolicitud" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguientePagina_ProcesoSolicitud_Click" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" />  </td>
-                    <td> <asp:ImageButton ID="btnUltimaPagina_ProcesoSolicitud" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimaPagina_ProcesoSolicitud_Click" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" />  </td>
+                    <td> <asp:ImageButton ID="btnSiguientePagina_Inventario" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguientePagina_Inventario_Click" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" />  </td>
+                    <td> <asp:ImageButton ID="btnUltimaPagina_Inventario" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimaPagina_Inventario_Click" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" />  </td>
                 </tr>
             </table>
         </div>

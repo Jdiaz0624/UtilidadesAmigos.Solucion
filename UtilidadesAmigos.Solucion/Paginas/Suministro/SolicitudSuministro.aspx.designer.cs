@@ -510,76 +510,76 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.Repeater rpListadoInventario;
 
         /// <summary>
-        /// lbCantidadPaginaVariable_ProcesoSolicitud control.
+        /// lbCantidadPaginaVariable_Inventario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVariable_ProcesoSolicitud;
+        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVariable_Inventario;
 
         /// <summary>
-        /// Label1 control.
+        /// lbPaginaActual_Inventario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbPaginaActual_Inventario;
 
         /// <summary>
-        /// DivPaginacion_ProcesoSolicitud control.
+        /// DivPaginacion_Inventario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacion_ProcesoSolicitud;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPaginacion_Inventario;
 
         /// <summary>
-        /// btnPrimeraPagina_ProcesoSolicitud control.
+        /// btnPrimeraPagina_Inventario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPagina_ProcesoSolicitud;
+        protected global::System.Web.UI.WebControls.ImageButton btnPrimeraPagina_Inventario;
 
         /// <summary>
-        /// btnPaginaAnterior_ProcesoSolicitud control.
+        /// btnPaginaAnterior_Inventario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnterior_ProcesoSolicitud;
+        protected global::System.Web.UI.WebControls.ImageButton btnPaginaAnterior_Inventario;
 
         /// <summary>
-        /// dtPaginacion_ProcesoSolicitud control.
+        /// dtPaginacion_Inventario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dtPaginacion_ProcesoSolicitud;
+        protected global::System.Web.UI.WebControls.DataList dtPaginacion_Inventario;
 
         /// <summary>
-        /// btnSiguientePagina_ProcesoSolicitud control.
+        /// btnSiguientePagina_Inventario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePagina_ProcesoSolicitud;
+        protected global::System.Web.UI.WebControls.ImageButton btnSiguientePagina_Inventario;
 
         /// <summary>
-        /// btnUltimaPagina_ProcesoSolicitud control.
+        /// btnUltimaPagina_Inventario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPagina_ProcesoSolicitud;
+        protected global::System.Web.UI.WebControls.ImageButton btnUltimaPagina_Inventario;
 
         /// <summary>
         /// DIVSubBloqueRegistroSeleccionado control.
