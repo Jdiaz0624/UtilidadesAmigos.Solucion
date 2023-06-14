@@ -294,6 +294,8 @@
         </div>
             <br />
             </div>
+
+
             <div id="DIVSubBloqueRegistroSeleccionado" runat="server">
                 <br />
                 <h3 class="ContenidoCentro" >Datos del Registro Seleccionado</h3>
@@ -327,13 +329,15 @@
             </div>
                 <br />
             </div>
-            <br />
+
+            <div id="DIVSubBloqueCompletarSolicitud" runat="server">
+                  <br />
               <div id="DivBloqueCompletarProceso" runat="server" class="ContenidoCentro">
                 <asp:ImageButton ID="btnGuardarSolicitud" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/Nuevo_Nuevo.png" OnClick="btnGuardarSolicitud_Click" />
                 <asp:ImageButton ID="btnVolverAtras" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolverAtras_Click" />
             </div>
             <br />
-            <h3 class="ContenidoCentro">Registros para agregar a la solicitud</h3>
+            <h3 class="ContenidoCentro">Items para agregar a la solicitud</h3>
             <hr />
             <table class="table table-striped">
                 <thead class="table-dark">
@@ -351,13 +355,14 @@
                         <ItemTemplate>
                             <tr>
 
-                        <asp:HiddenField ID="hfIdCodigoProductoAGregado" runat="server" Value='<%# Eval("") %>' />
+                        <asp:HiddenField ID="hfIdCodigoProductoAGregado" runat="server" Value='<%# Eval("CodigoArticulo") %>' />
+                        <asp:HiddenField ID="hfSecuenciaEspejo" runat="server" Value='<%# Eval("Secuencial") %>' />
 
-                        <td> <%# Eval("") %> </td>
-                        <td> <%# Eval("") %> </td>
-                        <td> <%# Eval("") %> </td>
-                        <td> <%# Eval("") %> </td>
-                        <td class="ContenidoCentro" > <%#string.Format("{0:N0}", Eval("")) %> </td>
+                        <td> <%# Eval("CodigoArticulo") %> </td>
+                        <td> <%# Eval("DescripcionArticulo") %> </td>
+                        <td> <%# Eval("Categoria") %> </td>
+                        <td> <%# Eval("UnidadMedida") %> </td>
+                        <td class="ContenidoCentro" > <%#string.Format("{0:N0}", Eval("Cantidad")) %> </td>
                         <td class="ContenidoDerecha" >  <asp:ImageButton ID="ImageButton3" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/Agregar2_Nuevo.png" OnClick="btnAgregarRegistroSeleccionado_Click" /> </td>
                     </tr>
                         </ItemTemplate>
@@ -366,6 +371,8 @@
             </table>
             <br />
         </div>
+            </div>
+          
     </div>
   
 

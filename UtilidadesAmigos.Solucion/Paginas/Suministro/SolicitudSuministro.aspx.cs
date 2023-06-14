@@ -472,7 +472,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 CargarCategoriasMAntenimiento();
                 CargarUnidadMedidaMantenimiento();
             }
-
+            DIVSubBloqueConsultaInventario.Visible = true;
+            DIVSubBloqueRegistroSeleccionado.Visible = false;
+            DIVSubBloqueCompletarSolicitud.Visible = true;
         }
 
         protected void btnPrimeraPagina_ConsultaSolicitud_Click(object sender, ImageClickEventArgs e)

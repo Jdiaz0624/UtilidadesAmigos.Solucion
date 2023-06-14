@@ -161,8 +161,41 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DisenoMasterPage.css" />
+    <Content Include="Content\EstilosComunes.css" />
     <Content Include="Estilos\EstiloMenuPrincipal.css" />
     <Content Include="Estilos\EstilosPaginas.css" />
+    <Content Include="ImagenesBotones\Agregar2_Nuevo.png" />
+    <Content Include="ImagenesBotones\Agregar_Nuevo.png" />
+    <Content Include="ImagenesBotones\Anterior_Nuevo.png" />
+    <Content Include="ImagenesBotones\borrar.png" />
+    <Content Include="ImagenesBotones\Cancelar_Nuevo.png" />
+    <Content Include="ImagenesBotones\Comisiones.png" />
+    <Content Include="ImagenesBotones\Completado.png" />
+    <Content Include="ImagenesBotones\Editar_Nuevo.png" />
+    <Content Include="ImagenesBotones\Enviar.png" />
+    <Content Include="ImagenesBotones\Estadistica.png" />
+    <Content Include="ImagenesBotones\Excel.png" />
+    <Content Include="ImagenesBotones\factura.png" />
+    <Content Include="ImagenesBotones\Ganancia_Nuevo.png" />
+    <Content Include="ImagenesBotones\hacer-clic.png" />
+    <Content Include="ImagenesBotones\HojaVenta.png" />
+    <Content Include="ImagenesBotones\inventario.png" />
+    <Content Include="ImagenesBotones\Lupa_Nuevo.png" />
+    <Content Include="ImagenesBotones\Nuevo_Nuevo.png" />
+    <Content Include="ImagenesBotones\Pagar.png" />
+    <Content Include="ImagenesBotones\PDF.png" />
+    <Content Include="ImagenesBotones\PrimeraPagina_Nuevo.png" />
+    <Content Include="ImagenesBotones\proceso.png" />
+    <Content Include="ImagenesBotones\Recibo.png" />
+    <Content Include="ImagenesBotones\ReporteComisiones.png" />
+    <Content Include="ImagenesBotones\Reporte_Nuevo.png" />
+    <Content Include="ImagenesBotones\Restablecer_Nuevo.png" />
+    <Content Include="ImagenesBotones\Restaurar.png" />
+    <Content Include="ImagenesBotones\Siguiente_Nuevo.png" />
+    <Content Include="ImagenesBotones\transferir-datos.png" />
+    <Content Include="ImagenesBotones\UltimaPagina_Nuevo.png" />
+    <Content Include="ImagenesBotones\Volver_Nuevo.png" />
     <Content Include="Imagenes\01.jpg" />
     <Content Include="Imagenes\02.gif" />
     <Content Include="Imagenes\03.jpg" />
@@ -178,15 +211,19 @@
     <Content Include="Imagenes\Buscar.png" />
     <Content Include="Imagenes\CampoImagen.jpg" />
     <Content Include="Imagenes\cancelado.png" />
+    <Content Include="Imagenes\Cobros.png" />
+    <Content Include="Imagenes\ComentarioLote.png" />
     <Content Include="Imagenes\comision.png" />
     <Content Include="Imagenes\Completado3.gif" />
     <Content Include="Imagenes\Completar.png" />
     <Content Include="Imagenes\comprobar.png" />
     <Content Include="Imagenes\Cotizar.png" />
+    <Content Include="Imagenes\Dias.png" />
     <Content Include="Imagenes\Editar.png" />
     <Content Include="Imagenes\Eliminar.png" />
     <Content Include="Imagenes\escoger.png" />
     <Content Include="Imagenes\excel.png" />
+    <Content Include="Imagenes\Excluir.png" />
     <Content Include="Imagenes\impresora.png" />
     <Content Include="Imagenes\Iniciales.ico" />
     <Content Include="Imagenes\login.jpg" />
@@ -197,6 +234,7 @@
     <Content Include="Imagenes\png-transparent-computer-icons-synchronization-encapsulated-postscript-icon-design-update-button-angle-text-logo.png" />
     <Content Include="Imagenes\Primera Pagina.png" />
     <Content Include="Imagenes\Procesar.png" />
+    <Content Include="Imagenes\remodelacion.jpg" />
     <Content Include="Imagenes\Reporte.png" />
     <Content Include="Imagenes\salvar.png" />
     <Content Include="Imagenes\Seguro de Ley.jpg" />
@@ -239,6 +277,11 @@
     <Content Include="Paginas\Consulta\ValidarCoberturas.aspx" />
     <Content Include="Paginas\ConsumoWS.aspx" />
     <Content Include="Paginas\ControlVisitas.aspx" />
+    <Content Include="Paginas\Correcciones\CambioCliente.aspx" />
+    <Content Include="Paginas\Correcciones\CambioIntermediario.aspx" />
+    <Content Include="Paginas\Correcciones\EliminarEntodoso.aspx" />
+    <Content Include="Paginas\Correcciones\ModificarDatosCliente.aspx" />
+    <Content Include="Paginas\Correcciones\PolizaTransito.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
     <Content Include="Paginas\Inventario.aspx" />
@@ -252,11 +295,13 @@
     <Content Include="Paginas\ProcesarDataAsegurado.aspx" />
     <Content Include="Paginas\ProcesoPoliza\Cotizador.aspx" />
     <Content Include="Paginas\Procesos\AgregarItemsReclamos.aspx" />
+    <Content Include="Paginas\Procesos\CartaCancelacion.aspx" />
     <Content Include="Paginas\Procesos\DatosPoliza.aspx" />
     <Content Include="Paginas\Procesos\Endosos.aspx" />
     <Content Include="Paginas\Procesos\GenerarBackupBaseDatos.aspx" />
     <Content Include="Paginas\Procesos\GenerarBakupBD.aspx" />
     <Content Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx" />
+    <Content Include="Paginas\Procesos\ImpresionCheques.aspx" />
     <Content Include="Paginas\Procesos\Logo.jpg" />
     <Content Include="Paginas\Procesos\ProcesoEmisionPoliza.aspx" />
     <Content Include="Paginas\Procesos\ReciboDigital.aspx" />
@@ -264,14 +309,17 @@
     <Content Include="Paginas\Procesos\VolantesDePagos.aspx" />
     <Content Include="Paginas\ReporteReclamos.aspx" />
     <Content Include="Paginas\Reportes\AntiguedadSaldo.aspx" />
+    <Content Include="Paginas\Reportes\AntiguedadSaldoCXP.aspx" />
     <Content Include="Paginas\Reportes\ComisionesIntermediarios.aspx" />
     <Content Include="Paginas\Reportes\ComisionesSupervisores.aspx" />
+    <Content Include="Paginas\Reportes\FichaTecnica.aspx" />
     <Content Include="Paginas\Reportes\GenerarMarbetes.aspx" />
     <Content Include="Paginas\Reportes\GenerarReporteAntiguedadSaldo.aspx" />
     <Content Include="Paginas\Reportes\GenerarReporteCobros.aspx" />
-    <Content Include="Paginas\Reportes\ImpresionCheques.aspx" />
+    <Content Include="Paginas\Reportes\PolizasConBalancesPorAntiguedad.aspx" />
     <Content Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx" />
     <Content Include="Paginas\Reportes\ReclamacionesPagadas.aspx" />
+    <Content Include="Paginas\Reportes\ReporteCuentasProveedores.aspx" />
     <Content Include="Paginas\Reportes\ReporteImpresionMarbetes.aspx" />
     <Content Include="Paginas\Reportes\ReporteIntermediariosAlfredo.aspx" />
     <Content Include="Paginas\Reportes\ReportePrimaDeposito.aspx" />
@@ -553,6 +601,41 @@
     <Compile Include="Paginas\ControlVisitas.aspx.designer.cs">
       <DependentUpon>ControlVisitas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Correcciones\CambioCliente.aspx.cs">
+      <DependentUpon>CambioCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\CambioCliente.aspx.designer.cs">
+      <DependentUpon>CambioCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\CambioIntermediario.aspx.cs">
+      <DependentUpon>CambioIntermediario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\CambioIntermediario.aspx.designer.cs">
+      <DependentUpon>CambioIntermediario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\EliminarEntodoso.aspx.cs">
+      <DependentUpon>EliminarEntodoso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\EliminarEntodoso.aspx.designer.cs">
+      <DependentUpon>EliminarEntodoso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\ModificarDatosCliente.aspx.cs">
+      <DependentUpon>ModificarDatosCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\ModificarDatosCliente.aspx.designer.cs">
+      <DependentUpon>ModificarDatosCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\PolizaTransito.aspx.cs">
+      <DependentUpon>PolizaTransito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\PolizaTransito.aspx.designer.cs">
+      <DependentUpon>PolizaTransito.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\CotizadorAmigos.aspx.cs">
       <DependentUpon>CotizadorAmigos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -734,6 +817,13 @@
     <Compile Include="Paginas\Procesos\AgregarItemsReclamos.aspx.designer.cs">
       <DependentUpon>AgregarItemsReclamos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Procesos\CartaCancelacion.aspx.cs">
+      <DependentUpon>CartaCancelacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\CartaCancelacion.aspx.designer.cs">
+      <DependentUpon>CartaCancelacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Procesos\DatosPoliza.aspx.cs">
       <DependentUpon>DatosPoliza.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -768,6 +858,13 @@
     </Compile>
     <Compile Include="Paginas\Procesos\GenerarSolicitudChequeComisionesIntermediarios.aspx.designer.cs">
       <DependentUpon>GenerarSolicitudChequeComisionesIntermediarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Procesos\ImpresionCheques.aspx.cs">
+      <DependentUpon>ImpresionCheques.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Procesos\ImpresionCheques.aspx.designer.cs">
+      <DependentUpon>ImpresionCheques.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Procesos\ProcesoEmisionPoliza.aspx.cs">
       <DependentUpon>ProcesoEmisionPoliza.aspx</DependentUpon>
@@ -832,6 +929,13 @@
     <Compile Include="Paginas\Reportes\AntiguedadSaldo.aspx.designer.cs">
       <DependentUpon>AntiguedadSaldo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Reportes\AntiguedadSaldoCXP.aspx.cs">
+      <DependentUpon>AntiguedadSaldoCXP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\AntiguedadSaldoCXP.aspx.designer.cs">
+      <DependentUpon>AntiguedadSaldoCXP.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Reportes\ComisionesIntermediarios.aspx.cs">
       <DependentUpon>ComisionesIntermediarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -847,6 +951,13 @@
       <DependentUpon>ComisionesSupervisores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Reportes\ExcelData.cs" />
+    <Compile Include="Paginas\Reportes\FichaTecnica.aspx.cs">
+      <DependentUpon>FichaTecnica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\FichaTecnica.aspx.designer.cs">
+      <DependentUpon>FichaTecnica.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Reportes\GenerarMarbetes.aspx.cs">
       <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -868,14 +979,14 @@
     <Compile Include="Paginas\Reportes\GenerarReporteCobros.aspx.designer.cs">
       <DependentUpon>GenerarReporteCobros.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\Reportes\ImpresionCheques.aspx.cs">
-      <DependentUpon>ImpresionCheques.aspx</DependentUpon>
+    <Compile Include="Paginas\Reportes\List.cs" />
+    <Compile Include="Paginas\Reportes\PolizasConBalancesPorAntiguedad.aspx.cs">
+      <DependentUpon>PolizasConBalancesPorAntiguedad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Paginas\Reportes\ImpresionCheques.aspx.designer.cs">
-      <DependentUpon>ImpresionCheques.aspx</DependentUpon>
+    <Compile Include="Paginas\Reportes\PolizasConBalancesPorAntiguedad.aspx.designer.cs">
+      <DependentUpon>PolizasConBalancesPorAntiguedad.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\Reportes\List.cs" />
     <Compile Include="Paginas\Reportes\ProduccionDiariaContabilidad.aspx.cs">
       <DependentUpon>ProduccionDiariaContabilidad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -889,6 +1000,13 @@
     </Compile>
     <Compile Include="Paginas\Reportes\ReclamacionesPagadas.aspx.designer.cs">
       <DependentUpon>ReclamacionesPagadas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteCuentasProveedores.aspx.cs">
+      <DependentUpon>ReporteCuentasProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Reportes\ReporteCuentasProveedores.aspx.designer.cs">
+      <DependentUpon>ReporteCuentasProveedores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Reportes\ReporteImpresionMarbetes.aspx.cs">
       <DependentUpon>ReporteImpresionMarbetes.aspx</DependentUpon>

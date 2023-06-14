@@ -2,25 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <style type="text/css">
-
-        .btn-sm{
-            width:90px;
-        }
-
-        .LetrasNegrita {
-        font-weight:bold;
-        }
-        table {
-            border-collapse: collapse;
-        }
-        
-
-        th {
-            background-color: #0094ff;
-            color: #000000;
-        }
-    </style>
+      <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
 
 
     <script type="text/javascript">

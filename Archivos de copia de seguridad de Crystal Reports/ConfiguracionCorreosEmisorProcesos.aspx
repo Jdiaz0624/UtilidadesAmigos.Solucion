@@ -12,7 +12,7 @@
         font-weight:bold;
         }
         table {
-            border-collapse: collapse;
+            border-collapse: collapse;6
         }
         
 

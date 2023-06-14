@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionSuministroDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=juan.diaz" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString21" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_BUSCA_SUMINISTRO_INVENTARIO" Method="SP_BUSCA_SUMINISTRO_INVENTARIO">
     <Parameter Name="CodigoArticulo" Parameter="codigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Articulo" Parameter="articulo" Type="System.String" DbType="VarChar(1000)" />
@@ -298,6 +298,34 @@
       <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="IdEstatusSolicitud" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_SUMINISTRO_SOLICITUDES_ESPEJO" Method="SP_BUSCA_SUMINISTRO_SOLICITUDES_ESPEJO">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Secuencial" Parameter="secuencial" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_SUMINISTRO_SOLICITUDES_ESPEJOResult">
+      <Column Name="Secuencial" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdSucursal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Sucursal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdDepartamento" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Departamento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CodigoArticulo" Type="System.Decimal" DbType="Decimal(31,0)" CanBeNull="true" />
+      <Column Name="DescripcionArticulo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IdCategoria" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Categoria" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IdUnidadMedida" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UnidadMedida" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fecha0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="IdEstatusSolicitud" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CantidadRegistros" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

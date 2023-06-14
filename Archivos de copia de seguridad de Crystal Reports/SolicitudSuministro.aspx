@@ -2,222 +2,373 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <style type="text/css">
-        .btn-sm{
-            width:90px;
-        }
-
-        .LetrasNegrita {
-        font-weight:bold;
-        }
-        table {
-            border-collapse: collapse;
-        }
-        
-
-        th {
-            background-color: #1E90FF;
-            color: #000000;
-        }
-          .BotonImagen {
-           width: 40px;
-           height: 40px;
-          }
-
-       .BotonImagenCompletado {
-        width: 90px;
-        height: 90px;
-       }
-
-    </style>
-
-    <script type="text/javascript">
-        function CantidadAlmacenSuperior() {
-            alert("La cantidad que intentas solicitar supera el stock actual de este registro en almacen, favor de verificar.");
-        }
-
-        function RegistroAgregado() {
-            alert("Este registro ya esta agregado a la solicitud, favor de verificar.");
-        }
-
-        $(function () {
-            $("#<%=btnAgregarRegistro.ClientID%>").click(function () {
-                var Cantidad = $("#<%=txtCantidad.ClientID%>").val().length;
-                if (Cantidad < 1) {
-                    alert("El Campo Cantidad no puede estar vacio para procesar este registro.");
-                    $("#").css("border-color", "red")
-                    return false;
-                }
-
-            });
-        });
-    </script>
-
+    <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
     <div class="container-fluid">
-        <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
-        <asp:Label ID="lbCodigoArtiuloSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
-        <asp:Label ID="lbAccionTomar" runat="server" Text="" Visible="false"></asp:Label>
-        <asp:Label ID="lbIdMedidaSeleccionaa" runat="server" Text="0" Visible="false"></asp:Label>
-
-        <div id="DIVBloqueConsulta" runat="server" >
-            <div class="row">
-                <div class="col-md-5">
-                    <asp:Label ID="lbNombreArticuloConsulta" runat="server" Text="Articulo" CssClass="LetrasNegrita"></asp:Label>
-                    <asp:TextBox ID="txtNombreArticuloConsulta" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtNombreArticuloConsulta_TextChanged" AutoCompleteType="Disabled"></asp:TextBox>
-                </div>
-            </div>
+        <div id="DIVBloqueConsulta" runat="server" visible="true">
             <br />
-            <div align="center">
-                <asp:ImageButton ID="btnConsultar" runat="server"  ImageUrl="~/Imagenes/Buscar.png" CssClass="BotonImagen" OnClick="btnConsultar_Click" ToolTip="Buscar Registros" />
-            </div>
-            <br />
-            <table class="table table-striped">
-                <thead>
+            <table class="table table-bordered">
+                <thead class="table-dark">
                     <tr>
-                        <th scope="col"> Articulo </th>
-                        <th scope="col"> Medida </th>
-                        <th scope="col"> Stock </th>
-                        <th scope="col"> Estatus </th>
-                        <th scope="col">  </th>
+                        <th scope="col"> Información</th>
+                         <th scope="col"> Dato</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <asp:Repeater ID="rbListadoSeleccionarArticulo" runat="server">
+                    <tr>
+                        <td><b>SUCURSAL</b></td>
+                        <td><asp:Label ID="lbSucursal_ConsultaSolicitud" runat="server" Text="Dato"></asp:Label> </td>
+                    </tr>
+                    <tr>
+                        <td><b>OFICINA</b></td>
+                        <td><asp:Label ID="lbOficina_ConsultaSolicitud" runat="server" Text="Dato"></asp:Label></td>
+                    </tr>
+                    <tr>
+                        <td><b>DEPARTAMENTO</b></td>
+                        <td><asp:Label ID="lbDepartamento_ConsultaSolicitud" runat="server" Text="Dato"></asp:Label></td>
+                    </tr>
+                    <tr>
+                        <td><b>SOLICITANTE</b></td>
+                        <td><asp:Label ID="lbSolicitante_ConsultaSolicitud" runat="server" Text="Dato"></asp:Label></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <div class="form-check form-switch">
+                <input id="cbNoAgregarRangoFecha" runat="server" type="checkbox" class="form-check-input" />
+                <label class="form-check-label">No Agregar Rango de Fecha</label>
+            </div>
+            <br />
+            <div class="row">
+                 <div class="col-md-3">
+                     <asp:Label ID="lbNumeroSolicitud" runat="server" CssClass="Letranegrita" Text="No. Solicitud"></asp:Label>
+                     <asp:TextBox ID="txtNumeroSolicitud_ConsultaSolicitud" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                 </div>
+                 <div class="col-md-3">
+                      <asp:Label ID="lbfechaDesde" runat="server" CssClass="Letranegrita" Text="Fecha Desde"></asp:Label>
+                     <asp:TextBox ID="txtFechaDesde_ConsultaSolicitud" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                 </div>
+                 <div class="col-md-3">
+                      <asp:Label ID="lbFechaHasta" runat="server" CssClass="Letranegrita" Text="Fecha Hasta"></asp:Label>
+                     <asp:TextBox ID="txtFechaHasta_ConsultaSolicitud" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                 </div>
+                 <div class="col-md-3">
+                      <asp:Label ID="lbEstatus" runat="server" CssClass="Letranegrita" Text="Estatus"></asp:Label>
+                     <asp:DropDownList ID="ddlEstatus_ConsultaSolicitud" runat="server" CssClass="form-control" ToolTip="Seleccionar Estatus de Solicitud"></asp:DropDownList>
+                 </div>
+            </div>
+            <br />
+            <div class="ContenidoCentro">
+                <asp:ImageButton ID="btnConsultarInformacion_ConsultaSolicitud" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" OnClick="btnConsultarInformacion_ConsultaSolicitud_Click" />
+                <asp:ImageButton ID="btnNuevaSolicitud_ConsultaSolicitud" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" OnClick="btnNuevaSolicitud_ConsultaSolicitud_Click" />
+            </div>
+            <br />
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="ContenidoCentro" scope="col"> Solicitud </th>
+                        <th class="ContenidoCentro" scope="col"> Fecha </th>
+                        <th class="ContenidoCentro" scope="col"> Items </th>
+                        <th class="ContenidoCentro" scope="col"> Estatus </th>
+                        <th class="ContenidoDerecha" scope="col"> Cancelar </th>
+                        <th class="ContenidoDerecha" scope="col"> Detalle </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rpListadoSolicitudes_ConsultaSolicitud" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <asp:HiddenField ID="hfCodigoArticulo" runat="server" Value='<%# Eval("CodigoArticulo") %>' />
-                                <td> <%# Eval("Articulo") %> </td>
-                                <td> <%# Eval("Medida") %> </td>
-                                <td> <%#string.Format("{0:N0}", Eval("Stock")) %> </td>
-                                <td> <%# Eval("Estatus") %> </td>
-                                <td> <asp:ImageButton ID="btnSeleccionarRegistro" runat="server"  ImageUrl="~/Imagenes/Seleccionar2.png" CssClass="BotonImagen" OnClick="btnSeleccionarRegistro_Click" ToolTip="Seleccionar Registro" /> </td>
+                                <asp:HiddenField ID="hfNumeroSolicitud" runat="server" Value='<%# Eval("") %>' />
+                                <td class="ContenidoCentro"> <%# Eval("") %> </td>
+                                <td class="ContenidoCentro"> <%# Eval("") %> </td>
+                                <td class="ContenidoCentro"> <%#string.Format("{0:N0}", Eval("")) %> </td>
+                                <td class="ContenidoCentro"> <%# Eval("") %> </td>
+                                <td class="ContenidoDerecha"> <asp:ImageButton ID="btnCancelarSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" OnClick="btnNuevaSolicitud_ConsultaSolicitud_Click" /> </td>
+                                <td class="ContenidoDerecha"> <asp:ImageButton ID="btnDetalleSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" OnClick="btnNuevaSolicitud_ConsultaSolicitud_Click" /> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
-              <div align="center">
-                <asp:Label ID="lbPaginaActualSeleccionarArticulo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariableSeleccionarArticulo" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloSeleccionarArticulo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriableSeleccionarArticulo" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
-             <div id="divPaginacionSeleccionarArticulo" runat="server" align="center">
-        <div style="margin-top: 20px;">
-            <table style="width: 600px">
-                <tr>
-                    <td> <asp:ImageButton ID="btnkPrimeraPaginaSeleccionarArticulo" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnkPrimeraPaginaSeleccionarArticulo_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
-                    <td> <asp:ImageButton ID="btnAnteriorSeleccionarArticulo" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnAnteriorSeleccionarArticulo_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
-                    <td align="center" >
-                        <asp:DataList ID="dtPaginacionSeleccionarArticulo" runat="server" OnItemCommand="dtPaginacionSeleccionarArticulo_ItemCommand" OnItemDataBound="dtPaginacionSeleccionarArticulo_ItemDataBound" RepeatDirection="Horizontal">
-                            <ItemTemplate>
-                                <asp:Button ID="btnPaginacionCentralSeleccionarArticulo" runat="server" CssClass="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
-                            </ItemTemplate>
-                        </asp:DataList>
-
-                    </td>
-                    <td> <asp:ImageButton ID="btnSiguienteSeleccionarArticulo" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguienteSeleccionarArticulo_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
-                    <td> <asp:ImageButton ID="btnUltimoSeleccionarArticulo" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimoSeleccionarArticulo_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
-                </tr>
-            </table>
-        </div>
-        </div>
-       <br />
-            <hr />
-            <br />
-            <div class="row">
-                <div class="col-md-8">
-                    <asp:Label ID="lbArticuloSeleccionado" runat="server" Text="Articulo Seleccionado" CssClass="LetrasNegrita"></asp:Label>
-                    <asp:TextBox ID="txtArticuloSeleccionado" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                </div>
-
-                 <div class="col-md-2">
-                    <asp:Label ID="lbCantidad" runat="server" Text="Cantidad" CssClass="LetrasNegrita"></asp:Label>
-                    <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
-                </div>
-
-                 <div class="col-md-2">
-                    <asp:Label ID="lbStockSeleccionado" runat="server" Text="Stock" CssClass="LetrasNegrita"></asp:Label>
-                    <asp:TextBox ID="txtStockSeleccionado" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                </div>
-            </div>
-            <br />
-            <div align="center">
-                <asp:ImageButton ID="btnAgregarRegistro" runat="server"  ImageUrl="~/Imagenes/Agregar (2).png" CssClass="BotonImagen" OnClick="btnAgregarRegistro_Click" ToolTip="Agregar Selección" />
-                <asp:ImageButton ID="btbCancelar" runat="server"  ImageUrl="~/Imagenes/cancelado.png" CssClass="BotonImagen" OnClick="btbCancelar_Click" ToolTip="Cancelar Selección" />
-            </div>
-            <br />
-            <hr />
-            <br />
-            <table class="table table-striped">
-                <thead>
+              <table class="table">
+                <tfoot class="table-light">
                     <tr>
-                        <th scope="col"> Articulo </th>
-                        <th scope="col"> Medida </th>
-                        <th scope="col"> Cantidad </th>
-                        <th scope="col">  </th>
+                        <td class="ContenidoDerecha">
+                            <b>Página </b> <asp:Label ID="lbCantidadPaginaVariable_ConsultaSolicitud" runat="server" Text="0" ></asp:Label> <b>de </b>  <asp:Label ID="lbPaginaActualVariable_ConsultaSolicitud" runat="server" Text=" 0 "></asp:Label>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <asp:Repeater ID="rpArticulosAgregados" runat="server">
-                        <ItemTemplate>
-                            <tr>
-                                <asp:HiddenField ID="hfEliminarRegistro" runat="server" Value='<%# Eval("CodigoArticulo") %>' />
-
-                                <td> <%# Eval("Descripcion") %> </td>
-                                <td> <%# Eval("Medida") %> </td>
-                                <td> <%#string.Format("{0:N0}", Eval("Cantidad")) %> </td>
-                                <td> <asp:ImageButton ID="btnEliminar" runat="server"  ImageUrl="~/Imagenes/Eliminar.png" CssClass="BotonImagen" OnClick="btnEliminar_Click" ToolTip="Eliminar Registro" /> </td>
-                            </tr>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </tbody>
+                    <tr>
+                        <td class="ContenidoIzquierda">
+                            <b>Total de Solicitudes: </b> <asp:Label ID="lbCantidadSolicitudes_ConsultaSolicitud" runat="server" Text="0"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ContenidoIzquierda">
+                            <b>Solicitudes Activas: </b> <asp:Label ID="lbSolicitudesActivas_ConsultaSolicitud" runat="server" Text="0"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ContenidoIzquierda">
+                             <b>Solicitudes Procesadas: </b> <asp:Label ID="lbSolicitudesProcesadas_ConsultaSolicitud" runat="server" Text="0"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ContenidoIzquierda">
+                             <b>Solicitudes Canceladas: </b> <asp:Label ID="lbSolicitudesCanceladas_ConsultaSolicitud" runat="server" Text="0"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ContenidoIzquierda">
+                             <b>Solicitudes Rechazadas: </b> <asp:Label ID="lbSolicitudesRechazadas_ConsultaSolicitud" runat="server" Text="0"></asp:Label>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
-              <div align="center">
-                <asp:Label ID="lbPaginaActualEliminarArticulo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariableEliminarArticulo" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloEliminarArticulo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriableEliminarArticulo" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
-             <div id="divPaginacionEliminarArticulo" runat="server" align="center">
+              <div id="DivPaginacion_ConsultaSolicitud" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:ImageButton ID="btnkPrimeraPaginaEliminarArticulo" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnkPrimeraPaginaEliminarArticulo_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
-                    <td> <asp:ImageButton ID="btnAnteriorEliminarArticulo" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnAnteriorEliminarArticulo_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
-                    <td align="center" >
-                        <asp:DataList ID="dtPaginacionEliminarArticulo" runat="server" OnItemCommand="dtPaginacionEliminarArticulo_ItemCommand" OnItemDataBound="dtPaginacionEliminarArticulo_ItemDataBound" RepeatDirection="Horizontal">
+                    <td> <asp:ImageButton ID="btnPrimeraPagina_ConsultaSolicitud" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPagina_ConsultaSolicitud_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaAnterior_ConsultaSolicitud" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnPaginaAnterior_ConsultaSolicitud_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" />  </td>
+                    <td class="ContenidoCentro">
+                        <asp:DataList ID="dtPaginacion_ConsultaSolicitud" runat="server" OnItemCommand="dtPaginacion_ConsultaSolicitud_ItemCommand" OnItemDataBound="dtPaginacion_ConsultaSolicitud_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
-                                <asp:Button ID="btnPaginacionCentralEliminarArticulo" runat="server" CssClass="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
+                                <asp:Button ID="btnPaginacionCentral_ConsultaSolicitud" runat="server" class="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
                             </ItemTemplate>
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:ImageButton ID="btnSiguienteEliminarArticulo" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguienteEliminarArticulo_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
-                    <td> <asp:ImageButton ID="btnUltimoEliminarArticulo" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimoEliminarArticulo_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnSiguientePagina_ConsultaSolicitud" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguientePagina_ConsultaSolicitud_Click" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" />  </td>
+                    <td> <asp:ImageButton ID="btnUltimaPagina_ConsultaSolicitud" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimaPagina_ConsultaSolicitud_Click" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" />  </td>
                 </tr>
             </table>
         </div>
         </div>
-       <br />
-            <div align="center">
-                <asp:ImageButton ID="btnCompletarProceso" runat="server"  ImageUrl="~/Imagenes/Completar.png" CssClass="BotonImagen" OnClick="btnCompletarProceso_Click" ToolTip="Completar Operación" />
-            </div>
             <br />
-        </div>
+            <br />
+           <div id="DIvBloqueDetalleRegistro"  runat="server">
+              <asp:ScriptManager ID="ScripManagerGestionCobros" runat="server"></asp:ScriptManager> 
+             <button class=" btn-sm  btn-dark BotonEspecial" type="button" id="btnPolizasNoContastadas" data-toggle="collapse" data-target="#RegistroSeleccionado" aria-expanded="false" aria-controls="collapseExample">
+                  
+                  <asp:Label ID="lbRegistroSeleccionado" runat="server" Text="DETALLE DE LOS ARTICULOS SOLICITADOS" CssClass="Letranegrita"></asp:Label>
+                     </button><br />
 
-       <div id="DIVBloqueCOmpletado" align="center" runat="server">
-            <br />
-            <asp:Label ID="lbNumerofacturageneradoTitulo" runat="server" Text="Numero de Solicitud ( " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbNumeroFacturaGeneradoVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbNumeroFacturaGeneradoCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbNumeroConectorGenerado" runat="server" CssClass="LetrasNegrita" Text="0" Visible="false"></asp:Label>
-            <br />
-            <asp:Image ID="IMGCompletado" runat="server"  ImageUrl="~/Imagenes/Completado3.gif" />
-            <br />
-            <br />
-           <asp:ImageButton ID="btnCrearNuevoRegistro" runat="server" ToolTip="Crear Nueva Solicitud" CssClass="BotonImagenCompletado" OnClick="btnCrearNuevoRegistro_Click" ImageUrl="~/Imagenes/Agregar (2).png" />
+
+       <div class="collapse" id="RegistroSeleccionado">
+                <div class="card card-body">
+                   <asp:UpdatePanel ID="UpdatePanelRegistroSeleccionado" runat="server">
+                       <ContentTemplate>
+                       <table class="table table-striped">
+                           <thead class="table-dark">
+                               <tr>
+                                   <th scope="col"> Articulo </th>
+                                   <th scope="col"> Categoria </th>
+                                   <th scope="col"> Medida </th>
+                                   <th scope="col"> Cant. Solicitada </th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <asp:Repeater ID="rpSolicitudDetalle" runat="server">
+                                   <ItemTemplate>
+                                       <tr>
+                                            <td> <%# Eval("") %> </td>
+                                            <td> <%# Eval("") %> </td>
+                                            <td> <%# Eval("") %> </td>
+                                            <td> <%#string.Format("{0:N0}", Eval("")) %> </td>
+
+                                       </tr>
+                                   </ItemTemplate>
+                               </asp:Repeater>
+                           </tbody>
+                       </table>
+
+               
+                    </ContentTemplate>
+                   </asp:UpdatePanel>
+                </div>
+            </div>
            <br />
+
+        </div>
+        </div>
+
+
+
+        <div id="DIVBloqueMantenimiento" runat="server" visible="false">
+            <br />
+            <div id="DIVSubBloqueConsultaInventario" runat="server">
+                <div class="row">
+                 <div class="col-md-3">
+                     <asp:Label ID="lbSucursalProceso" runat="server" Text="Sucursal" CssClass="Letranegrita"></asp:Label>
+                     <asp:DropDownList ID="ddlSucursalProceso" runat="server" ToolTip="Seleccionar Sucursal" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSucursalProceso_SelectedIndexChanged"></asp:DropDownList>
+                 </div>
+                 <div class="col-md-3">
+                     <asp:Label ID="lbOficinaProceso" runat="server" Text="Oficina" CssClass="Letranegrita"></asp:Label>
+                     <asp:DropDownList ID="ddlOficinaProceso" runat="server" ToolTip="Seleccionar Oficina" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlOficinaProceso_SelectedIndexChanged"></asp:DropDownList>
+                 </div>
+                 <div class="col-md-3">
+                     <asp:Label ID="lbDepartamentoProceso" runat="server" Text="Departamento" CssClass="Letranegrita"></asp:Label>
+                     <asp:DropDownList ID="ddlDepartamentoProceso" runat="server" ToolTip="Seleccionar Departaemnto" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDepartamentoProceso_SelectedIndexChanged"></asp:DropDownList>
+                 </div>
+                 <div class="col-md-3">
+                     <asp:Label ID="lbUsuarioProceso" runat="server" Text="Usuario" CssClass="Letranegrita"></asp:Label>
+                     <asp:DropDownList ID="ddlUsuarioProceso" runat="server" ToolTip="Seleccionar Usuario" CssClass="form-control"></asp:DropDownList>
+                 </div>
+
+                 <div class="col-md-3">
+                      <asp:Label ID="lbCodigoProceso" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label>
+                     <asp:TextBox ID="txtCodigoProceso" runat="server" CssClass="form-control"></asp:TextBox>
+                 </div>
+                 <div class="col-md-3">
+                      <asp:Label ID="lbDescripcionProceso" runat="server" Text="Descripción" CssClass="Letranegrita"></asp:Label>
+                     <asp:TextBox ID="txtDescripcionProceso" runat="server" CssClass="form-control"></asp:TextBox>
+                 </div>
+                 <div class="col-md-3">
+                      <asp:Label ID="lbCategoriaProceso" runat="server" Text="Categoria" CssClass="Letranegrita"></asp:Label>
+                     <asp:DropDownList ID="ddlCategoriaProceso" runat="server" ToolTip="Seleccionar Categoria" CssClass="form-control"></asp:DropDownList>
+                 </div>
+                 <div class="col-md-3">
+                      <asp:Label ID="lbUnidadMedidaProceso" runat="server" Text="Medida" CssClass="Letranegrita"></asp:Label>
+                     <asp:DropDownList ID="ddlUnidadMedida" runat="server" ToolTip="Seleccionar Unidad de Medida" CssClass="form-control"></asp:DropDownList>
+                 </div>
+            </div>
+            <br />
+            <div class="ContenidoCentro">
+                <asp:ImageButton ID="btnConsultarInformacionInventario" runat="server" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" CssClass="BotonImagen" OnClick="btnConsultarInformacionInventario_Click" />
+            </div>
+            <br />
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col"> Codigo </th>
+                        <th scope="col"> Descripción </th>
+                        <th scope="col"> Categoria </th>
+                        <th scope="col"> Medida </th>
+                        <th class="ContenidoCentro" scope="col"> Disponible </th>
+                        <th class="ContenidoDerecha" scope="col"> Seleccionar </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rpListadoInventario" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <asp:HiddenField ID="hfCodigoInventario" runat="server" Value='<%# Eval("IdRegistro") %>' />
+
+                                <td> <%# Eval("IdRegistro") %> </td>
+                                <td> <%# Eval("Articulo") %> </td>
+                                <td> <%# Eval("Categoria") %> </td>
+                                <td> <%# Eval("UnidadMedida") %> </td>
+                                <td class="ContenidoCentro" > <%#string.Format("{0:N0}", Eval("Stock")) %> </td>
+                                <td class="ContenidoDerecha" ><asp:ImageButton ID="btnSeleccionarInventario" runat="server" ImageUrl="~/ImagenesBotones/hacer-clic.png" CssClass="BotonImagen" OnClick="btnSeleccionarInventario_Click" /> </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
+            </table>
+            <table class="table">
+                <tfoot class="table-light">
+                    <tr>
+                        <td class="ContenidoDerecha">
+                            <b>Página </b> <asp:Label ID="lbCantidadPaginaVariable_ProcesoSolicitud" runat="server" Text="0" ></asp:Label> <b>de </b>  <asp:Label ID="Label1" runat="server" Text=" 0 "></asp:Label>
+                        </td>
+                    </tr>
+
+                </tfoot>
+            </table>
+              <div id="DivPaginacion_ProcesoSolicitud" runat="server" align="center">
+        <div style="margin-top: 20px;">
+            <table style="width: 600px">
+                <tr>
+                    <td> <asp:ImageButton ID="btnPrimeraPagina_ProcesoSolicitud" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPagina_ProcesoSolicitud_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaAnterior_ProcesoSolicitud" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnPaginaAnterior_ProcesoSolicitud_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" />  </td>
+                    <td class="ContenidoCentro">
+                        <asp:DataList ID="dtPaginacion_ProcesoSolicitud" runat="server" OnItemCommand="dtPaginacion_ProcesoSolicitud_ItemCommand" OnItemDataBound="dtPaginacion_ProcesoSolicitud_ItemDataBound" RepeatDirection="Horizontal">
+                            <ItemTemplate>
+                                <asp:Button ID="btnPaginacionCentral_ProcesoSolicitud" runat="server" class="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
+                            </ItemTemplate>
+                        </asp:DataList>
+
+                    </td>
+                    <td> <asp:ImageButton ID="btnSiguientePagina_ProcesoSolicitud" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguientePagina_ProcesoSolicitud_Click" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" />  </td>
+                    <td> <asp:ImageButton ID="btnUltimaPagina_ProcesoSolicitud" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimaPagina_ProcesoSolicitud_Click" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" />  </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+            <br />
+            </div>
+            <div id="DIVSubBloqueRegistroSeleccionado" runat="server">
+                <br />
+                <h3 class="ContenidoCentro" >Datos del Registro Seleccionado</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <asp:Label ID="lbDescripcionRegistroSeleccionado" runat="server" Text="Descripcion" CssClass="Letranegrita"></asp:Label> 
+                        <asp:TextBox ID="txtDescripcionRegistroSeleccionado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="col-md-2">
+                        <asp:Label ID="lbCategoriaRegistriSeleccionado" runat="server" Text="Categoria" CssClass="Letranegrita"></asp:Label> 
+                        <asp:TextBox ID="txtCategoriaRegistroSeleccionado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="col-md-2">
+                        <asp:Label ID="lbMedidaRegistroSeleccionado" runat="server" Text="Medida" CssClass="Letranegrita"></asp:Label> 
+                        <asp:TextBox ID="txtMedidaRegistroSeleccionado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="col-md-2">
+                        <asp:Label ID="lbStockRegistroSeleccionado" runat="server" Text="Disponible" CssClass="Letranegrita"></asp:Label> 
+                        <asp:TextBox ID="txtStockRegistroSeleccionado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class=" col-md-2">
+                        <asp:Label ID="lbCantidadProcesarRegistroSeleccionado" runat="server" Text="Cantidad a Procesar" CssClass="  Letranegrita"></asp:Label> 
+                        <asp:TextBox ID="txtCantidadProcesarRegistroSeleccionado" runat="server" CssClass="  form-control"></asp:TextBox>
+                    </div>
+
+                </div>
+                <br />
+                 <div class="ContenidoCentro">
+                <asp:ImageButton ID="btnAgregarRegistroSeleccionado" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/Agregar2_Nuevo.png" OnClick="btnAgregarRegistroSeleccionado_Click" />
+                <asp:ImageButton ID="btnVolverRegistroSeleccionado" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolverRegistroSeleccionado_Click" />
+            </div>
+                <br />
+            </div>
+            <br />
+              <div id="DivBloqueCompletarProceso" runat="server" class="ContenidoCentro">
+                <asp:ImageButton ID="btnGuardarSolicitud" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/Nuevo_Nuevo.png" OnClick="btnGuardarSolicitud_Click" />
+                <asp:ImageButton ID="btnVolverAtras" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolverAtras_Click" />
+            </div>
+            <br />
+            <h3 class="ContenidoCentro">Registros para agregar a la solicitud</h3>
+            <hr />
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                         <th scope="col"> Codigo </th>
+                         <th scope="col"> Descripción </th>
+                         <th scope="col"> Categoria </th>
+                         <th scope="col"> Medida </th>
+                         <th class="ContenidoCentro" scope="col"> Cantidad </th>
+                         <th class="ContenidoDerecha" scope="col"> Borrar </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rpListadoRegistrosAgregados" runat="server">
+                        <ItemTemplate>
+                            <tr>
+
+                        <asp:HiddenField ID="hfIdCodigoProductoAGregado" runat="server" Value='<%# Eval("") %>' />
+
+                        <td> <%# Eval("") %> </td>
+                        <td> <%# Eval("") %> </td>
+                        <td> <%# Eval("") %> </td>
+                        <td> <%# Eval("") %> </td>
+                        <td class="ContenidoCentro" > <%#string.Format("{0:N0}", Eval("")) %> </td>
+                        <td class="ContenidoDerecha" >  <asp:ImageButton ID="ImageButton3" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/Agregar2_Nuevo.png" OnClick="btnAgregarRegistroSeleccionado_Click" /> </td>
+                    </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
+            </table>
+            <br />
         </div>
     </div>
+  
+
 </asp:Content>

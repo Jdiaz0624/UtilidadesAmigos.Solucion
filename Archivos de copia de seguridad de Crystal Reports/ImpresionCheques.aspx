@@ -32,62 +32,74 @@
             background-color: dodgerblue;
             color: white;
         }
+          .BotonImagen {
+         width:40px;
+         height:40px;
+       
+       }
     </style>
 
     <div class="container-fluid">
         <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
        <br /><br />
 
-        <div class="form-check-inline">
-            <div class="form-group form-check">
-                <asp:Label ID="lbFormatoCheque" runat="server" Text="Formato: " CssClass="Letranegrita"></asp:Label>
-                <asp:RadioButton ID="rbPDF" runat="server" Text="PDF" CssClass="form-check-input" ToolTip="Generar en PDF" GroupName="FormatoCheque" />
-                <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" CssClass="form-check-input" ToolTip="Generar en Excel" GroupName="FormatoCheque" />
-                <asp:RadioButton ID="rbWord" runat="server" Text="Word" CssClass="form-check-input" ToolTip="Generar en Word" GroupName="FormatoCheque" />
-            </div>
+        <div id="DIVFormatos" runat="server" class="form-check-inline">
+            <asp:Label ID="lbFormatoCheque" runat="server" Text="Formato: " CssClass="Letranegrita"></asp:Label>
+            <asp:RadioButton ID="rbPDF" runat="server" Text="PDF"  ToolTip="Generar en PDF" GroupName="FormatoCheque" />
+            <asp:RadioButton ID="rbExcel" runat="server" Text="Excel" ToolTip="Generar en Excel" GroupName="FormatoCheque" />
+            <asp:RadioButton ID="rbWord" runat="server" Text="Word"  ToolTip="Generar en Word" GroupName="FormatoCheque" />
 
         </div>
         <br />
         <div class="form-check-inline">
-             <div class="form-group form-check">
-                <asp:Label ID="lbEstatusCheque" runat="server" Text="Estatus: " CssClass="Letranegrita"></asp:Label>
-                <asp:RadioButton ID="rbActivos" runat="server" Text="Activos" CssClass="form-check-input" ToolTip="Mostrar solo los cheques activos" GroupName="Estatus" />
-                <asp:RadioButton ID="rbAnulados" runat="server" Text="Anulados" CssClass="form-check-input" ToolTip="Mostrar solo los cheques anulados" GroupName="Estatus" />
-                <asp:RadioButton ID="rbTodos" runat="server" Text="Todos" CssClass="form-check-input" ToolTip="Mostrar todos los cheques" GroupName="Estatus" />
-            </div>
+            <asp:Label ID="lbEstatusCheque" runat="server" Text="Estatus: " CssClass="Letranegrita"></asp:Label>
+                <asp:RadioButton ID="rbActivos" runat="server" Text="Activos"  ToolTip="Mostrar solo los cheques activos" GroupName="Estatus" />
+                <asp:RadioButton ID="rbAnulados" runat="server" Text="Anulados"  ToolTip="Mostrar solo los cheques anulados" GroupName="Estatus" />
+                <asp:RadioButton ID="rbTodos" runat="server" Text="Todos"  ToolTip="Mostrar todos los cheques" GroupName="Estatus" />
         </div>
         <br />
+        
         <div class="form-check-inline">
-            <div class="form-group form-check">
-                <asp:Label ID="lbParametrosEspeciales" runat="server" Text="Otros Parametros: " CssClass="Letranegrita"></asp:Label>
-                <asp:RadioButton ID="rbSinParametros" runat="server" Text="No Aplicar" CssClass="form-check-input" AutoPostBack="true" OnCheckedChanged="rbSinParametros_CheckedChanged" ToolTip="No Aplicar PArametros" GroupName="Parametros" />
-                <asp:RadioButton ID="rbRangoFecha" runat="server" Text="Rango de Fecha" CssClass="form-check-input" AutoPostBack="true" OnCheckedChanged="rbRangoFecha_CheckedChanged" ToolTip="Agregar filtro por rango de fecha" GroupName="Parametros" />
-                <asp:RadioButton ID="rbRangoValor" runat="server" Text="Rango de Valor" CssClass="form-check-input" AutoPostBack="true" OnCheckedChanged="rbRangoValor_CheckedChanged" ToolTip="Agregar filtro por rango de valor" GroupName="Parametros" />
-                <asp:RadioButton ID="rbRangoCheque" runat="server" Text="Rango de Cheque" CssClass="form-check-input" AutoPostBack="true" OnCheckedChanged="rbRangoCheque_CheckedChanged" ToolTip="Agregar filtro por rango de cheque" GroupName="Parametros" />
-            </div>
+            <asp:Label ID="lbPlanillaBancoutilizar" runat="server" ForeColor="Red" CssClass="Letranegrita" Text="Plantilla a Utilizar: "></asp:Label>
+            <asp:RadioButton ID="rbPlantillaReservas" runat="server" Text="Reservas" ToolTip="Generar con formato de Banreservas" GroupName="PlanillaBanco" />
+            <asp:RadioButton ID="rbSegundaPlantillaReservas" runat="server" Visible="false" Text="Reservas Plantilla 2" ToolTip="Generar con formato de Banreservas Segunda Plantilla y Banco de Reservas del Banco 5" GroupName="PlanillaBanco" />
+            <asp:RadioButton ID="rbPlanillaPromerica" runat="server" Text="Promerica y Reservas Banco 5" ToolTip="Generar Cheque con formato de Promerica" GroupName="PlanillaBanco" />
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
+        <br />
+        <hr />
+        <div class="form-check-inline">
+                <asp:Label ID="lbParametrosEspeciales" runat="server" Text="Otros Parametros: " CssClass="Letranegrita"></asp:Label>
+                <asp:RadioButton ID="rbSinParametros" runat="server" Text="No Aplicar"  AutoPostBack="true" OnCheckedChanged="rbSinParametros_CheckedChanged" ToolTip="No Aplicar PArametros" GroupName="Parametros" />
+                <asp:RadioButton ID="rbRangoFecha" runat="server" Text="Rango de Fecha"  AutoPostBack="true" OnCheckedChanged="rbRangoFecha_CheckedChanged" ToolTip="Agregar filtro por rango de fecha" GroupName="Parametros" />
+                <asp:RadioButton ID="rbRangoValor" runat="server" Text="Rango de Valor"  AutoPostBack="true" OnCheckedChanged="rbRangoValor_CheckedChanged" ToolTip="Agregar filtro por rango de valor" GroupName="Parametros" />
+                <asp:RadioButton ID="rbRangoCheque" runat="server" Text="Rango de Cheque"  AutoPostBack="true" OnCheckedChanged="rbRangoCheque_CheckedChanged" ToolTip="Agregar filtro por rango de cheque" GroupName="Parametros" />
+        </div>
+        <div class="row">
+            <div class="col-md-4">
                 <asp:Label ID="lbNumeroChequeConsulta" runat="server" Text="Numero de Cheque" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtNumeroChequeConsulta" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbBeneficiarioConsulta" runat="server" Text="Beneficiario" CssClass="Letranegrita"></asp:Label>
                 <asp:TextBox ID="txtBeneficiario" runat="server"  CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="form-group col-md-4">
+            <div class="col-md-4">
                 <asp:Label ID="lbBAnco" runat="server" Text="Banco" CssClass="Letranegrita"></asp:Label>
                 <asp:DropDownList ID="ddlSeleccionarBanco" runat="server" ToolTip="Seleccionar Banco para Filtro" CssClass="form-control"></asp:DropDownList>
             </div>
+           <div class="col-md-12">
+                    <asp:Label ID="lbImpresora" runat="server" Text="Seleccionar Impresora" CssClass="Letranegrita"></asp:Label>
+                    <asp:DropDownList ID="ddlImpresoras" runat="server" ToolTip="Seleccionar Impresora" CssClass="form-control"></asp:DropDownList> 
+                </div>
         </div>
         <div id="DivRangoFecha" runat="server">
-            <div class="form-row">
-                <div class="form-group col-md-6">
+            <div class="row">
+                <div class="col-md-6">
                     <asp:Label ID="lbFechaDesde" runat="server" Text="Fecha Desde" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtFechaDesde" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="col-md-6">
                     <asp:Label ID="lbFechaHasta" runat="server" Text="Fecha Hasta" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtFechaHasta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                 </div>
@@ -95,51 +107,54 @@
             
         </div>
         <div id="DivRangoCheque" runat="server">
-               <div class="form-row">
-                <div class="form-group col-md-6">
+               <div class="row">
+                <div class="col-md-6">
                     <asp:Label ID="lbNumeroChequeDesde" runat="server" Text="Cheque Desde" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtChequeDesde" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="col-md-6">
                     <asp:Label ID="lbNumeroChqequeHasta" runat="server" Text="Cheque Hasta" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtNumeroChequeHasta" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                 </div>
             </div>
         </div>
         <div id="divRangoValor" runat="server">
-            <div class="form-row">
-                <div class="form-group col-md-6">
+            <div class="row">
+                <div class="col-md-6">
                     <asp:Label ID="lbRangoValorDesde" runat="server" Text="Valor Desde" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtValorDesde" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="col-md-6">
                     <asp:Label ID="lbValorHasta" runat="server" Text="Valor Hasta" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtVAlorHasta" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                 </div>
+                 
             </div>
         </div>
-
+        <br />
+        <br />
         <div align="center">
-            <asp:Button ID="btnConsultar" runat="server" Text="Consultar" ToolTip="Consultar Información" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnConsultar_Click" />
-            <br />
+            <asp:ImageButton ID="btnConsultarRegistros" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultarRegistros_Click" />
+            <br /><br />
             <asp:Label ID="lbCantidadRegistrosTitulo" runat="server" Text="Cantidad de Registros ( " CssClass="Letranegrita"></asp:Label>
             <asp:Label ID="lbCantidadRegistrosVariable" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
             <asp:Label ID="lbCantidadRegistrosCerrar" runat="server" Text=" ) " CssClass="Letranegrita"></asp:Label>
         </div>
         <br />
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
+        <div class="table">
+            <table class="table table-striped">
+                <thead class="table-dark">
                     <tr>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbGenerarChequeHeaderRepeater" runat="server" Text="Generar" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbChequeHEaderRepeater" runat="server" Text="Cheque" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbFechaHEaderRepeater" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:30%" align="left"> <asp:Label ID="lbBeneficiarioHEaderRepeater" runat="server" Text="Beneficiario" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbValorHEaderRepeater" runat="server" Text="Valor" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:15%" align="left"> <asp:Label ID="lbBAncoHEaderRepeater" runat="server" Text="Banco" CssClass="Letranegrita"></asp:Label> </th>
-                        <th style="width:10%" align="left"> <asp:Label ID="lbAnulado" runat="server" Text="Anulado" CssClass="Letranegrita"></asp:Label> </th>
+                        
+                        <th scope="col"> <asp:Label ID="lbChequeHEaderRepeater" runat="server" Text="Cheque" CssClass="Letranegrita"></asp:Label> </th>
+                        <th scope="col"> <asp:Label ID="lbFechaHEaderRepeater" runat="server" Text="Fecha" CssClass="Letranegrita"></asp:Label> </th>
+                        <th scope="col"> <asp:Label ID="lbBeneficiarioHEaderRepeater" runat="server" Text="Beneficiario" CssClass="Letranegrita"></asp:Label> </th>
+                        <th scope="col"> <asp:Label ID="lbValorHEaderRepeater" runat="server" Text="Valor" CssClass="Letranegrita"></asp:Label> </th>
+                        <th scope="col"> <asp:Label ID="lbBAncoHEaderRepeater" runat="server" Text="Banco" CssClass="Letranegrita"></asp:Label> </th>
+                        <th scope="col"> <asp:Label ID="lbAnulado" runat="server" Text="Anulado" CssClass="Letranegrita"></asp:Label> </th>
+                        <th scope="col" >  </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -147,54 +162,55 @@
                         <ItemTemplate>
                             <tr>
                                 <asp:HiddenField ID="hfNumeroChqeue" runat="server" Value='<%# Eval("NumeroCheque") %>' />
+                                <asp:HiddenField ID="hfBeneficiario" runat="server" Value='<%# Eval("Beneficiario1") %>' />
+                                <asp:HiddenField ID="hfBanco" runat="server" Value='<%# Eval("CtaBanco") %>' />
 
-                                <td style="width:10%"> <asp:Button ID="btnGenerarCheque" runat="server" Text="Generar" OnClick="btnGenerarCheque_Click" CssClass="btn btn-outline-secondary btn-sm" /> </td>
-                                <td style="width:10%"> <%# Eval("NumeroCheque") %> </td>
-                                <td style="width:10%"> <%# Eval("FechaCheque") %> </td>
-                                <td style="width:30%"> <%# Eval("Beneficiario1") %> </td>
-                                <td style="width:10%"> <%#string.Format("{0:n2}", Eval("Valor")) %> </td>
-                                <td style="width:15%"> <%# Eval("Banco") %> </td>
-                                <td style="width:10%"> <%# Eval("Anulado") %> </td>
+                                
+                                <td> <%# Eval("NumeroCheque") %> </td>
+                                <td> <%# Eval("FechaCheque") %> </td>
+                                <td> <%# Eval("Beneficiario1") %> </td>
+                                <td> <%#string.Format("{0:n2}", Eval("Valor")) %> </td>
+                                <td> <%# Eval("Banco") %> </td>
+                                <td> <%# Eval("Anulado") %> </td>
+                                <td> <asp:ImageButton ID="btnImprimir" runat="server" ToolTip="Generar Cheque" CssClass="BotonImagen" OnClick="btnImprimir_Click" ImageUrl="~/Imagenes/impresora.png" /> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
         </div>
-        <div align="center">
-        <asp:Label ID="lbPaginaActualTitulo" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariavle" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTitulo" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVariable" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
-             <div id="DivPaginacion" runat="server" align="center">
-        <div style="margin-top: 20px;">
-            <table style="width: 600px">
-                <tr>
-                    <td> <asp:LinkButton ID="LinkPrimeraPagina" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPagina_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkAnterior" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnterior_Click"></asp:LinkButton> </td>
-                    <td>
-                        <asp:DataList ID="dtPaginacion" runat="server" OnItemCommand="dtPaginacion_ItemCommand" OnItemDataBound="dtPaginacion_ItemDataBound" RepeatDirection="Horizontal">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:DataList>
-
-                    </td>
-                    <td> <asp:LinkButton ID="LinkSiguiente" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguiente_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkUltimo" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimo_Click"></asp:LinkButton> </td>
-                </tr>
+       <table class="table">
+                <tfoot class="table-light">
+                    <tr>
+                        <td align="right"><b>Pagina </b> <asp:Label ID="lbPaginaActual" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label> <b>De </b>   <asp:Label ID="lbCantidadPagina" runat="server" Text="0" CssClass="Letranegrita"></asp:Label> </td>
+                    </tr>
+                   
+                </tfoot>
             </table>
-        </div>
-        </div>
+              <div id="DivPaginacionListadoPrincipal" runat="server" align="center" >
+                <div style="margin-top=20px;">
+                    <table style="width:600px;">
+                        <tr>
+                            <td> <asp:ImageButton ID="btnPrimeraPagina" runat="server" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnPaginaAnterior" runat="server" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnPaginaAnterior_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td align="center">
+                                <asp:DataList ID="dtPaginacionListadoPrincipal" runat="server" OnCancelCommand="dtPaginacionListadoPrincipal_CancelCommand" OnItemDataBound="dtPaginacionListadoPrincipal_ItemDataBound" RepeatDirection="Horizontal" >
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnPaginacionCentral" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
+                                    </ItemTemplate>
+                                </asp:DataList>
+
+                            </td>
+                            <td> <asp:ImageButton ID="btnSiguientePagina" runat="server" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguientePagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnUltimaPagina" runat="server" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimaPagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                           
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        <br />
            
 
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
 
    
     </div>

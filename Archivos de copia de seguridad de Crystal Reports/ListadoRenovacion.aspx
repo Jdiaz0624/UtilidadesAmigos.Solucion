@@ -223,6 +223,7 @@
                <div class="form-check-inline">
                    <asp:CheckBox ID="cbProcesarRegistros" runat="server" Text="Procesar Registros" CssClass="Letranegrita" AutoPostBack="true" OnCheckedChanged="cbProcesarRegistros_CheckedChanged" ToolTip="Procesar Registros de las renovaciones" />
                    <asp:CheckBox ID="cbGenerarReporteGestionCobros" runat="server" Text="Reporte de Gestión de Cobros" ToolTip="Generar Reporte de los comentarios de la gestion de cobro" CssClass="Letranegrita" AutoPostBack="true" OnCheckedChanged="cbGenerarReporteGestionCobros_CheckedChanged" />
+                   <asp:CheckBox ID="cbExportarDataResumida" runat="server" Text="Exportar Data Resumida" ToolTip="Exportar los concepto de comentarios resumidos" CssClass="Letranegrita" />
                </div>
 
         <div class="row">
@@ -721,7 +722,7 @@
             <table class="table table-striped">
                 <thead class="table-dark">
                     <tr>
-                    <th scope="col"> Esattus </th>
+                    <th scope="col"> Estatus </th>
                     <th scope="col"> Concepto </th>
                     <th scope="col"> Comentario </th>
                     <th scope="col"> Vigencia </th>
