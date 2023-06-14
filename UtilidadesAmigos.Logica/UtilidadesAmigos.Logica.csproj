@@ -131,6 +131,7 @@
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionSeguridad.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSeguridad\ProcesarInformacionTarjetaAcceso.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionDetail.cs" />
+    <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionSolicitudesEspejo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionSolicitudSuministroEspejo.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionSuministroHeader.cs" />
     <Compile Include="Comunes\ProcesarMantenimientos\InformacionSuministro\ProcesarInformacionSuministroInventario.cs" />

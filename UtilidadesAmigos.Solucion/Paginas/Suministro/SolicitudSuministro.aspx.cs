@@ -348,7 +348,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             }
         }
         #endregion
-
         #region CARGAR LAS LISTAS DESPLEGABLES DE LA PANTALLA DE MANTENIMIENTO
         private void CargarListasDesplegablesMantenimientos() {
             CargarSucursalesMantenimiento();
@@ -417,6 +416,36 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
            //    Convert.ToInt32(ddluni
         }
         #endregion
+        #region PROCESAR LA INFORMACION DE LAS SOLICITUDES ESPEJO
+        private void EliminarRegistrosSolicitudesEspejo(decimal IdUsuario) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSolicitudesEspejo Eliminar = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSolicitudesEspejo(
+                0, 0, 0, 0, IdUsuario, 0, "", 0, 0, 0, DateTime.Now, 0, "");
+            Eliminar.ProcesarInformacion();
+        }
+        private void CargarLosItemsAgregadosSolicitudesEspejo(decimal IdUsuario) {
+
+            var SacarInformacion = ObjDataSuministro.Value.BuscaSuministroSolicitudesEspejo(IdUsuario);
+            rpListadoRegistrosAgregados.DataSource = SacarInformacion;
+            rpListadoRegistrosAgregados.DataBind();
+        }
+        #endregion
+        #region GENERAR NUMERO DE CONECTOR
+        private string GenerarNumeroConector() {
+
+            Random NumeroConector = new Random();
+            int Numero1 = NumeroConector.Next(0, 999999999);
+            int Numero2 = NumeroConector.Next(0, 999999999);
+            int Numero3 = NumeroConector.Next(0, 999999999);
+            string Ano = DateTime.Now.Year.ToString();
+            string Mes = DateTime.Now.Month.ToString();
+            string Dia = DateTime.Now.Day.ToString();
+            string Hora = DateTime.Now.Hour.ToString();
+            string Minuto = DateTime.Now.Minute.ToString();
+            string NumeroConectorGenerado = Ano + Numero1.ToString() + Mes + Numero2.ToString() + Dia + Numero3.ToString() + Hora + Minuto;
+            return NumeroConectorGenerado;
+        }
+        #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -475,6 +504,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             DIVSubBloqueConsultaInventario.Visible = true;
             DIVSubBloqueRegistroSeleccionado.Visible = false;
             DIVSubBloqueCompletarSolicitud.Visible = true;
+            EliminarRegistrosSolicitudesEspejo(IdUsuario);
+            CargarLosItemsAgregadosSolicitudesEspejo(IdUsuario);
+            lbNumeroConector.Text = GenerarNumeroConector();
         }
 
         protected void btnPrimeraPagina_ConsultaSolicitud_Click(object sender, ImageClickEventArgs e)
@@ -529,7 +561,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnSeleccionarInventario_Click(object sender, ImageClickEventArgs e)
         {
-
+            DIVSubBloqueConsultaInventario.Visible = false;
+            DIVSubBloqueRegistroSeleccionado.Visible = true;
+            DIVSubBloqueCompletarSolicitud.Visible = false;
         }
 
         protected void btnPrimeraPagina_ProcesoSolicitud_Click(object sender, ImageClickEventArgs e)

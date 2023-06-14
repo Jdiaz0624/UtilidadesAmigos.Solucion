@@ -334,5 +334,93 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
             return Procesar;
         }
         #endregion
+
+        #region MANTENIMIENTO DE LAS SOLICITUDES ESPEJO
+        /// <summary>
+        /// Este metodo muestra el listado de los registros que se van a crear para la solicitud
+        /// </summary>
+        /// <param name="IdUsuario"></param>
+        /// <param name="Secuencial"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroSolicitudesEspejo> BuscaSuministroSolicitudesEspejo(decimal? IdUsuario = null, int? Secuencial = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_SUMINISTRO_SOLICITUDES_ESPEJO(IdUsuario, Secuencial)
+                           select new UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroSolicitudesEspejo
+                           {
+                               Secuencial =n.Secuencial,
+                               IdSucursal=n.IdSucursal,
+                               Sucursal=n.Sucursal,
+                               IdOficina=n.IdOficina,
+                               Oficina=n.Oficina,
+                               IdDepartamento=n.IdDepartamento,
+                               Departamento=n.Departamento,
+                               IdUsuario=n.IdUsuario,
+                               Usuario=n.Usuario,
+                               CodigoArticulo=n.CodigoArticulo,
+                               DescripcionArticulo=n.DescripcionArticulo,
+                               IdCategoria=n.IdCategoria,
+                               Categoria=n.Categoria,
+                               IdUnidadMedida=n.IdUnidadMedida,
+                               UnidadMedida=n.UnidadMedida,
+                               Cantidad=n.Cantidad,
+                               Fecha0=n.Fecha0,
+                               Fecha=n.Fecha,
+                               Hora=n.Hora,
+                               IdEstatusSolicitud=n.IdEstatusSolicitud,
+                               Estatus=n.Estatus,
+                               CantidadRegistros=n.CantidadRegistros
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este Metodo procesa la informacion de las solicitudes espejos
+        /// </summary>
+        /// <param name="Item"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroSolicitudesEspejo ProcesarSolicitudesEspepejo(UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroSolicitudesEspejo Item, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroSolicitudesEspejo Procesar = null;
+
+            var SilicitudesEspejo = ObjData.SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUDES_ESPEJO(
+                Item.Secuencial,
+                Item.IdSucursal,
+                Item.IdOficina,
+                Item.IdDepartamento,
+                Item.IdUsuario,
+                Item.CodigoArticulo,
+                Item.DescripcionArticulo,
+                Item.IdCategoria,
+                Item.IdUnidadMedida,
+                Item.Cantidad,
+                Item.IdEstatusSolicitud,
+                Accion);
+            if (SilicitudesEspejo != null) {
+
+                Procesar = (from n in SilicitudesEspejo
+                            select new UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroSolicitudesEspejo
+                            {
+                                  Secuencial =n.Secuencial,
+                                  IdSucursal = n.IdSucursal,
+                                  IdOficina = n.IdOficina,
+                                  IdDepartamento = n.IdDepartamento,
+                                  IdUsuario = n.IdUsuario,
+                                  CodigoArticulo = n.CodigoArticulo,
+                                  DescripcionArticulo = n.DescripcionArticulo,
+                                  IdCategoria = n.IdCategoria,
+                                  IdUnidadMedida = n.IdUnidadMedida,
+                                  Cantidad = n.Cantidad,
+                                  Fecha0 = n.Fecha,
+                                  IdEstatusSolicitud = n.IdEstatusSolicitud
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }

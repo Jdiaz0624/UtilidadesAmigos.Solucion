@@ -339,6 +339,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueMantenimiento;
 
         /// <summary>
+        /// lbNumeroConector control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNumeroConector;
+
+        /// <summary>
         /// DIVSubBloqueConsultaInventario control.
         /// </summary>
         /// <remarks>

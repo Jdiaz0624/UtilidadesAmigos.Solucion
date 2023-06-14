@@ -193,6 +193,7 @@
 
         <div id="DIVBloqueMantenimiento" runat="server" visible="false">
             <br />
+            <asp:Label ID="lbNumeroConector" runat="server" Text="0" Visible="false"></asp:Label>
             <div id="DIVSubBloqueConsultaInventario" runat="server">
                 <div class="row">
                  <div class="col-md-3">
