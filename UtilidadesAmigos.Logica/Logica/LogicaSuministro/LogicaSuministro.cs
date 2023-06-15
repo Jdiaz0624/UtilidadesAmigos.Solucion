@@ -213,6 +213,10 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
                 Item.Descripcion,
                 Item.IdMedida,
                 Item.Cantidad,
+                Item.IdSucursal,
+                Item.IdOficina,
+                Item.IdCategoria,
+                Item.StockMinimo,
                 Accion);
             if (Detail != null) {
 
@@ -224,7 +228,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
                                 CodigoArticulo=n.CodigoArticulo,
                                 Descripcion=n.Descripcion,
                                 IdMedida=n.IdMedida,
-                                Cantidad=n.Cantidad
+                                Cantidad=n.Cantidad,
+                                IdSucursal=n.IdSucursal,
+                                IdOficina=n.IdOficina,
+                                IdCategoria=n.IdCategoria,
+                                StockMinimo=n.StockMinimo
                             }).FirstOrDefault();
             }
             return Procesar;

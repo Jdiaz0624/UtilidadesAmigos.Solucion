@@ -85,23 +85,6 @@
       <Column Name="EstatusSolicitud" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="Utililades.SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_DETALLE" Method="SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_DETALLE">
-    <Parameter Name="SecuenciaDetalle" Parameter="secuenciaDetalle" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="NumeroConector" Parameter="numeroConector" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="CodigoArticulo" Parameter="codigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" />
-    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(1000)" />
-    <Parameter Name="IdMedida" Parameter="idMedida" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Cantidad" Parameter="cantidad" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
-    <ElementType Name="SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_DETALLEResult">
-      <Column Name="SecuenciaDetalle" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="NumeroConector" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="CodigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="IdMedida" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="Utililades.SP_BUSCA_SUMINISTRO_INVENTARIO_FINAL" Method="SP_BUSCA_SUMINISTRO_INVENTARIO_FINAL">
     <Parameter Name="IdRegistro" Parameter="idRegistro" Type="System.Decimal" DbType="Decimal(31,0)" />
     <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Int32" DbType="Int" />
@@ -326,6 +309,31 @@
       <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="IdEstatusSolicitud" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_DETALLE" Method="SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_DETALLE">
+    <Parameter Name="SecuenciaDetalle" Parameter="secuenciaDetalle" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="NumeroConector" Parameter="numeroConector" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="CodigoArticulo" Parameter="codigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="IdMedida" Parameter="idMedida" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cantidad" Parameter="cantidad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdSucursal" Parameter="idSucursal" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdOficina" Parameter="idOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdCategoria" Parameter="idCategoria" Type="System.Int32" DbType="Int" />
+    <Parameter Name="StockMinimo" Parameter="stockMinimo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Accion" Parameter="accion" Type="System.String" DbType="VarChar(150)" />
+    <ElementType Name="SP_PROCESAR_INFORMACION_SUMINISTRO_SOLICITUD_DETALLEResult">
+      <Column Name="SecuenciaDetalle" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="NumeroConector" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IdMedida" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdSucursal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdCategoria" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StockMinimo" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

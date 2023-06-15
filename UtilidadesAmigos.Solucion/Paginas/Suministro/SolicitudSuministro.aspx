@@ -3,6 +3,25 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
+
+    <script type="text/javascript">
+
+        function CantidadProcesadaInvalida() {
+            alert("La cantidad que intentas procesar supera la cantidad que esta en almacen, favor de validar.");
+        }
+        $(function () {
+
+            $("#<%=btnAgregarRegistroSeleccionado.ClientID%>").click(function () {
+
+                var CantidadProcesar = $("#<%=txtCantidadProcesarRegistroSeleccionado.ClientID%>").val().length;
+                if (CantidadProcesar < 1) {
+                    alert("El campo Cantidad a procesar no puede estar vacio para realizar esta operación, favor de verificar.");
+                    $("#<%=txtCantidadProcesarRegistroSeleccionado.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
+        })
+    </script>
     <div class="container-fluid">
         <div id="DIVBloqueConsulta" runat="server" visible="true">
             <br />
@@ -215,19 +234,19 @@
 
                  <div class="col-md-3">
                       <asp:Label ID="lbCodigoProceso" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label>
-                     <asp:TextBox ID="txtCodigoProceso" runat="server" CssClass="form-control"></asp:TextBox>
+                     <asp:TextBox ID="txtCodigoProceso" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoProceso_TextChanged" CssClass="form-control"></asp:TextBox>
                  </div>
                  <div class="col-md-3">
                       <asp:Label ID="lbDescripcionProceso" runat="server" Text="Descripción" CssClass="Letranegrita"></asp:Label>
-                     <asp:TextBox ID="txtDescripcionProceso" runat="server" CssClass="form-control"></asp:TextBox>
+                     <asp:TextBox ID="txtDescripcionProceso" runat="server" AutoPostBack="true" OnTextChanged="txtDescripcionProceso_TextChanged" CssClass="form-control"></asp:TextBox>
                  </div>
                  <div class="col-md-3">
                       <asp:Label ID="lbCategoriaProceso" runat="server" Text="Categoria" CssClass="Letranegrita"></asp:Label>
-                     <asp:DropDownList ID="ddlCategoriaProceso" runat="server" ToolTip="Seleccionar Categoria" CssClass="form-control"></asp:DropDownList>
+                     <asp:DropDownList ID="ddlCategoriaProceso" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCategoriaProceso_SelectedIndexChanged" ToolTip="Seleccionar Categoria" CssClass="form-control"></asp:DropDownList>
                  </div>
                  <div class="col-md-3">
                       <asp:Label ID="lbUnidadMedidaProceso" runat="server" Text="Medida" CssClass="Letranegrita"></asp:Label>
-                     <asp:DropDownList ID="ddlUnidadMedida" runat="server" ToolTip="Seleccionar Unidad de Medida" CssClass="form-control"></asp:DropDownList>
+                     <asp:DropDownList ID="ddlUnidadMedida" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlUnidadMedida_SelectedIndexChanged" ToolTip="Seleccionar Unidad de Medida" CssClass="form-control"></asp:DropDownList>
                  </div>
             </div>
             <br />
@@ -299,6 +318,14 @@
 
             <div id="DIVSubBloqueRegistroSeleccionado" runat="server">
                 <br />
+                <asp:Label ID="lbIdSucursalSeleccionada_RegistroSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
+                 <asp:Label ID="lbOficina_RegistroSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
+                 <asp:Label ID="lbDepartamento_RegistroSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
+                 <asp:Label ID="lbUsuario_RegistroSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
+                <asp:Label ID="lbCategoria_RegistroSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
+                <asp:Label ID="lbUnidadMedida_RegistroSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
+
+                <asp:Label ID="lbCodigoItemSeleccionado" runat="server" Text="0" Visible="false"></asp:Label>
                 <h3 class="ContenidoCentro" >Datos del Registro Seleccionado</h3>
                 <div class="row">
                     <div class="col-md-4">

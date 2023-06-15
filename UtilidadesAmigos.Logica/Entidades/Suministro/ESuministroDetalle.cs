@@ -19,5 +19,12 @@ namespace UtilidadesAmigos.Logica.Entidades.Suministro
 		public System.Nullable<int> IdMedida {get;set;}
 
 		public System.Nullable<int> Cantidad {get;set;}
+		public System.Nullable<int> IdSucursal { get; set; }
+
+		public System.Nullable<int> IdOficina { get; set; }
+
+		public System.Nullable<int> IdCategoria { get; set; }
+
+		public System.Nullable<int> StockMinimo { get; set; }
 	}
 }

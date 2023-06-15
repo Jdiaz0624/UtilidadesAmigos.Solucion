@@ -17,6 +17,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSeguridad.LogicaSeguridad> ObjDataSeguridad = new Lazy<Logica.Logica.LogicaSeguridad.LogicaSeguridad>();
 
+        enum EstatusSolicitud { 
+        
+            Activa=1,
+            Procesada=2,
+            Cancelada=3,
+            Rechazada=4
+        }
+
         #region CONTROL DE PAGINACION DE LAS SOLICITUDES
         readonly PagedDataSource pagedDataSource_SolicitudHeader = new PagedDataSource();
         int _PrimeraPagina_SolicitudHeader, _UltimaPagina_SolicitudHeader;
@@ -377,7 +385,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlUnidadMedida, ObjData.Value.BuscaListas("SUMINISTROTIPOMEDIDA", null, null), true);
         }
         #endregion
-        #region MOSTRAT INVENTARIO
+        #region MOSTRAR INVENTARIO
         private void MostrarInventario() {
 
             decimal? _CodigoProducto = string.IsNullOrEmpty(txtCodigoProceso.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtCodigoProceso.Text);
@@ -404,30 +412,35 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 HandlePaging_Inventario(ref dtPaginacion_Inventario, ref lbPaginaActual_Inventario);
             }
         }
-        #endregion
-        #region PROCESAR INFORMACION DE LAS SOLICITUDES ESPEJO
-        private void ProcesarInformacionSolicitudesEspejo(decimal Secuencial, decimal IdUsuario, string Accion) {
-
-            decimal CodigoArticulo = 0;
-           //UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSolicitudSuministroEspejo Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSolicitudSuministroEspejo(
-           //    Secuencial,
-           //    CodigoArticulo,
-           //    txtDescripcionRegistroSeleccionado.Text,
-           //    Convert.ToInt32(ddluni
-        }
-        #endregion
+        #endregion 
         #region PROCESAR LA INFORMACION DE LAS SOLICITUDES ESPEJO
         private void EliminarRegistrosSolicitudesEspejo(decimal IdUsuario) {
-
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSolicitudesEspejo Eliminar = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSolicitudesEspejo(
-                0, 0, 0, 0, IdUsuario, 0, "", 0, 0, 0, DateTime.Now, 0, "");
+                0, 0, 0, 0, IdUsuario, 0, "", 0, 0, 0, DateTime.Now, 0, "DELETEALL");
             Eliminar.ProcesarInformacion();
         }
         private void CargarLosItemsAgregadosSolicitudesEspejo(decimal IdUsuario) {
-
             var SacarInformacion = ObjDataSuministro.Value.BuscaSuministroSolicitudesEspejo(IdUsuario);
             rpListadoRegistrosAgregados.DataSource = SacarInformacion;
             rpListadoRegistrosAgregados.DataBind();
+        }
+        private void ProcesarInformacionSuministroEspejo(int IdSucursal, int IdOficina, int IdDepartamento, decimal IdUsuario, string Accion) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSolicitudesEspejo Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSolicitudesEspejo(
+                0,
+                IdSucursal,
+                IdOficina,
+                IdDepartamento,
+                IdUsuario,
+                Convert.ToDecimal(lbCodigoItemSeleccionado.Text),
+                txtDescripcionRegistroSeleccionado.Text,
+                Convert.ToInt32(lbCategoria_RegistroSeleccionado.Text),
+                Convert.ToInt32(lbUnidadMedida_RegistroSeleccionado.Text),
+                Convert.ToInt32(txtCantidadProcesarRegistroSeleccionado.Text),
+                DateTime.Now,
+                (int)EstatusSolicitud.Activa,
+                Accion);
+            Procesar.ProcesarInformacion();
         }
         #endregion
         #region GENERAR NUMERO DE CONECTOR
@@ -444,6 +457,40 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             string Minuto = DateTime.Now.Minute.ToString();
             string NumeroConectorGenerado = Ano + Numero1.ToString() + Mes + Numero2.ToString() + Dia + Numero3.ToString() + Hora + Minuto;
             return NumeroConectorGenerado;
+        }
+        #endregion
+        #region PROCESAR LA INFORMACION DE LA SOLICITUD
+        private void ProcesarSolicitudHeader(decimal NumeroSolicitud,string NumeroConector, decimal IdUsuario,string Accion) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroHeader Guardar = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroHeader(
+                NumeroSolicitud,
+                NumeroConector,
+                IdUsuario,
+                true,
+                Accion);
+            Guardar.ProcesarInformacion();
+        }
+        private void ProcesarSolicidutDetalle(decimal IdUsuario, string NumeroConector) {
+
+            //BUSCAMOS TODOS LOS REGISTROS AGREGADOS PARA LA SOLICITUD
+            var SacarInformacionEspejo = ObjDataSuministro.Value.BuscaSuministroSolicitudesEspejo(IdUsuario);
+            foreach (var n in SacarInformacionEspejo) {
+
+                //GUARDAMOS LA INFORMACION
+                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionDetail Guardar = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionDetail(
+                    (decimal)n.Secuencial,
+                    NumeroConector,
+                    (decimal)n.CodigoArticulo,
+                    n.DescripcionArticulo,
+                    (int)n.IdUnidadMedida,
+                    (int)n.Cantidad,
+                    (int)n.IdSucursal,
+                    (int)n.IdOficina,
+                    (int)n.IdCategoria,
+                    1,
+                    "INSERT");
+                Guardar.ProcesarInformacion();
+            }
         }
         #endregion
 
@@ -500,6 +547,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 ddlUsuarioProceso.Enabled = false;
                 CargarCategoriasMAntenimiento();
                 CargarUnidadMedidaMantenimiento();
+              
             }
             DIVSubBloqueConsultaInventario.Visible = true;
             DIVSubBloqueRegistroSeleccionado.Visible = false;
@@ -507,6 +555,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             EliminarRegistrosSolicitudesEspejo(IdUsuario);
             CargarLosItemsAgregadosSolicitudesEspejo(IdUsuario);
             lbNumeroConector.Text = GenerarNumeroConector();
+            lbIdSucursalSeleccionada_RegistroSeleccionado.Text = IdSucursal.ToString();
+            lbOficina_RegistroSeleccionado.Text = IdOficina.ToString();
+            lbDepartamento_RegistroSeleccionado.Text = IdDepartamento.ToString();
         }
 
         protected void btnPrimeraPagina_ConsultaSolicitud_Click(object sender, ImageClickEventArgs e)
@@ -561,9 +612,25 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnSeleccionarInventario_Click(object sender, ImageClickEventArgs e)
         {
+            var RegistroSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var CodigoItem = ((HiddenField)RegistroSeleccionado.FindControl("hfCodigoInventario")).Value.ToString();
+
             DIVSubBloqueConsultaInventario.Visible = false;
             DIVSubBloqueRegistroSeleccionado.Visible = true;
             DIVSubBloqueCompletarSolicitud.Visible = false;
+
+            var SacarDatosInventario = ObjDataSuministro.Value.BuscaInventario(Convert.ToDecimal(CodigoItem));
+            foreach (var n in SacarDatosInventario) {
+
+                lbCodigoItemSeleccionado.Text = n.IdRegistro.ToString();
+                txtDescripcionRegistroSeleccionado.Text = n.Articulo;
+                txtCategoriaRegistroSeleccionado.Text = n.Categoria;
+                txtMedidaRegistroSeleccionado.Text = n.UnidadMedida;
+                txtStockRegistroSeleccionado.Text = n.Stock.ToString();
+                txtCantidadProcesarRegistroSeleccionado.Text = "1";
+                lbCategoria_RegistroSeleccionado.Text = n.IdCategoria.ToString();
+                lbUnidadMedida_RegistroSeleccionado.Text = n.IdUnidadMedida.ToString();
+            }
         }
 
         protected void btnPrimeraPagina_ProcesoSolicitud_Click(object sender, ImageClickEventArgs e)
@@ -598,7 +665,27 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnAgregarRegistroSeleccionado_Click(object sender, ImageClickEventArgs e)
         {
-
+            int CantidadAlmacen = 0, CantidadProcesar = 0;
+            CantidadAlmacen = Convert.ToInt32(txtStockRegistroSeleccionado.Text);
+            CantidadProcesar = Convert.ToInt32(txtCantidadProcesarRegistroSeleccionado.Text);
+            if (CantidadProcesar > CantidadAlmacen)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "CantidadProcesadaInvalida()", "CantidadProcesadaInvalida();", true);
+            }
+            else {
+                decimal idUsuario = (decimal)Session["IdUsuario"];
+                //GUARDAMOS LA INFORMACION PARA EL ESPEJO
+                ProcesarInformacionSuministroEspejo(
+                    Convert.ToInt32(lbIdSucursalSeleccionada_RegistroSeleccionado.Text),
+                    Convert.ToInt32(lbOficina_RegistroSeleccionado.Text),
+                    Convert.ToInt32(lbDepartamento_RegistroSeleccionado.Text),
+                    idUsuario,
+                    "INSERT");
+                DIVSubBloqueConsultaInventario.Visible = true;
+                DIVSubBloqueRegistroSeleccionado.Visible = false;
+                DIVSubBloqueCompletarSolicitud.Visible = true;
+                CargarLosItemsAgregadosSolicitudesEspejo(idUsuario);
+            }
         }
 
         protected void btnVolverRegistroSeleccionado_Click(object sender, ImageClickEventArgs e)
@@ -642,6 +729,30 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             CurrentPage_Inventario = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostrarInventario();
             MoverValoresPaginacion_Inventario((int)OpcionesPaginacionValores_Inventario.PaginaAnterior, ref lbPaginaActual_Inventario, ref lbCantidadPaginaVariable_Inventario);
+        }
+
+        protected void txtCodigoProceso_TextChanged(object sender, EventArgs e)
+        {
+            CurrentPage_Inventario = 0;
+            MostrarInventario();
+        }
+
+        protected void txtDescripcionProceso_TextChanged(object sender, EventArgs e)
+        {
+            CurrentPage_Inventario = 0;
+            MostrarInventario();
+        }
+
+        protected void ddlCategoriaProceso_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CurrentPage_Inventario = 0;
+            MostrarInventario();
+        }
+
+        protected void ddlUnidadMedida_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CurrentPage_Inventario = 0;
+            MostrarInventario();
         }
 
         protected void btnGuardarSolicitud_Click(object sender, ImageClickEventArgs e)

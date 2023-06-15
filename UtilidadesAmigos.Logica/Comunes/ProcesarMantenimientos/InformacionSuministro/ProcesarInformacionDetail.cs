@@ -16,6 +16,10 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSumi
         private string Descripcion = "";
         private int IdMedida = 0;
         private int Cantidad = 0;
+        private int IdSucursal = 0;
+        private int IdOficina = 0;
+        private int IdCategoria = 0;
+        private int StockMinimo = 0;
         private string Accion = "";
 
         public ProcesarInformacionDetail(
@@ -25,6 +29,10 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSumi
             string DescripcionCON,
             int IdMedidaCON,
             int CantidadCON,
+            int IdSucursalCON,
+            int IdOficinaCON,
+            int IdCategoriaCON,
+            int StockMinimoCON,
             string AccionCON)
         {
             SecuenciaDetalle = SecuenciaDetalleCON;
@@ -33,6 +41,10 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSumi
             Descripcion = DescripcionCON;
             IdMedida = IdMedidaCON;
             Cantidad = CantidadCON;
+            IdSucursal = IdSucursalCON;
+            IdOficina = IdOficinaCON;
+            IdCategoria = IdCategoriaCON;
+            StockMinimo = StockMinimoCON;
             Accion = AccionCON;
         }
 
@@ -46,6 +58,10 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSumi
             Procesar.Descripcion = Descripcion;
             Procesar.IdMedida = IdMedida;
             Procesar.Cantidad = Cantidad;
+            Procesar.IdSucursal = IdSucursal;
+            Procesar.IdOficina = IdOficina;
+            Procesar.IdCategoria = IdCategoria;
+            Procesar.StockMinimo = StockMinimo;
 
             var MAN = ObjData.ProcesarSuministroDetalle(Procesar, Accion);
         }

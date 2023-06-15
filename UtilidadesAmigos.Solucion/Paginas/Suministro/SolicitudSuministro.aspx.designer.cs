@@ -600,6 +600,69 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVSubBloqueRegistroSeleccionado;
 
         /// <summary>
+        /// lbIdSucursalSeleccionada_RegistroSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbIdSucursalSeleccionada_RegistroSeleccionado;
+
+        /// <summary>
+        /// lbOficina_RegistroSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbOficina_RegistroSeleccionado;
+
+        /// <summary>
+        /// lbDepartamento_RegistroSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDepartamento_RegistroSeleccionado;
+
+        /// <summary>
+        /// lbUsuario_RegistroSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbUsuario_RegistroSeleccionado;
+
+        /// <summary>
+        /// lbCategoria_RegistroSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCategoria_RegistroSeleccionado;
+
+        /// <summary>
+        /// lbUnidadMedida_RegistroSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbUnidadMedida_RegistroSeleccionado;
+
+        /// <summary>
+        /// lbCodigoItemSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoItemSeleccionado;
+
+        /// <summary>
         /// lbDescripcionRegistroSeleccionado control.
         /// </summary>
         /// <remarks>
