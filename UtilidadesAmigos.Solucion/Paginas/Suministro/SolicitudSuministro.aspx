@@ -234,7 +234,7 @@
 
                  <div class="col-md-3">
                       <asp:Label ID="lbCodigoProceso" runat="server" Text="Codigo" CssClass="Letranegrita"></asp:Label>
-                     <asp:TextBox ID="txtCodigoProceso" runat="server" AutoPostBack="true" OnTextChanged="txtCodigoProceso_TextChanged" CssClass="form-control"></asp:TextBox>
+                     <asp:TextBox ID="txtCodigoProceso" runat="server" TextMode="Number" AutoPostBack="true" OnTextChanged="txtCodigoProceso_TextChanged" CssClass="form-control"></asp:TextBox>
                  </div>
                  <div class="col-md-3">
                       <asp:Label ID="lbDescripcionProceso" runat="server" Text="Descripción" CssClass="Letranegrita"></asp:Label>
@@ -391,7 +391,7 @@
                         <td> <%# Eval("Categoria") %> </td>
                         <td> <%# Eval("UnidadMedida") %> </td>
                         <td class="ContenidoCentro" > <%#string.Format("{0:N0}", Eval("Cantidad")) %> </td>
-                        <td class="ContenidoDerecha" >  <asp:ImageButton ID="ImageButton3" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/Agregar2_Nuevo.png" OnClick="btnAgregarRegistroSeleccionado_Click" /> </td>
+                        <td class="ContenidoDerecha" >  <asp:ImageButton ID="btnBorrarRegitro" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/borrar.png" OnClick="btnBorrarRegitro_Click" /> </td>
                     </tr>
                         </ItemTemplate>
                     </asp:Repeater>

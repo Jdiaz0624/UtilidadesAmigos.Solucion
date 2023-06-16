@@ -493,7 +493,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             }
         }
         #endregion
-
+        private void ConfiguracionInicial() {
+            txtNumeroSolicitud_ConsultaSolicitud.Text = string.Empty;
+           
+            UtilidadesAmigos.Logica.Comunes.Rangofecha Fecha = new Logica.Comunes.Rangofecha();
+            Fecha.FechaMes(ref txtFechaDesde_ConsultaSolicitud, ref txtFechaHasta_ConsultaSolicitud);
+            EstatusSolicitudConsulta();
+            DIvBloqueDetalleRegistro.Visible = false;
+            cbNoAgregarRangoFecha.Checked = false;
+            CargarDatosUSuario((decimal)Session["IdUsuario"]);
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -505,11 +514,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "SOLICITUD DE MATERIALES";
 
-                CargarDatosUSuario((decimal)Session["IdUsuario"]);
-                UtilidadesAmigos.Logica.Comunes.Rangofecha Fecha = new Logica.Comunes.Rangofecha();
-                Fecha.FechaMes(ref txtFechaDesde_ConsultaSolicitud, ref txtFechaHasta_ConsultaSolicitud);
-                EstatusSolicitudConsulta();
-                DIvBloqueDetalleRegistro.Visible = false;
+                ConfiguracionInicial();
             }
         }
 
@@ -685,12 +690,20 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 DIVSubBloqueRegistroSeleccionado.Visible = false;
                 DIVSubBloqueCompletarSolicitud.Visible = true;
                 CargarLosItemsAgregadosSolicitudesEspejo(idUsuario);
+                txtCodigoProceso.Text = string.Empty;
+                txtDescripcionProceso.Text = string.Empty;
+                CargarCategoriasMAntenimiento();
+                CargarUnidadMedidaMantenimiento();
+                rpListadoInventario.DataSource = null;
+                rpListadoInventario.DataBind();
             }
         }
 
         protected void btnVolverRegistroSeleccionado_Click(object sender, ImageClickEventArgs e)
         {
-
+            DIVSubBloqueConsultaInventario.Visible = true;
+            DIVSubBloqueRegistroSeleccionado.Visible = false;
+            DIVSubBloqueCompletarSolicitud.Visible = true;
         }
 
         protected void btnPrimeraPagina_Inventario_Click(object sender, ImageClickEventArgs e)
@@ -755,6 +768,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             MostrarInventario();
         }
 
+        protected void btnBorrarRegitro_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
         protected void btnGuardarSolicitud_Click(object sender, ImageClickEventArgs e)
         {
 
@@ -762,7 +780,12 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnVolverAtras_Click(object sender, ImageClickEventArgs e)
         {
-
+            DIVSubBloqueConsultaInventario.Visible = false;
+            DIVSubBloqueRegistroSeleccionado.Visible = false;
+            DIVSubBloqueCompletarSolicitud.Visible = false;
+            DIVBloqueMantenimiento.Visible = false;
+            DIVBloqueConsulta.Visible = true;
+            ConfiguracionInicial();
         }
     }
 }
