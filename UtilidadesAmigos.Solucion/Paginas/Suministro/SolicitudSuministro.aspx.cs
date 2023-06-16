@@ -770,7 +770,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnBorrarRegitro_Click(object sender, ImageClickEventArgs e)
         {
+            var RegistroSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var CodigoProducto = ((HiddenField)RegistroSeleccionado.FindControl("hfIdCodigoProductoAGregado")).Value.ToString();
+            var Secuencia = ((HiddenField)RegistroSeleccionado.FindControl("hfSecuenciaEspejo")).Value.ToString();
 
+            //ELIMINAMOS EL REGISTRO
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSolicitudesEspejo Eliminar = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSolicitudesEspejo(
+                Convert.ToInt32(Secuencia), 0, 0, 0, 0,
+                Convert.ToDecimal(CodigoProducto), "", 0, 0, 0, DateTime.Now, 0, "DELETE");
+            Eliminar.ProcesarInformacion();
+            CargarLosItemsAgregadosSolicitudesEspejo((decimal)Session["IdUsuario"]);
         }
 
         protected void btnGuardarSolicitud_Click(object sender, ImageClickEventArgs e)

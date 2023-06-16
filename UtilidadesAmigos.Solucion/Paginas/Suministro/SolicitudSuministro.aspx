@@ -391,7 +391,7 @@
                         <td> <%# Eval("Categoria") %> </td>
                         <td> <%# Eval("UnidadMedida") %> </td>
                         <td class="ContenidoCentro" > <%#string.Format("{0:N0}", Eval("Cantidad")) %> </td>
-                        <td class="ContenidoDerecha" >  <asp:ImageButton ID="btnBorrarRegitro" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/borrar.png" OnClick="btnBorrarRegitro_Click" /> </td>
+                        <td class="ContenidoDerecha" >  <asp:ImageButton ID="btnBorrarRegitro" CssClass="BotonImagen" runat="server" ImageUrl="~/ImagenesBotones/borrar.png" OnClick="btnBorrarRegitro_Click" OnClientClick="return confirm('¿Quieres Eliminar Este Registro?');" /> </td>
                     </tr>
                         </ItemTemplate>
                     </asp:Repeater>
