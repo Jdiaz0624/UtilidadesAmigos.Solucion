@@ -766,7 +766,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         {
             CurrentPage_Inventario = 0;
             MostrarInventario();
-        }
+        }   
 
         protected void btnBorrarRegitro_Click(object sender, ImageClickEventArgs e)
         {
