@@ -631,7 +631,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 txtDescripcionRegistroSeleccionado.Text = n.Articulo;
                 txtCategoriaRegistroSeleccionado.Text = n.Categoria;
                 txtMedidaRegistroSeleccionado.Text = n.UnidadMedida;
-                txtStockRegistroSeleccionado.Text = n.Stock.ToString();
+               // txtStockRegistroSeleccionado.Text = n.Stock.ToString();
                 txtCantidadProcesarRegistroSeleccionado.Text = "1";
                 lbCategoria_RegistroSeleccionado.Text = n.IdCategoria.ToString();
                 lbUnidadMedida_RegistroSeleccionado.Text = n.IdUnidadMedida.ToString();
@@ -670,33 +670,34 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnAgregarRegistroSeleccionado_Click(object sender, ImageClickEventArgs e)
         {
-            int CantidadAlmacen = 0, CantidadProcesar = 0;
-            CantidadAlmacen = Convert.ToInt32(txtStockRegistroSeleccionado.Text);
-            CantidadProcesar = Convert.ToInt32(txtCantidadProcesarRegistroSeleccionado.Text);
-            if (CantidadProcesar > CantidadAlmacen)
-            {
-                ClientScript.RegisterStartupScript(GetType(), "CantidadProcesadaInvalida()", "CantidadProcesadaInvalida();", true);
-            }
-            else {
-                decimal idUsuario = (decimal)Session["IdUsuario"];
-                //GUARDAMOS LA INFORMACION PARA EL ESPEJO
-                ProcesarInformacionSuministroEspejo(
-                    Convert.ToInt32(lbIdSucursalSeleccionada_RegistroSeleccionado.Text),
-                    Convert.ToInt32(lbOficina_RegistroSeleccionado.Text),
-                    Convert.ToInt32(lbDepartamento_RegistroSeleccionado.Text),
-                    idUsuario,
-                    "INSERT");
-                DIVSubBloqueConsultaInventario.Visible = true;
-                DIVSubBloqueRegistroSeleccionado.Visible = false;
-                DIVSubBloqueCompletarSolicitud.Visible = true;
-                CargarLosItemsAgregadosSolicitudesEspejo(idUsuario);
-                txtCodigoProceso.Text = string.Empty;
-                txtDescripcionProceso.Text = string.Empty;
-                CargarCategoriasMAntenimiento();
-                CargarUnidadMedidaMantenimiento();
-                rpListadoInventario.DataSource = null;
-                rpListadoInventario.DataBind();
-            }
+            //int CantidadAlmacen = 0, CantidadProcesar = 0;
+            //CantidadAlmacen = Convert.ToInt32(txtStockRegistroSeleccionado.Text);
+            //CantidadProcesar = Convert.ToInt32(txtCantidadProcesarRegistroSeleccionado.Text);
+            //if (CantidadProcesar > CantidadAlmacen)
+            //{
+            //    ClientScript.RegisterStartupScript(GetType(), "CantidadProcesadaInvalida()", "CantidadProcesadaInvalida();", true);
+            //}
+            //else {
+               
+            //}
+            decimal idUsuario = (decimal)Session["IdUsuario"];
+            //GUARDAMOS LA INFORMACION PARA EL ESPEJO
+            ProcesarInformacionSuministroEspejo(
+                Convert.ToInt32(lbIdSucursalSeleccionada_RegistroSeleccionado.Text),
+                Convert.ToInt32(lbOficina_RegistroSeleccionado.Text),
+                Convert.ToInt32(lbDepartamento_RegistroSeleccionado.Text),
+                idUsuario,
+                "INSERT");
+            DIVSubBloqueConsultaInventario.Visible = true;
+            DIVSubBloqueRegistroSeleccionado.Visible = false;
+            DIVSubBloqueCompletarSolicitud.Visible = true;
+            CargarLosItemsAgregadosSolicitudesEspejo(idUsuario);
+            txtCodigoProceso.Text = string.Empty;
+            txtDescripcionProceso.Text = string.Empty;
+            CargarCategoriasMAntenimiento();
+            CargarUnidadMedidaMantenimiento();
+            rpListadoInventario.DataSource = null;
+            rpListadoInventario.DataBind();
         }
 
         protected void btnVolverRegistroSeleccionado_Click(object sender, ImageClickEventArgs e)
@@ -784,7 +785,17 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnGuardarSolicitud_Click(object sender, ImageClickEventArgs e)
         {
+            //VALIDAMOS SI SE ENCUENTRAN REGISTROS AGREGADOS
+            var ValidacionRegistrosEspejos = ObjDataSuministro.Value.BuscaSuministroSolicitudesEspejo((decimal)Session["IdUsuario"]);
+            if (ValidacionRegistrosEspejos.Count() < 1)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "NoSeEncontraronRegistros()", "NoSeEncontraronRegistros();", true);
+            }
+            else
+            {
 
+
+            }
         }
 
         protected void btnVolverAtras_Click(object sender, ImageClickEventArgs e)

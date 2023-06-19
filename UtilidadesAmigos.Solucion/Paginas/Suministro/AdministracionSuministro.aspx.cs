@@ -543,7 +543,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void dtPaginacion_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+      
         }
 
         protected void btnSiguientePagina_SolicitudesHeader_Click(object sender, ImageClickEventArgs e)
@@ -563,7 +563,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnProcesar_Click(object sender, ImageClickEventArgs e)
         {
-
+           
         }
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)

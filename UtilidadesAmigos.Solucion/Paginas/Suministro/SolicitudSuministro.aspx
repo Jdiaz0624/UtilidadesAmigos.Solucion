@@ -9,6 +9,11 @@
         function CantidadProcesadaInvalida() {
             alert("La cantidad que intentas procesar supera la cantidad que esta en almacen, favor de validar.");
         }
+
+        function NoSeEncontraronRegistros() {
+            alert("No es posible proceder con esta solicitud por que no se encontraron registros que Procesar.");
+        }
+
         $(function () {
 
             $("#<%=btnAgregarRegistroSeleccionado.ClientID%>").click(function () {
@@ -340,10 +345,10 @@
                         <asp:Label ID="lbMedidaRegistroSeleccionado" runat="server" Text="Medida" CssClass="Letranegrita"></asp:Label> 
                         <asp:TextBox ID="txtMedidaRegistroSeleccionado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                     </div>
-                    <div class="col-md-2">
+                   <%-- <div class="col-md-2">
                         <asp:Label ID="lbStockRegistroSeleccionado" runat="server" Text="Disponible" CssClass="Letranegrita"></asp:Label> 
                         <asp:TextBox ID="txtStockRegistroSeleccionado" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
-                    </div>
+                    </div>--%>
                     <div class=" col-md-2">
                         <asp:Label ID="lbCantidadProcesarRegistroSeleccionado" runat="server" Text="Cantidad a Procesar" CssClass="  Letranegrita"></asp:Label> 
                         <asp:TextBox ID="txtCantidadProcesarRegistroSeleccionado" runat="server" CssClass="  form-control"></asp:TextBox>
