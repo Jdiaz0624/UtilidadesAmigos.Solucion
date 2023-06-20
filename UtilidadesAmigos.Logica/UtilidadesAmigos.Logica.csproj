@@ -492,6 +492,7 @@
     <Compile Include="Entidades\Seguridad\EOpcionPantalla.cs" />
     <Compile Include="Entidades\Seguridad\EPantallas.cs" />
     <Compile Include="Entidades\Seguridad\EPerfiles.cs" />
+    <Compile Include="Entidades\Suministro\EListadoSolicitudesHeader.cs" />
     <Compile Include="Entidades\Suministro\ESuministroDetalle.cs" />
     <Compile Include="Entidades\Suministro\ESuministroEspejo.cs" />
     <Compile Include="Entidades\Suministro\ESuministroHeader.cs" />

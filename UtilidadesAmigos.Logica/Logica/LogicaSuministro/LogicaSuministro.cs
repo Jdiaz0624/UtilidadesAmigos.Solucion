@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UtilidadesAmigos.Logica.Entidades.Mantenimientos;
 
 namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
 {
@@ -428,6 +429,52 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
                             }).FirstOrDefault();
             }
             return Procesar;
+        }
+        #endregion
+
+        #region LISTADO DE SOLICITUDES
+        /// <summary>
+        /// Este metodo muestra las solicitudes creadas por los usuarios
+        /// </summary>
+        /// <param name="CodigoSucursal"></param>
+        /// <param name="CodigoOficina"></param>
+        /// <param name="CodigoDepartamento"></param>
+        /// <param name="CodigoUsuario"></param>
+        /// <param name="NumeroSocilitud"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="EstatusSolicitud"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Suministro.EListadoSolicitudesHeader> BuscaListadoSolicitudesHeader(int? CodigoSucursal = null, int? CodigoOficina = null, int? CodigoDepartamento = null, decimal? CodigoUsuario = null, decimal? NumeroSocilitud = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? EstatusSolicitud = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_LISTADO_SOLICITUDES_HEADER(CodigoSucursal, CodigoOficina, CodigoDepartamento, CodigoUsuario, NumeroSocilitud, FechaDesde, FechaHasta, EstatusSolicitud)
+                           select new UtilidadesAmigos.Logica.Entidades.Suministro.EListadoSolicitudesHeader
+                           {
+                               NumeroSolicitud=n.NumeroSolicitud,
+                               NumeroConector=n.NumeroConector,
+                               IdUsuario=n.IdUsuario,
+                               Persona=n.Persona,
+                               IdSucursal=n.IdSucursal,
+                               Sucursal=n.Sucursal,
+                               IdOficina=n.IdOficina,
+                               Oficina=n.Oficina,
+                               IdDepartamento=n.IdDepartamento,
+                               Departamento=n.Departamento,
+                               FechaSolicitud0=n.FechaSolicitud0,
+                               Fecha=n.Fecha,
+                               Hora=n.Hora,
+                               EstatusSolicitud=n.EstatusSolicitud,
+                               Estatus=n.Estatus,
+                               CantidadItems=n.CantidadItems,
+                               CantidadSolicitudes=n.CantidadSolicitudes,
+                               CantidadSolicitudes_Activas=n.CantidadSolicitudes_Activas,
+                               CantidadSolicitudes_Procesadas=n.CantidadSolicitudes_Procesadas,
+                               CantidadSolicitudes_Canceladas=n.CantidadSolicitudes_Canceladas,
+                               CantidadSolicitudes_Rechazadas=n.CantidadSolicitudes_Rechazadas
+                           }).ToList();
+            return Listado;
         }
         #endregion
     }

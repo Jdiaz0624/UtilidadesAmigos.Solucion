@@ -15,6 +15,42 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
     {
 
         /// <summary>
+        /// lbCodigoSucursal_Header control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoSucursal_Header;
+
+        /// <summary>
+        /// lbCodigoOficina_Header control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoOficina_Header;
+
+        /// <summary>
+        /// lbCodigoDepartamento_Header control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoDepartamento_Header;
+
+        /// <summary>
+        /// lbCodigoUsuario_Header control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoUsuario_Header;
+
+        /// <summary>
         /// DIVBloqueConsulta control.
         /// </summary>
         /// <remarks>

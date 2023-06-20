@@ -299,6 +299,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 lbOficina_ConsultaSolicitud.Text = n.Oficina;
                 lbDepartamento_ConsultaSolicitud.Text = n.Departamento;
                 lbSolicitante_ConsultaSolicitud.Text = n.Persona;
+
+                lbCodigoSucursal_Header.Text = n.IdSucursal.ToString();
+                lbCodigoDepartamento_Header.Text = n.IdDepartamento.ToString();
+                lbCodigoOficina_Header.Text = n.IdOficina.ToString();
+                lbCodigoUsuario_Header.Text = n.IdUsuario.ToString();
             }
         }
         #endregion
@@ -467,7 +472,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 NumeroConector,
                 IdUsuario,
                 true,
-                Accion);
+                "INSERT");
             Guardar.ProcesarInformacion();
         }
         private void ProcesarSolicidutDetalle(decimal IdUsuario, string NumeroConector) {
@@ -493,7 +498,66 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             }
         }
         #endregion
+        #region MOSTRAR LAS SOLICITUDES
+        private void MostrarSolicitudesHEader(int IdSucursal, int IdOficina, int IdDepartamento, decimal IdUsuario) {
+
+            decimal? _NumeroSolicitud = string.IsNullOrEmpty(txtNumeroSolicitud_ConsultaSolicitud.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroSolicitud_ConsultaSolicitud.Text);
+            DateTime? _FechaDesde = cbNoAgregarRangoFecha.Checked == false ? Convert.ToDateTime(txtFechaDesde_ConsultaSolicitud.Text) : new Nullable<DateTime>();
+            DateTime? _FechaHasta = cbNoAgregarRangoFecha.Checked == false ? Convert.ToDateTime(txtFechaHasta_ConsultaSolicitud.Text) : new Nullable<DateTime>();
+            int? _Estatus = ddlEstatus_ConsultaSolicitud.SelectedValue != "-1" ? Convert.ToInt32(ddlEstatus_ConsultaSolicitud.SelectedValue) : new Nullable<int>();
+
+            int CantidadSolicitudes = 0, SolicitudesActivas = 0, SolicitudesProcesadas = 0, SolicitudesCanceladas = 0, SolicitudesRechazadas = 0;
+
+            var Listado = ObjDataSuministro.Value.BuscaListadoSolicitudesHeader(
+                IdSucursal,
+                IdOficina,
+                IdDepartamento,
+                IdUsuario,
+                _NumeroSolicitud,
+                _FechaDesde,
+                _FechaHasta,
+                _Estatus);
+            if (Listado.Count() < 1)
+            {
+                lbCantidadSolicitudes_ConsultaSolicitud.Text = "0";
+                lbSolicitudesActivas_ConsultaSolicitud.Text = "0";
+                lbSolicitudesProcesadas_ConsultaSolicitud.Text = "0";
+                lbSolicitudesCanceladas_ConsultaSolicitud.Text = "0";
+                lbSolicitudesRechazadas_ConsultaSolicitud.Text = "0";
+                rpListadoSolicitudes_ConsultaSolicitud.DataSource = null;
+                rpListadoSolicitudes_ConsultaSolicitud.DataBind();
+            }
+            else {
+
+                foreach (var n in Listado) {
+
+                    CantidadSolicitudes = (int)n.CantidadSolicitudes;
+                    SolicitudesActivas = (int)n.CantidadSolicitudes_Activas;
+                    SolicitudesProcesadas = (int)n.CantidadSolicitudes_Procesadas;
+                    SolicitudesCanceladas = (int)n.CantidadSolicitudes_Canceladas;
+                    SolicitudesRechazadas = (int)n.CantidadSolicitudes_Rechazadas;
+                }
+                Paginar_SolicitudHeader(ref rpListadoSolicitudes_ConsultaSolicitud, Listado, 10, ref lbCantidadPaginaVariable_ConsultaSolicitud, ref btnPrimeraPagina_ConsultaSolicitud, ref btnPaginaAnterior_ConsultaSolicitud, ref btnSiguientePagina_ConsultaSolicitud, ref btnUltimaPagina_ConsultaSolicitud);
+                HandlePaging_Inventario(ref dtPaginacion_ConsultaSolicitud, ref lbPaginaActualVariable_ConsultaSolicitud);
+
+
+                lbCantidadSolicitudes_ConsultaSolicitud.Text = CantidadSolicitudes.ToString("N0");
+                lbSolicitudesActivas_ConsultaSolicitud.Text = SolicitudesActivas.ToString("N0");
+                lbSolicitudesProcesadas_ConsultaSolicitud.Text = SolicitudesProcesadas.ToString("N0");
+                lbSolicitudesCanceladas_ConsultaSolicitud.Text = SolicitudesCanceladas.ToString("N0");
+                lbSolicitudesRechazadas_ConsultaSolicitud.Text = SolicitudesRechazadas.ToString("N0");
+            }
+           
+
+        }
+        #endregion
         private void ConfiguracionInicial() {
+            DIVSubBloqueConsultaInventario.Visible = false;
+            DIVSubBloqueRegistroSeleccionado.Visible = false;
+            DIVSubBloqueCompletarSolicitud.Visible = false;
+            DIVBloqueMantenimiento.Visible = false;
+            DIVBloqueConsulta.Visible = true;
+
             txtNumeroSolicitud_ConsultaSolicitud.Text = string.Empty;
            
             UtilidadesAmigos.Logica.Comunes.Rangofecha Fecha = new Logica.Comunes.Rangofecha();
@@ -515,13 +579,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 lbPantalla.Text = "SOLICITUD DE MATERIALES";
 
                 ConfiguracionInicial();
+                MostrarSolicitudesHEader(
+                    Convert.ToInt32(lbCodigoSucursal_Header.Text),
+                    Convert.ToInt32(lbCodigoOficina_Header.Text),
+                    Convert.ToInt32(lbCodigoDepartamento_Header.Text),
+                    Convert.ToDecimal(lbCodigoUsuario_Header.Text));
             }
         }
 
         protected void btnConsultarInformacion_ConsultaSolicitud_Click(object sender, ImageClickEventArgs e)
         {
             CurrentPage_SolicitudHeader = 0;
-            MostrarSolicitudes((decimal)Session["IdUsuario"]);
+            MostrarSolicitudesHEader(
+                   Convert.ToInt32(lbCodigoSucursal_Header.Text),
+                   Convert.ToInt32(lbCodigoOficina_Header.Text),
+                   Convert.ToInt32(lbCodigoDepartamento_Header.Text),
+                   Convert.ToDecimal(lbCodigoUsuario_Header.Text));
         }
 
         protected void btnNuevaSolicitud_ConsultaSolicitud_Click(object sender, ImageClickEventArgs e)
@@ -567,12 +640,23 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnPrimeraPagina_ConsultaSolicitud_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_SolicitudHeader = 0;
+            MostrarSolicitudesHEader(
+                      Convert.ToInt32(lbCodigoSucursal_Header.Text),
+                      Convert.ToInt32(lbCodigoOficina_Header.Text),
+                      Convert.ToInt32(lbCodigoDepartamento_Header.Text),
+                      Convert.ToDecimal(lbCodigoUsuario_Header.Text));
         }
 
         protected void btnPaginaAnterior_ConsultaSolicitud_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_SolicitudHeader += -1;
+            MostrarSolicitudesHEader(
+                     Convert.ToInt32(lbCodigoSucursal_Header.Text),
+                     Convert.ToInt32(lbCodigoOficina_Header.Text),
+                     Convert.ToInt32(lbCodigoDepartamento_Header.Text),
+                     Convert.ToDecimal(lbCodigoUsuario_Header.Text));
+            MoverValoresPaginacion_SolicitudHeader((int)OpcionesPaginacionValores_SolicitudHeader.PaginaAnterior, ref lbPaginaActualVariable_ConsultaSolicitud, ref lbCantidadPaginaVariable_Inventario);
         }
 
         protected void dtPaginacion_ConsultaSolicitud_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -582,17 +666,34 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void dtPaginacion_ConsultaSolicitud_ItemCommand(object source, DataListCommandEventArgs e)
         {
-
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_SolicitudHeader = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarSolicitudesHEader(
+                    Convert.ToInt32(lbCodigoSucursal_Header.Text),
+                    Convert.ToInt32(lbCodigoOficina_Header.Text),
+                    Convert.ToInt32(lbCodigoDepartamento_Header.Text),
+                    Convert.ToDecimal(lbCodigoUsuario_Header.Text));
         }
 
         protected void btnSiguientePagina_ConsultaSolicitud_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_SolicitudHeader += 1;
+            MostrarSolicitudesHEader(
+                    Convert.ToInt32(lbCodigoSucursal_Header.Text),
+                    Convert.ToInt32(lbCodigoOficina_Header.Text),
+                    Convert.ToInt32(lbCodigoDepartamento_Header.Text),
+                    Convert.ToDecimal(lbCodigoUsuario_Header.Text));
         }
 
         protected void btnUltimaPagina_ConsultaSolicitud_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_SolicitudHeader = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarSolicitudesHEader(
+                  Convert.ToInt32(lbCodigoSucursal_Header.Text),
+                  Convert.ToInt32(lbCodigoOficina_Header.Text),
+                  Convert.ToInt32(lbCodigoDepartamento_Header.Text),
+                  Convert.ToDecimal(lbCodigoUsuario_Header.Text));
+            MoverValoresPaginacion_SolicitudHeader((int)OpcionesPaginacionValores_SolicitudHeader.PaginaAnterior, ref lbPaginaActualVariable_ConsultaSolicitud, ref lbCantidadPaginaVariable_Inventario);
         }
 
         protected void ddlSucursalProceso_SelectedIndexChanged(object sender, EventArgs e)
@@ -670,16 +771,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnAgregarRegistroSeleccionado_Click(object sender, ImageClickEventArgs e)
         {
-            //int CantidadAlmacen = 0, CantidadProcesar = 0;
-            //CantidadAlmacen = Convert.ToInt32(txtStockRegistroSeleccionado.Text);
-            //CantidadProcesar = Convert.ToInt32(txtCantidadProcesarRegistroSeleccionado.Text);
-            //if (CantidadProcesar > CantidadAlmacen)
-            //{
-            //    ClientScript.RegisterStartupScript(GetType(), "CantidadProcesadaInvalida()", "CantidadProcesadaInvalida();", true);
-            //}
-            //else {
-               
-            //}
             decimal idUsuario = (decimal)Session["IdUsuario"];
             //GUARDAMOS LA INFORMACION PARA EL ESPEJO
             ProcesarInformacionSuministroEspejo(
@@ -783,6 +874,21 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             CargarLosItemsAgregadosSolicitudesEspejo((decimal)Session["IdUsuario"]);
         }
 
+        protected void btnCancelarSolicitud_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnEditarSolicitud_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnDetalleSolicitud_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
         protected void btnGuardarSolicitud_Click(object sender, ImageClickEventArgs e)
         {
             //VALIDAMOS SI SE ENCUENTRAN REGISTROS AGREGADOS
@@ -793,18 +899,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             }
             else
             {
+                ProcesarSolicitudHeader(0, lbNumeroConector.Text, (decimal)Session["IdUsuario"], "INSERT");
+                ProcesarSolicidutDetalle((decimal)Session["IdUsuario"], lbNumeroConector.Text);
 
+                ClientScript.RegisterStartupScript(GetType(), "ProcesoCompletado()", "ProcesoCompletado();", true);
+                ConfiguracionInicial();
 
+                CurrentPage_SolicitudHeader = 0;
+                MostrarSolicitudesHEader(
+                       Convert.ToInt32(lbCodigoSucursal_Header.Text),
+                       Convert.ToInt32(lbCodigoOficina_Header.Text),
+                       Convert.ToInt32(lbCodigoDepartamento_Header.Text),
+                       Convert.ToDecimal(lbCodigoUsuario_Header.Text));
             }
         }
 
         protected void btnVolverAtras_Click(object sender, ImageClickEventArgs e)
         {
-            DIVSubBloqueConsultaInventario.Visible = false;
-            DIVSubBloqueRegistroSeleccionado.Visible = false;
-            DIVSubBloqueCompletarSolicitud.Visible = false;
-            DIVBloqueMantenimiento.Visible = false;
-            DIVBloqueConsulta.Visible = true;
+           
             ConfiguracionInicial();
         }
     }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionSuministroDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_BUSCA_SUMINISTRO_INVENTARIO" Method="SP_BUSCA_SUMINISTRO_INVENTARIO">
     <Parameter Name="CodigoArticulo" Parameter="codigoArticulo" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Articulo" Parameter="articulo" Type="System.String" DbType="VarChar(1000)" />
@@ -334,6 +334,39 @@
       <Column Name="IdOficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IdCategoria" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="StockMinimo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_BUSCA_LISTADO_SOLICITUDES_HEADER" Method="SP_BUSCA_LISTADO_SOLICITUDES_HEADER">
+    <Parameter Name="CodigoSucursal" Parameter="codigoSucursal" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoOficina" Parameter="codigoOficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoDepartamento" Parameter="codigoDepartamento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CodigoUsuario" Parameter="codigoUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="NumeroSocilitud" Parameter="numeroSocilitud" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="FechaDesde" Parameter="fechaDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaHasta" Parameter="fechaHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="EstatusSolicitud" Parameter="estatusSolicitud" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCA_LISTADO_SOLICITUDES_HEADERResult">
+      <Column Name="NumeroSolicitud" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="NumeroConector" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="IdUsuario" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Persona" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="IdSucursal" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Sucursal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdOficina" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IdDepartamento" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Column Name="Departamento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaSolicitud0" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="EstatusSolicitud" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CantidadItems" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadSolicitudes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadSolicitudes_Activas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadSolicitudes_Procesadas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadSolicitudes_Canceladas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadSolicitudes_Rechazadas" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

@@ -14,6 +14,10 @@
             alert("No es posible proceder con esta solicitud por que no se encontraron registros que Procesar.");
         }
 
+        function ProcesoCompletado() {
+            alert("Proceso Completado con Exito.");
+        }
+
         $(function () {
 
             $("#<%=btnAgregarRegistroSeleccionado.ClientID%>").click(function () {
@@ -28,6 +32,11 @@
         })
     </script>
     <div class="container-fluid">
+        <asp:Label ID="lbCodigoSucursal_Header" runat="server" Visible="false" Text="Dato"></asp:Label>
+        <asp:Label ID="lbCodigoOficina_Header" runat="server" Visible="false" Text="Dato"></asp:Label>
+        <asp:Label ID="lbCodigoDepartamento_Header" runat="server" Visible="false" Text="Dato"></asp:Label>
+        <asp:Label ID="lbCodigoUsuario_Header" runat="server" Visible="false" Text="Dato"></asp:Label>
+
         <div id="DIVBloqueConsulta" runat="server" visible="true">
             <br />
             <table class="table table-bordered">
@@ -91,23 +100,28 @@
                     <tr>
                         <th class="ContenidoCentro" scope="col"> Solicitud </th>
                         <th class="ContenidoCentro" scope="col"> Fecha </th>
+                        <th class="ContenidoCentro" scope="col"> Hora </th>
                         <th class="ContenidoCentro" scope="col"> Items </th>
                         <th class="ContenidoCentro" scope="col"> Estatus </th>
-                        <th class="ContenidoDerecha" scope="col"> Cancelar </th>
-                        <th class="ContenidoDerecha" scope="col"> Detalle </th>
+                        <th class="ContenidoCentro" scope="col"> Cancelar </th>
+                        <th class="ContenidoCentro" scope="col"> Editar </th>
+                        <th class="ContenidoCentro" scope="col"> Detalle </th>
                     </tr>
                 </thead>
                 <tbody>
                     <asp:Repeater ID="rpListadoSolicitudes_ConsultaSolicitud" runat="server">
                         <ItemTemplate>
                             <tr>
-                                <asp:HiddenField ID="hfNumeroSolicitud" runat="server" Value='<%# Eval("") %>' />
-                                <td class="ContenidoCentro"> <%# Eval("") %> </td>
-                                <td class="ContenidoCentro"> <%# Eval("") %> </td>
-                                <td class="ContenidoCentro"> <%#string.Format("{0:N0}", Eval("")) %> </td>
-                                <td class="ContenidoCentro"> <%# Eval("") %> </td>
-                                <td class="ContenidoDerecha"> <asp:ImageButton ID="btnCancelarSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" OnClick="btnNuevaSolicitud_ConsultaSolicitud_Click" /> </td>
-                                <td class="ContenidoDerecha"> <asp:ImageButton ID="btnDetalleSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" OnClick="btnNuevaSolicitud_ConsultaSolicitud_Click" /> </td>
+                                <asp:HiddenField ID="hfNumeroSolicitud" runat="server" Value='<%# Eval("NumeroSolicitud") %>' />
+
+                                <td class="ContenidoCentro"> <%# Eval("NumeroSolicitud") %> </td>
+                                <td class="ContenidoCentro"> <%# Eval("Fecha") %> </td>
+                                <td class="ContenidoCentro"> <%# Eval("Hora") %> </td>
+                                <td class="ContenidoCentro"> <%#string.Format("{0:N0}", Eval("CantidadItems")) %> </td>
+                                <td class="ContenidoCentro"> <%# Eval("Estatus") %> </td>
+                                <td class="ContenidoCentro"> <asp:ImageButton ID="btnCancelarSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Cancelar_Nuevo.png" ToolTip="Cancelar Esta Solicitud" OnClick="btnCancelarSolicitud_Click" /> </td>
+                                <td class="ContenidoCentro"> <asp:ImageButton ID="btnEditarSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Editar_Nuevo.png" ToolTip="Editar Solicitud" OnClick="btnEditarSolicitud_Click" /> </td>
+                                <td class="ContenidoCentro"> <asp:ImageButton ID="btnDetalleSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/hacer-clic.png" ToolTip="Ver el Detalle de la solicitud" OnClick="btnDetalleSolicitud_Click" /> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
