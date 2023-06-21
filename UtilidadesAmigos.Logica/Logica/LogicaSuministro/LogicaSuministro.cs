@@ -476,6 +476,34 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
                            }).ToList();
             return Listado;
         }
+
+        /// <summary>
+        /// Este metodo busca el detalle de una solicitud seleccionda
+        /// </summary>
+        /// <param name="NumeroConector"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Suministro.EBuscaDetallesSolicitud> BuscaDetalleSolicitud(string NumeroConector = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_DETALLE_SOLICITUD(NumeroConector)
+                           select new UtilidadesAmigos.Logica.Entidades.Suministro.EBuscaDetallesSolicitud
+                           {
+                               SecuenciaDetalle=n.SecuenciaDetalle,
+                               NumeroConector=n.NumeroConector,
+                               CodigoArticulo=n.CodigoArticulo,
+                               Descripcion=n.Descripcion,
+                               IdMedida=n.IdMedida,
+                               UnidadMedida=n.UnidadMedida,
+                               Cantidad=n.Cantidad,
+                               IdSucursal=n.IdSucursal,
+                               IdOficina=n.IdOficina,
+                               IdCategoria=n.IdCategoria,
+                               Categoria=n.Categoria,
+                               StockMinimo=n.StockMinimo
+                           }).ToList();
+            return Listado;
+        }
         #endregion
     }
 }

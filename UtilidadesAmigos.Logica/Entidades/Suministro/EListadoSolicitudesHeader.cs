@@ -35,7 +35,7 @@ namespace UtilidadesAmigos.Logica.Entidades.Suministro
 
         public string Hora {get;set;}
 
-        public System.Nullable<bool> EstatusSolicitud {get;set;}
+        public System.Nullable<int> EstatusSolicitud { get; set; }
 
         public string Estatus {get;set;}
 

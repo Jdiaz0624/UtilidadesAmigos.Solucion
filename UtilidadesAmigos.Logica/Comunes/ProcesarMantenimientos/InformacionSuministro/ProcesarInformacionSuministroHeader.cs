@@ -13,14 +13,14 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSumi
         private decimal NumeroSolicitud = 0;
         private string NumeroConector = "";
         private decimal IdUsuario = 0;
-        private bool EstatusSolicitud = false;
+        private int EstatusSolicitud = 0;
         private string Accion = "";
 
         public ProcesarInformacionSuministroHeader(
            decimal NumeroSolicitudCON,
            string NumeroConectorCON,
            decimal IdUsuarioCON,
-           bool EstatusSolicitudCON,
+           int EstatusSolicitudCON,
            string AccionCON)
         {
             NumeroSolicitud = NumeroSolicitudCON;

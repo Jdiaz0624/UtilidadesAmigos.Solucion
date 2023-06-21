@@ -471,7 +471,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 NumeroSolicitud,
                 NumeroConector,
                 IdUsuario,
-                true,
+                (int)EstatusSolicitud.Activa,
                 "INSERT");
             Guardar.ProcesarInformacion();
         }
@@ -567,6 +567,21 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             cbNoAgregarRangoFecha.Checked = false;
             CargarDatosUSuario((decimal)Session["IdUsuario"]);
         }
+
+        #region MOSTRAR EL DETALLE DE LA SOLICITUD
+        private void MostrarDetalleSocilitud(string Conector) {
+
+            var Detalle = ObjDataSuministro.Value.BuscaDetalleSolicitud(Conector);
+            if (Detalle.Count() < 1) {
+                rpSolicitudDetalle.DataSource = null;
+                rpSolicitudDetalle.DataBind();
+            }
+            else {
+                rpSolicitudDetalle.DataSource = Detalle;
+                rpSolicitudDetalle.DataBind();
+            }
+        }
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
@@ -876,17 +891,66 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnCancelarSolicitud_Click(object sender, ImageClickEventArgs e)
         {
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var NumeroSolicitud = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroSolicitud")).Value.ToString();
+            var NumeroCOnector = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroConector")).Value.ToString();
 
+            int Estatus = 0;
+
+            var ValidarEstatusSolicitud = ObjDataSuministro.Value.BuscaListadoSolicitudesHeader(
+                null,
+                null,
+                null,
+                null,
+                Convert.ToDecimal(NumeroSolicitud), null, null, null);
+            foreach (var n in ValidarEstatusSolicitud) {
+
+                Estatus = (int)n.EstatusSolicitud;
+            }
+
+            switch (Estatus) {
+
+                case (int)EstatusSolicitud.Procesada:
+                    ClientScript.RegisterStartupScript(GetType(), "SolicitudProcesada()", "SolicitudProcesada();", true);
+                    break;
+
+                case (int)EstatusSolicitud.Cancelada:
+                    ClientScript.RegisterStartupScript(GetType(), "SolicitudCancelada()", "SolicitudCancelada();", true);
+                    break;
+
+                case (int)EstatusSolicitud.Rechazada:
+                    ClientScript.RegisterStartupScript(GetType(), "SolicitudRechazada()", "SolicitudRechazada();", true);
+                    break;
+
+                default:
+                    //CAMBIAMOS EL ESTATUS
+                    UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroHeader Cancelar = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroHeader(
+                        Convert.ToDecimal(NumeroSolicitud),
+                        NumeroCOnector,
+                        0,
+                        (int)EstatusSolicitud.Cancelada,
+                        "CANCELAPPLICATION");
+                    Cancelar.ProcesarInformacion();
+                    CurrentPage_SolicitudHeader = 0;
+                    MostrarSolicitudesHEader(
+                           Convert.ToInt32(lbCodigoSucursal_Header.Text),
+                           Convert.ToInt32(lbCodigoOficina_Header.Text),
+                           Convert.ToInt32(lbCodigoDepartamento_Header.Text),
+                           Convert.ToDecimal(lbCodigoUsuario_Header.Text));
+                    break;
+            }
+
+          
         }
 
-        protected void btnEditarSolicitud_Click(object sender, ImageClickEventArgs e)
-        {
-
-        }
 
         protected void btnDetalleSolicitud_Click(object sender, ImageClickEventArgs e)
         {
+            DIvBloqueDetalleRegistro.Visible = true;
+            var RegistroSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var NumeroCOnector = ((HiddenField)RegistroSeleccionado.FindControl("hfNumeroConector")).Value.ToString();
 
+            MostrarDetalleSocilitud(NumeroCOnector);
         }
 
         protected void btnGuardarSolicitud_Click(object sender, ImageClickEventArgs e)

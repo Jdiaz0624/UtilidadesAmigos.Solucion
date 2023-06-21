@@ -18,6 +18,16 @@
             alert("Proceso Completado con Exito.");
         }
 
+        function SolicitudProcesada() {
+            alert("No es posible cancelar esta solicitud por que ya esta Procedada.");
+        }
+        function SolicitudCancelada() {
+            alert("No es posible procesar esta solicitud por que ya esta Cancelada.");
+        }
+        function SolicitudRechazada() {
+            alert("Esta Solicitud fue rezhada para realizar esta cancelación.");
+        }
+
         $(function () {
 
             $("#<%=btnAgregarRegistroSeleccionado.ClientID%>").click(function () {
@@ -104,7 +114,6 @@
                         <th class="ContenidoCentro" scope="col"> Items </th>
                         <th class="ContenidoCentro" scope="col"> Estatus </th>
                         <th class="ContenidoCentro" scope="col"> Cancelar </th>
-                        <th class="ContenidoCentro" scope="col"> Editar </th>
                         <th class="ContenidoCentro" scope="col"> Detalle </th>
                     </tr>
                 </thead>
@@ -113,14 +122,14 @@
                         <ItemTemplate>
                             <tr>
                                 <asp:HiddenField ID="hfNumeroSolicitud" runat="server" Value='<%# Eval("NumeroSolicitud") %>' />
+                                <asp:HiddenField ID="hfNumeroConector" runat="server" Value='<%# Eval("NumeroConector") %>' />
 
                                 <td class="ContenidoCentro"> <%# Eval("NumeroSolicitud") %> </td>
                                 <td class="ContenidoCentro"> <%# Eval("Fecha") %> </td>
                                 <td class="ContenidoCentro"> <%# Eval("Hora") %> </td>
                                 <td class="ContenidoCentro"> <%#string.Format("{0:N0}", Eval("CantidadItems")) %> </td>
                                 <td class="ContenidoCentro"> <%# Eval("Estatus") %> </td>
-                                <td class="ContenidoCentro"> <asp:ImageButton ID="btnCancelarSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Cancelar_Nuevo.png" ToolTip="Cancelar Esta Solicitud" OnClick="btnCancelarSolicitud_Click" /> </td>
-                                <td class="ContenidoCentro"> <asp:ImageButton ID="btnEditarSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Editar_Nuevo.png" ToolTip="Editar Solicitud" OnClick="btnEditarSolicitud_Click" /> </td>
+                                <td class="ContenidoCentro"> <asp:ImageButton ID="btnCancelarSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Cancelar_Nuevo.png" OnClientClick="return confirm('¿Quieres Cancelar Esta Solicitud?');" ToolTip="Cancelar Esta Solicitud" OnClick="btnCancelarSolicitud_Click" /> </td>
                                 <td class="ContenidoCentro"> <asp:ImageButton ID="btnDetalleSolicitud" runat="server" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/hacer-clic.png" ToolTip="Ver el Detalle de la solicitud" OnClick="btnDetalleSolicitud_Click" /> </td>
                             </tr>
                         </ItemTemplate>
@@ -208,10 +217,10 @@
                                <asp:Repeater ID="rpSolicitudDetalle" runat="server">
                                    <ItemTemplate>
                                        <tr>
-                                            <td> <%# Eval("") %> </td>
-                                            <td> <%# Eval("") %> </td>
-                                            <td> <%# Eval("") %> </td>
-                                            <td> <%#string.Format("{0:N0}", Eval("")) %> </td>
+                                            <td> <%# Eval("Descripcion") %> </td>
+                                            <td> <%# Eval("Categoria") %> </td>
+                                            <td> <%# Eval("UnidadMedida") %> </td>
+                                            <td> <%#string.Format("{0:N0}", Eval("Cantidad")) %> </td>
 
                                        </tr>
                                    </ItemTemplate>

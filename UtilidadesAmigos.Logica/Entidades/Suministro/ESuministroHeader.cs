@@ -8,14 +8,14 @@ namespace UtilidadesAmigos.Logica.Entidades.Suministro
 {
     public class ESuministroHeader
     {
-		public System.Nullable<decimal> NumeroSolicitud { get; set; }
+        public System.Nullable<decimal> NumeroSolicitud { get; set; }
 
-		public string NumeroConector { get; set; }
+        public string NumeroConector { get; set; }
 
-		public System.Nullable<decimal> IdUsuario { get; set; }
+        public System.Nullable<decimal> IdUsuario { get; set; }
 
-		public System.Nullable<System.DateTime> FechaSolicitud { get; set; }
+        public System.Nullable<System.DateTime> FechaSolicitud { get; set; }
 
-		public System.Nullable<bool> EstatusSolicitud { get; set; }
-	}
+        public System.Nullable<int> EstatusSolicitud { get; set; }
+    }
 }
