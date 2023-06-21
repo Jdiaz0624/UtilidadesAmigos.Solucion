@@ -31,5 +31,6 @@ namespace UtilidadesAmigos.Logica.Entidades.Suministro
         public string Categoria {get;set;}
 
         public System.Nullable<int> StockMinimo {get;set;}
+        public System.Nullable<int> Disponible { get; set; }
     }
 }

@@ -3889,6 +3889,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<int> _StockMinimo;
 		
+		private System.Nullable<int> _Disponible;
+		
 		public SP_BUSCA_DETALLE_SOLICITUDResult()
 		{
 		}
@@ -4081,6 +4083,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._StockMinimo != value))
 				{
 					this._StockMinimo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Disponible", DbType="Int")]
+		public System.Nullable<int> Disponible
+		{
+			get
+			{
+				return this._Disponible;
+			}
+			set
+			{
+				if ((this._Disponible != value))
+				{
+					this._Disponible = value;
 				}
 			}
 		}

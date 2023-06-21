@@ -500,7 +500,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
                                IdOficina=n.IdOficina,
                                IdCategoria=n.IdCategoria,
                                Categoria=n.Categoria,
-                               StockMinimo=n.StockMinimo
+                               StockMinimo=n.StockMinimo,
+                               Disponible=n.Disponible
                            }).ToList();
             return Listado;
         }

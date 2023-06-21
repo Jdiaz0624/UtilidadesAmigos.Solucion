@@ -384,6 +384,7 @@
       <Column Name="IdCategoria" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Categoria" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Column Name="StockMinimo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Disponible" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
