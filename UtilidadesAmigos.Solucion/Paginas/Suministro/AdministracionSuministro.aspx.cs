@@ -9,6 +9,7 @@ using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.ReportSource;
 using CrystalDecisions.Shared;
 using UtilidadesAmigos.Logica.Entidades;
+using System.Web.Security;
 
 namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 {
@@ -492,7 +493,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             DateTime? _FechaDesde = cbAgregarRangoFecha.Checked == false ? Convert.ToDateTime(txtFechaDesde.Text) : new Nullable<DateTime>();
             DateTime? _FechaHasta = cbAgregarRangoFecha.Checked == false ? Convert.ToDateTime(txtFEcfaHasta.Text) : new Nullable<DateTime>();
             int? _Estatus = ddlEstatusSolicitud.SelectedValue != "-1" ? Convert.ToInt32(ddlEstatusSolicitud.SelectedValue) : new Nullable<int>();
-            int CantidadSolicitudes = 0, Activas = 0, Procesadas = 0, Canceladas = 0, Rechazadas = 0;
+            int CantidadSolicitudes = 0, Activas = 0, Procesadas = 0, Canceladas = 0, Rechazadas = 0, Pendientes = 0;
 
             var Listado = ObjDataSuministro.Value.BuscaListadoSolicitudesHeader(
                 _Sucursal,
@@ -521,15 +522,33 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                     Procesadas = (int)n.CantidadSolicitudes_Procesadas;
                     Canceladas = (int)n.CantidadSolicitudes_Canceladas;
                     Rechazadas = (int)n.CantidadSolicitudes_Rechazadas;
+                    Pendientes = (int)n.CantidadSolicitudes_Pendientes;
                 }
                 lbCantidadSolicitudes.Text = CantidadSolicitudes.ToString("N0");
                 lbSolicitudesActivas.Text = Activas.ToString("N0");
                 lbSolicitudesProcesadas.Text = Procesadas.ToString("N0");
                 lbSolicitudesCanceladas.Text = Canceladas.ToString("N0");
                 lbSolicitudesRechazadas.Text = Rechazadas.ToString("N0");
+                lbSolicitudesPendientes.Text = Pendientes.ToString("N0");
                 Paginar_SolicitudHeader(ref rpSolicitudesHeader, Listado, 10, ref lbCantidadPaginaVariable, ref btnPrimeraPagina_SolicitudesHeader, ref btnPaginaAnterior_SolicitudesHeader, ref btnSiguientePagina_SolicitudesHeader, ref btnUltimaPagina_SolicitudesHeader);
                 HandlePaging_SolicitudHeader(ref dtPaginacion, ref lbPaginaActualVariable);
             }
+        }
+        #endregion
+        #region CAMBIAR EL ESTATUS DE LA SOLICITUD
+        private void CambiarEstatusSolicitud(decimal NumeroSolicitud, string NumeroConector, int Estatus) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroHeader Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroHeader(
+                NumeroSolicitud,
+                NumeroConector,
+                0,
+                Estatus,
+                "CHANGESTATUS");
+            Procesar.ProcesarInformacion();
+            DIVBloqueCOmpletado.Visible = true;
+            DIVBloqueAdministracionInventario.Visible = false;
+            DIVBloqueSolicitudes.Visible = false;
+            DivTipoOperacion.Visible = false;
         }
         #endregion
 
@@ -542,8 +561,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 lbNombreUsuario.Text = Nombre.SacarNombreUsuarioConectado();
 
                 ConfiguracionInicialDespacho();
-
-
+                DIVBloqueCOmpletado.Visible = false;
             }
         }
 
@@ -620,7 +638,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
             var NumeroSolicitud = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroSolicitudHeader")).Value.ToString();
             var NumeroCOnector = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroConectorHeader")).Value.ToString();
-            string NumeroSoliciud = "", FechaSolicitud = "", HoraSolicitud = "", Sucursal = "", Oficina = "", Departamento = "", Usuario = "",  EsatusActual = "";
+            string NumeroSoliciud = "",NumeroConector="", FechaSolicitud = "", HoraSolicitud = "", Sucursal = "", Oficina = "", Departamento = "", Usuario = "",  EsatusActual = "";
             int CantidadArticulos = 0, EstatusSolicitud = 0;
 
 
@@ -632,6 +650,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 null, null, null);
             foreach (var n in CargarVariables) {
                 NumeroSoliciud = n.NumeroSolicitud.ToString();
+                NumeroConector = n.NumeroConector;
                 FechaSolicitud = n.Fecha;
                 HoraSolicitud = n.Hora;
                 Sucursal = n.Sucursal;
@@ -643,6 +662,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 EstatusSolicitud = (int)n.EstatusSolicitud;
             }
             lbNumeroSolicitud_Detalle_Variable.Text = NumeroSoliciud;
+            lbNumeroConector_Detalle_Variable.Text = 
             lbFecha_Detalle_Variable.Text = FechaSolicitud;
             lbHora_Detalle_Variable.Text = HoraSolicitud;
             lbSucursal_Detalle_Variable.Text = Sucursal;
@@ -651,7 +671,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             lbUsuario_Detalle_Variable.Text = Usuario;
             lbArticulos_Detalle_Variable.Text = EsatusActual;
             lbEstatus_Detalle_Variable.Text = CantidadArticulos.ToString("N0");
-
+            lbNumeroConector_Detalle_Variable.Text = NumeroConector;
 
 
 
@@ -665,17 +685,17 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             rpSolicitudDetalle.DataSource = SacarInformacionDetalle;
             rpSolicitudDetalle.DataBind();
 
-            if (EstatusSolicitud == (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Cancelada || EstatusSolicitud == (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Rechazada)
-            {
-                btnProcesar.Visible = false;
-                btnCancelarSolicitud.Visible = false;
-                btnRechazarSolicitud.Visible = false;
-            }
-            else
+            if (EstatusSolicitud == (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Activa || EstatusSolicitud == (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Pendiente)
             {
                 btnProcesar.Visible = true;
                 btnCancelarSolicitud.Visible = true;
                 btnRechazarSolicitud.Visible = true;
+            }
+            else
+            {
+                btnProcesar.Visible = false;
+                btnCancelarSolicitud.Visible = false;
+                btnRechazarSolicitud.Visible = false;
 
             }
         }
@@ -717,11 +737,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnProcesar_Click(object sender, ImageClickEventArgs e)
         {
-          
-            if (cbObviarNoProcede.Checked == true) { cbObviarNoProcede.Checked = false; }
-            else {
-                cbObviarNoProcede.Checked = true;
-            }
+            decimal NumeroSolicitud = Convert.ToDecimal(lbNumeroSolicitud_Detalle_Variable.Text);
+            string NumeroConector = lbNumeroConector_Detalle_Variable.Text;
+
+            CambiarEstatusSolicitud(
+                NumeroSolicitud,
+                NumeroConector,
+                (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Procesada);
+
         }
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
@@ -929,12 +952,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnCancelarSolicitud_Click(object sender, ImageClickEventArgs e)
         {
+            decimal NumeroSolicitud = Convert.ToDecimal(lbNumeroSolicitud_Detalle_Variable.Text);
+            string NumeroConector = lbNumeroConector_Detalle_Variable.Text;
 
+            CambiarEstatusSolicitud(
+                NumeroSolicitud,
+                NumeroConector,
+                (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Cancelada);
         }
 
         protected void btnRechazarSolicitud_Click(object sender, ImageClickEventArgs e)
         {
+            decimal NumeroSolicitud = Convert.ToDecimal(lbNumeroSolicitud_Detalle_Variable.Text);
+            string NumeroConector = lbNumeroConector_Detalle_Variable.Text;
 
+            CambiarEstatusSolicitud(
+                NumeroSolicitud,
+                NumeroConector,
+                (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Rechazada);
         }
 
         protected void btnVolverAtrasSolicitud_Click(object sender, ImageClickEventArgs e)
@@ -942,6 +977,19 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             DIvBloqueDetalleRegistro.Visible = false;
             DivSubBloqueHeader.Visible = true;
             DivTipoOperacion.Visible = true;
+        }
+
+        protected void btnNuevoRegistro_Click(object sender, ImageClickEventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Suministro/AdministracionSuministro.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
 
         protected void btnGuardar_Click(object sender, ImageClickEventArgs e)

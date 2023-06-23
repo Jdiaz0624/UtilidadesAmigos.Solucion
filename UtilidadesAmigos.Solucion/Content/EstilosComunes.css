@@ -35,3 +35,8 @@ text-align:left;
 .ContenidoDerecha {
 text-align:right;
 }
+
+.BotonImagenCompletado {
+    width: 200px;
+    height: 200px;
+}

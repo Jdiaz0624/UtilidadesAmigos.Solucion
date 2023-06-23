@@ -294,6 +294,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.Label lbSolicitudesProcesadas;
 
         /// <summary>
+        /// lbSolicitudesPendientes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSolicitudesPendientes;
+
+        /// <summary>
         /// lbSolicitudesCanceladas control.
         /// </summary>
         /// <remarks>
@@ -373,6 +382,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIvBloqueDetalleRegistro;
+
+        /// <summary>
+        /// lbNumeroConector_Detalle_Variable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNumeroConector_Detalle_Variable;
 
         /// <summary>
         /// lbNumeroSolicitud_Detalle_Variable control.
@@ -1192,5 +1210,59 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton btnVolverAtras_Suplir_Sacar;
+
+        /// <summary>
+        /// DIVBloqueCOmpletado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueCOmpletado;
+
+        /// <summary>
+        /// lbNotificacionEnviadaAlCorreo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNotificacionEnviadaAlCorreo;
+
+        /// <summary>
+        /// lbNotificacionEnviadaAlCorreoVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNotificacionEnviadaAlCorreoVariable;
+
+        /// <summary>
+        /// lbNumeroFacturaGeneradoCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNumeroFacturaGeneradoCerrar;
+
+        /// <summary>
+        /// IMGCompletado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image IMGCompletado;
+
+        /// <summary>
+        /// btnNuevoRegistro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnNuevoRegistro;
     }
 }

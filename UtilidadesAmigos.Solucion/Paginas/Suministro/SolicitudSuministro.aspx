@@ -158,6 +158,11 @@
                              <b>Solicitudes Procesadas: </b> <asp:Label ID="lbSolicitudesProcesadas_ConsultaSolicitud" runat="server" Text="0"></asp:Label>
                         </td>
                     </tr>
+                     <tr>
+                        <td class="ContenidoIzquierda">
+                             <b>Solicitudes Pendientes: </b> <asp:Label ID="lbSolicitudesPendientes_ConsultaSolicitud" runat="server" Text="0"></asp:Label>
+                        </td>
+                    </tr>
                     <tr>
                         <td class="ContenidoIzquierda">
                              <b>Solicitudes Canceladas: </b> <asp:Label ID="lbSolicitudesCanceladas_ConsultaSolicitud" runat="server" Text="0"></asp:Label>

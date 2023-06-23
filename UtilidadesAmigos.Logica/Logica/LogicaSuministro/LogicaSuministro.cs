@@ -473,7 +473,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
                                CantidadSolicitudes_Activas=n.CantidadSolicitudes_Activas,
                                CantidadSolicitudes_Procesadas=n.CantidadSolicitudes_Procesadas,
                                CantidadSolicitudes_Canceladas=n.CantidadSolicitudes_Canceladas,
-                               CantidadSolicitudes_Rechazadas=n.CantidadSolicitudes_Rechazadas
+                               CantidadSolicitudes_Rechazadas=n.CantidadSolicitudes_Rechazadas,
+                               CantidadSolicitudes_Pendientes=n.CantidadSolicitudes_Pendientes
                            }).ToList();
             return Listado;
         }

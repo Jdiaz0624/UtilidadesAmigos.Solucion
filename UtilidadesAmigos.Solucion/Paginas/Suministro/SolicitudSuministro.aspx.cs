@@ -501,7 +501,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             DateTime? _FechaHasta = cbNoAgregarRangoFecha.Checked == false ? Convert.ToDateTime(txtFechaHasta_ConsultaSolicitud.Text) : new Nullable<DateTime>();
             int? _Estatus = ddlEstatus_ConsultaSolicitud.SelectedValue != "-1" ? Convert.ToInt32(ddlEstatus_ConsultaSolicitud.SelectedValue) : new Nullable<int>();
 
-            int CantidadSolicitudes = 0, SolicitudesActivas = 0, SolicitudesProcesadas = 0, SolicitudesCanceladas = 0, SolicitudesRechazadas = 0;
+            int CantidadSolicitudes = 0, SolicitudesActivas = 0, SolicitudesProcesadas = 0, SolicitudesCanceladas = 0, SolicitudesRechazadas = 0, SolicitudesPendientes = 0;
 
             var Listado = ObjDataSuministro.Value.BuscaListadoSolicitudesHeader(
                 IdSucursal,
@@ -531,6 +531,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                     SolicitudesProcesadas = (int)n.CantidadSolicitudes_Procesadas;
                     SolicitudesCanceladas = (int)n.CantidadSolicitudes_Canceladas;
                     SolicitudesRechazadas = (int)n.CantidadSolicitudes_Rechazadas;
+                    SolicitudesPendientes = (int)n.CantidadSolicitudes_Pendientes;
                 }
                 Paginar_SolicitudHeader(ref rpListadoSolicitudes_ConsultaSolicitud, Listado, 10, ref lbCantidadPaginaVariable_ConsultaSolicitud, ref btnPrimeraPagina_ConsultaSolicitud, ref btnPaginaAnterior_ConsultaSolicitud, ref btnSiguientePagina_ConsultaSolicitud, ref btnUltimaPagina_ConsultaSolicitud);
                 HandlePaging_Inventario(ref dtPaginacion_ConsultaSolicitud, ref lbPaginaActualVariable_ConsultaSolicitud);
@@ -541,6 +542,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 lbSolicitudesProcesadas_ConsultaSolicitud.Text = SolicitudesProcesadas.ToString("N0");
                 lbSolicitudesCanceladas_ConsultaSolicitud.Text = SolicitudesCanceladas.ToString("N0");
                 lbSolicitudesRechazadas_ConsultaSolicitud.Text = SolicitudesRechazadas.ToString("N0");
+                lbSolicitudesPendientes_ConsultaSolicitud.Text = SolicitudesPendientes.ToString("N0");
             }
            
 
@@ -924,7 +926,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                         NumeroCOnector,
                         0,
                         (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Cancelada,
-                        "CANCELAPPLICATION");
+                        "CHANGESTATUS");
                     Cancelar.ProcesarInformacion();
                     CurrentPage_SolicitudHeader = 0;
                     MostrarSolicitudesHEader(

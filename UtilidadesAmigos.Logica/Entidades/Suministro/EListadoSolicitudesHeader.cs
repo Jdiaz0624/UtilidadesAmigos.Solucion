@@ -50,5 +50,6 @@ namespace UtilidadesAmigos.Logica.Entidades.Suministro
         public System.Nullable<int> CantidadSolicitudes_Canceladas { get; set; }
 
         public System.Nullable<int> CantidadSolicitudes_Rechazadas { get; set; }
+        public System.Nullable<int> CantidadSolicitudes_Pendientes { get; set; }
     }
 }

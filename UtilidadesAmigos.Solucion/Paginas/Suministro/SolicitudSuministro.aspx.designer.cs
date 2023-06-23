@@ -249,6 +249,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.Label lbSolicitudesProcesadas_ConsultaSolicitud;
 
         /// <summary>
+        /// lbSolicitudesPendientes_ConsultaSolicitud control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSolicitudesPendientes_ConsultaSolicitud;
+
+        /// <summary>
         /// lbSolicitudesCanceladas_ConsultaSolicitud control.
         /// </summary>
         /// <remarks>

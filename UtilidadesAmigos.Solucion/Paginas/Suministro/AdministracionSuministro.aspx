@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
+
 
     <script type="text/javascript">
         var Mensaje = " no puede estar vacio para realziar esta operación, favor de verificar.";
@@ -89,7 +91,7 @@
         
     </script>
 
-    <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
+   
       <div class="container-fluid">
         <br />
         <div id="DivTipoOperacion" runat="server" class="form-check-inline">
@@ -203,6 +205,11 @@
                              <b>Solicitudes Procesadas: </b> <asp:Label ID="lbSolicitudesProcesadas" runat="server" Text="0"></asp:Label>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="ContenidoIzquierda">
+                             <b>Solicitudes Pendientes: </b> <asp:Label ID="lbSolicitudesPendientes" runat="server" Text="0"></asp:Label>
+                        </td>
+                    </tr>
                      <tr>
                         <td class="ContenidoIzquierda">
                              <b>Solicitudes Canceladas: </b> <asp:Label ID="lbSolicitudesCanceladas" runat="server" Text="0"></asp:Label>
@@ -221,7 +228,7 @@
                 <tr>
                     <td> <asp:ImageButton ID="btnPrimeraPagina_SolicitudesHeader" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPagina_SolicitudesHeader_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" /> </td>
                     <td> <asp:ImageButton ID="btnPaginaAnterior_SolicitudesHeader" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnPaginaAnterior_SolicitudesHeader_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" />  </td>
-                    <td align="center">
+                    <td class="ContenidoCentro">
                         <asp:DataList ID="dtPaginacion" runat="server" OnItemCommand="dtPaginacion_ItemCommand" OnItemDataBound="dtPaginacion_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
                                 <asp:Button ID="btnPaginacionCentral_SolicitudesHeader" runat="server" class="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
@@ -241,50 +248,51 @@
 
            <div id="DIvBloqueDetalleRegistro"  runat="server">
                <br />
+               <asp:Label ID="lbNumeroConector_Detalle_Variable" runat="server" Visible="false" Text="Dato"></asp:Label>
                            <table class="table table-striped">
                                <thead class="table-secondary">
                                    <tr>
-                                       <th scope="col"> <b>Numero de Solicitud</b> </th>
+                                       <th scope="col"> <b>NUMERO DE SOLICITUD</b> </th>
                                        <th scope="col"> <asp:Label ID="lbNumeroSolicitud_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
                                    </tr>
 
                                       <tr>
-                                       <th scope="col"> <b>Fecha</b> </th>
+                                       <th scope="col"> <b>FECHA</b> </th>
                                        <th scope="col"> <asp:Label ID="lbFecha_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
                                    </tr>
 
                                       <tr>
-                                       <th scope="col"> <b>Hora</b> </th>
+                                       <th scope="col"> <b>HORA</b> </th>
                                        <th scope="col"> <asp:Label ID="lbHora_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
                                    </tr>
 
                                       <tr>
-                                       <th scope="col"> <b>Sucursal</b> </th>
+                                       <th scope="col"> <b>SUCURSAL</b> </th>
                                        <th scope="col"> <asp:Label ID="lbSucursal_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
                                    </tr>
 
                                       <tr>
-                                       <th scope="col"> <b>Oficina</b> </th>
+                                       <th scope="col"> <b>OFICINA</b> </th>
                                        <th scope="col"> <asp:Label ID="lbOficina_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
                                    </tr>
 
                                       <tr>
-                                       <th scope="col"> <b>Departamento</b> </th>
+                                       <th scope="col"> <b>DEPARTAMENTO</b> </th>
                                        <th scope="col"> <asp:Label ID="lbDepartamento_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
                                    </tr>
 
                                       <tr>
-                                       <th scope="col"> <b>Usuario</b> </th>
+                                       <th scope="col"> <b>USUARIO</b> </th>
                                        <th scope="col"> <asp:Label ID="lbUsuario_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
                                    </tr>
 
                                       <tr>
-                                       <th scope="col"> <b>Cant. Articulos</b> </th>
+                                       <th scope="col"> <b>CANTIDAD DE ARTICULOS</b> </th>
                                        <th scope="col"> <asp:Label ID="lbArticulos_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
                                    </tr>
 
                                       <tr>
-                                       <th scope="col"> <b>Estatus Actual</b> </th>
+                                       <th scope="col"> <b>ESTATUS ACTUAL</b> </th>
                                        <th scope="col"> <asp:Label ID="lbEstatus_Detalle_Variable" runat="server" Text="Dato"></asp:Label> </th>
                                    </tr>
                                </thead>
@@ -348,11 +356,10 @@
                 </div>
             </div>
            <br />
-             
                            <div id="DivBloqueBotones" class="ContenidoCentro">
                                <asp:ImageButton ID="btnProcesar" runat="server" ToolTip="Procesar Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Completado.png" OnClick="btnProcesar_Click" />
-                               <asp:ImageButton ID="btnCancelarSolicitud" runat="server" ToolTip="Cancelar Solicitud" CssClass="BotonImagen " ImageUrl="~/ImagenesBotones/Cancelar_Nuevo.png" OnClick="btnCancelarSolicitud_Click" />
-                               <asp:ImageButton ID="btnRechazarSolicitud" runat="server" ToolTip="Rechazar Soicitud" CssClass="BotonImagen " ImageUrl="~/ImagenesBotones/rechazado.png" OnClick="btnRechazarSolicitud_Click" />
+                               <asp:ImageButton ID="btnCancelarSolicitud" runat="server" ToolTip="Cancelar Solicitud" CssClass="BotonImagen " ImageUrl="~/ImagenesBotones/Cancelar_Nuevo.png" OnClick="btnCancelarSolicitud_Click" OnClientClick="return confirm('¿Quieres Cancelar Esta Solicitud?');" />
+                               <asp:ImageButton ID="btnRechazarSolicitud" runat="server" ToolTip="Rechazar Soicitud" CssClass="BotonImagen " ImageUrl="~/ImagenesBotones/rechazado.png" OnClick="btnRechazarSolicitud_Click" OnClientClick="return confirm('¿Quieres Rechazar Esta Solicitud?');" />
                                 <asp:ImageButton ID="btnVolverAtrasSolicitud" runat="server" ToolTip="Volver Atras" CssClass="BotonImagen " ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" OnClick="btnVolverAtrasSolicitud_Click" />
                            </div>
                  <br />
@@ -361,15 +368,6 @@
 
 
      </div>
-
-
-
-
-
-
-
-
-
 
 
 
@@ -569,5 +567,23 @@
              <br />
          </div>
      </div>
+
+
+
+            <div id="DIVBloqueCOmpletado" class="ContenidoCentro" runat="server">
+           
+          
+             <br />
+            <asp:Label ID="lbNotificacionEnviadaAlCorreo" runat="server" Text="Notificación enviada al Correo (" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbNotificacionEnviadaAlCorreoVariable" runat="server" Text="DATO" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbNumeroFacturaGeneradoCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
+            
+            <br />
+            <asp:Image ID="IMGCompletado" runat="server" CssClass="BotonImagenCompletado" ImageUrl="~/Imagenes/Completado3.gif" />
+            <br />
+            <br />
+            <asp:ImageButton ID="btnNuevoRegistro" runat="server" CssClass="BotonImagen" ToolTip="Nuevo P" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" OnClick="btnNuevoRegistro_Click" />
+            <br />
+        </div>
     </div>
 </asp:Content>
