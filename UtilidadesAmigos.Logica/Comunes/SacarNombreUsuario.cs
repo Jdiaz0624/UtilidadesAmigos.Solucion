@@ -25,6 +25,17 @@ namespace UtilidadesAmigos.Logica.Comunes
             return NombreUsuario;
         }
 
+        public string SacarCorreoUsuario()
+        {
+            string Correo = "";
+            var Buscar = Objdata.BuscaUsuarios(IdUsuario);
+            foreach (var n in Buscar)
+            {
+                Correo = n.Email;
+            }
+            return Correo;
+        }
+
         public int SacarPerfilUsuarioConectado()
         {
             int Perfil = 0;

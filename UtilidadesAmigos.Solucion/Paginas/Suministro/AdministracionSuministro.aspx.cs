@@ -18,6 +18,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSuministro.LogicaSuministro> ObjDataSuministro = new Lazy<Logica.Logica.LogicaSuministro.LogicaSuministro>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaProcesos.LogicaProcesos> ObjDataProceso = new Lazy<Logica.Logica.LogicaProcesos.LogicaProcesos>();
 
         #region CONTROL DE PAGINACION DEl INVENTARIO CONSULTA
         readonly PagedDataSource pagedDataSource_InventarioConsulta = new PagedDataSource();
@@ -386,7 +387,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         }
         #endregion
         #region PROCESAR INFORMACION INVENTARIO
-        private void ProcesarInformacionInventario(decimal IdRegistro,int Stock, string Accion) {
+        private void ProcesarInformacionInventario(decimal IdRegistro, int Stock, string Accion) {
 
             UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroInventario Procesar = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroInventario(
                 IdRegistro,
@@ -551,6 +552,78 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             DivTipoOperacion.Visible = false;
         }
         #endregion
+        #region ENVIO DE CORREO
+        private void EnvioCorreo(string CorreoEmisor, string Alias, string Asunto, string ClaveCorreo, int Puerto, string SMTP, string Cuerpo, string CorreoEmpleado)
+        {
+            UtilidadesAmigos.Logica.Comunes.EnvioCorreos MAil = new Logica.Comunes.EnvioCorreos
+            {
+                Mail = CorreoEmisor,
+                Alias = Alias,
+                Asunto = Asunto,
+                Clave = ClaveCorreo,
+                Puerto = Puerto,
+                smtp = SMTP,
+                RutaImagen = Server.MapPath("LogoReducido.jpg"),
+                Cuerpo = Cuerpo,
+                Destinatarios = new List<string>(),
+                Adjuntos = new List<string>()
+            };
+
+            MAil.Destinatarios.Add(CorreoEmpleado);
+          //  MAil.Adjuntos.Add(VolantePagoTXT);
+            // MAil.Adjuntos.Add(VolantePagoTXT);
+
+            // MAil.Enviar(MAil);
+
+            if (MAil.Enviar(MAil))
+            {
+
+            }
+        }
+
+        #endregion
+        #region ENVIAR CORREO ELECTRONICO
+        private void EnviarCorreoElectronico(string Estatus,string CorreoUsuario, ref TextBox Comentario) {
+
+            try {
+                string ComentarioValor = "";
+                if (string.IsNullOrEmpty(Comentario.Text.Trim())) {
+                    ComentarioValor = "";
+                }
+                else {
+                    ComentarioValor = " | Comentario de Despacho: " + Comentario.Text;
+                }
+                //SACAMOS TODA LA INFORMACION DEL CORREO EMISOR DESDE DONDE SE ENVIARAN LOS VOLANTES DE PAGOS.
+                string CorreoEmisor = "", Alias = "Utilidades Futuro Seguros", Asunto = "Solicitud " + Estatus, ClaveCorreo = "", SMTP = "", Cuerpo = "Su solicitud No. " + lbNumeroSolicitud_Detalle_Variable.Text + " en fecha " + lbFecha_Detalle_Variable.Text + " a las " + lbHora_Detalle_Variable.Text + " Fue " + Estatus + ComentarioValor;
+                int Puerto = 0;
+                var SacarInformacionCorreos = ObjDataProceso.Value.ListadoCorreosEmisores(1, (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.CorreosEmisiorSistema.Suministro_Inventario);
+                foreach (var nCorreo in SacarInformacionCorreos)
+                {
+                    CorreoEmisor = nCorreo.Correo;
+                    ClaveCorreo = UtilidadesAmigos.Logica.Comunes.SeguridadEncriptacion.DesEncriptar(nCorreo.Clave);
+                    SMTP = nCorreo.SMTP;
+                    Puerto = (int)nCorreo.Puerto;
+                }
+
+                EnvioCorreo(
+                                 CorreoEmisor,
+                                 Alias,
+                                 Asunto,
+                                 ClaveCorreo,
+                                 Puerto,
+                                 SMTP,
+                                 Cuerpo,
+                                 CorreoUsuario);
+                lbNotificacionEnviadaAlCorreoVariable.Text = "SI";
+            }
+            catch (Exception Error) {
+                lbNotificacionEnviadaAlCorreoVariable.Text = "NO";
+                lbCodigoError.Visible = true;
+                lbCodigoError.ForeColor = System.Drawing.Color.Red;
+                lbCodigoErrorVariable.Text = Error.Message;
+            }
+        }
+        #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -640,7 +713,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             var NumeroCOnector = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroConectorHeader")).Value.ToString();
             string NumeroSoliciud = "",NumeroConector="", FechaSolicitud = "", HoraSolicitud = "", Sucursal = "", Oficina = "", Departamento = "", Usuario = "",  EsatusActual = "";
             int CantidadArticulos = 0, EstatusSolicitud = 0;
-
+            decimal IdUsuario = 0;
 
 
             //CARGAMOS LAS VARIABLES
@@ -660,6 +733,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 CantidadArticulos = (int)n.CantidadItems;
                 EsatusActual = n.Estatus;
                 EstatusSolicitud = (int)n.EstatusSolicitud;
+                IdUsuario = (decimal)n.IdUsuario;
             }
             lbNumeroSolicitud_Detalle_Variable.Text = NumeroSoliciud;
             lbNumeroConector_Detalle_Variable.Text = 
@@ -672,7 +746,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             lbArticulos_Detalle_Variable.Text = EsatusActual;
             lbEstatus_Detalle_Variable.Text = CantidadArticulos.ToString("N0");
             lbNumeroConector_Detalle_Variable.Text = NumeroConector;
-
+            lbIdUsuario_Detalle_variable.Text = IdUsuario.ToString();
 
 
 
@@ -739,12 +813,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         {
             decimal NumeroSolicitud = Convert.ToDecimal(lbNumeroSolicitud_Detalle_Variable.Text);
             string NumeroConector = lbNumeroConector_Detalle_Variable.Text;
-
+            decimal IdUsuario = Convert.ToDecimal(lbIdUsuario_Detalle_variable.Text);
+            UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Dato = new Logica.Comunes.SacarNombreUsuario(IdUsuario);
+            string Correo = Dato.SacarCorreoUsuario();
             CambiarEstatusSolicitud(
                 NumeroSolicitud,
                 NumeroConector,
                 (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Procesada);
 
+
+            EnviarCorreoElectronico("Procesada", Correo, ref txtComentarioSolicitud);
         }
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
@@ -954,22 +1032,29 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         {
             decimal NumeroSolicitud = Convert.ToDecimal(lbNumeroSolicitud_Detalle_Variable.Text);
             string NumeroConector = lbNumeroConector_Detalle_Variable.Text;
-
+            decimal IdUsuario = Convert.ToDecimal(lbIdUsuario_Detalle_variable.Text);
+            UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Dato = new Logica.Comunes.SacarNombreUsuario(IdUsuario);
+            string Correo = Dato.SacarCorreoUsuario();
             CambiarEstatusSolicitud(
                 NumeroSolicitud,
                 NumeroConector,
                 (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Cancelada);
+            EnviarCorreoElectronico("Cancelada", Correo,ref txtComentarioSolicitud);
+
         }
 
         protected void btnRechazarSolicitud_Click(object sender, ImageClickEventArgs e)
         {
             decimal NumeroSolicitud = Convert.ToDecimal(lbNumeroSolicitud_Detalle_Variable.Text);
             string NumeroConector = lbNumeroConector_Detalle_Variable.Text;
-
+            decimal IdUsuario = Convert.ToDecimal(lbIdUsuario_Detalle_variable.Text);
+            UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Dato = new Logica.Comunes.SacarNombreUsuario(IdUsuario);
+            string Correo = Dato.SacarCorreoUsuario();
             CambiarEstatusSolicitud(
                 NumeroSolicitud,
                 NumeroConector,
                 (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Rechazada);
+            EnviarCorreoElectronico("Rechazada", Correo,ref txtComentarioSolicitud);
         }
 
         protected void btnVolverAtrasSolicitud_Click(object sender, ImageClickEventArgs e)

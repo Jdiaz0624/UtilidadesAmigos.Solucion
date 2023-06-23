@@ -42,5 +42,14 @@ namespace UtilidadesAmigos.Logica.Comunes
             Rechazada = 4,
             Pendiente = 5
         }
+
+        public enum CorreosEmisiorSistema
+        {
+
+            Backup_Base_Datos = 1,
+            Volante_Pagos = 2,
+            Cotizador_Futuro_Seguros = 3,
+            Suministro_Inventario = 4
+        }
     }
 }

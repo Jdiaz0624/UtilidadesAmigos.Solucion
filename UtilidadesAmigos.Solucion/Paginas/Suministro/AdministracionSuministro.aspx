@@ -249,6 +249,7 @@
            <div id="DIvBloqueDetalleRegistro"  runat="server">
                <br />
                <asp:Label ID="lbNumeroConector_Detalle_Variable" runat="server" Visible="false" Text="Dato"></asp:Label>
+                 <asp:Label ID="lbIdUsuario_Detalle_variable" runat="server" Visible="false" Text="Dato"></asp:Label>
                            <table class="table table-striped">
                                <thead class="table-secondary">
                                    <tr>
@@ -356,6 +357,13 @@
                 </div>
             </div>
            <br />
+               <div class="row">
+                   <div class="col-md-12">
+                       <asp:Label ID="lbComentarioSolicitud" runat="server" Text="Comentario" CssClass="Letranegrita"></asp:Label>
+                       <asp:TextBox ID="txtComentarioSolicitud" runat="server" Placeholder="Este campo es Opcional" CssClass="form-control" TextMode="MultiLine" MaxLength="100"></asp:TextBox>
+                   </div>
+               </div>
+               <br />
                            <div id="DivBloqueBotones" class="ContenidoCentro">
                                <asp:ImageButton ID="btnProcesar" runat="server" ToolTip="Procesar Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Completado.png" OnClick="btnProcesar_Click" />
                                <asp:ImageButton ID="btnCancelarSolicitud" runat="server" ToolTip="Cancelar Solicitud" CssClass="BotonImagen " ImageUrl="~/ImagenesBotones/Cancelar_Nuevo.png" OnClick="btnCancelarSolicitud_Click" OnClientClick="return confirm('¿Quieres Cancelar Esta Solicitud?');" />
@@ -577,6 +585,9 @@
             <asp:Label ID="lbNotificacionEnviadaAlCorreo" runat="server" Text="Notificación enviada al Correo (" CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbNotificacionEnviadaAlCorreoVariable" runat="server" Text="DATO" CssClass="LetrasNegrita"></asp:Label>
             <asp:Label ID="lbNumeroFacturaGeneradoCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
+                <br />
+            <asp:Label ID="lbCodigoError" runat="server" Text="Codigo de Error: " Visible="false" CssClass="LetrasNegrita"></asp:Label>
+            <asp:Label ID="lbCodigoErrorVariable" runat="server" Text=" Dato" Visible="false" CssClass="LetrasNegrita"></asp:Label>
             
             <br />
             <asp:Image ID="IMGCompletado" runat="server" CssClass="BotonImagenCompletado" ImageUrl="~/Imagenes/Completado3.gif" />

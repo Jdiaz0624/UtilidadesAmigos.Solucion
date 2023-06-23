@@ -393,6 +393,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.Label lbNumeroConector_Detalle_Variable;
 
         /// <summary>
+        /// lbIdUsuario_Detalle_variable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbIdUsuario_Detalle_variable;
+
+        /// <summary>
         /// lbNumeroSolicitud_Detalle_Variable control.
         /// </summary>
         /// <remarks>
@@ -535,6 +544,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbObviarNoProcede;
+
+        /// <summary>
+        /// lbComentarioSolicitud control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbComentarioSolicitud;
+
+        /// <summary>
+        /// txtComentarioSolicitud control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtComentarioSolicitud;
 
         /// <summary>
         /// btnProcesar control.
@@ -1246,6 +1273,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbNumeroFacturaGeneradoCerrar;
+
+        /// <summary>
+        /// lbCodigoError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoError;
+
+        /// <summary>
+        /// lbCodigoErrorVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCodigoErrorVariable;
 
         /// <summary>
         /// IMGCompletado control.
