@@ -179,7 +179,6 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
                 Item.EstatusSolicitud,
                 Accion);
             if (Header != null) {
-
                 Procesar = (from n in Header
                             select new UtilidadesAmigos.Logica.Entidades.Suministro.ESuministroHeader
                             {
@@ -218,6 +217,7 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
                 Item.IdOficina,
                 Item.IdCategoria,
                 Item.StockMinimo,
+                Item.Despachado,
                 Accion);
             if (Detail != null) {
 
@@ -233,7 +233,8 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
                                 IdSucursal=n.IdSucursal,
                                 IdOficina=n.IdOficina,
                                 IdCategoria=n.IdCategoria,
-                                StockMinimo=n.StockMinimo
+                                StockMinimo=n.StockMinimo,
+                                Despachado=n.Despachado
                             }).FirstOrDefault();
             }
             return Procesar;
@@ -489,19 +490,22 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaSuministro
             var Listado = (from n in ObjData.SP_BUSCA_DETALLE_SOLICITUD(NumeroConector)
                            select new UtilidadesAmigos.Logica.Entidades.Suministro.EBuscaDetallesSolicitud
                            {
-                               SecuenciaDetalle=n.SecuenciaDetalle,
-                               NumeroConector=n.NumeroConector,
-                               CodigoArticulo=n.CodigoArticulo,
-                               Descripcion=n.Descripcion,
-                               IdMedida=n.IdMedida,
-                               UnidadMedida=n.UnidadMedida,
-                               Cantidad=n.Cantidad,
-                               IdSucursal=n.IdSucursal,
-                               IdOficina=n.IdOficina,
-                               IdCategoria=n.IdCategoria,
-                               Categoria=n.Categoria,
-                               StockMinimo=n.StockMinimo,
-                               Disponible=n.Disponible
+                               SecuenciaDetalle = n.SecuenciaDetalle,
+                               NumeroConector = n.NumeroConector,
+                               CodigoArticulo = n.CodigoArticulo,
+                               Descripcion = n.Descripcion,
+                               IdMedida = n.IdMedida,
+                               UnidadMedida = n.UnidadMedida,
+                               Cantidad = n.Cantidad,
+                               IdSucursal = n.IdSucursal,
+                               IdOficina = n.IdOficina,
+                               IdCategoria = n.IdCategoria,
+                               Categoria = n.Categoria,
+                               StockMinimo = n.StockMinimo,
+                               Disponible = n.Disponible,
+                               Estatus = n.Estatus,
+                               Despachado0 = n.Despachado0,
+                               Despachado = n.Despachado
                            }).ToList();
             return Listado;
         }

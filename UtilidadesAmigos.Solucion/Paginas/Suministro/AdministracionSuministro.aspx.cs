@@ -345,6 +345,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         #endregion
         #region CONFIGURACION INICIAL CONSULTA INVENTARIO
         private void ConfiguracionInicialConsultaInventario() {
+            Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+            lbPantalla.Text = "CONTROL DE INVENTARIO";
             ListaDesplegablesConsultaInventario();
             DivSubBloqueInventarioConsulta.Visible = true;
             DivSubBloqueInventarioMantenimiento.Visible = false;
@@ -437,7 +439,99 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
         }
         #endregion
+        #region CARGAR LAS LISTAS DESPLEGABLES DE LA PANTALLA DE DESPACHO
+        private void CargarSucursales() {
 
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSucursalCOnsulta, ObjData.Value.BuscaListas("SUCURSAL", null, null), true);
+        }
+        private void CargarOficina() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficinaConsulta, ObjData.Value.BuscaListas("OFICINA", ddlSucursalCOnsulta.SelectedValue.ToString(), null), true);
+        }
+        private void CargarDepartamentos() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlDepartamentoConsulta, ObjData.Value.BuscaListas("DEPARTAMENTO", ddlOficinaConsulta.SelectedValue.ToString(), ddlOficinaConsulta.SelectedValue.ToString()), true);
+        }
+        private void Cargarusuarios() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlUsuarioConsulta, ObjData.Value.BuscaListas("USUARIOLISTA", ddlSucursalCOnsulta.SelectedValue.ToString(), ddlOficinaConsulta.SelectedValue.ToString(), ddlDepartamentoConsulta.SelectedValue.ToString()), true);
+        }
+        private void CargarEstatus() {
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlEstatusSolicitud, ObjData.Value.BuscaListas("ESTATUSSOLICITUD", null, null), true);
+        }
+        private void CargarListasDesplegablesDespacho() {
+            CargarSucursales();
+            CargarOficina();
+            CargarDepartamentos();
+            Cargarusuarios();
+            CargarEstatus();
+
+        }
+        #endregion
+        #region CONFIGURACION INICIAL PANTALLA DE DESPACHO
+        private void ConfiguracionInicialDespacho() {
+            Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+            lbPantalla.Text = "DEPACHO DE SOLICITUD";
+            rbSolicitudes.Checked = true;
+            DIVBloqueSolicitudes.Visible = true;
+            DIVBloqueAdministracionInventario.Visible = false;
+            DivSubBloqueInventarioConsulta.Visible = false;
+            DivSubBloqueInventarioMantenimiento.Visible = false;
+            UtilidadesAmigos.Logica.Comunes.Rangofecha Fechas = new Logica.Comunes.Rangofecha();
+            Fechas.FechaMes(ref txtFechaDesde, ref txtFEcfaHasta);
+            CargarListasDesplegablesDespacho();
+            DIvBloqueDetalleRegistro.Visible = false;
+            CurrentPage_SolicitudHeader = 0;
+            MostrarSolicitudes();
+        }
+        #endregion
+        #region MOSTRAR EL LISTADO DE LAS SOLICITUDES
+        private void MostrarSolicitudes() {
+            decimal? _NumeroSolciitud = string.IsNullOrEmpty(txtNumeroSolicitud.Text.Trim()) ? new Nullable<decimal>() : Convert.ToDecimal(txtNumeroSolicitud.Text);
+            int? _Sucursal = ddlSucursalCOnsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlSucursalCOnsulta.SelectedValue) : new Nullable<int>();
+            int? _Oficina = ddlOficinaConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlOficinaConsulta.SelectedValue) : new Nullable<int>();
+            int? _Departamento = ddlDepartamentoConsulta.SelectedValue != "-1" ? Convert.ToInt32(ddlDepartamentoConsulta.SelectedValue) : new Nullable<int>();
+            decimal? _Usuario = ddlUsuarioConsulta.SelectedValue != "-1" ? Convert.ToDecimal(ddlUsuarioConsulta.SelectedValue) : new Nullable<decimal>();
+            DateTime? _FechaDesde = cbAgregarRangoFecha.Checked == false ? Convert.ToDateTime(txtFechaDesde.Text) : new Nullable<DateTime>();
+            DateTime? _FechaHasta = cbAgregarRangoFecha.Checked == false ? Convert.ToDateTime(txtFEcfaHasta.Text) : new Nullable<DateTime>();
+            int? _Estatus = ddlEstatusSolicitud.SelectedValue != "-1" ? Convert.ToInt32(ddlEstatusSolicitud.SelectedValue) : new Nullable<int>();
+            int CantidadSolicitudes = 0, Activas = 0, Procesadas = 0, Canceladas = 0, Rechazadas = 0;
+
+            var Listado = ObjDataSuministro.Value.BuscaListadoSolicitudesHeader(
+                _Sucursal,
+                _Oficina,
+                _Departamento,
+                _Usuario,
+                _NumeroSolciitud,
+                _FechaDesde,
+                _FechaHasta,
+                _Estatus);
+            if (Listado.Count() < 1) {
+
+                lbCantidadSolicitudes.Text = "0";
+                lbSolicitudesActivas.Text = "0";
+                lbSolicitudesProcesadas.Text = "0";
+                lbSolicitudesCanceladas.Text = "0";
+                lbSolicitudesRechazadas.Text = "0";
+                rpSolicitudesHeader.DataSource = null;
+                rpSolicitudesHeader.DataBind();
+            }
+            else {
+
+                foreach (var n in Listado) {
+                    CantidadSolicitudes = (int)n.CantidadSolicitudes;
+                    Activas = (int)n.CantidadSolicitudes_Activas;
+                    Procesadas = (int)n.CantidadSolicitudes_Procesadas;
+                    Canceladas = (int)n.CantidadSolicitudes_Canceladas;
+                    Rechazadas = (int)n.CantidadSolicitudes_Rechazadas;
+                }
+                lbCantidadSolicitudes.Text = CantidadSolicitudes.ToString("N0");
+                lbSolicitudesActivas.Text = Activas.ToString("N0");
+                lbSolicitudesProcesadas.Text = Procesadas.ToString("N0");
+                lbSolicitudesCanceladas.Text = Canceladas.ToString("N0");
+                lbSolicitudesRechazadas.Text = Rechazadas.ToString("N0");
+                Paginar_SolicitudHeader(ref rpSolicitudesHeader, Listado, 10, ref lbCantidadPaginaVariable, ref btnPrimeraPagina_SolicitudesHeader, ref btnPaginaAnterior_SolicitudesHeader, ref btnSiguientePagina_SolicitudesHeader, ref btnUltimaPagina_SolicitudesHeader);
+                HandlePaging_SolicitudHeader(ref dtPaginacion, ref lbPaginaActualVariable);
+            }
+        }
+        #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -447,16 +541,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
                 lbNombreUsuario.Text = Nombre.SacarNombreUsuarioConectado();
 
-                Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
-                lbPantalla.Text = "ADMINISTRACION DE INVENTARIO";
-                rbSolicitudes.Checked = true;
-                rbTodos.Checked = true;
-                DIVBloqueSolicitudes.Visible = true;
-                DIVBloqueAdministracionInventario.Visible = false;
-                DivSubBloqueInventarioConsulta.Visible = false;
-                DivSubBloqueInventarioMantenimiento.Visible = false;
-                UtilidadesAmigos.Logica.Comunes.Rangofecha Fechas = new Logica.Comunes.Rangofecha();
-                Fechas.FechaMes(ref txtFechaDesde, ref txtFEcfaHasta);
+                ConfiguracionInicialDespacho();
+
+
             }
         }
 
@@ -477,6 +564,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 DIVBloqueAdministracionInventario.Visible = false;
                 DivSubBloqueInventarioConsulta.Visible = false;
                 DivSubBloqueInventarioMantenimiento.Visible = false;
+               
             }
         }
 
@@ -487,6 +575,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 DIVBloqueAdministracionInventario.Visible = false;
                 DivSubBloqueInventarioConsulta.Visible = false;
                 DivSubBloqueInventarioMantenimiento.Visible = false;
+                ConfiguracionInicialDespacho();
             }
             else {
                 DIVBloqueSolicitudes.Visible = false;
@@ -498,22 +587,27 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void ddlSucursalCOnsulta_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            CargarOficina();
+            CargarDepartamentos();
+            Cargarusuarios();
         }
 
         protected void ddlOficinaConsulta_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            CargarDepartamentos();
+            Cargarusuarios();
         }
 
         protected void ddlDepartamentoConsulta_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Cargarusuarios();
 
         }
 
         protected void btnConsultar_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_SolicitudHeader = 0;
+            MostrarSolicitudes();
         }
 
         protected void btnReporteSolicitudes_Click(object sender, ImageClickEventArgs e)
@@ -523,7 +617,67 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnVer_Click(object sender, ImageClickEventArgs e)
         {
+            var ItemSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var NumeroSolicitud = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroSolicitudHeader")).Value.ToString();
+            var NumeroCOnector = ((HiddenField)ItemSeleccionado.FindControl("hfNumeroConectorHeader")).Value.ToString();
+            string NumeroSoliciud = "", FechaSolicitud = "", HoraSolicitud = "", Sucursal = "", Oficina = "", Departamento = "", Usuario = "",  EsatusActual = "";
+            int CantidadArticulos = 0, EstatusSolicitud = 0;
 
+
+
+            //CARGAMOS LAS VARIABLES
+            var CargarVariables = ObjDataSuministro.Value.BuscaListadoSolicitudesHeader(
+                null, null, null, null,
+                Convert.ToDecimal(NumeroSolicitud),
+                null, null, null);
+            foreach (var n in CargarVariables) {
+                NumeroSoliciud = n.NumeroSolicitud.ToString();
+                FechaSolicitud = n.Fecha;
+                HoraSolicitud = n.Hora;
+                Sucursal = n.Sucursal;
+                Oficina = n.Oficina;
+                Departamento = n.Departamento;
+                Usuario = n.Persona;
+                CantidadArticulos = (int)n.CantidadItems;
+                EsatusActual = n.Estatus;
+                EstatusSolicitud = (int)n.EstatusSolicitud;
+            }
+            lbNumeroSolicitud_Detalle_Variable.Text = NumeroSoliciud;
+            lbFecha_Detalle_Variable.Text = FechaSolicitud;
+            lbHora_Detalle_Variable.Text = HoraSolicitud;
+            lbSucursal_Detalle_Variable.Text = Sucursal;
+            lbOficina_Detalle_Variable.Text = Oficina;
+            lbDepartamento_Detalle_Variable.Text = Departamento;
+            lbUsuario_Detalle_Variable.Text = Usuario;
+            lbArticulos_Detalle_Variable.Text = EsatusActual;
+            lbEstatus_Detalle_Variable.Text = CantidadArticulos.ToString("N0");
+
+
+
+
+
+
+            DIvBloqueDetalleRegistro.Visible = true;
+            DivSubBloqueHeader.Visible = false;
+            DivTipoOperacion.Visible = false;
+
+            var SacarInformacionDetalle = ObjDataSuministro.Value.BuscaDetalleSolicitud(NumeroCOnector);
+            rpSolicitudDetalle.DataSource = SacarInformacionDetalle;
+            rpSolicitudDetalle.DataBind();
+
+            if (EstatusSolicitud == (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Cancelada || EstatusSolicitud == (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Rechazada)
+            {
+                btnProcesar.Visible = false;
+                btnCancelarSolicitud.Visible = false;
+                btnRechazarSolicitud.Visible = false;
+            }
+            else
+            {
+                btnProcesar.Visible = true;
+                btnCancelarSolicitud.Visible = true;
+                btnRechazarSolicitud.Visible = true;
+
+            }
         }
 
         protected void btnPrimeraPagina_SolicitudesHeader_Click(object sender, ImageClickEventArgs e)
@@ -563,7 +717,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnProcesar_Click(object sender, ImageClickEventArgs e)
         {
-           
+          
+            if (cbObviarNoProcede.Checked == true) { cbObviarNoProcede.Checked = false; }
+            else {
+                cbObviarNoProcede.Checked = true;
+            }
         }
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
@@ -687,7 +845,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected void btnVerItemInventario_Click(object sender, ImageClickEventArgs e)
         {
             var ArticuloSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
-
+            
             var IdArticulo = ((HiddenField)ArticuloSeleccionado.FindControl("hfIdArticulo")).Value.ToString();
             lbIdregistroSeleccionado.Text = IdArticulo;
             var SacarInformacion = ObjDataSuministro.Value.BuscaInventario(Convert.ToDecimal(IdArticulo));
@@ -706,6 +864,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 txtDescripcion_Suplir_Sacar.Text = n.Articulo;
                 txtStockActual_Suplir_Sacar.Text = n.Stock.ToString();
                 txtStockNuevo_Suplir_Sacar.Text = "1";
+               
             }
             Paginar_InventarioConsulta(ref rpListadoInventario, SacarInformacion, 10, ref lbCantidadPaginaVariable_InventarioConsulta, ref btnPrimeraPagina_InventarioConsulta, ref btnPaginaAnterior_InventarioConsulta, ref btnSiguientePagina_InventarioConsulta, ref btnUltimaPagina_InventarioConsulta);
             HandlePaging_InventarioConsulta(ref dtInventarioConsulta, ref lbPaginaActualVariable_InventarioConsulta);
@@ -719,6 +878,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             btnBorrarInventarioCOnsulta.Visible = true;
             btnRestablecerInventarioConsulta.Visible = true;
             rbAgregarItems.Checked = true;
+            cbObviarNoProcede.Checked = false;
         }
 
         protected void btnGuardar_Suplir_Sacar_Click(object sender, ImageClickEventArgs e)
@@ -765,6 +925,23 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         {
             CurrentPage_InventarioConsulta = 0;
             MostrarInventario();
+        }
+
+        protected void btnCancelarSolicitud_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnRechazarSolicitud_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnVolverAtrasSolicitud_Click(object sender, ImageClickEventArgs e)
+        {
+            DIvBloqueDetalleRegistro.Visible = false;
+            DivSubBloqueHeader.Visible = true;
+            DivTipoOperacion.Visible = true;
         }
 
         protected void btnGuardar_Click(object sender, ImageClickEventArgs e)

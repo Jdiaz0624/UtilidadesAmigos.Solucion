@@ -32,5 +32,15 @@ namespace UtilidadesAmigos.Logica.Comunes
             Tecnico = 2,
             Devuelto = 3
         }
+
+        public enum EstatusSolicitudSuministro
+        {
+
+            Activa = 1,
+            Procesada = 2,
+            Cancelada = 3,
+            Rechazada = 4,
+            Pendiente = 5
+        }
     }
 }

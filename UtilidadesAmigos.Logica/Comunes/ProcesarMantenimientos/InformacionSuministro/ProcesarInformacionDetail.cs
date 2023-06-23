@@ -20,6 +20,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSumi
         private int IdOficina = 0;
         private int IdCategoria = 0;
         private int StockMinimo = 0;
+        private bool Despachado = false;
         private string Accion = "";
 
         public ProcesarInformacionDetail(
@@ -33,6 +34,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSumi
             int IdOficinaCON,
             int IdCategoriaCON,
             int StockMinimoCON,
+            bool DespachadoCON,
             string AccionCON)
         {
             SecuenciaDetalle = SecuenciaDetalleCON;
@@ -45,6 +47,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSumi
             IdOficina = IdOficinaCON;
             IdCategoria = IdCategoriaCON;
             StockMinimo = StockMinimoCON;
+            Despachado = DespachadoCON;
             Accion = AccionCON;
         }
 
@@ -62,6 +65,7 @@ namespace UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSumi
             Procesar.IdOficina = IdOficina;
             Procesar.IdCategoria = IdCategoria;
             Procesar.StockMinimo = StockMinimo;
+            Procesar.Despachado = Despachado;
 
             var MAN = ObjData.ProcesarSuministroDetalle(Procesar, Accion);
         }

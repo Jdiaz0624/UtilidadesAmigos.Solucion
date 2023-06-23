@@ -17,13 +17,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSeguridad.LogicaSeguridad> ObjDataSeguridad = new Lazy<Logica.Logica.LogicaSeguridad.LogicaSeguridad>();
 
-        enum EstatusSolicitud { 
-        
-            Activa=1,
-            Procesada=2,
-            Cancelada=3,
-            Rechazada=4
-        }
+
 
         #region CONTROL DE PAGINACION DE LAS SOLICITUDES
         readonly PagedDataSource pagedDataSource_SolicitudHeader = new PagedDataSource();
@@ -443,7 +437,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 Convert.ToInt32(lbUnidadMedida_RegistroSeleccionado.Text),
                 Convert.ToInt32(txtCantidadProcesarRegistroSeleccionado.Text),
                 DateTime.Now,
-                (int)EstatusSolicitud.Activa,
+                (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Activa,
                 Accion);
             Procesar.ProcesarInformacion();
         }
@@ -471,7 +465,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 NumeroSolicitud,
                 NumeroConector,
                 IdUsuario,
-                (int)EstatusSolicitud.Activa,
+                (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Activa,
                 "INSERT");
             Guardar.ProcesarInformacion();
         }
@@ -493,6 +487,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                     (int)n.IdOficina,
                     (int)n.IdCategoria,
                     1,
+                    false,
                     "INSERT");
                 Guardar.ProcesarInformacion();
             }
@@ -910,15 +905,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
             switch (Estatus) {
 
-                case (int)EstatusSolicitud.Procesada:
+                case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Procesada:
                     ClientScript.RegisterStartupScript(GetType(), "SolicitudProcesada()", "SolicitudProcesada();", true);
                     break;
 
-                case (int)EstatusSolicitud.Cancelada:
+                case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Cancelada:
                     ClientScript.RegisterStartupScript(GetType(), "SolicitudCancelada()", "SolicitudCancelada();", true);
                     break;
 
-                case (int)EstatusSolicitud.Rechazada:
+                case (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Rechazada:
                     ClientScript.RegisterStartupScript(GetType(), "SolicitudRechazada()", "SolicitudRechazada();", true);
                     break;
 
@@ -928,7 +923,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                         Convert.ToDecimal(NumeroSolicitud),
                         NumeroCOnector,
                         0,
-                        (int)EstatusSolicitud.Cancelada,
+                        (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Cancelada,
                         "CANCELAPPLICATION");
                     Cancelar.ProcesarInformacion();
                     CurrentPage_SolicitudHeader = 0;

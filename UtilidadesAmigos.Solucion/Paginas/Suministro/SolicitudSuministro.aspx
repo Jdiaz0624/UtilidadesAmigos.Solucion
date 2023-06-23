@@ -210,7 +210,8 @@
                                    <th scope="col"> Articulo </th>
                                    <th scope="col"> Categoria </th>
                                    <th scope="col"> Medida </th>
-                                   <th scope="col"> Cant. Solicitada </th>
+                                   <th class="ContenidoCentro" scope="col"> Cant. Solicitada </th>
+                                   <th class="ContenidoCentro" scope="col"> Despachado </th>
                                </tr>
                            </thead>
                            <tbody>
@@ -220,7 +221,8 @@
                                             <td> <%# Eval("Descripcion") %> </td>
                                             <td> <%# Eval("Categoria") %> </td>
                                             <td> <%# Eval("UnidadMedida") %> </td>
-                                            <td> <%#string.Format("{0:N0}", Eval("Cantidad")) %> </td>
+                                            <td class="ContenidoCentro" > <%#string.Format("{0:N0}", Eval("Cantidad")) %> </td>
+                                            <td class="ContenidoCentro" > <%# Eval("Despachado") %> </td>
 
                                        </tr>
                                    </ItemTemplate>

@@ -15,6 +15,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
     {
 
         /// <summary>
+        /// DivTipoOperacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivTipoOperacion;
+
+        /// <summary>
         /// lbTipoOperacion control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueSolicitudes;
+
+        /// <summary>
+        /// DivSubBloqueHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivSubBloqueHeader;
 
         /// <summary>
         /// cbAgregarRangoFecha control.
@@ -186,40 +204,22 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.TextBox txtFEcfaHasta;
 
         /// <summary>
-        /// lbEstatus control.
+        /// lbEstatusSolicitud control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbEstatus;
+        protected global::System.Web.UI.WebControls.Label lbEstatusSolicitud;
 
         /// <summary>
-        /// rbTodos control.
+        /// ddlEstatusSolicitud control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbTodos;
-
-        /// <summary>
-        /// rbActivos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbActivos;
-
-        /// <summary>
-        /// rbProcesados control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbProcesados;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEstatusSolicitud;
 
         /// <summary>
         /// btnConsultar control.
@@ -294,6 +294,24 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.Label lbSolicitudesProcesadas;
 
         /// <summary>
+        /// lbSolicitudesCanceladas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSolicitudesCanceladas;
+
+        /// <summary>
+        /// lbSolicitudesRechazadas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSolicitudesRechazadas;
+
+        /// <summary>
         /// DivPaginacion control.
         /// </summary>
         /// <remarks>
@@ -357,6 +375,87 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIvBloqueDetalleRegistro;
 
         /// <summary>
+        /// lbNumeroSolicitud_Detalle_Variable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNumeroSolicitud_Detalle_Variable;
+
+        /// <summary>
+        /// lbFecha_Detalle_Variable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFecha_Detalle_Variable;
+
+        /// <summary>
+        /// lbHora_Detalle_Variable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbHora_Detalle_Variable;
+
+        /// <summary>
+        /// lbSucursal_Detalle_Variable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSucursal_Detalle_Variable;
+
+        /// <summary>
+        /// lbOficina_Detalle_Variable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbOficina_Detalle_Variable;
+
+        /// <summary>
+        /// lbDepartamento_Detalle_Variable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDepartamento_Detalle_Variable;
+
+        /// <summary>
+        /// lbUsuario_Detalle_Variable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbUsuario_Detalle_Variable;
+
+        /// <summary>
+        /// lbArticulos_Detalle_Variable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbArticulos_Detalle_Variable;
+
+        /// <summary>
+        /// lbEstatus_Detalle_Variable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEstatus_Detalle_Variable;
+
+        /// <summary>
         /// ScripManagerGestionCobros control.
         /// </summary>
         /// <remarks>
@@ -393,6 +492,33 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.Repeater rpSolicitudDetalle;
 
         /// <summary>
+        /// Nota control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Nota;
+
+        /// <summary>
+        /// lbContenidonota control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbContenidonota;
+
+        /// <summary>
+        /// cbObviarNoProcede control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbObviarNoProcede;
+
+        /// <summary>
         /// btnProcesar control.
         /// </summary>
         /// <remarks>
@@ -402,13 +528,31 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.ImageButton btnProcesar;
 
         /// <summary>
-        /// btnReporte control.
+        /// btnCancelarSolicitud control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnReporte;
+        protected global::System.Web.UI.WebControls.ImageButton btnCancelarSolicitud;
+
+        /// <summary>
+        /// btnRechazarSolicitud control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnRechazarSolicitud;
+
+        /// <summary>
+        /// btnVolverAtrasSolicitud control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnVolverAtrasSolicitud;
 
         /// <summary>
         /// DIVBloqueAdministracionInventario control.

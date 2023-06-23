@@ -187,6 +187,7 @@
     <Content Include="ImagenesBotones\PDF.png" />
     <Content Include="ImagenesBotones\PrimeraPagina_Nuevo.png" />
     <Content Include="ImagenesBotones\proceso.png" />
+    <Content Include="ImagenesBotones\rechazado.png" />
     <Content Include="ImagenesBotones\Recibo.png" />
     <Content Include="ImagenesBotones\ReporteComisiones.png" />
     <Content Include="ImagenesBotones\Reporte_Nuevo.png" />

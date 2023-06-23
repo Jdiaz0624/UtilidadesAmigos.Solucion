@@ -26,5 +26,6 @@ namespace UtilidadesAmigos.Logica.Entidades.Suministro
 		public System.Nullable<int> IdCategoria { get; set; }
 
 		public System.Nullable<int> StockMinimo { get; set; }
-	}
+        public System.Nullable<bool> Despachado { get; set; }
+    }
 }
