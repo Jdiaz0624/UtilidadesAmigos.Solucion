@@ -519,33 +519,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         protected global::System.Web.UI.WebControls.Repeater rpSolicitudDetalle;
 
         /// <summary>
-        /// Nota control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Nota;
-
-        /// <summary>
-        /// lbContenidonota control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbContenidonota;
-
-        /// <summary>
-        /// cbObviarNoProcede control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbObviarNoProcede;
-
-        /// <summary>
         /// lbComentarioSolicitud control.
         /// </summary>
         /// <remarks>
@@ -562,6 +535,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtComentarioSolicitud;
+
+        /// <summary>
+        /// cbNotificarViaCorreo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbNotificarViaCorreo;
 
         /// <summary>
         /// btnProcesar control.

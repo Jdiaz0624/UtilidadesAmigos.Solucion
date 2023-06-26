@@ -339,17 +339,7 @@
                                </asp:Repeater>
                            </tbody>
                        </table>
-                           <br />
-                           <div class="ContenidoIzquierda">
-                               <h6>
-                                   <asp:Label ID="Nota" runat="server" ForeColor="Red" CssClass="Letranegrita" Text="Nota: "></asp:Label>
-                                   <asp:Label ID="lbContenidonota" runat="server" CssClass="Letranegrita" Text="Los Articulos con un Estatus (No Procede) se eliminaran de la solicitud para proceder con este proceso."></asp:Label>
-                               </h6>
-                               <div class="form-check form-switch">
-                                   <input type="checkbox" id="cbObviarNoProcede" runat="server" class="form-check-input" />
-                                   <label class="form-check-label">Obviar la Nota anterior y dejar pendiente los Articulos (La solicitud pasara a Estatus Pendiente)</label>
-                               </div>
-                           </div>
+                          
                            
                            <br />
                     </ContentTemplate>
@@ -362,6 +352,11 @@
                        <asp:Label ID="lbComentarioSolicitud" runat="server" Text="Comentario" CssClass="Letranegrita"></asp:Label>
                        <asp:TextBox ID="txtComentarioSolicitud" runat="server" Placeholder="Este campo es Opcional" CssClass="form-control" TextMode="MultiLine" MaxLength="100"></asp:TextBox>
                    </div>
+               </div>
+               <br />
+               <div class="form-check form-switch">
+                   <input type="checkbox" id="cbNotificarViaCorreo" runat="server" class="form-check-input" />
+                   <label class="form-check-label">Notificar Estatus final al usuario via correo.</label>
                </div>
                <br />
                            <div id="DivBloqueBotones" class="ContenidoCentro">

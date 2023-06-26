@@ -152,7 +152,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         }
         #endregion
-        #region CONTROL DE PAGINACION DEl HEADER DE LAS SOLICITUDES
+        #region CONTROL DE PAGINACION DEL HEADER DE LA SOLICITUD
         readonly PagedDataSource pagedDataSource_SolicitudHeader = new PagedDataSource();
         int _PrimeraPagina_SolicitudHeader, _UltimaPagina_SolicitudHeader;
         private int _TamanioPagina_SolicitudHeader = 10;
@@ -189,7 +189,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             if (_UltimaPagina_SolicitudHeader > Convert.ToInt32(ViewState["TotalPages"]))
             {
                 _UltimaPagina_SolicitudHeader = Convert.ToInt32(ViewState["TotalPages"]);
-                _PrimeraPagina_SolicitudHeader = _UltimaPagina_SolicitudHeader - 10;
+                _PrimeraPagina_SolicitudHeader = CurrentPage_SolicitudHeader - 10;
             }
 
             if (_PrimeraPagina_SolicitudHeader < 0)
@@ -531,8 +531,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 lbSolicitudesCanceladas.Text = Canceladas.ToString("N0");
                 lbSolicitudesRechazadas.Text = Rechazadas.ToString("N0");
                 lbSolicitudesPendientes.Text = Pendientes.ToString("N0");
-                Paginar_SolicitudHeader(ref rpSolicitudesHeader, Listado, 10, ref lbCantidadPaginaVariable, ref btnPrimeraPagina_SolicitudesHeader, ref btnPaginaAnterior_SolicitudesHeader, ref btnSiguientePagina_SolicitudesHeader, ref btnUltimaPagina_SolicitudesHeader);
-                HandlePaging_SolicitudHeader(ref dtPaginacion, ref lbPaginaActualVariable);
+                Paginar_SolicitudHeader(ref rpSolicitudesHeader, Listado, 10, ref lbPaginaActualVariable, ref btnPrimeraPagina_SolicitudesHeader, ref btnPaginaAnterior_SolicitudesHeader, ref btnSiguientePagina_SolicitudesHeader, ref btnUltimaPagina_SolicitudesHeader);
+                HandlePaging_SolicitudHeader(ref dtPaginacion, ref lbCantidadPaginaVariable); 
             }
         }
         #endregion
@@ -622,6 +622,27 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 lbCodigoError.ForeColor = System.Drawing.Color.Red;
                 lbCodigoErrorVariable.Text = Error.Message;
             }
+        }
+        #endregion
+        #region AFECTAR EL INVENTARIO
+        private void AfectarInventario(decimal CodigoRegistro, int CantidadProcesar, string Accion) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroInventario Sacar = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionSuministroInventario(
+                             CodigoRegistro,
+                             0, 0, 0, 0, "",
+                             CantidadProcesar,
+                             0, Accion); 
+            Sacar.ProcesarInformacion();
+        }
+        #endregion
+        #region CAMBIAR EL ESTATUS DEL DESPACHE
+        private void CambiarEstatusDepache(int Secuencia, string NumeroConector, string Accion) {
+
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionDetail Despache = new Logica.Comunes.ProcesarMantenimientos.InformacionSuministro.ProcesarInformacionDetail(
+                              Secuencia,
+                              NumeroConector,
+                              0, "", 0, 0, 0, 0, 0, 0, true, Accion);
+            Despache.ProcesarInformacion();
         }
         #endregion
 
@@ -748,9 +769,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             lbNumeroConector_Detalle_Variable.Text = NumeroConector;
             lbIdUsuario_Detalle_variable.Text = IdUsuario.ToString();
 
-
-
-
             DIvBloqueDetalleRegistro.Visible = true;
             DivSubBloqueHeader.Visible = false;
             DivTipoOperacion.Visible = false;
@@ -770,17 +788,21 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 btnProcesar.Visible = false;
                 btnCancelarSolicitud.Visible = false;
                 btnRechazarSolicitud.Visible = false;
-
             }
         }
 
         protected void btnPrimeraPagina_SolicitudesHeader_Click(object sender, ImageClickEventArgs e)
         {
+            CurrentPage_SolicitudHeader = 0;
+            MostrarSolicitudes();
 
         }
 
         protected void btnPaginaAnterior_SolicitudesHeader_Click(object sender, ImageClickEventArgs e)
         {
+            CurrentPage_SolicitudHeader += -1;
+            MostrarSolicitudes();
+            MoverValoresPaginacion_SolicitudHeader((int)OpcionesPaginacionValores_SolicitudHeader.PaginaAnterior, ref lbPaginaActualVariable, ref lbCantidadPaginaVariable);
 
         }
 
@@ -791,17 +813,23 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void dtPaginacion_ItemCommand(object source, DataListCommandEventArgs e)
         {
-      
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage_SolicitudHeader = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarSolicitudes();
         }
 
         protected void btnSiguientePagina_SolicitudesHeader_Click(object sender, ImageClickEventArgs e)
         {
-
+            CurrentPage_SolicitudHeader += 1;
+            MostrarSolicitudes();
         }
 
         protected void btnUltimaPagina_SolicitudesHeader_Click(object sender, ImageClickEventArgs e)
         {
 
+            CurrentPage_SolicitudHeader = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarSolicitudes();
+            MoverValoresPaginacion_SolicitudHeader((int)OpcionesPaginacionValores_SolicitudHeader.UltimaPagina, ref lbPaginaActualVariable, ref lbCantidadPaginaVariable);
         }
 
         protected void btnQuitar_Click(object sender, ImageClickEventArgs e)
@@ -821,8 +849,43 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
                 NumeroConector,
                 (int)UtilidadesAmigos.Logica.Comunes.Enumeraciones.EstatusSolicitudSuministro.Procesada);
 
+            //RECORREMOS TODOS LOS REGISTROS AGREGADOS PARA AFECTAR EL INVENTARIO
+            string DetalleSolicitud = "";
+            decimal CodigoArticulo = 0;
+            int CantidadProcesar = 0, Secuencia = 0;
+            bool Despachado = false;
+            var RecorrerInformacion = ObjDataSuministro.Value.BuscaDetalleSolicitud(NumeroConector);
+            foreach (var n in RecorrerInformacion) {
 
-            EnviarCorreoElectronico("Procesada", Correo, ref txtComentarioSolicitud);
+                DetalleSolicitud = n.Estatus;
+                CodigoArticulo = (decimal)n.CodigoArticulo;
+                CantidadProcesar = (int)n.Cantidad;
+                Secuencia = (int)n.SecuenciaDetalle;
+                Despachado = (bool)n.Despachado0;
+
+                if (Despachado == false) {
+
+                    //REALIZAMOS EL PROCESO
+                    switch (DetalleSolicitud)
+                    {
+
+                        case "PROCEDE":
+                            AfectarInventario(CodigoArticulo, CantidadProcesar, "LESSITEM");
+                            CambiarEstatusDepache(Secuencia, NumeroConector, "CHANGESTTAUS");
+                            break;
+
+                        case "NO PROCEDE":
+
+                            break;
+                    }
+                }
+            }
+
+            if (cbNotificarViaCorreo.Checked == true) {
+                EnviarCorreoElectronico("Procesada", Correo, ref txtComentarioSolicitud);
+
+            }
+           
         }
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)
@@ -979,7 +1042,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
             btnBorrarInventarioCOnsulta.Visible = true;
             btnRestablecerInventarioConsulta.Visible = true;
             rbAgregarItems.Checked = true;
-            cbObviarNoProcede.Checked = false;
         }
 
         protected void btnGuardar_Suplir_Sacar_Click(object sender, ImageClickEventArgs e)

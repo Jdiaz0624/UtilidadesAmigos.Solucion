@@ -42,7 +42,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     {
                         int ContadorBloqueo = Convert.ToInt32(lbContador.Text);
 
-                        if (ContadorBloqueo == 3)
+                        if (ContadorBloqueo == 100)
                         {
                             ClientScript.RegisterStartupScript(GetType(), "UsuarioBloqueado()", "UsuarioBloqueado()", true);
                             var BloquearUsuario = ObjData.Value.BuscaUsuarios(

@@ -28,18 +28,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
         }
 
         enum PermisoUsuarios { 
-        CarlosMercado=9,
-        ErikSonVeras=30,
-        AdalgisaAlmonte=18,
         JuanMarcelino=1,
         AlfredoPimentel=10,
         MiguelBerrora=22,
-        KimailiRazon=35,
-        AngelaDesire=41,
-        MariaGiron = 49,
-        glenisbierd=48,
-        AngelaGenoveva=82
-
+        AngelaGenoveva=82,
+        SarayMota=88
         }
         
         #region CONTROL PARA MOSTRAR LA PAGINACION
@@ -458,19 +451,19 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
                 }
-                else if (IdUsuario == (decimal)PermisoUsuarios.MariaGiron)
+                else if (IdUsuario == (decimal)PermisoUsuarios.SarayMota)
                 {
                     btnNuevoNuevo.Visible = true;
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
                 }
-                else if (IdUsuario == (decimal)PermisoUsuarios.glenisbierd)
-                {
+                //else if (IdUsuario == (decimal)PermisoUsuarios.glenisbierd)
+                //{
 
-                    btnNuevoNuevo.Visible = true;
-                    btnModificarNuevo.Visible = true;
-                    btnEliminarNuevo.Visible = false;
-                }
+                //    btnNuevoNuevo.Visible = true;
+                //    btnModificarNuevo.Visible = true;
+                //    btnEliminarNuevo.Visible = false;
+                //}
                 else if (IdUsuario == (decimal)PermisoUsuarios.AngelaGenoveva)
                 {
 
