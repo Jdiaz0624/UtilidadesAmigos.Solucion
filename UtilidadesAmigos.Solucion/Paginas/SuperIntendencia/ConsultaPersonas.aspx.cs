@@ -2471,6 +2471,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
             MostrarInformacionArchivos();
         }
 
+        protected void btnSiguienteIntermediario_Click1(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
         protected void btnUltimoArchivo_Click(object sender, ImageClickEventArgs e)
         {
 

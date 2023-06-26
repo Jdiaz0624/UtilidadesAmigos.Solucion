@@ -249,15 +249,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.WebControls.Repeater rpListadoBusquedaCliente;
 
         /// <summary>
-        /// lbPaginaActualTituloCliente control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloCliente;
-
-        /// <summary>
         /// lbPaginaActualVariavleCliente control.
         /// </summary>
         /// <remarks>
@@ -265,15 +256,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPaginaActualVariavleCliente;
-
-        /// <summary>
-        /// lbCantidadPaginaTituloCliente control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloCliente;
 
         /// <summary>
         /// lbCantidadPaginaVAriableCliente control.
@@ -726,15 +708,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.WebControls.Repeater rpListadoIntermediarios;
 
         /// <summary>
-        /// lbPaginaActualTituloIntermediario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloIntermediario;
-
-        /// <summary>
         /// lbPaginaActualVariavleIntermediario control.
         /// </summary>
         /// <remarks>
@@ -742,15 +715,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPaginaActualVariavleIntermediario;
-
-        /// <summary>
-        /// lbCantidadPaginaTituloIntermediario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloIntermediario;
 
         /// <summary>
         /// lbCantidadPaginaVAriableIntermedairaio control.
