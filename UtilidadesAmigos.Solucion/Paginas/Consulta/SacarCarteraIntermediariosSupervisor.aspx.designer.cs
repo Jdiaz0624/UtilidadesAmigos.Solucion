@@ -123,141 +123,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.ImageButton ExportarInformacionIntermediario;
 
         /// <summary>
-        /// lbCantidadPolizasActivasTitulo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasActivasTitulo;
-
-        /// <summary>
-        /// lbCantidadPolizasActivasVariable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasActivasVariable;
-
-        /// <summary>
-        /// lbCantidadPolizasActivasCerrar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasActivasCerrar;
-
-        /// <summary>
-        /// lbSeparador control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSeparador;
-
-        /// <summary>
-        /// lbCantidadPolizasCanceladasTitulo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasCanceladasTitulo;
-
-        /// <summary>
-        /// lbCantidadPolizasCanceladasVariable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasCanceladasVariable;
-
-        /// <summary>
-        /// lbCantidadPolizasCanceladasCerrar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasCanceladasCerrar;
-
-        /// <summary>
-        /// lbSeparador2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSeparador2;
-
-        /// <summary>
-        /// lbCantidadPolizasTransitoTitulo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasTransitoTitulo;
-
-        /// <summary>
-        /// lbCantidadPolizasTransitoVariable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasTransitoVariable;
-
-        /// <summary>
-        /// lbCantidadPolizasCerrar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasCerrar;
-
-        /// <summary>
-        /// lbSeparador3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSeparador3;
-
-        /// <summary>
-        /// lbCantidadPolziasExcluidasTitulos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPolziasExcluidasTitulos;
-
-        /// <summary>
-        /// lbCantidadPolizasExcluidasVariable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasExcluidasVariable;
-
-        /// <summary>
-        /// lbCantidadPolizasExcluidasCerrar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasExcluidasCerrar;
-
-        /// <summary>
         /// rpCarteraIntermediario control.
         /// </summary>
         /// <remarks>
@@ -265,15 +130,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rpCarteraIntermediario;
-
-        /// <summary>
-        /// lbPaginaActualCarteraIntermediario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActualCarteraIntermediario;
 
         /// <summary>
         /// lbPaginaActualVariableCarteraIntermediario control.
@@ -285,15 +141,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.Label lbPaginaActualVariableCarteraIntermediario;
 
         /// <summary>
-        /// lbCantidadPaginaTituloCarteraIntermediario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloCarteraIntermediario;
-
-        /// <summary>
         /// lbCantidadPaginaVAriableCarteraIntermediario control.
         /// </summary>
         /// <remarks>
@@ -301,6 +148,42 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVAriableCarteraIntermediario;
+
+        /// <summary>
+        /// lbCantidadPolizasActivasVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasActivasVariable;
+
+        /// <summary>
+        /// lbCantidadPolizasCanceladasVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasCanceladasVariable;
+
+        /// <summary>
+        /// lbCantidadPolizasTransitoVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasTransitoVariable;
+
+        /// <summary>
+        /// lbCantidadPolizasExcluidasVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadPolizasExcluidasVariable;
 
         /// <summary>
         /// divPaginacionCarteraIntermediario control.
@@ -456,33 +339,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.ImageButton btnExportarSupervisores;
 
         /// <summary>
-        /// lbCantidadIntermediariosTitulo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadIntermediariosTitulo;
-
-        /// <summary>
-        /// lbCantidadIntermediariosVariable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadIntermediariosVariable;
-
-        /// <summary>
-        /// lbCantidadIntermediariosCerrar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadIntermediariosCerrar;
-
-        /// <summary>
         /// rpCarteraSupervisor control.
         /// </summary>
         /// <remarks>
@@ -490,15 +346,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rpCarteraSupervisor;
-
-        /// <summary>
-        /// lbPaginaActualCarteraSupervisor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActualCarteraSupervisor;
 
         /// <summary>
         /// lbPaginaActualVariableCarteraSupervisor control.
@@ -510,15 +357,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.Label lbPaginaActualVariableCarteraSupervisor;
 
         /// <summary>
-        /// lbCantidadPaginaTituloCarteraSupervisor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloCarteraSupervisor;
-
-        /// <summary>
         /// lbCantidadPaginaVAriableCarteraSupervisor control.
         /// </summary>
         /// <remarks>
@@ -526,6 +364,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCantidadPaginaVAriableCarteraSupervisor;
+
+        /// <summary>
+        /// lbCantidadIntermediariosVariable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCantidadIntermediariosVariable;
 
         /// <summary>
         /// divPaginacionCarteraSupervisor control.

@@ -2,30 +2,36 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <style type="text/css">
-       
+    <link href="../../Content/EstilosComunes.css" rel="stylesheet" />
 
-        .btn-sm{
-            width:90px;
-        }
+    <script type="text/javascript">
+        $(function () {
 
-        .LetrasNegrita {
-        font-weight:bold;
-        }
-        table {
-            border-collapse: collapse;
-        }
-        
+            $("#<%=btnConsultarIntermediario.ClientID%>").click(function () {
 
-        
-          .BotonImagen {
-              width: 40px;
-              height: 40px;
-          }
-    </style>
+                var Codigo = $("#<%=txtCodigoIntermedairio.ClientID%>").val().length;
+                if (Codigo < 1) {
+                    alert("El campo Codigo de Intermediario no puede estar vacio para realizar esta busqueda, favor de verificar.");
+                    $("#<%=txtCodigoIntermedairio.ClientID%>").css("border-color", "red");
+                    return false;
+                }
+            });
+
+            $("#<%=ExportarInformacionIntermediario.ClientID%>").click(function () {
+
+                var Codigo = $("#<%=txtCodigoIntermedairio.ClientID%>").val().length;
+                if (Codigo < 1) {
+                    alert("El campo Codigo de Intermediario no puede estar vacio para exportar esta información, favor de verificar.");
+                    $("#<%=txtCodigoIntermedairio.ClientID%>").css("border-color", "red");
+                     return false;
+                 }
+            });
+        })
+    </script>
+ 
 
     <br />
-    <div class="form-check-inline">
+    <div class="form-check">
         <asp:Label ID="lbIdPerfil" runat="server" Text="" Visible="false"></asp:Label>
         <asp:RadioButton ID="rbCarteraIntermediarios" runat="server" Text="Cartera de Intermediarios" CssClass="LetrasNegrita" ToolTip="Sacar la cartera de Intermediarios" AutoPostBack="true" OnCheckedChanged="rbCarteraIntermediarios_CheckedChanged" GroupName="Cartera" />
          <asp:RadioButton ID="rbCarteraSupervisores" runat="server" Text="Cartera de Supervisores" CssClass="LetrasNegrita" AutoPostBack="true" ToolTip="Sacar la cartera de Supervisores" OnCheckedChanged="rbCarteraSupervisores_CheckedChanged" GroupName="Cartera" />
@@ -48,25 +54,10 @@
             </div>
         </div>
         <br />
-        <div align="center">
-            <asp:ImageButton ID="btnConsultarIntermediario" runat="server" ToolTip="Buscar Intermediarios" CssClass="BotonImagen" OnClick="btnConsultarIntermediario_Click" ImageUrl="~/Imagenes/Buscar.png" />
-            <asp:ImageButton ID="ExportarInformacionIntermediario" runat="server" ToolTip="Exportar Información a Excel" CssClass="BotonImagen" OnClick="ExportarInformacionIntermediario_Click" ImageUrl="~/Imagenes/excel.png" />
-             <br />
-            <asp:Label ID="lbCantidadPolizasActivasTitulo" runat="server" Text="Polizas Activas (" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadPolizasActivasVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadPolizasActivasCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbSeparador" runat="server" Text=" | " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadPolizasCanceladasTitulo" runat="server" Text="Polizas Canceladas (" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadPolizasCanceladasVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadPolizasCanceladasCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbSeparador2" runat="server" Text=" | " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadPolizasTransitoTitulo" runat="server" Text="Polizas En Transito (" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadPolizasTransitoVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadPolizasCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbSeparador3" runat="server" Text=" | " CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadPolziasExcluidasTitulos" runat="server" Text="Polizas En Exclusión (" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadPolizasExcluidasVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadPolizasExcluidasCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
+        <div class="ContenidoCentro">
+            <asp:ImageButton ID="btnConsultarIntermediario" runat="server" ToolTip="Buscar Intermediarios" CssClass="BotonImagen" OnClick="btnConsultarIntermediario_Click" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" />
+            <asp:ImageButton ID="ExportarInformacionIntermediario" runat="server" ToolTip="Exportar Información a Excel" CssClass="BotonImagen" OnClick="ExportarInformacionIntermediario_Click" ImageUrl="~/ImagenesBotones/Excel.png" />
+            
         </div>
         <br />
        
@@ -76,9 +67,9 @@
                         <th scope="col"> Poliza </th>
                         <th scope="col"> Estatus </th>
                         <th scope="col"> Cliente </th>
-                        <th scope="col"> Facturado </th>
-                        <th scope="col"> Cobrado </th>
-                        <th scope="col"> Balance </th>
+                        <th class="ContenidoDerecha" scope="col"> Facturado </th>
+                        <th class="ContenidoDerecha" scope="col"> Cobrado </th>
+                        <th class="ContenidoDerecha" scope="col"> Balance </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,28 +79,51 @@
                                 <td> <%# Eval("Poliza") %> </td>
                                 <td> <%# Eval("EstatusPoliza") %> </td>
                                 <td> <%# Eval("Cliente") %> </td>
-                                <td> <%#string.Format("{0:n2}", Eval("Facturado")) %> </td>
-                                <td> <%#string.Format("{0:n2}", Eval("Cobrado")) %> </td>
-                                <td> <%#string.Format("{0:n2}", Eval("Balance")) %> </td>
+                                <td class="ContenidoDerecha"> <%#string.Format("{0:n2}", Eval("Facturado")) %> </td>
+                                <td class="ContenidoDerecha"><%#string.Format("{0:n2}", Eval("Cobrado")) %> </td>
+                                <td class="ContenidoDerecha"> <%#string.Format("{0:n2}", Eval("Balance")) %> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
+        <table class="table">
+            <thead class="table-light">
+                <tr>
+                    <th class="ContenidoDerecha">
+                        <b>Pagina </b> <asp:Label ID="lbPaginaActualVariableCarteraIntermediario" runat="server" Text=" 0 " ></asp:Label> <b> De </b>  <asp:Label ID="lbCantidadPaginaVAriableCarteraIntermediario" runat="server" Text="0"></asp:Label>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="ContenidoIzquierda">
+                        <b>Polizas Activas :</b> <asp:Label ID="lbCantidadPolizasActivasVariable" runat="server" Text="0"></asp:Label>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="ContenidoIzquierda">
+                        <b>Polizas Canceladas :</b> <asp:Label ID="lbCantidadPolizasCanceladasVariable" runat="server" Text="0"></asp:Label>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="ContenidoIzquierda">
+                        <b>Polizas En Transito :</b> <asp:Label ID="lbCantidadPolizasTransitoVariable" runat="server" Text="0"></asp:Label>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="ContenidoIzquierda">
+                        <b>Polizas En Exclusión :</b> <asp:Label ID="lbCantidadPolizasExcluidasVariable" runat="server" Text="0"></asp:Label>
+                    </th>
+                </tr>
+            </thead>
+        </table>
       
-       
-         <div align="center">
-                <asp:Label ID="lbPaginaActualCarteraIntermediario" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariableCarteraIntermediario" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloCarteraIntermediario" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriableCarteraIntermediario" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
+     
              <div id="divPaginacionCarteraIntermediario" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:ImageButton ID="btnkPrimeraPaginaCarteraIntermediario" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnkPrimeraPaginaCarteraIntermediario_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
-                    <td> <asp:ImageButton ID="btnAnteriorCarteraIntermediario" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnAnteriorCarteraIntermediario_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+                    <td> <asp:ImageButton ID="btnkPrimeraPaginaCarteraIntermediario" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnkPrimeraPaginaCarteraIntermediario_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnAnteriorCarteraIntermediario" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnAnteriorCarteraIntermediario_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" /> </td>
                     <td align="center" >
                         <asp:DataList ID="dtPaginacionCarteraIntermediario" runat="server" OnItemCommand="dtPaginacionCarteraIntermediario_ItemCommand" OnItemDataBound="dtPaginacionCarteraIntermediario_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
@@ -118,8 +132,8 @@
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:ImageButton ID="btnSiguienteCarteraIntermediario" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguienteCarteraIntermediario_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
-                    <td> <asp:ImageButton ID="btnUltimoCarteraIntermediario" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimoCarteraIntermediario_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnSiguienteCarteraIntermediario" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguienteCarteraIntermediario_Click" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimoCarteraIntermediario" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimoCarteraIntermediario_Click" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" /> </td>
                 </tr>
             </table>
         </div>
@@ -154,15 +168,11 @@
             </div>
         </div>
         <br />
-        <div align="center">
-            <asp:ImageButton ID="btnBuscarSupervisores" runat="server" ToolTip="Buscar Información" CssClass="BotonImagen" OnClick="btnBuscarSupervisores_Click" ImageUrl="~/Imagenes/Buscar.png" />
-            <asp:ImageButton ID="btnExportarSupervisores" runat="server" ToolTip="Exportar Información" CssClass="BotonImagen" OnClick="btnExportarSupervisores_Click" ImageUrl="~/Imagenes/excel.png" />
-            <br />
-            <asp:Label ID="lbCantidadIntermediariosTitulo" runat="server" Text="Cantidad de Intermediarios (" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadIntermediariosVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
-            <asp:Label ID="lbCantidadIntermediariosCerrar" runat="server" Text=")" CssClass="LetrasNegrita"></asp:Label>
+        <div class="ContenidoCentro">
+            <asp:ImageButton ID="btnBuscarSupervisores" runat="server" ToolTip="Buscar Información" CssClass="BotonImagen" OnClick="btnBuscarSupervisores_Click" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" />
+            <asp:ImageButton ID="btnExportarSupervisores" runat="server" ToolTip="Exportar Información" CssClass="BotonImagen" OnClick="btnExportarSupervisores_Click" ImageUrl="~/ImagenesBotones/Excel.png" />
         </div>
-        
+        <br />
             <table class="table table-striped">
                 <thead class="table-dark">
                     <tr>
@@ -183,19 +193,27 @@
                     </asp:Repeater>
                 </tbody>
             </table>
-  
-          <div align="center">
-                <asp:Label ID="lbPaginaActualCarteraSupervisor" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariableCarteraSupervisor" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloCarteraSupervisor" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriableCarteraSupervisor" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
+        <table class="table">
+            <thead class="table-light">
+                <tr>
+                    <th class="ContenidoDerecha">
+                        <b>Pagina </b> <asp:Label ID="lbPaginaActualVariableCarteraSupervisor" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label> <b> De </b> <asp:Label ID="lbCantidadPaginaVAriableCarteraSupervisor" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="ContenidoIzquierda">
+                        <b>Cantidad de Intermediarios: </b> <asp:Label ID="lbCantidadIntermediariosVariable" runat="server" Text="0" CssClass="LetrasNegrita"></asp:Label>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+ 
              <div id="divPaginacionCarteraSupervisor" runat="server" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:ImageButton ID="btnPrimeraPaginaCarteraSupervisor" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPaginaCarteraSupervisor_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
-                    <td> <asp:ImageButton ID="btnAnteriorCarteraSupervisor" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnAnteriorCarteraSupervisor_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPrimeraPaginaCarteraSupervisor" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPaginaCarteraSupervisor_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnAnteriorCarteraSupervisor" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnAnteriorCarteraSupervisor_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" /> </td>
 
                     <td align="center" >
                         <asp:DataList ID="dtPaginacionCarteraSupervisor" runat="server" OnItemCommand="dtPaginacionCarteraSupervisor_ItemCommand" OnItemDataBound="dtPaginacionCarteraSupervisor_ItemDataBound" RepeatDirection="Horizontal">
@@ -205,8 +223,8 @@
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:ImageButton ID="btnSiguienteCarteraSupervisor" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguienteCarteraSupervisor_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
-                    <td> <asp:ImageButton ID="btnUltimoCarteraSupervisor" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimoCarteraSupervisor_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnSiguienteCarteraSupervisor" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguienteCarteraSupervisor_Click" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimoCarteraSupervisor" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimoCarteraSupervisor_Click" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" /> </td>
 
                 </tr>
             </table>
