@@ -642,12 +642,12 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
                 case (int)PefilesUsuarios.CONTABILIDAD:
                     //SUMINISTRO
-                    LinkAdministracion.Visible = true;
+                    LinkAdministracion.Visible = false;
                     LinkSolicitud.Visible = true;
 
                     //CONSULTAS
                     LinkCartera.Visible = false;
-                    LinkConsultaPersonas.Visible = false;
+                    LinkConsultaPersonas.Visible = true;
                     LinkListadoRenovacion.Visible = false;
                     LinkGestionCobros.Visible = false;
                     LinkEstadisticaRenovacion.Visible = false;
@@ -809,7 +809,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
                     //CONSULTAS
                     LinkCartera.Visible = true;
-                    LinkConsultaPersonas.Visible = false;
+                    LinkConsultaPersonas.Visible = true;
                     LinkListadoRenovacion.Visible = false;
                     LinkGestionCobros.Visible = false;
                     LinkEstadisticaRenovacion.Visible = false;
@@ -891,7 +891,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
                     //CONSULTAS
                     LinkCartera.Visible = true;
-                    LinkConsultaPersonas.Visible = false;
+                    LinkConsultaPersonas.Visible = true;
                     LinkListadoRenovacion.Visible = false;
                     LinkGestionCobros.Visible = false;
                     LinkEstadisticaRenovacion.Visible = false;
@@ -1049,12 +1049,12 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
                 case (int)PefilesUsuarios.ADMINISTRACION:
                     //SUMINISTRO
-                    LinkAdministracion.Visible = true;
+                    LinkAdministracion.Visible = false;
                     LinkSolicitud.Visible = true;
 
                     //CONSULTAS
                     LinkCartera.Visible = false;
-                    LinkConsultaPersonas.Visible = true;
+                    LinkConsultaPersonas.Visible = false;
                     LinkListadoRenovacion.Visible = false;
                     LinkGestionCobros.Visible = false;
                     LinkEstadisticaRenovacion.Visible = false;
@@ -1300,7 +1300,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
                     //CONSULTAS
                     LinkCartera.Visible = true;
-                    LinkConsultaPersonas.Visible = true;
+                    LinkConsultaPersonas.Visible = false;
                     LinkListadoRenovacion.Visible = true;
                     LinkGestionCobros.Visible = true;
                     LinkEstadisticaRenovacion.Visible = true;
@@ -1464,7 +1464,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
                     //CONSULTAS
                     LinkCartera.Visible = true;
-                    LinkConsultaPersonas.Visible = true;
+                    LinkConsultaPersonas.Visible = false;
                     LinkListadoRenovacion.Visible = true;
                     LinkGestionCobros.Visible = true;
                     LinkEstadisticaRenovacion.Visible = true;
@@ -1546,7 +1546,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
                     //CONSULTAS
                     LinkCartera.Visible = true;
-                    LinkConsultaPersonas.Visible = false;
+                    LinkConsultaPersonas.Visible = true;
                     LinkListadoRenovacion.Visible = true;
                     LinkGestionCobros.Visible = false;
                     LinkEstadisticaRenovacion.Visible = false;

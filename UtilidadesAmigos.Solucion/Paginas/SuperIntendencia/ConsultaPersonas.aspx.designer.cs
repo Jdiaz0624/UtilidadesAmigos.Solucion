@@ -1113,15 +1113,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.WebControls.Repeater rpListadoProveedores;
 
         /// <summary>
-        /// lbPaginaActualTituloProveedor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloProveedor;
-
-        /// <summary>
         /// lbPaginaActualVariavleProveedor control.
         /// </summary>
         /// <remarks>
@@ -1129,15 +1120,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPaginaActualVariavleProveedor;
-
-        /// <summary>
-        /// lbCantidadPaginaTituloProveedor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloProveedor;
 
         /// <summary>
         /// lbCantidadPaginaVAriableProveedor control.
@@ -1770,15 +1752,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.WebControls.Repeater rpListadoRegistrosasegurado;
 
         /// <summary>
-        /// lbPaginaActualTituloAsegurado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloAsegurado;
-
-        /// <summary>
         /// lbPaginaActualVariavleAsegurado control.
         /// </summary>
         /// <remarks>
@@ -1786,15 +1759,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPaginaActualVariavleAsegurado;
-
-        /// <summary>
-        /// lbCantidadPaginaTituloAsegurdo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloAsegurdo;
 
         /// <summary>
         /// lbCantidadPaginaVAriableAsegurado control.
@@ -2247,15 +2211,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.WebControls.Repeater rpIDListadoAseguradoGeneral;
 
         /// <summary>
-        /// lbPaginaActualTituloAseguradoGeneral control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloAseguradoGeneral;
-
-        /// <summary>
         /// lbPaginaActualVariavleAseguradoGeneral control.
         /// </summary>
         /// <remarks>
@@ -2263,15 +2218,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPaginaActualVariavleAseguradoGeneral;
-
-        /// <summary>
-        /// lbCantidadPaginaTituloAsegurdoGeneral control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloAsegurdoGeneral;
 
         /// <summary>
         /// lbCantidadPaginaVAriableAseguradoGeneral control.
@@ -3192,15 +3138,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         protected global::System.Web.UI.WebControls.Repeater rpRegistrosCargadoArchivo;
 
         /// <summary>
-        /// lbPaginaActualTituloArchivo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloArchivo;
-
-        /// <summary>
         /// lbPaginaActualVariavleArchivo control.
         /// </summary>
         /// <remarks>
@@ -3208,15 +3145,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.SuperIntendencia
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPaginaActualVariavleArchivo;
-
-        /// <summary>
-        /// lbCantidadPaginaTituloArchivo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloArchivo;
 
         /// <summary>
         /// lbCantidadPaginaVAriableArchivo control.
