@@ -474,6 +474,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Correcciones
         protected global::System.Web.UI.WebControls.Label lbMontoAfianzadoNuevo;
 
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// txtMontoAfianzadoNuevo control.
         /// </summary>
         /// <remarks>
@@ -481,6 +490,33 @@ namespace UtilidadesAmigos.Solucion.Paginas.Correcciones
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMontoAfianzadoNuevo;
+
+        /// <summary>
+        /// lbConceptoModificacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbConceptoModificacion;
+
+        /// <summary>
+        /// lbAsterisco control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbAsterisco;
+
+        /// <summary>
+        /// txtConceptoModificacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtConceptoModificacion;
 
         /// <summary>
         /// btnGuardar control.

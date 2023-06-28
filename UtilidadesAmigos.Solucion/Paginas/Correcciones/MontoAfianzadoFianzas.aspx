@@ -12,6 +12,10 @@
                 alert("El numero de Poliza ingresado no es valido, favor de verificar.");
             }
 
+            function PrrocesoCompletado() {
+                alert("Proceso Completado con Exito.");
+            }
+
             $(function () {
 
                 $("#<%=btnValidar.ClientID%>").click(function () {
@@ -29,9 +33,18 @@
                     var MontoAfianzado = $("#<%=txtMontoAfianzadoNuevo.ClientID%>").val().length;
                     if (MontoAfianzado < 1) {
 
-                        alert("El campo monto Afianzado no puede estar vacio para guardar esta información, favor de validar.");
+                        alert("El campo monto Afianzado es obligatorio para completar esta proceso, favor de verificar.");
                         $("#<%=txtMontoAfianzadoNuevo.ClientID%>").css("border-color", "red");
                         return false;
+                    }
+                    else {
+                        var ConceptoModificacion = $("#<%=txtConceptoModificacion.ClientID%>").val().length;
+                        if (ConceptoModificacion < 1) {
+
+                            alert("El campo Concepto es obligatorio para completar esta proceso, favor de verificar.");
+                            $("#<%=txtConceptoModificacion.ClientID%>").css("border-color", "red");
+                            return false;
+                        }
                     }
                 });
             })
@@ -79,12 +92,12 @@
                    <asp:Repeater ID="rpListadoModificaciones" runat="server">
                        <ItemTemplate>
                            <tr>
-                               <td> <%# Eval("") %> </td>
-                               <td> <%#string.Format("{0:N2}", Eval("")) %> </td>
-                               <td> <%#string.Format("{0:N2}", Eval("")) %> </td>
-                               <td> <%# Eval("") %> </td>
-                               <td> <%# Eval("") %> </td>
-                               <td> <%# Eval("") %> </td>
+                               <td> <%# Eval("Poliza") %> </td>
+                               <td> <%#string.Format("{0:N2}", Eval("Anterior")) %> </td>
+                               <td> <%#string.Format("{0:N2}", Eval("Cambio")) %> </td>
+                               <td> <%# Eval("CreadoPor") %> </td>
+                               <td> <%# Eval("Fecha") %> </td>
+                               <td> <%# Eval("Hora") %> </td>
                            </tr>
                        </ItemTemplate>
                    </asp:Repeater>
@@ -211,7 +224,13 @@
 
                      <div class="col-md-4">
                          <asp:Label ID="lbMontoAfianzadoNuevo" runat="server" Text="Monto Afianzado Nuevo" CssClass="Letranegrita"></asp:Label>
+                          <asp:Label ID="Label1" runat="server" Text=" * " ForeColor="Red" CssClass="Letranegrita"></asp:Label>
                          <asp:TextBox ID="txtMontoAfianzadoNuevo" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
+                     </div>
+                     <div class="col-md-8">
+                         <asp:Label ID="lbConceptoModificacion" runat="server" Text="Concepto de Modificación" CssClass="Letranegrita"></asp:Label>
+                         <asp:Label ID="lbAsterisco" runat="server" Text=" * " ForeColor="Red" CssClass="Letranegrita"></asp:Label>
+                         <asp:TextBox ID="txtConceptoModificacion" runat="server"  CssClass="form-control"></asp:TextBox>
                      </div>
                  </div>
                  <br />

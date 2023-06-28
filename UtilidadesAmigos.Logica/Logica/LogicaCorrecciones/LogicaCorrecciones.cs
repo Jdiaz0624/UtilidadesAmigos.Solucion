@@ -245,6 +245,70 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaCorrecciones
             }
             return Procesar;
         }
+
+        /// <summary>
+        /// Este metodo es para buscar fianzas
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Correcciones.EBuscaInformacionPolizasFianzas> BuscaInformacionPolizasFianzas(string Poliza = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_INFORMACION_POLIZAS_FIANZAS(Poliza)
+                           select new UtilidadesAmigos.Logica.Entidades.Correcciones.EBuscaInformacionPolizasFianzas
+                           {
+                               Poliza=n.Poliza,
+                               Estatus=n.Estatus,
+                               SumaAsegurada=n.SumaAsegurada,
+                               Prima=n.Prima,
+                               Intermediario=n.Intermediario,
+                               NombreVendedor=n.NombreVendedor,
+                               Cliente=n.Cliente,
+                               NombreCliente=n.NombreCliente,
+                               Deudor=n.Deudor,
+                               Ramo=n.Ramo,
+                               NombreRamo=n.NombreRamo,
+                               SubRamo=n.SubRamo,
+                               NombreSubramo=n.NombreSubramo,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               Facturado=n.Facturado,
+                               Cobrado=n.Cobrado,
+                               Balance=n.Balance
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Modifica el Monto Afianzado
+        /// </summary>
+        /// <param name="Monto"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Correcciones.EModificarMontoAfianzado ModificarMontoAfianzado(UtilidadesAmigos.Logica.Entidades.Correcciones.EModificarMontoAfianzado Monto, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Correcciones.EModificarMontoAfianzado Modificar = null;
+
+            var MontoAfianzado = ObjData.SP_MODIFICAR_MONTO_AFIANZADO(
+                Monto.Poliza,
+                Monto.MontoAfianzado,
+                Accion);
+            if (MontoAfianzado != null) {
+
+                Modificar = (from n in MontoAfianzado
+                             select new UtilidadesAmigos.Logica.Entidades.Correcciones.EModificarMontoAfianzado
+                             {
+                                 Poliza=n.Poliza,
+                                 MontoAfianzado=n.MontoAfianzado
+                             }).FirstOrDefault();
+            }
+            return Modificar;
+        }
         #endregion
+
+       
     }
 }
