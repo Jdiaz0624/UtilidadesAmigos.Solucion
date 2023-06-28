@@ -179,5 +179,72 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaCorrecciones
             return Procesar;
         }
         #endregion
+
+        #region MANTENIMIENTO DE BITACORA DE MONTO AFIANZADO
+        /// <summary>
+        /// Este metodo muestra el listado de la bitacora de los cambios realizados al monto afianzado de las polizas
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Correcciones.EBitacoraMontoAfianzado> BuscaBitacoraMontoAfianzado(string Poliza = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_BITACORA_MONTO_AFIANZADO(Poliza, FechaDesde, FechaHasta)
+                           select new UtilidadesAmigos.Logica.Entidades.Correcciones.EBitacoraMontoAfianzado
+                           {
+                               IdRegistro=n.IdRegistro,
+                               Poliza=n.Poliza,
+                               Anterior=n.Anterior,
+                               Cambio=n.Cambio,
+                               Usuario=n.Usuario,
+                               CreadoPor=n.CreadoPor,
+                               Fecha0=n.Fecha0,
+                               Fecha=n.Fecha=n.Fecha,
+                               Hora=n.Hora,
+                               Concepto=n.Concepto
+                           }).ToList();
+            return Listado;
+        }
+
+        /// <summary>
+        /// Este metodo Procesa la informacion de las modificaciones realizadas en la bitacora de monto afianzado
+        /// </summary>
+        /// <param name="MontoAfianzado"></param>
+        /// <param name="Accion"></param>
+        /// <returns></returns>
+        public UtilidadesAmigos.Logica.Entidades.Correcciones.EBitacoraMontoAfianzado ProcesarBitacoraMontoAfianzado(UtilidadesAmigos.Logica.Entidades.Correcciones.EBitacoraMontoAfianzado MontoAfianzado, string Accion) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            UtilidadesAmigos.Logica.Entidades.Correcciones.EBitacoraMontoAfianzado Procesar = null;
+
+            var Dato = ObjData.SP_PROCESAR_INFORMACION_BITACORA_MONTO_AFIANZADO(
+                MontoAfianzado.IdRegistro,
+                MontoAfianzado.Poliza,
+                MontoAfianzado.Anterior,
+                MontoAfianzado.Cambio,
+                MontoAfianzado.Usuario,
+                MontoAfianzado.Concepto,
+                Accion);
+            if (Dato != null) {
+
+                Procesar = (from n in Dato
+                            select new UtilidadesAmigos.Logica.Entidades.Correcciones.EBitacoraMontoAfianzado
+                            {
+                                IdRegistro=n.IdRegistro,
+                                Poliza=n.Poliza,
+                                Anterior=n.Anterior,
+                                Cambio=n.Cambio,
+                                Usuario=n.Usuario,
+                                Fecha0=n.Fecha,
+                                Concepto=n.Concepto
+                            }).FirstOrDefault();
+            }
+            return Procesar;
+        }
+        #endregion
     }
 }

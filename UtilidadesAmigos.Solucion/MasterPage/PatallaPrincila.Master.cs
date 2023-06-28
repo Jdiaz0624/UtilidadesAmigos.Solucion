@@ -500,7 +500,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloProcesos.Visible = true;
                     DivModuloMantenimiento.Visible = false;
                     DivModuloSeguridad.Visible = false;
-                    DivModuloCorrecciones.Visible = true;
+                    DivModuloCorrecciones.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.CUMPLIMIENTO:
@@ -520,7 +520,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloProcesos.Visible = true;
                     DivModuloMantenimiento.Visible = false;
                     DivModuloSeguridad.Visible = false;
-                    DivModuloCorrecciones.Visible = true;
+                    DivModuloCorrecciones.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.TECNICOESPECIAL:
@@ -610,6 +610,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //CORRECCIONES
                     LinkEliminarEndosos.Visible = true;
                     LinkPolizaTransito.Visible = true;
+                    LinkSumaAseguradaFianzas.Visible = true;
                     LinkCambioIntermediario.Visible = true;
                     LinkCambioCliente.Visible = true;
                     LinkModificarDatosCliente.Visible = true;
@@ -690,6 +691,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //CORRECCIONES
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
+                    LinkSumaAseguradaFianzas.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -772,6 +774,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //CORRECCIONES
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
+                    LinkSumaAseguradaFianzas.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -854,8 +857,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //CORRECCIONES
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
-                    LinkCambioIntermediario.Visible = false;
-                    LinkCambioCliente.Visible = false;
+                    LinkSumaAseguradaFianzas.Visible = false;
+                    LinkCambioIntermediario.Visible = true;
+                    LinkCambioCliente.Visible = true;
                     LinkModificarDatosCliente.Visible = true;
                     LinkDatoPoliza.Visible = false;
 
@@ -936,6 +940,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //CORRECCIONES
                     LinkEliminarEndosos.Visible = true;
                     LinkPolizaTransito.Visible = true;
+                    LinkSumaAseguradaFianzas.Visible = true;
                     LinkCambioIntermediario.Visible = true;
                     LinkCambioCliente.Visible = true;
                     LinkModificarDatosCliente.Visible = true;
@@ -1017,6 +1022,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //CORRECCIONES
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
+                    LinkSumaAseguradaFianzas.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -1099,6 +1105,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //CORRECCIONES
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
+                    LinkSumaAseguradaFianzas.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -1181,6 +1188,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //CORRECCIONES
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
+                    LinkSumaAseguradaFianzas.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -1263,6 +1271,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //CORRECCIONES
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
+                    LinkSumaAseguradaFianzas.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -1345,6 +1354,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //CORRECCIONES
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
+                    LinkSumaAseguradaFianzas.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = true;
@@ -1427,6 +1437,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //CORRECCIONES
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
+                    LinkSumaAseguradaFianzas.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = false;
@@ -1509,6 +1520,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //CORRECCIONES
                     LinkEliminarEndosos.Visible = false;
                     LinkPolizaTransito.Visible = false;
+                    LinkSumaAseguradaFianzas.Visible = false;
                     LinkCambioIntermediario.Visible = false;
                     LinkCambioCliente.Visible = false;
                     LinkModificarDatosCliente.Visible = true;
@@ -1589,10 +1601,11 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkCartaCancelacion.Visible = false;
 
                     //CORRECCIONES
-                    LinkEliminarEndosos.Visible = false;
-                    LinkPolizaTransito.Visible = false;
-                    LinkCambioIntermediario.Visible = false;
-                    LinkCambioCliente.Visible = false;
+                    LinkEliminarEndosos.Visible = true;
+                    LinkPolizaTransito.Visible = true;
+                    LinkSumaAseguradaFianzas.Visible = true;
+                    LinkCambioIntermediario.Visible = true;
+                    LinkCambioCliente.Visible = true;
                     LinkModificarDatosCliente.Visible = false;
                     LinkDatoPoliza.Visible = true;
 
@@ -2619,6 +2632,19 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             {
                 //Response.Redirect("~/Paginas/Correcciones/ModificarDatosCliente.aspx");
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Que Degraciación con ustedes los humanos, si la opcion esta en roja es por que no esta en funcionamiento.');", true);
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
+
+        protected void LinkSumaAseguradaFianzas_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Correcciones/MontoAfianzadoFianzas.aspx");
             }
             else
             {

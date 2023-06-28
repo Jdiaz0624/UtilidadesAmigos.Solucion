@@ -282,6 +282,7 @@
     <Content Include="Paginas\Correcciones\CambioIntermediario.aspx" />
     <Content Include="Paginas\Correcciones\EliminarEntodoso.aspx" />
     <Content Include="Paginas\Correcciones\ModificarDatosCliente.aspx" />
+    <Content Include="Paginas\Correcciones\MontoAfianzadoFianzas.aspx" />
     <Content Include="Paginas\Correcciones\PolizaTransito.aspx" />
     <Content Include="Paginas\EliminarBalancePoliza.aspx" />
     <Content Include="Paginas\GenerarFacturasPDF.aspx" />
@@ -630,6 +631,13 @@
     </Compile>
     <Compile Include="Paginas\Correcciones\ModificarDatosCliente.aspx.designer.cs">
       <DependentUpon>ModificarDatosCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\MontoAfianzadoFianzas.aspx.cs">
+      <DependentUpon>MontoAfianzadoFianzas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Correcciones\MontoAfianzadoFianzas.aspx.designer.cs">
+      <DependentUpon>MontoAfianzadoFianzas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Correcciones\PolizaTransito.aspx.cs">
       <DependentUpon>PolizaTransito.aspx</DependentUpon>
