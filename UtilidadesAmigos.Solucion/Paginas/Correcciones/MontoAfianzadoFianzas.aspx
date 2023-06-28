@@ -83,6 +83,7 @@
                        <th scope="col"> Poliza </th>
                        <th scope="col"> Anterior </th>
                        <th scope="col"> Cambio </th>
+                       <th scope="col"> Concepto </th>
                        <th scope="col"> Usuario </th>
                        <th scope="col"> Fecha </th>
                        <th scope="col"> Hora </th>
@@ -95,6 +96,7 @@
                                <td> <%# Eval("Poliza") %> </td>
                                <td> <%#string.Format("{0:N2}", Eval("Anterior")) %> </td>
                                <td> <%#string.Format("{0:N2}", Eval("Cambio")) %> </td>
+                               <td> <%# Eval("Concepto") %> </td>
                                <td> <%# Eval("CreadoPor") %> </td>
                                <td> <%# Eval("Fecha") %> </td>
                                <td> <%# Eval("Hora") %> </td>
