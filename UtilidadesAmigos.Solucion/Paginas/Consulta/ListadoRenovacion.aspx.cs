@@ -1336,7 +1336,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Convert.ToInt32(ddlSeleccionarMes.SelectedValue),
                 Convert.ToInt32(txtAno.Text));
             Paginar_NoContactadas(ref rpListadoRenovacionMachado, Listado, 10, ref lbCantidadPaginaVAriableMachado, ref btnPrimeraPaginaPolizasNoContactadas, ref btnAnteriorPolizasNoContactadas, ref btnSiguientePolizasNoContactadas, ref btnUltimoPolizasNoContactadas);
-            HandlePaging_PolizasNoContactadas(ref dtPaginacionProceso, ref lbPaginaActualVariavle);
+          //  HandlePaging_PolizasNoContactadas(ref dtPaginacionProceso, ref lbPaginaActualVariavle);
 
 
         }
@@ -1536,8 +1536,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "LISTADO DE RENOVACION";
 
+                UtilidadesAmigos.Logica.Comunes.Rangofecha FechaMes = new Logica.Comunes.Rangofecha();
+                FechaMes.FechaMes(ref txtFechaDesde, ref txtFechaHAsta);
+                FechaMes.FechaMes(ref txtFechaDesdeEstadistica, ref txtFechaHastaEstadistica);
+                FechaMes.FechaMes(ref txtFechaDesdeReporte, ref txtFechaHastaReporte);
+         
+
                 divPaginacion.Visible = false;
-                DivPaginacionEstadistica.Visible = false;
+            //    DivPaginacionEstadistica.Visible = false;
                 CargarRamos();
                 CargarSubramos();
                 CargarOficina();
@@ -1554,17 +1560,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 MostrarListadoGestionCobros();
 
                 decimal IdUsuarioProcesa = (decimal)Session["IdUsuario"];
-                cbProcesarRegistros.Visible = false;
+               // cbProcesarRegistros.Visible = false;
 
-                if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.JuanMarcelino) { cbProcesarRegistros.Visible = true; }
-                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.AlfredoPimentel) { cbProcesarRegistros.Visible = true; }
-                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.AdalgisaAlmonte) { cbProcesarRegistros.Visible = true; }
-                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.MiguelBerroa) { cbProcesarRegistros.Visible = true; }
-                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.JessicaPayano) { cbProcesarRegistros.Visible = true; }
-                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.EriksonVeras) { cbProcesarRegistros.Visible = true; }
-                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.DismailisAcosta) { cbProcesarRegistros.Visible = true; }
-                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.IngriHerrera) { cbProcesarRegistros.Visible = true; }
-                else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.RiselotRojas) { cbProcesarRegistros.Visible = true; }
+                //if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.JuanMarcelino) { cbProcesarRegistros.Visible = true; }
+                //else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.AlfredoPimentel) { cbProcesarRegistros.Visible = true; }
+                //else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.AdalgisaAlmonte) { cbProcesarRegistros.Visible = true; }
+                //else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.MiguelBerroa) { cbProcesarRegistros.Visible = true; }
+                //else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.JessicaPayano) { cbProcesarRegistros.Visible = true; }
+                //else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.EriksonVeras) { cbProcesarRegistros.Visible = true; }
+                //else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.DismailisAcosta) { cbProcesarRegistros.Visible = true; }
+                //else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.IngriHerrera) { cbProcesarRegistros.Visible = true; }
+                //else if (IdUsuarioProcesa == (decimal)PermisoReporteMachado.RiselotRojas) { cbProcesarRegistros.Visible = true; }
 
                 ActualizarEstadistica();
 
@@ -1779,43 +1785,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         }
 
-        protected void linkPrimerostadistica_Click(object sender, EventArgs e)
-        {
-            //CurrentPage = 0;
-            //CargarListadoEstadistica();
-        }
-
-        protected void LinkAnteirorEstadistica_Click(object sender, EventArgs e)
-        {
-            //CurrentPage += -1;
-            //CargarListadoEstadistica();
-            //MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleEstadistica, ref lbCantidadPaginaVAriableEstadistica);
-        }
-
-        protected void dtEstadistica_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            //if (!e.CommandName.Equals("newPage")) return;
-            //CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-            //CargarListadoEstadistica();
-        }
-
         protected void dtEstadistica_ItemDataBound(object sender, DataListItemEventArgs e)
         {
 
         }
 
-        protected void LinkSiguienteEstadistica_Click(object sender, EventArgs e)
-        {
-            //CurrentPage += 1;
-            //CargarListadoEstadistica();
-        }
-
-        protected void LinkUltimoEstadistica_Click(object sender, EventArgs e)
-        {
-            //CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            //CargarListadoEstadistica();
-            //MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavleEstadistica, ref lbCantidadPaginaVAriableEstadistica);
-        }
 
         protected void cbProcesarRegistros_CheckedChanged(object sender, EventArgs e)
         {
@@ -1948,43 +1922,14 @@ namespace UtilidadesAmigos.Solucion.Paginas
             GenerarReporteListadoRenovacion((decimal)Session["IdUsuario"], Server.MapPath("ReporteRenovacionMachadoPorSupervisor.rpt"), "sa", "Pa$$W0rd", "Listado de Renovacion Machado Supervisor");
         }
 
-        protected void LinkPrimeroProceso_Click(object sender, EventArgs e)
-        {
-            //CurrentPage = 0;
-            //MostrarInformacionReporteMacjado();
-        }
 
-        protected void LinkAnteriorProceso_Click(object sender, EventArgs e)
-        {
-            //CurrentPage += -1;
-            //MostrarInformacionReporteMacjado();
-            //MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariavleMachado, ref lbCantidadPaginaVAriableMachado);
-        }
 
         protected void dtPaginacionProceso_ItemDataBound(object sender, DataListItemEventArgs e)
         {
 
         }
 
-        protected void dtPaginacionProceso_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            //if (!e.CommandName.Equals("newPage")) return;
-            //CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-            //MostrarInformacionReporteMacjado();
-        }
 
-        protected void LinkSiguienteProceso_Click(object sender, EventArgs e)
-        {
-            //CurrentPage += 1;
-            //MostrarInformacionReporteMacjado();
-        }
-
-        protected void LinkUltimoProceso_Click(object sender, EventArgs e)
-        {
-            //CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
-            //MostrarInformacionReporteMacjado();
-            //MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaActualVariavleMachado, ref lbCantidadPaginaVAriableMachado);
-        }
 
         protected void btnActualizar_Click(object sender, EventArgs e)
         {
@@ -2308,22 +2253,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                             Celular = n.Celular,
                                             TelefonoOficina = n.TelefonoOficina,
                                             Items = n.Items,
-                                            //FechaInicioVigencia = n.FechaInicioVigencia,
-                                            //FechaFinVigencia = n.FechaFinVigencia,
                                             Supervisor = n.Supervisor,
                                             Intermediario = n.Intermediario,
-                                            //TipoVehiculo = n.TipoVehiculo,
-                                            //Marca = n.Marca,
-                                            //Modelo = n.Modelo,
-                                            //Capacidad = n.Capacidad,
-                                            //Ano = n.Ano,
-                                            //Color = n.Color,
-                                            //Chasis = n.Chasis,
-                                            //Placa = n.Placa,
-                                            //Uso = n.Uso,
-                                            //ValorVehiculo = n.ValorVehiculo,
-                                            //NombreAsegurado = n.NombreAsegurado,
-                                            //Fianza = n.Fianza,
                                             Oficina = n.Oficina,
                                             Facturado = n.Facturado,
                                             Cobrado = n.Cobrado,
@@ -2379,22 +2310,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
                                             Celular = n.Celular,
                                             TelefonoOficina = n.TelefonoOficina,
                                             Items = n.Items,
-                                            //FechaInicioVigencia = n.FechaInicioVigencia,
-                                            //FechaFinVigencia = n.FechaFinVigencia,
                                             Supervisor = n.Supervisor,
                                             Intermediario = n.Intermediario,
-                                            //TipoVehiculo = n.TipoVehiculo,
-                                            //Marca = n.Marca,
-                                            //Modelo = n.Modelo,
-                                            //Capacidad = n.Capacidad,
-                                            //Ano = n.Ano,
-                                            //Color = n.Color,
-                                            //Chasis = n.Chasis,
-                                            //Placa = n.Placa,
-                                            //Uso = n.Uso,
-                                            //ValorVehiculo = n.ValorVehiculo,
-                                            //NombreAsegurado = n.NombreAsegurado,
-                                            //Fianza = n.Fianza,
                                             Oficina = n.Oficina,
                                             Facturado = n.Facturado,
                                             Cobrado = n.Cobrado,
@@ -2669,8 +2586,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 DivReporteGestionCobros.Visible = true;
                 CargarUsuariosGestionCobros();
                 txtPolizaReporte.Text = string.Empty;
-                txtFechaDesdeReporte.Text = string.Empty;
-                txtFechaHastaReporte.Text = string.Empty;
+                UtilidadesAmigos.Logica.Comunes.Rangofecha FechaMes = new Logica.Comunes.Rangofecha();
+                FechaMes.FechaMes(ref txtFechaDesdeReporte, ref txtFechaHastaReporte);
+
                 rbFormatoPDFGestion.Checked = true;
             }
             else {
