@@ -77,6 +77,7 @@
                 <asp:ImageButton ID="btnNuevoRegistro" runat="server" ToolTip="Nuevo Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" OnClick="btnNuevoRegistro_Click" />
            </div>
            <br />
+           <h3 class="ContenidoCentro">Historico de Modificaciones</h3>
            <table class="table table-striped">
                <thead class="table-dark">
                    <tr>

@@ -2,58 +2,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<style type="text/css">
-        .jumbotron{
-            color:#000000; 
-            background:#1E90FF;
-            font-size:30px;
-            font-weight:bold;
-            font-family:'Gill Sans';
-            padding:25px;
-        }
 
-        .btn-sm{
-            width:90px;
-        }
-
-        .Letranegrita {
-        font-weight:bold;
-        }
-        table {
-            border-collapse: collapse;
-        }
-        
-        .BotonEspecial {
-           width:100%;
-           font-weight:bold;
-          }
-
-        th {
-            background-color: #1E90FF;
-            color: #000000;
-        }
-
-        .BotonSolicitud {
-                width:50px;
-               height:50px;
-           }
-        .BotonImagen {
-                width:50px;
-               height:50px;
-           }
-    </style>
+    <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
 
 
     <script type="text/javascript">
         function OpcionNoDisponible() { alert("Esta Opción esta en desarrollo por el momento."); }
-
-        $(document).ready(function () {
+        $(function () {
 
             $("#<%=btnConsultarRegistros.ClientID%>").click(function () {
                 var Poliza = $("#<%=txtNumeroPolizaConuslta.ClientID%>").val().length;
-                if (Poliza < 1) {
-                    alert("El campo Poliza no puede estar vacio para buscar dependientes, favor de verificar.");
-                    $("#<%=txtNumeroPolizaConuslta.ClientID%>").css("border-color", "red");
+                  if (Poliza < 1) {
+                      alert("El campo Poliza no puede estar vacio para buscar dependientes, favor de verificar.");
+                      $("#<%=txtNumeroPolizaConuslta.ClientID%>").css("border-color", "red");
                     return false;
                 }
             });
@@ -74,34 +35,21 @@
         <div id="DIVBloqueCOnsulta" runat="server">
             <br />
             <div class="row">
-                <div class="d-inline-flex col-md-6">
+                <div class="col-md-4">
                     <asp:Label ID="lbNumeroPolizaConsulta" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtNumeroPolizaConuslta" runat="server" CssClass="form-control"></asp:TextBox>
-                    <asp:ImageButton ID="btnConsultarRegistros" runat="server" OnClick="btnConsultarRegistros_Click" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" />
-                    <asp:ImageButton ID="btnExportarInformacion" runat="server" OnClick="btnExportarInformacion_Click" CssClass="BotonImagen" ImageUrl="~/Imagenes/excel.png" />
-                    <asp:ImageButton ID="btnAgregarDependiente" runat="server" Visible="false" OnClick="btnAgregarDependiente_Click" CssClass="BotonImagen" ImageUrl="~/Imagenes/Agregar (2).png" />
                 </div>
             </div>
             <br />
-            <div id="DivEstatusPoliza" runat="server" align="center">
-                <asp:Label ID="lbEstatusPolizaTitulo" runat="server" Text="Estatus (" CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbEstatusPolizaVariable" runat="server" Text=" " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbEstatusPolizaCerrar" runat="server" Text=")" CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbSeparador1" runat="server" CssClass="Letranegrita" Text=" | "></asp:Label>
-
-                <asp:Label ID="lbRamoTitulo" runat="server" Text="Ramo (" CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbRamoVariable" runat="server" Text=" " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbRamoCerrar" runat="server" Text=")" CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbSeparador2" runat="server" CssClass="Letranegrita" Text=" | "></asp:Label>
-
-                <asp:Label ID="lbSubRamoTitulo" runat="server" Text="Sub Ramo (" CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbSubRamoVariable" runat="server" Text=" " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbSubRamoCerrar" runat="server" Text=")" CssClass="Letranegrita"></asp:Label>
+            <div class="ContenidoCentro">
+                   <asp:ImageButton ID="btnConsultarRegistros" runat="server" OnClick="btnConsultarRegistros_Click" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" />
+                    <asp:ImageButton ID="btnExportarInformacion" runat="server" OnClick="btnExportarInformacion_Click" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Excel.png" />
+                    <asp:ImageButton ID="btnAgregarDependiente" runat="server" Visible="false" OnClick="btnAgregarDependiente_Click" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Agregar_Nuevo.png" />
             </div>
-            <hr />
+         
             <br />
             <table class="table table-striped">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th scope="col"> Nombre </th>
                         <th scope="col"> Parentezco </th>
@@ -109,8 +57,8 @@
                         <th scope="col"> Fecha Nac </th>
                         <th scope="col"> Sexo </th>
                         <th scope="col"> Prima </th>
-                        <th scope="col"> Editar </th>
-                        <th scope="col"> Borrar </th>
+                        <th class="ContenidoDerecha" scope="col"> Editar </th>
+                        <th class="ContenidoDerecha" scope="col"> Borrar </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -126,39 +74,67 @@
                                 <td> <%# Eval("FechaNacimiento") %> </td>
                                 <td> <%# Eval("Sexo") %> </td>
                                 <td> <%#string.Format("{0:N2}", Eval("PorcPrima")) %> </td>
-                                <td> <asp:ImageButton ID="btnEditarRegistro" runat="server" ToolTip="Editar Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Editar.png" OnClick="btnEditarRegistro_Click" /> </td>
-                                <td> <asp:ImageButton ID="btnBorrarRegistro" runat="server" ToolTip="Borrar Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Eliminar.png" OnClick="btnBorrarRegistro_Click" /> </td>
+                                <td class="ContenidoDerecha"> <asp:ImageButton ID="btnEditarRegistro" runat="server" ToolTip="Editar Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Editar_Nuevo.png" OnClick="btnEditarRegistro_Click" /> </td>
+                                <td class="ContenidoDerecha"> <asp:ImageButton ID="btnBorrarRegistro" runat="server" ToolTip="Borrar Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/borrar.png" OnClick="btnBorrarRegistro_Click" /> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 </tbody>
             </table>
-              <div align="center">
-                <asp:Label ID="lbPaginaActualTituloDependientes" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariableDependientes" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloDependientes" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriableDependientes" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
-             <div id="divPaginacionDependientes" runat="server" align="center">
-        <div style="margin-top: 20px;">
-            <table style="width: 600px">
-                <tr>
-                    <td> <asp:LinkButton ID="LinkPrimeraPaginaDependientes" runat="server" Text="Primero" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la primera pagina del listado" OnClick="LinkPrimeraPaginaDependientes_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkAnteriorDependientes" runat="server" Text="Anterior" CssClass="btn btn-outline-success btn-sm" ToolTip="Ir a la pagina anterior del listado" OnClick="LinkAnteriorDependientes_Click"></asp:LinkButton> </td>
-                    <td>
-                        <asp:DataList ID="dtPaginacionDependientes" runat="server" OnItemCommand="dtPaginacionDependientes_ItemCommand" OnItemDataBound="dtPaginacionDependientes_ItemDataBound" RepeatDirection="Horizontal">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="LinkPaginacionCentralDependientes" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' Width="20px"></asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:DataList>
+            <table class="table">
+                <tfoot class="table-light">
+                    <tr>
+                        <td class="ContenidoDerecha">
+                            <b>Pagina </b>  <asp:Label ID="lbPaginaActualVariableDependientes" runat="server" Text=" 0 "></asp:Label> <b> De </b>  <asp:Label ID="lbCantidadPaginaVAriableDependientes" runat="server" Text="0"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ContenidoIzquierda">
+                            <b>Estatus: </b> <asp:Label ID="lbEstatusPolizaVariable" runat="server" Text=" "></asp:Label>
+                        </td>
+                    </tr>
 
-                    </td>
-                    <td> <asp:LinkButton ID="LinkSiguienteDependientes" runat="server" Text="Siguiente" ToolTip="Ir a la siguiente pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkSiguienteDependientes_Click"></asp:LinkButton> </td>
-                    <td> <asp:LinkButton ID="LinkUltimoDependientes" runat="server" Text="Ultimo" ToolTip="Ir a la ultima pagina del listado" CssClass="btn btn-outline-success btn-sm" OnClick="LinkUltimoDependientes_Click"></asp:LinkButton> </td>
-                </tr>
+                     <tr>
+                        <td class="ContenidoIzquierda">
+                            <b>Ramo: </b> <asp:Label ID="lbRamoVariable" runat="server" Text=" " ></asp:Label>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td class="ContenidoIzquierda">
+                            <b>Sub Ramo: </b> <asp:Label ID="lbSubRamoVariable" runat="server" Text=" "></asp:Label>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
-        </div>
-        </div>
+            <div id="DivPaginacion_Header" runat="server" align="center">
+                <div style="margin-top: 20px;">
+                    <table style="width: 600px">
+                        <tr>
+                            <td>
+                                <asp:ImageButton ID="btnPrimeraPagina" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPagina_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" />
+                            </td>
+                            <td>
+                                <asp:ImageButton ID="btnPaginaAnterior" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnPaginaAnterior_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" />
+                            </td>
+                            <td class="ContenidoCentrado">
+                                <asp:DataList ID="dtPaginacion" runat="server" OnItemCommand="dtPaginacion_ItemCommand" OnItemDataBound="dtPaginacion_ItemDataBound" RepeatDirection="Horizontal">
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnPaginacionCentral" runat="server" class="btn btn-outline-dark" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' />
+                                    </ItemTemplate>
+                                </asp:DataList>
+
+                            </td>
+                            <td>
+                                <asp:ImageButton ID="btnSiguientePaginar" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnSiguientePaginar_Click" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" />
+                            </td>
+                            <td>
+                                <asp:ImageButton ID="btnUltimaPagina" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimaPagina_Click" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
                            <br />
         </div>
         <div id="DIVBloqueMantenimiento" runat="server"></div>

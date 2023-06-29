@@ -71,7 +71,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             NombreDataList.DataSource = dt;
             NombreDataList.DataBind();
         }
-        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref LinkButton PrimeraPagina, ref LinkButton PaginaAnterior, ref LinkButton SiguientePagina, ref LinkButton UltimaPagina)
+        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
         {
             pagedDataSource.DataSource = Listado;
             pagedDataSource.AllowPaging = true;
@@ -165,9 +165,17 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     lbRamoVariable.Text = n.Ramo;
                     lbSubRamoVariable.Text = n.SubRamo;
                 }
+                string Estatus = lbEstatusPolizaVariable.Text;
+
+                if (Estatus == "ACTIVO") {
+                    lbEstatusPolizaVariable.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                }
+                else {
+                    lbEstatusPolizaVariable.ForeColor = System.Drawing.Color.Red;
+                }
                 btnAgregarDependiente.Visible = true;
-                Paginar(ref rpListadodepenientes, Listado, 10, ref lbCantidadPaginaVAriableDependientes, ref LinkPrimeraPaginaDependientes, ref LinkAnteriorDependientes, ref LinkSiguienteDependientes, ref LinkUltimoDependientes);
-                HandlePaging(ref dtPaginacionDependientes, ref lbPaginaActualVariableDependientes);
+                Paginar(ref rpListadodepenientes, Listado, 10, ref lbCantidadPaginaVAriableDependientes, ref btnPrimeraPagina, ref btnPaginaAnterior, ref btnSiguientePaginar, ref btnUltimaPagina);
+                HandlePaging(ref dtPaginacion, ref lbPaginaActualVariableDependientes);
             }
         }
         #endregion
@@ -177,7 +185,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             if (!IsPostBack)
             {
-         
+                Label lbNombreUsuarioCOnectado = (Label)Master.FindControl("lbUsuarioConectado");
+                UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario NombreUsuario = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
+                lbNombreUsuarioCOnectado.Text = NombreUsuario.SacarNombreUsuarioConectado();
+
+                Label lbNombrePantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
+                lbNombrePantalla.Text = "CONSULTA DE DEPENDIENTES";
             }
         }
 
@@ -214,43 +227,49 @@ namespace UtilidadesAmigos.Solucion.Paginas
             ClientScript.RegisterStartupScript(GetType(), "OpcionNoDisponible()", "OpcionNoDisponible();", true);
         }
 
-        protected void LinkPrimeraPaginaDependientes_Click(object sender, EventArgs e)
-        {
-            CurrentPage = 0;
-            MostrarListadoDependientes();
-        }
-
-        protected void LinkAnteriorDependientes_Click(object sender, EventArgs e)
-        {
-            CurrentPage += -1;
-            MostrarListadoDependientes();
-            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableDependientes, ref lbCantidadPaginaVAriableDependientes);
-        }
-
-        protected void dtPaginacionDependientes_ItemDataBound(object sender, DataListItemEventArgs e)
-        {
-
-        }
-
-        protected void dtPaginacionDependientes_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            if (!e.CommandName.Equals("newPage")) return;
-            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
-            MostrarListadoDependientes();
-        }
-
-        protected void LinkSiguienteDependientes_Click(object sender, EventArgs e)
-        {
-            CurrentPage += 1;
-            MostrarListadoDependientes();
-        }
 
         protected void btnAgregarDependiente_Click(object sender, ImageClickEventArgs e)
         {
             ClientScript.RegisterStartupScript(GetType(), "OpcionNoDisponible()", "OpcionNoDisponible();", true);
         }
 
-        protected void LinkUltimoDependientes_Click(object sender, EventArgs e)
+        protected void btnEditarRegistro_Click1(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPrimeraPagina_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarListadoDependientes();
+        }
+
+        protected void btnPaginaAnterior_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += -1;
+            MostrarListadoDependientes();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaActualVariableDependientes, ref lbCantidadPaginaVAriableDependientes);
+        }
+
+        protected void dtPaginacion_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListadoDependientes();
+        }
+
+        protected void btnSiguientePaginar_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += 1;
+            MostrarListadoDependientes();
+        }
+
+        protected void btnUltimaPagina_Click(object sender, ImageClickEventArgs e)
         {
             CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
             MostrarListadoDependientes();
