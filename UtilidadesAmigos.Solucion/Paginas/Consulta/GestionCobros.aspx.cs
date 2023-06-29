@@ -482,6 +482,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
             int? _oficina = ddloficina.SelectedValue != "-1" ? Convert.ToInt32(ddloficina.SelectedValue) : new Nullable<int>();
             int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
             int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioConsulta.Text);
+            int? _DiaDesde = cbAgregarDia.Checked == true ? string.IsNullOrEmpty(txtDiaDesde.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtDiaDesde.Text) : new Nullable<int>();
+            int? _DiaHasta = cbAgregarDia.Checked == true ? string.IsNullOrEmpty(txtDiaHasta.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtDiaHasta.Text) : new Nullable<int>();
 
 
             var Header = ObjDataConsulta.Value.BuscaGestionCobrosheader(
@@ -491,7 +493,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 _Poliza,
                 _oficina,
                 _Supervisor,
-                _Intermediario);
+                _Intermediario,
+                _DiaDesde,
+                _DiaHasta);
             if (Header.Count() < 1) {
                 rpAntiguedadSaldo.DataSource = null;
                 rpAntiguedadSaldo.DataBind();
@@ -773,6 +777,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 int? _oficina = ddloficina.SelectedValue != "-1" ? Convert.ToInt32(ddloficina.SelectedValue) : new Nullable<int>();
                 int? _Supervisor = string.IsNullOrEmpty(txtCodigoSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoSupervisor.Text);
                 int? _Intermediario = string.IsNullOrEmpty(txtCodigoIntermediarioConsulta.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtCodigoIntermediarioConsulta.Text);
+                int? _DiaDesde = cbAgregarDia.Checked == true ? string.IsNullOrEmpty(txtDiaDesde.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtDiaDesde.Text) : new Nullable<int>();
+                int? _DiaHasta = cbAgregarDia.Checked == true ? string.IsNullOrEmpty(txtDiaHasta.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtDiaHasta.Text) : new Nullable<int>();
 
                 var Exportar = (from n in ObjDataConsulta.Value.MostrarGestionCobrosAntiguedadSaldoDetalle(
                     _FechaCorte,
@@ -781,7 +787,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                     _Poliza,
                     _oficina,
                     _Supervisor,
-                    _Intermediario)
+                    _Intermediario,
+                    _DiaDesde,
+                    _DiaHasta)
                                 select new
                                 {
                                     Poliza = n.Poliza,
@@ -1049,6 +1057,26 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
                 CurrentPage_GestionCobrosHeader = 0;
                 MostrarGestionCobrosHeader();
             }
+        }
+
+        protected void cbAgregarDia_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAgregarDia.Checked == true) {
+
+                DivDiaDesde.Visible = true;
+                DivDiaHasta.Visible = true;
+            }
+            else {
+                DivDiaDesde.Visible = false;
+                DivDiaHasta.Visible = false;
+                txtDiaDesde.Text = string.Empty;
+                txtDiaHasta.Text = string.Empty;
+            }
+        }
+
+        protected void btnPrimeraPagina_DatoVehiculo_Click1(object sender, ImageClickEventArgs e)
+        {
+
         }
 
         protected void btnPaginaSiguiente_Comentarios_Click(object sender, ImageClickEventArgs e)

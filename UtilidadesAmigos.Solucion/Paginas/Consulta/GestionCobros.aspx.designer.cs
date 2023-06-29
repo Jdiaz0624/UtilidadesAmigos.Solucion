@@ -33,6 +33,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         protected global::System.Web.UI.WebControls.CheckBox cbReporteComentaro;
 
         /// <summary>
+        /// cbAgregarDia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAgregarDia;
+
+        /// <summary>
         /// lbFechaDesdeConsulta control.
         /// </summary>
         /// <remarks>
@@ -193,6 +202,60 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPoliza;
+
+        /// <summary>
+        /// DivDiaDesde control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivDiaDesde;
+
+        /// <summary>
+        /// lbDiaDesde control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDiaDesde;
+
+        /// <summary>
+        /// txtDiaDesde control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiaDesde;
+
+        /// <summary>
+        /// DivDiaHasta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivDiaHasta;
+
+        /// <summary>
+        /// lbDiaHasta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDiaHasta;
+
+        /// <summary>
+        /// txtDiaHasta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiaHasta;
 
         /// <summary>
         /// btnConsultar control.

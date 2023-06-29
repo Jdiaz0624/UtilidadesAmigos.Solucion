@@ -1139,11 +1139,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         /// <param name="CodSupervisor"></param>
         /// <param name="CodIntermediario"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EGestionCobrosHeader> BuscaGestionCobrosheader(DateTime? FechaCorte = null, int? Ramo = null, int? SubRamo = null, string Poliza = null, int? Oficina = null, int? CodSupervisor = null, int? CodIntermediario = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EGestionCobrosHeader> BuscaGestionCobrosheader(DateTime? FechaCorte = null, int? Ramo = null, int? SubRamo = null, string Poliza = null, int? Oficina = null, int? CodSupervisor = null, int? CodIntermediario = null,int? DiaIniciao = null, int? DiaFin = null) {
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADER(FechaCorte, Ramo, SubRamo, Poliza, Oficina, CodSupervisor, CodIntermediario)
+            var Listado = (from n in ObjData.SP_MOSTRAR_LISTADO_GESTION_COBROS_HEADER(FechaCorte, Ramo, SubRamo, Poliza, Oficina, CodSupervisor, CodIntermediario, DiaIniciao, DiaFin)
                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EGestionCobrosHeader
                            {
                                Poliza=n.Poliza,
@@ -1294,11 +1294,11 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaConsulta
         /// <param name="CodigoSupervisor"></param>
         /// <param name="CodigoIntermediario"></param>
         /// <returns></returns>
-        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EMostrarListadoGestionCobrosDetail> MostrarGestionCobrosAntiguedadSaldoDetalle(DateTime? FechaCorte = null, int? Ramo = null, int? SubRamo = null, string poliza = null, int? Oficina = null, int? CodigoSupervisor = null, int? CodigoIntermediario = null) {
+        public List<UtilidadesAmigos.Logica.Entidades.Consulta.EMostrarListadoGestionCobrosDetail> MostrarGestionCobrosAntiguedadSaldoDetalle(DateTime? FechaCorte = null, int? Ramo = null, int? SubRamo = null, string poliza = null, int? Oficina = null, int? CodigoSupervisor = null, int? CodigoIntermediario = null, int? DiaIniciao = null, int? DiaFin = null) {
 
             ObjData.CommandTimeout = 999999999;
 
-            var Listado = (from n in ObjData.SP_MOSTRAR_LISTADO_GESTION_COBROS_DETAIL(FechaCorte, Ramo, SubRamo, poliza, Oficina, CodigoSupervisor, CodigoIntermediario)
+            var Listado = (from n in ObjData.SP_MOSTRAR_LISTADO_GESTION_COBROS_DETAIL(FechaCorte, Ramo, SubRamo, poliza, Oficina, CodigoSupervisor, CodigoIntermediario, DiaIniciao, DiaFin)
                            select new UtilidadesAmigos.Logica.Entidades.Consulta.EMostrarListadoGestionCobrosDetail
                            {
                                Poliza=n.Poliza,

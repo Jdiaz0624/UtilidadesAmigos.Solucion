@@ -2,35 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <style type="text/css">
-
-        .btn-sm{
-            width:90px;
-        }
-
-        .Letranegrita {
-        font-weight:bold;
-        }
-        table {
-            border-collapse: collapse;
-        }
-        
-        .BotonEspecial {
-           width:100%;
-           font-weight:bold;
-          }
-
-       
-
-        .BotonSolicitud {
-               width:50px;
-               height:50px;
-           }
-        .BotonImagen {
-               width:40px;
-               height:40px;
-           }
-    </style>
+      <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
 
     <script type="text/javascript">
         function ComentarioGuardado() {
@@ -67,6 +39,7 @@
             <br />
             <div class="form-check-inline">
                 <asp:CheckBox ID="cbReporteComentaro" runat="server" Text="Reporte de Comentarios" CssClass="Letranegrita" AutoPostBack="true" OnCheckedChanged="cbReporteComentaro_CheckedChanged" />
+                  <asp:CheckBox ID="cbAgregarDia" runat="server" Text="Agregar Dia del Mes" CssClass="Letranegrita" AutoPostBack="true" OnCheckedChanged="cbAgregarDia_CheckedChanged" />
             </div>
             <br />
             <div class="row">
@@ -116,14 +89,22 @@
                     <asp:Label ID="lbPoliza" runat="server" Text="Poliza" CssClass="Letranegrita"></asp:Label>
                     <asp:TextBox ID="txtPoliza" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
+                <div id="DivDiaDesde" runat="server" visible="false" class="col-md-3">
+                    <asp:Label ID="lbDiaDesde" runat="server" Text="Dia Desde" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtDiaDesde" runat="server" CssClass="form-control" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                <div id="DivDiaHasta" runat="server" visible="false" class="col-md-3">
+                    <asp:Label ID="lbDiaHasta" runat="server" Text="Dia Hasta" CssClass="Letranegrita"></asp:Label>
+                    <asp:TextBox ID="txtDiaHasta" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
                 
             </div>
             <br />
             <div align="center">
-                <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultar_Click" />
-                <asp:ImageButton ID="btnExportarExcel" runat="server" ToolTip="Exportar a Excel" CssClass="BotonImagen" ImageUrl="~/Imagenes/excel.png" OnClick="btnExportarExcel_Click" />
-                <asp:ImageButton ID="btnComentarioPorLote" runat="server" ToolTip="Comentario Por Lote" CssClass="BotonImagen"  ImageUrl="~/Imagenes/ComentarioLote.png" OnClick="btnComentarioPorLote_Click" OnClientClick="return confirm('¿Quieres Proceder con este proceso?');" />
-                <asp:ImageButton ID="btnReporte" runat="server" Visible="false" ToolTip="Reporte de Antiguedad" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
+                <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" OnClick="btnConsultar_Click" />
+                <asp:ImageButton ID="btnExportarExcel" runat="server" ToolTip="Exportar a Excel" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Excel.png" OnClick="btnExportarExcel_Click" />
+                <asp:ImageButton ID="btnComentarioPorLote" runat="server" ToolTip="Comentario Por Lote" CssClass="BotonImagen"  ImageUrl="~/ImagenesBotones/lista.png" OnClick="btnComentarioPorLote_Click" OnClientClick="return confirm('¿Quieres Proceder con este proceso?');" />
+                <asp:ImageButton ID="btnReporte" runat="server" Visible="false" ToolTip="Reporte de Antiguedad" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" OnClick="btnReporte_Click" />
             </div>
             <br />
             <table class="table table-striped">
@@ -139,7 +120,7 @@
                         <th scope="col">61-90</th>
                         <th scope="col">91-120</th>
                         <th scope="col">121-Mas</th>
-                        <th scope="col"></th>
+                        <th class="ContenidoDerecha" scope="col">Gestión</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -158,7 +139,7 @@
                                 <td> <%#string.Format("{0:N2}", Eval("SA6190")) %> </td>
                                 <td> <%#string.Format("{0:N2}", Eval("SA91120")) %> </td>
                                 <td> <%#string.Format("{0:N2}", Eval("SA121MAS")) %> </td>
-                                <td align="right"> <asp:ImageButton ID="btnGestionCobros" runat="server" ToolTip="Gestion de Cobros" CssClass="BotonImagen" ImageUrl="~/Imagenes/Cobros.png" OnClick="btnGestionCobros_Click" /> </td>
+                                <td class="ContenidoDerecha" align="right"> <asp:ImageButton ID="btnGestionCobros" runat="server" ToolTip="Gestion de Cobros" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Gestion.png" OnClick="btnGestionCobros_Click" /> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -175,10 +156,10 @@
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:ImageButton ID="btnPrimeraPagina_Antiguedad" runat="server" ToolTip="Ir a la Primera Pagina del Listado" CssClass="BotonImagen" OnClick="btnPrimeraPagina_Antiguedad_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
-                    <td> <asp:ImageButton ID="btnPaginaAnterior_Antiguedad" runat="server" ToolTip="Ir a la Pagina Anterior del Listado" CssClass="BotonImagen" OnClick="btnPaginaAnterior_Antiguedad_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPrimeraPagina_Antiguedad" runat="server" ToolTip="Ir a la Primera Pagina del Listado" CssClass="BotonImagen" OnClick="btnPrimeraPagina_Antiguedad_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaAnterior_Antiguedad" runat="server" ToolTip="Ir a la Pagina Anterior del Listado" CssClass="BotonImagen" OnClick="btnPaginaAnterior_Antiguedad_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" /> </td>
 
-                    <td>
+                    <td align="center">
                         <asp:DataList ID="dtPaginacion_Antiguedad" runat="server" OnItemCommand="dtPaginacion_Antiguedad_ItemCommand" OnItemDataBound="dtPaginacion_Antiguedad_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
                                 <asp:Button ID="btnPaginacionCentral_Antiguedad" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
@@ -186,8 +167,8 @@
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:ImageButton ID="btnPaginaSiguiente_Antiguedad" runat="server" ToolTip="Ir a la Siguiente Pagina del Listado" CssClass="BotonImagen" OnClick="btnPaginaSiguiente_Antiguedad_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
-                    <td> <asp:ImageButton ID="btnUltimaPagina_Antiguedad" runat="server" ToolTip="Ir a la Ultima Pagina del Listado" CssClass="BotonImagen" OnClick="btnUltimaPagina_Antiguedad_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaSiguiente_Antiguedad" runat="server" ToolTip="Ir a la Siguiente Pagina del Listado" CssClass="BotonImagen" OnClick="btnPaginaSiguiente_Antiguedad_Click" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimaPagina_Antiguedad" runat="server" ToolTip="Ir a la Ultima Pagina del Listado" CssClass="BotonImagen" OnClick="btnUltimaPagina_Antiguedad_Click" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" /> </td>
                 </tr>
             </table>
         </div>
@@ -417,7 +398,7 @@
                                <table class="table">
                                    <tfoot class="table-light">
                                        <tr>
-                                           <td align="right"><b>Pagina</b><asp:Label ID="lbPaginaActual_DatoVehiculo" runat="server" Text=" 0 "></asp:Label> <b>De</b> <asp:Label ID="lbCantidadPagina_DatoVehiculo" runat="server" Text="0"></asp:Label></td>
+                                           <td class="ContenidoDerecha"><b>Pagina</b><asp:Label ID="lbPaginaActual_DatoVehiculo" runat="server" Text=" 0 "></asp:Label> <b>De</b> <asp:Label ID="lbCantidadPagina_DatoVehiculo" runat="server" Text="0"></asp:Label></td>
                                        </tr>
                                    </tfoot>
                                </table>
@@ -426,8 +407,8 @@
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:ImageButton ID="btnPrimeraPagina_DatoVehiculo" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPagina_DatoVehiculo_Click" /> </td>
-                     <td> <asp:ImageButton ID="btnPaginaAnterior_DatoVehiculo" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnPaginaAnterior_DatoVehiculo_Click" /> </td>
+                    <td> <asp:ImageButton ID="btnPrimeraPagina_DatoVehiculo" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" OnClick="btnPrimeraPagina_DatoVehiculo_Click" /> </td>
+                     <td> <asp:ImageButton ID="btnPaginaAnterior_DatoVehiculo" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" OnClick="btnPaginaAnterior_DatoVehiculo_Click" /> </td>
 
                     <td align="center">
                         <asp:DataList ID="dtPaginacion_DatoVehiculo" runat="server" OnItemCommand="dtPaginacion_DatoVehiculo_ItemCommand" OnItemDataBound="dtPaginacion_DatoVehiculo_ItemDataBound" RepeatDirection="Horizontal">
@@ -437,8 +418,8 @@
                         </asp:DataList>
 
                     </td>
-                     <td> <asp:ImageButton ID="btnSiguientePagina_DatoVehiculo" runat="server" ToolTip="Ir a la Siguiente Pagina" CssClass="BotonImagen" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguientePagina_DatoVehiculo_Click" /> </td>
-                     <td> <asp:ImageButton ID="btnUltimaPagina_DatoVehiculo" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimaPagina_DatoVehiculo_Click" /> </td>
+                     <td> <asp:ImageButton ID="btnSiguientePagina_DatoVehiculo" runat="server" ToolTip="Ir a la Siguiente Pagina" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" OnClick="btnSiguientePagina_DatoVehiculo_Click" /> </td>
+                     <td> <asp:ImageButton ID="btnUltimaPagina_DatoVehiculo" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" OnClick="btnUltimaPagina_DatoVehiculo_Click" /> </td>
                 </tr>
             </table>
         </div>
@@ -483,8 +464,8 @@
 
         <br />
         <div align="center">
-            <asp:ImageButton ID="btnGuardar_GestionCobros" runat="server" CssClass="BotonImagen" OnClick="btnGuardar_GestionCobros_Click" ToolTip="Guardar Registro" ImageUrl="~/Imagenes/salvar.png" />
-            <asp:ImageButton ID="btnVolver_GestionCobros" runat="server" CssClass="BotonImagen" OnClick="btnVolver_GestionCobros_Click" ToolTip="Volver Atras" ImageUrl="~/Imagenes/volver-flecha.png" />
+            <asp:ImageButton ID="btnGuardar_GestionCobros" runat="server" CssClass="BotonImagen" OnClick="btnGuardar_GestionCobros_Click" ToolTip="Guardar Registro" ImageUrl="~/ImagenesBotones/Nuevo_Nuevo.png" />
+            <asp:ImageButton ID="btnVolver_GestionCobros" runat="server" CssClass="BotonImagen" OnClick="btnVolver_GestionCobros_Click" ToolTip="Volver Atras" ImageUrl="~/ImagenesBotones/Volver_Nuevo.png" />
             <br /><br />
         </div>
        
@@ -522,11 +503,11 @@
         <table class="table">
                  <tfoot class="table-light">
                     <tr>
-                        <td align="right"><b>Pagina</b> <asp:Label ID="lbPaginaActual_Comentarios" runat="server" Text=" 0 "></asp:Label> <b>de</b> <asp:Label ID="lbCantidadPagina_Comentarios" runat="server" Text="0"></asp:Label></td>
+                        <td class="ContenidoDerecha"><b>Pagina</b> <asp:Label ID="lbPaginaActual_Comentarios" runat="server" Text=" 0 "></asp:Label> <b>de</b> <asp:Label ID="lbCantidadPagina_Comentarios" runat="server" Text="0"></asp:Label></td>
                     </tr>
 
                      <tr>
-                         <td align="left"><b>Cantidad de Registros: </b> <asp:Label ID="lbCantidadRegistros_Comentarios" runat="server" Text="0"></asp:Label> </td>
+                         <td class="ContenidoIzquierda"><b>Cantidad de Registros: </b> <asp:Label ID="lbCantidadRegistros_Comentarios" runat="server" Text="0"></asp:Label> </td>
                      </tr>
                 </tfoot>
             </table>
@@ -536,10 +517,10 @@
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:ImageButton ID="btnPrimeraPagina_Comentarios" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPagina_Comentarios_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
-                    <td> <asp:ImageButton ID="btnPaginaAnterior_Comentarios" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnPaginaAnterior_Comentarios_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPrimeraPagina_Comentarios" runat="server" ToolTip="Ir a la Primera Pagina" CssClass="BotonImagen" OnClick="btnPrimeraPagina_Comentarios_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaAnterior_Comentarios" runat="server" ToolTip="Ir a la Pagina Anterior" CssClass="BotonImagen" OnClick="btnPaginaAnterior_Comentarios_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" /> </td>
 
-                    <td>
+                    <td align="center">
                         <asp:DataList ID="dtPaginacion_Comentarios" runat="server" OnItemCommand="dtPaginacion_Comentarios_ItemCommand" OnItemDataBound="dtPaginacion_Comentarios_ItemDataBound" RepeatDirection="Horizontal">
                             <ItemTemplate>
                                 <asp:Button ID="btnPaginacionCentral_Comentarios" runat="server" CommandArgument='<%# Eval("IndicePagina") %>' CommandName="newPage" Text='<%# Eval("TextoPagina") %>' CssClass="btn btn-outline-dark" />
@@ -547,8 +528,8 @@
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:ImageButton ID="btnPaginaSiguiente_Comentarios" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnPaginaSiguiente_Comentarios_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
-                    <td> <asp:ImageButton ID="btnUltimaPagina_Comentarios" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimaPagina_Comentarios_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaSiguiente_Comentarios" runat="server" ToolTip="Ir a la Pagina Siguiente" CssClass="BotonImagen" OnClick="btnPaginaSiguiente_Comentarios_Click" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimaPagina_Comentarios" runat="server" ToolTip="Ir a la Ultima Pagina" CssClass="BotonImagen" OnClick="btnUltimaPagina_Comentarios_Click" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" /> </td>
 
                 </tr>
             </table>

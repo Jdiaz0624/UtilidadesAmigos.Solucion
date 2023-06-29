@@ -178,9 +178,11 @@
     <Content Include="ImagenesBotones\Excel.png" />
     <Content Include="ImagenesBotones\factura.png" />
     <Content Include="ImagenesBotones\Ganancia_Nuevo.png" />
+    <Content Include="ImagenesBotones\Gestion.png" />
     <Content Include="ImagenesBotones\hacer-clic.png" />
     <Content Include="ImagenesBotones\HojaVenta.png" />
     <Content Include="ImagenesBotones\inventario.png" />
+    <Content Include="ImagenesBotones\lista.png" />
     <Content Include="ImagenesBotones\Lupa_Nuevo.png" />
     <Content Include="ImagenesBotones\Nuevo_Nuevo.png" />
     <Content Include="ImagenesBotones\Pagar.png" />
