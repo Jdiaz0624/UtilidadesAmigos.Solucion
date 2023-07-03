@@ -394,12 +394,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
             var InformacionInventario = ObjDataSuministro.Value.BuscaInventario(
                 _CodigoProducto,
-                null,
                 Convert.ToInt32(ddlSucursalProceso.SelectedValue),
                 Convert.ToInt32(ddlOficinaProceso.SelectedValue),
+                _Categoria,
                 _Medida,
                 _Descripcion,
                 null, null, null, null);
+
             if (InformacionInventario.Count() < 1) {
 
                 
@@ -725,6 +726,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Suministro
 
         protected void btnConsultarInformacionInventario_Click(object sender, ImageClickEventArgs e)
         {
+            CurrentPage_Inventario = 0;
             MostrarInventario(); 
         }
 
