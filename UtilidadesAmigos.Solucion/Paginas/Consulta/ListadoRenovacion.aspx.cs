@@ -1266,7 +1266,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarEstatusLLamadaGestionCobros, Objdata.Value.BuscaListas("ESTATUSLLAMADA", null, null));
         }
         private void CargarLosConceptosDeLlamada() {
-            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarConceptoGestionCobros, Objdata.Value.BuscaListas("CONCEPTOLLAMADA", ddlSeleccionarEstatusLLamadaGestionCobros.SelectedValue.ToString(), null));
+            try {
+                UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlSeleccionarConceptoGestionCobros, Objdata.Value.BuscaListas("CONCEPTOLLAMADA", ddlSeleccionarEstatusLLamadaGestionCobros.SelectedValue.ToString(), null));
+            }
+            catch (Exception) { }
         }
         #endregion
         #region PROCESAR INFORMACION DE LOS COMENTARIOS
