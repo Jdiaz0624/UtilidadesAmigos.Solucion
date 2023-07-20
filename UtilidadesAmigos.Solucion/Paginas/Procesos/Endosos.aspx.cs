@@ -296,6 +296,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             var BuscarInformacion = ObjDataProcesos.Value.BuscaPolizaEndosos(
                 lbPolizaDetalleVariable.Text,
                 Convert.ToInt32(lbItemNoDetalleVariable.Text));
+
+            //BORRAMOS ALGUN REGISTRO GUARDADO ANTERIORMENTE
+            UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionEndosos Borrar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionEndosos(
+                0,
+                lbPolizaDetalleVariable.Text,
+                0,
+                Convert.ToInt32(lbItemNoDetalleVariable.Text),
+                "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", 0, "", "", "", 0, DateTime.Now, 0, "DELETE");
+            Borrar.ProcesarInformacion();
+
             foreach (var n in BuscarInformacion) {
 
                 UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionEndosos Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionProcesos.ProcesarInformacionEndosos(
@@ -440,6 +450,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         
         private void GenerarEndoso(string Poliza,int Item, decimal GeneradoPor,int CodigoTipoEndoso,int? Secuencia, int TipoEndoso,string RutaReporte,string NombreEndoso) {
 
+            string UsuarioBD = "", ClaveBD = "";
+            UtilidadesAmigos.Logica.Comunes.SacarCredencialesBD Credenciales = new Logica.Comunes.SacarCredencialesBD(1);
+            UsuarioBD = Credenciales.SacarUsuario();
+            ClaveBD = Credenciales.SacarClaveBD();
+
             ReportDocument Reporte = new ReportDocument();
             Reporte.Close();
           //  Reporte.Dispose();
@@ -454,7 +469,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
             Reporte.SetParameterValue("@Secuencia", Secuencia);
             Reporte.SetParameterValue("@TipoEndoso", TipoEndoso);
 
-            Reporte.SetDatabaseLogon("sa", "Pa$$W0rd");
+            Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
             Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreEndoso);
 
