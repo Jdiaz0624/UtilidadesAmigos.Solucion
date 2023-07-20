@@ -42,15 +42,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.ScriptManager ScripManagerEndosos;
 
         /// <summary>
-        /// lbPolizaConsulta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPolizaConsulta;
-
-        /// <summary>
         /// txtPolizaConsulta control.
         /// </summary>
         /// <remarks>
@@ -58,15 +49,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPolizaConsulta;
-
-        /// <summary>
-        /// lbNumeroItemConsulta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNumeroItemConsulta;
 
         /// <summary>
         /// txtNumeroItenComsulta control.
@@ -105,15 +87,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueDetallePoliza;
 
         /// <summary>
-        /// lbPolizaDetalleFijo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPolizaDetalleFijo;
-
-        /// <summary>
         /// lbPolizaDetalleVariable control.
         /// </summary>
         /// <remarks>
@@ -121,15 +94,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPolizaDetalleVariable;
-
-        /// <summary>
-        /// lbItemNoDetalleFijo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbItemNoDetalleFijo;
 
         /// <summary>
         /// lbItemNoDetalleVariable control.
@@ -141,15 +105,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.Label lbItemNoDetalleVariable;
 
         /// <summary>
-        /// lbInicioVigenciaDetalleFijo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbInicioVigenciaDetalleFijo;
-
-        /// <summary>
         /// lbInicioVigenciaDetalleVariable control.
         /// </summary>
         /// <remarks>
@@ -157,15 +112,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbInicioVigenciaDetalleVariable;
-
-        /// <summary>
-        /// lbFinVigenciaDetalleFijo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFinVigenciaDetalleFijo;
 
         /// <summary>
         /// lbFinVIgenciaDetalleVariable control.
@@ -177,15 +123,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.Label lbFinVIgenciaDetalleVariable;
 
         /// <summary>
-        /// lbSupervisorDetalleFijo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSupervisorDetalleFijo;
-
-        /// <summary>
         /// lbSupervisorDetalleVariable control.
         /// </summary>
         /// <remarks>
@@ -193,15 +130,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbSupervisorDetalleVariable;
-
-        /// <summary>
-        /// lbIntermediarioDetalleFijo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbIntermediarioDetalleFijo;
 
         /// <summary>
         /// lbIntermediarioDetalleVariable control.
@@ -213,15 +141,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.Label lbIntermediarioDetalleVariable;
 
         /// <summary>
-        /// lbEstatusDetalleFijo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbEstatusDetalleFijo;
-
-        /// <summary>
         /// lbEstatusDetalleVariable control.
         /// </summary>
         /// <remarks>
@@ -229,15 +148,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEstatusDetalleVariable;
-
-        /// <summary>
-        /// lbRamosDetalleFijo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbRamosDetalleFijo;
 
         /// <summary>
         /// lbRamoDetalleVariable control.
@@ -249,15 +159,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.Label lbRamoDetalleVariable;
 
         /// <summary>
-        /// lbSubRamoDetalleFijo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSubRamoDetalleFijo;
-
-        /// <summary>
         /// lbSubRamoDetalleVariable control.
         /// </summary>
         /// <remarks>
@@ -267,22 +168,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.Label lbSubRamoDetalleVariable;
 
         /// <summary>
-        /// LBCodigoSubramoVariable control.
+        /// hfCodigoSubRamoVariable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LBCodigoSubramoVariable;
-
-        /// <summary>
-        /// lbClienteDetalleFijo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbClienteDetalleFijo;
+        protected global::System.Web.UI.WebControls.HiddenField hfCodigoSubRamoVariable;
 
         /// <summary>
         /// lbClienteDetalleVariable control.
@@ -294,15 +186,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.Label lbClienteDetalleVariable;
 
         /// <summary>
-        /// lbTipoSeguroFijo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTipoSeguroFijo;
-
-        /// <summary>
         /// lbTipoSeguroVariable control.
         /// </summary>
         /// <remarks>
@@ -310,15 +193,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbTipoSeguroVariable;
-
-        /// <summary>
-        /// lbGruaFijo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbGruaFijo;
 
         /// <summary>
         /// lbGruaVariable control.
@@ -330,13 +204,13 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         protected global::System.Web.UI.WebControls.Label lbGruaVariable;
 
         /// <summary>
-        /// lbCodigoGruaVariable control.
+        /// hfCodigoGrua control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCodigoGruaVariable;
+        protected global::System.Web.UI.WebControls.HiddenField hfCodigoGrua;
 
         /// <summary>
         /// DIVBloqueOperacionRealizar control.
@@ -346,15 +220,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueOperacionRealizar;
-
-        /// <summary>
-        /// lbOperacionREalizar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbOperacionREalizar;
 
         /// <summary>
         /// rbHistoricoEndoso control.
@@ -526,15 +391,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIVBloqueTiposEndosos;
-
-        /// <summary>
-        /// lbTipoEndosoGenerar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTipoEndosoGenerar;
 
         /// <summary>
         /// rbEndosoAclaratorio control.

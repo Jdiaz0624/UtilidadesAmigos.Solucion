@@ -2,25 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <style type="text/css">
-
-        .btn-sm{
-            width:90px;
-        }
-
-        .LetrasNegrita {
-        font-weight:bold;
-        }
-        table {
-            border-collapse: collapse;
-        }
-        
-       .BotonImagen {
-         width:40px;
-         height:40px;
-       
-       }
-    </style>
+      <link rel="stylesheet" href="../../Content/EstilosComunes.css" />
 
     <script type="text/javascript">
         function RegistroNoEncontrado() {
@@ -72,80 +54,80 @@
         <br />
         <div class="row">
            <div class="col-md-6">
-                <asp:Label ID="lbPolizaConsulta" runat="server" Text="Poliza" CssClass="LetrasNegrita"></asp:Label>
+                <label class="Letranegrita">Poliza: </label>
             <asp:TextBox ID="txtPolizaConsulta" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
            </div>
              <div class="col-md-6">
-                <asp:Label ID="lbNumeroItemConsulta" runat="server" Text="Item No." CssClass="LetrasNegrita"></asp:Label>
+                <label class="Letranegrita">Item No.: </label>
             <asp:TextBox ID="txtNumeroItenComsulta" runat="server" AutoCompleteType="Disabled" TextMode="Number" CssClass="form-control"></asp:TextBox>
            </div>
         </div>
         <br />
         <div align="center">
-            <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/Imagenes/Buscar.png" OnClick="btnConsultar_Click" />
-            <asp:ImageButton ID="btnRestablecerPantalla" runat="server" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" ImageUrl="~/Imagenes/auto.png" OnClick="btnRestablecerPantalla_Click" />
+            <asp:ImageButton ID="btnConsultar" runat="server" ToolTip="Consultar Información" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" OnClick="btnConsultar_Click" />
+            <asp:ImageButton ID="btnRestablecerPantalla" runat="server" ToolTip="Restablecer Pantalla" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Restablecer_Nuevo.png" OnClick="btnRestablecerPantalla_Click" />
         </div>
         <br />
 
         <div id="DIVBloqueDetallePoliza" runat="server">
             <div class="row">
              <div class="col-md-3">
-                 <asp:Label ID="lbPolizaDetalleFijo" runat="server" Text="Poliza: " CssClass="LetrasNegrita"></asp:Label>
+                 <label class="Letranegrita">Poliza: </label>
                  <asp:Label ID="lbPolizaDetalleVariable" runat="server" Text="Dato"></asp:Label>
              </div>
              <div class="col-md-3">
-                 <asp:Label ID="lbItemNoDetalleFijo" runat="server" Text="Item No: " CssClass="LetrasNegrita"></asp:Label>
+                 <label class="Letranegrita">Item No.: </label>
                  <asp:Label ID="lbItemNoDetalleVariable" runat="server" Text="Dato"></asp:Label>
              </div>
              <div class="col-md-3">
-                 <asp:Label ID="lbInicioVigenciaDetalleFijo" runat="server" Text="Inicio de Vigencia: " CssClass="LetrasNegrita"></asp:Label>
+                 <label class="Letranegrita">Inicio de Vigencia: </label>
                  <asp:Label ID="lbInicioVigenciaDetalleVariable" runat="server" Text="Dato"></asp:Label>
              </div>
              <div class="col-md-3">
-                 <asp:Label ID="lbFinVigenciaDetalleFijo" runat="server" Text="Fin de Vigencia: " CssClass="LetrasNegrita"></asp:Label>
+                 <label class="Letranegrita">Fin de Vigencia: </label>
                  <asp:Label ID="lbFinVIgenciaDetalleVariable" runat="server" Text="Dato"></asp:Label>
              </div>
              <div class="col-md-3">
-                 <asp:Label ID="lbSupervisorDetalleFijo" runat="server" Text="Supervisor: " CssClass="LetrasNegrita"></asp:Label>
+                 <label class="Letranegrita">Supervisor: </label>
                  <asp:Label ID="lbSupervisorDetalleVariable" runat="server" Text="Dato"></asp:Label>
              </div>
              <div class="col-md-3">
-                 <asp:Label ID="lbIntermediarioDetalleFijo" runat="server" Text="Intermediario: " CssClass="LetrasNegrita"></asp:Label>
+                 <label class="Letranegrita">Intermediario: </label>
                  <asp:Label ID="lbIntermediarioDetalleVariable" runat="server" Text="Dato"></asp:Label>
              </div>
              <div class="col-md-3">
-                  <asp:Label ID="lbEstatusDetalleFijo" runat="server" Text="Estatus: " CssClass="LetrasNegrita"></asp:Label>
+                 <label class="Letranegrita">Estatus: </label>
                  <asp:Label ID="lbEstatusDetalleVariable" runat="server" Text="Dato"></asp:Label>
              </div>
              <div class="col-md-3">
-                  <asp:Label ID="lbRamosDetalleFijo" runat="server" Text="Ramo: " CssClass="LetrasNegrita"></asp:Label>
+                 <label class="Letranegrita">Ramo: </label>
                  <asp:Label ID="lbRamoDetalleVariable" runat="server" Text="Dato"></asp:Label>
              </div>
              <div class="col-md-3">
-                  <asp:Label ID="lbSubRamoDetalleFijo" runat="server" Text="Sub Ramo: " CssClass="LetrasNegrita"></asp:Label>
+                 <label class="Letranegrita">Sub Ramo: </label>
                  <asp:Label ID="lbSubRamoDetalleVariable" runat="server" Text="Dato"></asp:Label>
-                 <asp:Label ID="LBCodigoSubramoVariable" Visible="false" runat="server" Text="Dato"></asp:Label>
+                 <asp:HiddenField ID="hfCodigoSubRamoVariable" runat="server" />
              </div>
              <div class="col-md-3">
-                  <asp:Label ID="lbClienteDetalleFijo" runat="server" Text="Cliente: " CssClass="LetrasNegrita"></asp:Label>
+                 <label class="Letranegrita">Cliente: </label>
                  <asp:Label ID="lbClienteDetalleVariable" runat="server" Text="Dato"></asp:Label>
              </div>
                 <div class="col-md-3">
-                  <asp:Label ID="lbTipoSeguroFijo" runat="server" Text="Tipo: " CssClass="LetrasNegrita"></asp:Label>
+                    <label class="Letranegrita">Tipo: </label>
                  <asp:Label ID="lbTipoSeguroVariable" runat="server" Text="Dato"></asp:Label>
              </div>
                 </div>
                 <div class="col-md-3">
-                  <asp:Label ID="lbGruaFijo" runat="server" Text="Grua: " CssClass="LetrasNegrita"></asp:Label>
+                    <label class="Letranegrita">Grua: </label>
                  <asp:Label ID="lbGruaVariable" runat="server" Text="Dato"></asp:Label>
-                    <asp:Label ID="lbCodigoGruaVariable" runat="server" Visible="false" Text="Dato"></asp:Label>
+                    <asp:HiddenField ID="hfCodigoGrua" runat="server" />
              </div>
                 
         </div>
             <div id="DIVBloqueOperacionRealizar" runat="server">
                  <br />
         <div class="form-check-inline">
-            <asp:Label ID="lbOperacionREalizar" runat="server" Text="Operación a Realizar: " CssClass="LetrasNegrita"></asp:Label>
+            <label class="Letranegrita">Operación a Realizar: </label>
             <asp:RadioButton ID="rbHistoricoEndoso" runat="server" Text="Historico" AutoPostBack="true" OnCheckedChanged="rbHistoricoEndoso_CheckedChanged" GroupName="TipoOperacion" />
             <asp:RadioButton ID="rbGenerarNuevoEndoso" runat="server" Text="Nuevo Registro" AutoPostBack="true" OnCheckedChanged="rbGenerarNuevoEndoso_CheckedChanged" GroupName="TipoOperacion" />
         </div>
@@ -156,16 +138,17 @@
             <br />
              <div align="center">
            
-            <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Reporte de Impresión de Endoso" CssClass="BotonImagen" ImageUrl="~/Imagenes/Reporte.png" OnClick="btnReporte_Click" />
+            <asp:ImageButton ID="btnReporte" runat="server" ToolTip="Reporte de Impresión de Endoso" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" OnClick="btnReporte_Click" />
         </div>
             <br />
-            <table class="table table-striped">
+          <div class="table-responsive">
+                <table class="table table-striped">
                 <thead class="table-dark">
                     <tr>
                          <th scope="col"> Endoso </th>
                          <th scope="col"> Poliza </th>
                          <th scope="col"> Item </th>
-                        <th scope="col"> Secuencia </th>
+                         <th scope="col"> Secuencia </th>
                          <th scope="col"> Fecha </th>
                          <th scope="col"> Hora </th>
                          <th scope="col"> Usuario </th>
@@ -191,7 +174,7 @@
                                 <td> <%# Eval("Fecha") %> </td>
                                 <td> <%# Eval("Hora") %> </td>
                                 <td> <%# Eval("CreadoPor") %> </td>
-                                <td align="right"> <asp:ImageButton ID="btnReImprimirEndoso" runat="server" ToolTip="GenerarEndoso" CssClass="BotonImagen" ImageUrl="~/Imagenes/impresora.png" OnClick="btnReImprimirEndoso_Click" /> </td>
+                                <td align="right"> <asp:ImageButton ID="btnReImprimirEndoso" runat="server" ToolTip="GenerarEndoso" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/impresora-de-papel.png" OnClick="btnReImprimirEndoso_Click" /> </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -200,29 +183,44 @@
              <table class="table">
                 <tfoot class="table-light">
                     <tr>
-                        <td align="right"><b>Pagina </b> <asp:Label ID="lbPaginaActual" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label> <b>De </b>   <asp:Label ID="lbCantidadPagina" runat="server" Text="0" CssClass="Letranegrita"></asp:Label> </td>
+                        <td class="ContenidoDerecha">
+                            <label class="Letranegrita">Pagina</label> <asp:Label ID="lbPaginaActual" runat="server" Text=" 0 "></asp:Label> 
+                            <label class="Letranegrita"> De </label>   <asp:Label ID="lbCantidadPagina" runat="server" Text="0"></asp:Label> </td>
                     </tr>
                     <tr>
-                        <td><b>Endosos Aclaratorios:  </b><asp:Label ID="lbTotalEndososAclaratorios" runat="server" Text="0"></asp:Label></td>
+                        <td>
+                            <label class="Letranegrita">Endosos Aclaratorios:  </label> <asp:Label ID="lbTotalEndososAclaratorios" runat="server" Text="0"></asp:Label>
+
+                        </td>
                     </tr>
                     <tr>
-                        <td><b>Endosos Licencia de Extrajeros:  </b><asp:Label ID="lbTotalEndososLicenciaExtrajero" runat="server" Text="0"></asp:Label></td>
+                        <td>
+                           <label class="Letranegrita">Endosos Licencia de Extrajeros:  </label> <asp:Label ID="lbTotalEndososLicenciaExtrajero" runat="server" Text="0"></asp:Label>
+
+                        </td>
                     </tr>
                     <tr>
-                        <td><b>Endosos Conductor Unico:  </b><asp:Label ID="lbTotalEndososConductorUnico" runat="server" Text="0"></asp:Label></td>
+                        <td>
+                            <label class="Letranegrita">Endosos Conductor Unico:  </label> <asp:Label ID="lbTotalEndososConductorUnico" runat="server" Text="0"></asp:Label>
+
+                        </td>
                     </tr>
                     <tr>
-                        <td><b>Endosos Auxilio Vial:  </b><asp:Label ID="lbTotalEndososAuxilioVial" runat="server" Text="0"></asp:Label></td>
+                        <td>
+                            <label class="Letranegrita"></label> <asp:Label ID="lbTotalEndososAuxilioVial" runat="server" Text="0"></asp:Label>
+
+                        </td>
                     </tr>
                 
                 </tfoot>
             </table>
+          </div>
               <div id="DivPaginacionListadoPrincipal" runat="server" align="center" >
                 <div style="margin-top=20px;">
                     <table style="width:600px;">
                         <tr>
-                            <td> <asp:ImageButton ID="btnPrimeraPagina" runat="server" ImageUrl="~/Imagenes/Primera Pagina.png" OnClick="btnPrimeraPagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
-                            <td> <asp:ImageButton ID="btnPaginaAnterior" runat="server" ImageUrl="~/Imagenes/Anterior.png" OnClick="btnPaginaAnterior_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnPrimeraPagina" runat="server" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" OnClick="btnPrimeraPagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnPaginaAnterior" runat="server" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" OnClick="btnPaginaAnterior_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
                             <td align="center">
                                 <asp:DataList ID="dtPaginacionListadoPrincipal" runat="server" OnCancelCommand="dtPaginacionListadoPrincipal_CancelCommand" OnItemDataBound="dtPaginacionListadoPrincipal_ItemDataBound" RepeatDirection="Horizontal" >
                                     <ItemTemplate>
@@ -231,8 +229,8 @@
                                 </asp:DataList>
 
                             </td>
-                            <td> <asp:ImageButton ID="btnSiguientePagina" runat="server" ImageUrl="~/Imagenes/Siguiente.png" OnClick="btnSiguientePagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
-                            <td> <asp:ImageButton ID="btnUltimaPagina" runat="server" ImageUrl="~/Imagenes/Ultima Pagina.png" OnClick="btnUltimaPagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnSiguientePagina" runat="server" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" OnClick="btnSiguientePagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
+                            <td> <asp:ImageButton ID="btnUltimaPagina" runat="server" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" OnClick="btnUltimaPagina_Click" CssClass="BotonImagen" ToolTip="Ir a la Primera Pagina" /> </td>
                            
                         </tr>
                     </table>
@@ -243,7 +241,7 @@
         <div id="DIVBloqueNuevoRegistro" runat="server">
             <br />
             <div class="form-check-inline" id="DIVBloqueTiposEndosos" runat="server">
-                <asp:Label ID="lbTipoEndosoGenerar" runat="server" Text="Tipo de Endoso a Generar" CssClass="LetrasNegrita"></asp:Label><br />
+                <label class="Letranegrita">Tipo de Endoso a Generar: </label><br />
                 <asp:RadioButton ID="rbEndosoAclaratorio" runat="server" Text="Endoso Aclaratorio" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso Aclaratorio" OnCheckedChanged="rbEndosoAclaratorio_CheckedChanged" /><br />
                 <asp:RadioButton ID="rbEndosoLicenciaExtragero" runat="server" Text="Endoso de Licencia de Extragero" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso De Licencia de Extragero" OnCheckedChanged="rbEndosoLicenciaExtragero_CheckedChanged" /><br />
                 <asp:RadioButton ID="rbEndosoAclaratorioPAraCodundorUnico" runat="server" Text="Endoso de Conductor Unico" GroupName="TipoEndoso" AutoPostBack="true" ToolTip="Generar Endoso Para Conductor Unico" OnCheckedChanged="rbEndosoAclaratorioPAraCodundorUnico_CheckedChanged" /><br />
@@ -272,7 +270,7 @@
         </div>
         <br />
          <div align="center">
-            <asp:ImageButton ID="btnCompletar" runat="server" ToolTip="Completar Registro" CssClass="BotonImagen" ImageUrl="~/Imagenes/Completar.png" OnClick="btnCompletar_Click" />
+            <asp:ImageButton ID="btnCompletar" runat="server" ToolTip="Completar Registro" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/Completado.png" OnClick="btnCompletar_Click" />
         </div>
         </div>
        

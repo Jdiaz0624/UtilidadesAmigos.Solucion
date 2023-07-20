@@ -181,6 +181,7 @@
     <Content Include="ImagenesBotones\Gestion.png" />
     <Content Include="ImagenesBotones\hacer-clic.png" />
     <Content Include="ImagenesBotones\HojaVenta.png" />
+    <Content Include="ImagenesBotones\impresora-de-papel.png" />
     <Content Include="ImagenesBotones\inventario.png" />
     <Content Include="ImagenesBotones\lista.png" />
     <Content Include="ImagenesBotones\Lupa_Nuevo.png" />

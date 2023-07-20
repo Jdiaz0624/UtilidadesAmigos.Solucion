@@ -30,7 +30,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
         enum TipoGruaEnumeracion { 
         GruaPremium=32,
         GruaSuperior=37,
-        GruaBasica=38
+        GruaBasica=38,
+        Proinsa_Liviano=44,
+        Proinsa_Mini=43,
+        Proinsa_VIP=42
         }
 
         #region CONTROL DE PAGINACION
@@ -197,7 +200,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     Cliente = n.NombreCliente;
                     Grua = n.Grua;
                     CodigoGrua = (int)n.CodigoGrua;
-                    LBCodigoSubramoVariable.Text = n.SubRamo.ToString();
+                    hfCodigoSubRamoVariable.Value = n.SubRamo.ToString();
                 }
                 if (Estatus == "CANCELADA") {
 
@@ -221,7 +224,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     lbClienteDetalleVariable.Text = Cliente;
                     lbTipoSeguroVariable.Text = TipoSeguro;
                     lbGruaVariable.Text = Grua;
-                    lbCodigoGruaVariable.Text = CodigoGrua.ToString();
+                    hfCodigoGrua.Value = CodigoGrua.ToString();
 
                     if (lbTipoSeguroVariable.Text == "Seguro Full")
                     {
@@ -325,14 +328,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                     (decimal)Session["IdUsuario"],
                     "INSERT");
                 Guardar.ProcesarInformacion();
-
             }
-
         }
         private void ProcesarEndoso() {
-
             int CodigoENdoso = 0;
-            int TipoGruaSistema = Convert.ToInt32(lbCodigoGruaVariable.Text);
+            int TipoGruaSistema = Convert.ToInt32(hfCodigoGrua.Value);
             int TipoGrua = 0;
             switch (TipoGruaSistema) {
 
@@ -347,8 +347,16 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 case (int)TipoGruaEnumeracion.GruaBasica:
                     TipoGrua = 3;
                     break;
+                case (int)TipoGruaEnumeracion.Proinsa_Liviano:
+                    TipoGrua = 4;
+                    break;
+                case (int)TipoGruaEnumeracion.Proinsa_Mini:
+                    TipoGrua = 5;
+                    break;
+                case (int)TipoGruaEnumeracion.Proinsa_VIP:
+                    TipoGrua = 6;
+                    break;
             }
-
 
             if (rbEndosoAclaratorio.Checked == true)
             {
@@ -572,8 +580,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.Procesos
                 txtNombreConductorUnico.Text = string.Empty;
                 txtCedulaConductorUnico.Text = string.Empty;
 
-                int CodigoSubramo = Convert.ToInt32(LBCodigoSubramoVariable.Text);
-                int CodigoGrua = Convert.ToInt32(lbCodigoGruaVariable.Text);
+                int CodigoSubramo = Convert.ToInt32(hfCodigoSubRamoVariable.Value);
+                int CodigoGrua = Convert.ToInt32(hfCodigoGrua.Value);
                
 
                 if (lbTipoSeguroVariable.Text == "Seguro Full")
