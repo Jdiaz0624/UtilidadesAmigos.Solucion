@@ -133,6 +133,13 @@
         </ul>
         </li>
 
+          <!--MODULO DE HOJAS-->
+        <li id="DIVModuloHoja" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-search-plus"></i>Hojas<i class="icono derecha fa fa-chevron-down"></i></a>
+        <ul>
+            <li> <asp:LinkButton ID="LinkCertificadoMaritimo" runat="server" Text="Certificado Maritimo" ToolTip="Generar Hoja de Certificado Maritimo" OnClick="LinkCertificadoMaritimo_Click"></asp:LinkButton> </li>
+        </ul>
+        </li>
+
          <!--MODULO DE REPORTES-->
         <li id="DivModuloReportes" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-line-chart"></i>Reportes<i class="icono derecha fa fa-chevron-down"></i></a>
         <ul>

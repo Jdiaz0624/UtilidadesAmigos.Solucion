@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionHojasDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.25.24.3;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString2" Provider="System.Data.SqlClient" />
+  <Function Name="Utililades.SP_HOJA_CERTIFICADO_SEGUROS_MARITIMO_AEREO" Method="SP_HOJA_CERTIFICADO_SEGUROS_MARITIMO_AEREO">
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_HOJA_CERTIFICADO_SEGUROS_MARITIMO_AEREOResult">
+      <Column Name="FechaAdiciona" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaEmision" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Asegurado" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DescripciónMercancía" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="MedioTransporte" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FechaInicioVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaFinVigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FechaSalida" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FechaAproximadaLlegada" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ValorMercancía_FOB" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ValorAsegurado_CF" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="PrimaSeguro" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="PuertoDesembarque" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PaísProcedencia" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PuertoEmbarque" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

@@ -365,6 +365,7 @@
     <Compile Include="Entidades\EUsuarios.cs" />
     <Compile Include="Entidades\EValidarPoliza.cs" />
     <Compile Include="Entidades\EValidarPolizasCanceladasCoberturas.cs" />
+    <Compile Include="Entidades\Hoja\ECertificadoMaritimo.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscaListadoIntermediarios.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscaMonedas.cs" />
     <Compile Include="Entidades\Mantenimientos\EBuscarComisionesIntermediarios.cs" />
@@ -521,6 +522,7 @@
     <Compile Include="Logica\LogicaConsulta\LogicaConsulta.cs" />
     <Compile Include="Logica\LogicaCorrecciones\LogicaCorrecciones.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
+    <Compile Include="Logica\LogicaHoja\LogicaHoja.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
     <Compile Include="Logica\LogicaOpcionesAdministrador\LogicaOpcionesdministrador.cs" />
     <Compile Include="Logica\LogicaProcesos\LogicaProcesos.cs" />

@@ -83,6 +83,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloMantenimiento.Visible = true;
                     DivModuloSeguridad.Visible = true;
                     DivModuloCorrecciones.Visible = true;
+                    DIVModuloHoja.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.CONTABILIDAD:
@@ -93,6 +94,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloMantenimiento.Visible = true;
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
+                    DIVModuloHoja.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.AUDITORIA:
@@ -103,6 +105,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloMantenimiento.Visible = true;
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
+                    DIVModuloHoja.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.NEGOCIOS:
@@ -113,6 +116,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloMantenimiento.Visible = true;
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = true;
+                    DIVModuloHoja.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.TECNICO:
@@ -123,6 +127,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloMantenimiento.Visible = true;
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = true;
+                    DIVModuloHoja.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.RECLAMACIONES:
@@ -133,6 +138,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloMantenimiento.Visible = true;
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
+                    DIVModuloHoja.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.ADMINISTRACION:
@@ -143,6 +149,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloMantenimiento.Visible = false;
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
+                    DIVModuloHoja.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.ARCHIVO:
@@ -153,6 +160,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloMantenimiento.Visible = false;
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
+                    DIVModuloHoja.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.RECEPCION:
@@ -163,6 +171,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloMantenimiento.Visible = false;
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
+                    DIVModuloHoja.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.COBROS:
@@ -173,6 +182,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloMantenimiento.Visible = true;
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
+                    DIVModuloHoja.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.CUMPLIMIENTO:
@@ -183,6 +193,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloMantenimiento.Visible = false;
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
+                    DIVModuloHoja.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.COBROSESPECIAL:
@@ -193,6 +204,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloMantenimiento.Visible = true;
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
+                    DIVModuloHoja.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.TECNICOESPECIAL:
@@ -203,6 +215,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloMantenimiento.Visible = true;
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = true;
+                    DIVModuloHoja.Visible = false;
                     break;
 
                 default:
@@ -213,6 +226,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloMantenimiento.Visible = false;
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
+                    DIVModuloHoja.Visible = false;
                     break;
             }
 
@@ -2317,6 +2331,19 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             if (Session["IdUsuario"] != null)
             {
                 Response.Redirect("~/Paginas/Correcciones/MontoAfianzadoFianzas.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
+
+        protected void LinkCertificadoMaritimo_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Hojas/CerrtificadoMaritimo.aspx");
             }
             else
             {
