@@ -32,7 +32,8 @@ namespace UtilidadesAmigos.Solucion.Paginas
         AlfredoPimentel=10,
         MiguelBerrora=22,
         AngelaGenoveva=82,
-        SarayMota=88
+        SarayMota=88,
+        WandaSancuez=91
         }
         
         #region CONTROL PARA MOSTRAR LA PAGINACION
@@ -457,13 +458,13 @@ namespace UtilidadesAmigos.Solucion.Paginas
                     btnModificarNuevo.Visible = true;
                     btnEliminarNuevo.Visible = false;
                 }
-                //else if (IdUsuario == (decimal)PermisoUsuarios.glenisbierd)
-                //{
+                else if (IdUsuario == (decimal)PermisoUsuarios.WandaSancuez)
+                {
 
-                //    btnNuevoNuevo.Visible = true;
-                //    btnModificarNuevo.Visible = true;
-                //    btnEliminarNuevo.Visible = false;
-                //}
+                    btnNuevoNuevo.Visible = true;
+                    btnModificarNuevo.Visible = true;
+                    btnEliminarNuevo.Visible = false;
+                }
                 else if (IdUsuario == (decimal)PermisoUsuarios.AngelaGenoveva)
                 {
 

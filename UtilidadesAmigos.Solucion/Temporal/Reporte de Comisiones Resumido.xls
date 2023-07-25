@@ -1,0 +1,977 @@
+<div>
+	<table cellspacing="0" rules="all" border="1" style="border-collapse:collapse;">
+		<tr>
+			<th scope="col">Supervisor</th><th scope="col">Intermediario</th><th scope="col">Bruto</th><th scope="col">Neto</th><th scope="col">Comision</th><th scope="col">Retencion</th><th scope="col">AvanceComision</th><th scope="col">Aliquidar</th>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>827 - FUENTES   &amp; ASOCIADOS, S. A.</td><td>75000.00</td><td>64655.17</td><td>12931.03</td><td>0.00</td><td>0.00</td><td>12931.03</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>1171 - HERMINIA CEPEDA FERREIRAS</td><td>32535.00</td><td>28047.42</td><td>5609.49</td><td>560.00</td><td>0.00</td><td>5049.49</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>1253 - AURELINA DE LA PAZ GONZALEZ</td><td>138313.00</td><td>119235.93</td><td>23848.13</td><td>2407.00</td><td>0.00</td><td>21441.13</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>1534 - CECILIO ALEXANDER QUIROZ MUNOZ</td><td>31980.00</td><td>27568.96</td><td>5513.79</td><td>551.00</td><td>0.00</td><td>4962.79</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>1607 - JUAN JULIO VALDEZ VALDEZ</td><td>5625.00</td><td>4849.14</td><td>969.84</td><td>97.00</td><td>0.00</td><td>872.84</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>1617 - DENNI MARIA ARIAS SOLANO</td><td>25264.00</td><td>21779.33</td><td>4747.47</td><td>478.00</td><td>0.00</td><td>4269.47</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>1744 - FELIPE ORLANDO FELIZ</td><td>131443.15</td><td>113313.05</td><td>22662.64</td><td>2269.00</td><td>0.00</td><td>20393.64</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>1823 - SANTOS LEONCIO CASTRO ROSARIO</td><td>2120.00</td><td>1827.59</td><td>365.52</td><td>37.00</td><td>0.00</td><td>328.52</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2149 - WANDA MENA PEREZ</td><td>2100.00</td><td>1810.32</td><td>181.02</td><td>18.00</td><td>0.00</td><td>163.02</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2184 - GESTION PLUS GE PLUS SRL</td><td>9335893.68</td><td>8048184.24</td><td>29111.23</td><td>0.00</td><td>0.00</td><td>29111.23</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2247 - CARLOS AUGUSTO SANCHEZ RAMIREZ</td><td>13700.00</td><td>11810.35</td><td>1771.55</td><td>177.00</td><td>0.00</td><td>1594.55</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2250 - MAGNA CORREDORES.SRL</td><td>14778.00</td><td>12739.66</td><td>2229.44</td><td>0.00</td><td>0.00</td><td>2229.44</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2257 - WILSON ARIEL DICEN DIAZ</td><td>17000.00</td><td>14655.17</td><td>2198.28</td><td>220.00</td><td>0.00</td><td>1978.28</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2287 - FRANCISCO CAPELLAN &amp; ASOCIADOS</td><td>816867.41</td><td>704196.03</td><td>83121.17</td><td>0.00</td><td>0.00</td><td>83121.17</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2322 - SENTINEL CONSULTORES</td><td>58296.79</td><td>50255.85</td><td>4425.27</td><td>0.00</td><td>0.00</td><td>4425.27</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2398 - XAVIER DANIEL ACOSTA MARCHENA</td><td>11170.00</td><td>9629.30</td><td>1444.40</td><td>144.00</td><td>0.00</td><td>1300.40</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2434 - ROSANNA MICHELLE ENCARNACION BURGOS</td><td>6705.00</td><td>5780.17</td><td>1156.04</td><td>116.00</td><td>0.00</td><td>1040.04</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2461 - ANTONIA MARGARITA PICHARDO HERNANDEZ</td><td>105000.00</td><td>90517.23</td><td>15840.51</td><td>1584.00</td><td>0.00</td><td>14256.51</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2469 - KEINI TOLEDO PE&#209;A </td><td>5500.00</td><td>4741.38</td><td>237.06</td><td>23.00</td><td>0.00</td><td>214.06</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2594 - LUIS VICTORIA FRIAS BUSINESS INSURANCE SRL </td><td>37151.20</td><td>32026.87</td><td>5604.76</td><td>0.00</td><td>0.00</td><td>5604.76</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2597 - BANCO MULTIPLE  BELLBANK S.A</td><td>277014.45</td><td>238805.55</td><td>59701.39</td><td>0.00</td><td>0.00</td><td>59701.39</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2606 - PUENTE  &amp; ASOCIADOS SRL </td><td>1457283.86</td><td>1256279.16</td><td>439697.70</td><td>0.00</td><td>0.00</td><td>439697.70</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2680 - ROSY HERRERA BURGOS </td><td>46519.00</td><td>40102.58</td><td>7187.54</td><td>719.00</td><td>0.00</td><td>6468.54</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2705 - JUNIOR FELIX SEVERINO NOBOA</td><td>11793.00</td><td>10166.39</td><td>2033.27</td><td>203.00</td><td>0.00</td><td>1830.27</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2712 - ROBERTO  CORREA</td><td>27074.00</td><td>23339.64</td><td>1166.98</td><td>116.00</td><td>0.00</td><td>1050.98</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2741 - PEDRO ALEJANDRO ACOSTA ESPINOSA</td><td>19630.00</td><td>16922.43</td><td>3384.48</td><td>337.00</td><td>0.00</td><td>3047.48</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2824 - JENNIFFER DAHIANA RODRIGUEZ C</td><td>66270.00</td><td>57129.70</td><td>11426.58</td><td>1159.00</td><td>0.00</td><td>10267.58</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2905 - RAFAELA ELIZABETH MATOS DE GUZMAN </td><td>1992529.49</td><td>1717697.83</td><td>343539.57</td><td>34352.00</td><td>0.00</td><td>309187.57</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2922 - RAISA YORDALIS DE LEON PEREZ</td><td>68000.00</td><td>58621.10</td><td>11724.90</td><td>1190.00</td><td>0.00</td><td>10534.90</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2929 - JUNIOR CASTILLO DE JESUS </td><td>3000.00</td><td>2586.21</td><td>517.24</td><td>51.00</td><td>0.00</td><td>466.24</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2942 - ISA ALEJANDRA  SALAZAR HURTADO </td><td>20730.00</td><td>17870.69</td><td>3127.37</td><td>313.00</td><td>0.00</td><td>2814.37</td>
+		</tr><tr>
+			<td>1 - COMISIONISTA DIRECTO  </td><td>2949 - JUAN ARIEL  BATISTA ROSARIO </td><td>3440.00</td><td>2965.52</td><td>593.10</td><td>59.00</td><td>0.00</td><td>534.10</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1120 - LUIS GUTIERREZ GONZALEZ </td><td>19552.00</td><td>16855.17</td><td>3371.04</td><td>338.00</td><td>0.00</td><td>3033.04</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1156 - CARLOS MIGUEL TEJADA RODRIGUEZ </td><td>83306.00</td><td>71815.51</td><td>14363.11</td><td>1436.00</td><td>0.00</td><td>12927.11</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1163 - AGUEDO FELIPE  RODRIGUEZ PERALTA</td><td>20364.00</td><td>17555.19</td><td>3511.05</td><td>351.00</td><td>0.00</td><td>3160.05</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1173 - MARIA ALTAGRACIA GARCIA </td><td>30675.00</td><td>26444.07</td><td>5288.96</td><td>532.00</td><td>0.00</td><td>4756.96</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1174 - JULIO CESAR RODRIGUEZ </td><td>50819.00</td><td>43809.54</td><td>8761.92</td><td>875.00</td><td>0.00</td><td>7886.92</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1189 - CARLOS MANUEL ULLOA SANTOS </td><td>18079.00</td><td>15585.36</td><td>3117.06</td><td>311.00</td><td>0.00</td><td>2806.06</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1219 - ASOC DE CHOFERES Y CONDUCTORES DEL CIBAO, INC. </td><td>50245.00</td><td>43314.67</td><td>8662.91</td><td>0.00</td><td>0.00</td><td>8662.91</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1220 - LORENZO ANTONIO  CASTILLO TAVAREZ</td><td>17245.00</td><td>14866.39</td><td>2973.29</td><td>298.00</td><td>0.00</td><td>2675.29</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1231 - ROSA FAJARDO </td><td>51600.00</td><td>44483.07</td><td>8897.13</td><td>903.00</td><td>0.00</td><td>7994.13</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1241 - INMOBILIARIA E INVERSIONES FRANCELL SRL</td><td>31508.00</td><td>27162.09</td><td>5432.42</td><td>0.00</td><td>0.00</td><td>5432.42</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1252 - FRANCISCO J. BALBUENA CERDA </td><td>121730.90</td><td>104940.57</td><td>20988.12</td><td>2097.00</td><td>0.00</td><td>18891.12</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1272 - EMMANUEL TINEO</td><td>56738.00</td><td>48912.12</td><td>9782.39</td><td>974.00</td><td>0.00</td><td>8808.39</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1311 - FRANK STEVE HURST INDRIKOVS </td><td>29934.00</td><td>25805.17</td><td>5161.03</td><td>516.00</td><td>0.00</td><td>4645.03</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1380 - DE LE&#211;N GROUP  M&amp;M S.R.L</td><td>31378.00</td><td>27050.05</td><td>5410.05</td><td>0.00</td><td>0.00</td><td>5410.05</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1444 - ANTONIO NU&#209;EZ MORALES </td><td>57730.00</td><td>49767.30</td><td>9953.44</td><td>992.00</td><td>0.00</td><td>8961.44</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1479 - PANFILO MEDINA ALMONTE </td><td>23133.00</td><td>19942.24</td><td>3988.44</td><td>398.00</td><td>0.00</td><td>3590.44</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>1826 - JOSE ENRIQUE COLLADO</td><td>7125.00</td><td>6142.25</td><td>1228.43</td><td>122.00</td><td>0.00</td><td>1106.43</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2065 - ESMERALDO VALENTIN CRISOSTOMO DOMINGUEZ</td><td>145342.70</td><td>125295.47</td><td>25059.05</td><td>2497.00</td><td>0.00</td><td>22562.05</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2072 - SMERLIN RAMON VASQUEZ GERMOSEN</td><td>28570.00</td><td>24629.32</td><td>4925.86</td><td>491.00</td><td>0.00</td><td>4434.86</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2100 - BEATRIZ VASQUEZ TINEO</td><td>29263.00</td><td>25226.73</td><td>5045.30</td><td>503.00</td><td>0.00</td><td>4542.30</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2181 - FERNANDO ARISMENDY GOMEZ VERAS</td><td>90295.00</td><td>77840.57</td><td>15568.09</td><td>1556.00</td><td>0.00</td><td>14012.09</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2273 - MOTO REPUESTO JUAN CABRERA SRL</td><td>84499.00</td><td>72844.13</td><td>12747.35</td><td>0.00</td><td>0.00</td><td>12747.35</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2311 - JOSE OMAR ESTEVEZ GONZALEZ</td><td>28431.00</td><td>24509.54</td><td>4289.08</td><td>429.00</td><td>0.00</td><td>3860.08</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2345 - ANA MARIA BEATO DE GARCIA</td><td>79406.00</td><td>68453.46</td><td>11979.33</td><td>1198.00</td><td>0.00</td><td>10781.33</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2425 - ANDERSON ELPIDIO POLANCO VASQUEZ</td><td>31921.75</td><td>27518.77</td><td>4815.80</td><td>480.00</td><td>0.00</td><td>4335.80</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2429 - WALTER RODOLFO FELIZ JIMENEZ</td><td>30320.00</td><td>26138.04</td><td>4573.91</td><td>455.00</td><td>0.00</td><td>4118.91</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2438 - ROSA YRANI GUTIERREZ MINAYA</td><td>6800.00</td><td>5862.08</td><td>1025.86</td><td>102.00</td><td>0.00</td><td>923.86</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2446 - BERNARDO PICHARDO VALERIO</td><td>6663.00</td><td>5743.96</td><td>1005.19</td><td>101.00</td><td>0.00</td><td>904.19</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2482 - AMBIORIX ANTONIO TAVERAS P&#201;REZ</td><td>187487.00</td><td>161627.28</td><td>28283.76</td><td>2832.00</td><td>0.00</td><td>25451.76</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2686 - ANA MERCEDES TOLENTINO ORTEGA DE SANCHEZ</td><td>3250.00</td><td>2801.72</td><td>560.34</td><td>56.00</td><td>0.00</td><td>504.34</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2723 - MARIA YSABEL CRUZ SANTANA</td><td>62404.93</td><td>53797.34</td><td>9668.03</td><td>967.00</td><td>0.00</td><td>8701.03</td>
+		</tr><tr>
+			<td>1126 - VENDEDOR DIRECTO SANTIAGO </td><td>2952 - GUILLERMO PASCUAL PAULINO BIDO</td><td>3400.00</td><td>2931.04</td><td>586.20</td><td>58.00</td><td>0.00</td><td>528.20</td>
+		</tr><tr>
+			<td>1661 - COORDINADOR DIRECTO ZONA ORIENTAL</td><td>451 - DORTMOND INVESTMENT COMPANY , SRL .</td><td>64416.70</td><td>55531.61</td><td>9718.09</td><td>0.00</td><td>0.00</td><td>9718.09</td>
+		</tr><tr>
+			<td>1661 - COORDINADOR DIRECTO ZONA ORIENTAL</td><td>687 - JUAN BAUTISTA GONZALEZ </td><td>58339.89</td><td>50293.16</td><td>5028.94</td><td>509.00</td><td>0.00</td><td>4519.94</td>
+		</tr><tr>
+			<td>1661 - COORDINADOR DIRECTO ZONA ORIENTAL</td><td>723 - GERMANIA MOYA GOMEZ </td><td>2190.00</td><td>1887.95</td><td>188.74</td><td>17.00</td><td>0.00</td><td>171.74</td>
+		</tr><tr>
+			<td>1661 - COORDINADOR DIRECTO ZONA ORIENTAL</td><td>795 - SANTA CECILIA BATISTA FERRERAS </td><td>88769.88</td><td>76525.84</td><td>7652.16</td><td>768.00</td><td>0.00</td><td>6884.16</td>
+		</tr><tr>
+			<td>1661 - COORDINADOR DIRECTO ZONA ORIENTAL</td><td>975 - MELITON PE&#209;A LIZARDO</td><td>22116.99</td><td>19066.37</td><td>3813.27</td><td>379.00</td><td>0.00</td><td>3434.27</td>
+		</tr><tr>
+			<td>1661 - COORDINADOR DIRECTO ZONA ORIENTAL</td><td>986 - MERILIO ROMANO DE LA ROSA </td><td>6300.00</td><td>5431.06</td><td>543.06</td><td>51.00</td><td>0.00</td><td>492.06</td>
+		</tr><tr>
+			<td>1677 - COORDINADOR DIRECTO</td><td>974 - SEGURNET CORREDORES DE SEGUROS, SRL </td><td>27359.85</td><td>23586.08</td><td>2358.61</td><td>0.00</td><td>0.00</td><td>2358.61</td>
+		</tr><tr>
+			<td>1677 - COORDINADOR DIRECTO</td><td>1876 - VILLAR HENRIQUEZ SRL</td><td>925475.88</td><td>797824.03</td><td>199456.03</td><td>0.00</td><td>0.00</td><td>199456.03</td>
+		</tr><tr>
+			<td>1677 - COORDINADOR DIRECTO</td><td>2432 - MERCEDES AYBAR FRIAS</td><td>18364.99</td><td>15831.90</td><td>2770.54</td><td>277.00</td><td>0.00</td><td>2493.54</td>
+		</tr><tr>
+			<td>1691 - COORDINADOR DIRECTO</td><td>1 - COMISIONISTA DIRECTO  </td><td>11750282.01</td><td>10129553.55</td><td>1310.68</td><td>133.00</td><td>0.00</td><td>1177.68</td>
+		</tr><tr>
+			<td>1715 - COORDINADOR DIRECTO FIANZAS</td><td>2713 - INTERMEDIARIO DIRECTO DE FIANZAS</td><td>213389.49</td><td>183956.47</td><td>17231.85</td><td>1721.00</td><td>0.00</td><td>15510.85</td>
+		</tr><tr>
+			<td>1722 - GERMANIA MOYA</td><td>718 - LOURDES PICHARDO GOMEZ </td><td>60024.94</td><td>51745.81</td><td>5174.26</td><td>535.00</td><td>0.00</td><td>4639.26</td>
+		</tr><tr>
+			<td>1726 - JHONNY DE LA CRUZ </td><td>2781 - JOAN ANTONIO CUEVAS BALBUENA</td><td>2400.00</td><td>2068.98</td><td>413.82</td><td>42.00</td><td>0.00</td><td>371.82</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1144 - JUANA PASTORA  POLANCO DOMINGUEZ</td><td>68463.00</td><td>59019.84</td><td>11803.95</td><td>1181.00</td><td>0.00</td><td>10622.95</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1145 - MARLENNY GRULLON DE BAEZ</td><td>7600.00</td><td>6551.77</td><td>1310.43</td><td>133.00</td><td>0.00</td><td>1177.43</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1162 - JORGE MIGUEL RODRIGUEZ </td><td>85926.78</td><td>74074.78</td><td>14815.32</td><td>1500.00</td><td>0.00</td><td>13315.32</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1164 - TONY AUTO IMPORT S.R.L</td><td>387424.00</td><td>333986.16</td><td>66797.14</td><td>0.00</td><td>0.00</td><td>66797.14</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1177 - JOSE MIGUEL MERCADO </td><td>294802.00</td><td>254139.74</td><td>50828.04</td><td>5076.00</td><td>0.00</td><td>45752.04</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1178 - RICARDO JOSE BAEZ GARCIA</td><td>21125.00</td><td>18211.21</td><td>3642.24</td><td>365.00</td><td>0.00</td><td>3277.24</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1179 - JULIO CESAR PENA </td><td>5740.00</td><td>4948.28</td><td>989.65</td><td>99.00</td><td>0.00</td><td>890.65</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1193 - VICENTE ANTONIO LEDESMA NUNEZ </td><td>37270.00</td><td>32129.33</td><td>6425.88</td><td>642.00</td><td>0.00</td><td>5783.88</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1199 - MILAGROS ALTAGRACIA DELGADO DELGADO </td><td>88836.00</td><td>76582.77</td><td>15316.50</td><td>1525.00</td><td>0.00</td><td>13791.50</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1203 - ABREU Y ALBERTO MOTORS SRL</td><td>91177.00</td><td>78600.33</td><td>15720.54</td><td>0.00</td><td>0.00</td><td>15720.54</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1207 - JOSE NICOLAS GUZMAN GIL </td><td>249071.77</td><td>214717.17</td><td>42943.44</td><td>4288.00</td><td>0.00</td><td>38655.44</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1215 - ANA HILDA POLANCO DE ORTEGA </td><td>31579.00</td><td>27223.30</td><td>5444.68</td><td>544.00</td><td>0.00</td><td>4900.68</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1216 - JOSE JUNIOR BETANCES MARTINEZ </td><td>11305.00</td><td>9745.70</td><td>1949.12</td><td>194.00</td><td>0.00</td><td>1755.12</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1217 - NELSON ANTONIO VASQUEZ </td><td>118088.00</td><td>101800.09</td><td>20359.97</td><td>2029.00</td><td>0.00</td><td>18330.97</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1227 - FRANCISCO ANTONIO POLANCO MARTE</td><td>13745.00</td><td>11849.13</td><td>2369.83</td><td>236.00</td><td>0.00</td><td>2133.83</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1228 - JORDY MARTINEZ </td><td>3040.00</td><td>2620.69</td><td>524.13</td><td>52.00</td><td>0.00</td><td>472.13</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1230 - JUAN FRANCISCO LUCIANO </td><td>17400.00</td><td>15000.07</td><td>3000.09</td><td>301.00</td><td>0.00</td><td>2699.09</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1245 - JUAN ERCILIO ALBA BATISTA </td><td>2767.00</td><td>2385.34</td><td>477.07</td><td>48.00</td><td>0.00</td><td>429.07</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1246 - MIGUEL DE JESUS DIAZ ACOSTA </td><td>13628.00</td><td>11748.28</td><td>2349.66</td><td>235.00</td><td>0.00</td><td>2114.66</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1247 - BERTILIA DE JESUS TAVAREZ </td><td>10505.00</td><td>9056.03</td><td>1811.21</td><td>182.00</td><td>0.00</td><td>1629.21</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1260 - BETANIA LUCIANO </td><td>160999.00</td><td>138792.29</td><td>27758.47</td><td>2772.00</td><td>0.00</td><td>24986.47</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1289 - RAQUEL  PLACENCIA CANELA</td><td>105862.00</td><td>91260.34</td><td>18252.08</td><td>1825.00</td><td>0.00</td><td>16427.08</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1334 - RAUL CASTILLO </td><td>62975.00</td><td>54288.81</td><td>12075.44</td><td>1209.00</td><td>0.00</td><td>10866.44</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1365 - WAGNER ALEXANDER SAINT HILAIRE </td><td>7045.00</td><td>6073.28</td><td>1214.66</td><td>121.00</td><td>0.00</td><td>1093.66</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1387 - RITA GISELA ROMAN DIAZ </td><td>3700.00</td><td>3189.66</td><td>637.92</td><td>63.00</td><td>0.00</td><td>574.92</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1397 - JOEL ACEVEDO RIVAS </td><td>116973.00</td><td>100838.78</td><td>20167.79</td><td>2019.00</td><td>0.00</td><td>18148.79</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1406 - CARMEN IVELISSE BAEZ </td><td>22825.00</td><td>19676.74</td><td>3935.35</td><td>393.00</td><td>0.00</td><td>3542.35</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1409 - SANTIAGO GONZALEZ ROQUE </td><td>6990.00</td><td>6025.87</td><td>1205.17</td><td>120.00</td><td>0.00</td><td>1085.17</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1428 - CASTULO ACEVEDO </td><td>8435.00</td><td>7271.55</td><td>1454.30</td><td>145.00</td><td>0.00</td><td>1309.30</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1436 - ANA ROSA ESPINAL MUNOZ </td><td>3250.00</td><td>2801.74</td><td>560.37</td><td>57.00</td><td>0.00</td><td>503.37</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1448 - GERMAN ANTONIO SOSA</td><td>33432.00</td><td>28820.71</td><td>5764.13</td><td>576.00</td><td>0.00</td><td>5188.13</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1468 - SERVICONTAF SRL </td><td>42896.00</td><td>36979.32</td><td>7395.87</td><td>0.00</td><td>0.00</td><td>7395.87</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1532 - PEDRO FRANCISCO ALBA SANTANA</td><td>16393.00</td><td>14131.90</td><td>2826.40</td><td>284.00</td><td>0.00</td><td>2542.40</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>1847 - ALBERT JOEL PADILLA ROSARIO</td><td>10200.00</td><td>8793.12</td><td>1758.60</td><td>174.00</td><td>0.00</td><td>1584.60</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2143 - HENRY RAMON GARCIA</td><td>10910.00</td><td>9405.20</td><td>1881.08</td><td>189.00</td><td>0.00</td><td>1692.08</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2176 - JUAN FRANCISCO MORALES CABRERA</td><td>45071.00</td><td>38854.37</td><td>7770.95</td><td>778.00</td><td>0.00</td><td>6992.95</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2182 - MARCOS EDILBES ESPINAL AGUILERA</td><td>1700.00</td><td>1465.52</td><td>293.10</td><td>29.00</td><td>0.00</td><td>264.10</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2227 - LUIS RADHAMES VASQUEZ VASQUEZ</td><td>20152.01</td><td>17372.42</td><td>3040.17</td><td>304.00</td><td>0.00</td><td>2736.17</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2325 - MARIA ELENA MARTE DE DISLA</td><td>12474.01</td><td>10753.46</td><td>1881.85</td><td>188.00</td><td>0.00</td><td>1693.85</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2433 - ROBIN DANILO SANTANA RODRIGUEZ</td><td>144327.00</td><td>124420.11</td><td>21772.89</td><td>2172.00</td><td>0.00</td><td>19600.89</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2437 - KATHIA DOMINGUEZ SANTOS</td><td>3870.00</td><td>3336.22</td><td>583.81</td><td>58.00</td><td>0.00</td><td>525.81</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2445 - ALBERTO CANDELARIO NU&#209;EZ VENTURA</td><td>344206.01</td><td>296729.57</td><td>51926.93</td><td>5205.00</td><td>0.00</td><td>46721.93</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2464 - DARIANA VALENTINA DIAZ</td><td>2798.00</td><td>2412.07</td><td>422.11</td><td>42.00</td><td>0.00</td><td>380.11</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2468 - LUIS ANTONIO GUZMAN INOA</td><td>24195.00</td><td>20857.77</td><td>3650.06</td><td>366.00</td><td>0.00</td><td>3284.06</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2476 - PEDRO MANUEL CABRERA CASTILLO</td><td>14450.00</td><td>12456.95</td><td>2179.86</td><td>217.00</td><td>0.00</td><td>1962.86</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2478 - RICARDO ALEXANDER RODR&#205;GUEZ EST&#201;VEZ</td><td>10685.00</td><td>9211.21</td><td>1611.97</td><td>162.00</td><td>0.00</td><td>1449.97</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2518 - JAIME NIXON DE LEON COLLADO</td><td>28880.00</td><td>24896.67</td><td>4356.67</td><td>433.00</td><td>0.00</td><td>3923.67</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2568 - PALOMA DEL CARMEN LORA DE POLANCO</td><td>22678.00</td><td>19549.99</td><td>3910.04</td><td>394.00</td><td>0.00</td><td>3516.04</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2612 - DARLIN ANTONIO NU&#209;EZ NU&#209;EZ </td><td>23450.00</td><td>20215.52</td><td>4043.11</td><td>405.00</td><td>0.00</td><td>3638.11</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2633 - ROESLI AUTOS SRL .</td><td>28796.00</td><td>24824.13</td><td>4344.21</td><td>0.00</td><td>0.00</td><td>4344.21</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2683 - REINALDO DE JESUS TEJADA ALMANZAR</td><td>1325.00</td><td>1142.24</td><td>228.45</td><td>23.00</td><td>0.00</td><td>205.45</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2912 - LUIS ALBERTO PORTES CASTRO</td><td>42720.00</td><td>36827.77</td><td>7365.85</td><td>745.00</td><td>0.00</td><td>6620.85</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2916 - ALVARO ANDERSON MATEO RAMOS</td><td>19065.00</td><td>16435.38</td><td>3287.10</td><td>329.00</td><td>0.00</td><td>2958.10</td>
+		</tr><tr>
+			<td>1729 - JOSE PENA</td><td>2953 - ADRISSON EDUARDO GUTIERREZ CABRERA</td><td>9200.00</td><td>7931.09</td><td>1586.31</td><td>161.00</td><td>0.00</td><td>1425.31</td>
+		</tr><tr>
+			<td>1731 - RICARDO RAFAEL RAMIREZ JIMENEZ</td><td>1449 - MIGUEL ANTONIO RODRIGUEZ ROSARIO</td><td>1700.00</td><td>1465.52</td><td>293.10</td><td>29.00</td><td>0.00</td><td>264.10</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>1102 - CRUZ ANTONIO REYNOSO GOMEZ </td><td>109250.00</td><td>94181.08</td><td>18836.18</td><td>1877.00</td><td>0.00</td><td>16959.18</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>1234 - JONY ARVELO MARTINEZ </td><td>17600.00</td><td>15172.52</td><td>3034.68</td><td>308.00</td><td>0.00</td><td>2726.68</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>1248 - GEORGINA  ARACENA DE LA CRUZ</td><td>401218.00</td><td>345877.75</td><td>78766.97</td><td>7880.00</td><td>0.00</td><td>70886.97</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>1250 - LUCILA MARIBEL  MARTE NUNEZ</td><td>31690.00</td><td>27318.96</td><td>5463.80</td><td>546.00</td><td>0.00</td><td>4917.80</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>1266 - DAISY MARIA  ALVAREZ REYES</td><td>60413.00</td><td>52080.22</td><td>10416.01</td><td>1042.00</td><td>0.00</td><td>9374.01</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>1267 - ZOILA JACQUELIN  PEREZ POLANCO</td><td>17160.00</td><td>14793.12</td><td>2958.60</td><td>295.00</td><td>0.00</td><td>2663.60</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>1268 - YOBANY ANTONIO TAPIA GOMEZ </td><td>26855.00</td><td>23150.88</td><td>4630.17</td><td>463.00</td><td>0.00</td><td>4167.17</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>1269 - FRANCISCO JAVIER ROJAS JIMENEZ</td><td>54963.00</td><td>47381.90</td><td>9476.37</td><td>947.00</td><td>0.00</td><td>8529.37</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>1270 - PEDRO FABIAN CACERES </td><td>5550.00</td><td>4784.49</td><td>956.90</td><td>96.00</td><td>0.00</td><td>860.90</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>1276 - SANTA  HORTENSIA CANDELARIO</td><td>16955.00</td><td>14616.39</td><td>2923.26</td><td>291.00</td><td>0.00</td><td>2632.26</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>1366 - DOMINGA DIAZ</td><td>68665.00</td><td>59193.98</td><td>11838.79</td><td>1182.00</td><td>0.00</td><td>10656.79</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>1396 - MIDALMA E. DIAZ </td><td>146119.00</td><td>125964.71</td><td>28971.84</td><td>2907.00</td><td>0.00</td><td>26064.84</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>1618 - MARIA MERCEDES DE JESUS RODRIGUEZ PENA</td><td>17720.00</td><td>15275.90</td><td>3055.21</td><td>307.00</td><td>0.00</td><td>2748.21</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>1879 - REPUESTOS PERALTA </td><td>60200.00</td><td>51896.55</td><td>10379.28</td><td>1037.00</td><td>0.00</td><td>9342.28</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2045 - ANYOLINA JISSET SANTANA MARTINEZ</td><td>125370.00</td><td>108077.60</td><td>21615.52</td><td>2161.00</td><td>0.00</td><td>19454.52</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2561 - SUPER NEGRO AUTO SRL .</td><td>454433.00</td><td>391752.58</td><td>68795.39</td><td>0.00</td><td>0.00</td><td>68795.39</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2607 - AMI DELKY GEREZ TEJADA</td><td>401680.38</td><td>346276.19</td><td>60827.81</td><td>6084.00</td><td>0.00</td><td>54743.81</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2615 - WARQUIRIA AMANDA RODRIGUEZ BALBUENA DE MOLINA</td><td>612157.50</td><td>527721.96</td><td>92534.54</td><td>9251.00</td><td>0.00</td><td>83283.54</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2682 - CAPITAL E INVERSIONES SUN PG, S.R.L.</td><td>18115.00</td><td>15616.38</td><td>3123.27</td><td>0.00</td><td>0.00</td><td>3123.27</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2759 - IMPORTADORA ROSA, SRL</td><td>298568.17</td><td>257386.33</td><td>51477.25</td><td>0.00</td><td>0.00</td><td>51477.25</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2808 - PRESTAMOS CRUZ NU&#209;EZ </td><td>657358.00</td><td>566687.92</td><td>99951.25</td><td>0.00</td><td>0.00</td><td>99951.25</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2812 - JOHN ALEX AUTO IMPORT, S. R. L.</td><td>37900.00</td><td>32672.41</td><td>5717.67</td><td>0.00</td><td>0.00</td><td>5717.67</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2823 - ANGEL DE JESUS  CUEVAS PICHARDO</td><td>40120.00</td><td>34586.23</td><td>6665.09</td><td>666.00</td><td>0.00</td><td>5999.09</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2869 - CLAVERY LISBETH MACEO LAJARA</td><td>11900.00</td><td>10258.64</td><td>2051.72</td><td>205.00</td><td>0.00</td><td>1846.72</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2870 - ELVIO MOTORS, S. R. L. .</td><td>143055.00</td><td>123323.35</td><td>23608.56</td><td>0.00</td><td>0.00</td><td>23608.56</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2877 - JOSE LUIS FERNANDEZ JORGE</td><td>17610.00</td><td>15181.04</td><td>3036.19</td><td>303.00</td><td>0.00</td><td>2733.19</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2883 - YOCASTA LAURELI INFANTE GUTIERREZ</td><td>16550.00</td><td>14267.26</td><td>2853.43</td><td>283.00</td><td>0.00</td><td>2570.43</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2891 - LUIS ARIEL NUESI NU&#209;EZ</td><td>21870.00</td><td>18853.45</td><td>3382.75</td><td>338.00</td><td>0.00</td><td>3044.75</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2893 - CHINAUTOS SRL SANTIAGO</td><td>1985089.34</td><td>1711283.91</td><td>299722.27</td><td>0.00</td><td>0.00</td><td>299722.27</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2896 - MONICA GARCIA CRUZ</td><td>55635.00</td><td>47961.32</td><td>9592.43</td><td>965.00</td><td>0.00</td><td>8627.43</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2898 - JOSEFA DIAZ CRUZ</td><td>59121.00</td><td>50966.39</td><td>10193.22</td><td>1018.00</td><td>0.00</td><td>9175.22</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2901 - CARLOS ANTONIO BLANCO VENTURA</td><td>19486.13</td><td>16798.40</td><td>3095.40</td><td>309.00</td><td>0.00</td><td>2786.40</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2917 - ENYEL JOSE CACERES SANTOS</td><td>7068.00</td><td>6093.11</td><td>1218.62</td><td>121.00</td><td>0.00</td><td>1097.62</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2918 - MARIA DE LOS ANGELES LOPEZ BATISTA</td><td>13433.00</td><td>11580.18</td><td>2316.04</td><td>231.00</td><td>0.00</td><td>2085.04</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2951 - RUT ESMERALDA CASTILLO PEREZ</td><td>74185.00</td><td>63952.58</td><td>11412.61</td><td>1141.00</td><td>0.00</td><td>10271.61</td>
+		</tr><tr>
+			<td>1735 - ROBBIN  M. BATISTA</td><td>2964 - NOEL ORTEGA COLLADO</td><td>10000.00</td><td>8620.69</td><td>1508.62</td><td>151.00</td><td>0.00</td><td>1357.62</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>1928 - RAFAELA AGRAMONTE MERAN</td><td>9317.00</td><td>8031.90</td><td>1606.38</td><td>161.00</td><td>0.00</td><td>1445.38</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2004 - RAMONA ALTAGRACIA DE JESUS JIMENEZ SIERRA</td><td>460053.51</td><td>396597.95</td><td>79319.68</td><td>7922.00</td><td>0.00</td><td>71397.68</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2053 - ADRIANO DEL ROSARIO REYNOSO</td><td>519744.91</td><td>448055.89</td><td>98342.70</td><td>9825.00</td><td>0.00</td><td>88517.70</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2378 - PLACIDO TIBREY POLANCO</td><td>95376.00</td><td>82220.69</td><td>14388.57</td><td>1442.00</td><td>0.00</td><td>12946.57</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2415 - GUILLERMO CARO DE LOS SANTOS</td><td>52983.97</td><td>45675.84</td><td>6851.37</td><td>688.00</td><td>0.00</td><td>6163.37</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2418 - ACRESA GROUPS S.R.L.</td><td>328874.00</td><td>283512.07</td><td>42526.81</td><td>0.00</td><td>0.00</td><td>42526.81</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2574 - YUDERKA MARIA  RAMIREZ </td><td>54508.00</td><td>46989.67</td><td>8557.41</td><td>855.00</td><td>0.00</td><td>7702.41</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2575 - EUDIS  CUEVAS </td><td>31290.00</td><td>26974.16</td><td>5394.81</td><td>537.00</td><td>0.00</td><td>4857.81</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2576 - TIARA  PADILLA </td><td>22238.00</td><td>19170.69</td><td>3834.13</td><td>383.00</td><td>0.00</td><td>3451.13</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2586 - DOMINIC AUTO  IMPORT SRL </td><td>3544913.20</td><td>3055959.50</td><td>520374.71</td><td>0.00</td><td>0.00</td><td>520374.71</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2595 - SERIUS  AUTOS SRL </td><td>3400.00</td><td>2931.04</td><td>586.20</td><td>0.00</td><td>0.00</td><td>586.20</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2596 - JOAN MANUEL  DEBORD MERETTE</td><td>22500.00</td><td>19396.67</td><td>3879.55</td><td>392.00</td><td>0.00</td><td>3487.55</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2598 - LACHAPELLE  AUTO  AUTO IMPORT </td><td>4129647.28</td><td>3560040.78</td><td>625735.22</td><td>0.00</td><td>0.00</td><td>625735.22</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2602 - PAMELA AMANTINA  NU&#209;EZ ECHAVARRIA </td><td>15346.00</td><td>13229.32</td><td>2645.86</td><td>264.00</td><td>0.00</td><td>2381.86</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2603 - MORAIMA ANTONIA  CASTILLO BURGOS</td><td>1424787.00</td><td>1228264.66</td><td>226379.43</td><td>22640.00</td><td>0.00</td><td>203739.43</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2641 - GALLO MOTORS SRL </td><td>372796.67</td><td>321376.51</td><td>56578.15</td><td>0.00</td><td>0.00</td><td>56578.15</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2702 - AURA MARTINEZ DE RODRIGUEZ </td><td>422920.00</td><td>364586.21</td><td>72917.25</td><td>7293.00</td><td>0.00</td><td>65624.25</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2704 - ALTAGRACIA  DE LA ROSA RAMIREZ</td><td>39829.00</td><td>34335.34</td><td>6867.06</td><td>687.00</td><td>0.00</td><td>6180.06</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2721 - JACQUELINE ALTAGRACIA ESPINAL ESPINAL </td><td>536553.00</td><td>462545.65</td><td>81724.66</td><td>8172.00</td><td>0.00</td><td>73552.66</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2735 - AUTO GALA SRL</td><td>2575051.00</td><td>2219871.56</td><td>388477.51</td><td>0.00</td><td>0.00</td><td>388477.51</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2736 - FINANCIA MOTO LA FUENTE SRL</td><td>542140.00</td><td>467362.06</td><td>81788.40</td><td>0.00</td><td>0.00</td><td>81788.40</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2785 - INVERSIONES  SEGURA &amp; RIVERA S.R.L</td><td>35615.00</td><td>30702.60</td><td>6140.54</td><td>0.00</td><td>0.00</td><td>6140.54</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2814 - RAMON ALEXANDER  ABREU RODRIGUEZ</td><td>38030.00</td><td>32784.48</td><td>5871.56</td><td>587.00</td><td>0.00</td><td>5284.56</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2842 - WASCAR NICOLAS  G&#211;MEZ HERRERA </td><td>409665.00</td><td>353159.74</td><td>69019.54</td><td>6884.00</td><td>0.00</td><td>62135.54</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2850 - SUERO RODRIGUEZ Y COMPA&#209;IA  (SUROCO) SRL</td><td>55100.00</td><td>47500.01</td><td>8312.49</td><td>0.00</td><td>0.00</td><td>8312.49</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2903 - JULIO EMILIO  ALVAREZ MART&#205;NEZ </td><td>36000.00</td><td>31034.48</td><td>5431.03</td><td>543.00</td><td>0.00</td><td>4888.03</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2914 - JULIANNA DEL CARMEN  HURTADO ISAAC </td><td>1396792.00</td><td>1204130.98</td><td>211034.92</td><td>21108.00</td><td>0.00</td><td>189926.92</td>
+		</tr><tr>
+			<td>1743 - PATRICIO  GARCIA SUERO </td><td>2924 - YANIRA  CRISOSTOMO CORNELIO </td><td>3440.00</td><td>2965.52</td><td>593.10</td><td>59.00</td><td>0.00</td><td>534.10</td>
+		</tr><tr>
+			<td>1749 - CRUZ ANTONIO REYNOSO GOMEZ</td><td>2071 - NAROLYN MERCEDES FILPO GONZALEZ</td><td>7056.00</td><td>6082.76</td><td>1216.55</td><td>121.00</td><td>0.00</td><td>1095.55</td>
+		</tr><tr>
+			<td>2184 - GESTION PLUS GE PLUS SRL</td><td>2361 - KEYLA GONZALEZ SANCHEZ</td><td>4144.00</td><td>3572.41</td><td>535.86</td><td>54.00</td><td>0.00</td><td>481.86</td>
+		</tr><tr>
+			<td>2361 - KEYLA GONZALEZ SANCHEZ</td><td>2136 - HECTOR BIENVENIDO FELIZ VALDEZ</td><td>53140.00</td><td>45810.41</td><td>10078.39</td><td>1009.00</td><td>0.00</td><td>9069.39</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>1028 - CARMEN M. DE LA NUEZ DE LA NUEZ </td><td>3468.00</td><td>2989.65</td><td>597.93</td><td>60.00</td><td>0.00</td><td>537.93</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>1421 - JOSE FRANCISCO REYES ANGELES </td><td>926104.09</td><td>798366.01</td><td>199592.08</td><td>20031.00</td><td>0.00</td><td>179561.08</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>1987 - GREGORY CEPEDA POLANCO</td><td>16641393.17</td><td>14346028.57</td><td>2869205.63</td><td>286929.00</td><td>0.00</td><td>2582276.63</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2210 - JESUS RAFAEL PANIAGUA MATOS</td><td>1221876.03</td><td>1053341.33</td><td>209566.47</td><td>20954.00</td><td>0.00</td><td>188612.47</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2237 - JAFREYSIS MEDINA ORTIZ</td><td>13195.00</td><td>11375.00</td><td>2275.00</td><td>228.00</td><td>0.00</td><td>2047.00</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2419 - SOLUCIONES DE NEGOCIOS CEPEDA DOTEL</td><td>484798.57</td><td>417929.80</td><td>62689.45</td><td>0.00</td><td>0.00</td><td>62689.45</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2420 - COMPA&#209;IA DE INVERSIONES YAMEL</td><td>15504377.15</td><td>13365841.92</td><td>2004876.75</td><td>0.00</td><td>0.00</td><td>2004876.75</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2421 - M&amp;C INVERSIONES, S.R.L.</td><td>1416503.00</td><td>1221123.30</td><td>183168.46</td><td>0.00</td><td>0.00</td><td>183168.46</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2435 - GREGORIO CEPEDA URE&#209;A</td><td>17524375.96</td><td>15107220.96</td><td>2266083.22</td><td>226598.00</td><td>0.00</td><td>2039485.22</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2466 - PRESTAMOS E INVERSIONES JAMILET SRL</td><td>406017.80</td><td>350015.37</td><td>61318.21</td><td>0.00</td><td>0.00</td><td>61318.21</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2467 - INVERNICA, S. R. L. </td><td>6732.00</td><td>5803.45</td><td>1015.61</td><td>0.00</td><td>0.00</td><td>1015.61</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2472 - NUOVO CORREDORES DE SEGUROS</td><td>4947358.29</td><td>4264964.04</td><td>746368.64</td><td>0.00</td><td>0.00</td><td>746368.64</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2479 - NUOVO CORREDORES DE SEGUROS ORIENTAL</td><td>6111890.75</td><td>5268871.17</td><td>922052.59</td><td>0.00</td><td>0.00</td><td>922052.59</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2480 - NUOVO  CORREDORES DE SEGUROS GAZCUE </td><td>1957646.71</td><td>1687626.47</td><td>295334.61</td><td>0.00</td><td>0.00</td><td>295334.61</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2481 - NUOVO CORREDORES DE SEGUROS PUNTA CANA </td><td>2032686.69</td><td>1752316.13</td><td>306655.23</td><td>0.00</td><td>0.00</td><td>306655.23</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2534 - NUOVO  CORREDORES DE SEGURO SRL SANTIAGO </td><td>2474283.20</td><td>2133002.75</td><td>373275.44</td><td>0.00</td><td>0.00</td><td>373275.44</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2631 - RAMON ANTONIO  DE LA ROSA </td><td>64207.70</td><td>55351.46</td><td>9971.76</td><td>998.00</td><td>0.00</td><td>8973.76</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2754 - FRANCISCO ALBERTO  MARTINEZ ROSARIO</td><td>351741.00</td><td>303225.03</td><td>57068.37</td><td>5711.00</td><td>0.00</td><td>51357.37</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2770 - PERLA MABEL  TAMAREZ DE NOVA </td><td>10753.00</td><td>9269.82</td><td>463.49</td><td>46.00</td><td>0.00</td><td>417.49</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2782 - NUOVO  CORREDORES OFC. PRINCIPAL </td><td>603617.30</td><td>520359.74</td><td>91320.88</td><td>0.00</td><td>0.00</td><td>91320.88</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2804 - ZULEICA  PAULINO FRIAS</td><td>4695.00</td><td>4047.41</td><td>809.48</td><td>81.00</td><td>0.00</td><td>728.48</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2835 - CRISTINA GABRIELA MARTINEZ FRANSUA </td><td>8900.00</td><td>7672.42</td><td>1342.67</td><td>134.00</td><td>0.00</td><td>1208.67</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2839 - CEPEDA COSTA RICA</td><td>1232654.01</td><td>1062632.76</td><td>187055.68</td><td>18706.00</td><td>0.00</td><td>168349.68</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2840 - NUOVO CONFIDENCE</td><td>34506.00</td><td>29746.55</td><td>5205.65</td><td>0.00</td><td>0.00</td><td>5205.65</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2897 - CRISTIAN CASTILLO  M &amp; ASOCIADOS</td><td>17675.00</td><td>15237.07</td><td>1523.71</td><td>0.00</td><td>0.00</td><td>1523.71</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2908 - ROCIO PAOLA  CAPELLAN CORONADO </td><td>132960.00</td><td>114620.72</td><td>20058.65</td><td>2004.00</td><td>0.00</td><td>18054.65</td>
+		</tr><tr>
+			<td>2375 - ALFREDO PIMENTEL</td><td>2948 - NINFA MARGARET  MOYA GOMEZ</td><td>12981.25</td><td>11190.74</td><td>1958.38</td><td>195.00</td><td>0.00</td><td>1763.38</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1009 - ELSA MONSERRAT NEDER BAEZ</td><td>2108.00</td><td>1817.24</td><td>363.44</td><td>36.00</td><td>0.00</td><td>327.44</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1016 - ALBA SIRIA MORETA</td><td>3868.00</td><td>3334.48</td><td>666.90</td><td>67.00</td><td>0.00</td><td>599.90</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1023 - JORGE ALBERTO MELLA</td><td>62015.00</td><td>53461.26</td><td>10692.20</td><td>1068.00</td><td>0.00</td><td>9624.20</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1134 - JOSE ANTONIO AMPARO PASCUAL</td><td>33051.00</td><td>28492.26</td><td>5698.43</td><td>574.00</td><td>0.00</td><td>5124.43</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1210 - FELIX ANTONIO REYES RODRIGUEZ</td><td>51562.37</td><td>44450.33</td><td>8890.04</td><td>889.00</td><td>0.00</td><td>8001.04</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1293 - SARAH FELIZ</td><td>268078.00</td><td>231101.80</td><td>46220.56</td><td>4611.00</td><td>0.00</td><td>41609.56</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1297 - INGRID JIMENEZ</td><td>32035.00</td><td>27616.54</td><td>5523.56</td><td>558.00</td><td>0.00</td><td>4965.56</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1301 - KEYLA LUNA M</td><td>58270.00</td><td>50232.77</td><td>10046.54</td><td>1002.00</td><td>0.00</td><td>9044.54</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1308 - LEIDY E. RAMIREZ SOTO</td><td>18584.00</td><td>16020.73</td><td>3204.22</td><td>322.00</td><td>0.00</td><td>2882.22</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1352 - GLADYS MARIA CORDERO GONZALEZ</td><td>87415.00</td><td>75357.73</td><td>15071.56</td><td>1507.00</td><td>0.00</td><td>13564.56</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1484 - EDWARDS DIONISIO MARTINEZ RAMIREZ</td><td>50800.00</td><td>43793.41</td><td>8759.19</td><td>889.00</td><td>0.00</td><td>7870.19</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1503 - MASSIEL YEROSKY PEGUERO MELO</td><td>22364.00</td><td>19279.36</td><td>3855.95</td><td>388.00</td><td>0.00</td><td>3467.95</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1569 - ARIEL FABIAN RODRIGUEZ MORENO</td><td>186785.00</td><td>161022.18</td><td>37035.00</td><td>3724.00</td><td>0.00</td><td>33311.00</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1581 - CARLOS JUSTO CANO</td><td>72073.00</td><td>62132.08</td><td>12426.62</td><td>1246.00</td><td>0.00</td><td>11180.62</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1608 - DEIBY RAFAEL RICHARSON WILLMORE</td><td>31478.00</td><td>27136.23</td><td>5427.23</td><td>540.00</td><td>0.00</td><td>4887.23</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1641 - BIANNE DE LA CRUZ RIVERA</td><td>3484.00</td><td>3003.45</td><td>600.69</td><td>60.00</td><td>0.00</td><td>540.69</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1865 - MARIA ANT ALMANZAR</td><td>24550.00</td><td>21163.94</td><td>4233.02</td><td>430.00</td><td>0.00</td><td>3803.02</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>1877 - SUNILDA GONZALEZ FERNANDEZ</td><td>25053.00</td><td>21597.44</td><td>4319.48</td><td>430.00</td><td>0.00</td><td>3889.48</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>2069 - GERALDO RAFAEL AMERICO CUELLO SUERO</td><td>90607.25</td><td>78109.75</td><td>15622.06</td><td>1564.00</td><td>0.00</td><td>14058.06</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>2167 - AUTOFINANCIAMIENTO BEATO GOMEZ SRL</td><td>28500.00</td><td>24568.96</td><td>4913.80</td><td>0.00</td><td>0.00</td><td>4913.80</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>2248 - JESSICA ALEXANDRA REYES</td><td>11260.00</td><td>9706.90</td><td>1823.28</td><td>183.00</td><td>0.00</td><td>1640.28</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>2483 - YOTAMA RODRIGUEZ ALMANZAR </td><td>5500.00</td><td>4741.38</td><td>829.73</td><td>83.00</td><td>0.00</td><td>746.73</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>2684 - YANINA ALTAGRACIA  LUNA OGANDO </td><td>8000.00</td><td>6896.60</td><td>1379.40</td><td>140.00</td><td>0.00</td><td>1239.40</td>
+		</tr><tr>
+			<td>2376 - RICHARD PI&#209;A</td><td>2685 - GREGORIA UBRI BERIGUETE</td><td>890206.37</td><td>767419.28</td><td>153483.83</td><td>15342.00</td><td>0.00</td><td>138141.83</td>
+		</tr><tr>
+			<td>2404 - PATRICIA MENDEZ</td><td>1512 - WASCAR NICOLAS GOMEZ HERRERA</td><td>1700.00</td><td>1465.52</td><td>337.07</td><td>34.00</td><td>0.00</td><td>303.07</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>1518 - TEOFILO SOSA TIBURCIO</td><td>26970.00</td><td>23249.99</td><td>5115.01</td><td>510.00</td><td>0.00</td><td>4605.01</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>1810 - SANTA AFANAISA  GUILLEN HERN&#193;NDEZ </td><td>98532.00</td><td>84941.41</td><td>21235.39</td><td>2130.00</td><td>0.00</td><td>19105.39</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>1834 - PUENTE &amp; ASOCIADOS, SRL</td><td>12933.00</td><td>11149.14</td><td>2229.82</td><td>0.00</td><td>0.00</td><td>2229.82</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>1885 - JUAN MARIA MOSES TITEN</td><td>347037.00</td><td>299169.92</td><td>65422.86</td><td>6552.00</td><td>0.00</td><td>58870.86</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2363 - WANDA TERESA ROMAN LAJARA</td><td>6218.00</td><td>5360.34</td><td>1072.07</td><td>108.00</td><td>0.00</td><td>964.07</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2488 - GINA  JIMENEZ AGRAMONTE </td><td>11913.00</td><td>10269.82</td><td>2053.97</td><td>206.00</td><td>0.00</td><td>1847.97</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2489 - JOSE NICOLAS JIMENEZ</td><td>81307.00</td><td>70092.22</td><td>13382.68</td><td>1338.00</td><td>0.00</td><td>12044.68</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2491 - MARINO LUCIANO MERAN</td><td>2825.00</td><td>2435.34</td><td>487.07</td><td>49.00</td><td>0.00</td><td>438.07</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2494 - ISABEL  POLANCO RAMOS </td><td>27208.00</td><td>23455.18</td><td>4691.00</td><td>468.00</td><td>0.00</td><td>4223.00</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2496 - NURIS ALTAGRACIA HERNANDEZ B.</td><td>63013.00</td><td>54321.56</td><td>9756.56</td><td>976.00</td><td>0.00</td><td>8780.56</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2503 - DEIDANIA ELISABETH  PANTALEON DE ALCANTARA </td><td>101978.00</td><td>87912.09</td><td>16461.69</td><td>1641.00</td><td>0.00</td><td>14820.69</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2504 - CLAUDIA  TOLENTINO </td><td>89905.99</td><td>77505.16</td><td>14429.90</td><td>1445.00</td><td>0.00</td><td>12984.90</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2505 - HECTOR BIENVENIDO  RAMIREZ JIMENEZ </td><td>208662.00</td><td>179881.24</td><td>32569.46</td><td>3266.00</td><td>0.00</td><td>29303.46</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2506 - LUISA  BROWN </td><td>356978.85</td><td>307740.45</td><td>60039.45</td><td>6007.00</td><td>0.00</td><td>54032.45</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2507 - ANA MILDIA  DUARTE CASTILLO </td><td>86765.00</td><td>74797.43</td><td>13635.35</td><td>1363.00</td><td>0.00</td><td>12272.35</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2508 - NANCIS MERCEDES  DIAZ DE LA CRUZ </td><td>37892.00</td><td>32665.54</td><td>6533.10</td><td>651.00</td><td>0.00</td><td>5882.10</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2509 - YUBERQUIS CASTRO ROSEL </td><td>71284.00</td><td>61451.75</td><td>11245.12</td><td>1126.00</td><td>0.00</td><td>10119.12</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2510 - MARIBEL  SOSA ULERIO </td><td>39372.00</td><td>33941.42</td><td>6788.35</td><td>680.00</td><td>0.00</td><td>6108.35</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2511 - JOHNY ALBERTO  VELEZ MOTA </td><td>35836.00</td><td>30893.09</td><td>6178.63</td><td>617.00</td><td>0.00</td><td>5561.63</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2512 - MARGARITA  MOSQUEA CASTRO </td><td>146360.63</td><td>126172.98</td><td>23003.08</td><td>2300.00</td><td>0.00</td><td>20703.08</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2513 - RAMON ANTONIO COLON PI&#209;A</td><td>242873.00</td><td>209373.51</td><td>41400.64</td><td>4132.00</td><td>0.00</td><td>37268.64</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2527 - JOSE FELIX SUERO </td><td>12625.00</td><td>10883.62</td><td>1904.63</td><td>191.00</td><td>0.00</td><td>1713.63</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2536 - RUTH ESTHER MART&#205;NEZ</td><td>9736.00</td><td>8393.10</td><td>1678.62</td><td>0.00</td><td>0.00</td><td>1678.62</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2539 - YANET DOLORES SUAREZ ALMANZAR</td><td>11913.00</td><td>10269.83</td><td>2053.97</td><td>206.00</td><td>0.00</td><td>1847.97</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2550 - ROSALBA IVETTE  DOUGLAS JIMENEZ </td><td>86744.99</td><td>74780.19</td><td>14342.42</td><td>1432.00</td><td>0.00</td><td>12910.42</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2551 - YOHAIRA  GONZALEZ DE CRUZ </td><td>199983.00</td><td>172399.06</td><td>32437.39</td><td>3251.00</td><td>0.00</td><td>29186.39</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2552 - MIGUELINA FEBLES COLOME</td><td>42623.00</td><td>36743.97</td><td>6854.18</td><td>685.00</td><td>0.00</td><td>6169.18</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2562 - JOSE SILVESTRE MARTINS FANEITES</td><td>27000.00</td><td>23275.86</td><td>4073.28</td><td>408.00</td><td>0.00</td><td>3665.28</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2599 - NICOLE MARIE RIVERA SOSA</td><td>90069.60</td><td>77646.20</td><td>13588.11</td><td>1361.00</td><td>0.00</td><td>12227.11</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2614 - HERMINIA MARGARITA LABATA DE JESUS </td><td>102600.00</td><td>88448.29</td><td>15478.44</td><td>1548.00</td><td>0.00</td><td>13930.44</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2624 - ROSA MARIA  SPENCER DE BENITEZ</td><td>5573445.00</td><td>4804693.54</td><td>849122.20</td><td>84912.00</td><td>0.00</td><td>764210.20</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2634 - ANNERY  ABREU LORENZO </td><td>393684.00</td><td>339382.75</td><td>60116.42</td><td>6010.00</td><td>0.00</td><td>54106.42</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2639 - JOSE MIGUEL  POLANCO CRUZ</td><td>15000.00</td><td>12931.03</td><td>2262.93</td><td>226.00</td><td>0.00</td><td>2036.93</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2658 - HELGA YOMER  HILARIO DE BAUTISTA </td><td>7200.00</td><td>6206.94</td><td>1241.46</td><td>126.00</td><td>0.00</td><td>1115.46</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2659 - ANEURIS GUZMAN CRUZ </td><td>156938.00</td><td>135291.37</td><td>26400.97</td><td>2641.00</td><td>0.00</td><td>23759.97</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2692 - ALBA NELLY POLANCO SEVERINO</td><td>54954.00</td><td>47374.14</td><td>8470.51</td><td>845.00</td><td>0.00</td><td>7625.51</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2696 - PABLO BIENVENIDO ROMERO GIL</td><td>17486.00</td><td>15074.15</td><td>3014.87</td><td>302.00</td><td>0.00</td><td>2712.87</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2697 - DOLORES CASTRO OZORIA</td><td>75325.00</td><td>64935.33</td><td>11918.12</td><td>1189.00</td><td>0.00</td><td>10729.12</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2699 - JOSE ARMANDO CARRION</td><td>75128.00</td><td>64765.52</td><td>11469.73</td><td>1146.00</td><td>0.00</td><td>10323.73</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2743 - BENJAMIN RAMON TIRADO VASQUEZ </td><td>10755.00</td><td>9271.57</td><td>1854.32</td><td>185.00</td><td>0.00</td><td>1669.32</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2773 - YANA VALENTINA  SANTANA DE ESPINOSA </td><td>47450.17</td><td>40905.34</td><td>7351.66</td><td>733.00</td><td>0.00</td><td>6618.66</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2780 - LUIS FRANCISCO  PAULINO CIPRIAN</td><td>4525.00</td><td>3900.87</td><td>780.17</td><td>78.00</td><td>0.00</td><td>702.17</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2788 - BELKIS MOTA LORA </td><td>55050.00</td><td>47456.89</td><td>8984.91</td><td>898.00</td><td>0.00</td><td>8086.91</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2799 - MAR&#205;A ALTAGRACIA RAM&#205;REZ MOTA</td><td>87918.71</td><td>75792.02</td><td>13677.81</td><td>1367.00</td><td>0.00</td><td>12310.81</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2802 - ANYULY ROJAS FARIAS</td><td>27665.00</td><td>23849.12</td><td>4274.14</td><td>425.00</td><td>0.00</td><td>3849.14</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2844 - MARILYN NATERA CASTRO </td><td>93808.00</td><td>80869.03</td><td>15333.30</td><td>1530.00</td><td>0.00</td><td>13803.30</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2848 - ANTONIA  CAMPA&#209;A DAMIAN</td><td>116189.00</td><td>100162.95</td><td>18370.40</td><td>1836.00</td><td>0.00</td><td>16534.40</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2855 - DARRISON RAFAEL ACOSTA LOPEZ</td><td>89925.00</td><td>77521.55</td><td>13715.53</td><td>1370.00</td><td>0.00</td><td>12345.53</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2874 - QUINTINO NICOLAS PE&#209;A RIVAS</td><td>55934.00</td><td>48218.98</td><td>9643.83</td><td>964.00</td><td>0.00</td><td>8679.83</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2875 - ADRIANO HERNANDEZ</td><td>14368.00</td><td>12386.21</td><td>2477.24</td><td>247.00</td><td>0.00</td><td>2230.24</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2878 - COOPEERATIVA DE AHORROS Y CREDITO Y SERVICIOS MULTIPLES HILLARY (COOPHILLARY)</td><td>1413084.00</td><td>1218175.91</td><td>213272.60</td><td>0.00</td><td>0.00</td><td>213272.60</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2880 - JEINISY CAROLINA  VALDEZ GARCIA </td><td>59945.00</td><td>51676.73</td><td>9265.09</td><td>925.00</td><td>0.00</td><td>8340.09</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2885 - MIGUEL &#193;NGEL  FERN&#193;NDEZ FRANCO  </td><td>1428.00</td><td>1231.04</td><td>246.21</td><td>25.00</td><td>0.00</td><td>221.21</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2895 - YERIDA CAROLINA  MATOS BATISTA </td><td>49861.00</td><td>42983.63</td><td>8596.75</td><td>860.00</td><td>0.00</td><td>7736.75</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2915 - SANTO GAVINO  LIRANZO TERRERO </td><td>127446.75</td><td>109867.90</td><td>20244.41</td><td>2026.00</td><td>0.00</td><td>18218.41</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2919 - SERVICIOS ESPECIALIZADOS  DE RIESGOS Y SEGUROS SER, SRL. </td><td>224157.00</td><td>193238.77</td><td>35088.52</td><td>0.00</td><td>0.00</td><td>35088.52</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2921 - LOS HEROES   AUTO IMPORT</td><td>25391.00</td><td>21888.79</td><td>4377.75</td><td>0.00</td><td>0.00</td><td>4377.75</td>
+		</tr><tr>
+			<td>2486 - PABLO ANTONIO  SALDIVAR HOLGUIN </td><td>2963 - CARLOS  GURIDIS DE LOS SANTOS </td><td>10000.00</td><td>8620.69</td><td>1508.62</td><td>151.00</td><td>0.00</td><td>1357.62</td>
+		</tr><tr>
+			<td>2515 - AMANDA TERESA  MARTINEZ CHAIN </td><td>2532 - GRUPO SAWGRASS SRL</td><td>298091.58</td><td>256975.47</td><td>45557.58</td><td>0.00</td><td>0.00</td><td>45557.58</td>
+		</tr><tr>
+			<td>2515 - AMANDA TERESA  MARTINEZ CHAIN </td><td>2569 - ADAMS LUIS  ETANISLAO MART&#205;NEZ</td><td>59073.00</td><td>50925.00</td><td>9653.86</td><td>966.00</td><td>0.00</td><td>8687.86</td>
+		</tr><tr>
+			<td>2515 - AMANDA TERESA  MARTINEZ CHAIN </td><td>2608 - INVERSIONES JOBINSA SRL</td><td>5780.00</td><td>4982.75</td><td>996.55</td><td>0.00</td><td>0.00</td><td>996.55</td>
+		</tr><tr>
+			<td>2515 - AMANDA TERESA  MARTINEZ CHAIN </td><td>2618 - SWAMI LIMARDO  MORONTA MAINA </td><td>5187097.06</td><td>4471635.35</td><td>1565072.35</td><td>156507.00</td><td>0.00</td><td>1408565.35</td>
+		</tr><tr>
+			<td>2515 - AMANDA TERESA  MARTINEZ CHAIN </td><td>2619 - MORONTA SERVIC</td><td>2209122.81</td><td>1904416.10</td><td>666545.55</td><td>0.00</td><td>0.00</td><td>666545.55</td>
+		</tr><tr>
+			<td>2515 - AMANDA TERESA  MARTINEZ CHAIN </td><td>2638 - CONTACTO LABORAL CENTRO DE CAPACITACION Y ASESORIA J Y M SRL</td><td>47201.65</td><td>40691.09</td><td>8138.24</td><td>0.00</td><td>0.00</td><td>8138.24</td>
+		</tr><tr>
+			<td>2515 - AMANDA TERESA  MARTINEZ CHAIN </td><td>2646 - ALTAGRACIA M. CRUZ GARCIA</td><td>742357.63</td><td>639963.45</td><td>147191.61</td><td>14722.00</td><td>0.00</td><td>132469.61</td>
+		</tr><tr>
+			<td>2515 - AMANDA TERESA  MARTINEZ CHAIN </td><td>2744 - GRUPO  NOBE SRL </td><td>13800.00</td><td>11896.56</td><td>2379.32</td><td>0.00</td><td>0.00</td><td>2379.32</td>
+		</tr><tr>
+			<td>2515 - AMANDA TERESA  MARTINEZ CHAIN </td><td>2762 - EMMANUEL DE  CASTRO MARTINEZ </td><td>19500.00</td><td>16810.35</td><td>2941.81</td><td>294.00</td><td>0.00</td><td>2647.81</td>
+		</tr><tr>
+			<td>2515 - AMANDA TERESA  MARTINEZ CHAIN </td><td>2801 - RIESGO ACEPTADO CORREDORES DE SEGUROS </td><td>22500.00</td><td>19396.53</td><td>3879.27</td><td>0.00</td><td>0.00</td><td>3879.27</td>
+		</tr><tr>
+			<td>2515 - AMANDA TERESA  MARTINEZ CHAIN </td><td>2854 - SUELIN ESCOLASTICO HERNANDEZ</td><td>89508.00</td><td>77162.06</td><td>13503.35</td><td>1352.00</td><td>0.00</td><td>12151.35</td>
+		</tr><tr>
+			<td>2530 - JOSE MIGUEL ORTIZ RAMOS</td><td>2531 - ALBERTO ANTONIO ORTIZ PE&#209;A</td><td>72347.88</td><td>62368.86</td><td>11999.63</td><td>1201.00</td><td>0.00</td><td>10798.63</td>
+		</tr><tr>
+			<td>2530 - JOSE MIGUEL ORTIZ RAMOS</td><td>2558 - ARISTOTELE M. BARTOLO MENDOZA</td><td>20450.00</td><td>17629.35</td><td>3525.85</td><td>351.00</td><td>0.00</td><td>3174.85</td>
+		</tr><tr>
+			<td>2530 - JOSE MIGUEL ORTIZ RAMOS</td><td>2559 - LIRIANO ESTEVEZ AUTO IMPORT SRL .</td><td>14905.00</td><td>12849.14</td><td>2369.40</td><td>0.00</td><td>0.00</td><td>2369.40</td>
+		</tr><tr>
+			<td>2530 - JOSE MIGUEL ORTIZ RAMOS</td><td>2592 - CREDIMOVIL, S.R.L. .</td><td>30400.00</td><td>26206.90</td><td>4586.21</td><td>0.00</td><td>0.00</td><td>4586.21</td>
+		</tr><tr>
+			<td>2530 - JOSE MIGUEL ORTIZ RAMOS</td><td>2642 - SOMOS SERVICE PAUL PEREZ SRL .</td><td>453218.92</td><td>390705.92</td><td>68842.63</td><td>0.00</td><td>0.00</td><td>68842.63</td>
+		</tr><tr>
+			<td>2530 - JOSE MIGUEL ORTIZ RAMOS</td><td>2667 - YASIRY ARIDELKY CASTA&#209;O GRULLON</td><td>5200.00</td><td>4482.76</td><td>896.56</td><td>90.00</td><td>0.00</td><td>806.56</td>
+		</tr><tr>
+			<td>2530 - JOSE MIGUEL ORTIZ RAMOS</td><td>2724 - JOSE GUSTAVO JAVIER MEDINA TAVAREZ</td><td>9390.00</td><td>8094.84</td><td>1618.98</td><td>162.00</td><td>0.00</td><td>1456.98</td>
+		</tr><tr>
+			<td>2530 - JOSE MIGUEL ORTIZ RAMOS</td><td>2774 - JOSE BASILIO TAVERAS LOPEZ</td><td>25659.00</td><td>22119.83</td><td>3870.97</td><td>388.00</td><td>0.00</td><td>3482.97</td>
+		</tr><tr>
+			<td>2530 - JOSE MIGUEL ORTIZ RAMOS</td><td>2803 - MARIA CELESTE REYES ORTEGA DE PIMENTEL</td><td>5450.00</td><td>4698.27</td><td>939.66</td><td>94.00</td><td>0.00</td><td>845.66</td>
+		</tr><tr>
+			<td>2530 - JOSE MIGUEL ORTIZ RAMOS</td><td>2809 - LUIS ALDRIN JIMENEZ LOPEZ </td><td>147087.00</td><td>126799.15</td><td>23116.25</td><td>2311.00</td><td>0.00</td><td>20805.25</td>
+		</tr><tr>
+			<td>2530 - JOSE MIGUEL ORTIZ RAMOS</td><td>2864 - GABRIEL ESPINAL CORREDOR DE SEGUROS, SRL .</td><td>23868.00</td><td>20575.90</td><td>4115.19</td><td>0.00</td><td>0.00</td><td>4115.19</td>
+		</tr><tr>
+			<td>2530 - JOSE MIGUEL ORTIZ RAMOS</td><td>2887 - JUAN CARLOS  REYES SANTANA</td><td>36666.00</td><td>31608.62</td><td>5531.50</td><td>554.00</td><td>0.00</td><td>4977.50</td>
+		</tr><tr>
+			<td>2556 - KATIUSCIA REALE ABAD </td><td>2557 - DAVID JUNIOR  CEDE&#209;O </td><td>15000.00</td><td>12931.03</td><td>2262.93</td><td>226.00</td><td>0.00</td><td>2036.93</td>
+		</tr><tr>
+			<td>2707 - JOSE MANUEL  FABIAN </td><td>2517 - MARIA ABIGAIL  BAEZ MATEO </td><td>35020.00</td><td>30189.66</td><td>5283.19</td><td>528.00</td><td>0.00</td><td>4755.19</td>
+		</tr><tr>
+			<td>2707 - JOSE MANUEL  FABIAN </td><td>2648 - VALERYN KARINA MENDEZ HERRERA</td><td>55100.00</td><td>47499.99</td><td>8357.76</td><td>834.00</td><td>0.00</td><td>7523.76</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>1098 - MARIA VALDEZ MATEO</td><td>61394.00</td><td>52925.86</td><td>10585.17</td><td>1058.00</td><td>0.00</td><td>9527.17</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>1113 - KELVYN HERNANDEZ</td><td>206304.00</td><td>177848.59</td><td>35570.30</td><td>3565.00</td><td>0.00</td><td>32005.30</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>1515 - FERNANDO DIAZ ALVAREZ</td><td>122555.00</td><td>105650.93</td><td>23021.88</td><td>2307.00</td><td>0.00</td><td>20714.88</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>1516 - JULIA ALCANTARA FRANCISCO</td><td>13300.00</td><td>11465.52</td><td>2522.41</td><td>252.00</td><td>0.00</td><td>2270.41</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>1619 - MARTHA ELIZABETH RODRIGUEZ BAEZ</td><td>21410.01</td><td>18456.90</td><td>3691.39</td><td>368.00</td><td>0.00</td><td>3323.39</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>1846 - ANGELA ROCIO DUME ORTIZ</td><td>285950.00</td><td>246508.66</td><td>49301.72</td><td>4926.00</td><td>0.00</td><td>44375.72</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>1942 - FARY AURELIO HENRIQUEZ ESTEBAN</td><td>54465.00</td><td>46952.75</td><td>9390.93</td><td>946.00</td><td>0.00</td><td>8444.93</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>1977 - CLAUDIA VASQUEZ LOPEZ</td><td>3600.00</td><td>3103.45</td><td>465.52</td><td>47.00</td><td>0.00</td><td>418.52</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2630 - JOB NEIL JOSE SILVERIS PARRA</td><td>122291.68</td><td>105423.86</td><td>18449.18</td><td>1846.00</td><td>0.00</td><td>16603.18</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2632 - ARABELLY  GARCIA JAPE</td><td>268198.00</td><td>231205.15</td><td>41100.18</td><td>4110.00</td><td>0.00</td><td>36990.18</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2645 - ELVIS NEWTON RAFAEL  POLANCO ORTIZ</td><td>401177.22</td><td>345842.42</td><td>64142.45</td><td>6415.00</td><td>0.00</td><td>57727.45</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2708 - PAOLA MICHELLE FABIAN MORA </td><td>51510.00</td><td>44405.17</td><td>8737.48</td><td>873.00</td><td>0.00</td><td>7864.48</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2730 - JHARLE MANUEL OLIVO PAREDES</td><td>107341.56</td><td>92535.85</td><td>16193.75</td><td>1619.00</td><td>0.00</td><td>14574.75</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2738 - FELIX ALCIDES SURIEL QUEZADA</td><td>167591.01</td><td>144475.04</td><td>28679.54</td><td>2865.00</td><td>0.00</td><td>25814.54</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2745 - NOEMI ALTAGRACIA  RODRIGUEZ BONILLA</td><td>283733.01</td><td>244597.72</td><td>46200.09</td><td>4630.00</td><td>0.00</td><td>41570.09</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2746 - JOSE MANUEL ARACENA</td><td>170699.00</td><td>147154.45</td><td>28543.60</td><td>2858.00</td><td>0.00</td><td>25685.60</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2748 - LUIS MANUEL GARCIA MATOS </td><td>2100.00</td><td>1810.35</td><td>362.07</td><td>36.00</td><td>0.00</td><td>326.07</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2756 - ARMANDO BLASDIMYR PARRA DE JESUS </td><td>468771.00</td><td>404112.96</td><td>71431.03</td><td>7141.00</td><td>0.00</td><td>64290.03</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2757 - ROSA FELICIA  SALAZAR ABREU DE PARRA </td><td>739335.00</td><td>637357.78</td><td>113284.47</td><td>11330.00</td><td>0.00</td><td>101954.47</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2767 - ENGER MANUEL JAIME POLANCO</td><td>154065.00</td><td>132814.66</td><td>23367.14</td><td>2338.00</td><td>0.00</td><td>21029.14</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2775 - CREDIMAX S.R.L</td><td>94805.00</td><td>81728.44</td><td>14483.62</td><td>0.00</td><td>0.00</td><td>14483.62</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2776 - RAYSA SHAMIRA HERNANDEZ LOPEZ</td><td>2046992.00</td><td>1764648.33</td><td>310522.83</td><td>31053.00</td><td>0.00</td><td>279469.83</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2784 - BAN SERVICES SRL</td><td>2153887.00</td><td>1856799.09</td><td>324939.85</td><td>0.00</td><td>0.00</td><td>324939.85</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2807 - YDANIA ALTAGRACIA BARRERA RAMOS</td><td>288105.00</td><td>248366.38</td><td>44602.11</td><td>4461.00</td><td>0.00</td><td>40141.11</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2811 - FINANCIERA MAYOL &amp; HERN&#193;NDEZ,  S.R.L</td><td>485735.00</td><td>418737.07</td><td>73769.15</td><td>0.00</td><td>0.00</td><td>73769.15</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2813 - DANVAR INTERNATIONAL, S.R.L</td><td>29925.00</td><td>25797.41</td><td>4514.55</td><td>0.00</td><td>0.00</td><td>4514.55</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2828 - LUIS FREDDY  DE LA CRUZ  DIAZ</td><td>95993.00</td><td>82752.58</td><td>14521.96</td><td>1451.00</td><td>0.00</td><td>13070.96</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2833 - ANA ONEIDA CANARIO</td><td>30900.00</td><td>26638.11</td><td>5327.91</td><td>540.00</td><td>0.00</td><td>4787.91</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2834 - LUIS GARCIA PE&#209;A </td><td>52500.00</td><td>45258.64</td><td>7920.24</td><td>792.00</td><td>0.00</td><td>7128.24</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2837 - RANDY RAFAEL  BATISTA FERN&#193;NDEZ </td><td>448380.99</td><td>386535.34</td><td>69285.99</td><td>6924.00</td><td>0.00</td><td>62361.99</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2871 - CARLIXTA PORTORREAL DE GONZALEZ</td><td>184380.00</td><td>158948.26</td><td>28691.60</td><td>2868.00</td><td>0.00</td><td>25823.60</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2876 - DENIS ALTAGRACIA  L&#211;PEZ ABREU </td><td>457480.00</td><td>394379.26</td><td>69590.22</td><td>6963.00</td><td>0.00</td><td>62627.22</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2881 - STARLIN BATISTA BERROA</td><td>30928.00</td><td>26662.20</td><td>5332.68</td><td>540.00</td><td>0.00</td><td>4792.68</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2884 - DEIBIS RAFAEL  ALCANTARA REYES </td><td>6735.00</td><td>5806.04</td><td>1161.21</td><td>115.00</td><td>0.00</td><td>1046.21</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2886 - WELIN JIM&#201;NEZ MONTERO </td><td>144700.00</td><td>124741.39</td><td>21829.74</td><td>2183.00</td><td>0.00</td><td>19646.74</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2899 - YRIS ALTAGRACIA  MONTAS MARTINEZ </td><td>189508.02</td><td>163368.96</td><td>26222.66</td><td>2621.00</td><td>0.00</td><td>23601.66</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2902 - JOSE ROBERT  VILLAR RUIZ </td><td>741688.00</td><td>639386.18</td><td>114257.86</td><td>11429.00</td><td>0.00</td><td>102828.86</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2909 - JOEL AQUILINO  PAULINO NU&#209;EZ </td><td>9156.00</td><td>7893.10</td><td>1578.64</td><td>159.00</td><td>0.00</td><td>1419.64</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2927 - DANIEL  GOMEZ VILLANUEVA </td><td>44249.00</td><td>38145.68</td><td>7111.90</td><td>712.00</td><td>0.00</td><td>6399.90</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2931 - T&amp;T MOTORS SRL </td><td>15725.00</td><td>13556.08</td><td>2711.27</td><td>0.00</td><td>0.00</td><td>2711.27</td>
+		</tr><tr>
+			<td>2740 - BERNARDINO ARIAS </td><td>2937 - EDINSON MANUEL  TEJEDA NU&#209;EZ </td><td>21391.00</td><td>18440.51</td><td>3688.10</td><td>369.00</td><td>0.00</td><td>3319.10</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1110 - ANTONIO ALTAGRACIA  DOMINGUEZ TAVAREZ</td><td>10765.00</td><td>9280.17</td><td>1856.02</td><td>188.00</td><td>0.00</td><td>1668.02</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1112 - RAMON EMILIO MARIA ESPINAL </td><td>7300.00</td><td>6293.11</td><td>1258.63</td><td>126.00</td><td>0.00</td><td>1132.63</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1129 - YOLY ARACENA PUJOLS </td><td>55506.00</td><td>47850.04</td><td>9570.07</td><td>958.00</td><td>0.00</td><td>8612.07</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1142 - NEGOCIADO FIMESA, IERL </td><td>11210.00</td><td>9663.81</td><td>1932.78</td><td>0.00</td><td>0.00</td><td>1932.78</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1194 - CESAR GONZALES ARIAS </td><td>67724.00</td><td>58382.74</td><td>11676.56</td><td>1168.00</td><td>0.00</td><td>10508.56</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1208 - MIGUEL S. PEREZ LASTANUO </td><td>13480.43</td><td>11621.07</td><td>2324.21</td><td>232.00</td><td>0.00</td><td>2092.21</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1209 - MANUELA LASTANAU MORELLA </td><td>957921.01</td><td>825794.67</td><td>165158.92</td><td>16505.00</td><td>0.00</td><td>148653.92</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1278 - RIGOBERTO DE JESUS PLACENCIO GOMEZ </td><td>105326.00</td><td>90798.31</td><td>18159.64</td><td>1818.00</td><td>0.00</td><td>16341.64</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1281 - LIGIA ELIZABETH  G&#211;MEZ QUEZADA DE GUZM&#193;N</td><td>157384.00</td><td>135675.90</td><td>27135.37</td><td>2722.00</td><td>0.00</td><td>24413.37</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1283 - JULIO JOSE PE&#209;A </td><td>58713.00</td><td>50614.69</td><td>10123.04</td><td>1019.00</td><td>0.00</td><td>9104.04</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1285 - MARIA ALTAGRACIA GRULLON GONZALEZ</td><td>358367.00</td><td>308937.12</td><td>77234.45</td><td>7736.00</td><td>0.00</td><td>69498.45</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1305 - PURO CONCEPCION GARCIA NUNEZ </td><td>42905.00</td><td>36987.16</td><td>7397.54</td><td>742.00</td><td>0.00</td><td>6655.54</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1306 - REPUESTOS SANCHEZ, SRL</td><td>64949.00</td><td>55990.59</td><td>11198.27</td><td>0.00</td><td>0.00</td><td>11198.27</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1314 - DANIEL RAMON PE&#209;A </td><td>103129.00</td><td>88904.38</td><td>17781.01</td><td>1780.00</td><td>0.00</td><td>16001.01</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1317 - JOSE LEONARDO ANDELIZ TEJADA </td><td>188220.00</td><td>162258.63</td><td>32451.83</td><td>3249.00</td><td>0.00</td><td>29202.83</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1330 - ANTONIO SANCHEZ DIAZ </td><td>186577.00</td><td>160842.33</td><td>32168.40</td><td>3212.00</td><td>0.00</td><td>28956.40</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1384 - JOSE ARISTIDES FERREIRA GUZMAN </td><td>175836.00</td><td>151582.72</td><td>30316.52</td><td>3033.00</td><td>0.00</td><td>27283.52</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1411 - ISABEL FRANCISCO ORTIZ </td><td>49558.00</td><td>42722.43</td><td>8544.50</td><td>855.00</td><td>0.00</td><td>7689.50</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1443 - ANDRES AVELINO  DE JESUS MARTINEZ</td><td>692759.01</td><td>597206.05</td><td>134127.74</td><td>13402.00</td><td>0.00</td><td>120725.74</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1446 - JOSE MARTIN SALAZAR </td><td>12665.00</td><td>10918.11</td><td>2183.61</td><td>217.00</td><td>0.00</td><td>1966.61</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1539 - EURIPIDES ANTONIO SABALA </td><td>15171.00</td><td>13078.47</td><td>2615.71</td><td>262.00</td><td>0.00</td><td>2353.71</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1597 - ROSMERY ALTAGRACIA VENTURA RUMALDO </td><td>532769.01</td><td>459285.19</td><td>91859.81</td><td>9256.00</td><td>0.00</td><td>82603.81</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1786 - JENNY ANALIS GOMEZ RODRIGUEZ</td><td>75379.00</td><td>64982.11</td><td>12996.76</td><td>1305.00</td><td>0.00</td><td>11691.76</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1813 - BALBARA MARIA ELENA JIMENEZ LIRIANO</td><td>76227.00</td><td>65712.95</td><td>12485.55</td><td>1256.00</td><td>0.00</td><td>11229.55</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1845 - EMILIO DE LEON FRIAS</td><td>28940.00</td><td>24948.31</td><td>4989.68</td><td>498.00</td><td>0.00</td><td>4491.68</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1934 - ANGELINA ELIANNE NU&#209;EZ LIZ</td><td>12735.00</td><td>10978.45</td><td>2525.05</td><td>253.00</td><td>0.00</td><td>2272.05</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>1939 - FRANCISCO CUEVAS MORBAN</td><td>23381.00</td><td>20156.04</td><td>4434.31</td><td>444.00</td><td>0.00</td><td>3990.31</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2001 - ROSA MASS DE CONTRERAS</td><td>33973.00</td><td>29287.07</td><td>5857.43</td><td>584.00</td><td>0.00</td><td>5273.43</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2003 - AWANDA PERALTA LIZARDO</td><td>60064.00</td><td>51779.32</td><td>10355.83</td><td>1037.00</td><td>0.00</td><td>9318.83</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2106 - MARLON SANTOS ROBLES</td><td>16213.00</td><td>13976.72</td><td>2795.34</td><td>280.00</td><td>0.00</td><td>2515.34</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2244 - INDHAVIS, S. R. L.</td><td>45275.00</td><td>39030.40</td><td>6829.84</td><td>0.00</td><td>0.00</td><td>6829.84</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2416 - ABRAHAM ALEXANDER GONZALEZ SOSA</td><td>89209.00</td><td>76904.34</td><td>13458.19</td><td>1351.00</td><td>0.00</td><td>12107.19</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2417 - YANO PERALTA BALBUENA</td><td>353441.00</td><td>304690.62</td><td>55172.29</td><td>5522.00</td><td>0.00</td><td>49650.29</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2465 - FRANCISCO ANTONIO SOLANO DE SOTO</td><td>111396.00</td><td>96031.03</td><td>16805.43</td><td>1681.00</td><td>0.00</td><td>15124.43</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2474 - ANNERIS CARMELINA CAMILO JIMENEZ</td><td>67735.00</td><td>58392.22</td><td>10218.47</td><td>1031.00</td><td>0.00</td><td>9187.47</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2567 - MENDEZ SANTANA AUTO IMPORT SRL .</td><td>21100.00</td><td>18189.66</td><td>3183.19</td><td>0.00</td><td>0.00</td><td>3183.19</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2570 - SIRE SRL .</td><td>233016.35</td><td>200876.27</td><td>44192.89</td><td>0.00</td><td>0.00</td><td>44192.89</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2581 - INVERSIONES EDUFISA SRL .</td><td>128575.76</td><td>110841.18</td><td>19847.86</td><td>0.00</td><td>0.00</td><td>19847.86</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2590 - JENRI RAFAEL MARTINEZ BASILIO</td><td>10230.00</td><td>8818.97</td><td>1763.80</td><td>177.00</td><td>0.00</td><td>1586.80</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2613 - CENTRO DE INVERSIONES  CORPESA </td><td>467514.20</td><td>403029.44</td><td>70530.16</td><td>7045.00</td><td>0.00</td><td>63485.16</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2627 - JOSE RAMON PAYANO MENDOZA</td><td>6785.00</td><td>5849.15</td><td>1169.85</td><td>117.00</td><td>0.00</td><td>1052.85</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2691 - ROSA IRIS ROJAS DE SANCHEZ</td><td>206402.00</td><td>177933.35</td><td>35587.75</td><td>3590.00</td><td>0.00</td><td>31997.75</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2749 - GESTTION SERVICE GROUP HEALTH GSGH SRL</td><td>4753.00</td><td>4097.42</td><td>819.48</td><td>0.00</td><td>0.00</td><td>819.48</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2777 - IDELYS HERNANDEZ</td><td>23980.00</td><td>20672.47</td><td>4134.58</td><td>415.00</td><td>0.00</td><td>3719.58</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2794 - MOTO PRESTAMO  EVANGELINA SRL</td><td>1104112.99</td><td>951821.61</td><td>166568.72</td><td>0.00</td><td>0.00</td><td>166568.72</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2796 - DORIS EUGENIA HOLLINGSHEAD ELIVO</td><td>4600.00</td><td>3965.50</td><td>793.12</td><td>81.00</td><td>0.00</td><td>712.12</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2805 - VERONICA YCIANO DE PLACENCIA</td><td>21500.00</td><td>18534.50</td><td>3448.30</td><td>345.00</td><td>0.00</td><td>3103.30</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2851 - JAN CARLOS CHAVEZ ROSARIO</td><td>42301.00</td><td>36466.48</td><td>7293.43</td><td>733.00</td><td>0.00</td><td>6560.43</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2852 - JULIO DARIO VALDEZ GARCIA</td><td>49965.00</td><td>43073.37</td><td>8614.87</td><td>868.00</td><td>0.00</td><td>7746.87</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2856 - ADALGISA ORDEHI DE DURAN</td><td>10637.00</td><td>9169.86</td><td>1834.03</td><td>185.00</td><td>0.00</td><td>1649.03</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2879 - JOSE DOMINGO HOLGUIN RAMOS</td><td>4865.00</td><td>4193.97</td><td>838.79</td><td>83.00</td><td>0.00</td><td>755.79</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2890 - HECTOR LUIS SANCHEZ GARCIA</td><td>14513.00</td><td>12511.21</td><td>2502.25</td><td>251.00</td><td>0.00</td><td>2251.25</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2892 - FRANKLIN ARCADIO PEREZ ESPINAL</td><td>587317.00</td><td>506307.69</td><td>88649.59</td><td>8867.00</td><td>0.00</td><td>79782.59</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2925 - YEIMY MARIA LANFRANCO</td><td>12325.00</td><td>10625.00</td><td>2125.01</td><td>212.00</td><td>0.00</td><td>1913.01</td>
+		</tr><tr>
+			<td>2847 - CARLYN RAMON LE&#211;N SANCHEZ</td><td>2934 - EVA PATRICIA FERNANDEZ DURAN</td><td>8030.00</td><td>6922.42</td><td>1384.48</td><td>138.00</td><td>0.00</td><td>1246.48</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>1524 - ROBERTO MARLON RODRIGUEZ CAPELLAN</td><td>20532.00</td><td>17700.01</td><td>3540.00</td><td>353.00</td><td>0.00</td><td>3187.00</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>1565 - DERLING LUCIANO BATISTA MEDINA</td><td>5410.00</td><td>4663.80</td><td>982.08</td><td>98.00</td><td>0.00</td><td>884.08</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>1892 - HECTOR CASTRO</td><td>30550.00</td><td>26336.38</td><td>5267.55</td><td>534.00</td><td>0.00</td><td>4733.55</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2584 - CAMILO EDUARDO  RODRIGUEZ VELASQUEZ</td><td>9400.00</td><td>8103.45</td><td>1426.73</td><td>143.00</td><td>0.00</td><td>1283.73</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2589 - ILKANIA  GARCIA DE LA ROSA </td><td>702785.00</td><td>605849.10</td><td>106023.59</td><td>10603.00</td><td>0.00</td><td>95420.59</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2650 - JOSE PORFIRIO VALERIO CORONADO </td><td>5880.00</td><td>5068.97</td><td>887.07</td><td>88.00</td><td>0.00</td><td>799.07</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2661 - MIGUEL  FAMILIA VIOLA </td><td>79528.40</td><td>68558.96</td><td>12092.63</td><td>1209.00</td><td>0.00</td><td>10883.63</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2663 - LUIS ANTONIO PE&#209;A SOSA </td><td>45710.00</td><td>39405.18</td><td>7156.23</td><td>714.00</td><td>0.00</td><td>6442.23</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2664 - JOAN CARLOS  ALVAREZ CABRAL </td><td>73970.00</td><td>63767.33</td><td>12753.43</td><td>1270.00</td><td>0.00</td><td>11483.43</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2677 - ISABEL ALTAGRACIA CASTRO OZUNA </td><td>274215.00</td><td>236392.25</td><td>41403.15</td><td>4141.00</td><td>0.00</td><td>37262.15</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2688 - MICHAEL  CAMILO RODRIGUEZ</td><td>427684.05</td><td>368693.17</td><td>64591.73</td><td>6455.00</td><td>0.00</td><td>58136.73</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2701 - ELVIS ENRIQUE RINCON ZICARDI</td><td>154793.00</td><td>133442.24</td><td>23621.64</td><td>2361.00</td><td>0.00</td><td>21260.64</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2720 - ALEXIS ANTONIO INFANTE TRONILO</td><td>305235.00</td><td>263133.63</td><td>46621.01</td><td>4663.00</td><td>0.00</td><td>41958.01</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2729 - JUAN ANTONIO PRIETO RODRIGUEZ</td><td>44271.00</td><td>38164.66</td><td>6754.16</td><td>676.00</td><td>0.00</td><td>6078.16</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2731 - AYRTON RAMSES  MARTE MONTERO </td><td>235225.00</td><td>202780.17</td><td>35512.40</td><td>3548.00</td><td>0.00</td><td>31964.40</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2742 - LUIS ARIEL RUIZ ARACENA</td><td>6305.00</td><td>5435.34</td><td>1087.07</td><td>109.00</td><td>0.00</td><td>978.07</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2760 - FRAYNEL  PEREZ SANTANA</td><td>5080.00</td><td>4379.31</td><td>875.86</td><td>88.00</td><td>0.00</td><td>787.86</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2771 - ANA DELIA  RODRIGUEZ MEJIA </td><td>111093.00</td><td>95769.82</td><td>17898.04</td><td>1791.00</td><td>0.00</td><td>16107.04</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2818 - V&#205;CTOR MANUEL  RODR&#205;GUEZ BEATO</td><td>15500.00</td><td>13362.10</td><td>2672.43</td><td>267.00</td><td>0.00</td><td>2405.43</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2843 - JUAN CARLOS  CHACHAQUE ROSA</td><td>115063.00</td><td>99192.25</td><td>18062.59</td><td>1806.00</td><td>0.00</td><td>16256.59</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2861 - ANA MARIA POLANCO ZAMORA</td><td>82156.00</td><td>70824.14</td><td>13018.32</td><td>1302.00</td><td>0.00</td><td>11716.32</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2862 - MIGUEL ANGEL ROJAS</td><td>77680.00</td><td>66965.51</td><td>12144.17</td><td>1213.00</td><td>0.00</td><td>10931.17</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2863 - DORIS JANETT ROGERS ROSS</td><td>65118.99</td><td>56137.05</td><td>10968.78</td><td>1095.00</td><td>0.00</td><td>9873.78</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2867 - MARIA ESTHER FIGUEROA JIMENEZ</td><td>161330.88</td><td>139078.35</td><td>24788.70</td><td>2480.00</td><td>0.00</td><td>22308.70</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2872 - VIKIN DANIEL ESPINAL ARIAS</td><td>19700.00</td><td>16982.79</td><td>3396.54</td><td>338.00</td><td>0.00</td><td>3058.54</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2873 - JULENIA ALTAGRACIA MENDEZ DE SANCHEZ</td><td>434151.00</td><td>374268.05</td><td>65496.89</td><td>6555.00</td><td>0.00</td><td>58941.89</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2888 - MARINELIS BIATRIL MOQUETE SILVA</td><td>233088.00</td><td>200937.91</td><td>36099.06</td><td>3608.00</td><td>0.00</td><td>32491.06</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2904 - JOHAN ALFREDO  AMARO  SANDOVAL </td><td>34440.00</td><td>29689.66</td><td>5269.83</td><td>526.00</td><td>0.00</td><td>4743.83</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2907 - DLS  INVERSIONES SRL </td><td>397977.00</td><td>343083.63</td><td>61472.36</td><td>0.00</td><td>0.00</td><td>61472.36</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2920 - SANTA  QUEZADA BELTRAN </td><td>19690.00</td><td>16974.18</td><td>3394.86</td><td>340.00</td><td>0.00</td><td>3054.86</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2947 - CHRISALLY  BAEZ CUEVAS </td><td>4500.00</td><td>3879.31</td><td>775.86</td><td>77.00</td><td>0.00</td><td>698.86</td>
+		</tr><tr>
+			<td>2860 - YULEISY FARIAS </td><td>2959 - FRANKLIN  PEREZ MORDAN </td><td>24700.00</td><td>21293.10</td><td>3726.29</td><td>373.00</td><td>0.00</td><td>3353.29</td>
+		</tr><tr>
+			<td>2929 - JUNIOR CASTILLO DE JESUS </td><td>2734 - AKWARELLA RIVERA FIRPO</td><td>134913.00</td><td>116304.67</td><td>23261.30</td><td>2326.00</td><td>0.00</td><td>20935.30</td>
+		</tr><tr>
+			<td>2929 - JUNIOR CASTILLO DE JESUS </td><td>2911 - ESTEFANIA BASTISTA </td><td>6800.00</td><td>5862.11</td><td>1172.49</td><td>119.00</td><td>0.00</td><td>1053.49</td>
+		</tr><tr>
+			<td>2929 - JUNIOR CASTILLO DE JESUS </td><td>2923 - CARLOS ENRIQUE LEAL SOTELO </td><td>15600.00</td><td>13448.37</td><td>2689.83</td><td>273.00</td><td>0.00</td><td>2416.83</td>
+		</tr><tr>
+			<td>2929 - JUNIOR CASTILLO DE JESUS </td><td>2936 - ROCA COMERCIAL .</td><td>9200.00</td><td>7931.09</td><td>1586.31</td><td>0.00</td><td>0.00</td><td>1586.31</td>
+		</tr><tr>
+			<td>2929 - JUNIOR CASTILLO DE JESUS </td><td>2940 - CHIQUI PE&#209;ALO MARTINEZ</td><td>4500.00</td><td>3879.32</td><td>775.87</td><td>77.00</td><td>0.00</td><td>698.87</td>
+		</tr><tr>
+			<td>2929 - JUNIOR CASTILLO DE JESUS </td><td>2943 - FELIPE MONTERO JIMENEZ</td><td>4565.00</td><td>3935.35</td><td>787.07</td><td>78.00</td><td>0.00</td><td>709.07</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>1510 - JOSE RAMON GARCIA TAVERAS</td><td>6378.00</td><td>5498.28</td><td>1099.66</td><td>110.00</td><td>0.00</td><td>989.66</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2640 - XODO AUTO IMPORT SRL </td><td>163863.00</td><td>141261.15</td><td>25627.34</td><td>0.00</td><td>0.00</td><td>25627.34</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2653 - JOSE ANEURIS  ENCARNACION RIJOS </td><td>42060.00</td><td>36258.59</td><td>6820.69</td><td>681.00</td><td>0.00</td><td>6139.69</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2676 - RAMON ORLANDO FRANCO </td><td>27945.00</td><td>24090.54</td><td>4818.09</td><td>481.00</td><td>0.00</td><td>4337.09</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2706 - JULIO CESAR FERREIRAS CANDELIER</td><td>121193.00</td><td>104476.86</td><td>20248.92</td><td>2026.00</td><td>0.00</td><td>18222.92</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2711 - FRANCISCO ALBERTO MOLINA NU&#209;EZ</td><td>16543.00</td><td>14261.21</td><td>2852.23</td><td>284.00</td><td>0.00</td><td>2568.23</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2714 - CENTRO DE FRENOS  RAUL SRL </td><td>5928.00</td><td>5110.34</td><td>1022.07</td><td>0.00</td><td>0.00</td><td>1022.07</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2716 - LUIS JOSE CEBALLOS FONTANILLAS</td><td>33125.00</td><td>28556.05</td><td>5262.92</td><td>525.00</td><td>0.00</td><td>4737.92</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2725 - CRISTIANA RAMIREZ ZABALA</td><td>89043.00</td><td>76761.49</td><td>15352.72</td><td>1547.00</td><td>0.00</td><td>13805.72</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2778 - FARYS NELLY FELIZ BATISTA </td><td>2740.00</td><td>2362.07</td><td>472.41</td><td>47.00</td><td>0.00</td><td>425.41</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2786 - FRANKLIN GUARIONEX BENCOSME TAVERAS</td><td>25130.00</td><td>21663.78</td><td>3987.93</td><td>400.00</td><td>0.00</td><td>3587.93</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2792 - AQUILA ZAPATA DIPRES</td><td>24958.00</td><td>21515.53</td><td>4303.10</td><td>429.00</td><td>0.00</td><td>3874.10</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2798 - CESAR OSVALDO  LARA ROSADO </td><td>17874.00</td><td>15408.61</td><td>3081.74</td><td>309.00</td><td>0.00</td><td>2772.74</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2815 - YENSSI PABEL  GOMEZ GARCIA </td><td>7610.00</td><td>6560.35</td><td>1312.07</td><td>130.00</td><td>0.00</td><td>1182.07</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2958 - EDWARD MARINO  REYES TAVERAS </td><td>41000.00</td><td>35344.83</td><td>6300.64</td><td>630.00</td><td>0.00</td><td>5670.64</td>
+		</tr><tr>
+			<td>2935 - JUAN FRANCISCO  GARCIA PEGUERO </td><td>2960 - FRANDY YONY BELTRE MARTE </td><td>4050.00</td><td>3491.38</td><td>698.27</td><td>70.00</td><td>0.00</td><td>628.27</td>
+		</tr>
+	</table>
+</div>
