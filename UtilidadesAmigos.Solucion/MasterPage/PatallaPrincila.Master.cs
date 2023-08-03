@@ -1006,7 +1006,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkRegistrosInconpletos.Visible = false;
 
                     //REPORTES
-                    LinkReporteProduccion.Visible = false;
+                    LinkReporteProduccion.Visible = true;
                     LinkReporteCobros.Visible = true;
                     LinkReporteProduccionIntermediarioAlfredo.Visible = false;
                     LinkComisionesIntermediario.Visible = false;
@@ -1172,7 +1172,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkRegistrosInconpletos.Visible = false;
 
                     //REPORTES
-                    LinkReporteProduccion.Visible = false;
+                    LinkReporteProduccion.Visible = true;
                     LinkReporteCobros.Visible = true;
                     LinkReporteProduccionIntermediarioAlfredo.Visible = false;
                     LinkComisionesIntermediario.Visible = true;
