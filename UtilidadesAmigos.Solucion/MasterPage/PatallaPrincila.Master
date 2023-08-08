@@ -159,6 +159,7 @@
             <li> <asp:LinkButton ID="LinkImpresionMarbetes" runat="server" Text="Impresion de Marbetes" ToolTip="Impresión de Marbetes" OnClick="LinkReporteImpresionMarbetes_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkFichatecnica" runat="server" Text="Ficha Tecnica" ToolTip="Ficha tecnica de Supervisores / Intermediarios" OnClick="LinkFichatecnica_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkReportePolizasBalance" runat="server" Text="Polizas Con Balances" ToolTip="Generar Reporte de Polizas con Balance por antiguedad de saldo" OnClick="LinkReportePolizasBalance_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkGenerarMarbete" runat="server" Text="Generar Marbetes" ToolTip="Generación de Marbetes" OnClick="LinkGenerarMarbete_Click"></asp:LinkButton> </li>
         </ul>
         </li>
 

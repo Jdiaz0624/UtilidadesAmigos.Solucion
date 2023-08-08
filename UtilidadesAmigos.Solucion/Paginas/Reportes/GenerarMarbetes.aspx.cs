@@ -17,217 +17,179 @@ namespace UtilidadesAmigos.Solucion.Paginas
     {
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaProcesos.LogicaProcesos> ObjdataProcesos = new Lazy<Logica.Logica.LogicaProcesos.LogicaProcesos>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataGeneral = new Lazy<Logica.Logica.LogicaSistema>();
-        #region MOSTRAR EL LISTADO DE LOS REGISTROS
-        private void MostrarListadoPolizasMarbete()
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido> ObjDaaReporte = new Lazy<Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido>();
+
+        #region CONTROL PARA MOSTRAR LA PAGINACION
+        readonly PagedDataSource pagedDataSource = new PagedDataSource();
+        int _PrimeraPagina, _UltimaPagina;
+        private int _TamanioPagina = 10;
+        private int CurrentPage
         {
-            if (cbOtrosFiltros.Checked)
+            get
             {
-                //BUSCAMOS POR CHASIS O POR PLACA (SI AMBOS CAMPOS ESTAN VACIOS NO BUSCA NADA)
-                if (string.IsNullOrEmpty(txtChasisConsulta.Text.Trim()) && string.IsNullOrEmpty(txtPlacaConsulta.Text.Trim()))
+                if (ViewState["CurrentPage"] == null)
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "CamposChasisPlacaVacios()", "CamposChasisPlacaVacios();", true);
+                    return 0;
                 }
-                else
-                {
-                    string _Poliza = string.IsNullOrEmpty(txtPolizaConsulta.Text.Trim()) ? null : txtPolizaConsulta.Text.Trim();
-                    string _Item = string.IsNullOrEmpty(txtItemConsulta.Text.Trim()) ? null : txtItemConsulta.Text.Trim();
-                    string _Chasis = string.IsNullOrEmpty(txtChasisConsulta.Text.Trim()) ? null : txtChasisConsulta.Text.Trim();
-                    string _Placa = string.IsNullOrEmpty(txtPlacaConsulta.Text.Trim()) ? null : txtPlacaConsulta.Text.Trim();
-
-                    var BuscarRegistros = ObjdataProcesos.Value.GenerarDatosParaMarbeteVehiculos(
-                        _Poliza,
-                        _Item,
-                        _Chasis,
-                        _Placa);
-                    if (BuscarRegistros.Count() < 1)
-                    {
-                        lbCantidadRegistrosVariable.Text = "0";
-                    }
-                    else
-                    {
-                        gvListadoPoliza.DataSource = BuscarRegistros;
-                        gvListadoPoliza.DataBind();
-
-                        int CantidadRegistros = 0;
-                        foreach (var n in BuscarRegistros)
-                        {
-                            CantidadRegistros = Convert.ToInt32(n.CantidadRegistros);
-                            lbCantidadRegistrosVariable.Text = CantidadRegistros.ToString("N0");
-                        }
-                    }
-                }
+                return ((int)ViewState["CurrentPage"]);
             }
+            set
+            {
+                ViewState["CurrentPage"] = value;
+            }
+
+        }
+        private void HandlePaging(ref DataList NombreDataList, ref Label LbPaginaActual)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("IndicePagina"); //Start from 0
+            dt.Columns.Add("TextoPagina"); //Start from 1
+
+            _PrimeraPagina = CurrentPage - 5;
+            if (CurrentPage > 5)
+                _UltimaPagina = CurrentPage + 5;
             else
+                _UltimaPagina = 10;
+
+            // Check last page is greater than total page then reduced it to total no. of page is last index
+            if (_UltimaPagina > Convert.ToInt32(ViewState["TotalPages"]))
             {
-                //BUSCMAOS POR POLIZA E ITEM (CAMPO POLIZA OBLIGATORIO)
-                if (string.IsNullOrEmpty(txtPolizaConsulta.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "CampoPolizaVacio()", "CampoPolizaVacio();", true);
-                }
-                else
-                {
-                    string _Poliza = string.IsNullOrEmpty(txtPolizaConsulta.Text.Trim()) ? null : txtPolizaConsulta.Text.Trim();
-                    string _Item = string.IsNullOrEmpty(txtItemConsulta.Text.Trim()) ? null : txtItemConsulta.Text.Trim();
+                _UltimaPagina = Convert.ToInt32(ViewState["TotalPages"]);
+                _PrimeraPagina = _UltimaPagina - 10;
+            }
 
-                    var Buscarregistros = ObjdataProcesos.Value.GenerarDatosParaMarbeteVehiculos(
-                        _Poliza,
-                        _Item,
-                        null,
-                        null);
-                    if (Buscarregistros.Count() < 1)
+            if (_PrimeraPagina < 0)
+                _PrimeraPagina = 0;
+
+            //AGREGAMOS LA PAGINA EN LA QUE ESTAMOS
+            int NumeroPagina = (int)CurrentPage;
+            LbPaginaActual.Text = (NumeroPagina + 1).ToString();
+            // Now creating page number based on above first and last page index
+            for (var i = _PrimeraPagina; i < _UltimaPagina; i++)
+            {
+                var dr = dt.NewRow();
+                dr[0] = i;
+                dr[1] = i + 1;
+                dt.Rows.Add(dr);
+            }
+
+
+            NombreDataList.DataSource = dt;
+            NombreDataList.DataBind();
+        }
+        private void Paginar(ref Repeater RptGrid, IEnumerable<object> Listado, int _NumeroRegistros, ref Label lbCantidadPagina, ref ImageButton PrimeraPagina, ref ImageButton PaginaAnterior, ref ImageButton SiguientePagina, ref ImageButton UltimaPagina)
+        {
+            pagedDataSource.DataSource = Listado;
+            pagedDataSource.AllowPaging = true;
+
+            ViewState["TotalPages"] = pagedDataSource.PageCount;
+            // lbNumeroVariable.Text = "1";
+            lbCantidadPagina.Text = pagedDataSource.PageCount.ToString();
+
+            //MOSTRAMOS LA CANTIDAD DE PAGINAS A MOSTRAR O NUMERO DE REGISTROS
+            pagedDataSource.PageSize = (_NumeroRegistros == 0 ? _TamanioPagina : _NumeroRegistros);
+            pagedDataSource.CurrentPageIndex = CurrentPage;
+
+            //HABILITAMOS LOS BOTONES DE LA PAGINACION
+            PrimeraPagina.Enabled = !pagedDataSource.IsFirstPage;
+            PaginaAnterior.Enabled = !pagedDataSource.IsFirstPage;
+            SiguientePagina.Enabled = !pagedDataSource.IsLastPage;
+            UltimaPagina.Enabled = !pagedDataSource.IsLastPage;
+
+            RptGrid.DataSource = pagedDataSource;
+            RptGrid.DataBind();
+
+
+            //divPaginacionComisionSupervisor.Visible = true;
+        }
+        enum OpcionesPaginacionValores
+        {
+            PrimeraPagina = 1,
+            SiguientePagina = 2,
+            PaginaAnterior = 3,
+            UltimaPagina = 4
+        }
+        private void MoverValoresPaginacion(int Accion, ref Label lbPaginaActual, ref Label lbCantidadPaginas)
+        {
+
+            int PaginaActual = 0;
+            switch (Accion)
+            {
+
+                case 1:
+                    //PRIMERA PAGINA
+                    lbPaginaActual.Text = "1";
+
+                    break;
+
+                case 2:
+                    //SEGUNDA PAGINA
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    PaginaActual++;
+                    lbPaginaActual.Text = PaginaActual.ToString();
+                    break;
+
+                case 3:
+                    //PAGINA ANTERIOR
+                    PaginaActual = Convert.ToInt32(lbPaginaActual.Text);
+                    if (PaginaActual > 1)
                     {
-                        lbCantidadRegistrosVariable.Text = "0";
+                        PaginaActual--;
+                        lbPaginaActual.Text = PaginaActual.ToString();
                     }
-                    else
-                    {
-                        gvListadoPoliza.DataSource = Buscarregistros;
-                        gvListadoPoliza.DataBind();
+                    break;
 
-                        int CantidadRegistros = 0;
-                        foreach (var n in Buscarregistros)
-                        {
-                            CantidadRegistros = Convert.ToInt32(n.CantidadRegistros);
-                            lbCantidadRegistrosVariable.Text = CantidadRegistros.ToString("N0");
-                        }
-                    }
-                }
+                case 4:
+                    //ULTIMA PAGINA
+                    lbPaginaActual.Text = lbCantidadPaginas.Text;
+                    break;
 
+
+            }
+
+        }
+        #endregion
+
+        #region CARGAR LISTAS DESPLEGABLES
+        private void CargarListaDesplegable() {
+
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficina, ObjDataGeneral.Value.BuscaListas("OFICINAS", null, null), true);
+        }
+        #endregion
+
+
+        #region MOSTRAR EL LISTADO POR PANTALLA
+        private void MostrarListado() {
+
+            string _Poliza = string.IsNullOrEmpty(txtPolizaConsulta.Text.Trim()) ? null : txtPolizaConsulta.Text.Trim();
+            int? _Item = string.IsNullOrEmpty(txtNumeroItem.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtNumeroItem.Text);
+            DateTime? _FechaDesde = Convert.ToDateTime(txtFechaDesde.Text);
+            DateTime? _FechaHasta = Convert.ToDateTime(txtFechaHasta.Text);
+            int? _Supervisor = string.IsNullOrEmpty(txtSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtSupervisor.Text);
+            int? _Intermediario = string.IsNullOrEmpty(txtVendedor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtVendedor.Text);
+            int? _Oficina = ddlOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlOficina.SelectedValue) : new Nullable<int>();
+
+            var Listado = ObjDaaReporte.Value.GenerarMarbeteTransito(
+                _Poliza,
+                _Item,
+                _FechaDesde,
+                _FechaHasta,
+                _Supervisor,
+                _Intermediario,
+                _Oficina,
+                null);
+            if (Listado.Count() < 1) {
+                rpListado.DataSource = null;
+                rpListado.DataBind();
+            }
+            else {
+
+                Paginar(ref rpListado, Listado, 10, ref lbCantidadPagina, ref btnPrimeraPagina_Listado, ref btnPaginaAnterior_Listado, ref btnSiguientePagina_Listado, ref btnUltimaPagina_Listado);
+                HandlePaging(ref dtPaginacion_Listado, ref lbPaginaactuall);
             }
         }
         #endregion
-        #region MOSTRAR Y OCULTAR CONTROLES
-        private void MostrarControles()
-        {
-            lbTituloDatosPolizas.Visible = true;
-            lbPolizaMantenimiento.Visible = true;
-            txtPolizaMantenimiento.Visible = true;
-            lbCotizacionMantenimiento.Visible = true;
-            txtCotizacionMantenimeinto.Visible = true;
-            lbCodigoClienteMantenimiento.Visible = true;
-            txtCodigoClienteMantenimiento.Visible = true;
-            lbItemMantenimiento.Visible = true;
-            txtItemMantenimiento.Visible = true;
-            lbNombreClienteMantenimiento.Visible = true;
-            txtNombreClienteMantenimiento.Visible = true;
-            lbNombreAseguradoMantenimiento.Visible = true;
-            txtNombreAseguradoMantenimiento.Visible = true;
-            lbInicioVigenciaMantenimeinto.Visible = true;
-            txtInicioVigenciaMantenimiento.Visible = true;
-            lbFinVigenciaMantenimiento.Visible = true;
-            txtFinVigenciaMantenimiento.Visible = true;
-            lbTipoVehiculoMantenimiento.Visible = true;
-            txtTipoVehiculoMantenimiento.Visible = true;
-            lbMarcaMantenimiento.Visible = true;
-            txtMarcaMantenimeinto.Visible = true;
-            lbModeloMantenimiento.Visible = true;
-            txtModeloMantenimeinto.Visible = true;
-            lbCapacidadMantenimiento.Visible = true;
-            txtCapacidadMantenimeinto.Visible = true;
-            lbChasisMantenimiento.Visible = true;
-            txtChasisMantenimiento.Visible = true;
-            lbPlacaMantenimiento.Visible = true;
-            txtPlacaMantenimiento.Visible = true;
-            lbColorMantenimiento.Visible = true;
-            txtColorMantenimiento.Visible = true;
-            lbAnoMantenimiento.Visible = true;
-            txtAnoMantenimiento.Visible = true;
-            lbUsoMantenimiento.Visible = true;
-            txtUsoMantenimiento.Visible = true;
-            lbValorVehiculo.Visible = true;
-            txtValorVehiculo.Visible = true;
-            lbFianzaJudicialMantenimiento.Visible = true;
-            txtFianzaJudicialMantenimiento.Visible = true;
-            lbVendedorMantenimiento.Visible = true;
-            txtVendedorMantenimiento.Visible = true;
-            lbGruaMantenimiento.Visible = true;
-            txtGruaMantenimiento.Visible = true;
-            lbAeroAmbulanciaMantenimiento.Visible = true;
-            txtAeroAmbulancia.Visible = true;
-            lbOtrosServiciosMantenimiento.Visible = true;
-            txtOtrosServiciosMantenimiento.Visible = true;
-            btnImprimirMarbete.Visible = true;
-            btnRestablecer.Visible = true;
-        }
-        private void OcultarControles()
-        {
-            lbTituloDatosPolizas.Visible = false;
-            lbPolizaMantenimiento.Visible = false;
-            txtPolizaMantenimiento.Visible = false;
-            lbCotizacionMantenimiento.Visible = false;
-            txtCotizacionMantenimeinto.Visible = false;
-            lbCodigoClienteMantenimiento.Visible = false;
-            txtCodigoClienteMantenimiento.Visible = false;
-            lbItemMantenimiento.Visible = false;
-            txtItemMantenimiento.Visible = false;
-            lbNombreClienteMantenimiento.Visible = false;
-            txtNombreClienteMantenimiento.Visible = false;
-            lbNombreAseguradoMantenimiento.Visible = false;
-            txtNombreAseguradoMantenimiento.Visible = false;
-            lbInicioVigenciaMantenimeinto.Visible = false;
-            txtInicioVigenciaMantenimiento.Visible = false;
-            lbFinVigenciaMantenimiento.Visible = false;
-            txtFinVigenciaMantenimiento.Visible = false;
-            lbTipoVehiculoMantenimiento.Visible = false;
-            txtTipoVehiculoMantenimiento.Visible = false;
-            lbMarcaMantenimiento.Visible = false;
-            txtMarcaMantenimeinto.Visible = false;
-            lbModeloMantenimiento.Visible = false;
-            txtModeloMantenimeinto.Visible = false;
-            lbCapacidadMantenimiento.Visible = false;
-            txtCapacidadMantenimeinto.Visible = false;
-            lbChasisMantenimiento.Visible = false;
-            txtChasisMantenimiento.Visible = false;
-            lbPlacaMantenimiento.Visible = false;
-            txtPlacaMantenimiento.Visible = false;
-            lbColorMantenimiento.Visible = false;
-            txtColorMantenimiento.Visible = false;
-            lbAnoMantenimiento.Visible = false;
-            txtAnoMantenimiento.Visible = false;
-            lbUsoMantenimiento.Visible = false;
-            txtUsoMantenimiento.Visible = false;
-            lbValorVehiculo.Visible = false;
-            txtValorVehiculo.Visible = false;
-            lbFianzaJudicialMantenimiento.Visible = false;
-            txtFianzaJudicialMantenimiento.Visible = false;
-            lbVendedorMantenimiento.Visible = false;
-            txtVendedorMantenimiento.Visible = false;
-            lbGruaMantenimiento.Visible = false;
-            txtGruaMantenimiento.Visible = false;
-            lbAeroAmbulanciaMantenimiento.Visible = false;
-            txtAeroAmbulancia.Visible = false;
-            lbOtrosServiciosMantenimiento.Visible = false;
-            txtOtrosServiciosMantenimiento.Visible = false;
-            btnImprimirMarbete.Visible = false;
-            btnRestablecer.Visible = false;
-        }
-        private void LimpiarControles()
-        {
-            txtPolizaMantenimiento.Text = string.Empty;
-            txtCotizacionMantenimeinto.Text = string.Empty;
-            txtCodigoClienteMantenimiento.Text = string.Empty;
-            txtItemMantenimiento.Text = string.Empty;
-            txtNombreClienteMantenimiento.Text = string.Empty;
-            txtNombreAseguradoMantenimiento.Text = string.Empty;
-            txtInicioVigenciaMantenimiento.Text = string.Empty;
-            txtFinVigenciaMantenimiento.Text = string.Empty;
-            txtTipoVehiculoMantenimiento.Text = string.Empty;
-            txtMarcaMantenimeinto.Text = string.Empty;
-            txtModeloMantenimeinto.Text = string.Empty;
-            txtCapacidadMantenimeinto.Text = string.Empty;
-            txtChasisMantenimiento.Text = string.Empty;
-            txtPlacaMantenimiento.Text = string.Empty;
-            txtColorMantenimiento.Text = string.Empty;
-            txtAnoMantenimiento.Text = string.Empty;
-            txtUsoMantenimiento.Text = string.Empty;
-            txtValorVehiculo.Text = string.Empty;
-            txtFianzaJudicialMantenimiento.Text = string.Empty;
-            txtVendedorMantenimiento.Text = string.Empty;
-            txtGruaMantenimiento.Text = string.Empty;
-            txtAeroAmbulancia.Text = string.Empty;
-            txtOtrosServiciosMantenimiento.Text = string.Empty;
 
-        }
-        #endregion
         #region IMPRIMIR REPORTE
         private void ImprimirMarbete(decimal IdUsuario, string RutaReporte, string UsuaruoBD, string ClaveBD/*, string NombreArchivo*/)
         {
@@ -284,102 +246,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
             catch (Exception) { }
         }
         #endregion
-        #region GUARDAR LOS DATOS DEL HISTORIAL
-        private void GuardarHistorial(int TipoImpresion) {
-            string NombreUsuario = "";
-            string Accion = "";
-            
 
-            //SACAR EL NOMBRE DEL USUARIO
-            var SacarNombreusuario = ObjDataGeneral.Value.BuscaUsuarios(Convert.ToDecimal(lbIdusuario.Text));
-            foreach (var n in SacarNombreusuario) {
-                NombreUsuario = n.Persona;
-            }
-
-
-            //VALIDAMOS SI EL REGISTRO EXISTE PARA DETERMINAR SI SE INSERTA O SE ACTUALIZA
-            var Validar = ObjdataProcesos.Value.BuscaHistoricoImpresionMarbetes(
-                new Nullable<decimal>(),
-                txtPolizaMantenimiento.Text,
-                txtItemMantenimiento.Text,
-                txtInicioVigenciaMantenimiento.Text,
-                txtFinVigenciaMantenimiento.Text,
-                Convert.ToDecimal(txtCotizacionMantenimeinto.Text),null,null,null,null,null,null,null,null,null,
-                TipoImpresion);
-            if (Validar.Count() < 1) {
-                Accion = "INSERT";
-            }
-            else {
-                Accion = "UPDATE";
-            }
-
-            UtilidadesAmigos.Logica.Comunes.Reportes.ProcesarHistoricoImpresionMarbetes ProcesarHistorico = new Logica.Comunes.Reportes.ProcesarHistoricoImpresionMarbetes(
-                0,
-                txtPolizaMantenimiento.Text,
-                Convert.ToDecimal(txtCotizacionMantenimeinto.Text),
-                Convert.ToDecimal(txtCodigoClienteMantenimiento.Text),
-                Convert.ToInt32(txtItemMantenimiento.Text),
-                txtNombreClienteMantenimiento.Text,
-                txtInicioVigenciaMantenimiento.Text,
-                txtFinVigenciaMantenimiento.Text,
-                txtNombreAseguradoMantenimiento.Text,
-                txtTipoVehiculoMantenimiento.Text,
-                txtMarcaMantenimeinto.Text,
-                txtModeloMantenimeinto.Text,
-                txtChasisConsulta.Text,
-                txtPlacaConsulta.Text,
-                txtColorMantenimiento.Text,
-                txtUsoMantenimiento.Text,
-                txtAnoMantenimiento.Text,
-                txtCapacidadMantenimeinto.Text,
-                Convert.ToDecimal(txtValorVehiculo.Text),
-                txtFianzaJudicialMantenimiento.Text,
-                txtVendedorMantenimiento.Text,
-                txtGruaMantenimiento.Text,
-                txtAeroAmbulancia.Text,
-                txtOtrosServiciosMantenimiento.Text,
-                NombreUsuario,
-                TipoImpresion,
-                0,
-                Accion);
-            ProcesarHistorico.ProcesarInformacion();
-        }
-        #endregion
-        #region HISTORICO DE IMPRESION
-        private void HistoricoImpresion() {
-            string _Poliza = string.IsNullOrEmpty(txtPolizaHistorico.Text.Trim()) ? null : txtPolizaHistorico.Text.Trim();
-            string _Item = string.IsNullOrEmpty(txtItemHistorico.Text.Trim()) ? null : txtItemHistorico.Text.Trim();
-
-            var Buscar = ObjdataProcesos.Value.BuscaHistoricoImpresionMarbetes(
-                new Nullable<decimal>(),
-                _Poliza,
-                _Item,
-                null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                Convert.ToDateTime(txtFechaDesdeHistorico.Text),
-                Convert.ToDateTime(txtFechaHastaHistorico.Text));
-            gvHistoricoImpresion.DataSource = Buscar;
-            gvHistoricoImpresion.DataBind();
-            if (Buscar.Count() < 1)
-            {
-                lbCantidadImpresoPVCVariable.Text = "0";
-                lbCantidadImpresoHojaVariable.Text = "0";
-                lbCantidadRegistrosVariableHistorico.Text = "0";
-            }
-            else {
-                int CantidadImprecionPVC = 0, CantidadImpresionHoja = 0, CantidadRregistros = 0;
-
-                foreach (var n in Buscar) {
-                    CantidadImprecionPVC = Convert.ToInt32(n.CandidadImpresionesPVC);
-                    CantidadImpresionHoja = Convert.ToInt32(n.CandidadImpresionesHoja);
-                    CantidadRregistros = Convert.ToInt32(n.CandidadRegistros);
-
-                    lbCantidadImpresoPVCVariable.Text = CantidadImprecionPVC.ToString("N0");
-                    lbCantidadImpresoHojaVariable.Text = CantidadImpresionHoja.ToString("N0");
-                    lbCantidadRegistrosVariableHistorico.Text = CantidadRregistros.ToString("N0");
-                }
-            }
-        }
-        #endregion
     
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -391,300 +258,82 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Label lbPantalla = (Label)Master.FindControl("lbOficinaUsuairoPantalla");
                 lbPantalla.Text = "GENERAR MARBETES";
 
-                cbOtrosFiltros.Checked = false;
-                rbMarbetePVC.Checked = true;
-                lbIdusuario.Text = Session["IdUsuario"].ToString();
-                rbImprimirPVC.Checked = true;
-                rbProcesarDataDetalleHistorico.Checked = true;
-                rbProcesarDataDetalleHistorico.Visible = false;
-                rbProcesarDataResumidaHistorico.Visible = false;
-    
-            }
-        }
-      
 
-        protected void cbOtrosFiltros_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbOtrosFiltros.Checked)
-            {
-                rbBuscarPorChasis.Visible = true;
-                rbBuscarPorPlaca.Visible = true;
-                rbBuscarPorChasis.Checked = true;
-            }
-            else {
-                rbBuscarPorChasis.Visible = false;
-                rbBuscarPorPlaca.Visible = false;
-            }
-        }
-
-        protected void btnConsultar_Click(object sender, EventArgs e)
-        {
-            MostrarListadoPolizasMarbete();
-            LimpiarControles();
-            OcultarControles();
-        }
-
-        protected void gvListadoPoliza_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvListadoPoliza.PageIndex = e.NewPageIndex;
-            MostrarListadoPolizasMarbete();
-        }
-
-        protected void gvListadoPoliza_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GridViewRow GV = gvListadoPoliza.SelectedRow;
-
-            MostrarControles();
-            var BuscarRegistroSeleccionado = ObjdataProcesos.Value.GenerarDatosParaMarbeteVehiculos(
-                GV.Cells[0].Text,
-                GV.Cells[1].Text,
-                null, null);
-            foreach (var n in BuscarRegistroSeleccionado) {
-                txtPolizaMantenimiento.Text = n.Poliza;
-                txtCotizacionMantenimeinto.Text = n.Cotizacion.ToString();
-                txtCodigoClienteMantenimiento.Text = n.CodigoCliente.ToString();
-                txtItemMantenimiento.Text = n.Secuencia.ToString();
-                txtNombreClienteMantenimiento.Text = n.NombreCliente;
-                txtNombreAseguradoMantenimiento.Text = n.Asegurado;
-                txtInicioVigenciaMantenimiento.Text = n.InicioVigencia;
-                txtFinVigenciaMantenimiento.Text = n.FinVigencia;
-                txtTipoVehiculoMantenimiento.Text = n.TipoVehiculo;
-                txtMarcaMantenimeinto.Text = n.Marca;
-                txtModeloMantenimeinto.Text = n.Modelo;
-                txtCapacidadMantenimeinto.Text = n.Capacidad;
-                txtChasisMantenimiento.Text = n.Chasis;
-                txtPlacaMantenimiento.Text = n.Placa;
-                txtColorMantenimiento.Text = n.Color;
-                txtAnoMantenimiento.Text = n.Ano;
-                txtUsoMantenimiento.Text = n.Uso;
-                decimal ValorVehiculo = Convert.ToDecimal(n.ValorVehiculo);
-                txtValorVehiculo.Text = ValorVehiculo.ToString("N2");
-                txtFianzaJudicialMantenimiento.Text = n.FianzaJudicial;
-                txtVendedorMantenimiento.Text = n.Vendedor;
-                txtGruaMantenimiento.Text = n.Grua;
-                txtAeroAmbulancia.Text = n.AeroAmbulancia;
-                txtOtrosServiciosMantenimiento.Text = n.OtrosServicios;
-            }
-            gvListadoPoliza.DataSource = BuscarRegistroSeleccionado;
-            gvListadoPoliza.DataBind();
-        }
-
-        protected void btnImprimirMarbete_Click(object sender, EventArgs e)
-        {
-            //VERIFICAMOS SI EL USUAIRO TIENE PERMISO PARA IMPRIMI MARBETES
-            bool PermisoImpresionMarbete = false;
-
-            var Validar = ObjDataGeneral.Value.BuscaUsuarios(Convert.ToDecimal(lbIdusuario.Text), null, null, null, null, null, null, null, null);
-            foreach (var n in Validar) {
-                PermisoImpresionMarbete = Convert.ToBoolean(n.PermisoImpresionMarbete0);
-            }
-            if (PermisoImpresionMarbete == false) {
-                //NO TIENE PERMISO
-                ClientScript.RegisterStartupScript(GetType(), "PermisoDenegado()", "PermisoDenegado();", true);
-            }
-            else {
-                //TIENE PERMISO
-                //ELIMINAMOS LOS DATOS DEL USUARIO
-                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionImpresionMarbetes Procesar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionImpresionMarbetes(
-                    Convert.ToDecimal(lbIdusuario.Text), "", 0, 0, 0, "", "", "", "", "", "", "", "", "", "", "", "", "", 0, "", "", "", "", "", 0, "DELETE");
-                Procesar.ProcesarInformacion();
-
-                //GUARDAR LOS DATOS ITERANDO LOS DATOS DEL MARBETE
-                UtilidadesAmigos.Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionImpresionMarbetes Guardar = new Logica.Comunes.ProcesarMantenimientos.ProcesarInformacionImpresionMarbetes(
-                        Convert.ToDecimal(lbIdusuario.Text),
-                        txtPolizaMantenimiento.Text,
-                        Convert.ToDecimal(txtCotizacionMantenimeinto.Text),
-                        Convert.ToDecimal(txtCodigoClienteMantenimiento.Text),
-                        Convert.ToInt32(txtItemMantenimiento.Text),
-                        txtNombreClienteMantenimiento.Text,
-                        txtInicioVigenciaMantenimiento.Text,
-                        txtFinVigenciaMantenimiento.Text,
-                        txtNombreAseguradoMantenimiento.Text,
-                        txtTipoVehiculoMantenimiento.Text,
-                        txtMarcaMantenimeinto.Text,
-                        txtModeloMantenimeinto.Text,
-                       txtChasisMantenimiento.Text,
-                       txtPlacaMantenimiento.Text,
-                       txtColorMantenimiento.Text,
-                       txtUsoMantenimiento.Text,
-                       txtAnoMantenimiento.Text,
-                       txtCapacidadMantenimeinto.Text,
-                       Convert.ToDecimal(txtValorVehiculo.Text),
-                       txtFianzaJudicialMantenimiento.Text,
-                       txtVendedorMantenimiento.Text,
-                       txtGruaMantenimiento.Text,
-                       txtAeroAmbulancia.Text,
-                       txtOtrosServiciosMantenimiento.Text,
-                       1, "INSERT");
-                Guardar.ProcesarInformacion();
-
-                // 
-
-              
-
-                if (rbImprimirPVC.Checked == true && rbImprimirHoja.Checked==false) {
-                    //GUARDMOS LOS DATOS DEL HISTORIAL
-                    GuardarHistorial(1);
-                   ImprimirMarbete(Convert.ToDecimal(lbIdusuario.Text), Server.MapPath("Marbete.rpt"), "sa", "Pa$$W0rd");
-                }
-                else if (rbImprimirHoja.Checked == true && rbImprimirPVC.Checked==false) {
-                    GuardarHistorial(2);
-                    string NombreArchivo = "";
-                    NombreArchivo = "Marbete " + txtPolizaMantenimiento.Text + " Item " + txtItemMantenimiento.Text;
-                    ImprimirMarbeteHoja(Convert.ToDecimal(lbIdusuario.Text), Server.MapPath("Marbete.rpt"), "sa", "Pa$$W0rd", NombreArchivo);
-                   // ImprimirMarbete(Convert.ToDecimal(lbIdusuario.Text), Server.MapPath("Marbete.rpt"), "sa", "Pa$$W0rd");
-                }
-            }
-            LimpiarControles();
-            OcultarControles();
-        }
-
-        protected void btnRestablecer_Click(object sender, EventArgs e)
-        {
-            LimpiarControles();
-            OcultarControles();
-        }
-
-        protected void rbImprimirPVC_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnConsultarHistorico_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtFechaDesdeHistorico.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaHistorico.Text.Trim()))
-            {
-                if (string.IsNullOrEmpty(txtFechaDesdeHistorico.Text.Trim()))
+                foreach (String strPrinter in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
                 {
-                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeVacio()", "FechaDesdeVacio();", true);
+                    ddlImpresoras.Items.Add(strPrinter.ToString());
                 }
-                if (string.IsNullOrEmpty(txtFechaHastaHistorico.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "FechaHastaHistorico()", "FechaHastaHistorico();", true);
-                }
-            }
-            else {
-                HistoricoImpresion();
+                UtilidadesAmigos.Logica.Comunes.Rangofecha Fecha = new Logica.Comunes.Rangofecha();
+                Fecha.FechaMes(ref txtFechaDesde, ref txtFechaHasta);
+                CargarListaDesplegable();
+                rbTodos.Checked = true;
             }
         }
 
-        protected void btnExportarExelHistorixo_Click(object sender, EventArgs e)
+        protected void btnConsultarInformacion_Click(object sender, ImageClickEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtFechaDesdeHistorico.Text.Trim()) || string.IsNullOrEmpty(txtFechaHastaHistorico.Text.Trim())) {
-                if (string.IsNullOrEmpty(txtFechaDesdeHistorico.Text.Trim())) {
-                    ClientScript.RegisterStartupScript(GetType(), "FechaDesdeVacio()", "FechaDesdeVacio();", true);
-                }
-                if (string.IsNullOrEmpty(txtFechaHastaHistorico.Text.Trim()))
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "FechaHastaHistorico()", "FechaHastaHistorico();", true);
-                }
-
-            }
-            else {
-                if (rbProcesarDataResumidaHistorico.Checked) {
-                    //ELIMINAMOS
-                    UtilidadesAmigos.Logica.Entidades.Procesos.EHistoricoImpresionResumido Eliminar = new Logica.Entidades.Procesos.EHistoricoImpresionResumido();
-                    Eliminar.IdUsuario = Convert.ToDecimal(lbIdusuario.Text);
-                    var MAN = ObjdataProcesos.Value.MantenimientoHistoricoImpresionMarbeteResumido(Eliminar, "DELETE");
-
-                    //BUSCAMOS LOS REGISTROS QUE SE VAN A EXPORTAR
-                    string _Poliza = string.IsNullOrEmpty(txtPolizaHistorico.Text.Trim()) ? null : txtPolizaHistorico.Text.Trim();
-                    string _Item = string.IsNullOrEmpty(txtItemHistorico.Text.Trim()) ? null : txtItemHistorico.Text.Trim();
-
-                    var Buscar = ObjdataProcesos.Value.BuscaHistoricoImpresionMarbetes(
-                        new Nullable<decimal>(),
-                        _Poliza,
-                        _Item,
-                        null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                        Convert.ToDateTime(txtFechaDesdeHistorico.Text),
-                        Convert.ToDateTime(txtFechaHastaHistorico.Text));
-                    foreach (var n in Buscar) {
-                        UtilidadesAmigos.Logica.Entidades.Procesos.EHistoricoImpresionResumido Guardar = new Logica.Entidades.Procesos.EHistoricoImpresionResumido();
-
-                        Guardar.IdUsuario = Convert.ToDecimal(lbIdusuario.Text);
-                        Guardar.IdRegistro = Convert.ToDecimal(n.IdRegistro);
-                        Guardar.UsuarioImprime = n.UsuarioImprime;
-                        Guardar.TipoImprecion = n.TipoImpresion;
-                        Guardar.CantidadImpresion = Convert.ToInt32(n.CantidadImpreso);
-                        Guardar.CantidadPVC = Convert.ToInt32(n.CandidadImpresionesPVC);
-                        Guardar.CantidadHoja = Convert.ToInt32(n.CandidadImpresionesHoja);
-                        Guardar.TotalImpresiones = Convert.ToInt32(n.CandidadImpresiones);
-                        Guardar.CantidadMovimientos = Convert.ToInt32(n.CandidadRegistros);
-
-                        var MAN2 = ObjdataProcesos.Value.MantenimientoHistoricoImpresionMarbeteResumido(Guardar, "INSERT");
-                    }
-
-                    var ExportarResumen = (from n in ObjdataProcesos.Value.BuscaHistoricoImpresionMarbeteResumido(Convert.ToDecimal(lbIdusuario.Text))
-                                           select new {
-                                               Usuario =n.UsuarioImprime,
-                                               TipoImpresion=n.TipoImprecion,
-                                               CantidadImpresion=n.CantidadImpresion,
-                                               CantidadPVC=n.CantidadPVC,
-                                               CantidadHoja=n.CantidadHoja,
-                                               TotalImpresiones=n.TotalImpresiones,
-                                               CantidadMovimientos=n.CantidadMovimientos
-
-                                           }).ToList();
-                    string Nombre = "";
-                    Nombre = "Reporte de Impresiones Resumido " + txtFechaDesdeHistorico.Text + " - " + txtFechaHastaHistorico.Text;
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(Nombre, ExportarResumen);
-
-                }
-                else
-                {
-                    string _Poliza = string.IsNullOrEmpty(txtPolizaHistorico.Text.Trim()) ? null : txtPolizaHistorico.Text.Trim();
-                    string _Item = string.IsNullOrEmpty(txtItemHistorico.Text.Trim()) ? null : txtItemHistorico.Text.Trim();
-
-                    var exportar = (from n in ObjdataProcesos.Value.BuscaHistoricoImpresionMarbetes(
-                        new Nullable<decimal>(),
-                        _Poliza,
-                        _Item,
-                        null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                        Convert.ToDateTime(txtFechaDesdeHistorico.Text),
-                        Convert.ToDateTime(txtFechaHastaHistorico.Text))
-                                    select new
-                                    {
-                                        UsuarioImprime = n.UsuarioImprime,
-                                        FechaImpresion = n.FechaCreado,
-                                        TipoImpresion = n.TipoImpresion,
-                                        CantidadImpreso = n.CantidadImpreso,
-                                        Poliza = n.Poliza,
-                                        Item = n.Secuencia,
-                                        Cliente = n.NombreCliente,
-                                        Asegurado = n.Asegurado,
-                                        InicioVigencia = n.InicioVigencia,
-                                        FinVigencia = n.FinVigencia,
-                                        Tipo = n.TipoVehiculo,
-                                        Marca = n.MarcaVehiculo,
-                                        Modelo = n.ModeloVehiculo,
-                                        Chasis = n.Chasis,
-                                        Placa = n.Placa,
-                                        Color = n.Color,
-                                        Uso = n.uso,
-                                        Ano = n.Ano,
-                                        Capacidad = n.Capacidad,
-                                        ValorVehiculo = n.ValorVehiculo,
-                                        FianzaJudicial = n.FianzaJudicial,
-                                        Intermediario = n.Vendedor,
-                                        Grua = n.Grua,
-                                        AeroAmbulancia = n.AeroAmbulancia,
-                                        OtrosServicios = n.OtrosServicios,
-                                        CantidadImprecionPVC = n.CandidadImpresionesPVC,
-                                        CantidadImpresionHoja = n.CandidadImpresionesHoja,
-                                        CantidadImpresiones = n.CandidadImpresiones,
-                                        CantidadRegistros = n.CandidadRegistros
-                                    }).ToList();
-                    string Nombre = "";
-                    Nombre = "Historico de Impresion " + txtFechaDesdeHistorico.Text + " - " + txtFechaHastaHistorico.Text;
-                    UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(Nombre, exportar);
-                }
-            }
+            CurrentPage = 0;
+            MostrarListado();
         }
 
-        protected void gvHistoricoImpresion_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void txtSupervisor_TextChanged(object sender, EventArgs e)
         {
-            gvHistoricoImpresion.PageIndex = e.NewPageIndex;
-            HistoricoImpresion();
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Supervisor = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtSupervisor.Text);
+            txtNombreSupervisor.Text = Supervisor.SacarNombreSupervisor();
+        }
+
+        protected void txtVendedor_TextChanged(object sender, EventArgs e)
+        {
+            UtilidadesAmigos.Logica.Comunes.SacarNombreIntermediarioSupervisor Intermediario = new Logica.Comunes.SacarNombreIntermediarioSupervisor(txtVendedor.Text);
+            txtNombreVendedor.Text = Intermediario.SacarNombreIntermediario();
+        }
+
+        protected void btnImprimir_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnImpresionUnica_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void btnPrimeraPagina_Listado_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = 0;
+            MostrarListado();
+        }
+
+        protected void btnPaginaAnterior_Listado_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += -1;
+            MostrarListado();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.PaginaAnterior, ref lbPaginaactuall, ref lbCantidadPagina);
+        }
+
+        protected void dtPaginacion_Listado_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+
+        }
+
+        protected void dtPaginacion_Listado_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (!e.CommandName.Equals("newPage")) return;
+            CurrentPage = Convert.ToInt32(e.CommandArgument.ToString());
+            MostrarListado();
+        }
+
+        protected void btnSiguientePagina_Listado_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage += 1;
+            MostrarListado();
+        }
+
+        protected void btnUltimaPagina_Listado_Click(object sender, ImageClickEventArgs e)
+        {
+            CurrentPage = (Convert.ToInt32(ViewState["TotalPages"]) - 1);
+            MostrarListado();
+            MoverValoresPaginacion((int)OpcionesPaginacionValores.UltimaPagina, ref lbPaginaactuall, ref lbCantidadPagina);
         }
     }
 }

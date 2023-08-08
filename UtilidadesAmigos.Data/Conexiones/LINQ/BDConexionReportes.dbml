@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SysFlexSeguros" Class="BDConexionReportesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JDIAZ0624;Initial Catalog=SysFlexSeguros;Integrated Security=False;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString9" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.26.24.199;Initial Catalog=SysFlexSeguros;User ID=sa" SettingsObjectName="UtilidadesAmigos.Data.Properties.Settings" SettingsPropertyName="SysFlexSegurosConnectionString12" Provider="System.Data.SqlClient" />
   <Function Name="Utililades.SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO" Method="SP_GUARDAR_DATOS_REPORTE_POR_USUARIO_RESUMIDO">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Decimal" DbType="Decimal(20,0)" />
     <Parameter Name="Sucursal" Parameter="sucursal" Type="System.String" DbType="VarChar(100)" />
@@ -2247,6 +2247,53 @@
       <Column Name="FormaPago" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="Licencia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="GeneradoPor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="Utililades.SP_GENERAR_MARBETE_VEHICULO_TRANSITO" Method="SP_GENERAR_MARBETE_VEHICULO_TRANSITO">
+    <Parameter Name="Poliza" Parameter="poliza" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Item" Parameter="item" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaProcesoDesde" Parameter="fechaProcesoDesde" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaProcesoHasta" Parameter="fechaProcesoHasta" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Supervisor" Parameter="supervisor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Intermediario" Parameter="intermediario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Oficina" Parameter="oficina" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PolizaImpresa" Parameter="polizaImpresa" Type="System.String" DbType="VarChar(2)" />
+    <ElementType Name="SP_GENERAR_MARBETE_VEHICULO_TRANSITOResult">
+      <Column Name="Poliza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ValorAnual" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="FechaFacturacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Hora" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="UsuarioAdiciona" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Oficina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreOficina" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ConceptoMov" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="CodigoIntermediario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Intermediario" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CodigoSupervisor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TipoVehiculo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Marca" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Modelo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Chasis" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Placa" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="NumeroItem" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Color" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Uso" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Ano" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Asegurado" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FianzaJudicial" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="InicioVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="FinVigencia" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="Grua" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="TelefonoGrua" Type="System.String" DbType="VarChar(14) NOT NULL" CanBeNull="false" />
+      <Column Name="InformacionGrua" Type="System.String" DbType="VarChar(266) NOT NULL" CanBeNull="false" />
+      <Column Name="Servicios" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="TelefonoServicios" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="InformacionServicios" Type="System.String" DbType="VarChar(253) NOT NULL" CanBeNull="false" />
+      <Column Name="Impresa" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="CantidadImpresiones" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

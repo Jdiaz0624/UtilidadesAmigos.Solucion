@@ -451,6 +451,7 @@
     <Compile Include="Entidades\Reportes\EFichaTecnicaSupervisores.cs" />
     <Compile Include="Entidades\Reportes\EGenerarInformacionSupervisoresDetalle.cs" />
     <Compile Include="Entidades\Reportes\EListadoReclamaciones.cs" />
+    <Compile Include="Entidades\Reportes\EMarbeteTransito.cs" />
     <Compile Include="Entidades\Reportes\EModificarEnlaceProveedores.cs" />
     <Compile Include="Entidades\Reportes\EMostrarDatosComisionesIntermediariosDetallado.cs" />
     <Compile Include="Entidades\Reportes\EMostrarDatosComisionesIntermediariosResumido.cs" />
