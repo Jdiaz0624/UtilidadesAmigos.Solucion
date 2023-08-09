@@ -84,6 +84,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = true;
                     DivModuloCorrecciones.Visible = true;
                     DIVModuloHoja.Visible = true;
+                    DIvBloqueTransito.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.CONTABILIDAD:
@@ -95,6 +96,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = true;
+                    DIvBloqueTransito.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.AUDITORIA:
@@ -106,6 +108,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
+                    DIvBloqueTransito.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.NEGOCIOS:
@@ -117,6 +120,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = true;
                     DIVModuloHoja.Visible = true;
+                    DIvBloqueTransito.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.TECNICO:
@@ -128,6 +132,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = true;
                     DIVModuloHoja.Visible = true;
+                    DIvBloqueTransito.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.RECLAMACIONES:
@@ -139,6 +144,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = true;
+                    DIvBloqueTransito.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.ADMINISTRACION:
@@ -150,6 +156,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
+                    DIvBloqueTransito.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.ARCHIVO:
@@ -161,6 +168,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
+                    DIvBloqueTransito.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.RECEPCION:
@@ -172,6 +180,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
+                    DIvBloqueTransito.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.COBROS:
@@ -183,6 +192,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
+                    DIvBloqueTransito.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.CUMPLIMIENTO:
@@ -194,6 +204,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
+                    DIvBloqueTransito.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.COBROSESPECIAL:
@@ -205,6 +216,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
+                    DIvBloqueTransito.Visible = false;
                     break;
 
                 case (int)PefilesUsuarios.TECNICOESPECIAL:
@@ -216,6 +228,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = true;
                     DIVModuloHoja.Visible = false;
+                    DIvBloqueTransito.Visible = true;
                     break;
 
                 default:
@@ -227,6 +240,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
+                    DIvBloqueTransito.Visible = false;
                     break;
             }
 
@@ -261,6 +275,14 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkInformacionAsegurado.Visible = true;
                     LinkRegistrosInconpletos.Visible = true;
 
+                    //HIJA
+                    LinkCertificadoMaritimo.Visible = true;
+
+                    //TRANSITO
+                    LinkGenerarMarbete.Visible = true;
+                    LinkEndososTransito.Visible = true;
+                    LinkReportePolizasTransito.Visible = true;
+
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
                     LinkReporteCobros.Visible = true;
@@ -278,7 +300,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkImpresionMarbetes.Visible = true;
                     LinkFichatecnica.Visible = true;
                     LinkReportePolizasBalance.Visible = true;
-                    LinkGenerarMarbete.Visible = true;
+                    
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = true;
@@ -345,6 +367,14 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkInformacionAsegurado.Visible = false;
                     LinkRegistrosInconpletos.Visible = false;
 
+                    //HIJA
+                    LinkCertificadoMaritimo.Visible = false;
+
+                    //TRANSITO
+                    LinkGenerarMarbete.Visible = false;
+                    LinkEndososTransito.Visible = false;
+                    LinkReportePolizasTransito.Visible = false;
+
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
                     LinkReporteCobros.Visible = true;
@@ -361,7 +391,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkReclamacionesPagadas.Visible = true;
                     LinkImpresionMarbetes.Visible = false;
                     LinkFichatecnica.Visible = true;
-                    LinkGenerarMarbete.Visible = false;
+
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -426,7 +456,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkControlVisitas.Visible = true;
                     LinkInformacionAsegurado.Visible = false;
                     LinkRegistrosInconpletos.Visible = false;
-                    
+
+                    //HIJA
+                    LinkCertificadoMaritimo.Visible = false;
+
+                    //TRANSITO
+                    LinkGenerarMarbete.Visible = false;
+                    LinkEndososTransito.Visible = false;
+                    LinkReportePolizasTransito.Visible = false;
+
 
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
@@ -445,7 +483,6 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkImpresionMarbetes.Visible = false;
                     LinkFichatecnica.Visible = true;
                     LinkReportePolizasBalance.Visible = true;
-                    LinkGenerarMarbete.Visible = false;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -511,6 +548,14 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkInformacionAsegurado.Visible = false;
                     LinkRegistrosInconpletos.Visible = true;
 
+                    //HIJA
+                    LinkCertificadoMaritimo.Visible = true;
+
+                    //TRANSITO
+                    LinkGenerarMarbete.Visible = true;
+                    LinkEndososTransito.Visible = true;
+                    LinkReportePolizasTransito.Visible = true;
+
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
                     LinkReporteCobros.Visible = true;
@@ -528,7 +573,6 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkImpresionMarbetes.Visible = false;
                     LinkFichatecnica.Visible = true;
                     LinkReportePolizasBalance.Visible = true;
-                    LinkGenerarMarbete.Visible = true;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -595,6 +639,14 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkInformacionAsegurado.Visible = false;
                     LinkRegistrosInconpletos.Visible = true;
 
+                    //HIJA
+                    LinkCertificadoMaritimo.Visible = true;
+
+                    //TRANSITO
+                    LinkGenerarMarbete.Visible = true;
+                    LinkEndososTransito.Visible = true;
+                    LinkReportePolizasTransito.Visible = true;
+
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
                     LinkReporteCobros.Visible = true;
@@ -612,7 +664,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkImpresionMarbetes.Visible = false;
                     LinkFichatecnica.Visible = false;
                     LinkReportePolizasBalance.Visible = false;
-                    LinkGenerarMarbete.Visible = true;
+     
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -679,6 +731,14 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkInformacionAsegurado.Visible = false;
                     LinkRegistrosInconpletos.Visible = true;
 
+                    //HIJA
+                    LinkCertificadoMaritimo.Visible = true;
+
+                    //TRANSITO
+                    LinkGenerarMarbete.Visible = true;
+                    LinkEndososTransito.Visible = true;
+                    LinkReportePolizasTransito.Visible = true;
+
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
                     LinkReporteCobros.Visible = true;
@@ -696,7 +756,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkImpresionMarbetes.Visible = false;
                     LinkFichatecnica.Visible = false;
                     LinkReportePolizasBalance.Visible = false;
-                    LinkGenerarMarbete.Visible = true;
+
 
 
                     //PROCESOS
@@ -763,6 +823,14 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkInformacionAsegurado.Visible = false;
                     LinkRegistrosInconpletos.Visible = false;
 
+                    //HIJA
+                    LinkCertificadoMaritimo.Visible = false;
+
+                    //TRANSITO
+                    LinkGenerarMarbete.Visible = false;
+                    LinkEndososTransito.Visible = false;
+                    LinkReportePolizasTransito.Visible = false;
+
                     //REPORTES
                     LinkReporteProduccion.Visible = false;
                     LinkReporteCobros.Visible = false;
@@ -780,8 +848,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkImpresionMarbetes.Visible = false;
                     LinkFichatecnica.Visible = false;
                     LinkReportePolizasBalance.Visible = false;
-                    LinkGenerarMarbete.Visible = false;
-
+    
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
                     LinkSolicitudesCheques.Visible = false;
@@ -847,6 +914,14 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkInformacionAsegurado.Visible = false;
                     LinkRegistrosInconpletos.Visible = false;
 
+                    //HIJA
+                    LinkCertificadoMaritimo.Visible = false;
+
+                    //TRANSITO
+                    LinkGenerarMarbete.Visible = false;
+                    LinkEndososTransito.Visible = false;
+                    LinkReportePolizasTransito.Visible = false;
+
                     //REPORTES
                     LinkReporteProduccion.Visible = false;
                     LinkReporteCobros.Visible = false;
@@ -864,7 +939,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkImpresionMarbetes.Visible = false;
                     LinkFichatecnica.Visible = false;
                     LinkReportePolizasBalance.Visible = false;
-                    LinkGenerarMarbete.Visible = false;
+        
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -931,6 +1006,14 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkInformacionAsegurado.Visible = false;
                     LinkRegistrosInconpletos.Visible = false;
 
+                    //HIJA
+                    LinkCertificadoMaritimo.Visible = false;
+
+                    //TRANSITO
+                    LinkGenerarMarbete.Visible = false;
+                    LinkEndososTransito.Visible = false;
+                    LinkReportePolizasTransito.Visible = false;
+
                     //REPORTES
                     LinkReporteProduccion.Visible = false;
                     LinkReporteCobros.Visible = false;
@@ -948,7 +1031,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkImpresionMarbetes.Visible = false;
                     LinkFichatecnica.Visible = false;
                     LinkReportePolizasBalance.Visible = false;
-                    LinkGenerarMarbete.Visible = false;
+
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -1015,6 +1098,14 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkInformacionAsegurado.Visible = false;
                     LinkRegistrosInconpletos.Visible = false;
 
+                    //HIJA
+                    LinkCertificadoMaritimo.Visible = false;
+
+                    //TRANSITO
+                    LinkGenerarMarbete.Visible = false;
+                    LinkEndososTransito.Visible = false;
+                    LinkReportePolizasTransito.Visible = false;
+
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
                     LinkReporteCobros.Visible = true;
@@ -1032,7 +1123,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkImpresionMarbetes.Visible = false;
                     LinkFichatecnica.Visible = false;
                     LinkReportePolizasBalance.Visible = true;
-                    LinkGenerarMarbete.Visible = false;
+                 
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -1099,6 +1190,14 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkInformacionAsegurado.Visible = false;
                     LinkRegistrosInconpletos.Visible = false;
 
+                    //HIJA
+                    LinkCertificadoMaritimo.Visible = false;
+
+                    //TRANSITO
+                    LinkGenerarMarbete.Visible = false;
+                    LinkEndososTransito.Visible = false;
+                    LinkReportePolizasTransito.Visible = false;
+
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
                     LinkReporteCobros.Visible = true;
@@ -1116,7 +1215,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkImpresionMarbetes.Visible = false;
                     LinkFichatecnica.Visible = false;
                     LinkReportePolizasBalance.Visible = false;
-                    LinkGenerarMarbete.Visible = false;
+          
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -1183,6 +1282,14 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkInformacionAsegurado.Visible = false;
                     LinkRegistrosInconpletos.Visible = false;
 
+                    //HIJA
+                    LinkCertificadoMaritimo.Visible = false;
+
+                    //TRANSITO
+                    LinkGenerarMarbete.Visible = false;
+                    LinkEndososTransito.Visible = false;
+                    LinkReportePolizasTransito.Visible = false;
+
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
                     LinkReporteCobros.Visible = true;
@@ -1200,7 +1307,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkImpresionMarbetes.Visible = false;
                     LinkFichatecnica.Visible = false;
                     LinkReportePolizasBalance.Visible = true;
-                    LinkGenerarMarbete.Visible = false;
+                
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
@@ -1267,6 +1374,14 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkInformacionAsegurado.Visible = false;
                     LinkRegistrosInconpletos.Visible = true;
 
+                    //HIJA
+                    LinkCertificadoMaritimo.Visible = true;
+
+                    //TRANSITO
+                    LinkGenerarMarbete.Visible = true;
+                    LinkEndososTransito.Visible = true;
+                    LinkReportePolizasTransito.Visible = true;
+
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
                     LinkReporteCobros.Visible = true;
@@ -1284,7 +1399,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkImpresionMarbetes.Visible = false;
                     LinkFichatecnica.Visible = false;
                     LinkReportePolizasBalance.Visible = false;
-                    LinkGenerarMarbete.Visible = true;
+
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;
