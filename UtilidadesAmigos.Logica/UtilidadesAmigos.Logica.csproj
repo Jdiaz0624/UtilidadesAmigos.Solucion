@@ -451,7 +451,6 @@
     <Compile Include="Entidades\Reportes\EFichaTecnicaSupervisores.cs" />
     <Compile Include="Entidades\Reportes\EGenerarInformacionSupervisoresDetalle.cs" />
     <Compile Include="Entidades\Reportes\EListadoReclamaciones.cs" />
-    <Compile Include="Entidades\Reportes\EMarbeteTransito.cs" />
     <Compile Include="Entidades\Reportes\EModificarEnlaceProveedores.cs" />
     <Compile Include="Entidades\Reportes\EMostrarDatosComisionesIntermediariosDetallado.cs" />
     <Compile Include="Entidades\Reportes\EMostrarDatosComisionesIntermediariosResumido.cs" />
@@ -520,6 +519,7 @@
     <Compile Include="Entidades\SuperIntendencia\EProcesarDataResultadoBusquedaPersonaSuperIntendencia.cs" />
     <Compile Include="Entidades\SuperIntendencia\EProcesarInformacionComisionesIntermediarioAlfredo.cs" />
     <Compile Include="Entidades\SuperIntendencia\EResultadoBusquedaPersonasSuperIntendencia.cs" />
+    <Compile Include="Entidades\Transito\EMarbeteTransito.cs" />
     <Compile Include="Logica\LogicaConsulta\LogicaConsulta.cs" />
     <Compile Include="Logica\LogicaCorrecciones\LogicaCorrecciones.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
@@ -532,6 +532,7 @@
     <Compile Include="Logica\LogicaSistema.cs" />
     <Compile Include="Logica\LogicaSuministro\LogicaSuministro.cs" />
     <Compile Include="Logica\LogicaSuperIntendencia\LogicaSuperIntendencia.cs" />
+    <Compile Include="Logica\LogicaTransito\LogicaTransito.cs" />
     <Compile Include="ProcesoInformacion\ProcesarInformacionModificarCoberturaPoliza.cs" />
     <Compile Include="ProcesoInformacion\ProcesarInformacionUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

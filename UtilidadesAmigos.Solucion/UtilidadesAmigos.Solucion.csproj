@@ -319,7 +319,6 @@
     <Content Include="Paginas\Reportes\ComisionesIntermediarios.aspx" />
     <Content Include="Paginas\Reportes\ComisionesSupervisores.aspx" />
     <Content Include="Paginas\Reportes\FichaTecnica.aspx" />
-    <Content Include="Paginas\Reportes\GenerarMarbetes.aspx" />
     <Content Include="Paginas\Reportes\GenerarReporteAntiguedadSaldo.aspx" />
     <Content Include="Paginas\Reportes\GenerarReporteCobros.aspx" />
     <Content Include="Paginas\Reportes\PolizasConBalancesPorAntiguedad.aspx" />
@@ -347,6 +346,7 @@
     <Content Include="Paginas\Suministro\LogoReducido.jpg" />
     <Content Include="Paginas\Suministro\SolicitudSuministro.aspx" />
     <Content Include="Paginas\SuperIntendencia\ConsultaPersonas.aspx" />
+    <Content Include="Paginas\Transito\GenerarMarbetes.aspx" />
     <Content Include="scripts\bootstrap.bundle.js" />
     <Content Include="scripts\bootstrap.bundle.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -979,13 +979,6 @@
     <Compile Include="Paginas\Reportes\FichaTecnica.aspx.designer.cs">
       <DependentUpon>FichaTecnica.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\Reportes\GenerarMarbetes.aspx.cs">
-      <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Paginas\Reportes\GenerarMarbetes.aspx.designer.cs">
-      <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paginas\Reportes\GenerarReporteAntiguedadSaldo.aspx.cs">
       <DependentUpon>GenerarReporteAntiguedadSaldo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1189,6 +1182,13 @@
     </Compile>
     <Compile Include="Paginas\TipoCotizador.aspx.designer.cs">
       <DependentUpon>TipoCotizador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Transito\GenerarMarbetes.aspx.cs">
+      <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Transito\GenerarMarbetes.aspx.designer.cs">
+      <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ValorVehiculo.aspx.cs">
       <DependentUpon>ValorVehiculo.aspx</DependentUpon>

@@ -140,6 +140,15 @@
         </ul>
         </li>
 
+         <!--TRANSITO-->
+        <li id="DIvBloqueTransito" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-search-plus"></i>Transito<i class="icono derecha fa fa-chevron-down"></i></a>
+        <ul>
+            <li> <asp:LinkButton ID="LinkGenerarMarbete" runat="server" Text="Generar Marbetes" ToolTip="Generación de Marbetes" OnClick="LinkGenerarMarbete_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkEndososTransito" runat="server" Text="Endosos" ForeColor="Red" ToolTip="Generación de Marbetes" OnClick="LinkEndososTransito_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkReportePolizasTransito" runat="server" Text="Reporte" ForeColor="Red" ToolTip="Generación de Marbetes" OnClick="LinkReportePolizasTransito_Click"></asp:LinkButton> </li>
+        </ul>
+        </li>
+
          <!--MODULO DE REPORTES-->
         <li id="DivModuloReportes" runat="server" visible="true"> <a href="#"><i class="icono izquierda fa fa-line-chart"></i>Reportes<i class="icono derecha fa fa-chevron-down"></i></a>
         <ul>
@@ -159,7 +168,7 @@
             <li> <asp:LinkButton ID="LinkImpresionMarbetes" runat="server" Text="Impresion de Marbetes" ToolTip="Impresión de Marbetes" OnClick="LinkReporteImpresionMarbetes_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkFichatecnica" runat="server" Text="Ficha Tecnica" ToolTip="Ficha tecnica de Supervisores / Intermediarios" OnClick="LinkFichatecnica_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkReportePolizasBalance" runat="server" Text="Polizas Con Balances" ToolTip="Generar Reporte de Polizas con Balance por antiguedad de saldo" OnClick="LinkReportePolizasBalance_Click"></asp:LinkButton> </li>
-            <li> <asp:LinkButton ID="LinkGenerarMarbete" runat="server" Text="Generar Marbetes" ToolTip="Generación de Marbetes" OnClick="LinkGenerarMarbete_Click"></asp:LinkButton> </li>
+            
         </ul>
         </li>
 

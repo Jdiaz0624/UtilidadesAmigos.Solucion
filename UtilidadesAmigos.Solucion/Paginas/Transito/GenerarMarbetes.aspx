@@ -52,7 +52,11 @@
                 </div>
                 <div class="col-md-3">
                     <label class="Letranegrita">Oficina</label>
-                    <asp:DropDownList ID="ddlOficina" runat="server" CssClass="form-control" ToolTip="Seleccionar Oficina"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlOficina" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlOficina_SelectedIndexChanged" ToolTip="Seleccionar Oficina"></asp:DropDownList>
+                </div>
+                <div class="col-md-3">
+                    <label class="Letranegrita">Usuario</label>
+                    <asp:DropDownList ID="ddlUsuario" runat="server" CssClass="form-control" ToolTip="Seleccionar Usuario"></asp:DropDownList>
                 </div>
                 <div class="col-md-12">
                     <label class="Letranegrita">Seleccionar Impresora</label>
@@ -82,11 +86,13 @@
                     <thead class="table-dark">
                         <tr>
                             <th scope="col"> Poliza </th>
+                            <th scope="col"> Cliente </th>
+                            <th scope="col"> Asegurado </th>
                             <th scope="col"> Item </th>
                             <th scope="col"> Fecha </th>
                             <th scope="col"> Hora </th>
                             <th scope="col"> Impresa </th>
-                            <th scope="col"> Cant </th>
+                            <th scope="col"> Usuario </th>
                             <th class="ContenidoDerecha" scope="col"> Imprimir </th>
                         </tr>
                     </thead>
@@ -99,11 +105,13 @@
 
 
                                     <td> <%# Eval("Poliza") %> </td>
+                                    <td> <%# Eval("Cliente") %> </td>
+                                    <td> <%# Eval("Asegurado") %> </td>
                                     <td> <%# Eval("NumeroItem") %> </td>
                                     <td> <%# Eval("Fecha") %> </td>
                                     <td> <%# Eval("Hora") %> </td>
                                     <td> <%# Eval("Impresa") %> </td>
-                                    <td> <%#string.Format("{0:N0}", Eval("CantidadImpresiones")) %> </td>
+                                    <td> <%# Eval("UsuarioAdiciona") %> </td>
                                     <td class="ContenidoDerecha"> <asp:ImageButton ID="btnImpresionUnica" runat="server" ToolTip="Imprimir" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/impresora-de-papel.png" OnClick="btnImpresionUnica_Click" /> </td>
                                 </tr>
                             </ItemTemplate>

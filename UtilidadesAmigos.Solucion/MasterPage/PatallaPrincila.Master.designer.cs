@@ -222,6 +222,42 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         protected global::System.Web.UI.WebControls.LinkButton LinkCertificadoMaritimo;
 
         /// <summary>
+        /// DIvBloqueTransito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIvBloqueTransito;
+
+        /// <summary>
+        /// LinkGenerarMarbete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkGenerarMarbete;
+
+        /// <summary>
+        /// LinkEndososTransito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkEndososTransito;
+
+        /// <summary>
+        /// LinkReportePolizasTransito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkReportePolizasTransito;
+
+        /// <summary>
         /// DivModuloReportes control.
         /// </summary>
         /// <remarks>
@@ -373,15 +409,6 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkReportePolizasBalance;
-
-        /// <summary>
-        /// LinkGenerarMarbete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkGenerarMarbete;
 
         /// <summary>
         /// DivModuloProcesos control.

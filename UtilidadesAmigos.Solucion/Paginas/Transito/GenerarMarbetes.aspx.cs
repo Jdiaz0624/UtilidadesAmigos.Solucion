@@ -18,6 +18,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaProcesos.LogicaProcesos> ObjdataProcesos = new Lazy<Logica.Logica.LogicaProcesos.LogicaProcesos>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjDataGeneral = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido> ObjDaaReporte = new Lazy<Logica.Logica.LogicaReportes.ProduccionPorUsuarioResumido>();
+        Lazy<UtilidadesAmigos.Logica.Logica.LogicaTransito.LogicaTransito> ObjDataTransito = new Lazy<Logica.Logica.LogicaTransito.LogicaTransito>();
 
         #region CONTROL PARA MOSTRAR LA PAGINACION
         readonly PagedDataSource pagedDataSource = new PagedDataSource();
@@ -155,6 +156,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
             UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlOficina, ObjDataGeneral.Value.BuscaListas("OFICINAS", null, null), true);
         }
+        private void UsuariosMarbete() {
+
+            UtilidadesAmigos.Logica.Comunes.UtilidadDrop.DropDownListLlena(ref ddlUsuario, ObjDataGeneral.Value.BuscaListas("USUARIOSMARBETE", ddlOficina.SelectedValue.ToString(), null), true);
+        }
         #endregion
 
 
@@ -168,8 +173,9 @@ namespace UtilidadesAmigos.Solucion.Paginas
             int? _Supervisor = string.IsNullOrEmpty(txtSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtSupervisor.Text);
             int? _Intermediario = string.IsNullOrEmpty(txtVendedor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtVendedor.Text);
             int? _Oficina = ddlOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlOficina.SelectedValue) : new Nullable<int>();
+            string _Usuario = ddlUsuario.SelectedValue != "-1" ? ddlUsuario.SelectedItem.Text : null;
 
-            var Listado = ObjDaaReporte.Value.GenerarMarbeteTransito(
+            var Listado = ObjDataTransito.Value.GenerarMarbeteTransito(
                 _Poliza,
                 _Item,
                 _FechaDesde,
@@ -177,7 +183,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 _Supervisor,
                 _Intermediario,
                 _Oficina,
-                null);
+                null, _Usuario);
             if (Listado.Count() < 1) {
                 rpListado.DataSource = null;
                 rpListado.DataBind();
@@ -202,11 +208,12 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 int? _Supervisor = string.IsNullOrEmpty(txtSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtSupervisor.Text);
                 int? _Intermediario = string.IsNullOrEmpty(txtVendedor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtVendedor.Text);
                 int? _Oficina = ddlOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlOficina.SelectedValue) : new Nullable<int>();
+                string _Usuario = ddlUsuario.SelectedValue != "-1" ? ddlUsuario.SelectedItem.Text : null;
                 string RutaReporte = "", NombreReporte = "", UsuarioBD = "", ClaveBD = "";
 
                 if (cbImprimirDirectoImpresora.Checked == true) {
 
-                    RutaReporte = Server.MapPath("MarbeteTransitoDirectoImpresora.rpt");
+                    RutaReporte = Server.MapPath("MarbeteTransitoPDF.rpt");
                 }
                 else {
                     RutaReporte = Server.MapPath("MarbeteTransitoPDF.rpt");
@@ -230,6 +237,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 Listado.SetParameterValue("@Intermediario", _Intermediario);
                 Listado.SetParameterValue("@Oficina", _Oficina);
                 Listado.SetParameterValue("@PolizaImpresa", null);
+                Listado.SetParameterValue("@Usuario", _Usuario);
 
                 Listado.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
@@ -246,13 +254,66 @@ namespace UtilidadesAmigos.Solucion.Paginas
             catch (Exception) { }
 
         }
+        private void ImprimirMarbeteUnico(string Poliza, int NumeroItem)
+        {
+            try
+            {
+                string _Usuario = ddlUsuario.SelectedValue != "-1" ? ddlUsuario.SelectedItem.Text : null;
+                string RutaReporte = "", NombreReporte = "", UsuarioBD = "", ClaveBD = "";
 
-      
+                if (cbImprimirDirectoImpresora.Checked == true)
+                {
+
+                    RutaReporte = Server.MapPath("MarbeteTransitoPDF.rpt");
+                }
+                else
+                {
+                    RutaReporte = Server.MapPath("MarbeteTransitoPDF.rpt");
+                }
+                NombreReporte = "Listado de Marbetes en Transito";
+
+                UtilidadesAmigos.Logica.Comunes.SacarCredencialesBD Credenciales = new Logica.Comunes.SacarCredencialesBD(1);
+                UsuarioBD = Credenciales.SacarUsuario();
+                ClaveBD = Credenciales.SacarClaveBD();
+
+                ReportDocument Listado = new ReportDocument();
+
+                Listado.Load(RutaReporte);
+                Listado.Refresh();
+
+                Listado.SetParameterValue("@Poliza", Poliza);
+                Listado.SetParameterValue("@Item", NumeroItem);
+                Listado.SetParameterValue("@FechaProcesoDesde", new Nullable<DateTime>());
+                Listado.SetParameterValue("@FechaProcesoHasta", new Nullable<DateTime>());
+                Listado.SetParameterValue("@Supervisor", new Nullable<int>());
+                Listado.SetParameterValue("@Intermediario", new Nullable<int>());
+                Listado.SetParameterValue("@Oficina", new Nullable<int>());
+                Listado.SetParameterValue("@PolizaImpresa", null);
+                Listado.SetParameterValue("@Usuario", null);
+
+                Listado.SetDatabaseLogon(UsuarioBD, ClaveBD);
+
+                if (cbImprimirDirectoImpresora.Checked == true)
+                {
+
+                    Listado.PrintOptions.PrinterName = ddlImpresoras.SelectedItem.Text;
+                    Listado.PrintToPrinter(1, false, 0, 0);
+                }
+                else
+                {
+                    Listado.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+                }
+                Listado.Dispose();
+            }
+            catch (Exception) { }
+
+        }
+
         #endregion
 
-        
 
-    
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
@@ -271,6 +332,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
                 UtilidadesAmigos.Logica.Comunes.Rangofecha Fecha = new Logica.Comunes.Rangofecha();
                 Fecha.FechaMes(ref txtFechaDesde, ref txtFechaHasta);
                 CargarListaDesplegable();
+                UsuariosMarbete();
                 rbTodos.Checked = true;
             }
         }
@@ -300,7 +362,10 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnImpresionUnica_Click(object sender, ImageClickEventArgs e)
         {
-
+            var RegistroSeleccionado = (RepeaterItem)((ImageButton)sender).NamingContainer;
+            var Poliza = ((HiddenField)RegistroSeleccionado.FindControl("hfPoliza")).Value.ToString();
+            var Item = ((HiddenField)RegistroSeleccionado.FindControl("hfSecuencia")).Value.ToString();
+            ImprimirMarbeteUnico(Poliza, Convert.ToInt32(Item));
         }
 
         protected void btnPrimeraPagina_Listado_Click(object sender, ImageClickEventArgs e)
@@ -332,6 +397,11 @@ namespace UtilidadesAmigos.Solucion.Paginas
         {
             CurrentPage += 1;
             MostrarListado();
+        }
+
+        protected void ddlOficina_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UsuariosMarbete();
         }
 
         protected void btnUltimaPagina_Listado_Click(object sender, ImageClickEventArgs e)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UtilidadesAmigos.Logica.Entidades.Reportes
+namespace UtilidadesAmigos.Logica.Entidades.Transito
 {
     public class EMarbeteTransito
     {

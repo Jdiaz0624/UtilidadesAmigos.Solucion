@@ -2370,13 +2370,23 @@ namespace UtilidadesAmigos.Solucion.MasterPage
         {
             if (Session["IdUsuario"] != null)
             {
-                Response.Redirect("~/Paginas/Reportes/GenerarMarbetes.aspx");
+                Response.Redirect("~/Paginas/Transito/GenerarMarbetes.aspx");
             }
             else
             {
                 FormsAuthentication.SignOut();
                 FormsAuthentication.RedirectToLoginPage();
             }
+        }
+
+        protected void LinkEndososTransito_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Que Degraciación con ustedes los humanos, si la opcion esta en roja es por que no esta en funcionamiento.');", true);
+        }
+
+        protected void LinkReportePolizasTransito_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Que Degraciación con ustedes los humanos, si la opcion esta en roja es por que no esta en funcionamiento.');", true);
         }
     }
 }
