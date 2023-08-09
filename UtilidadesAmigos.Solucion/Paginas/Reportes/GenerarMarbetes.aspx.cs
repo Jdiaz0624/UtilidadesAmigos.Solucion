@@ -191,61 +191,66 @@ namespace UtilidadesAmigos.Solucion.Paginas
         #endregion
 
         #region IMPRIMIR REPORTE
-        private void ImprimirMarbete(decimal IdUsuario, string RutaReporte, string UsuaruoBD, string ClaveBD/*, string NombreArchivo*/)
+        private void ImprimirMarbete()
         {
             try
             {
-                ReportDocument Factura = new ReportDocument();
+                string _Poliza = string.IsNullOrEmpty(txtPolizaConsulta.Text.Trim()) ? null : txtPolizaConsulta.Text.Trim();
+                int? _Item = string.IsNullOrEmpty(txtNumeroItem.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtNumeroItem.Text);
+                DateTime _FechaDesde = Convert.ToDateTime(txtFechaDesde.Text);
+                DateTime _FechaHasta = Convert.ToDateTime(txtFechaHasta.Text);
+                int? _Supervisor = string.IsNullOrEmpty(txtSupervisor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtSupervisor.Text);
+                int? _Intermediario = string.IsNullOrEmpty(txtVendedor.Text.Trim()) ? new Nullable<int>() : Convert.ToInt32(txtVendedor.Text);
+                int? _Oficina = ddlOficina.SelectedValue != "-1" ? Convert.ToInt32(ddlOficina.SelectedValue) : new Nullable<int>();
+                string RutaReporte = "", NombreReporte = "", UsuarioBD = "", ClaveBD = "";
 
-                SqlCommand comando = new SqlCommand();
-                comando.CommandText = "EXEC [Utililades].[SP_GENERAR_REPORTE_MARBETE] @IdUsuario";
-                comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
+                if (cbImprimirDirectoImpresora.Checked == true) {
 
-                comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
-                comando.Parameters["@IdUsuario"].Value = IdUsuario;
+                    RutaReporte = Server.MapPath("MarbeteTransitoDirectoImpresora.rpt");
+                }
+                else {
+                    RutaReporte = Server.MapPath("MarbeteTransitoPDF.rpt");
+                }
+                NombreReporte = "Listado de Marbetes en Transito";
 
-                Factura.Load(RutaReporte);
-                Factura.Refresh();
-                Factura.SetParameterValue("@IdUsuario", IdUsuario);
-                Factura.SetDatabaseLogon(UsuaruoBD, ClaveBD);
-                //Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreArchivo);
+                UtilidadesAmigos.Logica.Comunes.SacarCredencialesBD Credenciales = new Logica.Comunes.SacarCredencialesBD(1);
+                UsuarioBD = Credenciales.SacarUsuario();
+                ClaveBD = Credenciales.SacarClaveBD();
 
-                Factura.PrintToPrinter(1, true, 0, 2);
+                ReportDocument Listado = new ReportDocument();
 
-                Factura.Close();
-                Factura.Dispose();
-                //  crystalReportViewer1.ReportSource = Factura;
+                Listado.Load(RutaReporte);
+                Listado.Refresh();
+
+                Listado.SetParameterValue("@Poliza", _Poliza);
+                Listado.SetParameterValue("@Item", _Item);
+                Listado.SetParameterValue("@FechaProcesoDesde", _FechaDesde.ToString("yyyy-MM-dd"));
+                Listado.SetParameterValue("@FechaProcesoHasta", _FechaHasta.ToString("yyyy-MM-dd"));
+                Listado.SetParameterValue("@Supervisor", _Supervisor);
+                Listado.SetParameterValue("@Intermediario", _Intermediario);
+                Listado.SetParameterValue("@Oficina", _Oficina);
+                Listado.SetParameterValue("@PolizaImpresa", null);
+
+                Listado.SetDatabaseLogon(UsuarioBD, ClaveBD);
+
+                if (cbImprimirDirectoImpresora.Checked == true) {
+
+                    Listado.PrintOptions.PrinterName = ddlImpresoras.SelectedItem.Text;
+                    Listado.PrintToPrinter(1, false, 0, 0);
+                }
+                else {
+                    Listado.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+                }
+                Listado.Dispose();
             }
             catch (Exception) { }
 
         }
 
-        private void ImprimirMarbeteHoja(decimal IdUsuario, string RutaReporte, string UsuarioBD, string ClaveBD, string Nombrearchivo) {
-            try
-            {
-                ReportDocument Factura = new ReportDocument();
-
-                SqlCommand comando = new SqlCommand();
-                comando.CommandText = "EXEC [Utililades].[SP_GENERAR_REPORTE_MARBETE] @IdUsuario";
-                comando.Connection = UtilidadesAmigos.Data.Conexiones.ADO.BDConexion.ObtenerConexion();
-
-                comando.Parameters.Add("@IdUsuario", SqlDbType.Decimal);
-                comando.Parameters["@IdUsuario"].Value = IdUsuario;
-
-                Factura.Load(RutaReporte);
-                Factura.Refresh();
-                Factura.SetParameterValue("@IdUsuario", IdUsuario);
-                Factura.SetDatabaseLogon(UsuarioBD, ClaveBD);
-                Factura.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, Nombrearchivo);
-
-                Factura.Close();
-                Factura.Dispose();
-                //Factura.PrintToPrinter(1, true, 0, 2);
-                //  crystalReportViewer1.ReportSource = Factura;
-            }
-            catch (Exception) { }
-        }
+      
         #endregion
+
+        
 
     
         protected void Page_Load(object sender, EventArgs e)
@@ -290,7 +295,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void btnImprimir_Click(object sender, ImageClickEventArgs e)
         {
-
+            ImprimirMarbete();
         }
 
         protected void btnImpresionUnica_Click(object sender, ImageClickEventArgs e)

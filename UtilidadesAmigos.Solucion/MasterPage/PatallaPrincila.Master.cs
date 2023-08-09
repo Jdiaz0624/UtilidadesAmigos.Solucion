@@ -612,7 +612,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkImpresionMarbetes.Visible = false;
                     LinkFichatecnica.Visible = false;
                     LinkReportePolizasBalance.Visible = false;
-                    LinkGenerarMarbete.Visible = false;
+                    LinkGenerarMarbete.Visible = true;
 
                     //PROCESOS
                     LinkGenerarBAckupBD.Visible = false;

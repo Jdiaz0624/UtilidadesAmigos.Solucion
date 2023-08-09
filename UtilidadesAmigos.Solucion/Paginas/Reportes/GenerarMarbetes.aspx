@@ -66,10 +66,10 @@
             </div>
             <br />
             <div class="form-check-inline">
-                <label class="Letranegrita">Estatus de Polizas</label>
-                <asp:RadioButton ID="rbTodos" runat="server" Text="Todos" GroupName="EstatusPoliza" ToolTip="Mostrar Todos los Registros" />
-                 <asp:RadioButton ID="rbImpresos" runat="server" Text="Todos" GroupName="EstatusPoliza" ToolTip="Mostrar Solo Registros Impresos" />
-                 <asp:RadioButton ID="rbNoImpresos" runat="server" Text="Todos" GroupName="EstatusPoliza" ToolTip="Mostrar Solo Registros No Impresos" />
+                 <label class="Letranegrita">Estatus de Polizas</label>
+                 <asp:RadioButton ID="rbTodos" runat="server" Text="Todos" GroupName="EstatusPoliza" ToolTip="Mostrar Todos los Registros" />
+                 <asp:RadioButton ID="rbImpresos" runat="server" Text="Impresos" GroupName="EstatusPoliza" ToolTip="Mostrar Solo Registros Impresos" />
+                 <asp:RadioButton ID="rbNoImpresos" runat="server" Text="No Impresos" GroupName="EstatusPoliza" ToolTip="Mostrar Solo Registros No Impresos" />
             </div>
             <br />
             <div class="ContenidoCentro">
@@ -101,7 +101,7 @@
                                     <td> <%# Eval("Poliza") %> </td>
                                     <td> <%# Eval("NumeroItem") %> </td>
                                     <td> <%# Eval("Fecha") %> </td>
-                                     <td> <%# Eval("Hora") %> </td>
+                                    <td> <%# Eval("Hora") %> </td>
                                     <td> <%# Eval("Impresa") %> </td>
                                     <td> <%#string.Format("{0:N0}", Eval("CantidadImpresiones")) %> </td>
                                     <td class="ContenidoDerecha"> <asp:ImageButton ID="btnImpresionUnica" runat="server" ToolTip="Imprimir" CssClass="BotonImagen" ImageUrl="~/ImagenesBotones/impresora-de-papel.png" OnClick="btnImpresionUnica_Click" /> </td>
