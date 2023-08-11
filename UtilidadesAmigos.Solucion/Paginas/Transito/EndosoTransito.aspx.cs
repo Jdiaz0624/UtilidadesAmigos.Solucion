@@ -80,7 +80,7 @@ namespace UtilidadesAmigos.Solucion.Paginas.Transito
             }
             else
             {
-              // GenerarEndoso();
+               GenerarEndoso();
             }
         }
     }
