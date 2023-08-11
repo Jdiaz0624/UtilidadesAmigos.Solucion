@@ -40,14 +40,19 @@ namespace UtilidadesAmigos.Solucion.Paginas.Transito
 
             Endoso.SetParameterValue("@Poliza", _Poliza);
             Endoso.SetParameterValue("@Item", _NumeroItem);
-            Endoso.SetParameterValue("@GeneradoPor", (int)Session["IdUsuario"]);
+            Endoso.SetParameterValue("@GeneradoPor", 1);
             Endoso.SetParameterValue("@EndosadoA", _Endosado);
             Endoso.SetParameterValue("@ValorCredito", _ValorCedido);
             Endoso.SetParameterValue("@MontoDeducible", _MontoDeducible);
 
             Endoso.SetDatabaseLogon(UsuarioBD, ClaveBD);
 
-            Endoso.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            if (rpPDF.Checked == true) {
+                Endoso.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+            }
+            else if (rbDocx.Checked == true) {
+                Endoso.ExportToHttpResponse(ExportFormatType.WordForWindows, Response, true, NombreReporte);
+            }
 
         }
         #endregion
