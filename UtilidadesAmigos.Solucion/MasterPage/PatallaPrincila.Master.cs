@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using UtilidadesAmigos.Solucion.Paginas.Transito;
 
 namespace UtilidadesAmigos.Solucion.MasterPage
 {
@@ -2496,7 +2497,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkEndososTransito_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Que Degraciación con ustedes los humanos, si la opcion esta en roja es por que no esta en funcionamiento.');", true);
+           if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Transito/EndosoTransito.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
 
         protected void LinkReportePolizasTransito_Click(object sender, EventArgs e)

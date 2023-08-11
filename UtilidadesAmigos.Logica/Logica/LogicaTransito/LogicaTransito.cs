@@ -70,6 +70,64 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaTransito
                                }).ToList();
             return Informacion;
         }
+
+        public List<UtilidadesAmigos.Logica.Entidades.Transito.EEndosoPolizasTransito> MostrarEndosoTransito(string Poliza = null, int? Item = null, int? GeneradoPor = null, string EndosadoA = null, decimal? ValorCredito = null, decimal? MontoDeducible = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_GENERAR_ENDOSOS_TRANSITO(Poliza, Item, GeneradoPor, EndosadoA, ValorCredito, MontoDeducible)
+                           select new UtilidadesAmigos.Logica.Entidades.Transito.EEndosoPolizasTransito
+                           {
+                               Poliza=n.Poliza,
+                               Moneda=n.Moneda,
+                               Moneda1=n.Moneda1,
+                               ValorAnual=n.ValorAnual,
+                               FechaFacturacion=n.FechaFacturacion,
+                               Mes=n.Mes,
+                               Ano=n.Ano,
+                               Fecha=n.Fecha,
+                               Hora=n.Hora,
+                               UsuarioAdiciona=n.UsuarioAdiciona,
+                               Oficina=n.Oficina,
+                               NombreOficina=n.NombreOficina,
+                               ConceptoMov=n.ConceptoMov,
+                               Cliente=n.Cliente,
+                               Direccion=n.Direccion,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               TipoVehiculo=n.TipoVehiculo,
+                               Marca=n.Marca,
+                               Modelo=n.Modelo,
+                               Chasis=n.Chasis,
+                               Placa=n.Placa,
+                               NumeroItem=n.NumeroItem,
+                               Color=n.Color,
+                               Uso=n.Uso,
+                               Ano1=n.Ano1,
+                               Asegurado=n.Asegurado,
+                               FianzaJudicial=n.FianzaJudicial,
+                               ValorVehiculo=n.ValorVehiculo,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               Grua=n.Grua,
+                               Servicios=n.Servicios,
+                               CodigoRamo=n.CodigoRamo,
+                               Ramo=n.Ramo,
+                               CodigoSubRamo=n.CodigoSubRamo,
+                               SubRamo=n.SubRamo,
+                               GeneradoPor=n.GeneradoPor,
+                               EndosadoA=n.EndosadoA,
+                               ValorCredito=n.ValorCredito,
+                               MontoDeducible=n.MontoDeducible,
+                               ColisionVuelco=n.ColisionVuelco,
+                               RiesgoComprensivo=n.RiesgoComprensivo,
+                               Incendio=n.Incendio,
+                               Robo=n.Robo
+                           }).ToList();
+            return Listado;
+        }
         #endregion
     }
 }

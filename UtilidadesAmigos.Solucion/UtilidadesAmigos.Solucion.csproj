@@ -346,7 +346,9 @@
     <Content Include="Paginas\Suministro\LogoReducido.jpg" />
     <Content Include="Paginas\Suministro\SolicitudSuministro.aspx" />
     <Content Include="Paginas\SuperIntendencia\ConsultaPersonas.aspx" />
+    <Content Include="Paginas\Transito\EndosoTransito.aspx" />
     <Content Include="Paginas\Transito\GenerarMarbetes.aspx" />
+    <Content Include="Paginas\Transito\ReporteProduccionPolizasTransito.aspx" />
     <Content Include="scripts\bootstrap.bundle.js" />
     <Content Include="scripts\bootstrap.bundle.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -1183,12 +1185,26 @@
     <Compile Include="Paginas\TipoCotizador.aspx.designer.cs">
       <DependentUpon>TipoCotizador.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Transito\EndosoTransito.aspx.cs">
+      <DependentUpon>EndosoTransito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Transito\EndosoTransito.aspx.designer.cs">
+      <DependentUpon>EndosoTransito.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Transito\GenerarMarbetes.aspx.cs">
       <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Paginas\Transito\GenerarMarbetes.aspx.designer.cs">
       <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Transito\ReporteProduccionPolizasTransito.aspx.cs">
+      <DependentUpon>ReporteProduccionPolizasTransito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Transito\ReporteProduccionPolizasTransito.aspx.designer.cs">
+      <DependentUpon>ReporteProduccionPolizasTransito.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ValorVehiculo.aspx.cs">
       <DependentUpon>ValorVehiculo.aspx</DependentUpon>
