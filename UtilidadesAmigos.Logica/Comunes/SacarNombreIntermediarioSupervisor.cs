@@ -32,7 +32,7 @@ namespace UtilidadesAmigos.Logica.Comunes
                 null,
                 null);
             if (SacarInformacion.Count() < 1) {
-                Nombre = "";
+                Nombre = "SUPERVSOR NO VALIDO";
             }
             else {
                 foreach (var n in SacarInformacion) {
@@ -53,7 +53,7 @@ namespace UtilidadesAmigos.Logica.Comunes
                 Codigo,
                 null, null, null, null);
             if (Buscar.Count() < 1) {
-                Nombre = "";
+                Nombre = "  INTERMEDIARIO NO VALIDO";
             }
             else {
                 foreach (var n in Buscar) {

@@ -20,8 +20,14 @@ namespace UtilidadesAmigos.Logica.Comunes
             string NombreCliente = "";
 
             var SacarNombre = ObjDataSistema.SacarNombreCliente(CodigoColiente);
-            foreach (var n in SacarNombre) {
-                NombreCliente = n.Cliente;
+            if (SacarNombre.Count() < 1) {
+                NombreCliente = "CLIENTE NO VALIDO";
+            }
+            else {
+                foreach (var n in SacarNombre)
+                {
+                    NombreCliente = n.Cliente;
+                }
             }
             return NombreCliente;
         }

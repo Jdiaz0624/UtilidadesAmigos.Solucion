@@ -2510,7 +2510,15 @@ namespace UtilidadesAmigos.Solucion.MasterPage
 
         protected void LinkReportePolizasTransito_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('Que Degraciación con ustedes los humanos, si la opcion esta en roja es por que no esta en funcionamiento.');", true);
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Transito/ReporteProduccionPolizasTransito.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
         }
     }
 }
