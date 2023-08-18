@@ -10,9 +10,11 @@ namespace UtilidadesAmigos.Solucion.Paginas.Consulta
     public partial class ConsultarDataAsegurado : System.Web.UI.Page
     {
 
+        //  Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
         Lazy<UtilidadesAmigos.Logica.Logica.LogicaSistema> ObjData = new Lazy<Logica.Logica.LogicaSistema>();
 
-    
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
