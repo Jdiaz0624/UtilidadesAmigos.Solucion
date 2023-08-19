@@ -522,6 +522,8 @@
     <Compile Include="Entidades\SuperIntendencia\EResultadoBusquedaPersonasSuperIntendencia.cs" />
     <Compile Include="Entidades\Transito\EEndosoPolizasTransito.cs" />
     <Compile Include="Entidades\Transito\EMarbeteTransito.cs" />
+    <Compile Include="Entidades\Transito\EReportePolizasTransito.cs" />
+    <Compile Include="Entidades\Transito\EReportePolizasTransitoAgrupado.cs" />
     <Compile Include="Logica\LogicaConsulta\LogicaConsulta.cs" />
     <Compile Include="Logica\LogicaCorrecciones\LogicaCorrecciones.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />

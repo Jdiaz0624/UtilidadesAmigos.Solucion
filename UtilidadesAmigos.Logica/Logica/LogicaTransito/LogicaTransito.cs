@@ -129,5 +129,99 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaTransito
             return Listado;
         }
         #endregion
+        #region REPORTE DE POLIZAS EN TRANSITO
+        /// <summary>
+        /// Reporte de Polizas en Transito
+        /// </summary>
+        /// <param name="Poliza"></param>
+        /// <param name="Item"></param>
+        /// <param name="_FechaDesde"></param>
+        /// <param name="_FechaHasta"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="_Intermediario"></param>
+        /// <param name="Cliente"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="PolizaImpresa"></param>
+        /// <param name="Usuario"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Transito.EReportePolizasTransito> ReportePolizasTransito(string Poliza = null, int? Item = null, DateTime? _FechaDesde = null, DateTime? _FechaHasta = null, int? Supervisor = null, int? _Intermediario = null, decimal? Cliente = null, int? Oficina = null, string PolizaImpresa = null, string Usuario = null, int? GeneradoPor = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_GENERAR_REPORTE_POLIZAS_TRANSITO(Poliza, Item, _FechaDesde, _FechaHasta, Supervisor, _Intermediario, Cliente, Oficina, PolizaImpresa, Usuario, GeneradoPor)
+                           select new UtilidadesAmigos.Logica.Entidades.Transito.EReportePolizasTransito
+                           {
+                               Poliza=n.Poliza,
+                               ValorAnual=n.ValorAnual,
+                               FechaFacturacion=n.FechaFacturacion,
+                               Fecha=n.Fecha,
+                               Hora=n.Hora,
+                               UsuarioAdiciona=n.UsuarioAdiciona,
+                               Oficina=n.Oficina,
+                               NombreOficina=n.NombreOficina,
+                               ConceptoMov=n.ConceptoMov,
+                               Cliente=n.Cliente,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               Supervisor=n.Supervisor,
+                               TipoVehiculo=n.TipoVehiculo,
+                               Marca=n.Marca,
+                               Modelo=n.Modelo,
+                               Chasis=n.Chasis,
+                               Placa=n.Placa,
+                               NumeroItem=n.NumeroItem,
+                               Color=n.Color,
+                               Uso=n.Uso,
+                               Ano=n.Ano,
+                               Asegurado=n.Asegurado,
+                               FianzaJudicial=n.FianzaJudicial,
+                               ValorVehiculo=n.ValorVehiculo,
+                               InicioVigencia=n.InicioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               Grua=n.Grua,
+                               Servicios=n.Servicios,
+                               CodigoRamo=n.CodigoRamo,
+                               Ramo=n.Ramo,
+                               CodigoSubRamo=n.CodigoSubRamo,
+                               SubRamo=n.SubRamo,
+                               FechaDesde=n.FechaDesde,
+                               FechaHasta=n.FechaHasta,
+                               GeneradoPor=n.GeneradoPor
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
+        #region REPORTE DE POLIZAS EN TRANSITO AGRUPADO
+        /// <summary>
+        /// Muestra el listado de las polizas agrupadas de manera agrupada
+        /// </summary>
+        /// <param name="_Poliza"></param>
+        /// <param name="Item"></param>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHasta"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="Cliente"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="Usuario"></param>
+        /// <param name="GeneradoPor"></param>
+        /// <param name="TipoAgrupacion"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Transito.EReportePolizasTransitoAgrupado> ReportePolizasTransitoAgrupado(string _Poliza = null, int? Item = null, DateTime? FechaDesde = null, DateTime? FechaHasta = null, int? Supervisor = null, int? Intermediario = null, decimal? Cliente = null, int? Oficina = null, string Usuario = null, int? GeneradoPor = null, int? TipoAgrupacion = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_GENERAR_REPORTE_POLIZAS_TRANSITO_AGRUPADO(_Poliza, Item, FechaDesde, FechaHasta, Supervisor, Intermediario, Cliente, Oficina, Usuario, GeneradoPor, TipoAgrupacion)
+                           select new UtilidadesAmigos.Logica.Entidades.Transito.EReportePolizasTransitoAgrupado
+                           {
+                               Entidad=n.Entidad,
+                               Cantidad=n.Cantidad,
+                               Titulo=n.Titulo
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }

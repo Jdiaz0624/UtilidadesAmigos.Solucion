@@ -65,7 +65,6 @@
         <div class="form-check-inline">
             <label class="Letranegrita">Tipo de Reporte: </label>
             <asp:RadioButton ID="rbDetallado" runat="server" Text="Detallado" GroupName="TipoRaporte" AutoPostBack="true" OnCheckedChanged="ValidarCheck" />
-            <asp:RadioButton ID="rbResumido" runat="server" Text="Resumido" GroupName="TipoRaporte" AutoPostBack="true" OnCheckedChanged="ValidarCheck" />
             <asp:RadioButton ID="rbAgrupado" runat="server" Text="Agrupado" GroupName="TipoRaporte" AutoPostBack="true" OnCheckedChanged="ValidarCheck" />
             <asp:RadioButton ID="rbPorDia" runat="server" Text="Por Dia" GroupName="TipoRaporte" AutoPostBack="true" OnCheckedChanged="ValidarCheck" />
             <br />

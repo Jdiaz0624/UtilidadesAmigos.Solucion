@@ -8,6 +8,17 @@ namespace UtilidadesAmigos.Logica.Comunes
 {
     public class Enumeraciones
     {
+
+        public enum TipoAgrupacionReportePolizaTransito { 
+        
+           Supervisor=1,
+           Intermediario=2,
+           Ramo=3,
+           Sub_Ramo=4,
+           Oficina=5,
+           Usuario=6
+        }
+
         public enum PerfilesUsuarios
         {
             ADMINISTRADOR = 1,
