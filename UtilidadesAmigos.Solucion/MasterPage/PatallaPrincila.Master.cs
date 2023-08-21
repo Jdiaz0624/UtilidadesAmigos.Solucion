@@ -193,7 +193,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
-                    DIvBloqueTransito.Visible = false;
+                    DIvBloqueTransito.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.CUMPLIMIENTO:
@@ -217,7 +217,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     DivModuloSeguridad.Visible = false;
                     DivModuloCorrecciones.Visible = false;
                     DIVModuloHoja.Visible = false;
-                    DIvBloqueTransito.Visible = false;
+                    DIvBloqueTransito.Visible = true;
                     break;
 
                 case (int)PefilesUsuarios.TECNICOESPECIAL:
@@ -1103,9 +1103,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkCertificadoMaritimo.Visible = false;
 
                     //TRANSITO
-                    LinkGenerarMarbete.Visible = false;
-                    LinkEndososTransito.Visible = false;
-                    LinkReportePolizasTransito.Visible = false;
+                    LinkGenerarMarbete.Visible = true;
+                    LinkEndososTransito.Visible = true;
+                    LinkReportePolizasTransito.Visible = true;
 
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
@@ -1287,9 +1287,9 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkCertificadoMaritimo.Visible = false;
 
                     //TRANSITO
-                    LinkGenerarMarbete.Visible = false;
-                    LinkEndososTransito.Visible = false;
-                    LinkReportePolizasTransito.Visible = false;
+                    LinkGenerarMarbete.Visible = true;
+                    LinkEndososTransito.Visible = true;
+                    LinkReportePolizasTransito.Visible = true;
 
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
