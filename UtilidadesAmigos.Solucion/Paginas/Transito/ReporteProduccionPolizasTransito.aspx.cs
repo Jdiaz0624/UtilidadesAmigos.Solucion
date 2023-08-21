@@ -385,11 +385,46 @@ namespace UtilidadesAmigos.Solucion.Paginas.Transito
                                 select new
                                 {
                                     Entidad = n.Entidad,
-                                    Cantidad =n.Cantidad
+                                    Cantidad = n.Cantidad
                                 }).ToList();
                 UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel("Polizas en Transito Agrupada", Exportar);
             }
-            else { }
+            else {
+                //REPORTE
+                string RutaReporte = "", NombreReporte = "", UsuarioBD = "", ClaveBD = "";
+
+                RutaReporte = Server.MapPath("ReportePolizasTransitoAgrupado.rpt");
+                NombreReporte = "Reporte Agrupado";
+                UtilidadesAmigos.Logica.Comunes.SacarCredencialesBD Credenciales = new Logica.Comunes.SacarCredencialesBD(1);
+                UsuarioBD = Credenciales.SacarUsuario();
+                ClaveBD = Credenciales.SacarClaveBD();
+
+                ReportDocument Reporte = new ReportDocument();
+
+                Reporte.Load(RutaReporte);
+                Reporte.Refresh();
+
+                Reporte.SetParameterValue("@Poliza", _Poliza);
+                Reporte.SetParameterValue("@Item", _Item);
+                Reporte.SetParameterValue("@FechaProcesoDesde", _FechaDesde.ToString("yyyy-MM-dd"));
+                Reporte.SetParameterValue("@FechaProcesoHasta", _FechaHasta.ToString("yyyy-MM-dd"));
+                Reporte.SetParameterValue("@Supervisor", _Supervisor);
+                Reporte.SetParameterValue("@Intermediario", _Intermediario);
+                Reporte.SetParameterValue("@Cliente", _Cliente);
+                Reporte.SetParameterValue("@Oficina", _Oficina);
+                Reporte.SetParameterValue("@Usuario", _Usuario);
+                Reporte.SetParameterValue("@GeneradoPor", _Generadopor);
+                Reporte.SetParameterValue("@Tipoagrupacion", TipoAgrupacion);
+
+                Reporte.SetDatabaseLogon(UsuarioBD, ClaveBD);
+
+                if (rbPDF.Checked == true) {
+                    Reporte.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, NombreReporte);
+                }
+                else if (rbExcel.Checked == true) {
+                    Reporte.ExportToHttpResponse(ExportFormatType.Excel, Response, true, NombreReporte);
+                }
+            }
         }
         #endregion
         protected void Page_Load(object sender, EventArgs e)
