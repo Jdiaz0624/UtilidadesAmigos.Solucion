@@ -47,10 +47,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.Transito
         protected void txtCliente_TextChanged(object sender, EventArgs e)
         {
             try {
-                UtilidadesAmigos.Logica.Comunes.ESacarNombreCliente Nombre = new Logica.Comunes.ESacarNombreCliente(txtCliente.Text);
-                txtNombreCliente.Text = Nombre.SacarCodigoCLiente();
+                if (string.IsNullOrEmpty(txtCliente.Text.Trim())) {
+                    txtNombreCliente.Text = string.Empty;
+                }
+                else {
+                    UtilidadesAmigos.Logica.Comunes.ESacarNombreCliente Nombre = new Logica.Comunes.ESacarNombreCliente(txtCliente.Text);
+                    txtNombreCliente.Text = Nombre.SacarCodigoCLiente();
+                }
             }
-            catch {
+            catch(Exception) {
             
             }
         }
@@ -62,12 +67,14 @@ namespace UtilidadesAmigos.Solucion.Paginas.Transito
 
         protected void txtCodigoIntermediario_TextChanged(object sender, EventArgs e)
         {
-
+            try { }
+            catch (Exception) { }
         }
 
         protected void txtCodigoSupervisor_TextChanged(object sender, EventArgs e)
         {
-
+            try { }
+            catch (Exception) { }
         }
 
         protected void btnConsultar_Click(object sender, ImageClickEventArgs e)
