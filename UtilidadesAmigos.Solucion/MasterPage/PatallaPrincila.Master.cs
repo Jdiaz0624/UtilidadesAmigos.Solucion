@@ -283,6 +283,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkGenerarMarbete.Visible = true;
                     LinkEndososTransito.Visible = true;
                     LinkReportePolizasTransito.Visible = true;
+                    LinkPolizasPendientesPagos.Visible = true;
 
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
@@ -375,6 +376,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkGenerarMarbete.Visible = false;
                     LinkEndososTransito.Visible = false;
                     LinkReportePolizasTransito.Visible = false;
+                    LinkPolizasPendientesPagos.Visible = false;
 
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
@@ -462,9 +464,10 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkCertificadoMaritimo.Visible = false;
 
                     //TRANSITO
-                    LinkGenerarMarbete.Visible = false;
-                    LinkEndososTransito.Visible = false;
-                    LinkReportePolizasTransito.Visible = false;
+                    LinkGenerarMarbete.Visible = true;
+                    LinkEndososTransito.Visible = true;
+                    LinkReportePolizasTransito.Visible = true;
+                    LinkPolizasPendientesPagos.Visible = true;
 
 
                     //REPORTES
@@ -556,6 +559,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkGenerarMarbete.Visible = true;
                     LinkEndososTransito.Visible = true;
                     LinkReportePolizasTransito.Visible = true;
+                    LinkPolizasPendientesPagos.Visible = true;
 
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
@@ -647,6 +651,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkGenerarMarbete.Visible = true;
                     LinkEndososTransito.Visible = true;
                     LinkReportePolizasTransito.Visible = true;
+                    LinkPolizasPendientesPagos.Visible = false;
 
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
@@ -739,6 +744,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkGenerarMarbete.Visible = true;
                     LinkEndososTransito.Visible = true;
                     LinkReportePolizasTransito.Visible = true;
+                    LinkPolizasPendientesPagos.Visible = true;
 
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
@@ -831,6 +837,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkGenerarMarbete.Visible = false;
                     LinkEndososTransito.Visible = false;
                     LinkReportePolizasTransito.Visible = false;
+                    LinkPolizasPendientesPagos.Visible = false;
 
                     //REPORTES
                     LinkReporteProduccion.Visible = false;
@@ -922,6 +929,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkGenerarMarbete.Visible = false;
                     LinkEndososTransito.Visible = false;
                     LinkReportePolizasTransito.Visible = false;
+                    LinkPolizasPendientesPagos.Visible = false;
 
                     //REPORTES
                     LinkReporteProduccion.Visible = false;
@@ -1014,6 +1022,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkGenerarMarbete.Visible = false;
                     LinkEndososTransito.Visible = false;
                     LinkReportePolizasTransito.Visible = false;
+                    LinkPolizasPendientesPagos.Visible = false;
 
                     //REPORTES
                     LinkReporteProduccion.Visible = false;
@@ -1103,9 +1112,10 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkCertificadoMaritimo.Visible = false;
 
                     //TRANSITO
-                    LinkGenerarMarbete.Visible = true;
-                    LinkEndososTransito.Visible = true;
-                    LinkReportePolizasTransito.Visible = true;
+                    LinkGenerarMarbete.Visible = false;
+                    LinkEndososTransito.Visible = false;
+                    LinkReportePolizasTransito.Visible = false;
+                    LinkPolizasPendientesPagos.Visible = true;
 
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
@@ -1198,6 +1208,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkGenerarMarbete.Visible = false;
                     LinkEndososTransito.Visible = false;
                     LinkReportePolizasTransito.Visible = false;
+                    LinkPolizasPendientesPagos.Visible = false;
 
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
@@ -1287,9 +1298,10 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkCertificadoMaritimo.Visible = false;
 
                     //TRANSITO
-                    LinkGenerarMarbete.Visible = true;
-                    LinkEndososTransito.Visible = true;
-                    LinkReportePolizasTransito.Visible = true;
+                    LinkGenerarMarbete.Visible = false;
+                    LinkEndososTransito.Visible = false;
+                    LinkReportePolizasTransito.Visible = false;
+                    LinkPolizasPendientesPagos.Visible = true;
 
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
@@ -1382,6 +1394,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     LinkGenerarMarbete.Visible = true;
                     LinkEndososTransito.Visible = true;
                     LinkReportePolizasTransito.Visible = true;
+                    LinkPolizasPendientesPagos.Visible = false;
 
                     //REPORTES
                     LinkReporteProduccion.Visible = true;
@@ -2513,6 +2526,19 @@ namespace UtilidadesAmigos.Solucion.MasterPage
             if (Session["IdUsuario"] != null)
             {
                 Response.Redirect("~/Paginas/Transito/ReporteProduccionPolizasTransito.aspx");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+        }
+
+        protected void LinkPolizasPendientesPagos_Click(object sender, EventArgs e)
+        {
+            if (Session["IdUsuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Transito/PolizasConPagosPendientes.aspx");
             }
             else
             {

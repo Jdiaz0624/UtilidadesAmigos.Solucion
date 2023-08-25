@@ -146,6 +146,7 @@
             <li> <asp:LinkButton ID="LinkGenerarMarbete" runat="server" Text="Generar Marbetes" ToolTip="Generación de Marbetes" OnClick="LinkGenerarMarbete_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkEndososTransito" runat="server" Text="Endosos" ToolTip="Generación de Marbetes" OnClick="LinkEndososTransito_Click"></asp:LinkButton> </li>
             <li> <asp:LinkButton ID="LinkReportePolizasTransito" runat="server" Text="Reporte"  ToolTip="Generación de Marbetes" OnClick="LinkReportePolizasTransito_Click"></asp:LinkButton> </li>
+            <li> <asp:LinkButton ID="LinkPolizasPendientesPagos" runat="server" Text="Polizas Pendientes de Pago"  ToolTip="Polizas Con Pagos Pendientes" OnClick="LinkPolizasPendientesPagos_Click"></asp:LinkButton> </li>
         </ul>
         </li>
 

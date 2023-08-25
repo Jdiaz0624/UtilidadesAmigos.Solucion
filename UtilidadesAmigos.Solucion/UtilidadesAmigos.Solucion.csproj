@@ -348,6 +348,7 @@
     <Content Include="Paginas\SuperIntendencia\ConsultaPersonas.aspx" />
     <Content Include="Paginas\Transito\EndosoTransito.aspx" />
     <Content Include="Paginas\Transito\GenerarMarbetes.aspx" />
+    <Content Include="Paginas\Transito\PolizasConPagosPendientes.aspx" />
     <Content Include="Paginas\Transito\ReporteProduccionPolizasTransito.aspx" />
     <Content Include="scripts\bootstrap.bundle.js" />
     <Content Include="scripts\bootstrap.bundle.min.js" />
@@ -1198,6 +1199,13 @@
     </Compile>
     <Compile Include="Paginas\Transito\GenerarMarbetes.aspx.designer.cs">
       <DependentUpon>GenerarMarbetes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Transito\PolizasConPagosPendientes.aspx.cs">
+      <DependentUpon>PolizasConPagosPendientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Transito\PolizasConPagosPendientes.aspx.designer.cs">
+      <DependentUpon>PolizasConPagosPendientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Transito\ReporteProduccionPolizasTransito.aspx.cs">
       <DependentUpon>ReporteProduccionPolizasTransito.aspx</DependentUpon>

@@ -316,6 +316,7 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack) {
                 UtilidadesAmigos.Logica.Comunes.SacarNombreUsuario Nombre = new Logica.Comunes.SacarNombreUsuario((decimal)Session["IdUsuario"]);
                 Label lbNombreUsuario = (Label)Master.FindControl("lbUsuarioConectado");
