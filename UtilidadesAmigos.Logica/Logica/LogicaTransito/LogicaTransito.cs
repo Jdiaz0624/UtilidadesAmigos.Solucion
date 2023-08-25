@@ -223,5 +223,64 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaTransito
             return Listado;
         }
         #endregion
+        #region MOSTRARR POLIZAS CON PAGOS PENDIENTES
+        /// <summary>
+        /// Muestra el listtado de las polizas con pago pendiente
+        /// </summary>
+        /// <param name="FechaDesde"></param>
+        /// <param name="FechaHastta"></param>
+        /// <param name="Poliza"></param>
+        /// <param name="Cliente"></param>
+        /// <param name="Intermediario"></param>
+        /// <param name="Supervisor"></param>
+        /// <param name="Ramo"></param>
+        /// <param name="SuubRamo"></param>
+        /// <param name="Oficina"></param>
+        /// <param name="Moneda"></param>
+        /// <param name="Usuario"></param>
+        /// <returns></returns>
+        public List<UtilidadesAmigos.Logica.Entidades.Transito.EPolizasConPagosPendientes> BuscaPolizasConPagosPPendientes(DateTime? FechaDesde = null, DateTime? FechaHastta = null, string Poliza = null, decimal? Cliente = null, int? Intermediario = null, int? Supervisor = null, int? Ramo = null, int? SuubRamo = null, int? Oficina = null, int? Moneda = null, decimal? Usuario = null) {
+
+            ObjData.CommandTimeout = 999999999;
+
+            var Listado = (from n in ObjData.SP_BUSCA_POLIZAS_PENDIENTES_PAGOS(FechaDesde, FechaHastta, Poliza, Cliente, Intermediario, Supervisor, Ramo, SuubRamo, Oficina, Moneda, Usuario)
+                           select new UtilidadesAmigos.Logica.Entidades.Transito.EPolizasConPagosPendientes
+                           {
+                               Poliza=n.Poliza,
+                               FechaProceso=n.FechaProceso,
+                               CodigoRamo=n.CodigoRamo,
+                               Ramo=n.Ramo,
+                               CodigoSubRamo=n.CodigoSubRamo,
+                               SubRamo=n.SubRamo,
+                               Estatus=n.Estatus,
+                               CodigoOficina=n.CodigoOficina,
+                               Oficina=n.Oficina,
+                               Moneda=n.Moneda,
+                               Tasa=n.Tasa,
+                               Cliente=n.Cliente,
+                               NombreCliente = n.NombreCliente,
+                               TelefonoOficina=n.TelefonoOficina,
+                               TelefonoResidencia=n.TelefonoResidencia,
+                               Celular=n.Celular,
+                               CodigoIntermediario=n.CodigoIntermediario,
+                               Intermediario=n.Intermediario,
+                               CodigoSupervisor=n.CodigoSupervisor,
+                               NombreSupervisor=n.NombreSupervisor,
+                               IncioVigencia=n.IncioVigencia,
+                               FinVigencia=n.FinVigencia,
+                               ValorPoliza=n.ValorPoliza,
+                               Facturado=n.Facturado,
+                               Cobrado=n.Cobrado,
+                               MontoPendiente=n.MontoPendiente,
+                               IdPerfil=n.IdPerfil,
+                               Perfl=n.Perfl,
+                               CodMoneda=n.CodMoneda,
+                               ValidadoDesde=n.ValidadoDesde,
+                               ValidadoHasta=n.ValidadoHasta,
+                               GeneradoPor=n.GeneradoPor
+                           }).ToList();
+            return Listado;
+        }
+        #endregion
     }
 }

@@ -16,7 +16,7 @@
            </div>
            <div class="col-md-3">
                <label class="Letranegrita">Poliza</label>
-               <asp:TextBox ID="txtPoliza" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
+               <asp:TextBox ID="txtPoliza" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="ListadoPorPantalla" AutoCompleteType="Disabled"></asp:TextBox>
            </div>
            <div class="col-md-3">
                <label class="Letranegrita">Oficina</label>

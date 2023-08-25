@@ -522,6 +522,7 @@
     <Compile Include="Entidades\SuperIntendencia\EResultadoBusquedaPersonasSuperIntendencia.cs" />
     <Compile Include="Entidades\Transito\EEndosoPolizasTransito.cs" />
     <Compile Include="Entidades\Transito\EMarbeteTransito.cs" />
+    <Compile Include="Entidades\Transito\EPolizasConPagosPendientes.cs" />
     <Compile Include="Entidades\Transito\EReportePolizasTransito.cs" />
     <Compile Include="Entidades\Transito\EReportePolizasTransitoAgrupado.cs" />
     <Compile Include="Logica\LogicaConsulta\LogicaConsulta.cs" />

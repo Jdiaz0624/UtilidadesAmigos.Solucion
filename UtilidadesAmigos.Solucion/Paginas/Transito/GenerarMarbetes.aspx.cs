@@ -311,9 +311,6 @@ namespace UtilidadesAmigos.Solucion.Paginas
 
         #endregion
 
-
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
