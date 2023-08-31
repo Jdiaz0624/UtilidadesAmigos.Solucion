@@ -1114,7 +1114,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //TRANSITO
                     LinkGenerarMarbete.Visible = false;
                     LinkEndososTransito.Visible = false;
-                    LinkReportePolizasTransito.Visible = false;
+                    LinkReportePolizasTransito.Visible = true;
                     LinkPolizasPendientesPagos.Visible = true;
 
                     //REPORTES
@@ -1300,7 +1300,7 @@ namespace UtilidadesAmigos.Solucion.MasterPage
                     //TRANSITO
                     LinkGenerarMarbete.Visible = false;
                     LinkEndososTransito.Visible = false;
-                    LinkReportePolizasTransito.Visible = false;
+                    LinkReportePolizasTransito.Visible = true;
                     LinkPolizasPendientesPagos.Visible = true;
 
                     //REPORTES
