@@ -451,6 +451,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
                                                        Factura_Sin_Formato = n.Factura,
                                                        NumeroFactura = n.NumeroFactura,
                                                        Concepto = n.Concepto,
+                                                       Secuencia =n.Secuenciapoliza,
+                                                       Valor_Poliza = n.ValorPoliza,
+                                                       Cobrado=n.Cobrado,
+                                                       Pendiente=n.Pendiente,
                                                        GeneradoPor = n.GeneradoPor
                                                    }).ToList();
                             UtilidadesAmigos.Logica.Comunes.ExportarDataExel.exporttoexcel(NombreReporte + " " + "Detallado", ExportarDetalle);
@@ -632,6 +636,9 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
 
                 decimal Tasa = UtilidadesAmigos.Logica.Comunes.SacartasaMoneda.SacarTasaMoneda(2);
                 txtTasa.Text = Tasa.ToString();
+
+                UtilidadesAmigos.Logica.Comunes.Rangofecha FechaMes = new Logica.Comunes.Rangofecha();
+                FechaMes.FechaMes(ref txtFechaDesde, ref txtFechaHasta);
 
             }
         }

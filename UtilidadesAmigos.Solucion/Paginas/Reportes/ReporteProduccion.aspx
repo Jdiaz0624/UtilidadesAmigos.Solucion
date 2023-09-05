@@ -2,45 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <style type="text/css">
 
-        .jumbotron{
-            color:#000000; 
-            background:#1E90FF;
-            font-size:30px;
-            font-weight:bold;
-            font-family:'Gill Sans';
-            padding:25px;
-        }
-
-        .btn-sm{
-            width:90px;
-        }
-
-        .Letranegrita {
-        font-weight:bold;
-        }
-        table {
-            border-collapse: collapse;
-        }
-        
-        .BotonEspecial {
-           width:100%;
-           font-weight:bold;
-          }
-
-       
-
-        .BotonSolicitud {
-               width:50px;
-               height:50px;
-           }
-        .BotonImagen {
-               width:50px;
-               height:50px;
-           }
-    </style>
-
+    <link href="../../Content/EstilosComunes.css" rel="stylesheet" />
     <script type="text/javascript">
         function CamposFechaVAcios() {
             alert("Los campos Fechas son necesarios para generar esta información, favor de verificar.");
@@ -183,12 +146,13 @@
         </div>
         <hr />
       
-        <div align="center">
-             <asp:ImageButton ID="btnBuscarInformacion" runat="server" CssClass="BotonImagen" ToolTip="Consultar Información por pantalla" OnClick="btnBuscarInformacion_Click" ImageUrl="~/Imagenes/Buscar.png" />
-             <asp:ImageButton ID="btnReporteProduccion" runat="server" CssClass="BotonImagen" ToolTip="Generar Reporte" OnClick="btnReporteProduccion_Click" ImageUrl="~/Imagenes/Reporte.png" />
+        <div class="ContenidoCentro">
+             <asp:ImageButton ID="btnBuscarInformacion" runat="server" CssClass="BotonImagen" ToolTip="Consultar Información por pantalla" OnClick="btnBuscarInformacion_Click" ImageUrl="~/ImagenesBotones/Lupa_Nuevo.png" />
+             <asp:ImageButton ID="btnReporteProduccion" runat="server" CssClass="BotonImagen" ToolTip="Generar Reporte" OnClick="btnReporteProduccion_Click" ImageUrl="~/ImagenesBotones/Reporte_Nuevo.png" />
         </div>
         <br />
-        <table class="table table-striped">
+        <div class="table-responsive">
+            <table class="table table-striped">
             <thead class="table-dark">
                 <tr>
                     <th scope="col"> Poliza </th>
@@ -198,7 +162,9 @@
                     <th scope="col"> Bruto </th>
                     <th scope="col"> ISC </th>
                     <th scope="col"> Neto </th>
-                    
+                    <th scope="col"> Valor Poliza </th>
+                    <th scope="col"> Cobrado </th>
+                    <th scope="col"> Pendiente </th>
                 </tr>
             </thead>
             <tbody>
@@ -213,23 +179,31 @@
                             <td> <%#string.Format("{0:N2}", Eval("MontoBruto")) %> </td>
                             <td> <%#string.Format("{0:N2}", Eval("ISC")) %> </td>
                             <td> <%#string.Format("{0:N2}", Eval("MontoNeto")) %> </td>
+                            <td> <%#string.Format("{0:N2}", Eval("ValorPoliza")) %> </td>
+                             <td> <%#string.Format("{0:N2}", Eval("Cobrado")) %> </td>
+                             <td> <%#string.Format("{0:N2}", Eval("Pendiente")) %> </td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
             </tbody>
         </table>
-         <div align="center">
-                <asp:Label ID="lbPaginaActualTituloProduccion" runat="server" Text="Pagina " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbPaginaActualVariableProduccion" runat="server" Text=" 0 " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaTituloProduccion" runat="server" Text=" de " CssClass="Letranegrita"></asp:Label>
-                <asp:Label ID="lbCantidadPaginaVAriableProduccion" runat="server" Text="0" CssClass="Letranegrita"></asp:Label>
-            </div>
-             <div id="divPaginacionPolizasProduccion" runat="server" align="center">
+            <table class="table">
+                <tfoot class="table-light">
+                    <tr>
+                        <td class="ContenidoDerecha">
+                            <label class="Letranegrita">Pagina</label> <asp:Label ID="lbPaginaActualVariableProduccion" runat="server" Text=" 0 "></asp:Label>
+                            <label class="Letranegrita">De</label> <asp:Label ID="lbCantidadPaginaVAriableProduccion" runat="server" Text="0"></asp:Label>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+             <div id="divPaginacionPolizasProduccion" runat="server" class="table-responsive" align="center">
         <div style="margin-top: 20px;">
             <table style="width: 600px">
                 <tr>
-                    <td> <asp:ImageButton ID="btnPrimeraPaginaPaginacion" runat="server" ToolTip="Ir a la Primera Pagina del Listado" CssClass="BotonImagen" OnClick="btnPrimeraPaginaPaginacion_Click" ImageUrl="~/Imagenes/Primera Pagina.png" /> </td>
-                    <td> <asp:ImageButton ID="btnPaginaAnteriorPaginacion" runat="server" ToolTip="Ir a la Pagina Anterior del Listado" CssClass="BotonImagen" OnClick="btnPaginaAnteriorPaginacion_Click" ImageUrl="~/Imagenes/Anterior.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPrimeraPaginaPaginacion" runat="server" ToolTip="Ir a la Primera Pagina del Listado" CssClass="BotonImagen" OnClick="btnPrimeraPaginaPaginacion_Click" ImageUrl="~/ImagenesBotones/PrimeraPagina_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaAnteriorPaginacion" runat="server" ToolTip="Ir a la Pagina Anterior del Listado" CssClass="BotonImagen" OnClick="btnPaginaAnteriorPaginacion_Click" ImageUrl="~/ImagenesBotones/Anterior_Nuevo.png" /> </td>
 
                     <td>
                         <asp:DataList ID="dtPaginacionPolizasProduccion" runat="server" OnItemCommand="dtPaginacionPolizasProduccion_ItemCommand" OnItemDataBound="dtPaginacionPolizasProduccion_ItemDataBound" RepeatDirection="Horizontal">
@@ -239,8 +213,8 @@
                         </asp:DataList>
 
                     </td>
-                    <td> <asp:ImageButton ID="btnPaginaSiguientePaginacion" runat="server" ToolTip="Ir a la Siguiente Pagina del Listado" CssClass="BotonImagen" OnClick="btnPaginaSiguientePaginacion_Click" ImageUrl="~/Imagenes/Siguiente.png" /> </td>
-                    <td> <asp:ImageButton ID="btnUltimaPaginaPaginacion" runat="server" ToolTip="Ir a la Ultima Pagina del Listado" CssClass="BotonImagen" OnClick="btnUltimaPaginaPaginacion_Click" ImageUrl="~/Imagenes/Ultima Pagina.png" /> </td>
+                    <td> <asp:ImageButton ID="btnPaginaSiguientePaginacion" runat="server" ToolTip="Ir a la Siguiente Pagina del Listado" CssClass="BotonImagen" OnClick="btnPaginaSiguientePaginacion_Click" ImageUrl="~/ImagenesBotones/Siguiente_Nuevo.png" /> </td>
+                    <td> <asp:ImageButton ID="btnUltimaPaginaPaginacion" runat="server" ToolTip="Ir a la Ultima Pagina del Listado" CssClass="BotonImagen" OnClick="btnUltimaPaginaPaginacion_Click" ImageUrl="~/ImagenesBotones/UltimaPagina_Nuevo.png" /> </td>
                 </tr>
             </table>
         </div>

@@ -1725,7 +1725,12 @@ namespace UtilidadesAmigos.Logica.Logica.LogicaReportes
                                Concepto=n.Concepto,
                                GeneradoPor=n.GeneradoPor,
                                FechaDesde=n.FechaDesde,
-                               FechaHasta=n.FechaHasta
+                               FechaHasta=n.FechaHasta,
+                               Secuenciapoliza=n.Secuenciapoliza,
+                               ValorPoliza=n.ValorPoliza,
+                               Cobrado=n.Cobrado,
+                               Pendiente=n.Pendiente,
+                               CantidadRegistros=n.CantidadRegistros
                            }).ToList();
             return Listado;
 

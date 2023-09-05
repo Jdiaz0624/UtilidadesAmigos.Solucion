@@ -492,15 +492,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         protected global::System.Web.UI.WebControls.Repeater rpListadoProduccion;
 
         /// <summary>
-        /// lbPaginaActualTituloProduccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPaginaActualTituloProduccion;
-
-        /// <summary>
         /// lbPaginaActualVariableProduccion control.
         /// </summary>
         /// <remarks>
@@ -508,15 +499,6 @@ namespace UtilidadesAmigos.Solucion.Paginas.Reportes
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPaginaActualVariableProduccion;
-
-        /// <summary>
-        /// lbCantidadPaginaTituloProduccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCantidadPaginaTituloProduccion;
 
         /// <summary>
         /// lbCantidadPaginaVAriableProduccion control.
