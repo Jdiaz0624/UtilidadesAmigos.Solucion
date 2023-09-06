@@ -159,10 +159,10 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
             MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack) {
 
-                DivBloqueConsulta.Visible = false;
-                DIVBloqueMatriz.Visible = true;
+                DivBloqueConsulta.Visible = true;
+                DIVBloqueMatriz.Visible = false;
 
-                CargarListas();
+                
             }
         }
 
@@ -173,7 +173,15 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
 
         protected void btnNuevo_Click(object sender, ImageClickEventArgs e)
         {
-
+            DivBloqueConsulta.Visible = false;
+            DIVBloqueMatriz.Visible = true;
+            CargarListas();
+            txtNombre_Matriz.Text = string.Empty;
+            txtNumeroidentificacion.Text = string.Empty;
+            txtActividadSegundaria_Matriz.Text = string.Empty;
+            txtIngresosAdicionales.Text = string.Empty;
+            txtPrimaAnual.Text = "0";
+            txtObservaciones.Text = string.Empty;
         }
 
         protected void btnEditar_Click(object sender, ImageClickEventArgs e)
@@ -218,7 +226,8 @@ namespace UtilidadesAmigos.Solucion.Paginas.CumplimientoLegal
 
         protected void btnVolver_Click(object sender, ImageClickEventArgs e)
         {
-
+            DivBloqueConsulta.Visible = true;
+            DIVBloqueMatriz.Visible = false;
         }
 
         protected void btnReporte_Click(object sender, ImageClickEventArgs e)

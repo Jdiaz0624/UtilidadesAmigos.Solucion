@@ -142,6 +142,7 @@
       <Column Name="TipoMonitoreo" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Column Name="IdTipoDebidaDiligencia" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IdNivel_Riesgo_Consolidado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NivelRiesgoConsolidado" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Column Name="Observaciones" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
     </ElementType>
   </Function>

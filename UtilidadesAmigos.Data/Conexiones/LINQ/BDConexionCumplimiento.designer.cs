@@ -852,6 +852,8 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 		
 		private System.Nullable<int> _IdNivel_Riesgo_Consolidado;
 		
+		private string _NivelRiesgoConsolidado;
+		
 		private string _Observaciones;
 		
 		public SP_BUSCA_MATRIZ_RIESGOResult()
@@ -1798,6 +1800,22 @@ namespace UtilidadesAmigos.Data.Conexiones.LINQ
 				if ((this._IdNivel_Riesgo_Consolidado != value))
 				{
 					this._IdNivel_Riesgo_Consolidado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NivelRiesgoConsolidado", DbType="VarChar(1000)")]
+		public string NivelRiesgoConsolidado
+		{
+			get
+			{
+				return this._NivelRiesgoConsolidado;
+			}
+			set
+			{
+				if ((this._NivelRiesgoConsolidado != value))
+				{
+					this._NivelRiesgoConsolidado = value;
 				}
 			}
 		}

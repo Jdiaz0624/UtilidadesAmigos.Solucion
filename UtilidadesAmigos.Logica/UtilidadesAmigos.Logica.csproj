@@ -251,6 +251,7 @@
     <Compile Include="Entidades\Cotizador\EValorVehiculo.cs" />
     <Compile Include="Entidades\Cotizador\EVerificarServicios.cs" />
     <Compile Include="Entidades\Cotizador\EVerificarTipoServicioCotiador.cs" />
+    <Compile Include="Entidades\Cumplimiento\EMatrizRiezgo.cs" />
     <Compile Include="Entidades\EAccion.cs" />
     <Compile Include="Entidades\EBuscaClienteIntermediario.cs" />
     <Compile Include="Entidades\EBuscaCoberturasMantenimiento.cs" />
@@ -528,6 +529,7 @@
     <Compile Include="Logica\LogicaConsulta\LogicaConsulta.cs" />
     <Compile Include="Logica\LogicaCorrecciones\LogicaCorrecciones.cs" />
     <Compile Include="Logica\LogicaCotizador\LogicaCotizador.cs" />
+    <Compile Include="Logica\LogicaCumplimiento\LogicaCumplimiento.cs" />
     <Compile Include="Logica\LogicaHoja\LogicaHoja.cs" />
     <Compile Include="Logica\LogicaMantenimientos\LogicaMantenimientos.cs" />
     <Compile Include="Logica\LogicaOpcionesAdministrador\LogicaOpcionesdministrador.cs" />
